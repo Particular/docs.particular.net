@@ -188,11 +188,11 @@ The recommended approach is for the saga to publish events containing the requir
 
 ## Saga state read/write behavior
 
-Saga state read just before `Handle` is invoked and written immediately after `Handle` is completed. In other words the sequence is read, invoke, and write.
+Saga state is read just before `Handle` is invoked and written immediately after `Handle` is completed. In other words, the sequence is read, invoke, and write per `Handle`.
 
 - The write will be an ADD if the read didn't return data or an UPDATE if the read did return data.
-- If the read did not return data and during the invoke the saga is completed no write will occur
-- How state remains consistent depends the persister implementation
+- If the read did not return data and during the invoke the saga is completed no write will occur.
+- How state remains consistent depends the persister implementation (transactional lock vs atomic with optimistic concurrency control)
 - Saga state reads/writes happen after all pipeline stages
 
 If multiple different saga types are invoked on the same message type each read/invoke/write cycle will happen sequentially per saga type.
