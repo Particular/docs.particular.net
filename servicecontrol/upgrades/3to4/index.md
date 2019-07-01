@@ -20,12 +20,80 @@ ServiceControl version 4 introduces a new separate process to handle the audit q
 
 The original ServiceControl instance will no longer ingest messages from the audit queue. It can still contain audit messages that have already been ingested. These messages will be retained until the configured audit retention period has passed.
 
-This split is transparent to the other components of the Particular Software Platform, which should continue to connect to the main ServiceControl instance.
+This split is transparent to the other components of the Particular Software Platform, which should continue to connect to the main ServiceControl instance. All queries to the main ServiceControl instance will contain results from the Audit instance as well.
 
-There are 3 possible outcomes from upgrading a ServiceControl instance to version 4. These outcomes depend on the configuration of the instance at the time of the upgrade.
+When upgrading a ServiceControl instance to version 4, if it is configured to ingest messages from the audit queue, a new ServiceControl Audit instance will be created as a part of the upgrade process. A user will need to supply additional information about the new ServiceControl Audit instance.
 
-- If the instance is configured to ingest messages from the **audit** queue **and** the **error** queue, it will be [split into two separate processes](./split.md).
-- If the instance is configured to ingest messages from the **audit** queue, **but not** the **error** queue, it will be [converted into a ServiceControl Audit instance](./convert.md).
-- If the instance is configured to inegst messages from the **error** queue, **but not** the **audit** queue, it will be [directly upgraded](./direct.md).
+<Details on what that looks like in SMCU>
 
+NOTE: If the ServiceControl instance being upgraded has audit ingestion disabled (by setting the audit queue name to `!disable`), then no new ServiceControl Audit instance will be created.
+
+### Upgrading with PowerShell
+
+WARN: The `Invoke-ServiceControlInstanceUpgrade` powershell cmdlet cannot upgrade a ServiceControl instance to version 4 if a new ServiceControl Audit instance must be created. 
+
+The `Invoke-ServiceControlInstanceSplit` powershell cmdlet has been provided to upgrade a ServiceControl instance to version 4 and split out a new ServiceControl instance.
+
+```ps
+Invoke-ServiceControlInstanceSplit `
+  -Name <Name of main instance> `
+  -InstallPath <Path for Audit instance binaries> `
+  -DBPath <Path for the Audit instance database> `
+  -LogPath <Path for the Audit instance logs> `
+  -Port <Port for the Audit instance api> `
+  -DatabaseMaintenancePort <Port for the Audit instance embedded database> `
+  [-ServiceAccountPassword <password for service account>] `
+  [-Force]
+```
+
+The following information is copied from the existing ServiceControl instance:
+
+- Audit queue
+- Audit log queue
+- Forward audit messages
+- Audit retention period
+- Transport
+- Connection string
+- Host name
+- Service account
+
+NOTE: If this instance uses a domain account, the the account password must be supplied
+
+The name of the new audit instance will be derived from the name of the original instance.
+
+## Upgrading multi-instance deployments
+
+Upgrading a multi-instance ServiceControl deployment must be done in stages. Some stages may require the use of the powershell scripts. 
+
+### Upgrade the primmary instance
+
+The first step is to upgrade the primary ServiceControl instance. If the primary instance has audit ingestion enabled, then a new ServiceControl Audit instance will be created for it.
+
+NOTE: Once the primary instance has been upgraded, it will not subscribe to events being published by new secondary instances. All subscriptions to existing secondary instances will be retained. As the primary instance no longer requires the transport address of the secondary instances to send subscription requests, this property has been dropped from the `ServiceControl/RemoteInstances` configuration setting.
+
+### Upgrade the secondary instances
+
+Once the primary instance has been upgraded to version 4, secondary instances can be upgraded one at a time. If a secondary instance has audit ingestion enabled, then a new ServiceControl Audit instance will be created for it.
+
+If a secondary instance has error ingestion turned off, then it cannot be upgraded to version 4. The recommended course of action is to create a side-by-side deployment with a new ServiceControl Audit instance until the audit retention period cleans up the messages in the original secondary instance. Follow this sequence of steps:
+
+- Note the name of the primary instance
+- Check the configuration file of the secondary instance and note the following values:
+  - Transport
+  - Connection string
+  - Audit queue
+  - Audit log queue
+  - Audit forwarding
+  - Audit retention period
+- Turn off audit ingestion on the secondary instance by setting `ServiceBus/AuditQueue` to `!disable`. 
+- Create a new ServiceControl Audit instance with configuration that matches the settings in the original instance
+  - Use the `New-ServiceControlAuditInstance` powershell cmdlet
+- Add the new ServiceControl Audit instance to the `ServiceControl/RemoteInstances` setting in the primary ServiceControl instance
+  - Use the `Get-AuditInstances` powershell cmdlet to find the Url of the new secondary instance
+  - Use the `Add-ServiceControlRemote` powershell cmdlet 
+- Wait for the audit retention period to pass. This will allow all of the audited messages in the old secondary instance to get cleaned up
+- Remove the original secondary instance from the `ServiceControl/RemoteInstances` setting in the primary ServiceControl instance
+  - Use the `Remove-ServiceControlRemote` powershell cmdlet
+- Delete the original secondary instance
+  - Use the `Remove-ServiceControlInstance` powershell cmdlet
 
