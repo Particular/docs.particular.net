@@ -1,6 +1,6 @@
 ---
 title: MessagePack Serializer Usage
-summary: Using the MessagePack serializer in an endpoint.
+summary: How to configure an endpoint to use the MessagePack serializer
 reviewed: 2019-07-01
 component: MessagePack
 related:
@@ -10,7 +10,7 @@ redirects:
 - samples/serializers/message-pack
 ---
 
-## Configuring to use MessagePack serializer
+## Configuring the endpoint
 
 snippet: config
 

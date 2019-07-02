@@ -1,8 +1,8 @@
 ---
 title: Self Hosting in Azure Cloud Services
-summary: Uses NServiceBus self-hosting capability to host an endpoint in an Azure instance.
+summary: Using the NServiceBus self-hosting capability to host an endpoint in an Azure instance.
 component: Core
-reviewed: 2017-10-03
+reviewed: 2019-07-02
 tags:
 - Azure
 - Hosting
@@ -25,11 +25,11 @@ Results are sorted by Timestamp
 
 ## Deploying endpoints
 
- 1. Open a PowerShell console at the `self-host\CloudServicesHost_{version}` location. This location should contain `PackageAndDeploy.ps1`.
+ 1. Open a PowerShell console at the `self-host\CloudServicesHost_{version}` location. This location should contain a file called `PackageAndDeploy.ps1`.
  1. Execute the `PackageAndDeploy.ps1` PowerShell script to package and deploy multi-hosted endpoints to local emulator storage.
 
 
-## Running self-host in emulated Cloud Service
+## Running a self-host in emulated Cloud Service
 
  1. Set `HostCloudService` to be the start-up project by right-clicking the project name in Visual Studio Solution Explorer, and selecting `Set as StartUp Project` option
  1. Run the solution
