@@ -57,7 +57,7 @@ The following information is copied from the existing ServiceControl instance:
 - Host name
 - Service account
 
-NOTE: If this instance uses a domain account, the the account password must be supplied
+NOTE: If this instance uses a domain account, the the account password must be supplied.
 
 The name of the new audit instance will be derived from the name of the original instance.
 
@@ -65,7 +65,7 @@ The name of the new audit instance will be derived from the name of the original
 
 Upgrading a multi-instance ServiceControl deployment must be done in stages. Some stages may require the use of the powershell scripts. 
 
-### Upgrade the primmary instance
+### Upgrade the primary instance
 
 The first step is to upgrade the primary ServiceControl instance. If the primary instance has audit ingestion enabled, then a new ServiceControl Audit instance will be created for it.
 
