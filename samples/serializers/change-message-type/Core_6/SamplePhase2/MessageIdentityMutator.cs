@@ -34,9 +34,9 @@ class MessageIdentityMutator :
                 }
                 if (assembly != null)
                 {
-                    return assembly.GetType(typeName);
+                    return assembly.GetType(typeName, throwOnError: false, ignoreCase: !caseSensitive);
                 }
-                return Type.GetType(typeName);
+                return Type.GetType(typeName, throwOnError: false, ignoreCase: !caseSensitive);
             },
             throwOnError: true);
 
