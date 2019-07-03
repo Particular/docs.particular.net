@@ -195,4 +195,4 @@ Saga state is read immediately before a message processing method is invoked, an
 - The method of maintaining constistency with respect to concurrent message processing depends the persister (transactional lock vs atomic with optimistic concurrency control).
 - Saga state reads and writes do not occur during a stage. They occur during invocation in the `Invoke Handlers` stage and cannot be intercepted.
 
-If multiple different saga types are invoked on the same message type each read/invoke/write cycle will happen sequentially per saga type.
+If multiple saga types are invoked for the same message, each read, invoke, write cycle will occur sequentially, for each saga type.
