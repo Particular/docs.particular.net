@@ -26,13 +26,13 @@ class MessageIdentityMutator :
                 }
                 return Assembly.Load(assemblyName);
             },
-            typeResolver: (assembly, typeName, assemblyPassed) =>
+            typeResolver: (assembly, typeName, caseSensitive) =>
             {
                 if (typeName == "CreateOrderPhase1")
                 {
                     return typeof(CreateOrderPhase2);
                 }
-                if (assemblyPassed)
+                if (assembly != null)
                 {
                     return assembly.GetType(typeName);
                 }
