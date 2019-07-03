@@ -30,12 +30,16 @@ NOTE: If the ServiceControl instance being upgraded has audit ingestion disabled
 
 ### Upgrading with PowerShell
 
-WARN: The `Invoke-ServiceControlInstanceUpgrade` powershell cmdlet cannot upgrade a ServiceControl instance to version 4 if a new ServiceControl Audit instance must be created. 
-
-The `Invoke-ServiceControlInstanceSplit` powershell cmdlet has been provided to upgrade a ServiceControl instance to version 4 and split out a new ServiceControl instance.
+Use the `Invoke-ServiceControlInstanceUpgrade` PowerShell cmdlet to  upgrade an existing ServiceControl instance to version 4.
 
 ```ps
-Invoke-ServiceControlInstanceSplit `
+Invoke-ServiceControlInstanceUpgrade -Name <Instance to Upgrade>
+```
+
+If the ServiceControl instance being upgraded manages an audit queue, then additional parameters must be specified for the creation of a new ServiceControl Audit instance.
+
+```ps
+Invoke-ServiceControlInstanceUpgrade `
   -Name <Name of main instance> `
   -InstallPath <Path for Audit instance binaries> `
   -DBPath <Path for the Audit instance database> `
@@ -45,7 +49,6 @@ Invoke-ServiceControlInstanceSplit `
   [-ServiceAccountPassword <password for service account>] `
   [-Force]
 ```
-
 The following information is copied from the existing ServiceControl instance:
 
 - Audit queue
@@ -60,6 +63,7 @@ The following information is copied from the existing ServiceControl instance:
 NOTE: If this instance uses a domain account, the the account password must be supplied.
 
 The name of the new audit instance will be derived from the name of the original instance.
+
 
 ## Upgrading multi-instance deployments
 
