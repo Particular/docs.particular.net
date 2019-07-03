@@ -101,11 +101,11 @@ Controls the LogLevel of the ServiceControl logs.
 
 Type: string
 
-Default: `Warn`
+Default: `Info`
 
 In ServiceControl version 1.9 and above, valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
-This setting will default to `Warn` if an invalid value is assigned.
+This setting will default to `Info` if an invalid value is assigned.
 
 In version 1.8 and below, the log level is `Info` and can not be changed.
 
