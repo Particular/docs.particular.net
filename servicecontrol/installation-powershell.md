@@ -122,7 +122,19 @@ Use the following to find a list of all of the ServiceControl instances and thei
 Get-ServiceControlInstances | Select Name, Version
 ```
 
-NOTE: Upgrading an instance to version 4 from an earlier version may require the use of a different cmdlet. See [the upgrade guide](/servicecontrol/upgrades/3to4/) for more information.
+Additional parameters may be required when upgrading an instance to version 4, to enable the creation of a new ServiceControl Audit instance.
+
+```ps
+Invoke-ServiceControlInstanceUpgrade `
+  -Name <Name of main instance> `
+  -InstallPath <Path for Audit instance binaries> `
+  -DBPath <Path for the Audit instance database> `
+  -LogPath <Path for the Audit instance logs> `
+  -Port <Port for the Audit instance api> `
+  -DatabaseMaintenancePort <Port for the Audit instance embedded database> `
+  [-ServiceAccountPassword <password for service account>] `
+  [-Force]
+```
 
 On version 4 and above, use the `Invoke-AuditInstanceUpgrade` cmdlet to upgrade a ServiceControl audit instance to the latest binaries.
 
