@@ -16,17 +16,17 @@ For more information how to upgrade from Version 1.x to 3.8.2 consult the [upgra
 
 ## ServiceControl Audit
 
-ServiceControl version 4 introduces a new separate process to handle the audit queue. This Audit Instance reads messages from the audit queue, stores them in it's internal database, and (optionally) forwards the processed messages to an audit log queue.
+ServiceControl version 4 introduces a new separate process to manage the audit queue called a ServiceControl Audit instance. This instance reads messages from the audit queue, stores them in it's internal database, and (optionally) forwards the processed messages to an audit log queue.
 
-The original ServiceControl instance will no longer ingest messages from the audit queue. It can still contain audit messages that have already been ingested. These messages will be retained until the configured audit retention period has passed.
+The original ServiceControl instance will no longer manage the audit queue. It can still contain audit messages that have already been read from the audit queue. These messages will be retained until the configured audit retention period has passed.
 
 This split is transparent to the other components of the Particular Software Platform, which should continue to connect to the main ServiceControl instance. All queries to the main ServiceControl instance will contain results from the Audit instance as well.
 
-When upgrading a ServiceControl instance to version 4, if it is configured to ingest messages from the audit queue, a new ServiceControl Audit instance will be created as a part of the upgrade process. A user will need to supply additional information about the new ServiceControl Audit instance.
+When upgrading a ServiceControl instance to version 4, if it is configured to manage an audit queue, a new ServiceControl Audit instance will be created as a part of the upgrade process. A user will need to supply additional information about the new ServiceControl Audit instance.
 
 <Details on what that looks like in SMCU>
 
-NOTE: If the ServiceControl instance being upgraded has audit ingestion disabled (by setting the audit queue name to `!disable`), then no new ServiceControl Audit instance will be created.
+NOTE: If the ServiceControl instance being upgraded is not configured to manage an audit queue (by setting the audit queue name to `!disable`), then no new ServiceControl Audit instance will be created.
 
 ### Upgrading with PowerShell
 
