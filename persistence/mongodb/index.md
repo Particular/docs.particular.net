@@ -38,7 +38,9 @@ snippet: MongoDBDatabaseName
 
 ## Multi-document transactions
 
-Multi-document transactions are enabled and required by default. This allows the package to support updating multiple saga instances and commit them all atomically during message processing.
+Multi-document [transactions](https://docs.mongodb.com/manual/core/transactions/) are enabled and required by default. This allows the package to support updating multiple saga instances and commit them all atomically during message processing.
+
+WARN: MongoDB transactions are only supported on MongoDB server replica sets.
 
 ### Disabling transactions
 
