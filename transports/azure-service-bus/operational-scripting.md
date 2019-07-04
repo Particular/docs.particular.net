@@ -36,6 +36,7 @@ asb-transport endpoint create [--size]
                               [--partitioned]
                               [--topic]
                               [--subscription]
+                              [--subscribe-to]                                                            
 ```
 
 #### options
@@ -49,6 +50,8 @@ asb-transport endpoint create [--size]
 `-t` | `--topic`: Topic name (defaults to 'bundle-1')
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
+
+`-e` | `--subscribe-to`: Subscribe to event type full name (e.g. MyNamespace.MyMessage or CustomRuleName,MyNamespace.MyMessage), multiple allowed
 
 
 ### asb-transport queue create
