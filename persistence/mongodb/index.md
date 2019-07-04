@@ -11,6 +11,8 @@ reviewed: 2019-05-29
 
 Uses the [MongoDB document database](https://www.mongodb.com/) for storage.
 
+NOTE: NServiceBus.Storage.MongoDB supports MongoDB server versions 3.6 and higher
+
 ## Supported persistence types
 
 * [Sagas](/nservicebus/sagas/)
