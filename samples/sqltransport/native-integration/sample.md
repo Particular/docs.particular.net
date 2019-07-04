@@ -1,7 +1,7 @@
 ---
 title: Native integration
 summary: Integrating natively with the SQL Server transport.
-reviewed: 2017-06-30
+reviewed: 2019-04-01
 component: SqlTransport
 related:
 - transports/sql
@@ -58,6 +58,8 @@ The final step is to tell the serializer what C# class the JSON payload belongs 
 snippet: MessagePayload
 
 With this in place the endpoint can now parse the incoming JSON payload to a strongly typed message and invoke the correct message handlers.
+
+See [the message type detection documentation](/nservicebus/messaging/message-type-detection.md) for more details.
 
 
 ### Sending the message

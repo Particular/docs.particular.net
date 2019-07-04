@@ -1,7 +1,7 @@
 ---
 title: MessagePack Serializer
 component: MessagePack
-reviewed: 2017-09-30
+reviewed: 2019-07-01
 related:
  - samples/serializers/messagepack
  - nservicebus/serialization/msgpack

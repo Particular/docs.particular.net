@@ -1,7 +1,8 @@
 ---
-title: Long running operations with Azure Service Bus Transport
+title: Long-running operations with Azure Service Bus Transport
+summary: How to use the Azure Service Bus transport for a long-running process
 component: ASB
-reviewed: 2017-06-16
+reviewed: 2019-03-22
 related:
 - transports/azure-service-bus
 ---
@@ -21,12 +22,12 @@ include: asb-transport
 
 ## Code walk-through
 
-This sample shows a simplified long running process
+This sample shows a simplified long-running process
 
  * `Client` makes a request for processing with a unique ID.
  * `Server` enqueues requests from `Client` to be processed by `Processor`.
  * `Processor` raises events about successful or failed results.
- * `Server` issues warnings for `Client` if estimated processing time is going to be violated. 
+ * `Server` issues warnings for `Client` if the estimated processing time is going to be violated. 
 
 ```mermaid
 sequenceDiagram
@@ -50,17 +51,19 @@ Processor ->> Client: LongProcessingFinished / LongProcessingFailed
 ```
 
 
-## Performing processing outside of a message handler
+## Performing processing outside a message handler
 
-When processing is taking a long time, [message lock renewal](/transports/azure-service-bus/legacy/message-lock-renewal.md) can be used, but should be avoided to keep message locking to the minimum. 
+When processing takes a long time, [message lock renewal](/transports/azure-service-bus/legacy/message-lock-renewal.md) is possible, but should be avoided to keep message locking to a minimum. 
 
 include: autorenewtimeout-warning
 
-The alternative approach is to perform a long running operation in an external service, outside of a message handler context and notify the interested parts of the results. 
+An alternative approach is to perform a long-running operation in an external service, outside of a message handler context and notify the interested parts of the results. 
 
 This sample is using a standalone process `Processor` to run an emulated long running work and raises events for successful or failed outcomes. `Server` and `Processor` use Azure Storage table to communicate `RequestRecord`s in the `Requests` table.
 
-For simplicity of this sample, `Processor` is not scaled out. In case scale out is required, work on an individual request has to be locked to a single instance of a processor. A common way to achieve that would be creating a blob with request ID as a name on storage account and get a lease to that file. Also, the sample processes files in a serial manner, one at a time. For concurrent processing, `Processor` could spin a task per request. That would require an additional throttling mechanism to be implemented to ensure `Processor` is not overwhelmed.
+For simplicity, `Processor` is not scaled out. If scaling out is required, work on an individual request must be locked to a single instance of a processor. A common way to achieve this is to create a blob with request ID as a name on the storage account and get a lease to that file.
+
+Also, note that the sample processes files in a serial manner, one at a time. For concurrent processing, `Processor` could spin a task per request. That would require an additional throttling mechanism to be implemented to ensure `Processor` is not overwhelmed.
 
 
 ## Making a request from the client
@@ -81,19 +84,19 @@ snippet: on-timeout
 
 ## Server communication
 
-`Server` enqueues request for the processor using Azure Storage table and replying back to the `Client` to indicate that processing is pending. 
+`Server` enqueues requests for the processor using an Azure Storage table and replying back to the `Client` to indicate that processing is pending. 
 
 snippet: enqueue-request-for-processor
 
-NOTE: Normally, work would not be done by the Sagas, and would be delegated to a dedicated handler. For simplicity of this sample, a handler was omitted.
+NOTE: Normally, work would not be done by a saga, but would be delegated to a dedicated handler. For simplicity, a handler was omitted in this sample.
 
 
 ## Processor logic
 
-`Processor` performs to never ending tasks - polling every 5 seconds for pending requests and processing those 
+`Processor` performs two never ending tasks - polling every 5 seconds for pending requests, and processing those requests.
 
 snippet: tasks
 
-During processing, a processing exception is emulated randomly to demonstrate a failing scenario.
+During processing, an exception is emulated randomly to demonstrate a failing scenario.
 
 snippet: failed-scenario

@@ -4,7 +4,7 @@ using NServiceBus;
 class Usage
 {
     EndpointConfiguration endpointConfiguration = new EndpointConfiguration("endpoint");
-
+    
     #region msdependencyinjection
     public void ConfigureServices(IServiceCollection services)
     {

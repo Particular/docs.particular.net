@@ -2,7 +2,7 @@
 title: Licensing
 summary: Outlines license usage, management, and restrictions
 component: core
-reviewed: 2017-08-15
+reviewed: 2019-05-27
 redirects:
  - nservicebus/licensing-limitations
  - nservicebus/licensing/licensing-limitations
@@ -23,12 +23,14 @@ See the [Licensing page](https://particular.net/licensing) for license specifics
 
 ## License validity
 
-partial: validity
+The license is valid if the `ExpirationDate` or the `UpgradeProtectionExpiration` attribute in the license data is greater than or equal to the release date of the `{major}.{minor}.0` version of the NServiceBus assembly used by the endpoint. To view the release dates for the various versions, see [NServiceBus Packages Versions](/nservicebus/upgrades/all-versions.md).
+
+Note: Only the Major/Minor part is relevant. Eg. if using NServiceBus 6.1.1 it's the release date of 6.1.0 that counts.
 
 
 ## Throughput limitations
 
-partial: limitations
+No limitations are enforced when either no license is found or a license has expired.
 
 
 ## License management

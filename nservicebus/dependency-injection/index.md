@@ -103,4 +103,16 @@ partial: content
 
 If a specific library is not supported, create a plugin using the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom dependency injection to look up its own dependencies.
 
-partial: custom
+Create a class that implements 'IContainer':
+
+snippet: CustomContainer
+
+
+Create a class that implements 'ContainerDefinition' and returns the 'IContainer' implementation:
+
+snippet: CustomContainerDefinition
+
+
+Then register the `ContainerDefinition` to be used:
+
+snippet: CustomContainerUsage

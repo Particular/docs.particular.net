@@ -2,7 +2,7 @@
 title: Transaction Support
 summary: Explore the transaction modes the transport supports.
 component: SQS
-reviewed: 2017-08-07
+reviewed: 2019-05-27
 tags:
 - AWS
 - Transactions

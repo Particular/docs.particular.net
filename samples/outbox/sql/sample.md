@@ -1,7 +1,7 @@
 ---
 title: Using Outbox with SQL
 summary: Integrating SQL Server Transport with SQL Persistence and ADO.net user data store using outbox.
-reviewed: 2017-07-10
+reviewed: 2019-04-16
 component: Core
 tags:
  - Outbox

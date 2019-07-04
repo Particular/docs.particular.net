@@ -22,8 +22,6 @@ redirects:
 
 A *message* is the unit of communication for NServiceBus. There are two types of messages, _commands_ and _events_, that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default, but can be [disabled](best-practice-enforcement.md).
 
-Note: A message must be a reference type (`class`). An attempt to send a message which is a value type (`struct`) will result in a runtime exception.
-
 Command | Event
 -- | --
 Used to _make a request to perform an action_. | Used to _communicate that an action has been performed_.
@@ -43,42 +41,43 @@ There are checks in place to ensure best practices are followed. Violations of t
 partial: errors
 
 
- ## Designing messages
+## Designing messages
 
- Messages represent data contracts between endpoints. They should be designed according to the following guidelines.
+Messages represent data contracts between endpoints. They should be designed according to the following guidelines.
  
- Messages should:
+Messages should:
 
- * be simple [POCO](https://en.wikipedia.org/wiki/Plain_old_CLR_object) types.
- * be as small as possible.
- * satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle). Types used for other purposes (e.g. domain objects, data access objects, or UI binding objects) should not be used as messages.
+* be simple [POCO](https://en.wikipedia.org/wiki/Plain_old_CLR_object) types.
+* be as small as possible.
+* satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle). Types used for other purposes (e.g. domain objects, data access objects, or UI binding objects) should not be used as messages.
 
+Note: Prior to version 7.2, messages had to be defined as a `class`. Defing them as a `struct` would result in a runtime exception.
 
-## Defining messages
+## Identifying messages
 
-Messages can be defined either by *interfaces* or *conventions*.
+Endpoints will process any message that can be deserialized into a .NET type but requires message contracts to be identified up front to support:
 
+* [Automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) for event types
+* [Routing based on `namespace` or `assembly`](/nservicebus/messaging/routing.md) for commands
 
-### Interfaces
+Messages can be defined either by implementing a marker interface or by specifying a custom convention.
 
-The simplest way to define messages is to use interfaces.
+### Marker interfaces
 
- * `NServiceBus.ICommand` for a command.
- * `NServiceBus.IEvent` for an event.
- * `NServiceBus.IMessage` for any other type of message (e.g. a _reply_ in a request response pattern).
+The simplest way to identify messages is to use interfaces.
+
+* `NServiceBus.ICommand` for a command.
+* `NServiceBus.IEvent` for an event.
+* `NServiceBus.IMessage` for any other type of message (e.g. a _reply_ in a request response pattern).
 
 ```cs
 public class MyCommand : ICommand { }
 
 public class MyEvent : IEvent { }
 
-public interface MyEvent : IEvent { }
-
 public class MyMessage : IMessage { }
 ```
 
-NOTE: This approach has some drawbacks, as described in [Unobtrusive mode messages](unobtrusive-mode.md).
+### Conventions
 
- ### Conventions
-
- See [Conventions](/nservicebus/messaging/conventions.md).
+To avoid having message contract assemblies reference the NServiceBus assembly, [custom conventions](/nservicebus/messaging/conventions.md) can be used to identify the types used as contracts for messages, commands, and events. This is known as [unobtrusive mode](unobtrusive-mode.md).

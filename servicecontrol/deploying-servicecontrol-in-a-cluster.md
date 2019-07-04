@@ -54,6 +54,25 @@ ServiceControl configuration must be customized by changing the following settin
 
 The following is a sample ServiceControl configuration file (ServiceControl.exe.config):
 
-snippet: SCClusterAppSettings
+```xml
+<configuration>
+  <appSettings>
+    <add key="ServiceControl/DbPath" 
+         value="drive:\SomeDir\" />
+    <add key="ServiceControl/Hostname" 
+         value="clusterName" />
+    <add key="ServiceControl/Port" 
+         value="33333" />
+    <add key="ServiceBus/AuditQueue"
+         value="audit@clusterName" />
+    <add key="ServiceBus/ErrorQueue" 
+         value="error@clusterName" />
+    <add key="ServiceBus/ErrorLogQueue" 
+         value="error.log@clusterName" />
+    <add key="ServiceBus/AuditLogQueue" 
+         value="audit.log@clusterName" />
+  </appSettings>
+</configuration>
+```
 
 See [Customizing ServiceControl Configuration](/servicecontrol/creating-config-file.md) for more information.

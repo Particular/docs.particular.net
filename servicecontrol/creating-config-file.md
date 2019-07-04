@@ -101,11 +101,11 @@ Controls the LogLevel of the ServiceControl logs.
 
 Type: string
 
-Default: `Warn`
+Default: `Info`
 
 In ServiceControl version 1.9 and above, valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
-This setting will default to `Warn` if an invalid value is assigned.
+This setting will default to `Info` if an invalid value is assigned.
 
 In version 1.8 and below, the log level is `Info` and can not be changed.
 
@@ -363,3 +363,12 @@ http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&
 ```
 
 NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).
+
+
+#### ServiceControl/DataSpaceRemainingThreshold
+
+This setting was introduced in version 3.8. The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive) then the check will fail, alerting the user.
+
+Type: int
+
+Default: 20

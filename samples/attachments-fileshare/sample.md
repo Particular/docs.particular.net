@@ -14,7 +14,7 @@ Uses the [FileShare Attachments](/nservicebus/messaging/attachments-fileshare.md
 
 ### Add to EndpointConfiguration
 
-Enable attachments for an endpoint. A directory (or network share_ and a [time to keep](/nservicebus/messaging/attachments-fileshare.md#controlling-attachment-lifetime) are required.
+Enable attachments for an endpoint. A directory (or network share) and a [time to keep](/nservicebus/messaging/attachments-fileshare.md#controlling-attachment-lifetime) are required.
 
 snippet: Enable
 

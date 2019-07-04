@@ -51,13 +51,21 @@ Note: Steps can also be registered from a [feature](features.md).
 Exceptions thrown from a behavior's `Invoke` method bubble up the chain. If the exception is not handled by a behavior, the message is considered as faulted which results in putting the message back in the queue (and rolling back the transaction) or moving it to the error queue (depending on the endpoint configuration).
 
 
-partial: messagedeserializationexception
+### MessageDeserializationException
+
+If a message fails to deserialize a `MessageDeserializationException` will be thrown by the `DeserializeLogicalMessagesBehavior`. In this case, the message is directly moved to the error queue to avoid blocking the system by poison messages.
 
 
 partial: skipserialization
 
 
-partial: shareddata
+## Sharing data between Behaviors
+
+Sometimes a parent behavior might need to pass some information to a child behavior and vice versa. The `context` parameter of a behavior's `Invoke` method facilitates passing data between behaviors. The context is very similar to a shared dictionary which allows adding and retrieving information from different behaviors.
+
+snippet: SharingBehaviorData
+
+Note: Contexts are not concurrency safe.
 
 
 partial: sharedcontext

@@ -74,7 +74,7 @@ namespace IntegrityTests
             while (dirPath.Length >= TestSetup.DocsRootPath.Length)
             {
                 string dirName = Path.GetFileName(dirPath);
-                if (Regex.IsMatch(dirName, @"_(All|\d(\.\d)?)$"))
+                if (Regex.IsMatch(dirName, @"_(All|\d+(\.\d+)?)$"))
                 {
                     var componentName = dirName.Substring(0, dirName.IndexOf('_'));
                     return (dirPath, componentName);

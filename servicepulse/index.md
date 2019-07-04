@@ -1,6 +1,6 @@
 ---
 title: ServicePulse
-reviewed: 2018-01-15
+reviewed: 2019-03-19
 component: ServicePulse
 related:
 - servicecontrol/setting-custom-hostname
@@ -13,6 +13,20 @@ include: servicepulse
 ServicePulse uses information provided by ServiceControl. In order to use ServicePulse, first set up [ServiceControl](/servicecontrol/).
 
 NOTE: By default ServicePulse can be accessed on the hosting machine at the following URL: `http://localhost:9090`
+
+### Relationship between ServicePulse, ServiceControl, Monitoring, and Endpoints
+
+```mermaid
+graph RL
+EP[Endpoint]-- Errors -->EQ
+EP-- Audits -->AQ
+EP-- Metrics -->MQ
+EQ(Error Queue)-- Ingests -->SC
+MQ(Metrics Queue)-- Ingests -->SCM
+AQ(Audit Queue)-- Ingests -->SC
+SC[ServiceControl]-- HTTP API & SignalR ---SP
+SCM[Monitoring]-- HTTP API ---SP[ServicePulse]
+```
 
 ## System status overview
 
@@ -38,7 +52,7 @@ In order to monitor an endpoint's health and activity, it is necessary to [confi
 
 The monitoring view shows an overview of all logical endpoints in a system showing various metrics. Navigate to the details by clicking on an endpoint name. This shows the same metrics split by message type or endpoint instance.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/X8oQjKnKpBM?rel=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/is9kF7eWkrQ?rel=0&amp;showinfo=0&amp;autoplay=1&amp;vq=hd1080" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 
 **Learn more:**
 

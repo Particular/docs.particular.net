@@ -1,7 +1,7 @@
 ---
 title: RavenDB Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against RavenDB.
-reviewed: 2017-10-16
+reviewed: 2019-06-10
 related:
  - nservicebus/operations
 redirects:

@@ -1,7 +1,7 @@
 ---
 title: Disconnect Workers
 summary: How a worker can be disconnected from its distributor using PowerShell cmdlets
-reviewed: 2017-06-30
+reviewed: 2019-04-02
 tags:
  - Scalability
 redirects:

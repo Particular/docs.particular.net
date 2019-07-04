@@ -34,6 +34,7 @@ NOTE: The `SupportedBrokeredMessageBodyTypes.Stream` body format is recommended,
 
 partial: converter
 
+partial: bodyformat
 
 ### Brokered Message content serialization
 
@@ -53,10 +54,6 @@ snippet: asb-serializer
 If the message content is in an unsupported or proprietary format, then the application will have to provide a [custom serializer](/nservicebus/serialization/custom-serializer.md)
 
 
-### Required Headers
+### Message type detection
 
-For a native message to be processed, NServiceBus endpoints using the Azure Service Bus transport require the following headers. These headers need to be stored as `BrokeredMessage` properties.
-
-partial: header
-
-In native integration scenarios it is not always possible, or desirable, to modify the headers of the brokered message at the sending end. If this is the case, the receiving end can also add the required headers to the message by registering an incoming [Message Mutators](/nservicebus/pipeline/message-mutators.md) or via a [Pipeline Behavior](/nservicebus/pipeline/manipulate-with-behaviors.md).
+The native message must allow NServiceBus to [detect the message type either via the headers or the message payload](/nservicebus/messaging/message-type-detection.md).

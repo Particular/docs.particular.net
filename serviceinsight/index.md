@@ -1,6 +1,6 @@
 ---
 title: ServiceInsight
-reviewed: 2018-06-07
+reviewed: 2019-03-19
 component: ServiceInsight
 redirects:
 - serviceinsight/getting-started-overview
@@ -19,6 +19,19 @@ The flow diagram provides a detailed visual overview of the messages, collated b
 As endpoints are selected, the other views within ServiceInsight respond and filter the information to show only messages pertaining to the selected endpoint.
 
 NOTE: Endpoint lists, message information, and message flows will not be populated until messages have been successfully processed by ServiceControl.
+
+### Relationship between ServiceInsight, ServiceControl, and Endpoints
+
+```mermaid
+graph RL
+EP[Endpoint]-- Audits -->AQ
+EP-- Errors -->EQ
+EP-- SagaAudits -->SCQ
+AQ(Audit Queue)-- Ingests -->SC
+EQ(Error Queue)-- Ingests -->SC
+SCQ(ServiceControl Queue)-- Ingests -->SC
+SC[ServiceControl]-- HTTP API ---SI[ServiceInsight]
+```
 
 ## The Messages window
 

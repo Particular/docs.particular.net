@@ -1,7 +1,7 @@
 ---
 title: Configuring Hosting
-summary: Describes how to configure the ServicePulse host
-reviewed: 2018-04-24
+summary: Describes how to configure the ServicePulse host and connections
+reviewed: 2019-06-17
 component: ServicePulse
 redirects:
  - servicepulse/servicepulse-host-config
@@ -16,21 +16,32 @@ To change it:
  1. Edit the value of `ImagePath`. The value contains the full path to the ServicePulse.exe and a command line of the URL to use:
 
 The default value for ImagePath is:
-
 ```dos
 "C:\Program Files (x86)\Particular Software\ServicePulse\ServicePulse.Host.exe" --url="http://localhost:9090"
 ```
 
 Change the value after `--url=` and restart the service.
 
+It may be necessary to reserve the new URL for the account being used to run ServicePulse. For example, to reserve port 9090 for all users:
+```dos
+netsh http add urlacl url=http://+:9090/ user=Everyone
+```
 
-## Changing the ServiceControl URL
+As ServicePulse is installed as a Windows Servce, optionally multiple ServicePulse instances can be installed. The default ports can be changed by providing [installation parameters](/servicepulse/installation.md#installation-available-installation-parameters).
 
-ServicePulse is configured to connect to the ServiceControl REST API. To specify the URL to connect do  the following
+## Default connection to ServiceControl and ServiceControl Monitoring
 
-Note: Ensure version 1.3 or above is being used.
+ServicePulse will by default, attempt to connect to ServiceControl and ServiceControl Monitoring using the URLs `http://localhost:33333/api/` and `http://localhost:33633/`, respectively.
 
- * Go to the installation directory for ServicePulse. Typically this is `C:\Program Files (x86)\Particular Software\ServicePulse\`
- * Go to the `app\js` directory and edit `app.constants.js`
- * Delete any `*.js` files in the `app` directory
- * Change the value of the url after `service_control_url`
+The configuration is stored inside a javascript file located in the folder ServicePulse is installed in. By default this is `C:\Program Files (x86)\Particular Software\ServicePulse\app\js\app.constants.js`.
+
+## Configuring connections via the ServicePulse UI
+
+The default connections can easily be overriden via the Connections configuration screen in ServicePulse:
+
+![Connections configuration](images/connections-configuration.png 'width=500')
+
+When entering the connection URL to ServiceControl and ServiceControl Monitoring, the full URLs including the port number and scheme needs to be entered in the Connections screen. Connection configuration is persisted only locally and is read in the following order:
+
+1. **Query string in browser address bar URL** - allows easily bookmarking and sharing of connection details.
+2. **Local storage** - if the connection parameters are not found in the URL, the last successful connection will be used.

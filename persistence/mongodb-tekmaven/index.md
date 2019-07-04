@@ -7,7 +7,7 @@ versions: '[2,)'
 tags:
  - Persistence
 related:
- - samples/mongodb
+ - samples/mongodb-tekmaven
  - nservicebus/messaging/databus/mongodb-tekmaven
 redirects:
  - nservicebus/mongodb-persistence-tekmaven

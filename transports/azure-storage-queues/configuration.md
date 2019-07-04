@@ -5,7 +5,7 @@ tags:
 - Azure
 related:
 - persistence/azure-storage/performance-tuning
-reviewed: 2017-09-07
+reviewed: 2019-06-04
 redirects:
  - nservicebus/azure-storage-queues/configuration
 ---
@@ -58,6 +58,8 @@ partial: batchsize
 partial: parallelismdegree
 
 partial: serialization
+
+## Configuration API
 
 partial: config
 

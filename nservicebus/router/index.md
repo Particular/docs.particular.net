@@ -4,13 +4,11 @@ summary: How to connect parts of the system that use different transports
 component: Router
 related:
 - samples/azure/azure-service-bus-msmq-bridge
-- samples/msmq/sql-bridge
+- samples/msmq/msmqtosqlrelay
 reviewed: 2018-09-05
 ---
 
 `NServiceBus.Router` is a universal component that connects parts of an NServiceBus-based solution that otherwise could not talk to each other (e.g. because they use different transports or transport settings).
-
-Unlike the [gateway](/nservicebus/gateway/) or the [wormhole](/nservicebus/wormhole/), the router handles both sending and publishing. Unlike the [bridge](/nservicebus/bridge/), the router can use site-based addressing to route messages between logically significant sites (just like the gateway does).
 
 The router is transparent to the publishing and replying endpoint. That is:
 

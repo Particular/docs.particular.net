@@ -1,7 +1,7 @@
 ---
 title: MessagePack Serializer Usage
-summary: Using the MessagePack serializer in an endpoint.
-reviewed: 2017-09-30
+summary: How to configure an endpoint to use the MessagePack serializer
+reviewed: 2019-07-01
 component: MessagePack
 related:
 - nservicebus/serialization
@@ -10,12 +10,10 @@ redirects:
 - samples/serializers/message-pack
 ---
 
-
-## Configuring to use MessagePack
+## Configuring the endpoint
 
 snippet: config
 
-
-## The message send
+## Sending a message
 
 snippet: message

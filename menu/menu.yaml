@@ -19,6 +19,8 @@
         Title: Publishing events
       - Url: tutorials/nservicebus-step-by-step/5-retrying-errors
         Title: Retrying errors
+    - Url: tutorials/message-replay
+      Title: Message replay tutorial
     - Url: tutorials/nservicebus-sagas/1-getting-started
       Title: "NServiceBus sagas: Getting started"
     - Url: tutorials
@@ -39,6 +41,11 @@
     Articles:
     - Url: platform
       Title: Service Platform
+      Articles:
+      - Url: platform/installation
+        Title: Platform Installation
+      - Url: platform/platform-sample-package
+        Title: Platform Sample Installation
     - Url: samples/endpoint-configuration
       Title: Configuration choices Sample
     - Url: nservicebus/concept-overview
@@ -148,7 +155,7 @@
         Title: Version 4 to 5
     - Title: NServiceBus.Azure deprecated
       Url: nservicebus/upgrades/azure-deprecation
-    - Title: MessagePack changes
+    - Title: NServiceBus.MessagePack
       Url: nservicebus/upgrades/messagepack-changes
     - Title: Azure BlobStorage DataBus
       Articles:
@@ -156,6 +163,8 @@
         Title: Migrating off NServiceBus.Azure
       - Url: nservicebus/upgrades/absdatabus-1to2
         Title: Version 1 to 2
+      - Url: nservicebus/upgrades/absdatabus-2to3
+        Title: Version 2 to 3        
     - Title: Azure Cloud Services Host
       Articles:
       - Url: nservicebus/upgrades/acs-host-7to8
@@ -192,6 +201,8 @@
         Title: ServiceControl.Plugin.X.CustomChecks to NServiceBus.CustomChecks
       - Url: nservicebus/upgrades/nservicebus.heartbeat
         Title: ServiceControl.Plugin.X.Heartbeat to NServiceBus.Heartbeat
+    - Title: Upgrade NServiceBus.Wormhole to NServiceBus.Router
+      Url: nservicebus/upgrades/wormhole-router
   - Url: nservicebus/messaging
     Title: Messaging
     Articles:
@@ -200,6 +211,8 @@
       Articles:
       - Url: nservicebus/messaging/message-identity
         Title: Message Identity
+      - Url: nservicebus/messaging/message-type-detection
+        Title: Message type detection
       - Url: nservicebus/messaging/messages-as-interfaces
         Title: Messages as Interfaces
       - Url: nservicebus/messaging/conventions
@@ -282,11 +295,6 @@
         Title: Upgrade NServiceBus.Bridge to NServiceBus.Router
     - Url: nservicebus/rawmessaging
       Title: Raw messaging
-    - Url: nservicebus/wormhole
-      Title: Wormhole Gateway
-      Articles:
-      - Url: nservicebus/wormhole/wormhole-router
-        Title: Upgrade NServiceBus.Wormhole to NServiceBus.Router
     - Url: nservicebus/audit-filter
       Title: AuditFilter
     - Url: nservicebus/mailer
@@ -826,8 +834,8 @@
       Title: Routing topology
     - Url: transports/rabbitmq/delayed-delivery
       Title: Delayed Delivery
-    - Url: transports/rabbitmq/message-id-strategy
-      Title: Message Id strategy
+    - Url: transports/rabbitmq/native-integration
+      Title: Native integration
     - Url: transports/rabbitmq/callbacks
       Title: Callback support
     - Url: transports/rabbitmq/transactions-and-delivery-guarantees
@@ -883,6 +891,8 @@
         Title: Version 6.2.3 to 6.2.4
     - Title: NHibernate
       Articles:
+      - Url: persistence/upgrades/nhibernate-8to8.1
+        Title: Version 8 to 8.1      
       - Url: persistence/upgrades/nhibernate-6to7
         Title: Version 6 to 7
       - Url: persistence/upgrades/nhibernate-timeouts-index
@@ -891,6 +901,8 @@
         Title: Adding unique constraints on saga data tables
     - Title: RavenDB
       Articles:
+      - Url: persistence/upgrades/ravendb-5to6
+        Title: Version 5 to 6
       - Url: persistence/upgrades/ravendb-4to5
         Title: Version 4 to 5
       - Url: persistence/upgrades/ravendb-3to4
@@ -1019,8 +1031,15 @@
       Title: Scripting
   - Url: persistence/msmq/subscription
     Title: MSMQ Subscription
+  # - Url: persistence/mongodb
+  #   Title: MongoDB
+  #   Articles:
+  #   - Url: persistence/mongodb/migrating-from-sbmako
+  #     Title: Migrating from NServicebus.MongoDB
+  #   - Url: persistence/mongodb/migrating-from-tekmaven
+  #     Title: Migrating from NServiceBus.Persistence.MongoDB
   - Url: persistence/mongodb-tekmaven
-    Title: MongoDB
+    Title: MongoDB (Ryan Hoffman)
 
 - Name: ServiceInsight
   Topics:

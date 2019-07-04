@@ -4,7 +4,6 @@ namespace Core5
 {
     using System;
     using NServiceBus;
-    using NServiceBus.Logging;
     using NServiceBus.ObjectBuilder;
 
     class CriticalErrors
@@ -40,17 +39,6 @@ namespace Core5
         }
 
         #endregion
-
-
-        void DefaultActionLogging(string errorMessage, Exception exception)
-        {
-            #region DefaultCriticalErrorActionLogging
-
-            var logger = LogManager.GetLogger("NServiceBus");
-            logger.Fatal(errorMessage, exception);
-
-            #endregion
-        }
 
 
         void DefaultAction(Configure configure)

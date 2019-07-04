@@ -52,13 +52,13 @@ include: asb-connectionstring
  1. An environment variable named `AzureServiceBus.ConnectionString.2` with the connection string for the Azure Service Bus namespace to be used by Shipping endpoint.
  1. An environment variable named `AzureServiceBus.ConnectionString.SC` with the connection string for the Azure Service Bus namespace to be used by ServiceControl and the adapter.
  1. [Install ServiceControl](/servicecontrol/installation.md).
- 1. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using Azure Service Bus transport:
+ 1. Using the [ServiceControl Management tool](/servicecontrol/license.md#servicecontrol-management-tool), set up ServiceControl to monitor endpoints using the Azure Service Bus transport:
 	 
    * Add a new ServiceControl instance: 
    * Use `Particular.ServiceControl.ASB` as the instance name (ensure there is no other instance of SC running with the same name).
    * Use connection string supplied with the `AzureServiceBus.ConnectionString.SC` environment variable.
    
-NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default instance name and port number. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
+include: configuring-sc-connections
  
  1. Ensure the `ServiceControl` process is running before running the sample.
  1. [Install ServicePulse](/servicepulse/installation.md)

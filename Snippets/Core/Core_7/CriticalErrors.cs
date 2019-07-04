@@ -5,7 +5,6 @@ namespace Core7
     using System;
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Logging;
 
     class CriticalErrors
     {
@@ -39,16 +38,6 @@ namespace Core7
 
         #endregion
 
-
-        void DefaultActionLogging(string errorMessage, Exception exception)
-        {
-            #region DefaultCriticalErrorActionLogging
-
-            var logger = LogManager.GetLogger("NServiceBus");
-            logger.Fatal(errorMessage, exception);
-
-            #endregion
-        }
 
         void InvokeCriticalError(CriticalError criticalError, string errorMessage, Exception exception)
         {

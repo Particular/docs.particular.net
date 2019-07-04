@@ -8,7 +8,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.ApprovalTests" Version="1.0.4" />
+    <PackageReference Include="NServiceBus.ApprovalTests" Version="1.*" />
     <PackageReference Include="NServiceBus.Testing" Version="7.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.*" />

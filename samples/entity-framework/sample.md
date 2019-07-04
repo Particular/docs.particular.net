@@ -1,6 +1,6 @@
 ---
-title: Entity Framework integration
-summary: Integrating Entity Framework with SQL persistence.
+title: Entity Framework integration with SQL Persistence
+summary: Integrating Entity Framework with SQL Persistence.
 reviewed: 2019-01-03
 component: Core
 related:
@@ -36,7 +36,7 @@ Open SQL Server Management Studio and go to the database. Verify that there is a
 
 ## Code walk-through
 
-This sample contains four projects:
+This sample contains the following projects:
 
  * **Messages**: A class library containing the message definitions.
  * **Endpoint.SqlPersistence**: A console application running the endpoint with SQL persistence.

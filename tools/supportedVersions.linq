@@ -188,7 +188,7 @@ public static class TextWriterExtensions
 	private static void Write(this TextWriter output, List<Version> versions, DateTimeOffset utcTomorrow, DateTimeOffset? earliest, bool force, params Action[] writeHeadings)
 	{
 		var relevantVersions = versions
-			.Where(version => !earliest.HasValue || (!version.PatchingEnd.HasValue || version.PatchingEnd.Value >= earliest.Value))
+			.Where(version => !earliest.HasValue || (!version.PatchingEnd.HasValue || version.PatchingEnd.Value >= earliest.Value || version.ExtendedSupport))
 			.ToList();
 
 		if (!force && !relevantVersions.Any())

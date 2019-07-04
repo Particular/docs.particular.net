@@ -13,11 +13,35 @@ redirects:
  - nservicebus/auditing-with-nservicebus
 ---
 
+NOTE: Auditing is required for optimum functionality of the platform tools. ServicePulse can work without auditing enabled but will show incorrect retry states on messages, and ServiceInsight will only show failures instead of complete conversations.
+
 The distributed nature of parallel, message-driven systems makes them more difficult to debug than their sequential, synchronous and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Configure NServiceBus to audit and it will capture a copy of every received message and forward it to a specified audit queue.
 
 NOTE: By default, auditing is not enabled and must be configured for each endpoint where auditing is required.
 
-It is recommended to specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). This gives an overview of the entire system in one place and can help see how messages correlate. One can look at the audit queue as a central record of everything that is happening in the system. A central audit queue is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
+It is recommended to specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). This gives an overview of the entire system in one place and can help see how messages correlate. One can look at the audit queue as a central record of everything that happened in the system. A central audit queue is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
+
+## Performance impact
+
+Enabling auditing has an impact on storage and network resources.
+
+### Message throughput
+
+Enabling auditing on all endpoints results in doubling the global message throughput. That can sometimes be troublesome in high message volume environments.
+
+In such environments it might make sense to only enable auditing on relevant endpoints that need auditing.
+
+### Queue storage capacity
+
+Auditing succesfully processed message can result in storing huge amounts of message data. First in the audit queue, second in any application that will store these messages. If the audit storage logic stops processing audit messages the audit queue size can grow very fast. Messaging infrastructure has a size limit on the amount of data that can be stored in a queue. If this storage limit is reached messages can no longer be processed in all the endpoints that have auditing enabled.
+
+Make sure the size limit is increased to allow for scheduled and unscheduled downtime.
+
+### Audit store capacity
+
+Perform capacity planning on the store where messages will be written.
+
+When using ServiceControl is it advised read [ServiceControl capacity planning](/servicecontrol/capacity-and-planning.md).
 
 
 ## Message headers

@@ -1,7 +1,7 @@
 ---
 title: Manual unsubscribe
 summary: Shows how to manually remove subscriptions when subscribers are decommissioned.
-reviewed: 2017-07-10
+reviewed: 2019-04-15
 component: Core
 related:
 - transports

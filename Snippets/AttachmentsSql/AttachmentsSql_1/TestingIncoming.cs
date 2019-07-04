@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
@@ -100,12 +101,27 @@ class MyMessageAttachments : IMessageAttachments
         throw new NotImplementedException();
     }
 
+    public Task<IReadOnlyCollection<AttachmentInfo>> GetMetadata(CancellationToken cancellation = new CancellationToken())
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<AttachmentBytes> GetBytes(CancellationToken cancellation = default)
     {
         throw new NotImplementedException();
     }
 
     public Task<AttachmentBytes> GetBytes(string name, CancellationToken cancellation = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<AttachmentString> GetString(CancellationToken cancellation = new CancellationToken())
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<AttachmentString> GetString(string name, CancellationToken cancellation = new CancellationToken())
     {
         throw new NotImplementedException();
     }
@@ -151,6 +167,16 @@ class MyMessageAttachments : IMessageAttachments
     }
 
     public Task<AttachmentBytes> GetBytesForMessage(string messageId, string name, CancellationToken cancellation = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<AttachmentString> GetStringForMessage(string messageId, CancellationToken cancellation = new CancellationToken())
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<AttachmentString> GetStringForMessage(string messageId, string name, CancellationToken cancellation = new CancellationToken())
     {
         throw new NotImplementedException();
     }

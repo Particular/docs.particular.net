@@ -2,7 +2,7 @@
 title: SQL Persistence Upgrade - Support NServiceBus 5 subscribers
 summary: Instructions on how to support subscribers using NServiceBus 5 and lower
 component: SqlPersistence
-reviewed: 2017-06-30
+reviewed: 2019-04-01
 isUpgradeGuide: true
 redirects:
  - nservicebus/upgrades/sqlpersistence-null-endpoint

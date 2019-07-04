@@ -2,7 +2,7 @@
 title: Monitor mixed transports with ServiceControl adapter
 summary: Centralize monitoring of mixed transport solution with the ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2017-08-11
+reviewed: 2019-05-30
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
@@ -10,18 +10,18 @@ related:
 ---
 
 
-This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using mixed transports. The main transport for the solution is MSMQ and this is the transport used by the ServiceControl. Some endpoints, however, use SQL Server transport.
+This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using mixed transports. The main transport for the solution is MSMQ and this is the transport used by ServiceControl. Some endpoints, however, use SQL Server transport.
 
 
 ## Prerequisites
 
  1. [Install ServiceControl](/servicecontrol/installation.md). 
- 2. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using MSMQ transport:
+ 2. Using the [ServiceControl Management tool](/servicecontrol/license.md#servicecontrol-management-tool), set up ServiceControl to monitor endpoints using the MSMQ transport:
 	 
    * Add a new ServiceControl instance:
    * Use default `Particular.ServiceControl` as the instance name (ensure there is no other instance of SC running with the same name).
 
-NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default instance name and port number. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
+include: configuring-sc-connections
  
  3. Ensure the `ServiceControl` process is running before running the sample.
  4. [Install ServicePulse](/servicepulse/installation.md)

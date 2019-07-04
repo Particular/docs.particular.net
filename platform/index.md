@@ -1,6 +1,7 @@
 ---
 title: The Particular Service Platform
-reviewed: 2018-12-31
+reviewed: 2019-06-07
+suppressRelated: true
 redirects:
  - nservicebus/preparing-your-machine-to-run-nservicebus
 ---

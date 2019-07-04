@@ -45,6 +45,8 @@ snippet: NewtonsoftCustomReader
 
 Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
 
+In the example below, the custom writer omits the [Byte Order Mark (BOM)](https://en.wikipedia.org/wiki/Byte_order_mark).
+
 snippet: NewtonsoftCustomWriter
 
 

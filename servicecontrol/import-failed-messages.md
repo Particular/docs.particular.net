@@ -5,6 +5,7 @@ reviewed: 2019-01-03
 redirects:
 - servicecontrol/import-failed-audit-messages
 - servicecontrol/import-failed-audits
+- servicecontrol/import-failed-audit
 ---
 
 Messages can fail to be imported into ServiceControl database due to one of two reasons:

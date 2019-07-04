@@ -85,7 +85,8 @@ When installing the host as a Windows Service, the profiles used during installa
 
 ## Logging
 
-partial: logging
+The built-in profiles by default use the console and rolling file appends, logging information at the `Info` threshold.
+
 
 
 The rolling file logs are written to the `logfile` in the same directory as the executable. The file grows to a maximum size of 1MB, then a new file is created. A maximum of ten files is kept, then the oldest file is erased. If not otherwise specified, the logging threshold is set to the `Warn` level. To configure the logging threshold, see [changing logging levels](/nservicebus/logging/#logging-levels).
@@ -97,4 +98,16 @@ Refer to the [logging configuration](/nservicebus/hosting/nservicebus-host/loggi
 
 ## Persistence
 
-partial: persistence
+Note: In NServiceBus version 5 and above, persistence must be explicitly configured.
+
+The built-in profiles use the following default persistence settings:
+
+| -              | Lite     | Integration  | Production   |
+|:---------------|:---------|:-------------|:-------------|
+|  Timeout       |In-Memory |As configured |As configured |
+|  Subscription  |In-Memory |As configured |As configured |
+|  Saga          |In-Memory |As configured |As configured |
+|  Gateway       |In-Memory |As configured |As configured |
+|  Distributor   |-         |-             |-             |
+
+In the Lite profile, NServiceBus Host will always use the in-memory persistence. In the Integration and Production profiles, the Host verifies if a specific persistence mechanism is provided, e.g. in the endpoint configuration. If not specified otherwise, then RavenDB persistence will be used by default.

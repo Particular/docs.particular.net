@@ -1,9 +1,9 @@
 
 ## The Saga
 
-The saga shown in the sample is a very simple order management saga that:
+This sample contains a very simple order management saga with these responsibilities:
 
- * Handles the creation of an order.
- * Offloads the payment process to a different handler.
- * Handles the completion of the payment process.
- * Completes the order.
+- Handling the creation of an order.
+- Offloading the payment process to a another handler.
+- Handling the completion of the payment process.
+- Completing the order.

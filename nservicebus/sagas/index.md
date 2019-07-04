@@ -185,3 +185,14 @@ Sagas manage state of potentially long-running business processes. It is possibl
  * The saga data may not contain all the required data. A saga handling the order process may keep track of the "payment id" and the status of the payment, but it is not interested in keeping track of the amount paid. On the other hand, for querying it may be required to query the paid amount along with other data.
 
 The recommended approach is for the saga to publish events containing the required data and have handlers that process these events and store the data in one or more read model(s) for querying purposes. This reduces coupling to the internals of the specific saga persistence, removes contention, and preserves the safeguards of the existing saga logic.
+
+## Saga state read/write behavior
+
+Saga state is read just before `Handle` is invoked and written immediately after `Handle` is completed. In other words, the sequence is read, invoke, and write per `Handle`.
+
+- The write will be an INSERT if the read didn't return data or an UPDATE if the read did return data.
+- If the read did not return data and during the invoke the saga is completed no write will occur.
+- How state remains consistent depends the persister implementation (transactional lock vs atomic with optimistic concurrency control)
+- Saga state reads/writes do not happen during a stage, they happen during invocation in the `Invoke Handlers` stage and cannot be intercepted.
+
+If multiple different saga types are invoked on the same message type each read/invoke/write cycle will happen sequentially per saga type.

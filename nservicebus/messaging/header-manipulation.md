@@ -24,7 +24,9 @@ The mechanism for [header communication](/nservicebus/messaging/headers.md) is e
 Headers can be read for an incoming message.
 
 
-partial: incomingbehavior
+### From a behavior
+
+snippet: header-incoming-behavior
 
 
 ### From a mutator
@@ -47,7 +49,9 @@ snippet: header-incoming-saga
 Headers can be written for an outgoing message.
 
 
-partial: outgoingbehavior
+### From a behavior
+
+snippet: header-outgoing-behavior
 
 
 ### From a mutator

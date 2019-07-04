@@ -1,14 +1,14 @@
 ---
 title: SQL Server Transport and SQL Persistence
-summary: Integrating SQL Server transport with SQL persistence
-reviewed: 2017-06-26
+summary: Integrating the SQL Server transport with SQL persistence
+reviewed: 2019-03-29
 component: Core
 related:
 - persistence/sql
 - transports/sql
 ---
 
-In this sample, the [SQL Server Transport](/transports/sql/) is used in conjunction with [SQL Persistence](/persistence/sql/). The sample shows how to use the same database connection for both transport and persistence operations, and how to access (using multiple [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping)) the current SQL connection and transaction from within a message handler to persist business objects to the database.
+In this sample, the [SQL Server transport](/transports/sql/) is used in conjunction with the [SQL persister](/persistence/sql/). The sample shows how to use the same database connection for both transport and persistence operations, and how to access (using multiple [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping)) the current SQL connection and transaction from within a message handler to persist business objects to the database.
 
 include: persistence-session-note
 
@@ -23,8 +23,7 @@ The database created by this sample is `NsbSamplesSql`.
 ## Procedure
 
  1. Start the Sender and Receiver projects.
- 1. In the Sender's console notice the `Press <enter> to send a message` text when the app is ready.
- 1. Hit enter.
+ 1. In the Sender's console, press <kbd>enter</kbd>> to send a message when the app is ready.
  1. On the Receiver console notice that order was submitted.
  1. On the Sender console notice that the order was accepted.
  1. Finally, after a couple of seconds, on the Receiver console notice that the timeout message has been received.
@@ -35,39 +34,37 @@ The database created by this sample is `NsbSamplesSql`.
 
 This sample contains three projects:
 
- * Shared - A class library containing common code including the messages definitions.
+ * Shared - A class library containing common code including the message definitions.
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
  * Receiver - A console application responsible for processing the order message.
 
-Sender and Receiver use different schemas within one database. This creates a separation on logical level (schemas can be secured independently) while retaining the benefits of having a single physical database. Each schema contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.
+Sender and Receiver use different schemas within one database. This creates a logical separation (since schemas can be secured independently) while retaining the benefits of having a single physical database. Apart from business data, each schema contains queues for the NServiceBus endpoint and tables for the NServiceBus persister. If no schema is specified, the transport will default to the `dbo` schema.
 
 
 ## Sender project
 
-The Sender mimics the front-end system where orders are submitted by the users and passed as messages to the back-end. It is configured to use the [SQL Server Transport](/transports/sql/) and the [In Memory Persistence](/persistence/in-memory.md). In Memory Persistence is used since for the purposes of this sample Sender does not need to persist and data. The transport is configured to use `sender` for the schema.
+The Sender mimics the front-end system where orders are submitted by customers and passed as messages to the back-end. It is configured to use the [SQL Server transport](/transports/sql/) and the [in-memory persister](/persistence/in-memory.md). In-meemory persistence is used since for the purposes of this sample, Sender does not need to persist data. The transport is configured to use `sender` for the schema.
 
 snippet: SenderConfiguration
-
-The connection strings for both persistence and transport are the same.
 
 
 ## Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use the [SQL Server Transport](/transports/sql/) and the [SQL Persistence](/persistence/sql/). The transport is configured to use `receiver` for the schema and to send messages addressed to the `receiver` endpoint to a different schema.
+The Receiver mimics a back-end system. It is also configured to use the [SQL Server transport](/transports/sql/) and the [SQL persister](/persistence/sql/). The transport is configured to use `receiver` for the schema and to send messages addressed to the `receiver` endpoint to a different schema.
 
 snippet: ReceiverConfiguration
 
-When the message arrives at the Receiver, a `TransactionScope` is created that encompasses
+When the message arrives at the Receiver, a `TransactionScope` is created that:
 
- * Dequeuing the message.
- * Opening a [DBConnection](https://msdn.microsoft.com/en-us/library/system.data.common.dbconnection.aspx) and starting a [DBTransaction](https://msdn.microsoft.com/en-us/library/system.data.common.dbtransaction.aspx) and supplying both to all handlers and sagas.
- * Persisting saga data of `OrderLifecycleSaga`.
- * Sending the reply message and the timeout request.
+ * Dequeues the message.
+ * Opens a [DBConnection](https://msdn.microsoft.com/en-us/library/system.data.common.dbconnection.aspx) and starts a [DBTransaction](https://msdn.microsoft.com/en-us/library/system.data.common.dbtransaction.aspx), supplying both to all handlers and sagas.
+ * Persists saga data for `OrderLifecycleSaga`.
+ * Sends a reply message and s timeout request.
 
 
-### Script Output
+### Script output
 
-Receiver contain an attribute in the **SqlPersistenceSettings.cs** file which instructs the SQL persister to generate table creation scripts for only Microsoft SQL Server.
+The Receiver contains an attribute in the **SqlPersistenceSettings.cs** file which instructs the SQL persister to generate table creation scripts for only Microsoft SQL Server.
 
 snippet: SqlPersistenceSettings
 
@@ -80,7 +77,7 @@ Receiver\bin\Debug\net462\NServiceBus.Persistence.Sql
 
 ### Accessing the ambient database details
 
-When persisting data to the same database it is recommended to use the same [DBConnection](https://msdn.microsoft.com/en-us/library/system.data.common.dbconnection.aspx) and  [DBTransaction](https://msdn.microsoft.com/en-us/library/system.data.common.dbtransaction.aspx) that is used by the underlying persistence and transport. The approach to this differs depending on the approach used to persist the data. Below are listed several approaches to data access including raw ADO.NET and several popular ORM.
+When persisting data to the same database, it is recommended to use the same [DBConnection](https://msdn.microsoft.com/en-us/library/system.data.common.dbconnection.aspx) and [DBTransaction](https://msdn.microsoft.com/en-us/library/system.data.common.dbtransaction.aspx) that is used by the underlying persister and transport. The approach to this differs depending on the approach used to persist the data. Several approaches to data access, including raw ADO.NET and several ORMs, are listed below.
 
 NOTE: The connection and transaction are managed by NServiceBus, so there is no need to explicitly commit a transaction or dispose the connection. Using the database state managed by NServiceBus ensures that database interactions, both in handlers and sagas, execute in the same connection and transaction context.
 
@@ -118,12 +115,12 @@ snippet: SubmittedOrderEF
 
 ##### DBContext
 
-Entity Framework required an implementation of [DBContext](https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext) to persist data.
+Entity Framework requires an implementation of [DBContext](https://docs.microsoft.com/en-us/ef/core/miscellaneous/configuring-dbcontext) to persist data.
 
 snippet: SubmittedOrderDbContext
 
 
-##### Persisting Data
+##### Persisting data
 
 snippet: StoreDataEf
 
@@ -138,7 +135,7 @@ The schema is defined using an attribute.
 snippet: SubmittedOrderOrmLite
 
 
-##### Persisting Data
+##### Persisting data
 
 snippet: StoreDataOrmLite
 

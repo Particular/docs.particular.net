@@ -28,7 +28,6 @@ NServiceBus.Host.exe /install
 [/description:<string>]
 [/endpointConfigurationType:<string>]
 [/endpointName:<string>]
-[/installInfrastructure]
 [/scannedAssemblies:<string>]
 [/dependsOn:<string>]
 [/sideBySide]
