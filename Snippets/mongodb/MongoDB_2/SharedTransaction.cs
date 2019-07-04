@@ -9,8 +9,9 @@
 
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            var collection = context.SynchronizedStorageSession.GetCollection<MyBusinessObject>("MyCollectionName");
-            return collection.InsertOneAsync(new MyBusinessObject());
+            var session = context.SynchronizedStorageSession.GetClientSession();
+            var collection = session.Client.GetDatabase("mydatabase").GetCollection<MyBusinessObject>("mycollection");
+            return collection.InsertOneAsync(session, new MyBusinessObject());
         }
 
         #endregion
