@@ -26,7 +26,7 @@ class MessageIdentityMutator :
                 }
                 return Assembly.Load(assemblyName);
             },
-            typeResolver: (assembly, typeName, caseSensitive) =>
+            typeResolver: (assembly, typeName, ignoreCase) =>
             {
                 if (typeName == "CreateOrderPhase1")
                 {
