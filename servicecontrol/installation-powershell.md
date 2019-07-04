@@ -69,15 +69,15 @@ New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceCont
 Create a ServiceControl instance:
 
 ```ps
-New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -DatabaseMaintenancePort 33335 -Transport MSMQ -ErrorQueue error1 -ErrorRetentionPeriod 10:00:00:00
+$serviceControlInstance = New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -DatabaseMaintenancePort 33335 -Transport MSMQ -ErrorQueue error1 -ErrorRetentionPeriod 10:00:00:00
 ```
 
 Optionally create a ServiceControl Audit instance to manage an audit queue:
 
 ```ps
-New-AuditInstance -Name Test.ServiceControl.Audit -InstallPath C:\ServiceControl.Audit\Bin -DBPath C:\ServiceControl.Audit\DB -LogPath C:\ServiceControl.Audit\Logs -Port 44444 -DatabaseMaintenancePort 44445 -Transport MSMQ -AuditQueue audit1 -AuditRetentionPeriod 10:00:00:00 -ForwardAuditMessages:$false -ServiceControlAddress Test.ServiceControl
+$auditInstance = New-AuditInstance -Name Test.ServiceControl.Audit -InstallPath C:\ServiceControl.Audit\Bin -DBPath C:\ServiceControl.Audit\DB -LogPath C:\ServiceControl.Audit\Logs -Port 44444 -DatabaseMaintenancePort 44445 -Transport MSMQ -AuditQueue audit1 -AuditRetentionPeriod 10:00:00:00 -ForwardAuditMessages:$false -ServiceControlAddress Test.ServiceControl
 
-Add-ServiceControlRemote -Name Test.ServiceControl -RemoteInstanceAddress http://localhost:44444/api
+Add-ServiceControlRemote -Name $serviceControlInstance.Name -RemoteInstanceAddress $auditInstance.Url
 ```
 
 NOTE: The ServiceControl Audit instance must be configured with the transport address of a ServiceControl instance.
