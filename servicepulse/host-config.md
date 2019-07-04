@@ -15,17 +15,17 @@ To change it:
  1. Goto `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Particular.ServicePulse`
  1. Edit the value of `ImagePath`. The value contains the full path to the ServicePulse.exe and a command line of the URL to use:
 
-The usage of this new port might need to be re-enabled. For example if port 9090 is being used, the following command can be used:
-```dos
-netsh http add urlacl url=http://+:9090/ user=Everyone
-```
-
 The default value for ImagePath is:
 ```dos
 "C:\Program Files (x86)\Particular Software\ServicePulse\ServicePulse.Host.exe" --url="http://localhost:9090"
 ```
 
 Change the value after `--url=` and restart the service.
+
+It may be necessary to reserve the new URL for the account being used to run ServicePulse. For example, to reserve port 9090 for all users:
+```dos
+netsh http add urlacl url=http://+:9090/ user=Everyone
+```
 
 As ServicePulse is installed as a Windows Servce, optionally multiple ServicePulse instances can be installed. The default ports can be changed by providing [installation parameters](/servicepulse/installation.md#installation-available-installation-parameters).
 
