@@ -66,7 +66,7 @@ If the error queue is set to `!disable` then error forwarding will be ignored ev
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary'}]'"/>
+    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary'}]"/>
   </appSettings>/
 </configuration>
 ```
@@ -195,7 +195,7 @@ Multiple secondary instances can be configured as follows:
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary1'},{'api_uri':'http://localhost:33335/api', 'queue_address':'Particular.ServiceControl.Secondary2'}]'"/>
+    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary1'},{'api_uri':'http://localhost:33335/api', 'queue_address':'Particular.ServiceControl.Secondary2'}]"/>
   </appSettings>/
 </configuration>
 ```
