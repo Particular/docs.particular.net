@@ -81,7 +81,7 @@ NOTE: Once the primary instance has been upgraded, it will not subscribe to even
 
 Once the primary instance has been upgraded to version 4, secondary instances can be upgraded one at a time. If a secondary instance has audit ingestion enabled, then a new ServiceControl Audit instance will be created for it.
 
-If a secondary instance has error ingestion turned off, then it cannot be upgraded to version 4. The recommended course of action is to create a side-by-side deployment with a new ServiceControl Audit instance until the audit retention period cleans up the messages in the original secondary instance. Follow this sequence of steps:
+If a secondary instance has error ingestion turned off, then it cannot be upgraded to version 4. The recommended course of action is to replace the existing instance with a new ServiceControl Audit instance. Follow this sequence of steps:
 
 - Note the name of the primary instance
 - Check the configuration file of the secondary instance and note the following values:
@@ -91,15 +91,16 @@ If a secondary instance has error ingestion turned off, then it cannot be upgrad
   - Audit log queue
   - Audit forwarding
   - Audit retention period
-- Turn off audit ingestion on the secondary instance by setting `ServiceBus/AuditQueue` to `!disable`. 
-- Create a new ServiceControl Audit instance with configuration that matches the settings in the original instance
-  - Use the `New-ServiceControlAuditInstance` powershell cmdlet
-- Add the new ServiceControl Audit instance to the `ServiceControl/RemoteInstances` setting in the primary ServiceControl instance
-  - Use the `Get-AuditInstances` powershell cmdlet to find the Url of the new secondary instance
-  - Use the `Add-ServiceControlRemote` powershell cmdlet 
-- Wait for the audit retention period to pass. This will allow all of the audited messages in the old secondary instance to get cleaned up
+  - Database folder
 - Remove the original secondary instance from the `ServiceControl/RemoteInstances` setting in the primary ServiceControl instance
   - Use the `Remove-ServiceControlRemote` powershell cmdlet
-- Delete the original secondary instance
+- Remove the existing secondary instance. **Do not delete the database folder.**
   - Use the `Remove-ServiceControlInstance` powershell cmdlet
+- Create a new ServiceControl Audit instance to create a new secondary instance
+  - Use the `New-ServiceControlAuditInstance` powershell cmdlet
+  - Set the `ServiceControlAdddress` to the name of the primary instance
+  - Use the same transport, connection string, database folder, and audit settings as the original secondary instance
+- Add the new ServiceControl Audit instance to the `ServiceControl/RemoteInstances` setting in the primary ServiceControl instance
+  - Use the `Get-ServiceControlAuditInstances` powershell cmdlet to find the Url of the new secondary instance
+  - Use the `Add-ServiceControlRemote` powershell cmdlet 
 
