@@ -43,6 +43,6 @@ As soon as a message has been dispatched for retrying the originally failing mes
 
 ## Limitations and restrictions
 
-A failed message must not have been resolved by a user, successfully retried, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-dat.md) for edit and retry to function.
+A failed message must not have been resolved by a user, successfully retried, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-data.md) for edit and retry to function.
 
 The bodies of messages with encrypted properties cannot be edited.
