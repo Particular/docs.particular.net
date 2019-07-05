@@ -20,7 +20,7 @@ For more information how to upgrade from Version 1.x to 3.8.2 consult the [upgra
 
 ServiceControl version 4 introduces a new separate process to manage the audit queue called a ServiceControl Audit instance. This instance reads messages from the audit queue, stores them in it's internal database, and (optionally) forwards the processed messages to an audit log queue.
 
-The original ServiceControl instance will no longer manage the audit queue. It can still contain audit messages that have already been read from the audit queue. These messages will be retained until the configured audit retention period has passed.
+The original ServiceControl instance will no longer manage the audit queue. It can still contain audit messages that have already been read from the audit queue. These messages will be retained until the configured audit retention period has lapsed.
 
 This split is transparent to the other components of the Particular Software Platform, which should continue to connect to the main ServiceControl instance. All queries to the main ServiceControl instance will contain results from the Audit instance as well.
 
@@ -75,7 +75,7 @@ Upgrading a multi-instance ServiceControl deployment must be done in stages. Som
 
 The first step is to upgrade the primary ServiceControl instance. If the primary instance has audit ingestion enabled, then a new ServiceControl Audit instance will be created for it.
 
-NOTE: Once the primary instance has been upgraded, it will not subscribe to events being published by new secondary instances. All subscriptions to existing secondary instances will be retained. As the primary instance no longer requires the transport address of the secondary instances to send subscription requests, this property has been dropped from the `ServiceControl/RemoteInstances` configuration setting.
+NOTE: Once the primary instance has been upgraded, it will not subscribe to events being published by new secondary instances. All subscriptions to existing secondary instances will be retained. As the primary instance no longer requires the transport address of the secondary instances to send subscription requests, the `Queue_Address` property has been dropped from the `ServiceControl/RemoteInstances` configuration setting.
 
 ### Upgrade the secondary instances
 
