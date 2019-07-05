@@ -4,22 +4,45 @@ summary: Describes the concept of editing and retrying messages in ServicePulse
 component: ServicePulse
 reviewed: 2019-07-04
 ---
-If a message cannot be successfully retried it is possible to modify that message prior to retrying it.
+## About message edit and retry
+
+If a message cannot be successfully retried it is possible to modify that message prior to retrying it. Both the headers and the body of a message can be edited.
+
+## Enabling the feature
+
+The message edit and retry feature is not enabled by default. To enable it, contact [Particular Support(https://particular.net/support) for assistance.
+
+## Editing headers
+
+Headers on all failed messages can be edited using this feature. There are three categories of headers, each with different editing restrictions.
+
+### Locked headers
+
+Headers that are critical to the operation of NServiceBus cannot be edited. These headers will have a lock image next to otheir name.
+
+### Sensitive headers
+
+Headers that, when their values change, may result in unexpected or unwanted behavior are categorized as "Sensitive". When editing these headers the user will be warned of their sensitive nature.
+
+### Custom headers
+
+Any headers that have been been categorized as Locked or Sensitive will be fully editable. This will include headers created as part of a system customization.
+
+It is also possible to delete (and retrieve) these headers during the editing process. Once a message has been edited and retried, any deleted headers will be lost forever.
+
+## Editing the message body
+
+Message bodies can be edited before they are retried. This is only possible for message bodies that are serialized using JSON or XML. 
+
+## Retrying edited messages
+
+When retrying an edited message it is possible that the original failed message will have been resolved by anothehr user, retried successfully by another user, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-data). In that scenario, the retry of the edited message will fail.
+
+As soon as a message has been dispatched for retrying the originally failing message will be marked as resolved. If the retry message subsequently fails it will appear as a new failed message in the user interface. That new failed message will be marked as having been edited and also have a link to the original message.
 
 
-Enabling
-- talk about the config? Say you must contact us?
+## Limitations and restrictions
 
-Editable content
-- headers on all messages
-- locked headers
-- sensitive headers (can be edited but it's better not to as they might lead to unwanted behaviors)
-- non-locked headers can be removed (and the removal can be undone)
-- message bodies json/xml
-- Message editor will show a warning is the edited message is an event (NServiceBus.MessageIntent == Publish)
-- As soon as an edited message is retried the original message is marked as resolved
-- if the edited message fails it'll be marked as edited, and a link to the original message is provided
+A failed message must not have been resolved by a user, successfully retried, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-data) for edit and retry to function.
 
-Limitations
-- The original failed message must be available when the edit+retry is processed
-- no encrypted properties support
+The bodies of messages with encrypted properties cannot be edited.
