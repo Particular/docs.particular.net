@@ -92,15 +92,11 @@ If a secondary instance has error ingestion turned off, then it cannot be upgrad
   - Audit forwarding
   - Audit retention period
   - Database folder
-- Remove the original secondary instance from the `ServiceControl/RemoteInstances` setting in the primary ServiceControl instance
-  - Use the `Remove-ServiceControlRemote` powershell cmdlet
+  - Host
+  - Port
 - Remove the existing secondary instance. **Do not delete the database folder.**
   - Use the `Remove-ServiceControlInstance` powershell cmdlet
 - Create a new ServiceControl Audit instance to create a new secondary instance
   - Use the `New-ServiceControlAuditInstance` powershell cmdlet
   - Set the `ServiceControlAdddress` to the name of the primary instance
   - Use the same transport, connection string, database folder, and audit settings as the original secondary instance
-- Add the new ServiceControl Audit instance to the `ServiceControl/RemoteInstances` setting in the primary ServiceControl instance
-  - Use the `Get-ServiceControlAuditInstances` powershell cmdlet to find the Url of the new secondary instance
-  - Use the `Add-ServiceControlRemote` powershell cmdlet 
-
