@@ -122,7 +122,7 @@ Use the following to find a list of all of the ServiceControl instances and thei
 Get-ServiceControlInstances | Select Name, Version
 ```
 
-Additional parameters may be required when upgrading an instance to version 4, to enable the creation of a new ServiceControl Audit instance.
+Additional parameters may be required when upgrading an instance to version 4. See the [upgrade guide](/servicecontrol/upgrades/3to4/) for more details.
 
 ```ps
 Invoke-ServiceControlInstanceUpgrade `
