@@ -64,6 +64,8 @@
       Title: Contributing
     - Url: nservicebus/architecture/principles
       Title: Architectural Principles
+    - Url: nservicebus/architecture/scaling
+      Title: Scaling out
     - Url: nservicebus/architecture
       Title: Bus vs. Broker
   - Url: nservicebus/upgrades
@@ -603,8 +605,6 @@
       Title: Transport types
     - Url: transports/transactions
       Title: Transactions
-    - Url: transports/scale-out
-      Title: Scaling out
     - Url: transports/queuecreation
       Title: Creating queues
   - Url: transports/upgrades

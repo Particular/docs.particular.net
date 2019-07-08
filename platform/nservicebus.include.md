@@ -39,7 +39,7 @@ In other cases, NServiceBus has [built-in recoverability](/nservicebus/recoverab
 
 NServiceBus is designed to handle a large number of messages. Endpoints are configured for high performance by default, handling multiple messages in parallel. Depending on the workload, the number of messages handled concurrently can be [increased to improve message throughput](/nservicebus/operations/tuning.md).
 
-In high volume scenarios, where there are more messages being produced than a single physical endpoint can handle, the logical endpoint can be [scaled out across multiple physical instances](/transports/scale-out.md) running on different machines, sharing the load. 
+In high volume scenarios, where there are more messages being produced than a single physical endpoint can handle, the logical endpoint can be [scaled out across multiple physical instances](/nservicebus/architecture/scaling.md) running on different machines, sharing the load. 
 
 Each endpoint tracks [key performance metrics](/monitoring/metrics/definitions.md) that can be exposed as [Windows Performance Counters](/monitoring/metrics/performance-counters.md) or [collected into a central dashboard](/monitoring/metrics/in-servicepulse.md). [The monitoring demo](/tutorials/monitoring-demo/) demonstrates how to find performance bottlenecks and identify endpoints that are ready to scale out.
 

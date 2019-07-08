@@ -1,7 +1,7 @@
 ---
 title: Scale-out Samples
 summary: Sample code for scaling out NServiceBus endpoints
-reviewed: 2018-05-09
+reviewed: 2019-06-13
 related:
- - transports/scale-out
+ - nservicebus/architecture/scaling
 ---

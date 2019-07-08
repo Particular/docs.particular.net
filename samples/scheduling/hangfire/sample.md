@@ -85,7 +85,7 @@ LibLog [supports many other common logging libraries](https://github.com/damianh
 
 ## Scale Out
 
-Note that in this sample an instance of the Hangfire scheduler is configured to run in every endpoint's instance. If an endpoint is [scaled out](/transports/scale-out.md) then the configured jobs will be executed by each of the running instances. A persistent [job storage](http://docs.hangfire.io/en/latest/configuration/index.html) can help  to manage the Hangfire scheduler shared state, including jobs, triggers, calendars, etc.
+Note that in this sample an instance of the Hangfire scheduler is configured to run in every endpoint's instance. If an endpoint is [scaled out](/nservicebus/architecture/scaling.md) then the configured jobs will be executed by each of the running instances. A persistent [job storage](http://docs.hangfire.io/en/latest/configuration/index.html) can help  to manage the Hangfire scheduler shared state, including jobs, triggers, calendars, etc.
 
 
 ## Further information on Hangfire
