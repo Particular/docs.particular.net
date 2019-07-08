@@ -44,6 +44,7 @@ When entering the connection URL to ServiceControl and ServiceControl Monitoring
 
 In order to use the query string to specify a ServiceControl instance that ServicePulse should connect to, the browser URL should be of the format:
 
-```http://localhost:9090/?scu=http%3A%2F%2Fqacontrol%3A33333%2Fapi%2F&mu=http%3A%2F%2Fqamonitoring%3A33633%2F#/```
+```http://localhost:9090/?scu=http://qacontrol:33333/api/&mu=http://qamonitoring:33633/#/```
 
-The query string parameter for `scu=` is a URL Encoded representation of the ServiceControl API url, and the query string paramater `mu=` is a URL encoded representation of the ServiceControl Monitoring server. In the example above, ServicePulse is connecting to the ServiceControl at `http://qacontrol:33333/api/` and connecting to a ServiceControl Monitoring instance at `http://qamonitoring:33633/`. If the example URL is bookmarked - or a shortcut created - then when that bookmark is openened, ServicePulse will connect to that environment.
+The query string parameter for `scu=` is a URL Encoded representation of the ServiceControl API url, and the query string paramater `mu=` is a URL encoded representation of the ServiceControl Monitoring server. In the example above, ServicePulse is connecting to the ServiceControl at `http://qacontrol:33333/api/` and connecting to a ServiceControl Monitoring instance at `http://qamonitoring:33633/`. By encoding these connection details in the URL, a browser bookmark or desktop shortcut can be created to instantly open ServicePulse with those connection details or easily share them with other people.
+
