@@ -46,5 +46,5 @@ In order to use the query string to specify a ServiceControl instance that Servi
 
 ```http://localhost:9090/?scu=http://qacontrol:33333/api/&mu=http://qamonitoring:33633/#/```
 
-The query string parameter for `scu=` is a URL Encoded representation of the ServiceControl API url, and the query string paramater `mu=` is a URL encoded representation of the ServiceControl Monitoring server. In the example above, ServicePulse is connecting to the ServiceControl at `http://qacontrol:33333/api/` and connecting to a ServiceControl Monitoring instance at `http://qamonitoring:33633/`. By encoding these connection details in the URL, a browser bookmark or desktop shortcut can be created to instantly open ServicePulse with those connection details or easily share them with other people.
+The query string parameter for `scu=` is the URL representation of the ServiceControl API url, and the query string paramater `mu=` is the URL of the ServiceControl Monitoring server. In the example above, ServicePulse is connecting to the ServiceControl instance at `http://qacontrol:33333/api/` and connecting to a ServiceControl Monitoring instance at `http://qamonitoring:33633/`. By providing these connection details in the URL, a browser bookmark or desktop shortcut can be created to instantly open ServicePulse with those connection details or easily share them with other people.
 
