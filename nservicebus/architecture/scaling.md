@@ -5,7 +5,7 @@ tags:
  - scalability
  - routing
 redirects:
- - nservicebus/architecture/scaling
+ - transports/scale-out
 reviewed: 2019-06-13
 ---
 
