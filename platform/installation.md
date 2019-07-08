@@ -36,7 +36,7 @@ ServiceInsight has the ability to connect to multiple ServiceControl instances u
 
 For optimal installation of the Platform on a development machine the [Platform Installer](/platform/installer/) can be used.
 
-## Portabe mode
+## Portable mode
 
 The Service Platform has the ability to be hosted from within Visual Studio for the benefit of not having to install anything. This can be useful during presentations, to provide samples to others or to demonstrate the usage of the platform from within an existing solution. For this feature the Platform Package has been developed.
 
