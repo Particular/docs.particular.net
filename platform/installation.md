@@ -1,43 +1,41 @@
 ---
 title: Platform Installation
 summary: Guidance on the different ways to install and use the platform
-reviewed: 2019-06-15
+reviewed: 2019-07-06
 ---
 
-The Particular Service Platform can either be installed to a server for use with production systems, or on a workstation during development. In addition, a portable version is available for use in samples or demonstrations.
+The Particular Service Platform may be installed on either a server, for use in production environments, or a workstation, during development. A portable version is also available, for use in samples or demonstrations.
 
-## Monitoring production systems
+Note that, for the purposes of this document, shared testing environments may be treated in the same way as production environments.
 
-The Platform Installer requires Internet connectivity. It is possible to [achieve the same result](/platform/installer/offline.md) without requiring internet connectivity.
+## For production environments
 
-For usage on production environments it is possible and recommended to install the different components individually. More details can be found on the [download page](https://particular.net/downloads).
+For use in production environments it is recommended to install the various components separately. More details can be found on the [download page](https://particular.net/downloads).
 
 ### ServiceControl
 
-After installation, the ServiceControl Management application can configure one or multiple instances for [ServiceControl](/servicecontrol/installation.md) and [ServiceControl Monitoring](/servicecontrol/monitoring-instances/installation/).
+After installation, the ServiceControl Management application is used to create one or more instances of [ServiceControl](/servicecontrol/installation.md) and [ServiceControl Monitoring](/servicecontrol/monitoring-instances/installation/).
+
+At any one time, a single instance of ServicePulse or ServiceInsight can connect to a single instance of ServiceControl. For multiple instances of ServiceControl, there are various options:
 
 ### ServicePulse
 
-ServicePulse connects to a single instance of ServiceControl. There are different ways of connecting to different ServiceControl installations.
+#### Switch between ServiceControl instances
 
-#### Different browser connections
+This can be done via the [ServicePulse UI](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui).
 
-By default ServicePulse connects to the [default ports](/servicepulse/host-config.md#default-connection-to-servicecontrol-and-servicecontrol-monitoring) for ServiceControl. This can be modified via [configuration](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) inside ServicePulse, which will alter the querystring. These unique URLs can then be used as bookmarks.
+#### Run multiple instances of ServicePulse
 
-#### Multiple ServicePulse instances
-
-As ServicePulse runs as a Windows Service, it is possible to install the service multiple times and use different ports to host it. There are [installation instructions](/servicepulse/installation.md#installation-available-installation-parameters) to achieve this using installation parameters.
+ServicePulse runs as a Windows Service and can be installed more than once on a single machine, with each instance listening on it's own port. This is done by [specifying appropriate arguments during installation](/servicepulse/installation.md#installation-available-installation-parameters).
 
 ### ServiceInsight
 
-ServiceInsight has the ability to connect to multiple ServiceControl instances using the [Endpoint Explorer](/serviceinsight/#endpoint-explorer).
+The instance of ServiceControl can be chosen in the [Endpoint Explorer](/serviceinsight/#endpoint-explorer).
 
-## Debugging during development
+## During development
 
-For optimal installation of the Platform on a development machine the [Platform Installer](/platform/installer/) can be used.
+The easiest way to install the Platform on a development machine is to use the [Platform Installer](/platform/installer/), which requires an internet connection. For offline scenarios, the [individual components can be installed separately](/platform/installer/offline.md), to achieve the same result.
 
-## Portable mode
+## Portable version
 
-The Service Platform has the ability to be hosted from within Visual Studio for the benefit of not having to install anything. This can be useful during presentations, to provide samples to others or to demonstrate the usage of the platform from within an existing solution. For this feature the Platform Package has been developed.
-
-For more information, see [Platform Sample Installation](/platform/platform-sample-package.md).
+The Platform can be hosted in Visual Studio, with no installation required, using the [Platform Sample package](/platform/platform-sample-package.md). This is useful for presentations, for providing samples, or to demonstrate usage of the Platform within an existing solution.

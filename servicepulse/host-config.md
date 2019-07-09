@@ -27,28 +27,30 @@ It may be necessary to reserve the new URL for the account being used to run Ser
 netsh http add urlacl url=http://+:9090/ user=Everyone
 ```
 
-As ServicePulse is installed as a Windows Servce, optionally multiple ServicePulse instances can be installed. The default ports can be changed by providing [installation parameters](/servicepulse/installation.md#installation-available-installation-parameters).
+ServicePulse runs as a Windows Service and can be installed more than once on a single machine, with each instance listening on it's own port. This is done by [specifying appropriate arguments during installation](/servicepulse/installation.md#installation-available-installation-parameters).
 
-## Default connection to ServiceControl and ServiceControl Monitoring
+## Default connections to ServiceControl and ServiceControl Monitoring
 
-ServicePulse will by default, attempt to connect to ServiceControl and ServiceControl Monitoring using the URLs `http://localhost:33333/api/` and `http://localhost:33633/`, respectively.
+ServicePulse will, by default, attempt to connect to ServiceControl and ServiceControl Monitoring using the URLs `http://localhost:33333/api/` and `http://localhost:33633/`, respectively.
 
-The configuration is stored inside a javascript file located in the folder ServicePulse is installed in. By default this is `C:\Program Files (x86)\Particular Software\ServicePulse\app\js\app.constants.js`.
+This configuration is stored in a Javascript file located in the ServicePulse isntallation folder. By default, this is `%ProgramFiles(x86)%\Particular Software\ServicePulse\app\js\app.constants.js`.
 
 ## Configuring connections via the ServicePulse UI
 
-The default connections can easily be overriden via the Connections configuration screen in ServicePulse:
+The connections to ServiceControl and ServiceControl Monitoring can be changed using the connections tab in the configuration screen in ServicePulse:
 
 ![Connections configuration](images/connections-configuration.png 'width=500')
 
-When entering the connection URL to ServiceControl and ServiceControl Monitoring, the full URLs including the port number and scheme needs to be entered in the Connections screen. Connection configuration is persisted only locally and is read in the following order:
+Full URLs must be specified, including scheme and port number. The URLs are persisted in local storage and are also embedded in the query string of ServicePulse URL in the browser address bar, for bookmarking and sharing.
 
-1. **Query string in browser address bar URL** - allows easily bookmarking and sharing of connection details.
-2. **Local storage** - if the connection parameters are not found in the URL, the last successful connection will be used.
+ServicePulse uses connection URLs in the following order:
+
+1. The query string of the ServicePulse URL.
+2. Local storage.
+3. Default values.
 
 In order to use the query string to specify a ServiceControl instance that ServicePulse should connect to, the browser URL should be of the format:
 
 ```http://localhost:9090/?scu=http://qacontrol:33333/api/&mu=http://qamonitoring:33633/#/```
 
 The query string parameter for `scu=` is the URL representation of the ServiceControl API url, and the query string paramater `mu=` is the URL of the ServiceControl Monitoring server. In the example above, ServicePulse is connecting to the ServiceControl instance at `http://qacontrol:33333/api/` and connecting to a ServiceControl Monitoring instance at `http://qamonitoring:33633/`. By providing these connection details in the URL, a browser bookmark or desktop shortcut can be created to instantly open ServicePulse with those connection details or easily share them with other people.
-
