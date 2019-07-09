@@ -98,5 +98,36 @@ If a secondary instance has error ingestion turned off, then it cannot be upgrad
   - Use the `Remove-ServiceControlInstance` powershell cmdlet
 - Create a new ServiceControl Audit instance to create a new secondary instance
   - Use the `New-ServiceControlAuditInstance` powershell cmdlet
-  - Set the `ServiceControlAdddress` to the name of the primary instance
+  - Set the `ServiceControlQueueAdddress` to the name of the primary instance
   - Use the same transport, connection string, database folder, and audit settings as the original secondary instance
+
+Putting it all together into a single script:
+
+```ps
+$originalInstanceName = "ServiceControl.Secondary"
+$primaryInstanceName = "ServiceControl.Primary"
+
+$original = Get-ServiceControlInstances | Where-Object { $_.Name -eq $originalInstanceName }
+
+Remove-ServiceControlInstance -Name $originalInstanceName -RemoveDB:$false
+
+New-ServiceControlAuditInstance `
+  -Name $originalInstanceName `
+  -InstallPath $original.InstallPath `
+  -DBPath $original.DBPath `
+  -LogPath $original.LogPath `
+  -HostName $original.HostName `
+  -Port $original.Port `
+  -DatabaseMaintenancePort $original.DatabaseMaintenancePort `
+  -AuditQueue $original.AuditQueue `
+  -AuditLogQueue $original.AuditLogQueue `
+  -Transport $original.TransportPackageName `
+  -ConnectionString $original.ConnectionString `
+  -DisplayName $original.Name `
+  -ForwardAuditMessages:$original.ForwardAuditMessages `
+  -AuditRetentionPeriod $original.AuditRetentionPeriod `
+  -ServiceControlQueueAddress $primaryInstanceName `
+  -Force
+```
+
+NOTE: Service account details cannot be copied from the original instance. If the ServiceControl Audit instance must run under a service account, supply the `ServiceAccount` and `ServiceAccountPassword` parameters to the `New-ServiceControlAuditInstance` cmdlet.
