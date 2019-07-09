@@ -8,12 +8,12 @@ redirects:
  - nservicebus/containers/child-containers
 ---
 
-Child containers are essentially a snapshot of the main container providing an additional instance lifetime scope. Instances configured with child container lifetime are treated as singletons within the scope of the child container. This is useful to scope instances for the duration of a web request or the handling of a message in NServiceBus.
+Child containers are a snapshot of the main container providing an additional instance lifetime scope.
 
 
 ## Child container scope in NServiceBus
 
-NServiceBus creates a child container for each transport message that is received. This means that all child container scoped instances created during message processing are scoped as singletons within the child container lifetime. This supports sharing of database sessions and other resources with lifetimes specific to the processed message.
+NServiceBus creates a child container for each transport message that is received. This means that during message processing, all `InstancePerUnitOfWork` scoped instances that are created are scoped as singletons within the context of processing each message. This is helpful to support the sharing of database sessions and other resources with lifetimes specific to the processed message.
 
 Objects can be configured in a child container scope using the `InstancePerUnitOfWork` lifetime:
 
