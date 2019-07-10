@@ -25,6 +25,10 @@ In Windows, IIS is a reliable host for [web-based applications](/nservicebus/hos
 
 This restricts IIS as a choice for hosting NServiceBus endpoints to two specific scenarios:
 
+### Linux background processes
+
+TODO: write
+
 #### Send-only endpoints
 
 A "send-only" endpoint is one which sends messages but does not receive any messages. Messages are sent during the handling of incoming HTTP requests.
