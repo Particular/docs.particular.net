@@ -5,6 +5,7 @@ This guide does not provide definitive answers for all scenarios, and every deci
 NServiceBus endpoints can be hosted within any .NET process. This guidance groups the hosting options into:
 
  - [On-premises](#on-premises)
+ - [Containers](#containers)
  - [Microsoft Azure](#microsoft-azure)
  - [Amazon Web Services](#amazon-web-services)
 
@@ -31,6 +32,14 @@ A "send-only" endpoint is one which sends messages but does not receive any mess
 #### Near real-time feedback
 
 Some web applications give [near real-time feedback](/samples/near-realtime-clients/) using queues for asynchronous and reliable communication.
+
+## Containers
+
+This section focuses on Docker, as one of the most well known container technologies.
+
+The biggest difference in hosting NServiceBus endpoints using Docker, in comparision to a regular host OS, is that applications are isolated from the host, and other containers. This can be beneficial with respect to security. Another benefit is portability. It is easy to move containers from development to test and production.
+
+Although Docker containers are popular, the tooling and guidance are still less developed than with other hosting solutions. It may be necessary to consider whether an organization has the operation capability to support a container technology such as Docker.
 
 ## Microsoft Azure
 
