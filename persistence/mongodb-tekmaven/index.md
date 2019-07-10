@@ -1,5 +1,5 @@
 ---
-title: MongoDB Persistence (Ryan Hoffman)
+title: MongoDB Persistence (Community)
 summary: A community persistence that uses MongoDB as the data store
 component: MongoPersistenceTekmaven
 reviewed: 2018-09-14

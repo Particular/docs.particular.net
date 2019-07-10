@@ -556,7 +556,7 @@
     - NServiceBus.MongoDB
 
 - Key: MongoPersistenceTekmaven
-  Name: MongoDB Persistence (Ryan Hoffman)
+  Name: MongoDB Persistence (Community)
   DocoUrl: persistence/mongodb-tekmaven
   GitHubOwner: tekmaven
   Category: Persistence
@@ -567,7 +567,7 @@
     - NServiceBus.Persistence.MongoDb
 
 - Key: MongoDatabusTekmaven
-  Name: MongoDB Databus (Ryan Hoffman)
+  Name: MongoDB Databus (Community)
   DocoUrl: nservicebus/messaging/databus/mongodb-tekmaven
   GitHubOwner: tekmaven
   Category: Databus
