@@ -1039,7 +1039,7 @@
   #   - Url: persistence/mongodb/migrating-from-tekmaven
   #     Title: Migrating from NServiceBus.Persistence.MongoDB
   - Url: persistence/mongodb-tekmaven
-    Title: MongoDB (Ryan Hoffman)
+    Title: MongoDB (Community)
 
 - Name: ServiceInsight
   Topics:
