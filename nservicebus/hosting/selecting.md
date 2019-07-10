@@ -1,55 +1,63 @@
 This document provides guidance for deciding how to [host](/nservicebus/hosting) your [NServiceBus endpoints](/nservicebus/endpoints/).
 
-This guide does not provide definitive answers for all scenarios. Every decision has trade-offs. Especially in cloud scenarios, there is currently not a definitive answer on what the best solution is. If it is unclear what the best choice is, or there are very specific constraints, contact [Particular Software](https://particular.net/contactus).
+This guide does not provide definitive answers for all scenarios, and every decision involves trade-offs. Especially in cloud scenarios, there is currently no definitive answer on what the best solutions are for many scenarios. If it is unclear what the best choice is, or there are very specific constraints, contact [Particular Software](https://particular.net/contactus).
 
-Since NServiceBus endpoints can be hosted within any .NET process, this guidance will differentiate the different ones between the following topics:
+NServiceBus endpoints can be hosted within any .NET process. This guidance groups the hosting options into:
 
- - [On premise](#on-premise-hosting)
- - [Docker containers](#docker-hosting)
- - [Windows Azure](#windows-azure-hosting)
- - [Amazon Web Services](#amazon-web-services-hosting)
+ - [On-premises](#on-premises)
+ - [Windows Azure](#windows-azure)
+ - [Amazon Web Services](#amazon-web-services)
 
-## On Premise hosting
-With on premise hosting the focus is mainly on (virtual) machine with the Windows operating system installed. Although an endpoint can even be hosted within a console application, this guidance will focus on the following options.
+## On-premises
+
+For on-premises hosting, endpoints are typically hosted in background process running on servers, which are usually virtual machines. An endpoint can also be hosted in an interactive application, with a user interface, but this guidance will focus on server scenarios.
 
 ### Windows Services
-For on premise solutions a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host NServiceBus endpoints.
 
-The benefit is that Windows Services run in the background, immediately start when Windows is booted and can be paused and restarted and support [recoverability options](/nservicebus/hosting/windows-service#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
+On Windows, a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host NServiceBus endpoints.
+
+The benefit is that Windows Services run in the background, immediately start when Windows is booted, can be paused and restarted, and support [recoverability options](/nservicebus/hosting/windows-service#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
 
 ### Internet Information Services (IIS)
-With Windows machines, IIS is a reliable host for [web based applications](/nservicebus/hosting/web-application). An NServiceBus endpoint can be hosted within any .NET web application and thus inside IIS. However, the focus of IIS is request based hosting, which means IIS will automatically shut down anything that has not received a request for a while. This is also true for any NServiceBus based endpoint.
 
-This makes IIS less of an option to host NServiceBus endpoints, except for two very specific scenarios. One is where NServiceBus will act as a 'SendOnly' endpoint. The result is that it will not process any message, but will only send messages after user interaction within the web application. Another scenario is where the web application might give [near real-time feedback](/samples/near-realtime-clients/) using queues for asynchronous and reliable communcation.
+On Windows, IIS is a reliable host for [web-based applications](/nservicebus/hosting/web-application). An NServiceBus endpoint can be hosted within any .NET web application, including those running in IIS. However, the focus of IIS is request based hosting, which means IIS will automatically shut down anything that has not received a request for a while. This is also true for any NServiceBus based endpoint.
 
-## Docker hosting
-With .NET Core, Microsoft made it possible to host applications in other environments than Windows. One of the most well known options is [Docker containers](https://www.docker.com/resources/what-container).
+This restrict IIS as a choice for hosting NServiceBus endpoints to two specific scenarios:
 
-The biggest differences of hosting NServiceBus endpoints using Docker, as compared to Windows, is that applications are isolated from the host and other containers. This includes other applications but also any security settings.
-Another benefit is the portability of containers, where it is possible and easy to move containers from development to test and production.
+#### Send-only endpoints
 
-Although Docker containers are very popular, the tooling, guidance and guidance on the internet are still not as good as with other hosting solutions. A consideration should be if the operations department is able to support a solution like Docker containers.
+A "send-only" endpoint is one which sends messages but does not receive any messages. Message are sent as the result of incoming HTTP requests.
 
-## Windows Azure hosting
-With Windows Azure there is a variety of solutions one can choose from to host NServiceBus endpoints. Unfortunately none of them focus on running background applications like Windows Services do. As a result, selecting a technology to host an NServiceBus endpoint in Windows Azure is not an easy task. Contact [Particular Software](https://particular.net/contactus) to discuss the different options.
+#### Near real-time feedback
 
-The primary options to host any NServiceBus endpoint are the following:
+Some web applications give [near real-time feedback](/samples/near-realtime-clients/) using queues for asynchronous and reliable communcation.
 
-### Azure AppServices
-Within Azure AppServices, Microsoft offers [Azure WebJobs](https://docs.microsoft.com/en-us/azure/app-service/webjobs-create) to host background processes. This is currently the best mainstream solution for hosting your endpoints.
+## Windows Azure
+
+Windows Azure offers a variety of solutions which can potentially host NServiceBus endpoints. Unfortunately, none of them are currently specifically designed to run continuous background processes, similar to Windows Services. This makes it challenging to choose the best hosting options for NServiceBus endpoints. For assistance, contact [Particular Software](https://particular.net/contactus).
+
+The primary options for hosting NServiceBus endpoints are the following:
+
+### AppServices
+
+Within AppServices, [WebJobs](https://docs.microsoft.com/en-us/azure/app-service/webjobs-create) can host background processes. This is currently the best proven solution for hosting NServiceBus endpoints.
 
 Todo: What are the drawbacks?
 
 ### Azure Functions
-With Azure Functions, Microsoft offers another solution for running short-lived endpoints that can be triggered by Azure Service Messages. As each message triggers execution of code, NServiceBus instances are started for each message. Which makes Azure Functions not a great fit at this moment.
 
-Particular Software is aware of this and working on a solution that better fits Azure Functions.
+Azure Functions can be used to run short-lived NServiceBus endpoints that are triggered by Azure Service Messages. When a message triggers a function, an NServiceBus endpoint can be started to handle the message.
 
-### Azure Service Fabric
-With Service Fabric, Microsoft build a solution on top of Virtual Machine scale sets to provide clustered, stateful services. If dynamic scaling and clustering is a requirement, Service Fabric can be an option to host (stateful) NServiceBus endpoints.
+Starting an NServiceBus endpoint for each message add considerable overhead. Particular Software is aware of this and is working on a better solution for using NServiceBus with Azure Functions.
 
-### Azure Cloud Services
-Cloud Services provide worker roles for background processes. With the introduction of Azure AppServices, with its extended features, Cloud Services is less likely to be a better solution for NServiceBus endpoints.
+### Service Fabric
 
-## Amazon Web Services hosting
+Service Fabric works on top of Virtual Machine scale sets to provide clustered, stateful services. If dynamic scaling and clustering is a requirement, Service Fabric may be a good option to host NServiceBus endpoints.
+
+### Cloud Services
+
+Cloud Services provide worker roles for background processes. With the introduction of Azure AppServices, with its extended features, Cloud Services is less likely to be a good choice for NServiceBus endpoints.
+
+## Amazon Web Services
+
 Todo: If the above is something we can live with, repeat the above for AWS.
