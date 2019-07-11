@@ -44,8 +44,7 @@ As part of a full review the following should be done:
  * Content is correct up to and including the current released version
  * Tags are correct
  * Summary and title is adequate
-
-**Note that for minor changes (e.g. individual spelling or grammar fixes) the reviewed header should NOT be updated.**
+ * Update reviewed date in header, even if no changes were made.
 
 
 # Conventions
