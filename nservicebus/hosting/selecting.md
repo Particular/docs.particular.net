@@ -27,7 +27,7 @@ This restricts IIS as a choice for hosting NServiceBus endpoints to two specific
 
 ### Linux background processes
 
-TODO: write
+In Linux, a background process is typically controlled by a system service controller. One of the most commonly used is [systemd](https://freedesktop.org/wiki/Software/systemd/). These controllers can be configured to start and stop any executable, such a console app, as a background service when the operating system starts and shuts down, as well as more complex configurations.
 
 #### Send-only endpoints
 
