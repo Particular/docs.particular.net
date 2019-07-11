@@ -25,10 +25,6 @@ In Windows, IIS is a reliable host for [web-based applications](/nservicebus/hos
 
 This restricts IIS as a choice for hosting NServiceBus endpoints to two specific scenarios:
 
-### Linux background processes
-
-In Linux, a background process is typically controlled by a system service controller. One of the most commonly used is [systemd](https://freedesktop.org/wiki/Software/systemd/). These controllers can be configured to start and stop any executable, such a console app, as a background service when the operating system starts and shuts down, as well as more complex configurations.
-
 #### Send-only endpoints
 
 A "send-only" endpoint is one which sends messages but does not receive any messages. Messages are sent during the handling of incoming HTTP requests.
@@ -36,6 +32,10 @@ A "send-only" endpoint is one which sends messages but does not receive any mess
 #### Near real-time feedback
 
 Some web applications give [near real-time feedback](/samples/near-realtime-clients/) using queues for asynchronous and reliable communication.
+
+### Linux background processes
+
+In Linux, a background process is typically controlled by a system service controller. One of the most commonly used is [systemd](https://freedesktop.org/wiki/Software/systemd/). These controllers can be configured to start and stop any executable, such a console app, as a background service when the operating system starts and shuts down, as well as more complex configurations.
 
 ## Containers
 
