@@ -22,6 +22,4 @@ snippet: InstancePerUnitOfWorkRegistration
 
 ## Deterministic disposal
 
-Instance lifetime is usually not tracked by the main instance (Windsor is an exception) and that means that manual disposal is required on any instance that needs deterministic disposal. Child containers solve this issue by automatically disposing all instances created within each specific child lifetime. This is useful to managing things like the database sessions.
-
-When the message finishes processing, the child lifetime and all associated instances implementing [IDisposable](https://msdn.microsoft.com/en-us/library/system.idisposable.aspx) are disposed.
+Child containers automatically dispose all [IDisposable](https://msdn.microsoft.com/en-us/library/system.idisposable.aspx) instances created with `InstancePerUnitOfWork` lifetime once the message is processed. This is useful to managing things like the database sessions.
