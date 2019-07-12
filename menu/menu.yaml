@@ -314,8 +314,6 @@
         Title: File Share
       - Url: nservicebus/messaging/databus/azure-blob-storage
         Title: Azure Blob Storage
-      - Url: nservicebus/messaging/databus/mongodb-tekmaven
-        Title: MongoDB DataBus
       - Url: nservicebus/messaging/databus/custom
         Title: Custom
     - Url: nservicebus/messaging/validation-fluentvalidation
@@ -1031,15 +1029,13 @@
       Title: Scripting
   - Url: persistence/msmq/subscription
     Title: MSMQ Subscription
-  # - Url: persistence/mongodb
-  #   Title: MongoDB
-  #   Articles:
-  #   - Url: persistence/mongodb/migrating-from-sbmako
-  #     Title: Migrating from NServicebus.MongoDB
-  #   - Url: persistence/mongodb/migrating-from-tekmaven
-  #     Title: Migrating from NServiceBus.Persistence.MongoDB
-  - Url: persistence/mongodb-tekmaven
-    Title: MongoDB (Community)
+  - Url: persistence/mongodb
+    Title: MongoDB
+    Articles:
+    - Url: persistence/mongodb/migrating-from-sbmako
+      Title: Migrating from NServicebus.MongoDB
+    - Url: persistence/mongodb/migrating-from-tekmaven
+      Title: Migrating from NServiceBus.Persistence.MongoDB
 
 - Name: ServiceInsight
   Topics:

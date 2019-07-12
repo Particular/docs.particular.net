@@ -6,6 +6,9 @@ tags:
  - Persistence
 related:
  - samples/mongodb
+ redirects:
+ - persistence/mongodb-tekmaven/
+ - nservicebus/messaging/databus/mongodb-tekmaven
 reviewed: 2019-05-29
 ---
 
