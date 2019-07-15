@@ -90,4 +90,4 @@ This option has been described in the [containers](#containers) section.
 
 ### AWS Mesh
 
-This option is comparable to Azure [Service Fabric](#service-fabric).
+This option is comparable to Azure [Service Fabric](#microsoft-azure-service-fabric).
