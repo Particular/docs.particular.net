@@ -3,7 +3,7 @@ title: Selecting a host
 summary: A guide for selecting an NServicebus transport.
 reviewed: 2019-07-15
 ---
-This document provides guidance for deciding how to [host](/nservicebus/hosting) your [NServiceBus endpoints](/nservicebus/endpoints/).
+This document provides guidance for deciding how to [host](/nservicebus/hosting) [NServiceBus endpoints](/nservicebus/endpoints/).
 
 This guide does not provide definitive answers for all situations and each option involves trade-offs. Especially in cloud scenarios, there are currently few definitive answers as to what the best solution may be. If it is unclear what the best choice is, or there are very specific constraints, contact [Particular Software](https://particular.net/contactus) for advice.
 
