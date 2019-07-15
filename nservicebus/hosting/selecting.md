@@ -75,4 +75,9 @@ Cloud Services provide worker roles for background processes. With the introduct
 
 ## Amazon Web Services
 
-Todo: If the above is something we can live with, repeat the above for AWS.
+Although there is a [comparison chart](https://docs.microsoft.com/en-us/azure/architecture/aws-professional/services#miscellaneous) that compares Amazon Web Services (AWS) to Microsoft Azure, there aren't any real alternatives for hosting background processes. That leaves two options
+
+  - Virtual Machines
+  - Containers
+
+Both options have been described in this document.
