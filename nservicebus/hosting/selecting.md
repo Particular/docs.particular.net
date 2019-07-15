@@ -57,8 +57,6 @@ The primary options for hosting NServiceBus endpoints are the following:
 
 Within AppServices, [WebJobs](https://docs.microsoft.com/en-us/azure/app-service/webjobs-create) can host background processes. This is currently the best proven solution for hosting NServiceBus endpoints.
 
-Todo: What are the drawbacks?
-
 ### Azure Functions
 
 Azure Functions can be used to run short-lived NServiceBus endpoints triggered by Azure Service Messages. When a message triggers a function, an NServiceBus endpoint can be started to handle the message.
