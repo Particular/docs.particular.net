@@ -22,23 +22,21 @@ For on-premises hosting, endpoints are typically hosted in background processes,
 
 In Windows, a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host NServiceBus endpoints.
 
-The benefits are that Windows Services run in the background, can immediately start when Windows is started, can be paused and restarted, and they support [recoverability options](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
+Windows Services run in the background, can immediately start when Windows is started, can be paused and restarted, and they support [recoverability options](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
+
+See [Windows Service Hosting](https://docs.particular.net/nservicebus/hosting/windows-service) for details.
+
 
 ### Internet Information Services (IIS)
 
-In Windows, IIS is a reliable host for [web-based applications](/nservicebus/hosting/web-application.md). An NServiceBus endpoint can be hosted in any .NET web application, including one running in IIS. However, the purpose of IIS is HTTP request-based hosting. That means IIS will automatically shut down any web application that has not received a request for some time.
+In Windows, IIS is a reliable host for web-based applications. An NServiceBus endpoint can be hosted in any .NET web application, including one running in IIS. However, the purpose of IIS is HTTP request-based hosting. That means IIS will automatically shut down any web application that has not received a request for some time.
 
 This restricts IIS as a choice for hosting NServiceBus endpoints to two specific scenarios:
 
-#### Send-only endpoints
+* [Send-only endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting), which can send messages but does not receive any messages, and therefore doesn't need to initialize any receive infrastructure. Messages are sent during the handling of incoming HTTP requests or after user input in an interactive application.
+* Web applications which provide [near real-time feedback](/samples/near-realtime-clients/) using queues for asynchronous and reliable communication.
 
-A [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoint is one which sends messages but does not receive any messages. Messages are sent during the handling of incoming HTTP requests or after user input in an interactive application.
-
-The benefit of send-only endpoints is that NServiceBus does not need to perform a lot of checks and initializes much faster.
-
-#### Near real-time feedback
-
-Some web applications give [near real-time feedback](/samples/near-realtime-clients/) using queues for asynchronous and reliable communication.
+See [Web Application Hosting](/nservicebus/hosting/web-application.md) for details.
 
 ### Linux background processes
 
@@ -51,6 +49,8 @@ This section focuses on Docker, as one of the most well known container technolo
 The biggest difference in hosting NServiceBus endpoints using Docker, in comparision to a regular host OS, is that applications are isolated from the host, and other containers. This can be beneficial with respect to security. Another benefit is portability. It is easy to move containers from development to test and production.
 
 Although Docker containers are popular, the tooling and guidance are still less developed than with other hosting solutions. It may be necessary to consider whether an organization has the operation capability to support a container technology such as Docker.
+
+See [Docker Container Host](/nservicebus/hosting/docker-host/) for details.
 
 ## Microsoft Azure
 
@@ -82,7 +82,7 @@ Although there is a [comparison chart](https://docs.microsoft.com/en-us/azure/ar
 
 ### Virtual Machines
 
-This results in the same options as described under the [on premises](#on-premises) section.
+This results in the same options as described under the [on-premises](#on-premises) section.
 
 ### Containers
 
