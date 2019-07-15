@@ -8,7 +8,7 @@ related:
  - nservicebus/serialization/utf8json
 ---
 
-## Configuring to use of the Utf8Json serializer
+## Configuring to use the Utf8Json serializer
 
 snippet: config
 

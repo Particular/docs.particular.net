@@ -15,7 +15,7 @@ snippet: Utf8JsonSerialization
 
 ### Resolver
 
-It is possible to customize the instance of [IJsonFormatterResolver](https://github.com/neuecc/Utf8Json#resolver)used for serialization.
+It is possible to customize the instance of [IJsonFormatterResolver](https://github.com/neuecc/Utf8Json#resolver) used for serialization.
 
 snippet: Utf8JsonResolver
 
@@ -25,4 +25,4 @@ snippet: Utf8JsonContentTypeKey
 
 ## Currently not supported
 
-The usage of `DataBusProperty<T>` is not supported because the property doesn't provide a default constructor. However, the usage of the [databus conventions](/nservicebus/messaging/databus) is supported.
+The use of `DataBusProperty<T>` is not supported because the property doesn't provide a default constructor. However, the use of the [databus conventions](/nservicebus/messaging/databus) is supported.
