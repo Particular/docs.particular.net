@@ -22,11 +22,11 @@ For on-premises hosting, endpoints are typically hosted in background processes,
 
 In Windows, a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host NServiceBus endpoints.
 
-The benefits are that Windows Services run in the background, can immediately start when Windows is started, can be paused and restarted, and they support [recoverability options](/nservicebus/hosting/windows-service#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
+The benefits are that Windows Services run in the background, can immediately start when Windows is started, can be paused and restarted, and they support [recoverability options](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
 
 ### Internet Information Services (IIS)
 
-In Windows, IIS is a reliable host for [web-based applications](/nservicebus/hosting/web-application). An NServiceBus endpoint can be hosted in any .NET web application, including one running in IIS. However, the purpose of IIS is HTTP request-based hosting. That means IIS will automatically shut down any web application that has not received a request for some time.
+In Windows, IIS is a reliable host for [web-based applications](/nservicebus/hosting/web-application.md). An NServiceBus endpoint can be hosted in any .NET web application, including one running in IIS. However, the purpose of IIS is HTTP request-based hosting. That means IIS will automatically shut down any web application that has not received a request for some time.
 
 This restricts IIS as a choice for hosting NServiceBus endpoints to two specific scenarios:
 
