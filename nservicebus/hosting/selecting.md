@@ -32,7 +32,7 @@ This restricts IIS as a choice for hosting NServiceBus endpoints to two specific
 
 #### Send-only endpoints
 
-A [send-only](nservicebus/hosting/#self-hosting-send-only-hosting) endpoint is one which sends messages but does not receive any messages. Messages are sent during the handling of incoming HTTP requests or after user input in an interactive application.
+A [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoint is one which sends messages but does not receive any messages. Messages are sent during the handling of incoming HTTP requests or after user input in an interactive application.
 
 The benefit of send-only endpoints is that NServiceBus does not need to perform a lot of checks and initializes much faster.
 
