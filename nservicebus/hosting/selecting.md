@@ -1,6 +1,6 @@
 This document provides guidance for deciding how to [host](/nservicebus/hosting) your [NServiceBus endpoints](/nservicebus/endpoints/).
 
-This guide does not provide definitive answers for all scenarios, and every decision involves trade-offs. Especially in cloud scenarios, there are currently few definitive answers to what the best solutions are for many scenarios. If it is unclear what the best choice is, or there are very specific constraints, contact [Particular Software](https://particular.net/contactus).
+This guide does not provide definitive answers for all situations and each option involves trade-offs. Especially in cloud scenarios, there are currently few definitive answers as to what the best solution may be. If it is unclear what the best choice is, or there are very specific constraints, contact [Particular Software](https://particular.net/contactus) for advice.
 
 NServiceBus endpoints can be hosted within any .NET process. This guidance groups the hosting options into:
 
@@ -11,7 +11,7 @@ NServiceBus endpoints can be hosted within any .NET process. This guidance group
 
 ## On-premises
 
-For on-premises hosting, endpoints are typically hosted in background process running on servers, which are usually virtual machines. An endpoint can also be hosted in an interactive application, with a user interface, but this guidance focuses on server scenarios.
+For on-premises hosting, endpoints are typically hosted in background processes, running on servers, which are usually virtual machines. An endpoint can also be hosted in an interactive application with a user interface, but this guide focuses on server scenarios.
 
 ### Windows Services
 
@@ -61,7 +61,7 @@ Within AppServices, [WebJobs](https://docs.microsoft.com/en-us/azure/app-service
 
 Azure Functions can be used to run short-lived NServiceBus endpoints triggered by Azure Service Messages. When a message triggers a function, an NServiceBus endpoint can be started to handle the message.
 
-Starting an NServiceBus endpoint for each message add considerable overhead. Particular Software is aware of this and is working on a better solution for using NServiceBus with Azure Functions.
+Starting an NServiceBus endpoint for each message adds considerable overhead. Particular Software is aware of this and is working on a better solution for using NServiceBus with Azure Functions.
 
 ### Service Fabric
 
