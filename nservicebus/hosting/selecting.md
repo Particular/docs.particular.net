@@ -24,7 +24,7 @@ In Windows, a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framewor
 
 Windows Services run in the background, can immediately start when Windows is started, can be paused and restarted, and they support [recoverability options](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
 
-See [Windows Service Hosting](https://docs.particular.net/nservicebus/hosting/windows-service) for details.
+See [Windows Service Hosting](/nservicebus/hosting/windows-service.md) for details.
 
 
 ### Internet Information Services (IIS)
