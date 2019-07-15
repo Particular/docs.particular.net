@@ -17,7 +17,7 @@ For on-premises hosting, endpoints are typically hosted in background processes,
 
 In Windows, a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host NServiceBus endpoints.
 
-The benefits are that Windows Services run in the background, can immediately start when Windows is started, can be paused and restarted, and support [recoverability options](/nservicebus/hosting/windows-service#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
+The benefits are that Windows Services run in the background, can immediately start when Windows is started, can be paused and restarted, and they support [recoverability options](/nservicebus/hosting/windows-service#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
 
 ### Internet Information Services (IIS)
 
