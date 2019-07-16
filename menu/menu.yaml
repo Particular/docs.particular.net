@@ -325,13 +325,15 @@
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
-    - Url: nservicebus/hosting/startup-diagnostics
-      Title: Startup diagnostics
     - Url: nservicebus/endpoints
       Title: Endpoints
       Articles:
       - Url: nservicebus/endpoints/specify-endpoint-name
         Title: Endpoint Name
+    - Url: nservicebus/hosting/selecting
+      Title: Selecting a host
+    - Url: nservicebus/hosting/startup-diagnostics
+      Title: Startup diagnostics
     - Url: nservicebus/endpoints/decommissioning-endpoints
       Title: Decommissioning Endpoints
     - Url: nservicebus/hosting/windows-service
