@@ -166,7 +166,7 @@ Starting in versions 1.8.3, the upper limit has been removed to allow for longer
 
 This setting is only applicable starting from versions 1.12.
 
-This setting is deprecated in version 4.0.0. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/installation/creating-config-file.md).
+This setting is deprecated in version 4.0.0. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/creating-config-file.md).
 
 The period to keep an audit message before it is deleted.
 
@@ -258,7 +258,7 @@ Type: string
 
 #### ServiceBus/AuditQueue
 
-This setting is only applicable in versions 3.8.2 and below. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/installation/creating-config-file.md).
+This setting is only applicable in versions 3.8.2 and below. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/creating-config-file.md).
 
 The audit queue name.
 
@@ -290,7 +290,7 @@ NOTE: Changing the configuration file directly will not result in the queue bein
 
 #### ServiceBus/AuditLogQueue
 
-This setting is only applicable in versions 3.8.2 and below. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/installation/creating-config-file.md).
+This setting is only applicable in versions 3.8.2 and below. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/creating-config-file.md).
 
 The audit queue name to use for forwarding audit messages. This works only if `ServiceControl/ForwardAuditMessages` is true.
 
@@ -305,7 +305,7 @@ NOTE: Changing the configuration file directly will not result in the queue bein
 
 #### ServiceControl/ForwardAuditMessages
 
-This setting is only applicable in versions 3.8.2 and below. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/installation/creating-config-file.md).
+This setting is only applicable in versions 3.8.2 and below. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/creating-config-file.md).
 
 Use this setting to configure whether processed audit messages are forwarded to another queue or not. This queue is known as the Audit Forwarding Queue.
 

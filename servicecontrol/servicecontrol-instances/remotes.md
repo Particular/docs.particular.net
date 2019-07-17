@@ -116,7 +116,7 @@ The following cmdlets are available in ServiceControl version 4 and above, for t
 | sc-deleteremote        | Remove-ServiceControlRemote                   |
 | sc-remotes             | Get-ServiceControlRemotes                     |
 
-See [Manage ServiceControl instances via PowerShell](/servicecontrol/installation-powershell.md) and [Managing ServiceControl Audit instances via PowerShell](/servicecontrol/audit-instances/installation/installation-powershell.md) for details on how to find ServiceControl instance names and urls.
+See [Manage ServiceControl instances via PowerShell](/servicecontrol/installation-powershell.md) and [Managing ServiceControl Audit instances via PowerShell](/servicecontrol/audit-instances/installation-powershell.md) for details on how to find ServiceControl instance names and urls.
 
 
 ### Add a remote instance
