@@ -5,7 +5,7 @@ reviewed: 2019-07-09
 component: ServiceControl
 ---
 
-In ServiceControl versions 4 and above, a ServiceControl Audit instance manages the audit queue. Data about audit messages is exposed via an HTTP API on a primary ServiceControl instance. This API is used by [ServiceInsight](/serviceinsght/) for visualizing message flows. 
+In ServiceControl versions 4 and above, a ServiceControl Audit instance manages the audit queue. Data about audit messages is exposed via an HTTP API on a primary ServiceControl instance. This API is used by [ServiceInsight](/serviceinsight/) for visualizing message flows. 
 
 NOTE: The ServiceControl HTTP API is designed for use by ServiceInsight only and may change at any time. Use of this HTTP API for other purposes is discouraged.
 

@@ -4,7 +4,7 @@ reviewed: 2018-03-01
 component: ServiceControl
 ---
 
-WARN: The approach described in this document is not recommended for new deployments. For new installations, use [ServiceControl remote instances](/servicecontrol/service-controlinstances/remotes.md). For guidance upgrading existing multi-instance ServiceControl installations, see [pgrade ServiceControl from Version 3 to Version 4](/servicecontrol/upgrades/3to4/).
+WARN: The approach described in this document is not recommended for new deployments. For new installations, use [ServiceControl remote instances](/servicecontrol/servicecontrol-instances/remotes.md). For guidance upgrading existing multi-instance ServiceControl installations, see [pgrade ServiceControl from Version 3 to Version 4](/servicecontrol/upgrades/3to4/).
 
 NOTE: A multi-instance ServiceControl installation can be complex to maintain. Before splitting ServiceControl, it is recommended to follow the capacity planning guides described in the [ServiceControl Capacity Planning](/servicecontrol/capacity-and-planning.md) documentation.
 
