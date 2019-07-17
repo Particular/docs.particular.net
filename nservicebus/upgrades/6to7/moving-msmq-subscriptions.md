@@ -1,6 +1,6 @@
 ---
 title: Migrating Msmq subscription messages
-reviewed: 2017-10-05
+reviewed: 2019-07-17
 component: MsmqTransport
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -16,7 +16,7 @@ To move messages from the `NServiceBus.Subscriptions` queue to the new queue, re
 
 ## Create the subscriptions queue
 
-Create a transactional queue called [EndpointName].Subscriptions and substitute the actual name of the endpoint. This can be done by using the PowerShell scripts, [Windows MMC Snap-in or other tools like QueueExplorer](/transports/msmq/viewing-message-content-in-msmq.md#windows-native-tools). If creating queues manually using UI tools, ensure that the queues are marked, "transactional". 
+Create a transactional queue called [EndpointName].Subscriptions and substitute the actual name of the endpoint. This can be done by using the PowerShell scripts, [Windows MMC Snap-in or other tools like QueueExplorer](/transports/msmq/viewing-message-content-in-msmq.md#windows-native-tools). If creating queues manually using UI tools, ensure that the queues are marked **transactional**. 
 
 ### Using PowerShell Script
 
