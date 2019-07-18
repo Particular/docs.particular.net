@@ -15,11 +15,11 @@ The message edit and retry feature is not enabled by default. To enable it, cont
 
 Headers on all failed messages can be edited using this feature. There are three categories of headers, each with different editing restrictions.
 
-* **Locked headers:** Headers that are critical to the operation of NServiceBus cannot be edited. These headers will have a lock image next to otheir name.
+* **Locked headers:** Headers that are critical to the operation of NServiceBus cannot be edited. These headers will have a lock image next to their name.
 
 * **Sensitive headers:** Headers that, when their values change, may result in unexpected or unwanted behavior are categorized as "Sensitive". When editing these headers the user will be warned of their sensitive nature.
 
-* **Custom headers:** Any headers that have been been categorized as Locked or Sensitive will be fully editable. This will include headers created as part of a system customization. It is also possible to delete (and retrieve) these headers during the editing process. Once a message has been edited and retried, any deleted headers will be lost forever.
+* **Custom headers:** Any headers that have not been been categorized as Locked or Sensitive will be fully editable. This will include headers created as part of a system customization. It is also possible to delete (and retrieve) these headers during the editing process. Once a message has been edited and retried, any deleted headers will be lost forever.
 
 ## Editing the message body
 
