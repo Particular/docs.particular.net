@@ -26,7 +26,7 @@ This split is transparent to the other components of the Particular Software Pla
 
 When upgrading a ServiceControl instance to version 4, if it is configured to manage an audit queue, a new ServiceControl Audit instance will be created as a part of the upgrade process. A user will need to supply additional information about the new ServiceControl Audit instance.
 
-<Details on what that looks like in SMCU>
+![](scmu-upgrade.png)
 
 NOTE: If the ServiceControl instance being upgraded is not configured to manage an audit queue (by setting the audit queue name to `!disable`), then no new ServiceControl Audit instance will be created.
 
