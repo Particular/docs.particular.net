@@ -38,7 +38,7 @@ If this is required, the PowerShell script can be executed from within C# code u
 
 Alternatively, the following is the source of the removed script:
 
-```csharp
+```cs
 using System;
 using System.Diagnostics;
 using System.Security;
