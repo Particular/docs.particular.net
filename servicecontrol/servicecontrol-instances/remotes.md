@@ -130,7 +130,7 @@ Add-ServiceControlRemote -Name Particular.ServiceControl -RemoteInstanceAddress 
 
 ### Remove a remote instance
 
-Use the `Remote-ServiceControlRemote` cmdlet to remove a remote instance from a primary ServiceControlInstance.
+Use the `Remove-ServiceControlRemote` cmdlet to remove a remote instance from a primary ServiceControlInstance.
 
 ```ps
 Remove-ServiceControlRemote -Name Particular.ServiceControl -RemoteInstanceAddress "http://localhost:44444/api"
