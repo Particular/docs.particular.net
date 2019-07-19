@@ -22,7 +22,7 @@ Version 4.0.0 of NServiceBus.Metrics.PerformanceCounters.MsBuild will be the las
 
 > The NServiceBus.Metrics.PerformanceCounters.MsBuild package is deprecated and should be removed from the project. The Powershell script to create performance counter objects is now included in the NServiceBus.Metrics.PerformanceCounters package.
 
-In all projects where the NServiceBus.Metrics.PerformanceCounters.MsBuild package is in use, it can be removed when upgrading to NServiceBus.Metrics.PerformanceCounters 4.0, and the PowerShell script will continue to be generated in the build output.
+In all projects where the NServiceBus.Metrics.PerformanceCounters.MsBuild package is in use, it can be removed when upgrading to NServiceBus.Metrics.PerformanceCounters 4.0, and the PowerShell script will continue to be included in the build output.
 
 ## PerformanceCounterSettingsAttribute deprecated
 
@@ -32,7 +32,7 @@ The `ScriptPromotionPath` property is no longer supported. The new package will 
 
 ## C# script deprecated
 
-The C# script file `Counters.g.cs` is deprecated and will no longer be generated inside the build directory.
+The C# script file `Counters.g.cs` is deprecated and will no longer be included in the build output.
 
 If this is required, the PowerShell script can be executed from within C# code using `Process.Start()`.
 
