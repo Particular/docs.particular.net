@@ -16,7 +16,7 @@ NServiceBus.Metrics.PerformanceCounters now supports .NET Framework and .NET Cor
 
 ## MsBuild package deprecated
 
-In NServiceBus.Metrics.PerformanceCounters 4.0, the [NServiceBus.Metrics.PerformanceCounters.MsBuild](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters.MsBuild) NuGet package is deprecated, and the PowerShell script used to create performance counters has been merged into the [NServiceBus.Metrics.PerformanceCounters](NServiceBus.Metrics.PerformanceCounters.MsBuild) package.
+In NServiceBus.Metrics.PerformanceCounters 4.0, the [NServiceBus.Metrics.PerformanceCounters.MsBuild](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters.MsBuild) NuGet package is deprecated, and the PowerShell script used to create performance counters has been merged into the [NServiceBus.Metrics.PerformanceCounters](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters) package.
 
 Version 4.0.0 of NServiceBus.Metrics.PerformanceCounters.MsBuild will be the last release of this package. When included in a project, it will produce this error at compile time:
 
@@ -45,9 +45,9 @@ using System.Security;
 using System.Runtime.CompilerServices;
 
 [CompilerGenerated]
-public static class CounterCreator 
+public static class CounterCreator
 {
-    public static void Create() 
+    public static void Create()
     {
         var counterCreationCollection = new CounterCreationDataCollection(Counters);
         try
