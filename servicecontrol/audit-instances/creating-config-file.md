@@ -10,10 +10,9 @@ The configuration of a ServiceControl Audit instance can be adjusted via the Ser
 
 ## Host settings
 
-The following documents should be reviewed prior to modifying configuration settings:
+Anyone who can access the ServiceControl Audit instance URL has complete access to the audit data stored by the ServiceControl Audit instance. This is why the default is to only respond to `localhost`. Consider carefully the implications of exposing a ServiceControl Audit instance via a custom or wildcard URI.
 
- * [Setting a Custom Hostname](configure-the-uri.md) for guidance and details.
- * [Securing ServiceControl](/servicecontrol/securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
+WARN: Changing the host name or port number of an existing ServiceControl Audit instance will break the link from the primary ServiceControl instance. See [Moving a remote instance](/servicecontrol/servicecontrol-instances/remotes.md) for guidelines on changing these settings.
 
 
 #### ServiceControl.Audit/Hostname

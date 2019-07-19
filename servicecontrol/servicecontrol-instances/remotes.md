@@ -146,6 +146,21 @@ Get-ServiceControlRemotes -Name Particular.ServiceControl
 ```
 
 
+### Moving a remote instance
+
+If a remote instance must be moved to a different host or port number, follow these steps:
+
+1. Remove the old address from the list of remote instances
+  - `Remove-ServiceControlRemote -Name $primaryServiceControl.Name -RemoteInstanceAddress $oldAddress`
+2. Restart the primary ServiceControl instance to refresh the list of remote instances
+3. Stop the remote instance to be moved
+4. Modify the host and port number of the remote instance using the ServiceControl Management utility
+5. Start the remote instance at it's new address
+6. Add the new address to the list of remote instances
+  - `Add-ServiceControlRemote -Name $primaryServiceControl.Name -RemoteInstanceAddress $newAddress`
+7. Restart the primary ServiceControl instance to refresh the list of remote instances
+
+
 ## Considerations
 
 - Pagination with ServiceInsight may not work as traditional pagination would. For example, some pages might be filled unevenly depending on how the load is scattered between the different ServiceControl instances.
