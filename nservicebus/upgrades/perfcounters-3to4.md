@@ -30,6 +30,16 @@ Along with the MsBuild package deprecation, the `PerformanceCounterSettingsAttri
 
 The `ScriptPromotionPath` property is no longer supported. The new package will no longer promote the script(s) outside of the build directory. If this is required, a [post-build event](https://docs.microsoft.com/en-us/cpp/build/how-to-use-build-events-in-msbuild-projects) can be used to copy the output outside the build directory.
 
+## Counter descriptions changed
+
+The descriptions of some of the performance counters have been changed in the PowerShell script for more clarity when viewing counters in the Performance Monitor UI.
+
+By default, the PowerShell script will not recreate counters just to change the descriptions. To force it to recreate the counters, the new `-ForceRecreate` switch can be used:
+
+```ps
+PS> .\CreateNSBPerfCounters.ps1 -ForceRecreate
+```
+
 ## C# script deprecated
 
 The C# script file `Counters.g.cs` is deprecated and will no longer be included in the build output.
