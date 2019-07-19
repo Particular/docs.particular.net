@@ -1,7 +1,7 @@
 ---
 title: Supported platforms
 summary: Platforms that are supported by NServiceBus
-reviewed: 2018-03-20
+reviewed: 2019-07-19
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
@@ -44,5 +44,4 @@ Some packages do not currently support .NET Core or running on non-Windows platf
     * NServiceBus.Hosting.Azure
     * NServiceBus.Hosting.Azure.HostProcess
 * Other
-  * NServiceBus.Metrics.PerformanceCounters - Will support .NET Core on Windows in a future version.
   * NServiceBus.Wcf - Microsoft does not support the server aspects of WCF on .NET Core.
