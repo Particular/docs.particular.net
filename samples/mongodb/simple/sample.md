@@ -7,7 +7,7 @@ tags:
 - Saga
 related:
 - nservicebus/sagas
- redirects:
+redirects:
 - samples/mongodb-tekmaven/simple/
 - samples/mongodb-tekmaven/databus/
 ---
