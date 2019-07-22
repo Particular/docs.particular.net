@@ -1,7 +1,8 @@
 ---
 title: Capture and visualize metrics using Prometheus and Grafana
+summary: Illustrates using Prometheus and Grafana to capture and visualize NServiceBus metrics.
 component: Metrics
-reviewed: 2017-10-06
+reviewed: 2019-07-22
 ---
 
 
@@ -63,7 +64,7 @@ Summaries: `nservicebus_{summary-name}_seconds`
 snippet: prometheus-name-mapping
 
 
-The registered observers convert NServiceBus.Metric *Signals* to Prometheus *Counters* and NServiceBus.Metric *Durations* to Prometheus *Summaries*.  Additionally, labels are added that identify the endpoint, the endpoint queue and more within Prometheus. With these labels, it is possible to filter and group metric values. 
+The registered observers convert `NServiceBus.Metric` *Signals* to Prometheus *Counters* and `NServiceBus.Metric` *Durations* to Prometheus *Summaries*.  Additionally, labels are added that identify the endpoint, the endpoint queue and more within Prometheus. With these labels, it is possible to filter and group metric values. 
 
 snippet: prometheus-register-probe
 
