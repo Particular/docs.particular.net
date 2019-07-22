@@ -1,7 +1,7 @@
 ---
 title: Stack Trace Cleaning
 summary: Shows how to minimize the stack trace written to the Error queue and the log output.
-reviewed: 2017-10-06
+reviewed: 2019-07-22
 component: Core
 tags:
 - Pipeline
