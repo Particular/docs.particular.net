@@ -1,7 +1,8 @@
 ---
 title: Write metrics to the trace log
 component: Metrics
-reviewed: 2017-10-06
+summary: Illustrates how to write metrics information to the trace log.
+reviewed: 2019-07-23
 related:
  - monitoring/metrics
 redirects:
