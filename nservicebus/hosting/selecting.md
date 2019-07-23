@@ -5,7 +5,7 @@ reviewed: 2019-07-15
 ---
 This document provides guidance for deciding how to [host](/nservicebus/hosting) [NServiceBus endpoints](/nservicebus/endpoints/).
 
-This guide does not provide definitive answers for all situations and each option involves trade-offs. Especially in cloud scenarios, there are currently few definitive answers as to what the best solution may be. If it is unclear what the best choice is, or there are very specific constraints, contact [Particular Software](https://particular.net/contactus) for advice.
+This guide does not provide definitive answers for all situations and each option involves trade-offs. Particularly in cloud scenarios, there are many options as to what the best solution may be. If it is unclear what the best choice is, or there are very specific constraints, contact [Particular Software](https://particular.net/contactus) for advice.
 
 NServiceBus endpoints can be hosted within any .NET process. This guidance groups the hosting options into:
 
@@ -16,13 +16,13 @@ NServiceBus endpoints can be hosted within any .NET process. This guidance group
 
 ## On-premises
 
-For on-premises hosting, endpoints are typically hosted in background processes, running on servers, which are usually virtual machines. An endpoint can also be hosted in an interactive application with a user interface, but this guide focuses on server scenarios.
+For on-premises hosting, endpoints are typically hosted in background processes running on servers, which are usually virtual machines. An endpoint can also be hosted in an interactive application with a user interface, but this guide focuses on server scenarios.
 
 ### Windows Services
 
 In Windows, a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host NServiceBus endpoints.
 
-Windows Services run in the background, can immediately start when Windows is started, can be paused and restarted, and they support [recoverability options](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
+Windows Services run in the background, can immediately start when Windows is started, can be paused and restarted, and support [recoverability options](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
 
 See [Windows Service Hosting](/nservicebus/hosting/windows-service.md) for details.
 
@@ -40,21 +40,21 @@ See [Web Application Hosting](/nservicebus/hosting/web-application.md) for detai
 
 ### Linux background processes
 
-In Linux, a background process is typically controlled by a system service controller. One of the most commonly used is [systemd](https://freedesktop.org/wiki/Software/systemd/). These controllers can be configured to start and stop any executable, such a console app, as a background service when the operating system starts and shuts down, as well as more complex configurations.
+In Linux, a background process is typically controlled by a system service controller. One of the most commonly used is [systemd](https://freedesktop.org/wiki/Software/systemd/). These controllers can be configured to start and stop any executable, such as a console app, a background service when the operating system starts and shuts down, as well as more complex configurations.
 
 ## Containers
 
-This section focuses on Docker, as one of the most well known container technologies.
+This section focuses on Docker as one of the most well known container technologies.
 
-The biggest difference in hosting NServiceBus endpoints using Docker, in comparision to a regular host OS, is that applications are isolated from the host, and other containers. This can be beneficial with respect to security. Another benefit is portability. It is easy to move containers from development to test and production.
+The biggest difference in hosting NServiceBus endpoints using Docker, compared to a regular host OS, is that applications are isolated from the host, and other containers. This can be beneficial with respect to security. Another benefit is portability. It is easy to move containers from development to test and production.
 
-Although Docker containers are popular, the tooling and guidance are still less developed than with other hosting solutions. It may be necessary to consider whether an organization has the operation capability to support a container technology such as Docker.
+Although Docker containers are popular, the tooling and guidance are less developed than with other hosting solutions. It may be necessary to consider whether an organization has the operational capability to support a container technology such as Docker.
 
 See [Docker Container Host](/nservicebus/hosting/docker-host/) for details.
 
 ## Microsoft Azure
 
-Azure offers a variety of solutions which can potentially host NServiceBus endpoints. Unfortunately, none of them are currently specifically designed to run continuous background processes, similar to Windows Services. This makes it challenging to choose the best hosting options for NServiceBus endpoints. For assistance, contact [Particular Software](https://particular.net/contactus).
+Azure offers a variety of solutions which can potentially host NServiceBus endpoints. Unfortunately, none of them are specifically designed to run continuous background processes, similar to Windows Services. This makes it challenging to choose the best hosting options for NServiceBus endpoints. For assistance, contact [Particular Software](https://particular.net/contactus).
 
 The primary options for hosting NServiceBus endpoints are the following:
 
@@ -70,11 +70,11 @@ Starting an NServiceBus endpoint for each message adds considerable overhead. Pa
 
 ### Service Fabric
 
-Service Fabric works on top of Virtual Machine scale sets to provide clustered, stateful services. If dynamic scaling and clustering is a requirement, Service Fabric may be a good option to host NServiceBus endpoints.
+Service Fabric works on top of Virtual Machine scale sets to provide clustered, stateful services. If dynamic scaling and clustering is a requirement, Service Fabric can be a good option to host NServiceBus endpoints.
 
 ### Cloud Services
 
-Cloud Services provide worker roles for background processes. With the introduction of Azure AppServices, with it's extended features, Cloud Services is less likely to be a good choice for NServiceBus endpoints.
+Cloud Services provide worker roles for background processes. With the introduction of Azure AppServices, with its extended features, Cloud Services is less likely to be a good choice for NServiceBus endpoints.
 
 ## Amazon Web Services
 
