@@ -1,7 +1,8 @@
 ---
 title: Using EventSourceLogging
-reviewed: 2017-10-07
+reviewed: 2019-07-23
 component: EventSourceLogging
+summary: Illustrates writing log entries to event tracing for Windows (ETW).
 tags:
 - Logging
 related:
