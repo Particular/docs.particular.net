@@ -19,7 +19,7 @@ The [Newtonsoft JSON Serializer](newtonsoft.md) provides an effective general-pu
 
 ## Immutable messages / types
 
-It is possible to use immutable types as messages. NServiceBus does not restrict this but it depends on the serializer implementation if it supports deserializing to non public properties.
+It is possible to use immutable types as messages. NServiceBus does not restrict this; It depends on the chosen serializer implementation if it supports deserializing to non public properties and/or using non-default constructors to initialize types.
 
 NOTE: On the wire it makes no difference if you use mutable or immutable message types.
 
