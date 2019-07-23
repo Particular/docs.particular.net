@@ -23,7 +23,7 @@ It is possible to use immutable types as messages. NServiceBus does not restrict
 
 NOTE: On the wire it makes no difference if mutable or immutable message types are used.
 
-The [Newtonsoft JSON Serializer](newtonsoft.md) supports immutable messages types and probably many other serializers too but we do not maintain 
+For example, the [Newtonsoft JSON Serializer](newtonsoft.md) by default supports immutable messages types.
 
 ### Supported serializers
 
