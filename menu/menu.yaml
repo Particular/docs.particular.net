@@ -191,10 +191,12 @@
         Title: Migrate To External Nuget
     - Title: Performance Counters
       Articles:
-      - Url: nservicebus/upgrades/externalize-perfcounters
-        Title: Migrate To External Nuget
+      - Url: nservicebus/upgrades/perfcounters-3to4
+        Title: Version 3 to 4
       - Url: nservicebus/upgrades/perfcounters-1to2
         Title: Version 1 to 2
+      - Url: nservicebus/upgrades/externalize-perfcounters
+        Title: Migrate To External Nuget
     - Title: ServiceControl Plugins
       Articles:
       - Url: nservicebus/upgrades/nsb6-sc-plugins-1to2
