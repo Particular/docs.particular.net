@@ -2,7 +2,7 @@
 title: Serialization
 summary: Information about how messages are serialized and deserialized on a transport
 component: Core
-reviewed: 2018-09-21
+reviewed: 2019-07-24
 related:
  - samples/pipeline/multi-serializer
  - samples/serializers
@@ -39,15 +39,21 @@ The [Newtonsoft JSON Serializer](newtonsoft.md) provides an effective general-pu
  * [ZeroFormatter](zeroformatter.md)
 
 
-### Using an existing serializer
+### Configuring a serializer
 
-The default serializer used in NServiceBus projects is the custom [XmlSerializer](xml.md).
-
-The pages dedicated to particular serializers show how to configure the endpoint to use each of them. Unless explicitly configured otherwise, NServiceBus will use [XmlSerializer](xml.md) for serializing and deserializing all messages.
+A serializer can be configured using the `endpointConfiguration.UseSerialization` API. Refer to the dedicated documentation pages for each available serializer for more information about the specific configuration.
 
 NOTE: The same serializer must be used by the sending endpoint to serialize messages and by the receiving endpoint to deserialize them, unless additional deserializers are specified.
 
-In order to register a community-maintained serializer or custom serializer, refer to the [Custom serializers - Register the serializer](/nservicebus/serialization/custom-serializer.md#register-the-serializer) section.
+
+### Using the default serializer
+
+The default serializer used in NServiceBus projects is the custom [XmlSerializer](xml.md). Unless explicitly configured otherwise, NServiceBus will use [XmlSerializer](xml.md) for serializing and deserializing all messages.
+
+
+### Using a custom serializer
+
+Besides the officially supported and community maintained serializers, it is also possible to [implement and register a custom serializer](/nservicebus/serialization/custom-serializer.md#register-the-serializer).
 
 
 partial: additionaldeserializers
