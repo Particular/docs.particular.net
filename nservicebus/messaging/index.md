@@ -4,13 +4,13 @@ summary: Outline the various approach to sending-receiving, defining messages an
 reviewed: 2019-01-10
 ---
 
-NServiceBus is an implementation of a [message based architecture](http://www.enterpriseintegrationpatterns.com/patterns/messaging/Messaging.html). As such it implements many of the common [messaging patterns](http://www.enterpriseintegrationpatterns.com/patterns/messaging/index.html)
+NServiceBus is an implementation of a [message based architecture](https://www.enterpriseintegrationpatterns.com/patterns/messaging/Messaging.html). As such it implements many of the common [messaging patterns](https://www.enterpriseintegrationpatterns.com/patterns/messaging/index.html)
 
 For example:
 
- * [Messages, events and commands](/nservicebus/messaging/messages-events-commands.md) are an implementation of the [Message](http://www.enterpriseintegrationpatterns.com/patterns/messaging/Message.html), [Event](http://www.enterpriseintegrationpatterns.com/patterns/messaging/EventMessage.html) and [Command](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CommandMessage.html) patterns.
- * [Persistence](/persistence/) is an implementation of the [Shared Database Pattern](http://www.enterpriseintegrationpatterns.com/patterns/messaging/SharedDataBaseIntegration.html)
- * [Publish Subscribe](/nservicebus/messaging/publish-subscribe/) is an implementation of the [Durable Subscription Pattern](http://www.enterpriseintegrationpatterns.com/patterns/messaging/DurableSubscription.html)
+ * [Messages, events and commands](/nservicebus/messaging/messages-events-commands.md) are an implementation of the [Message](https://www.enterpriseintegrationpatterns.com/patterns/messaging/Message.html), [Event](https://www.enterpriseintegrationpatterns.com/patterns/messaging/EventMessage.html) and [Command](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CommandMessage.html) patterns.
+ * [Persistence](/persistence/) is an implementation of the [Shared Database Pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/SharedDataBaseIntegration.html)
+ * [Publish Subscribe](/nservicebus/messaging/publish-subscribe/) is an implementation of the [Durable Subscription Pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/DurableSubscription.html)
 
 
 The approaches to messaging in NServiceBus can be categorized into the following:

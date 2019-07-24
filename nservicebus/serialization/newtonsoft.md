@@ -8,7 +8,7 @@ related:
  - samples/serializers/newtonsoft-bson
 ---
 
-This serialiser uses [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Json.NET](http://www.newtonsoft.com/json).
+This serialiser uses [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Json.NET](https://www.newtonsoft.com/json).
 
 partial: howcoreusesjson
 
@@ -29,21 +29,21 @@ snippet: NewtonsoftAttributes
 
 ### Custom settings
 
-Customizes the instance of [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
+Customizes the instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
 
 snippet: NewtonsoftCustomSettings
 
 
 ### Custom reader
 
-Customize the creation of the [JsonReader](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
+Customize the creation of the [JsonReader](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
 
 snippet: NewtonsoftCustomReader
 
 
 ### Custom writer
 
-Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
+Customize the creation of the [JsonWriter](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
 
 In the example below, the custom writer omits the [Byte Order Mark (BOM)](https://en.wikipedia.org/wiki/Byte_order_mark).
 
@@ -62,7 +62,7 @@ See [native integration with SqlTransport sample](/samples/sqltransport/native-i
 
 ## BSON
 
-Customize to use the [Newtonsoft Bson serialization](http://www.newtonsoft.com/json/help/html/SerializeToBson.htm).
+Customize to use the [Newtonsoft Bson serialization](https://www.newtonsoft.com/json/help/html/SerializeToBson.htm).
 
 snippet: NewtonsoftBson
 

@@ -1,6 +1,6 @@
 ## Transport Layer Security support
 
-Secure connections to the broker using [Transport Layer Security (TLS)](http://www.rabbitmq.com/ssl.html) are supported. To enable TLS support, set the `UseTls` setting to `true` in the connection string:
+Secure connections to the broker using [Transport Layer Security (TLS)](https://www.rabbitmq.com/ssl.html) are supported. To enable TLS support, set the `UseTls` setting to `true` in the connection string:
 
 snippet: rabbitmq-connection-tls
 

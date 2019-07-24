@@ -7,7 +7,7 @@ related:
 - samples/logging/log4net-custom
 ---
 
-Support for writing all NServiceBus log entries to [Log4Net](http://logging.apache.org/log4net/).
+Support for writing all NServiceBus log entries to [Log4Net](https://logging.apache.org/log4net/).
 
 
 ## Usage
@@ -21,7 +21,7 @@ NServiceBus can write a significant amount of information to the log. To limit t
 
 For example to limit log output to a specific namespace.
 
-Here is a code configuration example for adding a [Filter](http://logging.apache.org/log4net/release/manual/configuration.html#filters).
+Here is a code configuration example for adding a [Filter](https://logging.apache.org/log4net/release/manual/configuration.html#filters).
 
 
 ### The Filter

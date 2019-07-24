@@ -12,7 +12,7 @@ related:
 
 ## Introduction
 
-Illustrates customizing [NLog](http://nlog-project.org/) usage by configuring [NLog targets](https://github.com/nlog/nlog/wiki/Targets) and rules.
+Illustrates customizing [NLog](https://nlog-project.org/) usage by configuring [NLog targets](https://github.com/nlog/nlog/wiki/Targets) and rules.
 
 
 ### Configure NLog

@@ -9,7 +9,7 @@ redirects:
  - nservicebus/sql-persistence/oracle-design
 ---
 
-{{WARNING: This persistence will run on the free version of the above engines, i.e. [Oracle XE](http://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Oracle Support](https://www.oracle.com/support/index.html) for details.
+{{WARNING: This persistence will run on the free version of the above engines, i.e. [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Oracle Support](https://www.oracle.com/support/index.html) for details.
 }}
 
 

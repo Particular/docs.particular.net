@@ -167,7 +167,7 @@ Prometheus configuration files demonstrating the concepts from this sample:
 
 ## Grafana
 
-Grafana needs to be installed and configured to display the data available in Prometheus. For more information how to install Grafana refer to the [Installation Guide](http://docs.grafana.org/installation).
+Grafana needs to be installed and configured to display the data available in Prometheus. For more information how to install Grafana refer to the [Installation Guide](https://docs.grafana.org/installation).
 
 
 ### Guided configuration
@@ -183,7 +183,7 @@ Execute `setup.grafana.ps1` in a PowerShell with elevated permission and provide
 
 #### Datasource
 
-Create a new data source called `PrometheusNServiceBusDemo`. For more information how to define a Prometheus data source refer to [Using Prometheus in Grafana](http://docs.grafana.org/features/datasources/prometheus/).
+Create a new data source called `PrometheusNServiceBusDemo`. For more information how to define a Prometheus data source refer to [Using Prometheus in Grafana](https://docs.grafana.org/features/datasources/prometheus/).
 
 
 #### Dashboard
@@ -202,4 +202,4 @@ To graph the Prometheus rule  `nservicebus_failure_total:avg_rate5m` the followi
 
 ![Grafana dashboard with NServiceBus metrics](example-grafana-dashboard.png)
 
-The sample included an [export of the grafana dashboard](grafana-endpoints-dashboard.json), this can be [imported](http://docs.grafana.org/reference/export_import/) as a reference.
+The sample included an [export of the grafana dashboard](grafana-endpoints-dashboard.json), this can be [imported](https://docs.grafana.org/reference/export_import/) as a reference.

@@ -11,9 +11,9 @@ The following are example code and scripts to facilitate deployment and operatio
 
 ## Requirements
 
-The PowerShell scripts require the PowerShell SDK installed and properly configured. For more information refer to the [PowerShell Getting setup guide](http://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up.html).
+The PowerShell scripts require the PowerShell SDK installed and properly configured. For more information refer to the [PowerShell Getting setup guide](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up.html).
 
-For all operations that create resources in AWS the corresponding rights must be granted. For more information refer to the [IAM policies guide](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html).
+For all operations that create resources in AWS the corresponding rights must be granted. For more information refer to the [IAM policies guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html).
 
 ## QueueNameHelper
 
@@ -221,7 +221,7 @@ A retry involves the following actions:
 
 snippet: sqs-return-to-source-queue
 
-WARNING: This example code will receive other messages from the error queue while it finds the desired message. All messages received by this code will be marked as invisible until the [visibility timeout](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html) expires.
+WARNING: This example code will receive other messages from the error queue while it finds the desired message. All messages received by this code will be marked as invisible until the [visibility timeout](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html) expires.
 
 ### Using the retry helper methods
 

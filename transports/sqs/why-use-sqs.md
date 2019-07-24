@@ -40,7 +40,7 @@ Note that this comparison only takes into account the dollar cost paid to AWS, a
 
 Consider the following idiomatic NServiceBus setup on AWS. An endpoint is deployed on an EC2 instance. The EC2 instance has an EBS volume attached. The endpoint uses local MSMQ's that are stored on the EBS volume.
 
-This approach gives great sending performance (as sending only needs to write to the local drive) and great durability of messages (as EBS is geo-redundant by default). This approach will work really well for a ["pet"](http://www.lauradhamilton.com/servers-pets-versus-cattle) EC2 instance.
+This approach gives great sending performance (as sending only needs to write to the local drive) and great durability of messages (as EBS is geo-redundant by default). This approach will work really well for a ["pet"](https://www.lauradhamilton.com/servers-pets-versus-cattle) EC2 instance.
 
 However, this approach doesn't mesh well with [AWS Auto Scaling](https://aws.amazon.com/autoscaling/). When AS needs to scale down, it simply terminates EC2 instances with little warning. AS provides no mechanism to allow any on-instance queues to drain before the instance is terminated. It is possible to hook in to the shutdown flow offered by EC2 and start offloading queue messages when a shutdown is imminent, but it can never be guaranteed that messages won't be lost - once the shutdown time arrives, it's lights out, regardless if there are messages still in the queues or not.  If the default AS setup is used, the EBS volume attached to the instance will be terminated as well - resulting in loss of messages.
 

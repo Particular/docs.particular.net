@@ -80,7 +80,7 @@ Consult the [delayed delivery documentation](/transports/sqs/delayed-delivery.md
 
 In addition to the previous permissions, the `GetQueueAttributes` permission is required to run SQS transport. The following permissions must be granted to run SQS transport.
 
-### [SQS permissions](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html)
+### [SQS permissions](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html)
 
  * CreateQueue
  * DeleteMessage

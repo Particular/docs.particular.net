@@ -10,7 +10,7 @@ related:
 
 include: json-deprecation
 
-This serializer uses [JSON](https://en.wikipedia.org/wiki/Json) via an [ILMerged](https://github.com/Microsoft/ILMerge) copy of [Json.NET](http://www.newtonsoft.com/json).
+This serializer uses [JSON](https://en.wikipedia.org/wiki/Json) via an [ILMerged](https://github.com/Microsoft/ILMerge) copy of [Json.NET](https://www.newtonsoft.com/json).
 
 
 ## Usage

@@ -34,7 +34,7 @@ This sample requires an instance of SQL Server at `.\SqlExpress` and the databas
 
 Using NHibernate mapping files is the native way to customize the mappings. The mapping files are xml files that are either embedded as a resource in the assembly or available on the file system.
 
-For more information, see: [how to create a simple NHibernate based application](http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html).
+For more information, see: [how to create a simple NHibernate based application](https://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html).
 
 
 ### The Mapping
@@ -71,7 +71,7 @@ snippet: FluentConfiguration
 
 ## Use NHibernate.Mapping.Attributes
 
-Saga data classes can be decorated with [NHibernate.Mapping.Attributes](http://nhibernate.info/doc/nhibernate-reference/mapping-attributes.html). Saga types will have a dependency on the NHibernate.Mapping.Attributes assembly, but this keeps the classes, mapping and schema data very close.
+Saga data classes can be decorated with [NHibernate.Mapping.Attributes](https://nhibernate.info/doc/nhibernate-reference/mapping-attributes.html). Saga types will have a dependency on the NHibernate.Mapping.Attributes assembly, but this keeps the classes, mapping and schema data very close.
 
 NHibernate.Mapping.Attributes needs to know what types to scan to generate an NHibernate mapping configuration that can be passed to the NServiceBus NHibernate configuration.
 
@@ -88,7 +88,7 @@ snippet: AttributesConfiguration
 
 ## Use the Loquacious mapping by code API
 
-[NHibernate Loquacious API](http://nhibernate.info/doc/howto/mapping/a-fully-working-skeleton-for-sexy-loquacious-nh.html) is a native mapping for NHibernate that is provided via code. Just like FluentNhibernate, the mapping is declared in code, but it uses a different syntax more closely aligned to NHibernate's xml schema. NHibernate Loquacious can help create a type-safe configuration and it can also create custom mappings. The benefit of using NHibernate Loquacious is that this API is already available via the NHibernate package so it requires no additional downloads.
+[NHibernate Loquacious API](https://nhibernate.info/doc/howto/mapping/a-fully-working-skeleton-for-sexy-loquacious-nh.html) is a native mapping for NHibernate that is provided via code. Just like FluentNhibernate, the mapping is declared in code, but it uses a different syntax more closely aligned to NHibernate's xml schema. NHibernate Loquacious can help create a type-safe configuration and it can also create custom mappings. The benefit of using NHibernate Loquacious is that this API is already available via the NHibernate package so it requires no additional downloads.
 
 To use it:
 

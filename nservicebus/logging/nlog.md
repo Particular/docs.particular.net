@@ -9,7 +9,7 @@ related:
 - samples/logging/nlog-custom
 ---
 
-Support for writing all NServiceBus log entries to [NLog](http://nlog-project.org/).
+Support for writing all NServiceBus log entries to [NLog](https://nlog-project.org/).
 
 
 ## Usage
