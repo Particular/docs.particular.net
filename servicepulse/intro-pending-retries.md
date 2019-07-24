@@ -16,7 +16,7 @@ Pending retries messages can be found by going to the pending retries screen.
 In ServicePulse v1.7.0 and above, the Pending Retries screen is hidden by default. To make it available in the ServicePulse UI, change the following value in `<path-to-ServicePulse-installation>\app\js\app.constants.js` to true:
 
 ```
-.constant('showPendingRetry', true)
+showPendingRetry: true
 ```
 
 
