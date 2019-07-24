@@ -3,6 +3,7 @@ title: FileShare Attachments
 summary: Use a file share to store attachments for messages.
 reviewed: 2018-04-06
 component: AttachmentsFileShare
+isLearningPath: true
 related:
  - samples/attachments-fileshare
  - samples/attachments-sql

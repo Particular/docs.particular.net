@@ -10,6 +10,7 @@ redirects:
  - nservicebus/transactions
  - nservicebus/understanding-transactions-in-windows-azure
 reviewed: 2018-03-07
+isLearningPath: true
 ---
 
 The Azure Platform and NServiceBus complement each other. Azure is a distributed, scalable, and flexible platform. NServiceBus provides high-level abstractions and features that make development in Azure easier.

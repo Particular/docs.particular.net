@@ -2,6 +2,7 @@
 title: Transport Bridge
 summary: How to connect parts of the system that use different transports 
 component: Bridge
+isLearningPath: true
 related:
 - samples/azure/azure-service-bus-msmq-bridge
 - samples/msmq/msmqtosqlrelay

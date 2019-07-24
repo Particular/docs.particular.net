@@ -3,6 +3,7 @@ title: Logging
 summary: Manage and integrate with NServiceBus logging.
 reviewed: 2017-10-07
 component: Core
+isLearningPath: true
 tags:
 - Logging
 redirects:

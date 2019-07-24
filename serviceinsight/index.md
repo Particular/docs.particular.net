@@ -2,6 +2,7 @@
 title: ServiceInsight
 reviewed: 2019-03-19
 component: ServiceInsight
+isLearningPath: true
 redirects:
 - serviceinsight/getting-started-overview
 - servicepulse/introduction-and-installing-servicepulse

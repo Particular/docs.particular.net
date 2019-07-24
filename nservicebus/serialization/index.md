@@ -3,6 +3,7 @@ title: Serialization
 summary: Information about how messages are serialized and deserialized on a transport
 component: Core
 reviewed: 2019-07-24
+isLearningPath: true
 related:
  - samples/pipeline/multi-serializer
  - samples/serializers

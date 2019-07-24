@@ -2,6 +2,7 @@
 title: Capture and visualize metrics using Prometheus and Grafana
 summary: Illustrates using Prometheus and Grafana to capture and visualize NServiceBus metrics.
 component: Metrics
+isLearningPath: true
 reviewed: 2019-07-22
 ---
 
