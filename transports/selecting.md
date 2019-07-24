@@ -172,7 +172,7 @@ RabbitMQ is a popular message broker used with many platforms. It can be used bo
 - Provides native reliability and high-availability features.
 - Offers a native publish-subscribe mechanism. Does not require a database for storing event subscriptions (via NServiceBus persistence). Explicit routing for publish/subscribe is not required.
 - Ease of integration with applications running on other platforms through a wide range of [supported clients](https://www.rabbitmq.com/devtools.html).
-- Native support for the [competing consumer pattern](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html). Messages are received by instances in a round-robin fashion without additional configuration.
+- Native support for the [competing consumer pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html). Messages are received by instances in a round-robin fashion without additional configuration.
 
 ### Disadvantages
 

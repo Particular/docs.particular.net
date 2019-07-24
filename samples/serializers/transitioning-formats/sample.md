@@ -75,7 +75,7 @@ For demonstration purposes this sample uses a hypothetical scenario where the JS
 
 ### Implementing the change
 
-This is implemented using the [NewtonSoft ContractResolver](http://www.newtonsoft.com/json/help/html/contractresolver.htm) and changing the array contract for the dictionary instead of the default.
+This is implemented using the [NewtonSoft ContractResolver](https://www.newtonsoft.com/json/help/html/contractresolver.htm) and changing the array contract for the dictionary instead of the default.
 
 snippet: ExtendedResolver
 

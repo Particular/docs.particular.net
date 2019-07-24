@@ -8,7 +8,7 @@ Previous versions of the transport automatically created destination queues on s
 A new set of permissions is required to run SQS transport. The following permissions must be granted to run the SQS transport.
 
 
-### [SQS permissions](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html)
+### [SQS permissions](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html)
 
  * CreateQueue
  * DeleteMessage
@@ -23,7 +23,7 @@ A new set of permissions is required to run SQS transport. The following permiss
  * PurgeQueue
 
 
-### [S3 permissions](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html)
+### [S3 permissions](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html)
 
 When the transport is used in combination with large messages on S3 the following permissions are required
 

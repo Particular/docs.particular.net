@@ -70,7 +70,7 @@ A Message Handler (sometimes referred as a "Handler") is a piece of code that pr
 
 ### [Saga](/nservicebus/sagas/)
 
-A Saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a [Process Manager](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) pattern.
+A Saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a [Process Manager](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) pattern.
 
 
 ### [Timeout](/nservicebus/sagas/timeouts.md)

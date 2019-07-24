@@ -15,7 +15,7 @@ While this may seem to result in a large number of releases, only a small fracti
 
 ## Semantic Versioning
 
-[SemVer](http://semver.org/) is a simple set of rules and requirements that dictate how version numbers are assigned and incremented.
+[SemVer](https://semver.org/) is a simple set of rules and requirements that dictate how version numbers are assigned and incremented.
 
 For those not familiar with SemVer here is a short primer:
 

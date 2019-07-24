@@ -31,7 +31,7 @@ Use the `CreateQueue` function that's part of `CreateQueues.ps1`. This PowerShel
 
 ## Move the subscription messages 
 
-Once the new queue is created, use a tool like [QueueExplorer](http://www.cogin.com/mq/index.php) to locate the messages in the `NServiceBus.Subscriptions` queue and move them to the newly created subscriptions queue. If the `NServiceBus.Subscriptions`queue was being shared among multiple endpoints, select only the messages intended for the endpoint that is being upgraded to NServiceBus.Transport.Msmq package. Identify which messages need to be moved by inspecting the message body and looking for the event information and also by inspecting the subscriber queue name in the `LABEL` column.
+Once the new queue is created, use a tool like [QueueExplorer](https://www.cogin.com/mq/index.php) to locate the messages in the `NServiceBus.Subscriptions` queue and move them to the newly created subscriptions queue. If the `NServiceBus.Subscriptions`queue was being shared among multiple endpoints, select only the messages intended for the endpoint that is being upgraded to NServiceBus.Transport.Msmq package. Identify which messages need to be moved by inspecting the message body and looking for the event information and also by inspecting the subscriber queue name in the `LABEL` column.
 
 Select the identified messages first on the right-hand pane and then right click to select the `Cut` option. Now select the newly created subscriptions queue by clicking on the name of the queue. Right click on the messages pane and select the `Paste` option to move the messages. 
 

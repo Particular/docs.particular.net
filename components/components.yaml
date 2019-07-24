@@ -223,7 +223,7 @@
 
 - Key: DistributedEventBroker
   Name: Appccelerate DistributedEventBroker
-  DocoUrl: http://www.appccelerate.com/distributedeventbrokertransports.html
+  DocoUrl: https://www.appccelerate.com/distributedeventbrokertransports.html
   LicenseUrl: https://github.com/appccelerate/distributedeventbroker.nservicebus/blob/master/LICENSE
   GitHubOwner: appccelerate
   SupportLevel: Community

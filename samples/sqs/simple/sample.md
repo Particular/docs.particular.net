@@ -17,15 +17,15 @@ downloadbutton
 
 ### Security and access configuration
 
-Add the [AWS Access Key ID and AWS Secret Access Key](http://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) to the following environment variables:
+Add the [AWS Access Key ID and AWS Secret Access Key](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) to the following environment variables:
 
  * Access Key ID in `AWS_ACCESS_KEY_ID`
  * Secret Access Key in `AWS_SECRET_ACCESS_KEY`
  * Default Region in `AWS_REGION`
 
-See also [AWS Account Identifiers](http://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html), [Managing Access Keys for a AWS Account](http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html), and [IAM Security Credentials](https://console.aws.amazon.com/iam/home#/security_credential).
+See also [AWS Account Identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html), [Managing Access Keys for a AWS Account](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html), and [IAM Security Credentials](https://console.aws.amazon.com/iam/home#/security_credential).
 
-See also [AWS Regions](http://docs.aws.amazon.com/general/latest/gr/rande.html) for a list of available regions.
+See also [AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande.html) for a list of available regions.
 
 
 ### SQS
@@ -39,7 +39,7 @@ Several [Amazon SQS](https://aws.amazon.com/sqs/) queues are required to run thi
 
 ### S3
 
-A [Amazon S3](https://console.aws.amazon.com/s3) bucket is required to leverage the [S3 Bucket For Large Messages](/transports/sqs/configuration-options.md#s3bucketforlargemessages) feature of the SQS transport. [Create an S3 Bucket](http://docs.aws.amazon.com/AmazonS3/latest/UG/CreatingaBucket.html) and replace the `bucketname` in the sample startup with the the name of the created bucket.
+A [Amazon S3](https://console.aws.amazon.com/s3) bucket is required to leverage the [S3 Bucket For Large Messages](/transports/sqs/configuration-options.md#s3bucketforlargemessages) feature of the SQS transport. [Create an S3 Bucket](https://docs.aws.amazon.com/AmazonS3/latest/UG/CreatingaBucket.html) and replace the `bucketname` in the sample startup with the the name of the created bucket.
 
 
 ## Endpoint Configuration
@@ -73,4 +73,4 @@ The large message contents can be be viewed in the [S3 management UI](https://co
 ![](s3bucket.png "width=300")
 
 
-See also [Receiving and Deleting a Message from an Amazon SQS Queue](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-receive-delete-message.html).
+See also [Receiving and Deleting a Message from an Amazon SQS Queue](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-receive-delete-message.html).

@@ -8,7 +8,7 @@ related:
  - nservicebus/upgrades/messagepack-changes
 ---
 
-Serialize messages with the [MessagePack](http://msgpack.org/) binary format via the [MsgPack.Cli](https://github.com/msgpack/msgpack-cli) project.
+Serialize messages with the [MessagePack](https://msgpack.org/) binary format via the [MsgPack.Cli](https://github.com/msgpack/msgpack-cli) project.
 
 
 ## Usage

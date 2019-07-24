@@ -31,6 +31,6 @@ snippet: simpleinjector_Existing
 
 | `DependencyLifecycle`                                                                                             | Simple Injector lifestyle                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-call)                                | [Transient](http://simpleinjector.readthedocs.io/en/latest/lifetimes.html#transient)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work)                    | [Scoped](http://simpleinjector.readthedocs.io/en/latest/lifetimes.html#perexecutioncontextscope) |
-| [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-single-instance)                                  | [Singleton](http://simpleinjector.readthedocs.io/en/latest/lifetimes.html#singleton)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-call)                                | [Transient](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#transient)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work)                    | [Scoped](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#perexecutioncontextscope) |
+| [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-single-instance)                                  | [Singleton](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#singleton)                          |

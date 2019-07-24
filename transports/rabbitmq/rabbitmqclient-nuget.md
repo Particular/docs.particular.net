@@ -14,7 +14,7 @@ The RabbitMQ transport uses the [RabbitMQ.Client](https://www.nuget.org/packages
 
 Due to the API/NuGet versioning strategy of RabbitMQ.Client, there are some complexities involved when using this package from external libraries like NServiceBus.RabbitMQ.
 
-Most libraries NServiceBus integrates with follow [semantic versioning](http://semver.org/); those libraries do not make breaking changes in minor or patch releases. So the NuGet range for these libraries is generally `≥ CurrentMajor && < NextMajor` and it is safe for the consumer of these libraries to move between any minor of the current major version.
+Most libraries NServiceBus integrates with follow [semantic versioning](https://semver.org/); those libraries do not make breaking changes in minor or patch releases. So the NuGet range for these libraries is generally `≥ CurrentMajor && < NextMajor` and it is safe for the consumer of these libraries to move between any minor of the current major version.
 
 The RabbitMQ.Client library does not follow semantic versioning; they are free to make breaking changes in major, minor or patch releases.
 
