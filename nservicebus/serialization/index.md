@@ -17,7 +17,7 @@ partial: livemigration
 
 The [Newtonsoft JSON Serializer](newtonsoft.md) provides an effective general-purpose serializer appropriate for most use cases based on the ubiquitous [Json.NET package](https://www.newtonsoft.com/json). The Newtonsoft package provides a good combination of compactness, human readability, and performance. Other serializers are supported in order to enable specific performance or integration requirements.
 
-## Immutable messages / types
+### Immutable messages / types
 
 It is possible to use immutable types as messages. NServiceBus does not restrict this; It depends on the chosen serializer implementation if it supports deserializing to non public properties and/or using non-default constructors to initialize types.
 
