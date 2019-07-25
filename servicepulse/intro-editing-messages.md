@@ -5,7 +5,9 @@ component: ServicePulse
 reviewed: 2019-07-04
 ---
 
-If a message cannot be successfully retried it is possible to fix the malformed message prior to retrying it. Both the headers and the body of a message can be edited.
+If a message cannot be successfully retried it is possible to fix the malformed message prior to retrying it. Both the headers and the body of a message can be edited. This capability can be accessed when looking at an individual message. 
+
+![Edit Malformed Messages](images/edit-message-details.png 'width=500')
 
 ## Enabling the feature
 
@@ -14,6 +16,8 @@ The message edit and retry feature is not enabled by default. To enable it, cont
 ## Headers
 
 Headers on all failed messages can be edited using this feature. There are three categories of headers, each with different editing restrictions.
+
+![Editing Headers](images/edit-message-headers.png 'width=500')
 
 * **Locked headers:** Headers that are critical to the operation of NServiceBus cannot be edited. These headers will have a lock image next to their name.
 
