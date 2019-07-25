@@ -11,7 +11,7 @@ Note: Serialized messages are immutable once on the wire, changing property valu
 Messages objects can be made immutable at runtime by:
 
 1. Creating properties with only public getters and initializing these properties via constructor initialization.
-2. Have a class with public getters/setters for message sending, have it inherit an interface with only public getters for message processing
+2. Having regular message classes with public getters/setters at the sender, where these classes implement an interface with only public getters. Receivers reference only the interface.
 
 
 ## Properties with only public getters
