@@ -2,6 +2,7 @@
 title: Hosting in Azure Cloud Services
 summary: Using Azure Cloud Services to host NServiceBus.
 component: CloudServicesHost
+isLearningPath: true
 tags:
  - Hosting
  - Azure

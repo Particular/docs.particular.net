@@ -2,6 +2,7 @@
 title: Selecting a transport
 summary: A guide for selecting an NServicebus transport.
 reviewed: 2018-11-27
+isLearningPath: true
 ---
 
 This document provides guidance for deciding which [transport](/transports) may best suit a specific scenario.

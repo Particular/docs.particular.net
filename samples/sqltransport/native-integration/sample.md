@@ -3,6 +3,7 @@ title: Native integration
 summary: Integrating natively with the SQL Server transport.
 reviewed: 2019-04-01
 component: SqlTransport
+isLearningPath: true
 related:
 - transports/sql
 ---

@@ -3,6 +3,7 @@ title: Outbox
 summary: Reliable messaging without distributed transactions
 reviewed: 2018-03-06
 component: Core
+isLearningPath: true
 versions: "[5,)"
 tags:
 - DTC

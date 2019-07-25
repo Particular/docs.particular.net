@@ -2,6 +2,7 @@
 title: Selecting a host
 summary: A guide for selecting an NServicebus transport.
 reviewed: 2019-07-15
+isLearningPath: true
 ---
 This document provides guidance for deciding how to [host](/nservicebus/hosting) [NServiceBus endpoints](/nservicebus/endpoints/).
 
