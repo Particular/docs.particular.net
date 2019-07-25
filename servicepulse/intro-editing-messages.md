@@ -5,7 +5,7 @@ component: ServicePulse
 reviewed: 2019-07-04
 ---
 
-If a message cannot be successfully retried it is possible to modify that message prior to retrying it. Both the headers and the body of a message can be edited.
+If a message cannot be successfully retried it is possible to fix the malformed message prior to retrying it. Both the headers and the body of a message can be edited.
 
 ## Enabling the feature
 
