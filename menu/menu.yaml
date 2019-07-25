@@ -225,7 +225,7 @@
         Title: Conventions
       - Url: nservicebus/messaging/unobtrusive-mode
         Title: Unobtrusive Mode
-      - Url: nservicebus/messaging/immutable-messages.md
+      - Url: nservicebus/messaging/immutable-messages
         Title: Immutable messages
       - Url: nservicebus/messaging/best-practice-enforcement
         Title: Best practice enforcement
