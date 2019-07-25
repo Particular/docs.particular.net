@@ -1,6 +1,6 @@
 ---
 title:  Fixing malformed messages
-summary: Describes the concept of editing and retrying messages in ServicePulse
+summary: Describes the concept of fixing and retrying malformed messages in ServicePulse
 component: ServicePulse
 reviewed: 2019-07-04
 ---
