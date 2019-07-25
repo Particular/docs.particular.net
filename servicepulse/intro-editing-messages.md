@@ -1,5 +1,5 @@
 ---
-title:  Editing failed messages
+title:  Fixing malformed messages
 summary: Describes the concept of editing and retrying messages in ServicePulse
 component: ServicePulse
 reviewed: 2019-07-04
