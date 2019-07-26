@@ -25,7 +25,7 @@ downloadbutton
 
 Once complete, the RabbitMQ administration can be reached via [http://localhost:15672/](http://localhost:15672/) with username `rabbitmq` and password `rabbitmq`.
 
-A connection to the SQL Server instance can be made using Server name `localhost,11433`, login `sa`, and password `NServiceBus!`. If connecting with [SQL Server Management Studio](https://www.hanselman.com/blog/DownloadSQLServerExpress.aspx), you must adjust the Connection Properties either by unchecking the **Encrypt connection** checkbox, or checking the **Trust server certificate** box.
+A connection to the SQL Server instance can be made using Server name `localhost,11433`, login `sa`, and password `NServiceBus!`. If connecting with [SQL Server Management Studio](https://www.hanselman.com/blog/DownloadSQLServerExpress.aspx), adjust the Connection Properties either by unchecking the **Encrypt connection** checkbox, or checking the **Trust server certificate** box.
 
 
 ## Running the project
