@@ -2,13 +2,14 @@
 title: Transport Bridge
 summary: How to connect parts of the system that use different transports 
 component: Bridge
+isLearningPath: true
 related:
 - samples/azure/azure-service-bus-msmq-bridge
 - samples/msmq/msmqtosqlrelay
 reviewed: 2018-05-04
 ---
 
-NOTE: `NServiceBus.Bridge` is has been deprecated and replaced by `NServiceBus.Router`. Follow the [upgrade guide](/nservicebus/bridge/bridge-router.md) to move to the Router. The Router is wire-compatible with the Bridge so old NServiceBus 6 endpoints can still use `NServiceBus.Bridge.Connector` to connect to the Router.
+NOTE: `NServiceBus.Bridge` is has been deprecated and replaced by `NServiceBus.Router`. Follow the [upgrade guide](/nservicebus/bridge/bridge-router.md) to move to the Router. The Router is wire-compatible with the Bridge so NServiceBus version 6 endpoints can still use `NServiceBus.Bridge.Connector` to connect to the Router.
 
 `NServiceBus.Bridge` is a component that connects parts of an NServiceBus-based solution that use different transports. Unlike the [gateway](/nservicebus/gateway/), NServiceBus.Bridge handles both sending and publishing. The main difference is that the bridge connects parts of the system that have no logical distinction so bridging is a purely technical exercise. In other words, if both sides agree on the same transport technology, the bridge could be removed without any changes to the logic of the system. Gateways on the other hand are logically significant and the idea of *sites* must be taken into account in the logic itself.
 

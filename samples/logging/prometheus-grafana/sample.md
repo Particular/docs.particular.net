@@ -1,7 +1,9 @@
 ---
 title: Capture and visualize metrics using Prometheus and Grafana
+summary: Illustrates using Prometheus and Grafana to capture and visualize NServiceBus metrics.
 component: Metrics
-reviewed: 2017-10-06
+isLearningPath: true
+reviewed: 2019-07-22
 ---
 
 
@@ -63,7 +65,7 @@ Summaries: `nservicebus_{summary-name}_seconds`
 snippet: prometheus-name-mapping
 
 
-The registered observers convert NServiceBus.Metric *Signals* to Prometheus *Counters* and NServiceBus.Metric *Durations* to Prometheus *Summaries*.  Additionally, labels are added that identify the endpoint, the endpoint queue and more within Prometheus. With these labels, it is possible to filter and group metric values. 
+The registered observers convert `NServiceBus.Metric` *Signals* to Prometheus *Counters* and `NServiceBus.Metric` *Durations* to Prometheus *Summaries*.  Additionally, labels are added that identify the endpoint, the endpoint queue and more within Prometheus. With these labels, it is possible to filter and group metric values. 
 
 snippet: prometheus-register-probe
 
@@ -166,7 +168,7 @@ Prometheus configuration files demonstrating the concepts from this sample:
 
 ## Grafana
 
-Grafana needs to be installed and configured to display the data available in Prometheus. For more information how to install Grafana refer to the [Installation Guide](http://docs.grafana.org/installation).
+Grafana needs to be installed and configured to display the data available in Prometheus. For more information how to install Grafana refer to the [Installation Guide](https://docs.grafana.org/installation).
 
 
 ### Guided configuration
@@ -182,7 +184,7 @@ Execute `setup.grafana.ps1` in a PowerShell with elevated permission and provide
 
 #### Datasource
 
-Create a new data source called `PrometheusNServiceBusDemo`. For more information how to define a Prometheus data source refer to [Using Prometheus in Grafana](http://docs.grafana.org/features/datasources/prometheus/).
+Create a new data source called `PrometheusNServiceBusDemo`. For more information how to define a Prometheus data source refer to [Using Prometheus in Grafana](https://docs.grafana.org/features/datasources/prometheus/).
 
 
 #### Dashboard
@@ -201,4 +203,4 @@ To graph the Prometheus rule  `nservicebus_failure_total:avg_rate5m` the followi
 
 ![Grafana dashboard with NServiceBus metrics](example-grafana-dashboard.png)
 
-The sample included an [export of the grafana dashboard](grafana-endpoints-dashboard.json), this can be [imported](http://docs.grafana.org/reference/export_import/) as a reference.
+The sample included an [export of the grafana dashboard](grafana-endpoints-dashboard.json), this can be [imported](https://docs.grafana.org/reference/export_import/) as a reference.

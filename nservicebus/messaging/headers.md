@@ -70,7 +70,7 @@ A [unique ID for the current message](/nservicebus/messaging/message-identity.md
 
 ### NServiceBus.CorrelationId
 
-NServiceBus implements the [Correlation Identifier](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html) pattern by using a `Correlation Id` header.
+NServiceBus implements the [Correlation Identifier](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html) pattern by using a `Correlation Id` header.
 
 Message correlation connects request messages with their corresponding response messages. The `Correlation Id` of the response message is the `Correlation Id` of its corresponding request message. Each outgoing message which is sent outside of a message handler will have its `Correlation Id` set to its `Message Id`.
 

@@ -1,6 +1,7 @@
 ---
 title: Monitoring
 reviewed: 2018-01-26
+isLearningPath: true
 ---
 
 The endpoints of an NServiceBus system collect different types of information about their operation. This information can be collected and aggregated into a monitoring solution for the whole system.

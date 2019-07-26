@@ -1,7 +1,7 @@
 ---
 title: Concepts Overview
 summary: A high level feature and concept overview
-reviewed: 2017-10-05
+reviewed: 2019-07-17
 redirects:
 - nservicebus/fluent-config-api-v3-v4
 - nservicebus/fluent-config-api-v3-v4-intro
@@ -70,7 +70,7 @@ A Message Handler (sometimes referred as a "Handler") is a piece of code that pr
 
 ### [Saga](/nservicebus/sagas/)
 
-A Saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a [Process Manager](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) pattern.
+A Saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a [Process Manager](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) pattern.
 
 
 ### [Timeout](/nservicebus/sagas/timeouts.md)
@@ -128,7 +128,7 @@ NServiceBus leverages assembly scanning to implement several features.
 NServiceBus has some sensible defaults for logging built in and, for more advanced scenarios, it supports routing log events to an external logging library.
 
 
-### [OutBox](/nservicebus/outbox)
+### [Outbox](/nservicebus/outbox)
 
 An alternative to Distributed Transactions to provide exactly-once message processing semantics when accessing user data store as part of message processing.
 

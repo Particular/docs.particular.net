@@ -3,10 +3,13 @@ title: MongoDB Persistence
 component: mongodb
 versions: '[1,)'
 tags:
- - Persistence
+- Persistence
 related:
- - samples/mongodb
-reviewed: 2019-05-29
+- samples/mongodb
+redirects:
+- persistence/mongodb-tekmaven
+- nservicebus/messaging/databus/mongodb-tekmaven
+reviewed: 2019-07-20
 ---
 
 Uses the [MongoDB document database](https://www.mongodb.com/) for storage.

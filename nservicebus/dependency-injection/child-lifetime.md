@@ -3,6 +3,7 @@ title: Child containers
 summary: Child containers allow for more granular instance lifetime configuration.
 component: Core
 reviewed: 2019-07-08
+
 redirects:
  - nservicebus/nservicebus-support-for-child-containers
  - nservicebus/containers/child-containers

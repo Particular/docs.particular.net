@@ -1,14 +1,14 @@
 ---
 title: MsgPack Serializer
 component: MsgPack
-reviewed: 2017-09-30
+reviewed: 2019-07-08
 related:
  - samples/serializers/msgpack
  - nservicebus/serialization/messagepack
  - nservicebus/upgrades/messagepack-changes
 ---
 
-Serialize messages with the [MessagePack](http://msgpack.org/) binary format via the [MsgPack.Cli](https://github.com/msgpack/msgpack-cli) project.
+Serialize messages with the [MessagePack](https://msgpack.org/) binary format via the [MsgPack.Cli](https://github.com/msgpack/msgpack-cli) project.
 
 
 ## Usage

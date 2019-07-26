@@ -4,6 +4,7 @@ related:
  - persistence/service-fabric
  - samples/azure/azure-service-fabric-routing
 reviewed: 2018-02-19
+isLearningPath: true
 ---
 
 NServiceBus endpoints can be hosted in Service Fabric using any of these three options:

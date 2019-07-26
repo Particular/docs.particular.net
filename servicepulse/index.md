@@ -2,6 +2,7 @@
 title: ServicePulse
 reviewed: 2019-03-19
 component: ServicePulse
+isLearningPath: true
 related:
 - servicecontrol/setting-custom-hostname
 - servicecontrol/plugins

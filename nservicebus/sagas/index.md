@@ -188,11 +188,11 @@ The recommended approach is for the saga to publish events containing the requir
 
 ## Saga state read/write behavior
 
-Saga state is read just before `Handle` is invoked and written immediately after `Handle` is completed. In other words, the sequence is read, invoke, and write per `Handle`.
+Saga state is read immediately before a message processing method is invoked, and written immediately after the method returns. The sequence of read, invoke, and write occurs once per message processing method.
 
-- The write will be an INSERT if the read didn't return data or an UPDATE if the read did return data.
-- If the read did not return data and during the invoke the saga is completed no write will occur.
-- How state remains consistent depends the persister implementation (transactional lock vs atomic with optimistic concurrency control)
-- Saga state reads/writes do not happen during a stage, they happen during invocation in the `Invoke Handlers` stage and cannot be intercepted.
+- For persisters backed by SQL databases, the write will execute an `INSERT` statement if the read did not return any existing state, and the write will execute an `UPDATE` statement if the read _did_ return existing state. For other persisters, the equivalent operations will be executed.
+- If the read did not return any existing state, and the saga is completed during the invoke, then no write will occur.
+- The method of maintaining constistency with respect to concurrent message processing depends on the persister being used. Some may use a transactional lock, and others may perform an atomic change with optimistic concurrency control.
+- Saga state reads and writes do not occur during a stage. They occur during invocation in the `Invoke Handlers` stage and cannot be intercepted.
 
-If multiple different saga types are invoked on the same message type each read/invoke/write cycle will happen sequentially per saga type.
+If multiple saga types are invoked for the same message, each read, invoke, write cycle will occur sequentially, for each saga type.

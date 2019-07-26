@@ -96,6 +96,8 @@
       Articles:
       - Url: nservicebus/upgrades/encryption-1to2
         Title: Encryption
+      - Url: nservicebus/upgrades/6to7/moving-msmq-subscriptions
+        Title: Migrating Msmq subscriptions
     - Url: nservicebus/upgrades/6to6.2
       Title: NServiceBus 6 to 6.2
     - Url: nservicebus/upgrades/5to6
@@ -189,10 +191,12 @@
         Title: Migrate To External Nuget
     - Title: Performance Counters
       Articles:
-      - Url: nservicebus/upgrades/externalize-perfcounters
-        Title: Migrate To External Nuget
+      - Url: nservicebus/upgrades/perfcounters-3to4
+        Title: Version 3 to 4
       - Url: nservicebus/upgrades/perfcounters-1to2
         Title: Version 1 to 2
+      - Url: nservicebus/upgrades/externalize-perfcounters
+        Title: Migrate To External Nuget
     - Title: ServiceControl Plugins
       Articles:
       - Url: nservicebus/upgrades/nsb6-sc-plugins-1to2
@@ -314,8 +318,6 @@
         Title: File Share
       - Url: nservicebus/messaging/databus/azure-blob-storage
         Title: Azure Blob Storage
-      - Url: nservicebus/messaging/databus/mongodb-tekmaven
-        Title: MongoDB DataBus
       - Url: nservicebus/messaging/databus/custom
         Title: Custom
     - Url: nservicebus/messaging/validation-fluentvalidation
@@ -325,13 +327,15 @@
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
-    - Url: nservicebus/hosting/startup-diagnostics
-      Title: Startup diagnostics
     - Url: nservicebus/endpoints
       Title: Endpoints
       Articles:
       - Url: nservicebus/endpoints/specify-endpoint-name
         Title: Endpoint Name
+    - Url: nservicebus/hosting/selecting
+      Title: Selecting a host
+    - Url: nservicebus/hosting/startup-diagnostics
+      Title: Startup diagnostics
     - Url: nservicebus/endpoints/decommissioning-endpoints
       Title: Decommissioning Endpoints
     - Url: nservicebus/hosting/windows-service
@@ -1031,15 +1035,13 @@
       Title: Scripting
   - Url: persistence/msmq/subscription
     Title: MSMQ Subscription
-  # - Url: persistence/mongodb
-  #   Title: MongoDB
-  #   Articles:
-  #   - Url: persistence/mongodb/migrating-from-sbmako
-  #     Title: Migrating from NServicebus.MongoDB
-  #   - Url: persistence/mongodb/migrating-from-tekmaven
-  #     Title: Migrating from NServiceBus.Persistence.MongoDB
-  - Url: persistence/mongodb-tekmaven
-    Title: MongoDB (Ryan Hoffman)
+  - Url: persistence/mongodb
+    Title: MongoDB
+    Articles:
+    - Url: persistence/mongodb/migrating-from-sbmako
+      Title: Migrating from NServicebus.MongoDB
+    - Url: persistence/mongodb/migrating-from-tekmaven
+      Title: Migrating from NServiceBus.Persistence.MongoDB
 
 - Name: ServiceInsight
   Topics:

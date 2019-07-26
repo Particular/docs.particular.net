@@ -2,7 +2,7 @@
 title: Auditing Messages
 summary: Configure where to send messages and it provides built-in message auditing for every endpoint.
 component: Core
-reviewed: 2017-10-06
+reviewed: 2019-07-22
 tags:
  - Audit
 related:

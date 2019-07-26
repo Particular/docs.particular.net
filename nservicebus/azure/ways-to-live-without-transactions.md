@@ -2,6 +2,7 @@
 title: Avoiding Transactions in Azure
 summary: Options for avoiding transactions in Azure
 reviewed: 2018-05-22
+isLearningPath: true
 tags:
  - Azure
  - Transactions

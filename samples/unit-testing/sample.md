@@ -7,7 +7,7 @@ related:
 - nservicebus/testing
 ---
 
-This sample shows how to write unit tests for various NServiceBus components with Arrange-Act-Assert (AAA) style tests. This sample is a test project that uses [NUnit](http://nunit.org/) and testable helper implementations from the `NServiceBus.Testing` package.
+This sample shows how to write unit tests for various NServiceBus components with Arrange-Act-Assert (AAA) style tests. This sample is a test project that uses [NUnit](https://nunit.org/) and testable helper implementations from the `NServiceBus.Testing` package.
 
 
 ## Testing a handler

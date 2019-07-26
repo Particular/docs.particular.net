@@ -12,7 +12,7 @@ redirects:
 ---
 
 
-This sample uses the Newtonsoft serializer [NServiceBus.Newtonsoft.Json](https://github.com/Particular/NServiceBus.Newtonsoft.Json) to provide full access to the [Newtonsoft Json.net](http://www.newtonsoft.com/json) API.
+This sample uses the Newtonsoft serializer [NServiceBus.Newtonsoft.Json](https://github.com/Particular/NServiceBus.Newtonsoft.Json) to provide full access to the [Newtonsoft Json.net](https://www.newtonsoft.com/json) API.
 
 
 ## Configuring to use NServiceBus.Newtonsoft.Json

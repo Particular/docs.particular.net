@@ -111,7 +111,7 @@ The above examples show how difficult it is to incorrectly use async APIs. As su
 Other libraries are also taking the same approach. For example:
 
  * [Octokit - The GitHub .NET API](https://github.com/octokit/octokit.net)
- * [MassTransit](http://masstransit-project.com/)
+ * [MassTransit](https://masstransit-project.com/)
  * [MediatR](https://github.com/jbogard/MediatR)
 
 

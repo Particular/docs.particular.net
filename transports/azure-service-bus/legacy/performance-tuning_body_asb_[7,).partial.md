@@ -63,7 +63,7 @@ However, if the handler sends more messages or sends larger messages (e.g. in th
 
 ## Notes on bandwidth and other constraints
 
-If throughput is less then ~500 msg/s, even after optimizations described in this article have been applied, then most likely it's caused by network constraints. It is likely that the available local bandwidth isn't sufficient. In such a case one should benchmark the available bandwidth by using a tool like [speedtest.net](http://www.speedtest.net/). The selected location should be as close as possible to the location of the Azure data center that hosts the Azure Service Bus namespace.
+If throughput is less then ~500 msg/s, even after optimizations described in this article have been applied, then most likely it's caused by network constraints. It is likely that the available local bandwidth isn't sufficient. In such a case one should benchmark the available bandwidth by using a tool like [speedtest.net](https://www.speedtest.net/). The selected location should be as close as possible to the location of the Azure data center that hosts the Azure Service Bus namespace.
 
 If the latency is very high or the bandwidth is too low, then try to move Azure Service Bus namespace to another data center. Another solution might be updating the internet uplink, which also might be a bottleneck.
 

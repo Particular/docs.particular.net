@@ -4,7 +4,7 @@
 
 **Default**: `AWS SDK credentials`.
 
-By default the endpoint uses the SDK to retrieve AWS credentials. The AWS SDK permits a large number of transparent methods for configuring the credentials as outlined in the [.NET SDK guidelines](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-creds.html).
+By default the endpoint uses the SDK to retrieve AWS credentials. The AWS SDK permits a large number of transparent methods for configuring the credentials as outlined in the [.NET SDK guidelines](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-creds.html).
 
 **Example**: To manually control the credentials retrieval, specify:
 
@@ -22,7 +22,7 @@ snippet: S3CredentialSource
 
 By default the endpoint uses the SDK to retrieve the default AWS region from the `AWS_REGION` environment variable.
 
-This is the Amazon Web Services [Region](http://docs.aws.amazon.com/general/latest/gr/rande.html) in which to access the SQS service. Must be a valid [AWS region code](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions).
+This is the Amazon Web Services [Region](https://docs.aws.amazon.com/general/latest/gr/rande.html) in which to access the SQS service. Must be a valid [AWS region code](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions).
 
 **Example**: To manually control the region, specify
 

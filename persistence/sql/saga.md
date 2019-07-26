@@ -97,7 +97,7 @@ The following .NET types are interpreted as `CorrelationPropertyType.Int`:
 
 ### Custom settings
 
-Customizes the instance of [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
+Customizes the instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
 
 snippet: SqlPersistenceCustomSettings
 
@@ -111,13 +111,13 @@ snippet: SqlPersistenceJsonSettingsForVersion
 
 ### Custom reader
 
-Customize the creation of the [JsonReader](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
+Customize the creation of the [JsonReader](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
 
 snippet: SqlPersistenceCustomReader
 
 
 ### Custom writer
 
-Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
+Customize the creation of the [JsonWriter](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
 
 snippet: SqlPersistenceCustomWriter

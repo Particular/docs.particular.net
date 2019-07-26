@@ -3,6 +3,7 @@ title: Evolving Message Contracts
 summary: Guidelines for choosing a strategy for evolving message contracts
 reviewed: 2018-10-04
 component: Core
+isLearningPath: true
 ---
 
 In message-based systems, the messages are part of the contract, which defines how services communicate with each other.
