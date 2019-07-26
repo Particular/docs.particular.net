@@ -14,11 +14,11 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Outbox");
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.UseConventionalRoutingTopology();
-        transport.ConnectionString("host=hostos;username=rabbitmq;password=rabbitmq");
+        transport.ConnectionString("host=localhost;username=rabbitmq;password=rabbitmq");
         #endregion
 
         #region ConfigurePersistence
-        var connectionString = @"Data Source=hostos,11433;Initial Catalog=NsbRabbitMqOutbox;User=sa;Password=NServiceBus!;TrustServerCertificate=true";
+        var connectionString = @"Data Source=localhost,11433;Initial Catalog=NsbRabbitMqOutbox;User=sa;Password=NServiceBus!;TrustServerCertificate=true";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
@@ -26,14 +26,18 @@ class Program
 
         endpointConfiguration.EnableInstallers();
 
+        #region SampleSteps
+
         // STEP 1: Run code as is, duplicates can be observed in console and database
 
         // STEP 2: Uncomment this line to enable the Outbox. Duplicates will be suppressed.
-        //endpointConfiguration.EnableOutbox();
+        endpointConfiguration.EnableOutbox();
 
         // STEP 3: Comment out this line to allow concurrent processing. Concurrency exceptions will
         // occur in the console window, but only 5 entries will be made in the database.
-        endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
+        //endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
+
+        #endregion
 
         Helper.EnsureDatabaseExists(connectionString);
 

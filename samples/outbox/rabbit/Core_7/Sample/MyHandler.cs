@@ -1,16 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 public class MyHandler :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger<MyHandler>();
-
     #region Handler
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        log.Info($"Processing MessageId {context.MessageId}");
+        Console.WriteLine($"Processing MessageId {context.MessageId}");
 
         var sqlPersistenceSession = context.SynchronizedStorageSession.SqlPersistenceSession();
 
