@@ -790,6 +790,9 @@
     Articles:
     - Url: transports/msmq/routing
       Title: Physical routing
+      Articles:
+      - Url: transports/msmq/routing-extensibility
+        Title: Routing extensibility
     - Url: transports/msmq/connection-strings
       Title: Connection strings
     - Url: transports/msmq/dead-letter-queues
