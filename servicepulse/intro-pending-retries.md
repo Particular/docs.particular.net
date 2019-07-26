@@ -13,7 +13,7 @@ Pending retries messages can be found by going to the pending retries screen.
 
 ### Displaying the Pending Retries view
 
-In ServicePulse v1.7.0 and above, the Pending Retries screen is hidden by default. It's possible to make it avialble in the ServicePulse UI. The type of change depends on the ServicePulse version.
+In ServicePulse v1.7.0 and above, the Pending Retries screen is hidden by default. It's possible to make it available in the ServicePulse UI. The type of change depends on the ServicePulse version.
 
 ### ServicePulse >= v1.7.0 < 1.20.0
 
