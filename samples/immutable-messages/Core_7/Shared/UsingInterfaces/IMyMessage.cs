@@ -1,4 +1,4 @@
-﻿namespace Messages
+﻿namespace UsingInterfaces.Messages
 {
     public interface IMyMessage
     {

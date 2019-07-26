@@ -20,7 +20,8 @@ public static class ConventionExtensions
         conventions.DefiningMessagesAs(
             type =>
             {
-                return type.Namespace == "Messages";
+                return type.Namespace != null && 
+                       type.Namespace.EndsWith("Messages");
             });
     }
 }

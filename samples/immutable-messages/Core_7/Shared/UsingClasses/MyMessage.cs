@@ -1,4 +1,4 @@
-﻿namespace Messages
+﻿namespace UsingClasses.Messages
 {
     public class MyMessage
     {

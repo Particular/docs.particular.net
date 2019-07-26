@@ -1,7 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Messages;
+﻿using Messages;
 using NServiceBus;
+using System;
+using System.Threading.Tasks;
+using UsingClasses.Messages;
 
 class Program
 {
@@ -13,8 +14,9 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         var transportConfiguration = endpointConfiguration.UseTransport<LearningTransport>();
 
-        transportConfiguration.Routing()
-            .RouteToEndpoint(typeof(MyMessage), "Samples.ImmutableMessages.UsingInterfaces.receiver");
+        var routingConfiguration = transportConfiguration.Routing();
+        routingConfiguration.RouteToEndpoint(typeof(MyMessageImpl), "Samples.ImmutableMessages.UsingInterfaces.Receiver");
+        routingConfiguration.RouteToEndpoint(typeof(MyMessage), "Samples.ImmutableMessages.UsingInterfaces.Receiver");
 
         endpointConfiguration.ApplyCustomConventions();
 
