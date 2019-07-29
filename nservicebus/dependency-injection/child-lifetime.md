@@ -23,4 +23,4 @@ snippet: InstancePerUnitOfWorkRegistration
 
 ## Deterministic disposal
 
-Child containers automatically dispose all [IDisposable](https://msdn.microsoft.com/en-us/library/system.idisposable.aspx) instances created with `InstancePerUnitOfWork` lifetime once the message is processed. This is useful to managing things like the database sessions.
+Child containers automatically dispose all [IDisposable](https://msdn.microsoft.com/en-us/library/system.idisposable.aspx) instances created with `InstancePerUnitOfWork` lifetime once the message is processed. This is useful for managing things like  database sessions which must be disposed of properly.
