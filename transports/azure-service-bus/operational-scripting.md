@@ -24,6 +24,8 @@ Once installed, the `asb-transport` command line tool will be available for use.
 ### Available commands
 
 - `endpoint create`
+- `endpoint subscribe`
+- `endpoint unsubscribe`
 - `queue create`
 - `queue delete`
 
@@ -32,11 +34,11 @@ Once installed, the `asb-transport` command line tool will be available for use.
 Create a new endpoint using:
 
 ```
-asb-transport endpoint create [--size]
+asb-transport endpoint create name
+                              [--size]
                               [--partitioned]
                               [--topic]
-                              [--subscription]
-                              [--subscribe-to]                                                            
+                              [--subscription]                                                       
 ```
 
 #### options
@@ -51,8 +53,47 @@ asb-transport endpoint create [--size]
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
-`-e` | `--subscribe-to`: Subscribe to event type full name (e.g. MyNamespace.MyMessage or CustomRuleName,MyNamespace.MyMessage), multiple allowed
+### asb-transport endpoint subscribe
 
+Create a new subscription for an endpoint using:
+
+```
+asb-transport endpoint subscribe name event-type
+                              [--topic]
+                              [--subscription]                                                       
+                              [--rule-name]
+```
+
+#### Options
+
+`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
+
+`-t` | `--topic`: Topic name (defaults to 'bundle-1')
+
+`-b` | `--subscription`: Subscription name (defaults to endpoint name)
+
+`-r` | `--rule-name`: Rule name (defaults to event type)
+
+### asb-transport endpoint unsubscribe
+
+Delete a subscription for an endpoint using:
+
+```
+asb-transport endpoint unsubscribe name event-type
+                              [--topic]
+                              [--subscription]                                                       
+                              [--rule-name]
+```
+
+#### Options
+
+`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
+
+`-t` | `--topic`: Topic name (defaults to 'bundle-1')
+
+`-b` | `--subscription`: Subscription name (defaults to endpoint name)
+
+`-r` | `--rule-name`: Rule name (defaults to event type)
 
 ### asb-transport queue create
  
