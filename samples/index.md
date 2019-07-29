@@ -53,7 +53,7 @@ All samples target **C# 7.1** to take advantage of the new language features. If
 
 ### ConfigureAwait
 
-Samples by default use `ConfigureAwait(false)` when awaiting asynchronous methods. Using `ConfigureAwait(false)` whenever possible is [considered a best practice](https://msdn.microsoft.com/en-us/magazine/jj991977.aspx) which helps avoiding deadlocks and improves performance.
+Samples by default use `ConfigureAwait(false)` when awaiting asynchronous methods. Using `ConfigureAwait(false)` whenever possible is [considered a best practice](https://msdn.microsoft.com/en-us/magazine/jj991977.aspx) which helps avoid deadlocks and improves performance.
 
 
 ### [Transport](/transports/)
