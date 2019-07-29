@@ -149,6 +149,8 @@ snippet: ConfigurePersistence
 
 **MyHandler.cs** contains the message handler, which shows a bare-bones example of [accessing business data via SQL Persistence](/persistence/sql/accessing-data.md) using ADO.NET, so that the business data is manipulated using the same SQL connection and transaction used by NServiceBus for the Outbox data.
 
+snippet: Handler
+
 The message handler:
 
 1. Logs the `MessageId` to the console.
