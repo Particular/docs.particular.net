@@ -31,11 +31,11 @@ class Program
         // STEP 1: Run code as is, duplicates can be observed in console and database
 
         // STEP 2: Uncomment this line to enable the Outbox. Duplicates will be suppressed.
-        endpointConfiguration.EnableOutbox();
+        //endpointConfiguration.EnableOutbox();
 
         // STEP 3: Comment out this line to allow concurrent processing. Concurrency exceptions will
         // occur in the console window, but only 5 entries will be made in the database.
-        //endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
+        endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
 
         #endregion
 
