@@ -1133,6 +1133,8 @@
         Url: servicecontrol/installation-powershell
       - Title: Cluster Deployment
         Url: servicecontrol/deploying-servicecontrol-in-a-cluster
+      - Title: Remote Instances
+        Url: servicecontrol/servicecontrol-instances/remotes          
       - Title: Multiple Instances
         Url: servicecontrol/servicecontrol-instances/distributed-instances  
       - Title: Settings
@@ -1164,6 +1166,15 @@
         Url: servicecontrol/use-ravendb-studio
       - Title: Retry importing messages
         Url: servicecontrol/import-failed-messages
+  - Title: Audit instances
+      Url: servicecontrol/audit-instances
+      Articles:        
+      - Title: Managing via PowerShell
+        Url: servicecontrol/audit-instances/installation-powershell
+      - Title: Settings
+        Url: servicecontrol/audit-instances/creating-config-file
+      - Title: Maintenance Mode
+        Url: servicecontrol/audit-instances/maintenance-mode            
   - Title: Monitoring instances
     Url: servicecontrol/monitoring-instances
     Articles:
