@@ -38,7 +38,7 @@ asb-transport endpoint create name
                               [--size]
                               [--partitioned]
                               [--topic]
-                              [--subscription]                                                       
+                              [--subscription]      
 ```
 
 #### options
