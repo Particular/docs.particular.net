@@ -118,6 +118,7 @@
 * [Using NServiceBus in an ASP.NET Web Application](/samples/web/asp-web-application/?version=core_7)
 * [Using NServiceBus with ASP.NET MVC](/samples/web/asp-mvc-application/?version=core_7)
 * [Using NServiceBus.Router for atomic update-and-publish in WebAPI](/samples/router/update-and-publish/?version=router_3)
+* [Using Outbox with RabbitMQ](/samples/outbox/rabbit/?version=core_7)
 * [Using Outbox with SQL](/samples/outbox/sql/?version=core_7)
 * [Windsor Dependency Injection Usage](/samples/dependency-injection/castle/?version=castle_7)
 * [Wire Serializer Usage](/samples/serializers/wire/?version=wire_4)
