@@ -1,5 +1,6 @@
 ---
 title: Using Outbox with RabbitMQ
+summary: Demonstrates how the Outbox handles duplicate messages using RabbitMQ and SQL Server hosted in Docker containers.
 reviewed: 2019-08-01
 component: Core
 related:
