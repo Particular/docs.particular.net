@@ -36,7 +36,7 @@ The code consists of a single NServiceBus endpoint project, which simulates rece
 2. Using the Outbox but with a maximum message concurrency of `1`.
 3. Using the Outbox but with multiple messages being processed simultaneously, relying on the concurrency exception thrown by the database to ensure exactly-once successful processing of messages.
 
-The steps is selected via commenting and uncommenting code in the **Program.cs** file:
+Selecting each step is accomplished via commenting and uncommenting code in the **Program.cs** file:
 
 snippet: SampleSteps
 
