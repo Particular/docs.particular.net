@@ -62,4 +62,4 @@ WARNING: This will result in the task not being executed but also not being resc
 
 ## Exception Handling
 
-When an exception is thrown inside a schedule callback, the exception will be [logged as an error](/nservicebus/logging/#logging-levels) and the endpoint will **not** shutdown.
+When an exception is thrown inside a schedule callback, the exception will be logged as an error and the endpoint will **not** shutdown.

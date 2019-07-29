@@ -89,7 +89,7 @@ The built-in profiles by default use the console and rolling file appends, loggi
 
 
 
-The rolling file logs are written to the `logfile` in the same directory as the executable. The file grows to a maximum size of 1MB, then a new file is created. A maximum of ten files is kept, then the oldest file is erased. If not otherwise specified, the logging threshold is set to the `Warn` level. To configure the logging threshold, see [changing logging levels](/nservicebus/logging/#logging-levels).
+The rolling file logs are written to the `logfile` in the same directory as the executable. The file grows to a maximum size of 1MB, then a new file is created. A maximum of ten files is kept, then the oldest file is erased. If not otherwise specified, the logging threshold is set to the `Warn` level. To configure the logging threshold, see [changing logging levels](/nservicebus/logging/#default-logging-changing-the-defaults-changing-the-logging-level).
 
 Warning: For changes to the configuration to have an effect, the process must be restarted.
 

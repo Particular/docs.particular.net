@@ -35,7 +35,7 @@ See also [Transport-specific queue creation](/transports/msmq/operations-scripti
 
 ### Removed FeaturesReport
 
-`FeaturesReport` exposed reporting information about features of a running endpoint instance. It has been internalized. As with previous versions, the information is still available by inspecting the `DisplayDiagnosticsForFeatures` logger when the endpoint runs with log level [`DEBUG`](/nservicebus/logging/#logging-levels).
+`FeaturesReport` exposed reporting information about features of a running endpoint instance. It has been internalized. As with previous versions, the information is still available by inspecting the `DisplayDiagnosticsForFeatures` logger when the endpoint runs with log level [`DEBUG`](/nservicebus/logging/#default-logging-changing-the-defaults-changing-the-logging-level).
 
 
 ### [Feature dependencies](/nservicebus/pipeline/features.md#dependencies)
