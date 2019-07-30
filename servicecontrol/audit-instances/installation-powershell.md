@@ -48,7 +48,7 @@ $auditInstance New-ServiceControlAuditInstance `
   -AuditQueue audit1 `
   -AuditRetentionPeriod 10:00:00:00 `
   -ForwardAuditMessages:$false `
-  -ServiceControlAddress $primaryInstanceName
+  -ServiceControlQueueAddress $primaryInstanceName
 ```
 
 There are additional parameters available to set configuration options such as hostname and transport connection string.
