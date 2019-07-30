@@ -18,7 +18,7 @@ Messages objects can be made immutable at runtime by:
 
 ## Properties with only public getters
 
-Note: [Not all serializers support deserialization to private getters](/nservicebus/serialization/index.md)
+Note: [Not all serializers support deserialization to private getters](/nservicebus/serialization/)
 
 ```c#
 public class CancelOrder : ICommand
@@ -34,7 +34,7 @@ public class CancelOrder : ICommand
 
 ## Classes with public setters, interfaces with only getters
 
-Using private setters is not supported by all serializers. An alternative is to have a class that contains public setters/getters so that any serializer can deserialize and make use of NServiceBus its support for [multiple inheritance and polymorphic dispatch](messages-as-interfaces.md). Interfaces are used only by message handlers and classes only to create the message and pass it to `Send` or `Publish`.
+Using private setters is not supported by all serializers. An alternative is to have a class that contains public setters/getters so that any serializer can deserialize and make use of NServiceBus its support for [multiple inheritance and polymorphic dispatch](/nservicebus/messaging/messages-as-interfaces.md). Interfaces are used only by message handlers and classes only to create the message and pass it to `Send` or `Publish`.
 
 Note: Not all transport configurations support polymorphic dispatch.
 
