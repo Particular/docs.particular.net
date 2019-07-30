@@ -2,6 +2,8 @@
 title: Immutable Messages
 reviewed: 2019-07-23
 component: Core
+related:
+- samples/immutable-messages
 ---
 
 Usually messages are designed as [DTO](https://en.wikipedia.org/wiki/Data_transfer_object)'s which would mean POCO's. This model is simple and will always work. Immutable message are sometimes considered from a coding philopsy.
