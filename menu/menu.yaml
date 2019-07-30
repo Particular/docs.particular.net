@@ -1167,8 +1167,8 @@
       - Title: Retry importing messages
         Url: servicecontrol/import-failed-messages
   - Title: Audit instances
-      Url: servicecontrol/audit-instances
-      Articles:        
+    Url: servicecontrol/audit-instances
+    Articles:
       - Title: Managing via PowerShell
         Url: servicecontrol/audit-instances/installation-powershell
       - Title: Settings
