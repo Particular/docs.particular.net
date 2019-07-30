@@ -21,7 +21,7 @@ For on-premises hosting, endpoints are typically hosted in background processes 
 
 ### Windows Services
 
-In Windows, a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host NServiceBus endpoints.
+In Windows, a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host an NServiceBus endpoint.
 
 Windows Services run in the background, can immediately start when Windows is started, can be paused and restarted, and support [recoverability options](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
 
@@ -34,18 +34,18 @@ In Windows, IIS is a reliable host for web-based applications. An NServiceBus en
 
 This restricts IIS as a choice for hosting NServiceBus endpoints to two specific scenarios:
 
-* [Send-only endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting), which can send messages but does not receive any messages, and therefore doesn't need to initialize any receive infrastructure. Messages are sent during the handling of incoming HTTP requests or after user input in an interactive application.
+* [Send-only endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting), which can send messages but do not receive any messages, and therefore do not need to initialize any receive infrastructure. Messages are sent during the handling of incoming HTTP requests or after user input in an interactive application.
 * Web applications which provide [near real-time feedback](/samples/near-realtime-clients/) using queues for asynchronous and reliable communication.
 
 See [Web Application Hosting](/nservicebus/hosting/web-application.md) for details.
 
 ### Linux background processes
 
-In Linux, a background process is typically controlled by a system service controller. One of the most commonly used is [systemd](https://freedesktop.org/wiki/Software/systemd/). These controllers can be configured to start and stop any executable, such as a console app, a background service when the operating system starts and shuts down, as well as more complex configurations.
+In Linux, a background process is typically controlled by a system service controller. One of the most commonly used is [systemd](https://freedesktop.org/wiki/Software/systemd/). These controllers can be configured to start and stop any executable, typically a console app, as a background process when the operating system starts and shuts down, as well as more complex configurations.
 
 ## Containers
 
-This section focuses on Docker as one of the most well known container technologies.
+This section focuses on Docker, as one of the most well known container technologies.
 
 The biggest difference in hosting NServiceBus endpoints using Docker, compared to a regular host OS, is that applications are isolated from the host, and other containers. This can be beneficial with respect to security. Another benefit is portability. It is easy to move containers from development to test and production.
 
@@ -71,24 +71,24 @@ Starting an NServiceBus endpoint for each message adds considerable overhead. Pa
 
 ### Service Fabric
 
-Service Fabric works on top of Virtual Machine scale sets to provide clustered, stateful services. If dynamic scaling and clustering is a requirement, Service Fabric can be a good option to host NServiceBus endpoints.
+Service Fabric works on top of Virtual Machine Scale Sets to provide clustered, stateful services. If dynamic scaling and clustering is a requirement, Service Fabric can be a good option to host NServiceBus endpoints.
 
 ### Cloud Services
 
-Cloud Services provide worker roles for background processes. With the introduction of Azure AppServices, with its extended features, Cloud Services is less likely to be a good choice for NServiceBus endpoints.
+Cloud Services provide worker roles for background processes. With the introduction of Azure AppServices, with it's extended features, Cloud Services is less likely to be a good choice for NServiceBus endpoints.
 
 ## Amazon Web Services
 
-Although there is a [comparison chart](https://docs.microsoft.com/en-us/azure/architecture/aws-professional/services#miscellaneous) that compares Amazon Web Services (AWS) to Microsoft Azure, there aren't any real alternatives for hosting background processes. That leaves the following options:
+Although there is a [comparison chart](https://docs.microsoft.com/en-us/azure/architecture/aws-professional/services#miscellaneous) that compares Amazon Web Services (AWS) to Microsoft Azure, AWS does not provide any comparable alternatives for hosting background processes. That leaves the following:
 
 ### Virtual Machines
 
-This results in the same options as described under the [on-premises](#on-premises) section.
+AWS virtual machines provide the same options as those described in [on-premises](#on-premises).
 
 ### Containers
 
-This option has been described in the [containers](#containers) section.
+AWS containers provide the same options as those described in [containers](#containers) section.
 
 ### AWS Mesh
 
-This option is comparable to Azure [Service Fabric](#microsoft-azure-service-fabric).
+AWS Mesh is comparable to Azure [Service Fabric](#microsoft-azure-service-fabric).
