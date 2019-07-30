@@ -75,7 +75,7 @@ $serviceControlInstance = New-ServiceControlInstance -Name Test.ServiceControl -
 Optionally create a ServiceControl Audit instance to manage an audit queue:
 
 ```ps
-$auditInstance = New-ServiceControlAuditInstance -Name Test.ServiceControl.Audit -InstallPath C:\ServiceControl.Audit\Bin -DBPath C:\ServiceControl.Audit\DB -LogPath C:\ServiceControl.Audit\Logs -Port 44444 -DatabaseMaintenancePort 44445 -Transport MSMQ -AuditQueue audit1 -AuditRetentionPeriod 10:00:00:00 -ForwardAuditMessages:$false -ServiceControlAddress Test.ServiceControl
+$auditInstance = New-ServiceControlAuditInstance -Name Test.ServiceControl.Audit -InstallPath C:\ServiceControl.Audit\Bin -DBPath C:\ServiceControl.Audit\DB -LogPath C:\ServiceControl.Audit\Logs -Port 44444 -DatabaseMaintenancePort 44445 -Transport MSMQ -AuditQueue audit1 -AuditRetentionPeriod 10:00:00:00 -ForwardAuditMessages:$false -ServiceControlQueueAddress Test.ServiceControl
 
 Add-ServiceControlRemote -Name $serviceControlInstance.Name -RemoteInstanceAddress $auditInstance.Url
 ```
