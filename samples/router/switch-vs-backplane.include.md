@@ -2,12 +2,12 @@
 
 Both [Switch](/samples/router/sql-switch) and [Backplane](/samples/router/backplane) approaches can be used replace the deprecated multi-instance mode in connecting endpoints that use different SQL Server databases. The following table contains a side-by-side comparison of both approaches
 
-|Switch|Backplane
-|----------------
-|Single router for the entire solution|Router-per-database
-|Requires DTC to ensure *exactly-once* processing|*Exactly-once* processing through de-duplication
-|All SQL Server instances must be in the same network|Each SQL Server instance can be in separate network or even data centre
-|Centralized forwarding configuration|Distributed forwarding configuration
+| Switch                                               | Backplane                                                               |
+|------------------------------------------------------|-------------------------------------------------------------------------|
+| Single router for the entire solution                | Router-per-database                                                     |
+| Requires DTC to ensure *exactly-once* processing     | *Exactly-once* processing through de-duplication                        |
+| All SQL Server instances must be in the same network | Each SQL Server instance can be in separate network or even data centre |
+| Centralized forwarding configuration                 | Distributed forwarding configuration                                    |
 
 The Backplane approach, while more complex in terms of deployment, provides more flexibility e.g. some databases might be on-premise while others might be in the cloud.
 
