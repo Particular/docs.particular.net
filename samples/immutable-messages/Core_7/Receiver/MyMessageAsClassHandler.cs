@@ -3,6 +3,7 @@ using NServiceBus;
 using NServiceBus.Logging;
 using UsingClasses.Messages;
 
+#region immutable-messages-as-class-handling
 public class MyMessageAsClassHandler :
     IHandleMessages<MyMessage>
 {
@@ -14,3 +15,4 @@ public class MyMessageAsClassHandler :
         return Task.CompletedTask;
     }
 }
+#endregion

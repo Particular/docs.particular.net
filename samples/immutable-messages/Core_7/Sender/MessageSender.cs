@@ -45,10 +45,12 @@ class MessageSender
         var data = Guid.NewGuid().ToString();
 
         Console.WriteLine($"Message sent, data: {data}");
+#region immutable-messages-as-interface-sending
         var myMessage = new Messages.MyMessageImpl()
         {
             Data = data
         };
         return endpointInstance.Send(myMessage);
+#endregion
     }
 }

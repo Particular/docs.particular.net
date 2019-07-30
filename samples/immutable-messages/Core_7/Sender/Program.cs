@@ -9,10 +9,15 @@ class Program
     static async Task Main()
     {
         Console.Title = "Samples.ImmutableMessages.UsingInterfaces.Sender";
+
+#region immutable-messages-endpoint-config
+
         var endpointConfiguration = new EndpointConfiguration("Samples.ImmutableMessages.UsingInterfaces.Sender");
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         var transportConfiguration = endpointConfiguration.UseTransport<LearningTransport>();
+
+#endregion
 
         var routingConfiguration = transportConfiguration.Routing();
         routingConfiguration.RouteToEndpoint(typeof(MyMessageImpl), "Samples.ImmutableMessages.UsingInterfaces.Receiver");
