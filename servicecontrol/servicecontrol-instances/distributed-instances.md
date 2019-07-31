@@ -4,6 +4,8 @@ reviewed: 2018-03-01
 component: ServiceControl
 ---
 
+WARN: The approach described in this document is not recommended for new deployments. For new installations, use [ServiceControl remote instances](/servicecontrol/servicecontrol-instances/remotes.md). For guidance upgrading existing multi-instance ServiceControl installations, see [Upgrade ServiceControl from Version 3 to Version 4](/servicecontrol/upgrades/3to4/).
+
 NOTE: A multi-instance ServiceControl installation can be complex to maintain. Before splitting ServiceControl, it is recommended to follow the capacity planning guides described in the [ServiceControl Capacity Planning](/servicecontrol/capacity-and-planning.md) documentation.
 
 Audit message processing can become a performance challenge due to high message throughput when running NServiceBus systems at scale. Multi-instance deployment helps mitigate this problem by enabling audit data sharding between a group of ServiceControl instances. 
