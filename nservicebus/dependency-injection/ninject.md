@@ -42,6 +42,10 @@ Services using `InUnitOfWorkScope()` can only be injected into code which is pro
 
 snippet: NinjectConditionalBindings
 
+### Multi hosting
+
+Multiple endpoints in a single process cannot share a single Ninject kernel. Each requires its own container instance or each requires its own child container. Ninject supports this with the [Ninject.Extensions.ChildKernel](https://github.com/ninject/Ninject.Extensions.ChildKernel) extension. Execute `new ChildKernel(parentKernel)` and pass this new kernel instance to NServiceBus.
+
 
 ### DependencyLifecycle Mapping
 
