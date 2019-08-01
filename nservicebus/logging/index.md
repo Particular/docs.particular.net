@@ -15,7 +15,7 @@ related:
 
 ## Default Logging
 
-NServiceBus has a built-in logging mechanism that does not depend on any external libraries. While limited in terms of available log targets, this build-in mechanism is production-ready and offers defaults that are reasonable for most deployments. The built-in framework is available and used as default in all NServiceBus hosting modes (e.g. self-hosting or Windows Service). Regardless if built-in or a custom library is used under the hood, the NServiceBus logging abstractions can be used for [logging in the user code](/nservicebus/logging/usage.md). By default NServiceBus has three log targets configured:
+NServiceBus has a built-in logging mechanism that does not depend on any external libraries. While limited in terms of available log targets, this built-in mechanism is production-ready and offers defaults that are reasonable for most deployments. The built-in framework is available and used as default in all NServiceBus hosting modes (e.g. self-hosting or Windows Service). Regardless of if the built-in logging or a custom logging library is used under the hood, the NServiceBus logging abstractions can be used for [logging in the user code](/nservicebus/logging/usage.md). By default NServiceBus has three log targets configured:
 
 
 ### Console
