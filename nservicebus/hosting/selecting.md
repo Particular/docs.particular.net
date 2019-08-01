@@ -75,7 +75,7 @@ Service Fabric works on top of Virtual Machine Scale Sets to provide clustered, 
 
 ### Cloud Services
 
-Cloud Services provide worker roles for background processes. With the introduction of Azure AppServices, with it's extended features, Cloud Services is less likely to be a good choice for NServiceBus endpoints.
+Cloud Services provide worker roles for background processes. With the introduction of Azure AppServices, with its extended features, Cloud Services is less likely to be a good choice for NServiceBus endpoints.
 
 ## Amazon Web Services
 
