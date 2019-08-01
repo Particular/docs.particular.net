@@ -10,7 +10,11 @@
 
         public void SomeMethod()
         {
-            log.Debug("Something interesting happened.");
+            log.Warn("Something unexpected happened.");
+            if (log.IsDebugEnabled)
+            {
+                log.Debug("Something expected happened.");
+            }
         }
     }
 

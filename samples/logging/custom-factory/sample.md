@@ -1,7 +1,7 @@
 ---
 title: Custom Logger Factory
 summary: Illustrates a custom implementation of a logging factory.
-reviewed: 2017-10-07
+reviewed: 2019-07-30
 component: Core
 tags:
  - Logging
@@ -28,7 +28,7 @@ It is also possible to see full implementations of logging factories by looking 
 
 ## Logging Definition
 
-To configure a custom logging factory a custom `LoggingFactoryDefinition` must be implemented.
+To build a custom logging factory, create a class derived from `LoggingFactoryDefinition`.
 
 snippet: definition
 
@@ -40,7 +40,6 @@ The `LoggingFactoryDefinition` then returns an instance of `ILoggerFactory`
 snippet: factory
 
 Note that the `ConsoleLoggerFactory` can optionally expose extra configuration, as is illustrated in this case by a custom `LogLevel()` method.
-
 
 ## Log
 

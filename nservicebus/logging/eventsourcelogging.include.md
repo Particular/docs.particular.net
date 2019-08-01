@@ -1,11 +1,11 @@
 ## Required Implementations
 
-Several class implementations are required to define how the EventSourceLogger should function.
+Several class implementations are required to define how the Event Tracing for Windows logging should function.
 
 
 ### EventListener
 
-The implementation of [EventListener](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracing.eventlistener.aspx) gives full contol over how [EventWrittenEventArgs](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracing.eventlistener.oneventwritten.aspx) are written.
+The implementation of [EventListener](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracing.eventlistener.aspx) gives full control over how [EventWrittenEventArgs](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracing.eventlistener.oneventwritten.aspx) are written.
 
 In this case only [OnEventWritten](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracing.eventlistener.oneventwritten.aspx) is overwritten to write to the console.
 
@@ -18,7 +18,7 @@ snippet: EventListener
 
 ### EventSourceLoggerBase
 
-The implementation of `EventSourceLoggerBase` allows custom handling of of all levels of logging as well as assigning the [EventAttribute](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracing.eventattribute.aspx) settings that will be used for each method.
+The implementation of `EventSourceLoggerBase` allows custom handling of of all levels of logging, as well as assigning the [EventAttribute](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracing.eventattribute.aspx) settings that are be used for each method.
 
 snippet: EventSourceLoggerBase
 
