@@ -15,8 +15,9 @@ This sample shows how to configure ServiceControl to monitor endpoints and retry
 
 ## Prerequisites
 
+ 1. A SQL Server instance. The connection string used in the sample uses SQL Express.
  1. [Install ServiceControl](/servicecontrol/installation.md). 
- 2. Using the [ServiceControl Management tool](/servicecontrol/license.md#servicecontrol-management-tool), set up ServiceControl to monitor endpoints using the MSMQ transport:
+ 1. Using the [ServiceControl Management tool](/servicecontrol/license.md#servicecontrol-management-tool), set up ServiceControl to monitor endpoints using the MSMQ transport:
 	 
    * Add a new ServiceControl instance:
    * Use default `Particular.ServiceControl` as the instance name (ensure there is no other instance of SC running with the same name).
