@@ -1,5 +1,5 @@
 ---
-title: LEvent Tracing for Windows
+title: Event Tracing for Windows
 summary: Logging to Event Tracing for Windows (ETW)
 reviewed: 2019-07-29
 component: EventSourceLogging
