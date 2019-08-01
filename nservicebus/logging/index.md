@@ -20,14 +20,14 @@ NServiceBus has a built-in logging mechanism that does not depend on any externa
 
 ### Console
 
-All `Info` (and above) messages are written to the current console, if available in the hosting environment.
+All `Info` (and above) messages are written to the current console if one is available in the hosting environment.
 
 Errors will be written with `ConsoleColor.Red`. Warnings will be written with `ConsoleColor.DarkYellow`. All other message will be written with `ConsoleColor.White`.
 
 
 ### Trace
 
-All `Warn` (and above) messages are written to `Trace.WriteLine` and thus can be forwarded to any [trace listener](https://docs.microsoft.com/en-us/dotnet/framework/debug-trace-profile/trace-listeners).
+All `Warn` (and above) messages are written to `Trace.WriteLine` and therefore can be forwarded to any [trace listener](https://docs.microsoft.com/en-us/dotnet/framework/debug-trace-profile/trace-listeners).
 
 
 ### Rolling file
@@ -54,9 +54,9 @@ Each log entry is associated with a _level_ that describes how important and cri
  * Error
  * Fatal
 
-Configuring global threshold to a specific level as described above means that all messages below that level are discarded. For example setting the threshold value to `Warn` means that only `Warn`, `Error` and `Fatal` messages are written.
+Configuring the global threshold to one of the levels described above means that all messages below that level are discarded. For example setting the threshold value to `Warn` means that only `Warn`, `Error` and `Fatal` messages are written.
 
-The `LogManager` class is the entry point for the logging configuration. If needed, it allows using custom logging integrations (see below). It also allows customizing the default built-in logging. The `Use` generic method returns the `LoggingFactoryDefinition`-derived object that provides the customization APIs.
+The `LogManager` class is the entry point for the logging configuration. If needed, it allows using custom logging integrations (see below). It also allows customization of the default built-in logging. The `Use` generic method returns the `LoggingFactoryDefinition`-derived object that provides the customization APIs.
 
 partial: level
 
