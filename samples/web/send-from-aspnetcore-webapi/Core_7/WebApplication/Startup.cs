@@ -1,22 +1,10 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 
 public class Startup
 {
-    public Startup(IHostingEnvironment env)
-    {
-        var builder = new ConfigurationBuilder()
-            .SetBasePath(env.ContentRootPath)
-            .AddEnvironmentVariables();
-        Configuration = builder.Build();
-    }
-
-    public IConfigurationRoot Configuration { get; }
-
     public void ConfigureServices(IServiceCollection services)
     {
         #region EndpointConfiguration
@@ -36,15 +24,9 @@ public class Startup
 
         #endregion
 
-        #region EndpointStart
-
-        endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
-
-        #endregion
-
         #region ServiceRegistration
 
-        services.AddSingleton<IMessageSession>(endpoint);
+        services.AddNServiceBus(endpointConfiguration);
 
         #endregion
 
@@ -52,19 +34,9 @@ public class Startup
         services.AddLogging(loggingBuilder => loggingBuilder.AddDebug());
     }
 
-
-    public void Configure(IApplicationBuilder app, IApplicationLifetime applicationLifetime)
+    public void Configure(IApplicationBuilder app)
     {
-        applicationLifetime.ApplicationStopping.Register(OnShutdown);
-
         app.UseMvc(routeBuilder => routeBuilder.MapRoute(name: "default",
             template: "{controller=SendMessage}/{action=Get}"));
     }
-
-    void OnShutdown()
-    {
-        endpoint?.Stop().GetAwaiter().GetResult();
-    }
-
-    IEndpointInstance endpoint;
 }
