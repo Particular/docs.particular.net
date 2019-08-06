@@ -11,7 +11,7 @@ NOTE: For general information about ServiceControl Powershell, including trouble
 
 ## ServiceControl Audit instance Cmdlets and Aliases
 
-The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module for managing Monitoring instances.
+The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module for managing Audit instances.
 
 | Alias                  | Cmdlet                                        |
 | ---------------------- | --------------------------------------------- |
