@@ -1,7 +1,7 @@
 ---
 title: .NET Framework requirements
 summary: List of the .NET Framework requirements for NServiceBus.
-reviewed: 2017-10-12
+reviewed: 2019-08-06
 related:
  - nservicebus/operations
 tags:
