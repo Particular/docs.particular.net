@@ -1,6 +1,6 @@
 ---
 title: Notifications
-reviewed: 2017-10-07
+reviewed: 2019-08-06
 component: Core
 related:
 - nservicebus/recoverability
