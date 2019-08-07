@@ -397,7 +397,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 1.2.x     | 2018-11-01     | -                 | -                                 |
-| ~~1.1.x~~ | ~~2015-02-05~~ | ~~2019-02-01~~    | ~~Superseded by 1.2.x~~           |
 
 #### [ServiceControl.Plugin.Nsb5.CustomChecks](/nuget/ServiceControl.Plugin.Nsb5.CustomChecks)
 
