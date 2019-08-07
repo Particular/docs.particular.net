@@ -29,7 +29,7 @@ await endpoint.Send(new SubmitOrder { OrderId = orderId });
 ```cs
 public class OrdersHandler : IHandleMessages<SubmitOrder>
 {
-    public async Task Handle(SubmitOrder message, IMessageContext context)
+    public async Task Handle(SubmitOrder message, IMessageHandlerContext context)
     {
         Console.WriteLine($"Order received {message.OrderId}");
 
