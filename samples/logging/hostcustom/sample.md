@@ -1,7 +1,7 @@
 ---
 title: Host Custom Logging
 summary: Customize logging when running inside the NServiceBus host.
-reviewed: 2017-10-07
+reviewed: 2018-08-09
 component: Host
 tags:
 - Logging
