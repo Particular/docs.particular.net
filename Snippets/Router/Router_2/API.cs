@@ -32,7 +32,7 @@ public class API
         routerConfig.AddInterface<MsmqTransport>("Msmq", 
             customization: transportExtensions => { });
 
-        routerConfig.AddInterface<MsmqTransport>("Rabbit",
+        routerConfig.AddInterface<RabbitMQTransport>("Rabbit",
             customization: transportExtensions =>
             {
                 transportExtensions.ConnectionString("host=localhost");
