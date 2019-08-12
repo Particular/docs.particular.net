@@ -6,11 +6,11 @@ related:
 - samples/immutable-messages
 ---
 
-Usually messages are designed as [DTO](https://en.wikipedia.org/wiki/Data_transfer_object)'s which would mean POCO's. This model is simple and will always work. Immutable message are sometimes considered from a coding philopsy.
+Usually messages are designed as [DTOs](https://en.wikipedia.org/wiki/Data_transfer_object), i.e. a plain class with public properties. This model is simple and will always work. Immutable message are sometimes considered from a coding philosophy that messages should not be able to be changed after they are created.
 
 Note: Serialized messages are immutable once on the wire, changing property values will not result in a message that is forwarded to an error or audit queue to contain a different value. 
 
-Messages objects can be made immutable at runtime by:
+Message objects can be made immutable at runtime by:
 
 1. Creating properties with only public getters and initializing these properties via constructor initialization.
 2. Having regular message classes with public getters/setters at the sender, where these classes implement an interface with only public getters. Receivers reference only the interface.
@@ -18,7 +18,7 @@ Messages objects can be made immutable at runtime by:
 
 ## Properties with only public getters
 
-Note: [Not all serializers support deserialization to private getters](/nservicebus/serialization/)
+Note: [Not all serializers support deserialization to private setters](/nservicebus/serialization/).
 
 ```c#
 public class CancelOrder : ICommand
