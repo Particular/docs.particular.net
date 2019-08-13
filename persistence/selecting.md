@@ -1,7 +1,7 @@
 ---
 title: Selecting a persister
 summary: A guide for selecting an NServicebus persister.
-reviewed: 2019-03-11
+reviewed: 2019-08-13
 isLearningPath: true
 ---
 
@@ -33,7 +33,7 @@ I --> |Other|L[SQL Persistence]
 I --> |RabbitMQ/ASB|J[No persistence]
 I --> |ASQ|K[ASP]
 B --> |ServiceFabric|C[ServiceFabric]
-B --> |RavenDb|E[RavenDb]
+B --> |RavenDB|E[RavenDB]
 B --> |Azure|Q{IAAS/PAAS ?}
 B --> |No|L
 Q --> |PAAS|S[ASP]
@@ -79,6 +79,8 @@ This persister stores saga data as a JSON blob. This gives much better performan
 
 Since SQL Server and PostgreSQL have great support for querying JSON data, this persister is recommended over NHibernate.
 
+SQL Persistence [allows accessing the `DbConnection` and `DbTransaction`](/persistence/sql/accessing-data.md) from within message handlers to enable saving business data and NServiceBus data within the same transaction.
+
 ### NHibernate
 
 For new development, this persister is not recommended. Instead, use the SQL persister.
@@ -90,6 +92,8 @@ This option is relevant only if endpoints are hosted in Service Fabric.
 ### RavenDB
 
 If a business system already stores its data in RavenDB, NServiceBus supports storing data inside RavenDB as well. This removes the need to introduce additional storage.
+
+RavenDB Persistence [allows accessing the `IAsyncRavenSession`](/persistence/ravendb/#shared-session) from within message handlers to enable saving business data and NServiceBus data with the same `SaveChanges()` call.
 
 ### Other options
 
