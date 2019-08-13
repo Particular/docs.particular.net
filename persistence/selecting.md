@@ -34,6 +34,7 @@ I --> |RabbitMQ/ASB|J[No persistence]
 I --> |ASQ|K[ASP]
 B --> |ServiceFabric|C[ServiceFabric]
 B --> |RavenDB|E[RavenDB]
+B --> |MongoDB|M[MongoDB]
 B --> |Azure|Q{IAAS/PAAS ?}
 B --> |No|L
 Q --> |PAAS|S[ASP]
@@ -80,6 +81,12 @@ This persister stores saga data as a JSON blob. This gives much better performan
 Since SQL Server and PostgreSQL have great support for querying JSON data, this persister is recommended over NHibernate.
 
 SQL Persistence [allows accessing the `DbConnection` and `DbTransaction`](/persistence/sql/accessing-data.md) from within message handlers to enable saving business data and NServiceBus data within the same transaction.
+
+### MongoDB
+
+If a business system already stores its data in MongoDB, NServiceBus supports storing data inside MongoDB as well. This removes the need to introduce additional storage.
+
+With MongoDB 4.0 and greater, MongoDB Storage [allows accessing the transactional session](/persistence/mongodb/#multi-document-transactions-shared-transactions) from within message handlers to enable atomic commits of business data and NServiceBus data. 
 
 ### NHibernate
 
