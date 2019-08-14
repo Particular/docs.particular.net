@@ -7,8 +7,6 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using NUnit.Framework;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
 
 namespace IntegrityTests
 {
@@ -73,7 +71,7 @@ namespace IntegrityTests
 
             while (dirPath.Length >= TestSetup.DocsRootPath.Length)
             {
-                string dirName = Path.GetFileName(dirPath);
+                var dirName = Path.GetFileName(dirPath);
                 if (Regex.IsMatch(dirName, @"_(All|\d+(\.\d+)?)$"))
                 {
                     var componentName = dirName.Substring(0, dirName.IndexOf('_'));

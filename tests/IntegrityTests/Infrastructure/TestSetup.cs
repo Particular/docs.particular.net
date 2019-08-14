@@ -26,7 +26,7 @@ namespace IntegrityTests
 
             RootDirectories = new[] { DocsRootPath };
 
-            string componentsYamlPath = Path.Combine(TestSetup.DocsRootPath, "components\\components.yaml");
+            var componentsYamlPath = Path.Combine(TestSetup.DocsRootPath, "components\\components.yaml");
             var componentsText = File.ReadAllText(componentsYamlPath);
 
             var builder = new DeserializerBuilder();
