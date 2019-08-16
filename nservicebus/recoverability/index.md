@@ -47,6 +47,10 @@ Note: Depending on the concurrency and transactionality settings of the endpoint
 
 The Immediate Retry mechanism is implemented by making the message available for consumption again at the top of the queue, so that the endpoint can process it again without any delay. Immediate Retries cannot be used when [transport transactions](/transports/transactions.md) are disabled.
 
+### Memory consumption
+
+MSMQ and SQL Server transport need to cache exceptions in memory for immediate retries. Therefore, exceptions with a large memory footprint can cause high memory usage of the NServiceBus process. Please refer to [this guide](TODO) to resolve problems due to execessive memory consumption.
+
 
 ## Delayed Retries
 
