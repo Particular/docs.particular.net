@@ -1078,6 +1078,8 @@
       Title: Failed Messages
     - Url: servicepulse/intro-failed-message-retries
       Title: Retrying Failed Messages
+    - Url: servicepulse/intro-editing-messages
+      Title: Fixing malformed messages
     - Url: servicepulse/intro-archived-messages
       Title: Archived Messages
     - Url: servicepulse/intro-pending-retries
