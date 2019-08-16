@@ -11,7 +11,7 @@ If a message cannot be successfully retried it is possible to fix the malformed 
 
 ## Enabling the feature
 
-The message edit and retry feature is not enabled by default. To enable it, contact [Particular Support(https://particular.net/support) for assistance.
+The message edit and retry feature is not enabled by default. To enable it, contact [Particular Support](https://particular.net/support) for assistance.
 
 ## Headers
 
