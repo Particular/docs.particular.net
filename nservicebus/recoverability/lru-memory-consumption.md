@@ -14,6 +14,10 @@ MSMQ and SQL Server transport need to cache exceptions in memory for immediate r
 
 ## Dispose exception specific resources
 
-## Disable immediate retries
+Large exceptions which cause high memory consumption can be handled manually to explicitly dispose resources before they will be cached. This will reduce the overall memory stored in the cache.
 
-## Lower cache size (not available)
+The following sample shows how to dispose large response bodies contained in `WebException`s to eliminate unnecessary resources for recoverability:
+
+snippet: dispose-large-exceptions
+
+See [pipeline customization documentation](/nservicebus/pipeline/manipulate-with-behaviors.md) for more details.
