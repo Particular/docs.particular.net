@@ -1,7 +1,7 @@
 ---
 title: Uniform Session
 summary: Uniform Session introduces a uniform message session across the endpoint.
-reviewed: 2017-10-27
+reviewed: 2019-08-19
 component: UniformSession
 ---
 
@@ -30,7 +30,7 @@ When enabled, `IUniformSession` is automatically registered in the container and
 
 snippet: uniformsession-usage
 
-`IUniformSession` represents either a `IMessageSession` or `IMessageHandlerContext` depending on where it's used. Injected `IUniformSession` instances will automatically resolve to the correct session type based on the call hierarchy. To learn more about the session types, read the [Sending messages](/nservicebus/messaging/send-a-message.md) article.
+`IUniformSession` represents either an `IMessageSession` or `IMessageHandlerContext` depending on where it's used. Injected `IUniformSession` instances will automatically resolve to the correct session type based on the call hierarchy. To learn more about the session types, read the [Sending messages](/nservicebus/messaging/send-a-message.md) article.
 
 
 ## Safeguards
