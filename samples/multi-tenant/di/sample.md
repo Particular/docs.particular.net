@@ -1,5 +1,5 @@
 ---
-title: Injecting Tenant-aware Components to Message Handlers
+title: Injecting tenant-aware components into message handlers
 summary: How to configure IoC to inject tenant-aware components into message handlers
 reviewed: 2019-02-07
 component: Core
