@@ -7,7 +7,7 @@ tags:
 related:
 - transports/azure-storage-queues/configuration
 - samples/azure/storage-queues
-reviewed: 2017-10-24
+reviewed: 2019-08-18
 ---
 
 
