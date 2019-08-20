@@ -1,7 +1,7 @@
 ---
 title: Delayed Delivery
 summary: A simple ordering system that defers handling or delivery of a message
-reviewed: 2017-10-19
+reviewed: 2019-08-20
 component: Core
 tags:
 - Defer
