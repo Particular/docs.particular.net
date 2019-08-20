@@ -104,5 +104,5 @@ partial: exceptionincluded
 
 ## Recoverability memory consumption
 
-MSMQ and SQL Server transport need to cache exceptions in memory for retries. Therefore, exceptions with a large memory footprint can cause high memory usage of the NServiceBus process. NServiceBus can cache up to 1000 exceptions, capping the potential memory consumption to 1000 x `<exception size>`. Please refer to [this guide](TODO) to resolve problems due to execessive memory consumption.
+MSMQ and SQL Server transport need to cache exceptions in memory for retries. Therefore, exceptions with a large memory footprint can cause high memory usage of the NServiceBus process. NServiceBus can cache up to 1000 exceptions, capping the potential memory consumption to 1000 x `<exception size>`. Please refer to [this guide](/nservicebus/recoverability/lru-memory-consumption.md) to resolve problems due to execessive memory consumption.
 
