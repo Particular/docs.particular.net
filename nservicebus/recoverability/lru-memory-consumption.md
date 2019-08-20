@@ -10,7 +10,7 @@ tags:
 reviewed: 2019-08-16
 ---
 
-MSMQ and SQL Server transport needs to cache exceptions in memory to allow transactions to be cleared before executing recoverability policies. Therefore, exceptions with a large memory footprint can cause high memory usage of the NServiceBus process. Further, the recoverability cache might hold on to items longer when endpoints are scaled out. This page describes how to solve issues caused by excessive memory consumption due to this caching.
+MSMQ and SQL Server transport need to cache exceptions in memory to allow transactions to be cleared before executing recoverability policies. Therefore, exceptions with a large memory footprint can cause high memory usage of the NServiceBus process. Furthermore, the recoverability cache might hold on to items longer when endpoints are scaled out. This page describes how to solve issues caused by excessive memory consumption due to this caching.
 
 ## Dispose exception specific resources
 
