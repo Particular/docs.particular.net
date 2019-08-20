@@ -3,12 +3,12 @@ title: Saga Finder
 component: SqlPersistence
 related:
  - samples/saga/sql-sagafinder
-reviewed: 2017-10-24
+reviewed: 2019-08-20
 versions: '[2,)'
 ---
 
 
-The SQL Persistence exposes an API to enable creating [Saga Finders](/nservicebus/sagas/saga-finding.md).
+The SQL Persistence exposes an API to enable the creation of [Saga Finders](/nservicebus/sagas/saga-finding.md).
 
 
 ## Usage
