@@ -51,7 +51,7 @@ include: document-version
 
 ## Migrating data
 
-Alternatively to the compatibility mode, the existing saga data can be migrated to the data format used by the `NServiceBus.Storage.MongoDB` package. This approach requires the endpoint to be stopped during the migration. Use the `mongo` Shell to connect to your database and execute the following script:
+Alternatively to the compatibility mode, the existing saga data can be migrated to the data format used by the `NServiceBus.Storage.MongoDB` package. This approach requires the endpoint to be stopped during the migration. Use the `mongo` Shell to connect to the database and execute the following script:
 
 ```javascript
 db.getCollectionNames().forEach(collectionName => {
