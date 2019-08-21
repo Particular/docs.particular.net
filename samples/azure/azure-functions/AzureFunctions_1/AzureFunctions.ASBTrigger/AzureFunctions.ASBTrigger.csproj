@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.AzureFunctions.AzureServiceBus" Version="0.1.0-alpha0009" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.1.0" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.2.0" />
+  </ItemGroup>
+
+</Project>
