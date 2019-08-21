@@ -1051,7 +1051,7 @@
   Name: Azure Functions
   DocoUrl: nservicebus/hosting/azure-functions
   GitHubOwner: Particular
-  Category: Hosting
+  Category: Host
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions
   NugetOrder:
     - NServiceBus.Serverless
