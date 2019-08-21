@@ -1048,7 +1048,7 @@
 
 - Key: AzureFunctions
   Name: Azure Functions
-  DocoUrl: nservicebus/hosting/azure-functions
+  DocoUrl: nservicebus
   GitHubOwner: Particular
   Category: Host
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions
