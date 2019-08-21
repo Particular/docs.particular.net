@@ -1045,3 +1045,12 @@
   ProjectUrl: https://github.com/twenzel/NServiceBus.MSDependencyInjection
   NugetOrder:
     - NServiceBus.MSDependencyInjection
+
+- Key: AzureFunctions
+  Name: Azure Functions
+  DocoUrl: nservicebus
+  GitHubOwner: Particular
+  Category: Host
+  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions
+  NugetOrder:
+    - NServiceBus
