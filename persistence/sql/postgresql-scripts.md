@@ -1,19 +1,19 @@
 ---
 title: PostgreSQL Scripts
 component: SqlPersistence
-reviewed: 2017-10-23
+reviewed: 2019-08-21
 related:
  - nservicebus/operations
 versions: '[3,)'
 ---
 
 
-Scripts and SQL used when interacting with a [PostgreSQL](https://www.postgresql.org/) database.
+Scripts and SQL statements used when interacting with a [PostgreSQL](https://www.postgresql.org/) database.
 
 
 ## Build Time
 
-Scripts created at build time and executed as part of a deployment or decommissioning of an endpoint.
+Scripts are created at build time and can be executed manually as part of a deployment or decommissioning of an endpoint.
  
 
 ### Outbox
@@ -74,7 +74,7 @@ snippet: PostgreSQL_TimeoutDropSql
 
 ## Run Time
 
-SQL used at runtime to query and update data.
+These are the SQL scripts used at runtime to query and update data.
 
 
 ### Outbox
@@ -148,7 +148,7 @@ snippet: PostgreSQL_SagaUpdateSql
 snippet: postgresql_SagaSelectSql
 
 
-### Subscription
+### Subscriptions
 
 
 #### GetSubscribers
@@ -172,7 +172,7 @@ Used by `ISubscriptionStorage.Unsubscribe`.
 snippet: PostgreSQL_SubscriptionUnsubscribeSql
 
 
-### Timeout
+### Timeouts
 
 
 #### Peek
