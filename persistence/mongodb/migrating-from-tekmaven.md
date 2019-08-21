@@ -13,21 +13,7 @@ The `NServiceBus.Storage.MongoDB` package was designed to be fully compatible wi
 
 include: migration-warning
 
-## Compatibility mode
-
-The compatibility mode enables the MongoDB persistence to work with existing saga data without modifications to the database.
-
-### Configuration
-
-Use the following compatibility API to configure the package to work with existing saga data:
-
-snippet: MongoDBTekmavenCompatibility
-
-The `VersionElementName` value must match the `BsonDocument` element name used by the previous saga data property decorated with the `[DocumentVersion]` attribute.
-
-include: must-apply-conventions-for-version
-
-### Saga data class changes
+## Saga data class changes
 
 [Saga data classes](/nservicebus/sagas/#long-running-means-stateful) no longer need to provide an `int` version property decorated with a `DocumentVersion`. The version property and attribute may be safely removed from saga data class implementations:
 
@@ -44,9 +30,24 @@ class MySagaData : IContainSagaData
 
 ```
 
-#### How Document Versioning Works
+### How Document Versioning Works
 
 include: document-version
+
+
+## Compatibility mode
+
+The compatibility mode enables the MongoDB persistence to work with existing saga data without modifications to the database.
+
+### Configuration
+
+Use the following compatibility API to configure the package to work with existing saga data:
+
+snippet: MongoDBTekmavenCompatibility
+
+The `VersionElementName` value must match the `BsonDocument` element name used by the previous saga data property decorated with the `[DocumentVersion]` attribute.
+
+include: must-apply-conventions-for-version
 
 
 ## Migrating data
@@ -65,6 +66,6 @@ db.getCollectionNames().forEach(collectionName => {
 });
 ```
 
-Replace `"Version"` with the name of the version property on your saga data.
+Replace `"Version"` with the name of the version property on the saga data which was previously decorated with the `[DocumentVersion]` attribute.
 
-WARNING: Make sure to create a backup of your database prior to migrating the saga data.
+WARNING: Make sure to create a backup of the database prior to migrating the saga data.
