@@ -3,7 +3,6 @@ title: Recoverability
 summary: Explains how exceptions are handled, and actions retried, during message processing
 component: Core
 isLearningPath: true
-versions: [6, *]
 tags:
  - Exceptions
  - Error Handling
