@@ -2,9 +2,10 @@
 title: Callback Usage
 summary: Demonstrates the use of callbacks
 component: Callbacks
-reviewed: 2017-10-19
+reviewed: 2019-08-22
 ---
 
+## Running the sample
 
  1. Run the solution. Two console applications and a web application will start.
  1. In the WebSender application, click links from the landing page to trigger each scenario.
