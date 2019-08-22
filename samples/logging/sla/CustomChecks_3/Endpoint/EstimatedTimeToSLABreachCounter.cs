@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using NServiceBus;
@@ -25,9 +25,10 @@ class EstimatedTimeToSLABreachCounter
         lock (dataPoints)
         {
             dataPoints.Add(dataPoint);
+
             if (dataPoints.Count > MaxDataPoints)
             {
-                dataPoints.RemoveRange(0, dataPoints.Count - MaxDataPoints);
+                dataPoints.RemoveAt(0);
             }
         }
 
@@ -44,44 +45,31 @@ class EstimatedTimeToSLABreachCounter
         }
 
         var secondsToSLABreach = CalculateTimeToSLABreach(snapshots);
+
         Interlocked.Exchange(ref currentSla, Convert.ToInt32(Math.Min(secondsToSLABreach, int.MaxValue)));
     }
 
     double CalculateTimeToSLABreach(List<DataPoint> snapshots)
     {
-        DataPoint? first = null;
-        DataPoint? previous = null;
-
-        var criticalTimeDelta = TimeSpan.Zero;
-
-        foreach (var current in snapshots)
+        if(snapshots.Count < 2)
         {
-            if (!first.HasValue)
-            {
-                first = current;
-            }
-
-            if (previous.HasValue)
-            {
-                criticalTimeDelta += current.CriticalTime - previous.Value.CriticalTime;
-            }
-
-            previous = current;
+            return double.MaxValue;
         }
+
+        var criticalTimeDelta = snapshots[snapshots.Count-1].CriticalTime - snapshots[0].CriticalTime;
+        var elapsedTime = snapshots[snapshots.Count - 1].OccurredAt - snapshots[0].OccurredAt;
 
         if (criticalTimeDelta.TotalSeconds <= 0.0)
         {
             return double.MaxValue;
         }
 
-        var elapsedTime = previous.Value.OccurredAt - first.Value.OccurredAt;
-
         if (elapsedTime.TotalSeconds <= 0.0)
         {
             return double.MaxValue;
         }
 
-        var lastKnownCriticalTime = previous.Value.CriticalTime.TotalSeconds;
+        var lastKnownCriticalTime = snapshots[snapshots.Count-1].CriticalTime.TotalSeconds;
 
         var criticalTimeDeltaPerSecond = criticalTimeDelta.TotalSeconds / elapsedTime.TotalSeconds;
 
