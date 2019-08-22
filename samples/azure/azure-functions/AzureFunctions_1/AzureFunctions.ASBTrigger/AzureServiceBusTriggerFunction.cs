@@ -9,9 +9,9 @@ using NServiceBus.Serverless;
 
 namespace AzureFunctions.ASBTrigger
 {
-    public class AzureServiceBusTrigger
+    public class AzureServiceBusTriggerFunction
     {
-        [FunctionName(nameof(AzureServiceBusTrigger))]
+        [FunctionName(nameof(AzureServiceBusTriggerFunction))]
         public static async Task Run(
             [ServiceBusTrigger(queueName: "ASBTriggerQueue", Connection = "ASBConnectionString")]
             Message message,
@@ -19,8 +19,6 @@ namespace AzureFunctions.ASBTrigger
             ILogger log,
             ExecutionContext context)
         {
-            log.LogInformation($"C# ServiceBus queue trigger function processed message: {messageId}. Invocation {context.InvocationId}");
-
             serverlessEndpoint = serverlessEndpoint ?? new ServerlessEndpoint(() =>
             {
                 var config = new ConfigurationBuilder()

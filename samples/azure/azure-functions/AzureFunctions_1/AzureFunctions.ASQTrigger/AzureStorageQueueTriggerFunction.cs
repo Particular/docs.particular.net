@@ -9,9 +9,9 @@ using NServiceBus.Serverless;
 
 namespace AzureFunctions.ASQTrigger
 {
-    public class AzureStorageQueueTrigger
+    public class AzureStorageQueueTriggerFunction
     {
-        [FunctionName(nameof(AzureStorageQueueTrigger))]
+        [FunctionName(nameof(AzureStorageQueueTriggerFunction))]
         public static async Task QueueTrigger(
             [QueueTrigger("ASQTriggerQueue", Connection = "ASQConnectionString")]
             CloudQueueMessage myQueueItem,
