@@ -19,9 +19,8 @@ namespace AzureFunctions.ASBTrigger
             ILogger log,
             ExecutionContext context)
         {
-            log.LogInformation($"C# ServiceBus queue trigger function processed message: {messageId}");
+            log.LogInformation($"C# ServiceBus queue trigger function processed message: {messageId}. Invocation {context.InvocationId}");
 
-            //with caching
             serverlessEndpoint = serverlessEndpoint ?? new ServerlessEndpoint(() =>
             {
                 var config = new ConfigurationBuilder()
@@ -29,13 +28,10 @@ namespace AzureFunctions.ASBTrigger
                     .AddJsonFile("local.settings.json", optional: false)
                     .Build();
 
-                var azureServiceBusTriggerEndpoint = new AzureServiceBusTriggerEndpoint(context.FunctionName);
-                //TODO: package conflicts with json serializer with functions
+                var azureServiceBusTriggerEndpoint = new AzureServiceBusTriggerEndpoint("ASBTriggerQueue");
                 azureServiceBusTriggerEndpoint.UseSerialization<NewtonsoftSerializer>();
                 var transport = azureServiceBusTriggerEndpoint.UseTransportForDispatch<AzureServiceBusTransport>();
-                var connectionString = config.GetValue<string>("Values:ASBConnectionString");
-                transport.ConnectionString(connectionString);
-                transport.Routing().RouteToEndpoint(typeof(ASQMessage), "ASQTriggerQueue");
+                transport.ConnectionString(config.GetValue<string>("Values:ASBConnectionString"));
 
                 return azureServiceBusTriggerEndpoint;
             });
