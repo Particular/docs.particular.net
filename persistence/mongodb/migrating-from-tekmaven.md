@@ -37,11 +37,11 @@ include: document-version
 
 ## Compatibility mode
 
-The compatibility mode enables the MongoDB persistence to work with existing saga data without modifications to the database.
+Compatibility mode allows the MongoDB persistence to work with saga data created with the `NServiceBus.Persistence.MongoDB` package without modifications to the database.
 
 ### Configuration
 
-Use the following compatibility API to configure the package to work with existing saga data:
+Use the following API to configure the package to work with existing saga data:
 
 snippet: MongoDBTekmavenCompatibility
 
@@ -52,7 +52,7 @@ include: must-apply-conventions-for-version
 
 ## Migrating data
 
-Alternatively to the compatibility mode, the existing saga data can be migrated to the data format used by the `NServiceBus.Storage.MongoDB` package. This approach requires the endpoint to be stopped during the migration. Use the `mongo` Shell to connect to the database and execute the following script:
+As an alternative to compatibility mode, saga data created by the `NServiceBus.Persistence.MongoDB` package can be migrated to the data format used by the `NServiceBus.Storage.MongoDB` package. This approach requires the endpoint to be stopped during the migration. Use the `mongo` shell to connect to the database and execute the following script:
 
 ```javascript
 db.getCollectionNames().forEach(collectionName => {
@@ -68,4 +68,4 @@ db.getCollectionNames().forEach(collectionName => {
 
 Replace `"Version"` with the name of the version property on the saga data which was previously decorated with the `[DocumentVersion]` attribute.
 
-WARNING: Make sure to create a backup of the database prior to migrating the saga data.
+WARNING: Be sure to create a backup of the database prior to migrating the saga data.
