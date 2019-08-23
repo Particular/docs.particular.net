@@ -17,26 +17,24 @@ namespace AzureFunctions.ASBTrigger
             Message message,
             string messageId,
             ILogger log,
-            ExecutionContext context)
+            ExecutionContext executionContext)
         {
-            serverlessEndpoint = serverlessEndpoint ?? new ServerlessEndpoint(() =>
-            {
-                var config = new ConfigurationBuilder()
-                    .SetBasePath(context.FunctionAppDirectory)
-                    .AddJsonFile("local.settings.json", optional: false)
-                    .Build();
-
-                var azureServiceBusTriggerEndpoint = new AzureServiceBusTriggerEndpoint("ASBTriggerQueue");
-                azureServiceBusTriggerEndpoint.UseSerialization<NewtonsoftSerializer>();
-                var transport = azureServiceBusTriggerEndpoint.UseTransportForDispatch<AzureServiceBusTransport>();
-                transport.ConnectionString(config.GetValue<string>("Values:ASBConnectionString"));
-
-                return azureServiceBusTriggerEndpoint;
-            });
-
-            await serverlessEndpoint.Process(message);
+            await serverlessEndpoint.Process(message, executionContext);
         }
 
-        static ServerlessEndpoint serverlessEndpoint;
+        static FunctionEndpoint serverlessEndpoint = new FunctionEndpoint(executionContext =>
+        {
+            var config = new ConfigurationBuilder()
+                   .SetBasePath(executionContext.FunctionAppDirectory)
+                   .AddJsonFile("local.settings.json", optional: false)
+                   .Build();
+
+            var azureServiceBusTriggerEndpoint = new ServiceBusTriggeredEndpointConfiguration("ASBTriggerQueue");
+            azureServiceBusTriggerEndpoint.UseSerialization<NewtonsoftSerializer>();
+            var transport = azureServiceBusTriggerEndpoint.UseTransportForDispatch<AzureServiceBusTransport>();
+            transport.ConnectionString(config.GetValue<string>("Values:ASBConnectionString"));
+
+            return azureServiceBusTriggerEndpoint;
+        });
     }
 }

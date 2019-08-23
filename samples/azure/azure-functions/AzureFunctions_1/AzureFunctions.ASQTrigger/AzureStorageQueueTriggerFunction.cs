@@ -16,27 +16,25 @@ namespace AzureFunctions.ASQTrigger
             [QueueTrigger("ASQTriggerQueue", Connection = "ASQConnectionString")]
             CloudQueueMessage myQueueItem,
             ILogger log,
-            ExecutionContext context)
+            ExecutionContext executionContext)
         {
-            serverlessEndpoint = serverlessEndpoint ?? new ServerlessEndpoint(() =>
-            {
-                var config = new ConfigurationBuilder()
-                    .SetBasePath(context.FunctionAppDirectory)
-                    .AddJsonFile("local.settings.json", optional: false)
-                    .Build();
-
-                var azureServiceBusTriggerEndpoint = new AzureStorageQueueTriggerEndpoint("ASQTriggerQueue");
-                azureServiceBusTriggerEndpoint.UseSerialization<NewtonsoftSerializer>();
-
-                var transport = azureServiceBusTriggerEndpoint.UseTransportForDispatch<AzureStorageQueueTransport>();
-                transport.ConnectionString(config.GetValue<string>("Values:ASQConnectionString"));
-                
-                return azureServiceBusTriggerEndpoint;
-            });
-
-            await serverlessEndpoint.Process(myQueueItem);
+            await serverlessEndpoint.Process(myQueueItem, executionContext);
         }
 
-        private static ServerlessEndpoint serverlessEndpoint;
+        static FunctionEndpoint serverlessEndpoint = new FunctionEndpoint(executionContext =>
+        {
+            var config = new ConfigurationBuilder()
+                     .SetBasePath(executionContext.FunctionAppDirectory)
+                     .AddJsonFile("local.settings.json", optional: false)
+                     .Build();
+
+            var azureServiceBusTriggerEndpoint = new StorageQueueTriggeredEndpointConfiguration("ASQTriggerQueue");
+            azureServiceBusTriggerEndpoint.UseSerialization<NewtonsoftSerializer>();
+
+            var transport = azureServiceBusTriggerEndpoint.UseTransportForDispatch<AzureStorageQueueTransport>();
+            transport.ConnectionString(config.GetValue<string>("Values:ASQConnectionString"));
+
+            return azureServiceBusTriggerEndpoint;
+        });
     }
 }
