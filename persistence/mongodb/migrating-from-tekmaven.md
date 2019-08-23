@@ -9,19 +9,9 @@ related:
 reviewed: 2019-05-29
 ---
 
-This package was designed to be fully compatible with the community `NServiceBus.Persistence.MongoDB` package with some minor configuration.
+The `NServiceBus.Storage.MongoDB` package was designed to be fully compatible with the community `NServiceBus.Persistence.MongoDB` package with some minor configuration.
 
 include: migration-warning
-
-## Configuration
-
-Use the following compatibility API to configure the package to work with existing saga data:
-
-snippet: MongoDBTekmavenCompatibility
-
-The `VersionElementName` value must match the `BsonDocument` element name used by the previous saga data property decorated with the `[DocumentVersion]` attribute.
-
-include: must-apply-conventions-for-version
 
 ## Saga data class changes
 
@@ -43,3 +33,39 @@ class MySagaData : IContainSagaData
 ### How Document Versioning Works
 
 include: document-version
+
+
+## Compatibility mode
+
+Compatibility mode allows the MongoDB persistence to work with saga data created with the `NServiceBus.Persistence.MongoDB` package without modifications to the database.
+
+### Configuration
+
+Use the following API to configure the package to work with existing saga data:
+
+snippet: MongoDBTekmavenCompatibility
+
+The `VersionElementName` value must match the `BsonDocument` element name used by the previous saga data property decorated with the `[DocumentVersion]` attribute.
+
+include: must-apply-conventions-for-version
+
+
+## Migrating data
+
+As an alternative to compatibility mode, saga data created by the `NServiceBus.Persistence.MongoDB` package can be migrated to the data format used by the `NServiceBus.Storage.MongoDB` package. This approach requires the endpoint to be stopped during the migration. Use the `mongo` shell to connect to the database and execute the following script:
+
+```javascript
+db.getCollectionNames().forEach(collectionName => {
+    db[collectionName].updateMany({
+        Originator: { $exists: true },
+        OriginalMessageId: { $exists: true }
+    },
+    {
+        $rename: { "Version": "_version" }
+    })
+});
+```
+
+Replace `"Version"` with the name of the version property on the saga data which was previously decorated with the `[DocumentVersion]` attribute.
+
+WARNING: Be sure to create a backup of the database prior to migrating the saga data.
