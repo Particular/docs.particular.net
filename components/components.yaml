@@ -1046,11 +1046,35 @@
   NugetOrder:
     - NServiceBus.MSDependencyInjection
 
-- Key: AzureFunctions
-  Name: Azure Functions
+- Key: Serverless
+  Name: Serverless
   DocoUrl: nservicebus
   GitHubOwner: Particular
   Category: Host
+  SupportLevel: Community
+  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.Serverless/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.Serverless
+  NugetOrder:
+    - NServiceBus.Serverless
+
+- Key: ASBFunctions
+  Name: Azure Functions (Service Bus Trigger)
+  DocoUrl: nservicebus
+  GitHubOwner: Particular
+  Category: Host
+  SupportLevel: Community
+  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions/blob/master/LICENSE.md
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions
   NugetOrder:
-    - NServiceBus
+    - NServiceBus.AzureFunctions.ServiceBus
+
+- Key: ASQFunctions
+  Name: Azure Functions (Storage Queue Trigger)
+  DocoUrl: nservicebus
+  GitHubOwner: Particular
+  Category: Host
+  SupportLevel: Community
+  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions
+  NugetOrder:
+    - NServiceBus.AzureFunctions.StorageQueues
