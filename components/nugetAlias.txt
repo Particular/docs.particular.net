@@ -7,8 +7,10 @@ AttachmentsSqlRaw: NServiceBus.Attachments.Sql.Raw
 AttachmentsFileShare: NServiceBus.Attachments.FileShare
 AttachmentsFileShareRaw: NServiceBus.Attachments.FileShare.Raw
 ASB: NServiceBus.Azure.Transports.WindowsAzureServiceBus
+ASBFunctions: NServiceBus.AzureFunctions.ServiceBus
 ASBS: NServiceBus.Transport.AzureServiceBus
-ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues 
+ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues
+ASQFunctions: NServiceBus.AzureFunctions.StorageQueues
 ASP: NServiceBus.Persistence.AzureStorage
 DistributedEventBroker: Appccelerate.DistributedEventBroker.NServiceBus
 Autofac: NServiceBus.Autofac
