@@ -79,6 +79,7 @@ SagaAudit5: ServiceControl.Plugin.Nsb5.SagaAudit
 SagaAudit4: ServiceControl.Plugin.Nsb4.SagaAudit
 SagaAudit: NServiceBus.SagaAudit
 Serilog: NServiceBus.Serilog
+Serverless: NServiceBus.Serverless
 ServiceBootstrap: NServiceBus.Bootstrap.WindowsService
 ServiceControl: ServiceControl
 ServiceControlContracts: ServiceControl.Contracts
