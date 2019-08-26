@@ -2,7 +2,7 @@
 title: Json.NET Serializer
 summary: A JSON serializer that uses Newtonsoft Json.NET.
 component: Newtonsoft
-reviewed: 2018-05-15
+reviewed: 2019-08-26
 related:
  - samples/serializers/newtonsoft
  - samples/serializers/newtonsoft-bson
@@ -26,6 +26,8 @@ For example
 
 snippet: NewtonsoftAttributes
 
+NOTE: by default Json.NET serializer adds the Byte Order Mark (BOM). To disable it, see [custom writter](
+/nservicebus/serialization/newtonsoft.md#usage-custom-writer) section.
 
 ### Custom settings
 
