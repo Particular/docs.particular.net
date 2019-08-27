@@ -1051,7 +1051,7 @@
   DocoUrl: nservicebus
   GitHubOwner: Particular
   Category: Host
-  SupportLevel: Community
+  SupportLevel: Labs
   LicenseUrl: https://github.com/ParticularLabs/NServiceBus.Serverless/blob/master/LICENSE.md
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.Serverless
   NugetOrder:
@@ -1062,7 +1062,7 @@
   DocoUrl: nservicebus
   GitHubOwner: Particular
   Category: Host
-  SupportLevel: Community
+  SupportLevel: Labs
   LicenseUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions/blob/master/LICENSE.md
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions
   NugetOrder:
@@ -1073,7 +1073,7 @@
   DocoUrl: nservicebus
   GitHubOwner: Particular
   Category: Host
-  SupportLevel: Community
+  SupportLevel: Labs
   LicenseUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions/blob/master/LICENSE.md
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions
   NugetOrder:
