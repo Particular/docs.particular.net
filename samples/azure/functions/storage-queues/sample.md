@@ -1,6 +1,6 @@
 ---
-title: Using NServiceBus in Azure Functions
-reviewed: 2019-08-23
+title: Using NServiceBus in Azure Functions with Storage Queue triggers
+reviewed: 2019-08-27
 component: ASQFunctions
 ---
 

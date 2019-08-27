@@ -1,5 +1,5 @@
 ---
-title: Using NServiceBus in Azure Functions
+title: Using NServiceBus in Azure Functions with Service Bus triggers
 reviewed: 2019-08-23
 component: ASBFunctions
 ---
