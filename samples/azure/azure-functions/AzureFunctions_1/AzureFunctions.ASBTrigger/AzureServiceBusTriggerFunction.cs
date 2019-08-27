@@ -1,40 +1,36 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Azure.ServiceBus;
+﻿using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.WebJobs;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.AzureFunctions.AzureServiceBus;
-using NServiceBus.Serverless;
+using System.Threading.Tasks;
 
 namespace AzureFunctions.ASBTrigger
 {
+    using NServiceBus.AzureFunctions.ServiceBus;
+
     public class AzureServiceBusTriggerFunction
     {
-        [FunctionName(nameof(AzureServiceBusTriggerFunction))]
+        private const string EndpointName = "ASBTriggerQueue";
+        private const string ConnectionStringName = "ASBConnectionString";
+
+        [FunctionName(EndpointName)]
         public static async Task Run(
-            [ServiceBusTrigger(queueName: "ASBTriggerQueue", Connection = "ASBConnectionString")]
+            [ServiceBusTrigger(queueName: EndpointName, Connection = "ASBConnectionString")]
             Message message,
-            string messageId,
             ILogger log,
             ExecutionContext executionContext)
         {
-            await serverlessEndpoint.Process(message, executionContext);
+            await endpoint.Process(message, executionContext);
         }
 
-        static FunctionEndpoint serverlessEndpoint = new FunctionEndpoint(executionContext =>
+        private static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
         {
-            var config = new ConfigurationBuilder()
-                   .SetBasePath(executionContext.FunctionAppDirectory)
-                   .AddJsonFile("local.settings.json", optional: false)
-                   .Build();
+            var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, ConnectionStringName, executionContext);
+            configuration.UseSerialization<NewtonsoftSerializer>();
 
-            var azureServiceBusTriggerEndpoint = new ServiceBusTriggeredEndpointConfiguration("ASBTriggerQueue");
-            azureServiceBusTriggerEndpoint.UseSerialization<NewtonsoftSerializer>();
-            var transport = azureServiceBusTriggerEndpoint.UseTransportForDispatch<AzureServiceBusTransport>();
-            transport.ConnectionString(config.GetValue<string>("Values:ASBConnectionString"));
+            configuration.Transport.TopicName("topic-1");
 
-            return azureServiceBusTriggerEndpoint;
+            return configuration;
         });
     }
 }

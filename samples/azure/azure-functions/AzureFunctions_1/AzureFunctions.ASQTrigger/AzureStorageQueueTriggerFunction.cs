@@ -1,40 +1,34 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Queue;
 using NServiceBus;
-using NServiceBus.AzureFunctions.AzureStorageQueues;
-using NServiceBus.Serverless;
+using NServiceBus.AzureFunctions.StorageQueues;
+using System.Threading.Tasks;
 
 namespace AzureFunctions.ASQTrigger
 {
-    public class AzureStorageQueueTriggerFunction
+public class AzureStorageQueueTriggerFunction
     {
-        [FunctionName(nameof(AzureStorageQueueTriggerFunction))]
+        private const string EndpointName = "ASQTriggerQueue";
+        private const string ConnectionStringName = "ASQConnectionString";
+
+        [FunctionName(EndpointName)]
         public static async Task QueueTrigger(
-            [QueueTrigger("ASQTriggerQueue", Connection = "ASQConnectionString")]
-            CloudQueueMessage myQueueItem,
+            [QueueTrigger(EndpointName, Connection = ConnectionStringName)]
+            CloudQueueMessage message,
             ILogger log,
-            ExecutionContext executionContext)
+            ExecutionContext context)
         {
-            await serverlessEndpoint.Process(myQueueItem, executionContext);
+            await endpoint.Process(message, context);
         }
 
-        static FunctionEndpoint serverlessEndpoint = new FunctionEndpoint(executionContext =>
+        private static FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
         {
-            var config = new ConfigurationBuilder()
-                     .SetBasePath(executionContext.FunctionAppDirectory)
-                     .AddJsonFile("local.settings.json", optional: false)
-                     .Build();
+            var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName, ConnectionStringName, executionContext);
 
-            var azureServiceBusTriggerEndpoint = new StorageQueueTriggeredEndpointConfiguration("ASQTriggerQueue");
-            azureServiceBusTriggerEndpoint.UseSerialization<NewtonsoftSerializer>();
+            configuration.UseSerialization<NewtonsoftSerializer>();
 
-            var transport = azureServiceBusTriggerEndpoint.UseTransportForDispatch<AzureStorageQueueTransport>();
-            transport.ConnectionString(config.GetValue<string>("Values:ASQConnectionString"));
-
-            return azureServiceBusTriggerEndpoint;
+            return configuration;
         });
     }
 }
