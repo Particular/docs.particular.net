@@ -19,6 +19,6 @@ When using Azure Functions with Azure Service Bus (ASB) or Azure Storage Queues 
   - Queues for commands (ASB and ASQ)
   - Topics and subscriptions for events (ASB)
   - Subscription records in storage for events (ASQ)
-- No support for `SendsAtomicWithReceive` [transport transaction mode](https://docs.particular.net/transports/transactions?version=core_7.2#transactions-transport-transaction-sends-atomic-with-receive) with Azure Service Bus
+- No support for `SendsAtomicWithReceive` [transport transaction mode](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive) with Azure Service Bus
 - Triggers that can currently be used out of the box with NServiceBus are [`ServiceBusTrigger`](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus) and [`QueueTrigger`](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue). Other triggers will not result handlers invocation, but could be used to act as send-only endpoints to package function invocation into a command.
 - Configuration API exposes transport configuration options via `configuration.Transport` property that are not all applicable to the endpoints hosted in Azure Functions.
