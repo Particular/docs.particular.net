@@ -15,7 +15,7 @@ namespace AzureFunctions.ASBTrigger
 
         [FunctionName(EndpointName)]
         public static async Task Run(
-            [ServiceBusTrigger(queueName: EndpointName, Connection = "ASBConnectionString")]
+            [ServiceBusTrigger(queueName: EndpointName, Connection = ConnectionStringName )]
             Message message,
             ILogger log,
             ExecutionContext executionContext)
