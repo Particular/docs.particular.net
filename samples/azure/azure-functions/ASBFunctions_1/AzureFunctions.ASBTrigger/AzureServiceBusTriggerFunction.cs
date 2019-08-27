@@ -28,8 +28,6 @@ namespace AzureFunctions.ASBTrigger
             var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, ConnectionStringName, executionContext);
             configuration.UseSerialization<NewtonsoftSerializer>();
 
-            configuration.Transport.TopicName("topic-1");
-
             return configuration;
         });
     }
