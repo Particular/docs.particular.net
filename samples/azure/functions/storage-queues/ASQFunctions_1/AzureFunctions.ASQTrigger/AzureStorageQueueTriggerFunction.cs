@@ -12,6 +12,8 @@ public class AzureStorageQueueTriggerFunction
         private const string EndpointName = "ASQTriggerQueue";
         private const string ConnectionStringName = "ASQConnectionString";
 
+        #region Function
+
         [FunctionName(EndpointName)]
         public static async Task QueueTrigger(
             [QueueTrigger(EndpointName, Connection = ConnectionStringName)]
@@ -22,6 +24,10 @@ public class AzureStorageQueueTriggerFunction
             await endpoint.Process(message, context);
         }
 
+        #endregion
+
+        #region EndpointSetup
+
         private static FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
         {
             var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName, ConnectionStringName, executionContext);
@@ -30,5 +36,7 @@ public class AzureStorageQueueTriggerFunction
 
             return configuration;
         });
+
+        #endregion
     }
 }

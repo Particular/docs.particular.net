@@ -10,6 +10,8 @@ namespace AzureFunctions.Console
     {
         static async Task Main(string[] args)
         {
+            Console.Title = "AzureFunctions.Sender";
+
             Console.WriteLine("Press [ENTER] to send a message to the Azure ServiceBus trigger queue.");
             Console.WriteLine("Press [Esc] to exit.");
             while (true)

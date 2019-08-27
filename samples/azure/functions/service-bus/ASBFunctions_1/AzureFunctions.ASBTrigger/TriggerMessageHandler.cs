@@ -4,6 +4,8 @@ using NServiceBus.Logging;
 
 namespace AzureFunctions.ASBTrigger
 {
+    #region TriggerMessageHandler
+
     public class TriggerMessageHandler : IHandleMessages<TriggerMessage>
     {
         private static readonly ILog Log = LogManager.GetLogger<TriggerMessageHandler>();
@@ -14,4 +16,6 @@ namespace AzureFunctions.ASBTrigger
             return context.SendLocal(new FollowupMessage());
         }
     }
+
+    #endregion
 }

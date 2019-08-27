@@ -13,6 +13,8 @@ namespace AzureFunctions.ASBTrigger
         private const string EndpointName = "ASBTriggerQueue";
         private const string ConnectionStringName = "ASBConnectionString";
 
+        #region Function
+
         [FunctionName(EndpointName)]
         public static async Task Run(
             [ServiceBusTrigger(queueName: EndpointName, Connection = ConnectionStringName )]
@@ -23,6 +25,10 @@ namespace AzureFunctions.ASBTrigger
             await endpoint.Process(message, executionContext);
         }
 
+        #endregion
+
+        #region EndpointSetup
+
         private static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
         {
             var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, ConnectionStringName, executionContext);
@@ -30,5 +36,7 @@ namespace AzureFunctions.ASBTrigger
 
             return configuration;
         });
+
+        #endregion EndpointSetup
     }
 }
