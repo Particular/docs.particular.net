@@ -4,7 +4,6 @@
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
 
-    "ASBConnectionString": "<set your ASB connection string here>",
     "ASQConnectionString": "<set your ASQ connection string here>"
   }
 }

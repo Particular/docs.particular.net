@@ -10,7 +10,6 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.2.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.1.4" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.2.0" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.1.0" />
   </ItemGroup>
 
