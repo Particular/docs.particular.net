@@ -16,7 +16,7 @@ downloadbutton
 
 Unlike a traditional NServiceBus endpoint, an endpoint hosted in Azure Functions cannot create its own input queue. In this sample, that queue name is `ASBTriggerQueue`.
 
-To create the queue with the Azure CLI, execute the following:
+To create the queue with the Azure CLI, execute the following [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) command:
 
 ```
 az servicebus queue create --name ASBTriggerQueue --namespace-name <asb-namespace-to-use> --resource-group <resource-group-containing-namespace>
@@ -43,7 +43,7 @@ To try the Azure Function:
 
 ## Code walk-through
 
-Because Azure Functions carry configuration details within an `ExecutionContext` injected into each function, NServiceBus is configured using a lambda so that the static NServiceBus endpoint can be recreated whenever the runtime needs to, on the arrival of any message.
+The static NServiceBus endpoint must be configured using details that come from the Azure Functions `ExecutionContext`. Since that is not available until a message is handled by the function, the NServiceBus endpoint instance is deferred until the first message is processed, using a lambda expression like this:
 
 snippet: EndpointSetup
 
