@@ -1078,3 +1078,14 @@
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions
   NugetOrder:
     - NServiceBus.AzureFunctions.StorageQueues
+
+- Key: SQSLambda
+  Name: AWS Lambda (SQS)
+  DocoUrl: nservicebus
+  GitHubOwner: Particular
+  Category: Host
+  SupportLevel: Labs
+  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.AwsLambda/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AwsLambda
+  NugetOrder:
+    - NServiceBus.AwsLambda.SQS
