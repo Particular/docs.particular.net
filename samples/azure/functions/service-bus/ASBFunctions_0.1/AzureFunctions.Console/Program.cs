@@ -22,6 +22,7 @@ namespace AzureFunctions.Console
                 {
                     case ConsoleKey.Enter:
                         await SendASBMessage();
+                        Console.WriteLine("Message sent.");
                         break;
                     case ConsoleKey.Escape:
                         await (asbEndpoint?.Stop() ?? Task.CompletedTask);
