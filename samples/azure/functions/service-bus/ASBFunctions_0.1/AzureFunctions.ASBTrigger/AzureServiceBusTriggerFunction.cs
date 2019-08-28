@@ -28,7 +28,7 @@ public class AzureServiceBusTriggerFunction
 
     private static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
-        var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, ConnectionStringName, executionContext);
+        var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, ConnectionStringName);
         configuration.UseSerialization<NewtonsoftSerializer>();
 
         return configuration;

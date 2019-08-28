@@ -28,7 +28,7 @@ public class AzureStorageQueueTriggerFunction
 
     private static FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
-        var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName, ConnectionStringName, executionContext);
+        var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName, ConnectionStringName);
 
         configuration.UseSerialization<NewtonsoftSerializer>();
 

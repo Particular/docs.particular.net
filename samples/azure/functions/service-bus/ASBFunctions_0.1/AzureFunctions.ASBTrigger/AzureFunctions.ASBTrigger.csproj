@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.AzureFunctions.ServiceBus" Version="0.1.0-alpha0020" />
+    <PackageReference Include="NServiceBus.AzureFunctions.ServiceBus" Version="0.1.0-alpha0026" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.1.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />
   </ItemGroup>
