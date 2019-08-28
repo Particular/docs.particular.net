@@ -1,8 +1,5 @@
 ﻿using NServiceBus;
 
-namespace AzureFunctions
+public class TriggerMessage : IMessage
 {
-    public class TriggerMessage : IMessage
-    {
-    }
 }
