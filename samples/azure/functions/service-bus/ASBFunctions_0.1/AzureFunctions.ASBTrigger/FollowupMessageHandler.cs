@@ -2,20 +2,17 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-namespace AzureFunctions.ASBTrigger
+#region FollowupMessageHandler
+
+public class FollowupMessageHandler : IHandleMessages<FollowupMessage>
 {
-    #region FollowupMessageHandler
+    private static readonly ILog Log = LogManager.GetLogger<FollowupMessageHandler>();
 
-    public class FollowupMessageHandler : IHandleMessages<FollowupMessage>
+    public Task Handle(FollowupMessage message, IMessageHandlerContext context)
     {
-        private static readonly ILog Log = LogManager.GetLogger<FollowupMessageHandler>();
-
-        public Task Handle(FollowupMessage message, IMessageHandlerContext context)
-        {
-            Log.Info($"Handling {nameof(FollowupMessage)}.");
-            return Task.CompletedTask;
-        }
+        Log.Info($"Handling {nameof(FollowupMessage)} in {nameof(FollowupMessageHandler)}.");
+        return Task.CompletedTask;
     }
-
-    #endregion
 }
+
+#endregion

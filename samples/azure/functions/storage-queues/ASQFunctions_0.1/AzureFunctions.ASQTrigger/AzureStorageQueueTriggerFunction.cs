@@ -5,38 +5,35 @@ using NServiceBus;
 using NServiceBus.AzureFunctions.StorageQueues;
 using System.Threading.Tasks;
 
-namespace AzureFunctions.ASQTrigger
-{
 public class AzureStorageQueueTriggerFunction
+{
+    private const string EndpointName = "ASQTriggerQueue";
+    private const string ConnectionStringName = "ASQConnectionString";
+
+    #region Function
+
+    [FunctionName(EndpointName)]
+    public static async Task QueueTrigger(
+        [QueueTrigger(EndpointName, Connection = ConnectionStringName)]
+        CloudQueueMessage message,
+        ILogger log,
+        ExecutionContext context)
     {
-        private const string EndpointName = "ASQTriggerQueue";
-        private const string ConnectionStringName = "ASQConnectionString";
-
-        #region Function
-
-        [FunctionName(EndpointName)]
-        public static async Task QueueTrigger(
-            [QueueTrigger(EndpointName, Connection = ConnectionStringName)]
-            CloudQueueMessage message,
-            ILogger log,
-            ExecutionContext context)
-        {
-            await endpoint.Process(message, context);
-        }
-
-        #endregion
-
-        #region EndpointSetup
-
-        private static FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
-        {
-            var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName, ConnectionStringName, executionContext);
-
-            configuration.UseSerialization<NewtonsoftSerializer>();
-
-            return configuration;
-        });
-
-        #endregion
+        await endpoint.Process(message, context);
     }
+
+    #endregion
+
+    #region EndpointSetup
+
+    private static FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
+    {
+        var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName, ConnectionStringName, executionContext);
+
+        configuration.UseSerialization<NewtonsoftSerializer>();
+
+        return configuration;
+    });
+
+    #endregion
 }
