@@ -2,20 +2,17 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-namespace AzureFunctions.ASBTrigger
+#region TriggerMessageHandler
+
+public class TriggerMessageHandler : IHandleMessages<TriggerMessage>
 {
-    #region TriggerMessageHandler
+    private static readonly ILog Log = LogManager.GetLogger<TriggerMessageHandler>();
 
-    public class TriggerMessageHandler : IHandleMessages<TriggerMessage>
+    public Task Handle(TriggerMessage message, IMessageHandlerContext context)
     {
-        private static readonly ILog Log = LogManager.GetLogger<TriggerMessageHandler>();
-
-        public Task Handle(TriggerMessage message, IMessageHandlerContext context)
-        {
-            Log.Info($"Handling {nameof(TriggerMessage)} in {nameof(TriggerMessageHandler)}");
-            return context.SendLocal(new FollowupMessage());
-        }
+        Log.Info($"Handling {nameof(TriggerMessage)} in {nameof(TriggerMessageHandler)}");
+        return context.SendLocal(new FollowupMessage());
     }
-
-    #endregion
 }
+
+#endregion
