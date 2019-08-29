@@ -36,6 +36,7 @@ namespace NServiceBusAwsSqsLambdaDemo
         static readonly AwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
         {
             var endpointConfiguration = new SQSTriggeredEndpointConfiguration("AmazonLambdaSQSEndpoint");
+            endpointConfiguration.AdvancedConfiguration.SendFailedMessagesTo("error");
             return endpointConfiguration;
         });
     }
