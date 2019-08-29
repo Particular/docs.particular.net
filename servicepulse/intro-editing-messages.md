@@ -43,3 +43,5 @@ As soon as a message has been dispatched for retrying the originally failing mes
 A failed message must not have been resolved by a user, successfully retried, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-data.md) for edit and retry to function.
 
 The bodies of messages with encrypted properties cannot be edited.
+
+The edited message will be assigned a new message id before dispatching. The new message id is automatically generated and is a GUID stored as a string in the edited message's headers.
