@@ -13,6 +13,7 @@
 
             var endpointConfiguration = new EndpointConfiguration("EndpointName");
             endpointConfiguration.SendOnly();
+            // Apply other necessary endpoint configuration
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
