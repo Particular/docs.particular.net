@@ -45,7 +45,7 @@ namespace AwsLambda.Console
                 asbEndpoint = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
             }
 
-            await asbEndpoint.Send("AwsLambda.SQSTrigger", new TriggerMessage())
+            await asbEndpoint.Send("AwsLambdaSQSTrigger", new TriggerMessage())
                 .ConfigureAwait(false);
         }
     }

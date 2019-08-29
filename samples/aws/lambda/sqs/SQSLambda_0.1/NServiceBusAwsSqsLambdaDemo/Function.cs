@@ -42,7 +42,7 @@ namespace AwsLambda.SQSTrigger
 
         static readonly AwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
         {
-            var endpointConfiguration = new SQSTriggeredEndpointConfiguration("AwsLambda.SQSTrigger");
+            var endpointConfiguration = new SQSTriggeredEndpointConfiguration("AwsLambdaSQSTrigger");
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
             var advanced = endpointConfiguration.AdvancedConfiguration;
