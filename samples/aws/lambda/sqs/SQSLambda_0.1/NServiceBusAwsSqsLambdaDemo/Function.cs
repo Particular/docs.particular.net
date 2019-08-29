@@ -1,3 +1,5 @@
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
@@ -7,7 +9,7 @@ using NServiceBus;
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
 
-namespace NServiceBusAwsSqsLambdaDemo
+namespace AwsLambda.SQSTrigger
 {
     public class Function
     {
@@ -30,13 +32,29 @@ namespace NServiceBusAwsSqsLambdaDemo
         /// <returns></returns>
         public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
         {
-            await serverlessEndpoint.Process(evnt, context);
+            using (var cancellationTokenSource = new CancellationTokenSource(context.RemainingTime.Subtract(DefaultRemainingTimeGracePeriod)))
+            {
+                await serverlessEndpoint.Process(evnt, context, cancellationTokenSource.Token);
+            }
         }
+
+        static readonly TimeSpan DefaultRemainingTimeGracePeriod = TimeSpan.FromSeconds(10);
 
         static readonly AwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
         {
-            var endpointConfiguration = new SQSTriggeredEndpointConfiguration("AmazonLambdaSQSEndpoint");
-            endpointConfiguration.AdvancedConfiguration.SendFailedMessagesTo("error");
+            var endpointConfiguration = new SQSTriggeredEndpointConfiguration("AwsLambda.SQSTrigger");
+            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+
+            var advanced = endpointConfiguration.AdvancedConfiguration;
+            advanced.SendFailedMessagesTo("error");
+
+            // shows how to write diagnostics to file
+            advanced.CustomDiagnosticsWriter(diagnostics =>
+            {
+                context.Logger.LogLine(diagnostics);
+                return Task.CompletedTask;
+            });
+
             return endpointConfiguration;
         });
     }
