@@ -45,7 +45,7 @@ class Program
             endpointConfiguration.DisableFeature<MessageDrivenSubscriptions>();
 
             var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-            transport.ConnectionString(config.GetValue<string>("Values:ASQConnectionString"));
+            transport.ConnectionString(config.GetValue<string>("Values:AzureWebJobsStorage"));
 
             asqEndpoint = await Endpoint.Start(endpointConfiguration);
         }

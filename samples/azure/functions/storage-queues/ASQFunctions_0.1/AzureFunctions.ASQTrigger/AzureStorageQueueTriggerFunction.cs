@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 public class AzureStorageQueueTriggerFunction
 {
     private const string EndpointName = "ASQTriggerQueue";
-    private const string ConnectionStringName = "ASQConnectionString";
 
     #region Function
 
     [FunctionName(EndpointName)]
     public static async Task QueueTrigger(
-        [QueueTrigger(EndpointName, Connection = ConnectionStringName)]
+        [QueueTrigger(EndpointName)]
         CloudQueueMessage message,
         ILogger log,
         ExecutionContext context)
@@ -28,7 +27,7 @@ public class AzureStorageQueueTriggerFunction
 
     private static FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
-        var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName, ConnectionStringName);
+        var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName);
 
         configuration.UseSerialization<NewtonsoftSerializer>();
 
