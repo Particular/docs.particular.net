@@ -49,7 +49,7 @@ namespace AwsLambda.SQSTrigger
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
             var advanced = endpointConfiguration.AdvancedConfiguration;
-            advanced.SendFailedMessagesTo("error");
+            advanced.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
 
             // shows how to write diagnostics to file
             advanced.CustomDiagnosticsWriter(diagnostics =>

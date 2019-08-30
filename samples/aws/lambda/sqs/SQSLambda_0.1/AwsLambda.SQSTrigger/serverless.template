@@ -6,7 +6,7 @@
 
 	"ErrorQueue": {
       "Properties": {
-        "QueueName": "error"
+        "QueueName": "ErrorAwsLambdaSQSTrigger"
       },
       "Type": "AWS::SQS::Queue"
     },
