@@ -96,6 +96,7 @@ RabbitOperations: RabbitOperations
 SimpleInjector: NServiceBus.SimpleInjector
 Spring: NServiceBus.Spring
 Sqs: NServiceBus.AmazonSQS
+SQSLambda: NServiceBus.AwsLambda.SQS
 StructureMap: NServiceBus.StructureMap
 Testing: NServiceBus.Testing
 Templates: ParticularTemplates
