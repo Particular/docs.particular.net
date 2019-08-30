@@ -8,50 +8,45 @@ related:
 
 include: aws-lambda-experimental
 
-This sample shows how to host NServiceBus within an Azure Function, in this case, a function triggered by an incoming Storage Queues message. This enables hosting message handlers in Azure Functions, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message processing pipeline.
+This sample shows how to host NServiceBus within an AWS Lambda, in this case, a function triggered by incoming SQS messages. This enables hosting message handlers in AWS Lambda, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message processing pipeline.
 
-When hosting NServiceBus within Azure Functions, each Function (as identified by the `[FunctionName]` attribute) hosts an NServiceBus endpoint that is capable of processing multiple different message types.
+When hosting NServiceBus within AWS Lambda, the function handler (as identified by the `function-handler` property in the `aws-lambda-tools-defaults.json`) hosts an NServiceBus endpoint that is capable of processing multiple different message types.
 
 downloadbutton
 
 ## Prerequisites
 
-Unlike a traditional NServiceBus endpoint, an endpoint hosted in Azure Functions cannot create its own input queue. In this sample, that queue name is `ASQTriggerQueue`.
+The sample includes a [`CloudFormation`](https://aws.amazon.com/cloudformation/aws-cloudformation-templates/) template which will deploy the Lambda and create the necessary queues to run the sample.
 
-To create the queue with the Azure CLI, execute the following [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) command:
-
-```
- az storage queue create --name ASQTriggerQueue --connection-string "<storage-account-connection-string>"
-```
-
-To use the sample, a valid storage account connection string must be configured in  2 locations:
-
-* `AzureFunctions.Sender/local.settings.json`
-* `AzureFunctions.ASQTrigger/local.settings.json`
+The [`Amazon.Lambda.Tools` cli](https://github.com/aws/aws-lambda-dotnet) can be used to deploy the template to your AWS account.
 
 ## Running the sample
 
-Running the sample should launch two console windows:
+ Run the following command from the `AwsLambda.Sender` directory to deploy the Lambda project:
 
-* **AzureFunctions.Sender** is a console application that will send a `TriggerMessage` to the `ASQTriggerQueue` queue, which is monitored by the Azure Function.
-* The **Azure Functions runtime** window will receive messages from the `ASQTriggerQueue` queue and process them using the Azure Functions runtime.
+`dotnet lambda deploy-serverless`
 
-To try the Azure Function:
+After which, running the sample should launch a single console window:
 
-1. From the **AzureFunctions.Sender** window, press <kbd>Enter</kbd> to send a `TriggerMessage` to the trigger queue.
-1. The Azure Function will receive the `TriggerMessage` and process it with NServiceBus.
+* **AWSLambda.Sender** is a console application that will send a `TriggerMessage` to the `AwsLambdaSQSTrigger` queue, which is monitored by the AWS Lambda.
+* The deployed **AWSLambda.SQSTrigger** project will receive messages from the `AwsLambdaSQSTrigger` queue and process them using the AWS Lambda runtime.
+
+To try the AWS Lambda:
+
+1. From the **AwsLambda.Sender** window, press <kbd>Enter</kbd> to send a `TriggerMessage` to the trigger queue.
+1. The AWS Lambda will receive the `TriggerMessage` and process it with NServiceBus.
 1. The NServiceBus message handler for `TriggerMessage` sends a `FollowUpMessage`.
-1. The Azure Function will receive the `FollowUpMessage` and process it with NServiceBus.
+1. The AWS Lambda will receive the `FollowUpMessage` and process it with NServiceBus.
 
 ## Code walk-through
 
-The static NServiceBus endpoint must be configured using details that come from the Azure Functions `ExecutionContext`. Since that is not available until a message is handled by the function, the NServiceBus endpoint instance is deferred until the first message is processed, using a lambda expression like this:
+The static NServiceBus endpoint must be configured using details that come from the AWS Lambda `ILambdaContext`. Since that is not available until a message is handled by the function, the NServiceBus endpoint instance is deferred until the first message is processed, using a lambda expression like this:
 
 snippet: EndpointSetup
 
-The same class defines the Azure Function which makes up the hosting for the NServiceBus endpoint. The Function hands off processing of the message to NServiceBus:
+The same class defines the AWS Lambda which makes up the hosting for the NServiceBus endpoint. The `FunctionHandler` method hands off processing of the message to NServiceBus:
 
-snippet: Function
+snippet: FunctionHandler
 
 Meanwhile, the message handlers for `TriggerMessage` and `FollowUpMessage`, also hosted within the Azure Functions project, are normal NServiceBus message handlers, which are also capable of sending messages themselves.
 

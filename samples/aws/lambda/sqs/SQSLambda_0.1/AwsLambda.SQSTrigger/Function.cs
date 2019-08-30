@@ -30,6 +30,7 @@ namespace AwsLambda.SQSTrigger
         /// <param name="evnt"></param>
         /// <param name="context"></param>
         /// <returns></returns>
+        #region FunctionHandler
         public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
         {
             using (var cancellationTokenSource = new CancellationTokenSource(context.RemainingTime.Subtract(DefaultRemainingTimeGracePeriod)))
@@ -37,9 +38,11 @@ namespace AwsLambda.SQSTrigger
                 await serverlessEndpoint.Process(evnt, context, cancellationTokenSource.Token);
             }
         }
+        #endregion
 
         static readonly TimeSpan DefaultRemainingTimeGracePeriod = TimeSpan.FromSeconds(10);
 
+        #region EndpointSetup
         static readonly AwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
         {
             var endpointConfiguration = new SQSTriggeredEndpointConfiguration("AwsLambdaSQSTrigger");
@@ -57,5 +60,6 @@ namespace AwsLambda.SQSTrigger
 
             return endpointConfiguration;
         });
+        #endregion
     }
 }
