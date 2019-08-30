@@ -20,9 +20,14 @@ The sample includes a [`CloudFormation`](https://aws.amazon.com/cloudformation/a
 
 The [`Amazon.Lambda.Tools` cli](https://github.com/aws/aws-lambda-dotnet) can be used to deploy the template to your AWS account.
 
+1. Install the [`Amazon.Lambda.Tools cli`](https://github.com/aws/aws-lambda-dotnet#amazonlambdatools)
+1. Make sure an S3 bucket is available in your preferred AWS region
+
 ## Running the sample
 
- Run the following command from the `AwsLambda.Sender` directory to deploy the Lambda project:
+INFO: It is not possible at this stage to use the AWS Mock Test tool to locally run the sample.
+
+ Run the following command from the `AwsLambda.SQSTrigger` directory to deploy the Lambda project:
 
 `dotnet lambda deploy-serverless`
 
@@ -39,6 +44,7 @@ To try the AWS Lambda:
 1. The AWS Lambda will receive the `TriggerMessage` and process it with NServiceBus.
 1. The NServiceBus message handler for `TriggerMessage` sends a `FollowUpMessage`.
 1. The AWS Lambda will receive the `FollowUpMessage` and process it with NServiceBus.
+1. The NServiceBus message handler for `FollowUpMessage` sends a `BackToSenderMessage` that will be handled by the **AwsLambda.Sender**
 
 ## Code walk-through
 
