@@ -18,10 +18,10 @@ downloadbutton
 
 The sample includes a [`CloudFormation`](https://aws.amazon.com/cloudformation/aws-cloudformation-templates/) template, which will deploy the Lambda and create the necessary queues to run the sample.
 
-The [`Amazon.Lambda.Tools` cli](https://github.com/aws/aws-lambda-dotnet) can be used to deploy the template to your AWS account.
+The [`Amazon.Lambda.Tools` cli](https://github.com/aws/aws-lambda-dotnet) can be used to deploy the template to an AWS account.
 
 1. Install the [`Amazon.Lambda.Tools cli`](https://github.com/aws/aws-lambda-dotnet#amazonlambdatools)
-1. Make sure an S3 bucket is available in your preferred AWS region
+1. Make sure an S3 bucket is available in AWS region of choice
 
 ## Running the sample
 
