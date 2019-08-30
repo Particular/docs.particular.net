@@ -36,6 +36,7 @@ namespace AwsLambda.Console
             if (sqsEndpoint == null)
             {
                 var endpointConfiguration = new EndpointConfiguration("AwsLambda.Sender");
+                endpointConfiguration.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
                 endpointConfiguration.UsePersistence<InMemoryPersistence>();
                 endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
