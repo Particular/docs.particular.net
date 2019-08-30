@@ -43,10 +43,15 @@ namespace AwsLambda.SQSTrigger
         static readonly TimeSpan DefaultRemainingTimeGracePeriod = TimeSpan.FromSeconds(10);
 
         #region EndpointSetup
-        static readonly AwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
+
+        private static readonly AwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
         {
             var endpointConfiguration = new SQSTriggeredEndpointConfiguration("AwsLambdaSQSTrigger");
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+
+            var transport = endpointConfiguration.Transport;
+            var routing = transport.Routing();
+            routing.RouteToEndpoint(typeof(BackToSenderMessage), "AwsLambda.Sender");
 
             var advanced = endpointConfiguration.AdvancedConfiguration;
             advanced.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");

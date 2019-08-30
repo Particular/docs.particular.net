@@ -7,7 +7,7 @@ using NServiceBus.Logging;
 
 public class TriggerMessageHandler : IHandleMessages<TriggerMessage>
 {
-    private static readonly ILog Log = LogManager.GetLogger<TriggerMessageHandler>();
+    static readonly ILog Log = LogManager.GetLogger<TriggerMessageHandler>();
 
     public Task Handle(TriggerMessage message, IMessageHandlerContext context)
     {

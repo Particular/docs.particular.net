@@ -23,29 +23,28 @@ namespace AwsLambda.Console
                         await SendMessage().ConfigureAwait(false);
                         break;
                     case ConsoleKey.Escape:
-                        await (asbEndpoint?.Stop() ?? Task.CompletedTask).ConfigureAwait(false);
+                        await (sqsEndpoint?.Stop() ?? Task.CompletedTask).ConfigureAwait(false);
                         return;
                 }
             }
         }
 
-        private static IEndpointInstance asbEndpoint;
+        private static IEndpointInstance sqsEndpoint;
 
         static async Task SendMessage()
         {
-            if (asbEndpoint == null)
+            if (sqsEndpoint == null)
             {
                 var endpointConfiguration = new EndpointConfiguration("AwsLambda.Sender");
-                endpointConfiguration.SendOnly();
                 endpointConfiguration.UsePersistence<InMemoryPersistence>();
                 endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
                 var transport = endpointConfiguration.UseTransport<SqsTransport>();
                 
-                asbEndpoint = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+                sqsEndpoint = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
             }
 
-            await asbEndpoint.Send("AwsLambdaSQSTrigger", new TriggerMessage())
+            await sqsEndpoint.Send("AwsLambdaSQSTrigger", new TriggerMessage())
                 .ConfigureAwait(false);
         }
     }

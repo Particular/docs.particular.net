@@ -11,6 +11,13 @@
       "Type": "AWS::SQS::Queue"
     },
 
+	"SenderQueue": {
+      "Properties": {
+        "QueueName": "AwsLambda-Sender"
+      },
+      "Type": "AWS::SQS::Queue"
+    },
+
 	"InputQueue": {
       "Properties": {
         "QueueName": "AwsLambdaSQSTrigger"
@@ -52,6 +59,12 @@
       "Description": "The URL of the input queue",
       "Value": {
         "Ref": "InputQueue"
+      }
+    },
+	"SenderQueueQueueURL": {
+      "Description": "The URL of the input queue",
+      "Value": {
+        "Ref": "SenderQueue"
       }
     }
   }

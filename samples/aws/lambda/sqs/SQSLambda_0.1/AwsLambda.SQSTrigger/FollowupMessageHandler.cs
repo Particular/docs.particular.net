@@ -7,12 +7,12 @@ using NServiceBus.Logging;
 
 public class FollowupMessageHandler : IHandleMessages<FollowupMessage>
 {
-    private static readonly ILog Log = LogManager.GetLogger<FollowupMessageHandler>();
+    static readonly ILog Log = LogManager.GetLogger<FollowupMessageHandler>();
 
     public Task Handle(FollowupMessage message, IMessageHandlerContext context)
     {
         Log.Info($"Handling {nameof(FollowupMessage)}.");
-        return Task.CompletedTask;
+        return context.Send(new BackToSenderMessage());
     }
 }
 
