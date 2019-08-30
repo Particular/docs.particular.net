@@ -6,7 +6,7 @@
     "All the command line options for the Lambda command can be specified in this file."
   ],
   "profile": "default",
-  "region": "eu-central-1",
+  "region": "",
   "configuration": "Release",
   "framework": "netcoreapp2.1",
   "template": "serverless.template",
