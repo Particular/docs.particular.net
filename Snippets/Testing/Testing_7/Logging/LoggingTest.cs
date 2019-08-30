@@ -24,5 +24,20 @@ public class LoggingTests
 
         StringAssert.Contains("Some log message", logStatements.ToString());
     }
+    [Test]
+    public async Task ShouldLogCorrectlyASecondTime()
+    {
+        var logStatements = new StringBuilder();
+
+        LogManager.Use<TestingLoggerFactory>()
+            .WriteTo(new StringWriter(logStatements));
+
+        var handler = new MyHandlerWithLogging();
+
+        await handler.Handle(new MyRequest(), new TestableMessageHandlerContext())
+            .ConfigureAwait(false);
+
+        StringAssert.Contains("Some log message", logStatements.ToString());
+    }
     #endregion
 }
