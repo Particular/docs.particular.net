@@ -28,7 +28,7 @@
     "SQSTriggerFunction" : {
       "Type" : "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "AwsLambda.SQSTrigger::AwsLambda.SQSTrigger.Function::FunctionHandler",
+        "Handler": "AwsLambda.SQSTrigger::Function::FunctionHandler",
         "Runtime": "dotnetcore2.1",
         "CodeUri": "",
         "Description": "Default function",

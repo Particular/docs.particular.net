@@ -1,8 +1,5 @@
 ﻿using NServiceBus;
 
-namespace AwsLambda
+public class TriggerMessage : IMessage
 {
-    public class TriggerMessage : IMessage
-    {
-    }
 }

@@ -1,8 +1,5 @@
 ﻿using NServiceBus;
 
-namespace AwsLambda
+public class FollowupMessage : IMessage
 {
-    public class FollowupMessage : IMessage
-    {
-    }
 }
