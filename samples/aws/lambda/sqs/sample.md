@@ -1,6 +1,6 @@
 ---
 title: Using NServiceBus in AWS Lambda with SQS
-reviewed: 2019-08-27
+reviewed: 2019-08-30
 component: SQSLambda
 related:
  - samples/sqs
@@ -16,7 +16,7 @@ downloadbutton
 
 ## Prerequisites
 
-The sample includes a [`CloudFormation`](https://aws.amazon.com/cloudformation/aws-cloudformation-templates/) template which will deploy the Lambda and create the necessary queues to run the sample.
+The sample includes a [`CloudFormation`](https://aws.amazon.com/cloudformation/aws-cloudformation-templates/) template, which will deploy the Lambda and create the necessary queues to run the sample.
 
 The [`Amazon.Lambda.Tools` cli](https://github.com/aws/aws-lambda-dotnet) can be used to deploy the template to your AWS account.
 
@@ -25,13 +25,13 @@ The [`Amazon.Lambda.Tools` cli](https://github.com/aws/aws-lambda-dotnet) can be
 
 ## Running the sample
 
-INFO: It is not possible at this stage to use the AWS .NET Mock Lambda Test Tool to locally run the sample.
+INFO: It is not possible at this stage to use the AWS .NET Mock Lambda Test Tool to run the sample locally.
 
  Run the following command from the `AwsLambda.SQSTrigger` directory to deploy the Lambda project:
 
 `dotnet lambda deploy-serverless`
 
-The deployment will ask for a stack name and an S3 bucket name in order to deploy the serverless stack.
+The deployment will ask for a stack name and an S3 bucket name to deploy the serverless stack.
 
 After which, running the sample should launch a single console window:
 
@@ -52,11 +52,11 @@ The static NServiceBus endpoint must be configured using details that come from 
 
 snippet: EndpointSetup
 
-The same class defines the AWS Lambda which makes up the hosting for the NServiceBus endpoint. The `FunctionHandler` method hands off processing of the message to NServiceBus:
+The same class defines the AWS Lambda, which makes up the hosting for the NServiceBus endpoint. The `FunctionHandler` method hands off processing of the message to NServiceBus:
 
 snippet: FunctionHandler
 
-Meanwhile, the message handlers for `TriggerMessage` and `FollowUpMessage`, also hosted within the Azure Functions project, are normal NServiceBus message handlers, which are also capable of sending messages themselves.
+Meanwhile, the message handlers for `TriggerMessage` and `FollowUpMessage`, also hosted within the Azure Functions project, are regular NServiceBus message handlers, which are also capable of sending messages themselves.
 
 snippet: TriggerMessageHandler
 
@@ -64,8 +64,8 @@ snippet: FollowupMessageHandler
 
 ## Removing the sample stack
 
-In order to remove the deployed stack enter:
+To remove the deployed stack enter:
 
 `dotnet lambda delete-serverless`
 
-and provide the previously chosen stack name.
+also, provide the previously chosen stack name.
