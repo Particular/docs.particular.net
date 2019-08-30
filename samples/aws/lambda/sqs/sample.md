@@ -26,6 +26,8 @@ The [`Amazon.Lambda.Tools` cli](https://github.com/aws/aws-lambda-dotnet) can be
 
 `dotnet lambda deploy-serverless`
 
+The deployment will ask for a stack name and an S3 bucket name in order to deploy the serverless stack.
+
 After which, running the sample should launch a single console window:
 
 * **AWSLambda.Sender** is a console application that will send a `TriggerMessage` to the `AwsLambdaSQSTrigger` queue, which is monitored by the AWS Lambda.
@@ -54,3 +56,10 @@ snippet: TriggerMessageHandler
 
 snippet: FollowupMessageHandler
 
+## Removing the sample stack
+
+In order to remove the deployed stack enter:
+
+`dotnet lambda delete-serverless`
+
+and provide the previously chosen stack name.
