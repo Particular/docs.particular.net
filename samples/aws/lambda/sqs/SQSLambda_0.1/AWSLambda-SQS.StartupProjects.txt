@@ -1,1 +1,1 @@
-AwsLambda.Console\AwsLambda.Sender.csproj
+AwsLambda.Sender\AwsLambda.Sender.csproj
