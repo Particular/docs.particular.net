@@ -1,50 +1,31 @@
 ﻿using System;
-using System.Runtime.ExceptionServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
+
+//TODO: Switch asp.net core 3.0 to avoid the race condition on start
 class NServiceBusService : IHostedService
 {
-    public NServiceBusService(SessionAndConfigurationHolder holder)
+    public NServiceBusService(PreparedEndpoint preparedEndpoint, IServiceProvider serviceProvider)
     {
-        this.holder = holder;
+        this.preparedEndpoint = preparedEndpoint;
+        this.serviceProvider = serviceProvider;
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        try
-        {
-            endpoint = await Endpoint.Start(holder.EndpointConfiguration)
-                .ConfigureAwait(false);
-        }
-        catch (Exception e)
-        {
-            holder.StartupException = ExceptionDispatchInfo.Capture(e);
-            return;
-        }
-
-        holder.MessageSession = endpoint;
+        endpoint = await Endpoint.Start(preparedEndpoint, new ServiceProviderAdapter(serviceProvider))
+            .ConfigureAwait(false);
     }
 
-    public async Task StopAsync(CancellationToken cancellationToken)
+    public Task StopAsync(CancellationToken cancellationToken)
     {
-        try
-        {
-            if (endpoint != null)
-            {
-                await endpoint.Stop()
-                    .ConfigureAwait(false);
-            }
-        }
-        finally
-        {
-            holder.MessageSession = null;
-            holder.StartupException = null;
-        }
+        return endpoint.Stop();
     }
 
-    readonly SessionAndConfigurationHolder holder;
     IEndpointInstance endpoint;
+    readonly PreparedEndpoint preparedEndpoint;
+    readonly IServiceProvider serviceProvider;
 }
