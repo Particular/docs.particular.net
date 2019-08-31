@@ -10,7 +10,7 @@ public class TriggerMessageHandler : IHandleMessages<TriggerMessage>
 
     public Task Handle(TriggerMessage message, IMessageHandlerContext context)
     {
-        Log.Info($"Handling {nameof(TriggerMessage)} in {nameof(TriggerMessageHandler)}");
+        Log.Warn($"Handling {nameof(TriggerMessage)} in {nameof(TriggerMessageHandler)}");
         return context.SendLocal(new FollowupMessage());
     }
 }

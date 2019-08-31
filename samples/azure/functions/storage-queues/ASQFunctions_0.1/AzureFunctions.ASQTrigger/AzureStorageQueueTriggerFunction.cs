@@ -15,10 +15,10 @@ public class AzureStorageQueueTriggerFunction
     public static async Task QueueTrigger(
         [QueueTrigger(EndpointName)]
         CloudQueueMessage message,
-        ILogger log,
+        ILogger logger,
         ExecutionContext context)
     {
-        await endpoint.Process(message, context);
+        await endpoint.Process(message, context, logger);
     }
 
     #endregion
@@ -27,7 +27,7 @@ public class AzureStorageQueueTriggerFunction
 
     private static FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
-        var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName);
+        var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName, executionContext.Logger);
 
         configuration.UseSerialization<NewtonsoftSerializer>();
 
@@ -35,4 +35,19 @@ public class AzureStorageQueueTriggerFunction
     });
 
     #endregion
+
+    #region AlternativeEndpointSetup
+
+    private static readonly FunctionEndpoint autoConfiguredEndpoint = new FunctionEndpoint(executionContext =>
+    {
+        // endpoint name, logger, and connection strings are automatically derived from FunctionName and QueueTrigger attributes
+        var configuration = StorageQueueTriggeredEndpointConfiguration.CreateUsingFunctionAndTriggerAttributesInformation(executionContext);
+
+        configuration.UseSerialization<NewtonsoftSerializer>();
+
+        return configuration;
+    });
+
+    #endregion
+
 }
