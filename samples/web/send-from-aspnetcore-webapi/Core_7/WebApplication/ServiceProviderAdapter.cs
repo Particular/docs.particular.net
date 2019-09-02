@@ -42,12 +42,12 @@ public class ServiceProviderAdapter : IBuilder
 
     public void Dispose()
     {
-        //TODO: What do we do here?
+        //no-op
     }
 
     public void Release(object instance)
     {
-        //TODO: No-op?
+        //no-op
     }
 
     IServiceProvider serviceProvider;
@@ -96,7 +96,7 @@ public class ServiceProviderAdapter : IBuilder
 
         public void Release(object instance)
         {
-            //TODO: no-op?
+            //no-op
         }
 
         IServiceScope serviceScope;
