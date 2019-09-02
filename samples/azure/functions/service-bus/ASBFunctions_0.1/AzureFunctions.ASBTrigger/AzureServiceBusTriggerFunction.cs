@@ -48,7 +48,7 @@ public class AzureServiceBusTriggerFunction
     private static readonly FunctionEndpoint autoConfiguredEndpoint = new FunctionEndpoint(executionContext =>
     {
         // endpoint name, logger, and connection strings are automatically derived from FunctionName and ServiceBusTrigger attributes
-        var configuration = ServiceBusTriggeredEndpointConfiguration.CreateUsingFunctionAndTriggerAttributesInformation(executionContext);
+        var configuration = ServiceBusTriggeredEndpointConfiguration.FromAttributes(executionContext);
 
         configuration.UseSerialization<NewtonsoftSerializer>();
 
