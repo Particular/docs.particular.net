@@ -56,7 +56,7 @@ The same class defines the AWS Lambda, which makes up the hosting for the NServi
 
 snippet: FunctionHandler
 
-Meanwhile, the message handlers for `TriggerMessage` and `FollowUpMessage`, also hosted within the Azure Functions project, are regular NServiceBus message handlers, which are also capable of sending messages themselves.
+Meanwhile, the message handlers for `TriggerMessage` and `FollowUpMessage`, also hosted within the AWS Lambda project, are regular NServiceBus message handlers, which are also capable of sending messages themselves.
 
 snippet: TriggerMessageHandler
 
