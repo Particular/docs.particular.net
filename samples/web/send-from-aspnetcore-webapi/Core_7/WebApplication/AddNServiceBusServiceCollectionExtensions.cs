@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
-public static class AddNServiceBusServiceCollectionExtensions
+public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddNServiceBus(this IServiceCollection services, EndpointConfiguration configuration)
     {
