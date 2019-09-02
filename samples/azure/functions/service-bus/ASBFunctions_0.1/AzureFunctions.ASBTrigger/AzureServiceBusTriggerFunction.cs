@@ -16,10 +16,10 @@ public class AzureServiceBusTriggerFunction
     public static async Task Run(
         [ServiceBusTrigger(queueName: EndpointName, Connection = ConnectionStringName )]
         Message message,
-        ILogger log,
+        ILogger logger,
         ExecutionContext executionContext)
     {
-        await endpoint.Process(message, executionContext);
+        await endpoint.Process(message, executionContext, logger);
     }
 
     #endregion
@@ -28,11 +28,32 @@ public class AzureServiceBusTriggerFunction
 
     private static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
-        var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, ConnectionStringName);
+        var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, executionContext.Logger, ConnectionStringName);
         configuration.UseSerialization<NewtonsoftSerializer>();
+
+        // optional: log startup diagnostics using Functions provided logger
+        configuration.AdvancedConfiguration.CustomDiagnosticsWriter(diagnostics =>
+        {
+            executionContext.Logger.LogInformation(diagnostics);
+            return Task.CompletedTask;
+        });
 
         return configuration;
     });
 
     #endregion EndpointSetup
+
+    #region AlternativeEndpointSetup
+
+    private static readonly FunctionEndpoint autoConfiguredEndpoint = new FunctionEndpoint(executionContext =>
+    {
+        // endpoint name, logger, and connection strings are automatically derived from FunctionName and ServiceBusTrigger attributes
+        var configuration = ServiceBusTriggeredEndpointConfiguration.CreateUsingFunctionAndTriggerAttributesInformation(executionContext);
+
+        configuration.UseSerialization<NewtonsoftSerializer>();
+
+        return configuration;
+    });
+
+    #endregion
 }
