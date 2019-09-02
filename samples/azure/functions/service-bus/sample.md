@@ -51,7 +51,7 @@ The static NServiceBus endpoint must be configured using details that come from 
 
 snippet: EndpointSetup
 
-Alternatively, the endpoint can be automatically configured with the endpoint name, the transport connection string, and the logger passed into the function using a static factory method provided by `ServiceBusTriggeredEndpointConfiguration.CreateUsingFunctionAndTriggerAttributesInformation` method.
+Alternatively, the endpoint can be automatically configured with the endpoint name, the transport connection string, and the logger passed into the function using a static factory method provided by `ServiceBusTriggeredEndpointConfiguration.FromAttributes` method.
 
 snippet: AlternativeEndpointSetup
 

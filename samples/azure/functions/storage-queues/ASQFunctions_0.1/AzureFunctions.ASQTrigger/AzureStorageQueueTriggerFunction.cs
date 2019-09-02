@@ -41,7 +41,7 @@ public class AzureStorageQueueTriggerFunction
     private static readonly FunctionEndpoint autoConfiguredEndpoint = new FunctionEndpoint(executionContext =>
     {
         // endpoint name, logger, and connection strings are automatically derived from FunctionName and QueueTrigger attributes
-        var configuration = StorageQueueTriggeredEndpointConfiguration.CreateUsingFunctionAndTriggerAttributesInformation(executionContext);
+        var configuration = StorageQueueTriggeredEndpointConfiguration.FromAttributes(executionContext);
 
         configuration.UseSerialization<NewtonsoftSerializer>();
 
