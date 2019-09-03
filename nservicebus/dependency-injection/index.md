@@ -3,7 +3,7 @@ title: Dependency Injection
 summary: NServiceBus automatically registers components, handlers, and sagas.
 component: Core
 isLearningPath: true
-reviewed: 2018-04-06
+reviewed: 2019-09-03
 tags:
  - Dependency Injection
 redirects:
@@ -77,8 +77,10 @@ snippet: DelegateSingleInstance
 
 snippet: RegisterSingleton
 
+partial: nondefault
 
-## Supported containers
+
+### Supported containers
 
 Support for other containers is provided via custom integrations.
 
@@ -92,7 +94,7 @@ Support for other containers is provided via custom integrations.
  * [Microsoft.Extensions.DependencyInjection](msdependencyinjection.md)
 
 
-## Using an existing instance
+### Using an existing instance
 
 The above pages all have examples of how to pass in an instance. This is useful to make use of the full features and share the behavior with NServiceBus.
 
@@ -100,7 +102,7 @@ The above pages all have examples of how to pass in an instance. This is useful 
 partial: content
 
 
-## Plugging in
+### Plugging in
 
 If a specific library is not supported, create a plugin using the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom dependency injection to look up its own dependencies.
 
