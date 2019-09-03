@@ -5,7 +5,7 @@ tags:
 - Unobtrusive
 - Convention
 component: Core
-reviewed: 2018-03-21
+reviewed: 2019-09-03
 related:
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/unobtrusive-mode
@@ -25,5 +25,6 @@ Currently conventions exist to identify:
 
 Messages can be defined in a *Portable Class Library* (PCL) and shared across multiple platforms even if the platform does not use NServiceBus for message processing.
 
-
 snippet: MessageConventions
+
+Note: Note that in .NET, the namespace is optional and hence can be null. If any conventions do partial string checks, for example using `EndsWith` or `StartsWith`, then a null check should be used. So include `.Namespace != null` at the start of the convention. Otherwise a null reference exception will occur during the type scanning.
