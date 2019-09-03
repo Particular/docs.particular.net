@@ -8,7 +8,7 @@ public static class ServiceCollectionExtensions
         var preparedEndpoint = Endpoint.Prepare(configuration, new ServiceCollectionAdapter(services));
 
         services.AddSingleton(preparedEndpoint);
-        services.AddSingleton(_ => preparedEndpoint.MessageSession);
+        services.AddSingleton(_ => preparedEndpoint.MessageSessionProvider());
         services.AddHostedService<NServiceBusService>();
 
         return services;
