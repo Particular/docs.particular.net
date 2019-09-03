@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 
 static class Program
@@ -13,6 +14,12 @@ static class Program
         var webHostBuilder = new WebHostBuilder();
         webHostBuilder.UseKestrel();
         webHostBuilder.UseContentRoot(Directory.GetCurrentDirectory());
+
+        #region ServiceProviderFactoryAutofac
+
+        webHostBuilder.ConfigureServices(services => services.AddAutofac());
+
+        #endregion
         webHostBuilder.UseStartup<Startup>();
         var host = webHostBuilder.Build();
         await host.StartAsync()
