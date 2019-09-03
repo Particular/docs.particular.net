@@ -1,7 +1,7 @@
 ---
 title: Sender-Side Distribution
 summary: Scale out MSMQ message processing with sender-side distribution
-reviewed: 2017-11-01
+reviewed: 2019-09-03
 component: MsmqTransport
 tags:
  - Scalability
@@ -11,7 +11,7 @@ related:
  - samples/scaleout/distributor
 ---
 
-NOTE: This sample is only relevant for the MSMQ transport. The other broker-based transports scale out using the [competing consumer pattern](/nservicebus/architecture/scaling.md#scaling-out-to-different-nodes-competing-consumers). The functionality in this sample is available for NServiceBus Core Versions 6 and above. 
+NOTE: This sample is only relevant for the [MSMQ transport](/transports/msmq/). The other broker-based transports scale out using the [competing consumer pattern](/nservicebus/architecture/scaling.md#scaling-out-to-different-nodes-competing-consumers). The functionality in this sample is available for NServiceBus version 6 and above. 
 
 Sometimes a single endpoint for handling messages is not enough, so there is a need to scale out. The following sample demonstrates how to scale out existing MSMQ message processing by distributing messages on the sender side.
 
@@ -28,13 +28,13 @@ These two projects are identical and show the scale out in action from within Vi
 
 #### Instance ID
 
-Following snippet instructs NServiceBus to get the instance ID from the `appSettings` configuration section.
+The following snippet instructs NServiceBus to get the instance ID from the `appSettings` configuration section:
 
 snippet: Server-Set-InstanceId
 
 snippet: Server-InstanceId
 
-WARNING: Never hard-code instance IDs because they are mostly operations concern and operations people should be able to modify them without the need to recompile the source code.
+WARNING: Never hard-code instance IDs because they are mostly an operations concern, and operations staff should be able to modify them without the need to recompile the source code.
 
 
 #### Handling code

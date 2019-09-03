@@ -1,6 +1,6 @@
 ---
 title: MSMQ to Azure Service Bus Transport Bridge
-reviewed: 2017-10-17
+reviewed: 2019-09-02
 component: ASB
 related:
 - transports/azure-service-bus
@@ -54,7 +54,7 @@ snippet: connect-asb-side-of-bridge
 
 ![Azure Service Bus topology][asb-topology]
 
-Command routing to MSMQ endpoint is specified using bridge extension method:
+The routing of commands to the MSMQ endpoint is specified using bridge extension method:
 
 snippet: route-command-via-bridge
 
