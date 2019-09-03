@@ -17,7 +17,7 @@ upgradeGuideCoreVersions:
 
 ## Connecting to ServiceControl
 
-The **NServiceBus.Heartbeat** package replaces the **ServiceControl.Plugin.Nsb5.Heartbeat** and **ServiceControl.Plugin.Nsb6.Heartbeat** packages. It also introduces a new version compatible with NServiceBus Version 7.
+The **NServiceBus.Heartbeat** package replaces the **ServiceControl.Plugin.Nsb5.Heartbeat** and **ServiceControl.Plugin.Nsb6.Heartbeat** packages. It also introduces a new version compatible with NServiceBus version 7.
 
 To update, remove the deprecated package and install the NServiceBus.Heartbeat package.
 
