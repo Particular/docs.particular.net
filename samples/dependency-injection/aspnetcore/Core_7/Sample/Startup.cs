@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 using System.Threading.Tasks;
-using Endpoint = NServiceBus.Endpoint;
 
 public class Startup
 {
@@ -14,27 +13,18 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddLogging(loggingBuilder => loggingBuilder.AddConsole());
-        services.AddSingleton(sp => endpoint);
         services.AddSingleton<MyService>();
 
         var endpointConfiguration = new EndpointConfiguration("Sample.Core");
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseContainer<ServicesBuilder>(
-            customizations: customizations =>
-            {
-                customizations.ExistingServices(services);
-            });
 
-        endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+        services.AddNServiceBus(endpointConfiguration);
     }
 
     #endregion
 
     public void Configure(IApplicationBuilder applicationBuilder, IApplicationLifetime applicationLifetime, IHostingEnvironment environment)
     {
-        applicationLifetime.ApplicationStopping.Register(OnShutdown);
-
-
         if (environment.IsDevelopment())
         {
             applicationBuilder.UseDeveloperExceptionPage();
@@ -51,7 +41,7 @@ public class Startup
                     return Task.CompletedTask;
                 }
                 var applicationServices = applicationBuilder.ApplicationServices;
-                var endpointInstance = applicationServices.GetService<IEndpointInstance>();
+                var endpointInstance = applicationServices.GetService<IMessageSession>();
                 var myMessage = new MyMessage();
 
                 return Task.WhenAll(
@@ -61,11 +51,4 @@ public class Startup
 
         #endregion
     }
-
-    void OnShutdown()
-    {
-        endpoint?.Stop().GetAwaiter().GetResult();
-    }
-
-    IEndpointInstance endpoint;
 }

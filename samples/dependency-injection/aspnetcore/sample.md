@@ -1,18 +1,16 @@
 ---
 title: ASP.NET Core Dependency Injection Integration
 component: Core
-reviewed: 2018-09-05
+reviewed: 2019-09-03
 tags:
  - dependency injection
 related:
  - nservicebus/dependency-injection
 ---
 
-[ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) comes with an integrated [dependency injection (DI) feature](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection). When hosting NServiceBus endpoints inside an Asp.NET Core app, components registered for DI might need to be shared between ASP.NET components and NServiceBus message handlers.
+[ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) comes with an integrated [dependency injection (DI) feature](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection). When hosting NServiceBus endpoints inside an ASP.NET Core app, components registered for DI might need to be shared between ASP.NET components and NServiceBus message handlers.
 
 ### Configuring an endpoint to use built-in DI
-
-Note: Using this sample requires adding reference to the `NServiceBus.MSDependencyInjection` community package.
 
 snippet: ContainerConfiguration
 
@@ -26,10 +24,16 @@ snippet: InjectingDependency
 
 ### Configuring to use shared DI with Autofac
 
-It is also possible to use an external container to share components between ASP.NET and NServiceBus message handlers.
+It is also possible to configure ASP.NET Core to use a specific container (in this case Autofac) and still share components between ASP.NET and NServiceBus message handlers.
 
-Note: While this sample illustrates the scenario using [Autofac](/nservicebus/dependency-injection/autofac.md), the same can be achieved by using other [DI libraries](/nservicebus/dependency-injection/). Using Autofac requires adding reference to the `Autofac.Extensions.DependencyInjection` package.
+NOTE: While this sample illustrates the scenario using [Autofac](/nservicebus/dependency-injection/autofac.md), the same can be achieved by using other [DI libraries](/nservicebus/dependency-injection/). Using Autofac requires adding reference to the `Autofac.Extensions.DependencyInjection` package.
+
+First, ASP.NET Core needs to be instructed to use a custom container:
+
+snippet: ServiceProviderFactoryAutofac
+
+Then, the `Startup` configures both services and the container:
 
 snippet: ContainerConfigurationAutofac
 
-The [`ConfigureServices` method](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup#the-configureservices-method) is called by .NET Core infrastructure [at application startup time](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup) and returns a `IServiceProvider` instance that is used by the infrastructure to resolve components. The same container instance is shared with the NServiceBus endpoint.
+The [`ConfigureServices` method](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup#the-configureservices-method) is called by .NET Core infrastructure [at application startup time](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup) to register additional services. The `ConfigureContainer` method is designed to register the components in the container using that container's native APIs.

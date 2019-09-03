@@ -6,49 +6,31 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using System;
 using System.Threading.Tasks;
-using Endpoint = NServiceBus.Endpoint;
 
 public class Startup
 {
     #region ContainerConfigurationAutofac
 
-    public IServiceProvider ConfigureServices(IServiceCollection services)
+    public void ConfigureServices(IServiceCollection services)
     {
         services.AddLogging(loggingBuilder => loggingBuilder.AddConsole());
 
-        var builder = new ContainerBuilder();
-
-        builder.Populate(services);
-        builder.RegisterInstance(new MyService());
-
-        builder.Register(c => endpoint)
-            .As<IEndpointInstance>()
-            .SingleInstance();
-
-        var container = builder.Build();
-
         var endpointConfiguration = new EndpointConfiguration("Sample.Core");
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseContainer<AutofacBuilder>(
-            customizations: customizations =>
-            {
-                customizations.ExistingLifetimeScope(container);
-            });
 
-        endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
+        services.AddNServiceBus(endpointConfiguration);
+    }
 
-        return new AutofacServiceProvider(container);
+    public void ConfigureContainer(ContainerBuilder builder)
+    {
+        builder.RegisterType<MyService>().AsSelf().SingleInstance();
     }
 
     #endregion
 
     public void Configure(IApplicationBuilder applicationBuilder, IApplicationLifetime applicationLifetime, IHostingEnvironment environment)
     {
-        applicationLifetime.ApplicationStopping.Register(OnShutdown);
-
-
         if (environment.IsDevelopment())
         {
             applicationBuilder.UseDeveloperExceptionPage();
@@ -63,7 +45,7 @@ public class Startup
                     return Task.CompletedTask;
                 }
                 var applicationServices = applicationBuilder.ApplicationServices;
-                var endpointInstance = applicationServices.GetService<IEndpointInstance>();
+                var endpointInstance = applicationServices.GetService<IMessageSession>();
                 var myMessage = new MyMessage();
 
                 return Task.WhenAll(
@@ -71,11 +53,4 @@ public class Startup
                     context.Response.WriteAsync("Message sent"));
             });
     }
-
-    void OnShutdown()
-    {
-        endpoint?.Stop().GetAwaiter().GetResult();
-    }
-
-    IEndpointInstance endpoint;
 }
