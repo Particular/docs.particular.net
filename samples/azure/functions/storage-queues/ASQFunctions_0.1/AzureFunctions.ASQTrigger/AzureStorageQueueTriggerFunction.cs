@@ -31,6 +31,13 @@ public class AzureStorageQueueTriggerFunction
 
         configuration.UseSerialization<NewtonsoftSerializer>();
 
+        // optional: log startup diagnostics using Functions provided logger
+        configuration.AdvancedConfiguration.CustomDiagnosticsWriter(diagnostics =>
+        {
+            executionContext.Logger.LogInformation(diagnostics);
+            return Task.CompletedTask;
+        });
+
         return configuration;
     });
 
