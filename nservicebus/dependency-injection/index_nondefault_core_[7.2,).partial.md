@@ -16,6 +16,8 @@ Second, the `Start` method requires an instance of `IBuilder`. At this stage the
 
 snippet: ExternalStart
 
+NOTE: The `Adapt` methods need to be provided by the user and are container-specific. See the [ASP.NET Core sample](/samples/dependency-injection/aspnetcore/) to see how these methods are implemented based on the ASP.NET Core Dependency Injection abstractions.
+
 ## Non-default internal container
 
 In the *internal* mode NServiceBus is fully managing the container's creation and lifetime. 
