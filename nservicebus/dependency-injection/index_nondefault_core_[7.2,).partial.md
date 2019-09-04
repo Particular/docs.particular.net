@@ -6,13 +6,13 @@ NServiceBus can use a non-default container in two modes, *external* and *intern
 ## Non-default external container
 
 
-In the *external* mode NServiceBus registers its components in the external container but does not own the lifecycle of that external container. In order to use use an external container, it has to provide two adapters -- one for the registration phase (`IConfigureComponents`) and one for the resolution phase (`IBuilder`). These abstractions are kept separate to enforce the separation between phases. 
+In *external* mode, NServiceBus registers its components in the container but does not own the container's lifecycle. To use an external container, it has to provide two adapters: one for the registration phase (`IConfigureComponents`) and one for the resolution phase (`IBuilder`). These two abstractions enforce the separation of the two phases. 
 
-First, the `Prepare` method requires an instance of `IConfigureComponents`. At this stage the external container is in the registration phase (e.g. Autofac's `ContainerBuilder`).
+First, the `Prepare` method requires an instance of `IConfigureComponents`. At this stage the container is in the registration phase (e.g. Autofac's `ContainerBuilder`).
 
 snippet: ExternalPrepare
 
-Second, the `Start` method requires an instance of `IBuilder`. At this stage the external container has already been initialized will all its registrations. 
+Second, the `Start` method requires an instance of `IBuilder`. At this stage the container has already been initialized will all its registrations. 
 
 snippet: ExternalStart
 
