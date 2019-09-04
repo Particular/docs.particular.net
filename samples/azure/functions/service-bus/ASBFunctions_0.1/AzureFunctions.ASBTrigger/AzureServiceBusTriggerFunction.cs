@@ -28,7 +28,7 @@ public class AzureServiceBusTriggerFunction
 
     private static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
-        var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, executionContext.Logger, ConnectionStringName);
+        var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, ConnectionStringName);
         configuration.UseSerialization<NewtonsoftSerializer>();
 
         // optional: log startup diagnostics using Functions provided logger
@@ -48,7 +48,7 @@ public class AzureServiceBusTriggerFunction
     private static readonly FunctionEndpoint autoConfiguredEndpoint = new FunctionEndpoint(executionContext =>
     {
         // endpoint name, logger, and connection strings are automatically derived from FunctionName and ServiceBusTrigger attributes
-        var configuration = ServiceBusTriggeredEndpointConfiguration.FromAttributes(executionContext);
+        var configuration = ServiceBusTriggeredEndpointConfiguration.FromAttributes();
 
         configuration.UseSerialization<NewtonsoftSerializer>();
 
