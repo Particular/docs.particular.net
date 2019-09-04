@@ -20,4 +20,4 @@ NOTE: The `Adapt` methods need to be provided by the user and are container-spec
 
 ## Non-default internal container
 
-In the *internal* mode NServiceBus is fully managing the container's creation and lifetime. 
+In *internal* mode, NServiceBus creates the container and owns its lifecycle. 
