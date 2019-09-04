@@ -4,6 +4,7 @@ using Microsoft.WindowsAzure.Storage.Queue;
 using NServiceBus;
 using NServiceBus.AzureFunctions.StorageQueues;
 using System.Threading.Tasks;
+using NServiceBus.Logging;
 
 public class AzureStorageQueueTriggerFunction
 {
@@ -27,14 +28,14 @@ public class AzureStorageQueueTriggerFunction
 
     private static FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
-        var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName, executionContext.Logger);
+        var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName);
 
         configuration.UseSerialization<NewtonsoftSerializer>();
 
         // optional: log startup diagnostics using Functions provided logger
         configuration.AdvancedConfiguration.CustomDiagnosticsWriter(diagnostics =>
         {
-            executionContext.Logger.LogInformation(diagnostics);
+            LogManager.GetLogger<AzureStorageQueueTriggerFunction>().Info(diagnostics);
             return Task.CompletedTask;
         });
 
@@ -48,7 +49,7 @@ public class AzureStorageQueueTriggerFunction
     private static readonly FunctionEndpoint autoConfiguredEndpoint = new FunctionEndpoint(executionContext =>
     {
         // endpoint name, logger, and connection strings are automatically derived from FunctionName and QueueTrigger attributes
-        var configuration = StorageQueueTriggeredEndpointConfiguration.FromAttributes(executionContext);
+        var configuration = StorageQueueTriggeredEndpointConfiguration.FromAttributes();
 
         configuration.UseSerialization<NewtonsoftSerializer>();
 

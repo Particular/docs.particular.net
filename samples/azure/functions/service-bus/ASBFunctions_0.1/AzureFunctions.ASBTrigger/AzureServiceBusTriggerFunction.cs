@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using NServiceBus;
 using System.Threading.Tasks;
 using NServiceBus.AzureFunctions.ServiceBus;
+using NServiceBus.Logging;
 
 public class AzureServiceBusTriggerFunction
 {
@@ -28,13 +29,13 @@ public class AzureServiceBusTriggerFunction
 
     private static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
-        var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, executionContext.Logger, ConnectionStringName);
+        var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, ConnectionStringName);
         configuration.UseSerialization<NewtonsoftSerializer>();
 
         // optional: log startup diagnostics using Functions provided logger
         configuration.AdvancedConfiguration.CustomDiagnosticsWriter(diagnostics =>
         {
-            executionContext.Logger.LogInformation(diagnostics);
+            LogManager.GetLogger<AzureServiceBusTriggerFunction>().Info(diagnostics);
             return Task.CompletedTask;
         });
 
@@ -48,7 +49,7 @@ public class AzureServiceBusTriggerFunction
     private static readonly FunctionEndpoint autoConfiguredEndpoint = new FunctionEndpoint(executionContext =>
     {
         // endpoint name, logger, and connection strings are automatically derived from FunctionName and ServiceBusTrigger attributes
-        var configuration = ServiceBusTriggeredEndpointConfiguration.FromAttributes(executionContext);
+        var configuration = ServiceBusTriggeredEndpointConfiguration.FromAttributes();
 
         configuration.UseSerialization<NewtonsoftSerializer>();
 
