@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-//TODO: Switch asp.net core 3.0 to avoid the race condition on start
 class NServiceBusService : IHostedService
 {
     public NServiceBusService(PreparedEndpoint preparedEndpoint, IServiceProvider serviceProvider)

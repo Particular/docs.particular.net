@@ -42,12 +42,12 @@ public class ServiceProviderAdapter : IBuilder
 
     public void Dispose()
     {
-        //TODO: What do we do here?
+        //no-op
     }
 
     public void Release(object instance)
     {
-        //TODO: No-op?
+        //no-op
     }
 
     IServiceProvider serviceProvider;
@@ -61,8 +61,7 @@ public class ServiceProviderAdapter : IBuilder
 
         public object Build(Type typeToBuild)
         {
-            //TODO: no null check here?
-            return serviceScope.ServiceProvider.GetService(typeToBuild);
+            return serviceScope.ServiceProvider.GetService(typeToBuild) ?? throw new Exception($"Unable to build {typeToBuild.FullName}. Ensure the type has been registered correctly with the container.");
         }
 
         public T Build<T>()
@@ -97,7 +96,7 @@ public class ServiceProviderAdapter : IBuilder
 
         public void Release(object instance)
         {
-            //TODO: no-op?
+            //no-op
         }
 
         IServiceScope serviceScope;
