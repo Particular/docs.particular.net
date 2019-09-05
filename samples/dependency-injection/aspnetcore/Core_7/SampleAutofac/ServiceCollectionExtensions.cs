@@ -1,15 +1,15 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddNServiceBus(this IServiceCollection services, EndpointConfiguration configuration)
     {
-        var preparedEndpoint = Endpoint.Prepare(configuration, new ServiceCollectionAdapter(services));
+        var configuredEndpoint = Endpoint.Configure(configuration, new ServiceCollectionAdapter(services));
 
-        services.AddSingleton(preparedEndpoint);
-        services.AddSingleton(_ => preparedEndpoint.MessageSessionProvider());
-        services.AddHostedService<NServiceBusService>();
+        services.AddSingleton(_ => configuredEndpoint.MessageSession.Value);
+        services.AddSingleton<IHostedService>(serviceProvider => new NServiceBusService(configuredEndpoint, serviceProvider));
 
         return services;
     }

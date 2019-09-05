@@ -4,7 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus" Version="7.2.0-pullrequest5411-0170" />
     <PackageReference Include="NServiceBus.Autofac" Version="7.*" />
     <PackageReference Include="Autofac" Version="4.*" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.*" />
