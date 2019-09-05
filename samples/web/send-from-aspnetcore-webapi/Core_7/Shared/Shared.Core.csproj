@@ -5,7 +5,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.2.0-pullrequest5411-0165" />
+    <PackageReference Include="NServiceBus" Version="7.2.0-pullrequest5411-0170" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>
