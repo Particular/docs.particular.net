@@ -48,7 +48,6 @@ The following SagaAudit plugin packages have been deprecated and unlisted. If us
 - **ServiceControl.Plugin.Nsb5.SagaAudit**
 - **ServiceControl.Plugin.Nsb6.SagaAudit**
 
-## Configuration
 
 partial: config
 
