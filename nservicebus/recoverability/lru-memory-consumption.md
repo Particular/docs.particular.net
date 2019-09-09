@@ -8,16 +8,16 @@ tags:
  - Error Handling
  - Retry
  - Recoverability
-reviewed: 2019-08-16
+reviewed: 2019-09-09
 ---
 
-MSMQ and SQL Server transport need to cache exceptions in memory to allow transactions to be cleared before executing recoverability policies. Therefore, exceptions with a large memory footprint can cause high memory usage of the NServiceBus process. Furthermore, the recoverability cache might hold on to items longer when endpoints are scaled out. This page describes how to solve issues caused by excessive memory consumption due to this caching.
+The MSMQ and SQL Server transports cache exceptions in memory to allow transactions to be cleared before executing recoverability policies. Therefore, exceptions with large memory footprints can cause excessive memory consumption. Furthermore, the cache may retain items for longer when the endpoint is scaled out. This page describes how to solve issues caused by excessive memory consumption due to this caching.
 
-## Dispose exception specific resources
+## Dispose of exception specific resources
 
-Large exceptions which cause high memory consumption can be handled manually to explicitly dispose resources before they will be cached. This will reduce the overall memory stored in the cache.
+An exception may be caught to explicitly dispose of resources before it is rethrown and cached.
 
-The following sample shows how to dispose large response bodies contained in `WebException`s to eliminate unnecessary resource usage:
+For example, disposing the response body contained in a `WebException` may significantly reduce the amount of memory required to cache the exception:
 
 snippet: dispose-large-exceptions
 
