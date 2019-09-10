@@ -47,4 +47,28 @@
     }
 
     #endregion
+    
+    [TestFixture]
+    public class AsyncTests
+    {
+        #region TestingHeaderManipulationAsync
+        [Test]
+        public async Task Run()
+        {
+            await Test.Handler<MyMessageHandler>()
+                .SetIncomingHeader("MyHeaderKey", "myHeaderValue")
+                .ExpectReply<ResponseMessage>(
+                    check: (message, replyOptions) =>
+                    {
+                        var headers = replyOptions.GetHeaders();
+                        return headers["MyHeaderKey"] == "myHeaderValue";
+                    })
+                .OnMessageAsync<RequestMessage>(
+                    initializeMessage: message =>
+                    {
+                        message.String = "hello";
+                    });
+        }
+        #endregion
+    }
 }

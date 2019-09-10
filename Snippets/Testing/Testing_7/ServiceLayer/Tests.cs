@@ -43,4 +43,26 @@
     }
 
     #endregion
+
+    [TestFixture]
+    public class AsyncTests
+    {
+        #region TestingServiceLayerAsync
+        [Test]
+        public async Task TestHandler()
+        {
+            await Test.Handler<MyHandler>()
+                .ExpectReply<ResponseMessage>(
+                    check: message =>
+                    {
+                        return message.String == "hello";
+                    })
+                .OnMessageAsync<RequestMessage>(
+                    initializeMessage: message =>
+                    {
+                        message.String = "hello";
+                    });
+        }
+        #endregion
+    }
 }
