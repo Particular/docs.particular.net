@@ -35,12 +35,12 @@
 
         #endregion
         
-        #region TestingSagaAsync [7.2,)
+        #region TestingSagaAsync
 
         [Test]
         public async Task TestSagaAsync()
         {
-            var sagaExpections = await Test.Saga<MySaga>()
+            var sagaExpectations = await Test.Saga<MySaga>()
                 .ExpectReplyToOriginator<MyResponse>()
                 .ExpectTimeoutToBeSetIn<StartsSaga>(
                     check: (state, span) =>
@@ -55,7 +55,7 @@
                         return saga.Handle(new StartsSaga(), context);
                     });
 
-            await sagaExpections
+            await sagaExpectations
                 .ExpectPublish<MyOtherEvent>()
                 .ExpectSagaCompleted()
                 .WhenSagaTimesOutAsync();

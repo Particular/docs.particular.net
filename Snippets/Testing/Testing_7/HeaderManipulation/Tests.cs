@@ -51,7 +51,7 @@
     [TestFixture]
     public class AsyncTests
     {
-        #region TestingHeaderManipulationAsync [7.2,)
+        #region TestingHeaderManipulationAsync
         [Test]
         public async Task Run()
         {
