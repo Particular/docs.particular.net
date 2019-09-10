@@ -127,7 +127,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 2.2.x     | 2018-12-10     | -                 | -                                 |
-| ~~2.1.x~~ | ~~2018-05-30~~ | ~~2019-03-10~~    | ~~Superseded by 2.2.x~~           |
 | 1.2.x     | 2018-02-23     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 
 ### DependencyInjection packages
@@ -364,7 +363,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 7.1.x     | 2019-03-21     | -                 | -                                 |
+| 7.2.x     | 2019-09-10     | -                 | -                                 |
+| 7.1.x     | 2019-03-21     | 2019-12-10        | Superseded by 7.2.x               |
 | ~~7.0.x~~ | ~~2018-05-29~~ | ~~2019-06-21~~    | ~~Superseded by 7.1.x~~           |
 | 6.0.x     | 2016-10-11     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | 5.2.x     | 2016-04-29     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
@@ -387,7 +387,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.5.x     | 2019-08-23     | -                 | -                                 |
+| 1.6.x     | 2019-09-06     | -                 | -                                 |
+| 1.5.x     | 2019-08-23     | 2019-12-06        | Superseded by 1.6.x               |
 | 1.4.x     | 2019-08-08     | 2019-11-23        | Superseded by 1.5.x               |
 | 1.3.x     | 2019-06-17     | 2019-11-08        | Superseded by 1.4.x               |
 | 1.2.x     | 2019-06-14     | 2019-09-17        | Superseded by 1.3.x               |
