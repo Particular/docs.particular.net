@@ -47,7 +47,7 @@
     [TestFixture]
     public class AsyncTests
     {
-        #region TestingServiceLayerAsync
+        #region TestingServiceLayerAsync [7.2,8.0)
         [Test]
         public async Task TestHandler()
         {

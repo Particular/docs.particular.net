@@ -35,7 +35,7 @@
 
         #endregion
         
-        #region TestingSagaAsync
+        #region TestingSagaAsync [7.2,8.0)
 
         [Test]
         public async Task TestSagaAsync()

@@ -12,7 +12,7 @@ related:
 
 NOTE: Generally it is recommended to use the Arrange-Act-Assert (AAA) style rather than fluent style. To learn how to test NServiceBus using Arrange-Act-Assert, refer to the [sample](/samples/unit-testing/).
 
-WARN: If Xunit test parallization feature is used it is possible that the synchronous variants of `OnMessage` or `WhenXYZ` methods will deadlock under certain conditions. The synchronous methods are available for backward compatibility only.
+WARN: If Xunit test parallization feature is used it is possible that the synchronous variants of `OnMessage` or `WhenXYZ` methods will deadlock under certain conditions. The synchronous methods are available for backward compatibility.
 
 ## Structure
 
@@ -28,7 +28,7 @@ snippet: TestingServiceLayer
 
 This test verifies that, when a message of type `RequestMessage` is processed by `MyHandler`, it responds with a message of type `ResponseMessage`. The test also checks that, if the incoming message has a `String` property of `"hello"`, then the outgoing message also has a `String` property of `"hello"`.
 
-Or use the async overloads like shown below
+Or for version 7.2 or higher use the async overloads like shown below
 
 snippet: TestingServiceLayerAsync
 
@@ -43,7 +43,7 @@ This test verifies that, when a message of type `StartsSaga` is processed by `My
 
 Note that the expectation for the message of type `MyOtherEvent` is set only after the message is sent.
 
-Or use the async overloads like shown below
+Or for version 7.2 or higher use the async overloads like shown below
 
 snippet: TestingSagaAsync
 
@@ -62,7 +62,7 @@ snippet: TestingHeaderManipulation
 
 This test asserts that the outgoing message contains header named `"MyHeaderKey"` set to `"myHeaderValue"`.
 
-Or use the async overloads like shown below
+Or for version 7.2 or higher use the async overloads like shown below
 
 snippet: TestingHeaderManipulationAsync
 
