@@ -10,7 +10,7 @@ include: azure-functions-experimental
 
 This sample shows how to host NServiceBus within an Azure Function, in this case, a function triggered by an incoming Service Bus message. This enables hosting message handlers in Azure Functions, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message processing pipeline.
 
-When hosting NServiceBus within Azure Functions, each Function (as identified by the `[FunctionName]` attribute) hosts an NServiceBus endpoint that is capable of processing multiple different message types.
+When hosting NServiceBus within Azure Functions, each Function (as identified by the `[FunctionName]` attribute) hosts an NServiceBus endpoint that is capable of processing different message types.
 
 The Azure Functions SDK enforces certain constraints that are also applied to NServiceBus endpoints. Review these [constraints](/nservicebus/hosting/azure-functions/) before running the sample.
 
@@ -33,7 +33,7 @@ To use the sample, a valid Service Bus connection string must be configured in  
 
 ## Running the sample
 
-Running the sample should launch two console windows:
+Running the sample will launch two console windows:
 
 * **AzureFunctions.Sender** is a console application that will send a `TriggerMessage` to the `ASBTriggerQueue` queue, which is monitored by the Azure Function.
 * The **Azure Functions runtime** window will receive messages from the `ASBTriggerQueue` queue and process them using the Azure Functions runtime.
