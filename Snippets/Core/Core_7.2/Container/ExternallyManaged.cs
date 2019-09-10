@@ -4,16 +4,16 @@
     using NServiceBus;
     using NServiceBus.ObjectBuilder;
 
-    public class External
+    public class ExternallyManaged
     {
         async Task Usage(EndpointConfiguration endpointConfiguration, MyCustomContainer myCustomContainer)
         {
             #region ExternalPrepare
 
-            IConfigureComponents configureComponents = 
+            IConfigureComponents configureComponents =
                 AdaptContainerForRegistrationPhase(myCustomContainer);
 
-            var preparedEndpoint = Endpoint.Prepare(endpointConfiguration, configureComponents);
+            var startableEndpoint = EndpointWithExternallyManagedContainer.Create(endpointConfiguration, configureComponents);
 
             #endregion
 
@@ -21,7 +21,7 @@
 
             IBuilder builder = AdaptContainerForResolutionPhase(myCustomContainer);
 
-            var startedEndpoint = await Endpoint.Start(preparedEndpoint, builder);
+            var startedEndpoint = await startableEndpoint.Start(builder);
 
             #endregion
         }
