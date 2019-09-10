@@ -38,7 +38,7 @@ Note: Targets 4 but is compatible with later versions, see [Compatibility](#comp
 
 ## Compatibility
 
-NServiceBus targets a specific version of the .NET Framework but that does not mean user code must be targeting the same version. This only indicates the *minimum required .net framework 
+NServiceBus targets a specific version of the .NET Framework but that does not mean user code must be targeting the same version. This only indicates the *minimum required .NET Framework.
 
 > * You can choose .NET Framework 4.5 as the target framework. This assembly or executable can then be used on any computer that has the .NET Framework 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2, 4.7, 4.7.1, 4.7.2, or 4.8 installed.
 > * You can choose .NET Framework 4.5.1 as the target framework. This assembly or executable should be run only on computers that have .NET Framework 4.5.1 or a later version of the .NET Framework installed.
