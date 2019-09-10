@@ -52,7 +52,7 @@ include: must-apply-conventions-for-version
 
 ## Migrating data
 
-As an alternative to compatibility mode, saga data created by the `NServiceBus.Persistence.MongoDB` package can be migrated to the data format used by the `NServiceBus.Storage.MongoDB` package. This approach requires the endpoint to be stopped during the migration. Use the `mongo` shell to connect to the database and execute the following script:
+As an alternative to compatibility mode, saga data created by the `NServiceBus.Persistence.MongoDB` package can be migrated to the data format used by the `NServiceBus.Storage.MongoDB` package. This approach requires the endpoint to be stopped during migration. Use the `mongo` shell to connect to the database and execute the following script:
 
 ```javascript
 db.getCollectionNames().forEach(collectionName => {
