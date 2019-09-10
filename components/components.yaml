@@ -1036,7 +1036,7 @@
     - NServiceBus.DataAnnotations
 
 - Key: MSDependencyInjection
-  Name: SimpleInjector Dependency Injection
+  Name: Microsoft Dependency Injection
   DocoUrl: nservicebus/dependency-injection/msdependencyinjection
   GitHubOwner: twenzel
   Category: DependencyInjection
