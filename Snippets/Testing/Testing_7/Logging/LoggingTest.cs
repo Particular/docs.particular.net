@@ -53,7 +53,7 @@ public class LoggingTests
     #endregion
 }
 
-#region LoggerTestingAmbient
+#region LoggerTestingAmbient [7.2,)
 [TestFixture]
 public class LoggingTestsAmbient
 {
