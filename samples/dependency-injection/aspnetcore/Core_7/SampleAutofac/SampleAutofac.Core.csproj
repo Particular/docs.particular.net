@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.2.0-pullrequest5411-0170" />
+    <PackageReference Include="NServiceBus" Version="7.2.0-beta0137" />
     <PackageReference Include="NServiceBus.Autofac" Version="7.*" />
     <PackageReference Include="Autofac" Version="4.*" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.*" />

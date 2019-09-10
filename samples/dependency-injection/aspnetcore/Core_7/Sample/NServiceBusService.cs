@@ -6,15 +6,15 @@ using NServiceBus;
 
 class NServiceBusService : IHostedService
 {
-    public NServiceBusService(IConfiguredEndpoint configuredEndpoint, IServiceProvider serviceProvider)
+    public NServiceBusService(IStartableEndpointWithExternallyManagedContainer startableEndpoint, IServiceProvider serviceProvider)
     {
-        this.configuredEndpoint = configuredEndpoint;
+        this.startableEndpoint = startableEndpoint;
         this.serviceProvider = serviceProvider;
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        endpoint = await configuredEndpoint.Start(new ServiceProviderAdapter(serviceProvider))
+        endpoint = await startableEndpoint.Start(new ServiceProviderAdapter(serviceProvider))
             .ConfigureAwait(false);
     }
 
@@ -24,6 +24,6 @@ class NServiceBusService : IHostedService
     }
 
     IEndpointInstance endpoint;
-    readonly IConfiguredEndpoint configuredEndpoint;
+    readonly IStartableEndpointWithExternallyManagedContainer startableEndpoint;
     readonly IServiceProvider serviceProvider;
 }

@@ -6,10 +6,10 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddNServiceBus(this IServiceCollection services, EndpointConfiguration configuration)
     {
-        var configuredEndpoint = Endpoint.Configure(configuration, new ServiceCollectionAdapter(services));
+        var startableEndpoint = EndpointWithExternallyManagedContainer.Create(configuration, new ServiceCollectionAdapter(services));
 
-        services.AddSingleton(_ => configuredEndpoint.MessageSession.Value);
-        services.AddSingleton<IHostedService>(serviceProvider => new NServiceBusService(configuredEndpoint, serviceProvider));
+        services.AddSingleton(_ => startableEndpoint.MessageSession.Value);
+        services.AddSingleton<IHostedService>(serviceProvider => new NServiceBusService(startableEndpoint, serviceProvider));
 
         return services;
     }
