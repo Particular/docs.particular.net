@@ -12,7 +12,7 @@ include: internallymanagedcontainer
 
 In *externally managed* mode, NServiceBus registers its components in the container but does not own the container's lifecycle. The container is passed by the user via two different abstractions, one for the registration phase (`IConfigureComponents`) and one for the resolution phase (`IBuilder`).
 
-First, the `EndpointWithExternallyManagedContainer.Create` method requires an instance of `IConfigureComponents`. At this stage the container is in the registration phase (e.g. Autofac's `ContainerBuilder`).
+During the registration phase an instance of `IConfigureComponents` is passed to the `EndpointWithExternallyManagedContainer.Create` method. For example, for Autofac's `ContainerBuilder`, this is the phase during which its type registration methods would be called.
 
 snippet: ExternalPrepare
 
