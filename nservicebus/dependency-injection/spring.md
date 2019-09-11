@@ -27,4 +27,4 @@ snippet: Spring_Existing
 
 ### DependencyLifecycle Mapping
 
-The [NServiceBus dependency lifecycle modes](/nservicebus/dependency-injection/#dependency-lifecycle) do not map directly to Spring object scopes. Almost all of the lifecycle modes have been implemented using custom type registrations using a Spring [`GenericApplicationContext`](https://springframework.net/docs/1.1-RC1/sdk/1.1/html/Spring.Core~Spring.Context.Support.GenericApplicationContext.html).
+The [NServiceBus dependency lifecycle modes](/nservicebus/dependency-injection/#builtin-default-container) do not map directly to Spring object scopes. Almost all of the lifecycle modes have been implemented using custom type registrations using a Spring [`GenericApplicationContext`](https://springframework.net/docs/1.1-RC1/sdk/1.1/html/Spring.Core~Spring.Context.Support.GenericApplicationContext.html).

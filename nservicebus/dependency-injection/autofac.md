@@ -29,10 +29,10 @@ WARNING: Although it is possible to update the container after passing it to NSe
 
 ### DependencyLifecycle mapping
 
-[`DependencyLifecycle`](/nservicebus/dependency-injection/#dependency-lifecycle) maps to [Autofac instance scopes](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-scope) as follows:
+[`DependencyLifecycle`](/nservicebus/dependency-injection/#builtin-default-container) maps to [Autofac instance scopes](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-scope) as follows:
 
 | `DependencyLifecycle`                                                                                             | Autofac instance scope                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-call) | [Instance Per Dependency](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-per-dependency)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work)                    | [Instance Per Lifetime Scope](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-per-lifetime-scope) |
-| [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-single-instance)                                  | [Single Instance](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#single-instance)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/#builtin-default-container-instance-per-call) | [Instance Per Dependency](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-per-dependency)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#builtin-default-container-instance-per-unit-of-work)                    | [Instance Per Lifetime Scope](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-per-lifetime-scope) |
+| [SingleInstance](/nservicebus/dependency-injection/#builtin-default-container-single-instance)                                  | [Single Instance](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#single-instance)                          |
