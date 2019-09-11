@@ -5,8 +5,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.2.0-beta0137" />
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>
