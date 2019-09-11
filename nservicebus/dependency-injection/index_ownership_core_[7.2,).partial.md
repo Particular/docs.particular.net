@@ -1,6 +1,6 @@
 NServiceBus automatically registers and invokes message handlers, sagas, and other user provided extension points using a dependency injection container.
 
-NServiceBus supports two modes of operation, *internally managed* and *externally managed* container.
+NServiceBus supports two modes of operation for containers, *internally managed* and *externally managed*.
 
 ## Internally managed mode
 
