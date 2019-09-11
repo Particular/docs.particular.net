@@ -4,7 +4,7 @@ NServiceBus supports two modes of operation for containers, *internally managed*
 
 ## Internally managed mode
 
-In *internally managed* mode, NServiceBus manages the entire lifecycle of the container from registration, component resolution to disposal.
+In *internally managed* mode, NServiceBus manages the entire lifecycle of the container including registration, component resolution, and disposal.
 
 include: internallymanagedcontainer
 
