@@ -12,10 +12,4 @@ related:
  - samples/dependency-injection
 ---
 
-NServiceBus registers and invokes message handlers, sagas and other user provided extension points using a dependency injection container.
-
 partial: ownership
-
-partial: internallymanaged
-
-partial: externallymanaged

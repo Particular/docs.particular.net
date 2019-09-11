@@ -1,3 +1,5 @@
-NServiceBus manages the entire lifecycle of the container from registration, component resolution to disposal.
+NServiceBus automatically registers and invokes message handlers, sagas, and other user provided extension points using a dependency injection container.
 
-## Container management
+## Container configuration
+
+include: internallymanagedcontainer

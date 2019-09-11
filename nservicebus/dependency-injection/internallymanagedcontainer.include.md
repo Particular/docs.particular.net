@@ -1,36 +1,6 @@
-NServiceBus comes with a default internal container but also supports the following containers:
+### Builtin default container
 
-* [Autofac](autofac.md)
-* [CastleWindsor](castlewindsor.md)
-* [Ninject](ninject.md)
-* [SimpleInjector](simpleinjector.md)
-* [Spring](spring.md)
-* [StructureMap](structuremap.md)
-* [Unity](unity.md)
-* [Microsoft.Extensions.DependencyInjection](msdependencyinjection.md)
-
-partial: endpointresolution
-
-### Plugging in other containers
-
-If a specific library is not supported, create a plugin using the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom dependency injection to look up its own dependencies.
-
-Create a class that implements 'IContainer':
-
-snippet: CustomContainer
-
-Create a class that implements 'ContainerDefinition' and returns the 'IContainer' implementation:
-
-snippet: CustomContainerDefinition
-
-Then register the `ContainerDefinition` to be used:
-
-snippet: CustomContainerUsage
-
-### Component registration
-
-NServiceBus provides a registration API to allow registration of user types. The following dependency lifecyles are supported.
-
+NServiceBus comes with a default internal container with a registration API for registration of user types. The following dependency lifecyles are supported.
 
 #### Instance per call
 
@@ -43,7 +13,6 @@ snippet: InstancePerCall
 or using a delegate:
 
 snippet: DelegateInstancePerCall
-
 
 #### Instance per unit of work
 
@@ -75,3 +44,38 @@ snippet: DelegateSingleInstance
 or using the explict singleton API:
 
 snippet: RegisterSingleton
+
+### Using a third party container
+
+NServiceBus but also supports the following third party containers:
+
+* [Autofac](autofac.md)
+* [CastleWindsor](castlewindsor.md)
+* [Ninject](ninject.md)
+* [SimpleInjector](simpleinjector.md)
+* [Spring](spring.md)
+* [StructureMap](structuremap.md)
+* [Unity](unity.md)
+* [Microsoft.Extensions.DependencyInjection](msdependencyinjection.md)
+
+#### Plugging in other containers
+
+If a specific library is not supported, create a plugin using the `IContainer` abstraction. Once this is created and registered, NServiceBus will use the custom dependency injection to look up its own dependencies.
+
+Create a class that implements 'IContainer':
+
+snippet: CustomContainer
+
+Create a class that implements 'ContainerDefinition' and returns the 'IContainer' implementation:
+
+snippet: CustomContainerDefinition
+
+Then register the `ContainerDefinition` to be used:
+
+snippet: CustomContainerUsage
+
+### Injecting the endpoint instance
+
+`IEndpointInstance` is not registered automatically and must be registered explicitly to be injected.
+
+NOTE: In NServiceBus version 6 and above `IEndpointInstance` is not `IDisposable`.
