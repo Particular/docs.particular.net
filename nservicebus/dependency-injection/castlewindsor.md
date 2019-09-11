@@ -27,11 +27,11 @@ snippet: CastleWindsor_Existing
 
 ### DependencyLifecycle Mapping
 
-[`DependencyLifecycle`](/nservicebus/dependency-injection/#builtin-default-container) maps to [Castle's `LifestyleType`](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md) as follows:
+[`DependencyLifecycle`](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container) maps to [Castle's `LifestyleType`](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md) as follows:
 
 
 | `DependencyLifecycle`                                                                                             | `LifestyleType`                                                                           |
 |-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#builtin-default-container-instance-per-call) | [Transient](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#transient) |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#builtin-default-container-instance-per-unit-of-work)                    | [Scoped](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#scoped)       |
-| [SingleInstance](/nservicebus/dependency-injection/#builtin-default-container-single-instance)                                  | [Singleton](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#singleton) |
+| [InstancePerCall](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-instance-per-call) | [Transient](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#transient) |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-instance-per-unit-of-work)                    | [Scoped](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#scoped)       |
+| [SingleInstance](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-single-instance)                                  | [Singleton](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#singleton) |

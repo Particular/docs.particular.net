@@ -27,13 +27,13 @@ snippet: Unity_Existing
 
 ### DependencyLifecycle mapping
 
-[`DependencyLifecycle`](/nservicebus/dependency-injection/#builtin-default-container) maps to [Unity lifetime managers](https://msdn.microsoft.com/en-us/library/ff660872.aspx#Anchor_0) as follows:
+[`DependencyLifecycle`](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container) maps to [Unity lifetime managers](https://msdn.microsoft.com/en-us/library/ff660872.aspx#Anchor_0) as follows:
 
 | `DependencyLifecycle`                                                                                             | Unity Equivalent                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#builtin-default-container-instance-per-call)                                | [`TransientLifetimeManager`](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.transientlifetimemanager.aspx)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#builtin-default-container-instance-per-unit-of-work)                    | [`HierarchicalLifetimeManager`](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.hierarchicallifetimemanager.aspx) |
-| [SingleInstance](/nservicebus/dependency-injection/#builtin-default-container-single-instance)                                  | [`ContainerControlledLifetimeManager`](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.containercontrolledlifetimemanager.aspx)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-instance-per-call)                                | [`TransientLifetimeManager`](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.transientlifetimemanager.aspx)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-instance-per-unit-of-work)                    | [`HierarchicalLifetimeManager`](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.hierarchicallifetimemanager.aspx) |
+| [SingleInstance](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-single-instance)                                  | [`ContainerControlledLifetimeManager`](https://msdn.microsoft.com/en-us/library/microsoft.practices.unity.containercontrolledlifetimemanager.aspx)                          |
 
 ### Breaking changes in Unity
 
