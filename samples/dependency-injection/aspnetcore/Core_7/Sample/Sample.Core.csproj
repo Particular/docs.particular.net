@@ -4,7 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.2.0-beta0137" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="NServiceBus" Version="7.2.0-beta0137" />
   </ItemGroup>
 </Project>
