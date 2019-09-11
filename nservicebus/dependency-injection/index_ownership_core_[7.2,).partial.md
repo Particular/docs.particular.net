@@ -16,7 +16,7 @@ During the registration phase an instance of `IConfigureComponents` is passed to
 
 snippet: ExternalPrepare
 
-Second, the `Start` method requires an instance of `IBuilder`. At this stage the container has already been initialized will all its registrations.
+Later, during the resolution phase, the `Start` method requires an instance of `IBuilder`. At this stage the container has already been initialized will all its registrations. For example, for Autofac's `ContainerBuilder`, this is the phase during which its `Build` method would be called.
 
 snippet: ExternalStart
 
