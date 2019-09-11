@@ -19,3 +19,9 @@ Later, during the resolution phase, the `Start` method requires an instance of `
 snippet: ExternalStart
 
 NOTE: The `Adapt` methods are implemented by the user and are container-specific. See the [ASP.NET Core sample](/samples/dependency-injection/aspnetcore/) to see how these methods are implemented based on the ASP.NET Core dependency injection abstractions.
+
+### Injecting the message session
+
+`IMessageSession` is not registered automatically in the container and must be registered explicitly to be injected. Access to the session is provided via `IStartableEndpointWithExternallyManagedContainer.MessageSession`
+
+Note: The session is only valid for use after the endpoint have been started and is therefor provided as `Lazy<IMessageSession>`.
