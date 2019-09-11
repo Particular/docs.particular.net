@@ -8,6 +8,6 @@
     <PackageReference Include="NServiceBus.Autofac" Version="7.*" />
     <PackageReference Include="Autofac" Version="4.*" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.*" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.*" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 </Project>
