@@ -21,10 +21,10 @@ snippet: msdependencyinjectionsharedcontainer
 
 ### DependencyLifecycle mapping
 
-[`DependencyLifecycle`](/nservicebus/dependency-injection/#builtin-default-container) maps to [`Microsoft.Extensions.DependencyInjection` service lifetimes](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2) as follows:
+[`DependencyLifecycle`](/nservicebus/dependency-injection/#built-in-default-container) maps to [`Microsoft.Extensions.DependencyInjection` service lifetimes](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.2) as follows:
 
 | `DependencyLifecycle`                                                                                             | `Microsoft.Extensions.DependencyInjection` service lifetime                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#builtin-default-container-instance-per-call) | [Transient](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?#service-lifetimes)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#builtin-default-container-instance-per-unit-of-work)                    | [Scoped](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?#service-lifetimes) |
-| [SingleInstance](/nservicebus/dependency-injection/#builtin-default-container-single-instance)                                  | [Singleton](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?#service-lifetimes)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/#built-in-default-container-instance-per-call) | [Transient](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?#service-lifetimes)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#built-in-default-container-instance-per-unit-of-work)                    | [Scoped](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?#service-lifetimes) |
+| [SingleInstance](/nservicebus/dependency-injection/#built-in-default-container-single-instance)                                  | [Singleton](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?#service-lifetimes)                          |
