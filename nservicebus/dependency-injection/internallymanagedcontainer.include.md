@@ -32,8 +32,7 @@ The same instance will be returned each time.
 
 Represented by the enum value `DependencyLifecycle.SingleInstance`.
 
-WARNING: `SingleInstance` components that have dependencies that are scoped `InstancePerCall` or `InstancePerUnitOfWork` will still resolve. In effect these dependencies, while not scoped `SingleInstance`, will behave as if they are `SingleInstance` as the instances will exist inside the parent component.
-
+WARNING: `SingleInstance` components that have dependencies that are scoped `InstancePerCall` or `InstancePerUnitOfWork` will still resolve. In effect, these dependencies, while not scoped as `SingleInstance`, will behave as if they are `SingleInstance` because the instances will exist inside the parent component.
 
 snippet: SingleInstance
 
@@ -41,13 +40,13 @@ or using a delegate:
 
 snippet: DelegateSingleInstance
 
-or using the explict singleton API:
+or using the explicit singleton API:
 
 snippet: RegisterSingleton
 
 ### Using a third party container
 
-NServiceBus but also supports the following third party containers:
+NServiceBus also supports the following third party containers:
 
 * [Autofac](autofac.md)
 * [CastleWindsor](castlewindsor.md)
