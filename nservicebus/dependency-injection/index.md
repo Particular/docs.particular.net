@@ -11,5 +11,6 @@ redirects:
 related:
  - samples/dependency-injection
 ---
+NServiceBus automatically registers and invokes message handlers, sagas, and other user provided extension points using a dependency injection container.
 
 partial: ownership
