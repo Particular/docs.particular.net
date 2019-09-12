@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-namespace NServiceBus.Extensions.DependencyInjection
+﻿namespace NServiceBus.Extensions.DependencyInjection
 {
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using NServiceBus;
 
