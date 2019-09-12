@@ -24,7 +24,7 @@ snippet: InjectingDependency
 
 ### Configuring to use shared DI with Autofac
 
-It is also possible to configure ASP.NET Core to use a specific container (in this case Autofac) and still share components between ASP.NET and NServiceBus message handlers.
+It is also possible to configure ASP.NET Core to use a specific container and still share components between ASP.NET and NServiceBus message handlers. This sample demonstrates how to do this with Autofac using the `Autofac.Extensions.DependencyInjection` package
 
 NOTE: While this sample illustrates the scenario using [Autofac](/nservicebus/dependency-injection/autofac.md), the same can be achieved by using other [DI libraries](/nservicebus/dependency-injection/). Using Autofac requires adding reference to the `Autofac.Extensions.DependencyInjection` package.
 
