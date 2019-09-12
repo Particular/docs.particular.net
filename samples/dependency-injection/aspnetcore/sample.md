@@ -28,7 +28,7 @@ It is also possible to configure ASP.NET Core to use a specific container and st
 
 NOTE: This can also be done using other [DI libraries](/nservicebus/dependency-injection/).
 
-First, ASP.NET Core needs to be instructed to use a custom container:
+First, ASP.NET Core is instructed to use a custom container:
 
 snippet: ServiceProviderFactoryAutofac
 
