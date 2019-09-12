@@ -8,7 +8,7 @@ related:
  - nservicebus/dependency-injection
 ---
 
-[ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) comes with an integrated [dependency injection (DI) feature](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection). When hosting NServiceBus endpoints inside an ASP.NET Core app, components registered for DI might need to be shared between ASP.NET components and NServiceBus message handlers.
+[ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) has an integrated [dependency injection (DI) feature](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection). When hosting NServiceBus endpoints inside an ASP.NET Core app, it may be necessary to share components registered for DI between ASP.NET components and NServiceBus message handlers.
 
 ### Configuring an endpoint to use built-in DI
 
