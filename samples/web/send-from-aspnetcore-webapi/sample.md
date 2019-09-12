@@ -8,19 +8,17 @@ related:
 ---
 
 
-This sample shows how to send messages to an NServiceBus endpoint from an ASP.NET Core WebAPI application. 
-
+This sample shows how to send messages to an NServiceBus endpoint from an ASP.NET Core WebAPI application.
 
 ## Running the solution
 
 When the solution is run, a new browser window/tab opens, as well as a console application. The browser will navigate to `http://localhost:51863/api/sendmessage`.
 
-An async [WebAPI](https://www.asp.net/web-api) controller handles the request. It creates an NServiceBus message and sends it to the endpoint running in the console application. The message has been processed successfully when the console application prints "Message received at endpoint". 
-
+An async [WebAPI](https://www.asp.net/web-api) controller handles the request. It creates an NServiceBus message and sends it to the endpoint running in the console application. The message has been processed successfully when the console application prints "Message received at endpoint".
 
 ## Prerequisites
 
-  - Visual Studio 2017 is required to run this sample.
+- Visual Studio 2017 is required to run this sample.
 
 ### Initialize the WebAPI endpoint
 
@@ -46,13 +44,13 @@ The endpoint instance is injected into the `SendMessageController` at constructi
 
 snippet: MessageSessionInjection
 
-### Sending the message 
+### Sending the message
 
 Send and await messages through the `IMessageSession` instance provided by ASP.NET Core.
 
 snippet: MessageSessionUsage
 
-### Processing the message 
+### Processing the message
 
 The message is picked up and processed by a message handler in the `Samples.ASPNETCore.Endpoint` endpoint.
 
