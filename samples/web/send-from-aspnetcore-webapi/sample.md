@@ -32,21 +32,19 @@ Routing is configured to send every message from the assembly containing `MyMess
 
 snippet: Routing
 
-Finally, the endpoint is registered as a singleton instance of type `IMessageSession` in ASP.NET Cores `ServiceCollection`, ready to be injected into the controller.
-
-An alternative would be to register the instance as type `IEndpointInstance`. `IMessageSession` is a leaner interface, containing only the methods necessary to send/publish messages. It is a good choice for [sending messages outside message handlers](/nservicebus/upgrades/5to6/moving-away-from-ibus.md#migrating-away-from-ibus-sending-messages-outside-message-handlers) if no endpoint management functionality is required.
+Finally, the NServiceBus configured using the `AddNServiceBus` method. This sets NServiceBus up run as a [hosted service](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services) and registers the `IMessageSession` in the dependency injection container so that controllers can take a dependency on it.
 
 snippet: ServiceRegistration
 
 ### Injection into the Controller
 
-The endpoint instance is injected into the `SendMessageController` at construction time by ASP.NET Core.
+The message session is injected into the `SendMessageController` via constructor injection.
 
 snippet: MessageSessionInjection
 
 ### Sending the message
 
-Send and await messages through the `IMessageSession` instance provided by ASP.NET Core.
+Send and messages through the `IMessageSession` instance provided by ASP.NET Core.
 
 snippet: MessageSessionUsage
 
