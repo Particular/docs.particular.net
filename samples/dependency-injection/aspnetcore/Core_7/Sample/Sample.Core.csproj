@@ -5,7 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.*" />
-    <PackageReference Include="NServiceBus" Version="7.2.0-beta0137" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NServiceBus.Extensions.DependencyInjection\NServiceBus.Extensions.DependencyInjection.csproj" />
