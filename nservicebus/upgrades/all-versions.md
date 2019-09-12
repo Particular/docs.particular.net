@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Packages Versions
 summary: All versions of all NServiceBus packages
-reviewed: 2017-10-27
+reviewed: 2019-09-09
 related:
  - nservicebus/upgrades/supported-versions
  - nservicebus/upgrades/support-policy

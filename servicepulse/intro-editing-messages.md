@@ -44,4 +44,4 @@ A failed message must not have been resolved by a user, successfully retried, or
 
 The bodies of messages with encrypted properties cannot be edited.
 
-The edited message will be assigned a new message id before dispatching. The new message id is automatically generated and is a GUID stored as a string in the edited message's headers.
+The edited message will be assigned a new message ID before dispatching. The new message ID is automatically generated and is a GUID stored as a string in the edited message's headers.

@@ -1,0 +1,71 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "Template that creates an SQS queue and a function that is invoked when a new message arrives.",
+  "Resources" : {
+
+	"ErrorQueue": {
+      "Properties": {
+        "QueueName": "ErrorAwsLambdaSQSTrigger"
+      },
+      "Type": "AWS::SQS::Queue"
+    },
+
+	"SenderQueue": {
+      "Properties": {
+        "QueueName": "AwsLambda-Sender"
+      },
+      "Type": "AWS::SQS::Queue"
+    },
+
+	"InputQueue": {
+      "Properties": {
+        "QueueName": "AwsLambdaSQSTrigger"
+      },
+      "Type": "AWS::SQS::Queue"
+    },
+
+    "SQSTriggerFunction" : {
+      "Type" : "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "AwsLambda.SQSTrigger::Function::FunctionHandler",
+        "Runtime": "dotnetcore2.1",
+        "CodeUri": "",
+        "Description": "Default function",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [ "AWSLambdaFullAccess", "AmazonSQSFullAccess" ],
+		"Events": {
+            "SqsEvent" : {
+                "Type" : "SQS",
+                "Properties" : {
+                    "BatchSize" : 10,
+					"Queue": { "Fn::GetAtt" : ["InputQueue", "Arn"] }
+                }
+            }
+        }
+      }
+    }
+  },
+  "Outputs" : {
+	"ErrorQueueQueueURL": {
+      "Description": "The URL of the queue",
+      "Value": {
+        "Ref": "ErrorQueue"
+      }
+    },
+	"InputQueueQueueURL": {
+      "Description": "The URL of the input queue",
+      "Value": {
+        "Ref": "InputQueue"
+      }
+    },
+	"SenderQueueQueueURL": {
+      "Description": "The URL of the input queue",
+      "Value": {
+        "Ref": "SenderQueue"
+      }
+    }
+  }
+}

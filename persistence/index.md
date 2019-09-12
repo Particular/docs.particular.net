@@ -35,6 +35,7 @@ It can be a challenge to decide whether or not a persister is needed and which o
 - [Service Fabric](/persistence/service-fabric/)
 - [NHibernate](/persistence/nhibernate/)
 - [MSMQ](/persistence/msmq/subscription.md)
+- [MongoDB](/persistence/mongodb/)
 
 ## Community-maintained persisters
 

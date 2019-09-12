@@ -12,6 +12,7 @@
             #region Hosting-SendOnly
 
             var endpointConfiguration = new EndpointConfiguration("EndpointName");
+            // Apply other necessary endpoint configuration
             endpointConfiguration.SendOnly();
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
@@ -63,6 +64,7 @@
 
             var containerBuilder = new ContainerBuilder();
             var endpointConfiguration = new EndpointConfiguration("EndpointName");
+            // Apply other necessary endpoint configuration
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
             containerBuilder.Register(_ => endpointInstance).InstancePerDependency();
