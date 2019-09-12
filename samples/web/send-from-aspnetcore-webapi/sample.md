@@ -32,7 +32,7 @@ Routing is configured to send every message from the assembly containing `MyMess
 
 snippet: Routing
 
-Finally, the NServiceBus configured using the `AddNServiceBus` method. This sets NServiceBus up run as a [hosted service](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services) and registers the `IMessageSession` in the dependency injection container so that controllers can take a dependency on it.
+Finally, NServiceBus is configured using the `AddNServiceBus` method. This sets up NServiceBus as a [hosted service](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services) and registers the `IMessageSession` in the dependency injection container so that controllers can take a dependency on it.
 
 snippet: ServiceRegistration
 
