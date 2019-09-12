@@ -55,7 +55,6 @@ NServiceBus also supports the following third party containers:
 * [Spring](spring.md)
 * [StructureMap](structuremap.md)
 * [Unity](unity.md)
-* [Microsoft.Extensions.DependencyInjection](msdependencyinjection.md)
 
 #### Plugging in other containers
 
