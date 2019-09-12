@@ -374,8 +374,6 @@
         Title: Logging configuration
     - Url: nservicebus/hosting/docker-host
       Title: Docker Container Host
-    - Url: nservicebus/hosting/azure-functions
-      Title: Azure Functions
     - Url: nservicebus/hosting/cloud-services-host
       Title: Azure Cloud Services Host
       Articles:

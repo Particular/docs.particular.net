@@ -26,7 +26,7 @@ For example
 
 snippet: NewtonsoftAttributes
 
-NOTE: by default Json.NET serializer adds the Byte Order Mark (BOM). To disable it, see [custom writter](/nservicebus/serialization/newtonsoft.md#usage-custom-writer) section.
+NOTE: By default, the Json.NET serializer adds a Byte Order Mark (BOM). To disable it, see the [custom writer](/nservicebus/serialization/newtonsoft.md#usage-custom-writer) section.
 
 ### Custom settings
 

@@ -1,6 +1,3 @@
-## Configuration
-
-
 ### ServiceControl Queue
 
 include: Plugin_ServiceControl_Queue

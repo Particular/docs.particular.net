@@ -1,7 +1,7 @@
 ---
 title: Building a transport
 summary: Building a Transport using the file system as a store.
-reviewed: 2017-11-14
+reviewed: 2019-09-09
 component: Core
 related:
 - transports
@@ -9,11 +9,7 @@ related:
 
 This sample show how to build a transport using the file system as a data store.
 
-
 DANGER: This is for learning purposes only and NOT for use in production.
-
-**This sample requires Visual Studio 2017.**
-
 
 ## Sample Structure
 

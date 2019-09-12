@@ -9,7 +9,7 @@
             #region License
             endpointConfiguration.LicensePath("PathToLicense");
             // or
-            endpointConfiguration.License("YourCustomLicenseText");
+            endpointConfiguration.License("ContentsOfLicenseFile");
 
             #endregion
         }

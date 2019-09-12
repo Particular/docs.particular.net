@@ -10,7 +10,7 @@ public class FollowupMessageHandler : IHandleMessages<FollowupMessage>
 
     public Task Handle(FollowupMessage message, IMessageHandlerContext context)
     {
-        Log.Info($"Handling {nameof(FollowupMessage)} in {nameof(FollowupMessageHandler)}.");
+        Log.Warn($"Handling {nameof(FollowupMessage)} in {nameof(FollowupMessageHandler)}.");
         return Task.CompletedTask;
     }
 }

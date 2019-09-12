@@ -1,6 +1,6 @@
 ---
 title: Using NServiceBus in Azure Functions with Service Bus triggers
-reviewed: 2019-08-27
+reviewed: 2019-09-01
 component: ASBFunctions
 related:
  - samples/azure/functions/storage-queues
@@ -10,7 +10,9 @@ include: azure-functions-experimental
 
 This sample shows how to host NServiceBus within an Azure Function, in this case, a function triggered by an incoming Service Bus message. This enables hosting message handlers in Azure Functions, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message processing pipeline.
 
-When hosting NServiceBus within Azure Functions, each Function (as identified by the `[FunctionName]` attribute) hosts an NServiceBus endpoint that is capable of processing multiple different message types.
+When hosting NServiceBus within Azure Functions, each Function (as identified by the `[FunctionName]` attribute) hosts an NServiceBus endpoint that is capable of processing different message types.
+
+The Azure Functions SDK enforces certain constraints that are also applied to NServiceBus endpoints. Review these [constraints](/nservicebus/hosting/azure-functions/) before running the sample.
 
 downloadbutton
 
@@ -31,7 +33,7 @@ To use the sample, a valid Service Bus connection string must be configured in  
 
 ## Running the sample
 
-Running the sample should launch two console windows:
+Running the sample will launch two console windows:
 
 * **AzureFunctions.Sender** is a console application that will send a `TriggerMessage` to the `ASBTriggerQueue` queue, which is monitored by the Azure Function.
 * The **Azure Functions runtime** window will receive messages from the `ASBTriggerQueue` queue and process them using the Azure Functions runtime.
@@ -48,6 +50,10 @@ To try the Azure Function:
 The static NServiceBus endpoint must be configured using details that come from the Azure Functions `ExecutionContext`. Since that is not available until a message is handled by the function, the NServiceBus endpoint instance is deferred until the first message is processed, using a lambda expression like this:
 
 snippet: EndpointSetup
+
+Alternatively, the endpoint can be automatically configured with the endpoint name, the transport connection string, and the logger passed into the function using a static factory method provided by `ServiceBusTriggeredEndpointConfiguration.FromAttributes` method.
+
+snippet: AlternativeEndpointSetup
 
 The same class defines the Azure Function which makes up the hosting for the NServiceBus endpoint. The Function hands off processing of the message to NServiceBus:
 

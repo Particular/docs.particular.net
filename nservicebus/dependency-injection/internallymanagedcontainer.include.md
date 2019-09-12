@@ -1,6 +1,6 @@
 ### Built-in default container
 
-NServiceBus comes with a built-in default container with an API for registration of user types. The following dependency lifecycles are supported:
+NServiceBus has a built-in default container with an API for registration of user types. The following dependency lifecycles are supported:
 
 #### Instance per call
 

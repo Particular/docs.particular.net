@@ -21,6 +21,7 @@ class PrometheusFeature : Feature
         {"# of msgs failures / sec", "nservicebus_failure_total"},
         {"Critical Time", "nservicebus_criticaltime_seconds"},
         {"Processing Time", "nservicebus_processingtime_seconds"},
+        {"Retries", "nservicebus_retries_total"},
     };
 
     #endregion
