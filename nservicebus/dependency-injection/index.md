@@ -8,6 +8,7 @@ tags:
  - Dependency Injection
 redirects:
  - nservicebus/containers
+ - nservicebus/dependency-injection/msdependencyinjection.md
 related:
  - samples/dependency-injection
 ---
