@@ -7,7 +7,6 @@ tags:
 - Azure
 - Hosting
 related:
-- nservicebus/dependency-injection/msdependencyinjection
 - samples/dependency-injection/aspnetcore
 
 ---
