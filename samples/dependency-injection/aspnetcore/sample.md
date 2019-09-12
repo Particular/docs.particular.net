@@ -32,7 +32,7 @@ First, ASP.NET Core needs to be instructed to use a custom container:
 
 snippet: ServiceProviderFactoryAutofac
 
-Then, the `Startup` configures both services and the container:
+Then, `Startup` configures both services and the container:
 
 snippet: ContainerConfigurationAutofac
 
