@@ -38,7 +38,7 @@ snippet: ServiceRegistration
 
 ### Injection into the Controller
 
-The message session is injected into the `SendMessageController` via constructor injection.
+The message session is injected into `SendMessageController` via constructor injection.
 
 snippet: MessageSessionInjection
 
