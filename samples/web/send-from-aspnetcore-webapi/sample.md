@@ -44,7 +44,7 @@ snippet: MessageSessionInjection
 
 ### Sending the message
 
-Send and messages through the `IMessageSession` instance provided by ASP.NET Core.
+Send messages through the `IMessageSession` instance provided by ASP.NET Core.
 
 snippet: MessageSessionUsage
 
