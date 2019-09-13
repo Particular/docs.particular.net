@@ -1035,17 +1035,6 @@
   NugetOrder:
     - NServiceBus.DataAnnotations
 
-- Key: MSDependencyInjection
-  Name: Microsoft Dependency Injection
-  DocoUrl: nservicebus/dependency-injection/msdependencyinjection
-  GitHubOwner: twenzel
-  Category: DependencyInjection
-  SupportLevel: Community
-  LicenseUrl: https://github.com/twenzel/NServiceBus.MSDependencyInjection/blob/master/LICENSE
-  ProjectUrl: https://github.com/twenzel/NServiceBus.MSDependencyInjection
-  NugetOrder:
-    - NServiceBus.MSDependencyInjection
-
 - Key: Serverless
   Name: Serverless
   DocoUrl: nservicebus

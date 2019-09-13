@@ -27,10 +27,10 @@ snippet: simpleinjector_Existing
 
 ### DependencyLifecycle Mapping
 
-[`DependencyLifecycle`](/nservicebus/dependency-injection/#dependency-lifecycle) maps to [Simple Injector lifestyles](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html) as follows:
+[`DependencyLifecycle`](/nservicebus/dependency-injection/) maps to [Simple Injector lifestyles](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html) as follows:
 
 | `DependencyLifecycle`                                                                                             | Simple Injector lifestyle                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-call)                                | [Transient](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#transient)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work)                    | [Scoped](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#perexecutioncontextscope) |
-| [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-single-instance)                                  | [Singleton](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#singleton)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/)                                | [Transient](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#transient)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [Scoped](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#perexecutioncontextscope) |
+| [SingleInstance](/nservicebus/dependency-injection/)                                  | [Singleton](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#singleton)                          |

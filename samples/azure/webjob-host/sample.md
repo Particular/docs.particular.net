@@ -7,7 +7,6 @@ tags:
 - Azure
 - Hosting
 related:
-- nservicebus/dependency-injection/msdependencyinjection
 - samples/dependency-injection/aspnetcore
 
 ---
@@ -33,7 +32,7 @@ The `StartAsync` method of `IJobHost` is used to configure and start the endpoin
 
 snippet: WebJobHost_Start
 
-NOTE: If dependencies need to be shared between the service collection and NServiceBus infrastructure, such as message handlers, the [MSDependencyInjection NuGet package](/nservicebus/dependency-injection/msdependencyinjection.md) must be installed.
+NOTE: If dependencies need to be shared between the service collection and NServiceBus infrastructure, such as message handlers, see the [ASP.NET Core sample](/samples/dependency-injection/#related-samples).
 
 A critical error action must be defined to restart the host when a critical error is raised:
 
