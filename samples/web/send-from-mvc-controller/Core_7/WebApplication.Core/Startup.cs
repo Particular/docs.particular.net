@@ -54,7 +54,6 @@ namespace WebApplication.Core
 
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
 
