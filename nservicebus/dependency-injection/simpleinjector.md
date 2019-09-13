@@ -27,10 +27,10 @@ snippet: simpleinjector_Existing
 
 ### DependencyLifecycle Mapping
 
-[`DependencyLifecycle`](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container) maps to [Simple Injector lifestyles](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html) as follows:
+[`DependencyLifecycle`](/nservicebus/dependency-injection/) maps to [Simple Injector lifestyles](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html) as follows:
 
 | `DependencyLifecycle`                                                                                             | Simple Injector lifestyle                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-instance-per-call)                                | [Transient](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#transient)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-instance-per-unit-of-work)                    | [Scoped](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#perexecutioncontextscope) |
-| [SingleInstance](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-single-instance)                                  | [Singleton](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#singleton)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/-instance-per-call)                                | [Transient](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#transient)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/-instance-per-unit-of-work)                    | [Scoped](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#perexecutioncontextscope) |
+| [SingleInstance](/nservicebus/dependency-injection/-single-instance)                                  | [Singleton](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#singleton)                          |

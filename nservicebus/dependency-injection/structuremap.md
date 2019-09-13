@@ -28,10 +28,10 @@ snippet: StructureMap_Existing
 
 ### DependencyLifecycle Mapping
 
-[`DependencyLifecycle`](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container) maps to [StructureMap lifecycles](https://structuremap.github.io/object-lifecycle/supported-lifecycles/) as follows:
+[`DependencyLifecycle`](/nservicebus/dependency-injection/) maps to [StructureMap lifecycles](https://structuremap.github.io/object-lifecycle/supported-lifecycles/) as follows:
 
 | `DependencyLifecycle`                                                                                             | StructureMap lifecycle                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-instance-per-call) | [AlwaysUnique](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec1)     |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-instance-per-unit-of-work)                    | [ContainerScoped](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec3) |
-| [SingleInstance](/nservicebus/dependency-injection/#internally-managed-mode-built-in-default-container-single-instance)                                  | [Singleton](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec2)        |
+| [InstancePerCall](/nservicebus/dependency-injection/-instance-per-call) | [AlwaysUnique](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec1)     |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/-instance-per-unit-of-work)                    | [ContainerScoped](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec3) |
+| [SingleInstance](/nservicebus/dependency-injection/-single-instance)                                  | [Singleton](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec2)        |
