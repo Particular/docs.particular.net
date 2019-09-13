@@ -7,6 +7,6 @@
     <ProjectReference Include="..\NServiceBus.Extensions.DependencyInjection\NServiceBus.Extensions.DependencyInjection.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.*" />
   </ItemGroup>
 </Project>
