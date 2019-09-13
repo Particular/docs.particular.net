@@ -32,6 +32,6 @@ snippet: StructureMap_Existing
 
 | `DependencyLifecycle`                                                                                             | StructureMap lifecycle                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/-instance-per-call) | [AlwaysUnique](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec1)     |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/-instance-per-unit-of-work)                    | [ContainerScoped](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec3) |
-| [SingleInstance](/nservicebus/dependency-injection/-single-instance)                                  | [Singleton](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec2)        |
+| [InstancePerCall](/nservicebus/dependency-injection/) | [AlwaysUnique](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec1)     |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [ContainerScoped](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec3) |
+| [SingleInstance](/nservicebus/dependency-injection/)                                  | [Singleton](https://structuremap.github.io/object-lifecycle/supported-lifecycles/#sec2)        |

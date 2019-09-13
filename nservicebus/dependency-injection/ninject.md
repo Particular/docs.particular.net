@@ -53,6 +53,6 @@ Multiple endpoints in a single process cannot share a single Ninject kernel. Eac
 
 | `DependencyLifecycle`                                                                                             | Ninject object scope                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/-instance-per-call) | [Transient](https://github.com/ninject/ninject/wiki/Object-Scopes)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/-instance-per-unit-of-work)                    | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes) within a [Named Scope](https://github.com/ninject/ninject.extensions.namedscope/wiki) per Unit of Work |
-| [SingleInstance](/nservicebus/dependency-injection/-single-instance)                                  | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/) | [Transient](https://github.com/ninject/ninject/wiki/Object-Scopes)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes) within a [Named Scope](https://github.com/ninject/ninject.extensions.namedscope/wiki) per Unit of Work |
+| [SingleInstance](/nservicebus/dependency-injection/)                                  | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes)                          |

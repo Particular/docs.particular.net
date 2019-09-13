@@ -50,11 +50,11 @@ Validators are registered and resolved using [dependency injection](/nservicebus
 
 snippet: FluentValidation_AddValidators
 
-Validator lifecycle can either be per endpoint ([Single instance](/nservicebus/dependency-injection/-single-instance)):
+Validator lifecycle can either be per endpoint ([Single instance](/nservicebus/dependency-injection/)):
 
 snippet: FluentValidation_EndpointLifecycle
 
-Or [instance per unit of work](/nservicebus/dependency-injection/-instance-per-unit-of-work):
+Or [instance per unit of work](/nservicebus/dependency-injection/):
 
 snippet: FluentValidation_UnitOfWorkLifecycle
 

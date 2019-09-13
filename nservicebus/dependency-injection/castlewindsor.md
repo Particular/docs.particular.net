@@ -32,6 +32,6 @@ snippet: CastleWindsor_Existing
 
 | `DependencyLifecycle`                                                                                             | `LifestyleType`                                                                           |
 |-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/-instance-per-call) | [Transient](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#transient) |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/-instance-per-unit-of-work)                    | [Scoped](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#scoped)       |
-| [SingleInstance](/nservicebus/dependency-injection/-single-instance)                                  | [Singleton](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#singleton) |
+| [InstancePerCall](/nservicebus/dependency-injection/) | [Transient](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#transient) |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [Scoped](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#scoped)       |
+| [SingleInstance](/nservicebus/dependency-injection/)                                  | [Singleton](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#singleton) |

@@ -31,6 +31,6 @@ snippet: simpleinjector_Existing
 
 | `DependencyLifecycle`                                                                                             | Simple Injector lifestyle                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/-instance-per-call)                                | [Transient](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#transient)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/-instance-per-unit-of-work)                    | [Scoped](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#perexecutioncontextscope) |
-| [SingleInstance](/nservicebus/dependency-injection/-single-instance)                                  | [Singleton](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#singleton)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/)                                | [Transient](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#transient)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [Scoped](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#perexecutioncontextscope) |
+| [SingleInstance](/nservicebus/dependency-injection/)                                  | [Singleton](https://simpleinjector.readthedocs.io/en/latest/lifetimes.html#singleton)                          |
