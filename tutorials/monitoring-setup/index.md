@@ -140,7 +140,7 @@ NOTE: Make sure that ServiceControl and ServiceControl monitoring instances are 
 
 [ServicePulse](/servicepulse/) is a web application for production monitoring and recoverability. It connects to a monitoring instance to display monitoring data and to a ServiceControl instance to display recoverability data.
 
-Download and run the latest [ServicePulse installer](https://github.com/Particular/ServicePulse/releases/download/1.10.1/Particular.ServicePulse-1.10.1.exe).
+Download and run the latest [ServicePulse installer](https://github.com/Particular/ServicePulse/releases/).
 
 NOTE: In order to configure ServicePulse to connect to a ServiceControl monitoring instance you must download the latest version, then uninstall your current version and install the downloaded version.
 
