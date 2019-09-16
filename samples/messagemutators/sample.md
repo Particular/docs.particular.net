@@ -1,7 +1,7 @@
 ---
 title: Message Mutators
 summary: Change messages by plugging custom logic in to a couple of interfaces, encrypting as required.
-reviewed: 2017-11-15
+reviewed: 2019-09-16
 component: Core
 tags:
 - Mutator

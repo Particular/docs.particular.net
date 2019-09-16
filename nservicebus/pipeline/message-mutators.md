@@ -2,7 +2,7 @@
 title: Message Mutators
 summary: Message Mutators allow mutation of messages in the pipeline
 component: Core
-reviewed: 2017-11-15
+reviewed: 2019-09-16
 tags:
  - Mutator
 redirects:
