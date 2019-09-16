@@ -2,7 +2,7 @@
 title: Sagas
 summary: NServiceBus uses event-driven architecture to include fault-tolerance and scalability in long-term business processes.
 component: Core
-reviewed: 2017-12-01
+reviewed: 2019-09-16
 tags:
 - Saga
 redirects:
@@ -192,7 +192,7 @@ Saga state is read immediately before a message processing method is invoked, an
 
 - For persisters backed by SQL databases, the write will execute an `INSERT` statement if the read did not return any existing state, and the write will execute an `UPDATE` statement if the read _did_ return existing state. For other persisters, the equivalent operations will be executed.
 - If the read did not return any existing state, and the saga is completed during the invoke, then no write will occur.
-- The method of maintaining constistency with respect to concurrent message processing depends on the persister being used. Some may use a transactional lock, and others may perform an atomic change with optimistic concurrency control.
+- The method of maintaining consistency with respect to concurrent message processing depends on the persister being used. Some may use a transactional lock, and others may perform an atomic change with optimistic concurrency control.
 - Saga state reads and writes do not occur during a stage. They occur during invocation in the `Invoke Handlers` stage and cannot be intercepted.
 
 If multiple saga types are invoked for the same message, each read, invoke, write cycle will occur sequentially, for each saga type.
