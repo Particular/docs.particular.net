@@ -5,7 +5,7 @@ related:
 redirects:
  - nservicebus/scalability-and-ha/deploying-to-a-windows-failover-cluster
  - nservicebus/msmq/distributor/deploying-to-a-cluster
-reviewed: 2017-11-15
+reviewed: 2019-09-16
 ---
 
 Distributors are a single-point-of-failure if deployed to just a single machine. Make them highly available on a Windows Failover Cluster to avoid this.

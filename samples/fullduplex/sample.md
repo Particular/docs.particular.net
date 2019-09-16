@@ -1,7 +1,7 @@
 ---
 title: Full Duplex
 summary: Using full-duplex and request/response communication.
-reviewed: 2017-11-14
+reviewed: 2019-09-16
 component: Core
 tags:
 - Messaging Patterns
