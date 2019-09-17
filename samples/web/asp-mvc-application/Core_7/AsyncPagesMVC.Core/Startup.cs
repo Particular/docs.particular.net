@@ -24,13 +24,13 @@ namespace AsyncPagesMVC.Core
             services.AddMvc();
             var builder = new ContainerBuilder();
 
-			builder.Populate(services);
+            builder.Populate(services);
 
-			builder.Register(c => endpoint)
-				.As<IEndpointInstance>()
-				.SingleInstance();
+            builder.Register(c => endpoint)
+                .As<IEndpointInstance>()
+                .SingleInstance();
 
-			var container = builder.Build();
+            var container = builder.Build();
 
             var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
             endpointConfiguration.MakeInstanceUniquelyAddressable("1");
@@ -55,7 +55,6 @@ namespace AsyncPagesMVC.Core
 
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
 
