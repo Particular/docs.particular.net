@@ -27,6 +27,7 @@ public class LoggingSetupFixture
 }
 #endregion
 
+[Explicit]
 [TestFixture]
 public class LoggingTests
 {

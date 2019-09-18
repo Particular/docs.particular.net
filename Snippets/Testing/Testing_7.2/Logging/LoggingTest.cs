@@ -6,6 +6,7 @@ using NServiceBus.Logging;
 using NServiceBus.Testing;
 using NUnit.Framework;
 
+[Explicit]
 #region LoggerTestingAmbient
 [TestFixture]
 public class LoggingTestsAmbient

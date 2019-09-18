@@ -2,6 +2,7 @@
 using NServiceBus.Testing;
 using NUnit.Framework;
 
+[Explicit]
 [TestFixture]
 public class MessageHandlerTests
 {
