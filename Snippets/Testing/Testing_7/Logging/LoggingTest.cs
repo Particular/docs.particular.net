@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using NServiceBus.Logging;
@@ -52,40 +51,3 @@ public class LoggingTests
 
     #endregion
 }
-
-#region LoggerTestingAmbient [7.2,)
-[TestFixture]
-public class LoggingTestsAmbient
-{
-
-
-    StringBuilder logStatements;
-    IDisposable scope;
-    
-    [SetUp]
-    public void SetUp()
-    {
-        logStatements = new StringBuilder();
-        
-        scope = LogManager.Use<TestingLoggerFactory>()
-            .BeginScope(new StringWriter(logStatements));
-    }
-    
-    [TearDown]
-    public void Teardown()
-    {
-        scope.Dispose();
-    }
-    
-    [Test]
-    public async Task ShouldLogCorrectly()
-    {
-        var handler = new MyHandlerWithLogging();
-
-        await handler.Handle(new MyRequest(), new TestableMessageHandlerContext())
-            .ConfigureAwait(false);
-
-        StringAssert.Contains("Some log message", logStatements.ToString());
-    }
-}
-#endregion

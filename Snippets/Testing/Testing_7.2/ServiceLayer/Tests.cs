@@ -6,27 +6,26 @@
     using NUnit.Framework;
 
     [Explicit]
-
-    #region TestingServiceLayer
-
     [TestFixture]
-    public class Tests
+    public class AsyncTests
     {
+        #region TestingServiceLayerAsync
         [Test]
-        public void TestHandler()
+        public async Task TestHandler()
         {
-            Test.Handler<MyHandler>()
+            await Test.Handler<MyHandler>()
                 .ExpectReply<ResponseMessage>(
                     check: message =>
                     {
                         return message.String == "hello";
                     })
-                .OnMessage<RequestMessage>(
+                .OnMessageAsync<RequestMessage>(
                     initializeMessage: message =>
                     {
                         message.String = "hello";
                     });
         }
+
     }
 
     public class MyHandler :
@@ -41,6 +40,5 @@
             return context.Reply(reply);
         }
     }
-
     #endregion
 }

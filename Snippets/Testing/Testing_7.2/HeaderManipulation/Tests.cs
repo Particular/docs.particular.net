@@ -6,16 +6,15 @@
     using NUnit.Framework;
 
     [Explicit]
-
-    #region TestingHeaderManipulation
-
+    #region TestingHeaderManipulationAsync
     [TestFixture]
-    public class Tests
+    public class AsyncTests
     {
+
         [Test]
-        public void Run()
+        public async Task Run()
         {
-            Test.Handler<MyMessageHandler>()
+            await Test.Handler<MyMessageHandler>()
                 .SetIncomingHeader("MyHeaderKey", "myHeaderValue")
                 .ExpectReply<ResponseMessage>(
                     check: (message, replyOptions) =>
@@ -23,7 +22,7 @@
                         var headers = replyOptions.GetHeaders();
                         return headers["MyHeaderKey"] == "myHeaderValue";
                     })
-                .OnMessage<RequestMessage>(
+                .OnMessageAsync<RequestMessage>(
                     initializeMessage: message =>
                     {
                         message.String = "hello";
@@ -45,6 +44,5 @@
             return context.Reply(responseMessage, options);
         }
     }
-
     #endregion
 }
