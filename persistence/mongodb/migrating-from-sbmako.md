@@ -9,7 +9,7 @@ related:
 reviewed: 2019-05-29
 ---
 
-This package was designed to be fully compatible with the community `NServiceBus.MongoDB` package with some minor configuration.
+This package was designed to be fully compatible with the community [`NServiceBus.MongoDB`](https://github.com/sbmako/NServiceBus.MongoDB)) package with some minor configuration.
 
 include: migration-warning
 
@@ -24,6 +24,24 @@ The `VersionElementName` value must match the element name used for the `Documen
 include: must-apply-conventions-for-version
 
 In addition, the collection naming convention for sagas must be configured to match the one used by `NServiceBus.MongoDB`, `type => type.Name`, as demonstrated in the above snippet.
+
+## Subscriptions
+
+In the sbmako implementation subscriptions are stored in the collection named [Subscription](`https://github.com/sbmako/NServiceBus.MongoDB/blob/2ffb1c6f653d7e90b6f476ea07c93d40dc64e31a/src/NServiceBus.MongoDB/SubscriptionPersister/MongoSubscriptionPersister.cs#L60`). Each document maps to an event type containing a set of subscribers using the type [Subscriber](https://github.com/Particular/NServiceBus/blob/fb96dcc41c7c4d505a099ff2ac6ca1659d582804/src/NServiceBus.Core/Routing/MessageDrivenSubscriptions/Subscriber.cs#L19-L27) from NServiceBus core.
+
+The following migration script iterates through the documents and insert each subscriber value as a new document.
+
+```javascript
+db.subscription.find().forEach(type => {
+   type.Subscribers.forEach(subscription => {
+       db.eventsubscription.insert({
+           MessageTypeName: type._id.TypeName,
+           TransportAddress: subscription.TransportAddress,
+           Endpoint: subscription.Endpoint
+       });
+   });
+});
+```
 
 ## Saga data class changes
 
