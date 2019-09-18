@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using NServiceBus.Testing;
 using NUnit.Framework;
 
+[Explicit]
 [TestFixture]
 public class SagaTests
 {

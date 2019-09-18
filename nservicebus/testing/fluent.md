@@ -12,6 +12,8 @@ related:
 
 NOTE: Generally it is recommended to use the Arrange-Act-Assert (AAA) style rather than fluent style. To learn how to test NServiceBus using Arrange-Act-Assert, refer to the [sample](/samples/unit-testing/).
 
+WARN: If Xunit test parallization feature is used it is possible that the synchronous variants of `OnMessage` or `WhenXYZ` methods will deadlock under certain conditions. The synchronous methods are available for backward compatibility.
+
 ## Structure
 
 
@@ -26,6 +28,7 @@ snippet: TestingServiceLayer
 
 This test verifies that, when a message of type `RequestMessage` is processed by `MyHandler`, it responds with a message of type `ResponseMessage`. The test also checks that, if the incoming message has a `String` property of `"hello"`, then the outgoing message also has a `String` property of `"hello"`.
 
+partial: asynclayer
 
 ## Sagas
 
@@ -37,10 +40,11 @@ This test verifies that, when a message of type `StartsSaga` is processed by `My
 
 Note that the expectation for the message of type `MyOtherEvent` is set only after the message is sent.
 
+partial: asyncsagas
 
 ## Interface messages
 
-To support testing of interface messages, use the `.WhenHandling<T>()` method, where `T` is the interface type.
+To support testing of interface messages, use the `.WhenHandling<T>()` or `WhenHandlingAsync<T>()` (7.2 and above) method, where `T` is the interface type.
 
 
 ## Header manipulation
@@ -51,6 +55,7 @@ snippet: TestingHeaderManipulation
 
 This test asserts that the outgoing message contains header named `"MyHeaderKey"` set to `"myHeaderValue"`.
 
+partial: asyncheader
 
 ## Injecting additional dependencies
 

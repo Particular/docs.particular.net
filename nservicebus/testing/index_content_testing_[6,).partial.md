@@ -86,6 +86,8 @@ To test that logging is performed correctly, use the `TestingLoggerFactory`. The
 
 ### Example
 
+NOTE: Using `WriteTo` or `Level` set the provided parameters to the statically cached factory for the lifetime of the application domain. For isolation of logging in concurrent scenarios it is recommended to use `BeginScope` that was introduced in Version 7.2.
+
 The following code show how to verify that logging is performed by the message handler.
 
 snippet: LoggerTestingSetup
