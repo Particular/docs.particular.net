@@ -95,5 +95,3 @@ snippet: LoggerTestingSetup
 The setup fixture above sets the testing logging factory once per assembly because the factory is statically cached during the lifetime of the application domain. Subsequent test executions then clear the logged statements before every test run as shown below.
 
 snippet: LoggerTesting
-
-partial: loggerscope
