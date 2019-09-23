@@ -58,7 +58,7 @@ NOTE: The address of a ServiceControl instance must be provided to send notifica
 Once a ServiceControl Audit instance is created, it must be added to the primary ServiceControl instance as a remote to be included in results returned to ServiceInsight.
 
 ```ps
-Add-ServiceControlRemote -Name $primaryInstanceName -RemoteAddress $auditInstance.Url
+Add-ServiceControlRemote -Name $primaryInstanceName -RemoteInstanceAddress $auditInstance.Url
 ```
 
 
@@ -67,7 +67,7 @@ Add-ServiceControlRemote -Name $primaryInstanceName -RemoteAddress $auditInstanc
 Before removing a ServiceControl Audit instance, it should be removed from the primary ServiceControl instances list of remotes.
 
 ```ps
-Remove-ServiceControlRemote -Name "Test.ServiceControl" -RemoteAddress "http://localhost:44444/api"
+Remove-ServiceControlRemote -Name "Test.ServiceControl" -RemoteInstanceAddress "http://localhost:44444/api"
 ```
 
 Remove the instance that was created in the Add sample and delete the database and logs:
