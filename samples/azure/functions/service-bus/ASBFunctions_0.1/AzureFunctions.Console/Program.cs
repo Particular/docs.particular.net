@@ -43,7 +43,7 @@ class Program
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
             var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-            transport.ConnectionString(config.GetValue<string>("Values:ASBConnectionString"));
+            transport.ConnectionString(config.GetValue<string>("Values:AzureWebJobsServiceBus"));
 
             asbEndpoint = await Endpoint.Start(endpointConfiguration);
         }
