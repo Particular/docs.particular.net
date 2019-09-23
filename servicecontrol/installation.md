@@ -63,15 +63,15 @@ Performance counters are not installed by the [Platform Installer](/platform/ins
 
 ## Using ServiceControl Management to upgrade ServiceControl instances
 
-ServiceControl Management provides a simple means of setting up one or more instances of the ServiceControl service. For production systems, it is recommended to limit the number of instances per machine to one.
+ServiceControl Management provides a simple means of setting up one or more instances of ServiceControl service types (error, audit, and monitoring). For production systems, it is recommended to limit the number of instances per machine to one.
 
-WARNING: The ability to add multiple instances is primarily intended to assist development and test environments.
+WARNING: The ability to add multiple instances *of the same type on a single machine* is primarily intended to assist development and test environments.
 
 ServiceControl Management can be launched automatically at the end of the installation process to enable adding or upgrading ServiceControl instances.
 
 ServiceControl Management will display the instances of the ServiceControl service installed. If the version of the binaries used by an instance are older that those shipped with ServiceControl Management, an upgrade link will be shown next to the version label.
 
-![](managementutil-upgradelink.png 'width=500')
+![ServiceControl Management interface that shows 'upgrade to' link](managementutil-upgradelink.png 'width=500')
 
 To upgrade the service, click the upgrade link next to the service name.
 
