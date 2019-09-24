@@ -18,8 +18,10 @@ NOTE: NServiceBus.Storage.MongoDB supports MongoDB server versions 3.6 and highe
 
 ## Supported persistence types
 
+* [Subscriptions](/nservicebus/messaging/publish-subscribe/)
 * [Sagas](/nservicebus/sagas/)
 * [Outbox](/nservicebus/outbox/)
+
 
 ## Usage
 

@@ -9,7 +9,7 @@ related:
 reviewed: 2019-05-29
 ---
 
-The `NServiceBus.Storage.MongoDB` package was designed to be fully compatible with the community `NServiceBus.Persistence.MongoDB` package with some minor configuration.
+The `NServiceBus.Storage.MongoDB` package was designed to be fully compatible with the community [`NServiceBus.Persistence.MongoDB`](https://github.com/tekmaven/NServiceBus.Persistence.MongoDb) package with some minor configuration.
 
 include: migration-warning
 
@@ -28,6 +28,23 @@ class MySagaData : IContainSagaData
 -       public int Version { get; set; }
 }
 
+```
+
+## Subscriptions
+
+In the tekmavan implementation there was a single document per event type containing a collection of subscribers. In the particular implementation subscriptions are individual documents. Each subscription needs to be converted into a `eventsubscription` document.
+
+```javascript
+db.subscriptions.find().forEach(type => {
+   type.Subscribers.forEach(subscription => {
+       var parts = subscription.split('@');
+       db.eventsubscription.insert({
+           MessageTypeName: type._id.TypeName,
+           TransportAddress: parts[0],
+           Endpoint: parts[1]
+       });
+   });
+});
 ```
 
 ### How Document Versioning Works
@@ -69,3 +86,4 @@ db.getCollectionNames().forEach(collectionName => {
 Replace `"Version"` with the name of the version property on the saga data which was previously decorated with the `[DocumentVersion]` attribute.
 
 WARNING: Be sure to create a backup of the database prior to migrating the saga data.
+
