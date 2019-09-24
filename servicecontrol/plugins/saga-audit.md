@@ -3,7 +3,7 @@ title: SagaAudit Plugin
 summary: Helps visualize and debug Sagas with ServiceInsight
 component: SagaAudit
 versions: 'SagaAudit4:*;SagaAudit5:*;SagaAudit6:*'
-reviewed: 2017-11-08
+reviewed: 2019-09-09
 related:
  - nservicebus/sagas/saga-audit
 ---

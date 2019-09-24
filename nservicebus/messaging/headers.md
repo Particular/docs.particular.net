@@ -56,8 +56,7 @@ The fully qualified .NET type name of the enclosed message(s). The receiving end
  * Full type name: `Namespace.ClassName`.
  * Assembly qualified name: `Namespace.ClassName, AssemblyName, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null`.
 
-NOTE: In integration scenarios, this header can be safely omitted if the endpoint uses [XmlSerialization](/nservicebus/serialization/xml.md) and the root node happens to be the message type.
-
+See the [message type detection documentation](/nservicebus/messaging/message-type-detection.md) for more details.
 
 ## Messaging interaction headers
 
@@ -71,7 +70,7 @@ A [unique ID for the current message](/nservicebus/messaging/message-identity.md
 
 ### NServiceBus.CorrelationId
 
-NServiceBus implements the [Correlation Identifier](http://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html) pattern by using a `Correlation Id` header.
+NServiceBus implements the [Correlation Identifier](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html) pattern by using a `Correlation Id` header.
 
 Message correlation connects request messages with their corresponding response messages. The `Correlation Id` of the response message is the `Correlation Id` of its corresponding request message. Each outgoing message which is sent outside of a message handler will have its `Correlation Id` set to its `Message Id`.
 

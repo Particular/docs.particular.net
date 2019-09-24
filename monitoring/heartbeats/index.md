@@ -3,6 +3,7 @@ title: Heartbeats
 summary: Use the Heartbeat plugin to monitor the health of the endpoints
 reviewed: 2018-01-26
 component: Heartbeats
+isLearningPath: true
 versions: 'Heartbeats:*'
 redirects:
  - servicecontrol/heartbeat-configuration

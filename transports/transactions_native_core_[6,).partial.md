@@ -2,6 +2,8 @@
 
 In this mode the receive operation is wrapped in a transport's native transaction. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. See also [recoverability](/nservicebus/recoverability/) for more details on retries.
 
+NOTE: [Sends and Publishes are batched](/nservicebus/messaging/batched-dispatch.md) and only transmitted until all handler are succesfully invoked. Messages that are required to be send immediately should use the[immediate dispatch option](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) which bypasses batching.
+
 Use the following code to use this mode:
 
 snippet: TransportTransactionReceiveOnly

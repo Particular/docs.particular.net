@@ -9,7 +9,7 @@ There are a few options to add a license to ServiceControl.
 
 include: registry-licensing
 
-## ServiceControl Management app
+## ServiceControl Management tool
 
 ServiceControl has a license user interface which can be accessed in ServiceControl Management. ServiceControl Management is installed together with ServiceControl and can be found in the Windows Start Menu.
 

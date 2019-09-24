@@ -1,7 +1,7 @@
 ---
 title: Release Policy
 summary: What version numbers mean to Particular.
-reviewed: 2017-07-15
+reviewed: 2019-04-18
 redirects:
  - nservicebus/release-policy
 related:
@@ -15,7 +15,7 @@ While this may seem to result in a large number of releases, only a small fracti
 
 ## Semantic Versioning
 
-[SemVer](http://semver.org/) is a simple set of rules and requirements that dictate how version numbers are assigned and incremented.
+[SemVer](https://semver.org/) is a simple set of rules and requirements that dictate how version numbers are assigned and incremented.
 
 For those not familiar with SemVer here is a short primer:
 

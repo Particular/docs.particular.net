@@ -1,8 +1,8 @@
-The default schema can be overridden using `DefaultSchema` method:
+The default schema can be overridden using the `DefaultSchema` method:
 
 snippet: sqlserver-non-standard-schema
 
-For backward compatibility reasons it can be also set via the connection string, using `Queue Schema` parameter:
+For backward compatibility reasons it can also be set via the connection string, using the `Queue Schema` parameter:
 
 snippet: sqlserver-non-standard-schema-connString
 

@@ -19,6 +19,8 @@
         Title: Publishing events
       - Url: tutorials/nservicebus-step-by-step/5-retrying-errors
         Title: Retrying errors
+    - Url: tutorials/message-replay
+      Title: Message replay tutorial
     - Url: tutorials/nservicebus-sagas/1-getting-started
       Title: "NServiceBus sagas: Getting started"
     - Url: tutorials
@@ -39,6 +41,11 @@
     Articles:
     - Url: platform
       Title: Service Platform
+      Articles:
+      - Url: platform/installation
+        Title: Platform Installation
+      - Url: platform/platform-sample-package
+        Title: Platform Sample Installation
     - Url: samples/endpoint-configuration
       Title: Configuration choices Sample
     - Url: nservicebus/concept-overview
@@ -57,6 +64,8 @@
       Title: Contributing
     - Url: nservicebus/architecture/principles
       Title: Architectural Principles
+    - Url: nservicebus/architecture/scaling
+      Title: Scaling out
     - Url: nservicebus/architecture
       Title: Bus vs. Broker
   - Url: nservicebus/upgrades
@@ -87,6 +96,8 @@
       Articles:
       - Url: nservicebus/upgrades/encryption-1to2
         Title: Encryption
+      - Url: nservicebus/upgrades/6to7/moving-msmq-subscriptions
+        Title: Migrating Msmq subscriptions
     - Url: nservicebus/upgrades/6to6.2
       Title: NServiceBus 6 to 6.2
     - Url: nservicebus/upgrades/5to6
@@ -148,7 +159,7 @@
         Title: Version 4 to 5
     - Title: NServiceBus.Azure deprecated
       Url: nservicebus/upgrades/azure-deprecation
-    - Title: MessagePack changes
+    - Title: NServiceBus.MessagePack
       Url: nservicebus/upgrades/messagepack-changes
     - Title: Azure BlobStorage DataBus
       Articles:
@@ -156,6 +167,8 @@
         Title: Migrating off NServiceBus.Azure
       - Url: nservicebus/upgrades/absdatabus-1to2
         Title: Version 1 to 2
+      - Url: nservicebus/upgrades/absdatabus-2to3
+        Title: Version 2 to 3        
     - Title: Azure Cloud Services Host
       Articles:
       - Url: nservicebus/upgrades/acs-host-7to8
@@ -178,10 +191,12 @@
         Title: Migrate To External Nuget
     - Title: Performance Counters
       Articles:
-      - Url: nservicebus/upgrades/externalize-perfcounters
-        Title: Migrate To External Nuget
+      - Url: nservicebus/upgrades/perfcounters-3to4
+        Title: Version 3 to 4
       - Url: nservicebus/upgrades/perfcounters-1to2
         Title: Version 1 to 2
+      - Url: nservicebus/upgrades/externalize-perfcounters
+        Title: Migrate To External Nuget
     - Title: ServiceControl Plugins
       Articles:
       - Url: nservicebus/upgrades/nsb6-sc-plugins-1to2
@@ -202,12 +217,16 @@
       Articles:
       - Url: nservicebus/messaging/message-identity
         Title: Message Identity
+      - Url: nservicebus/messaging/message-type-detection
+        Title: Message type detection
       - Url: nservicebus/messaging/messages-as-interfaces
         Title: Messages as Interfaces
       - Url: nservicebus/messaging/conventions
         Title: Conventions
       - Url: nservicebus/messaging/unobtrusive-mode
         Title: Unobtrusive Mode
+      - Url: nservicebus/messaging/immutable-messages
+        Title: Immutable messages
       - Url: nservicebus/messaging/best-practice-enforcement
         Title: Best practice enforcement
     - Url: nservicebus/messaging/evolving-contracts
@@ -301,8 +320,6 @@
         Title: File Share
       - Url: nservicebus/messaging/databus/azure-blob-storage
         Title: Azure Blob Storage
-      - Url: nservicebus/messaging/databus/mongodb-tekmaven
-        Title: MongoDB DataBus
       - Url: nservicebus/messaging/databus/custom
         Title: Custom
     - Url: nservicebus/messaging/validation-fluentvalidation
@@ -312,13 +329,15 @@
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
-    - Url: nservicebus/hosting/startup-diagnostics
-      Title: Startup diagnostics
     - Url: nservicebus/endpoints
       Title: Endpoints
       Articles:
       - Url: nservicebus/endpoints/specify-endpoint-name
         Title: Endpoint Name
+    - Url: nservicebus/hosting/selecting
+      Title: Selecting a host
+    - Url: nservicebus/hosting/startup-diagnostics
+      Title: Startup diagnostics
     - Url: nservicebus/endpoints/decommissioning-endpoints
       Title: Decommissioning Endpoints
     - Url: nservicebus/hosting/windows-service
@@ -515,8 +534,6 @@
       Title: StructureMap
     - Url: nservicebus/dependency-injection/unity
       Title: Unity
-    - Url: nservicebus/dependency-injection/msdependencyinjection
-      Title: Microsoft.Extensions.DependencyInjection      
   - Url: nservicebus/logging
     Title: Logging
     Articles:
@@ -592,8 +609,6 @@
       Title: Transport types
     - Url: transports/transactions
       Title: Transactions
-    - Url: transports/scale-out
-      Title: Scaling out
     - Url: transports/queuecreation
       Title: Creating queues
   - Url: transports/upgrades
@@ -775,6 +790,9 @@
     Articles:
     - Url: transports/msmq/routing
       Title: Physical routing
+      Articles:
+      - Url: transports/msmq/routing-extensibility
+        Title: Routing extensibility
     - Url: transports/msmq/connection-strings
       Title: Connection strings
     - Url: transports/msmq/dead-letter-queues
@@ -890,6 +908,8 @@
         Title: Adding unique constraints on saga data tables
     - Title: RavenDB
       Articles:
+      - Url: persistence/upgrades/ravendb-5to6
+        Title: Version 5 to 6
       - Url: persistence/upgrades/ravendb-4to5
         Title: Version 4 to 5
       - Url: persistence/upgrades/ravendb-3to4
@@ -1018,8 +1038,13 @@
       Title: Scripting
   - Url: persistence/msmq/subscription
     Title: MSMQ Subscription
-  - Url: persistence/mongodb-tekmaven
+  - Url: persistence/mongodb
     Title: MongoDB
+    Articles:
+    - Url: persistence/mongodb/migrating-from-sbmako
+      Title: Migrating from NServicebus.MongoDB
+    - Url: persistence/mongodb/migrating-from-tekmaven
+      Title: Migrating from NServiceBus.Persistence.MongoDB
 
 - Name: ServiceInsight
   Topics:
@@ -1051,6 +1076,8 @@
       Title: Failed Messages
     - Url: servicepulse/intro-failed-message-retries
       Title: Retrying Failed Messages
+    - Url: servicepulse/intro-editing-messages
+      Title: Fixing malformed messages
     - Url: servicepulse/intro-archived-messages
       Title: Archived Messages
     - Url: servicepulse/intro-pending-retries
@@ -1075,6 +1102,8 @@
   - Title: Upgrade Guides
     Url: servicecontrol/upgrades
     Articles:  
+    - Title: Version 3 to 4
+      Url: servicecontrol/upgrades/3to4    
     - Title: Version 2 to 3
       Url: servicecontrol/upgrades/2to3
     - Title: Version 1 to 2
@@ -1106,6 +1135,8 @@
         Url: servicecontrol/installation-powershell
       - Title: Cluster Deployment
         Url: servicecontrol/deploying-servicecontrol-in-a-cluster
+      - Title: Remote Instances
+        Url: servicecontrol/servicecontrol-instances/remotes          
       - Title: Multiple Instances
         Url: servicecontrol/servicecontrol-instances/distributed-instances  
       - Title: Settings
@@ -1137,6 +1168,15 @@
         Url: servicecontrol/use-ravendb-studio
       - Title: Retry importing messages
         Url: servicecontrol/import-failed-messages
+  - Title: Audit instances
+    Url: servicecontrol/audit-instances
+    Articles:
+      - Title: Managing via PowerShell
+        Url: servicecontrol/audit-instances/installation-powershell
+      - Title: Settings
+        Url: servicecontrol/audit-instances/creating-config-file
+      - Title: Maintenance Mode
+        Url: servicecontrol/audit-instances/maintenance-mode            
   - Title: Monitoring instances
     Url: servicecontrol/monitoring-instances
     Articles:

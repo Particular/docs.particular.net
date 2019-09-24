@@ -2,9 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utf8Json_1", "Utf8Json_1\Utf8Json_1.csproj", "{E5E45ADD-6D78-4177-BA4E-C4687B7F6764}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utf8Json_2", "Utf8Json_2\Utf8Json_2.csproj", "{F5787DEA-C056-47C6-9C67-915F5901BD7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utf8Json_3", "Utf8Json_3\Utf8Json_3.csproj", "{F5787DEA-C056-47C6-9C67-915F5901BD7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

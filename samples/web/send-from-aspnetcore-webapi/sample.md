@@ -8,19 +8,17 @@ related:
 ---
 
 
-This sample shows how to send messages to an NServiceBus endpoint from an ASP.NET Core WebAPI application. 
-
+This sample shows how to send messages to an NServiceBus endpoint from an ASP.NET Core WebAPI application.
 
 ## Running the solution
 
 When the solution is run, a new browser window/tab opens, as well as a console application. The browser will navigate to `http://localhost:51863/api/sendmessage`.
 
-An async [WebAPI](https://www.asp.net/web-api) controller handles the request. It creates an NServiceBus message and sends it to the endpoint running in the console application. The message has been processed successfully when the console application prints "Message received at endpoint". 
-
+An async [WebAPI](https://www.asp.net/web-api) controller handles the request. It creates an NServiceBus message and sends it to the endpoint running in the console application. The message has been processed successfully when the console application prints "Message received at endpoint".
 
 ## Prerequisites
 
-  - Visual Studio 2017 is required to run this sample.
+- Visual Studio 2017 is required to run this sample.
 
 ### Initialize the WebAPI endpoint
 
@@ -34,32 +32,23 @@ Routing is configured to send every message from the assembly containing `MyMess
 
 snippet: Routing
 
-The endpoint is started. At this point, the configuration is locked.
-
-snippet: EndpointStart
-
-Finally, the endpoint is registered as a singleton instance of type `IMessageSession` in ASP.NET Cores `ServiceCollection`, ready to be injected into the controller.
-
-An alternative would be to register the instance as type `IEndpointInstance`. `IMessageSession` is a leaner interface, containing only the methods necessary to send/publish messages. It is a good choice for [sending messages outside message handlers](/nservicebus/upgrades/5to6/moving-away-from-ibus.md#migrating-away-from-ibus-sending-messages-outside-message-handlers) if no endpoint management functionality is required.
+Finally, NServiceBus is configured using the `AddNServiceBus` method. This sets up NServiceBus as a [hosted service](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services) and registers the `IMessageSession` in the dependency injection container so that controllers can take a dependency on it.
 
 snippet: ServiceRegistration
 
-
 ### Injection into the Controller
 
-The endpoint instance is injected into the `SendMessageController` at construction time by ASP.NET Core.
+The message session is injected into `SendMessageController` via constructor injection.
 
 snippet: MessageSessionInjection
 
+### Sending the message
 
-### Sending the message 
-
-Send and await messages through the `IMessageSession` instance provided by ASP.NET Core.
+Send messages through the `IMessageSession` instance provided by ASP.NET Core.
 
 snippet: MessageSessionUsage
 
-
-### Processing the message 
+### Processing the message
 
 The message is picked up and processed by a message handler in the `Samples.ASPNETCore.Endpoint` endpoint.
 

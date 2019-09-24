@@ -2,31 +2,27 @@
 title: Utf8Json Serializer Usage
 summary: Using the Utf8Json serializer in an endpoint.
 component: Utf8Json
-reviewed: 2017-09-29
+reviewed: 2019-07-01
 related:
  - nservicebus/serialization
  - nservicebus/serialization/utf8json
 ---
 
-
-## Configuring to use Utf8Json
+## Configuring to use the Utf8Json serializer
 
 snippet: config
 
-
-## Diagnostic Mutator
+## Behavior that logs incoming messages
 
 A helper that will write out the contents of any incoming message.
 
 snippet: mutator
 
-
-## The message send
+## Sending a message
 
 snippet: message
  
-
-## The Output
+## Serialized message content logged
 
 ```json
 {

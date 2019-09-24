@@ -103,7 +103,7 @@ All of the above examples have companion methods that are suffixed with `ForMess
 
 snippet: ProcessStreamsForMessage
 
-This can be helpful in a saga that is operating in a [Scatter-Gather](http://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html) mode. So instead of storing all binaries inside the saga persister, the saga can instead store the message ids and then, at a latter point in time, access those attachments.
+This can be helpful in a saga that is operating in a [Scatter-Gather](https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html) mode. So instead of storing all binaries inside the saga persister, the saga can instead store the message ids and then, at a latter point in time, access those attachments.
 
 
 ## Unit Testing

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 using NUnit.Framework;
 
 namespace IntegrityTests
@@ -18,8 +17,10 @@ namespace IntegrityTests
         {
             this.glob = glob;
             this.errorMessage = errorMessage;
-            this.ignoreRegexes = new List<Regex>();
-            this.ignoreRegexes.Add(new Regex(@"\\IntegrityTests\\"));
+            ignoreRegexes = new List<Regex>
+            {
+                new Regex(@"\\IntegrityTests\\")
+            };
         }
 
         public void Run(Func<string, bool> testDelegate)
@@ -37,7 +38,7 @@ namespace IntegrityTests
                         continue;
                     }
 
-                    bool success = testDelegate(projectFilePath);
+                    var success = testDelegate(projectFilePath);
 
                     if (!success)
                     {
@@ -60,7 +61,7 @@ namespace IntegrityTests
 
         public TestRunner IgnoreWildcard(string wildcardExpression)
         {
-            string pattern = Regex.Escape(wildcardExpression).Replace(@"\*", ".*").Replace(@"\?", ".");
+            var pattern = Regex.Escape(wildcardExpression).Replace(@"\*", ".*").Replace(@"\?", ".");
             return IgnoreRegex(pattern);
         }
 

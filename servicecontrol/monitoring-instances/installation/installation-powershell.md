@@ -1,6 +1,6 @@
 ---
 title: Managing Monitoring instances via PowerShell
-reviewed: 2017-07-26
+reviewed: 2019-05-08
 tags:
  - Installation
  - PowerShell

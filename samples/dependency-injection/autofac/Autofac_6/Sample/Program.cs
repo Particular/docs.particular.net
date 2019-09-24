@@ -35,10 +35,8 @@ static class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        #region EndpointAssignment
         endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        #endregion
 
         var endpointInstance = container.Resolve<IEndpointInstance>();
         var myMessage = new MyMessage();

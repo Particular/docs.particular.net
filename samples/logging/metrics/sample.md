@@ -1,7 +1,8 @@
 ---
 title: Write metrics to the trace log
 component: Metrics
-reviewed: 2017-10-06
+summary: Illustrates how to write metrics information to the trace log.
+reviewed: 2019-07-23
 related:
  - monitoring/metrics
 redirects:
@@ -11,6 +12,11 @@ redirects:
 
 Illustrates how to write [metrics](/monitoring/metrics) information to the trace log.
 
+There are many ways to look at the trace log for example via the [DbgView utility provided by Sysinternals](https://docs.microsoft.com/en-us/sysinternals/downloads/debugview)
+
+![DbgView by Sysinternals](dbgview.png)
+
+Note: This shows the output of NServiceBus.Metrics 3.x variant.
 
 ## Running the sample
 

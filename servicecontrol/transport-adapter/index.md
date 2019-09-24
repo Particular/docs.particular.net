@@ -9,7 +9,6 @@ related:
  - samples/servicecontrol/adapter-sqlserver-multi-instance
  - samples/servicecontrol/adapter-mixed-transports
  - samples/servicecontrol/adapter-asb-multi-namespace
- - samples/servicecontrol/adapter-rabbitmq-different-topologies
 ---
 
 The ServiceControl Transport Adapter decouples ServiceControl from the specifics of the business endpoint's transport to support scenarios where the endpoint's transport uses physical routing features [not compatible with ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md) or where endpoints use mixed transports or multiple instances of a message broker.
@@ -34,7 +33,7 @@ NOTE: If the adapter is run in conjunction with the NServiceBus endpoint, even t
 
 ### Advanced transport features
 
-Some transports offer advanced features which are not supported by ServiceControl (e.g. [RabbitMQ custom routing topologies](/transports/rabbitmq/routing-topology.md#custom-routing-topology)).
+Some transports offer advanced features which are not supported by ServiceControl.
 
 In this case a transport adapter can be used to translate between the customized transport on one side and ServiceControl using the default transport settings on the other side.
 
@@ -49,7 +48,7 @@ In the snippet above, `UseSpecificRouting` represents any advanced routing confi
 
 In some very large systems a single instance of a message broker can't cope with the traffic. Endpoints can be grouped around broker instances. However, ServiceControl is limited to a single connection.
 
-In this case, a separate transport adapter is deployed for each instance of a broker (e.g. RabbitMQ instance, SQL Server instance, Azure ServiceBus namespace, etc) while ServiceControl connects to its own instance. The adapters forward messages between instances.
+In this case, a separate transport adapter is deployed for each instance of a broker (e.g. SQL Server instance, Azure ServiceBus namespace, etc) while ServiceControl connects to its own instance. The adapters forward messages between instances.
 
 The following code shows the configuration of the transport adapter in the multi-instance scenario:
 

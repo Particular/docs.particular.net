@@ -22,7 +22,7 @@ The simplest way to modify application data from code running inside NServiceBus
 
 ### Transport in native transaction mode
 
-When the selected transport is configured to use native transactions, either in `ReceiveOnly` or `SendsAtomicWithReceive` mode, the data access code in the handler can be executed multiple times for a single message. This can lead to data corruption if that code is not [idempotent](http://www.enterpriseintegrationpatterns.com/patterns/messaging/IdempotentReceiver.html) (ensuring side effects of message processing are the same, no matter how many times the code is invoked). Here's an example of data access code that is not idempotent:
+When the selected transport is configured to use native transactions, either in `ReceiveOnly` or `SendsAtomicWithReceive` mode, the data access code in the handler can be executed multiple times for a single message. This can lead to data corruption if that code is not [idempotent](https://www.enterpriseintegrationpatterns.com/patterns/messaging/IdempotentReceiver.html) (ensuring side effects of message processing are the same, no matter how many times the code is invoked). Here's an example of data access code that is not idempotent:
 
 snippet: BusinessData-Native-NotIdempotent
 

@@ -64,37 +64,3 @@ openssl rand 32
 ```
 
 NOTE: Be aware that strings parsed by NServiceBus do not use extended ASCII which limits the key range to 7 bits per character.
-
-
-### CryptoKeyGenerator
-
-A key generator exists in ParticularLabs that uses the .NET framework crypto provider to generate a key.
-
-Download the [CryptoKeyGenerator](https://github.com/ParticularLabs/CryptoKeyGenerator) labs project, run it, and copy the random key in its correct format.
-
-
-The tool generates one key and outputs this key in multiple formats.
-
-Output
-
-```
-Strip 8th bit: True
-Strip control: True
-Key bit length: 256
-
-Base64:
-        KzpSTk1pezg5eTJRNmhWJmoxdFo6UDk2WlhaOyQ5N0U=
-        |---------||---------||---------||---------|
-
-Hex:
-        2b3a524e4d697b3839793251366856266a31745a3a5039365a585a3b24393745
-        |--------------||--------------||--------------||--------------|
-
-ASCII:
-        +:RNMi{89y2Q6hV&j1tZ:P96ZXZ;$97E     xml escape: +:RNMi{89y2Q6hV&amp;j1tZ:P96ZXZ;$97E
-        |------||------||------||------|
-
-ASCII-EX:
-        +:RNMi{89y2Q6hV&j1tZ:P96ZXZ;$97E     xml escape: +:RNMi{89y2Q6hV&amp;j1tZ:P96ZXZ;$97E
-        |------||------||------||------|
-```

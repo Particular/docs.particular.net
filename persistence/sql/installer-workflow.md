@@ -7,7 +7,7 @@ related:
  - nservicebus/operations
  - samples/sql-persistence
  - persistence/sql/install
-reviewed: 2017-10-29
+reviewed: 2019-09-03
 redirects:
  - nservicebus/sql-persistence/installer-workflow
 ---
@@ -28,12 +28,11 @@ The following pages should be reviewed prior to this page:
 
 snippet: InstallerWorkflow
 
-In this example the `IsDevelopment` environment variable is used to enable scripts execution on developers machines. A development machine could also be identified by checking a machine name convention, using some command line argument or incorporate another toggle mechanism that will be environment-specific.
+In this example the `IsDevelopment` environment variable is used to enable script execution on development machines. A development machine could also be identified by checking a machine name convention, using some command line argument or incorporate another toggle mechanism that will be environment-specific.
 
-In higher environments (especially in production) the installation should be designed as an integral part of the deployment process. In particular, it is recommended to put in place mechanisms to verify generated scripts and test them before running in production. It may be also necessary to customize certain settings (e.g. schemas) or to modify the scripts themselves for every environment.
+In higher environments (especially in production) the installation should be designed as an integral part of the deployment process. In particular, it is recommended to put in place mechanisms to verify generated scripts and test them before running in production. It may also be necessary to customize certain settings (e.g. schemas) or to modify the scripts themselves for every environment.
 
 Depending on the organization and the choice of tooling, the process can be fully automated, partially automated or even fully manual.
-
 
 ### Development Workflow
 
@@ -56,7 +55,7 @@ NOTE: "Higher Environment" is a general term to refer to any non-development env
 
 The workflow in a higher environment will differ based on the specifics of an organizations process. For example, it's possible to allow endpoints [to automatically execute scripts](/persistence/sql/install.md#script-execution-in-non-development-environments) or [to take full control and execute them using custom code](/persistence/sql/install.md#script-execution-in-non-development-environments).
 
-In case of taking the full control of scripts execution, it is necessary to plug in the script execution into whatever deployment pipeline the organization has in place, for example:
+In case of taking full control of script execution, it is necessary to plug-in the script execution into whatever deployment pipeline the organization has in place, for example:
 
  * When using Octopus deploy, the scripts would be executed in a ["Step"]( https://octopus.com/docs/deploying-applications/adding-steps).
  * When using TeamCity, the scripts would be executed in a ["Build Step"]( https://confluence.jetbrains.com/display/TCD8/Configuring+Build+Steps).

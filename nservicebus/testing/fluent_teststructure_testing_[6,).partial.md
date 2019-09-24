@@ -1,4 +1,4 @@
 
-Tests can be performed using the fluent API or in the traditional `Arrange-Act-Assert (AAA)` fashion.
+Tests may be written using the fluent API or the traditional Arrange-Act-Assert (AAA) approach.
 
-The tests in this article present fluent API usage. To learn how to test NServiceBus using `Arrange-Act-Assert (AAA)` approach, refer to the [dedicated article](/samples/unit-testing/).
+This article describes the fluent API. To learn how to test NServiceBus using the Arrange-Act-Assert approach, refer to the [sample](/samples/unit-testing/).

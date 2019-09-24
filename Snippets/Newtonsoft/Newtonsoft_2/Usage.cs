@@ -59,10 +59,12 @@ class Usage
     {
         #region NewtonsoftCustomWriter
 
+        var noBomEncoding = new UTF8Encoding(false, false);
+
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         serialization.WriterCreator(stream =>
         {
-            var streamWriter = new StreamWriter(stream, Encoding.UTF8);
+            var streamWriter = new StreamWriter(stream, noBomEncoding);
             return new JsonTextWriter(streamWriter)
             {
                 Formatting = Formatting.None

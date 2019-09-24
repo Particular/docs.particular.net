@@ -17,7 +17,7 @@ Added in Version 6.3.
 
 include: learning-usages
 
-Currently [ServiceControl](/servicecontrol/) (and hence [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/)) are not supported.
+[ServiceControl](/servicecontrol/) (and therefore [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/)) are only supported for demonstration purposes through use of the [Platform Sample package](/platform/platform-sample-package.md).
 
 ### Publish and subscribe
 

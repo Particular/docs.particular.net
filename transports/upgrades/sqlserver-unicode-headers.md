@@ -1,8 +1,8 @@
 ---
-title: SQL Server Transport Upgrade - Supporting Unicode in headers
-summary: Instructions on how to add support for Unicode characters in message headers
+title: SQL Server Transport Upgrade - Supporting Unicode in Headers
+summary: How to add support for Unicode characters in message headers
 component: SqlTransport
-reviewed: 2017-07-17
+reviewed: 2019-05-03
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5
@@ -10,9 +10,7 @@ upgradeGuideCoreVersions:
 ---
 
 
-## Summary
-
-This document explains how to patch a system using the SQL Server transport to [allow message headers to contain characters not supported by the current SQL Server collation](https://github.com/Particular/NServiceBus.SqlServer/issues/340). The issue may cause data loss when such characters are used in  header names or values.
+This document explains how to patch a system using the SQL Server transport to [allow message headers to contain characters not supported by the current SQL Server collation](https://github.com/Particular/NServiceBus.SqlServer/issues/340). The issue may cause data loss when these characters are used in  header names or values.
 
 
 ## Compatibility
@@ -23,7 +21,7 @@ This issue has been resolved in the following patch versions of the [SQL Server 
  * [3.0.3](https://github.com/Particular/NServiceBus.SqlServer/releases/tag/3.0.3)
  * [2.2.6](https://github.com/Particular/NServiceBus.SqlServer/releases/tag/2.2.6)
 
-Any of the supported affected minor versions (3.1.x, 3.0.x, or 2.2.x) should be updated to the latest patch release. Older (unsupported) affected versions should be updated to a newest supported minor (2.1.x or 2.0.x) or major version (1.x).
+Any of the supported affected minor versions (3.1.x, 3.0.x, or 2.2.x) should be updated to the latest patch release. Older (unsupported) affected versions should be updated to a supported minor (2.1.x or 2.0.x) or major version (1.x).
 
 
 ## Upgrade steps
@@ -42,9 +40,9 @@ The SQL Server transport detects incorrect definition of the `Headers` column an
 
 > Table [dbo].[SampleEndpoint] stores headers in a non Unicode-compatible column (varchar).
 >
-> This may lead to data loss when sending non-ASCII characters in headers. SQL Server transport 3.1 and newer can take advantage of the nvarchar column type for headers. Please change the column type in the database.
+> This may lead to data loss when sending non-ASCII characters in headers. SQL Server transport versions 3.1 and newer can take advantage of the `nvarchar` column type for headers. Please change the column type in the database.
 
-If this log event is written to the log file then read the following guidance on how to upgrade the queue table schema.
+If this log event is written to the log file, the following guidance describes how to upgrade the queue table schema.
 
 
 ## Queue table schema upgrade

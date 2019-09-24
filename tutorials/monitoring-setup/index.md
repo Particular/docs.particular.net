@@ -3,6 +3,7 @@ title: "Monitoring NServiceBus solutions: Getting started"
 reviewed: 2018-01-25
 summary: Setting up the Particular Service Platform to monitor an NServiceBus system.
 component: Core
+isLearningPath: true
 versions: '[5,)'
 redirects:
 - tutorials/monitoring/setup
@@ -10,7 +11,7 @@ redirects:
 
 This tutorial will guide you through the steps required to set up your NServiceBus solution for monitoring with the Particular Service Platform. The tutorial assumes that you're configuring monitoring for an existing solution and doesn't explain how to create a new application. See the [quick start tutorial](/tutorials/quickstart/) for details on how to do that.
 
-Note: At the moment systems using the [Learning Transport](/transports/learning/) can't be monitored as described below. If you're using solution from other tutorials or samples, ensure that you've configured NServiceBus to use [another transport](/transports/).
+Note: If you are not yet sure which transport to choose and are looking to see the monitoring capabilities of the Particular platform, try the [monitoring demo](/tutorials/monitoring-demo/)
 
 - [Component overview](/tutorials/monitoring-setup/#component-overview)
 - [Setting up Particular Service Platform](/tutorials/monitoring-setup/#setting-up-the-particular-service-platform)
@@ -139,7 +140,7 @@ NOTE: Make sure that ServiceControl and ServiceControl monitoring instances are 
 
 [ServicePulse](/servicepulse/) is a web application for production monitoring and recoverability. It connects to a monitoring instance to display monitoring data and to a ServiceControl instance to display recoverability data.
 
-Download and run the latest [ServicePulse installer](https://github.com/Particular/ServicePulse/releases/download/1.10.1/Particular.ServicePulse-1.10.1.exe).
+Download and run the latest [ServicePulse installer](https://github.com/Particular/ServicePulse/releases/).
 
 NOTE: In order to configure ServicePulse to connect to a ServiceControl monitoring instance you must download the latest version, then uninstall your current version and install the downloaded version.
 

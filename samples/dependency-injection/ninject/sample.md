@@ -1,7 +1,7 @@
 ---
 title: Ninject Dependency Injection Usage
 component: Ninject
-reviewed: 2017-11-14
+reviewed: 2019-09-11
 tags:
  - dependency injection
 related:

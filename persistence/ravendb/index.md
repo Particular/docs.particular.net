@@ -6,7 +6,7 @@ tags:
  - Persistence
 related:
  - samples/ravendb
-reviewed: 2018-02-19
+reviewed: 2019-06-10
 redirects:
  - nservicebus/ravendb
  - persistence/ravendb/licensing
@@ -24,7 +24,7 @@ Specific versions of RavenDB Persistence are tied to a major version of NService
 
 | NServiceBus | RavenDB Persistence | RavenDB Client | Platform    |
 |:-----------:|:-------------------:|:--------------:|:-----------:|
-|     7.x     |  *Not Yet Released* |       4.0      | .NET 4.6+ / .NET Core 2.0  |
+|     7.x     |        6.0.x        |       4.2      | .NET 4.7.2 / .NET Core 2.1  |
 |     7.x     |        5.0.x        |       3.5      | .NET 4.5.2 / .NET Core 2.0  |
 |     6.x     |        4.2.x        |       3.5      | .NET 4.5.2  |
 |     6.x     |        4.0.x        |       3.0      | .NET 4.5.2  |
@@ -72,12 +72,7 @@ partial: multitenant
 
 partial: unsafereads
 
-
-## Subscription persister and message versioning
-
-The behavior of the RavenDB subscription persistence differs from other NServiceBus persisters in the way it handles versioning of message assemblies. It's important to understand this difference, especially when using a deployment solution that automatically increments assembly version numbers with each build.
-
-To learn about message versioning as it relates to the RavenDB subscription persister, refer to [RavenDB subscription versioning](subscription-versioning.md).
+partial: subscription-versioning
 
 
 ## Viewing the data

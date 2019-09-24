@@ -4,6 +4,8 @@ reviewed: 2018-03-01
 component: ServiceControl
 ---
 
+WARN: The approach described in this document is not recommended for new deployments. For new installations, use [ServiceControl remote instances](/servicecontrol/servicecontrol-instances/remotes.md). For guidance upgrading existing multi-instance ServiceControl installations, see [Upgrade ServiceControl from Version 3 to Version 4](/servicecontrol/upgrades/3to4/).
+
 NOTE: A multi-instance ServiceControl installation can be complex to maintain. Before splitting ServiceControl, it is recommended to follow the capacity planning guides described in the [ServiceControl Capacity Planning](/servicecontrol/capacity-and-planning.md) documentation.
 
 Audit message processing can become a performance challenge due to high message throughput when running NServiceBus systems at scale. Multi-instance deployment helps mitigate this problem by enabling audit data sharding between a group of ServiceControl instances. 
@@ -66,7 +68,7 @@ If the error queue is set to `!disable` then error forwarding will be ignored ev
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary'}]'"/>
+    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary'}]"/>
   </appSettings>/
 </configuration>
 ```
@@ -115,7 +117,7 @@ If the error queue is set to `!disable` then error forwarding will be ignored ev
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary'}]'"/>
+    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary'}]"/>
   </appSettings>/
 </configuration>
 ```
@@ -195,7 +197,7 @@ Multiple secondary instances can be configured as follows:
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary1'},{'api_uri':'http://localhost:33335/api', 'queue_address':'Particular.ServiceControl.Secondary2'}]'"/>
+    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Secondary1'},{'api_uri':'http://localhost:33335/api', 'queue_address':'Particular.ServiceControl.Secondary2'}]"/>
   </appSettings>/
 </configuration>
 ```

@@ -16,7 +16,7 @@ The following diagram details a scenario where two sagas and an integration endp
 
 ![Sample sequence diagram](reply-replytooriginator-differences.png)
 
-The reason a call to `Reply<ShipOrder>()` sends a message to the `Shipment Gateway` is that it is invoked in the context of handling the `ShipmentReserved` message, and the return address of `ShipmentReserved` is `Shipment Gateway`.
+The reason a call to `Reply(new ShipOrder())` sends a message to the `Shipment Gateway` is that it is invoked in the context of handling the `ShipmentReserved` message, and the return address of `ShipmentReserved` is `Shipment Gateway`.
 
 In the context of a `Saga` it is not always clear at first glance who the sender of a message is. In the above example, when handling the expired `ShipmentReservation` timeout the sender of the message is the `Delivery Manager` endpoint. In this case a `Reply` would be delivered to the `Delivery Manager`, and that is not necessarily the desired behavior.
 

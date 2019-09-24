@@ -2,6 +2,7 @@
 title: Azure Service Bus Native Integration
 summary: Consuming messages published by non-NServiceBus endpoints.
 component: ASBS
+isLearningPath: true
 reviewed: 2018-08-21
 related:
  - transports/azure-service-bus
@@ -39,18 +40,17 @@ snippet: SerializedMessage
 
 To generate a serialized message, the `MessageGenerator` project can be used with the unit test named `Generate` under the `SerializedMessageGenerator` test fixture.
 
+## Message type detection
 
-## Required headers
+The native message must allow NServiceBus to [detect the message type either via the headers or the message payload](/nservicebus/messaging/message-type-detection.md).
 
-For a native message to be processed, NServiceBus endpoints using the Azure Service Bus transport need the message type to be included as a header. This header must be stored as an Azure Service Bus `Message` user property.
+In this sample the header option is used by storing the `FullName` of the message as an Azure Service Bus `Message` user property.
 
 snippet: NecessaryHeaders
 
-NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the the fully-qualified name of the type expected by the NServiceBus endpoint.
+## Message definition
 
 The message itself is defined using [conventions](/nservicebus/messaging/conventions.md) in the `Receiver` project.
-
-NOTE: To specify a message ID different from the underlying transport message ID (`Message.MessageId`), set the `NServiceBus.MessageId` header on the native message with the desired message ID.
 
 snippet: NativeMessage
 

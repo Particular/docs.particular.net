@@ -1,7 +1,6 @@
 ---
 title: Simple RavenDB Persistence Usage
 summary: Using RavenDB to store Sagas and Timeouts.
-reviewed: 2016-03-21
 component: Raven
 tags:
  - Saga
@@ -9,7 +8,7 @@ tags:
 related:
  - nservicebus/sagas
  - persistence/ravendb
-reviewed: 2017-08-21
+reviewed: 2019-06-04
 ---
 
 include: dtc-warning
@@ -19,17 +18,17 @@ include: dtc-warning
 
 This sample shows a simple Client + Server scenario.
 
- * `Client` sends a `StartOrder` message to `Server`.
- * `Server` starts an `OrderSaga`.
- * `OrderSaga` requests a timeout with a `CompleteOrder` data.
- * When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
- * The Server then publishes a message that the client subscribes to.
- * `Client` handles `OrderCompleted` event.
+ 1. `Client` sends a `StartOrder` message to `Server`.
+ 2. `Server` starts an `OrderSaga`.
+ 3. `OrderSaga` requests a timeout with a `CompleteOrder` data.
+ 4. When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
+ 5. The Server then publishes a message that the client subscribes to.
+ 6. `Client` handles `OrderCompleted` event.
 
 
 ### Raven Config
 
-Configure the endpoint to use RavenDB persistence. The `Url` may need to be changed to match the database in use.
+partial: config-description
 
 snippet: config
 
@@ -63,7 +62,7 @@ WARNING: By default, this sample uses the [Learning Transport](/transports/learn
 ### The Saga Data
 
  * `IContainSagaData.Id` maps to the native RavenDB document `Id`.
- * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` map to simple properties pairs.
+ * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` map to simple properties.
  * Custom properties on the SagaData, in this case `OrderDescription` and `OrderId`, are also mapped to simple properties.
 
 ![](sagadata.png)

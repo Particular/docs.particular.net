@@ -26,6 +26,11 @@ WARNING: Don't assume that other messages haven't arrived in the meantime. If re
 
 include: non-null-task
 
+## Timezones and Daylight Saving Time (DST)
+
+A timeout may be requested specifying either a `DateTime` or `TimeSpan`. When specifying a `DateTime`, the `Kind` property must be set. If the timeout specifies a time of day, the calculation must take into account any change to or from DST. Timezone and DST conversion may be done using [`TimeZoneInfo.ConvertTime`](https://docs.microsoft.com/en-us/dotnet/api/system.timezoneinfo.converttime).
+
+NOTE: Timezone and DST information may change in the future, for timeouts that are already set. A saga containing business logic which is dependent on such changes must react to those changes appropriately.
 
 ## Revoking timeouts
 

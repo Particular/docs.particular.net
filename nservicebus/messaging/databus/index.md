@@ -31,7 +31,6 @@ See the individual DataBus implementations for details on enabling and configuri
 
  * [FileShare DataBus](file-share.md)
  * [Azure Blob Storage DataBus](azure-blob-storage.md)
- * [MongoDB DataBus](/nservicebus/messaging/databus/mongodb-tekmaven.md)
 
 
 ## Specifying DataBus properties

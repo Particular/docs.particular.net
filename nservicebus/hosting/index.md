@@ -139,6 +139,7 @@ There are multiple ways to host in Azure. Depending on the requirements, self-ho
 Related:
 
  * [Shared Hosting in Azure Cloud Services Sample](/samples/azure/shared-host/)
+ * [Self Hosting in Azure WebJobs](/samples/azure/webjob-host/)
  
 
 ## ILMerging NServiceBus assemblies

@@ -1,7 +1,7 @@
 ---
-title: EventSourceLogging
-summary: Logging to EventSourceLogging
-reviewed: 2017-10-07
+title: Event Tracing for Windows
+summary: Logging to Event Tracing for Windows (ETW)
+reviewed: 2019-07-29
 component: EventSourceLogging
 tags:
 - Logging

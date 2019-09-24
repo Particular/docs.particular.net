@@ -2,7 +2,7 @@
 title: Sagas
 summary: NServiceBus uses event-driven architecture to include fault-tolerance and scalability in long-term business processes.
 component: Core
-reviewed: 2017-12-01
+reviewed: 2019-09-16
 tags:
 - Saga
 redirects:
@@ -185,3 +185,14 @@ Sagas manage state of potentially long-running business processes. It is possibl
  * The saga data may not contain all the required data. A saga handling the order process may keep track of the "payment id" and the status of the payment, but it is not interested in keeping track of the amount paid. On the other hand, for querying it may be required to query the paid amount along with other data.
 
 The recommended approach is for the saga to publish events containing the required data and have handlers that process these events and store the data in one or more read model(s) for querying purposes. This reduces coupling to the internals of the specific saga persistence, removes contention, and preserves the safeguards of the existing saga logic.
+
+## Saga state read/write behavior
+
+Saga state is read immediately before a message processing method is invoked, and written immediately after the method returns. The sequence of read, invoke, and write occurs once per message processing method.
+
+- For persisters backed by SQL databases, the write will execute an `INSERT` statement if the read did not return any existing state, and the write will execute an `UPDATE` statement if the read _did_ return existing state. For other persisters, the equivalent operations will be executed.
+- If the read did not return any existing state, and the saga is completed during the invoke, then no write will occur.
+- The method of maintaining consistency with respect to concurrent message processing depends on the persister being used. Some may use a transactional lock, and others may perform an atomic change with optimistic concurrency control.
+- Saga state reads and writes do not occur during a stage. They occur during invocation in the `Invoke Handlers` stage and cannot be intercepted.
+
+If multiple saga types are invoked for the same message, each read, invoke, write cycle will occur sequentially, for each saga type.

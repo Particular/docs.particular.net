@@ -7,8 +7,10 @@ AttachmentsSqlRaw: NServiceBus.Attachments.Sql.Raw
 AttachmentsFileShare: NServiceBus.Attachments.FileShare
 AttachmentsFileShareRaw: NServiceBus.Attachments.FileShare.Raw
 ASB: NServiceBus.Azure.Transports.WindowsAzureServiceBus
+ASBFunctions: NServiceBus.AzureFunctions.ServiceBus
 ASBS: NServiceBus.Transport.AzureServiceBus
-ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues 
+ASQ: NServiceBus.Azure.Transports.WindowsAzureStorageQueues
+ASQFunctions: NServiceBus.AzureFunctions.StorageQueues
 ASP: NServiceBus.Persistence.AzureStorage
 DistributedEventBroker: Appccelerate.DistributedEventBroker.NServiceBus
 Autofac: NServiceBus.Autofac
@@ -51,6 +53,7 @@ Metrics: NServiceBus.Metrics
 MetricsServiceControl: NServiceBus.Metrics.ServiceControl
 MetricsServiceControlMsmq: NServiceBus.Metrics.ServiceControl.Msmq
 MessageRouting: NServiceBus.MessageRouting
+MongoDB: NServiceBus.Storage.MongoDB
 MongoSbmako: NServiceBus.MongoDB
 MongoTekmaven: NServiceBus.Persistence.MongoDb
 MsmqTransport: NServiceBus.Transport.Msmq
@@ -76,6 +79,7 @@ SagaAudit5: ServiceControl.Plugin.Nsb5.SagaAudit
 SagaAudit4: ServiceControl.Plugin.Nsb4.SagaAudit
 SagaAudit: NServiceBus.SagaAudit
 Serilog: NServiceBus.Serilog
+Serverless: NServiceBus.Serverless
 ServiceBootstrap: NServiceBus.Bootstrap.WindowsService
 ServiceControl: ServiceControl
 ServiceControlContracts: ServiceControl.Contracts
@@ -92,6 +96,7 @@ RabbitOperations: RabbitOperations
 SimpleInjector: NServiceBus.SimpleInjector
 Spring: NServiceBus.Spring
 Sqs: NServiceBus.AmazonSQS
+SQSLambda: NServiceBus.AwsLambda.SQS
 StructureMap: NServiceBus.StructureMap
 Testing: NServiceBus.Testing
 Templates: ParticularTemplates
@@ -109,4 +114,4 @@ Utf8Json: NServiceBus.Utf8Json
 UniformSession: NServiceBus.UniformSession
 FluentValidation: NServiceBus.FluentValidation
 DataAnnotations: NServiceBus.DataAnnotations
-MSDependencyInjection: NServiceBus.MSDependencyInjection
+PlatformSample: Particular.PlatformSample

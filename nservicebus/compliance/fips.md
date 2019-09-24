@@ -2,6 +2,7 @@
 title: FIPS Compliance
 summary: Describes NServiceBus compliance with FIPS
 reviewed: 2019-02-28
+isLearningPath: true
 ---
 
 The [Federal Information Processing Standards](https://en.wikipedia.org/wiki/Federal_Information_Processing_Standards) or FIPS are standards developed by the United States government for computer systems that sets requirements for, among other things, crytography.

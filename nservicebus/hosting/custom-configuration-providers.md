@@ -1,40 +1,38 @@
 ---
 title: Overriding app.config settings
 summary: NServiceBus uses the process config file as its default source of configuration.
-reviewed: 2017-10-04
+reviewed: 2019-07-17
 versions: '[3,7)'
 component: Core
 redirects:
  - nservicebus/customizing-nservicebus-configuration
 ---
 
-NServiceBus uses the process config file as its default source of configuration. The extensibility of NServiceBus allow changing many of its behaviors, including where it gets its configuration. This can be done across all of NServiceBus or a specific part subset of features.
+NServiceBus uses the running process config file as its default source of configuration. NServiceBus allows changing the default behavior and customizing the location from where the configuration is loaded. This can be done for the whole configuration or a specific sections.
 
 include: configobsolete
 
 
-
 ## Overriding App.Config section
 
-The preferred method of overriding a specific section is to use the `IProvideConfiguration<T>` model. For example, rather than providing the `RijndaelEncryptionServiceConfig` in app.config:
+A configuration for a specific section can be overridden using the `IProvideConfiguration<T>` interface. For example, rather than providing the `RijndaelEncryptionServiceConfig` in app.config the code below provides an alternative configuration that will be used as long as `RijndaelEncryptionServiceConfig` is found in the types scanned: 
 
 snippet: CustomConfigProvider
-
-Adding the code above is enough since NServiceBus will automatically use it if found in the types scanned.
 
 
 ## Code only configuration
 
-If the endpoint needs to derive its configuration from somewhere other than the 'app.config', write a class that implements `IConfigurationSource` and in it retrieve the configuration from any location: a database, a web service, anything.
+If the endpoint needs to load its configuration from some other source than the 'app.config', an implementation of `IConfigurationSource` interface can be registered as a custom configuration source. This approach enables retrieving the configuration from any location: a database, a web service, etc..
 
 
-### Initialize the bus to use the custom configuration source
+### Registering custom configuration source
+
+This code instructs NServiceBus to use `MyCustomConfigurationSource` as custom configuration source:
 
 snippet: RegisterCustomConfigSource
 
+### Provide configuration from custom location (not app.config)
 
-### Define the custom configuration source to provide the configuration values instead of app.config
+`GetConfiguration` method provides data for `RijndaelEncryptionServiceConfig` directly in code, while allowing all other configuration sections to be retrieved from the config file.
 
 snippet: CustomConfigSource
-
-The initialization code instructs NServiceBus to use a `CustomConfigurationSource`, passing in an instance of a new object: `MyCustomConfigurationSource`. Its `GetConfiguration` method provides data for `RijndaelEncryptionServiceConfig` directly in code, while allowing all other configuration sections to be retrieved from the config file.

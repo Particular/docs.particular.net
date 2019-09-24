@@ -61,6 +61,16 @@ partial: select-destination
 
 To learn more about creating custom distribution strategies, see the [fair distribution sample](/samples/routing/fair-distribution/).
 
+## Events and subscriptions
+
+Subscription requests:
+
+Each subscriber endpoint instance will at start send a subscription message to each configured publisher instance. Each publisher instance receives a subscription requests and stores this. In most cases the subscription storage is shared.
+
+Events:
+
+When an event is published the event will be send to only one of the endpoint instances. Which instance depends on the [distribution strategy](#mapping-physical-endpoint-instances-message-distribution)
+
 
 ## Limitations
 

@@ -17,7 +17,7 @@ One of the basic features of message queuing is the ability for the receiving en
 
 A possible answer is to [unsubscribe](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message) on shutdown. This is a fragile option since the client may not successfully complete the unsubscribe when a crash occurs.
 
-Another solution is to avoid implementing each client as an NServiceBus endpoint, but instead use a push technology, such as [SignalR](http://signalr.net/), to update clients only while they are connected.
+Another solution is to avoid implementing each client as an NServiceBus endpoint, but instead use a push technology, such as [SignalR](https://signalr.net/), to update clients only while they are connected.
 
 This sample demonstrates how to use a SignalR server, which also acts as an NServiceBus endpoint, to push subscribed NServiceBus events to any connected SignalR clients.
 
@@ -95,4 +95,4 @@ SS2-->|SignalR Message|CC
 SS2-->|SignalR Message|CD
 ```
 
-In this diagram an NServiceBus event is being processed by [one of the two subscriber instances](/nservicebus/architecture/scaling.md#scaling-out-to-different-nodes-competing-consumers). Server 1 is forwarding the NServiceBus event as a SignalR message, which is then broadcast via the configured backplane to Server 2's SignalR server. This allows the connected SignalR clients to receive the message.
+In this diagram an NServiceBus event is being processed by [one of the two subscriber instances](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers). Server 1 is forwarding the NServiceBus event as a SignalR message, which is then broadcast via the configured backplane to Server 2's SignalR server. This allows the connected SignalR clients to receive the message.

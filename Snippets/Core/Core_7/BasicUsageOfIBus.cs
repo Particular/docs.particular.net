@@ -32,20 +32,6 @@
 
         #endregion
 
-        async Task SendInterface(IEndpointInstance endpoint)
-        {
-            #region BasicSendInterface
-
-            await endpoint.Send<IMyMessage>(
-                    messageConstructor: message =>
-                    {
-                        message.MyProperty = "Hello world";
-                    })
-                .ConfigureAwait(false);
-
-            #endregion
-        }
-
         async Task SetDestination(IEndpointInstance endpoint)
         {
             #region BasicSendSetDestination
@@ -53,9 +39,6 @@
             var options = new SendOptions();
             options.SetDestination("MyDestination");
             await endpoint.Send(new MyMessage(), options)
-                .ConfigureAwait(false);
-            // or
-            await endpoint.Send<MyMessage>("MyDestination", m => { })
                 .ConfigureAwait(false);
 
             #endregion
@@ -186,11 +169,6 @@
 
         public class OtherMessage
         {
-        }
-
-        interface IMyMessage
-        {
-            string MyProperty { get; set; }
         }
     }
 }

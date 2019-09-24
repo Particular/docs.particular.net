@@ -1,7 +1,7 @@
 ---
 title: Hangfire Usage
 summary: Using of Hangfire to send messages from within an NServiceBus endpoint.
-reviewed: 2017-09-20
+reviewed: 2019-06-20
 component: Core
 related:
 - nservicebus/messaging/timeout-manager
@@ -11,7 +11,6 @@ related:
 This sample illustrates the use of [Hangfire](https://www.hangfire.io/) to send messages from within an NServiceBus endpoint.
 
 > Hangfire - An easy way to perform background processing in .NET and .NET Core applications. Hangfire is an open-source framework that helps you to create, process and manage your background jobs.
-
 
 
 include: scheduler-drawbacks
@@ -32,7 +31,7 @@ This is a helper class used to make the NServiceBus `IEndpointInstance` availabl
 
 snippet: EndpointInstance
 
-Hangfire also supports Dependency Injection (DI) via the [JobActivator API](http://docs.hangfire.io/en/latest/background-methods/using-ioc-containers.html) for more advanced scenarios.
+Hangfire also supports Dependency Injection (DI) via the [JobActivator API](https://docs.hangfire.io/en/latest/background-methods/using-ioc-containers.html) for more advanced scenarios.
 
 
 ### Configure and start the scheduler
@@ -41,7 +40,7 @@ The endpoint is started and the `IEndpointInstance` is stored in the static endp
 
 This sample uses in-memory storage for the jobs. Production scenarios should use more robust alternatives: SqlServer, Msmq or Redis.
 
-Hangfire calls their scheduler a [BackgroundJobServer](http://docs.hangfire.io/en/latest/background-processing/processing-background-jobs.html). It is started automatically when an instance of the `BackgroundJobServer` class is instantiated.
+Hangfire calls their scheduler a [BackgroundJobServer](https://docs.hangfire.io/en/latest/background-processing/processing-background-jobs.html). It is started automatically when an instance of the `BackgroundJobServer` class is instantiated.
 
 snippet: Configuration
 
@@ -81,16 +80,16 @@ Hangfire uses [LibLog](https://github.com/damianh/LibLog). Since LibLog supports
 
 snippet: serilog
 
-LibLog [supports many other common logging libraries](https://github.com/damianh/LibLog/wiki#transparent-logging-support). Hangfire can also be configured to use a custom logger. See also [Adding logging in Hangfire](http://docs.hangfire.io/en/latest/configuration/configuring-logging.html).
+LibLog [supports many other common logging libraries](https://github.com/damianh/LibLog/wiki#transparent-logging-support). Hangfire can also be configured to use a custom logger. See also [Adding logging in Hangfire](https://docs.hangfire.io/en/latest/configuration/configuring-logging.html).
 
 
 ## Scale Out
 
-Note that in this sample an instance of the Hangfire scheduler is configured to run in every endpoint's instance. If an endpoint is [scaled out](/transports/scale-out.md) then the configured jobs will be executed by each of the running instances. A persistent [job storage](http://docs.hangfire.io/en/latest/configuration/index.html) can help  to manage the Hangfire scheduler shared state, including jobs, triggers, calendars, etc.
+Note that in this sample an instance of the Hangfire scheduler is configured to run in every endpoint's instance. If an endpoint is [scaled out](/nservicebus/architecture/scaling.md) then the configured jobs will be executed by each of the running instances. A persistent [job storage](https://docs.hangfire.io/en/latest/configuration/index.html) can help  to manage the Hangfire scheduler shared state, including jobs, triggers, calendars, etc.
 
 
 ## Further information on Hangfire
 
- * [Hangfire Quick Start Guide](http://docs.hangfire.io/en/latest/quick-start.html)
- * [Hangfire Tutorials](http://docs.hangfire.io/en/latest/tutorials/index.html)
- * [Dealing with exceptions](http://docs.hangfire.io/en/latest/background-processing/dealing-with-exceptions.html)
+ * [Hangfire Quick Start Guide](https://docs.hangfire.io/en/latest/quick-start.html)
+ * [Hangfire Tutorials](https://docs.hangfire.io/en/latest/tutorials/index.html)
+ * [Dealing with exceptions](https://docs.hangfire.io/en/latest/background-processing/dealing-with-exceptions.html)

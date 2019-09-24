@@ -2,6 +2,7 @@
 title: Recoverability
 summary: Explains how exceptions are handled, and actions retried, during message processing
 component: Core
+isLearningPath: true
 tags:
  - Exceptions
  - Error Handling
@@ -44,7 +45,7 @@ Note: Depending on the concurrency and transactionality settings of the endpoint
 
 ### Transport transaction requirements
 
-The Immediate Retry mechanism is implemented by making the message available for consumption again at the top of the queue, so that the endpoint can process it again without any delay. Immediate Retries cannot be used when [transport transactions](/transports/transactions.md) are disabled.
+The Immediate Retry mechanism is implemented by making the message available for consumption again, so that the endpoint can process it again without any delay. Immediate Retries cannot be used when [transport transactions](/transports/transactions.md) are disabled.
 
 
 ## Delayed Retries
@@ -99,3 +100,9 @@ The output in the log will be:
 snippet: RetryLogging
 
 partial: exceptionincluded
+
+
+## Recoverability memory consumption
+
+MSMQ and SQL Server transport need to cache exceptions in memory for retries. Therefore, exceptions with a large memory footprint can cause high memory usage of the NServiceBus process. NServiceBus can cache up to 1,000 exceptions, capping the potential memory consumption to 1,000 x `<exception size>`. Refer to [this guide](/nservicebus/recoverability/lru-memory-consumption.md) to resolve problems due to execessive memory consumption.
+

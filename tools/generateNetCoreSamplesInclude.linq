@@ -38,17 +38,19 @@ void Main()
                 Url = url
             };
         })
-        .GroupBy(x => x.MarkdownPath)
+        .GroupBy(x => x.MarkdownPath + x.Version)
         .Select(sample =>
         {
             if (sample.Count() > 1)
             {
                 throw new Exception($"More than one version for {sample.Key}");
             }
-            var markdownPath = sample.Key;
+
+            var first = sample.First();
+            var markdownPath = first.MarkdownPath;
             var depth = markdownPath.Count(ch => ch == '\\');
             var metadata = GetSampleMetadata(markdownPath);
-            var first = sample.First();
+            
             return new
             {
                 Title = metadata.Title,

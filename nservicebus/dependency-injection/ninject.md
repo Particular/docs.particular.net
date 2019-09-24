@@ -42,13 +42,17 @@ Services using `InUnitOfWorkScope()` can only be injected into code which is pro
 
 snippet: NinjectConditionalBindings
 
+### Multi hosting
+
+Multiple endpoints in a single process cannot share a single Ninject kernel. Each requires its own container instance or each requires its own child container. Ninject supports this with the [Ninject.Extensions.ChildKernel](https://github.com/ninject/Ninject.Extensions.ChildKernel) extension. Execute `new ChildKernel(parentKernel)` and pass this new kernel instance to NServiceBus.
+
 
 ### DependencyLifecycle Mapping
 
-[`DependencyLifecycle`](/nservicebus/dependency-injection/#dependency-lifecycle) maps to [Ninject object scopes](https://github.com/ninject/ninject/wiki/Object-Scopes) as follows:
+[`DependencyLifecycle`](/nservicebus/dependency-injection/) maps to [Ninject object scopes](https://github.com/ninject/ninject/wiki/Object-Scopes) as follows:
 
 | `DependencyLifecycle`                                                                                             | Ninject object scope                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-call) | [Transient](https://github.com/ninject/ninject/wiki/Object-Scopes)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#dependency-lifecycle-instance-per-unit-of-work)                    | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes) within a [Named Scope](https://github.com/ninject/ninject.extensions.namedscope/wiki) per Unit of Work |
-| [SingleInstance](/nservicebus/dependency-injection/#dependency-lifecycle-single-instance)                                  | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes)                          |
+| [InstancePerCall](/nservicebus/dependency-injection/) | [Transient](https://github.com/ninject/ninject/wiki/Object-Scopes)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes) within a [Named Scope](https://github.com/ninject/ninject.extensions.namedscope/wiki) per Unit of Work |
+| [SingleInstance](/nservicebus/dependency-injection/)                                  | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes)                          |

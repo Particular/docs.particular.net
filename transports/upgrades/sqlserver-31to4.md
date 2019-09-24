@@ -1,6 +1,6 @@
 ---
 title: SQL Server Transport Upgrade Version 3 to 4
-reviewed: 2017-08-23
+reviewed: 2019-05-30
 component: SqlTransport
 related:
  - nservicebus/upgrades/6to7
@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
 
 ## TransactionScope
 
-The Transaction scope [transaction mode](/transports/sql/transactions.md) is not available in .NET Core 2.0 because the implementation of `SqlConnection` does not support enlisting in an ambient transaction. 
+The [Transaction scope transaction mode](/transports/sql/transactions.md#transaction-scope-distributed-transaction) is not available in .NET Core 2.0 because the implementation of `SqlConnection` does not support enlisting in an ambient transaction. 
 
 To run the upgraded project on .NET Core the transport needs to be switched to one of the native transactions modes. Consider using the [Outbox](/nservicebus/outbox) to maintain the same *exactly-once processing* guarantees.
 

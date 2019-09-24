@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence Upgrade Version 2 to 3
 summary: Instructions on how to upgrade to SQL Persistence version 3
-reviewed: 2017-08-17
+reviewed: 2019-05-12
 component: SqlPersistence
 isUpgradeGuide: true
 upgradeGuideCoreVersions:

@@ -11,7 +11,7 @@ redirects:
  - nservicebus/ravendb/how-to-change-resourcemanagerid
  - nservicebus/ravendb/resourcemanagerid
  - nservicebus/ravendb/manual-dtc-settings
-reviewed: 2017-08-21
+reviewed: 2019-06-10
 ---
 
 include: dtc-warning

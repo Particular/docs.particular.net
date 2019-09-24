@@ -1,7 +1,7 @@
 ---
 title: Autofac Dependency Injection Usage
 component: Autofac
-reviewed: 2017-11-14
+reviewed: 2019-09-10
 tags:
  - dependency injection
 related:
@@ -14,8 +14,6 @@ redirects:
 ### Configuring an endpoint to use Autofac
 
 snippet: ContainerConfiguration
-
-partial: assignment
 
 
 ### Injecting the dependency in the handler

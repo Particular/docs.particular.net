@@ -1,7 +1,7 @@
 ---
 title: NLog
 summary: Logging to NLog
-reviewed: 2017-10-07
+reviewed: 2019-07-29
 component: NLog
 tags:
 - Logging
@@ -9,7 +9,7 @@ related:
 - samples/logging/nlog-custom
 ---
 
-Support for writing all NServiceBus log entries to [NLog](http://nlog-project.org/).
+Support for writing all NServiceBus log entries to [NLog](https://nlog-project.org/).
 
 
 ## Usage

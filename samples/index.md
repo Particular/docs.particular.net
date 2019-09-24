@@ -51,6 +51,11 @@ Unless otherwise specified (by an individual sample) the following are the defau
 All samples target **C# 7.1** to take advantage of the new language features. If any help is required in converting to earlier versions of C#, [raise an issue](https://github.com/Particular/docs.particular.net/issues).
 
 
+### ConfigureAwait
+
+Samples by default use `ConfigureAwait(false)` when awaiting asynchronous methods. Using `ConfigureAwait(false)` whenever possible is [considered a best practice](https://msdn.microsoft.com/en-us/magazine/jj991977.aspx) which helps avoid deadlocks and improves performance.
+
+
 ### [Transport](/transports/)
 
 Samples default to the [learning transport](/transports/learning/) as it has the least friction for experimentation. **The [learning transport](/transports/learning/) is not for production use**.

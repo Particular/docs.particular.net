@@ -1,8 +1,8 @@
 ---
 title: Self Hosting in Azure Cloud Services
-summary: Uses NServiceBus self-hosting capability to host an endpoint in an Azure instance.
+summary: Using the NServiceBus self-hosting capability to host an endpoint in an Azure instance.
 component: Core
-reviewed: 2017-10-03
+reviewed: 2019-07-02
 tags:
 - Azure
 - Hosting
@@ -25,11 +25,11 @@ Results are sorted by Timestamp
 
 ## Deploying endpoints
 
- 1. Open a PowerShell console at the `self-host\CloudServicesHost_{version}` location. This location should contain `PackageAndDeploy.ps1`.
+ 1. Open a PowerShell console at the `self-host\CloudServicesHost_{version}` location. This location should contain a file called `PackageAndDeploy.ps1`.
  1. Execute the `PackageAndDeploy.ps1` PowerShell script to package and deploy multi-hosted endpoints to local emulator storage.
 
 
-## Running self-host in emulated Cloud Service
+## Running a self-host in emulated Cloud Service
 
  1. Set `HostCloudService` to be the start-up project by right-clicking the project name in Visual Studio Solution Explorer, and selecting `Set as StartUp Project` option
  1. Run the solution
@@ -37,9 +37,9 @@ Results are sorted by Timestamp
 
 NOTE: To inspect multi-host role emulated file system navigate to `C:\Users\%USERNAME%\AppData\Local\dftmp\Resources`
 
-Azure Compute Emulator leaves any processes spawned at run time in memory. Kill those once done with emulated Cloud Service execution by locating `WaWorkerHost.exe` process and killing all child processes named `NServiceBus.Hosting.Azure.HostProcess.exe`. The number of those processes will be the same as the number of endpoints (i.e. one) x the number of times Cloud Service was executed.
+Azure Compute Emulator leaves any processes spawned at run time in memory. These can be killed by locating the `WaWorkerHost.exe` process and killing all child processes named `NServiceBus.Hosting.Azure.HostProcess.exe`. The number of those processes will be the same as the number of endpoints (i.e. one) x the number of times Cloud Service was executed.
 
-Cloud Service emulator can also be stopped from Compute Emulator UI. Compute Emulator UI can be accessed via the try icon on the taskbar. Within Compute Emulator UI, under `Service Deployments` tree select a deployment, right-click and select the `Remove` option. This will cleanly stop Cloud Service without leaving any processes in memory.
+Cloud Service emulator can also be stopped with the Compute Emulator UI. The Compute Emulator UI can be accessed via the try icon on the taskbar. Within Compute Emulator UI, under `Service Deployments` tree select a deployment, right-click, and select the `Remove` option. This will cleanly stop Cloud Service without leaving any processes in memory.
 
 
 ## Code walk-through
@@ -62,20 +62,20 @@ A critical error action needs to be defined to restart the host when a critical 
 
 snippet: AzureSelfHost_CriticalError
 
-To uniquely identify the host a custom name and display name need to be provided.
+To uniquely identify the host a custom name and display name must be provided.
 
 snippet: AzureSelfHost_DisplayName
 
-Connection string can be loaded by leveraging the `RoleEnvironment` as shown below.
+The connection string can be loaded using the `RoleEnvironment` as shown below.
 
 snippet: AzureSelfHost_ConnectionString
 
 ### HostCloudService project
 
-The HostCloudService project defines self-host parameters for all environment (`Local` and `Cloud` in this sample)
+The HostCloudService project defines self-host parameters for all environments (`Local` and `Cloud` in this sample)
 
 snippet: AzureSelfHosting_CloudServiceDefinition
 
-Values provided to execute sample against local Azure Storage emulator
+Values provided to execute the sample against local Azure Storage emulator
 
 snippet: AzureSelfHosting_CloudServiceConfiguration

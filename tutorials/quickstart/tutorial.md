@@ -1,6 +1,7 @@
 ---
 title: "NServiceBus Quick Start"
 reviewed: 2018-03-20
+isLearningPath: true
 summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
 extensions:
 - !!tutorial
@@ -10,19 +11,15 @@ extensions:
 
 include: quickstart-tutorial-intro-paragraph
 
-This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/). It will teach you the NServiceBus API and important concepts you need to learn to build successful message-based software systems.
+This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/). It will teach you the NServiceBus API and important concepts necessary to learn how to build successful message-based software systems.
 
 ## Download solution
 
 To get started, download the solution appropriate for your Visual Studio version, extract the archive, and then open the **RetailDemo.sln** file.
 
-<div class="text-center inline-download hidden-xs">
-  <a href="https://liveparticularwebstr.blob.core.windows.net/media/tutorials-quickstart-vs2015.zip" class="btn btn-info btn-lg" onclick="return fireGAEvent('TutorialDownloaded', 'quickstart-tutorials-quickstart-vs2015.zip')"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for Visual Studio 2015</a>
-  <a href="https://liveparticularwebstr.blob.core.windows.net/media/tutorials-quickstart.zip" class="btn btn-primary btn-lg" onclick="return fireGAEvent('TutorialDownloaded', 'quickstart-tutorials-quickstart.zip')"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for Visual Studio 2017</a>
-</div>
+downloadbutton
+
 <style type="text/css">
-  /* Hide native tutorial download button for VS2015/2017 test */
-  .tutorial-actions .btn-default { display: none; }
   /* Remove borders on images as they all have appropriate borders */
   img.center { border-style: none !important; }
 </style>
@@ -43,23 +40,23 @@ The solution mimics a real-life retail system, where [the command](/nservicebus/
 
 ## Running the solution
 
-The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open the web application and two console applications, one window for each messaging endpoint. (The Platform console app will also open briefly and then immediately close.)
+The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when we run the solution it should open the web application and two console applications, one window for each messaging endpoint. (The Platform console app will also open briefly and then immediately close.)
 
 ![ClientUI Web Application](webapp-start.png)
 ![2 console applications, one for endpoint implemented as a console app](2-console-windows.png)
 
-WARNING: Did all three windows appear? There is currently an [outstanding bug in Visual Studio](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html) that will sometimes prevent one or more projects from launching with an error message "Unable to launch the previously selected debugger. Please choose another." If this is the case, stop debugging and try again. The problem usually happens only on the first attempt. 
+WARNING: Did all three windows appear? In versions prior to Visual Studio 2019 16.1, there is a bug ([Link 1](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html), [Link 2](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221)) that will sometimes prevent one or more projects from launching with an error message "Unable to launch the previously selected debugger. Please choose another." If this is the case, stop debugging and try again. The problem usually happens only on the first attempt. 
 
 In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens in other windows. 
 
-It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint. In the **Sales** endpoint window you should see:
+It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint. In the **Sales** endpoint window we see:
 
 ```
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = 9b16a5ce
 INFO  Sales.PlaceOrderHandler Publishing OrderPlaced, OrderId = 9b16a5ce
 ```
 
-As shown in the log, the **Sales** endpoint then publishes an **OrderPlaced** event, which will be received by the **Billing** endpoint. In the **Billing** endpoint window you should see:
+As shown in the log, the **Sales** endpoint then publishes an **OrderPlaced** event, which will be received by the **Billing** endpoint. In the **Billing** endpoint window we see:
 
 ```
 INFO  Billing.OrderPlacedHandler Billing has received OrderPlaced, OrderId = 9b16a5ce
@@ -96,7 +93,7 @@ Let's consider more carefully what happened. First, we had two processes communi
 
 Have you ever had business processes get interrupted by transient errors like database deadlocks? Transient errors often leave a system in an inconsistent state. For example, the order could be persisted in the database but not yet submitted to the payment processor. In such a situation you might have to investigate the database like a forensic analyst, trying to figure out where the process went wrong, and how to manually jump-start it so that the process can complete.
 
-With NServiceBus you don't need manual interventions. If an exception is thrown, then the message handler will automatically retry processing it. That addresses transient failures like database deadlocks, connection issues across machines, file write access conflicts, etc.
+With NServiceBus we don't need manual intervention. If an exception is thrown, then the message handler will automatically retry processing it. That addresses transient failures like database deadlocks, connection issues across machines, file write access conflicts, etc.
 
 Let's simulate a transient failure in the **Sales** endpoint and see retries in action:
 
@@ -110,7 +107,7 @@ snippet: ThrowTransientException
 
 ![Transient exceptions](transient-exceptions.png)
 
-As you can see in the **Sales** window, 80% of the messages will go through as normal, but when an exception occurs, the output will be different. The first attempt of `PlaceOrderHandler` will throw and log an exception, but then in the very next log entry, processing will be retried and likely succeed.
+As we can see in the **Sales** window, 80% of the messages will go through as normal, but when an exception occurs, the output will be different. The first attempt of `PlaceOrderHandler` will throw and log an exception, but then in the very next log entry, processing will be retried and likely succeed.
 
 ```
 INFO  NServiceBus.RecoverabilityExecutor Immediate Retry is going to retry message '5154b012-4180-4b56-9952-a90a01325bfc' because of an exception:
@@ -119,7 +116,7 @@ System.Exception: Oops
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e1d86cb9
 ```
 
-NOTE: If you forgot to detach the debugger, you'll need to click the **Continue** button in the Exception Assitant dialog before the message will be printed in the **Sales** window.
+NOTE: If you didn't detach the debugger, you must click the **Continue** button in the Exception Assistant dialog before the message will be printed in the **Sales** window.
 
 5. Comment the code inside the **ThrowTransientException** region, so no exceptions are thrown in the future.
 
@@ -177,7 +174,7 @@ For now, let's focus on the **Failed Messages** view. It's not much to look at r
 1. Undock the ServicePulse browser tab into a new window to better see what's going on.
 2. In the **ClientUI** window, send one message while watching the **Sales** window.
 
-Immediately, you'll see an exception flash past, followed by an orange WARN message:
+Immediately, we see an exception flash past, followed by an orange WARN message:
 
 ```
 WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message 'ea962f05-7d82-4be1-926a-a9de01749767' after a delay of 00:00:10 because of an exception:
@@ -251,7 +248,7 @@ To start, in the **Solution Explorer** window, right-click the **RetailDemo** so
 4. Click **OK** to create the project and add it to the solution.
 
 {{NOTE:
-**ProTip:** The existing projects in this solution are using the newer, leaner, .NET Core style project files, but the current Visual Studio tooling doesn't make it very easy to do the same for the **Shipping** project. If you like, you can create a project of type **Console App (.NET Core)** and then manually edit the **Shipping.csproj** file to change the `TargetFramework` value from `netcoreapp2.0` to `net461`.
+**ProTip:** The existing projects in this solution are using .NET Core-style project files, but the current Visual Studio tooling doesn't make it very easy to do the same for the **Shipping** project. If you like, you can create a project of type **Console App (.NET Core)** and then manually edit the **Shipping.csproj** file to change the `TargetFramework` value from `netcoreapp2.0` to `net461`.
 
 Creating a **Console App (.NET Framework)** project which uses the older-style `*.csproj` file will work just fine, but will just look slightly different in Visual Studio, with nested **Properties**, **References**, and **packages.config** items instead of **Dependencies**.
 }}
@@ -267,11 +264,13 @@ By default, Visual Studio will create the project using C# 7.0. Let's change it 
 
 ![Change Language Version](change-language-version.png "width=680")
 
-Now, we need to add references to the NServiceBus package and Messages project.
+Now, we need to add references to the Messages project, as well as the NServiceBus, NServiceBus.Heartbeat, and NServiceBus.Metrics.ServiceControl packages
 
-1. In the newly created **Shipping** project, add the `NServiceBus` NuGet package, which is already present in the other projects in the solution. In the Package Manager Console window type:
+1. In the newly-created **Shipping** project, add the `NServiceBus`, `NServiceBus.Heartbeat`, and `NServiceBus.Metrics.ServiceControl` NuGet packages, which are already present in other projects in the solution. In the Package Manager Console window, enter the following commands:
     ```
     Install-Package NServiceBus -ProjectName Shipping
+    Install-Package NServiceBus.Heartbeat -ProjectName Shipping
+    Install-Package NServiceBus.Metrics.ServiceControl -ProjectName Shipping
     ```
 1. In the **Shipping** project, add a reference to the **Messages** project, so that we have access to the `OrderPlaced` event.
 
@@ -279,7 +278,7 @@ Now that we have a project for the Shipping endpoint, we need to add some code t
 
 snippet: ShippingProgram
 
-You'll want the **Shipping** endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx) feature to configure the **Shipping** endpoint to start along with **ClientUI**, **Sales**, and **Billing**.
+We want the **Shipping** endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx) feature to configure the **Shipping** endpoint to start along with **ClientUI**, **Sales**, and **Billing**.
 
 
 ### Create a new message handler

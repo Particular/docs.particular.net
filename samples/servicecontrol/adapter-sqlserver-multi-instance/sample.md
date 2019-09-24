@@ -19,14 +19,14 @@ The purpose of the adapter is to isolate ServiceControl from the specifics of th
 
  1. [Install ServiceControl](/servicecontrol/installation.md).
  2. Create `ServiceControl` database on the local SQL Server instance.
- 3. Using [ServiceControl Management](/servicecontrol/license.md#servicecontrol-management-app) tool, set up ServiceControl to monitor endpoints using SQL Server transport:
+ 3. Using the [ServiceControl Management tool](/servicecontrol/license.md#servicecontrol-management-tool), set up ServiceControl to monitor endpoints using the SQL Server transport:
 
    * Add a new ServiceControl instance:
    * Use `Particular.ServiceControl.SQL` as the instance name (ensure there is no other instance of ServiceControl running with the same name).
    * Use "User" account and provide credentials to allow integrated authentication.
    * Specify `Data Source=.\SqlExpress;Initial Catalog=ServiceControl;Integrated Security=True;Max Pool Size=100;Min Pool Size=10` as a connection string. ServiceControl Manager will automatically create queue tables in the database.
 
-NOTE: If other ServiceControl instances have been running on this machine, it's necessary to specify a non-default instance name and port number. [Adjust ServicePulse settings](/servicepulse/host-config.md#changing-the-servicecontrol-url) accordingly to point to this location.
+include: configuring-sc-connections
 
  4. Ensure the `ServiceControl` process is running before running the sample.  
  5. [Install ServicePulse](/servicepulse/installation.md)

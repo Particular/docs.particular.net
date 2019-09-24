@@ -1,30 +1,13 @@
-The supported logging levels are
-
- * Debug
- * Info
- * Warn
- * Error
- * Fatal
-
-
-### Changing the Logging Level
-
-Note: When logging level is defined in both `app.config` and code, the code configuration will be applied.
-
-include: configurationWarning
-
-
-#### Via config API
-
 snippet: OverrideLoggingLevelInCode
 
-
-#### Via app.config
+The same goal can be achieved by adding a configuration section:
 
 snippet: OverrideLoggingDefaultsInAppConfig
 
-
-#### Via IProvideConfiguration
+or by adding a custom configuration provider:
 
 snippet: LoggingThresholdFromIProvideConfiguration
 
+Note: When logging threshold is defined in both configuration section and through `Use` method, the `Use` configuration takes precedence.
+
+include: configurationWarning

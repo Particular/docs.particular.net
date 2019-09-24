@@ -44,8 +44,3 @@ If either ServicePulse or ServiceInsight are not available in the environment, t
  * [MSMQ Scripting](/transports/msmq/operations-scripting.md)
  * [RabbitMQ Scripting](/transports/rabbitmq/operations-scripting.md)
  * [SQL Server Scripting](/transports/sql/operations-scripting.md)
-
-
-### ReturnToSourceQueue.exe
-
-The MSMQ command line tool `ReturnToSourceQueue` has been deprecated and moved to [ParticularLabs/MsmqReturnToSourceQueue](https://github.com/ParticularLabs/MsmqReturnToSourceQueue/).

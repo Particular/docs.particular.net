@@ -10,6 +10,8 @@ related:
 
 Testing enterprise-scale distributed systems is a challenge. A dedicated NuGet package, `NServiceBus.Testing`, is provided with tools for unit testing endpoint handlers and sagas.
 
-The testing package can be used with any .NET unit testing framework, such as [NUnit](http://nunit.org/), [xUnit.net](https://xunit.github.io/) or [MSTest](https://msdn.microsoft.com/en-us/library/ms243147.aspx).
+The testing package can be used with any .NET unit testing framework, such as [NUnit](https://nunit.org/), [xUnit.net](https://xunit.github.io/) or [MSTest](https://msdn.microsoft.com/en-us/library/ms243147.aspx).
 
 partial: content
+
+partial: loggerscope

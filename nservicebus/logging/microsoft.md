@@ -1,7 +1,7 @@
 ---
 title:  Microsoft Logging
 summary: Logging to Microsoft.Extensions.Logging
-reviewed: 2017-10-07
+reviewed: 2019-07-29
 component: MsLogging
 tags:
  - Logging
@@ -20,7 +20,7 @@ snippet: MsLoggingInCode
 
 ## Usage when hosting
 
-As `LoggerFactory` implements [IDisposable](https://msdn.microsoft.com/en-us/library/system.idisposable.aspx) it must be disposed of after `IEndpointInstance.Stop` has been called. The process for doing this will depend on how the endpoint is being hosted.
+As `LoggerFactory` implements [IDisposable](https://msdn.microsoft.com/en-us/library/system.idisposable.aspx) it must be disposed of after stopping the NServiceBus endpoint. The process for doing this will depend on how the endpoint is being hosted.
 
 
 ### In a windows service

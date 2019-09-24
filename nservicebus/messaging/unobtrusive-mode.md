@@ -1,7 +1,7 @@
 ---
 title: Unobtrusive Mode Messages
 summary: How to avoid referencing NServiceBus assemblies from message assemblies.
-reviewed: 2017-10-19
+reviewed: 2019-09-03
 tags:
 - Convention
 related:
@@ -15,7 +15,7 @@ redirects:
 
 Message contracts can be defined using plain classes or interfaces. For NServiceBus to find those classes when scanning assemblies, they need to be marked with the `IMessage` interface, which essentially says, "this is a message definition". This allows decoupling message contracts from the NServiceBus assembly.
 
-This dependency can cause problems when there are different services that run different versions of NServiceBus. Jonathan Oliver has a [great write up on this very subject](http://blog.jonathanoliver.com/nservicebus-distributing-event-schemacontract/).
+This dependency can cause problems when there are different services that run different versions of NServiceBus. Jonathan Oliver has a [great write up on this very subject](https://blog.jonathanoliver.com/nservicebus-distributing-event-schemacontract/).
 
 This is not a big deal for commands because they are always used within the boundary of a single service and it's fair to require a service to use the same version of NServiceBus. But when it comes to events, this becomes more of a problem since it requires the services to all use the same version of NServiceBus, thereby forcing them to upgrade NServiceBus all at once.
 
@@ -24,12 +24,10 @@ This is not a big deal for commands because they are always used within the boun
 
 There are a couple of ways this can be solved.
 
- * NServiceBus follows the [semver.org](http://semver.org/) semantics, changing the assembly version only when changes are not backward compatible or introduce substantial new functionality or improvements. This mean that Version 3.0.1 and Version 3.0.X have the same assembly version (3.0.0), and file version of course changes for every release/build. As long as NuGet updates are done with the -safe flag, the service contracts will stay compatible.
+ * NServiceBus follows the [semver.org](https://semver.org/) semantics, changing the assembly version only when changes are not backward compatible or introduce substantial new functionality or improvements. This means that Version 3.0.1 and Version 3.0.X have the same assembly version (3.0.0), and file version changes for every release/build. As long as NuGet updates are done with the -safe flag, the service contracts will stay compatible.
  * Support for running in "Unobtrusive" mode means no reference to any NServiceBus assemblies is required from message assemblies, thereby removing the problem altogether.
 
 
 ## Unobtrusive mode
 
 NServiceBus allows defining custom [message conventions](conventions.md) instead of using the `IMessage`, `ICommand` or `IEvent` interfaces and attributes like `TimeToBeReceivedAttribute` and `ExpressAttribute`. NServiceBus also supports conventions for encrypted properties, express messages, databus properties and time to be received. With these conventions combined a reference to NServiceBus can be avoided.
-
-Note: Note that in .NET, the namespace is optional and hence can be null. If any conventions do partial string checks, for example using `EndsWith` or `StartsWith`, then a null check should be used. So include `.Namespace != null` at the start of the convention. Otherwise a null reference exception will occur during the type scanning.

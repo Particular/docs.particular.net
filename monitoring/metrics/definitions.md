@@ -53,4 +53,4 @@ This metric measures the number of [retries](/nservicebus/recoverability) schedu
 
 ### Queue length
 
-This metric tracks the number of messages in the input queue of an endpoint. 
+This metric tracks the number of messages in the input queue of an endpoint. The metric is calculated differently depending on whether the message transport uses a [centralized broker](/transports/types.md#broker-transports) or is [federated](/transports/types.md#federated-transports). See [How queue length calculation works](https://github.com/Particular/ServiceControl/blob/master/docs/queue-length.md) in the ServiceControl repository for more details.

@@ -12,17 +12,17 @@ Saga data is stored in reliable dictionaries.
 
 ## Saga data serialization
 
-Saga data in stored in JSON format using [Json.NET](http://www.newtonsoft.com/json). 
+Saga data in stored in JSON format using [Json.NET](https://www.newtonsoft.com/json). 
 
-Saga data serialization can be configured by providing custom [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) instance
+Saga data serialization can be configured by providing custom [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) instance
 
 snippet: ServiceFabricPersistenceSagaJsonSerializerSettings
 
-custom [JsonReader](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm) instance
+custom [JsonReader](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm) instance
 
 snippet: ServiceFabricPersistenceSagaReaderCreator
 
-or custom [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm) instance
+or custom [JsonWriter](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm) instance
 
 snippet: ServiceFabricPersistenceSagaWriterCreator
 

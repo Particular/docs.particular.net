@@ -1,9 +1,10 @@
 ---
 title: Capture and visualize metrics using NewRelic
+summary: Illustrates how to capture, store and visualize NServiceBus metrics in NewRelic.
 component: Metrics
-reviewed: 2017-10-31
+isLearningPath: true
+reviewed: 2019-07-22
 ---
-
 
 ## Introduction
 

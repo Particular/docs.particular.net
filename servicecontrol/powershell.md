@@ -1,6 +1,6 @@
 ---
 title: Managing ServiceControl via PowerShell
-reviewed: 2017-07-26
+reviewed: 2019-05-03
 tags:
  - Installation
  - PowerShell
@@ -9,7 +9,7 @@ tags:
 
 ## ServiceControl PowerShell
 
-ServiceControl 1.7 introduced a new graphical management utility to add, remove, update and delete instances of the ServiceControl service. These actions and some additional tools have also exposed via PowerShell module called `ServiceControlMgmt`.
+ServiceControl version 1.7 introduced a new graphical management utility to add, remove, update and delete instances of the ServiceControl service. These actions and some additional tools are also available via a PowerShell module called `ServiceControlMgmt`.
 
 
 ## Prerequisites
@@ -19,9 +19,9 @@ The ServiceControlMgmt module requires:
  * Microsoft PowerShell 3.0
 
 
-## Loading and Running the PowerShell Module
+## Loading and running the PowerShell module
 
-The majority of the ServiceControlMgmt PowerShell module cmdlets will only work if the PowerShell session is running under administrator privileges. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module automatically loaded. Alternatively the module can be loaded directly into an an existing PowerShell session by loading `ServiceControlMgmt.psd1` using the `Import-Module` cmdlet as show below:
+The majority of the ServiceControlMgmt PowerShell module cmdlets will only work if the PowerShell session is running with administrator privileges. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module automatically loaded. Alternatively, the module can be loaded directly into an an existing PowerShell session by loading `ServiceControlMgmt.psd1` using the `Import-Module` cmdlet as show below:
 
 ```ps
 Import-Module "C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt.psd1"
@@ -43,12 +43,12 @@ The following general cmdlets and aliases are provided by the ServiceControl Man
 | port-check             | Test-IfPortIsAvailable                        |
 | user-sid               | Get-SecurityIdentifier                        |
 
-For information about managing ServiceControl instances with PowerShell, see [Managing ServiceControl instance via PowerShell](/servicecontrol/installation-powershell.md).
+For information about managing ServiceControl instances with PowerShell, see [Managing ServiceControl Instances via PowerShell](/servicecontrol/installation-powershell.md).
 
 
 ### Help
 
-All of the cmdlets have local help which can be accessed via the standard PowerShell help command
+All of the cmdlets have local help which can be accessed with the standard PowerShell help command
 
 ```ps
 Get-Help Get-ServiceControlLicense
@@ -57,21 +57,21 @@ Get-Help Get-ServiceControlLicense
 
 ### Licensing
 
-Add the license file to the registry by running the following cmdlet.
+Add the license file to the registry:
 
 ```ps
 Import-ServiceControlLicense <License-File>
 ```
 
-The license file is added to the `HKEY_LOCAL_MACHINE` registry hive so it available to all instances of ServiceControl installed on the machine.
+The license file is added to the `HKEY_LOCAL_MACHINE` registry hive so it is available to all instances of ServiceControl installed on the machine.
 
 
 ## Troubleshooting via PowerShell
 
-The ServiceControl Management PowerShell offers some cmdlets to assist with troubleshooting the install of ServiceControl instances.
+The ServiceControl Management PowerShell module offers some cmdlets to assist with troubleshooting the installation of ServiceControl instances.
 
 
-### Check if a Port is already in use
+### Check if a port is already in use
 
 Before adding an instance of ServiceControl test if the port to use is currently in use.
 
@@ -88,9 +88,9 @@ This example shows the available ports out of a range of ports
 
 ### Checking and manipulating UrlAcls
 
-The Window HTTPServer API is used by underlying components in ServiceControl. This API uses a permissions system to limit what accounts can add a HTTP listener to a specific URI. The standard mechanism for viewing and manipulating these ports in via the [netsh.exe](https://technet.microsoft.com/en-us/library/Cc725882.aspx) command line tool.
+The Window HTTPServer API is used by underlying components in ServiceControl. This API uses a permissions system to limit what accounts can add a HTTP listener to a specific URI. The standard mechanism for viewing and manipulating these ports is with the [netsh.exe](https://technet.microsoft.com/en-us/library/Cc725882.aspx) command line tool.
 
-For example `netsh.exe http show urlacl` will list all of the available. This output is detailed but not very friendly to query. The ServiceControl Management PowerShell provides simplified PowerShell equivalents for listing, add and removing UrlAcls and makes the output easier to query.
+For example `netsh.exe http show urlacl` will list all of the available UrlAcls. This output is detailed but not easy to query. The ServiceControl Management PowerShell provides simplified PowerShell equivalents for listing, adding, and removing UrlAcls and makes the output easier to query.
 
 For example the following command lists all of the UrlAcls assigned to any URI for port 33333.
 
@@ -104,7 +104,7 @@ In this example any UrlAcl on port 33335 is remove
 Get-UrlAcls | ? Port -eq 33335 | Remove-UrlAcl
 ```
 
-The following example shows how to add UrlAcl for a ServiceControl service that should only respond to a specific DNS name. This would require an update of the ServiceControl configuration file as well. Refer to [setting a custom host name and port number](setting-custom-hostname.md)
+The following example shows how to add a UrlAcl for a ServiceControl service that should only respond to a specific DNS name. This would require an update of the ServiceControl configuration file as well. Refer to [setting a custom host name and port number](setting-custom-hostname.md)
 
 ```ps
 Add-UrlAcl -Url http://servicecontrol.mycompany.com:33333/api/ -Users Users

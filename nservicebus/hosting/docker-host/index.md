@@ -8,6 +8,7 @@ related:
  - nservicebus/licensing
  - samples/hosting/docker
 component: Templates
+isLearningPath: true
 versions: '[2,]'
 reviewed: 2018-02-28
 ---

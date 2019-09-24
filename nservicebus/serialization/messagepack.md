@@ -1,7 +1,7 @@
 ---
 title: MessagePack Serializer
 component: MessagePack
-reviewed: 2017-09-30
+reviewed: 2019-07-01
 related:
  - samples/serializers/messagepack
  - nservicebus/serialization/msgpack
@@ -10,7 +10,7 @@ redirects:
  - nservicebus/serialization/message-pack
 ---
 
-Serialize messages with the [MessagePack](http://msgpack.org/) binary format via the [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp) project.
+Serialize messages with the [MessagePack](https://msgpack.org/) binary format via the [MessagePack-CSharp](https://github.com/neuecc/MessagePack-CSharp) project.
 
 
 ## Usage

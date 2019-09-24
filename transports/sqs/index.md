@@ -29,11 +29,11 @@ redirects:
 
 ## Getting started
 
-An [AWS IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) account with a pair of [Access Keys](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html) is required.
+An [AWS IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) account with a pair of [Access Keys](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html) is required.
 
 The IAM account requires the following permissions:
 
-#### [SQS permissions](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html)
+#### [SQS permissions](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html)
 
  * CreateQueue
  * DeleteMessage
@@ -49,7 +49,7 @@ The IAM account requires the following permissions:
  * PurgeQueue
 
 
-#### [S3 permissions](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html)
+#### [S3 permissions](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html)
 
  * CreateBucket
  * DeleteObject
@@ -64,7 +64,7 @@ partial: credentials
 
 ## Retries and timeouts
 
-The SQS transport uses the default [retry and timeout](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/retries-timeouts.html) values implemented by the [AWS SDK for .NET](https://aws.amazon.com/sdk-for-net/):
+The SQS transport uses the default [retry and timeout](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/retries-timeouts.html) values implemented by the [AWS SDK for .NET](https://aws.amazon.com/sdk-for-net/):
 
 | Parameter          | Default value |
 |--------------------|---------------|

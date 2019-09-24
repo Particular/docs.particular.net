@@ -17,8 +17,6 @@ Delayed delivery is used for:
 * [Delayed retries](/nservicebus/recoverability/#delayed-retries), to retry a message after successive delays when [immediate retries](/nservicebus/recoverability/#immediate-retries) don't result in successful processing
 * Explicitly sending a message with a delay, as described below
 
-The message doesn't have to be dispatched immediately after sending, it can be delivered at a later time if necessary.
-
 NOTE: Only send operations can be deferred. Publish and reply operations cannot be deferred.
 
 partial: handlecurrentmessagelater

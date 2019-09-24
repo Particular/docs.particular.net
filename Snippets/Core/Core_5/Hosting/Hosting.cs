@@ -10,6 +10,7 @@
             #region Hosting-SendOnly
 
             var busConfiguration = new BusConfiguration();
+            // Apply other necessary endpoint configuration
             var sendOnlyBus = Bus.CreateSendOnly(busConfiguration);
 
             #endregion

@@ -1,6 +1,6 @@
 ---
 title: Gateway
-reviewed: 2017-07-28
+reviewed: 2019-05-06
 component: Gateway
 related:
 - nservicebus/gateway

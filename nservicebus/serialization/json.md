@@ -1,7 +1,7 @@
 ---
 title: JSON Serializer
 summary: A JSON serializer that uses Json.NET.
-reviewed: 2018-05-15
+reviewed: 2019-08-26
 component: Json
 versions: '(,7)'
 related:
@@ -10,7 +10,7 @@ related:
 
 include: json-deprecation
 
-This serializer uses [JSON](https://en.wikipedia.org/wiki/Json) via an [ILMerged](https://github.com/Microsoft/ILMerge) copy of [Json.NET](http://www.newtonsoft.com/json).
+This serializer uses [JSON](https://en.wikipedia.org/wiki/Json) via an [ILMerged](https://github.com/Microsoft/ILMerge) copy of [Json.NET](https://www.newtonsoft.com/json).
 
 
 ## Usage
@@ -19,6 +19,10 @@ snippet: JsonSerialization
 
 
 partial: version
+
+
+NOTE: By default, the Json.NET serializer adds a Byte Order Mark (BOM). To disable this, see the [customizing encoding](
+/nservicebus/serialization/json.md#customizing-encoding) section.
 
 
 ## Customization
