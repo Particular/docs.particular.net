@@ -8,13 +8,12 @@ using NServiceBus.AzureFunctions.ServiceBus;
 public class AzureServiceBusTriggerFunction
 {
     private const string EndpointName = "ASBTriggerQueue";
-    private const string ConnectionStringName = "ASBConnectionString";
 
     #region Function
 
     [FunctionName(EndpointName)]
     public static async Task Run(
-        [ServiceBusTrigger(queueName: EndpointName, Connection = ConnectionStringName )]
+        [ServiceBusTrigger(queueName: EndpointName)]
         Message message,
         ILogger logger,
         ExecutionContext executionContext)
@@ -28,7 +27,7 @@ public class AzureServiceBusTriggerFunction
 
     private static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
-        var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName, ConnectionStringName);
+        var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName);
         configuration.UseSerialization<NewtonsoftSerializer>();
 
         // optional: log startup diagnostics using Functions provided logger

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
@@ -10,7 +10,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.AzureFunctions.ServiceBus" Version="0.1.0" />
+    <PackageReference Include="NServiceBus.AzureFunctions.ServiceBus" Version="0.1.1" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.1.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.29" />
   </ItemGroup>

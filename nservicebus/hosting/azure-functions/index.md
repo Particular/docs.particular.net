@@ -5,7 +5,7 @@ tags:
  - Hosting
 related:
  - samples/azure/functions
-reviewed: 2019-08-28
+reviewed: 2019-09-23
 ---
 
 Azure Functions, and serverless computing in general, are designed to accelerate and simplify application development. NServiceBus endpoints can be hosted in Azure Functions and are subject to the constraints enforced by the Azure Functions hosting and development model.
@@ -26,6 +26,5 @@ When using Azure Functions with Azure Service Bus (ASB) or Azure Storage Queues 
   - Other triggers will not result in the invocation of the NServiceBus pipeline, but can be used with a send-only endpoint to translate a function invocation into a command.
 - The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` method to allow customization; however, not all of the options will be applicable to execution within Azure Functions.
 - The NServiceBus `ILog` logging abstraction and the Azure Functions `ILogger` are not wired to work together.
-- While the Azure Functions runtime uses the default connection string in the app setting that is named "AzureWebJobsServiceBus" (ASB) or "AzureWebJobsStorage" (ASQ), there's a [bug](https://github.com/Azure/azure-functions-servicebus-extension/issues/7) with the Service Bus and the trigger connection has to be specified.
 - When using the default recoverability or specifying custom number of immediate retries, the number of delivery attempts specified on the underlying queue (ASB) or Azure Functions host (ASB) must be more than then number of the immediate retries. The Azure Functions defaults are 10 (`MaxDeliveryCount`) for the ASB trigger and 5 (`DequeueCount`) for the ASQ trigger.
 - Delayed Retries are supported only with Azure Service Bus, and not with Azure Storage Queues.

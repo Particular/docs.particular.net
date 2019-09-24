@@ -1,6 +1,6 @@
 ---
 title: Using NServiceBus in Azure Functions
-reviewed: 2019-08-27
+reviewed: 2019-09-23
 ---
 
 include: azure-functions-experimental
