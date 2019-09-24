@@ -27,7 +27,7 @@ In addition, the collection naming convention for sagas must be configured to ma
 
 ## Subscriptions
 
-In the sbmako implementation subscriptions are stored in the collection named [Subscription](`https://github.com/sbmako/NServiceBus.MongoDB/blob/2ffb1c6f653d7e90b6f476ea07c93d40dc64e31a/src/NServiceBus.MongoDB/SubscriptionPersister/MongoSubscriptionPersister.cs#L60`). Each document maps to an event type containing a set of subscribers using the type [Subscriber](https://github.com/Particular/NServiceBus/blob/fb96dcc41c7c4d505a099ff2ac6ca1659d582804/src/NServiceBus.Core/Routing/MessageDrivenSubscriptions/Subscriber.cs#L19-L27) from NServiceBus core.
+In the sbmako implementation subscriptions are stored in the collection named [Subscription](https://github.com/sbmako/NServiceBus.MongoDB/blob/2ffb1c6f653d7e90b6f476ea07c93d40dc64e31a/src/NServiceBus.MongoDB/SubscriptionPersister/MongoSubscriptionPersister.cs#L60). Each document maps to an event type containing a set of subscribers using the type [Subscriber](https://github.com/Particular/NServiceBus/blob/fb96dcc41c7c4d505a099ff2ac6ca1659d582804/src/NServiceBus.Core/Routing/MessageDrivenSubscriptions/Subscriber.cs#L19-L27) from NServiceBus core.
 
 The following migration script iterates through the documents and insert each subscriber value as a new document.
 
