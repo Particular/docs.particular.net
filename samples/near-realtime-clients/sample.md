@@ -95,4 +95,4 @@ SS2-->|SignalR Message|CC
 SS2-->|SignalR Message|CD
 ```
 
-In this diagram an NServiceBus event is being processed by [one of the two subscriber instances](/nservicebus/architecture/scaling.md#scaling-out-to-different-nodes-competing-consumers). Server 1 is forwarding the NServiceBus event as a SignalR message, which is then broadcast via the configured backplane to Server 2's SignalR server. This allows the connected SignalR clients to receive the message.
+In this diagram an NServiceBus event is being processed by [one of the two subscriber instances](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers). Server 1 is forwarding the NServiceBus event as a SignalR message, which is then broadcast via the configured backplane to Server 2's SignalR server. This allows the connected SignalR clients to receive the message.
