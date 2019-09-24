@@ -29,7 +29,7 @@ Separating slower messages from faster messages leads to higher throughput for t
 
 ## Scaling out to multiple nodes
 
-An endpoint may reach maximum message throughput when resources such as CPU or disk are fully utilized. In this case it may be beneficial to scale out an endpoint to multiple nodes.
+An endpoint may reach maximum message throughput when resources such as CPU or disk are fully utilized. In such cases it may be beneficial to scale out an endpoint to multiple nodes.
 
 However, a centralized resource, such as a database, may also be a bottleneck. Scaling out an endpoint to another node that uses the same database may not improve message throughput, or could even reduce it.
 
