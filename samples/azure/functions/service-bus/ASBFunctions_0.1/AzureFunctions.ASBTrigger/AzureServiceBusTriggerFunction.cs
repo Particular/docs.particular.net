@@ -8,7 +8,6 @@ using NServiceBus.AzureFunctions.ServiceBus;
 public class AzureServiceBusTriggerFunction
 {
     private const string EndpointName = "ASBTriggerQueue";
-    private const string ConnectionStringName = "ASBConnectionString";
 
     #region Function
 
