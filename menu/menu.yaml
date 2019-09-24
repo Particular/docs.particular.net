@@ -1124,7 +1124,7 @@
         Url: servicecontrol/capacity-and-planning
       - Title: Security
         Url: servicecontrol/securing-servicecontrol
-      - Title: Non-Priveleged Accounts
+      - Title: Non-Privileged Accounts
         Url: servicecontrol/configure-non-privileged-service-account
     - Title: Installation
       Url: servicecontrol/installation
