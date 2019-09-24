@@ -19,7 +19,7 @@ Note: The Actor model is another Service Fabric programming model. It is not cur
 
 ### Stateless service
 
-Hosting with a stateless service is similar to other Azure-based hosting (using [cloud services](/nservicebus/hosting/cloud-services-host) or [self-hosting](/nservicebus/hosting/#self-hosting) with [Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/)). Endpoints are stateless and use storage external to Service Fabric for managing data needed for their operation. Endpoints can be scaled out, leveraging [competing consumer](/nservicebus/architecture/scaling.md#scaling-out-to-different-nodes-competing-consumers) at the transport level.
+Hosting with a stateless service is similar to other Azure-based hosting (using [cloud services](/nservicebus/hosting/cloud-services-host) or [self-hosting](/nservicebus/hosting/#self-hosting) with [Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/)). Endpoints are stateless and use storage external to Service Fabric for managing data needed for their operation. Endpoints can be scaled out, leveraging [competing consumer](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) at the transport level.
 
 With stateless services, the number of instances of a service can range from one to the number of nodes in a cluster less one. Endpoints are self hosted and should be started using a custom Service Fabric [`ICommunicationListener`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-communication) implementation.
 

@@ -16,7 +16,7 @@ It is important to distinguish between a logical endpoint and an endpoint instan
 There are several ways to scale out with NServiceBus:
 
 - [Splitting message handlers](#splitting-message-handlers)
-- [Scaling out to different nodes](#scaling-out-to-different-nodes)
+- [Scaling out to different nodes](#scaling-out-to-multiple-nodes)
 - [High availability](#high-availability)
 
 ## Splitting message handlers
@@ -27,11 +27,11 @@ One message type might take considerably longer to process than other message ty
 
 Separating slower messages from faster messages leads to higher throughput for the faster messages. For this reason it can be beneficial to include messages and/or handlers in separate assemblies, making it easier to separate them from others.
 
-## Scaling out to different nodes
+## Scaling out to multiple nodes
 
-An endpoint can reach maximum message throughput when resources (for example, the CPU or hard drive I/O) are completely utilized. In these cases it can be beneficial to scale out an endpoint to different nodes.
+An endpoint may reach maximum message throughput when resources such as CPU or disk are fully utilized. In this case it may be beneficial to scale out an endpoint to multiple nodes.
 
-However, a centralized datastore like SQL Server can also be a bottleneck. It should be noted that scaling out an endpoint to a different node, one that accesses the same SQL Server, will not be beneficial to message throughput. On the contrary, the performance of the centralized datastore will only suffer more.
+However, a centralized resource, such as a database, may also be a bottleneck. Scaling out an endpoint to another node that uses the same database may not improve message throughput, or could even reduce it.
 
 ### Competing consumers
 
