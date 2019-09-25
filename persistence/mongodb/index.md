@@ -65,7 +65,7 @@ WARN: In order to participate in the shared transaction the MongoDB session must
 
 #### Testing
 
-A `TestableMongoSynchronizedStorageSession` class has been provided to facilitate [testing a handler](/nservicebus/testing/) that utilizes the shared transaction feature.
+The `TestableMongoSynchronizedStorageSession` class in the `NServiceBus.Testing` namespace has been provided to facilitate [testing a handler](/nservicebus/testing/) that utilizes the shared transaction feature.
 
 ## Outbox cleanup 
 
