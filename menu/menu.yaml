@@ -179,6 +179,8 @@
       Articles:
       - Url: nservicebus/upgrades/gateway-1to2
         Title: Version 1 to 2
+      - Url: nservicebus/upgrades/gateway-2to3
+        Title: Version 2 to 3
     - Title: NServiceBus Testing
       Articles:
       - Url: nservicebus/upgrades/testing-6to7

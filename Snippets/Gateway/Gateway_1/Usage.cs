@@ -17,5 +17,4 @@ class Usage
 
         #endregion
     }
-
 }

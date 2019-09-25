@@ -34,3 +34,11 @@ In versions 2 and above, the gateway has its own retry mechanism. It will retry 
 In versions 2 and above, the gateway does not provide error notifications. When an error occurs during sending of a message to other sites, the message will be retried and possibly moved to the error queue.
 
 Note that in version 1, when [subscribing to error notifications](/nservicebus/recoverability/subscribing-to-error-notifications.md), the notification is received in the situation described above.
+
+## Backward compatibility migration
+
+In order to send/publish message to Gateway 1.x it is required to set the `TimeToBeReceived` and `NonDurableMessage` headers as the gateway 1.x receiver expects these headers to be present.
+
+The following message mutator can be temporarily be deployed until all Gateway 1.x endpoints are migrated to a newer major version.
+
+snippet: HeaderMutator

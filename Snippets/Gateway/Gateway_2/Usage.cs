@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Gateway;
+using NServiceBus.MessageMutator;
 
 class Usage
 {
@@ -69,6 +70,22 @@ class Usage
 
         #endregion
     }
+
+    #region HeaderMutator
+
+    public class AddRequiredHeadersForGatewayBackwardsCompatibility : IMutateOutgoingTransportMessages
+    {
+        public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
+        {
+            var headers = context.OutgoingHeaders;
+            headers.Add(Headers.TimeToBeReceived, TimeSpan.MaxValue.ToString());
+            headers.Add(Headers.NonDurableMessage, false.ToString());
+
+            return Task.CompletedTask;
+        }
+    }
+
+    #endregion
 
     class CustomChannelReceiver :
         IChannelReceiver
