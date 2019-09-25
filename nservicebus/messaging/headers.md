@@ -50,7 +50,7 @@ The `TimeToBeReceived` header [control after which point in time the message is 
 
 ### NServiceBus.Transport.Encoding
 
-States what type of body serialization is used. Currently only set by Azure Service Bus based the configured value for [BrokeredMessageBodyType](/transports/azure-service-bus/legacy/configuration/full#controlling-connectivity).
+States what type of body serialization is used. Currently only set by Azure Service Bus based the configured value for [BrokeredMessageBodyType](/transports/azure-service-bus/legacy/configuration/full.md#controlling-connectivity).
 
 ## Serialization headers
 
