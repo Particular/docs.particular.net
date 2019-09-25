@@ -63,6 +63,10 @@ snippet: MongoDBHandlerSharedTransaction
 
 WARN: In order to participate in the shared transaction the MongoDB session must be passed into collection API calls as demonstrated above.
 
+#### Testing
+
+The `TestableMongoSynchronizedStorageSession` class in the `NServiceBus.Testing` namespace has been provided to facilitate [testing a handler](/nservicebus/testing/) that utilizes the shared transaction feature.
+
 ## Outbox cleanup 
 
 When the outbox is enabled, the deduplication data is kept for seven days by default. To customize this time frame, use the following API:
