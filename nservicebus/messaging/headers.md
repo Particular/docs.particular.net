@@ -38,6 +38,19 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 }
 ```
 
+## Transport headers
+
+### NServiceBus.NonDurableMessage
+
+The `NonDurableMessage` header controls [non-durable messaging](non-durable-messaging.md) persistence behavior of inflight messages. THe behavior is transport specific but the intent is to not store the message durably on disk and only keep it in memory.
+
+### NServiceBus.TimeToBeReceived
+
+The `TimeToBeReceived` header [control after which point in time the message is obsolete and old and can be discarded](discard-old-messages.md). The behavior is transport dependant.
+
+### NServiceBus.Transport.Encoding
+
+States what type of body serialization is used. Currently only set by Azure Service Bus based the configured value for [BrokeredMessageBodyType](/transports/azure-service-bus/legacy/configuration/full#controlling-connectivity).
 
 ## Serialization headers
 
