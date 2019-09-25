@@ -70,6 +70,22 @@ class Usage
         #endregion
     }
 
+    #region HeaderMutator
+
+    public class AddRequiredHeadersForGatewayBackwardsCompatibility : IMutateOutgoingTransportMessages
+    {
+        public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
+        {
+            var headers = context.OutgoingHeaders;
+            headers.Add(Headers.TimeToBeReceived, TimeSpan.MaxValue.ToString());
+            headers.Add(Headers.NonDurableMessage, false.ToString());
+
+            return Task.CompletedTask;
+        }
+    }
+
+    #endregion
+
     class CustomChannelReceiver :
         IChannelReceiver
     {

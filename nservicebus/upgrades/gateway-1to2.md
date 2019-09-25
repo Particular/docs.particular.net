@@ -41,16 +41,4 @@ In order to send/publish message to Gateway 1.x it is required to set the `TimeT
 
 The following message mutator can be temporarily be deployed until all Gateway 1.x endpoints are migrated to a newer major version.
 
-```c#
-public class AddRequiredHeadersForGatewayBackwardsCompatibility :
-    IMutateOutgoingTransportMessages
-{
-    public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
-    {
-        var headers = context.OutgoingHeaders;
-        headers.Add(Headers.TimeToBeReceived, TimeSpan.MaxValue.ToString());
-        headers.Add(Headers.NonDurableMessage, false.ToString());
-        return Task.CompletedTask;
-    }
-}
-```
+snippet: HeaderMutator
