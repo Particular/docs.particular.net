@@ -1,11 +1,11 @@
 ---
-title: MySQL dialect
+title: SQL Persistence - MySQL dialect
 component: SqlPersistence
 related:
-reviewed: 2017-11-23
+reviewed: 2019-09-26
 ---
 
-{{WARNING: This persistence will run on the free version of the above engines, i.e. [MySQL Community Edition](https://www.mysql.com/products/community/). However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [MySQL support](https://www.mysql.com/support/) for details.
+{{WARNING: This persistence will run on the free version of the above engines, i.e. [MySQL Community Edition](https://www.mysql.com/products/community/). However, it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [MySQL support](https://www.mysql.com/support/) for details.
 }}
 
 
@@ -19,10 +19,10 @@ Using the [MySql.Data NuGet Package](https://www.nuget.org/packages/MySql.Data/)
 
 snippet: SqlPersistenceUsageMySql
 
-{{Note: The following settings are required for [MySQL connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-connection-options.html).
+{{Note: The following settings are required for [MySQL connections string](https://dev.mysql.com/doc/connector-net/en/connector-net-6-10-connection-options.html).
 
  * `AllowUserVariables=True`: since the Persistence uses [user variables](https://dev.mysql.com/doc/refman/5.7/en/user-variables.html).
- * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) which the MySql .NET connector does not currently support.}}
+ * `AutoEnlist=false`: To prevent auto enlistment in a [Distributed Transaction](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms681205(v=vs.85)) which the MySql .NET connector does not currently support.}}
 
 
 ## Unicode support
