@@ -2,7 +2,7 @@
 title: MSMQ Persistence
 summary: MSMQ Subscription Persistence for NServiceBus
 component: MSMQPersistence
-reviewed: 2017-12-01
+reviewed: 2019-09-26
 ---
 
 The MSMQ Subscription storage can be used to enable publish/subscribe with MSMQ without the need for any additional persister.
