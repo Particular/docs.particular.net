@@ -1,11 +1,11 @@
 ---
-title: SQL Server dialect
+title: SQL Persistence - SQL Server dialect
 component: SqlPersistence
 related:
-reviewed: 2017-11-23
+reviewed: 2019-09-26
 ---
 
-{{WARNING: This persistence will run on the free version of the database engine i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express). However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx) for details.
+{{WARNING: This persistence will run on the free version of the database engine i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express). However, it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx) for details.
 }}
 
 
@@ -39,7 +39,7 @@ include: name-length-validation-off
 
 ## Schema support
 
-The SQL Server dialect supports multiple schemas. By default, when schema is not specified, it uses `dbo` schema when referring to database objects.
+The SQL Server dialect supports multiple schemas. By default, when a schema is not specified, it uses the `dbo` schema when referring to database objects.
 
 snippet: MsSqlSchema
 
