@@ -1,7 +1,7 @@
 ---
 title: Message Headers
 summary: List of built-in NServiceBus message headers.
-reviewed: 2017-12-07
+reviewed: 2019-09-26
 component: Core
 versions: '[5.0,)'
 tags:
@@ -42,11 +42,11 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 
 ### NServiceBus.NonDurableMessage
 
-The `NonDurableMessage` header controls [non-durable messaging](non-durable-messaging.md) persistence behavior of inflight messages. THe behavior is transport specific but the intent is to not store the message durably on disk and only keep it in memory.
+The `NonDurableMessage` header controls [non-durable messaging](non-durable-messaging.md) persistence behavior of inflight messages. The behavior is transport specific but the intent is to not store the message durably on disk and only keep it in memory.
 
 ### NServiceBus.TimeToBeReceived
 
-The `TimeToBeReceived` header [control after which point in time the message is obsolete and old and can be discarded](discard-old-messages.md). The behavior is transport dependant.
+The `TimeToBeReceived` header [control after which point in time the message is obsolete and old and can be discarded](discard-old-messages.md). The behavior is transport dependent.
 
 ### NServiceBus.Transport.Encoding
 
@@ -101,7 +101,7 @@ Identifier of the conversation that this message is part of. It enables the trac
 
 The first message that is sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Each message that is sent within a conversation also has a `RelatedTo` value that identifies the originating message that caused it to be sent.
 
-In certain scenarios Conversation Id has to be assigned manually, because NServiceBus can't infer that messages are correlated. For example, when a `CancelOrder` message needs to become part of an existing order conversation, then the Order Id can be used for correlating messages. This can be achieved by overriding the header with a custom value:
+In certain scenarios, Conversation Id has to be assigned manually because NServiceBus can't infer that messages are correlated. For example, when a `CancelOrder` message needs to become part of an existing order conversation, then the Order Id can be used for correlating messages. This can be achieved by overriding the header with a custom value:
 
 snippet: override-conversation-id
 
@@ -157,7 +157,7 @@ When replying to a message:
  * The `MessageIntent` is `Reply`.
  * The `RelatedTo` will be the same as the initiating `MessageID`.
  * The `ConversationId` will be the same as the initiating `ConversationId`.
- * The `CorrelationId` will be same as the initiating `CorrelationId`.
+ * The `CorrelationId` will be the same as the initiating `CorrelationId`.
 
 
 ### Example reply headers
@@ -239,7 +239,7 @@ A message reply is performed from a saga will have the following headers:
 
  * The send headers are the same as a normal reply headers with a few additions.
  * Since this reply is from a secondary saga then `OriginatingSagaId` and `OriginatingSagaType` will match the second saga.
- * Since this is a reply to a the initial saga then the headers will contain `SagaId` and `SagaType` headers that match the initial saga.
+ * Since this is a reply to the initial saga then the headers will contain `SagaId` and `SagaType` headers that match the initial saga.
 
 
 ### Example "replying to a saga" headers
@@ -271,7 +271,7 @@ snippet: HeaderWriterSagaTimeout
 
 ## Defer a message
 
-When deferring, the message will have similar header to a Send with a few differences:
+When deferring, the message will have similar headers compared to a Send with a few differences:
 
  * The message will have `IsDeferredMessage` with the value of `true`.
  * Since the defer feature uses the timeouts feature the timeout headers will exist.
@@ -325,7 +325,7 @@ Headers added when a message is [audited](/nservicebus/operations/auditing.md)
 
 ### NServiceBus.ProcessingEnded
 
-The timestamp when processing of a message ended.
+The timestamp when the processing of a message ended.
 
 
 ### NServiceBus.ProcessingEndpoint
@@ -378,7 +378,7 @@ A timestamp used by [delayed retries](/nservicebus/recoverability/#delayed-retri
 
 ## Error forwarding headers
 
-When a message is handled by [recoverability](/nservicebus/recoverability/), it will have the following extra headers added to the existing headers. If retries occurred, then those messages will be included with the exception of `NServiceBus.Retries`, which is removed.
+When a message is handled by [recoverability](/nservicebus/recoverability/), it will have the following extra headers added to the existing headers. If retries occurred, then those messages will be included except for `NServiceBus.Retries`, which is removed.
 
 
 ### NServiceBus.ExceptionInfo.ExceptionType
