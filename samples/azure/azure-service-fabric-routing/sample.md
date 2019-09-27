@@ -14,6 +14,7 @@ This sample demonstrates how the NServiceBus API can be used to implement partit
 
  1. Strong understanding of Service Fabric [Reliable Services](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-quick-start). 
  1. Service Fabric [development environment setup](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started) with dev cluster configured to run on 5 nodes.
+ 1. Have *Service Fabric Tools* component added to load the `.sfproj` project via the *Visual Studio Installer*.
  1. An Azure Service Bus namespace that can be used for communication between the instances.
  1. A **system environment variable** named "AzureServiceBus.ConnectionString" set to the connection string of the Azure Service Bus namespace. The connection string must provide Manage rights.
 
