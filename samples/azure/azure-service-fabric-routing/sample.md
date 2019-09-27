@@ -15,9 +15,9 @@ This sample demonstrates how the NServiceBus API can be used to implement partit
  1. Strong understanding of Service Fabric [Reliable Services](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-quick-start). 
  1. Service Fabric [development environment setup](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started) with dev cluster configured to run on 5 nodes.
  1. An Azure Service Bus namespace that can be used for communication between the instances.
- 1. A system environment variable named "AzureServiceBus.ConnectionString" set to the connection string of the Azure Service Bus namespace. The connection string must provide Manage rights.
+ 1. A **system environment variable** named "AzureServiceBus.ConnectionString" set to the connection string of the Azure Service Bus namespace. The connection string must provide Manage rights.
 
-NOTE: A Service Fabric cluster runs under the Network Service account and only reads system environment variables. Make sure the environment variable "AzureServiceBus.ConnectionString" is defined as a system environment variable and is not user-scoped.
+NOTE: A Service Fabric cluster runs under the Network Service account and only reads **system environment variables**. Make sure the environment variable "AzureServiceBus.ConnectionString" is defined as a system environment variable and is not user-scoped.
 
 NOTE: This sample makes use of Service Fabric's recommended instrumentation technology, [Event Tracing for Windows](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally) (ETW), to provide sample output from the services running within the Service Fabric cluster. If diagnostic messages from the sample do not output in the Visual Studio Diagnostic Events window, it may be necessary to add `MyCompany-ServiceFabricRouting-ZipCodeVoteCount` and `MyCompany-ServiceFabricRouting-CandidateVoteCount` to the list of known [ETW providers](https://stackoverflow.com/a/35347603/2672802).
 
