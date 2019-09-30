@@ -2,7 +2,7 @@
 title: PostgreSQL dialect design
 component: SqlPersistence
 related:
-reviewed: 2017-11-23
+reviewed: 2019-09-30
 versions: "[3,)"
 redirects:
  - nservicebus/sql-persistence/postgresql-design
