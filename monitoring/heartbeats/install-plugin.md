@@ -6,7 +6,7 @@ component: Heartbeats
 versions: 'Heartbeats:*'
 ---
 
-To install the Heartbeats plugin into an endpoint, reference the [NServiceBus.Heartbeats NuGet package](https://www.nuget.org/packages/NServiceBus.Heartbeat/) and add the following to the endpoint configuration:
+To install the Heartbeats plugin into an endpoint, reference the [NServiceBus.Heartbeat NuGet package](https://www.nuget.org/packages/NServiceBus.Heartbeat/) and add the following to the endpoint configuration:
 
 snippet: HeartbeatsNew_Enable
 
