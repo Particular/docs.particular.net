@@ -16,7 +16,7 @@ The following documents should be reviewed prior to modifying configuration sett
  * [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
 
-#### ServiceControl/Hostname
+#### ServiceControl/HostName
 
 The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, eg. `sc.mydomain.com`.
 
