@@ -207,18 +207,6 @@ Valid range for this setting is from 1 hour to 200 days.
 
 ## Performance tuning
 
-
-#### ServiceControl/MaximumMessageThroughputPerSecond
-
-This setting is applicable in version 1.48.0 and below.
-
-This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An appropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to conduct thorough performance tests on the hardware before increasing this value.
-
-Type: int
-
-Default: `350`.
-
-
 #### ServiceControl/MaxBodySizeToStore
 
 This setting was introduced in version 1.6. It allows the upper limit on body size to be configured.
