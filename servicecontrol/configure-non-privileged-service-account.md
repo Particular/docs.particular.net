@@ -50,7 +50,7 @@ The service account running ServiceControl instance requires following filesyste
 NOTE: The database volume `Read attributes` access right is needed by ServiceControl to query for total and total free space on the volume.
 
 ### Performance counters
-ServiceControl requires access to Windows performance counter infrastructure. As a result the service account needs to be a memeber of [Performance Monitor Users](https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups#a-href-idbkmk-perfmonitorusersaperformance-monitor-users) group.
+ServiceControl requires access to Windows performance counter infrastructure. As a result the service account needs to be a member of [Performance Monitor Users](https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups#a-href-idbkmk-perfmonitorusersaperformance-monitor-users) group.
 
 
 ### Testing the configuration
