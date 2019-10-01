@@ -15,7 +15,7 @@ Anyone who can access the ServiceControl Audit instance URL has complete access 
 WARN: Changing the host name or port number of an existing ServiceControl Audit instance will break the link from the primary ServiceControl instance. See [Moving a remote instance](/servicecontrol/servicecontrol-instances/remotes.md) for guidelines on changing these settings.
 
 
-#### ServiceControl.Audit/Hostname
+#### ServiceControl.Audit/HostName
 
 The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, eg. `sc.mydomain.com`.
 
