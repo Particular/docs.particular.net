@@ -82,9 +82,6 @@ Add-ServiceControlRemote -Name $serviceControlInstance.Name -RemoteInstanceAddre
 
 NOTE: The ServiceControl Audit instance must be configured with the transport address of a ServiceControl instance.
 
-NOTE: <Something about adding remotes>
-
-
 ### Removing an instance
 
 Use the `Remove-ServiceControlInstance` cmdlet to remove a ServiceControl instance. 
