@@ -44,6 +44,32 @@ The path where the internal RavenDB is located.
 
 Type: string
 
+#### Raven/IndexStoragePath
+
+The path for the indexes on disk.
+
+Type: string
+
+Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl.Audit\<instance_name>\DB\indexes`
+
+#### Raven/Esent/LogsPath
+
+The path for the Esent logs on disk.
+
+Type: string
+
+Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl.Audit\<instance_name>\DB\Logs`
+
+#### ServiceControl.Audit/LogPath
+
+The path for the ServiceControl logs.
+
+Type: string
+
+Default: `%LOCALAPPDATA%\Particular\ServiceControl.Audit\logs`
+
+Note: %LOCALAPPDATA% is a user-specific environment variable.
+
 
 #### ServiceControl.Audit/LogLevel
 
