@@ -6,7 +6,7 @@ tags:
 - Transport
 related: 
 - samples/azure/custom-sanitization-asb
-reviewed: 2018-01-10
+reviewed: 2019-10-01
 redirects:
  - nservicebus/azure-service-bus/sanitization
  - transports/azure-service-bus/sanitization

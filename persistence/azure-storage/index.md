@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Persistence
 summary: Using Azure Storage as persistence
-reviewed: 2017-11-30
+reviewed: 2019-10-01
 component: ASP
 tags:
  - Azure
