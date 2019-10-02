@@ -41,6 +41,33 @@ Sagas of type MySaga with the following identifiers 'GUID1', 'GUID2' are conside
 The upgrade guide linked above contains instructions.
 
 
+## Saga concurrency behavior
+
+Azure Storage Persistence applies [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when saga instances are updated. The persister does not support locking. Optimistic concurrency control conflicts require the message to be reprocessed via recoverability.
+
+Please read the guidance on [saga concurrency](/nservicebus/sagas/concurrency.md) on potential improvements.
+
+### Concurrent access to non-existing saga instances
+```
+NServiceBus.Persistence.AzureStorage.RetryNeededException: This operation requires a retry as it wasn't possible to successfully process it now.
+```
+### Concurrent access to existing saga instances
+```
+Microsoft.WindowsAzure.Storage.StorageException: Element 0 in the batch returned an unexpected response code.
+
+Request Information
+RequestID:010c234e-3002-0145-06eb-72b85a000000
+RequestDate:Tue, 24 Sep 2019 15:16:45 GMT
+StatusMessage:The update condition specified in the request was not satisfied.
+ErrorCode:
+ErrorMessage:The update condition specified in the request was not satisfied.
+RequestId:010c234e-3002-0145-06eb-72b85a000000
+Time:2019-09-24T15:16:46.0746310Z
+```
+
+Please read the guidance on [saga concurrency](/nservicebus/sagas/concurrency.md) on potential improvements.
+
+
 ### Supported saga properties' types
 
 partial: saga-property-types
