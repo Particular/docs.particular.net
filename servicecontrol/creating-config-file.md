@@ -16,7 +16,7 @@ The following documents should be reviewed prior to modifying configuration sett
  * [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
 
-#### ServiceControl/Hostname
+#### ServiceControl/HostName
 
 The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, eg. `sc.mydomain.com`.
 
@@ -24,7 +24,7 @@ Type: string
 
 Default: `localhost`
 
-Warning: If the `ServiceControl/Hostname` setting is changed and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
+Warning: If the `ServiceControl/HostName` setting is changed and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
 
 
 #### ServiceControl/Port
