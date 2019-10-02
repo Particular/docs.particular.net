@@ -38,18 +38,7 @@ Note: For simplicity these explanations refer to specific endpoints as "Subscrib
 
 ### Message-driven (persistence-based)
 
-Message-driven publish-subscribe is controlled by *subscribe* and *unsubscribe* system messages sent by the subscriber to the publisher and relies on the publisher having access to a persistent store for maintaining the mapping between message types and their subscribers.
-
-Available subscription persisters include
-
- * [MSMQ](/persistence/msmq)
- * [RavenDB](/persistence/ravendb)
- * [NHibernate](/persistence/nhibernate)
- * [InMemory](/persistence/in-memory.md)
- * [Azure Storage](/persistence/azure-storage)
- * [SQL Server](/persistence/sql)
-
-The message-driven publish-subscribe implementation is used by the [unicast transports](/transports/types.md#unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
+Message-driven publish-subscribe is controlled by *subscribe* and *unsubscribe* system messages sent by the subscriber to the publisher. The message-driven publish-subscribe implementation is used by the [unicast transports](/transports/types.md#unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
 
 
 #### Subscribe
@@ -76,6 +65,17 @@ The publisher's address is provided via [routing configuration](/nservicebus/mes
 
 #### Publish
 
+Message-driven publish-subscribe relies on the publisher having access to a persistent store for maintaining the mapping between message types and their subscribers.
+
+Available subscription persisters include
+
+ * [MSMQ](/persistence/msmq)
+ * [RavenDB](/persistence/ravendb)
+ * [NHibernate](/persistence/nhibernate)
+ * [InMemory](/persistence/in-memory.md)
+ * [Azure Storage](/persistence/azure-storage)
+ * [SQL Server](/persistence/sql)
+
 The publish workflow for [unicast transports](/transports/types.md#unicast-only-transports) is as follows
 
  1. Some code (e.g. a saga or a handler) request that a message be published.
@@ -93,6 +93,8 @@ Persistence ->> Publisher: Subscriber1 and Subscriber2
 Publisher ->> Subscriber1: Send Message1
 Publisher ->> Subscriber2: Send Message1
 ```
+
+partial: disable-publishing
 
 
 ### Native
