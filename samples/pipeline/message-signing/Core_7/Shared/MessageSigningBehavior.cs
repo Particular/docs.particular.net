@@ -18,7 +18,6 @@ class MessageSigningBehavior :
             var hashBase64String = Convert.ToBase64String(hashBytes);
 
             context.Headers.Add("X-Message-Signature", hashBase64String);
-            context.Headers.Add("X-Message-Signature-Algorithm", "HMACSHA256");
         }
 
         return next();
