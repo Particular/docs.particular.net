@@ -6,6 +6,6 @@ static class SharedKeys
 
     static SharedKeys()
     {
-        SigningKey = Encoding.UTF8.GetBytes("This is not a secure encryption key, but this is just a sample. Seriously, this is not how you should be creating encryption/signing keys.");
+        SigningKey = Encoding.UTF8.GetBytes("This is not a secure encryption key, but just a sample. For production, do not create encryption/signing keys using this method.");
     }
 }
