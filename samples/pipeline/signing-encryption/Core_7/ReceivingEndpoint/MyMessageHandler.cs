@@ -2,8 +2,6 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-#region message-handlers
-
 class MyMessageHandler :
     IHandleMessages<MyMessage>
 {
@@ -20,5 +18,3 @@ class MyMessageHandler :
         return Task.CompletedTask;
     }
 }
-
-#endregion

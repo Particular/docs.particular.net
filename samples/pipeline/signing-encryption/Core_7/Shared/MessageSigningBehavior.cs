@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
 #region MessageSigningBehavior
+
 class MessageSigningBehavior :
     Behavior<IOutgoingPhysicalMessageContext>
 {
@@ -23,4 +24,5 @@ class MessageSigningBehavior :
         return next();
     }
 }
+
 #endregion
