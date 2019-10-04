@@ -32,3 +32,6 @@ snippet: Log4netFilter
 ### Using the Filter
 
 snippet: Log4netFilterUsage
+
+
+partial: exception-data
