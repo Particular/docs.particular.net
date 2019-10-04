@@ -26,3 +26,7 @@ For example to limit log output to a specific namespace.
 Here is a code configuration example for adding a [Rule](https://github.com/nlog/NLog/wiki/Configuration-file#rules).
 
 snippet: NLogFiltering
+
+## Additional exception data
+
+Starting from NServiceBus version 7.2, exceptions from failing message handlers might contain additional error information in the `Exception.Data` property. Use the `Data` format property when configuring the exception layout, e.g. `${exception:format=toString,Data}`. For more information, see the [Exception layout renderer documentation](https://github.com/NLog/NLog/wiki/Exception-layout-renderer).
