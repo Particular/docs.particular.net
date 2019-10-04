@@ -76,17 +76,16 @@ snippet: MongoDBOutboxCleanup
 
 ## Saga concurrency behavior
 
-MongoDB applies [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when saga instance are updated. It does not support locking. If optimistic concurrency control conflicts occur the message needs to be reprocessed via [recoverability](/nservicebus/recoverability/).
-Please read the guidance on [saga concurrency](/nservicebus/sagas/concurrency.md) on potential improvements.
-### Concurrent access to non-existing saga instances
+MongoDB applies uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when accessing saga data. See below for examples of the exceptions thrown when conflicts occur. More information about these scenarios is available in _[saga concurrency](/nservicebus/sagas/concurrency.md)_, including guidance on how to reduce the number of conflicts.
+
+### Creating saga data
+
 ```
 MongoDB.Driver.MongoCommandException: Command insert failed: WriteConflict.
 ```
 
-### Concurrent access to existing saga instances
+### Updating or deleting saga data
+
 ```
 MongoDB.Driver.MongoCommandException: Command update failed: WriteConflict.
 ```
-
-
-Please read the guidance on [saga concurrency](/nservicebus/sagas/concurrency.md) on potential improvements.

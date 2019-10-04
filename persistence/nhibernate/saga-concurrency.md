@@ -16,21 +16,18 @@ redirects:
 One of the most critical things about persistence of sagas is proper concurrency control. Sagas guarantee business data consistency across long running processes using compensating actions. A failure in concurrency management that leads to creation of an extra instance of a saga instead of routing a message to an existing instance could lead to business data corruption.
 
 
-## Default concurrency behavior
+## Default behavior
 
-The NHibernate persister by default uses pessimistic locking in combination with optimistic concurrency control by comparing the entity its previous state. Modifications only succeed when this state was equal to the previously tracked state.
+By default, NHibernate persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when accessing saga data. See below for examples of the exceptions thrown when conflicts occur. More information about these scenarios is available in _[saga concurrency](/nservicebus/sagas/concurrency.md)_, including guidance on how to reduce the number of conflicts.
 
-Pessimistic locking is achieved by performing a **SELECT ... FOR UPDATE**, see [NHibernate Chapter 12. Transactions And Concurrency](https://nhibernate.info/doc/nhibernate-reference/transactions.html)
+### Creating saga data
 
-Please read the guidance on [saga concurrency](/nservicebus/sagas/concurrency.md) on potential improvements.
-
-
-### Concurrent access to non-existing saga instances
 ```
 NHibernate.Exceptions.GenericADOException: could not execute batch command.[SQL: SQL not available] ---> System.Data.SqlClient.SqlException: Violation of UNIQUE KEY constraint 'UQ__OrderSag__C3905BCE71EF212B'. Cannot insert duplicate key in object 'dbo.OrderSagaData'. The duplicate key value is (e87490ba-bb56-4693-9c0a-cf4f95736e06).
 ```
 
-### Concurrent access to existing saga instances
+### Updating or deleting saga data
+
 ```
 NHibernate.StaleObjectStateException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [OrderSagaData#8378bd96-8143-48b2-ae3e-aad100a37cb9] ---> NHibernate.StaleStateException: Unexpected row count: 0; expected: 1
 ```

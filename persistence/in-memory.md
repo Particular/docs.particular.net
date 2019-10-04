@@ -19,23 +19,17 @@ NOTE: The [Delayed Retries](/nservicebus/recoverability/#delayed-retries) mechan
 
 partial: gatewaydedupe
 
-## Saga concurrency behavior
+## Saga concurrency
 
-The in-memory persister applies [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when saga instances are updated.
-The in-memory persister does not support locking. Optimistic concurrency control conflicts require the message to be reprocessed via recoverability.
-Please read the guidance on [saga concurrency](/nservicebus/sagas/concurrency.md) on potential improvements.
+In-memory persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when accessing saga data. See below for examples of the exceptions thrown when conflicts occur. More information about these scenarios is available in _[saga concurrency](/nservicebus/sagas/concurrency.md)_, including guidance on how to reduce the number of conflicts.
 
-## Concurrent access to non-existing saga instances
-
-No locking is uses and race conditions errors can occur. When this happens the following error will be visible in the log:
+### Creating saga data
 
 ```
 System.InvalidOperationException: The saga with the correlation id 'Name: OrderId Value: f05c6e0c-aea6-48d6-846c-d1663998ebf2' already exists
 ```
 
-## Concurrent access to existing saga instances
-
-No locking is uses and race conditions errors can occur. When this happens the following error will be visible in the log:
+### Updating or deleting saga data
 
 ```
 System.Exception: InMemorySagaPersister concurrency violation: saga entity Id[a15a31fd-4f25-4dc3-b556-aad200e52dcb] already saved.

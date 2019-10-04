@@ -8,20 +8,12 @@ redirects:
  - nservicebus/sql-persistence/saga-concurrency
 ---
 
+## Default behavior
 
+By default, SQL persistence uses pessimistic locking combined with [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when accessing saga. See below for examples of the exceptions thrown when conflicts occur. More information about these scenarios is available in _[saga concurrency](/nservicebus/sagas/concurrency.md)_, including guidance on how to reduce the number of conflicts.
 
-## Default concurrency behavior
+### Creating saga data
 
-The SQL persister applies pessimistic locking combined with [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when saga instance are updated concurrently.
-
-Please read the guidance on [saga concurrency](/nservicebus/sagas/concurrency.md) on potential improvements.
-
-
-### Concurrent access to non-existing saga instances
-
-The persister uses unique key constraints that will result in an exception being thrown if two saga instances with the same correlation value are created at the same time.
-
-When this happens the following error is logged:
 ```
 System.Exception: Failed to ExecuteNonQuery. CommandText:
 
@@ -47,9 +39,9 @@ values
 ) ---> System.Data.SqlClient.SqlException: Cannot insert duplicate key row in object 'dbo.Samples_SimpleSaga_OrderSaga' with unique index 'Index_Correlation_OrderId'. The duplicate key value is (7402c6a7-00bc-40a4-bde2-6e32ec13a7c2).
 ```
 
-### Concurrent access to existing saga instances
+### Updating or deleting saga data
 
-Not possible to get concurrency errors due to pessimistic locking since Version 4.1.1
+From Version 4.1.1 onwards, no exceptions will be thrown. Conflicts cannot occur because the persistence uses pessimistic locking.
 
 partial: implementation
 
