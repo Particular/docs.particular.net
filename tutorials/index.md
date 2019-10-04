@@ -1,7 +1,7 @@
 ---
 title: Tutorials
 suppressRelated: true
-reviewed: 2017-12-07
+reviewed: 2019-10-04
 summary: Step-by-step tutorials to help you learn how to use NServiceBus, with detailed instructions and downloadable solutions with the completed examples.
 redirects:
 - tutorials/monitoring
@@ -22,7 +22,7 @@ include: nsb101-intro-paragraph
 
 One of the most powerful features of NServiceBus is the ability to replay a message that has failed. Often, this type of failure can be introduced by a bug that isn't found until the code is deployed. When this happens, many errors can flood into the error queue all at once.
 
-In this tutorial, see how roll back to an old version of an endpoint, and then replay the failed messages through proven code. This allows you to take the time to properly troubleshoot and fix the issue before attempting a new deployment.
+In this tutorial, see how to roll back to an older version of an endpoint, and then replay the failed messages through proven code. This allows you to take the time to properly troubleshoot and fix the issue before attempting a new deployment.
 
 ### [Monitoring NServiceBus demo walkthrough](monitoring-demo/)
 

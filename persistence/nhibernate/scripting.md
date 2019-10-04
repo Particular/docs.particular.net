@@ -1,20 +1,20 @@
 ---
 title: NHibernate Persistence Scripts
-summary: Collection of scripts for managing NHibernate Persistence
+summary: A collection of scripts for managing NHibernate persistence
 component: NHibernate
-reviewed: 2017-12-11
+reviewed: 2019-10-04
 related:
  - nservicebus/operations
 redirects:
  - nservicebus/nhibernate/scripting
 ---
 
-WARNING: Ensure a backup of the database is created before executing any of the listed scripts.
+WARNING: Ensure there is a backup of the database before executing any of the scripts on this page.
 
 
 ## Remove subscriptions
 
-Execute the following script against the database which is configured for NHibernate Persistence:
+Execute the following script against a database which is configured for NHibernate Persistence:
 
 ```sql
 DELETE
@@ -27,20 +27,20 @@ Where:
  * `<subscriberAddress>` is the address of the subscriber. E.g. `My.Endpoint@subscriber-machine`.
  * `<subscriptionTable>` is the configured subscription table for NHibernate Persistence. By default this is `dbo.Subscription`
 
-## Fix up TimeoutEntity_EndpointIdx index
+## Fix TimeoutEntity_EndpointIdx index
 
 Older versions of NServiceBus had an issue which caused the `TimeoutEntity_EndpointIdx` index to be either missing or created incorrectly. Now there is a built-in check and log warnings in cases when
  * the `TimeoutEntity_EndpointIdx` index has an incorrect column order
  * the system can not find `TimeoutEntity_EndpointIdx` index
 
-In cases where the index was created incorrectly, use the following scripts to drop the index:
+In cases where the index was created incorrectly, use the following script to drop the index:
 
 ```
 DROP INDEX [TimeoutEntity_EndpointIdx] ON [dbo].[TimeoutEntity] WITH ( ONLINE = OFF )
 GO
 ```
 
-and following script to create the correct one
+and the following script to create the correct one
 
 ```
 CREATE CLUSTERED INDEX [TimeoutEntity_EndpointIdx] ON [dbo].[TimeoutEntity]

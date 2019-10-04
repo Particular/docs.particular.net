@@ -13,7 +13,7 @@ related:
 
 This sample shows how to extend the NServiceBus message processing pipeline with custom behavior to add notifications whenever a message is dispatched to the underlying transport.
 
-## Code Walk Through
+## Code walk-through
 
 The solution contains a single endpoint with the dispatch notifications turned on. Dispatch notifications are handled by classes that implement a simple interface:
 

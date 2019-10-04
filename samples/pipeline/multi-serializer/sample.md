@@ -23,7 +23,7 @@ It is currently hard-coded to only support xml and json serialization. It uses a
 WARNING: This sample is not compatible with message serialization against Version 4 and below of NServiceBus. The reason is that, for simplicity of the sample, some wire compatibility workarounds are excluded. Have a look at the current serialization behaviors in the core of NServiceBus for more details.
 
 
-## Code Walk Through
+## Code walk-through
 
 The solution contains 3 projects
 

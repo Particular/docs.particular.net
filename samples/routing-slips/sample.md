@@ -9,7 +9,7 @@ component: MessageRouting
 Uses the [Routing Slip pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/RoutingTable.html) feature of the [MessageRouting](https://github.com/jbogard/NServiceBus.MessageRouting) project.
 
 
-## Walk Through
+## Code walk-through
 
 The solution consists of 6 Projects
 
