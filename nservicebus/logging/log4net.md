@@ -34,4 +34,4 @@ snippet: Log4netFilter
 snippet: Log4netFilterUsage
 
 
-partial: exception-data
+partial: log4net-exception-data
