@@ -99,7 +99,7 @@ Messages sent from a [saga](/nservicebus/sagas/) using the `ReplyToOriginator` m
 
 Identifier of the conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `Conversation Id` and `RelatedTo` fields allow [ServiceInsight](/serviceinsight/#flow-diagram) to reconstruct the entire message flow.
 
-The first message that is sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Each message that is sent within a conversation also has a `RelatedTo` value that identifies the message that caused it to be sent.
+The first message sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are sent afterward, forming a _conversation_. Each message sent within a conversation has a `RelatedTo` value that identifies the message that caused it to be sent.
 
 In certain scenarios, Conversation Id has to be assigned manually because NServiceBus can't infer that messages are belong to the same conversation. For example, when a `CancelOrder` message needs to become part of an existing order conversation, then the Order Id can be used for as the Conversation Id. This can be achieved by overriding the header with a custom value:
 
