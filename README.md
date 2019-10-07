@@ -588,8 +588,10 @@ Add a file anywhere in the docs repository that is suffixed with `.include.md`. 
 
 ### Using an include
 
-Add the following to the markdown: `include: theKey`
-
+Add the following to the markdown:
+```
+include: theKey
+```
 
 ## Code Snippets
 
