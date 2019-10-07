@@ -2,7 +2,7 @@
 title: Custom ASB Namespace Partitioning
 summary: Determine which namespace Azure Service Bus Transport uses for partitioning.
 component: ASB
-reviewed: 2018-01-15
+reviewed: 2019-10-06
 related:
  - transports/azure-service-bus
  - transports/azure-service-bus/legacy/sanitization
