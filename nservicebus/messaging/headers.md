@@ -1,7 +1,7 @@
 ---
 title: Message Headers
 summary: List of built-in NServiceBus message headers.
-reviewed: 2019-09-26
+reviewed: 2019-10-04
 component: Core
 versions: '[5.0,)'
 tags:
@@ -15,7 +15,7 @@ related:
  - nservicebus/messaging/header-manipulation
 ---
 
-The headers in a message contain information that is used by the messaging infrastructure to help with the message delivery. Message headers are very similar, in both implementation and usage, to HTTP headers. To learn more about how to use custom headers, see [Manipulating message headers](/nservicebus/messaging/header-manipulation.md).
+The headers of a message are similar to HTTP headers and contain metadata about the message being sent over the queueing system. This document describes the headers used by NSeriviceBus. To learn more about how to use custom headers, see the documentation on [manipulating message headers](/nservicebus/messaging/header-manipulation.md).
 
 
 ## Timestamp format
@@ -99,9 +99,9 @@ Messages sent from a [saga](/nservicebus/sagas/) using the `ReplyToOriginator` m
 
 Identifier of the conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `Conversation Id` and `RelatedTo` fields allow [ServiceInsight](/serviceinsight/#flow-diagram) to reconstruct the entire message flow.
 
-The first message that is sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are subsequently sent, thus forming a _conversation_. Each message that is sent within a conversation also has a `RelatedTo` value that identifies the originating message that caused it to be sent.
+The first message sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are sent afterward, forming a _conversation_. Each message sent within a conversation has a `RelatedTo` value that identifies the message that caused it to be sent.
 
-In certain scenarios, Conversation Id has to be assigned manually because NServiceBus can't infer that messages are correlated. For example, when a `CancelOrder` message needs to become part of an existing order conversation, then the Order Id can be used for correlating messages. This can be achieved by overriding the header with a custom value:
+In certain scenarios, the `Conversation Id` must be assigned manually in cases where NServiceBus can't infer when messages belong to the same conversation. For example, when a `CancelOrder` message needs to be part of an existing order conversation, then the Order Id can be used for as the Conversation Id. Manually assigning a `Conversation Id` can be achieved by overriding the header with a custom value:
 
 snippet: override-conversation-id
 
@@ -118,7 +118,7 @@ NOTE: `Conversation Id` is very similar to `Correlation Id`. Both headers are co
 
 ### NServiceBus.RelatedTo
 
-The `MessageId` that caused the current message to be sent. Whenever a message is sent or published from inside a message handler, it's `RelatedTo` header is set to the `MessageId` of the incoming message that was being handled.
+The `MessageId` that caused the current message to be sent. Whenever a message is sent or published from inside a message handler, its `RelatedTo` header is set to the `MessageId` of the incoming message that was being handled.
 
 NOTE: For a single request-response interaction `Correlation Id` and `RelatedTo` are very similar. Both headers are able to correlate the response message back to the request message. Once a _conversation_ is longer than a single request-response interaction, `Correlation Id` can be used to correlate a response to the original request. `RelatedTo` can only correlate a message back to the previous message in the same _conversation_.
 
