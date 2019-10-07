@@ -26,3 +26,5 @@ For example to limit log output to a specific namespace.
 Here is a code configuration example for adding a [Rule](https://github.com/nlog/NLog/wiki/Configuration-file#rules).
 
 snippet: NLogFiltering
+
+partial: nlog-exception-data

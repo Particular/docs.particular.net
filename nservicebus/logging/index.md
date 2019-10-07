@@ -88,6 +88,9 @@ It is important to configure logging before any endpoint configuration is done s
  * At the start of the `Global.Application_Start` in a asp.net application.
  * [Using endpoint configuration API in an application hosted via NServiceBus Host](/nservicebus/hosting/nservicebus-host/logging-configuration.md)
 
+
+partial: exception-data
+
 ## Unit testing
 
 Unit testing of logging is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-logging-behavior).
