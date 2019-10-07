@@ -32,3 +32,25 @@ To configure the storage location:
 snippet: LearningPersistenceSagaStorageDirectory
 
 Each saga will be stored a sub-directory matching the saga type name with the saga data being serialized into a `.json` file named based on the saga Id.
+
+## Saga concurrency
+
+When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
+
+### Starting a saga
+
+Example exception:
+
+```
+System.IO.IOException: The file 'S:\.sagas\OrderSaga\944b7efb-7146-adf1-d6ae-968f0d7757fa.json' already exists.
+```
+
+### Updating or deleting saga data
+
+Learning persistence uses file locks when updating or deleting saga data. The effect is similar to [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) with the difference that failure will occur when reading the saga data, before the handler is invoked.
+
+Example exception:
+
+```
+The process cannot access the file 'S:\.sagas\OrderSaga\a71d248d-0d94-e0bf-3673-361dbd3ec026.json' because it is being used by another process.
+```

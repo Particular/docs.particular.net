@@ -54,7 +54,7 @@ One way to solve the problem is to alter the schema of existing saga tables to u
 
 ### Use explicit version field
 
-NHibernate persistence has an option to use [explicit version column](/persistence/nhibernate/saga-concurrency.md#explicit-version) for optimistic concurrency checks. This is usually a better option because the resulting update command is much simpler. Enabling the explicit versioning requires changing the sagas code and altering the saga table schema (adding a column). 
+NHibernate persistence has an option to use [explicit version column](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version) for optimistic concurrency checks. This is usually a better option because the resulting update command is much simpler. Enabling the explicit versioning requires changing the sagas code and altering the saga table schema (adding a column). 
 
 
 ### Force backward compatibility

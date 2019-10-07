@@ -72,3 +72,26 @@ The `TestableMongoSynchronizedStorageSession` class in the `NServiceBus.Testing`
 When the outbox is enabled, the deduplication data is kept for seven days by default. To customize this time frame, use the following API:
 
 snippet: MongoDBOutboxCleanup
+
+
+## Saga concurrency
+
+When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
+
+### Starting a saga
+
+Example exception:
+
+```
+MongoDB.Driver.MongoCommandException: Command insert failed: WriteConflict.
+```
+
+### Updating or deleting saga data
+
+MongoDB persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
+
+Example exception:
+
+```
+MongoDB.Driver.MongoCommandException: Command update failed: WriteConflict.
+```
