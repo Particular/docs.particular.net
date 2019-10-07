@@ -192,6 +192,11 @@ Type: bool `true` or `false`
 
 Default: `false`.
 
+#### ServiceControl.Audit/ServiceControlQueueAddress
+
+The ServiceControl queue name to use for plugin messages (e.g. Heartbeats, Custom Checks, Saga Audit, etc ).
+
+Type: string
 
 ## Troubleshooting
 
