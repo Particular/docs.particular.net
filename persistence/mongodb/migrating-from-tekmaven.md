@@ -32,7 +32,7 @@ class MySagaData : IContainSagaData
 
 ## Subscriptions
 
-In the tekmavan implementation there was a single document per event type containing a collection of subscribers. In the particular implementation subscriptions are individual documents. Each subscription needs to be converted into a `eventsubscription` document.
+In the tekmavan implementation there was a single document per event type containing a collection of subscribers. In NServiceBus.Storage.MongoDB, subscriptions are individual documents. Each subscription needs to be converted into an `eventsubscription` document.
 
 ```javascript
 db.subscriptions.find().forEach(type => {
