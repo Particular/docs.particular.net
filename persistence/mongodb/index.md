@@ -74,17 +74,23 @@ When the outbox is enabled, the deduplication data is kept for seven days by def
 snippet: MongoDBOutboxCleanup
 
 
-## Saga concurrency behavior
+## Saga concurrency
 
-MongoDB applies uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when accessing saga data. See below for examples of the exceptions thrown when conflicts occur. More information about these scenarios is available in _[saga concurrency](/nservicebus/sagas/concurrency.md)_, including guidance on how to reduce the number of conflicts.
+When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
-### Creating saga data
+### Starting a saga
+
+Example exception:
 
 ```
 MongoDB.Driver.MongoCommandException: Command insert failed: WriteConflict.
 ```
 
 ### Updating or deleting saga data
+
+MongoDB persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
+
+Example exception:
 
 ```
 MongoDB.Driver.MongoCommandException: Command update failed: WriteConflict.

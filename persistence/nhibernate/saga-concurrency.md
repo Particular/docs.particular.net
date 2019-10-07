@@ -18,9 +18,11 @@ One of the most critical things about persistence of sagas is proper concurrency
 
 ## Default behavior
 
-By default, NHibernate persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when accessing saga data. See below for examples of the exceptions thrown when conflicts occur. More information about these scenarios is available in _[saga concurrency](/nservicebus/sagas/concurrency.md)_, including guidance on how to reduce the number of conflicts.
+When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
-### Creating saga data
+### Starting a saga
+
+Example exception:
 
 ```
 NHibernate.Exceptions.GenericADOException: could not execute batch command.[SQL: SQL not available] ---> System.Data.SqlClient.SqlException: Violation of UNIQUE KEY constraint 'UQ__OrderSag__C3905BCE71EF212B'. Cannot insert duplicate key in object 'dbo.OrderSagaData'. The duplicate key value is (e87490ba-bb56-4693-9c0a-cf4f95736e06).
@@ -28,12 +30,11 @@ NHibernate.Exceptions.GenericADOException: could not execute batch command.[SQL:
 
 ### Updating or deleting saga data
 
-```
-NHibernate.StaleObjectStateException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [OrderSagaData#8378bd96-8143-48b2-ae3e-aad100a37cb9] ---> NHibernate.StaleStateException: Unexpected row count: 0; expected: 1
-```
+No exceptions will be thrown. Conflicts cannot occur because the persistence uses pessimistic locking. Pessimistic locking is achieved by performing a **SELECT ... FOR UPDATE**, see [NHibernate Chapter 12. Transactions And Concurrency](https://nhibernate.info/doc/nhibernate-reference/transactions.html).
 
+## Custom behavior
 
-## Explicit version
+### Explicit version
 
 The `RowVersion` attribute can be used to explicitly denote a property that should be used for optimistic concurrency control. An update will then compare against this single property instead of comparing it against the previous state of all properties which results in a more efficient comparison.
 
@@ -47,13 +48,18 @@ NOTE: The `RowVersion` attribute is not supported when used on derived classes. 
 
 In most cases where the saga data table is only ever accessed by the saga persister, it is advisable to use an explicit version because the `UPDATE` SQL statement is much simpler and faster. The downside is that it does not detect concurrency violations if the data is updated by some external party that does not conform to the protocol i.e. does not bump the version field when doing updates. If such an external modification is possible, e.g. when different business process touches the same set of data, it is better to use the default optimistic concurrency validation strategy.
 
-## Adjusting the locking strategy
+### Adjusting the locking strategy
 
 The `LockMode` attribute can be used to override the default locking strategy.
 
 snippet: NHibernateConcurrencyLockMode
 
 
-## Customizing the optimistic concurrency handling
+### Customizing the optimistic concurrency handling
 
 In order to customize or switch off optimistic concurrency handling, the `optimistic-lock` NHibernate attribute has to be specified in a custom mapping. The [custom mapping sample](/samples/nhibernate/custom-mappings) explains how to override the default mapping with a custom one.
+
+
+```
+NHibernate.StaleObjectStateException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [OrderSagaData#8378bd96-8143-48b2-ae3e-aad100a37cb9] ---> NHibernate.StaleStateException: Unexpected row count: 0; expected: 1
+```

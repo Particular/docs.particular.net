@@ -35,15 +35,21 @@ Each saga will be stored a sub-directory matching the saga type name with the sa
 
 ## Saga concurrency
 
-Learning persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when accessing saga data. See below for examples of the exceptions thrown when conflicts occur. More information about these scenarios is available in _[saga concurrency](/nservicebus/sagas/concurrency.md)_, including guidance on how to reduce the number of conflicts.
+When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
-### Creating saga data
+### Starting a saga
+
+Example exception:
 
 ```
 System.IO.IOException: The file 'S:\.sagas\OrderSaga\944b7efb-7146-adf1-d6ae-968f0d7757fa.json' already exists.
 ```
 
 ### Updating or deleting saga data
+
+Learning persistence uses file locks when updating or deleting saga data. The effect is similar to [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) with the difference that failure will occur when reading the saga data, before the handler is invoked.
+
+Example exception:
 
 ```
 The process cannot access the file 'S:\.sagas\OrderSaga\a71d248d-0d94-e0bf-3673-361dbd3ec026.json' because it is being used by another process.

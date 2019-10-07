@@ -21,15 +21,21 @@ partial: gatewaydedupe
 
 ## Saga concurrency
 
-In-memory persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when accessing saga data. See below for examples of the exceptions thrown when conflicts occur. More information about these scenarios is available in _[saga concurrency](/nservicebus/sagas/concurrency.md)_, including guidance on how to reduce the number of conflicts.
+When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
-### Creating saga data
+### Starting a saga
+
+Example exception:
 
 ```
 System.InvalidOperationException: The saga with the correlation id 'Name: OrderId Value: f05c6e0c-aea6-48d6-846c-d1663998ebf2' already exists
 ```
 
 ### Updating or deleting saga data
+
+In-memory persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
+
+Example exception:
 
 ```
 System.Exception: InMemorySagaPersister concurrency violation: saga entity Id[a15a31fd-4f25-4dc3-b556-aad200e52dcb] already saved.

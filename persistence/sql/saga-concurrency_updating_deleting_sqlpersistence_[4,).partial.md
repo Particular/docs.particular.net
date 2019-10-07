@@ -1,0 +1,1 @@
+Starting in version 4.1.1, no exceptions will be thrown. Conflicts cannot occur because the persistence uses pessimistic locking. Pessimistic locking is achieved by performing a `SELECT ... FOR UPDATE` or its dialect-specific equivalent.
