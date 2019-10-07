@@ -2,6 +2,7 @@
 title: Publish-Subscribe
 summary: Subscribers tell the publisher they are interested. Publishers store addresses for sending messages.
 reviewed: 2018-03-29
+component: Core
 tags:
 - Publish Subscribe
 - Messaging Patterns
