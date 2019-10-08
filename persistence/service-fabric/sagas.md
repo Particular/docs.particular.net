@@ -36,3 +36,27 @@ snippet: ServiceFabricPersistenceSagaWithCustomCollectionName
 Saga data identifier used as a key in reliable dictionary gets calculated, among others, from saga data type name. As a result, renaming saga data class name changes storage identifier for every saga data instance. This is a problem especially when some saga data instances have already been stored for a given saga data type. In such scenarios it is necessary to provide stable saga data type name
 
 snippet: ServiceFabricPersistenceSagaWithCustomSagaDataName
+
+## Saga concurrency
+
+When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
+
+include: saga-concurrency
+
+### Creating saga data
+
+Example exception:
+
+```
+The saga with the correlation id 'Name: {correlationProperty.Name} Value: {correlationProperty.Value}' already exists.
+```
+
+### Updating or deleting saga data
+
+ServiceFabric persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
+
+Example exception:
+
+```
+{nameof(SagaPersister)} concurrency violation: saga entity Id[{sagaData.Id}] already saved.
+```

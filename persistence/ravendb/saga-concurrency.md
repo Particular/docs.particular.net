@@ -9,16 +9,28 @@ redirects:
 
 include: dtc-warning
 
-RavenDB honors [concurrency semantics](/nservicebus/sagas/concurrency.md) in the following way.
+## Default behavior
 
+When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
-## Concurrent access to non-existing saga instances
+### Creating saga data
 
-RavenDB lacks support for unique indexes, so the persister mimics this by creating a separate document for each saga to serve this purpose. The key of this document is set to the value of the correlation property, this causes RavenDB to throw a exception should two documents with the same correlation value be created at the same time.
+Example exception:
 
+```
+Raven.Client.Exceptions.ConcurrencyException: Document OrderSagaData/OrderId/316414b3-07f1-40ec-00db-022a4140d517 has change vector A:2-u2LvKAFZTE+972x2hp1gTg, but Put was called with expecting new document. Optimistic concurrency violation, transaction will be aborted.
+```
 
-## Concurrent access to existing saga instances
+### Updating or deleting saga data
 
-The persister makes use of RavenDB optimistic locking causing concurrency exceptions to be throw should the same saga instance be updated concurrently.
+RavenDB persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
+
+WARNING: When a message handler does not change saga data, the RavenDB client will not attempt to write the associated document to storage. If a consistency check is required, a property value must be changed. For example, a counter property may be incremented.
+
+Example exception:
+
+```
+Raven.Client.Exceptions.ConcurrencyException: Document OrderSagaDatas/f23921c9-7b53-455d-89be-aad200d98741 has change vector A:93-u2LvKAFZTE+972x2hp1gTg, but Put was called with change vector A:90-u2LvKAFZTE+972x2hp1gTg. Optimistic concurrency violation, transaction will be aborted.
+```
 
 include: saga-concurrency
