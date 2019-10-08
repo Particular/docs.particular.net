@@ -1,7 +1,7 @@
 ---
 title: SQL Transport Design
 summary: The design and implementation details of SQL Server Transport
-reviewed: 2018-01-05
+reviewed: 2019-10-08
 component: SqlTransport
 tags:
 - Transactions
