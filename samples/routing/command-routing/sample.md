@@ -2,7 +2,7 @@
 title: Command routing
 summary: Basic NServiceBus message routing
 component: Core
-reviewed: 2018-01-09
+reviewed: 2019-10-09
 tags:
 - Routing
 ---
