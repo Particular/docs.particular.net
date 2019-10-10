@@ -9,7 +9,7 @@ related:
 - servicecontrol/deploying-servicecontrol-in-a-cluster
 ---
 
-Multiple instances can be used to create a business continuity / disaster recovery configuration. By forwarding failed and audited messages to backup instances of ServiceControl it is possible to resume operations in the case that the primary instances are no longer available.
+Multiple ServiceControl instances can be used to create a business continuity / disaster recovery configuration. By forwarding failed and audited messages to backup instances of ServiceControl it is possible to resume operations in the case that the primary instances are no longer available.
 
 ```mermaid
 graph TD
