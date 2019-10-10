@@ -49,7 +49,7 @@ WARN: Make sure the names of the backup ServiceControl instances are named diffe
 
 ## How retrying works
 
-Retrying a message from the primary instance will work as usual, however the backup instances will not update the status of the failed messages to retry pending. Once the successful audit message is received the backup instance will be notified as well and the failed message record in both instances will reflect the messages as having been successfully retried.
+Retrying a message from the primary instance will work as usual, however the backup instances will not update the status of the failed messages to "retry pending". Once the successful audit message is received, the backup instance will be notified as well and the failed message record in both instances will reflect the messages as having been successfully retried.
 
 WARN: It is possible to duplicate messages when retrying from the backup instance if a retry has already been sent from the primary instance.
 
