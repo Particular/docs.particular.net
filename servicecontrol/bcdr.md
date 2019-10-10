@@ -36,7 +36,7 @@ SCAA --forwards to-->AB
 AB --ingested by-->SCAB
 ```
 
-This configuration works by combining multiple instances with [aduit log forwarding](creating-config-file.md#servicecontrolforwardauditmessages) and [error log forwarding](creating-config-file.md#servicebuserrorlogqueue). Failed and audited messages will be forwarded by the primary instances to the backup instances through log forwarding queues.
+This configuration works by combining multiple instances with [audit log forwarding](creating-config-file.md#servicecontrolforwardauditmessages) and [error log forwarding](creating-config-file.md#servicebuserrorlogqueue). Failed and audited messages will be forwarded by the primary instances to the backup instances through log forwarding queues.
 
 To install this configuration perform the following actions:
 
