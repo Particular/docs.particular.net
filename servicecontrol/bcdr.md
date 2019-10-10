@@ -40,7 +40,7 @@ This configuration works by combining multiple instances with [aduit log forward
 
 To install this configuration perform the following actions:
 
-1. Create an error and audit queue for your endpoints.
+1. Create the standard error and audit queues.
 1. Create the backup error and audit queues.
 1. Setup the primary ServiceControl instances and configure them to forward errors and audit messages to the backup queues.
 1. Setup the backup ServiceControl instances and configure them to use the backup queues.
