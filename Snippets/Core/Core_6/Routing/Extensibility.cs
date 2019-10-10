@@ -17,7 +17,7 @@
             #region RoutingExtensibility-RouteTableConfig
 
             var settings = endpointConfiguration.GetSettings();
-            var routingTable = settings.Get<UnicastRoutingTable>();
+            var routingTable = settings.GetOrCreate<UnicastRoutingTable>();
             routingTable.AddOrReplaceRoutes("MySource",
                 new List<RouteTableEntry>
                 {
