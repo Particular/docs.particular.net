@@ -43,7 +43,7 @@ To install this configuration perform the following actions:
 1. Create the standard error and audit queues.
 1. Create the backup error and audit queues.
 1. Set up the primary ServiceControl instances and configure them to forward errors and audit messages to the backup queues.
-1. Setup the backup ServiceControl instances and configure them to use the backup queues.
+1. Set up the backup ServiceControl instances and configure them to use the backup queues.
 
 WARN: Make sure the names of the backup ServiceControl instances are named differently from the primary ServiceControl instances otherwise unexpected behavior may result.
 
