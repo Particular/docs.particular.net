@@ -47,3 +47,5 @@ partial: nugets
 ## Script creation
 
 SQL installation scripts are created as a compile-time output alongside a project's binary outputs. Additionally, these scripts can be promoted to a directory under source control so that differences can be easily tracked and analyzed. To learn more, see [Controlling Script Generation](/persistence/sql/controlling-script-generation.md).
+
+WARNING: The script generation process uses an MSBuild task to create the scripts at compile time. As a result, SQL Persistence must be a **direct** dependency to the project where scripts need to be generated.
