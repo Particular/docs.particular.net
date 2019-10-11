@@ -1128,6 +1128,8 @@
         Url: servicecontrol/securing-servicecontrol
       - Title: Non-Privileged Accounts
         Url: servicecontrol/configure-non-privileged-service-account
+      - Title: Business Continuity / Disaster Recovery
+        Url: servicecontrol/bcdr
     - Title: Installation
       Url: servicecontrol/installation
       Articles:
