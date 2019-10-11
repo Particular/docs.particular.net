@@ -97,7 +97,7 @@ The following saga persisters use OCC:
 
 Because OCC conflicts should eventually be resolved through retries, a [full custom retry policy](/nservicebus/recoverability/custom-recoverability-policy.md#implement-a-custom-policy-full-customization) can be written to prevent moving a message to the error queue too early.
 
-NOTE: Consult the persister saga concurrency documentation to learn which exception type and/or exception message can be used to identify a concurrency conflict.
+NOTE: The saga concurrency documentation for each persister contains details of the exception type and/or exception message which indicate a concurrency conflict.
 
 ### Host the saga in a dedicated endpoint
 
@@ -121,7 +121,7 @@ Some transports support distributed transactions. If the persister also supports
 
 ### Shard message processing
 
-By processing messages on multiple shards, each configured with a low concurrency limit, the likelihood of data contention can be reduced. For example, a single endpoint instance with a concurrency limit of 8 could be replaced with 8 endpoint instances, each with a concurrency limit of 1. By partitioning saga instances appropriately, the messages relating to a single saga instance are processed sequentially. This occurs in parallel with messages relating to other saga instances, which are processed by other shards. Note that it isn't necessary to shard data over multiple storage locations, but this could also be done to improve performance further.
+By processing messages on multiple shards, each configured with a low concurrency limit, the likelihood of data contention can be reduced. For example, a single endpoint instance with a concurrency limit of eight could be replaced with eight endpoint instances, each with a concurrency limit of one. By partitioning saga instances appropriately, the messages relating to a single saga instance are processed sequentially. This occurs in parallel with messages relating to other saga instances, which are processed by other shards. Note that it isn't necessary to shard data over multiple storage locations, but this could also be done to improve performance further.
 
 A sharded endpoint instance must be addressed uniquely using `MakeInstanceUniquelyAddressable`. Message must be sent to the appropriate shards using [routing extensibility](/nservicebus/messaging/routing-extensibility.md). This is demonstrated in the [Service Fabric Partition-Aware Routing](/samples/azure/azure-service-fabric-routing/) sample.
 
@@ -139,15 +139,15 @@ Saga state is retrieved from and submitted to storage for every message received
 
 When there are a high number of OCC conflicts starting sagas, and the persister supports pessimistic locking, it may be better to find a way a different way of starting the saga. For example, the system may be able to send a single message earlier that can start the saga. The processing of later, concurrent messages can then take advantage of pessimistic locking to avoid conflicts.
 
-#### Apply chunking by creating sub saga instances
+#### Apply chunking by creating "sub-saga" instances
 
 Sagas that deal with [scatter-gather](https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html) typically initiate a large number of requests and aggregate the responses. Those responses could be received simultaneously and cause data contention. Instead of having a single saga sending many requests and aggregating many responses, a tree-like structure could be formed, with sub-sagas that subdivide the work.
 
-For example, instead of the saga that creating 1,000 requests, it could split the requests into two groups of 500 and send them to two sub-sagas. Each of those sub-sagas, could split the requests into two groups of 250 and send them to two further sub-sagas. This process could continue, until a given sub-saga receives only the details of two requests. That saga then sends the requests, aggregates the responses, and responds to its parent saga with the aggregated data. The end result is that the originating saga receives two responses, each containing the data from 500 requests. Because each saga only sends two requests and aggregates two responses, data contention should be largely eliminated.
+For example, instead of a saga creating 1,000 requests, it could split the requests into two groups of 500 and send them to two sub-sagas. Each of those sub-sagas, could split the requests into two groups of 250 and send them to two further sub-sagas. This process could continue, until a given sub-saga receives only the details of two requests. That saga then sends the requests, aggregates the responses, and responds to its parent saga with the aggregated data. The end result is that the originating saga receives two responses, each containing the data from 500 requests. Because each saga only sends two requests and aggregates two responses, data contention should be largely eliminated.
 
 In the above example, the requests are split into two groups each time. Depending on the dynamics of the system, it may be better to split them up into more groups each time.
 
-A simpler approach is to split the request just once, have a single level of sub-sagas sending the requests and aggregating the responses. This will not reduce data contention to the same degree, since the originating saga will be aggregating more multiple responses.
+A simpler approach is to split the request just once, and have a single level of sub-sagas sending the requests and aggregating the responses. This will not reduce data contention to the same degree, since the originating saga will be aggregating more multiple responses.
 
 #### Create an append-only saga data model
 
@@ -159,7 +159,7 @@ For more methods of redesigning sagas to reduce data contention, see _[Reducing 
 
 ### Use a custom saga implementation
 
-Sometimes, the methods of reducing contention described above are not enough to reduce data contention. It may be necessary to write a custom saga implementation, where message processing is specifically optimized for the given saga model.
+Sometimes, the methods of reducing data contention described above may not be enough. It may be necessary to write a custom saga implementation, where message processing is specifically optimized for the given saga model.
 
 For example, append-only models can only be implemented with a custom NHibernate mapping. With a custom implementation, an append only model could be implemented with other storage types.
 
