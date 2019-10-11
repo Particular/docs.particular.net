@@ -1,29 +1,46 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Hosting.Server.Features;
 
 static class Program
 {
-    static async Task Main(string[] args)
+    static async Task Main()
     {
-        var host = CreateHostBuilder(args).Build();
-
-        await host.RunAsync()
+        var webHostBuilder = new WebHostBuilder();
+        webHostBuilder.UseKestrel();
+        webHostBuilder.UseContentRoot(Directory.GetCurrentDirectory());
+        webHostBuilder.UseStartup<Startup>();
+        var host = webHostBuilder.Build();
+        await host.StartAsync()
             .ConfigureAwait(false);
-
+        var serverAddresses = host.ServerFeatures.Get<IServerAddressesFeature>();
+        var address = serverAddresses.Addresses.First();
+        Console.WriteLine($"Now listening on: {address}");
         Console.WriteLine("Press any key to shutdown");
 
-        Console.ReadKey();
+        AttemptToLaunchBrowser(address);
 
+        Console.ReadKey();
         await host.StopAsync()
             .ConfigureAwait(false);
     }
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
+    static void AttemptToLaunchBrowser(string address)
+    {
+        Console.WriteLine($"Attempting to open browser to: {address}");
+        try
+        {
+            using (Process.Start("explorer.exe", address))
             {
-                webBuilder.UseStartup<Startup>();
-            });
+            }
+        }
+        catch (Exception)
+        {
+            Console.WriteLine($"Failed to launch browser. Open manually: {address}");
+        }
+    }
 }
