@@ -4,6 +4,14 @@ Depending on the operating system, the paths may be case sensitive.
 NServiceBus uses the [`Environment.GetFolderPath(SpecialFolder)`](https://docs.microsoft.com/en-us/dotnet/api/system.environment.getfolderpath) method to determine the locations of some paths on each OS.
 }}
 
+### Code-first configuration
+
+A license can be configured via code first configuration API:
+
+snippet: License
+
+NOTE: Licenses configured via code-first API take precendence over every other license source.
+
 
 ### Application-specific license location
 
@@ -28,13 +36,6 @@ This location can be expressed using environment variables on Windows, or as a l
 
 * Windows: `%PROGRAMDATA%\ParticularSoftware\license.xml`
 * Linux/macOS: `/usr/share/ParticularSoftware/license.xml`
-
-
-### Code-first configuration
-
-A license can be configured via code first configuration API:
-
-snippet: License
 
 
 ### Application configuration file
