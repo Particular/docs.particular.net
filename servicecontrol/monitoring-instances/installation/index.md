@@ -35,16 +35,24 @@ Monitoring instances can be configured to use one of the supported [transports](
 
 ### Transport-specific features
 
+#### Transport adapters
+
 Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact support@particular.net for further guidance.
 
 Adding third-party transports via the ServiceControl Management application is not supported.
 
-### MSMQ
+#### MSMQ
 
 If MSMQ is the selected transport, ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
 Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
 
+#### RabbitMQ
+
+In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings) the following ServiceControl specific options are available
+
+* `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings#transport-layer-security-support-external-authentication).
+* `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even  if the remote server certificate is invalid](/transports/rabbitmq/connection-settings#transport-layer-security-support-remote-certificate-validation).
 
 ## Using ServiceControl Management to upgrade monitoring instances
 
