@@ -42,11 +42,11 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 
 ### NServiceBus.NonDurableMessage
 
-The `NonDurableMessage` header controls [non-durable messaging](non-durable-messaging.md) persistence behavior of inflight messages. The behavior is transport specific but the intent is to not store the message durably on disk and only keep it in memory.
+The `NonDurableMessage` header controls [non-durable messaging](non-durable-messaging.md) persistence behavior of in-flight messages. The behavior is transport specific but the intent is to not store the message durably on disk and only keep it in memory.
 
 ### NServiceBus.TimeToBeReceived
 
-The `TimeToBeReceived` header [control after which point in time the message is obsolete and old and can be discarded](discard-old-messages.md). The behavior is transport dependent.
+The `TimeToBeReceived` header [controls when a message becomes obsolete and can be discarded](discard-old-messages.md). The behavior is transport-dependent.
 
 ### NServiceBus.Transport.Encoding
 
