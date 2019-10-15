@@ -63,6 +63,12 @@ In addition to the [connection string options of the transport](/transports/azur
 
 * `QueueLengthQueryDelayInterval=<value_in_miliseconds>` - Specifies delay between queue length refresh queries. The default value is 500 ms.
 
+#### SQL 
+
+In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in Versions 4.4 and above:
+
+* `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
+
 ## Performance counter
 
 Metrics are reported via the [performance counters](/monitoring/metrics/performance-counters.md) if the counters are installed.
