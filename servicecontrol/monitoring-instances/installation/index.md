@@ -66,6 +66,16 @@ In addition to the [connection string options of the transport](/transports/sql/
 
 * `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
 
+
+#### Amazon SQS 
+
+The following ServiceControl connection string options are available in Versions 4.4 and above:
+
+* `AccessKeyId=<value>` - AssessKeyId value,
+* `SecretAccessKey=<value>` - SecretAccessKey value,
+* `Region=<value>` - Region transport [option](/transports/sqs/configuration-options.md#region),
+* `QueueNamePrefix=<value>` - Queue name prefix transport [option](/transports/sqs/configuration-options.md#queuenameprefix).
+
 ## Using ServiceControl Management to upgrade monitoring instances
 
 ServiceControl Management provides a simple means of setting up one or more monitoring instances.

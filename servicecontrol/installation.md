@@ -69,6 +69,18 @@ In addition to the [connection string options of the transport](/transports/sql/
 
 * `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
 
+#### Amazon SQS 
+
+The following ServiceControl connection string options are available in Versions 4.4 and above:
+
+* `AccessKeyId=<value>` - AssessKeyId value,
+* `SecretAccessKey=<value>` - SecretAccessKey value,
+* `Region=<value>` - Region transport [option](/transports/sqs/configuration-options.md#region),
+* `QueueNamePrefix=<value>` - Queue name prefix transport [option](/transports/sqs/configuration-options.md#queuenameprefix),
+* `S3BucketForLargeMessages=<value>` - S3 bucket for large messages [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages),
+* `S3KeyPrefix=<value>` - S3 key prefic [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages-s3keyprefix).
+
+
 ## Performance counter
 
 Metrics are reported via the [performance counters](/monitoring/metrics/performance-counters.md) if the counters are installed.
