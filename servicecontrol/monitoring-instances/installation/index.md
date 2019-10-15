@@ -54,6 +54,12 @@ In addition to the [connection string options of the transport](/transports/rabb
 * `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings#transport-layer-security-support-external-authentication).
 * `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even  if the remote server certificate is invalid](/transports/rabbitmq/connection-settings#transport-layer-security-support-remote-certificate-validation).
 
+#### Azure Service Bus
+
+In addition to the [connection string options of the transport](/transports/azure-service-bus/#configuring-an-endpoint) the following ServiceControl specific options are available in Versions 4.4 and above:
+
+* `QueueLengthQueryDelayInterval=<value_in_miliseconds>` - Specifies delay between queue length refresh queries. The default value is 500 ms.
+
 ## Using ServiceControl Management to upgrade monitoring instances
 
 ServiceControl Management provides a simple means of setting up one or more monitoring instances.
