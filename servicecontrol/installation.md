@@ -52,10 +52,10 @@ Installing MSMQ is optional in the Platform Installer. See [Platform Installer -
 
 #### RabbitMQ
 
-In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings) the following ServiceControl specific options are available in Versions 4.4 and above:
+In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md) the following ServiceControl specific options are available in Versions 4.4 and above:
 
 * `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
-* `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even  if the remote server certificate is invalid](/transports/rabbitmq/connection-settings#transport-layer-security-support-remote-certificate-validation).
+* `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even  if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
 
 #### Azure Service Bus
 
