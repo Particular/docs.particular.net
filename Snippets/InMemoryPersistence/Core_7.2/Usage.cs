@@ -9,7 +9,7 @@
             #region GatewayDeduplicationCacheSize
 
             var persistence = endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
-            persistence.GatewayDeduplicationCacheSize(50000); // Present since 7.1.10
+            persistence.GatewayDeduplicationCacheSize(50000);
 
             #endregion
         }
