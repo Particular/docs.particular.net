@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Attachments.FileShare" Version="1.*" />
+    <PackageReference Include="NServiceBus.Attachments.Sql" Version="3.*" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="fileToStream.txt" CopyToOutputDirectory="PreserveNewest" />

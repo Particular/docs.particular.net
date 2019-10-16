@@ -1,7 +1,8 @@
 using System;
-using System.Data.SqlClient;
+using System.Data.Common;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using NServiceBus;
 using NServiceBus.Attachments.Sql;
 
@@ -64,7 +65,7 @@ class Program
 
     #region OpenConnection
 
-    static async Task<SqlConnection> OpenConnection()
+    static async Task<DbConnection> OpenConnection()
     {
         var sqlConnection = new SqlConnection(connection);
         try
