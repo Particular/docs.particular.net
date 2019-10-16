@@ -305,16 +305,10 @@
         Title: Upgrade NServiceBus.Bridge to NServiceBus.Router
     - Url: nservicebus/rawmessaging
       Title: Raw messaging
-    - Url: nservicebus/audit-filter
-      Title: AuditFilter
     - Url: nservicebus/mailer
       Title: Mailer
     - Url: nservicebus/outbox
       Title: Outbox
-    - Url: nservicebus/messaging/attachments-fileshare
-      Title: FileShare Attachments
-    - Url: nservicebus/messaging/attachments-sql
-      Title: Sql Attachments
     - Url: nservicebus/messaging/databus
       Title: Databus
       Articles:
@@ -444,8 +438,6 @@
       Title: Fluent style tests
     - Url: nservicebus/messaging/callbacks-testing
       Title: Callbacks
-    - Url: nservicebus/testing/approvaltests
-      Title: Context verification with ApprovalTests
   - Url: nservicebus/recoverability
     Title: Recoverability
     Articles:
@@ -491,26 +483,6 @@
       Title: JSON
     - Url: nservicebus/serialization/xml
       Title: Xml
-    - Url: nservicebus/serialization/jil
-      Title: Jil
-    - Url: nservicebus/serialization/utf8json
-      Title: Utf8Json
-    - Url: nservicebus/serialization/wire
-      Title: Wire
-    - Url: nservicebus/serialization/hyperion
-      Title: Hyperion
-    - Url: nservicebus/serialization/messagepack
-      Title: MessagePack
-    - Url: nservicebus/serialization/msgpack
-      Title: MsgPack
-    - Url: nservicebus/serialization/protobufgoogle
-      Title: ProtoBuf-Google
-    - Url: nservicebus/serialization/protobufnet
-      Title: ProtoBuf-Net
-    - Url: nservicebus/serialization/bond
-      Title: Bond
-    - Url: nservicebus/serialization/zeroformatter
-      Title: ZeroFormatter
     - Url: nservicebus/serialization/binary
       Title: Binary
     - Url: nservicebus/serialization/custom-serializer
@@ -545,8 +517,6 @@
       Title: Writing a log entry
     - Url: nservicebus/logging/log4net
       Title: Log4Net
-    - Url: nservicebus/logging/microsoft
-      Title: Microsoft Logging
     - Url: nservicebus/logging/nlog
       Title: NLog
     - Url: nservicebus/logging/common-logging
@@ -777,10 +747,6 @@
       Title: Deployment options
     - Url: transports/sql/operations-scripting
       Title: Troubleshooting and scripting
-    - Url: transports/sql/sql-native
-      Title: SQL Transport - Native
-    - Url: transports/sql/sql-http-passthrough
-      Title: SQL HTTP Passthrough
     - Url: transports/sql/sql-statements
       Title: SQL statements
     - Url: transports/sql/entity-framework
