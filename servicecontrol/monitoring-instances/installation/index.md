@@ -35,16 +35,46 @@ Monitoring instances can be configured to use one of the supported [transports](
 
 ### Transport-specific features
 
+#### Transport adapters
+
 Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact support@particular.net for further guidance.
 
 Adding third-party transports via the ServiceControl Management application is not supported.
 
-### MSMQ
+#### MSMQ
 
 If MSMQ is the selected transport, ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
 Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
 
+#### RabbitMQ
+
+In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md) the following ServiceControl specific options are available in Versions 4.4 and above:
+
+* `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
+* `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even  if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
+
+#### Azure Service Bus
+
+In addition to the [connection string options of the transport](/transports/azure-service-bus/#configuring-an-endpoint) the following ServiceControl specific options are available in Versions 4.4 and above:
+
+* `QueueLengthQueryDelayInterval=<value_in_miliseconds>` - Specifies delay between queue length refresh queries. The default value is 500 ms.
+
+#### SQL 
+
+In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in Versions 4.4 and above:
+
+* `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
+
+
+#### Amazon SQS 
+
+The following ServiceControl connection string options are available in Versions 4.4 and above:
+
+* `AccessKeyId=<value>` - AssessKeyId value,
+* `SecretAccessKey=<value>` - SecretAccessKey value,
+* `Region=<value>` - Region transport [option](/transports/sqs/configuration-options.md#region),
+* `QueueNamePrefix=<value>` - Queue name prefix transport [option](/transports/sqs/configuration-options.md#queuenameprefix).
 
 ## Using ServiceControl Management to upgrade monitoring instances
 
