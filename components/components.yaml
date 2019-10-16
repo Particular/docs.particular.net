@@ -18,17 +18,6 @@
   NugetOrder:
     - Aggregates.NET
 
-- Key: Anotar
-  Name: Anotar Logger
-  DocoUrl: https://github.com/Fody/Anotar
-  Category: Logger
-  GitHubOwner: Fody
-  SupportLevel: Community
-  LicenseUrl: https://github.com/Fody/Home/blob/master/pages/licensing-patron-faq.md
-  ProjectUrl: https://github.com/Fody/Anotar
-  NugetOrder:
-    - Anotar.NServiceBus.Fody
-
 - Key: ABSDataBus
   Name: Azure Blob Storage Databus
   DocoUrl: nservicebus/azure
