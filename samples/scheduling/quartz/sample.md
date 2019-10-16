@@ -69,7 +69,7 @@ For cleanup purpose either a static variable may need to be kept or the shutdown
 
 ### Logging
 
-Quartz.NET uses [LibLog](https://github.com/damianh/LibLog). Since LibLog support the detection and utilization of [Serilog](https://serilog.net/), this sample use the [NServiceBus Serilog integration](/nservicebus/logging/serilog.md)
+Quartz.NET uses [LibLog](https://github.com/damianh/LibLog). Since LibLog support the detection and utilization of [Serilog](https://serilog.net/), this sample use the NServiceBus Serilog integration.
 
 snippet: serilog
 
