@@ -89,5 +89,4 @@ RouterConnector: NServiceBus.Router.Connector
 Wormhole: NServiceBus.Wormhole
 WormholeGateway: NServiceBus.Wormhole.Gateway
 UniformSession: NServiceBus.UniformSession
-DataAnnotations: NServiceBus.DataAnnotations
 PlatformSample: Particular.PlatformSample

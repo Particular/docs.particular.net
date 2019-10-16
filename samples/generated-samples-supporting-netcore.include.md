@@ -6,7 +6,6 @@
 * [Consumer Driven Contracts](/samples/consumer-driven-contracts/?version=core_7)
 * [Custom Exception Handling](/samples/message-error-handling/?version=core_7)
 * [Customization with MEF or Reflection](/samples/plugin-based-config/?version=core_7)
-* [DataAnnotations Message Validation](/samples/data-annotations-validation/?version=dataannotations_3)
 * [Delayed Delivery](/samples/delayed-delivery/?version=core_7)
 * [Endpoint configuration choices](/samples/endpoint-configuration/?version=core_7)
 * [Fault Tolerance](/samples/faulttolerance/?version=core_7)
