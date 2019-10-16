@@ -31,20 +31,6 @@ Sends messages using the external [Json.NET serializer](/nservicebus/serializati
 snippet: configExternalNewtonsoftBson
 
 
-### JilEndpoint
-
-Sends messages using the [Jil serializer](/samples/serializers/jil/).
-
-snippet: configJil
-
-
-### WireEndpoint
-
-Sends messages using the [Wire serializer](/samples/serializers/wire/).
-
-snippet: configWire
-
-
 ### XmlEndpoint
 
 Sends messages using the [XML serializer](/nservicebus/serialization/xml.md).

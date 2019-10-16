@@ -2,9 +2,7 @@
 using System.Threading.Tasks;
 using Newtonsoft.Json.Bson;
 using NServiceBus;
-using NServiceBus.Jil;
 using NServiceBus.MessageMutator;
-using NServiceBus.Wire;
 
 static class Program
 {
@@ -28,13 +26,6 @@ static class Program
         externalNewtonsoftBson.ReaderCreator(stream => new BsonDataReader(stream));
         externalNewtonsoftBson.WriterCreator(stream => new BsonDataWriter(stream));
         externalNewtonsoftBson.ContentTypeKey("NewtonsoftBson");
-
-        // Jil
-        var jil = endpointConfiguration.AddDeserializer<JilSerializer>();
-        jil.ContentTypeKey("Jil");
-
-        // Wire
-        endpointConfiguration.AddDeserializer<WireSerializer>();
 
         // register the mutator so the the message on the wire is written
         endpointConfiguration.RegisterMessageMutator(new IncomingMessageBodyWriter());

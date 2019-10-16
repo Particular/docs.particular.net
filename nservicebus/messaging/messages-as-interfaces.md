@@ -15,19 +15,6 @@ In the next version of the system, a new state Z is added, which represents the 
 
 When the system publishes the `EnteredStateZ` event, the clients that are subscribed to either `EnteredStateX` or `EnteredStateY` are notified.
 
-{{WARNING:
-
-The following serializers **do not support** messages defined as interfaces: 
-
- * [Bond](/nservicebus/serialization/bond.md)
- * [MessagePack](/nservicebus/serialization/messagepack.md)
- * [MsgPack](/nservicebus/serialization/msgpack.md)
- * [Protobuf-Net](/nservicebus/serialization/protobufnet.md)
- * [Protobuf-Google](/nservicebus/serialization/protobufgoogle.md)
- * [Wire](/nservicebus/serialization/wire.md)
- * [ZeroFormatter](/nservicebus/serialization/zeroformatter.md)
-}}
-
 Without the ability to inherit a message from other message types, composition techniques would be required, thereby preventing the infrastructure from automatically routing messages to pre-existing subscribers of the composed messages.
 
 ## Sending interface messages
