@@ -7,15 +7,12 @@ tags:
  - Pipeline
  - Audit
 related:
- - samples/audit-filter
  - nservicebus/pipeline
  - nservicebus/operations/auditing
 ---
 
 
 This sample shows how to extend the NServiceBus message-processing pipeline with custom behaviors to add filters which prevent certain message types from being forwarded to the audit queue.
-
-NOTE: While this sample shows the dynamics of manipulating the audit pipeline, the [Audit Filter](/nservicebus/audit-filter) feature also delivers this functionality in a re-usable and packaged manner.
 
 
 ## Code walk-through
