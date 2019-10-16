@@ -6,7 +6,6 @@ component: NewtonSoft
 related:
  - nservicebus/serialization
  - samples/serializers/newtonsoft
- - samples/encryption/newtonsoft-json-encryption
 ---
 
 This sample uses the Newtonsoft serializer [NServiceBus.Newtonsoft.Json](https://github.com/Particular/NServiceBus.Newtonsoft.Json) and configures it to use [BSON](http://bsonspec.org/).
