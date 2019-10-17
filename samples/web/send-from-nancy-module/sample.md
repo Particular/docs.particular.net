@@ -2,7 +2,7 @@
 title: Sending from a Nancy module
 summary: Illustrates how to send messages to a NServiceBus endpoint from a Nancy web application.
 component: Core
-reviewed: 2018-01-04
+reviewed: 2019-10-17
 related:
 - nservicebus/dependency-injection
 - nservicebus/hosting

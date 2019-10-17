@@ -1,6 +1,6 @@
 ## Delayed Delivery 
 
-**Default**: `enabled`.
+**Default**: `enabled`
  
 SQS supports delaying message delivery by up to 15 minutes natively. This feature is enabled by default and cannot be disabled.
 

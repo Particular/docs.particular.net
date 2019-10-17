@@ -2,7 +2,7 @@
 
 **Optional**
 
-**Default**: `() => new AmazonS3Client()`.
+**Default**: `() => new AmazonS3Client()`
 
 This overloads the default S3 client factory with a custom factory creation delegate.
 
