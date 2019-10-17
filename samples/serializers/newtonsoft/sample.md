@@ -6,7 +6,6 @@ component: Newtonsoft
 related:
  - nservicebus/serialization
  - samples/serializers/newtonsoft-bson
- - samples/encryption/newtonsoft-json-encryption
 redirects:
  - samples/serializers/json-external
 ---

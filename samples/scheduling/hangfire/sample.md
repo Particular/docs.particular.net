@@ -76,7 +76,7 @@ The Hangfire scheduler implements the `IDisposable` interface. For cleanup purpo
 
 ### Logging
 
-Hangfire uses [LibLog](https://github.com/damianh/LibLog). Since LibLog supports the detection and utilization of [Serilog](https://serilog.net/), this sample uses the [NServiceBus Serilog integration](/nservicebus/logging/serilog.md)
+Hangfire uses [LibLog](https://github.com/damianh/LibLog). Since LibLog supports the detection and utilization of [Serilog](https://serilog.net/), this sample uses the NServiceBus Serilog integration.
 
 snippet: serilog
 

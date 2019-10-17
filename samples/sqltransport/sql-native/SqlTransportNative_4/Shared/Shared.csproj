@@ -1,6 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-    <LangVersion>7.1</LangVersion>
-  </PropertyGroup>
-</Project>
