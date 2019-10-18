@@ -1,1 +1,3 @@
-This is done by keeping a reference to the `IDisposable` object returned from calling the `Subscribe` method on the [IObservable](https://msdn.microsoft.com/en-us/library/dd782981.aspx) and calling its `Dispose` method.
+## Unsubscribing
+
+Since notifications are global for the current endpoint, it is also important to ensure that subscriptions that are no longer required are removed so as to not unnecessarily impact performance. This is done by keeping a reference to the `IDisposable` object returned from calling the `Subscribe` method on the [IObservable](https://msdn.microsoft.com/en-us/library/dd782981.aspx) and calling its `Dispose` method.
