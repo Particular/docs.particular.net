@@ -1,13 +1,13 @@
 ---
 title: Security Advisory 2018-01-19
 summary: Azure Storage Queues vulnerability
-reviewed: 2018-01-19
+reviewed: 2019-10-18
 tags:
  - Transport
  - Security
 ---
 
-This advisory discloses a security vulnerability that has been found in Azure Storage Queues version 7 and fixed in recently released hotfixes 7.5.3 and 7.4.3.
+This advisory discloses a security vulnerability that has been found in Azure Storage Queues version 7 and fixed in the released hotfixes 7.5.3 and 7.4.3.
 
  * All endpoints should be upgraded to the latest version of the Azure Storage Queues package to fix this vulnerability if:
    * using the [Azure Storage Queues](/transports/azure-storage-queues) transport version 7
@@ -19,7 +19,7 @@ This advisory affects all versions of the Azure Storage Queues version 7.
 
 ## Vulnerability: default connection string is sent over the wire
 
-A vulnerability has been fixed to remove the raw value of the default connection string from an Azure Storage Queues message when it should not be included (i.e. when the `UseAccountAliasesInsteadOfConnectionStrings()` API is used).
+A vulnerability has been fixed to remove the raw value of the default connection string from an Azure Storage Queues message when it should not be included (i.e., when the `UseAccountAliasesInsteadOfConnectionStrings()` API is used).
 
 
 ## Impact
