@@ -1,4 +1,5 @@
 ﻿// ReSharper disable UnusedParameter.Local
+
 namespace Core7.Notifications
 {
     using System.Text;
@@ -10,6 +11,7 @@ namespace Core7.Notifications
     {
         static ILog log = LogManager.GetLogger<SubscribeToNotifications>();
 
+        #pragma warning disable 618
         #region SubscribeToErrorsNotifications
 
         void EndpointStartup()
@@ -21,7 +23,9 @@ namespace Core7.Notifications
         void Subscribe(Notifications notifications)
         {
             var errors = notifications.Errors;
+
             errors.MessageHasBeenSentToDelayedRetries += LogEvent;
+
             errors.MessageHasFailedAnImmediateRetryAttempt += LogEvent;
             errors.MessageSentToErrorQueue += LogEvent;
         }
@@ -55,6 +59,7 @@ namespace Core7.Notifications
         }
 
         #endregion
+        #pragma warning restore 618
     }
 
 }

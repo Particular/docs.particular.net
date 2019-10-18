@@ -10,10 +10,12 @@
     {
         EventsToObservables(Notifications notifications, ILog log)
         {
+            #pragma warning disable 618
             #region ConvertEventToObservable
 
             var errorsNotifications = notifications.Errors;
             var failedMessages = Observable.FromEventPattern<EventHandler<FailedMessage>, FailedMessage>(
+
                 handler => errorsNotifications.MessageSentToErrorQueue += handler,
                 handler => errorsNotifications.MessageSentToErrorQueue -= handler);
 
@@ -25,6 +27,7 @@
                 });
 
             #endregion
+            #pragma warning restore 618
         }
     }
 }

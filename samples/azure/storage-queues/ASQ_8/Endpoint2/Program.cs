@@ -16,9 +16,9 @@ class Program
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("UseDevelopmentStorage=true");
         transport.SanitizeQueueNamesWith(BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener);
+        transport.DisablePublishing();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.DisableFeature<TimeoutManager>();
-        endpointConfiguration.DisableFeature<MessageDrivenSubscriptions>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

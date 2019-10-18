@@ -24,9 +24,9 @@ class Program
 
         #endregion
 
+        transport.DisablePublishing();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.DisableFeature<TimeoutManager>();
-        endpointConfiguration.DisableFeature<MessageDrivenSubscriptions>();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

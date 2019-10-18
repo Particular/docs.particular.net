@@ -1,4 +1,5 @@
-﻿namespace Core7.Headers.Writers
+﻿#pragma warning disable 618
+namespace Core7.Headers.Writers
 {
     using System;
     using System.Threading;
@@ -100,3 +101,4 @@
         }
     }
 }
+#pragma warning restore 618
