@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Troubleshooting
 summary: Resolutions for common problems with the MSMQ transport.
-reviewed: 2018-01-15
+reviewed: 2019-10-18
 component: MsmqTransport
 isLearningPath: true
 tags:
@@ -19,20 +19,20 @@ This article details common problems encountered with the MSMQ Transport and how
 
 ## Worker QMId needs to be unique
 
-Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager ID (QMId). The QMId is stored as a key in the registry, `HKEY_LOCAL_MACHINE\Software\Microsoft\MSMQ\Parameters\Machine Cache`. MSMQ uses the QMId to know where it should send acknowledgements and replies for incoming messages.
+Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager ID (QMId). The QMId is stored as a key in the registry, `HKEY_LOCAL_MACHINE\Software\Microsoft\MSMQ\Parameters\Machine Cache`. MSMQ uses the QMId to know where it should send acknowledgments and replies for incoming messages.
 
-It is very important that all the machines have their own unique QMId. If two or more machines share the same QMId, only one of those machines is able to successfully send and receive messages with MSMQ. Exactly which machine works changes in a seemingly random fashion.
+All the machines must have their own unique QMId. If two or more machines share the same QMId, only one of those machines can successfully send and receive messages with MSMQ. Which machine works changes in a seemingly random fashion.
 
-The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049.aspx) tool.
+The primary reason for machines ending up with duplicate QMIds is the cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049.aspx) tool.
 
-If there are two or more machines with the same QMId reinstall the MSMQ feature to generate a new QMId.
+If there are two or more machines with the same QMId, reinstall the MSMQ feature to generate a new QMId.
 
 See [this blog post](https://blogs.msdn.microsoft.com/johnbreakwell/2007/02/06/msmq-prefers-to-be-unique/) for more details.
 
 
 ## Messages stuck or not arriving
 
-MSMQ uses store-and-forward to communicate with remote machines. Messages are stored locally and the MSMQ service repeatedly attempts to deliver them to the destination queue on the remote machine.
+MSMQ uses store-and-forward to communicate with remote machines. Messages are stored locally, and the MSMQ service repeatedly attempts to deliver them to the destination queue on the remote machine.
 
 Approaches for diagnosing messages stuck in the outgoing queue:
 
@@ -43,7 +43,7 @@ Approaches for diagnosing messages stuck in the outgoing queue:
 
 ## MessageQueueException: Insufficient resources to perform operation
 
-This exception may occur when trying to send messages to a machine that has been offline for a while, or the system is suffering from a larger than expected load spike, or when message queuing quota has exceeded its limit:
+This exception may occur when trying to send messages to a machine that has been offline for a while, or the System is suffering from a larger than expected load spike, or when message queuing quota has exceeded its limit:
 
 ```
 System.Messaging.MessageQueueException (0x80004005): Insufficient resources to perform operation.
@@ -52,7 +52,7 @@ at System.Messaging.MessageQueue.SendInternal(Object obj, MessageQueueTransactio
 
 The cause of this exception is that the MSMQ has run out of space for holding on to messages. This could be due to messages sent that could not be delivered, or messages received that have not been processed.
 
-Also check the outgoing queues to see if messages sent to remote servers are received and processed. NServiceBus has dead letter queues enabled by default which results in messages remaining in the outgoing queue of the sender until they are not only delivered but also processed at the receiver. For more information, read [MSMQ dead-letter queues](dead-letter-queues.md).
+Also, check the outgoing queues to see if messages sent to remote servers are received and processed. NServiceBus has dead letter queues enabled by default. Enabled dead letter queues results in messages remaining in the outgoing queue of the sender until they are not only delivered but also processed at the receiver. For more information, read [MSMQ dead-letter queues](dead-letter-queues.md).
 
 
 ### Resolution
@@ -94,14 +94,14 @@ While non-transactional messaging in a Network Load Balancing (NLB) environment 
 
 ## Number of messages in Outgoing queues has a high value
 
-Outgoing queues shows 3 values:
+Outgoing queues show three values:
 
 - Number of messages
 - Unacknowledged (msgs)
 - Unprocessed (msgs)
 
 By default *Number of messages* shows the count of messages that have not yet been delivered or processed. It does not indicate the number of messages that still need to be sent. Calculate the number of unsent messages by subtracting *Unprocessed (msgs)* from *Number of messages*.
-This means that if an endpoint at the receipient is stopped or slow, the messages remaining to be processed are included in this count.
+This means that if an endpoint at the recipient is stopped or slow, the messages remaining to be processed are included in this count.
 
 When MSMQ dead-lettering is disabled *Number of messages* will only indicate the number of messages remaining to be delivered. *Unprocessed (msgs)* will always show the value 0 when dead lettering is disabled.
 
