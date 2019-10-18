@@ -29,10 +29,6 @@ The `Notifications` instance can also be injected via [dependency injection](/ns
 partial: reactive
 
 
-## Unsubscribing
-
-Since notifications are global for the current endpoint, it is also important to ensure that subscriptions that are no longer required are removed so as to not unnecessarily impact performance.
-
 partial: unsubscribing
 
 
