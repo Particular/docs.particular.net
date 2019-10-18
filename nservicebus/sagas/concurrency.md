@@ -55,7 +55,7 @@ Under high load, simultaneous attempts to create, update, or delete the state of
 
 In these scenarios, the symptoms of high data contention differ depending on the persister being used. Potential symptoms include:
 
-- Large amounts of retries due to optimistic concurrency control conflicts.
+- High number of retries due to optimistic concurrency control conflicts.
 - Exhaustion of retries, leading to messages being moved to the error queue.
 - Transaction timeouts due to a large number of simultaneous attempts to acquire a lock on the same data.
 - High [processing time](/monitoring/metrics/definitions.md#metrics-captured-processing-time) or [critical time](/monitoring/metrics/definitions.md#metrics-captured-critical-time), compared with the time taken to execute a method handler.
@@ -71,12 +71,12 @@ As described above, some [persisters](/persistence/) use pessimistic locking and
 
 When a persister uses pessimistic locking it will start a transaction which attempts to obtain an update lock on the saga instance data before the message handler is invoked. When handling messages simultaneously related to a given saga instance, one transaction will obtain the lock, and the others will wait until either the current lock is released or the transaction timeout period is reached. Messages in the queue that are not related to that saga instance may be delayed if the concurrency limit of the endpoints has been reached and all transactions are waiting to obtain a lock.
 
-NOTE: The transaction timeout is usually set between 1 and 10 minutes. Consult the DBA or operations for system or environment wide transactions settings.
+NOTE: The transaction timeout is usually set between 1 and 10 minutes. Consult the DBA or operations for system- or environment-wide transactions settings.
 
 The following saga persisters use pessimistic locking:
 
 - [NHibernate](/persistence/nhibernate/)
-- [SQL](/persistence/sql/) (since Version 4.1.1)
+- [SQL](/persistence/sql/) (since version 4.1.1)
 
 #### Optimistic concurrency control
 
@@ -101,7 +101,7 @@ NOTE: The saga concurrency documentation for each persister contains details of 
 
 ### Host the saga in a dedicated endpoint
 
-To avoid impacting the processing of messages which are not related to the saga, it may be better to host the saga in a dedicated endpoint.
+To avoid impacting the processing of messages which are not related to the saga, one strategy is to host the saga in a dedicated endpoint.
 
 ### Decrease the endpoint concurrency limit
 
@@ -109,9 +109,9 @@ The number of OCC conflicts can be reduced by [decreasing the concurrency limit]
 
 NOTE: Sequential messaging handling when using OCC is only possible for a single endpoint instance. When an endpoint is [scaled out](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes), message handling cannot be made sequential when all instances are running. An alternative is to have only one instance running at a time, in an active/passive configuration.
 
-The concurrency limit applies to an entire endpoint. If the endpoint hosts many handlers and sagas, they will all be subject to the concurrency limit. When decreasing the concurrency limit to reduce data contention for a given saga, it may be better to host that saga in a dedicated endpoint.
+The concurrency limit applies to an entire endpoint. If the endpoint hosts many handlers and sagas, they will all be subject to the concurrency limit. When decreasing the concurrency limit to reduce data contention for a given saga, consider hosting the saga in a dedicated endpoint.
 
-### Avoid IO or CPU bound operations in a saga handler
+### Avoid I/O or CPU bound operations in a saga handler
 
 The longer it takes for a saga handler to execute, the more likely it is to suffer from data contention. When using pessimistic locking, the handler will cause the lock to be held for longer. When using OCC, conflicts are more likely. Ensure saga handlers *only* read and write saga state and send messages. Avoid accessing databases and other resources, and long running CPU bound work. These operations should be performed in [separate message handlers](/nservicebus/sagas/#accessing-databases-and-other-resources-from-a-saga) which are not part of the saga.
 
@@ -121,9 +121,9 @@ Some transports support distributed transactions. If the persister also supports
 
 ### Partition message processing
 
-The default message processing model is a single queue with one of more [competing consumers](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html) that concurrently process messages. Alternatively, a queue may be partitioned into several queues. Messages are routed to partitions using a partitioning strategy which ideally gives an even distribution of messages across the partitions. For each partitioned queue, messages are consumed by a single endpoint instance configured with maximum concurrency of one. For example, one queue with a single endpoint instance with a concurrency limit of eight could be replaced with eight queues and eight endpoint instances, each with a concurrency limit of one. By partitioning the processing of messages appropriately, the messages relating to a single saga instance will be processed sequentially, eliminating data contention due to concurrency conflicts. This occurs in parallel with messages relating to other saga instances, which are processed by other endpoint instances.
+The default message processing model is a single queue with one or more [competing consumers](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html) that concurrently process messages. Alternatively, a queue may be partitioned into several queues. Messages are routed to partitions using a partitioning strategy which ideally gives an even distribution of messages across the partitions. For each partitioned queue, messages are consumed by a single endpoint instance configured with a maximum concurrency of one. For example, one queue with a single endpoint instance with a concurrency limit of eight could be replaced with eight queues and eight endpoint instances, each with a concurrency limit of one. By partitioning the processing of messages appropriately, the messages relating to a single saga instance will be processed sequentially, eliminating data contention due to concurrency conflicts. This occurs in parallel with messages relating to other saga instances, which are processed by other endpoint instances.
 
-Note, that it isn't necessary to [shard](https://en.wikipedia.org/wiki/Shard_(database_architecture)) or [partition](https://en.wikipedia.org/wiki/Partition_(database)) saga data, although those techniques could be applied to improve performance even further.
+Note that it isn't necessary to [shard](https://en.wikipedia.org/wiki/Shard_(database_architecture)) or [partition](https://en.wikipedia.org/wiki/Partition_(database)) saga data, although those techniques could be applied to improve performance even further.
 
 A partitioned endpoint instance must be configured to be uniquely addressable using `MakeInstanceUniquelyAddressable`. Messages must be sent to the appropriate endpoint instances using [routing extensibility](/nservicebus/messaging/routing-extensibility.md). This is demonstrated in the [Service Fabric Partition-Aware Routing sample](/samples/azure/azure-service-fabric-routing/).
 
@@ -135,25 +135,25 @@ Saga data storage, and endpoints hosting sagas, often have separate network loca
 
 #### Minimize saga data
 
-Saga state is retrieved from and submitted to storage for every message received. Saga state should only contain the minimum data required for the saga to make its decisions. Other data, especially large strings or [BLOB](https://en.wikipedia.org/wiki/Binary_large_object)'s should not be contained in saga data. For example, such data could be forwarded to another handler for storage or processing, and the saga state could store only a reference to it.
+Saga state is retrieved from and submitted to storage for every message received. Saga state should only contain the minimum data required for the saga to make its decisions. Other data, especially large strings or [BLOBs](https://en.wikipedia.org/wiki/Binary_large_object) should not be contained in saga data. Instead this data could be forwarded to another handler for storage or processing, and the saga state could store only a reference to it.
 
 #### Prevent race conditions when starting sagas
 
-When there are a high number of OCC conflicts starting sagas, and the persister supports pessimistic locking, it may be better to find a way a different way of starting the saga. For example, the system may be able to send a single message earlier that can start the saga. The processing of later, concurrent messages can then take advantage of pessimistic locking to avoid conflicts.
+When there are a high number of OCC conflicts starting sagas, and the persister supports pessimistic locking, consider finding a different way of starting the saga. For example, the system may be able to send a single message earlier that can start the saga. The processing of later, concurrent messages can then take advantage of pessimistic locking to avoid conflicts.
 
 #### Apply chunking by creating "sub-saga" instances
 
-Sagas that deal with [scatter-gather](https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html) typically initiate a large number of requests and aggregate the responses. Those responses could be received simultaneously and cause data contention. Instead of having a single saga sending many requests and aggregating many responses, a tree-like structure could be formed, with sub-sagas that subdivide the work.
+Sagas that use a [scatter-gather](https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html) pattern typically initiate a large number of requests and aggregate the responses. Those responses could be received simultaneously and cause data contention. Instead of having a single saga sending many requests and aggregating many responses, a tree-like structure could be formed, with sub-sagas that subdivide the work.
 
-For example, instead of a saga creating 1,000 requests, it could split the requests into two groups of 500 and send them to two sub-sagas. Each of those sub-sagas, could split the requests into two groups of 250 and send them to two further sub-sagas. This process could continue, until a given sub-saga receives only the details of two requests. That saga then sends the requests, aggregates the responses, and responds to its parent saga with the aggregated data. The end result is that the originating saga receives two responses, each containing the data from 500 requests. Because each saga only sends two requests and aggregates two responses, data contention should be largely eliminated.
+For example, instead of a saga creating 1,000 requests, it could split the requests into two groups of 500 and send them to two sub-sagas. Each of those sub-sagas could split the requests into two groups of 250 and send them to two further sub-sagas. This process could continue, until a given sub-saga receives only the details of two requests. That saga then sends the requests, aggregates the responses, and responds to its parent saga with the aggregated data. The end result is that the originating saga receives two responses, each containing the data from 500 requests. Because each saga only sends two requests and aggregates two responses, data contention will be largely eliminated.
 
-In the above example, the requests are split into two groups each time. Depending on the dynamics of the system, it may be better to split them up into more groups each time.
+In the above example, the requests are split into two groups each time. Depending on the dynamics of the system, splitting them into more groups is also an option.
 
-A simpler approach is to split the request just once, and have a single level of sub-sagas sending the requests and aggregating the responses. This will not reduce data contention to the same degree, since the originating saga will be aggregating more multiple responses.
+A simpler approach is to split the request just once and have a single level of sub-sagas sending the requests and aggregating the responses. This will not reduce data contention to the same degree, since the originating saga will be aggregating more multiple responses.
 
 #### Create an append-only saga data model
 
-This currently is only possible with the NHibernate persister and a custom mapping. It requires expert knowledge of NHibernate. Data added to a collection must be mapped to another entity so that the the master/parent row does need to be updated. This way there is no data contention on the table row representing the saga instance data root.
+Currently, this is only possible with the NHibernate persister and a custom mapping. It requires advanced knowledge of NHibernate. Data added to a collection must be mapped to another entity so that the the master/parent row does not need to be updated. This way there is no data contention on the table row representing the saga instance data root.
 
 #### Further reading
 
@@ -161,8 +161,6 @@ For more methods of redesigning sagas to reduce data contention, see _[Reducing 
 
 ### Use a custom saga implementation
 
-Sometimes, the methods of reducing data contention described above may not be enough. It may be necessary to write a custom saga implementation, where message processing is specifically optimized for the given saga model.
+Sometimes, the methods of reducing data contention described above may not be enough. It may be necessary to write a custom saga implementation, where message processing is specifically optimized for the given saga model. For example, append-only models can only be implemented with a custom NHibernate mapping. With a custom implementation, an append-only model could be implemented with other storage types.
 
-For example, append-only models can only be implemented with a custom NHibernate mapping. With a custom implementation, an append only model could be implemented with other storage types.
-
-A custom saga implementation could just be a class with multiple message handlers, which manage the storage of state in a way that is optimized for the specific use case.
+A custom saga implementation could simply be a class with multiple message handlers, each of which manages the storage of state in a way that is optimized for the specific use case.
