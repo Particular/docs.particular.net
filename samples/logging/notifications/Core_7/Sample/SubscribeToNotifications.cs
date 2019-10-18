@@ -1,4 +1,5 @@
 using System.Text;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Faults;
 using NServiceBus.Logging;
@@ -13,10 +14,10 @@ public static class SubscribeToNotifications
 
     public static void Subscribe(EndpointConfiguration endpointConfiguration)
     {
-        var errors = endpointConfiguration.Notifications.Errors;
-        errors.MessageHasBeenSentToDelayedRetries += (sender, retry) => Log(retry);
-        errors.MessageHasFailedAnImmediateRetryAttempt += (sender, retry) => Log(retry);
-        errors.MessageSentToErrorQueue += (sender, retry) => Log(retry);
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Immediate(settings => settings.OnMessageBeingRetried(Log));
+        recoverability.Delayed(settings => settings.OnMessageBeingRetried(Log));
+        recoverability.Failed(settings => settings.OnMessageSentToErrorQueue(Log));
     }
 
     static string GetMessageString(byte[] body)
@@ -24,27 +25,30 @@ public static class SubscribeToNotifications
         return Encoding.UTF8.GetString(body);
     }
 
-    static void Log(FailedMessage failed)
+    static Task Log(FailedMessage failed)
     {
         log.Fatal($@"Message sent to error queue.
         Body:
         {GetMessageString(failed.Body)}");
+        return Task.CompletedTask;
     }
 
-    static void Log(DelayedRetryMessage retry)
+    static Task Log(DelayedRetryMessage retry)
     {
         log.Fatal($@"Message sent to Delayed Retries.
         RetryAttempt:{retry.RetryAttempt}
         Body:
         {GetMessageString(retry.Body)}");
+        return Task.CompletedTask;
     }
 
-    static void Log(ImmediateRetryMessage retry)
+    static Task Log(ImmediateRetryMessage retry)
     {
-        log.Fatal($@"Message sent to Immedediate Retry.
+        log.Fatal($@"Message sent to Immediate Retry.
         RetryAttempt:{retry.RetryAttempt}
         Body:
         {GetMessageString(retry.Body)}");
+        return Task.CompletedTask;
     }
 }
 
