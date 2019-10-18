@@ -15,7 +15,7 @@ related:
  - nservicebus/messaging/header-manipulation
 ---
 
-The headers of a message are similar to HTTP headers and contain metadata about the message being sent over the queueing system. This document describes the headers used by NSeriviceBus. To learn more about how to use custom headers, see the documentation on [manipulating message headers](/nservicebus/messaging/header-manipulation.md).
+The headers of a message are similar to HTTP headers and contain metadata about the message being sent over the queueing system. This document describes the headers used by NServiceBus. To learn more about how to use custom headers, see the documentation on [manipulating message headers](/nservicebus/messaging/header-manipulation.md).
 
 
 ## Timestamp format

@@ -73,13 +73,13 @@ Available subscription persisters include
  * [MSMQ](/persistence/msmq)
  * [RavenDB](/persistence/ravendb)
  * [NHibernate](/persistence/nhibernate)
- * [InMemory](/persistence/in-memory.md)
+ * [In-Memory](/persistence/in-memory.md)
  * [Azure Storage](/persistence/azure-storage)
  * [SQL Server](/persistence/sql)
 
-The publish workflow for [unicast transports](/transports/types.md#unicast-only-transports) is as follows
+The publish workflow for [unicast transports](/transports/types.md#unicast-only-transports) is as follows:
 
- 1. Some code (e.g. a saga or a handler) request that a message be published.
+ 1. Some code (e.g. a saga or a handler) requests that a message be published.
  1. Publisher queries the storage for a list of subscribers.
  1. Publisher loops through the list and sends a copy of that message to each subscriber.
 
