@@ -9,6 +9,7 @@ redirects:
  - nservicebus/nhibernate
 related:
 - samples/nhibernate
+- samples/multi-tenant/nhibernate
 ---
 
 Uses the [NHibernate ORM](https://nhibernate.info/) for persistence.

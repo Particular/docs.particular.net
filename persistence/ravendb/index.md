@@ -6,6 +6,7 @@ tags:
  - Persistence
 related:
  - samples/ravendb
+ - samples/multi-tenant/ravendb
 reviewed: 2019-06-10
 redirects:
  - nservicebus/ravendb
