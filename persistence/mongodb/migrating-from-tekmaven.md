@@ -25,7 +25,7 @@ persistence.DatabaseName("my-database");
 
 WARNING: A database name passed in the connection string to the `MongoClient` is **only used for authentication**. Use `persistence.DatabaseName(<database>)` method to configure the database to be used.
 
-For mor details about the MongoDB persistence configuration options, see the [MongoDB Persistence documentation](/persistence/mongodb).
+For more details about the MongoDB persistence configuration options, see the [MongoDB Persistence documentation](/persistence/mongodb).
 
 ## Saga data class changes
 
