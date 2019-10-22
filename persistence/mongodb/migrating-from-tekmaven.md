@@ -13,6 +13,20 @@ The `NServiceBus.Storage.MongoDB` package was designed to be fully compatible wi
 
 include: migration-warning
 
+## Customizing the connection
+
+`NServiceBus.Storage.MongoDB` does not provide a configuration setting to pass a connection string directly. Instead, a `MongoClient` can be passed to the new configuration API.
+
+```diff
+-   persistence.SetConnectionString("mongodb://localhost/my-database");
+persistence.MongoClient(new MongoClient("mongodb://localhost"));
+persistence.DatabaseName("my-database");
+```
+
+WARNING: A database name passed in the connection string to the `MongoClient` is **only used for authentication**. Use `persistence.DatabaseName(<database>)` method to configure the database to be used.
+
+For more details about the MongoDB persistence configuration options, see the [MongoDB Persistence documentation](/persistence/mongodb).
+
 ## Saga data class changes
 
 [Saga data classes](/nservicebus/sagas/#long-running-means-stateful) no longer need to provide an `int` version property decorated with a `DocumentVersion`. The version property and attribute may be safely removed from saga data class implementations:
@@ -46,10 +60,6 @@ db.subscriptions.find().forEach(type => {
    });
 });
 ```
-
-### How Document Versioning Works
-
-include: document-version
 
 
 ## Compatibility mode
@@ -86,4 +96,9 @@ db.getCollectionNames().forEach(collectionName => {
 Replace `"Version"` with the name of the version property on the saga data which was previously decorated with the `[DocumentVersion]` attribute.
 
 WARNING: Be sure to create a backup of the database prior to migrating the saga data.
+
+
+### How Document Versioning Works
+
+include: document-version
 
