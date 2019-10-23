@@ -358,7 +358,7 @@ snippet: HeaderWriterAuditAudit
 
 Headers used to facilitate [retries](/nservicebus/recoverability/).
 
-Note: These headers will only exist after the initial retry has occurred.
+Note: These headers only exist after the first round of immediate reties has finished and are removed before sending a message to the error queue after all allowed retry attempts are exhausted.
 
 
 ### NServiceBus.FailedQ
