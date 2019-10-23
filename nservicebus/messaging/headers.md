@@ -361,11 +361,6 @@ Headers used to facilitate [retries](/nservicebus/recoverability/).
 Note: These headers only exist after the first round of immediate reties has finished and are removed before sending a message to the error queue after all allowed retry attempts are exhausted.
 
 
-### NServiceBus.FailedQ
-
-The queue at which the message processing failed.
-
-
 ### NServiceBus.Retries
 
 The number of [delayed retries](/nservicebus/recoverability/#delayed-retries) that have been performed for a message.
@@ -378,7 +373,12 @@ A timestamp used by [delayed retries](/nservicebus/recoverability/#delayed-retri
 
 ## Error forwarding headers
 
-When a message is handled by [recoverability](/nservicebus/recoverability/), it will have the following extra headers added to the existing headers. If retries occurred, then those messages will be included except for `NServiceBus.Retries`, which is removed.
+When a message exhausts the configured number of retry attempts and is moved to the error queue by the [recoverability](/nservicebus/recoverability/) component, it will have the following extra headers added to the existing headers.
+
+
+### NServiceBus.FailedQ
+
+The queue at which the message processing failed.
 
 
 ### NServiceBus.ExceptionInfo.ExceptionType
