@@ -3,7 +3,6 @@ title: Error notifications
 summary: Subscribing to error notifications
 reviewed: 2018-12-11
 component: Core
-versions: '[5.0,)'
 redirects:
  - nservicebus/subscribing-to-push-based-error-notifications
  - nservicebus/errors/subscribing-to-push-based-error-notifications
@@ -24,10 +23,7 @@ snippet: SubscribeToErrorsNotifications
 
 include: notificationThread
 
-The `Notifications` instance can also be injected via [dependency injection](/nservicebus/dependency-injection/).
-
 partial: reactive
-
 
 partial: unsubscribing
 
