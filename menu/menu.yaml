@@ -999,6 +999,8 @@
   - Url: persistence/mongodb
     Title: MongoDB
     Articles:
+    - Url: persistence/mongodb/document-version
+      Title: How document versioning works
     - Url: persistence/mongodb/migrating-from-sbmako
       Title: Migrating from NServicebus.MongoDB
     - Url: persistence/mongodb/migrating-from-tekmaven

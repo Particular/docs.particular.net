@@ -97,8 +97,3 @@ db.subscriptions.find().forEach(type => {
    });
 });
 ```
-
-
-### How Document Versioning Works
-
-include: document-version
