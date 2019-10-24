@@ -3,10 +3,14 @@ title: Deploying ServiceControl to a Cluster
 summary: A guide to deploying ServiceControl on a Windows cluster
 related:
 - servicecontrol/troubleshooting
-reviewed: 2018-06-20
+reviewed: 2019-10-24
 ---
 
-The following procedure is a high level guide on how to deploy ServiceControl onto a Microsoft fault-tolerant Windows cluster. This guide assumes that MSMQ is the underlying transport.
+NOTE: Clustering might not be required as cloud hosting and enterprise virtualization layers provide high availability and data redundancy features.
+
+The following procedure is a high level guide on how to deploy ServiceControl onto a fault-tolerant cluster using Windows Failover Clustering.
+
+NOTE: This guide assumes that MSMQ is the underlying transport.
 
 
 ## Basic setup
@@ -14,7 +18,7 @@ The following procedure is a high level guide on how to deploy ServiceControl on
 * Set up a failover (active/passive) Windows cluster:
   * [Windows Server 2008](https://blogs.msdn.microsoft.com/clustering/2008/01/18/creating-a-cluster-in-windows-server-2008/)
   * [Windows Server 2012 R2, Windows Server 2012, Windows Server 2016](https://docs.microsoft.com/en-us/windows-server/failover-clustering/create-failover-cluster)
-* Install ServiceControl on each node adding it as a "generic service" using the cluster manager. This means that ServiceControl will fail over automatically with the cluster.
+* Install ServiceControl on each node, adding it as a "generic service" using the cluster manager. This means that ServiceControl will failover automatically with the cluster.
 * Set up an MSMQ cluster group. A cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer.
 * Add the ServiceControl generic clustered service to the MSMQ cluster group:
   * Ensure it depends on MSMQ and the MSMQ network name
@@ -27,7 +31,7 @@ More information is available on [Message Queuing in Server Clusters](https://te
 
 ## Database high availability
 
-The RavenDB database must be located in *shared storage* that highly available and fault tolerant. Shared storage does not mean a  network share but shared cluster storage that allows low latency exclusive access. Access to the data should always be 'local' althought physically, that data could be stored on a SAN. When this disk is mounted, RavenDB must be configured to use that location. See [Customize RavenDB Embedded Location](configure-ravendb-location.md) for more information on how to change the ServiceControl database location.
+The RavenDB database must be located in *shared storage* that is highly available and fault tolerant. Shared storage does not mean a  network share but shared cluster storage that allows low latency and exclusive access. Access to the data should always be 'local' althought physically, that data could be stored on a SAN. When this disk is mounted, RavenDB must be configured to use that location. See [Customize RavenDB Embedded Location](configure-ravendb-location.md) for more information on how to change the ServiceControl database location.
 
 
 ## ServiceControl detailed configuration
