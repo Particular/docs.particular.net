@@ -2,7 +2,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 7.1.x     | 2018-08-30     | -                 | -                                 |
+| 7.2.x     | 2019-10-23     | -                 | -                                 |
+| 7.1.x     | 2018-08-30     | 2020-04-23        | Superseded by 7.2.x               |
 | ~~7.0.x~~ | ~~2018-05-29~~ | ~~2019-02-28~~    | ~~Superseded by 7.1.x~~           |
 | 6.5.x     | 2018-08-30     | 2020-05-29        | Superseded by 7.0.x               |
 | ~~6.4.x~~ | ~~2017-08-18~~ | ~~2019-02-28~~    | ~~Superseded by 6.5.x~~           |
@@ -54,7 +55,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | 9.1.x     | 2018-12-12     | -                 | -                                 |
 | ~~9.0.x~~ | ~~2018-09-27~~ | ~~2019-03-12~~    | ~~Superseded by 9.1.x~~           |
-| 8.0.x     | 2018-05-29     | 2019-09-27        | Superseded by 9.0.x               |
+| ~~8.0.x~~ | ~~2018-05-29~~ | ~~2019-09-27~~    | ~~Superseded by 9.0.x~~           |
 | 7.2.x     | 2017-03-21     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | ~~7.1.x~~ | ~~2016-12-05~~ | ~~2017-06-21~~    | ~~Superseded by 7.2.x~~           |
 | ~~7.0.x~~ | ~~2016-10-11~~ | ~~2017-03-05~~    | ~~Superseded by 7.1.x~~           |
@@ -248,7 +249,9 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 #### [NServiceBus.Storage.MongoDB](/nuget/NServiceBus.Storage.MongoDB)
 
-No versions released.
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 2.0.x     | 2019-10-09     | -                 | -                                 |
 
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
 
@@ -710,12 +713,13 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.6.x     | 2019-09-06     | -                 | -                                 |
+| 1.7.x     | 2019-10-22     | -                 | -                                 |
+| 1.6.x     | 2019-09-06     | 2020-01-22        | Superseded by 1.7.x               |
 | 1.5.x     | 2019-08-23     | 2019-12-06        | Superseded by 1.6.x               |
 | 1.4.x     | 2019-08-08     | 2019-11-23        | Superseded by 1.5.x               |
 | 1.3.x     | 2019-06-17     | 2019-11-08        | Superseded by 1.4.x               |
-| 1.2.x     | 2019-06-14     | 2019-09-17        | Superseded by 1.3.x               |
-| 1.1.x     | 2019-03-18     | 2019-09-14        | Superseded by 1.2.x               |
+| ~~1.2.x~~ | ~~2019-06-14~~ | ~~2019-09-17~~    | ~~Superseded by 1.3.x~~           |
+| ~~1.1.x~~ | ~~2019-03-18~~ | ~~2019-09-14~~    | ~~Superseded by 1.2.x~~           |
 | ~~1.0.x~~ | ~~2018-12-12~~ | ~~2019-06-18~~    | ~~Superseded by 1.1.x~~           |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
