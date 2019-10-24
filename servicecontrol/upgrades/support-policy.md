@@ -12,5 +12,3 @@ related:
 
 - Major versions are supported for a period of one year after the release of the next major version.
 - Only the latest minor version of a previous major version is supported.
-
-include: supported-versions-servicecontrol
