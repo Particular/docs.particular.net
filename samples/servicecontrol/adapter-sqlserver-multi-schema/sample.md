@@ -2,7 +2,7 @@
 title: Monitor multi-schema SQL endpoints with the ServiceControl adapter
 summary: Centralize monitoring of multi-schema SQL Server endpoints with the ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2018-01-25
+reviewed: 2019-10-24
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
