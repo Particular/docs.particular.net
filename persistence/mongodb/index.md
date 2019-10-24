@@ -31,7 +31,7 @@ snippet: MongoDBUsage
 
 ### Customizing the connection
 
-By default, a `MongoClient` is created that connects to `mongodb://localhost:27017` and uses the endpoint name as its database name. This default connection is used for all the persisters.
+By default, a `MongoClient` is created that connects to `mongodb://localhost:27017` and uses the endpoint name as its database name.
 
 Customize the server, port, and authentication database using the following configuration API:
 
