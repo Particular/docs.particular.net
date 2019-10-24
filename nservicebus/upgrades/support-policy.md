@@ -37,6 +37,14 @@ include: supported-versions-nservicebus
 
 For other NServiceBus packages, refer to [the list of supported versions of all packages](supported-versions.md).
 
+### ServiceControl
+
+- Major versions are supported for a period of one year after the release of the next major version.
+- Only the latest minor version of a previous major version is supported.
+
+### ServiceInsight and ServicePulse
+
+- Only the latest Major version is supported.
 
 ## Extended support
 
@@ -74,10 +82,6 @@ Therefore the recommended approach is to upgrade *one* major version at a time, 
 
 
 ## FAQ
-
-**Does this policy apply to the [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/), or [ServicePulse](/servicepulse/) applications?**
-
-No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Packages Supported Versions](supported-versions.md) page.
 
 **Which version of NServiceBus should be used to start a new project?**
 
