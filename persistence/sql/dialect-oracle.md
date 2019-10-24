@@ -2,15 +2,14 @@
 title: Oracle dialect
 component: SqlPersistence
 related:
-reviewed: 2018-01-02
+reviewed: 2019-10-24
 versions: "[2,)"
 redirects:
  - nservicebus/sql-persistence/oracle-caveats
  - nservicebus/sql-persistence/oracle-design
 ---
 
-{{WARNING: This persistence will run on the free version of the above engines, i.e. [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Oracle Support](https://www.oracle.com/support/index.html) for details.
-}}
+WARNING: SQL Persistence will run on [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Oracle Support](https://www.oracle.com/support/index.html) for details.
 
 
 ## Supported database versions
@@ -44,7 +43,7 @@ Refer to the dedicated [Oracle documentation](https://docs.oracle.com/cd/B19306_
 
 ## Schema support
 
-The notion of schemas is slightly different than in other databases, notable SQL Server and PostgreSQL. By default, when schema is not specified, SQL persistence uses logged-in user context when referring to database objects. When schema is specified, that schema is used instead of logged-in user when referring to database tables. 
+The notion of schemas is slightly different than in other databases, notably SQL Server and PostgreSQL. By default, when schema is not specified, SQL persistence uses logged-in user context when referring to database objects. When schema is specified, that schema is used instead of logged-in user when referring to database tables. 
 
 snippet: OracleSchema
 
