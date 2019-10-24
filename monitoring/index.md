@@ -1,6 +1,6 @@
 ---
 title: Monitoring
-reviewed: 2018-01-26
+reviewed: 2019-10-24
 isLearningPath: true
 ---
 
