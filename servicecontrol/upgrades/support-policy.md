@@ -6,9 +6,12 @@ related:
  - nservicebus/upgrades/release-policy
  - nservicebus/upgrades/supported-versions
  - nservicebus/upgrades/supported-platforms
+ - servicecontrol/upgrades/supported-versions
  - serviceinsight/upgrades/support-policy
  - servicepulse/upgrades/support-policy
 ---
 
 - Major versions are supported for a period of one year after the release of the next major version.
 - Only the latest minor version of a previous major version is supported.
+
+For a list of supported ServiceControl versions, refer to [supported versions](supported-versions.md).
