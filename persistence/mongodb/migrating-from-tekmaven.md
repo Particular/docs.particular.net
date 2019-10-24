@@ -19,7 +19,7 @@ include: migration-warning
 
 ```diff
 -   persistence.SetConnectionString("mongodb://localhost/my-database");
-persistence.MongoClient(new MongoClient("mongodb://localhost"));
+persistence.MongoClient(new MongoDB.Driver.MongoClient("mongodb://localhost"));
 persistence.DatabaseName("my-database");
 ```
 
@@ -44,29 +44,7 @@ class MySagaData : IContainSagaData
 
 ```
 
-## Subscriptions
-
-In the tekmavan implementation there was a single document per event type containing a collection of subscribers. In NServiceBus.Storage.MongoDB, subscriptions are individual documents. Each subscription needs to be converted into an `eventsubscription` document.
-
-```javascript
-db.subscriptions.find().forEach(type => {
-   type.Subscribers.forEach(subscription => {
-       var parts = subscription.split('@');
-       db.eventsubscription.insert({
-           MessageTypeName: type._id.TypeName,
-           TransportAddress: parts[0],
-           Endpoint: parts[1]
-       });
-   });
-});
-```
-
-
-## Compatibility mode
-
-Compatibility mode allows the MongoDB persistence to work with saga data created with the `NServiceBus.Persistence.MongoDB` package without modifications to the database.
-
-### Configuration
+### Saga data compatibility mode
 
 Use the following API to configure the package to work with existing saga data:
 
@@ -77,7 +55,7 @@ The `VersionElementName` value must match the `BsonDocument` element name used b
 include: must-apply-conventions-for-version
 
 
-## Migrating data
+### Migrating saga data
 
 As an alternative to compatibility mode, saga data created by the `NServiceBus.Persistence.MongoDB` package can be migrated to the data format used by the `NServiceBus.Storage.MongoDB` package. This approach requires the endpoint to be stopped during migration. Use the `mongo` shell to connect to the database and execute the following script:
 
@@ -98,7 +76,29 @@ Replace `"Version"` with the name of the version property on the saga data which
 WARNING: Be sure to create a backup of the database prior to migrating the saga data.
 
 
+## Subscriptions
+
+Subscriptions are recreated by restarting the subscribing endpoints. Alternatively, existing subscriptions can be migrated to the new data format.
+
+
+### Migrating subscriptions
+
+In the tekmaven implementation there is a single document per event type containing a collection of subscribers. In NServiceBus.Storage.MongoDB, subscriptions are individual documents. Each subscription needs to be converted into an `eventsubscription` document.
+
+```javascript
+db.subscriptions.find().forEach(type => {
+   type.Subscribers.forEach(subscription => {
+       var parts = subscription.split('@');
+       db.eventsubscription.insert({
+           MessageTypeName: type._id.TypeName,
+           TransportAddress: parts[0],
+           Endpoint: parts[1]
+       });
+   });
+});
+```
+
+
 ### How Document Versioning Works
 
 include: document-version
-
