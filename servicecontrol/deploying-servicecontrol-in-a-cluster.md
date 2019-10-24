@@ -27,7 +27,7 @@ More information is available on [Message Queuing in Server Clusters](https://te
 
 ## Database high availability
 
-The RavenDB database must be located in *shared storage* that is highly available and fault tolerant. Shared storage does not mean a shared network share but shared cluster storage. Access to the data should always be 'local' althought physically, that data could be stored on a SAN. When this disk is mounted, RavenDB must be configured to use that location. See [Customize RavenDB Embedded Location](configure-ravendb-location.md) for more information on how to change the ServiceControl database location.
+The RavenDB database must be located in *shared storage* that highly available and fault tolerant. Shared storage does not mean a  network share but shared cluster storage that allows low latency exclusive access. Access to the data should always be 'local' althought physically, that data could be stored on a SAN. When this disk is mounted, RavenDB must be configured to use that location. See [Customize RavenDB Embedded Location](configure-ravendb-location.md) for more information on how to change the ServiceControl database location.
 
 
 ## ServiceControl detailed configuration
