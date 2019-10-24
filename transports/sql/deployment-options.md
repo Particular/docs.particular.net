@@ -1,6 +1,6 @@
 ---
 title: Deployment options
-reviewed: 2018-01-05
+reviewed: 2019-10-24
 component: SqlTransport
 tags:
 - Transport
