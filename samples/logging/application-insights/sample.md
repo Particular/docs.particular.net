@@ -1,6 +1,6 @@
 ---
-title: Report metrics to Azure Application Insights
-summary: How to report NServiceBus metrics data to Azure Application Insights
+title: Report metrics to Azure Monitor Application Insights
+summary: How to report NServiceBus metrics data to Azure Monitor Application Insights
 component: Metrics
 isLearningPath: true
 reviewed: 2019-07-23
@@ -16,7 +16,7 @@ redirects:
 
 ## Introduction
 
-[Azure Application Insights](https://azure.microsoft.com/en-us/services/application-insights/) (App Insights) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints. This sample demonstrates how to report metric data to Azure Application Insights and present it graphically:
+[Azure Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) (App Insights) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints. This sample demonstrates how to report metric data to Azure Application Insights and present it graphically:
 
 ![example graph events](example-graph-events.png "width=500")
 
