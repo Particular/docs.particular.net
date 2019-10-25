@@ -225,7 +225,7 @@ This setting was introduced in version 1.6. It allows the upper limit on body si
 
 In version 1.5.* and below, ServiceControl stores only the bodies of audit messages that are smaller than 100Kb.
 
-NOTE: This setting is obsolete from version 4 and higher. The setting is still supported in the Audit instance via setting [ServiceControl.Audit/MaxBodySizeToStore](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) if required
+NOTE: This setting is not available in versions 4.4 and higher. It is still supported in Audit instance via [ServiceControl.Audit/MaxBodySizeToStore](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) setting
 
 Type: int
 
