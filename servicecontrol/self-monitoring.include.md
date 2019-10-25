@@ -14,7 +14,7 @@ When ServiceControl is unable to properly import an audit or error message, the 
 
 #### Error Message Ingestion Process
 
-When ServiceControl has difficulty connecting to the configured transport, the error message ingestion process is shut down for sixty seconds. These shutdowns are monitored with a custom check. The time to wait before restarting the error ingestion process is configurable with the [ServiceControl/TimeToRestartErrorIngestionAfterFailure](/servicecontrol/creating-config-file.md#hostsettings-servicecontroltimetorestarterroringestionafterfailure) setting.
+When ServiceControl has difficulty connecting to the configured transport, the error message ingestion process is shut down for sixty seconds. These shutdowns are monitored with a custom check. The time to wait before restarting the error ingestion process is configurable with the [ServiceControl/TimeToRestartErrorIngestionAfterFailure](/servicecontrol/creating-config-file.md#host-settings-servicecontroltimetorestarterroringestionafterfailure) setting.
 
 #### Message database storage space
 
