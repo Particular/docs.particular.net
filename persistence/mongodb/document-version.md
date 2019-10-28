@@ -2,7 +2,7 @@
 title: How document versioning works
 summary: How the NServiceBus.Storage.MongoDB packages implements concurrency control
 component: mongodb
-versions: '[1,)'
+versions: '[2,)'
 tags:
  - Persistence
 related:
