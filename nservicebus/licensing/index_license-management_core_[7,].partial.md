@@ -6,7 +6,7 @@ NServiceBus uses the [`Environment.GetFolderPath(SpecialFolder)`](https://docs.m
 
 ### Code-first configuration
 
-A license can be configured via code first configuration API:
+A license can be configured via code-first configuration API:
 
 snippet: License
 

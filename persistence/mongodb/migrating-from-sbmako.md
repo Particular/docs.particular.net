@@ -9,7 +9,7 @@ related:
 reviewed: 2019-05-29
 ---
 
-This package was designed to be fully compatible with the community [`NServiceBus.MongoDB`](https://github.com/sbmako/NServiceBus.MongoDB)) package with some minor configuration.
+This package was designed to be fully compatible with the community [`NServiceBus.MongoDB`](https://github.com/sbmako/NServiceBus.MongoDB) package with some minor configuration.
 
 include: migration-warning
 
@@ -18,36 +18,6 @@ include: migration-warning
 
 `NServiceBus.Storage.MongoDB` is available for NServiceBus Version 7 and later. It is recommended to upgrade endpoints to NServiceBus Version 7 before migrating to the `NServiceBus.Storage.MongoDB` package.
 
-
-## Configuration
-
-Use the following compatibility API to configure the package to work with existing saga data:
-
-snippet: MongoDBSBMakoCompatibility
-
-The `VersionElementName` value must match the element name used for the `DocumentVersion` property from the community persister.
-
-include: must-apply-conventions-for-version
-
-In addition, the collection naming convention for sagas must be configured to match the one used by `NServiceBus.MongoDB`, `type => type.Name`, as demonstrated in the above snippet.
-
-## Subscriptions
-
-In the sbmako implementation subscriptions are stored in the collection named `Subscription`. Each document maps to an event type containing a set of subscribers using the type `Subscriber` from the NServiceBus package.
-
-The following migration script iterates through the documents and insert each subscriber value as a new document.
-
-```javascript
-db.subscription.find().forEach(type => {
-   type.Subscribers.forEach(subscription => {
-       db.eventsubscription.insert({
-           MessageTypeName: type._id.TypeName,
-           TransportAddress: subscription.TransportAddress,
-           Endpoint: subscription.Endpoint
-       });
-   });
-});
-```
 
 ## Saga data class changes
 
@@ -69,6 +39,39 @@ db.subscription.find().forEach(type => {
 
 If the `ETag` property is not removed, it will no longer be updated by the persister.
 
-### How Document Versioning Works
 
-include: document-version
+### Saga data compatibility mode
+
+Use the following compatibility API to configure the package to work with existing saga data:
+
+snippet: MongoDBSBMakoCompatibility
+
+The `VersionElementName` value must match the element name used for the `DocumentVersion` property from the community persister.
+
+include: must-apply-conventions-for-version
+
+In addition, the collection naming convention for sagas must be configured to match the one used by `NServiceBus.MongoDB`, `type => type.Name`, as demonstrated in the above snippet.
+
+
+## Subscriptions
+
+Subscriptions are recreated by restarting the subscribing endpoints. Alternatively, existing subscriptions can be migrated to the new data format.
+
+
+## Migrating subscriptions
+
+In the sbmako implementation subscriptions are stored in the collection named `Subscription`. Each document maps to an event type containing a set of subscribers using the type `Subscriber` from the NServiceBus package.
+
+The following migration script iterates through the documents and insert each subscriber value as a new document.
+
+```javascript
+db.subscription.find().forEach(type => {
+   type.Subscribers.forEach(subscription => {
+       db.eventsubscription.insert({
+           MessageTypeName: type._id.TypeName,
+           TransportAddress: subscription.TransportAddress,
+           Endpoint: subscription.Endpoint
+       });
+   });
+});
+```
