@@ -26,7 +26,7 @@ The outbox feature can be used instead of the DTC to mimic the same level of con
 
 ## How it works
 
-The outbox feature is implemented as a variant on [Guaranteed Messaging](https://www.enterpriseintegrationpatterns.com/patterns/messaging/GuaranteedMessaging.html) which is a feature that is not common in most transports but now implemented on top of any transport combined with a [deduplication](https://en.wikipedia.org/wiki/Data_deduplication#In-line_deduplication) pattern to deal with at-least-once delivery.
+The outbox feature is implemented as a variant on [Guaranteed Messaging](https://www.enterpriseintegrationpatterns.com/patterns/messaging/GuaranteedMessaging.html) which is a feature that is not common in most transports but now implemented on top of any transport combined with a [deduplication](https://en.wikipedia.org/wiki/Data_deduplication#Post-process_versus_in-line_deduplication) pattern to deal with at-least-once delivery.
 
 Every time an incoming message is processed, a copy of that message is stored in the persistent _outbox storage_. Whenever a new message is received, the framework determines whether that message has been processed already by checking for its presence in outbox storage.
 
