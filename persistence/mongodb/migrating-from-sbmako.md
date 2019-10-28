@@ -13,6 +13,12 @@ This package was designed to be fully compatible with the community [`NServiceBu
 
 include: migration-warning
 
+
+## NServiceBus upgrade
+
+`NServiceBus.Storage.MongoDB` is available for NServiceBus Version 7 and later. It is recommended to upgrade endpoints to NServiceBus Version 7 before migrating to the `NServiceBus.Storage.MongoDB` package.
+
+
 ## Configuration
 
 Use the following compatibility API to configure the package to work with existing saga data:

@@ -13,6 +13,12 @@ The `NServiceBus.Storage.MongoDB` package was designed to be fully compatible wi
 
 include: migration-warning
 
+
+## NServiceBus upgrade
+
+`NServiceBus.Storage.MongoDB` is available for NServiceBus Version 7 and later. When migrating from `NServiceBus.Persistence.MongoDB` it is recommended to remove the persistence package and upgrade the endpoint to NServiceBus Version 7 before installing the `NServiceBus.Storage.MongoDB` package.
+
+
 ## Customizing the connection
 
 `NServiceBus.Storage.MongoDB` does not provide a configuration setting to pass a connection string directly. Instead, a `MongoClient` can be passed to the new configuration API.
