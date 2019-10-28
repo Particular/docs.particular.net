@@ -57,7 +57,7 @@ The Shipping endpoint has the Heartbeats plugin installed to enable uptime monit
 
 ### Adapter
 
-The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has two sides: endpoint-facing and ServiceControl-facing. In this sample the endpoint-facing side uses SQL Server transport and the ServiceControl-facind side uses MSMQ:
+The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has two sides: endpoint-facing and ServiceControl-facing. In this sample the endpoint-facing side uses SQL Server transport and the ServiceControl-facing side uses MSMQ:
 
 snippet: AdapterTransport
 
