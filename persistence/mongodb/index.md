@@ -1,7 +1,7 @@
 ---
 title: MongoDB Persistence
 component: mongodb
-versions: '[1,)'
+versions: '[2,)'
 tags:
 - Persistence
 related:
