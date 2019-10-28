@@ -30,7 +30,7 @@ ServiceControl Management version 4 cannot be used to edit ServiceControl instan
 Upgrades that include the separate Audit embedded database will increase disk usage since databases are not automatically compacted. The new Audit embedded database will grow to the same peak storage usage as the original ServiceControl instance embedded audit message storage usage unless the original instance database is compacted after the data is removed via the audit retention process. This could result in as much as double the data usage.
 
 {{NOTE:
-After the upgrade is complete, the Audit information contained in the original ServiceControl instance will become read-only, but will continue to be deleted as it passes the time specified by the retention policy. However, since RavenDB does not release storage space back to the OS, the database will continue to be the same size.
+After the upgrade is complete, the Audit information contained in the original ServiceControl instance will become read-only, but will continue to be deleted as it passes the time specified by the [retention policy](/servicecontrol/creating-config-file.md#data-retention). However, since the internal database does not release storage space back to the OS, the database will continue to be the same size.
 
 After one retention period after upgrade has elapsed, the original ServiceControl instance's database will be mostly empty. At that point, the original database can be compacted to a very small size. See [Compacting RavenDB](/servicecontrol/db-compaction.md) for instructions on compacting the database of the original ServiceControl instance once old audit messages have been cleaned up by the retention policy.
 }}
