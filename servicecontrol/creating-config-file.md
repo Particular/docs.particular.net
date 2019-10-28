@@ -124,6 +124,18 @@ Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 This setting will default to `Warn` if an invalid value is assigned.
 
 
+#### ServiceControl/TimeToRestartErrorIngestionAfterFailure
+
+Controls the maximum time delay to wait before restarting the error ingestion pipeline after detecting a connection problem.
+This setting was introduced in ServiceControl version 4.4.1.
+
+Type: timespan
+
+Default: 60 seconds
+
+Valid settings are between 5 seconds and 1 hour.
+
+
 ## Data retention
 
 
