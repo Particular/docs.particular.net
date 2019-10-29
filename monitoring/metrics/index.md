@@ -1,7 +1,7 @@
 ---
 title: Metrics
 summary:
-reviewed: 2018-01-26
+reviewed: 2019-10-29
 component: Metrics
 versions: 'Metrics:*'
 ---
@@ -49,11 +49,11 @@ Each endpoint instance collects performance metrics which are buffered and then 
 
 ### Storage usage
 
-Metrics are processed by a Service Control Monitoring instance. A monitoring instance stores data only in RAM. It does not store data on disk except for a log file. Metrics data are stored for at most one hour. A 100MB process can hold state for at least 100 endpoint instances.
+A Service Control Monitoring instance processes Metric. The metric data is stored in RAM only. Logfiles are still written to disk. The metrics data are stored for at most one hour. A 100MB process can hold state for at least 100 endpoint instances.
 
 ### CPU usage
 
-The metrics service is only performing simple summing aggregation logic. CPU usage is low.
+The metrics service is only performing simple summing aggregation logic. The CPU usage is low.
 
 
 ## Reporting metric data to other places
