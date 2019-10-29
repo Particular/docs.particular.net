@@ -20,6 +20,8 @@ Error notifications are available for several events:
 
 The following example shows how to be notified every time a message is handled by [recoverability](/nservicebus/recoverability/). While this code writes to the console any other action could be taken, for example sending an email or writing to a monitoring system.
 
+NOTE: Since Version 6 errors happening in satellites like the Gateway will not trigger error notification. See the [Gateway Version 1 to 2 upgrade guide](/nservicebus/upgrades/gateway-1to2.md) for more information.
+
 snippet: SubscribeToErrorsNotifications
 
 include: notificationThread
