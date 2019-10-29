@@ -8,8 +8,6 @@ related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
  - servicecontrol/upgrades/support-policy
- - serviceinsight/upgrades/support-policy
- - servicepulse/upgrades/support-policy
 ---
 
 
