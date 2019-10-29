@@ -41,21 +41,21 @@ Specify the database to use for NServiceBus documents using the following config
 
 snippet: MongoDBDatabaseName
 
-## Multi-document transactions
+## Transactions
 
-Multi-document [transactions](https://docs.mongodb.com/manual/core/transactions/) are enabled and required by default. This allows the package to support updating multiple saga instances and commit them all atomically during message processing.
+MongoDB [transactions](https://docs.mongodb.com/manual/core/transactions/) are enabled and required by default. This allows the persister to update multiple saga instances and commit them atomically during message processing.
 
-WARN: MongoDB transactions are only supported on MongoDB server replica sets.
+WARN: MongoDB transactions are [supported](https://docs.mongodb.com/manual/core/transactions/#transactions-and-atomicity) only on replica sets starting from version 4.0, and on sharded clusters starting from MongoDB 4.2.
 
 ### Disabling transactions
 
-The following configuration API is available for compatibility with MongoDB server versions less than 4 or for use with sharded clusters:
+The following configuration API is available for compatibility with MongoDB server versions less than 4 or for use with sharded clusters with versions less than 4.2:
 
 snippet: MongoDBDisableTransactions
 
 ### Shared transactions
 
-NServiceBus supports sharing the same MongoDB session transaction between Saga persistence and business data. A single session transaction can be used to persist document updates for both concerns atomically.
+NServiceBus supports sharing MongoDB transactional session between Saga persistence and business data. The shared transactional session can be used to persist document updates for both concerns atomically.
 
 To use the shared transaction in a message handler:
 
