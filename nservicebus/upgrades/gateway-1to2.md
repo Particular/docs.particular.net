@@ -35,6 +35,8 @@ In versions 2 and above, the gateway does not provide error notifications. When 
 
 Note that in version 1, when [subscribing to error notifications](/nservicebus/recoverability/subscribing-to-error-notifications.md), the notification is received in the situation described above.
 
+Instead a [custom gateway retry policy](/nservicebus/gateway/#using-the-gateway-recoverability) can be created. This callback is triggered when errors occur in the gateway.
+
 ## Backward compatibility migration
 
 In order to send or publish messages to a Gateway version 1.x, it is required to set the `TimeToBeReceived` and `NonDurableMessage` headers as the Gateway 1.x receiver expects these headers to be present.
