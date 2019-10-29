@@ -1,7 +1,7 @@
 ---
 title: Performance Metrics in ServicePulse
 summary: Describes how to use ServicePulse to review endpoint performance metrics
-reviewed: 2018-01-26
+reviewed: 2019-10-29
 ---
 
 ServicePulse collects and displays performance monitoring data about running endpoints on the Monitoring tab.
@@ -10,34 +10,30 @@ ServicePulse collects and displays performance monitoring data about running end
 
 NOTE: ServicePulse will only display the monitoring tab if it is configured to point to a ServiceControl monitoring instance.
 
-The main monitoring tab shows a list of logical endpoints as well as the performance data collected about those endpoints. If a logical endpoint is running more than one physical instance, a badge will show a count of physical instances.
+The monitoring tab shows a list of logical endpoints as well as the performance data collected about those endpoints. If a logical endpoint is running more than one physical instance, a badge will show a count of physical instances.
 
 ![ServicePulse monitoring tab instance count](servicepulse-instance-count.png)
 
-Clicking on an endpoint in the main monitoring tab will open the endpoint details page.
+Clicking on an endpoint in the monitoring tab will open the endpoint details page.
 
 ![ServicePulse monitoring details page](servicepulse-monitoring-details.png)
 
-The endpoint details page shows larger graphs for each of the performance metrics gathered for the logical endpoint. It also contains a number of breakdown views.
+The endpoint details page shows larger graphs for each of the performance metrics gathered for the logical endpoint. It also contains several breakdown views.
 
-The default breakdown view is by Message Type.
+The default breakdown view is by Message Type which shows performance metrics for each type of message that the endpoint processes
 
 ![ServicePulse details breakdown by message type](servicepulse-messagetype-breakdown.png)
 
-This shows a breakdown of performance metrics for each type of message that the endpoint processes.
-
-The second breakdown view is by Instance.
+The second breakdown view is by instance. Each logical endpoint can be running one or more physical instances. This view shows a breakdown of performance metrics for each physical instance.
 
 ![ServicePulse details breakdown by physical instance](servicepulse-physicalinstance-breakdown.png)
 
-Each logical endpoint can be running one or more physical instances. This view shows a breakdown of performance metrics for each physical instance.
-
-NOTE: Each physical instance should be configured with it's own instance id, which is shown here. See [Installing the plugin](install-plugin.md) for more information about instance ids.
+NOTE: Each physical instance should be configured with its own instance id, which is shown here. See [Installing the plugin](install-plugin.md) for more information about instance ids.
 
 
 ## Reporting period
 
-The main monitoring tab and the endpoint details page both contain an option to change the reporting period.
+The monitoring tab and the endpoint details page both contain an option to change the reporting period.
 
 ![ServicePulse reporting period](servicepulse-reportingperiod.png)
 
@@ -50,12 +46,12 @@ NOTE: The screen is refreshed more frequently when a shorter reporting period is
 
 All performance metric data is retained in memory in the ServiceControl Monitoring instance. Restarting the ServiceControl Monitoring instance will cause all performance metric data to be lost.
 
-Performance metric data is only kept by the ServiceControl Monitoring instance long enough to support the longest reporting period (1 hour).
+Performance metric data is only kept by the ServiceControl Monitoring instance long enough to support the most prolonged reporting period (1 hour).
 
 
 ## Disconnected endpoints
 
-If an endpoint instance stops sending metric data it will appear with a warning indicator.
+If an endpoint instance stops sending metric data, it will appear with a warning indicator.
 
 ![ServicePulse disconnected endpoint warning indicator](servicepulse-warningindicator.png)
 
