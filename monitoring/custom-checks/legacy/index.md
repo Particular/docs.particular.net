@@ -1,7 +1,7 @@
 ---
 title: CustomChecks Plugin
 summary: Define a custom set of conditions that are checked on the endpoint.
-reviewed: 2018-01-26
+reviewed: 2019-10-28
 component: CustomChecks
 versions: 'CustomChecks3:*;CustomChecks4:*;CustomChecks5:*;CustomChecks6:*'
 related:
