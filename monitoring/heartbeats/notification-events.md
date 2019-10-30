@@ -1,7 +1,7 @@
 ---
 title: Heartbeat notification events
 summary:
-reviewed: 2018-01-26
+reviewed: 2019-10-30
 component: Heartbeats
 versions: 'Heartbeats:*'
 ---
