@@ -1,0 +1,38 @@
+﻿namespace Core_7.BuyersRemorsePolicyMapping
+{
+    using NServiceBus;
+    using NServiceBus.Logging;
+    using System.Threading.Tasks;
+
+    #region BuyersRemorsePolicyMapping
+
+    class BuyersRemorsePolicy : Saga<BuyersRemorseState>,
+        IAmStartedByMessages<PlaceOrder>
+    {
+        static ILog log = LogManager.GetLogger<BuyersRemorsePolicy>();
+
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
+        {
+            mapper.ConfigureMapping<PlaceOrder>(p => p.OrderId)
+                .ToSaga(s => s.OrderId);
+        }
+
+        public Task Handle(PlaceOrder message, IMessageHandlerContext context)
+        {
+            //...
+            return Task.CompletedTask;
+        }
+    }
+
+    #endregion
+
+    internal class PlaceOrder
+    {
+        public string OrderId { get; set; }
+    }
+
+    internal class BuyersRemorseState : ContainSagaData
+    {
+        public string OrderId { get; set; }
+    }
+}
