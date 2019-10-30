@@ -1,7 +1,7 @@
 ---
 title: Heartbeats
 summary: Use the Heartbeat plugin to monitor the health of the endpoints
-reviewed: 2018-01-26
+reviewed: 2019-10-29
 component: Heartbeats
 isLearningPath: true
 versions: 'Heartbeats:*'
