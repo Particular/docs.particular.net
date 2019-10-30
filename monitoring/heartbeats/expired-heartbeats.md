@@ -1,7 +1,7 @@
 ---
 title: Expired heartbeat messages
 summary:
-reviewed: 2018-01-26
+reviewed: 2019-10-29
 component: Heartbeats
 versions: 'Heartbeats:*'
 ---
