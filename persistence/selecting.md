@@ -86,7 +86,7 @@ SQL Persistence [allows accessing the `DbConnection` and `DbTransaction`](/persi
 
 If a business system already stores its data in MongoDB, NServiceBus supports storing data inside MongoDB as well. This removes the need to introduce additional storage.
 
-With MongoDB 4.0 and greater, MongoDB Storage [allows accessing the transactional session](/persistence/mongodb/#transactions-shared-transactions) from within message handlers to enable atomic commits of business data and NServiceBus data. 
+With MongoDB 4.0 and greater, MongoDB supports multi-document transactions. Message handlers [can access the transaction](/persistence/mongodb/#transactions-shared-transactions) to atomically commit business and NServiceBus data.
 
 ### NHibernate
 
