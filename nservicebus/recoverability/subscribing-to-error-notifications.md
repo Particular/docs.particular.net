@@ -20,9 +20,8 @@ Error notifications are available for several events:
 
 ## Satellite behavior
 
-Since Version 6 errors happening in satellites will not trigger error notification and requires a [custom retry policy configuration per satellite](/nservicebus/satellites/#implementing-a-satellite-managing-errors).
+Since Version 6 errors happening in satellites like the [Gateway](/nservicebus/gateway/) and [TimeoutManager](/nservicebus/messaging/timeout-manager) will not trigger error notification and requires a [custom retry policy configuration per satellite](/nservicebus/satellites/#implementing-a-satellite-managing-errors). The gateway has its own [custom gateway retry policy](/nservicebus/gateway/#using-the-gateway-recoverability) API.
 
-NOTE: The Gateway is a satellite see the [Gateway Version 1 to 2 upgrade guide](/nservicebus/upgrades/gateway-1to2.md) for more information.
 
 ## Subscribing to error notifications
 
