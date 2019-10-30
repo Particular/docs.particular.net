@@ -14,6 +14,11 @@ This package was designed to be fully compatible with the community [`NServiceBu
 include: migration-warning
 
 
+## NServiceBus upgrade
+
+`NServiceBus.Storage.MongoDB` is available for NServiceBus Version 7 and later. It is recommended to upgrade endpoints to NServiceBus Version 7 before migrating to the `NServiceBus.Storage.MongoDB` package.
+
+
 ## Saga data class changes
 
 [Saga data classes](/nservicebus/sagas/#long-running-means-stateful) no longer need to implement [`IHaveDocumentVersion`](https://github.com/sbmako/NServiceBus.MongoDB#sagas). If the saga data class extends [`ContainMongoSagaData`](https://github.com/sbmako/NServiceBus.MongoDB#sagas), it no longer needs to do so. In cases where `IHaveDocumentVersion` has been explicitly implemented by the saga data class, the `DocumentVersion` and `ETag` properties may be safely removed from saga data class implementations.
