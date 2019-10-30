@@ -45,7 +45,7 @@ snippet: MongoDBDatabaseName
 
 MongoDB [transactions](https://docs.mongodb.com/manual/core/transactions/) are enabled and required by default. This allows the persister to update multiple saga instances and commit them atomically during message processing.
 
-WARN: MongoDB persister supports transactions on shared clusters starting from version 2.1.
+NOTE: MongoDB persister supports transactions on shared clusters starting from version 2.1.
 
 WARN: MongoDB transactions are [supported](https://docs.mongodb.com/manual/core/transactions/#transactions-and-atomicity) only on replica sets starting from version 4.0, and on sharded clusters starting from MongoDB 4.2.
 
