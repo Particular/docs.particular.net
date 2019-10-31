@@ -114,24 +114,7 @@ snippet: BuyersRemorseCancelOrderRouting
 
 To allow users to cancel orders, we'll modify the `switch` statement in our input loop to accept another command, `cancel`:
 
-```
-switch (parts[0].ToLowerInvariant())
-{
-    case "place":
-        // ... 
-        break;
-    case "cancel":
-    {
-        var command = new CancelOrder
-        {
-            OrderId = orderId
-        };
-        await endpointInstance.Send(command)
-            .ConfigureAwait(false);
-        log.Info($"Sent a correlated message to {orderId}");
-        break;
-    }
-```
+snippet: BuyersRemorseCancellingOrders
 
 We now have a working buyer's remorse policy!
 
