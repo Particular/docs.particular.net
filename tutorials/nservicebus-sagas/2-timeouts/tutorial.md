@@ -56,17 +56,7 @@ Now let's implement our policy.
 
 Our next step is to tell our `BuyersRemorsePolicy` to schedule a message to tell us when the buyer's remorse period is over. We do this with the `RequestTimeout` method. Modify the `Handle` method of `BuyersRemorsePolicy` as follows:
 
-```
-public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
-{
-    log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
-    Data.OrderId = message.OrderId;
-    Data.CustomerId = message.CustomerId;
-
-    log.Info($"Starting cool down period for order #{Data.OrderId}.");
-    await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
-}
-```
+snippet: BuyersRemorseTimeoutRequest
 
 NOTE: This tutorial uses 20 seconds as a timeout value for simplicity. In production, a business enforced rule should determine the length of this period.
 
