@@ -76,31 +76,7 @@ The effect of these changes is that in 20 seconds, we will send a `BuyersRemorse
 
 Handling a timeout method is similar to how other handlers work. But instead of implementing a `Handle` method, we implement a `Timeout` method:
 
-```
-class BuyersRemorsePolicy : Saga<BuyersRemorseState>,
-    IAmStartedByMessages<PlaceOrder>,
-    IHandleTimeouts<BuyersRemorseIsOver>
-{
-    static ILog log = LogManager.GetLogger<BuyersRemorsePolicy>();
-
-    public async Task Timeout(BuyersRemorseIsOver timeout, IMessageHandlerContext context)
-    {
-        log.Info($"Cooling down period for order #{Data.OrderId} has elapsed.");
-
-        var orderPlaced = new OrderPlaced
-        {
-            CustomerId = Data.CustomerId,
-            OrderId = Data.OrderId
-        };
-
-        // TODO: Save order state in database?
-
-        await context.Publish(orderPlaced);
-    
-        MarkAsComplete();
-    }
-}
-```
+snippet: BuyersRemoreseTimeoutHandling
 
 Most of the code in the `Timeout` method is business logic; stuff that is supposed to happen when an order is placed, like logging and storing data. When we're done, we publish an `OrderPlaced` event to let any other handlers know that something important has happened. Remember, our `ShippingPolicy` saga still needs to know that an order has been placed so it can be shipped.
 
