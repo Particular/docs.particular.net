@@ -1,6 +1,6 @@
 ﻿namespace Core_7.BuersRemoreseTimeoutClassDefinition
 {
-    #region BuyersRemoreseTimeoutClassDefinition
+    #region BuyersRemorseTimeoutClassDefinition
 
     class BuyersRemorsePolicy : Saga<BuyersRemorseState>,
         IAmStartedByMessages<PlaceOrder>

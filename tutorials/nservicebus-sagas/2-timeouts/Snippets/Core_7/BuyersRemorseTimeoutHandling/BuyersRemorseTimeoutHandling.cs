@@ -4,7 +4,7 @@
     using NServiceBus.Logging;
     using System.Threading.Tasks;
 
-    #region BuyersRemoreseTimeoutHandling
+    #region BuyersRemorseTimeoutHandling
 
     class BuyersRemorsePolicy : Saga<BuyersRemorseState>,
         IHandleTimeouts<BuyersRemorseIsOver>
