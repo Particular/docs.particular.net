@@ -66,17 +66,7 @@ NOTE: Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `
 
 The other parameter of note is a `BuyersRemorseIsOver` class, which we don't have yet. This parameter represents the actual message that will be sent when the timeout is over. Let's create it now. You can put it in the same file as our saga and leave it as an empty class:
 
-```
-class BuyersRemorsePolicy : Saga<BuyersRemorseState>,
-    IAmStartedByMessages<PlaceOrder>
-{
-    // ...
-}
-
-class BuyersRemorseIsOver
-{
-}
-```
+snippet: BuyersRemoreseTimeoutClassDefinition
 
 This class is a message like any other message (e.g. `OrderPlaced`). But it's specific to our saga so we'll keep it here with the rest of the code. If we needed more data, we could add properties to it to be included with the message.
 
