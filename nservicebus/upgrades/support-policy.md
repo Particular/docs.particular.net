@@ -7,6 +7,7 @@ related:
  - nservicebus/upgrades/release-policy
  - nservicebus/upgrades/supported-versions
  - nservicebus/upgrades/supported-platforms
+ - servicecontrol/upgrades/support-policy
 ---
 
 ## Supported versions
@@ -77,7 +78,7 @@ Therefore the recommended approach is to upgrade *one* major version at a time, 
 
 **Does this policy apply to the [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/), or [ServicePulse](/servicepulse/) applications?**
 
-No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Packages Supported Versions](supported-versions.md) page.
+No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Packages Supported Versions](supported-versions.md) page. The ServiceControl support policy is outlined [here](/servicecontrol/upgrades/support-policy.md).
 
 **Which version of NServiceBus should be used to start a new project?**
 

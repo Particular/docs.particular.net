@@ -1062,6 +1062,8 @@
   - Title: Upgrade Guides
     Url: servicecontrol/upgrades
     Articles:  
+    - Title: Support policy
+      Url: servicecontrol/upgrades/support-policy    
     - Title: Version 3 to 4
       Url: servicecontrol/upgrades/3to4    
     - Title: Version 2 to 3
