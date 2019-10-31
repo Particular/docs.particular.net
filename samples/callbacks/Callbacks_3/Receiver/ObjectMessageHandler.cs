@@ -9,14 +9,15 @@ public class ObjectMessageHandler :
 {
     static ILog log = LogManager.GetLogger<ObjectMessageHandler>();
 
-    public Task Handle(ObjectMessage message, IMessageHandlerContext context)
+    public async Task Handle(ObjectMessage message, IMessageHandlerContext context)
     {
         log.Info("Message received, Returning");
         var objectResponseMessage = new ObjectResponseMessage
         {
             Property = "PropertyValue"
         };
-        return context.Reply(objectResponseMessage);
+        await Task.Delay(3000);
+        await context.Reply(objectResponseMessage);
     }
 }
 

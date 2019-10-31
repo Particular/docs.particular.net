@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -10,6 +11,15 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.Sender");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
+
+        endpointConfiguration.Recoverability().CustomPolicy((config, context) =>
+        {
+            if (context.Exception is InvalidOperationException invalidOperationException && invalidOperationException.Message.StartsWith("No handlers could be found"))
+            {
+                return RecoverabilityAction.Discard("Callback no longer active");
+            }
+            return DefaultRecoverabilityPolicy.Invoke(config, context);
+        });
 
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.EnableCallbacks();
@@ -89,12 +99,20 @@ class Program
 
         #region SendObjectMessage
 
+        var tcs = new CancellationTokenSource(TimeSpan.FromSeconds(1));
         var message = new ObjectMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var response = await endpointInstance.Request<ObjectResponseMessage>(message, sendOptions)
-            .ConfigureAwait(false);
-        Console.WriteLine($"Callback received with response property value:{response.Property}");
+        try
+        {
+            var response = await endpointInstance.Request<ObjectResponseMessage>(message, sendOptions, tcs.Token)
+                .ConfigureAwait(false);
+            Console.WriteLine($"Callback received with response property value:{response.Property}");
+        }
+        catch (OperationCanceledException)
+        {
+        }
+       
 
         #endregion
     }
