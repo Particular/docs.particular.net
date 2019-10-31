@@ -20,11 +20,14 @@ async Task Main()
 	};
 	
 	var source = "https://api.nuget.org/v3/index.json";
+	var mygetSource = "https://www.myget.org/F/particular/api/v3/index.json";
 	var componentsPath = Path.Combine(Util.CurrentQuery.Location, @"..\components\components.yaml");
 
 	var corePackageId = "NServiceBus";
+	var serviceControlPackageId = "Particular.PlatformSample.ServiceControl";
 
 	var extendedSupportVersions = new[] { 5 };
+	var servicControlExtendedSupportVersions = new int[0];
 
 	var coreMajorOverlapYears = 2;
 	var coreMinorOverlapMonths = 6;
@@ -33,10 +36,15 @@ async Task Main()
 	var downstreamMajorOverlapYears = 1;
 	var downstreamMinorOverlapMonths = 3;
 	var downstreamMonthsToShowUnsupportedVersions = 6;
+	
+	var serviceControlMajorOverlapYears = 1;
+	var serviceControlMinorOverlapMonths = 3;
+	var serviceControlMonthsToShowUnsupportedVersions = 12;
 
 	var corePath = Path.Combine(Util.CurrentQuery.Location, @"..\nservicebus\upgrades\supported-versions-nservicebus.include.md");
 	var downstreamsPath = Path.Combine(Util.CurrentQuery.Location, @"..\nservicebus\upgrades\supported-versions-downstreams.include.md");
 	var allVersionsPath = Path.Combine(Util.CurrentQuery.Location, @"..\nservicebus\upgrades\all-versions.include.md");
+	var serviceControlVersionsPath = Path.Combine(Util.CurrentQuery.Location, @"..\servicecontrol\upgrades\supported-versions-servicecontrol.include.md");
 
 	var utcTomorrow = DateTime.UtcNow.Date.AddDays(1);
 	var logger = new Logger();
@@ -49,6 +57,16 @@ async Task Main()
 		Id = corePackageId,
 		Category = ComponentCategory.Core,
 		Versions = await searcher.GetVersions(corePackageId, logger, coreMajorOverlapYears, coreMinorOverlapMonths, new List<Version>(), endOfLifePackages, extendedSupportVersions)
+	};
+	
+	var mygetPackageMetadata = await new SourceRepository(new PackageSource(mygetSource), Repository.Provider.GetCoreV3()).GetResourceAsync<PackageMetadataResource>();
+	var mygetSearcher = new NuGetSearcher(mygetPackageMetadata, logger);
+	
+	var serviceControlPackage = new Package
+	{
+		Id = serviceControlPackageId,
+		Category = ComponentCategory.Other,
+		Versions = await mygetSearcher.GetVersions(serviceControlPackageId, logger, serviceControlMajorOverlapYears, serviceControlMinorOverlapMonths, new List<Version>(), endOfLifePackages, servicControlExtendedSupportVersions)
 	};
 
 	var downstreamPackages =
@@ -89,6 +107,7 @@ async Task Main()
 	{
 		package.Dump(utcTomorrow);
 	}
+	serviceControlPackage.Dump(utcTomorrow);
 
 	using (var output = new StreamWriter(corePath, append: false))
 	{
@@ -104,6 +123,11 @@ async Task Main()
 	{
 		output.Write(corePackage, utcTomorrow, null, true);
 		output.Write(downstreamPackages, utcTomorrow, null, true, endOfLifePackages);
+	}
+	
+	using (var output = new StreamWriter(serviceControlVersionsPath, append: false))
+	{
+		output.WriteServiceControl(serviceControlPackage, utcTomorrow, utcTomorrow.AddMonths(-serviceControlMonthsToShowUnsupportedVersions), true);
 	}
 }
 
@@ -140,6 +164,18 @@ public static class TextWriterExtensions
 				output.WriteLine($"### [{package.Id}](/nuget/{package.Id})");
 				output.WriteLine();
 			});
+			
+	public static void WriteServiceControl(this TextWriter output, Package package, DateTimeOffset utcTomorrow, DateTimeOffset? earliest, bool force) =>
+		output.Write(
+			package.Versions,
+			utcTomorrow,
+			earliest,
+			force,
+			() =>
+			{
+				output.WriteLine($"### ServiceControl");
+				output.WriteLine();
+			});			
 
 	public static void Write(this TextWriter output, IEnumerable<Package> packages, DateTimeOffset utcTomorrow, DateTimeOffset? earliest, bool force, Dictionary<string, string> endOfLifePackages)
 	{
@@ -184,7 +220,6 @@ public static class TextWriterExtensions
 			}
 		}
 	}
-
 	private static void Write(this TextWriter output, List<Version> versions, DateTimeOffset utcTomorrow, DateTimeOffset? earliest, bool force, params Action[] writeHeadings)
 	{
 		var relevantVersions = versions
