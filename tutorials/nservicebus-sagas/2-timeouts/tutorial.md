@@ -110,9 +110,7 @@ Finally, let's update the UI so that our customers can take advantage of our buy
 
 Now we need to modify ClientUI to send a `CancelOrder` command. First, we define the routing for the command in the `Main` method of the `Program` class:
 
-```
-routing.RouteToEndpoint(typeof(CancelOrder), "Sales");
-```
+snippet: BuyersRemorseCancelOrderRouting
 
 To allow users to cancel orders, we'll modify the `switch` statement in our input loop to accept another command, `cancel`:
 
