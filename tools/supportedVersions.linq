@@ -38,7 +38,7 @@ async Task Main()
 	var downstreamMonthsToShowUnsupportedVersions = 6;
 	
 	var serviceControlMajorOverlapYears = 1;
-	var serviceControlMinorOverlapMonths = 3;
+	var serviceControlMinorOverlapMonths = 0;
 	var serviceControlMonthsToShowUnsupportedVersions = 12;
 
 	var corePath = Path.Combine(Util.CurrentQuery.Location, @"..\nservicebus\upgrades\supported-versions-nservicebus.include.md");
