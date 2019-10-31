@@ -6,8 +6,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Core", "Sample\Sampl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleAutofac.Core", "SampleAutofac\SampleAutofac.Core.csproj", "{6FA6EAAD-E749-4511-BBA9-DB5709835195}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.Extensions.DependencyInjection", "NServiceBus.Extensions.DependencyInjection\NServiceBus.Extensions.DependencyInjection.csproj", "{D1560BF8-AE25-4A80-BD1E-676A3C51E293}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,10 +20,6 @@ Global
 		{6FA6EAAD-E749-4511-BBA9-DB5709835195}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FA6EAAD-E749-4511-BBA9-DB5709835195}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FA6EAAD-E749-4511-BBA9-DB5709835195}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1560BF8-AE25-4A80-BD1E-676A3C51E293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1560BF8-AE25-4A80-BD1E-676A3C51E293}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1560BF8-AE25-4A80-BD1E-676A3C51E293}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1560BF8-AE25-4A80-BD1E-676A3C51E293}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
