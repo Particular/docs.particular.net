@@ -66,7 +66,7 @@ NOTE: Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `
 
 The other parameter of note is a `BuyersRemorseIsOver` class, which we don't have yet. This parameter represents the actual message that will be sent when the timeout is over. Let's create it now. You can put it in the same file as our saga and leave it as an empty class:
 
-snippet: BuyersRemoreseTimeoutClassDefinition
+snippet: BuyersRemorseTimeoutClassDefinition
 
 This class is a message like any other message (e.g. `OrderPlaced`). But it's specific to our saga so we'll keep it here with the rest of the code. If we needed more data, we could add properties to it to be included with the message.
 
@@ -76,7 +76,7 @@ The effect of these changes is that in 20 seconds, we will send a `BuyersRemorse
 
 Handling a timeout method is similar to how other handlers work. But instead of implementing a `Handle` method, we implement a `Timeout` method:
 
-snippet: BuyersRemoreseTimeoutHandling
+snippet: BuyersRemorseTimeoutHandling
 
 Most of the code in the `Timeout` method is business logic; stuff that is supposed to happen when an order is placed, like logging and storing data. When we're done, we publish an `OrderPlaced` event to let any other handlers know that something important has happened. Remember, our `ShippingPolicy` saga still needs to know that an order has been placed so it can be shipped.
 
