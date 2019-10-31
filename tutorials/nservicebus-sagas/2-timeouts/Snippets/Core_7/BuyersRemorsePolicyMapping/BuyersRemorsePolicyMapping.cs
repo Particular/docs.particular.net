@@ -19,7 +19,7 @@
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
-            //...
+            //To be replaced with business code
             return Task.CompletedTask;
         }
     }
