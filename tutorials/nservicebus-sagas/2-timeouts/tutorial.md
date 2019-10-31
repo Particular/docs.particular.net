@@ -90,12 +90,7 @@ But it's not much of a buyer's remorse policy if we can't cancel the order. Let'
 
 As you might expect by now, cancelling an order is done by sending a command and handling it. First, define the `CancelOrder` command in the Messages project:
 
-```
-public class CancelOrder : ICommand
-{
-    public string OrderId { get; set; }
-}
-```
+snippet: BuyersRemorseCancelOrderCommand
 
 We handle `CancelOrder` in `BuyersRemorsePolicy` saga by implementing `IHandleMessages<CancelOrder>`. We also need to tell the saga how to map a `CancelOrder` command to a saga instance which we can do with the `OrderId` property, just as we did with the `PlaceOrder` command:
 
