@@ -94,34 +94,7 @@ snippet: BuyersRemorseCancelOrderCommand
 
 We handle `CancelOrder` in `BuyersRemorsePolicy` saga by implementing `IHandleMessages<CancelOrder>`. We also need to tell the saga how to map a `CancelOrder` command to a saga instance which we can do with the `OrderId` property, just as we did with the `PlaceOrder` command:
 
-```
-class BuyersRemorsePolicy : Saga<BuyersRemorseState>,
-    IAmStartedByMessages<PlaceOrder>,
-    IHandleMessages<CancelOrder>,
-    IHandleTimeouts<BuyersRemorseIsOver>
-{
-    static ILog log = LogManager.GetLogger<BuyersRemorsePolicy>();
-
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
-    {
-        mapper.ConfigureMapping<PlaceOrder>(p => p.OrderId).ToSaga(s => s.OrderId);
-        mapper.ConfigureMapping<CancelOrder>(p => p.OrderId).ToSaga(s => s.OrderId);
-    }
-
-    // ...
-
-    public Task Handle(CancelOrder message, IMessageHandlerContext context)
-    {
-        log.Info($"Order #{message.OrderId} was cancelled.");
-
-        //TODO: Update status in database?
-
-        MarkAsComplete();
-
-        return Task.CompletedTask;
-    }
-}
-```
+snippet: BuyersRemorseCancelOrderHandling
 
 The `Handle` method is very similar to the saga's `Timeout` method. We log some information, do some business logic, then mark the saga complete. This effectively cancels any outstanding timeouts currently in place for the saga. Remember, by calling `MarkAsComplete`, we tell this saga instance that there is no further work to be performed.
 
