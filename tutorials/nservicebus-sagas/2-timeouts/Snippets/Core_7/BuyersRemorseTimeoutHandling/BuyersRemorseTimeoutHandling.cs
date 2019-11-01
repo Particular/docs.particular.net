@@ -6,8 +6,9 @@
 
     #region BuyersRemorseTimeoutHandling
 
-    class BuyersRemorsePolicy : Saga<BuyersRemorseState>,
-        IHandleTimeouts<BuyersRemorseIsOver>
+    class BuyersRemorsePolicy
+        : Saga<BuyersRemorseState>
+        , IHandleTimeouts<BuyersRemorseIsOver>
     {
         static ILog log = LogManager.GetLogger<BuyersRemorsePolicy>();
 
@@ -22,7 +23,6 @@
 
             var orderPlaced = new OrderPlaced
             {
-                CustomerId = Data.CustomerId,
                 OrderId = Data.OrderId
             };
 

@@ -2,8 +2,9 @@
 {
     #region BuyersRemorseTimeoutClassDefinition
 
-    class BuyersRemorsePolicy : Saga<BuyersRemorseState>,
-        IAmStartedByMessages<PlaceOrder>
+    class BuyersRemorsePolicy
+        : Saga<BuyersRemorseState>
+        , IAmStartedByMessages<PlaceOrder>
     {
         // ...
     }

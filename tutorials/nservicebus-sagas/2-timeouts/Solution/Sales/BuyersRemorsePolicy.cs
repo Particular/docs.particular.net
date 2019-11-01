@@ -29,9 +29,18 @@
             await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
         }
 
-        public Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
+        public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
         {
-            throw new NotImplementedException();
+            var orderPlaced = new OrderPlaced
+            {
+                OrderId = Data.OrderId
+            };
+
+            // TODO: Save order state in database?
+
+            await context.Publish(orderPlaced);
+
+            MarkAsComplete();
         }
 
         public Task Handle(CancelOrder message, IMessageHandlerContext context)
