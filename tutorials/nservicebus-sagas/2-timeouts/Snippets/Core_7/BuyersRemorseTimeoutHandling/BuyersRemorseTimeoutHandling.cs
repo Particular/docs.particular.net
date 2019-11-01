@@ -38,7 +38,6 @@
 
     internal class OrderPlaced
     {
-        public object CustomerId { get; set; }
         public object OrderId { get; set; }
     }
 
@@ -53,6 +52,5 @@
     internal class BuyersRemorseState : ContainSagaData
     {
         public object OrderId { get; set; }
-        public object CustomerId { get; set; }
     }
 }

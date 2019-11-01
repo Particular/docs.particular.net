@@ -6,15 +6,15 @@
 
     #region BuyersRemorsePolicyMapping
 
-    class BuyersRemorsePolicy : Saga<BuyersRemorseState>,
-        IAmStartedByMessages<PlaceOrder>
+    class BuyersRemorsePolicy
+        : Saga<BuyersRemorseState>
+        , IAmStartedByMessages<PlaceOrder>
     {
         static ILog log = LogManager.GetLogger<BuyersRemorsePolicy>();
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
         {
-            mapper.ConfigureMapping<PlaceOrder>(p => p.OrderId)
-                .ToSaga(s => s.OrderId);
+            mapper.ConfigureMapping<PlaceOrder>(p => p.OrderId).ToSaga(s => s.OrderId);
         }
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)

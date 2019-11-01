@@ -23,7 +23,6 @@
         public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
             log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
-            Data.CustomerId = message.CustomerId;
 
             log.Info($"Starting cool down period for order #{Data.OrderId}.");
             await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
@@ -61,12 +60,6 @@
     }
 
     public class BuyersRemorseState : ContainSagaData
-    {
-        public string OrderId { get; set; }
-        public string CustomerId { get; set; }
-    }
-
-    internal class PlaceOrder
     {
         public string OrderId { get; set; }
         public string CustomerId { get; set; }

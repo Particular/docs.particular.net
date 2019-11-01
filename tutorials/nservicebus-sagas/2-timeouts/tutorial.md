@@ -34,6 +34,14 @@ The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Sh
 Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
 }}
 
+### Saga storage
+
+Saga state must be persisted somewhere. There are various persistence options but for this tutorial the `LearningPersistence` is used. This is a simple non-production persister for educational purposes.
+
+In the Sales project open `Program.cs` and add the following configuration setting:
+
+snippet:BuyersRemorseEnableSagaPersistence
+
 ### BuyersRemorsePolicy saga
 
 In the Sales project, create a new class called `BuyersRemorsePolicy` and add the following code:

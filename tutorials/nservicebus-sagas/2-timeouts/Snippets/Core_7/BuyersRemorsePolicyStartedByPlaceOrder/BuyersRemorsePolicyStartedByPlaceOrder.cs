@@ -6,8 +6,9 @@
 
     #region BuyersRemorsePolicyStartedByPlaceOrder
 
-    class BuyersRemorsePolicy : Saga<BuyersRemorseState>,
-        IAmStartedByMessages<PlaceOrder>
+    class BuyersRemorsePolicy
+        : Saga<BuyersRemorseState>
+        , IAmStartedByMessages<PlaceOrder>
     {
         static ILog log = LogManager.GetLogger<BuyersRemorsePolicy>();
 
@@ -31,12 +32,10 @@
     internal class PlaceOrder
     {
         public string OrderId { get; set; }
-        public string CustomerId { get; set; }
     }
 
     internal class BuyersRemorseState : ContainSagaData
     {
         public string OrderId { get; set; }
-        public string CustomerId { get; set; }
     }
 }

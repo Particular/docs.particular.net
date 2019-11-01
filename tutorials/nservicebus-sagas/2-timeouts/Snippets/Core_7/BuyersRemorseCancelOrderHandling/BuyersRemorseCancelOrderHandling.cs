@@ -1,5 +1,6 @@
 ﻿namespace Core_7.BuyersRemorseCancelOrderHandling
 {
+    using NServiceBus;
     using NServiceBus.Logging;
     using System;
     using System.Threading.Tasks;
@@ -33,47 +34,8 @@
 
     #endregion
 
-    internal interface IHandleTimeouts<T>
-    {
-    }
-
-    internal interface IHandleMessages<T>
-    {
-    }
-
-    internal interface IAmStartedByMessages<T>
-    {
-    }
-
-    public interface IMessageHandlerContext
-    {
-    }
-
-    internal class Saga<T>
-    {
-        protected virtual void ConfigureHowToFindSaga(SagaPropertyMapper<T> mapper) { }
-
-        protected void MarkAsComplete()
-        {
-        }
-    }
-
-    internal class SagaPropertyMapper<T>
-    {
-        internal SagaPropertyMapper<T> ConfigureMapping<T1>(Func<T1, object> p)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void ToSaga(Func<T, object> p)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     internal class OrderPlaced
     {
-        public object CustomerId { get; set; }
         public object OrderId { get; set; }
     }
 
@@ -89,7 +51,6 @@
     internal class BuyersRemorseState
     {
         public object OrderId { get; set; }
-        public object CustomerId { get; set; }
     }
 
     internal class CancelOrder
