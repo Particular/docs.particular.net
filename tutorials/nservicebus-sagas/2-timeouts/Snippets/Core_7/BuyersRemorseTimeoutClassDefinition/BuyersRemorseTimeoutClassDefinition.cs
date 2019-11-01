@@ -1,4 +1,4 @@
-﻿namespace Core_7.BuersRemoreseTimeoutClassDefinition
+﻿namespace Core_7.BuyersRemorseTimeoutClassDefinition
 {
     #region BuyersRemorseTimeoutClassDefinition
 

@@ -4,17 +4,21 @@
     using NServiceBus.Logging;
     using System;
     using System.Threading.Tasks;
+    using Messages;
 
-    class BuyersRemorsePolicy : Saga<BuyersRemorseState>
+    class BuyersRemorsePolicy
+        : Saga<BuyersRemorseState>
+        , IAmStartedByMessages<PlaceOrder>
+        , IHandleMessages<CancelOrder>
+        , IHandleTimeouts<BuyersRemorseIsOver>
     {
         static ILog log = LogManager.GetLogger<BuyersRemorsePolicy>();
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
         {
-            
+            mapper.ConfigureMapping<PlaceOrder>(p => p.OrderId).ToSaga(s => s.OrderId);
+            mapper.ConfigureMapping<CancelOrder>(p => p.OrderId).ToSaga(s => s.OrderId);
         }
-
-        #region BuyersRemorseTimeoutRequest
 
         public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
@@ -25,7 +29,21 @@
             await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
         }
 
-        #endregion
+        public Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Handle(CancelOrder message, IMessageHandlerContext context)
+        {
+            log.Info($"Order #{message.OrderId} was cancelled.");
+
+            //TODO: Update status in database?
+
+            MarkAsComplete();
+
+            return Task.CompletedTask;
+        }
     }
 
     internal class BuyersRemorseIsOver

@@ -10,23 +10,29 @@
 
         async Task Execute(IMessageSession endpointInstance, string orderId, string[] parts)
         {
+            var key = Console.ReadKey();
             #region BuyersRemorseCancellingOrders
-            switch (parts[0].ToLowerInvariant())
+            log.Info("Press 'P' to place an order, 'C' to cancel last order, or 'Q' to quit.");
+            var key = Console.ReadKey();
+                Console.WriteLine();
+            var lastOrder = string.Empty;
+            switch (key.Key)
             {
-                case "place":
+                case ConsoleKey.P:
                     // ... 
+                    lastOrder = command.OrderId;  // Store order identifier to cancel if needed.
                     break;
-                case "cancel":
+
+                case ConsoleKey.C:
+                    var cancelCommand = new CancelOrder
                     {
-                        var command = new CancelOrder
-                        {
-                            OrderId = orderId
-                        };
-                        await endpointInstance.Send(command)
-                            .ConfigureAwait(false);
-                        log.Info($"Sent a correlated message to {orderId}");
-                        break;
-                    }
+                        OrderId = lastOrder
+                    };
+                    await endpointInstance.Send(cancelCommand)
+                        .ConfigureAwait(false);
+                    log.Info($"Sent a correlated message to {cancelCommand.OrderId}");
+                    break;
+
             }
             #endregion
         }
