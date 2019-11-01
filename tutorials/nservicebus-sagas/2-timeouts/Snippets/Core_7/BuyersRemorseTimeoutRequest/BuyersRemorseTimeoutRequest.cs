@@ -19,7 +19,7 @@
         public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
             log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
-            Data.CustomerId = message.CustomerId;
+            Data.OrderId = message.OrderId;
 
             log.Info($"Starting cool down period for order #{Data.OrderId}.");
             await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
