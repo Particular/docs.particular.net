@@ -40,7 +40,7 @@ Saga state must be persisted somewhere. There are various persistence options bu
 
 In the Sales project open `Program.cs` and add the following configuration setting:
 
-snippet:BuyersRemorseEnableSagaPersistence
+snippet: BuyersRemorseEnableSagaPersistence
 
 ### BuyersRemorsePolicy saga
 
