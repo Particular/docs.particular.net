@@ -4,11 +4,10 @@ The preferred way of configuring the physical routing is via the instance mappin
 
 ## Instance mapping file
 
-
 {{NOTE: When using instance mapping: 
 * The settings will have no effect on **audit and error queues**.
-* **publishing**: The publisher will be publishing messages only to the endpoint instances that have subscribed to the events, ignoring the settings in the mapping file (the adress of the subscriber that was provided in the subscription messgae will be used).
-* **subscribing**: Subscription messages will be sent to all publisher instances listed in the Instance mapping file.
+* **publishing**: The publisher will publish messages only to endpoint instances that have subscribed to the events, ignoring the settings in the mapping file (the adress of the subscriber that was provided in the subscription messgae will be used).
+* **subscribing**: Subscription messages will be sent to all publisher instances listed in the instance mapping file.
 }}
 
 The instance mapping file is a simple XML file that has to be located either on a local hard drive or a network drive. When using MSMQ as the transport, NServiceBus will automatically look for an `instance-mapping.xml` file in `AppDomain.BaseDirectory`.

@@ -47,7 +47,7 @@ Note that this protocol requires two communication steps for each resource manag
 
 **Both of these conditions are problematic in a huge data center such as Azure** because:
 
- * Two communication steps per resource manager results in additional communication: 2 resources - 4 network calls, 4 resources - 16 calls, 100 resources - 400 calls, etc. This limits scalability.
+ * Using two communication steps per resource manager results in additional communication: 2 resources - 4 network calls, 4 resources - 16 calls, 100 resources - 400 calls, etc. This limits scalability.
  * Azure data centers consist of hundreds of thousands of machines; failure needs to be expected and all systems must be able to deal with network partitions. Network partitions result in slow or [in doubt](https://msdn.microsoft.com/en-us/library/ms681727.aspx) transactions. Therefore the requirement to wait for responses from all resource managers is problematic even if the communication overhead is manageable.
 
 The latter is the primary reason why none of the Azure services supports distributed transactions, and the recommendation is not to use them in new designs even if it's technically possible.

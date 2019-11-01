@@ -21,7 +21,7 @@ The database created by this sample is `NsbSamplesEfUowSql`.
  2. The text `Press <enter> to send a message` will appear in both console windows
  3. Press <kbd>enter</kbd> in both console windows
 
-NOTE: In case of exceptions when running the sample, delete the tables from the database used by the code. Entity Framework by default can't update table schemas. If tables use an old schema, the code won't execute properly.
+NOTE: If exceptions occur when running the sample, delete the tables from the database used by the code. By default, Entity Framework will not update table schemas. If tables use an old schema, the code won't execute properly.
 
 
 ## Verifying that the sample works
@@ -29,7 +29,7 @@ NOTE: In case of exceptions when running the sample, delete the tables from the 
  1. `CreateOrderHandler` displays information that an order was submitted.
  2. `OrderLifecycleSaga` displays information that the order process has been started.
  3. `CreateShipmentHandler` displays information that the shipment has been created.
- 4. Finally, after a couple of seconds, `CompleteOrderHandler` displays information that the order is going to be completed.
+ 4. After a few seconds, `CompleteOrderHandler` displays information that the order is going to be completed.
 
 Open SQL Server Management Studio and go to the database. Verify that there is a row in the saga state table (`dbo.OrderLifecycleSagaData`), in the orders table (`dbo.Orders`), and in the shipments table (`dbo.Shipments`).
 
@@ -44,11 +44,11 @@ This sample contains the following projects:
 
 ### Endpoint projects
 
-The endpoint mimics a back-end system. It is configured to use the SQL Server transport. It uses EntityFramework to store business data (orders and shipments).
+The endpoint mimics a back-end system. It is configured to use the SQL Server transport. It uses Entity Framework to store business data (orders and shipments).
 
-When the message arrives at the receiver, a single transactional data access context is created to ensure consistency of the whole message handling process.
+When the message arrives at the receiver, a single transactional data access context is created to ensure consistency of the entire message-handling process:
 
- * message is removed from the input queue by the SQL Server transport
+ * the message is removed from the input queue by the SQL Server transport
  * a new saga instance is created and stored by the SQL persistence
  * a new `Order` entity is created
 
