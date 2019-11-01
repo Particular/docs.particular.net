@@ -108,7 +108,7 @@ The `Handle` method is very similar to the saga's `Timeout` method. We log some 
 
 Consider what happens when the buyer's remorse period has ended. The saga has been marked complete but maybe the Cancel button still appears on the user's screen and they click it. Assuming a `CancelOrder` command still gets fired, nothing will happen. The saga instance is already complete so there is nothing left to process this command. In effect, we can't cancel an order that has already been placed. Similarly, we can't complete an order that has already been processed. `MarkAsComplete` handles both of these scenarios for us.
 
-NOTE: Technically, it's not true that _nothing_ will happen when a saga message is received after the instance has completed. We can implement the `IHandleSagaNotFound` interface to [perform logic](https://docs.particular.net/nservicebus/sagas/saga-not-found) in these scenarios. For example, we could inform the customer that the buyer's remorse period has ended so the order can no longer be cancelled.
+NOTE: Technically, it's not true that _nothing_ will happen when a saga message is received after the instance has completed. We can implement the `IHandleSagaNotFound` interface to [perform logic](/nservicebus/sagas/saga-not-found.md) in these scenarios. For example, we could inform the customer that the buyer's remorse period has ended so the order can no longer be cancelled.
 
 NOTE: Although we don't show it here, we may want to send an `OrderCancelled` event in the `Handle` method to indicate that an order has been cancelled. In this sample, we have no business process for cancelled orders so we don't fire the event.
 
