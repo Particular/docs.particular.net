@@ -16,7 +16,7 @@
         {
             log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
 
-            Data.CustomerId = message.CustomerId;
+            Data.OrderId = message.OrderId;
 
             return Task.CompletedTask;
         }
