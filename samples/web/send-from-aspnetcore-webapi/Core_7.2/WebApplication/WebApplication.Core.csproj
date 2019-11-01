@@ -6,5 +6,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="NServiceBus.Extensions.DependencyInjection" Version="1.0.0-*" />
   </ItemGroup>
 </Project>
