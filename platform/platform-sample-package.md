@@ -2,7 +2,7 @@
 title: Platform Sample installation
 summary: Installation instructions for using the platform sample for demo purposes.
 component: PlatformSample
-reviewed: 2019-07-06
+reviewed: 2019-11-04
 ---
 
 The [Platform Sample package](https://www.nuget.org/packages/Particular.PlatformSample) is a portable version of the Particular Service Platform which can be used to demonstrate the platform without installing it. This is the easiest way to experience the Particular Service Platform. It is also possible to include and show the platform in demos or samples.
@@ -35,7 +35,7 @@ The Platform Sample package performs the following when the Console App is start
 
 ### Showing console output
 
-By default, the console outputs of ServiceControl and ServiceControl. onitoring are suppressed. To view them for debugging, or curiosity, specify:
+By default, the console outputs of ServiceControl and ServiceControl.Monitoring are suppressed. To view them for debugging, or curiosity, specify:
 
 snippet: ShowConsoleOutput
 
