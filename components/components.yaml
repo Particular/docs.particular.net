@@ -823,3 +823,12 @@
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AwsLambda
   NugetOrder:
     - NServiceBus.AwsLambda.SQS
+
+- Key: Microsoft.DependencyInjection
+  Name: Microsoft.DependencyInjection
+  DocoUrl: nservicebus/dependency-injection/extensions-di
+  GitHubOwner: Particular
+  Category: DependencyInjection
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
+  NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
