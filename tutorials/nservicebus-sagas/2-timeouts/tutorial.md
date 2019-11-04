@@ -1,7 +1,6 @@
 ---
 title: "NServiceBus sagas: Timeouts"
-reviewed: 2019-10-30
-isLearningPath: true
+reviewed: 2019-11-04
 summary: "Implement the buyer's remorse pattern using NServiceBus, a common business case to cancel orders within a certain amount of time after the purchase."
 hidden: true
 ---
