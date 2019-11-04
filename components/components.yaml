@@ -824,11 +824,11 @@
   NugetOrder:
     - NServiceBus.AwsLambda.SQS
 
-- Key: Microsoft.DependencyInjection
-  Name: Microsoft.DependencyInjection
-  DocoUrl: nservicebus/dependency-injection/extensions-di
+- Key: Microsoft.Hosting
+  Name: Microsoft.Hosting
+  DocoUrl: nservicebus/hosting/microsoft-extensions
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.Hosting
   NugetOrder:
-    - NServiceBus.Extensions.DependencyInjection
+    - NServiceBus.Extensions.Hosting
