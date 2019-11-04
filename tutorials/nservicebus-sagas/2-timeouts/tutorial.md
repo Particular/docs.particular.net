@@ -120,7 +120,12 @@ Now we need to modify ClientUI to send a `CancelOrder` command. First, we define
 
 snippet: BuyersRemorseCancelOrderRouting
 
-To allow users to cancel orders, we'll modify the `switch` statement in our input loop to accept another command, `cancel`:
+To allow users to cancel orders, we'll modify the ClientUI input loop to:
+
+* store the ID of the sent order
+* accept another command, `cancel`, that uses the previously stored ID to cancel the sent order/
+
+The new input loop looks like the following:
 
 snippet: BuyersRemorseCancellingOrders
 
