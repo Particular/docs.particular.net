@@ -8,4 +8,9 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.0.0-*" />
   </ItemGroup>
+
+  <ItemGroup Label="Force transitive dependencies to use the older version since NServiceBus.Extensions.Hosting brings version 3.0.0">
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="2.1.1" />
+  </ItemGroup>
+
 </Project>
