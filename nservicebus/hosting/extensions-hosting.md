@@ -1,5 +1,5 @@
 ---
-title: NServiceBus.Extensions.DependencyHosting
+title: NServiceBus.Extensions.Hosting
 summary: NServiceBus integration for Microsoft.Extensions.Hosting
 component: Extensions.Hosting
 reviewed: 2019-11-04
