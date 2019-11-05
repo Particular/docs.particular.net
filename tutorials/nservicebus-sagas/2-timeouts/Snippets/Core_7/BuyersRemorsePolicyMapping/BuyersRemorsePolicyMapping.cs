@@ -6,7 +6,7 @@
 
     #region BuyersRemorsePolicyMapping
 
-    class BuyersRemorsePolicy
+    class BuyersRemorsePolicy : Saga<BuyersRemorseState>
         : Saga<BuyersRemorseState>
         , IAmStartedByMessages<PlaceOrder>
     {
