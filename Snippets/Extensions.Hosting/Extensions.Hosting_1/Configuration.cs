@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using Microsoft.Extensions.Hosting;
     using NServiceBus;
+    using NServiceBus.WebHost;
 
     class Configuration
     {
