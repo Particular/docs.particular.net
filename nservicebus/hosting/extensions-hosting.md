@@ -14,7 +14,7 @@ The `NServiceBus.Extensions.Hosting` provides easy integration with the [.NET Co
 
 ## Configuration 
 
-An NServiceBus endpoint can be hosted within the generic host with the `AddNServiceBus` extension method:
+An NServiceBus endpoint can be hosted within the generic host with the `UseNServiceBus` extension method:
 
 snippet: extensions-host-configuration
 
@@ -22,12 +22,12 @@ This code will register the endpoint with the hosting infrastructure and automat
 
 ### ASP.NET Core
 
-`AddNServiceBus` can also be used within the `ConfigureServices` method when using a `Startup` class in a ASP.NET Core web application. For more details, see the [ASP.NET Core sample](/samples/dependency-injection/aspnetcore).
+For ASP.NET Core web applications, `AddNServiceBus` extention method canbe used within the `ConfigureServices` method when using a `Startup` class. For more details, see the [ASP.NET Core sample](/samples/dependency-injection/aspnetcore).
 
+snippet: extensions-host-configuration-webhost
 
 ## Dependency injection integration
 
-NServiceBus endpoints hosted as part of the generic host using the `AddNServiceBus` extension method automatically use the provided `IServiceCollection` and `IServiceProvider` dependency injection infrastructure. Message handlers can resolve dependencies which are registered in the `IServiceCollection`.
+NServiceBus endpoints hosted as part of the generic host using the `UseNServiceBus` extension method automatically use the provided `IServiceCollection` and `IServiceProvider` dependency injection infrastructure. Message handlers can resolve dependencies which are registered in the `IServiceCollection`.
 
-`AddNServiceBus` automatically registers a `IMessageSession` with the container which can be resolved from the `IServiceProvider` or via dependency injection during runtime.
-
+`UseNServiceBus` automatically registers a `IMessageSession` with the container which can be resolved from the `IServiceProvider` or via dependency injection during runtime.
