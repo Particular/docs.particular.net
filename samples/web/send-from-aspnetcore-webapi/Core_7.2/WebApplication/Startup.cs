@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
+using NServiceBus.WebHost;
+
 public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
