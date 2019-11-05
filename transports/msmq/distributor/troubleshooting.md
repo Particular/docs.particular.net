@@ -2,7 +2,7 @@
 title: MSMQ Distributor Troubleshooting
 summary: Describes how to solve common issues with the distributor.
 component: distributor
-reviewed: 2018-01-26
+reviewed: 2019-11-05
 tags:
 - Scalability
 related:
@@ -95,7 +95,7 @@ Make sure that:
  
 ### The distributor is doing all the work
 
-The distributor is likely not running as the distributor, but as a regular endpoint, or it is running in the *Master* configuration (distributor + worker) and isn't aware of any workers on any machines.
+The distributor is likely not running as a distributor, but as a regular endpoint, or it is running in the *Master* configuration (distributor + worker) and isn't aware of any workers on any machines.
 
 Make sure that:
 
