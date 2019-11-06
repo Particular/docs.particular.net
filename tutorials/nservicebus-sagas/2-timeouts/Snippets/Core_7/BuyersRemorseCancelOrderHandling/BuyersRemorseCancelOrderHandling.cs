@@ -24,7 +24,7 @@
         {
             log.Info($"Order #{message.OrderId} was cancelled.");
 
-            //TODO: Update status in database?
+            //TODO: Possibly publish an OrderCancelled event?
 
             MarkAsComplete();
 
