@@ -111,3 +111,7 @@ When using callbacks in an ASP.NET Web/MVC/Web API, the NServiceBus callbacks ca
 
 
 partial: route
+
+## Discarding reply messages
+
+partial: discard
