@@ -6,9 +6,8 @@
 
     #region BuyersRemorsePolicyMapping
 
-    class BuyersRemorsePolicy : Saga<BuyersRemorseState>
-        : Saga<BuyersRemorseState>
-        , IAmStartedByMessages<PlaceOrder>
+    class BuyersRemorsePolicy : Saga<BuyersRemorseState>,
+        IAmStartedByMessages<PlaceOrder>
     {
         static ILog log = LogManager.GetLogger<BuyersRemorsePolicy>();
 

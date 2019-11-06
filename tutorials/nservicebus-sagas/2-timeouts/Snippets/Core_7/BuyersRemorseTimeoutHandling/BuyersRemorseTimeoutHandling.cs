@@ -6,9 +6,8 @@
 
     #region BuyersRemorseTimeoutHandling
 
-    class BuyersRemorsePolicy
-        : Saga<BuyersRemorseState>
-        , IHandleTimeouts<BuyersRemorseIsOver>
+    class BuyersRemorsePolicy : Saga<BuyersRemorseState>, 
+        IHandleTimeouts<BuyersRemorseIsOver>
     {
         static ILog log = LogManager.GetLogger<BuyersRemorsePolicy>();
 
