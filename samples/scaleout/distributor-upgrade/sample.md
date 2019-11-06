@@ -1,7 +1,7 @@
 ---
 title: Upgrading a Distributor endpoint from Version 5 to 6
 summary: Upgrading an existing scaled-out endpoint that uses Distributor to version 6 of NServiceBus
-reviewed: 2018-01-26
+reviewed: 2019-11-06
 component: Core
 tags:
 - Scalability
@@ -10,7 +10,7 @@ related:
 - samples/scaleout/distributor
 ---
 
-Note: This solution should be seen as a temporary solution. Support for the distributor is only available in Core version 6 and removed in core version 7 / msmq version 1. When all endpoints have been upgraded to version 6 it is adviced to transition to [Sender Side Distribution](/transports/msmq/sender-side-distribution.md) to be prepared for a future migration to core version 7 / msmq version 1.
+Note: This solution should be seen as a temporary solution. Support for the distributor is only available in Core version 6 and has been removed in core version 7 / msmq version 1. When all endpoints have been upgraded to version 6 it is advised to transition to [Sender Side Distribution](/transports/msmq/sender-side-distribution.md) in preparation for a future migration to core version 7 / msmq version 1.
 
 ## Initial state
 
@@ -77,7 +77,7 @@ snippet: Enlisting
 
 The last parameter, `capacity` is the maximum number of messages in-flight between the distributor and the worker. The worker sends an acknowledgement (ACK) message (also called `ready` message) for each message processed. The distributor keeps track of these ACKs to ensure no worker is flooded with work that it can't process
 
-In Versions 5 and below the capacity was always set to the same value as the maximum concurrency setting, which means there were never more messages in-flight than threads ready to process them on the worker side. If the worker was up and running messages never waited in the queue. This approach limits the potential consequences of worker failure at the expense of throughput.
+In Versions 5 and below the capacity was always set to the same value as the maximum concurrency setting, which means there were never more messages in-flight than threads ready to process them on the worker side. If the worker was processing it meant that messages never waited in the queue. This approach limits the potential consequences of worker failure at the expense of throughput.
 
 A new setting was introduced in Version 6, which allows to explicitly control the capacity value. The snippet above shows how to set it to the default concurrency value of Version 6. If the endpoint configuration overrides this parameter with a custom value, an equal or larger value should be provided as `capacity` when enlisting with distributor.
 
@@ -98,4 +98,4 @@ Because the sender still uses Version 5 and the workers are on Version 6, the sh
 
 After the upgrade is done both worker projects are identical (apart from the configuration file). The sender needed only a minor routing correction.
 
-NOTE: When Version 5 nodes enlist with the distributor, they normally use a GUID-based queues that are created each time the worker starts. This behavior is suppressed in the sample via a configuration switch. In Versions 6 and above when worker nodes enlists with the distributor, they always use their regular input queues with stable names. 
+NOTE: When Version 5 nodes enlist with the distributor, they use GUID-based queues that are created each time the worker starts. This behavior is suppressed in the sample via a configuration switch. In Versions 6 and above when worker nodes enlists with the distributor, they always use their regular input queues with stable names.
