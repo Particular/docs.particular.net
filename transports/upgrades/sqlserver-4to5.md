@@ -47,15 +47,7 @@ snippet: 4to5-disable-subscription-cache
 
 A single subscription table is used by all endpoints. By default this table will be named `[SubscriptionRouting]` and be created in the `[dbo]` schema of the catalog specified in the connection string. To change where this table is created and how it is named, use the following API:
 
-```csharp
-var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-var subscriptions = transport.PubSub();
-subscriptions.SubscriptionTableName(tableName);
-// OR
-subscriptions.SubscriptionTableName(tableName, schemaName);
-// OR
-subscriptions.SubscriptionTableName(tableName, schemaName, catalogName);
-```
+snippet: 4to5-configure-subscription-table
 
 WARNING: All endpoints in the system must be configured to use the same subscription table.
 
