@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System.Threading.Tasks;
+using NServiceBus;
 using NServiceBus.Transport.SQLServer;
 
 class MultiSchema
@@ -13,7 +14,7 @@ class MultiSchema
         #endregion
     }
 
-    void OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration, IMessageSession messageSession)
+    async Task OtherEndpointConnectionParamsPull(EndpointConfiguration endpointConfiguration, IMessageSession messageSession)
     {
         #region sqlserver-multischema-config-for-queue
 
@@ -26,7 +27,7 @@ class MultiSchema
 
         #region sqlserver-multischema-config-for-queue-send
 
-        messageSession.Send("myqueue", new MyMessage());
+        await messageSession.Send("myqueue", new MyMessage());
 
         #endregion
 

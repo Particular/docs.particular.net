@@ -24,7 +24,7 @@
 
                     var options = new SendOptions();
 
-                    options.UseCustomSqlConnectionAndTransaction(connection, transaction);
+                    options.UseCustomSqlTransaction(transaction);
 
                     //Send bunch of messages using the same transaction
                     await session.Send(new Message(), options);

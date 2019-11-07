@@ -9,7 +9,7 @@ class DelayedDelivery
         #region EnableNativeDelayedDelivery
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        var delayedDeliverySettings = transport.UseNativeDelayedDelivery();
+        var delayedDeliverySettings = transport.NativeDelayedDelivery();
 
         #endregion
 
