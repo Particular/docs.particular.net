@@ -12,26 +12,7 @@ upgradeGuideCoreVersions:
 
 In version 5, native delayed delivery is always enabled. The configuration APIs for native delayed delivery have moved:
 
-```csharp
-var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-var delayedDelivery = transport.UseNativeDelayedDelivery();
-
-delayedDelivery.BatchSize(100);
-delayedDelivery.DisableTimeoutManagerCompatibility()
-delayedDelivery.ProcessingInterval(TimeSpan.FromSeconds(5));
-delayedDelivery.TableSuffix("Delayed");
-```
-
-```csharp
-var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-var delayedDelivery = transport.NativeDelayedDelivery();
-
-delayedDelivery.BatchSize(100);
-delayedDelivery.DisableTimeoutManagerCompatibility()
-delayedDelivery.ProcessingInterval(TimeSpan.FromSeconds(5));
-delayedDelivery.TableSuffix("Delayed");
-```
-
+snippet: 4to5-configure-native-delayed-delivery
 
 ## Native publish subscribe
 
@@ -39,32 +20,11 @@ SQL Server transport version 5 introduces native support for the publish subscri
 
 Upgrade a single endpoint at a time. As each endpoint is upgraded to version 5, configure it to operate in backwards compatibility mode to enable it to participate in publish subscribe operations with endpoints that are running on version 4.x or below. An endpoint operating in backwards compatibility mode will check the configured persistence and the native subscriptions table for subscribers when publishing a message. The transport will only send a single copy of the message to each subscriber.
 
-```csharp
-var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-
-var pubSubCompat = transport.EnableMessageDrivenPubSubCompatibilityMode();
-```
+snippet: 4to5-enable-message-driven-pub-sub-compatibility-mode
 
 Configuration APIs to register publishers for event types has been moved to the compatibility mode settings object.
 
-```csharp
-var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-var routing = transport.Routing();
-routing.RegisterPublisher(eventType, publisherEndpoint);
-routing.RegisterPublisher(assembly, publisherEndpoint);
-routing.RegisterPublisher(assembly, namespace, publisherEndpoint);
-routing.SubscriptionAuthorizer(authorizationFunction);
-```
-
-```csharp
-var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-
-var pubSubCompat = transport.EnableMessageDrivenPubSubCompatibilityMode();
-pubSubCompat.RegisterPublisher(eventType, publisherEndpoint);
-pubSubCompat.RegisterPublisher(assembly, publisherEndpoint);
-pubSubCompat.RegisterPublisher(assembly, namespace, publisherEndpoint);
-pubSubCompat.SubscriptionAuthorizer(authorizationFunction);
-```
+snippet: 4to5-configure-message-driven-pub-sub-routing
 
 NOTE: The `routing.DisablePublishing()` API has been deprecated and should be removed. This API was created to allow an endpoint to run without a configured subscription persistence. On version 5 and above, a subscription persistence is not required unless the endpoint runs in backwards compatibility mode.
 
@@ -77,20 +37,11 @@ Subscription information can be cached for a given period of time so that it doe
 
 Because of that there is no good default value for the subscription caching period. It has to be specified by the user. In systems where subscriptions are static the caching period can be relatively long. To configure it, use following API:
 
-```csharp
-var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-var subscriptions = transport.PubSub();
-subscriptions.CacheSubscriptionInformationFor(TimeSpan.FromMinutes(1));
-```
+snippet: 4to5-configure-subscription-cache
 
 In systems where events are subscribed and unsubscribed regularly (e.g. desktop applications unsubscribe when shutting down) it makes sense to keep the caching period short or to disable the caching altogether:
 
-```csharp
-var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-var subscriptions = transport.PubSub();
-subscriptions.DisableSubscriptionCache();
-```
-
+snippet: 4to5-disable-subscription-cache
 
 ### Configure subscription table
 
