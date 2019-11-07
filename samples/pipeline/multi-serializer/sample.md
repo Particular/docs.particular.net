@@ -1,7 +1,7 @@
 ---
 title: Control of serialization via the pipeline
 summary: Add support for attribute based message serialization.
-reviewed: 2018-01-26
+reviewed: 2018-11-07
 component: Core
 tags:
 - Pipeline
@@ -20,7 +20,7 @@ This sample leverages the pipeline to provide an attribute based message seriali
 
 It is currently hard-coded to only support xml and json serialization. It uses attributes, defined at the message level, to switch messages between different serializations, but any code could be substituted here to control the choice of serialization.
 
-WARNING: This sample is not compatible with message serialization against Version 4 and below of NServiceBus. The reason is that, for simplicity of the sample, some wire compatibility workarounds are excluded. Have a look at the current serialization behaviors in the core of NServiceBus for more details.
+WARNING: This sample is not compatible with message serialization against Version 4 and below of NServiceBus. The reason is that for simplicity of the sample, some wire compatibility workarounds are excluded. Have a look at the current serialization behaviors in the core of NServiceBus for more details.
 
 
 ## Code walk-through
@@ -40,7 +40,7 @@ snippet: attributes
 
 ### The message definitions
 
-The messages use of the above attributes to control how they are serialized.
+The messages use the above attributes to control how they are serialized.
 
 snippet: message-definitions
 
