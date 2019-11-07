@@ -9,7 +9,7 @@
     {
         async Task Usage(IMessageSession session, string connectionString, string commandText)
         {
-            #region UseCustomSqlConnectionAndTransaction [4.1,)
+            #region UseCustomSqlConnectionAndTransaction
 
             using (var connection = new SqlConnection(connectionString))
             {
