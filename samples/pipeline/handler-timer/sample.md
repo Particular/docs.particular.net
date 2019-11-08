@@ -1,7 +1,7 @@
 ---
 title: Add handler timing pipeline
 summary: Wraps handlers in a Stopwatch and logs a warning if a handler exceeds a given threshold.
-reviewed: 2018-01-26
+reviewed: 2018-11-08
 component: Core
 tags:
 - Pipeline
