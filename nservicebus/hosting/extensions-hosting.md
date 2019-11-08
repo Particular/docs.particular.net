@@ -2,7 +2,7 @@
 title: NServiceBus.Extensions.Hosting
 summary: NServiceBus integration for Microsoft.Extensions.Hosting
 component: Extensions.Hosting
-reviewed: 2019-11-8
+reviewed: 2019-11-08
 tags:
  - Hosting
 related:
