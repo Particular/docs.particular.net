@@ -2,10 +2,12 @@
 title: Using NServiceBus in an ASP.NET Core WebAPI Application
 summary: Illustrates how to send messages to a NServiceBus endpoint from a ASP.NET Core WebAPI application.
 component: Core
-reviewed: 2019-02-06
+reviewed: 2019-11-08
 related:
 - nservicebus/hosting
 ---
+
+WARNING: TODO
 
 
 This sample shows how to send messages to an NServiceBus endpoint from an ASP.NET Core WebAPI application.
