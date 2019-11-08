@@ -7,7 +7,7 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-Upgrading from SQL Server transport version 4 to version 5 is a major upgrade and requires careful planning. Please read the entire upgrade guide before beginning the upgrade process.
+Upgrading from SQL Server transport version 4 to version 5 is a major upgrade and requires careful planning. Read the entire upgrade guide before beginning the upgrade process.
 
 
 ## Native delayed delivery
