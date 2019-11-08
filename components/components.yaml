@@ -83,15 +83,6 @@
   NugetOrder:
     - NServiceBus.Autofac
 
-- Key: Binary
-  Name: Binary Serializer
-  DocoUrl: nservicebus/serialization/binary
-  Category: Serializer
-  GitHubOwner: Particular
-  ProjectUrl: https://github.com/Particular/NServiceBus
-  NugetOrder:
-    - NServiceBus
-
 - Key: Callbacks
   Name: Callbacks
   DocoUrl: nservicebus/messaging/callbacks

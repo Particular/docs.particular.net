@@ -475,8 +475,6 @@
       Title: JSON
     - Url: nservicebus/serialization/xml
       Title: Xml
-    - Url: nservicebus/serialization/binary
-      Title: Binary
     - Url: nservicebus/serialization/custom-serializer
       Title: Custom
   - Url: nservicebus/dependency-injection
