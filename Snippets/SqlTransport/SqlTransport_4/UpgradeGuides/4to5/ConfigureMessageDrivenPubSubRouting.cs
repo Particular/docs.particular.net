@@ -1,8 +1,8 @@
 ﻿using NServiceBus;
 
-class ConfigureMessageDrivenPubSubRouting
+class MessageDrivenPubSub
 {
-    public ConfigureMessageDrivenPubSubRouting(EndpointConfiguration endpointConfiguration)
+    void Configure(EndpointConfiguration endpointConfiguration)
     {
         #region 4to5-configure-message-driven-pub-sub-routing
 
@@ -22,9 +22,12 @@ class ConfigureMessageDrivenPubSubRouting
             @namespace: "Namespace", 
             publisherEndpoint: "PublisherEndpoint");
 
+        #endregion
+
+        #region 4to5-configure-message-driven-pub-sub-auth
+
         transport.SubscriptionAuthorizer(
             incomingMessageContext => true);
-
 
         #endregion
     }

@@ -1,14 +1,18 @@
 ﻿using NServiceBus;
 using NServiceBus.Transport.SQLServer;
 
-class ConfigureMessageDrivenPubSubRouting
+class MessageDrivenPubSubCompatibility
 {
-    public ConfigureMessageDrivenPubSubRouting(EndpointConfiguration endpointConfiguration)
+    void ConfigureCompatibilityMode(EndpointConfiguration endpointConfiguration)
     {
-        #region 4to5-configure-message-driven-pub-sub-routing
+        #region 4to5-enable-message-driven-pub-sub-compatibility-mode
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         var pubSubCompatibilityMode = transport.EnableMessageDrivenPubSubCompatibilityMode();
+
+        #endregion
+
+        #region 4to5-configure-message-driven-pub-sub-routing
 
         pubSubCompatibilityMode.RegisterPublisher(
             eventType: typeof(SomeEvent), 
@@ -23,10 +27,15 @@ class ConfigureMessageDrivenPubSubRouting
             @namespace: "Namespace", 
             publisherEndpoint: "PublisherEndpoint");
 
+        #endregion
+
+        #region 4to5-configure-message-driven-pub-sub-auth
+
         pubSubCompatibilityMode.SubscriptionAuthorizer(
             incomingMessageContext => true);
 
         #endregion
+       
     }
 
     class SomeEvent { }

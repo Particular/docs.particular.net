@@ -7,6 +7,8 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
+Upgrading from SQL Server transport version 4 to version 5 is a major upgrade and requires careful planning. Please read the entire upgrade guide before beginning the upgrade process.
+
 
 ## Native delayed delivery
 
@@ -14,44 +16,44 @@ In version 5, native delayed delivery is always enabled. The configuration APIs 
 
 snippet: 4to5-configure-native-delayed-delivery
 
+
 ## Native publish subscribe
 
-SQL Server transport version 5 introduces native support for the publish subscribe pattern. It does so via a dedicated subscription routing table which holds subscription information for each event type. When an endpoint subscribes to an event, an entry is created in the subscription routing table. When an endpoint publishes an event, the subscription routing table is queried to find all of the subscribing endpoints.
+SQL Server transport version 5 introduces [native support for the publish subscribe pattern](/transports/sql/native-publish-subscribe.md). Endpoints running on version 5 and above are able to publish and subscribe to events without requiring a separate persistence.
 
-Upgrade a single endpoint at a time. As each endpoint is upgraded to version 5, configure it to operate in backwards compatibility mode to enable it to participate in publish subscribe operations with endpoints that are running on version 4.x or below. An endpoint operating in backwards compatibility mode will check the configured persistence and the native subscriptions table for subscribers when publishing a message. The transport will only send a single copy of the message to each subscriber.
+Before they are upgraded, endpoints running on older versions of the transport are not able to aceess the subscription data provided by native publish-subscribe. They will continue to send subscribe and unsubscribe control messages and will manage their own subscription storage, as described in [Message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe.md#mechanics-message-driven-persistence-based).
+
+The transport provides a compatibility mode that allows the endpoint to use both forms of publish-subscribe at the same time. When it is enabled and the endpoint publishes an event, the native susbcription table and the message-driven subscription persistence are checked for subscriber information. This subscriber information is deduplicated before the event it published, so even if a subscriber appears in both places it will only receive a single copy of each event.
+
+
+### Upgrading
+
+Upgrade a single endpoint to version 5 at a time. Each upgraded endpoint should be configured to run in backwards compatibility mode and be deployed into production before upgrading the next endpoint. At startup, the upgraded endpoint will add it's subscription information to the native subscriptions table. It will also send subscribe control messages to each of it's configured publishers. 
+
+NOTE: The first endpoint to be deployed to each environment will need to create the shared native subscriptions table. This can be done by [enabling installers on the endpoint](/nservicebus/operations/installers.md) or by using the script found below.
+
+Once all endpoints in the system have been upgraded to version 5, the code that enables compatibility mode can be safely removed from each endpoint. It is recommended to run the entire system in backwards compatibility mode for a day or two before beginning to remove backwards compatibility mode. This allows all of the subscription control messages sent at endpoint startup to reach their destination and be fully processed.
+
+
+#### Backwards compatibility configuration
 
 snippet: 4to5-enable-message-driven-pub-sub-compatibility-mode
 
-Configuration APIs to register publishers for event types has been moved to the compatibility mode settings object.
+Message-driven publish-subscribe works by having the subscriber send control messages to the publisher to subscribe (or unsubscribe) from a type of event. When the publisher receives one of these subscription related control messages, it updates its private subscription persistence. When a publisher publishes an event, it checks its private subscription storage for a list of subscribers for that event type and sends a copy of the event to each subscriber.
+
+A subscriber endpoint running in backwards compatibility mode will send subscription related control messages when subscribing to or unsubscribing from event types. The feature must be configured to associate each event type with the endpoint that publishes it. The configuration APIs to do this have been moved from the routing component to the compatibility component.
 
 snippet: 4to5-configure-message-driven-pub-sub-routing
 
+NOTE: Once the publishing endpoint has been upgraded, this configuration can optionally be removed. 
+
+A publisher endpoint running backwards compatibility mode will also handle incoming subscription related control messages to update both the native subscription table and the private subscription persistence. Incoming subscription related control messages can be authorized using an API that has moved from the transport component to the compatibility component.
+
+snippet: 4to5-configure-message-driven-pub-sub-auth
+
+WARNING: This API only manages authorization of incoming control messages. Under native subscription management, each endpoint writes it's own subscription data into the shared subscription table directly. 
+
 NOTE: The `routing.DisablePublishing()` API has been deprecated and should be removed. This API was created to allow an endpoint to run without a configured subscription persistence. On version 5 and above, a subscription persistence is not required unless the endpoint runs in backwards compatibility mode.
-
-Once all endpoint have been upgraded to version 5 and deployed, compatibility mode can be disabled on endpoints, one at a time.
-
-
-### Configure subscription caching
-
-Subscription information can be cached for a given period of time so that it does not have to be loaded every single time an event is being published. The longer the cache period is, the higher the chance that new subscribers miss some events.
-
-Because of that there is no good default value for the subscription caching period. It has to be specified by the user. In systems where subscriptions are static the caching period can be relatively long. To configure it, use following API:
-
-snippet: 4to5-configure-subscription-cache
-
-In systems where events are subscribed and unsubscribed regularly (e.g. desktop applications unsubscribe when shutting down) it makes sense to keep the caching period short or to disable the caching altogether:
-
-snippet: 4to5-disable-subscription-cache
-
-### Configure subscription table
-
-A single subscription table is used by all endpoints. By default this table will be named `[SubscriptionRouting]` and be created in the `[dbo]` schema of the catalog specified in the connection string. To change where this table is created and how it is named, use the following API:
-
-snippet: 4to5-configure-subscription-table
-
-WARNING: All endpoints in the system must be configured to use the same subscription table.
-
-NOTE: If the endpoint is explicitly configured to use a schema, then the schema for the subscription table must also be explicitly set. 
 
 
 ### Operations
