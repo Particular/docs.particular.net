@@ -1,6 +1,6 @@
 ---
 title: Send Metrics data to ServiceControl
-reviewed: 2018-01-26
+reviewed: 2019-11-08
 component: MetricsServiceControl
 related:
   - samples/logging/metrics
@@ -9,7 +9,7 @@ redirects:
 ---
 
 
-The component `NServiceBus.Metrics.ServiceControl` enables sending monitoring data gathered with `NServiceBus.Metrics` to an instance of `ServiceControl.Monitoring` service.
+The `NServiceBus.Metrics.ServiceControl` component enables sending monitoring data gathered with `NServiceBus.Metrics` to a `ServiceControl.Monitoring` service.
 
 ## Configuration
 
@@ -36,13 +36,13 @@ An override for `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`.
 
 It is recommended to [override the *host id* and *host display name* via NServiceBus core](/nservicebus/hosting/override-hostid.md) and to use the API without the `InstanceId` argument. By default, the monitoring plug-in will use these values to identify the monitored endpoint instances in the user-interface.
 
-Note: Make sure that the `InstanceId` value is logically unique and human readable.
+Note: Make sure that the `InstanceId` value is unique and human readable.
 
-A human readable value can be passed in the following example:
+A human readable value is being passed in the following example:
 
 snippet: SendMetricDataToServiceControlHostId
 
-Note: It is **not** required to add a process identification. The `InstanceId` does not require to be physically identifying the running instance uniquely. The plugin uses its own internal unique session identifier for this.
+Note: It is **not** required to add a process identification. The `InstanceId` is not required to be physically identifying the running instance uniquely. The plugin uses its own internal unique session identifier for this.
 
 #### Azure host
 
