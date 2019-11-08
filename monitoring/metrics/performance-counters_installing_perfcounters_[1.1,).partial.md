@@ -3,7 +3,7 @@
 
 ### [NServiceBus.Metrics.PerformanceCounters.MsBuild](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters.MsBuild/)
 
-This packages installs into the MSBuild pipeline and generates all performance counter installation scripts at compile time. It does this by interrogating types (in the target assembly) and attributes (from the `NServiceBus.Metrics.PerformanceCounter` and `NServiceBus.Metrics` NuGet packages) to infer what scripts to create. It is required for any project where those performance counter installation scripts are needed. This package has a dependency on the `NServiceBus.Metrics.PerformanceCounter` NuGet package
+This packages installs into the MSBuild pipeline and generates all performance counter installation scripts at compile time. It does this by interrogating types (in the target assembly) and attributes (from the `NServiceBus.Metrics.PerformanceCounter` and `NServiceBus.Metrics` NuGet packages) to infer what scripts to create. It is required for any project where performance counter installation scripts are needed. This package has a dependency on the `NServiceBus.Metrics.PerformanceCounter` NuGet package.
 
 NOTE: Performance Counters **Versions 1.1 and above:** is dependent on `NServiceBus.Metrics` in calculating counters values.  
 
@@ -13,7 +13,7 @@ Performance counter installation scripts are created at compile time by the `NSe
 
 Scripts will be created in the directory format of `[CurrentProjectDebugDir]\NServiceBus.Metrics.PerformanceCounters\[ScriptVariant]`.
 
-For example, for a project named `ClassLibrary` build in Debug mode, the following directories will be created:
+For example: A project named `ClassLibrary` built in Debug mode will have the following directories created:
 
  * `ClassLibrary\bin\Debug\NServiceBus.Metrics.PerformanceCounters\CSharp`
  * `ClassLibrary\bin\Debug\NServiceBus.Metrics.PerformanceCounters\Powershell`

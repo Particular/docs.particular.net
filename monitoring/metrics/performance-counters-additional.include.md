@@ -4,7 +4,7 @@
 
 **Added in:** Version 4
 
-The current number of messages processed successfully by the transport per second.
+The current number of messages successfully processed by the transport per second.
 
 
 ### Configuration
