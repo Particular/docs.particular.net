@@ -35,6 +35,21 @@ NOTE: The first endpoint to be deployed to each environment will need to create 
 Once all endpoints in the system have been upgraded to version 5, the code that enables compatibility mode can be safely removed from each endpoint. It is recommended to run the entire system in backwards compatibility mode for a day or two before beginning to remove backwards compatibility mode. This allows all of the subscription control messages sent at endpoint startup to reach their destination and be fully processed.
 
 
+#### Native subscriptions configuration
+
+The native publish-subscribe feature must be configured with a cache duration for subscription information or have the cache explicitly disabled. 
+
+snippet: 4to5-subscription-caching
+
+The native publish-susbcribe feature relies on a subscriptions table shared across all endpoints. The name, schema, and catalog for this table can be configured.
+
+snippet: 4to5-subscription-table
+
+WARNING: To prevent message-loss, all endpoints must be configured to use the same subscriptions table.
+
+NOTE: If the endpoint is explicitly configured to use a schema, then the schema for the subscription table must also be explicitly set. 
+
+
 #### Backwards compatibility configuration
 
 snippet: 4to5-enable-message-driven-pub-sub-compatibility-mode
