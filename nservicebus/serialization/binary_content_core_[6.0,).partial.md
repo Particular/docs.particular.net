@@ -1,1 +1,0 @@
-WARNING: The `BinarySerializer` is deprecated. Use one of the [supported serializers](/nservicebus/serialization/#supported-serializers), or an [external serializer](/platform/extensions.md#serializers).
