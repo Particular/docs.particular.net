@@ -2,7 +2,7 @@
 title: NServiceBus.Extensions.Hosting
 summary: NServiceBus integration for Microsoft.Extensions.Hosting
 component: Extensions.Hosting
-reviewed: 2019-11-04
+reviewed: 2019-11-8
 tags:
  - Hosting
 related:
@@ -20,11 +20,6 @@ snippet: extensions-host-configuration
 
 This code will register the endpoint with the hosting infrastructure and automatically start and stop it based on the hosts application lifetime.
 
-### ASP.NET Core
-
-For ASP.NET Core web applications, `AddNServiceBus` extention method canbe used within the `ConfigureServices` method when using a `Startup` class. For more details, see the [ASP.NET Core sample](/samples/dependency-injection/aspnetcore).
-
-snippet: extensions-host-configuration-webhost
 
 ## Dependency injection integration
 

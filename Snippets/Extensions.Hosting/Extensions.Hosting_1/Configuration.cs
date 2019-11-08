@@ -3,7 +3,6 @@
     using System.Threading.Tasks;
     using Microsoft.Extensions.Hosting;
     using NServiceBus;
-    using NServiceBus.WebHost;
 
     class Configuration
     {
@@ -14,7 +13,7 @@
             var host = Host.CreateDefaultBuilder()
                 .UseNServiceBus(hostBuilderContext =>
                 {
-                    var endpointConfiguration = new EndpointConfiguration("MyConsoleEndpoint");
+                    var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
                     // configure endpoint here
                     return endpointConfiguration;
                 })
@@ -22,23 +21,6 @@
 
             await host.RunAsync();
 
-            #endregion
-        }
-
-        async Task ConfigureWebHost()
-        {
-            #region extensions-host-configuration-webhost
-            var host = new HostBuilder()
-                .ConfigureServices(serviceCollection =>
-                {
-                    var endpointConfiguration = new EndpointConfiguration("MyWebEndpoint");
-                    // configure endpoint here
-
-                    serviceCollection.AddNServiceBus(endpointConfiguration);
-                })
-                .Build();
-
-            await host.RunAsync();
             #endregion
         }
     }
