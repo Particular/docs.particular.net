@@ -26,7 +26,7 @@ The feature in ServicePulse is enabled by ServiceControl, through that applicati
 1. Find the ServiceControl installation directory using ServiceControl Management Utility.
 1. Edit the ServiceControl configuration file **ServiceControl.exe.config** with elevated privileges. 
 1. Add the following entry in the <appSettings> section of the file:
-    `<add key="ServiceControl/AllowMessageEditing" value="true">`
+      `<add key="ServiceControl/AllowMessageEditing" value="true">`
 1. Restart ServiceControl.
 
 ## Headers
