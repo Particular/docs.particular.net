@@ -23,6 +23,7 @@
       Title: Message replay tutorial
     - Url: tutorials/nservicebus-sagas
       Title: NServiceBus Sagas
+      Articles:
       - Url: tutorials/nservicebus-sagas/1-getting-started
         Title: Getting started
       - Url: tutorials/nservicebus-sagas/2-timeouts
