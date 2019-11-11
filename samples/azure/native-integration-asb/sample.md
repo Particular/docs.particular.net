@@ -2,7 +2,7 @@
 title: Native Integration with Azure Service Bus Transport
 summary: Consuming messages published by non NServiceBus endpoints.
 component: ASB
-reviewed: 2018-02-23
+reviewed: 2019-11-11
 related:
  - transports/azure-service-bus
 ---
@@ -55,7 +55,7 @@ NOTE: Both the sender (native or NServiceBus) and the receiver must agree on the
 
 The native message must allow NServiceBus to [detect the message type either via the headers or the message payload](/nservicebus/messaging/message-type-detection.md).
 
-In this sample the header option is used by storing the `FullName` of the message as an Azure Service Bus `BrokeredMessage` user property.
+In this sample, the header option is used by storing the `FullName` of the message as an Azure Service Bus `BrokeredMessage` user property.
 
 snippet: NecessaryHeaders
 

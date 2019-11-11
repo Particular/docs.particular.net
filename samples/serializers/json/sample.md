@@ -1,7 +1,7 @@
 ---
 title: JSON Serializer
 summary: Using the core JSON serializer
-reviewed: 2018-02-23
+reviewed: 2019-11-11
 component: Json
 related:
 - nservicebus/serialization
@@ -21,7 +21,7 @@ snippet: config
 
 ## Diagnostic mutator
 
-A helper that will log the contents of any incoming message.
+A helper that will log the contents of any incoming message:
 
 snippet: mutator
 

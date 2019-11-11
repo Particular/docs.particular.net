@@ -1,7 +1,7 @@
 ---
 title: Newtonsoft JSON Serializer
 summary: Using the Newtonsoft JSON serializer in an endpoint
-reviewed: 2018-02-19
+reviewed: 2019-11-11
 component: Newtonsoft
 related:
  - nservicebus/serialization
@@ -21,11 +21,11 @@ snippet: config
 
 ## Diagnostic mutator
 
-A helper that will log the contents of any incoming message.
+A helper that will log the contents of any incoming message:
 
 snippet: mutator
 
-Register the mutator.
+Register the mutator:
 
 snippet: registermutator
 

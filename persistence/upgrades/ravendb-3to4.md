@@ -7,7 +7,7 @@ related:
 redirects:
  - nservicebus/ravendb/upgrades/3to4
  - nservicebus/upgrades/ravendb-3to4
-reviewed: 2018-02-20
+reviewed: 2019-11-11
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5
@@ -16,20 +16,20 @@ upgradeGuideCoreVersions:
 
 include: dtc-warning
 
-As part of this update [NServiceBus Version 6](/nservicebus/upgrades/5to6/) will be required.
+As part of this update, [NServiceBus Version 6](/nservicebus/upgrades/5to6/) will be required.
 
 
 ## Migrate saga data if using AllowStaleSagaReads
 
 Due to [changes in how NServiceBus Version 6 handles saga correlation properties](/nservicebus/upgrades/5to6/handlers-and-sagas.md#saga-api-changes-unique-attribute-no-longer-needed), solutions that previously used the `AllowStaleSagaReads()` option in RavenDB Persistence will not work properly and need to be migrated during upgrade.
 
-DANGER: Failure to migrate saga data when using the `AllowStaleSagaReads()` option will result in NServiceBus being unable to locate saga data, and then creating duplicate saga data erroneously.
+DANGER: Failure to migrate saga data when using the `AllowStaleSagaReads()` option will result in NServiceBus being unable to locate saga data, which will cause it to create duplicate saga data erroneously.
 
 To enable efficient saga loading in one server round-trip, RavenDB persistence will use a _pointer document_ to load the saga data document by the correlation property in an atomic and consistent manner, without using RavenDB indexes that are (by design) not updated atomically with the document store.
 
 When using the `AllowStaleSagaReads()` option in previous versions, which was sometimes used to support correlating saga data on multiple properties, pointer documents were not used and RavenDB indexes (which might be stale) were used instead.
 
-Starting in NServiceBus Version 6, only one correlation id is supported, and the `AllowStaleSagaReads()` option is deprecated. However, saga data stored using this option in previous versions will not have the unique identity pointer document, and will not be able to load. The result is that NServiceBus will not be able to find the saga data document. If the message handler is implemented in the saga as `IHandleMessages<T>` then the message will be incorrectly discarded as belonging to a saga that has already completed. If the message handler is implemented in the saga as `IAmStartedByMessages<T>` then a new saga data will (incorrectly) be created, leading to duplicate saga data documents and incorrect business execution.
+Starting in NServiceBus Version 6, only one correlation id is supported, and the `AllowStaleSagaReads()` option is deprecated. However, saga data stored using this option in previous versions will not have the unique identity pointer document, and will not be able to load. The result is that NServiceBus will not be able to find the saga data document. If the message handler is implemented in the saga as `IHandleMessages<T>`, then the message will be incorrectly discarded as belonging to a saga that has already completed. If the message handler is implemented in the saga as `IAmStartedByMessages<T>`. then a new saga data will (incorrectly) be created, leading to duplicate saga data documents and incorrect business execution.
 
 When upgrading, if the `AllowStaleSagaReads` option is in use, contact [support@particular.net](mailto:support@particular.net) for assistance in identifying the scope of the problem and migration of data.
 
@@ -49,7 +49,7 @@ As part of this move, the following classes were moved to different namespaces:
 
 NServiceBus now uses the asynchronous RavenDB API for all operations. If sharing the session between NServiceBus and handler code is required, then handler code will need to be adjusted to utilize the asynchronous RavenDB API as well.
 
-Previously the API exposed an [`IDocumentSession`](https://ravendb.net/docs/search/latest/csharp?searchTerm=IDocumentSession), but now exposes [`IAsyncDocumentSession`](https://ravendb.net/docs/search/latest/csharp?searchTerm=IAsyncDocumentSession) instead, which contains the same operations but using a Task-based API.
+Previously, the API exposed an [`IDocumentSession`](https://ravendb.net/docs/search/latest/csharp?searchTerm=IDocumentSession), but now exposes [`IAsyncDocumentSession`](https://ravendb.net/docs/search/latest/csharp?searchTerm=IAsyncDocumentSession) instead, which contains the same operations using a Task-based API.
 
 
 ## Configuring a shared session
@@ -61,11 +61,11 @@ snippet: 3to4-ravensharedsession
 
 ## ISessionProvider is obsolete
 
-In Version 3 of NServiceBus.RavenDB an `ISessionProvider` was available for dependency injection. The new method of accessing the raven session is the `SynchronizedStorageSession`.
+In Version 3 of NServiceBus.RavenDB, an `ISessionProvider` was available for dependency injection. The new method of accessing the raven session is the `SynchronizedStorageSession`.
 
 snippet: 3to4-acccessingravenfromhandler
 
 
 ### Session is available regardless of features enabled
 
-In Version 3, the `RavenStorageSession` was only registered if at least one out of [Outbox](/nservicebus/outbox/) and [Sagas](/nservicebus/sagas/) were enabled. There are possible use cases for using the NServiceBus wrapped RavenDB session so the prerequisites have been removed.
+In Version 3, the `RavenStorageSession` was only registered if at least one out of [Outbox](/nservicebus/outbox/) and [Sagas](/nservicebus/sagas/) were enabled. There are possible use cases for using the NServiceBus wrapped RavenDB session, so the prerequisites have been removed.

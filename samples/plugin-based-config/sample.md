@@ -2,7 +2,7 @@
 title: Customization with MEF or Reflection
 summary: Using MEF or reflection to add custom configuration, startup, and shutdown logic to NServiceBus.
 component: Core
-reviewed: 2018-02-13
+reviewed: 2019-11-11
 related:
 - nservicebus/lifecycle
 - nservicebus/pipeline
@@ -13,11 +13,11 @@ related:
 
 The Shared project defines all the messages used in the sample.
 
-It also contains the custom extension point definitions that both the endpoints and the implementations use to communicate. For example the extension point for running code after the endpoint has started is:
+It also contains the custom extension point definitions that both the endpoints and the implementations use to communicate. For example, the extension point for running code after the endpoint has started is:
 
 snippet: IRunAfterEndpointStart
 
-The complete list of extension points in this solution are
+The complete list of extension points in this solution are:
 
  * `ICustomizeConfiguration`
  * `IRunBeforeEndpointStart`
@@ -28,7 +28,7 @@ The complete list of extension points in this solution are
 
 ## Approaches to executing extension points
 
-Both approaches have similar parts.
+Both approaches have similar parts:
 
  * An endpoint project that starts the endpoint and loads + executes the specific extension points in the Shared project.
  * An extensions project that contains the implementations for the extension points in the Shared project.
@@ -46,7 +46,7 @@ snippet: CustomStartup
 
 ### Helpers
 
-Some common scanning and reflection helpers.
+Some common scanning and reflection helpers:
 
 snippet: Resolver
 
@@ -72,7 +72,7 @@ snippet: MefStartup
 
 ### Helpers
 
-Some common MEF helpers.
+Some common MEF helpers:
 
 snippet: MefExtensions
 

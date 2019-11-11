@@ -1,15 +1,15 @@
 ---
-title: Consumer Driven Contracts
-reviewed: 2018-02-19
+title: Consumer-driven Contracts
+reviewed: 2019-11-11
 component: Core
 versions: '[6,)'
 ---
 
-WARNING: Support for consumer driven contracts relies on serializers being able to support multiple inheritance. At this time, only the [XML](/nservicebus/serialization/xml.md) or [Newtonsoft JSON](/nservicebus/serialization/newtonsoft.md) serializers meet this requirement.
+WARNING: Support for consumer-driven contracts relies on serializers being able to support multiple inheritance. At this time, only the [XML](/nservicebus/serialization/xml.md) and [Newtonsoft JSON](/nservicebus/serialization/newtonsoft.md) serializers meet this requirement.
 
-## Introduction to consumer driven contracts
+## Introduction to consumer-driven contracts
 
-This sample shows a [consumer driven contract](https://martinfowler.com/articles/consumerDrivenContracts.html)(CDC) approach to messaging. The essence of consumer driven contracts is that the ownership of the contract is inverted. Instead of the producer providing the definition, consumers define the contract they expect, and it's up to the producer to fulfill it.
+This sample shows a [consumer-driven contract](https://martinfowler.com/articles/consumerDrivenContracts.html)(CDC) approach to messaging. The essence of consumer-driven contracts is that the ownership of the contract is inverted. Instead of the producer providing the definition, consumers define the contract they expect, and it's up to the producer to fulfill it.
 
 In NServiceBus terminology, "producers" are called "publishers" and "consumers" are called "subscribers". Contracts translate to message contracts and are defined using plain C# types. To honor a consumer contract, the producer would make the relevant message contract inherit from the consumer contract type.
 

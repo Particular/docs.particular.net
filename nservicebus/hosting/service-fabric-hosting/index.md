@@ -3,7 +3,7 @@ title: Service Fabric Hosting
 related:
  - persistence/service-fabric
  - samples/azure/azure-service-fabric-routing
-reviewed: 2018-02-19
+reviewed: 2019-11-11
 isLearningPath: true
 ---
 
@@ -21,15 +21,15 @@ Note: The Actor model is another Service Fabric programming model. It is not cur
 
 Hosting with a stateless service is similar to other Azure-based hosting (using [cloud services](/nservicebus/hosting/cloud-services-host) or [self-hosting](/nservicebus/hosting/#self-hosting) with [Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/)). Endpoints are stateless and use storage external to Service Fabric for managing data needed for their operation. Endpoints can be scaled out, leveraging [competing consumer](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) at the transport level.
 
-With stateless services, the number of instances of a service can range from one to the number of nodes in a cluster less one. Endpoints are self hosted and should be started using a custom Service Fabric [`ICommunicationListener`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-communication) implementation.
+With stateless services, the number of instances of a service can range from one to `the number of nodes in the cluster - 1`. Endpoints are self-hosted and should be started using a custom Service Fabric [`ICommunicationListener`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-communication) implementation.
 
 snippet: StatelessEndpointCommunicationListener
 
-NOTE: If stateless services are used to host web application frameworks such as ASP.NET, ASP.NET Core or WebAPI it is recommended to start the endpoint inside the service collection extensions instead of the communication listener as shown in [using NServiceBus in an ASP.NET Core WebAPI application](/samples/web/send-from-aspnetcore-webapi/). This approach is simpler than having to coordinate multiple communication listeners since no coordination is needed between the listeners. If only stateless services are used to host web application frameworks it might be useful to consider Azure AppServices. For more guidance, refer to the [Azure App Service, Virtual Machines, Service Fabric, and Cloud Services comparison](https://docs.microsoft.com/en-us/azure/app-service/choose-web-site-cloud-service-vm) guidance.
+NOTE: If stateless services are used to host web application frameworks, such as ASP.NET, ASP.NET Core, or WebAPI, it is recommended to start the endpoint inside the service collection extensions instead of the communication listener, as shown in [using NServiceBus in an ASP.NET Core WebAPI application](/samples/web/send-from-aspnetcore-webapi/). This approach is simpler than having to coordinate multiple communication listeners since no coordination is needed between the listeners. If only stateless services are used to host web application frameworks, it might be useful to consider Azure AppServices. For more guidance, refer to the [Azure App Service, Virtual Machines, Service Fabric, and Cloud Services comparison](https://docs.microsoft.com/en-us/azure/app-service/choose-web-site-cloud-service-vm) guidance.
 
 ### Stateful service
 
-The process of configuring and starting an endpoint hosted in a stateful service is very similar to stateless service hosting approach. The main difference is that the endpoint cannot be started until the `OpenAsync` method has returned as the `StateManager` instance has not been fully configured yet. This is trivial to solve by calling the `Endpoint.Start` operation from the `RunAsync` operation instead.
+The process of configuring and starting an endpoint hosted in a stateful service is very similar to the stateless service hosting approach. The main difference is that the endpoint cannot be started until the `OpenAsync` method has returned because the `StateManager` instance has not been fully configured yet. This is trivial to solve by calling the `Endpoint.Start` operation from the `RunAsync` operation instead.
 
 snippet: StatefulEndpointCommunicationListener
 
@@ -48,11 +48,11 @@ NServiceBus provides persistence based on reliable collections for saga and outb
 
 ### Guest executable
 
-The [guest executable](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-deploy-existing-app) option allows packaging and deployment of an an existing endpoint into service fabric with minimal or no change at all. Service Fabric treats guest executable as stateless services.
+The [guest executable](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-deploy-existing-app) option allows packaging and deployment of an an existing endpoint into Service Fabric with minimal or no change at all. Service Fabric treats a guest executable as a stateless services.
 
 This option can be used as an interim solution for the endpoints that eventually need to be converted to Service Fabric services, but cannot be converted right away.
 
-WARNING: While executables can be packaged and deployed to Service Fabric without much effort, the Service Fabric hosting environment might not support all local dependencies. For example, endpoints running on the MSMQ transport should be migrated to another transport. The reason for this is that Service Fabric reallocates processes to different machines based on metrics such as CPU load. But these local dependencies will not move along with it.
+WARNING: While executables can be packaged and deployed to Service Fabric without much effort, the Service Fabric hosting environment might not support all local dependencies. For example, endpoints running on the MSMQ transport should be migrated to another transport. The reason for this is that Service Fabric reallocates processes to different machines based on metrics such as CPU load, but these local dependencies will not move along with it.
 
 
 ## Hosting NServiceBus in a standalone cluster
