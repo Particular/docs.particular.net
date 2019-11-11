@@ -16,7 +16,7 @@ Editing malformed messages is a potentially destructive operation, which if used
 
 System designers may prefer to disallow message editing in order to guarantee the correctness of the system. As a result, the message editing feature is currently considered experimental and is **disabled by default**.
 
-It is recommended to carefully evauate possible use cases for editing malformed messages and consider alternative solutions for those use cases. For help with alternatives for specific situations, contact [Particular Support](https://particular.net/support) for assistance.
+It is recommended to carefully evauate possible use cases for editing malformed messages and consider alternative solutions for those use cases such as [ServiceControl retry redirects](/samples/servicecontrol/fix-messages/), especially for use cases that are common and recurring. For help with alternatives for specific situations, contact [Particular Support](https://particular.net/support) for assistance.
 }}
 
 
