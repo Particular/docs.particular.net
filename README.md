@@ -1127,7 +1127,7 @@ Avoid ambiguity.
  Don't capitalize "version" unnecessarily.
 
  * **NServiceBus version 6** and NOT **NServiceBus Version 6**
- * **NServiceBus version 5 and below** and NOT **NServiceBus version 5 and below**
+ * **NServiceBus version 5 and below** and NOT **NServiceBus Version 5 and below**
 
 
 ## Embedding videos
