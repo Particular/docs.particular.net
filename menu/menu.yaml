@@ -21,8 +21,12 @@
         Title: Retrying errors
     - Url: tutorials/message-replay
       Title: Message replay tutorial
-    - Url: tutorials/nservicebus-sagas/1-getting-started
-      Title: "NServiceBus sagas: Getting started"
+    - Url: /tutorials/nservicebus-sagas
+      Title: NServiceBus Sagas
+      - Url: tutorials/nservicebus-sagas/1-getting-started
+        Title: Getting started
+      - Url: tutorials/nservicebus-sagas/2-timeouts
+        Title: Timeouts
     - Url: tutorials
       Title: More tutorials
       Articles:
