@@ -68,7 +68,7 @@ snippet: 4to5-configure-message-driven-pub-sub-auth
 
 WARNING: This API only manages authorization of incoming control messages. Under native subscription management, each endpoint writes it's own subscription data into the shared subscription table directly. 
 
-NOTE: The `routing.DisablePublishing()` API has been deprecated and should be removed. This API was created to allow an endpoint to run without a configured subscription persistence. On version 5 and above, a subscription persistence is not required unless the endpoint runs in backwards compatibility mode.
+NOTE: The `routing.DisablePublishing()` API has been deprecated and should be removed. This API was created to allow an endpoint to run without a configured subscription persistence. In version 5 and above, a subscription persistence is not required unless the endpoint runs in backwards compatibility mode.
 
 
 ### Operations

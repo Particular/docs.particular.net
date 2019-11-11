@@ -6,7 +6,7 @@ component: SqlTransport
 versions: '[5,)'
 ---
 
-The SQL Server transport implements the publish-subscribe pattern. On version 4 and below, this feature relies on message-driven pub-sub which requires a separate persistence for storage of subscription information. On version 5 and above, the transport handles subscription information natively and a separate persistence is not required.
+The SQL Server transport implements the publish-subscribe pattern. In version 4 and below, this feature relies on message-driven pub-sub which requires a separate persistence for storage of subscription information. In version 5 and above, the transport handles subscription information natively and a separate persistence is not required.
 
 The transport creates a dedicated subscription routing table, shared by all endpoints, which holds subscription information for each event type. When an endpoint subscribes to an event, an entry is created in the subscription routing table. When an endpoint publishes an event, the subscription routing table is queried to find all of the subscribing endpoints.
 
