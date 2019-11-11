@@ -673,7 +673,7 @@ Snippets are versioned. These versions are used to render snippets in a tabbed m
 
 <img src="tabbed_snippets.png" style='border:1px solid #000000' />
 
-Versions follow the [NuGet versioning convention](https://docs.nuget.org/create/versioning#specifying-version-ranges-in-.nuspec-files). If either `Minor` or `Patch` is not defined they will be rendered as an `x`. For example, Version `3.3` would be rendered as `3.3.x` and Version `3` would be rendered as `3.x`.
+Versions follow the [NuGet versioning convention](https://docs.nuget.org/create/versioning#specifying-version-ranges-in-.nuspec-files). If either `Minor` or `Patch` is not defined they will be rendered as an `x`. For example, version `3.3` would be rendered as `3.3.x` and version `3` would be rendered as `3.x`.
 
 Snippet versions are derived in two ways
 
@@ -1121,8 +1121,8 @@ No personal voice. I.e. no "we", "you", "your", "our" etc.
 
 Avoid ambiguity.
 
- * Range: **Version X and above** and **Version Y and below** and **Version X to version Y**.
- * Singular: **Version X** and NOT **VX**.
+ * Range: **version X and above** and **version Y and below** and **version X to version Y**.
+ * Singular: **version X** and NOT **VX**.
 
  Don't capitalize "version" unnecessarily.
 
