@@ -19,7 +19,15 @@ System designers may prefer to disallow message editing in order to guarantee th
 It is recommended to carefully evauate possible use cases for editing malformed messages and consider alternative solutions for those use cases such as [ServiceControl retry redirects](/samples/servicecontrol/fix-messages/), especially for use cases that are common and recurring. For help with alternatives for specific situations, contact [Particular Support](https://particular.net/support) for assistance.
 }}
 
+NOTE: Editing malformed messages requires both ServiceControl 4.1.0+ and ServicePulse 1.21.0+.
 
+The feature in ServicePulse is enabled by ServiceControl, through that application's configuration file:
+
+1. Find the ServiceControl installation directory using ServiceControl Management Utility.
+1. Edit the ServiceControl configuration file **ServiceControl.exe.config** with elevated privileges. 
+1. Add the following entry in the <appSettings> section of the file:
+    <add key="ServiceControl/AllowMessageEditing" value="true">
+1. Restart ServiceControl.
 
 ## Headers
 
