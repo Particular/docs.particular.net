@@ -72,7 +72,7 @@ NOTE: This tutorial uses 20 seconds as a timeout value for simplicity. In produc
 
 Besides the `context`, the `RequestTimeout` method has two parameters of note. One is the `TimeSpan` which tells us how long to wait before sending our trigger message. In this case, it's 20 seconds.
 
-NOTE: Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this form, makre sure if you want to pass a local time which is affected by Daylight Savings Time (DST) changes or to use UTC dates to avoid DST conversion issues.
+NOTE: Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this form, make sure if you want to pass a local time which is affected by Daylight Savings Time (DST) changes or to use UTC dates to avoid DST conversion issues.
 
 The other parameter of note is a `BuyersRemorseIsOver` class, which we don't have yet. This parameter represents the actual message that will be sent when the timeout is over. Let's create it now. You can put it in the same file as our saga and leave it as an empty class:
 
