@@ -9,7 +9,7 @@ redirects:
 
 The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI. This installation can be executed standalone or via the [Platform Installer](/platform/installer/). The installation package include a utility to manage the installation, upgrade, and removal of ServiceControl services. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
 
-NOTE: A community managed puppet module is available to install ServiceControl. For more information refer to https://forge.puppet.com/tragiccode/nservicebusservicecontrol 
+NOTE: A [community managed puppet module](https://forge.puppet.com/tragiccode/nservicebusservicecontrol) is available to install ServiceControl.
 
 ## Prerequisites
 
