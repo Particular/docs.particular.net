@@ -11,7 +11,25 @@ If a message cannot be successfully retried it is possible to fix the malformed 
 
 ## Enabling the feature
 
-The message edit and retry feature is not enabled by default. To enable it, contact [Particular Support](https://particular.net/support) for assistance.
+{{DANGER:
+Editing malformed messages is a potentially destructive operation, which if used improperly can have consequences that affect the correctness of the system. If a malformed message is edited improperly, it could still be processed successfully, without any way to undo the effects. The possible effects of editing a malformed message are system-specific and ServicePulse is unable to determine if a potential edit operation is safe for the system. Currently there is no way to limit failed message editing only to certain security groups or to specific message types.
+
+System designers may prefer to disallow message editing in order to guarantee the correctness of the system. As a result, the message editing feature is currently considered experimental and is **disabled by default**.
+
+It is recommended to carefully evauate possible use cases for editing malformed messages and consider alternative solutions for those use cases such as [ServiceControl retry redirects](/samples/servicecontrol/fix-messages/), especially for use cases that are common and recurring. For help with alternatives for specific situations, contact [Particular Support](https://particular.net/support) for assistance.
+}}
+
+NOTE: Editing malformed messages requires both ServiceControl 4.1.0+ and ServicePulse 1.21.0+.
+
+The feature in ServicePulse is enabled via the configuration file for ServiceControl:
+
+1. Find the ServiceControl installation directory using ServiceControl Management Utility.
+1. Edit the ServiceControl configuration file `ServiceControl.exe.config` with elevated privileges. 
+1. Add the following entry in the `<appSettings>` section of the file:
+    ```
+    <add key="ServiceControl/AllowMessageEditing" value="true">
+    ```
+1. Restart ServiceControl.
 
 ## Headers
 
