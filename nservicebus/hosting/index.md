@@ -98,11 +98,6 @@ Most usages of the bus will occur where the NServiceBus APIs are used, for examp
 
 NServiceBus supports [dependency injection](/nservicebus/dependency-injection/). At startup, the instance of a bus session will be injected into the configured dependency injection and can be access via that instance.
 
-Related:
-
- * [Sending from an ASP.NET MVC Controller](/samples/web/send-from-mvc-controller/)
-
-
 partial: injecting
 
 

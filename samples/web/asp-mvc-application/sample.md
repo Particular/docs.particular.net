@@ -42,8 +42,6 @@ The sample controller holds a reference to the instance used later to send messa
 
 snippet: ApplicationStart
 
-For more details on how to inject NServiceBus classes into the controllers, check [Sending from an ASP.NET MVC Controller](/samples/web/send-from-mvc-controller/).
-
 
 ## Sending a message
 

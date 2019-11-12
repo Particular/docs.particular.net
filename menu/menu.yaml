@@ -340,6 +340,8 @@
       Title: Assembly scanning
     - Url: nservicebus/hosting/critical-errors
       Title: Critical Errors
+    - Url: nservicebus/hosting/extensions-hosting
+      Title: Microsoft Generic Host
     - Url: nservicebus/hosting/web-application
       Title: Web Application
     - Url: nservicebus/hosting/service-fabric-hosting
