@@ -10,7 +10,7 @@ Being able to model the concept of time as part of a long-running process is inc
 
 > For more on the difficulties associated with batch jobs, see [Death to the Batch Job](https://particular.net/blog/death-to-the-batch-job).
 
-NServiceBus gives us the ability to not only send messages, but also [delay messages](/nservicebus/messaging/delayed-delivery.md). Delayed delivery gives us the ability to *send messages into the future* which is used by [Saga Timeouts](/nservicebus/sagas/timeouts.md).
+NServiceBus has the ability not only to send and publish messages, but also to [delay messages](/nservicebus/messaging/delayed-delivery.md). Delayed delivery effectively provides the ability to *send messages into the future* which is used by [Saga Timeouts](/nservicebus/sagas/timeouts.md).
 
 No need to write batch jobs to query every record in the database every night. Instead, each instance is able to manage time in its own workflow, setting virtual alarm clocks to be awakened whenever needed.
 
