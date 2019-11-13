@@ -14,7 +14,7 @@ NServiceBus gives us the ability to not only send messages, but also [delay mess
 
 No need to write batch jobs to query every record in the database every night. Instead, each instance is able to manage time in its own workflow, setting virtual alarm clocks to be awakened whenever needed.
 
-NOTE: Timeouts are guaranteed to be delivered after the passed point in time but might be delayed if the system is very busy.
+NOTE: Timeouts are guaranteed to not be processed before the given point in time but might be delayed if the system is very busy.
 
 The uses for saga timeouts are too numerous to count, so in this tutorial we will focus on implementing the [buyer's remorse pattern](https://en.wikipedia.org/wiki/Buyer%27s_remorse). In this pattern, customers making a purchase are given a chance to cancel their order within a certain amount of time after it was placed. This is an important software pattern that pops up in non-retail domains as well. For example, Gmail uses the same pattern for their [Undo Send feature](https://support.google.com/mail/answer/2819488?co=GENIE.Platform%3DDesktop&hl=en).
 
