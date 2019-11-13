@@ -15,7 +15,9 @@ The transport creates a dedicated subscription routing table, shared by all endp
 
 Subscription information can be cached for a given period of time so that it does not have to be loaded every single time an event is being published. The longer the cache period is, the higher the chance that new subscribers miss some events.
 
-Because of that there is no good default value for the subscription caching period. It has to be specified by the user. In systems where subscriptions are static the caching period can be relatively long. To configure it, use following API:
+The default behavior is to cache subscription information for 5 seconds. This value is comparable to the average time it takes a subscription message to reach the destination endpoint when using message-driven publish-subscribe (as in versions 4 and below). On the other hand the value is high enough to prevent excessive database lookups in high throughput scenarios when hundreds of messages are published each second.
+
+If the default value is not suitable for a particular endpoint it can be changed. To configure it, use following API:
 
 snippet: configure-subscription-cache
 
@@ -30,10 +32,7 @@ A single subscription table is used by all endpoints. By default this table will
 
 snippet: configure-subscription-table
 
-WARNING: All endpoints in the system must be configured to use the same subscription table.
-
-NOTE: If the endpoint is explicitly configured to use a schema, then the schema for the subscription table must also be explicitly set. 
-
+WARNING: All endpoints in the system must be configured to use the same subscription table. In a multi-schema or multi-catalog system the subscription table needs to be in a shared schema and catalog.
 
 ## Backwards compatibility
 
