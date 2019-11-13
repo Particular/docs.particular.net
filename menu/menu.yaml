@@ -602,6 +602,8 @@
         Title: Version 3 to 4
     - Title: SQL Server
       Articles:
+      - Url: transports/upgrades/sqlserver-4to5
+        Title: Version 4 to 5
       - Url: transports/upgrades/sqlserver-31to4
         Title: Version 3.1 to 4
       - Url: transports/upgrades/sqlserver-3to31
@@ -723,8 +725,10 @@
     Articles:
     - Url: transports/sql/design
       Title: Design
+    - Url: transports/sql/native-publish-subscribe
+      Title: Native publish/subscribe
     - Url: transports/sql/native-delayed-delivery
-      Title: Native Delayed Delivery
+      Title: Native delayed delivery
     - Url: transports/sql/connection-settings
       Title: Connection settings
     - Url: transports/sql/addressing
