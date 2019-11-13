@@ -37,9 +37,11 @@ Once all endpoints in the system have been upgraded to version 5, the code that 
 
 #### Native subscriptions configuration
 
-The native publish-subscribe feature must be configured with a cache duration for subscription information or have the cache explicitly disabled. 
+The native publish-subscribe feature can be configured with a cache duration for subscription information or have the cache explicitly disabled. 
 
 snippet: 4to5-subscription-caching
+
+If the endpoint before the upgrade used [SQL persistence](/persistence/sql/) configure the subscription caching the same way as it was configured in the persistence. If the endpoint used [NHibernate persistence](/persistence/nhibernate/) it is best to rely on default settings of subscription caching.
 
 The native publish-susbcribe feature relies on a subscriptions table shared across all endpoints. The name, schema, and catalog for this table can be configured.
 
@@ -47,8 +49,7 @@ snippet: 4to5-subscription-table
 
 WARNING: To prevent message-loss, all endpoints must be configured to use the same subscriptions table.
 
-NOTE: If the endpoint is explicitly configured to use a schema, then the schema for the subscription table must also be explicitly set. 
-
+If the endpoints use different schemas and/or catalogs, the subscription table name needs to be explicitly set to the same value in each endpoint.
 
 #### Backwards compatibility configuration
 
@@ -66,7 +67,7 @@ A publisher endpoint running backwards compatibility mode will also handle incom
 
 snippet: 4to5-configure-message-driven-pub-sub-auth
 
-WARNING: This API only manages authorization of incoming control messages. Under native subscription management, each endpoint writes it's own subscription data into the shared subscription table directly. 
+WARNING: This API only applies to subscribe messages sent by endpoints which still use message-driven publish-subscribe. Under native subscription management, each endpoint writes it's own subscription data into the shared subscription table directly. 
 
 NOTE: The `routing.DisablePublishing()` API has been deprecated and should be removed. This API was created to allow an endpoint to run without a configured subscription persistence. In version 5 and above, a subscription persistence is not required unless the endpoint runs in backwards compatibility mode.
 
