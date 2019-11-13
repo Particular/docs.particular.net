@@ -15,9 +15,8 @@ static class Program
 
         var builder = new ContainerBuilder();
 
-        IEndpointInstance endpoint = null;
-        builder.Register(x => endpoint)
-            .As<IEndpointInstance>()
+        builder.Register(x => Endpoint.Start(endpointConfiguration))
+            .As<Task<IEndpointInstance>>()
             .SingleInstance();
 
         builder.RegisterInstance(new MyService());
@@ -35,10 +34,8 @@ static class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        endpoint = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await container.Resolve<Task<IEndpointInstance>>().ConfigureAwait(false);
 
-        var endpointInstance = container.Resolve<IEndpointInstance>();
         var myMessage = new MyMessage();
         await endpointInstance.SendLocal(myMessage)
             .ConfigureAwait(false);
