@@ -10,9 +10,11 @@ Being able to model the concept of time as part of a long-running process is inc
 
 > For more on the difficulties associated with batch jobs, see [Death to the Batch Job](https://particular.net/blog/death-to-the-batch-job).
 
-NServiceBus gives us the ability to send messages, but NServiceBus sagas give us the ability to *send messages into the future*.
+NServiceBus has the ability not only to send and publish messages, but also to [delay messages](/nservicebus/messaging/delayed-delivery.md). Delayed delivery effectively provides the ability to *send messages into the future* which is used by [Saga Timeouts](/nservicebus/sagas/timeouts.md).
 
 No need to write batch jobs to query every record in the database every night. Instead, each instance is able to manage time in its own workflow, setting virtual alarm clocks to be awakened whenever needed.
+
+NOTE: Timeouts are guaranteed to not be processed before the given point in time but might be delayed if the system is very busy.
 
 The uses for saga timeouts are too numerous to count, so in this tutorial we will focus on implementing the [buyer's remorse pattern](https://en.wikipedia.org/wiki/Buyer%27s_remorse). In this pattern, customers making a purchase are given a chance to cancel their order within a certain amount of time after it was placed. This is an important software pattern that pops up in non-retail domains as well. For example, Gmail uses the same pattern for their [Undo Send feature](https://support.google.com/mail/answer/2819488?co=GENIE.Platform%3DDesktop&hl=en).
 
@@ -29,7 +31,7 @@ No problem! You can get started learning sagas with the completed solution from 
 
 downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/1-getting-started)
 
-The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes defining messages exchanged in our system. To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 
 Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
 }}
@@ -50,7 +52,7 @@ snippet: EmptyBuyersRemorsePolicy
 
 The policy inherits from `Saga<BuyersRemoteState>` which references the `ContainSagaData` class.
 
-The ClientUI already sends a `PlaceOrder` command to the Sales endpoint. This command is perfect to start the buyer's remorse saga. So let's make the saga implement the `IAmStartedByMessages<PlaceOrder>` interface:
+The ClientUI already sends a `PlaceOrder` command to the Sales endpoint. This command is perfect to start the buyer's remorse saga. Let's make the saga implement the `IAmStartedByMessages<PlaceOrder>` interface:
 
 snippet: BuyersRemorsePolicyStartedByPlaceOrder
 
@@ -70,7 +72,7 @@ NOTE: This tutorial uses 20 seconds as a timeout value for simplicity. In produc
 
 Besides the `context`, the `RequestTimeout` method has two parameters of note. One is the `TimeSpan` which tells us how long to wait before sending our trigger message. In this case, it's 20 seconds.
 
-NOTE: Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this form, remember to use UTC dates to avoid issues arising from Daylight Savings Time.
+NOTE: Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this form, remember that local time is affected by Daylight Savings Time (DST) changes: use UTC dates to avoid DST conversion issues.
 
 The other parameter of note is a `BuyersRemorseIsOver` class, which we don't have yet. This parameter represents the actual message that will be sent when the timeout is over. Let's create it now. You can put it in the same file as our saga and leave it as an empty class:
 
@@ -105,6 +107,8 @@ We handle `CancelOrder` in `BuyersRemorsePolicy` saga by implementing `IHandleMe
 snippet: BuyersRemorseCancelOrderHandling
 
 The `Handle` method is very similar to the saga's `Timeout` method. We log some information, do some business logic, then mark the saga complete. This effectively cancels any outstanding timeouts currently in place for the saga. Remember, by calling `MarkAsComplete`, we tell this saga instance that there is no further work to be performed.
+
+NOTE: If the system is busy it could be that the cancellation message gets processed after the timeout even though the cancellation was send before timestamp of the timeout. The probability gets higher the shorter the timeout duration is.
 
 Consider what happens when the buyer's remorse period has ended. The saga has been marked complete but maybe the Cancel button still appears on the user's screen and they click it. Assuming a `CancelOrder` command still gets fired, nothing will happen. The saga instance is already complete so there is nothing left to process this command. In effect, we can't cancel an order that has already been placed. Similarly, we can't complete an order that has already been processed. `MarkAsComplete` handles both of these scenarios for us.
 
