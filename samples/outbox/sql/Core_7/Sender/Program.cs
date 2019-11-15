@@ -25,7 +25,7 @@ class Program
         transport.DefaultSchema("sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
-        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
+        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(
@@ -37,8 +37,12 @@ class Program
         dialect.Schema("sender");
         persistence.TablePrefix("");
 
-        var subscriptions = persistence.SubscriptionSettings();
-        subscriptions.DisableCache();
+        var subscriptions = transport.SubscriptionSettings();
+        subscriptions.DisableSubscriptionCache();
+
+        subscriptions.SubscriptionTableName(
+            tableName: "Subscriptions", 
+            schemaName: "dbo");
 
         endpointConfiguration.EnableOutbox();
 
