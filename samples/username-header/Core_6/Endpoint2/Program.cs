@@ -10,6 +10,12 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint2");
         endpointConfiguration.UseTransport<LearningTransport>();
 
+        endpointConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.ConfigureComponent<UsernameMutator>(DependencyLifecycle.InstancePerCall);
+            });
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");

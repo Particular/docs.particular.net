@@ -37,6 +37,6 @@ snippet: componentRegistration
 
 ### The Handler
 
-From within a handler (or saga) this value can be used as follows:
+From within a handler, the `Thread.CurrentPrincipal.Identity.Name` will have the value that was specified in the Outgoing Mutator:
 
 snippet: handler-using-custom-header

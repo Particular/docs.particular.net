@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -11,9 +12,8 @@ public class HandlerUsingCustomHeader :
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        var headers = context.MessageHeaders;
-        var usernameFromHeader = headers["UserName"];
-        log.Info($"Username extracted from header: {usernameFromHeader}");
+        var usernameFromThread = Thread.CurrentPrincipal.Identity.Name;
+        log.Info($"Username extracted from Thread.CurrentPrincipal: {usernameFromThread}");
         return Task.CompletedTask;
     }
 }
