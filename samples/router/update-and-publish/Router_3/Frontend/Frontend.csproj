@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <OutputType>exe</OutputType>
@@ -9,7 +9,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.*" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="5.*" />
     <PackageReference Include="EntityFramework" Version="6.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>

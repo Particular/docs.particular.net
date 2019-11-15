@@ -2,7 +2,7 @@
 title: Using NServiceBus.Router for atomic update-and-publish in WebAPI
 summary: How to use SQL transport at the ASP.NET frontend to allow for atomic update-and-publish and NServiceBus.Router to connect frontend to backend transport
 component: Router
-reviewed: 2018-12-28
+reviewed: 2019-11-15
 related:
 - nservicebus/router
 - samples/web/send-from-aspnetcore-webapi
@@ -14,6 +14,8 @@ This sample shows how to use SQL Server transport in the ASP.NET Core WebAPI app
 Very often the web controller needs to modify the data in a database and publish a message as part of handling a single HTTP request. For consistency these two operations need to be done atomically. That means that if either of them fails, nothing is visible to the outside world. If the transport used by the system does not support distributed transactions, the solution is to use a dedicated specialized transport only for the frontend, and route messages between the two transports using NServiceBus.Router. 
 
 The most convenient transport for the frontend is SQL Server transport as it can easily share the connection and transaction with data access library such as EntityFramework.
+
+The [NServiceBus.Connector.SqlServer](https://github.com/SzymonPobiega/NServiceBus.Connector.SqlServer) project takes this idea even further and exposes a familiar `IMessageSession` API for web controllers. Internally the connector hosts a SQL-to-target transport router.
 
 
 ## Running the solution
