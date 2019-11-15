@@ -28,11 +28,10 @@ public static class Program
         transport.UseSchemaForQueue("audit", "dbo");
         transport.UseSchemaForQueue("Samples.Sql.Sender", "sender");
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
-        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
+        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.Sql.Sender");
-        routing.RegisterPublisher(typeof(OrderSubmitted).Assembly, "Samples.Sql.Sender");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
@@ -43,8 +42,13 @@ public static class Program
                 return new SqlConnection(connection);
             });
         persistence.TablePrefix("");
-        var subscriptions = persistence.SubscriptionSettings();
-        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
+
+        var subscriptions = transport.SubscriptionSettings();
+        subscriptions.CacheSubscriptionInformationFor(TimeSpan.FromMinutes(1));
+
+        subscriptions.SubscriptionTableName(
+            tableName: "Subscriptions", 
+            schemaName: "dbo");
 
         #endregion
 
