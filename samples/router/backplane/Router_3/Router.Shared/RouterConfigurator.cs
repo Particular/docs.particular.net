@@ -14,7 +14,6 @@ public class RouterConfigurator
     {
         var otherRouters = allRouters.Except(new[] { routerName }).ToArray();
 
-        var sqlSubscriptionStorage = new SqlSubscriptionStorage(() => new SqlConnection(sqlConnectionString), $"{routerName}-SQL", new SqlDialect.MsSqlServer(), null);
         var backplaneSubscriptionStorage = new SqlSubscriptionStorage(() => new SqlConnection(sqlConnectionString), $"{routerName}-Backplane", new SqlDialect.MsSqlServer(), null);
 
         #region RouterConfig
@@ -25,7 +24,6 @@ public class RouterConfigurator
             t.ConnectionString(sqlConnectionString);
             t.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
         });
-        sqlInterface.EnableMessageDrivenPublishSubscribe(sqlSubscriptionStorage);
 
         var backplaneInterface = routerConfig.AddInterface<RabbitMQTransport>("Backplane", t =>
         {
@@ -86,7 +84,6 @@ public class RouterConfigurator
 
         #endregion
 
-        await sqlSubscriptionStorage.Install().ConfigureAwait(false);
         await backplaneSubscriptionStorage.Install().ConfigureAwait(false);
 
         return routerConfig;
