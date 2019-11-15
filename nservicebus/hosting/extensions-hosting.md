@@ -15,11 +15,11 @@ An NServiceBus endpoint can be hosted within the generic host with the `UseNServ
 
 snippet: extensions-host-configuration
 
-This code will register the endpoint with the hosting infrastructure and automatically start and stop it based on the hosts application lifetime.
+This code will register the endpoint with the hosting infrastructure and automatically start and stop it based on the host's application lifetime.
 
 
 ## Dependency injection integration
 
 NServiceBus endpoints hosted as part of the generic host automatically use the provided `IServiceCollection` and `IServiceProvider` dependency injection infrastructure. Message handlers can resolve dependencies which are registered in the `IServiceCollection`.
 
-`UseNServiceBus` automatically registers a `IMessageSession` with the container which can be resolved from the `IServiceProvider` or via dependency injection during runtime.
+`UseNServiceBus` automatically registers an `IMessageSession` with the container which can be resolved from the `IServiceProvider` or via dependency injection during runtime.
