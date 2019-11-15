@@ -27,11 +27,11 @@ class Program
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connection);
-        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
+        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
+        transport.SubscriptionSettings().DisableSubscriptionCache();
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(() => new SqlConnection(connection));
-        persistence.SubscriptionSettings().DisableCache();
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
         #region UnitOfWork_SQL
