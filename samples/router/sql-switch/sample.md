@@ -57,10 +57,7 @@ snippet: ClientRouterConfig
 
 The Sales and Shipping endpoints are configured to use the Red database for the transport. As Sales only publishes events, it does not need any routing configuration.
 
-Shipping subscribes for events published by Sales and it uses the same transport database so regular logical routing is enough
-
-snippet: ShippingRouting
-
+Shipping subscribes for events published by Sales and it uses the same transport database so the router is not involved.
 
 ### Billing
 
