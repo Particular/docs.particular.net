@@ -47,14 +47,18 @@ class Program
         transport.UseSchemaForQueue("audit", "dbo");
         transport.UseSchemaForQueue("Samples.SqlNHibernate.Sender", "sender");
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
-        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
+        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlNHibernate.Sender");
-        routing.RegisterPublisher(typeof(OrderSubmitted).Assembly, "Samples.SqlNHibernate.Sender");
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);
+
+        var subscriptions = transport.SubscriptionSettings();
+        subscriptions.SubscriptionTableName(
+            tableName: "Subscriptions",
+            schemaName: "dbo");
 
         #endregion
 

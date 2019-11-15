@@ -34,10 +34,15 @@ class Program
         transport.DefaultSchema("sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
-        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
+        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);
+
+        var subscriptions = transport.SubscriptionSettings();
+        subscriptions.SubscriptionTableName(
+            tableName: "Subscriptions",
+            schemaName: "dbo");
 
         #endregion
 
