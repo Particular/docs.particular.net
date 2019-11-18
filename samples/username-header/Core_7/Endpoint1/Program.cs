@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Security.Principal;
-using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -15,23 +14,32 @@ class Program
 
         #region ComponentRegistration
 
+        var principalAccessor = new PrincipalAccessor();
         endpointConfiguration.RegisterComponents(
             registration: components =>
             {
-                components.ConfigureComponent<UsernameMutator>(DependencyLifecycle.InstancePerCall);
+                components.RegisterSingleton<IPrincipalAccessor>(principalAccessor);
+                components.ConfigureComponent<AddUserNameToOutgoingHeadersMutator>(DependencyLifecycle.InstancePerCall);
             });
 
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
+
         #region SendMessage
 
-        var identity = new GenericIdentity("FakeUser");
-        Thread.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
-        var message = new MyMessage();
-        await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", message)
-            .ConfigureAwait(false);
+        async Task SendMessage(int userNumber)
+        {
+            var identity = new GenericIdentity($"FakeUser{userNumber}");
+            principalAccessor.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
+
+            var message = new MyMessage();
+            await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", message)
+                .ConfigureAwait(false);
+        }
+
+        await Task.WhenAll(SendMessage(1), SendMessage(2)).ConfigureAwait(false);
 
         #endregion
 

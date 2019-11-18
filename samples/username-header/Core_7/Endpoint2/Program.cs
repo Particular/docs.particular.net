@@ -11,6 +11,12 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
+        endpointConfiguration.RegisterComponents(c =>
+        {
+            c.RegisterSingleton<IPrincipalAccessor>(new PrincipalAccessor());
+            c.ConfigureComponent<SetCurrentPrincipalBasedOnHeaderMutator>(DependencyLifecycle.InstancePerCall);
+        });
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
