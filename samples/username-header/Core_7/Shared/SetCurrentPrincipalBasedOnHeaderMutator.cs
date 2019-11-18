@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-using System.Security.Principal;
-using System.Threading;
+﻿using System.Security.Principal;
 using System.Threading.Tasks;
 using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
