@@ -1,7 +1,7 @@
 ---
 title: XML Serializer
 summary: Using the default XML serializer
-reviewed: 2018-02-23
+reviewed: 2019-11-18
 component: Xml
 related:
 - nservicebus/serialization
@@ -18,7 +18,7 @@ snippet: config
 
 ## Diagnostic mutator
 
-A helper that will log the contents of any incoming message.
+A helper that will log the contents of any incoming message:
 
 snippet: mutator
 
