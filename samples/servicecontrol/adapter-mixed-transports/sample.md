@@ -7,9 +7,12 @@ related:
  - servicecontrol
  - servicecontrol/transport-adapter
  - servicecontrol/plugins
+redirects:
+ - samples/servicecontrol/adapter-sqlserver-multi-instance
+ - samples/servicecontrol/adapter-sqlserver-multi-schema
 ---
 
-This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using mixed transports. The endpoint in this solution uses the SQL Server transport while ServiceControl runs on the learning transport.
+This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using mixed transports. The endpoint in this solution uses the SQL Server transport while ServiceControl runs on the learning transport. The same approach can be used to connect a single service control instance to multiple instances of the same message broker e.g. multiple databases used for SQL Server transport.
 
 
 ## Prerequisites
