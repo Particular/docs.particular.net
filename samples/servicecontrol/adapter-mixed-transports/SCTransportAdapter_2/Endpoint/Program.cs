@@ -2,20 +2,22 @@
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Transport.SQLServer;
 
 class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ServiceControl.MixedTransportAdapter.Sales";
+        Console.Title = "Samples.ServiceControl.MixedTransportAdapter.Endpoint";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
         var endpointConfiguration = new EndpointConfiguration(
-            "Samples.ServiceControl.MixedTransportAdapter.Sales");
+            "Samples.ServiceControl.MixedTransportAdapter.Endpoint");
 
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        var connection = @"Data Source=.\SqlExpress;Initial Catalog=transport_adapter;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
+        transport.ConnectionString(connection);
+        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var chaos = new ChaosGenerator();
         endpointConfiguration.RegisterComponents(
@@ -34,6 +36,7 @@ class Program
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -53,7 +56,7 @@ class Program
             if (lowerInvariant == 'o')
             {
                 var id = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                var message = new SalesMessage
+                var message = new MyMessage
                 {
                     Id = id,
                 };

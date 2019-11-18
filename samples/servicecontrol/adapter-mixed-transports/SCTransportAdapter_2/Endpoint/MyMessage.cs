@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-class SalesMessage :
+class MyMessage :
     IMessage
 {
     public string Id { get; set; }
