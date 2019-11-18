@@ -3,7 +3,7 @@ using System.Threading;
 
 public class PrincipalAccessor : IPrincipalAccessor
 {
-    static AsyncLocal<CurrentPrincipalHolder> principalCurrent = new AsyncLocal<CurrentPrincipalHolder>();
+    AsyncLocal<CurrentPrincipalHolder> principalCurrent = new AsyncLocal<CurrentPrincipalHolder>();
 
     public IPrincipal CurrentPrincipal
     {
@@ -29,7 +29,7 @@ public class PrincipalAccessor : IPrincipalAccessor
         }
     }
 
-    private class CurrentPrincipalHolder
+    class CurrentPrincipalHolder
     {
         public IPrincipal CurrentPrincipal;
     }
