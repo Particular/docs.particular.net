@@ -19,7 +19,7 @@ public class HandlerUsingAccessor :
     {
         var headers = context.MessageHeaders;
         var usernameFromHeader = headers["UserName"];
-        var usernameFromAccessor = principalAccessor?.CurrentPrincipal.Identity?.Name;
+        var usernameFromAccessor = principalAccessor?.CurrentPrincipal?.Identity?.Name ?? "null";
         log.Info($"Username extracted from header: {usernameFromHeader}");
         log.Info($"Username extracted from accessor: {usernameFromAccessor}");
         return Task.CompletedTask;

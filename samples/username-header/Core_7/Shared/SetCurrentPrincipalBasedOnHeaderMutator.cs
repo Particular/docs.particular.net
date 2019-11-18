@@ -18,9 +18,13 @@ public class SetCurrentPrincipalBasedOnHeaderMutator :
 
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
-        log.Info("Adding CurrentPrincipal user from headers");
-        var identity = new GenericIdentity(context.Headers["UserName"]);
-        principalAccessor.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
+        if (context.Headers.TryGetValue("UserName", out var userNameHeader))
+        {
+            log.Info("Adding CurrentPrincipal user from headers");
+            var identity = new GenericIdentity(userNameHeader);
+            principalAccessor.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
+        }
+
         return Task.CompletedTask;
     }
 }
