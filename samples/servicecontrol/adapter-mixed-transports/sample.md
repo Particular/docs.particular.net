@@ -17,10 +17,7 @@ This sample shows how to configure ServiceControl to monitor endpoints and retry
 
 ## Prerequisites
 
-In order to run this sample you need a SQL Server instance. The connection string used in the sample uses SQL Express.
- 
-NOTE: In order to connect to a different SQL Server instance, ensure all database connection strings are updated in the sample.
-
+include: sql-prereq
 
 ## Running the project
 
