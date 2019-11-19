@@ -12,7 +12,7 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        #region ComponentRegistrationSender
+        #region component-registration-sender
 
         var principalAccessor = new PrincipalAccessor();
         endpointConfiguration.RegisterComponents(
@@ -27,7 +27,7 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        #region SendMessage
+        #region send-message
 
         async Task SendMessage(int userNumber)
         {

@@ -18,6 +18,8 @@ For demonstration purposes, before sending a message, the `principalAccessor.Cur
 
 snippet: send-message
 
+The snippet above uses two concurrent sends to demonstrate how the current principle is properly propagated into the message session.
+
 ## Custom header with a mutator
 
 The recommended approach for capturing the current user is to create a transport mutator that extracts the current identity and then adds it to the header of every outgoing message.
