@@ -12,7 +12,7 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        #region ComponentRegistration
+        #region ComponentRegistrationSender
 
         var principalAccessor = new PrincipalAccessor();
         endpointConfiguration.RegisterComponents(
