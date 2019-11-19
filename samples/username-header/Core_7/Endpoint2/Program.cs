@@ -11,7 +11,7 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        # region component-registration-receiver
+        #region component-registration-receiver
 
         endpointConfiguration.RegisterComponents(c =>
         {
