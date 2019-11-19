@@ -5,8 +5,6 @@ component: SCTransportAdapter
 reviewed: 2019-03-29
 related:
  - nservicebus/dotnet-templates
- - samples/servicecontrol/adapter-sqlserver-multi-schema
- - samples/servicecontrol/adapter-sqlserver-multi-instance
  - samples/servicecontrol/adapter-mixed-transports
  - samples/servicecontrol/adapter-asb-multi-namespace
 ---
@@ -55,8 +53,6 @@ The following code shows the configuration of the transport adapter in the multi
 snippet: MultiInstance
 
 Notice that both adapter configurations use the same connection string for ServiceControl and a different connection string for the endpoint-side transport.
-
-NOTE: In NServiceBus version 6, the [SQL Server transport](/transports/sql/) can be configured to route messages between multiple instances of SQL Server in a single adapter as shown in [this sample](/samples/servicecontrol/adapter-sqlserver-multi-instance/). As of NServiceBus version 7, this is no longer the case and the approach with multiple adapters described above must be used. In this scenario, an instance of the transport adapter is required for each instance of SQL Server used by the endpoints. For upgrading the endpoints themselves, consult the [upgrade guide](/transports/upgrades/sqlserver-31to4.md#multi-instance-mode).
 
 
 ## How it works
