@@ -24,9 +24,14 @@ public static class Program
         transport.DefaultSchema("sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
-        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
+        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
+
+        var subscriptions = transport.SubscriptionSettings();
+        subscriptions.SubscriptionTableName(
+            tableName: "Subscriptions", 
+            schemaName: "dbo");
 
         #endregion
 

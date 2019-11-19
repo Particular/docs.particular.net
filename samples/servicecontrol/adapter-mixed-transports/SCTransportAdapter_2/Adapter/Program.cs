@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Features;
 using ServiceControl.TransportAdapter;
 
 class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ServiceControl.SqlServerTransportAdapter.Adapter";
+        Console.Title = "Samples.ServiceControl.Adapter";
         #region AdapterTransport
 
-        var transportAdapterConfig = new TransportAdapterConfig<SqlServerTransport, MsmqTransport>("ServiceControl.SqlServer.Adapter");
+        var transportAdapterConfig = new TransportAdapterConfig<SqlServerTransport, LearningTransport>("Samples.ServiceControl.Adapter");
 
         #endregion
 
@@ -22,7 +21,7 @@ class Program
         transportAdapterConfig.CustomizeEndpointTransport(
             customization: transport =>
             {
-                var connection = @"Data Source=.\SqlExpress;Initial Catalog=shipping;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
+                var connection = @"Data Source=.\SqlExpress;Initial Catalog=transport_adapter;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
                 transport.ConnectionString(connection);
             });
 

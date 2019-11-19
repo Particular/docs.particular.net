@@ -15,13 +15,6 @@ class Program
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionStrings.Red);
 
-        #region ShippingRouting
-
-        var routing = transport.Routing();
-        routing.RegisterPublisher(typeof(OrderAccepted), "Red.Sales");
-
-        #endregion
-
         SqlHelper.EnsureDatabaseExists(ConnectionStrings.Red);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

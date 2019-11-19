@@ -2,7 +2,9 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
-using NServiceBus.Persistence;
+using NServiceBus.Transport.SQLServer;
+
+//using NServiceBus.Persistence;
 
 class Program
 {
@@ -14,10 +16,9 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.DisableFeature<AutoSubscribe>();
-        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=PersistenceForSqlTransport;Integrated Security=True");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(@"Data Source=.\SqlExpress;Database=PersistenceForSqlTransport;Integrated Security=True");
+        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
         #endregion
 
 

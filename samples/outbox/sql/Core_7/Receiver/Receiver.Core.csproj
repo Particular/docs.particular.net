@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net462</TargetFramework>
@@ -8,7 +8,7 @@
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="5.*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Startup.sql" CopyToOutputDirectory="PreserveNewest" />

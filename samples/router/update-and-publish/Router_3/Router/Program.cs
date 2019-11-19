@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Router;
@@ -21,7 +20,6 @@ static class Program
             t.ConnectionString(ConnectionString);
             t.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
         });
-        frontendInterface.EnableMessageDrivenPublishSubscribe(new SqlSubscriptionStorage(() => new SqlConnection(ConnectionString), "", new SqlDialect.MsSqlServer(), null));
 
         var backendInterface = routerConfig.AddInterface<LearningTransport>("Learning", t => { });
 

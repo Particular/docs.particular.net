@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <LangVersion>7.1</LangVersion>
@@ -10,7 +10,7 @@
     <PackageReference Include="NServiceBus.Raw" Version="3.*" />
     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
     <PackageReference Include="System.Reflection.Emit " Version="4.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="4.*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="5.*" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="5.*" />
     <PackageReference Include="RabbitMQ.Client" Version="5.*" />
   </ItemGroup>

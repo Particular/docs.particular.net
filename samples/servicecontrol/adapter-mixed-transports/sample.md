@@ -2,70 +2,64 @@
 title: Monitor mixed transports with ServiceControl adapter
 summary: Centralize monitoring of mixed transport solution with the ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2019-05-30
+reviewed: 2019-12-18
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
  - servicecontrol/plugins
+redirects:
+ - samples/servicecontrol/adapter-sqlserver-multi-instance
+ - samples/servicecontrol/adapter-sqlserver-multi-schema
 ---
 
-
-This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using mixed transports. The main transport for the solution is MSMQ and this is the transport used by ServiceControl. Some endpoints, however, use SQL Server transport.
+This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using mixed transports. The endpoint in this solution uses the SQL Server transport while ServiceControl runs on the learning transport. The same approach can be used to connect a single service control instance to multiple instances of the same message broker e.g. multiple databases used for SQL Server transport.
 
 
 ## Prerequisites
 
- 1. A SQL Server instance. The connection string used in the sample uses SQL Express.
- 1. [Install ServiceControl](/servicecontrol/installation.md). 
- 1. Using the [ServiceControl Management tool](/servicecontrol/license.md#servicecontrol-management-tool), set up ServiceControl to monitor endpoints using the MSMQ transport:
-	 
-   * Add a new ServiceControl instance:
-   * Use default `Particular.ServiceControl` as the instance name (ensure there is no other instance of SC running with the same name).
+include: sql-prereq
 
-include: configuring-sc-connections
- 
- 3. Ensure the `ServiceControl` process is running before running the sample.
- 4. [Install ServicePulse](/servicepulse/installation.md)
+## Running the project
 
-NOTE: In order to connect to a different SQL Server instance, ensure all database connection strings are updated in the sample.
-
-include: adapter-running-project-simple
+ 1. Start the Adapter, Endpoint and PlatformLauncher projects.
+ 1. ServiceControl should open automatically in the default browser.
+ 1. Go to the Endpoint console and press `o` to send a message.
+ 1. Notice the endpoint receives its own message and successfully processes it.
+ 1. Press `f` to simulate message processing failure.
+ 1. Press `o` in to create more messages.
+ 1. Notice this time messages fail to be processed.
+ 1. Go to ServicePulse and select the Failed Messages view.
+ 1. Notice the existence of one failed message group with two messages. Open the group.
+ 1. Press `f` in the Endpoint console to disable the failure simulation.
+ 1. Press the "Retry all" button in ServicePulse.
+ 1. Go to the Endpoint console and verify that the message has been successfully processed.
+ 1. Shut down the Endpoint.
+ 1. Open ServicePulse and notice a red label next to the heart icon. Click on the that icon to open the Endpoints Overview. Notice that the Endpoint is now displayed in the Inactive Endpoints tab.
 
 
 ## Code walk-through 
 
-The following diagram shows the topology of the solution:
-
-![Topology diagram](diagram.svg)
-
 The code base consists of three projects.
 
 
-### Sales
+### Endpoint
 
-The Sales project contains an endpoint that simulates the execution of a business process by sending a message to itself. It includes a message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality. The Sales endpoint uses the MSMQ transport (same as ServiceControl).
+The Endpoint project contains an endpoint that simulates the execution of a business process by sending a message to itself. It includes a message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality. It uses the SQL Server transport.
 
-
-### Shipping
-
-The Shipping project also contains an endpoint that simulates the execution of a business process by sending a message to itself. It includes message processing failure simulation mode (toggled by pressing `f`) which can be used to generate failed messages for demonstrating message retry functionality.
-
-The Shipping endpoint uses the SQL Server transport and requires an adapter in order to communicate with ServiceControl.
-
-The Shipping endpoint has the Heartbeats plugin installed to enable uptime monitoring via ServicePulse.
+The Endpoint has the heartbeats plugin installed to enable uptime monitoring via ServicePulse.
 
 
 ### Adapter
 
-The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has two sides: endpoint-facing and ServiceControl-facing. In this sample the endpoint-facing side uses SQL Server transport and the ServiceControl-facing side uses MSMQ:
+The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has two sides: endpoint-facing and ServiceControl-facing. In this sample the endpoint-facing side uses SQL Server transport and the ServiceControl-facing side uses the Learning transport:
 
 snippet: AdapterTransport
 
-The following code configures the adapter to use SQL Server transport when communicating with the business endpoints (Shipping).
+The following code configures the adapter to use SQL Server transport when communicating with the business endpoints.
 
 snippet: EndpointSideConfig
 
 
 ### Duplicates
 
-By default NServiceBus transports use the highest supported transaction modes. In case of MSMQ and SQL Server transports this means `TransactionScope`. Because of that the Adapter requires the Distributed Transaction Coordinator (DTC) service to be configured. In this mode there is no risk of creating duplicate messages when moving messages between the transports. This is especially important for the messages that are selected for retry.
+ServiceControl Transport Adapter might introduce duplicates in the message flow when adapting two transports that cannot be configured to participate in an atomic transaction.

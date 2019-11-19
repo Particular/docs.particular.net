@@ -26,11 +26,7 @@ class Program
         transport.UseSchemaForEndpoint("Samples.SqlOutbox.Sender", "sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
-        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
-
-        var routing = transport.Routing();
-        routing.RouteToEndpoint(typeof(OrderAccepted).Assembly, "Samples.SqlOutbox.Sender");
-        routing.RegisterPublisher(typeof(OrderAccepted).Assembly, "Samples.SqlOutbox.Sender");
+        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(
@@ -42,8 +38,12 @@ class Program
         dialect.Schema("receiver");
         persistence.TablePrefix("");
 
-        var subscriptions = persistence.SubscriptionSettings();
-        subscriptions.DisableCache();
+        var subscriptions = transport.SubscriptionSettings();
+        subscriptions.DisableSubscriptionCache();
+
+        subscriptions.SubscriptionTableName(
+            tableName: "Subscriptions", 
+            schemaName: "dbo");
 
         endpointConfiguration.EnableOutbox();
 

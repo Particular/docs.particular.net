@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Router;
@@ -17,37 +16,13 @@ class Program
         SqlHelper.EnsureDatabaseExists(ConnectionStrings.Red);
         SqlHelper.EnsureDatabaseExists(ConnectionStrings.Green);
 
-        var redSubscriptionStorage = new SqlSubscriptionStorage(() => new SqlConnection(SwitchConnectionString), "Red", new SqlDialect.MsSqlServer(), null);
-        await redSubscriptionStorage.Install().ConfigureAwait(false);
-
-        var greenSubscriptionStorage = new SqlSubscriptionStorage(() => new SqlConnection(SwitchConnectionString), "Green", new SqlDialect.MsSqlServer(), null);
-        await greenSubscriptionStorage.Install().ConfigureAwait(false);
-
         #region SwitchConfig
 
         var routerConfig = new RouterConfiguration("Switch");
 
-        var blueSubscriptionStorage = new SqlSubscriptionStorage(
-            () => new SqlConnection(SwitchConnectionString),
-            "Blue",
-            new SqlDialect.MsSqlServer(), 
-            null);
-        await blueSubscriptionStorage.Install().ConfigureAwait(false);
-
-        routerConfig.AddInterface<SqlServerTransport>("Blue", t =>
-        {
-            t.ConnectionString(ConnectionStrings.Blue);
-        }).EnableMessageDrivenPublishSubscribe(blueSubscriptionStorage);
-
-        routerConfig.AddInterface<SqlServerTransport>("Red", t =>
-        {
-            t.ConnectionString(ConnectionStrings.Red);
-        }).EnableMessageDrivenPublishSubscribe(redSubscriptionStorage);
-
-        routerConfig.AddInterface<SqlServerTransport>("Green", t =>
-        {
-            t.ConnectionString(ConnectionStrings.Green);
-        }).EnableMessageDrivenPublishSubscribe(greenSubscriptionStorage);
+        routerConfig.AddInterface<SqlServerTransport>("Blue", t => { t.ConnectionString(ConnectionStrings.Blue); });
+        routerConfig.AddInterface<SqlServerTransport>("Red", t => { t.ConnectionString(ConnectionStrings.Red); });
+        routerConfig.AddInterface<SqlServerTransport>("Green", t => { t.ConnectionString(ConnectionStrings.Green); });
 
         routerConfig.AutoCreateQueues();
 
