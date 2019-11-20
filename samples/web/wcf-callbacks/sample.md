@@ -1,7 +1,7 @@
 ---
 title: WCF request response via callbacks
 summary: Mapping between WCF and messages on the bus via the callbacks API.
-reviewed: 2018-02-23
+reviewed: 2019-11-20
 component: Callbacks
 related:
 - samples/web/owin-pass-through
