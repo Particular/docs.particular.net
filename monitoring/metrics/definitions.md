@@ -53,4 +53,4 @@ This metric measures the number of [retries](/nservicebus/recoverability) schedu
 
 ### Queue length
 
-This metric tracks the number of messages in the input queue of an endpoint. The metric is calculated differently depending on whether the message transport uses a [centralized broker](/transports/types.md#broker-transports) or is [federated](/transports/types.md#federated-transports).
+This metric tracks the number of messages in the main input queue of an endpoint.
