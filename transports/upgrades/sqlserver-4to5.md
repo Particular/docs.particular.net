@@ -80,4 +80,4 @@ snippet: 4to5-CreateSubscriptionTableTextSql
 
 ### ServiceControl Transport Adapter
 
-The [Transport Adapter](https://docs.particular.net/servicecontrol/transport-adapter/) needs to be upgraded to version 2.0.1 to work with the SQL Server transport 5.x.
+The [Transport Adapter](/servicecontrol/transport-adapter/) needs to be upgraded to version 2.0.1 to work with the SQL Server transport 5.x.
