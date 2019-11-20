@@ -16,6 +16,8 @@ At installation time the queue creation script is executed
 
 snippet: CreateQueueTextSql
 
+partial: create-subscriptions-table 
+
 
 ### Creating table structure in production
 
@@ -87,6 +89,9 @@ Places a message on the queue.
 snippet: SendTextSql
 
 NOTE: The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the transport. When sending messages to endpoints that use later versions, the values of correlation ID and reply-to address columns could be set to `NULL` and the actual values provided in the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`). The value `Recoverable` should always be `true`/`1`.
+
+
+partial: native-subscriptions
 
 
 ### Missing index warning

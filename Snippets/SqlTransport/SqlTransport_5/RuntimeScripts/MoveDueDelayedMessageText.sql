@@ -1,4 +1,4 @@
-startcode MoveMaturedDelayedMessageTextSql
+startcode MoveDueDelayedMessageTextSql
 
 DECLARE @NOCOUNT VARCHAR(3) = 'OFF';
 IF ( (512 & @@OPTIONS) = 512 ) SET @NOCOUNT = 'ON';
