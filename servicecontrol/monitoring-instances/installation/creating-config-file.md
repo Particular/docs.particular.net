@@ -77,9 +77,6 @@ The transport type to run ServiceControl Monitor with.
 
 Type: string
 
-Default: `NServiceBus.MsmqTransport, NServiceBus.Core`
-
-
 ### NServiceBus/Transport
 
 The connection string for the transport. This setting should be placed in `connectionStrings` section of configuration file.
