@@ -77,3 +77,7 @@ NOTE: The `routing.DisablePublishing()` API has been deprecated and should be re
 The snippet below shows the T-SQL script that creates the subscriptions table:
 
 snippet: 4to5-CreateSubscriptionTableTextSql
+
+### ServiceControl Transport Adapter
+
+The [Transport Adapter](https://docs.particular.net/servicecontrol/transport-adapter/) needs to be upgraded to version 2.0.1 to work with the SQL Server transport 5.x.
