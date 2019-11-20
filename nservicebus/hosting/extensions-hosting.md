@@ -17,6 +17,7 @@ snippet: extensions-host-configuration
 
 This code will register the endpoint with the hosting infrastructure and automatically start and stop it based on the host's application lifetime.
 
+WARNING: `UseNServiceBus` must be specified before any other service (e.g. `ConfigureWebHostDefaults`) which requires access to the `IMessageSession`.
 
 ## Dependency injection integration
 
