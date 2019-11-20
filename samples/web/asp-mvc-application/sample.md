@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus with ASP.NET MVC
 summary: Integrating NServiceBus with ASP.NET MVC web applications to send messages from a website.
-reviewed: 2018-02-23
+reviewed: 2019-11-20
 component: Core
 redirects:
 - nservicebus/using-nservicebus-with-asp.net-mvc
