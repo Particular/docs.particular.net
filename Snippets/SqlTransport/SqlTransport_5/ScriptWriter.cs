@@ -27,7 +27,7 @@ public class ScriptWriter
 #pragma warning restore 618
         foreach (var field in type.GetFields(BindingFlags.Static | BindingFlags.NonPublic| BindingFlags.Public))
         {
-            if (field.Name == "ExpiresIndexName")
+            if (field.Name == "ExpiresIndexName" || field.Name == "AddMessageBodyStringColumn")
             {
                 continue;
             }
