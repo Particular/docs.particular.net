@@ -1,7 +1,7 @@
 ---
 title: Client-Side Callbacks
 summary: Gradually transition applications from synchronous to a messaging architecture
-reviewed: 2018-02-27
+reviewed: 2019-11-21
 component: Callbacks
 redirects:
 - nservicebus/how-do-i-handle-responses-on-the-client-side
@@ -10,7 +10,7 @@ related:
 - samples/callbacks
 ---
 
-Callbacks allow the use of messaging behind a synchronous API that can't be changed. A common use case is introducing messaging to existing synchronous web or WCF applications. The advantage of using callbacks is that they allow gradually transitioning applications towards messaging.
+Callbacks enable the use of messaging behind a synchronous API that can't be changed. A common use case is introducing messaging to existing synchronous web or WCF applications. The advantage of using callbacks is that they allow gradually transitioning applications towards messaging.
 
 
 ## Handling responses in the context of a message being sent
@@ -79,7 +79,7 @@ The object response scenario allows an object instance to be returned.
 
 #### The response message
 
-This feature leverages the message reply mechanism of the bus and hence the response needs to be a message.
+This feature leverages the message reply mechanism of the bus, so the response needs to be a message.
 
 snippet: CallbackResponseMessage
 
@@ -104,7 +104,7 @@ WARNING: **Do not call the callback APIs from inside a `Handle` method in an `IH
 
 DANGER: Because callbacks won't survive restarts, use callbacks when the data returned is **not business critical and data loss is acceptable**. Otherwise, use [request/response](/samples/fullduplex) with a message handler for the reply messages.
 
-When using callbacks in an ASP.NET Web/MVC/Web API, the NServiceBus callbacks can be used in combination with the async support in ASP.Net to avoid blocking the web server thread and allowing processing of other requests. When a response is received, it is handled and returned to the client. Web clients will still be blocked while waiting for response. This scenario is common when migrating from traditional blocking request/response to messaging.
+When using callbacks in an ASP.NET Web/MVC/Web API, the NServiceBus callbacks can be used in combination with the async support in ASP.NET to avoid blocking the web server thread and allowing processing of other requests. When a response is received, it is handled and returned to the client. Web clients will still be blocked while waiting for response. This scenario is common when migrating from traditional blocking request/response to messaging.
 
 
 ## Message routing

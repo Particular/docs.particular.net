@@ -10,7 +10,7 @@ related:
 component: Templates
 isLearningPath: true
 versions: '[2,]'
-reviewed: 2018-02-28
+reviewed: 2019-11-21
 ---
 
 Docker containers provide the ability to deploy endpoints in a self-contained manner. To create and host an endpoint in a Docker container, install the [Docker container template](/nservicebus/dotnet-templates.md#nservicebus-docker-container) and create a new project using `dotnet new nsbdockercontainer`. The project that is created will have the required endpoint setup infrastructure in addition to the `Dockerfile` needed to create and deploy a container hosting one endpoint.
@@ -47,7 +47,7 @@ An endpoint running in Docker will look for the `license.xml` file in [the same 
 
 This file contains the instructions for compiling the endpoint and creating the Docker image.
 
-The endpoint will be hosted in a container that is based on the `microsoft/dotnet:2.0-runtime` image. Once built, the container image contains the compiled artifacts of the endpoint project, and will launch that endpoint when the container is run.
+The endpoint will be hosted in a container that is based on the `microsoft/dotnet:2.1-runtime` image. Once built, the container image contains the compiled artifacts of the endpoint project, and it will launch that endpoint when the container is run.
 
 To compile the endpoint and create the Docker image, run the following command:
 
