@@ -41,8 +41,8 @@ Setup Datadog client. The snippet setup-datadog-client assumes the Datadog agent
 Custom observers need to be registered for the metric probes provided via `NServiceBus.Metrics`. This is configured in the `DatadogFeature`. The registered observers convert NServiceBus.Metric *Signals* to Datadog *Count* and NServiceBus.Metric *Durations* to Datadog *Timer* : snippet: datadog-enable-nsb-metrics
 
 ## Dashboard
-![metrics summary](metrics-summary.PNG)
-![dashboard](dashboard.PNG)
+![metrics summary](metrics-summary.png)
+![dashboard](dashboard.png)
 
 ### Create
 
