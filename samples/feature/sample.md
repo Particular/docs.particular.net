@@ -1,7 +1,7 @@
 ---
 title: Building a Custom Feature
 summary: How to build a custom feature in NServiceBus
-reviewed: 2018-03-08
+reviewed: 2019-11-25
 component: Core
 tags:
 - Pipeline
