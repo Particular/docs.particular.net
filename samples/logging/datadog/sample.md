@@ -29,16 +29,15 @@ See the [Introduction to Datadog](https://docs.datadoghq.com/getting_started/) g
 
 ## Code overview
 
-The sample simulates messages load with a random 10% failure rate using the `LoadSimulator` class:
-
-file:LoadSimulator
-
+The sample simulates messages load with a random 10% failure rate using the `LoadSimulator` class: LoadSimulator
 
 ## Capturing metric values
 
-Setup Datadog client. The snippet setup-datadog-client assumes the Datadog agent runs on default address and port.
+Setup Datadog client. Let' s assume the Datadog agent runs on default address and port.
+snippet: setup-datadog-client
 
-Custom observers need to be registered for the metric probes provided via `NServiceBus.Metrics`. This is configured in the `DatadogFeature`. The registered observers convert NServiceBus.Metric *Signals* to Datadog *Count* and NServiceBus.Metric *Durations* to Datadog *Timer* : snippet: datadog-enable-nsb-metrics
+Custom observers need to be registered for the metric probes provided via `NServiceBus.Metrics`. This is configured in the `DatadogFeature`. The registered observers convert NServiceBus.Metric *Signals* to Datadog *Count* and NServiceBus.Metric *Durations* to Datadog *Timer* 
+snippet: datadog-enable-nsb-metrics
 
 ## Dashboard
 ![metrics summary](metrics-summary.png)
