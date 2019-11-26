@@ -9,8 +9,6 @@ class DatadogFeature : Feature
 {
     MetricsOptions _metricsOptions;
 
-    #region metrics-name-mapping
-
     Dictionary<string, string> _nameMapping = new Dictionary<string, string>
     {
         {"# of msgs successfully processed / sec", "Success"},
@@ -20,8 +18,6 @@ class DatadogFeature : Feature
         {"Processing Time", "Processing Time"},
         {"Retries", "Retries"},
     };
-
-    #endregion
 
     public DatadogFeature()
     {
