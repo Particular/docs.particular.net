@@ -4,7 +4,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 4.3.x     | 2019-02-22     | -                 | -                                 |
+| 4.4.x     | 2019-11-27     | -                 | -                                 |
+| 4.3.x     | 2019-02-22     | 2020-02-27        | Superseded by 4.4.x               |
 | 3.3.x     | 2018-05-14     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | 1.3.x     | 2017-04-26     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
 
