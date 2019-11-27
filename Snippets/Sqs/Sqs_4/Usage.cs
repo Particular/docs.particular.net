@@ -129,7 +129,29 @@ class Usage
         s3Configuration.ClientFactory(() => new AmazonS3Client(new AmazonS3Config()));
 
         #endregion
-    }    
+    }
+
+    void S3ServerSideEncryption(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
+    {
+        #region S3ServerSideEncryption
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
+        s3Configuration.ServerSideEncryption(ServerSideEncryptionMethod.AES256, keyManagementServiceKeyId: "keyId");
+
+        #endregion
+    }
+
+    void S3ServerSideCustomerEncryption(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
+    {
+        #region S3ServerSideCustomerEncryption
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
+        s3Configuration.ServerSideCustomerEncryption(ServerSideEncryptionCustomerMethod.AES256, "key", providedKeyMD5: "keyMD5");
+
+        #endregion
+    }
 
     void Proxy(EndpointConfiguration endpointConfiguration, string userName, string password)
     {
