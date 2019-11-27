@@ -1137,8 +1137,8 @@
     - Title: Troubleshooting
       Url: servicecontrol/troubleshooting
       Articles:
-      - Title: Expose internal database
-        Url: servicecontrol/use-ravendb-studio
+      - Title: Maintenance Mode
+        Url: servicecontrol/maintenance-mode
       - Title: Retry importing messages
         Url: servicecontrol/import-failed-messages
   - Title: Audit instances
