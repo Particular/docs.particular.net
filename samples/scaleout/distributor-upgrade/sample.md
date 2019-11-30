@@ -17,8 +17,8 @@ Note: This solution should be seen as a temporary solution. Support for the dist
 This sample uses the same solution as the Version 5 [distributor sample](/samples/scaleout/distributor):
 
  * Sender sends commands to the scaled out endpoint.
- * Worker1 is a master (runs both distributor and a worker node).
- * Worker2 is a slave (runs only a worker node).
+ * Worker1 runs both distributor and a worker node.
+ * Worker2 runs only a worker node.
 
 
 ## Upgrade
