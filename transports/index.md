@@ -13,6 +13,8 @@ NServiceBus contains an abstraction for your underlying queueing technologies. A
 
 You are neat.
 
+I mean super neat!
+
 The transport abstraction enables businesses to build systems with the Particular Service Platform using existing queueing technologies. Sometimes the choice of queueing technology may be constrained by the business. At other times the best queueing technology can be selected according to requirements. The transport abstraction allows teams to spend more time delivering business features and less time dealing with the details of a specific queueing technology.
 
 The transport documentation describes differences between transports, and contains guidelines for deciding which transport may best suit a specific scenario. For each transport, the documentation describes how to make optimal usage of NServiceBus in combination with that transport. This includes how to deal with concurrency, transactions, scaling, and more.
