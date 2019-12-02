@@ -35,5 +35,6 @@ A list of the supported parameters and a description of their effects:
   - Example: `si://localhost:33333/api?EndpointName=VideoStore.Sales&search=SubmitOrder`
  - `AutoRefresh` [Integer]: Turns on the `AutoRefresh` option so that the view is refreshed, based on the value provided here (in seconds).
   - Example: `si://localhost:33333/api?EndpointName=VideoStore.Sales&search=SubmitOrder&Auto&AutoRefresh=5`
+ - `SilentStartup` [Boolean]: When set to true, the splash screen will not show when launching the application.
 
 When ServiceInsight is launched using these parameters, notice the effects on the user interface (having the endpoint selected, message selected, etc.). If a passed-in argument is not supported, ServiceInsight will notify when it runs.
