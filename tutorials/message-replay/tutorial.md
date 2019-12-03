@@ -2,6 +2,7 @@
 title: Message replay tutorial
 reviewed: 2019-03-07
 summary: In this tutorial, you'll learn how to replay a failed message using the Particular Service Platform tools.
+previewImage: failed-message-groups.png
 ---
 
 One of the most powerful features of NServiceBus is the ability to replay a message that has failed. By the time a message reaches the error queue, it will have already progressed through multiple retries via the [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries) process, so you can be sure that the exception is systemic.
