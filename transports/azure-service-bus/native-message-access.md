@@ -1,6 +1,5 @@
 ---
 title: Native message access
-summary: Native message access
 component: ASBS
 versions: '[1.4.0,]'
 tags:
