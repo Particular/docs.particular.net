@@ -7,6 +7,7 @@ extensions:
 - !!tutorial
   nextText: "Next: NServiceBus from the ground up"
   nextUrl: tutorials/nservicebus-step-by-step/1-getting-started
+previewImage: add-shipping-endpoint.png
 ---
 
 include: quickstart-tutorial-intro-paragraph

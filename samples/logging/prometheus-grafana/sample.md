@@ -4,6 +4,7 @@ summary: Illustrates using Prometheus and Grafana to capture and visualize NServ
 component: Metrics
 isLearningPath: true
 reviewed: 2019-07-22
+previewImage: grafana-graph.png
 ---
 
 
