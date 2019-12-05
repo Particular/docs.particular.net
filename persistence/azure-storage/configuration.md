@@ -5,7 +5,7 @@ summary: Configuring Azure Storage as persistence
 tags:
  - Azure
  - Persistence
-reviewed: 2019-12-02
+reviewed: 2019-12-05
 redirects:
  - nservicebus/azure-storage-persistence/configuration
 ---
