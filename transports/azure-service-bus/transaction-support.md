@@ -24,6 +24,7 @@ The `SendsAtomicWithReceive` guarantee is achieved by setting the `ViaEntityPath
 
 If the `ViaEntityPath` is not empty, then messages will be added to the receive queue. The messages will be forwarded to their destinations (inside the broker) only when the complete operation is called on the received brokered message. The message won't be forwarded if the lock duration limit is exceeded (5 minutes by default) or if the message is explicitly abandoned.
 
+The receive throughput of this transaction mode can be significantly slower due to the sender and receiver needing to share the same TCP connection.
 
 ## Receive only
 
