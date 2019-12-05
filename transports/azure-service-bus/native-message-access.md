@@ -15,4 +15,4 @@ It can sometimes be useful to access the native Service Bus message from behavio
 
 snippet: access-native-message
 
-The behavior above uses the native message's `LockedUntilUtc` system property to determine wherever the message has lost its lock as a result of aggresseve prefetching and slow processing. The message with lost lock will be go through recoverability  without an attempted processing that otherwise would be guaranteed to fail due to message's lost lock.
+The behavior above uses the native message's `LockedUntilUtc` system property to determine wherever the message has lost its lock as a result of aggressive prefetching and slow processing. The message with the lost lock will not go through recoverability, skipping attempted processing that otherwise would be guaranteed to fail due to the message's lost lock.
