@@ -26,7 +26,7 @@ component: ServicePulse
 
 RavenDB index could be corrupted. To fix this:
 
- 1. Put ServiceControl in [maintenance mode](/servicecontrol/use-ravendb-studio.md).
+ 1. Put ServiceControl in [maintenance mode](/servicecontrol/maintenance-mode.md).
  1. Run the following in curl:
    ```dos
    curl -X RESET http://localhost:33333/storage/indexes/FailureGroupsViewIndex

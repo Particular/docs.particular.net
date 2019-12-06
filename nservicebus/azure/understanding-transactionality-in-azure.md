@@ -9,7 +9,7 @@ tags:
 redirects:
  - nservicebus/transactions
  - nservicebus/understanding-transactions-in-windows-azure
-reviewed: 2018-03-07
+reviewed: 2019-11-25
 isLearningPath: true
 ---
 

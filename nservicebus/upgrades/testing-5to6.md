@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Testing Upgrade Version 5 to 6
 summary: Instructions on how to upgrade NServiceBus.Testing from version 5 to 6.
-reviewed: 2018-03-08
+reviewed: 2019-11-25
 component: Testing
 related:
  - nservicebus/testing

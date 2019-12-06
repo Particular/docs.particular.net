@@ -1,7 +1,7 @@
 ---
 title: Store-and-forward
 summary: Add store-and-forward functionality for external-facing endpoints.
-reviewed: 2018-03-08
+reviewed: 2019-12-02
 component: SqlTransport
 related:
 - nservicebus/outbox

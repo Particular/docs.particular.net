@@ -639,12 +639,14 @@
     Articles:
     - Url: transports/azure-service-bus/configuration
       Title: Configuration
+    - Url: transports/azure-service-bus/native-message-access
+      Title: Native message access
     - Url: transports/azure-service-bus/compatibility
-      Title: Backwards Compatibility
+      Title: Backwards compatibility
     - Url: transports/azure-service-bus/transaction-support
-      Title: Transaction Support
+      Title: Transaction support
     - Url: transports/azure-service-bus/operational-scripting
-      Title: Operational Scripting
+      Title: Operational scripting
   - Url: transports/azure-service-bus/legacy
     Title: Azure Service Bus (Legacy)
     Articles:
@@ -1137,8 +1139,8 @@
     - Title: Troubleshooting
       Url: servicecontrol/troubleshooting
       Articles:
-      - Title: Expose internal database
-        Url: servicecontrol/use-ravendb-studio
+      - Title: Maintenance Mode
+        Url: servicecontrol/maintenance-mode
       - Title: Retry importing messages
         Url: servicecontrol/import-failed-messages
   - Title: Audit instances

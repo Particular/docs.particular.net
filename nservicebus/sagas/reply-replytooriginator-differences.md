@@ -1,7 +1,7 @@
 ---
 title: Reply and ReplyToOriginator Differences
 summary: Outlines the different behaviors of the Reply and ReplyToOriginator methods of the IMessageHandlerContext/IBus instance.
-reviewed: 2018-03-07
+reviewed: 2019-11-25
 redirects:
 - nservicebus/sagas/reply-replaytooriginator-differences
 ---
@@ -20,4 +20,4 @@ The reason a call to `Reply(new ShipOrder())` sends a message to the `Shipment G
 
 In the context of a `Saga` it is not always clear at first glance who the sender of a message is. In the above example, when handling the expired `ShipmentReservation` timeout the sender of the message is the `Delivery Manager` endpoint. In this case a `Reply` would be delivered to the `Delivery Manager`, and that is not necessarily the desired behavior.
 
-Calling `ReplyToOriginator` makes it clear to NServiceBus that the message to be delivered to the endpoint was the originator of the saga.
+Calling `ReplyToOriginator` makes it clear to NServiceBus that the message has to be delivered to the endpoint that was the originator of the saga.

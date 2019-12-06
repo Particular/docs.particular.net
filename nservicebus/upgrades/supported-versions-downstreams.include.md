@@ -4,8 +4,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 4.3.x     | 2019-02-22     | -                 | -                                 |
-| ~~4.2.x~~ | ~~2018-12-12~~ | ~~2019-05-22~~    | ~~Superseded by 4.3.x~~           |
+| 4.4.x     | 2019-11-27     | -                 | -                                 |
+| 4.3.x     | 2019-02-22     | 2020-02-27        | Superseded by 4.4.x               |
 | 3.3.x     | 2018-05-14     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | 1.3.x     | 2017-04-26     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
 
@@ -39,7 +39,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 4.3.x     | 2019-07-26     | -                 | -                                 |
+| 5.0.x     | 2019-11-19     | -                 | -                                 |
+| 4.3.x     | 2019-07-26     | 2020-11-19        | Superseded by 5.0.x               |
 | ~~4.1.x~~ | ~~2018-06-21~~ | ~~2019-10-26~~    | ~~Superseded by 4.3.x~~           |
 | 3.1.x     | 2017-07-14     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | 2.2.x     | 2015-09-25     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
@@ -48,7 +49,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.2.x     | 2019-07-31     | -                 | -                                 |
+| 1.3.x     | 2019-11-25     | -                 | -                                 |
+| 1.2.x     | 2019-07-31     | 2020-02-25        | Superseded by 1.3.x               |
 | ~~1.1.x~~ | ~~2019-03-27~~ | ~~2019-10-31~~    | ~~Superseded by 1.2.x~~           |
 | ~~1.0.x~~ | ~~2018-12-19~~ | ~~2019-06-27~~    | ~~Superseded by 1.1.x~~           |
 
@@ -236,6 +238,12 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | 2.0.x     | 2016-10-11     | 2020-05-29        | Bounded by NServiceBus 6.5.x      |
 | 1.1.x     | 2015-06-28     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
 
+#### [NServiceBus.Extensions.Hosting](/nuget/NServiceBus.Extensions.Hosting)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| 1.0.x     | 2019-11-13     | -                 | -                                 |
+
 #### [NServiceBus.Host](/nuget/NServiceBus.Host)
 
 | Version   | Released       | Supported until   | Notes                             |
@@ -389,12 +397,13 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.8.x     | 2019-10-31     | -                 | -                                 |
+| 1.9.x     | 2019-11-22     | -                 | -                                 |
+| 1.8.x     | 2019-10-31     | 2020-02-22        | Superseded by 1.9.x               |
 | 1.7.x     | 2019-10-22     | 2020-01-31        | Superseded by 1.8.x               |
 | 1.6.x     | 2019-09-06     | 2020-01-22        | Superseded by 1.7.x               |
 | 1.5.x     | 2019-08-23     | 2019-12-06        | Superseded by 1.6.x               |
-| 1.4.x     | 2019-08-08     | 2019-11-23        | Superseded by 1.5.x               |
-| 1.3.x     | 2019-06-17     | 2019-11-08        | Superseded by 1.4.x               |
+| ~~1.4.x~~ | ~~2019-08-08~~ | ~~2019-11-23~~    | ~~Superseded by 1.5.x~~           |
+| ~~1.3.x~~ | ~~2019-06-17~~ | ~~2019-11-08~~    | ~~Superseded by 1.4.x~~           |
 | ~~1.2.x~~ | ~~2019-06-14~~ | ~~2019-09-17~~    | ~~Superseded by 1.3.x~~           |
 | ~~1.1.x~~ | ~~2019-03-18~~ | ~~2019-09-14~~    | ~~Superseded by 1.2.x~~           |
 | ~~1.0.x~~ | ~~2018-12-12~~ | ~~2019-06-18~~    | ~~Superseded by 1.1.x~~           |

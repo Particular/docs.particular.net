@@ -1,7 +1,7 @@
 ---
 title: Outbox
 summary: Reliable messaging without distributed transactions
-reviewed: 2018-03-06
+reviewed: 2019-11-25
 component: Core
 isLearningPath: true
 versions: "[5,)"
@@ -19,18 +19,18 @@ related:
 
 Outbox is an infrastructure feature which simulates the reliability of distributed transactions without requiring use of the Distributed Transaction Coordinator (DTC).
 
-The DTC is used by NServiceBus to guarantee consistency between messaging operations and data persistence. Messaging operations include the receipt and successful processing of an incoming message, and the sending of any outgoing messages as part of that processing. Data persistence includes any business data persisted by a message handler, as well as any NServiceBus saga or timeout data stored at the same time. The DTC ensures that these operations either all complete successfully or are all rolled back.
+The DTC can be used by NServiceBus to guarantee consistency between messaging operations and data persistence. Messaging operations include the receipt and successful processing of an incoming message, and the sending of any outgoing messages as part of that processing. Data persistence includes any business data persisted by a message handler, as well as any NServiceBus saga or timeout data stored at the same time. The DTC ensures that these operations either all complete successfully or are all rolled back.
 
 The outbox feature can be used instead of the DTC to mimic the same level of consistency without using distributed transactions. This is done by storing outgoing messages in the database using the same local (non-distributed) transaction which is used to store business and NServiceBus data. After that transaction is successfully committed, the stored outgoing messages are dispatched to their destinations as a separate operation.
 
 
 ## How it works
 
-The outbox feature is implemented as a variant on [Guaranteed Messaging](https://www.enterpriseintegrationpatterns.com/patterns/messaging/GuaranteedMessaging.html) which is a feature that is not common in most transports but now implemented on top of any transport combined with a [deduplication](https://en.wikipedia.org/wiki/Data_deduplication#Post-process_versus_in-line_deduplication) pattern to deal with at-least-once delivery.
+The outbox feature is implemented as a variant on [Guaranteed Messaging](https://www.enterpriseintegrationpatterns.com/patterns/messaging/GuaranteedMessaging.html) which is a feature that is not common in most transports. With NServiceBus is available on top of any transport combined with a [deduplication](https://en.wikipedia.org/wiki/Data_deduplication#Post-process_versus_in-line_deduplication) pattern to deal with at-least-once delivery.
 
-Every time an incoming message is processed, a copy of that message is stored in the persistent _outbox storage_. Whenever a new message is received, the framework determines whether that message has been processed already by checking for its presence in outbox storage.
+Every time an incoming message is processed, a copy of that message is stored in the persistent _outbox storage_. Whenever a new message is received, the framework determines whether that message has been processed already by checking for its presence in the outbox storage.
 
-If the message is not found in outbox storage then it is processed in the regular way, shown in the following diagram:
+If the message is not found in the outbox storage then it is processed in the regular way, shown in the following diagram:
 
 ![No DTC Diagram](outbox.svg)
 
@@ -62,7 +62,7 @@ WARNING: Because the outbox uses a single (non-distributed) database transaction
 
 partial: enable-outbox
 
-To learn about outbox configuration options such as time to keep deduplication data, or deduplication data clean up interval, refer to the dedicated pages for [NHibernate](/persistence/nhibernate/outbox.md), [RavenDB](/persistence/ravendb/outbox.md) or [ServiceFabric](/persistence/service-fabric/outbox.md) persistence.
+To learn about outbox configuration options such as time to keep deduplication data, or deduplication data clean up interval, refer to the dedicated pages for [NHibernate](/persistence/nhibernate/outbox.md), [RavenDB](/persistence/ravendb/outbox.md), [SQL Persistence](/persistence/sql/outbox.md), or [ServiceFabric](/persistence/service-fabric/outbox.md) persistence.
 
 
 ## Converting from DTC to outbox

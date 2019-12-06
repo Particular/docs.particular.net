@@ -1,7 +1,7 @@
 ---
 title: The NServiceBus.Host
 summary: Hosting an NServiceBus endpoint using the NServiceBus.Host.
-reviewed: 2018-03-07
+reviewed: 2019-11-25
 component: Host
 tags:
 - Hosting

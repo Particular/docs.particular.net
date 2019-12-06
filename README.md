@@ -169,6 +169,17 @@ Causes two things:
 
  * Stops search engines from finding the page using a `<meta name="robots" content="noindex" />`.
  * Prevents the page from being found in the docs search.
+ 
+ 
+### Preview Image
+
+```
+previewImage: preview-image.png
+```
+
+Populates a feature image for the [Open Graph](http://ogp.me/) and [Twitter Card](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html) meta tags for social sharing.
+
+The URL should be a relative URL, usually just the filename in the same directory as the article, but `../` to go up a directory is also supported. If it works in a Markdown image tag `![](relative-url.png)` then it should work for the metadata.
 
 
 ### Related

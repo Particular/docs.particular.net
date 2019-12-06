@@ -4,6 +4,7 @@ summary: Illustrates how to capture, store and visualize NServiceBus metrics in 
 component: Metrics
 isLearningPath: true
 reviewed: 2019-07-22
+previewImage: newrelic-processingtime.png
 ---
 
 ## Introduction

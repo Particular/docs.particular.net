@@ -1,7 +1,7 @@
 ---
 title: Upgrade from Azure Storage persistence Version 1 to Verersion 2
 summary: Instructions on how to migrate from Azure Storage Persistence version 1 to version 2
-reviewed: 2018-03-12
+reviewed: 2018-12-05
 component: ASP
 related:
  - persistence/azure-storage

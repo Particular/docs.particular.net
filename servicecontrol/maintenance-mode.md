@@ -1,7 +1,9 @@
 ---
-title: Expose Data via RavenDB Studio
-summary: How to configure ServiceControl to allow direct access to the embedded RavenDB instance.
-reviewed: 2018-10-10
+title: ServiceControl maintenance mode
+summary: How to get direct access to the embedded RavenDB instance.
+reviewed: 2019-11-27
+redirects:
+- servicecontrol/use-ravendb-studio
 ---
 
 ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If direct access to the RavenDB instance for troubleshooting is required, run the instance in Maintenance Mode by launching ServiceControl Management and follow these steps:

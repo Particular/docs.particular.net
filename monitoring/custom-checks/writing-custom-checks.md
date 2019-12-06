@@ -15,3 +15,5 @@ When the custom check executes, it should return a pass or fail status, and in t
 All custom checks are executed when the endpoint starts up. If the optional interval is specified then the custom check will be executed periodically.
 
 snippet: PeriodicCheck
+
+NOTE: Custom checks are discovered at runtime using assembly scanning. This means they can also be deployed to endpoints as Nuget packages.

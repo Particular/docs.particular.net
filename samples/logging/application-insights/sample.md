@@ -11,6 +11,7 @@ related:
  - samples/azure
 redirects:
 - samples/application-insights
+previewImage: example-graph-events.png
 ---
 
 

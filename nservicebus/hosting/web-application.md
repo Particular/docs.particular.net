@@ -1,7 +1,7 @@
 ---
 title: Web Application Hosting
 summary: Hosting NServiceBus in a Web Site or Web Service
-reviewed: 2018-03-08
+reviewed: 2019-11-27
 isLearningPath: true
 tags:
 - Hosting

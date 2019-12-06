@@ -1,7 +1,7 @@
 ---
 title: OWIN HTTP Message Pass Through
 summary: How to hook into the OWIN pipeline to place a message onto the bus or directly onto the queue
-reviewed: 2018-02-26
+reviewed: 2019-11-25
 component: Core
 related:
  - samples/gateway
@@ -28,14 +28,14 @@ Extensions to NServiceBus that plug into OWIN can be applied easily to [many .NE
 
 ## The purpose of this sample
 
-This sample illustrates how simple it is to bridge the world of HTTP with the world of a service bus. The secondary purpose is to illustrate two different ways of communicating with the NServiceBus. I.e. using the NServiceBus API and using the native queue.
+This sample illustrates how simple it is to bridge the world of HTTP with the world of a service bus. The secondary purpose is to illustrate two different ways of communicating with NServiceBus. I.e. using the NServiceBus API and using native queue integration.
 
 
 ## Comparisons with the [NServiceBus gateway](/nservicebus/gateway)
 
 ### Performance
 
- * The gateway uses an [HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx) while this sample allows leveraging the full power of the choice of webserver.
+ * The gateway uses an [HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx) while this sample allows leveraging the full power of the webserver of choice.
  * The gateway is limited to run in a single endpoint while this sample supports the use of any well-known web scale-out technology.
 
 
@@ -51,7 +51,7 @@ This sample allow the customization of the http-to-message handling code that pl
 
 ### Hosting
 
-The gateway is designed to run inside an NServiceBus endpoint. The sample code can run with different technologies (e.g. IIS, self-hosted, asp.mvc, NancyFX or within an NServiceBus endpoint) in the same way as the gateway.
+The gateway is designed to run inside an NServiceBus endpoint. The sample code can run with different technologies, e.g. IIS, self-hosted, asp.mvc, NancyFX, or within an NServiceBus endpoint in the same way as the gateway.
 
 
 ### Cross-site effects
@@ -75,14 +75,14 @@ This sample uses a [self hosted](https://katanaproject.codeplex.com/wikipage?tit
 
 ## The endpoint configuration
 
-The endpoint configuration is standard except that the endpoint instance is passed in to the OWIN configuration code.
+The endpoint configuration is standard except that the endpoint instance is passed into the OWIN configuration code.
 
 snippet: startbus
 
 
 ## HTTP hosting and OWIN middleware
 
-A self-hosted instance of Katana is started and then different middleware are injected into the OWIN pipeline. Note that they are wired to map to specific URL suffixes.
+A self-hosted instance of Katana is started and then multiple middlewares are injected into the OWIN pipeline. Note that they are wired to map to specific URL suffixes.
 
  * `/to-bus` for the bus-based interception
  * `/to-msmq` for the direct-to-MSMQ interception
@@ -110,7 +110,7 @@ The MSMQ-based approach takes the following steps:
  * Reads text for the message body from the HTTP request.
  * Reads the message type name from the required headers.
  * Uses the message type name to create a MSMQ transport compatible header string.
- * Places that body and header directly onto MSMQ.
+ * Places message body and header directly onto MSMQ.
 
 snippet: OwinToMsmq
 
