@@ -1,7 +1,7 @@
 ---
 title: Asynchronous Handlers
 summary: How to deal with synchronous and asynchronous code inside asynchronous handlers
-reviewed: 2018-03-13
+reviewed: 2018-12-09
 component: Core
 versions: '[6.0,)'
 ---
