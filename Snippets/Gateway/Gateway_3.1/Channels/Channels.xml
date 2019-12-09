@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode GatewayChannelsAppConfig-->
+<configuration>
+  <configSections>
+    <section name="GatewayConfig"
+             type="NServiceBus.Config.GatewayConfig, NServiceBus.Core" />
+  </configSections>
+  <GatewayConfig>
+    <Channels>
+      <Channel Address="http://Headquarter.mycorp.com/"
+               ChannelType="Http"
+               Default="true"/>
+      <Channel Address="http://Headquarter.myotherdomain.com/"
+               ChannelType="Http"/>
+    </Channels>
+  </GatewayConfig>
+</configuration>
+<!--endcode -->

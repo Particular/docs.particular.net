@@ -1,0 +1,7 @@
+﻿<!--startcode serviceManifestEndpoint -->
+<Resources>
+  <Endpoints>
+    <Endpoint Protocol="http" Name="RemoteEndpoint" Type="Input" Port="25899" />
+  </Endpoints>
+</Resources>
+<!--endcode -->
