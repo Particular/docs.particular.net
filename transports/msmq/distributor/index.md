@@ -12,6 +12,8 @@ redirects:
  - nservicebus/scalability-and-ha
  - nservicebus/scalability-and-ha/licensing
  - nservicebus/msmq/distributor
+ - samples/scaleout/distributor
+ - nservicebus/scale-out-sample
 ---
 
 WARNING: The distributor for MSMQ is no longer supported starting from NServiceBus Versions 7 and above. It is recommended to transition to the [Sender Side Distribution](/transports/msmq/sender-side-distribution.md) model instead. NServiceBus Version 6 endpoints support worker mode as a legacy feature to help with this transition. For more details, see the [migration strategy](/nservicebus/upgrades/5to6/distributor.md).
