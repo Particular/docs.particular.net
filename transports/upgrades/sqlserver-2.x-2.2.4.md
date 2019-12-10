@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport Upgrade Version 2.x to 2.2.4
 summary: Instructions on how to patch SQL injection vulnerability in SQL Server Transport version 2.x
-reviewed: 2018-03-13
+reviewed: 2019-12-10
 component: SqlTransport
 related:
  - security-advisories/sqlserver-sqlinjection
