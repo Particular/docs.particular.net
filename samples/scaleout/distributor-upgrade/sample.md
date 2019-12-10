@@ -7,14 +7,13 @@ tags:
 - Scalability
 related:
 - transports/msmq/distributor
-- samples/scaleout/distributor
 ---
 
 Note: This solution should be seen as a temporary solution. Support for the distributor is only available in Core version 6 and has been removed in core version 7 / msmq version 1. When all endpoints have been upgraded to version 6 it is advised to transition to [Sender Side Distribution](/transports/msmq/sender-side-distribution.md) in preparation for a future migration to core version 7 / msmq version 1.
 
 ## Initial state
 
-This sample uses the same solution as the Version 5 [distributor sample](/samples/scaleout/distributor):
+This sample uses the following setup:
 
  * Sender sends commands to the scaled out endpoint.
  * Worker1 runs both distributor and a worker node.

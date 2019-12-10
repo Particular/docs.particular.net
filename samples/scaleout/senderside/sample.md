@@ -8,7 +8,7 @@ tags:
 related:
  - transports/msmq/scaling-out
  - transports/msmq/sender-side-distribution
- - samples/scaleout/distributor
+ - samples/scaleout/distributor-upgrade
 ---
 
 NOTE: This sample is only relevant for the [MSMQ transport](/transports/msmq/). The other broker-based transports scale out using the [competing consumer pattern](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers). The functionality in this sample is available for NServiceBus version 6 and above. 

@@ -6,7 +6,7 @@ reviewed: 2018-10-26
 related:
  - transports/msmq/sender-side-distribution
  - transports/msmq/distributor
- - samples/scaleout/distributor
+ - samples/scaleout/distributor-upgrade
  - samples/scaleout/senderside
 ---
 
