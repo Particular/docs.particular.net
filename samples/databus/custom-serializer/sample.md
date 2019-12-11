@@ -1,6 +1,6 @@
 ---
 title: Custom Serializer for DataBus
-reviewed: 2018-03-16
+reviewed: 2019-12-11
 component: Core
 tags:
  - DataBus
