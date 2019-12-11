@@ -1,7 +1,7 @@
 ---
 title: Handling Stream Properties Via the Pipeline
 summary: Add support for writing streams to a file share that can be accessed by multiple endpoints.
-reviewed: 2018-03-15
+reviewed: 2019-12-11
 component: Core
 tags:
 - Pipeline
@@ -10,7 +10,7 @@ related:
 ---
 
 
-This sample leverages the pipeline to provide a pure stream-based approach for sending large amounts of data. It is similar to the file share [DataBus](/nservicebus/messaging/databus/file-share.md) in that it assumes a common network file share accessible by endpoints and uses headers to correlate between a message and its connected files on disk.
+This sample leverages the [message handling pipeline](/nservicebus/pipeline/) to provide a pure stream-based approach for sending large amounts of data. It is similar to the file share [DataBus](/nservicebus/messaging/databus/file-share.md) in that it assumes a common network file share accessible by endpoints and uses headers to correlate between a message and its connected files on disk.
 
 The main difference is that with streams, the data doesn't need to be loaded into memory all at once which results in a more efficient and scalable solution.
 
