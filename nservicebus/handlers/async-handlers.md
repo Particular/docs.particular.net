@@ -1,20 +1,20 @@
 ---
 title: Asynchronous Handlers
 summary: How to deal with synchronous and asynchronous code inside asynchronous handlers
-reviewed: 2018-12-09
+reviewed: 2019-12-10
 component: Core
 versions: '[6.0,)'
 ---
 
 
-WARNING: It is difficult to give generic advice on how asynchronous code should be structured. It is important to understand compute-bound vs. I/O-bound operations and avoid copying and pasting snippets without further analysis if they provide benefit for the involved business scenarios. Don't assume; measure it.
+WARNING: It is difficult to give generic advice on how asynchronous code should be structured. It is important to understand compute-bound vs. I/O-bound operations and avoid copying and pasting snippets without analysing the benefits they provide for a given business scenarios. Don't assume; measure it.
 
-[Handlers](/nservicebus/handlers/) and [sagas](/nservicebus/sagas/) will be invoked from a thread in the thread pool. Depending on the transport implementation a worker thread pool thread or an I/O thread pool thread might be used. Typically message handlers and sagas issue I/O-bound work, such as sending or publishing messages, storing information into databases, and calling web services. In other cases, message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas, it is crucial to understand the difference between compute-bound and I/O-bound work.
+[Handlers](/nservicebus/handlers/) and [sagas](/nservicebus/sagas/) are executed by threads from the thread pool. Depending on the transport implementation the worker thread pool thread or the I/O thread pool thread might be used. Typically message handlers and sagas issue I/O-bound work, such as sending or publishing messages, storing information into databases, and calling web services. In other cases, message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas, it is crucial to understand the difference between those scenarios.
 
 
 ### Thread pool
 
-A thread pool is associated with a process and manages the execution of asynchronous callbacks on behalf of the application. Its primary purpose is to reduce the number of application threads and provide efficient management of threads. The thread pool distinguishes asynchronous callbacks into two categories: I/O-bound and compute-bound. It manages a pool of threads which are associated with one of these categories.
+A thread pool is associated with a process and manages the execution of asynchronous callbacks on behalf of the application. Its primary purpose is to reduce the number of application threads and provide efficient management of threads. Every thread pool manages a pool of threads designated to handle one class of workload: either I/O-bound or compute-bound work. 
 
 Further reading:
 
@@ -29,11 +29,11 @@ Further reading:
 
 Parallel / Compute-bound blocking work happens on the worker thread pool. Things like [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx), [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx), [`Parallel.For`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.parallel.for.aspx) schedule tasks on the worker thread pool.
 
-Alternatively, if compute-bound work is scheduled, the worker thread pool will start expanding its worker threads (ramp-up phase). Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
+Whenever, a compute-bound work is scheduled, the worker thread pool will start expanding its worker threads (ramp-up phase). Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
 
 **Compute-bound recommendations:**
 
- * Offloading compute-bound work to the worker thread pool is a top-level concern only. Use [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx) or [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx) as high up in the call hierarchy as possible (e.g. in the `Handle` methods of either a [handler](/nservicebus/handlers/) or [saga](/nservicebus/sagas/).
+ * Manual scheduling of compute-bound work to the worker thread pool is a top-level concern only. Use [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx) or [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx) as high up in the call hierarchy as possible (e.g. in the `Handle` methods of either a [handler](/nservicebus/handlers/) or [saga](/nservicebus/sagas/).
  * Avoid those operations deeper in the call hierarchy.
  * Group compute-bound operations together as much as possible.
  * Make compute-bound operations coarse-grained instead of fine-grained.
@@ -41,9 +41,9 @@ Alternatively, if compute-bound work is scheduled, the worker thread pool will s
 
 #### I/O-thread pool
 
-I/O-bound work is scheduled on the I/O-thread pool. The I/O-bound thread pool has a fixed number of worker threads (usually equal to the number of cores) which can work concurrently on thousands of I/O-bound tasks. I/O-bound work under Windows uses so-called [I/O completion ports (IOCP)](https://msdn.microsoft.com/en-us/library/windows/desktop/aa365198.aspx) to get notifications when an I/O-bound operation is completed. IOCP enables efficient offloading of I/O-bound work from the user code to the kernel, driver, and hardware without blocking the user code until the I/O work is done. To achieve that, the user code registers notifications in the form of a callback. The callback occurs on an I/O thread which is a pool thread managed by the I/O system that is made available to the user code.
+I/O-bound work is scheduled on the I/O-thread pool. The I/O-bound thread pool has a fixed number of worker threads (usually equal to the number of cores) which can work concurrently on thousands of I/O-bound tasks. I/O-bound work under Windows uses [I/O completion ports (IOCP)](https://msdn.microsoft.com/en-us/library/windows/desktop/aa365198.aspx) to get notifications when an I/O-bound operation is completed. IOCP enables efficient offloading of I/O-bound work from the user code to the kernel, driver, and hardware without blocking the user code until the I/O work is done. To achieve that, the user code registers notifications in the form of a callback. The callback occurs on an I/O thread which is a pool thread managed by the I/O system that is made available to the user code.
 
-I/O-bound work typically takes very long, and compute-bound work is comparatively cheap. The I/O system is optimized to keep the thread count low and schedule all callbacks, and therefore the execution of interleaved user code on that one thread. Due to those optimizations, all work gets serialized, and there is minimal context switching as the OS scheduler owns the threads. In general, asynchronous code can handle bursting traffic much better because of the "always-on" nature of the IOCP.
+I/O-bound work typically takes very long to complete in comparison compute-bound work. The I/O system is optimized to keep the thread count low and schedule all callbacks, and therefore the execution of interleaved user code on that one thread. Due to those optimizations, all work gets serialized, and there is minimal context switching as the OS scheduler owns the threads. In general, asynchronous code can handle bursting traffic much better because of the "always-on" nature of the IOCP.
 
 
 #### Memory and allocations
