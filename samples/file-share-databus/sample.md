@@ -1,6 +1,6 @@
 ---
 title: File Share DataBus Usage
-reviewed: 2018-03-15
+reviewed: 2018-12-12
 component: FileShareDataBus
 tags:
  - DataBus
@@ -37,22 +37,22 @@ The other message utilizes the DataBus mechanism:
 
 snippet: MessageWithLargePayload
 
-`DataBusProperty<byte[]>` instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is not transported in the normal serialization flow.
+`DataBusProperty<byte[]>` instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is sent separately from other message properties.
 
-When sending a message using the FileShare DataBus, the message's payload resides in the directory. In addition, a 'signaling' message is sent to the Receiving endpoint.
+When sending a message using the FileShare DataBus, the `DataBus` properties get serialized to a file. Other properties are included in a message sent to the Receiving endpoint.
 
-The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is allowed to clean the message after one minute if it was not received by the receiver. The message payload remains in the storage directory after the message is cleaned by the NServiceBus framework.
+The `TimeToBeReceived` attribute indicates that the message can be deleted after one minute if not processed by the receiver. The message payload remains in the storage directory after the message is cleaned by the NServiceBus framework.
 
-Following is an example of the signaling message that is sent to the receiving endpoint:
+Following is an example of the message with `DataBus` property that is sent to the receiving endpoint:
 
 ```json
 {
-	"SomeProperty":"This message contains a large blob that will be sent on the data bus",
-	"LargeBlob":
-	{
-		"Key":"2014-09-29_09\\67de3a8e-0563-40d5-b81b-6f7b27d6431e",
-		"HasValue":true
-	}
+    "SomeProperty":"This message contains a large blob that will be sent on the data bus",
+    "LargeBlob":
+    {
+        "Key":"2014-09-29_09\\67de3a8e-0563-40d5-b81b-6f7b27d6431e",
+        "HasValue":true
+    }
 }
 ```
 
