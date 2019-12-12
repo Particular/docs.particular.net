@@ -23,6 +23,12 @@ The Azure Service Bus transport only supports a single namespace.
 
 Both transports must be configured using the same topic path for publishing to work properly. This implies that the topic used by the endpoints using the Azure Service Bus transport must match the topic used by the endpoints on legacy Azure Service Bus. See [bundle prefix](/transports/azure-service-bus/legacy/configuration/full.md#configuring-the-topology-forwarding-topology) for details.
 
+Additionally only one topic path is supported. For publishers that are using the legacy Azure Service Bus transport version 7 or lower the number of entities in a bundle needs to be restricted to one by using
+
+```
+forwardingTopology.NumberOfEntitiesInBundle(1);
+```
+
 ### Namespace alias is not used
 
 The Azure Service Bus transport doesn't support [namespace aliases](/transports/azure-service-bus/legacy/securing-connection-strings.md).
