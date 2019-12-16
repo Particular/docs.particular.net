@@ -111,7 +111,7 @@ services:
             rabbitmq:
                 condition: service_healthy
     rabbitmq:
-        image: "rabbitmq:3-management"
+        image: "rabbitmq:3.8-management"
         ports:
             - "15672:15672"
         networks:
