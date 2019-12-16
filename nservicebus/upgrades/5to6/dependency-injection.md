@@ -17,6 +17,9 @@ upgradeGuideCoreVersions:
 
 In NServiceBus version 5, the `Configure` type is used to provide runtime access to the local endpoint address, scanned types, etc, via dependency injection. In version 6, these values are accessed as follows:
 
+### Immutable
+
+The default container used internally is immutable once the endpoint is started.
 
 ### Settings
 
