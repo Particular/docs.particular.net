@@ -184,6 +184,8 @@
         Title: Version 1 to 2
       - Url: nservicebus/upgrades/gateway-2to3
         Title: Version 2 to 3
+      - Url: nservicebus/upgrades/gateway-3to3.1
+        Title: Version 3 to 3.1
     - Title: NServiceBus Testing
       Articles:
       - Url: nservicebus/upgrades/testing-6to7
@@ -899,6 +901,9 @@
     Title: Learning Persistence
   - Url: persistence/in-memory
     Title: In-Memory
+    Articles:
+    - Url: persistence/in-memory/gateway-deduplication
+      Title: Gateway Deduplication
   - Url: persistence/sql
     Title: SQL
     Articles:
