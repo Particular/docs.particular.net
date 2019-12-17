@@ -2,7 +2,7 @@
 title: In-Memory Persistence
 summary: In-Memory persistence stores data in a non-durable manner for development-time only
 component: InMemoryPersistence
-reviewed: 2019-04-16
+reviewed: 2019-12-17
 redirects:
 - nservicebus/persistence/in-memory
 tags:
@@ -12,6 +12,8 @@ tags:
 Some scenarios require an in-memory persistence such as the development environment or a lightweight client not interested in durability across restarts:
 
 snippet: ConfiguringInMemory
+
+INFO: It is advised to use the [in-memory persister that is part of the gateway package](/persistence/in-memory/gateway-deduplication.md).
 
 DANGER: All information stored in the In-Memory persistence is discarded when the process ends.
 
