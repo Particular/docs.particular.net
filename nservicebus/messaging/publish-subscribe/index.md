@@ -73,7 +73,7 @@ Available subscription persisters include
  * [MSMQ](/persistence/msmq)
  * [RavenDB](/persistence/ravendb)
  * [NHibernate](/persistence/nhibernate)
- * [In-Memory](/persistence/in-memory.md)
+ * [In-Memory](/persistence/in-memory)
  * [Azure Storage](/persistence/azure-storage)
  * [SQL Server](/persistence/sql)
 
