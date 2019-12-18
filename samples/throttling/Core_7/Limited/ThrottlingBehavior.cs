@@ -21,6 +21,7 @@ public class ThrottlingBehavior :
             log.Info($"Rate limit exceeded. Retry after {rateLimitReset} UTC ({localTime} local).");
             await DelayMessage(context, rateLimitReset.Value)
                 .ConfigureAwait(false);
+            return;
         }
 
         try
