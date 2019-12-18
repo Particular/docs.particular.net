@@ -4,7 +4,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.*" />
     <PackageReference Include="NServiceBus.Gateway" Version="3.1.0-alpha0041" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
