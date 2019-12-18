@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Gateway;
 using Shared;
 
 class Program
@@ -10,11 +11,10 @@ class Program
         Console.Title = "Samples.Gateway.Headquarters";
         var endpointConfiguration = new EndpointConfiguration("Samples.Gateway.Headquarters");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         #region HeadquartersGatewayConfig
-        var gatewayConfig = endpointConfiguration.Gateway();
+        var gatewayConfig = endpointConfiguration.Gateway(new InMemoryDeduplicationConfiguration());
         gatewayConfig.AddReceiveChannel("http://localhost:25899/Headquarters/");
         gatewayConfig.AddSite("RemoteSite", "http://localhost:25899/RemoteSite/");
         #endregion
