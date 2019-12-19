@@ -1,7 +1,7 @@
 ---
 title: No Async Suffix
 summary: Why there is no Async suffix on Task-based APIs
-reviewed: 2018-03-22
+reviewed: 2019-12-19
 component: Core
 redirects:
  - nservicebus/upgrades/5to6-async-suffix
