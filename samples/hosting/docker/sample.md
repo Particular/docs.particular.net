@@ -1,7 +1,7 @@
 ---
 title: Hosting endpoints in Docker Linux containers
 summary: Hosting multiple endpoints in several Docker Linux containers managed by Docker Compose
-reviewed: 2018-04-05
+reviewed: 2019-12-16
 component: Core
 tags:
 - Hosting
@@ -14,15 +14,13 @@ This sample demonstrates how to use Docker Linux containers to host NServiceBus 
 
 downloadbutton
 
-
 ## Prerequisites
 
 This sample requires that the following tools are installed:
 
- * [.NET Core 2.0 SDK](https://www.microsoft.com/net/download/core)
+ * [.NET Core 2.1 SDK](https://www.microsoft.com/net/download/core)
  * [Docker Community Edition](https://www.docker.com/community-edition) or higher
  * If using Windows, [configure Docker to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers) to support the Linux-based RabbitMQ container
-
 
 ## Running the sample
 
@@ -36,7 +34,6 @@ Building the container images using the following command will `dotnet publish` 
 $ docker-compose build
 ```
 
-
 ### Starting containers
 
 When the container images are ready, the containers can be started:
@@ -44,7 +41,6 @@ When the container images are ready, the containers can be started:
 ```bash
 $ docker-compose up -d
 ```
-
 
 ## Observing containers
 
@@ -54,7 +50,6 @@ Both containers log to the console. These logs can be inspected:
 $ docker-compose logs sender
 $ docker-compose logs receiver
 ```
-
 
 ### Stopping and removing containers
 
@@ -68,15 +63,14 @@ $ docker-compose down
 
 This sample consists of `Sender` and `Receiver` endpoints exchanging messages using the [RabbitMQ transport](/transports/rabbitmq/). Each of these three components runs in a separate Docker Linux container.
 
-
 ### Endpoint Docker image
 
-Each endpoint is a container built on top of the official `microsoft/dotnet:2.0-runtime` image from [Docker Hub](https://hub.docker.com/). The container image builds and publishes the endpoint binaries and then uses those artifacts to build the final container image:
+Each endpoint is a container built on top of the official `mcr.microsoft.com/dotnet/core/runtime:2.1` image from [Docker Hub](https://hub.docker.com/). The container image builds and publishes the endpoint binaries and then uses those artifacts to build the final container image:
 
 ```dockerfile
-FROM microsoft/dotnet:2.0-runtime AS base
+FROM mcr.microsoft.com/dotnet/core/runtime:2.1 AS base
 
-FROM microsoft/dotnet:2.0-sdk AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
 WORKDIR /src
 COPY . .
 WORKDIR /src/Receiver
@@ -117,7 +111,7 @@ services:
             rabbitmq:
                 condition: service_healthy
     rabbitmq:
-        image: "rabbitmq:3-management"
+        image: "rabbitmq:3.8-management"
         ports:
             - "15672:15672"
         networks:
@@ -130,13 +124,11 @@ networks:
     new:
 ```
 
-
 ### Transport configuration
 
 Endpoints configure the RabbitMQ transport to use the broker instance running in the `rabbitmq` container:
 
 snippet: TransportConfiguration
-
 
 ### Waiting for RabbitMQ broker to become available
 
