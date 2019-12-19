@@ -1,6 +1,6 @@
-    using NServiceBus;
+using NServiceBus;
 
-namespace Gateway_2.Sites.ConfigurationSource
+namespace Sites.ConfigurationSource
 {
     class Usage
     {
