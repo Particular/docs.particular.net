@@ -48,6 +48,6 @@ The license management code requires write permissions to store metadata. If the
 
 ```
 FATAL NServiceBus.Features.LicenseReminder Failed to initialize the license
-System.UnauthorizedAccessException: Access to the path 'some\file\system\path' is denied.
+System.UnauthorizedAccessException: Access to the path 'C:\Windows\system32\config\systemprofile' is denied.
 ```
 Ensure that the process has write permissions at the specified location. If necessary, either modify the location by using another suitable [license management technique](/nservicebus/licensing/#license-management), change permissions, or use another process that has appropriate permissions.
