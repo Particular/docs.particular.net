@@ -59,4 +59,4 @@ NOTE: If specifying a time that is in the past then the message will still be sl
 
 ## How it works
 
-NServiceBus provides delayed delivery feature for transports that don't have native support for delayed message delivery, i.e. for MSMQ and SQL Server transports. Transports that support delayed message delivery natively don't require persistence to store timeouts. To learn more about NServiceBus delayed message store refer to the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) article.
+NServiceBus provides delayed delivery feature for transports that don't have native support for delayed message delivery. All Transports except MSMQ support delayed message delivery natively and therefore don't require persistence to store timeouts. To learn more about NServiceBus delayed message store refer to the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) article.
