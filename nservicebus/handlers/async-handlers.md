@@ -29,7 +29,7 @@ Further reading:
 
 Parallel / Compute-bound blocking work happens on the worker thread pool. Things like [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx), [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx), [`Parallel.For`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.parallel.for.aspx) schedule tasks on the worker thread pool.
 
-Whenever, a compute-bound work is scheduled, the worker thread pool will start expanding its worker threads (ramp-up phase). Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
+Whenever a compute-bound work is scheduled, the worker thread pool will start expanding its worker threads (ramp-up phase). Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
 
 **Compute-bound recommendations:**
 
@@ -43,7 +43,7 @@ Whenever, a compute-bound work is scheduled, the worker thread pool will start e
 
 I/O-bound work is scheduled on the I/O-thread pool. The I/O-bound thread pool has a fixed number of worker threads (usually equal to the number of cores) which can work concurrently on thousands of I/O-bound tasks. I/O-bound work under Windows uses [I/O completion ports (IOCP)](https://msdn.microsoft.com/en-us/library/windows/desktop/aa365198.aspx) to get notifications when an I/O-bound operation is completed. IOCP enables efficient offloading of I/O-bound work from the user code to the kernel, driver, and hardware without blocking the user code until the I/O work is done. To achieve that, the user code registers notifications in the form of a callback. The callback occurs on an I/O thread which is a pool thread managed by the I/O system that is made available to the user code.
 
-I/O-bound work typically takes very long to complete in comparison compute-bound work. The I/O system is optimized to keep the thread count low and schedule all callbacks, and therefore the execution of interleaved user code on that one thread. Due to those optimizations, all work gets serialized, and there is minimal context switching as the OS scheduler owns the threads. In general, asynchronous code can handle bursting traffic much better because of the "always-on" nature of the IOCP.
+I/O-bound work typically takes very long to complete compared to compute-bound work. The I/O system is optimized to keep the thread count low and schedule all callbacks, and therefore the execution of interleaved user code on that one thread. Due to those optimizations, all work gets serialized, and there is minimal context switching as the OS scheduler owns the threads. In general, asynchronous code can handle bursting traffic much better because of the "always-on" nature of the IOCP.
 
 
 #### Memory and allocations
