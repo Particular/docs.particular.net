@@ -1,7 +1,7 @@
 ---
 title: Transactions and Message Processing
 summary: Overview of message processing, transactions, and consistency guarantees in NServiceBus.
-reviewed: 2018-03-23
+reviewed: 2019-12-19
 redirects:
 - nservicebus/transactions-message-processing
 - nservicebus/operations/warning-for-cid-values
