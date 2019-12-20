@@ -105,7 +105,3 @@ src/scaffolding.config
 *.sln.iml
 PromotedSqlScripts/
 /samples/servicecontrol/adapter-mixed-transports/SCTransportAdapter_2/.audit-db
-Clone
-Running
-log-*.txt
-
