@@ -25,12 +25,20 @@
         [Test]
         public async Task Write()
         {
+            var errorIngestion = new EndpointConfiguration("error");
+            errorIngestion.SetTypesToScan(TypeScanner.NestedTypes<ErrorMutator>());
+            errorIngestion.EnableInstallers();
+            errorIngestion.UseTransport<LearningTransport>();
+            errorIngestion.Pipeline.Register(typeof(ErrorMutator),"Capture headers on failed messages");
+            await Endpoint.Start(errorIngestion);
+            
             var endpointConfiguration = new EndpointConfiguration(endpointName);
+            endpointConfiguration.SendFailedMessagesTo("error");
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UseTransport<LearningTransport>();
-            endpointConfiguration.Pipeline.Register(typeof(CaptureHeadersBehavior),"Captures headers on messages going to the error q");
+            endpointConfiguration.Pipeline.Register(typeof(Mutator),"Capture headers on sent messages");
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(settings => settings.NumberOfRetries(1));
@@ -51,6 +59,22 @@
             IMessage
         {
         }
+        
+        class ErrorMutator : Behavior<IIncomingPhysicalMessageContext>
+        {
+            public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
+            {
+                var headers = context.MessageHeaders;
+                var headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(headers);
+                headerText = BehaviorCleaner.CleanStackTrace(headerText);
+                headerText = StackTraceCleaner.CleanStackTrace(headerText);
+                SnippetLogger.Write(
+                    text: headerText,
+                    suffix: "Error");
+                ManualResetEvent.Set();
+                return Task.CompletedTask;
+            }
+        }
 
 
         class MessageHandler :
@@ -63,24 +87,8 @@
             }
         }
 
-        class CaptureHeadersBehavior : Behavior<IIncomingLogicalMessageContext>
+        class Mutator : Behavior<IIncomingLogicalMessageContext>
         {
-            public CaptureHeadersBehavior(Notifications busNotifications)
-            {
-                var errorsNotifications = busNotifications.Errors;
-                errorsNotifications.MessageSentToErrorQueue += (sender, retry) =>
-                {
-                    var headers = retry.Headers;
-                    var headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(headers);
-                    headerText = BehaviorCleaner.CleanStackTrace(headerText);
-                    headerText = StackTraceCleaner.CleanStackTrace(headerText);
-                    SnippetLogger.Write(
-                        text: headerText,
-                        suffix: "Error");
-                    ManualResetEvent.Set();
-                };
-            }
-
             static bool hasCapturedMessage;
 
             public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
@@ -94,7 +102,6 @@
                         text: sendingText,
                         suffix: "Sending");
                 }
-
                 return next();
             }
         }

@@ -25,6 +25,11 @@ namespace Common
                         break;
                     }
 
+                    if (line.Contains("System.Runtime") || line.Contains("---"))
+                    {
+                        continue;
+                    }
+                    
                     stringBuilder.AppendLine(line.Split(new[]
                     {
                         " in "
