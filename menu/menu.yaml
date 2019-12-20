@@ -1106,8 +1106,6 @@
     - Title: Installation
       Url: servicecontrol/installation
       Articles:
-      - Title: Installing Silently
-        Url: servicecontrol/installation-silent
       - Title: Managing via PowerShell
         Url: servicecontrol/installation-powershell
       - Title: Cluster Deployment
