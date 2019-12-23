@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Gateway;
+using NServiceBus.MessageMutator;
 
 class Usage
 {

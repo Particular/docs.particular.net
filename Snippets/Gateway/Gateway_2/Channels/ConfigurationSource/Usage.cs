@@ -1,4 +1,4 @@
-namespace Gateway_2.Channels.ConfigurationSource
+namespace Channels.ConfigurationSource
 {
     using NServiceBus;
 

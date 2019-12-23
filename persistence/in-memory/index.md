@@ -2,7 +2,7 @@
 title: In-Memory Persistence
 summary: In-Memory persistence stores data in a non-durable manner for development-time only
 component: InMemoryPersistence
-reviewed: 2019-04-16
+reviewed: 2019-12-17
 redirects:
 - nservicebus/persistence/in-memory
 tags:

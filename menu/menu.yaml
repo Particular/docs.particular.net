@@ -901,6 +901,9 @@
     Title: Learning Persistence
   - Url: persistence/in-memory
     Title: In-Memory
+    Articles:
+    - Url: persistence/in-memory/gateway-deduplication
+      Title: Gateway Deduplication
   - Url: persistence/sql
     Title: SQL
     Articles:

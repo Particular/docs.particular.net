@@ -3,7 +3,7 @@ using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
 
-namespace Gateway_2.Sites.ConfigurationSource
+namespace Sites.ConfigurationSource
 {
     #region GatewaySitesConfigurationSource
 
