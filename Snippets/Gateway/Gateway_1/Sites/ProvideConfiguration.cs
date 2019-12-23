@@ -1,4 +1,4 @@
-﻿namespace Gateway_1.Sites
+﻿namespace Sites
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
