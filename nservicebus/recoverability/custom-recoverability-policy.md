@@ -2,7 +2,7 @@
 title: Custom Recoverability Policy
 summary: Shows how to take full control over Recoverability by implementing a Recoverability Policy
 component: Core
-reviewed: 2018-03-29
+reviewed: 2019-12-24
 versions: '[6.0,)'
 tags:
  - Error Handling
