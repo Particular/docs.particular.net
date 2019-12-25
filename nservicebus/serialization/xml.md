@@ -1,7 +1,7 @@
 ---
 title: XML Serializer
 summary: A custom XML serializer
-reviewed: 2018-04-04
+reviewed: 2019-12-25
 component: Xml
 redirects:
  - nservicebus/serialization/xml-serializer

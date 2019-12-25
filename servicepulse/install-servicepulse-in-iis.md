@@ -1,7 +1,7 @@
 ---
 title: Install ServicePulse in IIS
 summary: Describes how to manually install ServicePulse in IIS
-reviewed: 2018-04-02
+reviewed: 2019-12-25
 component: ServicePulse
 tags:
 - Security
