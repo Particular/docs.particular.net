@@ -2,7 +2,7 @@
 title: Hosting
 summary: Describes the various approaches to endpoint hosting
 component: Core
-reviewed: 2018-04-06
+reviewed: 2020-01-03
 tags:
 - Hosting
 redirects:
