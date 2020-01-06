@@ -13,7 +13,7 @@ related:
 
 This sample shows how to manually remove subscriptions when subscribers are decommissioned. The solution comprises of 4 projects.
 
-NOTE: While this sample uses the [MSMQ transport](/transports/msmq), the concepts shown are valid for all transports based on message driven subscriptions and that don't support native pub/sub. For more information see [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/).
+WARNING: While this sample uses the [MSMQ transport](/transports/msmq), the concepts shown are valid for all transports based on message driven subscriptions. The approach shown in this sample is not applicable to transports that support native pub/sub. For more information see [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/).
 
 
 ## Running the sample
