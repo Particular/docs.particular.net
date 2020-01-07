@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using NServiceBus;
 using Unity;
+using Unity.Extension;
 
 static class Program
 {
@@ -21,6 +25,17 @@ static class Program
             });
 
         #endregion
+
+        var extensionsField = typeof(UnityContainer).GetField("_extensions", BindingFlags.GetField | BindingFlags.NonPublic | BindingFlags.Instance);
+        var extensions = (List<IUnityContainerExtensionConfigurator>)extensionsField.GetValue(container);
+        foreach (var extension in extensions.ToList())
+        {
+            if (extension.GetType().FullName == "NServiceBus.Unity.PropertyInjectionContainerExtension")
+            {
+                extensions.Remove(extension);
+                break;
+            }
+        }
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
