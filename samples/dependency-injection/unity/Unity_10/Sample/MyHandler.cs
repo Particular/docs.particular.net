@@ -11,9 +11,12 @@ public class MyHandler :
         this.myService = myService;
     }
 
+    public MyOtherService OtherService { get; set; }
+
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         myService.WriteHello();
+        OtherService.WriteHello();
         return Task.CompletedTask;
     }
 }
