@@ -12,25 +12,23 @@ static class Program
         #region ContainerConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.StructureMap");
-        var container = new Container(
-            action: expression =>
-            {
-                expression.For<MyService>()
-                    .Use(new MyService());
-            });
-        endpointConfiguration.UseContainer<StructureMapBuilder>(
-            customizations: customizations =>
-            {
-                customizations.ExistingContainer(container);
-            });
+
+        var registry = new Registry();
+
+        registry.For<MyService>()
+                  .Use(new MyService());
 
         #endregion
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+        var endpoint = ServiceCollectionEndpoint.Create(endpointConfiguration,
+            new StructureMapServiceProviderFactory(registry));
+
+        var endpointInstance = await endpoint.Start()
             .ConfigureAwait(false);
+
         var myMessage = new MyMessage();
         await endpointInstance.SendLocal(myMessage)
             .ConfigureAwait(false);
@@ -39,4 +37,7 @@ static class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
+
+
+
 }
