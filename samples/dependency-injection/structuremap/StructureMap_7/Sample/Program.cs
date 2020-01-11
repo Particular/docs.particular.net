@@ -12,7 +12,6 @@ static class Program
         #region ContainerConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.StructureMap");
-
         var registry = new Registry();
 
         registry.For<MyService>()
@@ -35,7 +34,4 @@ static class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
-
-
 }
