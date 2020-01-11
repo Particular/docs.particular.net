@@ -22,6 +22,14 @@ namespace NServiceBus
                 serviceProviderFactory,
                 serviceCollection);
         }
+
+        public static Task<IEndpointInstance> Start<TContainerBuilder>(EndpointConfiguration endpointConfiguration,
+            IServiceProviderFactory<TContainerBuilder> serviceProviderFactory,
+            IServiceCollection serviceCollection = null)
+        {
+            return Create<TContainerBuilder>(endpointConfiguration,serviceProviderFactory,serviceCollection)
+                .Start();
+        }
     }
 
     class TbdAdapter<TContainerBuilder> : IStartableServiceCollectionEndpoint
