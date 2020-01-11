@@ -22,10 +22,8 @@ static class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await ServiceCollectionEndpoint.Start(endpointConfiguration,
-            new StructureMapServiceProviderFactory(registry))
+        var endpointInstance = await ServiceCollectionEndpoint.Start(endpointConfiguration, new StructureMapServiceProviderFactory(registry))
             .ConfigureAwait(false);
-
         var myMessage = new MyMessage();
         await endpointInstance.SendLocal(myMessage)
             .ConfigureAwait(false);
