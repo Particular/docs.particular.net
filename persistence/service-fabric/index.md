@@ -15,6 +15,7 @@ Add a NuGet package reference to `NServiceBus.Persistence.ServiceFabric`. Config
 
 snippet: ServiceFabricPersistenceConfiguration
 
+partial: timeout
 
 ## Limitations
 
