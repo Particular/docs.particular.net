@@ -46,6 +46,8 @@ class Program
                 settings.Set("MainSerializer", serializer);
 
                 #endregion
+
+                transport.SanitizeQueueNamesWith(s => s.Replace(".", "-"));
             });
 
         #endregion
@@ -72,6 +74,8 @@ class Program
                 settings.Set("MainSerializer", serializer);
 
                 #endregion
+
+                transport.SanitizeQueueNamesWith(s => s.Replace(".", "-"));
             });
 
         #endregion

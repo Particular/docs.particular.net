@@ -23,6 +23,8 @@ class Program
         // Required to address https://github.com/Particular/NServiceBus.AzureStorageQueues/issues/308
         transport.AccountRouting().AddAccount("storage_account", connectionString);
 
+        transport.SanitizeQueueNamesWith(s => s.Replace(".", "-"));
+
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
