@@ -14,7 +14,7 @@ The Azure Service Bus transport leverages the .NET Standard [Microsoft.Azure.Ser
 
 [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) is a messaging service hosted on the Azure platform that allows for exchanging messages between various applications in a loosely coupled fashion. The service offers guaranteed message delivery and supports a range of standard protocols (e.g. REST, AMQP, WS*) and APIs such as native pub/sub, delayed delivery, and more.
 
-## Transport facts
+## Transport at a glance
 
 |Feature                    |   |  
 |:---                       |---

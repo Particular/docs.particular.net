@@ -17,7 +17,7 @@ Provides support for sending messages over [RabbitMQ](https://www.rabbitmq.com/)
 
 WARNING: The transport is not compatible with RabbitMQ broker version 3.3.X and below.
 
-## Transport facts
+## Transport at a glance
 
 |Feature                    |   |  
 |:---                       |---

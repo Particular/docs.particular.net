@@ -13,7 +13,7 @@ redirects:
 
 [Simple Queue Service (SQS)](https://aws.amazon.com/sqs/) is a message queue service provided by [Amazon Web Services](https://aws.amazon.com/).
 
-## Transport facts
+## Transport at a glance
 
 |Feature                    |   |  
 |:---                       |---

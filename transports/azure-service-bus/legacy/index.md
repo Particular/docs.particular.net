@@ -27,7 +27,7 @@ Note: Publish/Subscribe and Timeouts (including message deferral) are supported 
 
 include: azure-transports
 
-## Transport facts
+## Transport at a glance
 
 |Feature                    |   |  
 |:---                       |---
