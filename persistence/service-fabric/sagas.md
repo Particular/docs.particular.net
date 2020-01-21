@@ -51,7 +51,7 @@ The saga with the correlation id 'Name: {correlationProperty.Name} Value: {corre
 
 ### Updating or deleting saga data
 
-Starting from version 2.2 ServiceFabric persistence uses `LockMode.Update` to acquire an [exclusive lock](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections-transactions-locks#locks) when updating or deleting saga data. The saga persister tries to acquire an exclusive lock on the saga data for up to [four seconds](/persistence/service-fabric/index.md#usage-transaction-timeout). If within this time period an exclusive lock cannot be acquired a `TimeoutException` is thrown.
+Starting from version 2.2 ServiceFabric persistence uses `LockMode.Update` to acquire an [exclusive lock](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections-transactions-locks#locks) when updating or deleting saga data. The saga persister tries to acquire an exclusive lock on the saga data for up to [four seconds](/persistence/service-fabric/#usage-transaction-timeout). If within this time period an exclusive lock cannot be acquired a `TimeoutException` is thrown.
 
 Example exception:
 
