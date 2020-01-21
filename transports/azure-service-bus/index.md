@@ -21,7 +21,7 @@ The Azure Service Bus transport leverages the .NET Standard [Microsoft.Azure.Ser
 |Transactions |None, ReceiveOnly, SendsWithAtomicReceive
 |Pub/Sub                    |Native
 |Timeouts                   |Native
-|Large message bodies       |via higher tier (i.ex. Premium) or DataBus
+|Large message bodies       | with Premium tier or DataBus
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Supported using `NServiceBus.Transport.AzureServiceBus.CommandLine`
 |Installers                 |Optional
