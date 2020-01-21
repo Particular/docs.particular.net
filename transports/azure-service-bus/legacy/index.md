@@ -36,7 +36,7 @@ include: azure-transports
 |Timeouts                   |Native
 |Large message bodies       |via higher tier (i.ex. Premium) or DataBus
 |Scale-out             |Competing consumer
-|Scripted Deployment        |Supported for the Forwarding Topology using `NServiceBus.Transport.AzureServiceBus.CommandLine`, not supported for the Endpoint Oriented Topology
+|Scripted Deployment        | Not supported
 |Installers                 |Optional
 
 
