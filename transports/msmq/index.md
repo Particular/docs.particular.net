@@ -15,6 +15,18 @@ tags:
  - Transport
 ---
 
+## Transport at a glance
+
+|Feature                    |   |  
+|:---                       |---
+|Transactions |None, ReceiveOnly, SendsWithAtomicReceive, TransactionScope
+|Pub/Sub                    |message driven
+|Timeouts                   |via timeouts storage
+|Large message bodies       |via DataBus
+|Scale-out             |Distributor or Windows Network Load Balancing
+|Scripted Deployment        |C#, PowerShell
+|Installers                 |Optional
+
 ## Configuring the endpoint
 
 partial: default
