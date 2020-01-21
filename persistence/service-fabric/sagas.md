@@ -56,7 +56,7 @@ Starting from version 2.2 ServiceFabric persistence uses `LockMode.Update` to ac
 Example exception:
 
 ```
-System.TimeoutException: TODO
+System.TimeoutException: Timed out waiting for Update lock on key; id=730ed849-8996-420f-9abf-e92a6f09585c@132240668520425409@urn:SagaData/dataStore@132240668616392434, timeout=100ms, txn=132240668619482431, lockResourceNameHash=304025969650383958; oldest txn with lock=132240668619502450 (mode Update)
 ```
 
 Prior to version 2.2 ServiceFabric persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
