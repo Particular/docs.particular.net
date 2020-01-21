@@ -41,8 +41,6 @@ snippet: ServiceFabricPersistenceSagaWithCustomSagaDataName
 
 When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
-include: saga-concurrency
-
 ### Creating saga data
 
 Example exception:
@@ -68,3 +66,5 @@ Example exception:
 ```
 {nameof(SagaPersister)} concurrency violation: saga entity Id[{sagaData.Id}] already saved.
 ```
+
+include: saga-concurrency
