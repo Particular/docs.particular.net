@@ -17,6 +17,17 @@ Provides support for sending messages over [RabbitMQ](https://www.rabbitmq.com/)
 
 WARNING: The transport is not compatible with RabbitMQ broker version 3.3.X and below.
 
+## Transport at a glance
+
+|Feature                    |   |  
+|:---                       |---
+|Transactions |None, ReceiveOnly
+|Pub/Sub                    |Native
+|Timeouts                   |Native
+|Large message bodies       |Broker can handle arbitrary message size within available resources, very large messages via DataBus
+|Scale-out             |Competing consumer
+|Scripted Deployment        |Not supported
+|Installers                 |Mandatory
 
 ## Configuring the endpoint
 

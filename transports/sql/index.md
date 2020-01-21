@@ -17,6 +17,17 @@ The SQL Server transport implements a message queuing mechanism on top of [Micro
 
 WARNING: Although this transport will run on the free version of the engine, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express), it is strongly recommended to use commercial versions for production systems. It is also recommended to ensure that support agreements are in place from [Microsoft Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx), or another third party support provider.
 
+## Transport at a glance
+
+|Feature                    |   |  
+|:---                       |---
+|Transactions |None, ReceiveOnly, SendWithAtomicReceive, TransactionScope
+|Pub/Sub                    |Native
+|Timeouts                   |Native
+|Large message bodies       |SqlServer can handle arbitrary message size within available resources, very large messages via DataBus
+|Scale-out             |Competing consumer
+|Scripted Deployment        |Sql Scripts
+|Installers                 |Optional
 
 ## Usage
 
