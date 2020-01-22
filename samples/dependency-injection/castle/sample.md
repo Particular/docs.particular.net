@@ -1,7 +1,7 @@
 ---
 title: Windsor Dependency Injection Usage
 component: Castle
-reviewed: 2019-09-11
+reviewed: 2020-01-22
 tags:
  - dependency injection
 related:
