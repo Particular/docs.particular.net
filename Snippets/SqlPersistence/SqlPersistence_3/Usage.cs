@@ -286,6 +286,17 @@ class Usage
         #endregion
     }
 
+    void MsSqlDoNotShareConnection(EndpointConfiguration endpointConfiguration)
+    {
+        #region MsSqlDoNotShareConnection
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
+        dialect.DoNotUseSqlServerTransportConnection();
+
+        #endregion
+    }
+
     void ExecuteScripts(string scriptDirectory, string tablePrefix)
     {
         #region ExecuteScriptsSqlServer
