@@ -43,5 +43,13 @@ The SQL Server dialect supports multiple schemas. By default, when a schema is n
 
 snippet: MsSqlSchema
 
+## Connection sharing
+
+When an endpoint uses SQL Persistence combined with SQL Server Transport without the [Outbox](/nservicebus/outbox/), the persistence uses the connection and transaction context established by the transport when accessing Saga data. This behavior ensures *exactly-once* message processing behavior as the state change of the saga is committed atomically with consuming of the message that triggered it.
+
+partial: Connection
+
+
+
 
 
