@@ -822,8 +822,6 @@
       Title: In a cluster
     - Url: transports/rabbitmq/operations-scripting
       Title: Scripting
-    - Url: transports/rabbitmq/rabbitmqclient-nuget
-      Title: RabbitMQ.Client NuGet usage
   - Url: transports/sqs
     Title: Amazon SQS
     Articles:
