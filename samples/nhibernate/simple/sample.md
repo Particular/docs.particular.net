@@ -1,7 +1,7 @@
 ---
 title: Simple NHibernate Persistence Usage
 summary: Using NHibernate to store sagas and timeouts.
-reviewed: 2018-04-18
+reviewed: 2020-01-24
 component: NHibernate
 tags:
  - Saga
@@ -31,14 +31,14 @@ This sample shows a simple client/server scenario.
 
 ### NHibernate config
 
-Configure NHibernate with the right driver, dialect, and connection string. Since NHibernate needs a way to map the class to the database table, the configuration code also does that with ModelMapper API. Finally, the configuration is used to run the endpoint.
+Configure NHibernate with the right driver, dialect, and connection string. Since NHibernate needs a way to map the class to the database table, the configuration code also does that using the ModelMapper API.
 
 snippet: config
 
 
 ### Order saga data
 
-Note that to use NHibernate's lazy-loading, all the properties on the saga data class must be `virtual`.
+Note that to use NHibernate's lazy-loading, all the properties on the saga data class must be defined as `virtual`.
 
 snippet: sagadata
 
@@ -57,9 +57,7 @@ snippet: handler
 
 ## The database
 
-The data in the database is stored in three different tables.
-
-### The saga data
+### Saga data
 
  * `IContainSagaData.Id` maps to the OrderSagaData primary-key and unique identifier column `Id`.
  * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` map to columns of the same name of type `varchar(255)`.
@@ -68,28 +66,6 @@ The data in the database is stored in three different tables.
 ![](sagadata.png)
 
 
-### The timeouts
-
- * The subscriber is stored in `Destination` column and includes `Queue` and `Machine` information.
- * The endpoint that initiated the timeout is stored in the `Endpoint` column.
- * The connected saga ID is stored in a `SagaId` column.
- * The serialized data for the message is stored in a `State` column.
- * The scheduled timestamp for the timeout is stored in a `Time` column.
- * Any headers associated with the timeout are stored in an array of key value pairs stored in the 'Headers' column.
-
-![](timeouts.png)
-
-
-### The subscriptions
-
-Note that the message type maps to multiple subscriber endpoints.
-
- * The Subscription message type and version are stored in the `MessageType` column.
- * The list of subscribers is stored in an array of objects each containing `Queue` and `MachineName` information.
-
-![](subscriptions.png)
-
-
-### The handler stored data
+### Business data stored by the handler
 
 ![](handlerdoc.png)
