@@ -14,8 +14,6 @@ Correlation is needed in order to find existing saga instances based on data in 
 
 To declare this, use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify which saga property each message maps to.
 
-NOTE: Message properties must correlate to a single saga property and have the same type.
-
 partial: note
 
 snippet: saga-find-by-property
