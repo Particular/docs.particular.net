@@ -2,7 +2,7 @@
 title: Transaction Support
 reviewed: 2019-02-07
 component: ASBS
-versions: '[7,)'
+versions: '[1,)'
 tags:
  - Azure
  - Transactions
@@ -17,8 +17,6 @@ The following [`TransportTransactionMode` levels](/transports/transactions.md) a
 
 
 ## Sends atomic with receive
-
-include: send-atomic-with-receive-note
 
 The `SendsAtomicWithReceive` guarantee is achieved by setting the `ViaEntityPath` on outbound message senders. Its value is set to the receiving queue.
 
