@@ -1,6 +1,6 @@
 ---
 title: Property injection
-reviewed: 2018-04-20
+reviewed: 2020-01-24
 component: Core
 tags:
  - Dependency Injection
