@@ -7,6 +7,6 @@
   <ItemGroup>
     <PackageReference Include="Castle.Windsor" Version="5.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.CastleWindsor" Version="8.0.0-castle-bump0001" />
+    <PackageReference Include="NServiceBus.CastleWindsor" Version="7.1.0" />
   </ItemGroup>
 </Project>
