@@ -23,7 +23,7 @@ Switching to self-hosting can be done by using the [Generic Host](/nservicebus/h
 
 ### Configuration
 
-Self-hosting gives access to the same configuration options as provided by the Host. See below for migration of host-specific configuration APIs.
+Self-hosting provides access to the same configuration options as provided by the Host. See below for the migration of host-specific configuration APIs.
 
 
 #### Custom endpoint configuration
@@ -44,7 +44,7 @@ The `UsingTransport<MyTransport>` role can be replaced with the equivalent `Endp
 
 #### Endpoint name
 
-The Host defaults the endpoint name to the namespace of the type implementing `IConfigureThisEndpoint`. When self-hosting, that name should be passed to the constructor of an `EndpointConfiguration`.
+The Host defaulted the endpoint name to the namespace of the type implementing `IConfigureThisEndpoint`. When self-hosting, that name should be passed to the constructor of an `EndpointConfiguration`.
 
 
 #### Overriding the endpoint name
