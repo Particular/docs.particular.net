@@ -11,14 +11,14 @@ related:
  - nservicebus/operations/installers
  - nservicebus/lifecycle
 component: Host
-reviewed: 2018-12-11
+reviewed: 2019-01-27
 ---
 
 include: host-deprecated-warning
 
 The NServiceBus Host takes an opinionated approach to hosting. Endpoints using NServiceBus Host can run as windows services or console application (e.g. during development).
 
-To use the host, create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/). The package will automatically create a sample endpoint configuration and will set the `NServiceBus.Host.exe` as the endpoint's startup project.
+To use the host, create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/).
 
 
 ## Host Versions
@@ -68,6 +68,7 @@ For Versions 5 and above, customize the endpoint behavior using the `IConfigureT
 
 snippet: customize_nsb_host
 
+partial: sample-initialization
 
 ### Endpoint Name
 
