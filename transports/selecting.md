@@ -21,12 +21,12 @@ Other queueing technologies are "federated" and deployed on every machine that s
 Each of the following sections describes the advantages and disadvantages of each supported transport and some reasons for choosing that transport.
 
 * [Learning Transport](#learning)
-* [MSMQ](#msmq)
 * [Azure Service Bus](#azure-service-bus)
 * [Azure Storage Queues](#azure-storage-queues)
 * [SQL Server](#sql-server)
 * [RabbitMQ](#rabbitmq)
 * [Amazon SQS](#amazon-sqs)
+* [MSMQ](#msmq)
 
 For transports which use a cloud hosted queueing technology, the quality of the network connection between the applications and cloud provider is important. If the connection is problematic, it may not be possible to send messages. For example, this may result in problems capturing data from a user interface. If applications are running the same data centre as the queueing technology, this risk is mitigated.
 
@@ -42,11 +42,11 @@ Y-->|Amazon|Y2[Amazon SQS]
 N-->|Yes|NY{<center>Do those systems<br/>use SQL Server?</center>}
 N-->|No|NN{<center>Is high message<br/>throughput, e.g.<br/>500 msg/s,<br/>expected?</center>}
 NY-->|Yes|NYY[SQL Server]
-NY-->|No|NYN[<center>RabbitMQ/<br/>MSMQ/<br/>SQL Server</center>]
-NN-->|Yes|NNY[<center>RabbitMQ/<br/>MSMQ</center>]
+NY-->|No|NYN[<center>RabbitMQ/<br/>SQL Server</center>]
+NN-->|Yes|NNY[<center>RabbitMQ</center>]
 NN-->|No|NNN{<center>Is business<br/>data stored<br/>in SQL Server?</center>}
 NNN-->|Yes|NNNY[SQL Server]
-NNN-->|No|NNNN[<center>RabbitMQ/<br/>MSMQ/<br/>SQL Server</center>]
+NNN-->|No|NNNN[<center>RabbitMQ/<br/>SQL Server</center>]
 ```
 
 
@@ -55,30 +55,6 @@ NNN-->|No|NNNN[<center>RabbitMQ/<br/>MSMQ/<br/>SQL Server</center>]
 The learning transport should not be used in production.
 
 This transport is intended for learning how to work with NServiceBus. It does not require the installation of a queueing technology and works "out of the box". This is done by sending and receiving messages as simple files on disk.
-
-
-
-## MSMQ
-
-The MSMQ transport uses the native Windows queuing technology, MSMQ, to send and deliver messages. MSMQ is a distributed or "federated" system that consists of multiple processes, one on each machine. The client only interacts with the local MSMQ process, which stores the messages on disk. The messages are forwarded to the remote machine in the background.
-
-### Advantages
-
-- A built-in component of the Windows operating system (although not always installed by default).
-- Supports distributed transactions, allowing atomic message processing and data manipulation in database systems which also support distributed transactions (e.g. SQL Server), using the [Microsoft Distributed Transaction Coordinator (MSDTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx).
-- Uses a store and forward mechanism which allows sending messages even when the destination machine is unavailable due to network issues or other problems.
-
-### Disadvantages
-
-- Does not offer a native publish-subscribe mechanism. A database is required for storing event subscriptions (via [NServiceBus persistence](/persistence)). [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
-- Scaling out requires setting up the [distributor](msmq/distributor) or [sender-side distribution](msmq/sender-side-distribution.md) to distribute messages across the destination queues of the scaled out instances. With a broker based transport, all scaled out instances talk to the centralized broker.
-
-### When to select this transport
-
-- For a better guarantee that the queuing technology is available for applications to send messages.
-- When running a Windows environment on-premises and unable to invest in licenses or training for other technologies.
-- When distributed transactions are required to guarantee consistency of data with respect to message handling.
-
 
 
 ## Azure Service Bus
@@ -208,3 +184,28 @@ This is a popular transport for systems hosted in AWS, the Amazon cloud offering
 
 - When the application will be run on AWS.
 - For integration with other systems that are already running on Amazon SQS.
+
+
+## MSMQ
+
+WARNING: As Microsoft is not making MSMQ available for .NET Core, building new systems using MSMQ is not recommended. 
+
+The MSMQ transport uses the native Windows queuing technology, MSMQ, to send and deliver messages. MSMQ is a distributed or "federated" system that consists of multiple processes, one on each machine. The client only interacts with the local MSMQ process, which stores the messages on disk. The messages are forwarded to the remote machine in the background.
+
+### Advantages
+
+- A built-in component of the Windows operating system (although not always installed by default).
+- Supports distributed transactions, allowing atomic message processing and data manipulation in database systems which also support distributed transactions (e.g. SQL Server), using the [Microsoft Distributed Transaction Coordinator (MSDTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx).
+- Uses a store and forward mechanism which allows sending messages even when the destination machine is unavailable due to network issues or other problems.
+
+### Disadvantages
+
+- Does not offer a native publish-subscribe mechanism. A database is required for storing event subscriptions (via [NServiceBus persistence](/persistence)). [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
+- Scaling out requires setting up the [distributor](msmq/distributor) or [sender-side distribution](msmq/sender-side-distribution.md) to distribute messages across the destination queues of the scaled out instances. With a broker based transport, all scaled out instances talk to the centralized broker.
+
+### When to select this transport
+
+- For a better guarantee that the queuing technology is available for applications to send messages.
+- When running a Windows environment on-premises and unable to invest in licenses or training for other technologies.
+- When distributed transactions are required to guarantee consistency of data with respect to message handling.
+
