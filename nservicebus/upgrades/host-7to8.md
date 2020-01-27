@@ -11,14 +11,14 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-The NServiceBus Host will be deprecated as of version 9, and users are recommended to switch to self-hosting or the [Generic Host](/nservicebus/hosting/extensions-hosting) for new endpoints. Upgrading existing endpoints is still supported for version 8.
+The NServiceBus Host will be deprecated as of version 9, and users are recommended to switch to self-hosting or the [Generic Host](/nservicebus/hosting/extensions-hosting.md) for new endpoints. Upgrading existing endpoints is still supported for version 8.
 
 include: host-deprecate
 
 
 ## Migrating procedure
 
-Switching to self-hosting can be done by using the [Generic Host](/nservicebus/hosting/extensions-hosting), [NServiceBus Windows Service](/nservicebus/dotnet-templates.md#nservicebus-windows-service) or [NServiceBus Docker Container](/nservicebus/dotnet-templates.md#nservicebus-docker-container) templates to create a new project, and then moving the relevant code and configuration over to that project.
+Switching to self-hosting can be done by using the [Generic Host](/nservicebus/hosting/extensions-hosting.md), [NServiceBus Windows Service](/nservicebus/dotnet-templates.md#nservicebus-windows-service) or [NServiceBus Docker Container](/nservicebus/dotnet-templates.md#nservicebus-docker-container) templates to create a new project, and then moving the relevant code and configuration over to that project.
 
 
 ### Configuration
