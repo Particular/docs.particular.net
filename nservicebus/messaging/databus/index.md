@@ -1,8 +1,8 @@
 ---
 title: DataBus
-summary: How to handle messages that are too large to be sent by a transport
+summary: How to handle messages that are too large to be sent by a transport natively
 component: Core
-reviewed: 2018-04-22
+reviewed: 2019-01-27
 tags:
  - DataBus
 redirects:
@@ -13,16 +13,16 @@ related:
  - samples/azure/blob-storage-databus
 ---
 
-Although messaging systems work best with small message sizes, some scenarios require sending large binary data along with a message. For this purpose, NServiceBus has a "DataBus" feature to overcome the message size limitations imposed by an underlying transport.
+Although messaging systems work best with small message sizes, some scenarios require sending large binary data along with a message. For this purpose, NServiceBus has a DataBus feature to overcome the message size limitations imposed by an underlying transport.
 
 
 ## How it works
 
-Instead of serializing the payload along with the rest of the message, the `DataBus` approach involves storing the payload in a separate location that both the sending and receiving parties can access, and then putting the reference to that location in the message.
+Instead of serializing the payload along with the rest of the message, the `DataBus` approach involves storing the payload in a separate location that both the sending and receiving parties can access, then putting the reference to that location in the message.
 
 If the location is not available upon sending, the send operation will fail. When a message is received and the payload location is not available, the receive operation will fail as well, resulting in the standard NServiceBus retry behavior, possibly resulting in the message being moved to the error queue if the error could not be resolved.
 
-The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging NServiceBus pipeline. 
+The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging the NServiceBus pipeline. 
 
 
 ## Enabling the DataBus
@@ -86,7 +86,7 @@ The various DataBus implementations each behave differently with regard to clean
 
 Automatically removing these attachments can cause problems in many situations. For example:
 
- * The supported DataBus implementations do not participate in distributed transactions. If for some reason, the message handler throws an exception and the transaction rolls back, the delete operation on the attachment cannot be rolled back. Therefore, when the message is retried, the attachment will no longer be present causing additional problems.
+ * The supported DataBus implementations do not participate in distributed transactions. If the message handler throws an exception and the transaction rolls back, the delete operation on the attachment cannot be rolled back. Therefore, when the message is retried, the attachment will no longer be present causing additional problems.
  * The message can be deferred so that the file will be processed later. Removing the file after deferring the message, results in a message without the corresponding file.
  * Functional requirements might dictate the message to be available for a longer duration.
  * If the DataBus feature is used when publishing an event to multiple subscribers, neither the publisher nor any specific subscribing endpoint can determine when all subscribers have successfully processed the message allowing the file to be cleaned up.
@@ -103,4 +103,4 @@ The storage location for DataBus blobs is critical to the operation of endpoints
 
 ### Auditing
 
-The data stored in DataBus blobs may be considered part of an audit record. In these cases DataBus blobs should be archived alongside messages in for as long as the audit record is required. 
+The data stored in DataBus blobs may be considered part of an audit record. In these cases DataBus blobs should be archived alongside messages for as long as the audit record is required. 
