@@ -67,29 +67,6 @@ Data in the database is stored in three different tables.
 
 ![](sagadata.png)
 
-
-### The timeouts
-
- * The subscriber is stored in the `Destination` column and includes `Queue` and `Machine` information.
- * The endpoint that initiated the timeout is stored in the `Endpoint` column.
- * The connected saga ID is stored in a `SagaId` column.
- * The serialized data for the message is stored in a `State` column.
- * The scheduled timestamp for the timeout is stored in a `Time` column.
- * Any headers associated with the timeout are stored in an array of key value pairs stored in the 'Headers' column.
-
-![](timeouts.png)
-
-
-### The subscriptions
-
-Note that the message type maps to multiple subscriber endpoints.
-
- * The Subscription message type and version are stored in the `MessageType` column.
- * The list of subscribers is stored in an array of objects each containing `Queue` and `MachineName` information.
-
-![](subscriptions.png)
-
-
 ### The handler stored data
 
 ![](handlerdoc.png)
