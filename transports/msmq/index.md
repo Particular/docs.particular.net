@@ -1,6 +1,6 @@
 ---
 title: MSMQ Transport
-summary: MSMQ is the primary durable communications technology for Microsoft but does not dynamically detect network interfaces.
+summary: MSMQ is a solid durable communications technology but does not dynamically detect network interfaces.
 component: MsmqTransport
 related:
  - samples/msmq/simple

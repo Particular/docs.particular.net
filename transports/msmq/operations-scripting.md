@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Scripting
 summary: Sample code and scripts to facilitate deployment and operational actions against MSMQ.
-reviewed: 2018-04-24
+reviewed: 2020-01-30
 component: MsmqTransport
 redirects:
  - nservicebus/msmq/operations-scripting
@@ -9,9 +9,11 @@ related:
  - nservicebus/operations
 ---
 
-This article contains same code and scripts to facilitate deployment and operational actions against MSMQ.
+This article contains code and scripts to facilitate deployment and operational actions with MSMQ.
 
-These examples use the [System.Messaging](https://msdn.microsoft.com/en-us/library/System.Messaging.aspx) and [System.Transactions](https://msdn.microsoft.com/en-us/library/system.transactions.aspx) assemblies.
+These examples use the [System.Messaging](https://docs.microsoft.com/en-us/dotnet/api/system.messaging?view=netframework-4.8) and [System.Transactions](https://docs.microsoft.com/en-us/dotnet/api/system.transactions?view=netframework-4.8) assemblies.
+
+WARNING: The `Systems.Messaging` namespace is not available in .NET Core.
 
 INFO: When using the C# code samples, be sure to add the proper includes for both the `System.Messaging` and `System.Transactions` assemblies in the program that's using these functions. When using the PowerShell scripts, include these assemblies by calling `Add-Type` in the script. 
 
@@ -21,7 +23,7 @@ INFO: When using the C# code samples, be sure to add the proper includes for bot
 
 ### The native send helper methods
 
-A send involves the following actions:
+Sending involves the following actions:
 
  * Creating and serializing headers.
  * Writing a message body directly to MSMQ.
@@ -55,7 +57,7 @@ snippet: msmq-nativesend-powershell-usage
 
 ### The retry helper methods
 
-A retry involves the following actions:
+Retrying a message involves the following actions:
 
  * Reading a message from the error queue.
  * Extracting the failed queue from the headers.
