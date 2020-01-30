@@ -107,8 +107,7 @@ snippet: override-conversation-id
 
 partial: conversationid
 
-Note that attempting to override an existing Conversation Id will produce the following error:
-
+WARN: Attempting to override an existing Conversation Id is not supported will produce the following error:
 ```
 Cannot set the NServiceBus.ConversationId header to 'XXXXX' as it cannot override the incoming header value ('2f4076a0-d8de-4297-9d18-a830015dd42a').
 ```
