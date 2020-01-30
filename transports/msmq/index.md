@@ -7,13 +7,15 @@ related:
  - samples/msmq/persistence
  - samples/msmq/dlq-customcheck
  - samples/msmq/msmqtosqlrelay
-reviewed: 2018-04-24
+reviewed: 2020-01-30
 redirects:
  - nservicebus/msmq-information
  - nservicebus/msmq
 tags:
  - Transport
 ---
+
+WARNING: As Microsoft is not making MSMQ available for .NET Core, building new systems using MSMQ is not recommended. 
 
 ## Transport at a glance
 
@@ -44,27 +46,28 @@ partial: default
  * MSMQ does not offer a native publish-subscribe mechanism, therefore it requires NServiceBus persistence to be configured for storing event subscriptions. [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
  * Many organizations don't have the same level of operational expertise with MSMQ that they do with other technologies (e.g. SQL Server), so it may require additional training. For example, as MSMQ is not a broker transport, the messages could be on different servers, and managing the storage space on each machine is important.
  * As MSMQ is a store and forward transport, it requires more setup for load balancing. I.e. it requires either a [distributor or sender side distribution](/transports/msmq/scaling-out.md) to be configured.
+ * MSMQ (i.e. the `System.Messaging` namespace) is not available on .NET Core
 
 
 ## MSMQ configuration
 
 NServiceBus requires a specific MSMQ configuration to operate.
 
-The supported configuration is to have only the base MSMQ service installed with no optional features. To enable the supported configuration either use `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/) or use the `Install-NServiceBusMSMQ` cmdlet from the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md).
+The supported configuration is to have only the base MSMQ service installed with no optional features. To enable the supported configuration, use either `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/), or the `Install-NServiceBusMSMQ` cmdlet from the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md).
 
 Alternatively, the MSMQ service can be installed manually. When installing manually **do not** enable the following components:
 
  * MSMQ Active Directory Domain Services Integration
- * MSMQ Http Support
+ * MSMQ HTTP Support
  * MSMQ Triggers
  * Multicasting Support
  * MSMQ DCOM Proxy
 
 These components can cause issues with the addressing used in NServiceBus.
 
-### Installation on Windows 2012 and 2016
+### Installation on Windows Server 2012 and higher
 
-From Server Manager's Add Roles and Features Wizard enable `Message Queue Server`. All other MSMQ options should be disabled.
+From Server Manager's Add Roles and Features Wizard, enable `Message Queue Server`. All other MSMQ options should be disabled.
 
 The DISM command line equivalent is:
 
@@ -72,7 +75,7 @@ The DISM command line equivalent is:
 DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
 ```
 
-### Installation on Windows 8.x and 10
+### Installation on Windows 10
 
 From the Control Panel, choose Programs. Then run the Windows Features Wizard by clicking `Turn Windows Features On or Off`. Enable `Microsoft Message Queue (MSMQ) Server Core`. All other MSMQ options should be disabled.
 
@@ -85,14 +88,14 @@ DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Serv
 
 ## MSMQ machine name limitation
 
-For MSMQ to function properly, [the server name should be 15 characters or less](http://geekswithblogs.net/Plumbersmate/archive/2012/02/03/make-sure-computer-names-are-15-characters-or-less-fro.aspx). This is because of a NETBIOS limitation. Having a longer machine name may result in MSMQ not functioning properly.
+For MSMQ to function properly, [the server name must be 15 characters or less](http://geekswithblogs.net/Plumbersmate/archive/2012/02/03/make-sure-computer-names-are-15-characters-or-less-fro.aspx). This is because of a NETBIOS limitation.
 
 
 ## MSMQ clustering
 
-MSMQ clustering works by having the active node running an instance of the MSMQ service and the other nodes being cold standbys. On failover, a new instance of the MSMQ service has to be loaded from scratch. All active network connections and associated queue handles break and have to be reconnected. Any transactional processing of messages aborts, returning the message to the queue after startup.
+MSMQ clustering works by having the active node running an instance of the MSMQ service and the other nodes being cold standbys. On failover, a new instance of the MSMQ service must be loaded from scratch. Otherwise, all active network connections and associated queue handles will break and need to be reconnected. Any transactional processing of messages aborts, returning the message to the queue after startup.
 
-Downtime is proportional to the time taken for the MSMQ service to restart on another node. This is affected by how many messages are in current storage, awaiting processing.
+Downtime is proportional to the time taken for the MSMQ service to restart on another node. This is affected by how many messages are awaiting processing in current storage.
 
 
 ## Remote queues
@@ -109,7 +112,7 @@ See the [recoverability documentation](/nservicebus/recoverability/configure-err
 
 ## Public queues
 
-Although MSMQ has the concept of both [public and private queues](https://technet.microsoft.com/en-us/library/cc753440.aspx), public queues require Active Directory as a pre-requisite and are not available in a workgroup environment. Therefore, NServiceBus supports only private queues and uses the path name addressing scheme for its routing.  Installing MSMQ with Active Directory may interfere with the addressing scheme when sending messages and for this reason, it is recommended not to include Active Directory when installing MSMQ.
+Although MSMQ has the concept of both [public and private queues](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753440(v=ws.10)), public queues require Active Directory as a pre-requisite and are not available in a workgroup environment. Therefore, NServiceBus supports only private queues and uses the path name addressing scheme for its routing. Installing MSMQ with Active Directory may interfere with the addressing scheme when sending messages and for this reason, it is recommended not to include Active Directory when installing MSMQ.
 
 
 ## Permissions
@@ -130,31 +133,31 @@ When an endpoint creates a queue on a machine, permissions depend on whether the
 
 ### Domain mode
 
-If the machine is joined to a domain, then at the time of queue creation, only the domain user that created the queue will have `Send` permissions granted. The `Everyone` user group and `Anonymous` user group will NOT have `Send` permissions. If all the endpoints which need to communicate are running under the same domain account, no further configuration is required. However, if the endpoints are run using different domain accounts, then the `Send` permission on the receiving endpoint's input queue needs to be explicitly granted to the domain user account of the sending endpoint.
+If the machine is part of a domain, then at the time of queue creation, only the domain user that created the queue will have `Send` permissions granted. The `Everyone` user group and `Anonymous` user group will NOT have `Send` permissions. If all the endpoints which need to communicate are running under the same domain account, no further configuration is required. However, if the endpoints are run using different domain accounts, the `Send` permission on the receiving endpoint's input queue must be explicitly granted to the domain user account of the sending endpoint.
 
 
 ### Workgroup mode
 
-If the machine is connected to a workgroup, then the `Send` permission is granted to the `Everyone` and `Anonymous` user groups by Windows. Any endpoint will be able to send messages to any other endpoint without further configuration.
+If the machine is connected to a workgroup, the `Send` permission is granted to the `Everyone` and `Anonymous` user groups by Windows. Any endpoint will be able to send messages to any other endpoint without further configuration.
 
 
 ### Well-known group names and queue access rights
-To retrieve the group names the [WellKnownSidType](https://msdn.microsoft.com/en-us/library/system.security.principal.wellknownsidtype.aspx) enumeration is used.
+The [WellKnownSidType](https://docs.microsoft.com/en-us/dotnet/api/system.security.principal.wellknownsidtype?view=netframework-4.8) enumeration is used to retrieve the group names.
 
-MSMQ permissions are defined in the [MessageQueueAccessRights](https://msdn.microsoft.com/en-us/library/system.messaging.messagequeueaccessrights.aspx) enumeration.
+MSMQ permissions are defined in the [MessageQueueAccessRights](https://docs.microsoft.com/en-us/dotnet/api/system.messaging.messagequeueaccessrights?view=netframework-4.8) enumeration.
 
 NOTE: To increase security and further lock down MSMQ send/receive permissions, remove `Everyone` and `Anonymous` and grant specific permissions to the subset of accounts that need them.
 
-NOTE: In NServiceBus version 6 and above, if the default queue permissions are set, a log message will be written during the endpoint startup, indicating that the queue has default permissions and might require stricter permissions for production. During development, if running with an attached debugger, this message will be logged at an `INFO` level, otherwise `WARN`.
+NOTE: In NServiceBus version 6 and above, if the default queue permissions are set, a log message will be written during the endpoint startup indicating that the queue has default permissions and might require stricter permissions for production. During development, if running with an attached debugger, this message will be logged at an `INFO` level, otherwise `WARN`.
 
 An example of the warning that is logged:
 
 > WARN NServiceBus.QueuePermissions - Queue [private$\xxxx] is running with [Everyone] with AccessRights set to [GenericWrite]. Consider setting appropriate permissions, if required by the organization. For more information, consult the documentation.
 
-See also [Message Queuing Security Overview in Windows Server 2008](https://technet.microsoft.com/en-us/library/cc771268.aspx).
+See also [Message Queuing Security Overview](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc771268(v=ws.10)).
 
 ## Distributed Transaction Coordinator
 
 To support guaranteed [once delivery of messages,](/nservicebus/operations/transactions-message-processing.md) NServiceBus makes use of the Distributed Transaction Coordinator (DTC) to synchronize transactions between MSMQ and the database. For this to work, the DTC must be started and configured correctly.
 
-In Versions 5 and above of NServiceBus there is a _non-DTC_ mode of operation available. In this mode NServiceBus uses a concept of outbox, a message store backed by the same DB as the user code, to temporarily store messages that need to be sent as a result of processing an incoming message. To read more about this subject see [Outbox](/nservicebus/outbox/).
+In NServiceBus versions 5 and above, there is a _non-DTC_ mode of operation available. In this mode NServiceBus uses a concept of _Outbox_, a message store backed by the same database as the user code, to temporarily store messages that need to be sent as a result of processing an incoming message. To read more about this subject see [Outbox](/nservicebus/outbox/).
