@@ -51,7 +51,7 @@ The saga with the correlation id 'Name: {correlationProperty.Name} Value: {corre
 
 ### Updating or deleting saga data
 
-Starting from version 2.2 ServiceFabric persistence uses `LockMode.Update` to acquire an [exclusive lock](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections-transactions-locks#locks) when updating or deleting saga data. The saga persister tries to acquire an exclusive lock on the saga data for up to [four seconds](/persistence/service-fabric/#usage-transaction-timeout). If within this time period an exclusive lock cannot be acquired a `TimeoutException` is thrown and regular message retry policies are applied.
+Starting from version 2.2, ServiceFabric persistence uses `LockMode.Update` to acquire an [exclusive lock](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections-transactions-locks#locks) when updating or deleting saga data. The saga persister tries to acquire an exclusive lock on the saga data for up to [four seconds](/persistence/service-fabric/#usage-transaction-timeout). If, within this time period, an exclusive lock cannot be acquired, a `TimeoutException` is thrown and regular message retry policies are applied.
 
 Example exception:
 
@@ -59,7 +59,7 @@ Example exception:
 System.TimeoutException: Timed out waiting for Update lock on key; id=730ed849-8996-420f-9abf-e92a6f09585c@132240668520425409@urn:SagaData/dataStore@132240668616392434, timeout=100ms, txn=132240668619482431, lockResourceNameHash=304025969650383958; oldest txn with lock=132240668619502450 (mode Update)
 ```
 
-Prior to version 2.2 ServiceFabric persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
+In versions prior to 2.2, ServiceFabric persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
 
 Example exception:
 

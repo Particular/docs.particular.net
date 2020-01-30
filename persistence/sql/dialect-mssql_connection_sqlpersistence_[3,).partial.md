@@ -1,4 +1,4 @@
-When using the [Outbox](/nservicebus/outbox/), SQL Persistence always opens its own connection. In order to force using a separate connection even when the [Outbox](/nservicebus/outbox/) is disabled, use the following API:
+When using the [outbox](/nservicebus/outbox/), SQL Persistence always opens its own connection. In order to force using a separate connection even when the [outbox](/nservicebus/outbox/) is disabled, use the following API:
 
 snippet: MsSqlDoNotShareConnection
 

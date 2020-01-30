@@ -34,7 +34,7 @@ include: azure-transports
 |Transactions |None, ReceiveOnly, SendsWithAtomicReceive
 |Pub/Sub                    |Native
 |Timeouts                   |Native
-|Large message bodies       |via higher tier (i.ex. Premium) or DataBus
+|Large message bodies       |via higher tier (e.g. Premium) or DataBus
 |Scale-out             |Competing consumer
 |Scripted Deployment        | Not supported
 |Installers                 |Optional
