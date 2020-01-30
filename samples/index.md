@@ -1,15 +1,14 @@
 ---
 title: Samples
 summary: Samples using NServiceBus and the Particular Service Platform 
-reviewed: 2018-04-25
+reviewed: 2020-01-30
 ---
 
 For a guided introduction to essential NServiceBus concepts start with the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 
-[Skip to the list of samples](#related-samples)
-
 The samples are designed to highlight how various features of NServiceBus work and how the extension points plug into other libraries and tooling.
 
+[Skip to the list of samples](#related-samples)
 
 ## Samples are not production ready
 
