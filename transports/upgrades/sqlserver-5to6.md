@@ -50,7 +50,7 @@ using NServiceBus.Transport.SqlServer;
 
 In version 6, the timeout manager compability mode is disabled by default.
 
-The following API has been deprecated:
+The `DisableTimeoutManagerCompatibility` API has been deprecated:
 
 ```
 var delayedDelivery = transport.NativeDelayedDelivery();
