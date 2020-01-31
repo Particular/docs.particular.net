@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 15.0.26730.12
@@ -13,6 +13,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_4", "SqlTransport_4\SqlTransport_4.csproj", "{5A4674DD-4BDB-4A75-B8A7-A69A0D928D5C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_5", "SqlTransport_5\SqlTransport_5.csproj", "{F338519C-046F-4CEC-B2C1-85A78E5664C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlTransport_6", "SqlTransport_6\SqlTransport_6.csproj", "{76A81F9A-0CE8-47D7-8F34-47E8A3855A3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,8 @@ Global
 		{5A4674DD-4BDB-4A75-B8A7-A69A0D928D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F338519C-046F-4CEC-B2C1-85A78E5664C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F338519C-046F-4CEC-B2C1-85A78E5664C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A81F9A-0CE8-47D7-8F34-47E8A3855A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A81F9A-0CE8-47D7-8F34-47E8A3855A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
