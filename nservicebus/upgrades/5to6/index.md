@@ -160,4 +160,4 @@ This covers the basic steps required to update an endpoint to NServiceBus Versio
 
  * [NServiceBus Testing](../testing-5to6.md)
  * [Gateway](../gateway-1to2.md)
- * [Azure Blob Storage DataBus](../absdatabus-6to1.md)
+ * [Azure Blob Storage Data Bus](../absdatabus-6to1.md)

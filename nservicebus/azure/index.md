@@ -36,5 +36,5 @@ NServiceBus helps create distributed .NET systems not only on premises but also 
 
 ## Cloud native extensions and samples
 
- * [Azure Blob Storage DataBus](/samples/azure/blob-storage-databus/)
+ * [Azure Blob Storage Data Bus](/samples/azure/blob-storage-databus/)
  * [Azure Service Fabric Partition Aware Routing](/samples/azure/azure-service-fabric-routing/)

@@ -1,5 +1,5 @@
 ---
-title: DataBus Samples
+title: Data Bus Samples
 reviewed: 2019-04-09
 component: Core
 tags:

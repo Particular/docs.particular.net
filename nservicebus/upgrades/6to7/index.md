@@ -352,4 +352,4 @@ This article so far covers the changes between NServiceBus 6 and NServiceBus 7. 
 #### Others
 
  * [NServiceBus Testing](../testing-6to7.md)
- * [Azure Blob Storage DataBus](../absdatabus-1to2.md)
+ * [Azure Blob Storage Data Bus](../absdatabus-1to2.md)

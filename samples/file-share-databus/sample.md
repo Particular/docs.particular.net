@@ -1,5 +1,5 @@
 ---
-title: File Share DataBus Usage
+title: File Share Data Bus Usage
 reviewed: 2019-12-12
 component: FileShareDataBus
 tags:
@@ -22,24 +22,24 @@ WARNING: The FileShareDataBus **does not** remove physical attachments once the 
 
 This sample contains three projects:
 
- * Messages - A class library containing the sample messages. Only one of the message types utilizes the DataBus.
+ * Messages - A class library containing the sample messages. Only one of the message types utilizes the data bus.
  * Sender - A console application responsible for sending the large messages.
  * Receiver - A console application responsible for receiving the large messages from Sender.
 
 
 ### Messages project
 
-Look at the two messages in the Messages project. Start with the large message that is not utilizing the DataBus mechanism. The message is a simple byte array command:
+Look at the two messages in the Messages project. Start with the large message that is not utilizing the data bus mechanism. The message is a simple byte array command:
 
 snippet: AnotherMessageWithLargePayload
 
-The other message utilizes the DataBus mechanism:
+The other message utilizes the data bus mechanism:
 
 snippet: MessageWithLargePayload
 
 `DataBusProperty<byte[]>` instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is sent separately from other message properties.
 
-When sending a message using the FileShare DataBus, the `DataBus` properties get serialized to a file. Other properties are included in a message sent to the Receiving endpoint.
+When sending a message using the file share data bus, the `DataBus` properties get serialized to a file. Other properties are included in a message sent to the Receiving endpoint.
 
 The `TimeToBeReceived` attribute indicates that the message can be deleted after one minute if not processed by the receiver. The message payload remains in the storage directory after the message is cleaned by the NServiceBus framework.
 
