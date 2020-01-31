@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
@@ -49,46 +51,45 @@ public class ScriptWriter
             new SqlDialect.PostgreSql()
         };
 
+        var assembly = typeof(SqlPersistence).Assembly;
         foreach (var dialect in dialects)
         {
-            var timeoutCommands = TimeoutCommandBuilder.Build(
-                sqlDialect: dialect,
-                tablePrefix: "EndpointName");
-            Write(directory, dialect, "TimeoutAdd", timeoutCommands.Add);
-            Write(directory, dialect, "TimeoutNext", timeoutCommands.Next);
-            Write(directory, dialect, "TimeoutRange", timeoutCommands.Range);
-            Write(directory, dialect, "TimeoutRemoveById", timeoutCommands.RemoveById);
-            Write(directory, dialect, "TimeoutRemoveBySagaId", timeoutCommands.RemoveBySagaId);
-            Write(directory, dialect, "TimeoutPeek", timeoutCommands.Peek);
+            var timeoutCommands = GetCommand(dialect, "TimeoutCommandBuilder");
 
-            var outboxCommands = OutboxCommandBuilder.Build(
-                tablePrefix: "EndpointName",
-                sqlDialect: dialect);
-            Write(directory, dialect, "OutboxCleanup", outboxCommands.Cleanup);
-            Write(directory, dialect, "OutboxGet", outboxCommands.Get);
-            Write(directory, dialect, "OutboxSetAsDispatched", outboxCommands.SetAsDispatched);
-            Write(directory, dialect, "OutboxStore", outboxCommands.Store);
+            Write(directory, dialect, "TimeoutAdd", GetValue(timeoutCommands, "Add"));
+            Write(directory, dialect, "TimeoutNext", GetValue(timeoutCommands, "Next"));
+            Write(directory, dialect, "TimeoutRange", GetValue(timeoutCommands, "Range"));
+            Write(directory, dialect, "TimeoutRemoveById", GetValue(timeoutCommands, "RemoveById"));
+            Write(directory, dialect, "TimeoutRemoveBySagaId", GetValue(timeoutCommands, "RemoveBySagaId"));
+            Write(directory, dialect, "TimeoutPeek", GetValue(timeoutCommands, "Peek"));
 
-            var subscriptionCommands = SubscriptionCommandBuilder.Build(
-                sqlDialect: dialect,
-                tablePrefix: "EndpointName");
-            Write(directory, dialect, "SubscriptionSubscribe", subscriptionCommands.Subscribe);
-            Write(directory, dialect, "SubscriptionUnsubscribe", subscriptionCommands.Unsubscribe);
-            Write(directory, dialect, "SubscriptionGetSubscribers", subscriptionCommands.GetSubscribers(new List<MessageType>
+            var outboxCommands = GetCommand(dialect, "OutboxCommandBuilder");
+
+            Write(directory, dialect, "OutboxCleanup", GetValue(outboxCommands, "Cleanup"));
+            Write(directory, dialect, "OutboxGet", GetValue(outboxCommands, "Get"));
+            Write(directory, dialect, "OutboxSetAsDispatched", GetValue(outboxCommands, "SetAsDispatched"));
+            Write(directory, dialect, "OutboxStore", GetValue(outboxCommands, "Store"));
+
+            var subscriptionCommands = GetCommand(dialect, "SubscriptionCommandBuilder");
+
+            Write(directory, dialect, "SubscriptionSubscribe", GetValue(subscriptionCommands, "Subscribe"));
+            Write(directory, dialect, "SubscriptionUnsubscribe", GetValue(subscriptionCommands, "Unsubscribe"));
+            Write(directory, dialect, "SubscriptionGetSubscribers", GetSubscribersValue(subscriptionCommands, new List<MessageType>
             {
                 new MessageType("MessageTypeName", new Version())
             }));
 
-            Write(directory, dialect, "SagaComplete", dialect.BuildCompleteCommand("EndpointName_SagaName"));
-            Write(directory, dialect, "SagaGetByProperty", dialect.BuildGetByPropertyCommand("PropertyName", "EndpointName_SagaName"));
-            Write(directory, dialect, "SagaGetBySagaId", dialect.BuildGetBySagaIdCommand("EndpointName_SagaName"));
-            Write(directory, dialect, "SagaSave", dialect.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
-            Write(directory, dialect, "SagaUpdate", dialect.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
+            dynamic dialectAsDynamic = new ExposeInternalMethods(dialect);
+            Write(directory, dialect, "SagaComplete", dialectAsDynamic.BuildCompleteCommand("EndpointName_SagaName"));
+            Write(directory, dialect, "SagaGetByProperty", dialectAsDynamic.BuildGetByPropertyCommand("PropertyName", "EndpointName_SagaName"));
+            Write(directory, dialect, "SagaGetBySagaId", dialectAsDynamic.BuildGetBySagaIdCommand("EndpointName_SagaName"));
+            Write(directory, dialect, "SagaSave", dialectAsDynamic.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
+            Write(directory, dialect, "SagaUpdate", dialectAsDynamic.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
 
             // since we don't have doco on oracle saga finders
             if (!(dialect is SqlDialect.Oracle))
             {
-                var createSelectWithWhereClause = dialect.BuildSelectFromCommand("EndpointName_SagaName");
+                var createSelectWithWhereClause = dialectAsDynamic.BuildSelectFromCommand("EndpointName_SagaName");
                 Write(directory, dialect, "SagaSelect", createSelectWithWhereClause("1 = 1"));
             }
         }
@@ -126,6 +127,29 @@ public class ScriptWriter
         public Guid OrderId { get; set; }
     }
 
+    class ExposeInternalMethods : DynamicObject 
+    {
+        private object m_object;
+
+        public ExposeInternalMethods(object obj)
+        {
+            m_object = obj;
+        }
+
+        public override bool TryInvokeMember(
+                InvokeMemberBinder binder, object[] args, out object result)
+        {
+            // Find the called method using reflection
+            var methodInfo = m_object.GetType().GetMethod(
+                binder.Name,
+                BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+
+            // Call the method
+            result = methodInfo.Invoke(m_object, args);
+            return true;
+        }
+    }
+
     static void Write(string testDirectory, BuildSqlDialect variant, string suffix, string script)
     {
         Write(testDirectory, suffix, script, variant.ToString());
@@ -147,5 +171,26 @@ public class ScriptWriter
             writer.WriteLine(script);
             writer.WriteLine("endcode");
         }
+    }
+
+    static object GetCommand(SqlDialect dialect, string builderType) {
+        if(builderType == "OutboxCommandBuilder") {
+            return typeof(SqlPersistence).Assembly.GetType(builderType, throwOnError: true)
+                .GetMethod("Build").Invoke(null, BindingFlags.Static | BindingFlags.NonPublic, null, new object[] { "EndpointName", dialect }, null);
+        }
+        return typeof(SqlPersistence).Assembly.GetType(builderType, throwOnError: true)
+                .GetMethod("Build").Invoke(null, BindingFlags.Static | BindingFlags.NonPublic, null, new object[] { dialect, "EndpointName" }, null);
+    }
+
+    static string GetValue(object command, string propertyName) {
+        var property = command.GetType().GetProperty(propertyName);
+        return (string) property
+            .GetValue(command);
+    }
+
+    static string GetSubscribersValue(object command, List<MessageType> messageTypes) {
+        var property = command.GetType().GetProperty("GetSubscribers");
+        var propertyValue = (Func<List<MessageType>, string>)property.GetValue(command);
+        return propertyValue(messageTypes);
     }
 }
