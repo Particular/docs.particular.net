@@ -52,7 +52,10 @@ In version 6, the timeout manager compability mode is disabled by default.
 
 The following API has been deprecated:
 
-snippet: 5to6-disable-timeout-manager-compatibility
+```
+var delayedDelivery = transport.NativeDelayedDelivery();
+delayedDelivery.DisableTimeoutManagerCompatibility();
+```
 
 To enable the timeout manager compatibility mode use:
 
