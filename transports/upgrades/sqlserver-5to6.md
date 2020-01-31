@@ -19,6 +19,19 @@ It is recommended to update to .NET 4.6.1 and perform a full migration to produc
 
 For solutions with many projects, the [Target Framework Migrator](https://marketplace.visualstudio.com/items?itemName=PavelSamokha.TargetFrameworkMigrator) Visual Studio extension can reduce the manual effort required in performing an upgrade.
 
+## Split into two packages
+
+NServiceBus.SqlServer has been split into two packages. Both packages are feature compatible and differ only in the reference to the SqlClient.
+
+- NServiceBus.SqlServer references `System.Data.SqlClient` (for existing endpoints)
+- NServiceBus.Transport.SqlServer references `Microsoft.Data.SqlClient` (recommended for new endpoints)
+
+NServiceBus.SqlServer references `System.Data.SqlClient` package and is the package that can be used as long as compatibility with the `System.Data.SqlClient` is required.
+
+NOTE: `System.Data.SqlClient` is in maintenance mode. Microsoft is comitted to bring new features and improvements to `Microsoft.Data.SqlClient` only. For more information read [Introduction to the new Microsoft.Data.SqlClient]()https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/). It is recommended to switch to the new sql client if possible. Having both packages available allows to migrate each endpoint gradually to the new sql client.
+
+For new projects or if compatibility to `Microsoft.Data.SqlClient` is required it is recommended to use the new `NServiceBus.Transport.SqlServer` package.
+
 ## Moved types from namespace `NServiceBus.Transport.SQLServer` to `NServiceBus.Transport.SqlServer`
 
 Certain advanced configuration APIs have been moved from the namespace `NServiceBus.Transport.SQLServer` to `NServiceBus.Transport.SqlServer`. The code has to be adjusted accordingly. A straight forward way is to search and replace
