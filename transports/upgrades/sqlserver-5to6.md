@@ -19,6 +19,10 @@ It is recommended to update to .NET 4.6.1 and perform a full migration to produc
 
 For solutions with many projects, the [Target Framework Migrator](https://marketplace.visualstudio.com/items?itemName=PavelSamokha.TargetFrameworkMigrator) Visual Studio extension can reduce the manual effort required in performing an upgrade.
 
+## Compatibility with System.Data.SqlClient and Microsoft.Data.SqlClient
+
+The persistence is fully compatible with System.Data.SqlClient and Microsoft.Data.SqlClient
+
 ## Split into two packages
 
 NServiceBus.SqlServer has been split into two packages. Both packages are feature compatible and differ only in the reference to the SqlClient.
