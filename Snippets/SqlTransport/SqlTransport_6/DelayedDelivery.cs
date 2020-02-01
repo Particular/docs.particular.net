@@ -31,7 +31,7 @@ class DelayedDelivery
 
         #endregion
 
-        #region DelayedDeliveryEnableTm
+        #region DelayedDeliveryEnableTM
 
         delayedDeliverySettings.EnableTimeoutManagerCompatibility();
 
