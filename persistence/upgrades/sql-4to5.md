@@ -20,8 +20,12 @@ For solutions with many projects, the [Target Framework Migrator](https://market
 
 ## Dropped Reference to System.Data.SqlClient
 
-TBD
+The persistence no longer references the System.Data.SqlClient and thus no longer brings that as a package dependency. Customers using SQL Server as a transport need to choose an appropriate SqlClient library. For example if compatibility with System.Data.SqlClient is desired it is recommended to add [`System.Data.SqlClient`](https://www.nuget.org/packages/System.Data.SqlClient/) version 4.4.3 or higher. 
 
-## Compatibility with System.Data.SqlClient and Microsoft.Data.SqlClient
+NOTE: `System.Data.SqlClient` is in maintenance mode. Microsoft is comitted to bring new features and improvements to [`Microsoft.Data.SqlClient`](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) only. For more information read [Introduction to the new Microsoft.Data.SqlClient](https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/). It is recommended to switch to the new sql client if possible.
 
 The persistence is fully compatible with System.Data.SqlClient and Microsoft.Data.SqlClient
+
+## Compatibility with NServiceBus.SqlServer and NServiceBus.Transport.SqlServer
+
+Regardless of the SqlClient used the persistence is compatible with NServiceBus.SqlServer and NServiceBus.Transport.SqlServer. It is recommended to use the same SqlClient in the transport as well as the persistence. When gradually migrating from System.Data.SqlClient to Microsoft.Data.SqlClient the transport and the persistence can operate in a mixed mode as long as the transport transaction is either [`ReceiveOnly` or `SendsWithAtomicReceive`](/transports/sql/transactions.md). If the transport operates with transport transaction mode `TransactionScope` using both clients will lead to DTC escalation in all cases which might not be desirable.

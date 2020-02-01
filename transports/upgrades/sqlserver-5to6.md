@@ -32,7 +32,7 @@ NServiceBus.SqlServer has been split into two packages. Both packages are featur
 
 NServiceBus.SqlServer references `System.Data.SqlClient` package and is the package that can be used as long as compatibility with the `System.Data.SqlClient` is required.
 
-NOTE: `System.Data.SqlClient` is in maintenance mode. Microsoft is comitted to bring new features and improvements to `Microsoft.Data.SqlClient` only. For more information read [Introduction to the new Microsoft.Data.SqlClient]()https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/). It is recommended to switch to the new sql client if possible. Having both packages available allows to migrate each endpoint gradually to the new sql client.
+NOTE: `System.Data.SqlClient` is in maintenance mode. Microsoft is comitted to bring new features and improvements to [`Microsoft.Data.SqlClient`](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) only. For more information read [Introduction to the new Microsoft.Data.SqlClient](https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/). It is recommended to switch to the new sql client if possible. Having both packages available allows to migrate each endpoint gradually to the new sql client.
 
 For new projects or if compatibility to `Microsoft.Data.SqlClient` is required it is recommended to use the new `NServiceBus.Transport.SqlServer` package.
 
@@ -64,3 +64,7 @@ delayedDelivery.DisableTimeoutManagerCompatibility();
 To enable the timeout manager compatibility mode use:
 
 snippet: 5to6-enable-timeout-manager-compatibility
+
+## Compatibility with NServiceBus.Persistence.Sql
+
+Regardless of the SqlClient used the transport is compatible with NServiceBus.Persistence.Sql. It is recommended to use the same SqlClient in the transport as well as the persistence. When gradually migrating from System.Data.SqlClient to Microsoft.Data.SqlClient the transport and the persistence can operate in a mixed mode as long as the transport transaction is either [`ReceiveOnly` or `SendsWithAtomicReceive`](/transports/sql/transactions.md). If the transport operates with transport transaction mode `TransactionScope` using both clients will lead to DTC escalation in all cases which might not be desirable.
