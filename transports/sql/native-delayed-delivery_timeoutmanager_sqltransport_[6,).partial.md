@@ -1,6 +1,6 @@
 ## Enable the timeout manager
 
-To assist with the upgrade process, the timeout manager can be enabled. Any delayed messages stored in the endpoint's persistence database before the upgrade will be sent when their timeouts expire. Any delayed messages sent after the upgrade will be sent through the native delayed delivery infrastructure, even though the timeout manager is enabled. The timeout manager migration mode can be enabled with:
+To assist with the upgrade process when upgrading from an older version of the transport that didn't support native-delayed delivery, the timeout manager can be enabled. Any delayed messages stored in the endpoint's persistence database before the upgrade will be sent when their timeouts expire. Any delayed messages sent after the upgrade will be sent through the native delayed delivery infrastructure, even though the timeout manager is enabled. The timeout manager migration mode can be enabled with:
 
 snippet: DelayedDeliveryEnableTM
 
