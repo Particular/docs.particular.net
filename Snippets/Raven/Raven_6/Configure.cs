@@ -1,4 +1,5 @@
 ﻿using NServiceBus;
+using NServiceBus.Settings;
 using Raven.Client.Documents;
 
 class Configure
@@ -37,9 +38,10 @@ class Configure
 
     void CreateSpecificDocumentStoreByFunc(EndpointConfiguration endpointConfiguration)
     {
+        //TODO: instances of DocumentStore should be disposed of at endpoint cleanup time
+
         #region ravendb-persistence-specific-create-store-by-func
 
-        //TODO: instances of DocumentStore should be disposed of at endpoint cleanup time
         DocumentStore subscriptionStore;
         DocumentStore sagaStore;
         DocumentStore timeoutStore;
@@ -47,28 +49,28 @@ class Configure
 
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseDocumentStoreForSubscriptions(
-            storeCreator: readOnlySettings =>
+            storeCreator: (ReadOnlySettings readOnlySettings) =>
             {
                 subscriptionStore = new DocumentStore();
                 // configure documentStore here
                 return subscriptionStore;
             });
         persistence.UseDocumentStoreForSagas(
-            storeCreator: readOnlySettings =>
+            storeCreator: (ReadOnlySettings readOnlySettings) =>
             {
                 sagaStore = new DocumentStore();
                 // configure documentStore here
                 return sagaStore;
             });
         persistence.UseDocumentStoreForTimeouts(
-            storeCreator: readOnlySettings =>
+            storeCreator: (ReadOnlySettings readOnlySettings) =>
             {
                 timeoutStore = new DocumentStore();
                 // configure documentStore here
                 return timeoutStore;
             });
         persistence.UseDocumentStoreForGatewayDeduplication(
-            storeCreator: readOnlySettings =>
+            storeCreator: (ReadOnlySettings readOnlySettings) =>
             {
                 gatewayStore = new DocumentStore();
                 // configure documentStore here
@@ -102,12 +104,43 @@ class Configure
         DocumentStore documentStore;
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.SetDefaultDocumentStore(
-            storeCreator: readOnlySettings =>
+            storeCreator: (ReadOnlySettings readOnlySettings) =>
             {
                 documentStore = new DocumentStore();
                 // configure documentStore here
                 return documentStore;
             });
+
+        #endregion
+    }
+
+    void ResolveSpecificDocumentStoreFromContainer(EndpointConfiguration endpointConfiguration)
+    {
+        //TODO: instances of DocumentStore should be disposed of at endpoint cleanup time
+
+        #region ravendb-persistence-specific-resolve-from-container
+
+        var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
+        
+        persistence.UseDocumentStoreForSubscriptions(
+            storeCreator: builder => builder.Build<IDocumentStore>());
+        persistence.UseDocumentStoreForSagas(
+            storeCreator: builder => builder.Build<IDocumentStore>());
+        persistence.UseDocumentStoreForTimeouts(
+            storeCreator: builder => builder.Build<IDocumentStore>());
+        persistence.UseDocumentStoreForGatewayDeduplication(
+            storeCreator: builder => builder.Build<IDocumentStore>());
+
+        #endregion
+    }
+
+    void ResolveDocumentStoreFromContainer(EndpointConfiguration endpointConfiguration)
+    {
+        #region ravendb-persistence-resolve-from-container
+
+        var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
+        persistence.SetDefaultDocumentStore(
+            storeCreator: builder => builder.Build<IDocumentStore>());
 
         #endregion
     }

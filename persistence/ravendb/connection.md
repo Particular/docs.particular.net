@@ -20,6 +20,7 @@ include: raven-dispose-warning
 
 partial: externalatinitialization
 
+partial: externalfromcontainer
 
 partial: shared
 
