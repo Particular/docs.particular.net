@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
+    <ProjectReference Include="..\Shared\Shared.Core.csproj" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="5.0.0-alpha0023" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.*" />
   </ItemGroup>
