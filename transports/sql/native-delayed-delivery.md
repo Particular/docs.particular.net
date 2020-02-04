@@ -8,7 +8,7 @@ versions: '[3,)'
 
 The SQL Server transport can take advantage of native [delayed delivery](/nservicebus/messaging/delayed-delivery.md) without the need to run the [timeout manager](/nservicebus/messaging/timeout-manager.md). Instead, the transport creates infrastructure which can delay messages using native SQL Server transport features. 
 
-NOTE: The native delayed delivery of SQL Server transport, is available only in endpoints that are not configured as [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting).
+NOTE: The native delayed delivery of SQL Server transport is available only in endpoints that are not configured as [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting).
 
 partial: enable
 
