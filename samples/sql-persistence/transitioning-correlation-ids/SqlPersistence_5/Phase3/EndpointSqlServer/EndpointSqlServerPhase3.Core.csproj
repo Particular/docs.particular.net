@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase3.Core.csproj" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointSqlServer\Program.cs" />
