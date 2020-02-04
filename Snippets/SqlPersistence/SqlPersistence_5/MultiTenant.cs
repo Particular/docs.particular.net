@@ -6,7 +6,7 @@ class MultiTenant
 {
     void WithHeaderName(EndpointConfiguration endpointConfiguration)
     {
-        #region MultiTenantWithHeaderName 4.5
+        #region MultiTenantWithHeaderName
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.MultiTenantConnectionBuilder(tenantIdHeaderName: "TenantHeaderName",
             buildConnectionFromTenantData: tenantId =>
@@ -19,7 +19,7 @@ class MultiTenant
 
     void WithFunc(EndpointConfiguration endpointConfiguration)
     {
-        #region MultiTenantWithFunc 4.5
+        #region MultiTenantWithFunc
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.MultiTenantConnectionBuilder(captureTenantId: incomingMessage =>
             {
@@ -40,7 +40,7 @@ class MultiTenant
 
     void DisablingOutboxCleanup(EndpointConfiguration endpointConfiguration)
     {
-        #region DisableOutboxForMultiTenant 4.5
+        #region DisableOutboxForMultiTenant
         var outboxSettings = endpointConfiguration.EnableOutbox();
         outboxSettings.DisableCleanup();
         #endregion
