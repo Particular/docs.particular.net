@@ -6,7 +6,7 @@ using NHibernate.Mapping.ByCode;
 using NHibernate.Tool.hbm2ddl;
 using NServiceBus;
 using NServiceBus.Persistence;
-using NServiceBus.Transport.SQLServer;
+using NServiceBus.Transport.SqlServer;
 
 class Program
 {
@@ -47,7 +47,6 @@ class Program
         transport.UseSchemaForQueue("audit", "dbo");
         transport.UseSchemaForQueue("Samples.SqlNHibernate.Sender", "sender");
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
-        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlNHibernate.Sender");

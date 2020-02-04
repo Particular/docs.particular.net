@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Transport.SQLServer;
+using NServiceBus.Transport.SqlServer;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus.Persistence;
@@ -34,7 +34,6 @@ class Program
         transport.DefaultSchema("sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
-        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);
