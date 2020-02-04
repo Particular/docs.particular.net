@@ -11,30 +11,20 @@ Upgrading from SQL Server transport version 5 to version 6 is a major upgrade an
 
 ## Move to .NET 4.6.1
 
-The minimum .NET version for NServiceBus.SqlServer and NServiceBus.Transport.SqlServer version 6 is [.NET 4.6.1](https://dotnet.microsoft.com/download/dotnet-framework/net461).
+The minimum .NET Framework version for version 6 is [.NET Framework 4.6.1](https://dotnet.microsoft.com/download/dotnet-framework/net461).
 
-**All projects (that reference NServiceBus.SqlServer) must be updated to .NET 4.6.1 before upgrading to NServiceBus.SqlServer version 6.**
+**All projects must be updated to .NET Framework 4.6.1 before upgrading to version 6.**
 
-It is recommended to update to .NET 4.6.1 and perform a full migration to production **before** updating to NServiceBus.SqlServer version 6. This will help isolate any issues that may occur.
+It is recommended to update to .NET Framework 4.6.1 and perform a full migration to production **before** updating to version 6. This will help isolate any issues that may occur.
 
 For solutions with many projects, the [Target Framework Migrator](https://marketplace.visualstudio.com/items?itemName=PavelSamokha.TargetFrameworkMigrator) Visual Studio extension can reduce the manual effort required in performing an upgrade.
 
-## Compatibility with System.Data.SqlClient and Microsoft.Data.SqlClient
+## Microsoft.Data.SqlClient compatibility offered with new NServiceBus.Transport.SqlServer package
 
-The persistence is fully compatible with System.Data.SqlClient and Microsoft.Data.SqlClient
+The transport is now compatible with both `System.Data.SqlClient` and `Microsoft.Data.SqlClient`. The existing NServiceBus.SqlServer package references `System.Data.SqlClient`, and it is the package that should be used as long as compatibility with `System.Data.SqlClient` is required.
+The new NServiceBus.Transport.SqlServer package references `Microsoft.Data.SqlClient`, and it is recommended to use this package for new projects, or if compatibility with `Microsoft.Data.SqlClient` is required in an existing project.
 
-## Split into two packages
-
-NServiceBus.SqlServer has been split into two packages. Both packages are feature compatible and differ only in the reference to the SqlClient.
-
-- NServiceBus.SqlServer references `System.Data.SqlClient` (for existing endpoints)
-- NServiceBus.Transport.SqlServer references `Microsoft.Data.SqlClient` (recommended for new endpoints)
-
-NServiceBus.SqlServer references `System.Data.SqlClient` package and is the package that can be used as long as compatibility with the `System.Data.SqlClient` is required.
-
-NOTE: `System.Data.SqlClient` is in maintenance mode. Microsoft is committed to bringing new features and improvements to [`Microsoft.Data.SqlClient`](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) only. For more information, read [Introduction to the new Microsoft.Data.SqlClient](https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/). It is recommended to switch to the new SqlClient if possible. Having both packages available allows migrating each endpoint gradually to the new SqlClient.
-
-For new projects or if compatibility to `Microsoft.Data.SqlClient` is required; it is recommended to use the new `NServiceBus.Transport.SqlServer` package.
+NOTE: `System.Data.SqlClient` is in maintenance mode. Microsoft will be bringing new features and improvements to [`Microsoft.Data.SqlClient`](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) only. For more information, read [Introduction to the new Microsoft.Data.SqlClient](https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/). It is recommended to switch to the new SqlClient if possible. Having both transport packages available allows migrating each endpoint gradually to the new SqlClient.
 
 ## Moved types from namespace `NServiceBus.Transport.SQLServer` to `NServiceBus.Transport.SqlServer`
 
@@ -67,4 +57,4 @@ snippet: 5to6-enable-timeout-manager-compatibility
 
 ## Compatibility with NServiceBus.Persistence.Sql
 
-Regardless of the SqlClient used, the transport is compatible with NServiceBus.Persistence.Sql. It is recommended to use the same SqlClient in the transport as well as the persistence. When gradually migrating from System.Data.SqlClient to Microsoft.Data.SqlClient the transport and the persistence can operate in a mixed-mode as long as the transport transaction is either [`ReceiveOnly` or `SendsWithAtomicReceive`](/transports/sql/transactions.md). If the transport operates with transport transaction mode, `TransactionScope` using both clients will lead to DTC escalation in all cases, which might not be desirable.
+Regardless of the SqlClient used, the transport is compatible with NServiceBus.Persistence.Sql. It is recommended to use the same SqlClient in the transport as well as the persistence. When gradually migrating from System.Data.SqlClient to Microsoft.Data.SqlClient, the transport and the persistence can operate in a mixed-mode as long as the transport transaction mode is either [`ReceiveOnly` or `SendsWithAtomicReceive`](/transports/sql/transactions.md). If the transport operates with transport transaction mode, `TransactionScope`, using both clients will lead to DTC escalation in all cases, which might not be desirable.
