@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
+  </ItemGroup>
+</Project>
