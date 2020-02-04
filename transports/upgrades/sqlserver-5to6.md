@@ -13,7 +13,7 @@ Upgrading from SQL Server transport version 5 to version 6 is a major upgrade an
 
 The minimum .NET version for NServiceBus.SqlServer and NServiceBus.Transport.SqlServer version 6 is [.NET 4.6.1](https://dotnet.microsoft.com/download/dotnet-framework/net461).
 
-**All projects (that reference NServiceBus.SqlServer) must be updated to .NET 4.6.1 before updating to NServiceBus.SqlServer version 6.**
+**All projects (that reference NServiceBus.SqlServer) must be updated to .NET 4.6.1 before upgrading to NServiceBus.SqlServer version 6.**
 
 It is recommended to update to .NET 4.6.1 and perform a full migration to production **before** updating to NServiceBus.SqlServer version 6. This will help isolate any issues that may occur.
 
@@ -32,9 +32,9 @@ NServiceBus.SqlServer has been split into two packages. Both packages are featur
 
 NServiceBus.SqlServer references `System.Data.SqlClient` package and is the package that can be used as long as compatibility with the `System.Data.SqlClient` is required.
 
-NOTE: `System.Data.SqlClient` is in maintenance mode. Microsoft is comitted to bring new features and improvements to [`Microsoft.Data.SqlClient`](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) only. For more information read [Introduction to the new Microsoft.Data.SqlClient](https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/). It is recommended to switch to the new sql client if possible. Having both packages available allows to migrate each endpoint gradually to the new sql client.
+NOTE: `System.Data.SqlClient` is in maintenance mode. Microsoft is committed to bringing new features and improvements to [`Microsoft.Data.SqlClient`](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) only. For more information, read [Introduction to the new Microsoft.Data.SqlClient](https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/). It is recommended to switch to the new SqlClient if possible. Having both packages available allows migrating each endpoint gradually to the new SqlClient.
 
-For new projects or if compatibility to `Microsoft.Data.SqlClient` is required it is recommended to use the new `NServiceBus.Transport.SqlServer` package.
+For new projects or if compatibility to `Microsoft.Data.SqlClient` is required; it is recommended to use the new `NServiceBus.Transport.SqlServer` package.
 
 ## Moved types from namespace `NServiceBus.Transport.SQLServer` to `NServiceBus.Transport.SqlServer`
 
@@ -52,7 +52,7 @@ using NServiceBus.Transport.SqlServer;
 
 ## Timeout Manager Compatibility
 
-In version 6, the timeout manager compability mode is disabled by default.
+In version 6, the timeout manager compatibility mode is disabled by default.
 
 The `DisableTimeoutManagerCompatibility` API has been deprecated:
 
@@ -67,4 +67,4 @@ snippet: 5to6-enable-timeout-manager-compatibility
 
 ## Compatibility with NServiceBus.Persistence.Sql
 
-Regardless of the SqlClient used the transport is compatible with NServiceBus.Persistence.Sql. It is recommended to use the same SqlClient in the transport as well as the persistence. When gradually migrating from System.Data.SqlClient to Microsoft.Data.SqlClient the transport and the persistence can operate in a mixed mode as long as the transport transaction is either [`ReceiveOnly` or `SendsWithAtomicReceive`](/transports/sql/transactions.md). If the transport operates with transport transaction mode `TransactionScope` using both clients will lead to DTC escalation in all cases which might not be desirable.
+Regardless of the SqlClient used, the transport is compatible with NServiceBus.Persistence.Sql. It is recommended to use the same SqlClient in the transport as well as the persistence. When gradually migrating from System.Data.SqlClient to Microsoft.Data.SqlClient the transport and the persistence can operate in a mixed-mode as long as the transport transaction is either [`ReceiveOnly` or `SendsWithAtomicReceive`](/transports/sql/transactions.md). If the transport operates with transport transaction mode, `TransactionScope` using both clients will lead to DTC escalation in all cases, which might not be desirable.
