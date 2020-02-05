@@ -41,7 +41,7 @@ Attachment blobs can be cleaned up using the [Blob Storage Lifecycle feature](ht
 
 ## Configuration
 
-The following extension methods are available for changing the behavior of `Azure Data Bus` defaults:
+The following extension methods are available for changing the behavior of `AzureDataBus` defaults:
 
 snippet: AzureDataBusSetup
 
