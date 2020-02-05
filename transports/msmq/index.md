@@ -24,7 +24,7 @@ WARNING: As Microsoft is not making MSMQ available for .NET Core, building new s
 |Transactions |None, ReceiveOnly, SendsWithAtomicReceive, TransactionScope
 |Pub/Sub                    |message driven
 |Timeouts                   |via timeouts storage
-|Large message bodies       |via DataBus
+|Large message bodies       |via data bus
 |Scale-out             |Distributor or Windows Network Load Balancing
 |Scripted Deployment        |C#, PowerShell
 |Installers                 |Optional

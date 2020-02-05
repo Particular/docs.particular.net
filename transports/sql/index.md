@@ -24,7 +24,7 @@ WARNING: Although this transport will run on the free version of the engine, i.e
 |Transactions |None, ReceiveOnly, SendWithAtomicReceive, TransactionScope
 |Pub/Sub                    |Native
 |Timeouts                   |Native
-|Large message bodies       |SqlServer can handle arbitrary message size within available resources, very large messages via DataBus
+|Large message bodies       |SqlServer can handle arbitrary message size within available resources, very large messages via data bus
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Sql Scripts
 |Installers                 |Optional
