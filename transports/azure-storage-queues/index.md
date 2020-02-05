@@ -26,7 +26,7 @@ include: azure-transports
 |Transactions |None, ReceiveOnly (Message visibility timeout)
 |Pub/Sub                    |Message driven
 |Timeouts                   |Native (Requires Storage Table)
-|Large message bodies       |Databus
+|Large message bodies       |Data bus
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Not supported
 |Installers                 |Mandatory
