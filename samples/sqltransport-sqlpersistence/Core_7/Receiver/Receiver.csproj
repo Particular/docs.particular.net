@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <OutputType>exe</OutputType>
@@ -14,5 +14,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <None Update="Startup.sql" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+     <!--Removing ORM Lite for now until the target framework resolution is fixed--> 
+    <Compile Remove="OrmLite\**" />
   </ItemGroup>
 </Project>

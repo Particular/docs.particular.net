@@ -2,19 +2,20 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 using ServiceStack.OrmLite;
+using ServiceStack.OrmLite.SqlServer;
 
 namespace OrmLite
 {
-    public class OrderSubmittedHandler/* :
-        IHandleMessages<OrderSubmitted>*/
+
+    public class OrderSubmittedHandler :
+        IHandleMessages<OrderSubmitted>
     {
         static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
 
-        // TODO: Fix
-        //static OrderSubmittedHandler()
-        //{
-        //    OrmLiteConfig.DialectProvider = new SqlServer2016OrmLiteDialectProvider();
-        //}
+        static OrderSubmittedHandler()
+        {
+            OrmLiteConfig.DialectProvider = new SqlServer2016OrmLiteDialectProvider();
+        }
 
         public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
         {
