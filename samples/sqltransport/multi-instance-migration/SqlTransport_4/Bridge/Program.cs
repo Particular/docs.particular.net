@@ -5,8 +5,7 @@ namespace Bridge
     using System.Data.SqlClient;
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Bridge;
-    using SqlDialect = NServiceBus.Bridge.SqlDialect;
+    using NServiceBus.Router;
 
     class Program
     {
@@ -18,33 +17,38 @@ namespace Bridge
         {
             Console.Title = "Samples.SqlServer.MultiInstanceBridge";
 
+            SqlHelper.EnsureDatabaseExists(SenderConnectionString);
+            SqlHelper.EnsureDatabaseExists(ReceiverConnectionString);
+            SqlHelper.EnsureDatabaseExists(BridgeConnectionString);
+
             #region BridgeConfiguration
 
-            var bridgeConfig =
-                Bridge.Between<SqlServerTransport>("Bridge-Sender",
-                        t => t.ConnectionString(SenderConnectionString))
-                    .And<SqlServerTransport>("Bridge-Receiver",
-                        t => t.ConnectionString(ReceiverConnectionString));
-
-            bridgeConfig.AutoCreateQueues();
             var storage = new SqlSubscriptionStorage(
-                connectionBuilder: () => new SqlConnection(BridgeConnectionString), 
-                tablePrefix: "", 
+                connectionBuilder: () => new SqlConnection(BridgeConnectionString),
+                tablePrefix: "",
                 sqlDialect: new SqlDialect.MsSqlServer(), 
                 cacheFor: null);
 
             //Ensures all required schema objects are created
             await storage.Install().ConfigureAwait(false);
 
-            bridgeConfig.UseSubscriptionPersistence(storage);
+            var bridgeConfig = new RouterConfiguration("Bridge");
+            var senderInterface = bridgeConfig.AddInterface<SqlServerTransport>("Bridge-Sender",
+                t => t.ConnectionString(SenderConnectionString));
+            var receiverInterface = bridgeConfig.AddInterface<SqlServerTransport>("Bridge-Receiver",
+                t => t.ConnectionString(ReceiverConnectionString));
+
+            senderInterface.UseSubscriptionPersistence(storage);
+            receiverInterface.UseSubscriptionPersistence(storage);
+
+            bridgeConfig.AutoCreateQueues();
+            var routeTable = bridgeConfig.UseStaticRoutingProtocol();
+            routeTable.AddForwardRoute("Bridge-Sender", "Bridge-Receiver");
+            routeTable.AddForwardRoute("Bridge-Receiver", "Bridge-Sender");
 
             #endregion
 
-            SqlHelper.EnsureDatabaseExists(SenderConnectionString);
-            SqlHelper.EnsureDatabaseExists(ReceiverConnectionString);
-            SqlHelper.EnsureDatabaseExists(BridgeConnectionString);
-
-            var bridge = bridgeConfig.Create();
+            var bridge = Router.Create(bridgeConfig);
 
             await bridge.Start().ConfigureAwait(false);
 

@@ -7,7 +7,7 @@ related:
  - transports/sql/deployment-options
 ---
 
-NOTE: In SQL Server transport version 4, multi-instance mode has been deprecated. The [migration sample](/samples/sqltransport/multi-instance-migration) explains how to use the [transport bridge](/nservicebus/bridge/) instead.
+NOTE: In SQL Server transport version 4, multi-instance mode has been deprecated. The [migration sample](/samples/sqltransport/multi-instance-migration) explains how to use the [NServiceBus.Router](/nservicebus/router/) instead.
 
 ## Prerequisites
 
