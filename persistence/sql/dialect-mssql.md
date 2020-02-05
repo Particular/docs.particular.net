@@ -16,6 +16,8 @@ SQL persistence supports [SQL Server Version 2012](https://docs.microsoft.com/en
 
 ## Usage
 
+partial: sqlclient
+
 snippet: SqlPersistenceUsageSqlServer
 
 include: mssql-dtc-warning

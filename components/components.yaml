@@ -658,6 +658,7 @@
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.SqlServer
   NugetOrder:
+    - NServiceBus.Transport.SqlServer
     - NServiceBus.SqlServer
 
 - Key: StructureMap

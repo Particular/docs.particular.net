@@ -26,9 +26,7 @@ namespace Dapper
             var sql = @"insert into receiver.SubmittedOrder
                                     (Id, Value)
                         values      (@Id, @Value)";
-            return SqlMapper.ExecuteAsync(
-                cnn: session.Connection,
-                sql: sql,
+            return session.Connection.ExecuteAsync(sql: sql,
                 param: order,
                 transaction: session.Transaction);
 

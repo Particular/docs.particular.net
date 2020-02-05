@@ -609,6 +609,8 @@
         Title: Version 3 to 4
     - Title: SQL Server
       Articles:
+      - Url: transports/upgrades/sqlserver-5to6
+        Title: Version 5 to 6        
       - Url: transports/upgrades/sqlserver-4to5
         Title: Version 4 to 5
       - Url: transports/upgrades/sqlserver-31to4
@@ -885,6 +887,8 @@
         Title: Version 3 to 4
     - Title: SQL
       Articles:
+      - Url: persistence/upgrades/sql-4to5
+        Title: Version 4 to 5        
       - Url: persistence/upgrades/sql-4.2to4.3
         Title: Version 4.2 to 4.3
       - Url: persistence/upgrades/sql-2to3

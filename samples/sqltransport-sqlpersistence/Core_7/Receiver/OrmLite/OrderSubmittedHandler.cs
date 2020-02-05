@@ -30,9 +30,7 @@ namespace OrmLite
                 Id = $"OrmLite-{message.OrderId}",
                 Value = message.Value,
             };
-            return OrmLiteWriteApiAsync.UpdateAsync(
-                dbConn: session.Connection,
-                obj: order,
+            return session.Connection.UpdateAsync(obj: order,
                 commandFilter: command =>
                 {
                     command.Transaction = session.Transaction;
