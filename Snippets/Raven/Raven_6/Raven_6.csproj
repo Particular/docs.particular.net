@@ -4,6 +4,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.RavenDB" Version="6.1.0-lazy-store0001" />
+    <PackageReference Include="NServiceBus.RavenDB" Version="6.1.0-alpha0022" />
   </ItemGroup>
 </Project>
