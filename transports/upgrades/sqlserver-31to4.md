@@ -36,8 +36,8 @@ The multi-instance configuration above can be replaced with a multi-catalog addr
 snippet: 31to4-multi-catalog
 
 
-### Bridge
+### Bridging SQL Server instances
 
-When communicating with an endpoint that connects to a different SQL Server instance, send messages through a bridge. The [multi-instance migration sample](/samples/sqltransport/multi-instance-migration) demonstrates this approach.
+When communicating with an endpoint that connects to a different SQL Server instance, send messages through a bridge constructed with NServiceBus.Router package. The [multi-instance migration sample](/samples/sqltransport/multi-instance-migration) demonstrates this approach.
 
 Both of these features are available for NServiceBus 6 (and SQL Server transport 3.1) so the topology migration can take place before switching to NServiceBus 7.
