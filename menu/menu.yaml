@@ -303,10 +303,7 @@
         Title: Multi-way bridge topology
       - Url: nservicebus/router/backplane
         Title: Backplane topology
-    - Url: nservicebus/bridge
-      Title: Transport Bridge
-      Articles:
-      - Url: nservicebus/bridge/bridge-router
+      - Url: nservicebus/router/bridge-router
         Title: Upgrade NServiceBus.Bridge to NServiceBus.Router
     - Url: nservicebus/rawmessaging
       Title: Raw messaging

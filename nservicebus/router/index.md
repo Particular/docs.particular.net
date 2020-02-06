@@ -5,7 +5,9 @@ component: Router
 related:
 - samples/azure/azure-service-bus-msmq-bridge
 - samples/msmq/msmqtosqlrelay
-reviewed: 2018-09-05
+redirects:
+- nservicebus/bridge
+reviewed: 2020-02-05
 ---
 
 `NServiceBus.Router` is a universal component that connects parts of an NServiceBus-based solution that otherwise could not talk to each other (e.g. because they use different transports or transport settings).
@@ -23,6 +25,8 @@ Regular endpoints connect to the router using *connectors* that allow them to co
 snippet: connector
 
 The snippet above tells the endpoint that a designated router listens on queue `MyRouter` and that messages of type `MyMessage` should be sent to the endpoint `Receiver` via the router. It also tells the subscription infrastructure that the event `MyEvent` is published by the endpoint `Publisher` that is hosted behind the router.
+
+NOTE: The NServiceBus.Router.Connector package targets NServiceBus 7. In order to connect to the router from NServiceBus 6 use NServiceBus.Bridge.Connector package.
 
 
 ## Router configuration

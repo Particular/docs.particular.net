@@ -5,10 +5,9 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="9.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
-    <PackageReference Include="NServiceBus.Bridge" Version="2.*" />
+    <PackageReference Include="NServiceBus.Router" Version="3.*" />
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>

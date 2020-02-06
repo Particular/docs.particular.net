@@ -3,6 +3,8 @@ title: Upgrade Bridge 2 to Router 2
 summary: Instructions on how to upgrade NServiceBus.Bridge Version 2 to NServiceBus.Router Version 2.
 component: Bridge
 reviewed: 2018-06-08
+redirects:
+- nservicebus/bridge/bridge-router
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
