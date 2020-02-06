@@ -26,18 +26,8 @@ The multi-instance mode has been deprecated in Version 4. So the following is no
 
 snippet: 31to4-legacy-multi-instance
 
-NServiceBus topologies with queues distributed between multiple catalogs and SQL Server instances can be migrated using a combination of [Transport Bridge](/nservicebus/bridge/) and multi-catalog [addressing](/transports/sql/addressing.md).
-
-
-### Multi-catalog
-
-The multi-instance configuration above can be replaced with a multi-catalog addressing configuration, provided that all the databases are hosted on a single SQL Server instance:
+NServiceBus topologies with queues distributed between multiple catalogs hosted in a single instance of SQL Server can now be configured using multi-catalog [addressing](/transports/sql/addressing.md):
 
 snippet: 31to4-multi-catalog
 
-
-### Bridging SQL Server instances
-
-When communicating with an endpoint that connects to a different SQL Server instance, send messages through a bridge constructed with NServiceBus.Router package. The [multi-instance migration sample](/samples/sqltransport/multi-instance-migration) demonstrates this approach.
-
-Both of these features are available for NServiceBus 6 (and SQL Server transport 3.1) so the topology migration can take place before switching to NServiceBus 7.
+If catalogs are hosted in different instances of SQL Server, use [NServiceBus.Router](/nservicebus/router/) to construct a bridge. The [multi-instance migration sample](/samples/sqltransport/multi-instance-migration) demonstrates this approach.
