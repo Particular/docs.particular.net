@@ -5,7 +5,6 @@ component: ASBS
 related:
 - transports/azure-service-bus
 - transports/azure-service-bus/legacy
-- nservicebus/bridge
 ---
 
 If it's necessary to run an endpoint instance using the Azure Service Bus transport and an endpoint instance using the legacy Azure Service Bus transport in the same process and `AppDomain`, there is the risk of name collision between classes coming from the two transports.
