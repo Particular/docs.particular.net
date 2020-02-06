@@ -78,15 +78,9 @@ Bridge process is connecting between MSMQ and Azure ServiceBus transports and pr
 
 snippet: bridge-general-configuration
 
-In addition the general configuration of the transport, the `EndpointOrientedTopology` has its own requirements. The first is that all events published on the Azure Service Bus side of the bridge need to be assigned endpoints that publish them. The second is the configuration of a *resubscriber*
-
-snippet: resubscriber
-
-The resubscriber replays periodically the subscription messages coming from the MSMQ side of the bridge to ensure that the Azure Service Bus topic notifiers have been started.
-
 A bridge is created, started, and should be executed as long as bridging is required.
 
-NOTE: This sample use a simple `InMemorySubscriptionStorage`. In production `SqlSubscriptionStorage` (included in the Bridge package) or custom persistent subscription storage should be used to prevent message loss.
+NOTE: This sample use a simple `InMemorySubscriptionStorage`. In production `SqlSubscriptionStorage` (included in the NServiceBus.Router package) or custom persistent subscription storage should be used to prevent message loss.
 
 snippet: bridge-execution
 
