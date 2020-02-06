@@ -4,7 +4,7 @@ reviewed: 2019-09-02
 component: ASB
 related:
 - transports/azure-service-bus
-- nservicebus/bridge
+- nservicebus/router
 ---
 
 include: legacy-asb-warning
