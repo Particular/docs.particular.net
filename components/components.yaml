@@ -236,6 +236,15 @@
     - NServiceBus.Gateway
     - NServiceBus
 
+- Key: GatewayRavenDB
+  Name: RavenDB Gateway Storage
+  DocoUrl: nservicebus/gateway/ravendb
+  GitHubOwner: Particular
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Gateway.RavenDB
+  NugetOrder:
+    - NServiceBus.Gateway.RavenDB
+
 - Key: Heartbeats
   Name: ServiceControl Heartbeats
   DocoUrl: monitoring/heartbeats
