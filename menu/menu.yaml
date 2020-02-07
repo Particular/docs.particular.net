@@ -290,6 +290,8 @@
       Articles:
       - Url: nservicebus/gateway/multi-site-deployments
         Title: Multi-Site Deployments
+      - Url: nservicebus/gateway/ravendb
+        Title: RavenDB deduplication storage
       - Url: nservicebus/gateway/troubleshooting
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
