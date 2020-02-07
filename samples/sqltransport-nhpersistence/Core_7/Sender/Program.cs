@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Transport.SqlServer;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus.Persistence;

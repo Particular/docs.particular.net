@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Data.SqlClient;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
 
 public static class SharedConfiguration
 {

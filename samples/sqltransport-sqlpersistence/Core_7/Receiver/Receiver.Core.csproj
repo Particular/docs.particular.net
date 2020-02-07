@@ -8,9 +8,9 @@
     <PackageReference Include="Dapper" Version="2.*" />
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="5.0.0-alpha0023" />
-    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="6.0.0-alpha0013" />
-    <PackageReference Include="ServiceStack.OrmLite.SqlServer.Data" Version="5.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="5.*" />
+    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="6.*" />
+    <PackageReference Include="ServiceStack.OrmLite.SqlServer.Data.Core" Version="5.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.*" />
     <ProjectReference Include="..\Shared\Shared.Core.csproj" />
     <None Update="Startup.sql" CopyToOutputDirectory="PreserveNewest" />

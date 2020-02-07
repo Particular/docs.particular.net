@@ -174,23 +174,19 @@ public class ScriptWriter
     }
 
     static object GetCommand(SqlDialect dialect, string builderType) {
-        if(builderType == "OutboxCommandBuilder") {
-            return typeof(SqlPersistence).Assembly.GetType(builderType, throwOnError: true)
-                .GetMethod("Build").Invoke(null, BindingFlags.Static | BindingFlags.NonPublic, null, new object[] { "EndpointName", dialect }, null);
-        }
         return typeof(SqlPersistence).Assembly.GetType(builderType, throwOnError: true)
-                .GetMethod("Build").Invoke(null, BindingFlags.Static | BindingFlags.NonPublic, null, new object[] { dialect, "EndpointName" }, null);
+                .GetMethod("Build")
+                ?.Invoke(null, BindingFlags.Static | BindingFlags.NonPublic, null, new object[] { dialect, "EndpointName" }, null);
     }
 
     static string GetValue(object command, string propertyName) {
         var property = command.GetType().GetProperty(propertyName);
-        return (string) property
-            .GetValue(command);
+        return (string) property?.GetValue(command);
     }
 
     static string GetSubscribersValue(object command, List<MessageType> messageTypes) {
         var property = command.GetType().GetProperty("GetSubscribers");
-        var propertyValue = (Func<List<MessageType>, string>)property.GetValue(command);
-        return propertyValue(messageTypes);
+        var propertyValue = (Func<List<MessageType>, string>)property?.GetValue(command);
+        return propertyValue?.Invoke(messageTypes);
     }
 }

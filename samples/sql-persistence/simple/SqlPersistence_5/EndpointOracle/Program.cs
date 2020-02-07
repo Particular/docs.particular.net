@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
 using Oracle.ManagedDataAccess.Client;
 
 internal class Program

@@ -4,7 +4,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="6.0.0-alpha0013" />
+    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="6.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
