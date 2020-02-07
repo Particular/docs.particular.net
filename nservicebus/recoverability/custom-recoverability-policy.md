@@ -96,4 +96,4 @@ partial: fullconfig
 
 Note that the `RecoverabilityConfig` will be passed into the custom policy so the code can be fine-tuned based on the configured values. 
 
-NOTE: The custom error queue specified by `MoveToError` will not be created by NServiceBus and needs to be manually created.
+NOTE: The custom error queue specified by `MoveToError` will not be created by NServiceBus and must be manually created.
