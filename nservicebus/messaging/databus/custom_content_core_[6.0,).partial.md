@@ -1,9 +1,9 @@
-It is possible to create a custom DataBus implementation. This is done by making use of the [Features](/nservicebus/pipeline/features.md) extension.
+It is possible to create a custom data bus implementation. This is done by making use of the [Features](/nservicebus/pipeline/features.md) extension.
 
 
 ## Implement the `IDataBus` interface. 
 
-This new class will provide the custom implementations for the `Get` and `Put` methods for the DataBus.
+This new class will provide the custom implementations for the `Get` and `Put` methods for the data bus.
 
 snippet: CustomDataBus
 
@@ -12,7 +12,7 @@ This new implementation needs to be registered as a new feature.
 
 ## Define a feature 
 
-Define a [new feature](/nservicebus/pipeline/features.md) that registers the custom DataBus implementation class.
+Define a [new feature](/nservicebus/pipeline/features.md) that registers the custom data bus implementation class.
 
 snippet: CustomDataBusFeature
 
@@ -26,6 +26,6 @@ snippet: CustomDataBusDefinition
 
 ## Configure the endpoint
 
-Configure the endpoint to use the custom DataBus implementation instead of the default DataBus:
+Configure the endpoint to use the custom data bus implementation instead of the default data bus:
 
 snippet: PluginCustomDataBus

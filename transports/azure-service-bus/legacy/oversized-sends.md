@@ -17,9 +17,9 @@ The Azure Service Bus SDK attempts to prevent sending of messages that exceed th
 
 The transport deals with this problem for a large part by performing an estimated size calculation that includes both body and headers as well as a percentage for padding as an attempt to compensate for additional message serialization performed by the SDK.
 
-The recommended way to send message payloads which may exceed the transport message size limits is to use the NServiceBus [DataBus feature](/nservicebus/messaging/databus/), however using the DataBus feature is not always desirable, especially when exceeding the message size limits of Azure Service Bus is uncommon.
+The recommended way to send message payloads which may exceed the transport message size limits is to use the NServiceBus [data bus feature](/nservicebus/messaging/databus/), however using the data bus feature is not always desirable, especially when exceeding the message size limits of Azure Service Bus is uncommon.
 
-As an alternative to using the DataBus feature, a custom implementation of `IHandleOversizedBrokeredMessages` can be configured
+As an alternative to using the data bus feature, a custom implementation of `IHandleOversizedBrokeredMessages` can be configured
 
 ## Configuring an oversized brokered message handler
 

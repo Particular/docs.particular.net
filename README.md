@@ -261,7 +261,7 @@ related:
 
 ## components.yaml
 
-"Components" is a general term used to describe a deployable set of functionality. Components exist in [components/components.yaml](components/components.yaml). Note that over time a component may have moved between nugets or split into new nugets. For example, the ABS DataBus or the Callbacks.
+"Components" is a general term used to describe a deployable set of functionality. Components exist in [components/components.yaml](components/components.yaml). Note that over time a component may have moved between nugets or split into new nugets. For example, the ASB Data Bus or the Callbacks.
 
 Sample Component:
 

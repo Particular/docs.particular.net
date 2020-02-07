@@ -166,7 +166,7 @@
         Title: Version 4 to 5
     - Title: NServiceBus.Azure deprecated
       Url: nservicebus/upgrades/azure-deprecation
-    - Title: Azure BlobStorage DataBus
+    - Title: Azure BlobStorage Data Bus
       Articles:
       - Url: nservicebus/upgrades/absdatabus-6to1
         Title: Migrating off NServiceBus.Azure
