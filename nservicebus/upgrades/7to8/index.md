@@ -8,15 +8,13 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-## Obsoleted APIs
-
-### Gateway
+## New gateway persistence API
 
 NServiceBus Gateway has been moved to a separate `NServiceBus.Gateway` package and all Gateway public API in NServiceBus obsoleted with the following warning:
 
 > Gateway persistence has been moved to the NServiceBus.Gateway dedicated package. Will be treated as an error from version 8.0.0. Will be removed in version 9.0.0.
 
-#### How to upgrade
+### How to upgrade
 
 - Select the storage type to use in production. Supported storage types are SqlServer and RavenDB
 - Depending on the selected storage type add a reference to the respective Nuget package:
