@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.SqlServer;
 
 namespace OrmLite
 {
@@ -14,7 +13,7 @@ namespace OrmLite
 
         static OrderSubmittedHandler()
         {
-            OrmLiteConfig.DialectProvider = new SqlServer2016OrmLiteDialectProvider();
+            OrmLiteConfig.DialectProvider = SqlServer2016Dialect.Provider;
         }
 
         public Task Handle(OrderSubmitted message, IMessageHandlerContext context)

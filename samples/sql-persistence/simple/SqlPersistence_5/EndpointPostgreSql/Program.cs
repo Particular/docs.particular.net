@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Npgsql;
 using NpgsqlTypes;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
 
 internal class Program
 {

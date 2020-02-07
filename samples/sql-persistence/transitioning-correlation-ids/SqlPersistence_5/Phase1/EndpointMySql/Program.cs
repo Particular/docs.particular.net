@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
 
 partial class Program
 {

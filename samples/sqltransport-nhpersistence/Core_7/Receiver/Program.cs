@@ -6,7 +6,6 @@ using NHibernate.Mapping.ByCode;
 using NHibernate.Tool.hbm2ddl;
 using NServiceBus;
 using NServiceBus.Persistence;
-using NServiceBus.Transport.SqlServer;
 
 class Program
 {

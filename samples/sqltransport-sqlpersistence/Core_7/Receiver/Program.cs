@@ -3,8 +3,6 @@ using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
-using NServiceBus.Transport.SqlServer;
 
 public static class Program
 {

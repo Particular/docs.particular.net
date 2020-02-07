@@ -2,7 +2,6 @@
 using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
 
 class Program
 {
