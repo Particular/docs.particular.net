@@ -1,11 +1,12 @@
 ﻿using NServiceBus;
 using NServiceBus.Gateway.RavenDB;
 using Raven.Client.Documents;
+using System;
 
 class Usage
 {
 
-    public void StandardUsage(EndpointConfiguration endpointConfiguration, string connectionString)
+    public void DefaultUsage(EndpointConfiguration endpointConfiguration)
     {
         #region DefaultUsage
         var gatewayConfiguration = new RavenGatewayDeduplicationConfiguration((builder, _) =>
@@ -22,6 +23,14 @@ class Usage
         });
 
         var gatewaySettings = endpointConfiguration.Gateway(gatewayConfiguration);
+        #endregion
+    }
+
+    public void CustomExpiration(RavenGatewayDeduplicationConfiguration gatewayConfiguration)
+    {
+        #region CustomExpiration
+        gatewayConfiguration.DeduplicationDataTimeToLive = TimeSpan.FromDays(15);
+        gatewayConfiguration.FrequencyToRunDeduplicationDataCleanup = 86400;
         #endregion
     }
 }
