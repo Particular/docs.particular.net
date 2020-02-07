@@ -23,7 +23,7 @@ public class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
-        var bridgeConfig = transport.Routing().ConnectToBridge("Bridge-Sender");
+        var bridgeConfig = transport.Routing().ConnectToBridge("Bridge");
         bridgeConfig.RouteToEndpoint(typeof(ClientOrder), "Samples.SqlServer.MultiInstanceReceiver");
         #endregion
 

@@ -36,14 +36,14 @@ void CleanUpSolutions()
 				{
 					if (line.StartsWith("# Visual Studio "))
 					{
-						//VS 2017
-						writer.WriteLine("# Visual Studio 15");
+						//VS 2019
+						writer.WriteLine("# Visual Studio Version 16");
 						continue;
 					}
 					//https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes
 					if (line.StartsWith("VisualStudioVersion = "))
 					{
-						writer.WriteLine("VisualStudioVersion = 15.0.26730.12");
+						writer.WriteLine("VisualStudioVersion = 16.0.29728.190");
 						continue;
 					}
 					if (line.StartsWith("MinimumVisualStudioVersion = "))

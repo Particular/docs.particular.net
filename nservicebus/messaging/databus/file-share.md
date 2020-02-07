@@ -11,7 +11,7 @@ related:
 
 The file share data bus allows large properties to be transferred via a Windows file share.
 
-This implementation [leverages both serialization and headers](/nservicebus/messaging/headers.md#fileshare-databus-headers) to provide its functionality.
+This implementation [leverages both serialization and headers](/nservicebus/messaging/headers.md#file-share-data-bus-headers) to provide its functionality.
 
 
 ## Usage

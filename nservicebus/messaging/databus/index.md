@@ -29,7 +29,7 @@ The [Handling large stream properties via pipeline](/samples/pipeline/stream-pro
 
 See the individual data bus implementations for details on enabling and configuring the databus.
 
- * [FileShare Data Bus](file-share.md)
+ * [File Share Data Bus](file-share.md)
  * [Azure Blob Storage Data Bus](azure-blob-storage.md)
 
 

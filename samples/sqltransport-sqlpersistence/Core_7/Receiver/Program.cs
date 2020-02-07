@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
-using NServiceBus.Transport.SQLServer;
 
 public static class Program
 {
@@ -28,7 +26,6 @@ public static class Program
         transport.UseSchemaForQueue("audit", "dbo");
         transport.UseSchemaForQueue("Samples.Sql.Sender", "sender");
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
-        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.Sql.Sender");

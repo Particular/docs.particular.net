@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Transport.SQLServer;
 
 public static class Program
 {
@@ -24,7 +23,6 @@ public static class Program
         transport.DefaultSchema("sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
-        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 

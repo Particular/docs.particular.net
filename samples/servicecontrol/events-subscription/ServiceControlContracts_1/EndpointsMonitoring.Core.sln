@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointsMonitor.Core", "EndpointsMonitor\EndpointsMonitor.Core.csproj", "{A8963C7C-F1F1-4DA9-8FCA-BE5B59CD88A1}"
 EndProject

@@ -290,6 +290,10 @@
       Articles:
       - Url: nservicebus/gateway/multi-site-deployments
         Title: Multi-Site Deployments
+      - Url: nservicebus/gateway/sql
+        Title: SQL deduplication storage
+      - Url: nservicebus/gateway/ravendb
+        Title: RavenDB deduplication storage
       - Url: nservicebus/gateway/troubleshooting
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
@@ -303,10 +307,7 @@
         Title: Multi-way bridge topology
       - Url: nservicebus/router/backplane
         Title: Backplane topology
-    - Url: nservicebus/bridge
-      Title: Transport Bridge
-      Articles:
-      - Url: nservicebus/bridge/bridge-router
+      - Url: nservicebus/router/bridge-router
         Title: Upgrade NServiceBus.Bridge to NServiceBus.Router
     - Url: nservicebus/rawmessaging
       Title: Raw messaging
@@ -609,6 +610,8 @@
         Title: Version 3 to 4
     - Title: SQL Server
       Articles:
+      - Url: transports/upgrades/sqlserver-5to6
+        Title: Version 5 to 6        
       - Url: transports/upgrades/sqlserver-4to5
         Title: Version 4 to 5
       - Url: transports/upgrades/sqlserver-31to4
@@ -885,6 +888,8 @@
         Title: Version 3 to 4
     - Title: SQL
       Articles:
+      - Url: persistence/upgrades/sql-4to5
+        Title: Version 4 to 5        
       - Url: persistence/upgrades/sql-4.2to4.3
         Title: Version 4.2 to 4.3
       - Url: persistence/upgrades/sql-2to3

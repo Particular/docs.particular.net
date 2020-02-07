@@ -27,6 +27,8 @@ EventSourceLogging: NServiceBus.EventSourceLogging
 FileBasedRouting: NServiceBus.FileBasedRouting
 Gateway: NServiceBus.Gateway
 GatewayChannelHttpVNext: NServiceBus.Gateway.Channels.HttpVNext
+GatewayRavenDB: NServiceBus.Gateway.RavenDB
+GatewaySql: NServiceBus.Gateway.Sql
 Heartbeats3: ServiceControl.Plugin.Nsb3.Heartbeat
 Heartbeats4: ServiceControl.Plugin.Nsb4.Heartbeat
 Heartbeats5: ServiceControl.Plugin.Nsb5.Heartbeat
@@ -71,6 +73,7 @@ ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
 SqlPersistence: NServiceBus.Persistence.Sql
 SqlTransport: NServiceBus.SqlServer
+SqlTransportMsClient: NServiceBus.Transport.SqlServer
 SignalR: SignalR.NServiceBus
 RabbitOperations: RabbitOperations
 SimpleInjector: NServiceBus.SimpleInjector

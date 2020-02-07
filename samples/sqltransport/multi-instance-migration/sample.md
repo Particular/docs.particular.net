@@ -1,22 +1,23 @@
 ---
-title: Multi-Instance Mode to Bridge migration
-summary: Migration of SQL Server transport Multi-Instance Mode topology to Bridge
+title: Multi-Instance Mode to bridge migration
+summary: Migration of SQL Server transport Multi-Instance Mode topology to bridge
 reviewed: 2019-06-04
 component: SqlTransport
 related:
  - transports/sql/deployment-options
+ - nservicebus/router/bridge
 ---
 
-The multi-instance mode has been deprecated in Version 4 of SQL Server transport. NServiceBus topologies with queues distributed between multiple catalogs and SQL Server instances can be migrated using a combination of [Transport Bridge](/nservicebus/bridge/) and multi-catalog [addressing](/transports/sql/addressing.md).
+The multi-instance mode has been deprecated in Version 4 of SQL Server transport. NServiceBus topologies with queues distributed between multiple catalogs and SQL Server instances can be migrated using a combination of [NServiceBus.Router](/nservicebus/router/) and multi-catalog [addressing](/transports/sql/addressing.md).
 
-This samples shows how the Transport Bridge can be utilized when endpoints connect to catalogs hosted in different instances of SQL Server. For solutions where all catalogs are hosted within a single SQL Server instance, see [multi-catalog addressing](/transports/sql/addressing.md).
+This samples shows how the NServiceBus.Router [bi-directional bridge topology](/nservicebus/router/bridge.md) can be utilized when endpoints connect to catalogs hosted in different instances of SQL Server. For solutions where all catalogs are hosted within a single SQL Server instance, see [multi-catalog addressing](/transports/sql/addressing.md).
 
 
 ## Prerequisites
 
 include: sql-prereq
 
-The databases created automatically by this sample are `NsbSamplesSqlMultiInstanceReceiver3`, `NsbSamplesSqlMultiInstanceSender3`, `NsbSamplesSqlMultiInstanceReceiver4`, `NsbSamplesSqlMultiInstanceSender3` and `NsbSamplesSqlMultiInstanceBridge`.
+The databases created automatically by this sample are `NsbSamplesSqlMultiInstanceReceiver3`, `NsbSamplesSqlMultiInstanceSender3`, `NsbSamplesSqlMultiInstanceReceiver4`, `NsbSamplesSqlMultiInstanceSender3` and `NsbSamplesSqlMultiInstanceBridge4`.
 
 Ensure [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) is running. It can be started from the command line by running `net start msdtc`.
 
@@ -76,7 +77,7 @@ snippet: ReceiverConfigurationV4
 
 ### Bridge
 
-The bridge application runs the [Transport Bridge](/nservicebus/bridge/) component:
+The bridge application runs the [NServiceBus.Router](/nservicebus/router/) component configured to act as a bi-directional bridge:
 
 snippet: BridgeConfiguration
 
@@ -87,4 +88,4 @@ The bridge is configured to use SQL Server transport on both sides and to use [S
 
 In Version 3 both endpoints have to know each other's connection strings. When sending a message a connection string is selected based on the destination queue address. Because the messages don't contain information about the origin's queue connection string, the receiver has to know the connection string to use when sending a reply. This creates unnecessary physical coupling back to the sender.
 
-In Version 4 the Transport Bridge mediates between the sender and the receiver. Based on sender's bridge connector configuration the transport sends the message not to the designated endpoint but to the bridge. The bridge forwards it to the destination, replacing the reply-to address. Because of this the receiver does not have to know if sender is behind the bridge or not. The reply is routed back to the bridge and forwarded to the originator without requiring any specific receiver-side configuration.
+In Version 4 the bridge mediates between the sender and the receiver. Based on sender's bridge connector configuration the transport sends the message not to the designated endpoint but to the bridge. The bridge forwards it to the destination, replacing the reply-to address. Because of this the receiver does not have to know if sender is behind the bridge or not. The reply is routed back to the bridge and forwarded to the originator without requiring any specific receiver-side configuration.

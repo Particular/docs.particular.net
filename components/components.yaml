@@ -236,6 +236,24 @@
     - NServiceBus.Gateway
     - NServiceBus
 
+- Key: GatewayRavenDB
+  Name: RavenDB Gateway Storage
+  DocoUrl: nservicebus/gateway/ravendb
+  GitHubOwner: Particular
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Gateway.RavenDB
+  NugetOrder:
+    - NServiceBus.Gateway.RavenDB
+
+- Key: GatewaySql
+  Name: SQL Gateway Storage
+  DocoUrl: nservicebus/gateway/sql
+  GitHubOwner: Particular
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Gateway.Sql
+  NugetOrder:
+    - NServiceBus.Gateway.Sql
+
 - Key: Heartbeats
   Name: ServiceControl Heartbeats
   DocoUrl: monitoring/heartbeats
@@ -658,6 +676,7 @@
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.SqlServer
   NugetOrder:
+    - NServiceBus.Transport.SqlServer
     - NServiceBus.SqlServer
 
 - Key: StructureMap
@@ -717,7 +736,7 @@
 
 - Key: Bridge
   Name: Transport Bridge
-  DocoUrl: nservicebus/bridge
+  DocoUrl: nservicebus/router
   GitHubOwner: SzymonPobiega
   Category: Other
   SupportLevel: Community
