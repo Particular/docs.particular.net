@@ -11,6 +11,8 @@ SQL Gateway Storage provides deduplication storage for the [Gateway component](/
 
 ## Usage
 
+Both [System.Data.SqlClient](https://www.nuget.org/packages/System.Data.SqlClient) and [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) are supported. Using the `ConnectionBuilder` method allows creating and configuring the connection using the desired package.
+
 By default, a default schema and table name of `[dbo].[GatewayDeduplication]` will be used.
 
 snippet: DefaultUsage
@@ -20,8 +22,6 @@ snippet: DefaultUsage
 The schema name and/or table name can be customized.
 
 snippet: CustomizeSchemaAndTableName
-
-Both [System.Data.SqlClient](https://www.nuget.org/packages/System.Data.SqlClient) and [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) are supported.
 
 NOTE: While it is possible to use the same GatewayDeduplication table for all endpoints within a single logical site, the Gateway assumes that _different_ logical sites (which are generally physically separated as well) will use separate storage infrastructure. Because sending a message to multiple sites will result in messages with the same message id delivered to each site, if those sites for some reason share a single deduplication table, the deduplication will not work correctly. In that case, separate the storage by using different table names as shown above.
 
