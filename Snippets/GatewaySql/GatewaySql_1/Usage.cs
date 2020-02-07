@@ -1,5 +1,4 @@
 ﻿using NServiceBus;
-using NServiceBus.Gateway.Sql;
 using Microsoft.Data.SqlClient;
 
 class Usage
