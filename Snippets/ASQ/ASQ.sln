@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASQ_6", "ASQ_6\ASQ_6.csproj", "{6D2B8C0E-83E7-46C8-B723-8B9BCE3D3A8E}"
 EndProject

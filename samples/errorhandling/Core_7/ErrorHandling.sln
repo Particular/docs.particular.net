@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WithDelayedRetries", "WithDelayedRetries\WithDelayedRetries.csproj", "{58851E2C-AC34-42EF-A44A-58E99F18E7FB}"
 EndProject
