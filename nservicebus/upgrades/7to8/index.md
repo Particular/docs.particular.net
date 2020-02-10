@@ -19,10 +19,9 @@ The NServiceBus Gateway has been moved to a separate `NServiceBus.Gateway` packa
 
 ### How to upgrade
 
-- Select the storage type to use in production. Supported storage types are [Microsoft SQL Server](/nservicebus/gateway/sql/) and [RavenDB](/nservicebus/gateway/ravendb/).
-- Depending on the selected storage type, add a reference to the respective NuGet package:
+- Install the desired gateway persistence package. Supported packages are:
   - [NServiceBus.Gateway.Sql](https://www.nuget.org/packages/NServiceBus.Gateway.Sql)
   - [NServiceBus.Gateway.RavenDB](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB)
-- Configure the Gateway API by invoking the `Gateway()` method on the endpoints configuration instance passing as an argument the selected storage configuration instance.
-
-Refer to the [NServiceBus.Gateway.Sql](/nservicebus/gateway/sql/) or [NServiceBus.Gateway.RavenDB](/nservicebus/gateway/ravendb/) documentation for further details.
+- Configure the Gateway API by invoking the `endpointConfiguration.Gateway(…)` method, passing as an argument the selected storage configuration instance:
+  - [Documentation for NServiceBus.Gateway.Sql](/nservicebus/gateway/sql/)
+  - [Documentation for NServiceBus.Gateway.RavenDB](/nservicebus/gateway/ravendb/)
