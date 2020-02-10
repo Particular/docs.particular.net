@@ -25,4 +25,4 @@ The NServiceBus Gateway has been moved to a separate `NServiceBus.Gateway` packa
   - [NServiceBus.Gateway.RavenDB](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB)
 - Configure the Gateway API by invoking the `Gateway()` method on the endpoints configuration instance passing as an argument the selected storage configuration instance.
 
-Refer to the [NServiceBus.Gateway.Sql](/nservicebus/gateway/sql) or [NServiceBus.Gateway.RavenDB](/nservicebus/gateway/ravendb) documentation for further details.
+Refer to the [NServiceBus.Gateway.Sql](/nservicebus/gateway/sql/) or [NServiceBus.Gateway.RavenDB](/nservicebus/gateway/ravendb/) documentation for further details.
