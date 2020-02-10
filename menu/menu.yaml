@@ -98,6 +98,8 @@
         Title: 2018-01-19
     - Url: nservicebus/upgrades/callbacks-1to2
       Title: Callbacks 1 to 2
+    - Url: nservicebus/upgrades/7to8
+      Title: NServiceBus 7 to 8
     - Url: nservicebus/upgrades/6to7
       Title: NServiceBus 6 to 7
       Articles:
