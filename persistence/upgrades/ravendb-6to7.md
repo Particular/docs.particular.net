@@ -11,8 +11,6 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-NOTE: This is a working document, as there is currently no plan or timeline for the release of NServiceBus.RavenDB version 7.0.
-
 Starting with NServiceBus.RavenDB version 6.2.0, the built-in gateway API has been obsoleted with the following message:
 
 > RavenDB gateway persistence has been moved to the NServiceBus.Gateway.RavenDB dedicated package. Will be treated as an error from version 7.0.0. Will be removed in version 8.0.0.
