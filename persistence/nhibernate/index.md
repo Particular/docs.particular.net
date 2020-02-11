@@ -17,11 +17,7 @@ Uses the [NHibernate ORM](https://nhibernate.info/) for persistence.
 
 ## Supported persistence types
 
- * [Gateway deduplication](/nservicebus/gateway/)
- * [Sagas](/nservicebus/sagas/)
- * [Subscriptions](/nservicebus/messaging/publish-subscribe/)
- * [Timeouts](/nservicebus/sagas/timeouts.md) (including [message deferral](/nservicebus/messaging/delayed-delivery.md) and [delayed retries](/nservicebus/recoverability/#delayed-retries))
- * [Outbox](/nservicebus/outbox/)
+partial: supported-persistence
 
 
 ## Supported database engines
@@ -77,7 +73,7 @@ To use a given NHibernate `Configuration` object for all the persistence concern
 snippet: CommonNHibernateConfiguration
 
 
-WARNING: When using the per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern being enabled. The following code will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration **for all the concerns**.
+WARNING: When using the per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern being enabled. The following code will set up NHibernate persistence only for `Subscriptions` concern but will override the default configuration **for all the concerns**.
 
 snippet: CustomCommonNhibernateConfigurationWarning
 
@@ -116,9 +112,7 @@ In some cases it may be necessary to take full control over creating the SQL str
 snippet: DisableSchemaUpdate
 
 
-**For gateway schema update:**
-
-snippet: DisableGatewaySchemaUpdate
+partial: gateway-schema-update
 
 
 **For subscription schema update:**

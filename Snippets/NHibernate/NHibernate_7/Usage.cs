@@ -96,7 +96,7 @@ class Usage
             }
         };
 
-        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
         persistence.UseConfiguration(nhConfiguration);
 
         #endregion

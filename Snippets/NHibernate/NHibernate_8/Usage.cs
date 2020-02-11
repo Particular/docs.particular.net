@@ -18,7 +18,6 @@ class Usage
         endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
         endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
         endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
-        endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
 
         #endregion
     }
@@ -77,7 +76,6 @@ class Usage
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseSubscriptionStorageConfiguration(nhConfiguration);
-        persistence.UseGatewayDeduplicationConfiguration(nhConfiguration);
         persistence.UseTimeoutStorageConfiguration(nhConfiguration);
 
         #endregion
@@ -96,7 +94,7 @@ class Usage
             }
         };
 
-        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
         persistence.UseConfiguration(nhConfiguration);
 
         #endregion

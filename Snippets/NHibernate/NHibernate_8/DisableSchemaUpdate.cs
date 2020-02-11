@@ -14,16 +14,6 @@ class DisableSchemaUpdates
         #endregion
     }
 
-    void DisableGatewaySchemaUpdate(EndpointConfiguration endpointConfiguration)
-    {
-        #region DisableGatewaySchemaUpdate
-
-        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.DisableGatewayDeduplicationSchemaUpdate();
-
-        #endregion
-    }
-
     void DisableSubscriptionSchemaUpdate(EndpointConfiguration endpointConfiguration)
     {
         #region DisableSubscriptionSchemaUpdate
