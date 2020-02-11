@@ -9,8 +9,6 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-NOTE: This is a working document, as there is currently no plan or timeline for the release of NServiceBus.NHibernate version 9.0.
-
 Starting with NServiceBus.NHibernate version 8.3.0, the built-in gateway API has been obsoleted with the following message:
 
 > NHibernate gateway persistence is deprecated. Use the new NServiceBus.Gateway.Sql dedicated package. Will be treated as an error from version 9.0.0. Will be removed in version 10.0.0.
