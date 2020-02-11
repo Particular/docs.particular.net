@@ -15,5 +15,5 @@ Starting with NServiceBus.NHibernate version 8.3.0, the built-in gateway API has
 
 To migrate to the new gateway API:
 
-- Add a reference to the `NServiceBus.Gateway.Sql` NuGet package and configure the gateway feature following the instructions available in the [SQL Gateway Storage documentation](/nservicebus/gateway/sql/).
+- Add a reference to the [NServiceBus.Gateway.Sql](https://www.nuget.org/packages/NServiceBus.Gateway.Sql) NuGet package and configure the gateway feature following the instructions available in the [SQL Gateway Storage documentation](/nservicebus/gateway/sql/).
 - Remove any configuration that uses the legacy gateway API.
