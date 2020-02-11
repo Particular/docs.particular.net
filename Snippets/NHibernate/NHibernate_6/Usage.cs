@@ -94,7 +94,7 @@ class Usage
             }
         };
 
-        var persistence = busConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+        var persistence = busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
         persistence.UseConfiguration(nhConfiguration);
         #endregion
     }
