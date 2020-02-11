@@ -872,6 +872,8 @@
         Title: Version 6.2.3 to 6.2.4
     - Title: NHibernate
       Articles:
+      - Url: persistence/upgrades/nhibernate-8to9
+        Title: Version 8 to 9     
       - Url: persistence/upgrades/nhibernate-8to8.1
         Title: Version 8 to 8.1      
       - Url: persistence/upgrades/nhibernate-6to7
@@ -882,6 +884,8 @@
         Title: Adding unique constraints on saga data tables
     - Title: RavenDB
       Articles:
+      - Url: persistence/upgrades/ravendb-6to7
+        Title: Version 6 to 7
       - Url: persistence/upgrades/ravendb-5to6
         Title: Version 5 to 6
       - Url: persistence/upgrades/ravendb-4to5
