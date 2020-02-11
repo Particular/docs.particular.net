@@ -17,5 +17,5 @@ Starting with NServiceBus.RavenDB version 6.2.0, the built-in gateway API has be
 
 To migrate to the new gateway API:
 
-- Add a reference to the `NServiceBus.Gateway.RavenDB` NuGet package and configure the gateway feature following the instructions available in the [RavenDB Gateway Storage documentation](/nservicebus/gateway/ravendb/).
+- Add a reference to the [NServiceBus.Gateway.RavenDB](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB) NuGet package and configure the gateway feature following the instructions available in the [RavenDB Gateway Storage documentation](/nservicebus/gateway/ravendb/).
 - Remove any configuration that uses the legacy gateway API.
