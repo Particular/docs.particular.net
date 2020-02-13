@@ -73,6 +73,7 @@ ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
 SqlPersistence: NServiceBus.Persistence.Sql
 SqlTransport: NServiceBus.Transport.SqlServer
+SqlTransportLegacySystemClient: NServiceBus.SqlServer
 SignalR: SignalR.NServiceBus
 RabbitOperations: RabbitOperations
 SimpleInjector: NServiceBus.SimpleInjector
