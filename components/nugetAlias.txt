@@ -72,8 +72,7 @@ ServiceFabricPersistence: NServiceBus.Persistence.ServiceFabric
 ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
 SqlPersistence: NServiceBus.Persistence.Sql
-SqlTransport: NServiceBus.SqlServer
-SqlTransportMsClient: NServiceBus.Transport.SqlServer
+SqlTransport: NServiceBus.Transport.SqlServer
 SignalR: SignalR.NServiceBus
 RabbitOperations: RabbitOperations
 SimpleInjector: NServiceBus.SimpleInjector
