@@ -9,7 +9,7 @@ Some features of NServiceBus, particularly related to physical routing of messag
 
 ## SQL Server transport
 
-[Multi-instance](/transports/sql/deployment-options.md?version=SqlTransport_3#multi-instance.md), where endpoints connect to different instances of SQL Server, is not supported. Multi-catalog and multi-schema modes are supported in ServiceControl version 3.0 and above.
+[Multi-instance](/transports/sql/deployment-options.md?version=SqlTransportLegacySystemClient_3#multi-instance.md), where endpoints connect to different instances of SQL Server, is not supported. Multi-catalog and multi-schema modes are supported in ServiceControl version 3.0 and above.
 
 
 ## RabbitMQ transport
