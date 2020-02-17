@@ -842,3 +842,12 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.Hosting
   NugetOrder:
     - NServiceBus.Extensions.Hosting
+
+- Key: Extensions.DependencyInjection
+  Name: NServiceBus.Extensions.DependencyInjection
+  DocoUrl: nservicebus/dependency-injection/extensions-dependencyinjection
+  GitHubOwner: Particular
+  Cartegory: DependencyInjection
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
+  NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
