@@ -9,6 +9,7 @@ tags:
 
 The `NServiceBus.Extensions.DependencyInjection` package provides integration with the `Microsoft.Extensions.DependencyInjection` dependency injection abstraction.
 
+
 ## Usage with ServiceCollection
 
 The following snippet shows how to configure NServiceBus to use Microsoft's built-in dependency injection container:
@@ -27,14 +28,21 @@ snippet: usecontainer-thirdparty
 
 `UseContainer` provides a settings class which gives advanced configuration options:
 
+
 ### IServiceCollection access
 
 Via the settings, the underlying `IServiceCollection` can be accessed to add additional service registrations.
 
 snippet: settings-servicecollection
 
+
 ### ContainerBuilder
 
 Native container APIs can be accessed by the `ConfigureContainer` API.
 
 snippet: settings-configurecontainer
+
+
+## Property Injection
+
+The `NServiceBus.Extensions.DependencyInjection` package does not support property injection out of the box. To enable property injection, please refer to the configured container's documentation.
