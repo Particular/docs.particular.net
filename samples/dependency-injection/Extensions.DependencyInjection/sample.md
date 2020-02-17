@@ -9,4 +9,13 @@ related:
  - nservicebus/dependency-injection/nservicebus-dependencyinjection
 ---
 
-TODO
+### Configuring an endpoint to use ServiceProvider
+
+Configures an endpoint using Microsoft's built-in dependency injection container:
+
+snippet: ContainerConfiguration
+
+
+### Injecting the dependency in the handler
+
+snippet: InjectingDependency
