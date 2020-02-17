@@ -5,6 +5,8 @@ reviewed: 2020-02-17
 component: Extensions.DependencyInjection
 tags:
  - Dependency Injection
+related:
+ - samples/dependency-injection/extensions.dependencyinjection
 ---
 
 The `NServiceBus.Extensions.DependencyInjection` package provides integration with the `Microsoft.Extensions.DependencyInjection` dependency injection abstraction.
