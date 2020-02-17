@@ -79,8 +79,9 @@
   DocoUrl: nservicebus/dependency-injection/autofac
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.Autofac
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.Autofac
 
 - Key: Callbacks
