@@ -21,3 +21,20 @@ snippet: usecontainer-servicecollection
 NServiceBus can also be configured to work with any third party dependency injection which implements the `Microsoft.Extensions.DependencyInjection` abstraction. To use a third party dependency injection container, pass the specfic container's `IServiceProviderFactory` to the `UseContainer` configuration method. The following snippet shows this approach, using Autofac as an example:
 
 snippet: usecontainer-thirdparty
+
+
+## Configuring the container
+
+`UseContainer` provides a settings class which gives advanced configuration options:
+
+### IServiceCollection access
+
+Via the settings, the underlying `IServiceCollection` can be accessed to add additional service registrations.
+
+snippet: settings-servicecollection
+
+### ContainerBuilder
+
+Native container APIs can be accessed by the `ConfigureContainer` API.
+
+snippet: settings-configurecontainer
