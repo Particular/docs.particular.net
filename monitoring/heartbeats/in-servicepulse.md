@@ -27,4 +27,10 @@ Setting the endpoint to "Off" will prevent it from appearing on the endpoints ov
 
 NOTE: This is a configuration setting only and the endpoint itself may still be configured to send heartbeat messages.
 
-NOTE: At this time, it is not possible to permanently remove an endpoint from the ServicePulse configuration screen.
+## Removing endpoints 
+
+When an endpoint has been decommissioned and should no longer be displayed in ServicePulse it can be deleted. From the Endpoint Heartbeats screen next to an endpoint name a trash bin icon should be visible allowing to remove the endpoint from ServicePulse. 
+
+NOTE: This feature requires ServicePulse version 1.23 or higher and ServiceControl version 4.4 or higher.
+
+![Remove endpoint](sp-remove-endpoint.png)
