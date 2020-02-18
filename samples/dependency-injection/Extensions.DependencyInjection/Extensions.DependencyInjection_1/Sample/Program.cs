@@ -19,7 +19,6 @@ static class Program
 
         #endregion
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpoint = await Endpoint.Start(endpointConfiguration)
