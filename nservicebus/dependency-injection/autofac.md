@@ -1,8 +1,8 @@
 ---
 title: Autofac
-summary: Details on how to Configure NServiceBus to use Autofac for dependency injection. Includes usage examples as well as lifecycle mappings. 
+summary: Details on how to Configure NServiceBus to use Autofac for dependency injection.
 component: Autofac
-reviewed: 2018-12-05
+reviewed: 2020-02-19
 tags:
  - Dependency Injection
 related:
@@ -11,18 +11,7 @@ redirects:
  - nservicebus/containers/autofac
 ---
 
-
-NServiceBus can be configured to use [Autofac](https://autofac.org/) for dependency injection.
-
-
-### Default usage
-
-snippet: Autofac
-
-
-### Using an existing container
-
-snippet: Autofac_Existing
+NServiceBus can be configured to use Autofac](https://autofac.org/) for dependency injection via the [`NServiceBus.Extensions.Hosting`](/nservicebus/hosting/extensions-hosting) or the [`NServiceBus.Extensions.DependencyInjection`](https://docs.particular.net/nservicebus/dependency-injection/nservicebus-dependencyinjection) package.
 
 WARNING: Although it is possible to update the container after passing it to NServiceBus using the `ContainerBuilder.Update` method, from Autofac 4.2.1 onwards that method [is marked as obsolete](https://github.com/autofac/Autofac/issues/811). It is recommended not to use this method to update the container after it has been passed to NServiceBus.
 
