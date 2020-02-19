@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using Unity;
+using Unity.Microsoft.DependencyInjection;
 
 static class Program
 {
@@ -14,15 +15,11 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Unity");
         var container = new UnityContainer();
         container.RegisterInstance(new MyService());
-        endpointConfiguration.UseContainer<UnityBuilder>(
-            customizations: customizations =>
-            {
-                customizations.UseExistingContainer(container);
-            });
+
+        endpointConfiguration.UseContainer<IUnityContainer>(new ServiceProviderFactory(container));
 
         #endregion
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
