@@ -4,7 +4,7 @@ summary: How to map logical endpoint names to physical Azure Service Bus address
 component: ASB
 tags:
  - Azure
-reviewed: 2018-05-17
+reviewed: 2020-02-18
 redirects:
  - nservicebus/azure-service-bus/addressing-logic
  - transports/azure-service-bus/addressing-logic
