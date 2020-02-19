@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using NServiceBus;
 
 static class Program
@@ -15,30 +16,20 @@ static class Program
 
         var builder = new ContainerBuilder();
 
-        IEndpointInstance endpoint = null;
-        builder.Register(x => endpoint)
-            .As<IEndpointInstance>()
-            .SingleInstance();
-
         builder.RegisterInstance(new MyService());
 
         var container = builder.Build();
 
-        endpointConfiguration.UseContainer<AutofacBuilder>(
-            customizations: customizations =>
-            {
-                customizations.ExistingLifetimeScope(container);
-            });
+        endpointConfiguration.UseContainer(new AutofacServiceProviderFactory(c =>
+            c.RegisterInstance(new MyService())));
 
         #endregion
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        endpoint = await Endpoint.Start(endpointConfiguration)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        var endpointInstance = container.Resolve<IEndpointInstance>();
         var myMessage = new MyMessage();
         await endpointInstance.SendLocal(myMessage)
             .ConfigureAwait(false);
