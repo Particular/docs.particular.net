@@ -1,7 +1,7 @@
 ---
 title: Multi-Instance Mode
 summary: SQL Server transport running in multi-instance mode
-reviewed: 2018-05-18
+reviewed: 2020-02-18
 component: SqlTransport
 related:
  - transports/sql/deployment-options
@@ -15,7 +15,7 @@ include: sql-prereq
 
 The databases created by this sample are `NsbSamplesSqlMultiInstanceReceiver` and `NsbSamplesSqlMultiInstanceSender`.
 
-Ensure [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) is running. It can be started from the command line by running `net start msdtc`.
+Ensure [Distributed Transaction Coordinator (DTC)](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85)) is running. It can be started from the command line by running `net start msdtc`.
 
 
 ## Running the project

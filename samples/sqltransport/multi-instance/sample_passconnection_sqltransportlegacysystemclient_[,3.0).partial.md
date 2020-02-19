@@ -1,1 +1,1 @@
-NOTE: In Versions 2 and below it is required to pass connection string for the currently configured endpoint either using `ConnectionString()` method or in the `app.config` file.
+NOTE: In versions 2 and below it is required to pass connection string for the currently configured endpoint either using the `ConnectionString()` method or in the `app.config` file.
