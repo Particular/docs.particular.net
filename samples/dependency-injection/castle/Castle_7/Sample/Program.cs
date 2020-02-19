@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Castle.MicroKernel.Registration;
-using Castle.Windsor;
+using Castle.Windsor.MsDependencyInjection;
 using NServiceBus;
 
 static class Program
@@ -14,20 +14,14 @@ static class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Castle");
 
-        var container = new WindsorContainer();
-        var registration = Component.For<MyService>()
-            .Instance(new MyService());
-        container.Register(registration);
+        var containerSettings = endpointConfiguration.UseContainer(new WindsorServiceProviderFactory());
 
-        endpointConfiguration.UseContainer<WindsorBuilder>(
-            customizations: customizations =>
-            {
-                customizations.ExistingContainer(container);
-            });
+        containerSettings.ConfigureContainer(c => c.Register(
+            Component.For<MyService>()
+                .Instance(new MyService())));
 
         #endregion
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
