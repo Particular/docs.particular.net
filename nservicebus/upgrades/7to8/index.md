@@ -9,11 +9,11 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-NOTE: This is a working document, as there is currently no plan or timeline for the release of NServiceBus version 8.0.
+NOTE: This is a working document; there is currently no timeline for the release of NServiceBus version 8.0.
 
 ## New gateway persistence API
 
-The NServiceBus Gateway has been moved to a separate `NServiceBus.Gateway` package and all Gateway public API in NServiceBus has been obsoleted with the following warning:
+The NServiceBus gateway has been moved to a separate `NServiceBus.Gateway` package and all gateway public APIs in NServiceBus are obsolete and will produce the following warning:
 
 > Gateway persistence has been moved to the NServiceBus.Gateway dedicated package. Will be treated as an error from version 8.0.0. Will be removed in version 9.0.0.
 
@@ -22,6 +22,6 @@ The NServiceBus Gateway has been moved to a separate `NServiceBus.Gateway` packa
 - Install the desired gateway persistence package. Supported packages are:
   - [NServiceBus.Gateway.Sql](https://www.nuget.org/packages/NServiceBus.Gateway.Sql)
   - [NServiceBus.Gateway.RavenDB](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB)
-- Configure the Gateway API by invoking the `endpointConfiguration.Gateway(…)` method, passing as an argument the selected storage configuration instance:
+- Configure the gateway API by invoking the `endpointConfiguration.Gateway(...)` method, passing as an argument the selected storage configuration instance:
   - [Documentation for NServiceBus.Gateway.Sql](/nservicebus/gateway/sql/)
   - [Documentation for NServiceBus.Gateway.RavenDB](/nservicebus/gateway/ravendb/)
