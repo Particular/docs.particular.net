@@ -1,7 +1,7 @@
 ---
 title: NServiceBus.Extensions.DependencyInjection Usage
 component: Extensions.DependencyInjection
-reviewed: 2019-09-10
+reviewed: 2020-02-20
 tags:
  - dependency injection
 related:
