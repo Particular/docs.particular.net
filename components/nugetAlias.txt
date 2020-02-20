@@ -94,3 +94,4 @@ WormholeGateway: NServiceBus.Wormhole.Gateway
 UniformSession: NServiceBus.UniformSession
 PlatformSample: Particular.PlatformSample
 Extensions.Hosting: NServiceBus.Extensions.Hosting
+Extensions.DependencyInjection: NServiceBus.Extensions.DependencyInjection
