@@ -47,4 +47,4 @@ snippet: settings-configurecontainer
 
 ## Property Injection
 
-The `NServiceBus.Extensions.DependencyInjection` package does not support property injection out of the box. To enable property injection, please refer to the configured container's documentation.
+The `NServiceBus.Extensions.DependencyInjection` package does not support property injection out of the box. To enable property injection, refer to the configured container's documentation.
