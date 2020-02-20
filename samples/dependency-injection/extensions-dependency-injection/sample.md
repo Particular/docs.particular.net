@@ -6,7 +6,7 @@ tags:
  - dependency injection
 related:
  - nservicebus/dependency-injection
- - nservicebus/dependency-injection/nservicebus-dependencyinjection
+ - nservicebus/dependency-injection/extensions-dependencyinjection
 ---
 
 ### Configuring an endpoint to use ServiceProvider
