@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autofac_5", "Autofac_5\Autofac_5.csproj", "{E782769D-E4B9-4447-BE51-3DF449CEE4F2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autofac_6", "Autofac_6\Autofac_6.csproj", "{9B0894E7-B49F-4FAD-9C1F-EB81A4087B56}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autofac_7", "Autofac_7\Autofac_7.csproj", "{FA86B912-B21B-4EE0-8638-45C92F63C48D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E782769D-E4B9-4447-BE51-3DF449CEE4F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E782769D-E4B9-4447-BE51-3DF449CEE4F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B0894E7-B49F-4FAD-9C1F-EB81A4087B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B0894E7-B49F-4FAD-9C1F-EB81A4087B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA86B912-B21B-4EE0-8638-45C92F63C48D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA86B912-B21B-4EE0-8638-45C92F63C48D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FA5AE01-477D-407D-8F95-A57BB9ACBD53}
+	EndGlobalSection
+EndGlobal
