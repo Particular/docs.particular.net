@@ -688,6 +688,7 @@
   Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.StructureMap
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.StructureMap
 
 - Key: ServiceFabricPersistence
@@ -715,6 +716,7 @@
   Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Unity
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.Unity
 
 - Key: Wcf
