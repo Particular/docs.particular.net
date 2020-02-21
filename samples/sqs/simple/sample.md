@@ -56,7 +56,7 @@ Start the endpoint. A message will be sent and received by a handler.
 
 ### View a message in transit
 
-At startup the endpoint will send two messages. On is a message that falls under the 256kb size limit. The other is above that limit and will leverage the [S3 Bucket For Large Messages](/transports/sqs/configuration-options.md#s3bucketforlargemessages) feature of the SQS transport.
+At startup the endpoint will send two messages. One is a message that falls under the 256kb size limit. The other is above that limit and will leverage the [S3 Bucket For Large Messages](/transports/sqs/configuration-options.md#s3bucketforlargemessages) feature of the SQS transport.
 
 snippet: sends
 
