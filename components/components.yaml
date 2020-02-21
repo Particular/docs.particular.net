@@ -112,6 +112,7 @@
   Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.CastleWindsor
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.CastleWindsor
 
 - Key: CloudServicesHost
