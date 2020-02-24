@@ -1,6 +1,7 @@
 ﻿using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
+using System.Threading.Tasks;
 
 namespace Extensions.DependencyInjection_1
 {
@@ -21,6 +22,17 @@ namespace Extensions.DependencyInjection_1
 
             endpointConfiguration.UseContainer(new AutofacServiceProviderFactory());
 
+            #endregion
+        }
+
+        async Task ExternallyManagedMode(EndpointConfiguration endpointConfiguration)
+        {
+            #region externally-managed-mode
+            var serviceCollection = new ServiceCollection();
+
+            var startableEndpoint = EndpointWithExternallyManagedServiceProvider.Create(endpointConfiguration, serviceCollection);
+
+            var endpoint = await startableEndpoint.Start(serviceCollection.BuildServiceProvider());
             #endregion
         }
     }
