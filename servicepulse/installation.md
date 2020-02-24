@@ -1,8 +1,8 @@
 ---
 title: Installing ServicePulse
-summary: Describes how ServicePulse is installed - independently or via the PlatformInstaller - and its basic requirements
+summary: Describes how ServicePulse is installed - and its basic requirements
 component: ServicePulse
-reviewed: 2018-12-18
+reviewed: 2020-02-24
 tags:
 - Installation
 related:
@@ -15,7 +15,6 @@ related:
  * .NET Framework 4.5 or later
  * A currently-supported version of Internet Explorer, Chrome, Firefox, or Safari
  * A running instance of [ServiceControl](/servicecontrol)
-
 
 ## Installation
 
@@ -45,16 +44,19 @@ Default : `http://localhost:33633/`
 
 Example
 ```
-.\Particular.ServicePulse.exe /Quiet /Log C:\temp\servicepulse-installer.log INST_PORT_PULSE=12345 INST_URI=http://localhost:33333/api/
+.\Particular.ServicePulse.exe /Quiet /Log C:\temp\servicepulse-installer.log INST_PORT_PULSE=12345 INST_URI=http://localhost:33333/api/ INST_SC_MONITORING_URI=http://localhost:33633/
 ```
 
 ## Configuring ServicePulse
 
-ServicePulse connects to and relies on ServiceControl as its data source.
-For details on ServiceControl and ServicePulse configuration options, see:
+ServicePulse connects to and relies on ServiceControl and optionally ServiceControl Monitoring as its data source.
+For details on ServiceControl, ServiceControl Monitoring and ServicePulse configuration options, see:
 
  * [Configuring ServiceControl](/servicecontrol/creating-config-file.md)
  * [ServiceControl Guidance](/servicecontrol)
+ * [Configuring ServiceControl Monitoring](/servicecontrol/monitoring-instances/installation/creating-config-file.md)
+ * [ServiceControl Monitoring Guidance](/servicecontrol/monitoring-instances)
+ * [Connection Configuration in ServicePulse](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui)
 
 NOTE: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. Set the message storage timespan by [setting automatic expiration for ServiceControl data](/servicecontrol/how-purge-expired-data.md).
 
