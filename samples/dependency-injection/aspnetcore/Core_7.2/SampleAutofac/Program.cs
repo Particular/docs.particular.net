@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
