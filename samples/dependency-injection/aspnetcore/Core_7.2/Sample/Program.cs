@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
@@ -17,10 +18,12 @@ static class Program
     }
 
     static IHostBuilder CreateHostBuilder(string[] args) =>
+    #region ContainerConfiguration
         Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
+            .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>())
+            .ConfigureServices(services =>
             {
-                webBuilder.UseStartup<Startup>();
+                services.AddSingleton<MyService>();
             })
             .UseNServiceBus(c =>
             {
@@ -28,4 +31,5 @@ static class Program
                 endpointConfiguration.UseTransport<LearningTransport>();
                 return endpointConfiguration;
             });
+    #endregion
 }

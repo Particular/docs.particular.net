@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 
 public class Startup
 {
+    #region ContainerConfigurationAutofac
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddLogging(loggingBuilder => loggingBuilder.AddConsole());
@@ -19,6 +20,7 @@ public class Startup
     {
         containerBuilder.RegisterType<MyService>().SingleInstance();
     }
+    #endregion
 
     public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment env)
     {
