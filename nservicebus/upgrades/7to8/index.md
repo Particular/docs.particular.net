@@ -22,6 +22,10 @@ The following adapter packages will no longer be provided:
 * [StructureMap](/nservicebus/dependency-injection/structuremap.md)
 * [Unity](/nservicebus/dependency-injection/unity.md)
 
+### Property injection
+
+NServiceBus Version 7 enabled [automatic property injection](/nservicebus/dependency-injection/property-injection.md), this is not possible via `Microsoft.Extensions.DependencyInjection` and must be explicitly enabled using the native API of containers that supports it.
+
 ## New gateway persistence API
 
 The NServiceBus gateway has been moved to a separate `NServiceBus.Gateway` package and all gateway public APIs in NServiceBus are obsolete and will produce the following warning:
