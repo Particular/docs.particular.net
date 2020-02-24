@@ -52,6 +52,6 @@ The `NServiceBus.Extensions.DependencyInjection` package does not support proper
 
 ## Externally managed mode
 
-The package allows the container to be used in [externally managed mode](/nservicebus/dependency-injection/#externally-managed-mode) via the `X` extension point:
+The package allows the container to be used in [externally managed mode](/nservicebus/dependency-injection/#externally-managed-mode) via the `EndpointWithExternallyManagedServiceProvider` extension point:
 
 snippet: externally-managed-mode
