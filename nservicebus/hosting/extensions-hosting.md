@@ -5,6 +5,8 @@ component: Extensions.Hosting
 reviewed: 2019-11-08
 tags:
  - Hosting
+ related:
+ - samples/dependency-injection/aspnetcore
 ---
 
 The `NServiceBus.Extensions.Hosting` provides easy integration with the [.NET Core Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host).
