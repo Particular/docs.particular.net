@@ -10,7 +10,7 @@
             #region Hosting-SendOnly
 
             var busConfiguration = new BusConfiguration();
-            // Apply other necessary endpoint configuration
+            // Apply other necessary endpoint configuration, e.g. transport
             var sendOnlyBus = Bus.CreateSendOnly(busConfiguration);
 
             #endregion
@@ -20,7 +20,7 @@
         {
             #region Hosting-Startup
             var busConfiguration = new BusConfiguration();
-            // Apply configuration
+            // Apply other necessary endpoint configuration, e.g. transport
             var startableBus = Bus.Create(busConfiguration);
             var bus = startableBus.Start();
             #endregion

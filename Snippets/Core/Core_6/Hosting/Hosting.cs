@@ -12,7 +12,7 @@
             #region Hosting-SendOnly
 
             var endpointConfiguration = new EndpointConfiguration("EndpointName");
-            // Apply other necessary endpoint configuration
+            // Apply other necessary endpoint configuration, e.g. transport
             endpointConfiguration.SendOnly();
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
@@ -24,7 +24,7 @@
         {
             #region Hosting-Startup
             var endpointConfiguration = new EndpointConfiguration("EndpointName");
-            // Apply configuration
+            // Apply other necessary endpoint configuration, e.g. transport
             var startableEndpoint = await Endpoint.Create(endpointConfiguration)
                 .ConfigureAwait(false);
             var endpointInstance = await startableEndpoint.Start()
@@ -64,7 +64,7 @@
 
             var containerBuilder = new ContainerBuilder();
             var endpointConfiguration = new EndpointConfiguration("EndpointName");
-            // Apply other necessary endpoint configuration
+            // Apply other necessary endpoint configuration, e.g. transport
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
             containerBuilder.Register(_ => endpointInstance).InstancePerDependency();
