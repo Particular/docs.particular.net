@@ -1,7 +1,7 @@
 ---
-title: ASP.NET Core Dependency Injection Integration
-component: Core
-reviewed: 2019-11-12
+title: ASP.NET Core 3 Dependency Injection Integration
+component: Extensions.Hosting
+reviewed: 2020-02-24
 tags:
  - dependency injection
 related:
@@ -10,8 +10,7 @@ related:
 
 include: webhost-warning
 
-
-[ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) has an integrated [dependency injection (DI) feature](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection). When hosting NServiceBus endpoints inside an ASP.NET Core app, it may be necessary to share components registered for DI between ASP.NET components and NServiceBus message handlers.
+[ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) has an integrated [dependency injection (DI) feature](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection). When hosting NServiceBus endpoints inside an ASP.NET Core app, it may be necessary to share components registered for DI between ASP.NET components and NServiceBus message handlers. Use the `NServiceBus.Extensions.Hosting` package to host an endpoint as part of a ASP.NET Core application.
 
 ### Configuring an endpoint to use built-in DI
 
@@ -35,7 +34,7 @@ First, ASP.NET Core is instructed to use a custom container:
 
 snippet: ServiceProviderFactoryAutofac
 
-Then, `Startup` configures both services and the container:
+Then, `Startup` can use Autofac natively to configures services:
 
 snippet: ContainerConfigurationAutofac
 
