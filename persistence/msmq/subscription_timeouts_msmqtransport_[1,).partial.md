@@ -8,6 +8,6 @@ snippet: DisablingTimeoutManagerForMsmqPersistence
 
 NOTE: If timeouts are disabled, features such as delayed retries and saga timeouts cannot be used.
 
-Another approach is to use a different persistence for features other than event subscriptions:
+Another approach is to use a different persistence storage types for features other than subscriptions like shown below:
 
 snippet: MsmqPersistenceWithOtherPersisters
