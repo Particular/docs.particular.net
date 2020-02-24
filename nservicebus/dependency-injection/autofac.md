@@ -22,3 +22,6 @@ partial: usage
 | [InstancePerCall](/nservicebus/dependency-injection/) | [Instance Per Dependency](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-per-dependency)         |
 | [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [Instance Per Lifetime Scope](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-per-lifetime-scope) |
 | [SingleInstance](/nservicebus/dependency-injection/)                                  | [Single Instance](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#single-instance)                          |
+
+
+include: property-injection
