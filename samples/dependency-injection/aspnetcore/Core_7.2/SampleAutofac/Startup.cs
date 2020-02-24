@@ -32,11 +32,6 @@ public class Startup
         applicationBuilder.Run(
             handler: context =>
             {
-                if (context.Request.Path != "/")
-                {
-                    // only handle requests at the root
-                    return Task.CompletedTask;
-                }
                 var applicationServices = applicationBuilder.ApplicationServices;
                 var endpointInstance = applicationServices.GetService<IMessageSession>();
                 var myMessage = new MyMessage();
