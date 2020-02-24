@@ -28,12 +28,24 @@ namespace Extensions.DependencyInjection_1
         async Task ExternallyManagedMode(EndpointConfiguration endpointConfiguration)
         {
             #region externally-managed-mode
+
             var serviceCollection = new ServiceCollection();
+
+            serviceCollection.AddTransient<MyService>();
 
             var startableEndpoint = EndpointWithExternallyManagedServiceProvider.Create(endpointConfiguration, serviceCollection);
 
-            var endpoint = await startableEndpoint.Start(serviceCollection.BuildServiceProvider());
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+
+            var endpoint = await startableEndpoint.Start(serviceProvider);
+
+            serviceProvider.GetService<MyService>();
+
             #endregion
         }
+    }
+
+    class MyService
+    {
     }
 }
