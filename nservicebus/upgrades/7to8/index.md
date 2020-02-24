@@ -17,10 +17,10 @@ Support for external dependency injection containers is no longer provided by NS
 
 The following adapter packages will no longer be provided:
 
-* [Autofac](/nservicebus/dependency-injection/autofac)
-* [Castle](/nservicebus/dependency-injection/castle)
-* [StructureMap](/nservicebus/dependency-injection/structuremap)
-* [Unity](/nservicebus/dependency-injection/unity)
+* [Autofac](/nservicebus/dependency-injection/autofac.md)
+* [Castle](/nservicebus/dependency-injection/castlewindsor.md)
+* [StructureMap](/nservicebus/dependency-injection/structuremap.md)
+* [Unity](/nservicebus/dependency-injection/unity.md)
 
 ## New gateway persistence API
 
