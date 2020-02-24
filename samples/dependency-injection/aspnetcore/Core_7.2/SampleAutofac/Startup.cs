@@ -1,41 +1,33 @@
-﻿using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Extensions.DependencyInjection;
 using System.Threading.Tasks;
+using Autofac;
+using Microsoft.Extensions.Hosting;
 
 public class Startup
 {
-    #region ContainerConfigurationAutofac
-
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddLogging(loggingBuilder => loggingBuilder.AddConsole());
-
-        var endpointConfiguration = new EndpointConfiguration("Sample.Core");
-        endpointConfiguration.UseTransport<LearningTransport>();
-
-        services.AddNServiceBus(endpointConfiguration);
     }
 
-    public void ConfigureContainer(ContainerBuilder builder)
+    public void ConfigureContainer(ContainerBuilder containerBuilder)
     {
-        builder.RegisterType<MyService>().AsSelf().SingleInstance();
+        containerBuilder.RegisterType<MyService>().SingleInstance();
     }
 
-    #endregion
-
-    public void Configure(IApplicationBuilder applicationBuilder, IApplicationLifetime applicationLifetime, IHostingEnvironment environment)
+    public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment env)
     {
-        if (environment.IsDevelopment())
+        if (env.IsDevelopment())
         {
             applicationBuilder.UseDeveloperExceptionPage();
         }
+
+        #region RequestHandling
 
         applicationBuilder.Run(
             handler: context =>
@@ -53,5 +45,7 @@ public class Startup
                     endpointInstance.SendLocal(myMessage),
                     context.Response.WriteAsync("Message sent"));
             });
+
+        #endregion
     }
 }
