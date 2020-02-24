@@ -38,7 +38,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 5.0.x     | 2019-11-19     | -                 | -                                 |
+| 6.0.x     | 2020-02-07     | -                 | -                                 |
+| 5.0.x     | 2019-11-19     | 2021-02-07        | Superseded by 6.0.x               |
 | 4.3.x     | 2019-07-26     | 2020-11-19        | Superseded by 5.0.x               |
 | ~~4.1.x~~ | ~~2018-06-21~~ | ~~2019-10-26~~    | ~~Superseded by 4.3.x~~           |
 | 3.1.x     | 2017-07-14     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
@@ -63,7 +64,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 3.1.x     | 2019-10-16     | 2020-05-29        | Bounded by NServiceBus 6.5.x      |
+| 6.0.x     | 2020-02-07     | -                 | -                                 |
 
 ### Persistence packages
 
@@ -79,7 +80,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 8.2.x     | 2019-07-26     | -                 | -                                 |
+| 8.3.x     | 2020-02-12     | -                 | -                                 |
+| 8.2.x     | 2019-07-26     | 2020-05-12        | Superseded by 8.3.x               |
 | ~~8.1.x~~ | ~~2018-07-12~~ | ~~2019-10-26~~    | ~~Superseded by 8.2.x~~           |
 | 7.2.x     | 2017-04-19     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | 6.2.x     | 2015-05-27     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
@@ -103,7 +105,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 4.6.x     | 2019-07-26     | -                 | -                                 |
+| 5.0.x     | 2020-02-07     | -                 | -                                 |
+| 4.6.x     | 2019-07-26     | 2021-02-07        | Superseded by 5.0.x               |
 | ~~4.5.x~~ | ~~2019-03-12~~ | ~~2019-10-26~~    | ~~Superseded by 4.6.x~~           |
 | 3.2.x     | 2018-07-09     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 
@@ -111,7 +114,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 6.1.x     | 2020-02-06     | -                 | -                                 |
+| 6.2.x     | 2020-02-12     | -                 | -                                 |
+| 6.1.x     | 2020-02-06     | 2020-05-12        | Superseded by 6.2.x               |
 | 6.0.x     | 2019-06-10     | 2020-05-06        | Superseded by 6.1.x               |
 | 5.0.x     | 2018-05-29     | 2020-06-10        | Superseded by 6.0.x               |
 | 4.2.x     | 2017-06-28     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
@@ -414,9 +418,11 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| 1.10.x    | 2020-01-03     | -                 | -                                 |
+| 1.12.x    | 2020-02-12     | -                 | -                                 |
+| 1.11.x    | 2020-02-11     | 2020-05-12        | Superseded by 1.12.x              |
+| 1.10.x    | 2020-01-03     | 2020-05-11        | Superseded by 1.11.x              |
 | 1.9.x     | 2019-11-22     | 2020-04-03        | Superseded by 1.10.x              |
-| 1.8.x     | 2019-10-31     | 2020-02-22        | Superseded by 1.9.x               |
+| ~~1.8.x~~ | ~~2019-10-31~~ | ~~2020-02-22~~    | ~~Superseded by 1.9.x~~           |
 | ~~1.7.x~~ | ~~2019-10-22~~ | ~~2020-01-31~~    | ~~Superseded by 1.8.x~~           |
 | ~~1.6.x~~ | ~~2019-09-06~~ | ~~2020-01-22~~    | ~~Superseded by 1.7.x~~           |
 | ~~1.5.x~~ | ~~2019-08-23~~ | ~~2019-12-06~~    | ~~Superseded by 1.6.x~~           |
