@@ -40,7 +40,7 @@ By default up to five immediate retries are performed if the message processing 
 
 Note: The configured value describes the minimum number of times a message will be retried if its processing consistently fails. Especially in environments with competing consumers on the same queue, there is an increased chance of retrying a failing message more times across the endpoints.
 
-Note: Number of immediate retries is a best effort guarantee. Immediate retries can be performed more than configured amount of time (even if configured to be off).
+Note: Number of immediate retries is best effort. Immediate retries can be performed more than configured amount of time (even if configured to be off).
 
 
 ### Transport transaction requirements
@@ -105,4 +105,3 @@ partial: exceptionincluded
 ## Recoverability memory consumption
 
 MSMQ and SQL Server transport need to cache exceptions in memory for retries. Therefore, exceptions with a large memory footprint can cause high memory usage of the NServiceBus process. NServiceBus can cache up to 1,000 exceptions, capping the potential memory consumption to 1,000 x `<exception size>`. Refer to [this guide](/nservicebus/recoverability/lru-memory-consumption.md) to resolve problems due to execessive memory consumption.
-
