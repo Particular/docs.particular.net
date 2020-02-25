@@ -659,6 +659,10 @@
           Title: Avoiding Transactions
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational scripting
+    - Title: Routing
+      Articles:
+      - Url: nservicebus/azure/data-distribution
+        Title: Data distribution      
   - Url: transports/azure-service-bus/legacy
     Title: Azure Service Bus (Legacy)
     Articles:
@@ -738,8 +742,10 @@
       Title: Performance Tuning
     - Url: transports/azure-storage-queues/multi-storageaccount-support
       Title: Multiple storage accounts
-    - Url: nservicebus/azure/data-distribution
-      Title: Data distribution
+    - Title: Routing
+      Articles:
+      - Url: nservicebus/azure/data-distribution
+        Title: Data distribution
   - Url: transports/sql
     Title: SQL Server
     Articles:
