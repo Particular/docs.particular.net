@@ -12,6 +12,7 @@ namespace WebApplication.Core
         }
 
         public static IHostBuilder BuildWebHost(string[] args) =>
+        #region ApplicationStart
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(builder => builder.UseStartup<Startup>())
                 .UseNServiceBus(context =>
@@ -22,5 +23,6 @@ namespace WebApplication.Core
                     endpointConfiguration.UseTransport<LearningTransport>();
                     return endpointConfiguration;
                 });
+        #endregion
     }
 }
