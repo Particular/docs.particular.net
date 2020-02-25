@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
 
 namespace WebApplication.Core
 {
@@ -7,12 +8,19 @@ namespace WebApplication.Core
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            BuildWebHost(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+        public static IHostBuilder BuildWebHost(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(builder => builder.UseStartup<Startup>())
+                .UseNServiceBus(context =>
+                {
+                    var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
+                    endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+                    endpointConfiguration.EnableCallbacks();
+                    endpointConfiguration.UseTransport<LearningTransport>();
+                    return endpointConfiguration;
+                });
     }
 }
