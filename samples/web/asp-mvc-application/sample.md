@@ -36,9 +36,9 @@ This sample has three projects:
  * `Server`: Destination of messages sent from the MVC project. Hosted in a console application
 
 
-## Initializing the bus
+## Initializing NServiceBus
 
-The sample controller holds a reference to the instance used later to send messages and receive a response (`IBus` implementation for NServiceBus version 5 and below, `IEndpointInstance` for version 6 and above). In `AsyncPagesMvc`, open `Global.asax.cs` and see the code for the `ApplicationStart` method:
+In `AsyncPagesMvc`, open `Program.cs` and see the code for the `UseNServiceBus` method:
 
 snippet: ApplicationStart
 

@@ -12,6 +12,7 @@ namespace AsyncPagesMVC.Core
         }
 
         public static IHostBuilder BuildWebHost(string[] args) =>
+        #region ApplicationStart
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(configure => configure.UseStartup<Startup>())
                 .UseNServiceBus(context =>
@@ -25,5 +26,6 @@ namespace AsyncPagesMVC.Core
 
                     return endpointConfiguration;
                 });
+        #endregion
     }
 }
