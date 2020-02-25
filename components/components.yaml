@@ -79,8 +79,9 @@
   DocoUrl: nservicebus/dependency-injection/autofac
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.Autofac
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.Autofac
 
 - Key: Callbacks
@@ -109,8 +110,9 @@
   DocoUrl: nservicebus/dependency-injection/castlewindsor
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.CastleWindsor
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.CastleWindsor
 
 - Key: CloudServicesHost
@@ -684,8 +686,9 @@
   DocoUrl: nservicebus/dependency-injection/structuremap
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.StructureMap
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.StructureMap
 
 - Key: ServiceFabricPersistence
@@ -711,8 +714,9 @@
   DocoUrl: nservicebus/dependency-injection/unity
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.Unity
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.Unity
 
 - Key: Wcf

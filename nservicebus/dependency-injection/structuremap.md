@@ -1,8 +1,8 @@
 ---
 title: StructureMap
-summary: Details on how to Configure NServiceBus to use StructureMap for dependency injection. Includes usage examples as well as lifecycle mappings.
+summary: Details on how to Configure NServiceBus to use StructureMap for dependency injection.
 component: StructureMap
-reviewed: 2018-12-05
+reviewed: 2020-02-20
 tags:
  - Dependency Injection
 redirects:
@@ -11,20 +11,7 @@ related:
  - samples/dependency-injection/structuremap
 ---
 
-
-NServiceBus can be configured to use [StructureMap](https://structuremap.github.io/) for dependency injection.
-
-
-### Default usage
-
-snippet: StructureMap
-
-
-### Using an existing container
-
-snippet: StructureMap_Existing
-
-
+partial: usage
 
 ### DependencyLifecycle Mapping
 

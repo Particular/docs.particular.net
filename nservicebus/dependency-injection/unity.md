@@ -1,8 +1,8 @@
 ---
 title: Unity
-summary: Details on how to Configure NServiceBus to use Unity for dependency injection. Includes usage examples as well as lifecycle mappings.
+summary: Details on how to Configure NServiceBus to use Unity for dependency injection.
 component: Unity
-reviewed: 2018-12-05
+reviewed: 2020-02-20
 tags:
  - Dependency Injection
 related:
@@ -11,19 +11,7 @@ redirects:
  - nservicebus/containers/unity
 ---
 
-
-NServiceBus can be configured to use [Unity](https://github.com/unitycontainer/unity) for dependency injection.
-
-
-### Default usage
-
-snippet: Unity
-
-
-### Using an existing container
-
-snippet: Unity_Existing
-
+partial: usage
 
 ### DependencyLifecycle mapping
 
