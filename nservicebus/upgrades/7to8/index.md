@@ -24,7 +24,7 @@ The following adapter packages will no longer be provided:
 
 ### Property injection
 
-NServiceBus Version 7 enabled [automatic property injection](/nservicebus/dependency-injection/extensions-dependencyinjection.md#property-injection), this is not possible via `Microsoft.Extensions.DependencyInjection` and must be explicitly enabled using the native API of containers that supports it.
+NServiceBus container adapters supported [automatic property injection](/nservicebus/dependency-injection/extensions-dependencyinjection.md#property-injection), this is not possible via `Microsoft.Extensions.DependencyInjection` and must be explicitly enabled using the native API of containers that supports it.
 
 ## New gateway persistence API
 
