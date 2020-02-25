@@ -110,7 +110,7 @@
   DocoUrl: nservicebus/dependency-injection/castlewindsor
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.CastleWindsor
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
     - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.CastleWindsor
@@ -686,7 +686,7 @@
   DocoUrl: nservicebus/dependency-injection/structuremap
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.StructureMap
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
     - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.StructureMap
@@ -714,7 +714,7 @@
   DocoUrl: nservicebus/dependency-injection/unity
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.Unity
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
     - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.Unity
