@@ -494,8 +494,6 @@
     Articles:
     - Url: nservicebus/dependency-injection/child-lifetime
       Title: Child Lifetimes
-    - Url: nservicebus/dependency-injection/property-injection
-      Title: Property injection
     - Url: nservicebus/dependency-injection/autofac
       Title: Autofac
     - Url: nservicebus/dependency-injection/castlewindsor

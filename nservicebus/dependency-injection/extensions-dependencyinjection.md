@@ -7,6 +7,9 @@ tags:
  - Dependency Injection
 related:
  - samples/dependency-injection/extensions-dependency-injection
+redirects:	
+ - nservicebus/dependency-injection/property-injection
+ - nservicebus/property-injection-in-handlers
 ---
 
 The `NServiceBus.Extensions.DependencyInjection` package provides integration with the `Microsoft.Extensions.DependencyInjection` dependency injection abstraction.
