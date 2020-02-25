@@ -67,6 +67,7 @@ class Usage
 
     void AzurePersistenceTimeoutsCustomization(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable 0618
         #region AzurePersistenceTimeoutsCustomization
 
         var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>();
@@ -78,6 +79,7 @@ class Usage
         persistence.PartitionKeyScope("yyyy-MM-dd-HH");
 
         #endregion
+#pragma warning restore 0618
     }
 }
 
