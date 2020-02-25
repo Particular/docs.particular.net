@@ -5,15 +5,18 @@ class Usage
 {
     Usage(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         #region Autofac
 
         endpointConfiguration.UseContainer<AutofacBuilder>();
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     void Existing(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         #region Autofac_Existing
 
         var builder = new ContainerBuilder();
@@ -26,6 +29,7 @@ class Usage
             });
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     class MyService
