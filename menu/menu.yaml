@@ -494,6 +494,8 @@
     Articles:
     - Url: nservicebus/dependency-injection/child-lifetime
       Title: Child Lifetimes
+    - Url: nservicebus/dependency-injection/extensions-dependencyinjection
+      Title: Microsoft.Extensions.DependencyInjection
     - Url: nservicebus/dependency-injection/autofac
       Title: Autofac
     - Url: nservicebus/dependency-injection/castlewindsor
