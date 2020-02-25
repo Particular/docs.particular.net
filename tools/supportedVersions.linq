@@ -254,7 +254,7 @@ public static class TextWriterExtensions
 			var close = isSupported ? "" : "~~";
 
 			output.Write($"| ");
-			output.Write($"[{open}{version.First.Identity.Version.ToMinorString()}{close}](https://www.nuget.org/packages/{package.Id}/{version.First.Identity.Version})".PadRight(9));
+			output.Write($"[{open}{version.First.Identity.Version.ToMinorString()}{close}](https://www.nuget.org/packages/{package.Id}/{version.Last.Identity.Version})".PadRight(9));
 			output.Write($" | ");
 			output.Write($"{open}{version.First.Published.Value.UtcDateTime.Date.ToString("yyyy-MM-dd")}{close}".PadRight(14));
 			output.Write($" | ");
