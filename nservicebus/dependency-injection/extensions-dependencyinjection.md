@@ -48,3 +48,10 @@ snippet: settings-configurecontainer
 ## Property Injection
 
 The `NServiceBus.Extensions.DependencyInjection` package does not support property injection out of the box. To enable property injection, refer to the configured container's documentation.
+
+
+## Externally managed mode
+
+The package allows the container to be used in [externally managed mode](/nservicebus/dependency-injection/#externally-managed-mode) for full control of the dependency injection container via the `EndpointWithExternallyManagedServiceProvider` extension point:
+
+snippet: externally-managed-mode
