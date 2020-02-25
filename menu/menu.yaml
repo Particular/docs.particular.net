@@ -652,6 +652,11 @@
       Title: Backwards compatibility
     - Url: transports/azure-service-bus/transaction-support
       Title: Transaction support
+      Articles:
+        - Url: nservicebus/azure/understanding-transactionality-in-azure
+          Title: Transactions in Azure
+        - Url: nservicebus/azure/ways-to-live-without-transactions
+          Title: Avoiding Transactions
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational scripting
   - Url: transports/azure-service-bus/legacy
@@ -718,10 +723,11 @@
     Articles:
     - Url: transports/azure-storage-queues/transaction-support
       Title: Transaction Support
-    - Url: nservicebus/azure/understanding-transactionality-in-azure
-      Title: Transactions in Azure
-    - Url: nservicebus/azure/ways-to-live-without-transactions
-      Title: Avoiding Transactions
+      Articles:
+        - Url: nservicebus/azure/understanding-transactionality-in-azure
+          Title: Transactions in Azure
+        - Url: nservicebus/azure/ways-to-live-without-transactions
+          Title: Avoiding Transactions
     - Url: transports/azure-storage-queues/configuration
       Title: Configuration
     - Url: transports/azure-storage-queues/delayed-delivery
