@@ -1,17 +1,15 @@
-﻿class Usage
+﻿using Autofac.Extensions.DependencyInjection;
+using NServiceBus;
+
+class Usage
 {
-    Usage()
+    Usage(EndpointConfiguration endpointConfiguration)
     {
         #region Autofac
-        //not used
+
+        endpointConfiguration.UseContainer(new AutofacServiceProviderFactory());
+
         #endregion
 
-    }
-
-    void Existing()
-    {
-        #region Autofac_Existing
-        //not used
-        #endregion
     }
 }
