@@ -6,11 +6,11 @@ using NServiceBus;
 public class SendAsyncController :
     Controller
 {
-    IEndpointInstance endpoint;
+    IMessageSession messageSession;
 
-    public SendAsyncController(IEndpointInstance endpoint)
+    public SendAsyncController(IMessageSession messageSession)
     {
-        this.endpoint = endpoint;
+        this.messageSession = messageSession;
     }
 
     [HttpGet]
@@ -36,8 +36,7 @@ public class SendAsyncController :
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Mvc.Server");
 
-        var status = await endpoint.Request<ErrorCodes>(command, sendOptions)
-            .ConfigureAwait(false);
+        var status = await messageSession.Request<ErrorCodes>(command, sendOptions);
 
         return IndexCompleted(Enum.GetName(typeof(ErrorCodes), status));
 
