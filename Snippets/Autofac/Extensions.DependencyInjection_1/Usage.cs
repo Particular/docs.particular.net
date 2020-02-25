@@ -10,6 +10,5 @@ class Usage
         endpointConfiguration.UseContainer(new AutofacServiceProviderFactory());
 
         #endregion
-
     }
 }
