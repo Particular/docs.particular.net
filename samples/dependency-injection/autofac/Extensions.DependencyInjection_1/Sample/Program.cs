@@ -14,14 +14,10 @@ static class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Autofac");
 
-        var builder = new ContainerBuilder();
-
-        builder.RegisterInstance(new MyService());
-
-        var container = builder.Build();
-
-        endpointConfiguration.UseContainer(new AutofacServiceProviderFactory(c =>
-            c.RegisterInstance(new MyService())));
+        endpointConfiguration.UseContainer(new AutofacServiceProviderFactory(containerBuilder =>
+        {
+            containerBuilder.RegisterInstance(new MyService());
+        }));
 
         #endregion
 
