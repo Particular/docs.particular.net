@@ -37,3 +37,23 @@ snippet: generic-host-worker-registration
 The worker takes a dependency to `IServiceProvider` to be able to retrieve the message session. This is required because all hosted services are resolved from the container first and then started in the order of having been added. Therefore it is not possible to inject `IMessageSession` directly because the hosted service that starts the NServiceBus endpoint has not been started yet when the worker service constructor is being resolved from the container.
 
 snippet: generic-host-worker
+
+### Running the sample
+
+Hit F5 to start the sample as a console application.
+
+### Running the sample as a Windows Service
+
+- [Install PowerShell Core on Windows](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7)
+- Start Powershell core with elevated permissions
+- Run `dotnet publish` in the directory of the sample, let's say `C:\samples\generic-host`
+- Run `New-Service -Name WorkerTest -BinaryPathName "C:\samples\generic-host\bin\Debug\netcoreapp3.1\win-x64\publish\GenericHost.exe" | Start-Service`
+- Run `Start-Service WorkerTest`
+- Go to the Event Viewer under `Windows Logs\Applications` and observe event log entries from source `GenericHost` with the following content
+```
+Category: MyMessageHandler
+EventId: 0
+
+Received message #{Number}
+```
+- Once done, run `Stop-Service WorkerTest` and `Remove-Service WorkerTest`
