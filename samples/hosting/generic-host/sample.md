@@ -10,9 +10,38 @@ related:
 - nservicebus/hosting/assembly-scanning
 ---
 
-## Code walk-through
-
 The sample uses the Generic Host and the [`Microsoft.Extensions.Hosting.WindowsServices`](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices/) nuget package to host NServiceBus as a console application or as a Windows Service using the Generic Host underneath.
+
+downloadbutton
+
+## Prerequisites
+
+This sample requires that the following tools are installed:
+
+- [.NET Core 3.1 SDK](https://www.microsoft.com/net/download/core)
+- [PowerShell Core for Windows](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows) in case the sample should be installed as a Windows Service
+
+## Running the sample as a console
+
+Hit F5 to start the sample as a console application.
+
+## Running the sample as a Windows Service
+
+- [Install PowerShell Core on Windows](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows)
+- Start Powershell core with elevated permissions
+- Run `dotnet publish` in the directory of the sample, let's say `C:\samples\generic-host`
+- Run `New-Service -Name WorkerTest -BinaryPathName "C:\samples\generic-host\bin\Debug\netcoreapp3.1\win-x64\publish\GenericHost.exe" | Start-Service`
+- Run `Start-Service WorkerTest`
+- Go to the Event Viewer under `Windows Logs\Applications` and observe event log entries from source `GenericHost` with the following content
+```
+Category: MyMessageHandler
+EventId: 0
+
+Received message #{Number}
+```
+- Once done, run `Stop-Service WorkerTest` and `Remove-Service WorkerTest`
+
+## Code walk-through
 
 snippet: generic-host-lifetime
 
@@ -37,23 +66,3 @@ snippet: generic-host-worker-registration
 The worker takes a dependency to `IServiceProvider` to be able to retrieve the message session. This is required because all hosted services are resolved from the container first and then started in the order of having been added. Therefore it is not possible to inject `IMessageSession` directly because the hosted service that starts the NServiceBus endpoint has not been started yet when the worker service constructor is being resolved from the container.
 
 snippet: generic-host-worker
-
-### Running the sample
-
-Hit F5 to start the sample as a console application.
-
-### Running the sample as a Windows Service
-
-- [Install PowerShell Core on Windows](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-7)
-- Start Powershell core with elevated permissions
-- Run `dotnet publish` in the directory of the sample, let's say `C:\samples\generic-host`
-- Run `New-Service -Name WorkerTest -BinaryPathName "C:\samples\generic-host\bin\Debug\netcoreapp3.1\win-x64\publish\GenericHost.exe" | Start-Service`
-- Run `Start-Service WorkerTest`
-- Go to the Event Viewer under `Windows Logs\Applications` and observe event log entries from source `GenericHost` with the following content
-```
-Category: MyMessageHandler
-EventId: 0
-
-Received message #{Number}
-```
-- Once done, run `Stop-Service WorkerTest` and `Remove-Service WorkerTest`
