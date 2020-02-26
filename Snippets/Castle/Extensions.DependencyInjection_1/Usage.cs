@@ -10,8 +10,7 @@ class Usage
 
         var containerSettings = endpointConfiguration.UseContainer(new WindsorServiceProviderFactory());
 
-        containerSettings.ConfigureContainer(c => c.Register(Component.For<MyService>()
-                .Instance(new MyService())));
+        containerSettings.ConfigureContainer(c => c.Register(Component.For<MyService>().Instance(new MyService())));
 
         #endregion
     }
