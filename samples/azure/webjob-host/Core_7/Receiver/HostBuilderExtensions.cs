@@ -32,10 +32,8 @@ public static class HostBuilderExtensions
         {
             var endpointConfiguration = new EndpointConfiguration("receiver");
             endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.AuditProcessedMessagesTo("audit");
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.EnableInstallers();
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
             endpointConfiguration.EnableInstallers();
 
@@ -73,7 +71,6 @@ public static class HostBuilderExtensions
         }
 
         Environment.FailFast(fatalMessage, context.Exception);
-
     }
     #endregion
 
