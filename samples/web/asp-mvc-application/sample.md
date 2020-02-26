@@ -31,14 +31,14 @@ Changing the number in the text box from even to odd changes the result.
 
 This sample has three projects:
 
- * `AsyncPagesMvc`: ASP.NET MVC application that sends messages (found in the `Messages` project)
+ * `AsyncPagesMvc`: ASP.NET Core MVC application that sends messages (found in the `Messages` project)
  * `Shared`: Common code including declaration of messages
  * `Server`: Destination of messages sent from the MVC project. Hosted in a console application
 
 
-## Initializing the bus
+## Initializing NServiceBus
 
-The sample controller holds a reference to the instance used later to send messages and receive a response (`IBus` implementation for NServiceBus version 5 and below, `IEndpointInstance` for version 6 and above). In `AsyncPagesMvc`, open `Global.asax.cs` and see the code for the `ApplicationStart` method:
+In `AsyncPagesMvc`, open `Program.cs` and see the code for the `UseNServiceBus` method:
 
 snippet: ApplicationStart
 
@@ -59,7 +59,7 @@ Open the SendAndBlockController class:
 
 snippet: SendAndBlockController
 
-The controller is sending a message using the instance injected in controller's constructor (`IBus` implementation for NServiceBus version 5 and below, `IEndpointInstance` for version 6 and above). The code calls the send method, passing in the newly created command object.
+The controller is sending a message using the instance injected in controller's constructor (`IBus` implementation for NServiceBus version 5 and below, `IMessageSession` for version 6 and above). The code calls the send method, passing in the newly created command object.
 
 The call registers a callback method that will be called (with this parameter) as soon as a response is received by the server.
 

@@ -5,11 +5,11 @@ using NServiceBus;
 public class SendAndBlockController :
     Controller
 {
-    IEndpointInstance endpoint;
+    IMessageSession messageSession;
 
-    public SendAndBlockController(IEndpointInstance endpoint)
+    public SendAndBlockController(IMessageSession messageSession)
     {
-        this.endpoint = endpoint;
+        this.messageSession = messageSession;
     }
 
     [HttpGet]
@@ -39,7 +39,7 @@ public class SendAndBlockController :
 
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Mvc.Server");
-        var status = endpoint.Request<ErrorCodes>(command, sendOptions).GetAwaiter().GetResult();
+        var status = messageSession.Request<ErrorCodes>(command, sendOptions).GetAwaiter().GetResult();
 
         return IndexCompleted(Enum.GetName(typeof(ErrorCodes), status));
 

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.ServiceProcess;
 using System.Threading.Tasks;
-using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using log4net.Appender;
 using log4net.Config;
 using log4net.Core;
@@ -16,7 +16,7 @@ class ProgramService :
     ServiceBase
 {
     IEndpointInstance endpointInstance;
-    static ILog log = LogManager.GetLogger("ProgramService");
+    static readonly ILog log = LogManager.GetLogger("ProgramService");
 
     static void Main()
     {
@@ -74,15 +74,11 @@ class ProgramService :
 
         #region container
 
-        var builder = new ContainerBuilder();
-        // configure custom services
-        // builder.RegisterInstance(new MyService());
-        var container = builder.Build();
-        endpointConfiguration.UseContainer<AutofacBuilder>(
-            customizations: customizations =>
-            {
-                customizations.ExistingLifetimeScope(container);
-            });
+        endpointConfiguration.UseContainer(new AutofacServiceProviderFactory(builder =>
+        {
+            // configure custom services
+            // builder.RegisterInstance(new MyService());
+        }));
 
         #endregion
 

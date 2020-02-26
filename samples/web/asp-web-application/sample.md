@@ -22,16 +22,16 @@ The web page renders synchronously; from the user's perspective, the interaction
 This sample has three projects: `Shared`, `Server`, and `WebApplication`. `WebApplication` is a web application that sends messages (found in the `Shared` project) to the Server project, which is hosted as a console application.
 
 
-## Initializing the bus
+## Initializing NServiceBus
 
-In `WebApplication`, open `Global.asax.cs` and look at the code in the `ApplicationStart` method:
+In `WebApplication`, open `Program.cs` and look at the code in the `UseNServiceBus` method:
 
 snippet: ApplicationStart
 
 
 ## Sending a message
 
-Open `Default.aspx.cs` in `WebApplication` to see the `Button1Click` method:
+Open `Index.cshtml.cs` in `WebApplication` to see the `OnPostAsync` method:
 
 snippet: ActionHandling
 
@@ -41,11 +41,7 @@ Open the class definition for the `Command` type in the `Shared` project:
 
 snippet: Message
 
-Return to `Default.aspx.cs` and look at the code `Global.Bus.Send(command)`. Global.Bus references the Bus property of the Global class in `Global.asax.cs`. Then the code calls the Send method, passing in the newly created command object.
-
-The "bus" isn't anything special in code; it is just an object for calling methods.
-
-Skip the rest of the code and see what happens to the message just sent.
+Return to `Index.cshtml.cs` and look at the code `messageSession.Request`. The message session offers methods to send messages via NServiceBus. Skip the rest of the code and see what happens to the message just sent.
 
 
 ## Handling the message
@@ -63,6 +59,6 @@ In the method body notice the response being returned to the originating endpoin
 
 When the response arrives back at `WebApplication`, the bus invokes the callback that was registered when the request was sent.
 
-The `Register` method takes the callback code and tells the bus to invoke it when the response is received. There are several overloads to this method; the code above accepts a generic Enum parameter, effectively casting the return code from the server to the given enum.
+The `messageSession.Request` method takes the callback code and tells the bus to invoke it when the response is received. There are several overloads to this method; the code above accepts a generic Enum parameter, effectively casting the return code from the server to the given enum.
 
 Finally, the code updates the Text property of a label on the web page, setting it to the string that represents the enum value: sometimes `None`, sometimes `Fail`.
