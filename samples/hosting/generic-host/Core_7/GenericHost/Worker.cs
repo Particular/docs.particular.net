@@ -5,7 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-internal class Worker : BackgroundService
+#region generic-host-worker
+class Worker : BackgroundService
 {
     private readonly IServiceProvider provider;
 
@@ -18,13 +19,11 @@ internal class Worker : BackgroundService
     {
         try
         {
-            // we can only retrieve it here because the job host is started before NServiceBus is started
             var session = provider.GetService<IMessageSession>();
 
             var number = 0;
             while (!stoppingToken.IsCancellationRequested)
             {
-                // sending here to simulate work
                 await session.SendLocal(new MyMessage {Number = number++})
                     .ConfigureAwait(false);
 
@@ -37,3 +36,4 @@ internal class Worker : BackgroundService
         }
     }
 }
+#endregion

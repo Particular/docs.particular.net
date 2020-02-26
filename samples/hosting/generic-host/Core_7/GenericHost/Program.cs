@@ -16,14 +16,14 @@ internal class Program
 
     private static IHostBuilder CreateHostBuilder(string[] args)
     {
+        #region generic-host-lifetime
         var builder = Host.CreateDefaultBuilder(args);
-
         var isService = !(Debugger.IsAttached || args.Contains("--console"));
-
         builder = isService ? builder.UseWindowsService() : builder.UseConsoleLifetime();
+        #endregion
 
+        #region generic-host-logging
         builder.UseMicrosoftLogFactoryLogging();
-
         builder.ConfigureLogging((ctx, logging) =>
         {
             logging.AddConfiguration(ctx.Configuration.GetSection("Logging"));
@@ -33,7 +33,9 @@ internal class Program
             else
                 logging.AddConsole();
         });
+        #endregion
 
+        #region generic-host-nservicebus
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("Samples.Hosting.GenericHost");
@@ -45,9 +47,17 @@ internal class Program
 
             return endpointConfiguration;
         });
+        #endregion
 
-        return builder.ConfigureServices(services => { services.AddHostedService<Worker>(); });
+        #region generic-host-worker-registration
+        return builder.ConfigureServices(services =>
+        {
+            services.AddHostedService<Worker>();
+        });
+        #endregion
     }
+    
+    #region generic-host-critical-error
 
     private static async Task OnCriticalError(ICriticalErrorContext context)
     {
@@ -63,4 +73,5 @@ internal class Program
 
         Environment.FailFast(fatalMessage, context.Exception);
     }
+    #endregion
 }
