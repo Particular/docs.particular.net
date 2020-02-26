@@ -71,6 +71,7 @@ Each endpoint is a container built on top of the official `mcr.microsoft.com/dot
 FROM mcr.microsoft.com/dotnet/core/runtime:3.1 AS base
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+
 WORKDIR /src
 COPY . .
 WORKDIR /src/Receiver

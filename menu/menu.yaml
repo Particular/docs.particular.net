@@ -94,8 +94,12 @@
         Title: 2017-01-10
       - Url: security-advisories/sqlserver-sqlinjection
         Title: 2016-07-05
+      - Url: security-advisories/asq-alias-for-default-connectionstring
+        Title: 2018-01-19
     - Url: nservicebus/upgrades/callbacks-1to2
       Title: Callbacks 1 to 2
+    - Url: nservicebus/upgrades/7to8
+      Title: NServiceBus 7 to 8
     - Url: nservicebus/upgrades/6to7
       Title: NServiceBus 6 to 7
       Articles:
@@ -164,7 +168,7 @@
         Title: Version 4 to 5
     - Title: NServiceBus.Azure deprecated
       Url: nservicebus/upgrades/azure-deprecation
-    - Title: Azure BlobStorage DataBus
+    - Title: Azure BlobStorage Data Bus
       Articles:
       - Url: nservicebus/upgrades/absdatabus-6to1
         Title: Migrating off NServiceBus.Azure
@@ -288,6 +292,10 @@
       Articles:
       - Url: nservicebus/gateway/multi-site-deployments
         Title: Multi-Site Deployments
+      - Url: nservicebus/gateway/sql
+        Title: SQL deduplication storage
+      - Url: nservicebus/gateway/ravendb
+        Title: RavenDB deduplication storage
       - Url: nservicebus/gateway/troubleshooting
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
@@ -301,10 +309,7 @@
         Title: Multi-way bridge topology
       - Url: nservicebus/router/backplane
         Title: Backplane topology
-    - Url: nservicebus/bridge
-      Title: Transport Bridge
-      Articles:
-      - Url: nservicebus/bridge/bridge-router
+      - Url: nservicebus/router/bridge-router
         Title: Upgrade NServiceBus.Bridge to NServiceBus.Router
     - Url: nservicebus/rawmessaging
       Title: Raw messaging
@@ -489,8 +494,8 @@
     Articles:
     - Url: nservicebus/dependency-injection/child-lifetime
       Title: Child Lifetimes
-    - Url: nservicebus/dependency-injection/property-injection
-      Title: Property injection
+    - Url: nservicebus/dependency-injection/extensions-dependencyinjection
+      Title: Microsoft.Extensions.DependencyInjection
     - Url: nservicebus/dependency-injection/autofac
       Title: Autofac
     - Url: nservicebus/dependency-injection/castlewindsor
@@ -607,6 +612,8 @@
         Title: Version 3 to 4
     - Title: SQL Server
       Articles:
+      - Url: transports/upgrades/sqlserver-5to6
+        Title: Version 5 to 6        
       - Url: transports/upgrades/sqlserver-4to5
         Title: Version 4 to 5
       - Url: transports/upgrades/sqlserver-31to4
@@ -820,8 +827,6 @@
       Title: In a cluster
     - Url: transports/rabbitmq/operations-scripting
       Title: Scripting
-    - Url: transports/rabbitmq/rabbitmqclient-nuget
-      Title: RabbitMQ.Client NuGet usage
   - Url: transports/sqs
     Title: Amazon SQS
     Articles:
@@ -867,6 +872,8 @@
         Title: Version 6.2.3 to 6.2.4
     - Title: NHibernate
       Articles:
+      - Url: persistence/upgrades/nhibernate-8to9
+        Title: Version 8 to 9     
       - Url: persistence/upgrades/nhibernate-8to8.1
         Title: Version 8 to 8.1      
       - Url: persistence/upgrades/nhibernate-6to7
@@ -877,6 +884,8 @@
         Title: Adding unique constraints on saga data tables
     - Title: RavenDB
       Articles:
+      - Url: persistence/upgrades/ravendb-6to7
+        Title: Version 6 to 7
       - Url: persistence/upgrades/ravendb-5to6
         Title: Version 5 to 6
       - Url: persistence/upgrades/ravendb-4to5
@@ -885,6 +894,8 @@
         Title: Version 3 to 4
     - Title: SQL
       Articles:
+      - Url: persistence/upgrades/sql-4to5
+        Title: Version 4 to 5        
       - Url: persistence/upgrades/sql-4.2to4.3
         Title: Version 4.2 to 4.3
       - Url: persistence/upgrades/sql-2to3
@@ -899,6 +910,9 @@
     Title: Learning Persistence
   - Url: persistence/in-memory
     Title: In-Memory
+    Articles:
+    - Url: persistence/in-memory/gateway-deduplication
+      Title: Gateway Deduplication
   - Url: persistence/sql
     Title: SQL
     Articles:
@@ -1104,8 +1118,6 @@
     - Title: Installation
       Url: servicecontrol/installation
       Articles:
-      - Title: Installing Silently
-        Url: servicecontrol/installation-silent
       - Title: Managing via PowerShell
         Url: servicecontrol/installation-powershell
       - Title: Cluster Deployment

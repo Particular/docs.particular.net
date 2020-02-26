@@ -1,7 +1,7 @@
 ---
 title: Recoverability Changes in Version 6
 summary: Describes changes to the recoverability feature in NServiceBus version 6
-reviewed: 2018-04-16
+reviewed: 2020-01-03
 component: Core
 related:
  - nservicebus/upgrades/5to6

@@ -1,5 +1,5 @@
 ---
-title: Azure Blob Storage DataBus Cleanup with Azure Functions
+title: Azure Blob Storage Data Bus Cleanup with Azure Functions
 summary: Using an Azure Function instead of the built in blob cleanup capabilities.
 component: ABSDataBus
 reviewed: 2018-07-06
@@ -71,7 +71,7 @@ In production this is set using an [applications settings](https://docs.microsof
 
 A message with a set [time to be received](/nservicebus/messaging/discard-old-messages.md) will override the default time to live for the large binary object and instead use this value when determining the time to clean up the blob.
 
-#### Configuring the DataBus location
+#### Configuring the data bus location
 
 The `DataBusBlobCleanupFunctions` project needs to access the large binary objects. This is done by specifying an Azure storage connection string in the `DataBusStorageAccount` environment variable. This can be set during debugging by adding the appropriate `Values` setting in the `local.settings.json` file: 
 
@@ -102,6 +102,6 @@ This function does not require downtime as the implemented [singleton orchestrat
 
 The project sends the `MessageWithLargePayload` message to itself, utilizing the NServiceBus attachment mechanism.
 
-The built-in DataBus cleanup functionality for the endpoint is disabled by setting `CleanupInterval` to `0`.
+The built-in data bus cleanup functionality for the endpoint is disabled by setting `CleanupInterval` to `0`.
 
 snippet: DisablingDataBusCleanupOnEndpoint

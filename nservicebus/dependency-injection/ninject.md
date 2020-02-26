@@ -25,7 +25,7 @@ snippet: Ninject
 snippet: Ninject_Existing
 
 
-## Unit of work
+### Unit of work
 
 Its is possible to bind to use an _Unit of Work_ scope, which corresponds to the `DependencyLifecycle.InstancePerUnitOfWork` lifecycle, when registering components with `configuration.RegisterComponents(...)`.
 
@@ -56,3 +56,6 @@ Multiple endpoints in a single process cannot share a single Ninject kernel. Eac
 | [InstancePerCall](/nservicebus/dependency-injection/) | [Transient](https://github.com/ninject/ninject/wiki/Object-Scopes)         |
 | [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes) within a [Named Scope](https://github.com/ninject/ninject.extensions.namedscope/wiki) per Unit of Work |
 | [SingleInstance](/nservicebus/dependency-injection/)                                  | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes)                          |
+
+
+include: property-injection

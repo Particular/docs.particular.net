@@ -107,8 +107,7 @@ snippet: override-conversation-id
 
 partial: conversationid
 
-Note that attempting to override an existing Conversation Id will produce the following error:
-
+WARN: Attempting to override an existing Conversation Id is not supported and will produce the following error:
 ```
 Cannot set the NServiceBus.ConversationId header to 'XXXXX' as it cannot override the incoming header value ('2f4076a0-d8de-4297-9d18-a830015dd42a').
 ```
@@ -442,9 +441,9 @@ snippet: HeaderWriterEncryption
 snippet: HeaderWriterEncryptionBody
 
 
-## FileShare DataBus headers
+## File share data bus headers
 
-When using the [FileShare DataBus](/nservicebus/messaging/databus/file-share.md), extra headers and serialized message information are necessary to correlate between the information on the queue and the data on the file system.
+When using the [file share data bus](/nservicebus/messaging/databus/file-share.md), extra headers and serialized message information are necessary to correlate between the information on the queue and the data on the file system.
 
 
 ### Using DataBusProperty

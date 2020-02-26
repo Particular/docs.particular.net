@@ -1,0 +1,2 @@
+Phase1\EndpointSqlServer\EndpointSqlServerPhase1.Core.csproj
+Phase1\EndpointPostgreSql\EndpointPostgreSqlPhase1.Core.csproj

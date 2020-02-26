@@ -5,15 +5,18 @@ class Usage
 {
     Usage(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         #region StructureMap
 
         endpointConfiguration.UseContainer<StructureMapBuilder>();
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     void Existing(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         #region StructureMap_Existing
 
         var container = new Container(
@@ -29,6 +32,7 @@ class Usage
             });
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     class MyService

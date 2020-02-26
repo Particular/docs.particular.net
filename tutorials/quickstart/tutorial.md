@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Quick Start"
-reviewed: 2018-03-20
+reviewed: 2019-12-16
 isLearningPath: true
 summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
 extensions:
@@ -16,7 +16,7 @@ This tutorial skips over some concepts and implementation details in order to ge
 
 ## Download solution
 
-To get started, download the solution appropriate for your Visual Studio version, extract the archive, and then open the **RetailDemo.sln** file.
+The demo solution doesn't require any prerequisites—no message queue or database to install, just Visual Studio. To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file. 
 
 downloadbutton
 
@@ -41,7 +41,7 @@ The solution mimics a real-life retail system, where [the command](/nservicebus/
 
 ## Running the solution
 
-The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when we run the solution it should open the web application and two console applications, one window for each messaging endpoint. (The Platform console app will also open briefly and then immediately close.)
+The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>) it should open the web application in your browser, and two console applications, one window for each messaging endpoint. (The Platform console app will also open briefly and then immediately close.)
 
 ![ClientUI Web Application](webapp-start.png)
 ![2 console applications, one for endpoint implemented as a console app](2-console-windows.png)

@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport Upgrade Version 2 to 3
 summary: Instructions on how to upgrade the SQL Server transport from version 2 to 3
-reviewed: 2018-05-18
+reviewed: 2020-02-20
 component: SqlTransport
 related:
  - nservicebus/upgrades/5to6
@@ -27,7 +27,7 @@ snippet: 2to3-enable-native-transaction
 
 As shown in the above snippet, transaction settings are now handled in the transport level configuration.
 
-For more details and examples refer to [transaction configuration API](/nservicebus/upgrades/5to6/transaction-configuration.md) and [transaction support](/transports/transactions.md) pages.
+For more details and examples refer to the [transaction configuration API](/nservicebus/upgrades/5to6/transaction-configuration.md) and [transaction support](/transports/transactions.md) pages.
 
 
 ### Connection factory
@@ -69,9 +69,9 @@ snippet: 2to3-sqlserver-multischema-config
 
 ### Multi-instance support
 
-The configuration API for [multi-instance support](/transports/sql/deployment-options.md?version=sqltransport_3#multi-instance) has changed. Multiple connection strings must be provided by a connection factory method passed to `EnableLegacyMultiInstanceMode` method.
+The configuration API for [multi-instance support](/transports/sql/deployment-options.md?version=SqlTransportLegacySystemClient_3#multi-instance) has changed. Multiple connection strings must be provided by a connection factory method passed to `EnableLegacyMultiInstanceMode` method.
 
-Note that `EnableLegacyMultiInstanceMode` method replaces both [pull and push modes](/transports/sql/connection-settings.md?version=SqlTransport_3#multiple-connection-strings) from version 2.x.
+Note that `EnableLegacyMultiInstanceMode` method replaces both [pull and push modes](/transports/sql/connection-settings.md?version=SqlTransportLegacySystemClient_3#multiple-connection-strings) from version 2.x.
 
 snippet: 2to3-sqlserver-multiinstance-upgrade
 

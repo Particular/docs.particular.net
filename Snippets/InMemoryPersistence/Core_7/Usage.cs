@@ -1,4 +1,8 @@
-﻿namespace Core7
+﻿using System;
+using System.Threading.Tasks;
+using NServiceBus.Pipeline;
+
+namespace Core7
 {
     using NServiceBus;
 
@@ -12,8 +16,6 @@
             endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
             endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
             endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Outbox>();
-            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
-
             #endregion
         }
     }

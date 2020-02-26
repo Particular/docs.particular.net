@@ -53,7 +53,7 @@ In order to monitor an endpoint's health and activity, it is necessary to [confi
 
 The monitoring view shows an overview of all logical endpoints in a system showing various metrics. Navigate to the details by clicking on an endpoint name. This shows the same metrics split by message type or endpoint instance.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/is9kF7eWkrQ?rel=0&amp;showinfo=0&amp;autoplay=1&amp;vq=hd1080" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/is9kF7eWkrQ?rel=0&amp;showinfo=0&amp;autoplay=0&amp;vq=hd1080" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 
 **Learn more:**
 

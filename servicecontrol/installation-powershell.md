@@ -12,15 +12,15 @@ NOTE: For general information about using PowerShell with ServiceControl, includ
 
 The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module for the management of ServiceControl instances.
 
-| Alias                  | Cmdlet                                        |
-| ---------------------- | --------------------------------------------- |
-| sc-add                 | New-ServiceControlInstance                    |
-| sc-addfromunattendfile | New-ServiceControlInstanceFromUnattendedFile  |
-| sc-delete              | Remove-ServiceControlInstance                 |
-| sc-instances           | Get-ServiceControlInstances                   |
-| sc-makeunattendfile    | New-ServiceControlUnattendedFile              |
-| sc-transportsinfo      | Get-ServiceControlTransportTypes              |
-| sc-upgrade             | Invoke-ServiceControlInstanceUpgrade          |
+| Alias                  | Cmdlet                                                     |
+| ---------------------- | ---------------------------------------------------------- |
+| sc-add                 | New-ServiceControlInstance                                 |
+| sc-addfromunattendfile | New-ServiceControlInstanceFromUnattendedFile (deprecated)  |
+| sc-delete              | Remove-ServiceControlInstance                              |
+| sc-instances           | Get-ServiceControlInstances                                |
+| sc-makeunattendfile    | New-ServiceControlUnattendedFile                           |
+| sc-transportsinfo      | Get-ServiceControlTransportTypes                           |
+| sc-upgrade             | Invoke-ServiceControlInstanceUpgrade                       |
 
 The following cmdlets are available in ServiceControl version 4 and above, for the management of ServiceControl Audit instances.
 

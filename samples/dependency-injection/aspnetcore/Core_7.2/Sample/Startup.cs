@@ -2,31 +2,22 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Extensions.DependencyInjection;
-using System.Threading.Tasks;
 
 public class Startup
 {
-    #region ContainerConfiguration
-
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddLogging(loggingBuilder => loggingBuilder.AddConsole());
         services.AddSingleton<MyService>();
-
-        var endpointConfiguration = new EndpointConfiguration("Sample.Core");
-        endpointConfiguration.UseTransport<LearningTransport>();
-
-        services.AddNServiceBus(endpointConfiguration);
     }
 
-    #endregion
-
-    public void Configure(IApplicationBuilder applicationBuilder, IApplicationLifetime applicationLifetime, IHostingEnvironment environment)
+    public void Configure(IApplicationBuilder applicationBuilder, IWebHostEnvironment env)
     {
-        if (environment.IsDevelopment())
+        if (env.IsDevelopment())
         {
             applicationBuilder.UseDeveloperExceptionPage();
         }

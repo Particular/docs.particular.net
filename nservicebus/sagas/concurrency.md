@@ -76,6 +76,8 @@ NOTE: The transaction timeout is usually set between 1 and 10 minutes. Consult t
 The following saga persisters use pessimistic locking:
 
 - [NHibernate](/persistence/nhibernate/)
+- [MongoDB](/persistence/mongodb/) (since version 2.2.0)
+- [Service Fabric](/persistence/service-fabric/) (since version 2.2.0)
 - [SQL](/persistence/sql/) (since version 4.1.1)
 
 #### Optimistic concurrency control
@@ -87,10 +89,10 @@ Due to recoverability, OCC conflicts in high data contention scenarios may resul
 The following saga persisters use OCC:
 
 - [Azure Storage](/persistence/azure-storage/)
-- [In-Memory](/persistence/in-memory.md)
-- [MongoDB](/persistence/mongodb/)
+- [In-Memory](/persistence/in-memory/)
+- [MongoDB](/persistence/mongodb/) (prior to 2.2.0)
 - [RavenDB](/persistence/ravendb/)
-- [Service Fabric](/persistence/service-fabric/)
+- [Service Fabric](/persistence/service-fabric/) (prior to 2.2.0)
 - [SQL](/persistence/sql/) (prior to 4.1.1)
 
 ### Use custom recoverability for OCC conflicts

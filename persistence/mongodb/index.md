@@ -90,10 +90,20 @@ MongoDB.Driver.MongoCommandException: Command insert failed: WriteConflict.
 
 ### Updating or deleting saga data
 
-MongoDB persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
+Starting from version 2.2, MongoDB persistence uses [exclusive locks](https://docs.mongodb.com/manual/faq/concurrency/) when updating or deleting saga data. The saga persister tries to acquire an exclusive lock on the saga data for up to 60 seconds. If, within this time period, an exclusive lock cannot be acquired, a `TimeoutException` is thrown and regular message retry policies are applied.
+
+Example exception:
+
+```
+System.TimeoutException: Unable to acquire exclusive write lock for saga on collection 'collectionName'
+```
+
+In versions prior to version 2.2, MongoDB persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
 
 Example exception:
 
 ```
 MongoDB.Driver.MongoCommandException: Command update failed: WriteConflict.
 ```
+
+include: saga-concurrency

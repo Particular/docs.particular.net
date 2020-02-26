@@ -6,19 +6,16 @@ using NServiceBus;
 
 namespace WebApplication.Core.Pages
 {
-    [IgnoreAntiforgeryToken(Order = 1001)]
+    [IgnoreAntiforgeryToken]
     public class IndexModel : PageModel
     {
+        IMessageSession messageSession;
+
         public string ResponseText { get; set; }
 
-        private IEndpointInstance endpoint;
-        public IndexModel(IEndpointInstance endpoint)
+        public IndexModel(IMessageSession messageSession)
         {
-            this.endpoint = endpoint;
-        }
-        public void OnGet()
-        {
-
+            this.messageSession = messageSession;
         }
 
         public async Task<IActionResult> OnPostAsync(string textField)
@@ -42,7 +39,7 @@ namespace WebApplication.Core.Pages
             var sendOptions = new SendOptions();
             sendOptions.SetDestination("Samples.AsyncPages.Server");
 
-            var code = await endpoint.Request<ErrorCodes>(command, sendOptions);
+            var code = await messageSession.Request<ErrorCodes>(command, sendOptions);
             ResponseText = Enum.GetName(typeof(ErrorCodes), code);
 
             return Page();

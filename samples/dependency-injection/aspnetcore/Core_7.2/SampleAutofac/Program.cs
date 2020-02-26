@@ -1,53 +1,35 @@
 ﻿using System;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
 
 static class Program
 {
-    static async Task Main()
+    public static async Task Main(string[] args)
     {
-        var webHostBuilder = new WebHostBuilder();
-        webHostBuilder.UseKestrel();
-        webHostBuilder.UseContentRoot(Directory.GetCurrentDirectory());
+        var host = CreateHostBuilder(args).Build();
+        await host.StartAsync();
 
-        #region ServiceProviderFactoryAutofac
-
-        webHostBuilder.ConfigureServices(services => services.AddAutofac());
-
-        #endregion
-        webHostBuilder.UseStartup<Startup>();
-        var host = webHostBuilder.Build();
-        await host.StartAsync()
-            .ConfigureAwait(false);
-        var serverAddresses = host.ServerFeatures.Get<IServerAddressesFeature>();
-        var address = serverAddresses.Addresses.First();
-        Console.WriteLine($"Now listening on: {address}");
         Console.WriteLine("Press any key to shutdown");
-
-        AttemptToLaunchBrowser(address);
-
         Console.ReadKey();
-        await host.StopAsync()
-            .ConfigureAwait(false);
+        await host.StopAsync();
     }
 
-    static void AttemptToLaunchBrowser(string address)
-    {
-        Console.WriteLine($"Attempting to open browser to: {address}");
-        try
-        {
-            using (Process.Start("explorer.exe", address))
+    static IHostBuilder CreateHostBuilder(string[] args) =>
+        #region ServiceProviderFactoryAutofac
+        Host.CreateDefaultBuilder(args)
+            .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+        #endregion
+            .ConfigureWebHostDefaults(webBuilder =>
             {
-            }
-        }
-        catch (Exception)
-        {
-            Console.WriteLine($"Failed to launch browser. Open manually: {address}");
-        }
-    }
+                webBuilder.UseStartup<Startup>();
+            })
+            .UseNServiceBus(c =>
+            {
+                var endpointConfiguration = new EndpointConfiguration("Sample.Core");
+                endpointConfiguration.UseTransport<LearningTransport>();
+                return endpointConfiguration;
+            });
 }

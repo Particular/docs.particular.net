@@ -1,7 +1,7 @@
 ---
 title: Manipulating message headers
 summary: Access and manipulate the built-in NServiceBus headers or add custom headers
-reviewed: 2018-04-06
+reviewed: 2020-01-03
 component: Core
 tags:
 - Header
@@ -16,7 +16,13 @@ related:
 - nservicebus/sagas
 ---
 
-The mechanism for [header communication](/nservicebus/messaging/headers.md) is either native headers, if the transport supports that feature, or via a serialized collection of key value pairs. This article covers the various ways of manipulating the message headers.
+Manipulating custom headers can be useful for storing infrastructure-level information not directly related to the business message. Instead of forcing all message types to inherit from a base class or implement a specific interface in order to force the existence of certain properties, instead consider moving this information into message headers.
+
+Message headers are best manipulated through [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md), however they can be accessed and modified from message handlers and saga handlers as well.
+
+Depending on the [message transport](/transports/), headers are stored with the message either as native headers (if supported) or via a serialized collection of key/value pairs within the message body itself.
+
+This article covers the various ways of manipulating the message headers.
 
 
 ## Reading incoming headers

@@ -1,7 +1,7 @@
 ---
 title: Configuration Settings
 summary: Categorized list of ServiceControl configuration settings.
-reviewed: 2018-04-20
+reviewed: 2019-12-20
 ---
 
 
@@ -18,13 +18,13 @@ The following documents should be reviewed prior to modifying configuration sett
 
 #### ServiceControl/HostName
 
-The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, eg. `sc.mydomain.com`.
+The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, e.g. `sc.mydomain.com`.
 
 Type: string
 
 Default: `localhost`
 
-Warning: If the `ServiceControl/HostName` setting is changed and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
+Warning: If the `ServiceControl/HostName` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
 
 
 #### ServiceControl/Port
@@ -35,7 +35,7 @@ Type: int
 
 Default: `33333`.
 
-Warning: If the `ServiceControl/Port` setting is changed and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
+Warning: If the `ServiceControl/Port` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
 
 
 #### ServiceControl/DatabaseMaintenancePort
@@ -169,14 +169,14 @@ Type: int
 
 Default: `720` (30 days).
 
-In ServiceControl versions 1.8.2 and below, the valid range for this setting is `24` (1 day) to `1440` (60 days).
+In ServiceControl versions, 1.8.2 and below, the valid range for this setting is `24` (1 day) to `1440` (60 days).
 
 Starting in versions 1.8.3, the upper limit has been removed to allow for longer retention. This was done to allow scenarios with low volumes of messages to retain them longer. Setting this value too high can cause the embedded RavenDB to become large and unresponsive when indexing. See [Capacity and Planning](capacity-and-planning.md).
 
 
 #### ServiceControl/AuditRetentionPeriod
 
-This setting is only applicable starting from versions 1.12.
+This setting is only applicable, starting from versions 1.12.
 
 This setting is deprecated in version 4.0.0. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/creating-config-file.md).
 
@@ -191,11 +191,11 @@ Valid range for this setting is from 1 hour to 364 days.
 
 #### ServiceControl/ErrorRetentionPeriod
 
-This setting is only applicable starting from version 1.12.
+This setting is only applicable, starting from version 1.12.
 
 The grace period that faulted messages are kept before they are deleted.
 
-For a message to be considered for deletion, it needs to have a status of either `Archived`, `RetryIssued` or `Resolved`.
+For a message to be considered for deletion, it needs to have a status of either `Archived`, `RetryIssued`, or `Resolved`.
 
 Type: timespan
 
@@ -206,7 +206,7 @@ Valid range for this setting is between 10 days and 45 days.
 
 #### ServiceControl/EventRetentionPeriod
 
-This setting is only applicable starting from version 1.25.
+This setting is only applicable, starting from version 1.25.
 
 The period to keep event logs before they are deleted.
 
@@ -224,7 +224,7 @@ Valid range for this setting is from 1 hour to 200 days.
 
 NOTE: This setting was removed in version 2.0.
 
-The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An appropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to conduct thorough performance tests on the hardware before increasing this value.
+The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An appropriate limit ensures that the database can cope with the anticipated number of insert operations. Otherwise, the query performance would drop significantly, and the message expiration process would stop working when under heavy insert load. Make sure to conduct thorough performance tests on the hardware before increasing this value.
 
 Type: int
 
@@ -263,6 +263,7 @@ Type: string
 
 Default: `ServiceControl.Transports.Msmq.MsmqTransportCustomization, ServiceControl.Transports.Msmq`
 
+The assembly containing the transport type needs to be present in the ServiceControl directory for ServiceControl being able to instantiate the transport type.
 
 #### NServiceBus/Transport
 
@@ -327,7 +328,7 @@ Type: bool `true` or `false`
 
 Default: `false`.
 
-In version 1.5 and above, if this setting is not explicitly set to true or false, a warning is shown in the logs at start up.
+In version 1.5 and above, if this setting is not explicitly set to true or false, a warning is shown in the logs at startup.
 
 In version 1.12.0 and above, there is no default for this setting. This setting needs to be specified.
 
@@ -360,7 +361,7 @@ Type: timespan
 
 Default: `00:00:40` (40 secs)
 
-When configuring heartbeat grace period, make sure it is greater than the [heartbeat interval defined by the plugin](/monitoring/heartbeats/install-plugin.md).
+When configuring the heartbeat grace period, make sure it is greater than the [heartbeat interval defined by the plugin](/monitoring/heartbeats/install-plugin.md).
 
 Note: When monitoring multiple endpoints, ensure that the heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
 
@@ -368,7 +369,7 @@ Note: When monitoring multiple endpoints, ensure that the heartbeat grace period
 
 #### ServiceControl/ExposeRavenDB
 
-ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If, during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio. 
+ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio. 
 
 NOTE: [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
@@ -389,7 +390,7 @@ NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost 
 
 #### ServiceControl/DataSpaceRemainingThreshold
 
-This setting was introduced in version 3.8. The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive) then the check will fail, alerting the user.
+This setting was introduced in version 3.8. The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user.
 
 Type: int
 

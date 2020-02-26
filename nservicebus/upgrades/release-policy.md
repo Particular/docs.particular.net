@@ -27,6 +27,9 @@ Given a version number `{major}.{minor}.{patch}`, increment the:
 
 Following SemVer 2.0 enables quickly determining the urgency, risk and effort of the upgrade.
 
+### Interpretations / Deviations from SemVer
+
+ * Text in log and exception messages are not considered part of the public API.
 
 ## Backport important bugfixes
 

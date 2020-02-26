@@ -27,6 +27,18 @@ Note: Publish/Subscribe and Timeouts (including message deferral) are supported 
 
 include: azure-transports
 
+## Transport at a glance
+
+|Feature                    |   |  
+|:---                       |---
+|Transactions |None, ReceiveOnly, SendsWithAtomicReceive
+|Pub/Sub                    |Native
+|Timeouts                   |Native
+|Large message bodies       |via higher tier (e.g. Premium) or data bus
+|Scale-out             |Competing consumer
+|Scripted Deployment        | Not supported
+|Installers                 |Optional
+
 
 ## Enabling the Transport
 

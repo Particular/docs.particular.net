@@ -12,12 +12,9 @@ ga('set', 'transport', 'beacon');
 
     $(function () {
 
-        var gaEvt = function (category, action, label, callback) {
-            var cb = callback || $.noop;
-            window.ga('send', 'event', category, action, label, { hitCallback: cb });
-            if (!ga.create) {
-                cb();
-            }
+        var gaEvt = function (category, action, label) {
+            console.log('GA', category, action, label);
+            window.ga('send', 'event', category, action, label);
         };
 
         gaEvt('QuickStart', 'Running', SOLUTION_VERSION);
@@ -25,86 +22,18 @@ ga('set', 'transport', 'beacon');
             gaEvt('QuickStart', 'SentMessage', SOLUTION_VERSION);
         };
 
-        var form = $('#license-form'),
-            firstname = $('#firstname'),
-            lastname = $('#lastname'),
-            email = $('#email');
+        var licenseBtn = $('#license-btn');
 
-        if (!form.length) {
+        if (!licenseBtn.length) {
             return;
         }
 
-        var isEmail = function (email) {
-            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            return regex.test(email);
-        };
+        gaEvt('QuickStart', 'DisplayedLicenseButton', SOLUTION_VERSION);
 
-        gaEvt('QuickStart', 'DisplayedLicenseForm', SOLUTION_VERSION);
+        licenseBtn.attr('href', 'https://particular.net/license/nservicebus?v=' + window.NSB_VERSION + '&t=0').click(function (e) {
 
-        $("#submit-license").click(function (e) {
+            gaEvt('QuickStart', 'ClickedLicenseButton', SOLUTION_VERSION);
 
-            e.preventDefault();
-            var formOK = true;
-
-            var check = function (sel, additionalFn) {
-                if (sel.val() === "") {
-                    sel.attr('placeholder', 'Field is missing');
-                    formOK = false;
-                } else {
-                    sel.removeAttr('placeholder');
-                    additionalFn && additionalFn(sel);
-                }
-            };
-
-            check(firstname);
-            check(lastname);
-            check(email, function (sel) {
-                if (!isEmail(sel.val())) {
-                    sel.val("");
-                    sel.attr("placeholder", "Email isn't valid");
-                    formOK = false;
-                } else {
-                    sel.removeAttr("placeholder");
-                }
-            });
-
-            if (!formOK) {
-                return;
-            }
-
-            var postData = {
-                FirstName: firstname.val(),
-                LastName: lastname.val(),
-                Email: email.val(),
-                templateid: "FreeLicense"
-            };
-
-            if (window.NSB_VERSION && !!window.NSB_VERSION.match(/^\d+\.\d+\.\d+$/)) {
-                postData.NServiceBusVersion = window.NSB_VERSION;
-            }
-
-            gaEvt('QuickStart', 'SubmitLicenseForm', SOLUTION_VERSION);
-
-            $.ajax({
-                url: "https://api.particular.net/platform/licensetool/requestextension",
-                type: "POST",
-                data: postData,
-                complete: function (xhr, textStatus) {
-                    if (textStatus === "success") {
-
-                        form.append($('<input/>', { type: 'hidden', id: 'LeadCategory', name: 'LeadCategory', value: 'Download' }))
-                            .append($('<input/>', { type: 'hidden', id: 'LeadSource', name: 'LeadSource', value: 'QuickStartTutorial' }))
-                            .append($('<input/>', { type: 'hidden', name: 'version', value: 'V7' }));
-
-                        gaEvt('Action Performed', 'Trial Extension', 'Day 14', function () {
-                            form.submit();
-                        });
-                    }
-                    else {
-                        alert("Unable to send request due to exception. Please contact Particular at support@particular.net");
-                    }
-                }
-            });
         });
 
     });

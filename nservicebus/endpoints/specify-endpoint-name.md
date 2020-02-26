@@ -1,7 +1,7 @@
 ---
 title: Specify Endpoint Name
 summary: Describes the ways in which to specify an endpoint name
-reviewed: 2018-04-06
+reviewed: 2019-12-25
 component: Core
 tags:
 - Convention

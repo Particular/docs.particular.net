@@ -5,10 +5,10 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.*" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.*" />
     <PackageReference Include="log4net" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Autofac" Version="7.*" />
+    <PackageReference Include="NServiceBus.Extensions.DependencyInjection" Version="1.*" />
     <PackageReference Include="NServiceBus.Log4Net" Version="3.*" />
     <PackageReference Include="System.ServiceProcess.ServiceController" Version="4.*" />
   </ItemGroup>

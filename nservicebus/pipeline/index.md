@@ -27,6 +27,6 @@ There are several ways to customize this pipeline with varying levels of complex
 
 ## Features built using the pipeline
 
-* [DataBus](/nservicebus/messaging/databus/)
+* [Data Bus](/nservicebus/messaging/databus/)
 * [Message Property Encryption](/nservicebus/security/property-encryption.md)
 * [Recoverability](/nservicebus/recoverability/)

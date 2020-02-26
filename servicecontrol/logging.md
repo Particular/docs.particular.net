@@ -11,25 +11,8 @@ redirects:
 
 The location of the ServiceControl logs are specified at install time or can also be modified later on by launching ServiceControl Management and editing the configuration settings for the instance.
 
-The default logging location is `%LOCALAPPDATA%\Particular\ServiceControl\logs`.
+The default logging location for instances created with ServiceControl Management is `%ProgramData%\Particular\ServiceControl\<Instance Name>\logs`.
 
-The `%LOCALAPPDATA%` defines a user-specific location on disk, so the logging location will be different when the service is configured as a user account. So for example
-
-#### For LocalSystem:
-
-```
-%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs
-```
-
-Note: Browsing to this location can be problematic as the default NTFS permissions on the `systemprofile` do not allow access. These permissions may need to be modified to gain access to the logs.
-
-#### For a user account:
-
-```
-%PROFILEPATH%\AppData\Local\Particular\ServiceControl\logs
-```
-
-NOTE: If multiple ServiceControl instances are configured on the same machine ensure that the log locations for each instance are unique
 
 #### Changing logging location via ServiceControl Management
 

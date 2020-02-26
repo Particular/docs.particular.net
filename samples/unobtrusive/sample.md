@@ -25,7 +25,7 @@ snippet: CustomConvention
 
 The code tells NServiceBus to treat all types with a namespace that ends with "Messages" the same as for messages that explicitly implement `IMessage`.
 
-It also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the [DataBus](/nservicebus/messaging/databus/) feature, and which messages have a defined time to be received.
+It also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the [data bus](/nservicebus/messaging/databus/) feature, and which messages have a defined time to be received.
 
 Look at the code. There are a number of projects in the solution:
 

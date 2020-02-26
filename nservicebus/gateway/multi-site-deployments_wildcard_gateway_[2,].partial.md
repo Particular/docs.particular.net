@@ -6,7 +6,6 @@ The supported format is `http://+:port/{name of the endpoint}`. For example, `ht
 
 The channel URI  is used to populate the `ReplyTo` header of any messages sent by the gateway instance. Using a wildcard in the `ReplyTo` header makes little sense as it would not be routable back from a replying gateway. An additional default channel with a fully qualified URI is therefore required whenever incoming channels with wildcard URIs are used. The default channel uri will be used in the `ReplyTo` header of any message sent.
 
-
 #### Example
 
 snippet: configureWildcardGatewayChannel

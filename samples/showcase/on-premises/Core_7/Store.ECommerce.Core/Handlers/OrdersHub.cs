@@ -5,16 +5,16 @@ using Microsoft.AspNetCore.SignalR;
 using NServiceBus;
 using Store.Messages.Commands;
 
-public class OrdersHub :
-    Hub
+public class OrdersHub : Hub
 {
-    static int orderNumber;
-    private IEndpointInstance endpoint;
+    private static int orderNumber;
+    private IMessageSession messageSession;
 
-    public OrdersHub(IEndpointInstance endpoint)
+    public OrdersHub(IMessageSession messageSession)
     {
-        this.endpoint = endpoint;
+        this.messageSession = messageSession;
     }
+
     public async Task CancelOrder(int orderNumber, bool isDebug)
     {
         var command = new CancelOrder
@@ -25,7 +25,7 @@ public class OrdersHub :
         
         var sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        await endpoint.Send(command, sendOptions);
+        await messageSession.Send(command, sendOptions);
     }
 
     public async Task PlaceOrder(string[] productIds, bool isDebug)
@@ -48,6 +48,6 @@ public class OrdersHub :
 
         var sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        await endpoint.Send(command, sendOptions);
+        await messageSession.Send(command, sendOptions);
     }
 }

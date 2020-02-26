@@ -123,6 +123,13 @@ BD --> Transport
  * Audit: Behaviors in the Audit stage have access to the message to be audited/sent to the audit queue and audit address. Behaviors should use `IAuditContext` to enlist in this stage. This stage is only entered if [Message Auditing](/nservicebus/operations/auditing.md) is enabled. 
  * Forwarding: Behaviors in the Forwarding stage have access to the message to be sent to the forwarding queue and the address of the forwarding queue. Behaviors should use `IForwardingContext` to enlist in this stage. This stage is only entered if [Message Forwarding](/nservicebus/messaging/forwarding.md) is enabled.
 
+## Extension bag
+
+The pipeline has an extension bag which can be used to used to create, read, update or delete custom state with a key identifier. For example, this can be used to *set* metadata- or pipeline-specific state in an incoming behavior that can be used in later behavior pipeline stages if needed. State stored via the extension bag will be removed once the extension bag runs out of scope at the end of the pipeline.
+
+State set during the *outgoing* pipeline will not be available in the *incoming* pipeline. If state has to be transfered from the *outgoing* into the *incoming* pipeline, use [message headers](/nservicebus/messaging/headers.md) in combination with serialization.
+
+snippet: SetContextBetweenIncomingAndOutgoing
 
 ## Stage connectors
 

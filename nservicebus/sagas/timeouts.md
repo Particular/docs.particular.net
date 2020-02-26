@@ -1,7 +1,7 @@
 ---
 title: Saga Timeouts
 summary: Call back into a saga after a defined period of time.
-reviewed: 2018-03-29
+reviewed: 2019-12-24
 component: Core
 tags:
 - Saga
@@ -61,6 +61,6 @@ As a shortcut an incoming saga message can be re-used as timeout state by passin
 
 Some form of [Persistence](/persistence/) is required to store the timestamp and the state of a timeout.
 
-WARNING: A durable persistence (i.e. NOT [InMemory](/persistence/in-memory.md) or [Learning Persistence](/persistence/learning/)) should be chosen before moving to production.
+WARNING: A durable persistence (i.e. NOT [InMemory](/persistence/in-memory/) or [Learning Persistence](/persistence/learning/)) should be chosen before moving to production.
 
 In order to learn how delayed delivery works in more detail, refer to the [Delayed Delivery - How it works](/nservicebus/messaging/delayed-delivery.md#how-it-works) section.

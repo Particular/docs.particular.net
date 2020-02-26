@@ -1,7 +1,7 @@
 ---
 title: Transaction support
 summary: The design and implementation details of SQL Server transport transaction support
-reviewed: 2018-03-22
+reviewed: 2019-12-19
 component: SqlTransport
 tags:
 - Transactions

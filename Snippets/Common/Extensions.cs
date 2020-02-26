@@ -10,7 +10,7 @@ namespace Common
     {
         static string username = WindowsIdentity.GetCurrent().Name;
 
-        public static string ToFriendlyString<TRootTypeToReplace>(IDictionary<string, string> headers)
+        public static string ToFriendlyString<TRootTypeToReplace>(IReadOnlyDictionary<string, string> headers)
         {
             var stringBuilder = new StringBuilder();
             foreach (var header in headers.OrderBy(x=>x.Key))

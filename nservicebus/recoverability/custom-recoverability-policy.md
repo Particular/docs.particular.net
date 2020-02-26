@@ -2,7 +2,7 @@
 title: Custom Recoverability Policy
 summary: Shows how to take full control over Recoverability by implementing a Recoverability Policy
 component: Core
-reviewed: 2018-03-29
+reviewed: 2020-01-29
 versions: '[6.0,)'
 tags:
  - Error Handling
@@ -95,3 +95,5 @@ If the Recoverability Policy is fully customized, then the `DefaultRecoverabilit
 partial: fullconfig
 
 Note that the `RecoverabilityConfig` will be passed into the custom policy so the code can be fine-tuned based on the configured values. 
+
+NOTE: The custom error queue specified by `MoveToError` will not be created by NServiceBus and must be manually created.

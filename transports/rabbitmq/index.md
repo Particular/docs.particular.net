@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport
 summary: An overview of the RabbitMQ transport
-reviewed: 2018-05-18
+reviewed: 2020-02-18
 component: Rabbit
 related:
  - samples/rabbitmq/simple
@@ -17,6 +17,17 @@ Provides support for sending messages over [RabbitMQ](https://www.rabbitmq.com/)
 
 WARNING: The transport is not compatible with RabbitMQ broker version 3.3.X and below.
 
+## Transport at a glance
+
+|Feature                    |   |  
+|:---                       |---
+|Transactions |None, ReceiveOnly
+|Pub/Sub                    |Native
+|Timeouts                   |Native
+|Large message bodies       |Broker can handle arbitrary message size within available resources, very large messages via data bus
+|Scale-out             |Competing consumer
+|Scripted Deployment        |Not supported
+|Installers                 |Mandatory
 
 ## Configuring the endpoint
 
@@ -44,7 +55,7 @@ partial: topology
 
 ### Disadvantages
 
- * Doesn't handle [network partitions](https://www.rabbitmq.com/partitions.html) well; partitioning across a WAN requires using dedicated features.
+ * Doesn't handle [network partitions](https://www.rabbitmq.com/partitions.html) well; partitioning across a WAN requires dedicated features.
  * Requires careful consideration for duplicate messages, e.g. using the [outbox](/nservicebus/outbox/) feature or making all endpoints idempotent.
- * Many organizations don't have the same level of expertise with RabbitMQ, as with other technologies, such as SQL Server, so it may require additional training.
- * Might require covering additional costs of [commercial RabbitMQ license and support](https://www.rabbitmq.com/services.html).
+ * Many organizations don't have the same level of expertise with RabbitMQ as with other technologies, such as SQL Server, so it may require additional training.
+ * May require covering additional costs of [commercial RabbitMQ license and support](https://www.rabbitmq.com/services.html).

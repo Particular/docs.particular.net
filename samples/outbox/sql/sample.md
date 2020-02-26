@@ -63,11 +63,11 @@ snippet: SenderConfiguration
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQL Server transport with SQL persistence  and Outbox. It uses [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview) to store business data (orders).
+The Receiver mimics a back-end system. It is also configured to use SQL Server transport with SQL persistence and Outbox. It uses [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview) to store business data (orders).
 
 snippet: ReceiverConfiguration
 
-When the message arrives at the Receiver, it is dequeued using a native SQL Server transaction. Then a `TransactionScope` is created that encompasses
+When the message arrives at the Receiver, it is dequeued using a native SQL Server transaction. Then a separate Outbox SQL Server transaction is created that encompasses
 
  * persisting business data:
 
@@ -80,11 +80,6 @@ snippet: Reply
 
 snippet: Timeout
 
-Finally the messages in the Outbox are pushed to their destinations. The timeout message gets stored in the NServiceBus timeout store and is sent back to the saga after requested delay of 5 seconds.
+Once the Outbox transaction is committed, both the business data changes and the outgoing messages are durably stored in the database. Finally the messages in the Outbox are pushed to their destinations. The timeout message gets stored in the NServiceBus timeout store and is sent back to the saga after requested delay of 5 seconds.
 
 See [Accessing the ambient database details](/samples/sqltransport-sqlpersistence/#receiver-project-accessing-the-ambient-database-details) for using a variety of other ORMs.
-
-
-## How it works
-
-All the data manipulations happen atomically because SQL Server 2008 and later allows multiple (but not overlapping) instances of `SqlConnection` to enlist in a single `TransactionScope` without the need to escalate to DTC. The SQL Server manages these transactions like they were a single `SqlTransaction`.

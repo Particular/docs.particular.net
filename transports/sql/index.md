@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport
 summary: An overview of the NServiceBus SQL Server transport.
-reviewed: 2018-04-24
+reviewed: 2020-01-31
 component: SqlTransport
 redirects:
  - nservicebus/sqlserver/usage
@@ -17,6 +17,17 @@ The SQL Server transport implements a message queuing mechanism on top of [Micro
 
 WARNING: Although this transport will run on the free version of the engine, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express), it is strongly recommended to use commercial versions for production systems. It is also recommended to ensure that support agreements are in place from [Microsoft Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx), or another third party support provider.
 
+## Transport at a glance
+
+|Feature                    |   |  
+|:---                       |---
+|Transactions |None, ReceiveOnly, SendWithAtomicReceive, TransactionScope
+|Pub/Sub                    |Native
+|Timeouts                   |Native
+|Large message bodies       |SqlServer can handle arbitrary message size within available resources, very large messages via data bus
+|Scale-out             |Competing consumer
+|Scripted Deployment        |Sql Scripts
+|Installers                 |Optional
 
 ## Usage
 
@@ -34,7 +45,7 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
 
 ## Advantages 
 
- * No additional licensing and training costs; many Microsoft stack organizations have SQL Server installed and have knowledge required to run it.
+ * No additional licensing and training costs; many Microsoft stack organizations have SQL Server installed and have the knowledge required to manage it.
  * Mature tooling, such as [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms).
  * Free to start with the [SQL Server Express edition](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express).
  * Queues support competing consumers (multiple instances of the same endpoint feeding off the same queue) so scale-out doesn't require a [distributor](/transports/msmq/distributor/).
@@ -43,9 +54,9 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
 
 ## Disadvantages
 
- * No local store-and-forward mechanism; when a SQL Server instance is down, the endpoint cannot send nor receive messages.
+ * No local store-and-forward mechanism without implementing [custom code](/samples/sqltransport/store-and-forward/); when a SQL Server instance is down, the endpoint cannot send nor receive messages.
  * In centralized deployment scenarios, maximum throughput applies for the whole system, not individual endpoints. For example, if SQL Server can handle 2000 msg/s on the given hardware, each one of the 10 endpoints deployed on this machine can only receive a maximum of 200 msg/s (on average).
- * When using SQL Server transport, a database table serves as a queue for the messages for the endpoints. These tables are polled periodically to see if messages need to be processed by the endpoints. Although the polling interval is one second, this may still lead to delays in processing a message. For environments where low latency is required, consider using other transports that use queuing technologies, such as RabbitMQ or MSMQ. Refer to [receiving behavior](design.md#behavior-receiving) documentation for more information about the polling configuration.
+ * When using SQL Server transport, a database table serves as a queue for the messages for the endpoints. These tables are polled periodically to see if messages need to be processed by the endpoints. Although the polling interval is one second, this may still lead to delays in processing a message. For environments where low latency is required, consider using other transports that use queuing technologies, such as RabbitMQ. Refer to [receiving behavior](design.md#behavior-receiving) documentation for more information about the polling configuration.
 
 
 ## Deployment considerations

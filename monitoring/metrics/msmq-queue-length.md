@@ -1,6 +1,6 @@
 ---
 title: Setup Queue Length Metrics Reporting for the MSMQ Transport
-reviewed: 2018-05-11
+reviewed: 2020-02-10
 component: MetricsServiceControl
 related:
   - samples/logging/metrics  
@@ -21,4 +21,4 @@ Monitoring[ServiceControl<br>Monitoring<br>Instance]
 
 ## Configuration
 
-No configuration is required. The reporting will be configured automatically.
+No configuration is required. Reporting is configured automatically.

@@ -1,7 +1,7 @@
 ---
 title: Avoiding Transactions in Azure
 summary: Options for avoiding transactions in Azure
-reviewed: 2018-05-22
+reviewed: 2020-02-20
 isLearningPath: true
 tags:
  - Azure
@@ -10,9 +10,9 @@ tags:
  - DTC
 ---
 
-Many [transports](/transports/) in NServiceBus rely on the [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) to make a distributed system reliable and to ensure consistency. In Azure, DTC should be avoided and many services don't support transactions, as explained in [Understanding Transactionality in Azure](understanding-transactionality-in-azure.md).
+Some [transports](/transports/) in NServiceBus rely on the [Distributed Transaction Coordinator (DTC)](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85)) to make a distributed system reliable and to ensure consistency. In Azure, DTC should be avoided since many services don't support transactions, as explained in [Understanding Transactionality in Azure](understanding-transactionality-in-azure.md).
 
-This article lists the options available to avoid the need for transactions and discusses their advantages and disadvantages.
+This article lists options available to avoid the need for transactions and discusses their advantages and disadvantages.
 
 Possible approaches:
 
@@ -44,7 +44,7 @@ If a resource does not support transactions, atomic operations combined with aut
 
 One operation that fits this criteria is a unit of work pattern with batching. With some restrictions, it can be used to emulate a transaction. Azure Storage Services allow grouping a number of operations into a single batch in order to make the whole set of operations atomic. However, it works only for Azure Storage Tables and only when the partition key for all operations is the same.
 
-Another important consideration is that regular transactions also have a *rollback* mechanism that will allow the message receiver to retry processing the original message later without causing unintended side-effects. When using transport that has automatic retry functionality, it is necessary to also support this kind of rollback semantics.
+Another important consideration is that regular transactions also have a *rollback* mechanism that will allow the message receiver to retry processing the original message later without causing unintended side-effects. When using transport that has automatic retry functionality, it is necessary to also support rollback semantics.
 
 
 ### Advantages
@@ -56,13 +56,13 @@ Another important consideration is that regular transactions also have a *rollba
 ### Disadvantages
 
  * The application must ensure that operations related to business logic are atomic, i.e. have a single insert, update or delete statement per operation. That often requires changes in program structure.
- * Operations related to business logic must be idempotent. This guarantees that automatic retries don't cause unintended side-effects. [The need for idempotency](#the-need-for-idempotency) section discusses techniques to achieve idempotency.
+ * Operations related to business logic must be idempotent. This guarantees that automatic retries don't cause unintended side-effects. [The need for idempotency](#the-need-for-idempotency) discusses techniques to achieve idempotency.
  * Retry behavior is usually combined with timeouts. Timeouts cause retries not only if the operation fails, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel, even though it hasn't failed.
 
 
 ## Sagas and compensation logic
 
-Sagas are essentially a stateful set of message handlers that can be used to track and orchestrate the transaction. The handlers communicate with each other, each of them performs a part of the transaction and then notifies whether it succeeded or failed. Depending on the partial results, the saga decides what needs to happen to the rest of the transaction; whether to continue the transaction or to roll it back. The latter is often referred to as *compensation*, as it tries to compensate for the failure at a business logic level.
+Sagas are essentially a stateful set of message handlers that can be used to track and orchestrate a transaction. The handlers communicate with each other, each of them performs a part of the transaction and then notifies whether it succeeded or failed. Depending on the partial results, the saga decides what needs to happen to the rest of the transaction; whether to continue the transaction or to roll it back. The latter is often referred to as *compensation*, as it tries to compensate for the failure at a business logic level.
 
 In essence, using sagas is implementing a Distributed Transaction Coordinator that operates on business logic level instead of using a two-phase commit protocol.
 
@@ -76,8 +76,8 @@ In essence, using sagas is implementing a Distributed Transaction Coordinator th
 ### Disadvantages
 
  * Considering and implementing all possible variations and error conditions in a transaction can be difficult.
- * Effective implementation requires a good understanding of the business requirements. The implementation details are driven by business decisions more than technical considerations, so it's recommended to collaborate closely with business experts when designing sagas.
- * Sagas are stateful, therefore the operation cannot be atomic. This needs to be taken into consideration when sagas are used in combination with atomic operations that cannot be batched. Operations against a store should never be executed directly inside the saga itself. Instead, they should be executed by another handler and queued in between to cater for idempotency at all levels.
+ * Effective implementation requires a deep understanding of the business requirements. The implementation details are driven by business decisions rather than technical considerations, so it's recommended to collaborate closely with business experts when designing sagas.
+ * Sagas are stateful, therefore the operation cannot be atomic. This should be considered when sagas are used in combination with atomic operations that cannot be batched. Operations against a store should never be executed directly inside the saga itself. Instead, they should be executed by another handler and queued in between to cater for idempotency at all levels.
 
 
 ## Routing slips and compensation logic
@@ -99,13 +99,13 @@ If at any point in time a handler fails, it sends the message back in the chain 
 ### Disadvantages
 
  * Considering and implementing all possible variations and error conditions in a transaction can be difficult.
- * The handlers can't be executed in parallel; therefore the implementation is often slower than when using sagas.
+ * The handlers can't be executed in parallel; therefore the implementation is often slower than with sagas.
  * This approach is less flexible than sagas.
 
 
 ## The need for idempotency
 
-Every approach involving automatic retries will result in `at least once` delivery semantics. In other words, the same message can be processed multiple times. This has to be taken into account when designing the business logic by ensuring that every operation is idempotent.
+Every approach involving automatic retries will result in `at least once` delivery semantics. In other words, the same message can be processed multiple times. This must be taken into account when designing the business logic by ensuring that every operation is idempotent.
 
 There are multiple ways to achieve idempotency, some at the technical level, others built into the business logic:
 
@@ -119,14 +119,14 @@ There are multiple ways to achieve idempotency, some at the technical level, oth
 
 ### Message deduplication
 
-Message deduplication is the easiest way to detect if a message has been executed already. Every message that has been processed so far is stored. When a new message comes in, it is compared to the set of already processed messages (usually by comparing only their unique identifiers). If the message is identical to one of the stored messages, it is a duplicate and the new message won't be processed.
+Message deduplication is the easiest way to detect if a message has been executed already. Every message that has been processed so far is stored. When a new message comes in, it is compared to the set of already processed messages (usually by comparing their unique identifiers). If the message is identical to one of the stored messages, it is a duplicate and the new message won't be processed.
 
 One advantage of this approach is its simplicity; however it has downsides. As every message needs to be stored and searched for, it can reduce message throughput because of the additional lookups. That can potentially cause high contention on the message store.
 
 
 ### Natural idempotency
 
-Many operations can be designed in a naturally idempotent way. `TurnOnTheLights` is by default an idempotent operation, because it will have the same effect no matter what was the previous state and how many times the operation was executed. `FlipTheLightSwitch` however is not naturally idempotent because the results will vary depending on the initial state and the number of times it was executed.
+Many operations can be designed in a naturally idempotent way. For example, `TurnOnTheLights` is an idempotent operation because it will have the same effect no matter what was the previous state and how many times the operation is executed. `FlipTheLightSwitch` however is not naturally idempotent because the results will vary depending on the initial state and the number of times it was executed.
 
 Using natural idempotency is recommended whenever possible.
 
@@ -149,7 +149,7 @@ The state machine represents the progression of the relationship between endpoin
 
 ### Side effect checks
 
-In some situations, it is possible to verify if a command has been executed by checking its indirect side effects, for example when `TheFireIsHot` flag is set to true, then there is no need to `TurnOnTheFire`.
+In some situations, it is possible to verify if a command has been executed by checking its indirect side effects, for example, when `TheFireIsHot` flag is set to true, then there is no need to `TurnOnTheFire`.
 
 Arguably this is a risky approach that can lead to subtle errors. Although it's useful in the real world, it has to be used very carefully, preferably only if no other approach can be used.
 

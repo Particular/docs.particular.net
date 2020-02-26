@@ -155,7 +155,7 @@ public static class TextWriterExtensions
 {
 	public static void Write(this TextWriter output, Package package, DateTimeOffset utcTomorrow, DateTimeOffset? earliest, bool force) =>
 		output.Write(
-			package.Versions,
+			package,
 			utcTomorrow,
 			earliest,
 			force,
@@ -167,7 +167,7 @@ public static class TextWriterExtensions
 			
 	public static void WriteServiceControl(this TextWriter output, Package package, DateTimeOffset utcTomorrow, DateTimeOffset? earliest, bool force) =>
 		output.Write(
-			package.Versions,
+			package,
 			utcTomorrow,
 			earliest,
 			force,
@@ -188,7 +188,7 @@ public static class TextWriterExtensions
 				var packageHeadingWritten = false;
 
 				output.Write(
-					package.Versions,
+					package,
 					utcTomorrow,
 					earliest,
 					force,
@@ -220,9 +220,9 @@ public static class TextWriterExtensions
 			}
 		}
 	}
-	private static void Write(this TextWriter output, List<Version> versions, DateTimeOffset utcTomorrow, DateTimeOffset? earliest, bool force, params Action[] writeHeadings)
+	private static void Write(this TextWriter output, Package package, DateTimeOffset utcTomorrow, DateTimeOffset? earliest, bool force, params Action[] writeHeadings)
 	{
-		var relevantVersions = versions
+		var relevantVersions = package.Versions
 			.Where(version => !earliest.HasValue || (!version.PatchingEnd.HasValue || version.PatchingEnd.Value >= earliest.Value || version.ExtendedSupport))
 			.ToList();
 
@@ -254,7 +254,7 @@ public static class TextWriterExtensions
 			var close = isSupported ? "" : "~~";
 
 			output.Write($"| ");
-			output.Write($"{open}{version.First.Identity.Version.ToMinorString()}{close}".PadRight(9));
+			output.Write($"[{open}{version.First.Identity.Version.ToMinorString()}{close}](https://www.nuget.org/packages/{package.Id}/{version.Last.Identity.Version})".PadRight(9));
 			output.Write($" | ");
 			output.Write($"{open}{version.First.Published.Value.UtcDateTime.Date.ToString("yyyy-MM-dd")}{close}".PadRight(14));
 			output.Write($" | ");

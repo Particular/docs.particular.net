@@ -11,7 +11,7 @@ public class CommandSender
     {
         Console.WriteLine("Press 'C' to send a command");
         Console.WriteLine("Press 'R' to send a request");
-        Console.WriteLine("Press 'D' to send a large message that is marked to be sent using Data Bus");
+        Console.WriteLine("Press 'D' to send a large message that is marked to be sent using data bus");
         Console.WriteLine("Press 'X' to send a message that is marked with expiration time.");
         Console.WriteLine("Press any other key to exit");
 

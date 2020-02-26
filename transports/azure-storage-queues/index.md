@@ -19,6 +19,18 @@ The main disadvantages of this service is latency introduced by remoteness and t
 
 include: azure-transports
 
+## Transport at a glance
+
+|Feature                    |   |  
+|:---                       |---
+|Transactions |None, ReceiveOnly (Message visibility timeout)
+|Pub/Sub                    |Message driven
+|Timeouts                   |Native (Requires Storage Table)
+|Large message bodies       |Data bus
+|Scale-out             |Competing consumer
+|Scripted Deployment        |Not supported
+|Installers                 |Mandatory
+
 ## Configuring the endpoint
 
 To use Azure Storage Queues as the underlying transport configure it as follows:

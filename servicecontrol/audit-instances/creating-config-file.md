@@ -159,6 +159,7 @@ Type: string
 
 Default: `ServiceControl.Transports.Msmq.MsmqTransportCustomization, ServiceControl.Transports.Msmq`
 
+The assembly containing the transport type needs to be present in the ServiceControl directory for ServiceControl being able to instantiate the transport type.
 
 #### NServiceBus/Transport
 

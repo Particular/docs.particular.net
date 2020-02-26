@@ -1,7 +1,7 @@
 ---
 title: Publish-Subscribe
 summary: Subscribers tell the publisher they are interested. Publishers store addresses for sending messages.
-reviewed: 2018-03-29
+reviewed: 2019-12-23
 component: Core
 tags:
 - Publish Subscribe
@@ -73,7 +73,7 @@ Available subscription persisters include
  * [MSMQ](/persistence/msmq)
  * [RavenDB](/persistence/ravendb)
  * [NHibernate](/persistence/nhibernate)
- * [In-Memory](/persistence/in-memory.md)
+ * [In-Memory](/persistence/in-memory)
  * [Azure Storage](/persistence/azure-storage)
  * [SQL Server](/persistence/sql)
 

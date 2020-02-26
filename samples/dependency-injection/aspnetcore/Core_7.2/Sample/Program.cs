@@ -1,46 +1,35 @@
 ﻿using System;
-using System.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
 
 static class Program
 {
-    static async Task Main()
+    public static async Task Main(string[] args)
     {
-        var webHostBuilder = new WebHostBuilder();
-        webHostBuilder.UseKestrel();
-        webHostBuilder.UseContentRoot(Directory.GetCurrentDirectory());
-        webHostBuilder.UseStartup<Startup>();
-        var host = webHostBuilder.Build();
-        await host.StartAsync()
-            .ConfigureAwait(false);
-        var serverAddresses = host.ServerFeatures.Get<IServerAddressesFeature>();
-        var address = serverAddresses.Addresses.First();
-        Console.WriteLine($"Now listening on: {address}");
+        var host = CreateHostBuilder(args).Build();
+        await host.StartAsync();
+
         Console.WriteLine("Press any key to shutdown");
-
-        AttemptToLaunchBrowser(address);
-
         Console.ReadKey();
-        await host.StopAsync()
-            .ConfigureAwait(false);
+        await host.StopAsync();
     }
 
-    static void AttemptToLaunchBrowser(string address)
-    {
-        Console.WriteLine($"Attempting to open browser to: {address}");
-        try
-        {
-            using (Process.Start("explorer.exe", address))
+    static IHostBuilder CreateHostBuilder(string[] args) =>
+    #region ContainerConfiguration
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>())
+            .ConfigureServices(services =>
             {
-            }
-        }
-        catch (Exception)
-        {
-            Console.WriteLine($"Failed to launch browser. Open manually: {address}");
-        }
-    }
+                services.AddSingleton<MyService>();
+            })
+            .UseNServiceBus(c =>
+            {
+                var endpointConfiguration = new EndpointConfiguration("Sample.Core");
+                endpointConfiguration.UseTransport<LearningTransport>();
+                return endpointConfiguration;
+            });
+    #endregion
 }

@@ -13,7 +13,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.ServiceControl.ASQAdapter.Sales");
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        var connectionString = Environment.GetEnvironmentVariable("AzureStorageQueue.ConnectionString.Endpoints");
+        var connectionString = "UseDevelopmentStorage=true";
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new Exception("Could not read 'AzureStorageQueue.ConnectionString.Endpoints' environment variable. Check sample prerequisites.");
@@ -31,6 +31,8 @@ class Program
 
         // Required to address https://github.com/Particular/NServiceBus.AzureStorageQueues/issues/308
         transport.AccountRouting().AddAccount("storage_account", connectionString);
+
+        transport.SanitizeQueueNamesWith(s => s.Replace(".", "-"));
 
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 

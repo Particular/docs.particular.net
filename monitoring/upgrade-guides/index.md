@@ -1,5 +1,5 @@
 ---
 title: Upgrade Guides
-summary: Monitoring Upgrade Guides.
-reviewed: 2018-05-22
+summary: Upgrade guides for the monitoring component of ServicePulse
+reviewed: 2020-02-20
 ---

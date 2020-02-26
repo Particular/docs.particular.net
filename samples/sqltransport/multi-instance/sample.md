@@ -1,13 +1,13 @@
 ---
 title: Multi-Instance Mode
 summary: SQL Server transport running in multi-instance mode
-reviewed: 2018-05-18
+reviewed: 2020-02-18
 component: SqlTransport
 related:
  - transports/sql/deployment-options
 ---
 
-NOTE: In SQL Server transport version 4, multi-instance mode has been deprecated. The [migration sample](/samples/sqltransport/multi-instance-migration) explains how to use the [transport bridge](/nservicebus/bridge/) instead.
+NOTE: In SQL Server transport version 4, multi-instance mode has been deprecated. The [migration sample](/samples/sqltransport/multi-instance-migration) explains how to use the [NServiceBus.Router](/nservicebus/router/) instead.
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ include: sql-prereq
 
 The databases created by this sample are `NsbSamplesSqlMultiInstanceReceiver` and `NsbSamplesSqlMultiInstanceSender`.
 
-Ensure [Distributed Transaction Coordinator (DTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx) is running. It can be started from the command line by running `net start msdtc`.
+Ensure [Distributed Transaction Coordinator (DTC)](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85)) is running. It can be started from the command line by running `net start msdtc`.
 
 
 ## Running the project
@@ -43,7 +43,7 @@ partial: passconnection
 
 ### Sender project
 
-The Sender does not store any data. It mimics a front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use the SQL Server transport and run in [*multi-instance*](/transports/sql/deployment-options.md?version=SqlTransport_3#multi-instance.md) mode. `ConnectionProvider.GetConnection` method is used for providing connections.
+The Sender does not store any data. It mimics a front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use the SQL Server transport and run in [*multi-instance*](/transports/sql/deployment-options.md?version=SqlTransportLegacySystemClient_3#multi-instance.md) mode. `ConnectionProvider.GetConnection` method is used for providing connections.
 
 snippet: SenderConfiguration
 
@@ -54,7 +54,7 @@ snippet: SendMessage
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is configured to use the SQL Server transport in [*multi-instance*](/transports/sql/deployment-options.md?version=SqlTransport_3#multi-instance.md) mode.
+The Receiver mimics a back-end system. It is configured to use the SQL Server transport in [*multi-instance*](/transports/sql/deployment-options.md?version=SqlTransportLegacySystemClient_3#multi-instance.md) mode.
 
 snippet: ReceiverConfiguration
 

@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_1", "SqlPersistence_1\SqlPersistence_1.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
 EndProject
@@ -11,6 +11,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_3", "SqlPersistence_3\SqlPersistence_3.csproj", "{8CEF80B8-F46F-4ADD-A6B9-B83F74815974}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_4", "SqlPersistence_4\SqlPersistence_4.csproj", "{578C95EA-137D-480F-AFB1-9E9BBE5B8D38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlPersistence_5", "SqlPersistence_5\SqlPersistence_5.csproj", "{7F4BBEC8-FDD9-470D-AB3B-1E13C96297B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,8 @@ Global
 		{8CEF80B8-F46F-4ADD-A6B9-B83F74815974}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{578C95EA-137D-480F-AFB1-9E9BBE5B8D38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{578C95EA-137D-480F-AFB1-9E9BBE5B8D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F4BBEC8-FDD9-470D-AB3B-1E13C96297B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F4BBEC8-FDD9-470D-AB3B-1E13C96297B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

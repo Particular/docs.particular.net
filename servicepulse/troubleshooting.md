@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 summary: ServicePulse installation and common issues troubleshooting
-reviewed: 2018-04-25
+reviewed: 2020-01-28
 component: ServicePulse
 ---
 
@@ -24,14 +24,14 @@ component: ServicePulse
 
 ### ServicePulse reports empty failed message groups
 
-RavenDB index could be corrupted. To fix this:
+RavenDB index could be disabled. This typically happens when disk space runs out. To fix this:
 
  1. Put ServiceControl in [maintenance mode](/servicecontrol/maintenance-mode.md).
- 1. Run the following in curl:
-   ```dos
-   curl -X RESET http://localhost:33333/storage/indexes/FailureGroupsViewIndex
-   ```
-   This assumes ServiceControl is using the default port and host name; adjust the url accordingly if this is not the case.
+ 1. Open the [Raven Studio browser](http://localhost:33334/studio/index.html#databases/documents?&database=%3Csystem%3E)
+ 1. Navigate to the Indexes tab
+ 1. For each disabled index, set it's state to Normal.
+ 
+This assumes ServiceControl is using the default port and host name; adjust the url accordingly if this is not the case.
 
 
 ### Heartbeat failure in ASP.NET applications

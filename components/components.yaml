@@ -79,8 +79,9 @@
   DocoUrl: nservicebus/dependency-injection/autofac
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.Autofac
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.Autofac
 
 - Key: Callbacks
@@ -109,8 +110,9 @@
   DocoUrl: nservicebus/dependency-injection/castlewindsor
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.CastleWindsor
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.CastleWindsor
 
 - Key: CloudServicesHost
@@ -235,6 +237,24 @@
   NugetOrder:
     - NServiceBus.Gateway
     - NServiceBus
+
+- Key: GatewayRavenDB
+  Name: RavenDB Gateway Storage
+  DocoUrl: nservicebus/gateway/ravendb
+  GitHubOwner: Particular
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Gateway.RavenDB
+  NugetOrder:
+    - NServiceBus.Gateway.RavenDB
+
+- Key: GatewaySql
+  Name: SQL Gateway Storage
+  DocoUrl: nservicebus/gateway/sql
+  GitHubOwner: Particular
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.Gateway.Sql
+  NugetOrder:
+    - NServiceBus.Gateway.Sql
 
 - Key: Heartbeats
   Name: ServiceControl Heartbeats
@@ -658,6 +678,7 @@
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.SqlServer
   NugetOrder:
+    - NServiceBus.Transport.SqlServer
     - NServiceBus.SqlServer
 
 - Key: StructureMap
@@ -665,8 +686,9 @@
   DocoUrl: nservicebus/dependency-injection/structuremap
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.StructureMap
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.StructureMap
 
 - Key: ServiceFabricPersistence
@@ -692,8 +714,9 @@
   DocoUrl: nservicebus/dependency-injection/unity
   GitHubOwner: Particular
   Category: DependencyInjection
-  ProjectUrl: https://github.com/Particular/NServiceBus.Unity
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.Unity
 
 - Key: Wcf
@@ -717,7 +740,7 @@
 
 - Key: Bridge
   Name: Transport Bridge
-  DocoUrl: nservicebus/bridge
+  DocoUrl: nservicebus/router
   GitHubOwner: SzymonPobiega
   Category: Other
   SupportLevel: Community
@@ -823,3 +846,12 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.Hosting
   NugetOrder:
     - NServiceBus.Extensions.Hosting
+
+- Key: Extensions.DependencyInjection
+  Name: NServiceBus.Extensions.DependencyInjection
+  DocoUrl: nservicebus/dependency-injection/extensions-dependencyinjection
+  GitHubOwner: Particular
+  Category: DependencyInjection
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
+  NugetOrder:
+    - NServiceBus.Extensions.DependencyInjection

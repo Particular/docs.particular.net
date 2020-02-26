@@ -1,8 +1,8 @@
 ---
 title: Castle Windsor
-summary: Details on how to Configure NServiceBus to use Castle Windsor for dependency injection. Includes usage examples as well as lifecycle mappings.
+summary: Details on how to Configure NServiceBus to use Castle Windsor for dependency injection.
 component: Castle
-reviewed: 2018-12-05
+reviewed: 2020-02-20
 tags:
  - Dependency Injection
 related:
@@ -11,19 +11,7 @@ redirects:
  - nservicebus/containers/castle
 ---
 
-
-NServiceBus can be configured to use [Castle Windsor](https://github.com/castleproject/Windsor) for dependency injection.
-
-
-### Default usage
-
-snippet: CastleWindsor
-
-
-### Using an existing container
-
-snippet: CastleWindsor_Existing
-
+partial: usage
 
 ### DependencyLifecycle Mapping
 
@@ -35,3 +23,6 @@ snippet: CastleWindsor_Existing
 | [InstancePerCall](/nservicebus/dependency-injection/) | [Transient](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#transient) |
 | [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [Scoped](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#scoped)       |
 | [SingleInstance](/nservicebus/dependency-injection/)                                  | [Singleton](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md#singleton) |
+
+
+include: property-injection

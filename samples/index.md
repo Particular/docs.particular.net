@@ -1,15 +1,14 @@
 ---
 title: Samples
 summary: Samples using NServiceBus and the Particular Service Platform 
-reviewed: 2018-04-25
+reviewed: 2020-01-30
 ---
 
 For a guided introduction to essential NServiceBus concepts start with the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 
-[Skip to the list of samples](#related-samples)
-
 The samples are designed to highlight how various features of NServiceBus work and how the extension points plug into other libraries and tooling.
 
+[Skip to the list of samples](#related-samples)
 
 ## Samples are not production ready
 
@@ -63,7 +62,7 @@ Samples default to the [learning transport](/transports/learning/) as it has the
 
 ### [Persistence](/persistence/)
 
-Samples default to either the [learning persistence](/persistence/learning/) or the [InMemory persistence](/persistence/in-memory.md) since both have no requirement on installed infrastructure. **The [learning persistence](/persistence/learning/) is not for production use**.
+Samples default to either the [learning persistence](/persistence/learning/) or the [InMemory persistence](/persistence/in-memory/) since both have no requirement on installed infrastructure. **The [learning persistence](/persistence/learning/) is not for production use**.
 
 
 ### Console hosting

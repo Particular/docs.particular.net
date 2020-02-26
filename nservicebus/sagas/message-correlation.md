@@ -2,7 +2,7 @@
 title: Message Correlation
 summary: Correlation is needed in order to find existing saga instances based on data in the incoming message
 component: Core
-reviewed: 2018-04-20
+reviewed: 2020-01-24
 tags:
  - Saga
 related:
@@ -13,8 +13,6 @@ related:
 Correlation is needed in order to find existing saga instances based on data in the incoming message. For example, an `OrderId ` property of a `CompleteOrder` message can be used to find the existing saga instance for that order.
 
 To declare this, use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify which saga property each message maps to.
-
-NOTE: Message properties must correlate to a single saga property and have the same type.
 
 partial: note
 

@@ -1,6 +1,6 @@
 ---
 title: Message Identity
-reviewed: 2018-03-29
+reviewed: 2019-12-23
 component: Core
 ---
 
