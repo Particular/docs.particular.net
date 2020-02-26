@@ -2,7 +2,7 @@
 title: Self Hosting in Azure WebJobs
 summary: Uses NServiceBus the self-hosting capability to host an endpoint in an Azure WebJob.
 component: Core
-reviewed: 2019-07-02
+reviewed: 2020-02-26
 tags:
 - Azure
 - Hosting
@@ -28,7 +28,7 @@ This sample contains one project:
 
 The receiver uses the self-hosting capability to start an end endpoint inside a continuously running WebJob.
 
-The `StartAsync` method of `IJobHost` is used to configure and start the endpoint:
+The `UseNServiceBus` method of [`NServiceBus.Extensions.Hosting`](/nservicebus/hosting/extensions-hosting.md) is used to configure and start the endpoint:
 
 snippet: WebJobHost_Start
 
@@ -38,6 +38,4 @@ A critical error action must be defined to restart the host when a critical erro
 
 snippet: WebJobHost_CriticalError
 
-When the WebJob host stops, the endpoint must be shutdown to properly release all acquired resources:
-
-snippet: WebJobHost_Stop
+When the WebJob host stops, the endpoint endpoint is automatically stopped with the host. This is taken care off by the hosting extension.
