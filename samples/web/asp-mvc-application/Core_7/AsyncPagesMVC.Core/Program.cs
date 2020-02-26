@@ -8,7 +8,7 @@ namespace AsyncPagesMVC.Core
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Build().Start();
+            BuildWebHost(args).Build().Run();
         }
 
         public static IHostBuilder BuildWebHost(string[] args) =>
