@@ -5,15 +5,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Worker : BackgroundService
+internal class Worker : BackgroundService
 {
-    private IServiceProvider provider;
+    private readonly IServiceProvider provider;
 
     public Worker(IServiceProvider provider)
     {
         this.provider = provider;
     }
-    
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         try
@@ -25,7 +25,7 @@ class Worker : BackgroundService
             while (!stoppingToken.IsCancellationRequested)
             {
                 // sending here to simulate work
-                await session.SendLocal(new MyMessage { Number = number++ })
+                await session.SendLocal(new MyMessage {Number = number++})
                     .ConfigureAwait(false);
 
                 await Task.Delay(1000, stoppingToken).ConfigureAwait(false);

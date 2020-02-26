@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 public class MyMessageHandler : IHandleMessages<MyMessage>
 {
+    private readonly ILogger<MyMessageHandler> logger;
+
     public MyMessageHandler(ILogger<MyMessageHandler> logger)
     {
         this.logger = logger;
@@ -15,6 +16,4 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
         logger.LogInformation($"Received message #{message.Number}");
         return Task.CompletedTask;
     }
-
-    private readonly ILogger<MyMessageHandler> logger;
 }
