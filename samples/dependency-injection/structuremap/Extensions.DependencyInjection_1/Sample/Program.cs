@@ -12,10 +12,9 @@ static class Program
         #region ContainerConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.StructureMap");
-        var registry = new Registry();
 
-        registry.For<MyService>()
-                    .Use(new MyService());
+        var registry = new Registry();
+        registry.For<MyService>().Use(new MyService());
 
         endpointConfiguration.UseContainer(new StructureMapServiceProviderFactory(registry));
 
