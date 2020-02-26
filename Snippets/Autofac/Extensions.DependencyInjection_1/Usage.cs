@@ -1,4 +1,5 @@
-﻿using Autofac.Extensions.DependencyInjection;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using NServiceBus;
 
 class Usage
@@ -7,8 +8,15 @@ class Usage
     {
         #region Autofac
 
-        endpointConfiguration.UseContainer(new AutofacServiceProviderFactory());
+        endpointConfiguration.UseContainer(new AutofacServiceProviderFactory(containerBuilder =>
+        {
+            containerBuilder.RegisterInstance(new MyService());
+        }));
 
         #endregion
+    }
+
+    class MyService
+    {
     }
 }
