@@ -13,6 +13,7 @@ static class Program
         #region ContainerConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Unity");
+        
         var container = new UnityContainer();
         container.RegisterInstance(new MyService());
 
