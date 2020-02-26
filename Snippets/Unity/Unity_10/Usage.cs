@@ -1,15 +1,14 @@
-﻿using Castle.MicroKernel.Registration;
-using Castle.Windsor;
-using NServiceBus;
+﻿using NServiceBus;
+using Unity;
 
 class Usage
 {
     Usage(EndpointConfiguration endpointConfiguration)
     {
 #pragma warning disable CS0618 // Type or member is obsolete
-        #region CastleWindsor
+        #region Unity
 
-        endpointConfiguration.UseContainer<WindsorBuilder>();
+        endpointConfiguration.UseContainer<UnityBuilder>();
 
         #endregion
 #pragma warning restore CS0618 // Type or member is obsolete
@@ -18,16 +17,14 @@ class Usage
     void Existing(EndpointConfiguration endpointConfiguration)
     {
 #pragma warning disable CS0618 // Type or member is obsolete
-        #region CastleWindsor_Existing
+        #region Unity_Existing
 
-        var container = new WindsorContainer();
-        var registration = Component.For<MyService>()
-            .Instance(new MyService());
-        container.Register(registration);
-        endpointConfiguration.UseContainer<WindsorBuilder>(
+        var container = new UnityContainer();
+        container.RegisterInstance(new MyService());
+        endpointConfiguration.UseContainer<UnityBuilder>(
             customizations: customizations =>
             {
-                customizations.ExistingContainer(container);
+                customizations.UseExistingContainer(container);
             });
 
         #endregion

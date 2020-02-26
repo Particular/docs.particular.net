@@ -13,7 +13,7 @@ related:
 
 partial: usage
 
-### DependencyLifecycle Mapping
+## DependencyLifecycle Mapping
 
 [`DependencyLifecycle`](/nservicebus/dependency-injection/) maps to [StructureMap lifecycles](https://structuremap.github.io/object-lifecycle/supported-lifecycles/) as follows:
 
