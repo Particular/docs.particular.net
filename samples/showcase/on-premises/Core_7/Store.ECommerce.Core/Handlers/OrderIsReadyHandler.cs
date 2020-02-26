@@ -14,9 +14,9 @@ public class OrderIsReadyHandler :
         this.ordersHubContext = ordersHubContext;
     }
 
-    public async Task Handle(DownloadIsReady message, IMessageHandlerContext context)
+    public Task Handle(DownloadIsReady message, IMessageHandlerContext context)
     {
-        await ordersHubContext.Clients.Client(message.ClientId).SendAsync("orderReady",
+        return ordersHubContext.Clients.Client(message.ClientId).SendAsync("orderReady",
             new
             {
                 message.OrderNumber,

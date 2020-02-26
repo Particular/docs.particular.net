@@ -13,9 +13,9 @@ public class OrderPlacedHandler :
         this.ordersHubContext = ordersHubContext;
     }
 
-    public async Task Handle(OrderPlaced message, IMessageHandlerContext context)
+    public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-        await ordersHubContext.Clients.Client(message.ClientId).SendAsync("orderReceived",
+        return ordersHubContext.Clients.Client(message.ClientId).SendAsync("orderReceived",
             new
             {
                 message.OrderNumber,

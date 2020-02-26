@@ -13,9 +13,9 @@ public class OrderCancelledHandler :
         this.ordersHubContext = ordersHubContext;
     }
 
-    public async Task Handle(OrderCancelled message, IMessageHandlerContext context)
+    public Task Handle(OrderCancelled message, IMessageHandlerContext context)
     {
-        await ordersHubContext.Clients.Client(message.ClientId).SendAsync("orderCancelled", 
+        return ordersHubContext.Clients.Client(message.ClientId).SendAsync("orderCancelled",
             new
             {
                 message.OrderNumber,
