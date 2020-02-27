@@ -7,6 +7,7 @@ tags:
  - Dependency Injection
 related:
  - samples/dependency-injection/extensions-dependency-injection
+ - samples/hosting/generic-host
 redirects:	
  - nservicebus/dependency-injection/property-injection
  - nservicebus/property-injection-in-handlers
