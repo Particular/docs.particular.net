@@ -10,7 +10,7 @@ related:
 - nservicebus/hosting/assembly-scanning
 ---
 
-The sample uses the Generic Host and the [`Microsoft.Extensions.Hosting.WindowsServices`](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices/) nuget package to host NServiceBus as a console application or as a Windows Service using the Generic Host underneath.
+The sample uses the Generic Host and the [`Microsoft.Extensions.Hosting.WindowsServices`](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices/) nuget package to host NServiceBus as a Windows Service using the Generic Host underneath.
 
 downloadbutton
 
@@ -43,9 +43,13 @@ Received message #{Number}
 
 ## Code walk-through
 
-snippet: generic-host-lifetime
+snippet: generic-host-service-lifetime
 
-The snippet above shows how the host builder runs by default as Windows Service in case the debugger is not attached or the `console` parameter is provided as input argument.
+The snippet above shows how the host builder runs by default as Windows Service. If the sample is started with the debugger attached it uses the console lifetime instead. If the generic host should always use as a console instead of a Windows Service use
+
+snippet: generic-host-console-lifetime
+
+instead.
 
 snippet: generic-host-logging
 

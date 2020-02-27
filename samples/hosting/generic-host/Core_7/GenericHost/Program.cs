@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,26 +15,37 @@ internal class Program
 
     private static IHostBuilder CreateHostBuilder(string[] args)
     {
-        #region generic-host-lifetime
+        #region generic-host-service-lifetime
+                  
         var builder = Host.CreateDefaultBuilder(args);
-        var isService = !(Debugger.IsAttached || args.Contains("--console"));
-        builder = isService ? builder.UseWindowsService() : builder.UseConsoleLifetime();
+        builder.UseWindowsService();
+                  
         #endregion
+        
+        /*
+        #region generic-host-console-lifetime
+                  
+        var builder = Host.CreateDefaultBuilder(args);
+        builder.UseWindowsService();
+                  
+        #endregion
+        */
 
         #region generic-host-logging
+
         builder.UseMicrosoftLogFactoryLogging();
         builder.ConfigureLogging((ctx, logging) =>
         {
             logging.AddConfiguration(ctx.Configuration.GetSection("Logging"));
 
-            if (isService)
-                logging.AddEventLog();
-            else
-                logging.AddConsole();
+            logging.AddEventLog();
+            logging.AddConsole();
         });
+
         #endregion
 
         #region generic-host-nservicebus
+
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("Samples.Hosting.GenericHost");
@@ -47,17 +57,18 @@ internal class Program
 
             return endpointConfiguration;
         });
+
         #endregion
 
         #region generic-host-worker-registration
-        return builder.ConfigureServices(services =>
-        {
-            services.AddHostedService<Worker>();
-        });
+
+        return builder.ConfigureServices(services => { services.AddHostedService<Worker>(); });
+
         #endregion
     }
 
     #region generic-host-critical-error
+
     private static async Task OnCriticalError(ICriticalErrorContext context)
     {
         var fatalMessage =
@@ -73,5 +84,6 @@ internal class Program
             Environment.FailFast(fatalMessage, context.Exception);
         }
     }
+
     #endregion
 }
