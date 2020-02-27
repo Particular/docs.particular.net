@@ -56,22 +56,22 @@ internal class Program
         });
         #endregion
     }
-    
-    #region generic-host-critical-error
 
+    #region generic-host-critical-error
     private static async Task OnCriticalError(ICriticalErrorContext context)
     {
         var fatalMessage =
             $"The following critical error was encountered:{Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
-
         EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
 
-        if (Environment.UserInteractive)
-            // so that user can see on their screen the problem
-            await Task.Delay(10_000)
-                .ConfigureAwait(false);
-
-        Environment.FailFast(fatalMessage, context.Exception);
+        try
+        {
+            await context.Stop().ConfigureAwait(false);
+        }
+        finally
+        {
+            Environment.FailFast(fatalMessage, context.Exception);
+        }
     }
     #endregion
 }
