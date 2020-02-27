@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Configuration;
@@ -6,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 public static class HostBuilderExtensions
 {
@@ -50,7 +50,6 @@ public static class HostBuilderExtensions
         {
             services.AddHostedService<SimulateWorkHostedService>();
             services.AddSingleton<IJobHost, NoOpJobHost>();
-            services.AddSingleton(services);
         });
 
         return hostBuilder;
@@ -60,19 +59,17 @@ public static class HostBuilderExtensions
     static async Task OnCriticalError(ICriticalErrorContext context)
     {
         var fatalMessage =
-            $"The following critical error was encountered:\n{context.Error}\nProcess is shutting down.";
-        Logger.Fatal(fatalMessage, context.Exception);
+            $"The following critical error was encountered:{Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
+        EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
 
-        if (Environment.UserInteractive)
+        try
         {
-            // so that user can see on their screen the problem
-            await Task.Delay(10_000)
-                .ConfigureAwait(false);
+            await context.Stop().ConfigureAwait(false);
         }
-
-        Environment.FailFast(fatalMessage, context.Exception);
+        finally
+        {
+            Environment.FailFast(fatalMessage, context.Exception);
+        }
     }
     #endregion
-
-    static ILog Logger = LogManager.GetLogger(typeof(HostBuilderExtensions));
 }

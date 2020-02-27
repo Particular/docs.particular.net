@@ -1,1 +1,1 @@
-dotnet Notifications.dll
+dotnet Receiver.dll
