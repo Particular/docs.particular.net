@@ -16,12 +16,12 @@ internal class Program
     private static IHostBuilder CreateHostBuilder(string[] args)
     {
         #region generic-host-service-lifetime
-                  
+
         var builder = Host.CreateDefaultBuilder(args);
         builder.UseWindowsService();
-                  
+
         #endregion
-        
+
         /*
         #region generic-host-console-lifetime
                   
