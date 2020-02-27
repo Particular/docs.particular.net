@@ -22,7 +22,7 @@ There are differences between the API for the legacy Azure Service Bus and the A
 ### Max lock duration
 
 
-Azure Service Bus set message lock duration (`MaxLockDuration`) to a maximum of 5 minutes by default. This value has been chosen for enhanced reliability and to support the most common use-cases. One of the reasons we chose to set lock duration to the maximum is to avoid the need to reconfigure the setting when the default time of 30 seconds in the legacy transport was not sufficient for processing and was causing `LockLostException` exceptions. 
+Azure Service Bus set message lock duration (`MaxLockDuration`) to a maximum of 5 minutes by default. This value has been chosen for enhanced reliability and to support the most common use-cases. One of the reasons to set lock duration to the maximum is to avoid the need to reconfigure the setting when the default time of 30 seconds is not sufficient for processing and which would cause `LockLostException` exceptions. 
 
 The most common use case for NServiceBus endpoints is to process messages without the need to manage for lock expiration. Therefore the default values for LockDuration and Prefetch in the Azure Service Bus transport have been selected to ensure no messages lose their locks when processing is longer than 30 seconds. If processing is successful, the message will be acknowledged and completed. In case the message fails to process, it will go through recoverability. Only when there's an abnormal shutdown behaviour (e.g. such as an endpoint crashing) would take up to 5 minutes for the message to re-appear.
 
