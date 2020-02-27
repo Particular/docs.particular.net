@@ -11,6 +11,7 @@ related:
  - nservicebus/lifecycle
  - samples/startup-shutdown-sequence
  - samples/endpoint-configuration
+ - samples/hosting/generic-host
 ---
 
 ## Installation
