@@ -49,9 +49,7 @@ internal class Program
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("Samples.Hosting.GenericHost");
-
             endpointConfiguration.UseTransport<LearningTransport>();
-            endpointConfiguration.UsePersistence<LearningPersistence>();
 
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
