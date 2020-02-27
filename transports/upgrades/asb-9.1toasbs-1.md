@@ -10,7 +10,6 @@ upgradeGuideCoreVersions:
  - 7
  ---
 
-
 ## Migrating from Azure Service Bus (Legacy) to Azure Service Bus Transport
 
 Endpoints using the Azure Service Bus Transport can be run side-by-side with endpoints using the legacy Azure Service Bus transport as long as the [backwards compatibility](/transports/azure-service-bus/compatibility.md) requirements are met.
@@ -20,7 +19,6 @@ Endpoints using the Azure Service Bus Transport can be run side-by-side with end
 There are differences between the API for the legacy Azure Service Bus and the Azure Service Bus transports.
 
 ### Max lock duration
-
 
 Azure Service Bus set message lock duration (`MaxLockDuration`) to a maximum of 5 minutes by default. This value has been chosen for enhanced reliability and to support the most common use-cases. One of the reasons to set lock duration to the maximum is to avoid the need to reconfigure the setting when the default time of 30 seconds is not sufficient for processing and which would cause `LockLostException` exceptions. 
 
