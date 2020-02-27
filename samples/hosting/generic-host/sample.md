@@ -45,7 +45,7 @@ Received message #{Number}
 
 snippet: generic-host-service-lifetime
 
-The snippet above shows how the host builder runs by default as Windows Service. If the sample is started with the debugger attached, it uses the console lifetime instead. If the generic host should always use as a console instead of a Windows Service use
+The snippet above shows how the host builder runs by default as a Windows Service. If the sample is started with the debugger attached, it uses the console lifetime instead. To always use as a console lifetime use
 
 snippet: generic-host-console-lifetime
 
@@ -55,7 +55,7 @@ snippet: generic-host-logging
 
 To enable integration with Microsoft.Extensions.Logging the [`NServiceBus.MicrosoftLogging.Hosting`](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting/) community package is used and configured in combination with the standard logging.
 
-Next up, the builder configures the usage of NServiceBus, and this is achieved with the [`NServiceBus.Extensions.Hosting`](/nservicebus/hosting/extensions-hosting.md) package, including the [critical error](/nservicebus/hosting/critical-errors.md) action that will shut down the application or service in case of a critical error.
+Next up, the builder configures NServiceBus, using the [`NServiceBus.Extensions.Hosting`](/nservicebus/hosting/extensions-hosting.md) package, including the [critical error](/nservicebus/hosting/critical-errors.md) action that will shut down the application or service in case of a critical error.
 
 snippet: generic-host-nservicebus
 
@@ -63,7 +63,7 @@ The critical error action:
 
 snippet: generic-host-critical-error
 
-To simulate work, a BackgroundService called `Worker` is registered as a hosted services:
+To simulate work, a BackgroundService called `Worker` is registered as a hosted service:
 
 snippet: generic-host-worker-registration
 
