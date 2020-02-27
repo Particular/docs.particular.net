@@ -46,7 +46,7 @@ It is not possible to specify a default time
 
 To specify message time to live, use the [Azure portal](https://portal.azure.com/), [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update), or a 3rd part tool. 
 
-Alternatively,  message time to live can be configured by using one of the methods of [discarding old messages](/nservicebus/messaging/discard-old-messages).
+Alternatively,  message time to live can be configured by using one of the methods of [discarding old messages](/nservicebus/messaging/discard-old-messages.md).
 
 ### Enable dead lettering on message expiration
 
