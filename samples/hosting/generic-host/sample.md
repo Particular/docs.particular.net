@@ -30,7 +30,7 @@ Hit F5 to start the sample as a console application.
 - [Install PowerShell Core on Windows](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows)
 - Start Powershell core with elevated permissions
 - Run `dotnet publish` in the directory of the sample, let's say `C:\samples\generic-host`
-- Run `New-Service -Name WorkerTest -BinaryPathName "C:\samples\generic-host\bin\Debug\netcoreapp3.1\win-x64\publish\GenericHost.exe" | Start-Service`
+- Run `New-Service -Name WorkerTest -BinaryPathName "C:\samples\generic-host\bin\Debug\netcoreapp3.1\publish\GenericHost.exe"`
 - Run `Start-Service WorkerTest`
 - Go to the Event Viewer under `Windows Logs\Applications` and observe event log entries from source `GenericHost` with the following content
 ```
