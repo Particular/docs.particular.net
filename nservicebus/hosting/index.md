@@ -44,10 +44,17 @@ partial: dispose
 A [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host NServiceBus in Windows.
 
 Related:
+ * [Generic Host as Windows Service](/samples/hosting/generic-host)
  * [NServiceBus Windows Service template](/nservicebus/dotnet-templates.md#nservicebus-windows-service)
  * [Windows Service Installation](windows-service.md)
  * [Endpoint Configuration Choices](/samples/endpoint-configuration/)
 
+### Generic Host hosting
+
+The [Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) is the most common way to host NServiceBus on .NET Core.
+
+Related:
+ * [Generic Host](/samples/hosting/generic-host)
 
 ### Docker container hosting
 
@@ -57,7 +64,7 @@ Related:
  * [Docker Container Host](/nservicebus/hosting/docker-host/)
  * [NServiceBus Docker Container template](/nservicebus/dotnet-templates.md#nservicebus-docker-container)
  * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/)
-
+ * [Generic Host](/samples/hosting/generic-host)
 
 ### Send-only hosting
 
@@ -72,6 +79,9 @@ The only configuration required when running in this mode is the destination whe
 
 NServiceBus can be hosted in any web technology that supports .NET. See [Web Application Hosting](web-application.md).
 
+### WebJob hosting
+
+NServiceBus can be hosted in a WebJob. See [Self Hosting in Azure WebJobs](samples/azure/webjob-host)
 
 ### Service Fabric hosting
 
