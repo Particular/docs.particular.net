@@ -50,7 +50,6 @@ public static class HostBuilderExtensions
         {
             services.AddHostedService<SimulateWorkHostedService>();
             services.AddSingleton<IJobHost, NoOpJobHost>();
-            services.AddSingleton(services);
         });
 
         return hostBuilder;
