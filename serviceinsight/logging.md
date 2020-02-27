@@ -1,6 +1,6 @@
 ---
 title: Logging in ServiceInsight
-reviewed: 2018-05-23
+reviewed: 2020-02-27
 summary: How logging works and how to access the log files
 component: ServiceInsight
 tags:

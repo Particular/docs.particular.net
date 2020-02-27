@@ -3,7 +3,7 @@ title: Upgrade AmazonSQS Transport Version 3 to 4
 summary: Instructions on how to upgrade the AmazonSQS transport from version 3 to 4
 component: SQS
 isUpgradeGuide: true
-reviewed: 2018-05-22
+reviewed: 2020-02-27
 upgradeGuideCoreVersions:
  - 7
 ---
@@ -16,7 +16,7 @@ snippet: 3to4_MaxTTL
 
 ## Region
 
-To specify a region set the `AWS_REGION` environment variable or overload the client factory.
+To specify a region, set the `AWS_REGION` environment variable or overload the client factory.
 
 snippet: 3to4_Region
 
@@ -26,25 +26,25 @@ The SDK credential source is picked up automatically.
 
 snippet: 3to4_CredentialSource
 
-If desired the credential source can be configured manually by overloading the client factory.
+If desired, the credential source can be configured manually by overloading the client factory.
 
 snippet: 3to4_CredentialSourceManual
 
 ## Proxy
 
-Previous versions automatically read the proxy username and password from `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_USERNAME` and `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_PASSWORD` respectively. To achieve the same behavior the client factory has to be overridden:
+Previous versions automatically read the proxy username and password from `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_USERNAME` and `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_PASSWORD`, respectively. To achieve the same behavior, the client factory has to be overridden:
 
 snippet: 3to4_Proxy
 
 ## S3 configuration
 
-The possibility to configure the S3 bucket and the key prefix has been moved to a dedicated configuration API for S3 related settings.
+The ability to configure the S3 bucket and the key prefix has been moved to a dedicated configuration API for S3 related settings.
 
 snippet: 3to4_S3BucketForLargeMessages
 
 ### Region
 
-To specify a region set the `AWS_REGION` environment variable or overload the client factory.
+To specify a region, set the `AWS_REGION` environment variable or overload the client factory.
 
 snippet: 3to4_S3Region
 
@@ -54,13 +54,13 @@ The SDK credential source is picked up automatically.
 
 snippet: 3to4_S3CredentialSource
 
-If desired the credential source can be configured manually by overloading the client factory.
+If desired, the credential source can be configured manually by overloading the client factory.
 
 snippet: 3to4_S3CredentialSourceManual
 
 ### Proxy
 
-Previous versions automatically read the proxy username and password from `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_USERNAME` and `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_PASSWORD` respectively. To achieve the same behavior the client factory has to be overridden:
+Previous versions automatically read the proxy username and password from `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_USERNAME` and `NSERVICEBUS_AMAZONSQS_PROXY_AUTHENTICATION_PASSWORD`, respectively. To achieve the same behavior, the client factory has to be overridden:
 
 snippet: 3to4_S3Proxy
 

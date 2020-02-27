@@ -2,14 +2,14 @@
 title: Handlers and Sagas
 summary: A brief introduction to handlers and sagas
 component: Core
-reviewed: 2018-05-23
+reviewed: 2020-02-27
 related:
  - nservicebus/handlers
  - nservicebus/sagas
  - samples/saga
 ---
 
-There are two standards ways of executing code when a message is processed: [handlers](handlers/) and [sagas](sagas/).
+There are two standard ways of executing code when a message is processed: [handlers](handlers/) and [sagas](sagas/).
 
 Handler instances are instantiated on a per-message basis, executed, and then disposed of.
 

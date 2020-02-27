@@ -3,7 +3,7 @@ title: Configuration
 summary: Configuring the endpoint when hosting in Azure cloud services
 tags:
 - Azure
-reviewed: 2018-05-25
+reviewed: 2020-02-27
 ---
 
 include: cloudserviceshost-deprecated-warning
@@ -12,7 +12,7 @@ include: cloudserviceshost-deprecated-warning
 
 Cloud services is a hosting model provided by the Azure cloud, which is specifically designed for hosting large applications. For a detailed description of the cloud service configuration in Azure, see [What is the Cloud Service model packaging](https://docs.microsoft.com/en-us/azure/cloud-services/cloud-services-model-and-package).
 
-When NServiceBus is hosted in cloud services, it needs to connect to a specific Azure storage account (for Azure Storage Queues) or an Azure Service Bus namespace. For more information on required connection string formats refer to [the Windows Azure connection string formats](https://www.connectionstrings.com/windows-azure/) article.
+When NServiceBus is hosted in cloud services, it needs to connect to a specific Azure storage account (for Azure Storage Queues) or an Azure Service Bus namespace. For more information on required connection string formats, refer to [the Windows Azure connection string formats](https://www.connectionstrings.com/windows-azure/) article.
 
 
 ## Configuring an endpoint
@@ -24,7 +24,7 @@ When an endpoint is hosted in a cloud service, it should be configured by implem
 
 To enable a given transport, `UseTransport<T>` should be called on the endpoint configuration and a connection string must be provided.
 
-For example using the Azure Service Bus transport
+For example, using the Azure Service Bus transport:
 
 snippet: AzureServiceBusTransportWithAzureHost
 
@@ -46,7 +46,7 @@ NOTE: In Azure Storage Persistence version 4, when hosting in the Azure RoleEntr
 
 NServiceBus is typically configured using an `app.config` file, however Azure Cloud Services have their own configuration model. That makes settings management between various environments (e.g. local machine and production) complicated. To simplify the process, NServiceBus supports a convention-based configuration which allows for adding any NServiceBus setting to the service configuration file. The value specified in the service configuration file will override the value specified in the `app.config` file.
 
-NOTE: In NServiceBus version 6 configuration via code is the recommended model. With this model, convention-based overrides are no longer necessary.
+NOTE: In NServiceBus version 6, configuration via code is the recommended model. With this model, convention-based overrides are no longer necessary.
 
 The configuration source can be turned on like this:
 
@@ -60,13 +60,13 @@ It is configured in the `app.config` file by specifying a dedicated config secti
 
 snippet: AzureServiceBusQueueConfig
 
-That setting can then be overridden in the service configuration file (`.cscfg`), when hosting in a Azure cloud service.
+That setting can then be overridden in the service configuration file (`.cscfg`) when hosting in a Azure cloud service.
 
-First define the setting in the service definition file (`.csdef`).
+First, define the setting in the service definition file (`.csdef`).
 
 snippet: AzureServiceBusQueueConfigCsDef
 
-Then specify the value for every cloud service deployment in the cloud service project.
+Then, specify the value for every cloud service deployment in the cloud service project.
 
 snippet: AzureServiceBusQueueConfigCsCfg
 
