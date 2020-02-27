@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
 
 ## Migrating from Azure Service Bus (Legacy) to Azure Service Bus Transport
 
-Endpoints using the Azure Service Bus Transport can be run side-by-side with endpoints using the legacy Azure Service Bus transport as long as the [backwards compatibility](/transports/azure-service-bus/compatibility) requirements are met.
+Endpoints using the Azure Service Bus Transport can be run side-by-side with endpoints using the legacy Azure Service Bus transport as long as the [backwards compatibility](/transports/azure-service-bus/compatibility.md) requirements are met.
 
 ## API Differences
 
