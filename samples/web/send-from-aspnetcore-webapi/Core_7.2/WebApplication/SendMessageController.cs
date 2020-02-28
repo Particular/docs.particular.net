@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using NServiceBus;
 
-public class SendMessageController :
-    Controller
+[ApiController]
+[Route("")]
+public class SendMessageController : Controller
 {
     IMessageSession messageSession;
 
