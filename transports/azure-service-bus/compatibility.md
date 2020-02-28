@@ -33,10 +33,10 @@ forwardingTopology.NumberOfEntitiesInBundle(1);
 
 The Azure Service Bus transport doesn't support [namespace aliases](/transports/azure-service-bus/legacy/securing-connection-strings.md).
 
-### Sanitization rules need to be aligned
+### Sanitization rules must be aligned
 
-If the usage of the legacy transport involved [sanitization](/transports/azure-service-bus/legacy/sanitization.md) of entity names the sanitization logic needs to be made compatible.
+If the legacy transport [sanitizes](/transports/azure-service-bus/legacy/sanitization.md) entity names, the sanitization logic must be updated to be compatible with the new transport.
 
-For example, if the `ValidateAndHashIfNeeded` strategy was used then the sanitization functions need to include the strategy logic to preserve the same entity names.
+For example, for the `ValidateAndHashIfNeeded` strategy, the sanitization functions must include the strategy logic to preserve the same entity names.
 
 snippet: asb-sanitization-compatibility

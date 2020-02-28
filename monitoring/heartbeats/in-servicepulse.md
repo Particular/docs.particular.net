@@ -29,7 +29,7 @@ NOTE: This is a configuration setting only and the endpoint itself may still be 
 
 ## Removing endpoints 
 
-When an endpoint has been decommissioned and should no longer be displayed in ServicePulse it can be deleted. From the Endpoint Heartbeats screen next to an endpoint name a trash bin icon should be visible allowing to remove the endpoint from ServicePulse. 
+When an endpoint has been decommissioned and should no longer be displayed in ServicePulse it can be removed. From the Endpoint Heartbeats screen, click the trash bin icon next to an endpoint's name to remove it from ServicePulse.
 
 NOTE: This feature requires ServicePulse version 1.23 or higher and ServiceControl version 4.4 or higher.
 
