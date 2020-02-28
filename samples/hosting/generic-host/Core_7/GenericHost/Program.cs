@@ -24,10 +24,10 @@ internal class Program
 
         /*
         #region generic-host-console-lifetime
-                  
+
         var builder = Host.CreateDefaultBuilder(args);
-        builder.UseWindowsService();
-                  
+        builder.UseConsoleLifetime();
+
         #endregion
         */
 
