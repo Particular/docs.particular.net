@@ -14,17 +14,17 @@ This sample shows how to send messages to an NServiceBus endpoint from an ASP.NE
 
 ## Running the solution
 
-When the solution is run, a new browser window/tab opens, as well as a console application. The browser will navigate to `http://localhost:51863/api/sendmessage`.
+When the solution is run, a new browser window/tab opens, as well as a console application. The browser will navigate to `http://localhost:58118/`.
 
-An async [WebAPI](https://www.asp.net/web-api) controller handles the request. It creates an NServiceBus message and sends it to the endpoint running in the console application. The message has been processed successfully when the console application prints "Message received at endpoint".
+An async [WebAPI](https://dotnet.microsoft.com/apps/aspnet/apis) controller handles the request. It creates an NServiceBus message and sends it to the endpoint running in the console application. The message has been processed successfully when the console application prints "Message received at endpoint".
 
 ## Prerequisites
 
-- Visual Studio 2017 is required to run this sample.
+- Visual Studio 2019 is required to run this sample.
 
 ### Initialize the WebAPI endpoint
 
-Open `Startup.cs` and look at the `ConfigureServices` method.
+Open `Program.cs` and look at the `UseNServiceBus` method.
 
 A [Send-Only endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting) named `Samples.ASPNETCore.Sender` is configured in the WebAPI application by creating a new `EndpointConfiguration`.
 
@@ -32,11 +32,6 @@ snippet: EndpointConfiguration
 
 Routing is configured to send every message from the assembly containing `MyMessage` to the `Samples.ASPNETCore.Endpoint` endpoint.
 
-snippet: Routing
-
-Finally, NServiceBus is configured using the `AddNServiceBus` method. This sets up NServiceBus as a [hosted service](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services) and registers the `IMessageSession` in the dependency injection container so that controllers can take a dependency on it.
-
-snippet: ServiceRegistration
 
 ### Injection into the Controller
 
