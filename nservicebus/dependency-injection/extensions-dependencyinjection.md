@@ -1,6 +1,6 @@
 ---
 title: NServiceBus.Extensions.DependencyInjection
-summary: Provides integration with the Microsoft.Extensions.DependencyInjection abstraction.
+summary: Provides integration with the Microsoft.Extensions.DependencyInjection abstraction
 reviewed: 2020-02-17
 component: Extensions.DependencyInjection
 tags:
@@ -26,7 +26,7 @@ snippet: usecontainer-servicecollection
 
 ## Usage with third party containers
 
-NServiceBus can also be configured to work with any third party dependency injection container which implements the `Microsoft.Extensions.DependencyInjection` abstraction. To use a third-party dependency injection container, pass the specific container's `IServiceProviderFactory` to the `UseContainer` configuration method. The following snippet shows this approach, using Autofac (`Autofac.Extensions.DependencyInjection`) as an example:
+NServiceBus can be configured to work with any third party dependency injection container which implements the `Microsoft.Extensions.DependencyInjection` abstraction. To use a third-party dependency injection container, pass the specific container's `IServiceProviderFactory` to the `UseContainer` configuration method. The following snippet shows this approach, using Autofac (`Autofac.Extensions.DependencyInjection`) as an example:
 
 snippet: usecontainer-thirdparty
 
@@ -50,7 +50,7 @@ Third-party container-native APIs can be accessed by with `ConfigureContainer`.
 snippet: settings-configurecontainer
 
 
-## Property Injection
+## Property injection
 
 The `NServiceBus.Extensions.DependencyInjection` package does not support property injection out of the box. To enable property injection, refer to the configured container's documentation.
 

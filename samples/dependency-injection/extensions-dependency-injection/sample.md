@@ -1,5 +1,6 @@
 ---
 title: NServiceBus.Extensions.DependencyInjection Usage
+summary: A sample that uses Microsoft's built-in dependency injection container
 component: Extensions.DependencyInjection
 reviewed: 2020-02-20
 tags:
@@ -11,7 +12,7 @@ related:
 
 ### Configuring an endpoint to use ServiceProvider
 
-Configures an endpoint using Microsoft's built-in dependency injection container:
+The following code configures an endpoint using Microsoft's built-in dependency injection container:
 
 snippet: ContainerConfiguration
 
