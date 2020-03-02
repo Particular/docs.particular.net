@@ -33,40 +33,21 @@ A: no. The transport will release the message. If it fails to do so, the message
 Q: do I still need to consider the size of the prefetch with the lock duration set to maximum?
 A: yes. While the new transport has been build with the most considerable defaults, handlers are still custom code and if take too long, even the optimal defaults can become sub-optimal.
 
-### Forward dead-lettered messages to
+### Max Delivery Count
 
-To specify dead-letter messages forwarding use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update) or a 3rd part tool.
+`MaxDeliveryCount` no longer has the number of Processing Attempts assigned to it, but instead is set to `int.MavValue`. This is because the number of deliveries is not actually related to the number of processing attempts.
 
+### Azure CLI options
 
-### Default message time to live
+The following settings can be configured via the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update) or a 3rd part tool. These options were configured using the Endpoint Configuration API in the legacy Azure Service Bus transport.
 
-It is not possible to specify a default time
+* Forward dead-lettered messages to
+* Default message time to live (Alternatively,  message time to live can be configured by using one of the methods of [discarding old messages](/nservicebus/messaging/discard-old-messages.md))
+* Enable dead lettering on message expiration
+* Auto-delete on idle
+* Enable batched operations
+* Requires duplicate detection
 
-To specify message time to live, use the [Azure portal](https://portal.azure.com/), [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update), or a 3rd part tool. 
+### Removed options
 
-Alternatively,  message time to live can be configured by using one of the methods of [discarding old messages](/nservicebus/messaging/discard-old-messages.md).
-
-### Enable dead lettering on message expiration
-
-To enable dead-lettering on message expiration, use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update) or a 3rd part tool.
-
-
-### Auto-delete on idle
-
-To enable auto-delete on idle, use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update) or a 3rd part tool.
-
-
-### Enable batched operations
-
-To enable server-side batched operations, use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update) or a 3rd part tool.
-
-
-### Requires duplicate detection
-
-
-To enable duplicate detection, use [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update) or a 3rd part tool.
-
-
-### Support ordering
-
-Ordering is not supported.
+Any configuration options not already explictly covered that was previously accessed via the `Queues()`, `Topcis()`, or `Subscriptions` [settings](/transports/azure-service-bus/legacy/configuration/full#controlling-entities) has been removed.
