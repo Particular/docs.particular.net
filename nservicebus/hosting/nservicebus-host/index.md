@@ -114,3 +114,16 @@ partial: slaviolation
 Classes that plug into the startup/shutdown sequence are invoked just after the endpoint instance has been started and just before it is stopped. This approach may be used for any tasks that need to execute with the same lifecycle as the endpoint instance.
 
 snippet: HostStartAndStop
+
+## Support for TLS 1.2 and higher
+
+The NServiceBus.Host is compiled against .NET Framework 4.5.2. The [Transport Layer Security (TLS) best practices](https://docs.microsoft.com/en-us/dotnet/framework/network-programming/tls) from Microsoft state that an application should not hardcode the TLS version but let the operating system choose a sensible default. Unfortunately being compiled against .NET 4.5.2 means TLS 1.1 and not TLS 1.2 or 1.3 will be used. To enable TLS 1.2 or higher compatibility on the Host add the following runtime configuration to the NServiceBus.Host.exe.config:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <runtime>
+    <AppContextSwitchOverrides value="Switch.System.Net.DontEnableSystemDefaultTlsVersions=false"/>
+  </runtime>
+</configuration>
+```
