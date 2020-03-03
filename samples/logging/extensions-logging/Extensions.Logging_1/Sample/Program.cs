@@ -1,35 +1,44 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
+using NLog;
+using NLog.Config;
+using NLog.Extensions.Logging;
+using NLog.Targets;
 using NServiceBus;
+using NServiceBus.Extensions.Logging;
 
-static class Program
+class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.NServiceBus.Extensions.DependencyInjection";
+        Console.Title = "Samples.Logging.ExtensionsLogging";
 
-        #region ContainerConfiguration
+        var config = new LoggingConfiguration();
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.NServiceBus.Extensions.DependencyInjection");
+        var consoleTarget = new ColoredConsoleTarget
+        {
+            Layout = "${level}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
+        };
+        config.AddTarget("console", consoleTarget);
+        config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));
 
-        // Use the default ServiceProvider factory, using Microsoft's built-in DI container:
-        var containerSettings = endpointConfiguration.UseContainer(new DefaultServiceProviderFactory());
-        containerSettings.ServiceCollection.AddSingleton(new MyService());
+        NLog.LogManager.Configuration = config;
 
-        #endregion
+        NServiceBus.Logging.LogManager.UseFactory(new ExtensionsLoggerFactory(new NLogLoggerFactory()));
 
+        var endpointConfiguration = new EndpointConfiguration("Samples.Logging.ExtensionsLogging");
+
+        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpoint = await Endpoint.Start(endpointConfiguration)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-
         var myMessage = new MyMessage();
-        await endpoint.SendLocal(myMessage)
+        await endpointInstance.SendLocal(myMessage)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpoint.Stop()
+        await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
 }

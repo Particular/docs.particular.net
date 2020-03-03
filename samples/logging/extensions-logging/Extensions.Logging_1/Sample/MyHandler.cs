@@ -1,20 +1,15 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-#region InjectingDependency
+using NServiceBus.Logging;
+
 public class MyHandler :
     IHandleMessages<MyMessage>
 {
-    MyService myService;
-
-    public MyHandler(MyService myService)
-    {
-        this.myService = myService;
-    }
+    static ILog log = LogManager.GetLogger<MyHandler>();
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        myService.WriteHello();
+        log.Info("Hello from MyHandler");
         return Task.CompletedTask;
     }
 }
-#endregion
