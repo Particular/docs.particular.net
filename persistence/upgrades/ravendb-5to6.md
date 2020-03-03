@@ -165,6 +165,50 @@ In NServiceBus versions 3 and 4, RavenDB Persistence was part of the main NServi
 
 If attempting to convert directly from NServiceBus 4 or lower to NServiceBus 7 (which is _not recommended_) timeout data will have to be converted to the new format manually.
 
+### Patching legacy timeouts
+
+The following patch can be used to idempotently update all timeout documents to the new format. 
+
+```javascript
+from TimeoutDatas  
+update {
+    if(!this.Destination.Queue) {
+        return;
+    }
+    if(!this.Destination.Machine) {
+        this.Destination = this.Destination.Queue
+    }
+    else {
+        this.Destination = this.Destination.Queue + "@" + this.Destination.Machine
+    }
+}
+```
+
+If only timeout data using the new format is present nothing will be changed. If old timeout documents are present they will be converted into the new format.
+
+For example
+
+```json
+{
+    "Destination": {
+        "Queue": "Queue",
+        "Machine": "Machine"
+    },
+    "SagaId": "00000000-0000-0000-0000-000000000000",
+    ...
+```
+
+will be patched to
+
+```json
+{
+    "Destination": "Queue@Machine",
+    "SagaId": "00000000-0000-0000-0000-000000000000",
+    ...
+```
+
+the patch can be either applied in the management studio under Documents\Patch as shown in [Documents and Collections](https://ravendb.net/docs/article-page/4.2/csharp/studio/database/documents/documents-and-collections)
+ or by using the [client patch API.](https://ravendb.net/docs/article-page/4.2/csharp/client-api/operations/patching/set-based).
 
 ## Updated .NET Framework versions
 
