@@ -1,17 +1,15 @@
-﻿using System.Threading.Tasks;
-using NLog;	 
-using NLog.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using NServiceBus.Extensions.Logging;
 
 class Usage
 {
     void ExtensionsLogging()
     {
-        ILoggerFactory extensionsLoggingFactory = ...;
+        ILoggerFactory extensionsLoggingFactory = null;
 
         #region ExtensionsLogging
 
-        LogManager.UseFactory(new ExtensionsLoggerFactory(extensionsLoggingFactory));
+        NServiceBus.Logging.LogManager.UseFactory(new ExtensionsLoggerFactory(extensionsLoggingFactory));
 
         #endregion
     }
