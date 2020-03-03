@@ -513,6 +513,8 @@
   - Url: nservicebus/logging
     Title: Logging
     Articles:
+    - Url: nservicebus/logging/extensions-logging
+      Title: Microsoft.Extensions.Logging
     - Url: nservicebus/logging/message-contents
       Title: Message contents
     - Url: nservicebus/logging/usage
