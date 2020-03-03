@@ -167,7 +167,7 @@ If attempting to convert directly from NServiceBus 4 or lower to NServiceBus 7 (
 
 ### Patching legacy timeouts
 
-The following patch can be used to idempotently update all timeout documents to the new format. 
+The following patch can be used to idempotently update all timeout documents to the new format.
 
 ```javascript
 from TimeoutDatas  
@@ -209,6 +209,15 @@ will be patched to
 
 the patch can be either applied in the management studio under Documents\Patch as shown in [Documents and Collections](https://ravendb.net/docs/article-page/4.2/csharp/studio/database/documents/documents-and-collections)
  or by using the [client patch API.](https://ravendb.net/docs/article-page/4.2/csharp/client-api/operations/patching/set-based).
+
+If the patch is not applied and the database contains old timeout formats the following exception will be thrown on an endpoint trying to process old timeout formats
+
+```
+System.InvalidOperationException: Could not convert document TimeoutDatas/Number to entity of type NServiceBus.TimeoutPersisters.RavenDB.TimeoutData ---> Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.String' because the type requires a JSON primitive value (e.g. string, number, boolean, null) to deserialize correctly.
+...
+```
+
+in such a case applying or replying the patch is sufficient to make the timeout processing successful either on the next timeout persister query interval or when the endpoint is restarted (in case the timeout processing needs to be enforced). Failed messages under the group `System.InvalidOperationException: Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)` can simply be [archived in ServicePulse](/servicepulse/intro-archived-messages.md).
 
 ## Updated .NET Framework versions
 
