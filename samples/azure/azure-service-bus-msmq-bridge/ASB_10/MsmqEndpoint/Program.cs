@@ -16,7 +16,7 @@ class Program
         endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
         var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
 
-        var bridge = routing.ConnectToBridge("Bridge-MSMQ");
+        var bridge = routing.ConnectToBridge("Bridge");
         bridge.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

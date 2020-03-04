@@ -42,6 +42,16 @@ class Program
 
         bridgeConfiguration.AutoCreateQueues();
 
+        var staticRouting = bridgeConfiguration.UseStaticRoutingProtocol();
+
+        staticRouting.AddForwardRoute(
+            incomingInterface: "MSQM",
+            outgoingInterface: "ASB");
+
+        staticRouting.AddForwardRoute(
+            incomingInterface: "ASB",
+            outgoingInterface: "MSQM");
+
         #endregion
 
         #region bridge-execution
