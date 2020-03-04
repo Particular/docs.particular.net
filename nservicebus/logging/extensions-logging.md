@@ -2,7 +2,7 @@
 title: NServiceBus.Extensions.Logging
 summary: Logging to Microsoft.Extensions.Logging
 reviewed: 2019-03-03
-component: NServiceBus.Extensions.Logging
+component: Extensions.Logging
 tags:
 - Logging
 related:

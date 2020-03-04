@@ -323,7 +323,7 @@
   NugetOrder:
     - Particular.PlatformSample
 
-- Key: NServiceBus.Extensions.Logging
+- Key: Extensions.Logging
   Name: NServiceBus Extensions Logging
   DocoUrl: nservicebus/logging/extensions-logging
   GitHubOwner: Particular
