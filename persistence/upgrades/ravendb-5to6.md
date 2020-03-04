@@ -167,7 +167,7 @@ If attempting to convert directly from NServiceBus 4 or lower to NServiceBus 7 (
 
 ### Patching legacy timeouts
 
-The following patch can be used to idempotently update all timeout documents to the new format.
+The following patch can be used to update all timeout documents to the new format.
 
 ```javascript
 from TimeoutDatas  
@@ -184,7 +184,7 @@ update {
 }
 ```
 
-If only timeout data using the new format is present nothing will be changed. If old timeout documents are present they will be converted into the new format.
+Only timeout documents with with the old format are modified. Timeout documents already in the new format are not modified.
 
 For example
 
@@ -207,17 +207,19 @@ will be patched to
     ...
 ```
 
-the patch can be either applied in the management studio under Documents\Patch as shown in [Documents and Collections](https://ravendb.net/docs/article-page/4.2/csharp/studio/database/documents/documents-and-collections)
+The patch can be either applied in the management studio under Documents\Patch as shown in [Documents and Collections](https://ravendb.net/docs/article-page/4.2/csharp/studio/database/documents/documents-and-collections)
  or by using the [client patch API.](https://ravendb.net/docs/article-page/4.2/csharp/client-api/operations/patching/set-based).
 
-If the patch is not applied and the database contains old timeout formats the following exception will be thrown on an endpoint trying to process old timeout formats
+When the endpoint tries to process a timeout which is stored with the old timeout format the following exception is thrown.
 
 ```
 System.InvalidOperationException: Could not convert document TimeoutDatas/Number to entity of type NServiceBus.TimeoutPersisters.RavenDB.TimeoutData ---> Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.String' because the type requires a JSON primitive value (e.g. string, number, boolean, null) to deserialize correctly.
 ...
 ```
 
-in such a case applying or replying the patch is sufficient to make the timeout processing successful either on the next timeout persister query interval or when the endpoint is restarted (in case the timeout processing needs to be enforced). Failed messages under the group `System.InvalidOperationException: Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)` can simply be [archived in ServicePulse](/servicepulse/intro-archived-messages.md).
+When this exception is thrown, the timeout document is not removed from the database and will be picked up on the next timeout persister query interval. Applying the patch to the database will allow the timeout persister to read the timeout document and correctly process the message. Restarting the endpoint will force the timeout persister to deliver all outstanding timeout messages once the patch has been applied.
+
+Additionally, when the exception is thrown, a copy of the message is sent to the error queue. These are grouped together in ServicePulse under the exception type `System.InvalidOperationException: Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)`. These messages have not been deleted from the endpoint timeout persistence and should not be retried from ServicePulse. Once the patch has been applied to the endpoint timeout persistence, this group of failed messages may be [archived](/servicepulse/intro-archived-messages.md).
 
 ## Updated .NET Framework versions
 
