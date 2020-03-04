@@ -10,4 +10,4 @@
  * `AuthenticateWithManagedIdentity(storageAccountName, renewalTimeBeforeTokenExpires, endpointSuffix)`: Authenticate with Azure Managed Identity instead of connection string.
    * `storageAccountName`: The storage account name used for data bus.
    * `renewalTimeBeforeTokenExpires`: How long before the current token expires a token renewal request should be be issued.
-   * `endpointSuffix`: Endpoint suffix used for the storage account. The default is set to public Azure cloud (`core.windows.net`).
+   * `endpointSuffix`: [Endpoint suffix](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities#azure-storage-blobs-and-queues) used for the storage account. The default is set to public Azure cloud (`core.windows.net`).
