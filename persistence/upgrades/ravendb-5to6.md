@@ -208,7 +208,7 @@ will be patched to
 ```
 
 The patch can be either applied in the management studio under Documents\Patch as shown in [Documents and Collections](https://ravendb.net/docs/article-page/4.2/csharp/studio/database/documents/documents-and-collections)
- or by using the [client patch API.](https://ravendb.net/docs/article-page/4.2/csharp/client-api/operations/patching/set-based).
+ or by using the [client patch API.](https://ravendb.net/docs/article-page/4.2/csharp/client-api/operations/patching/set-based). Endpoints can continue to run while applying the patch.
 
 When the endpoint tries to process a timeout which is stored with the old timeout format the following exception is thrown.
 
