@@ -13,7 +13,7 @@ The sample shows how to configure an NServiceBus endpoint to use Microsoft.Exten
 
 Both Microsoft.Extensions.Logging and NServiceBus.Logging are logging abstractions. Both need to be configured.
 
-We basically will setup the following logging chain:
+The following logging chain is created:
 
 
    NServiceBus.Logging
@@ -30,15 +30,14 @@ NLog in this example is configured in code:
 
 snippet: NLogConfiguragion
 
-INFO: We do not give any configuration preference on how you configure NLog. The most used way based on the NLog documentation is via an [NLog configuration file](https://github.com/nlog/nlog/wiki/Configuration-file#configuration).
+INFO: There is no preference on how NLog is configuredNLog. Based on the NLog documentation the most used method is via an [NLog configuration file](https://github.com/nlog/nlog/wiki/Configuration-file#configuration).
 
 WARNING: It is important that NLog, Microsoft.Extensions.Logging and NServiceBus.Logging abstractions are initialized before `Endpoint.Create` or `Endpoint.Start` is invoked. If logging is not fully initialized it is not guaranteed that logging will be working as expected.
 
 ### Configuring logging abstractions
 
-NLog has its own provider extensions for Microsoft.Extensions.Logging and we need to create an `NLogLoggerFactory` provider that implements `Microsoft.Extensions.Logging.ILoggerFactory` instance so that `Microsoft.Extensions.Logging` can use NLog.
-
-The only part remaining is to configure the NServiceBus logging abstraction to use the NLog provider based Microsoft.Extensions.Logger abstraction.
-
+The following snippet shows how to initialize logging. NLog has its own provider extensions for Microsoft.Extensions.Logging and needs an `NLogLoggerFactory` provider that implements `Microsoft.Extensions.Logging.ILoggerFactory` instance so that `Microsoft.Extensions.Logging` can use NLog.
 
 snippet: MicrosoftExtensionsLoggingNLog
+
+After logging initialization endpoints can be started or created.
