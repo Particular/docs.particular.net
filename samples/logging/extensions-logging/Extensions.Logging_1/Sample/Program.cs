@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NLog;
 using NLog.Config;
 using NLog.Extensions.Logging;
 using NLog.Targets;
@@ -13,6 +12,7 @@ class Program
     {
         Console.Title = "Samples.Logging.ExtensionsLogging";
 
+        #region NLogConfiguragion
         var config = new LoggingConfiguration();
 
         var consoleTarget = new ColoredConsoleTarget
@@ -20,11 +20,21 @@ class Program
             Layout = "${level}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
         };
         config.AddTarget("console", consoleTarget);
-        config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));
+        config.LoggingRules.Add(new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget));
 
         NLog.LogManager.Configuration = config;
 
-        NServiceBus.Logging.LogManager.UseFactory(new ExtensionsLoggerFactory(new NLogLoggerFactory()));
+        #endregion
+
+        #region MicrosoftExtensionsLoggingNLog
+
+        Microsoft.Extensions.Logging.ILoggerFactory extensionsLoggerFactory = new NLogLoggerFactory();
+        
+        NServiceBus.Logging.ILoggerFactory nservicebusLoggerFactory = new ExtensionsLoggerFactory(loggerFactory: extensionsLoggerFactory);
+
+        NServiceBus.Logging.LogManager.UseFactory(loggerFactory:nservicebusLoggerFactory);
+
+        #endregion
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.ExtensionsLogging");
 
