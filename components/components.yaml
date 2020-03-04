@@ -325,7 +325,7 @@
 
 - Key: NServiceBus.Extensions.Logging
   Name: NServiceBus Extensions Logging
-  DocoUrl: nservicebus/logging/extensions
+  DocoUrl: nservicebus/logging/extensions-logging
   GitHubOwner: Particular
   Category: Logger
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.Logging
