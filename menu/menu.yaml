@@ -595,7 +595,7 @@
     - Title: Azure Service Bus (Legacy)
       Articles:
       - Url: transports/upgrades/asb-10toasbs-1
-        Title: Asb legacy to Asb
+        Title: Verson 10 to ASB 1
       - Url: transports/upgrades/asb-9to10
         Title: Version 9 to 10
       - Url: transports/upgrades/asb-9to9.1
