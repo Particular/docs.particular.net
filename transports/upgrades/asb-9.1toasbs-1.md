@@ -51,3 +51,19 @@ The following settings can be configured via the [Azure CLI](https://docs.micros
 ### Removed options
 
 Any configuration options not already explictly covered that was previously accessed via the `Queues()`, `Topcis()`, or `Subscriptions` [settings](/transports/azure-service-bus/legacy/configuration/full.md#controlling-entities) has been removed.
+
+The configuration options for controlling Connectivity as well as the Physical Addressing logic have also been removed. These settings include:
+
+* Controlling Connectivity
+  * `NumberOfClientsPerEntity`
+  * `TransportType`
+  * `BrokeredMessageBodyType`
+  * `MessagingFactories`
+  * `MessageReceivers`
+  * `MessageSenders`
+* Physical Addressing Logic
+  * `UseNamespaceNamesInsteadOfConnectionStrings`
+  * `Sanitization`
+  * `Individualization`
+  * `NamespacePartitioning`
+  * `Composition`
