@@ -21,19 +21,7 @@ Docker containers provide the ability to deploy endpoints in a self-contained ma
 The `nsbdockercontainer` template creates a project that contains all of the files necessary to build an endpoint that can be deployed to Docker.
 
 
-### Host.cs
-
-The endpoint's configuration must be added to the `Start()` method. 
-
-snippet: DockerStartEndpoint
-
-There is also a `Stop()` method that can hold any operations required to gracefully shutdown the endpoint.
-
-snippet: DockerStopEndpoint
-
-There are also methods that handle endpoint failures and exceptions, which can be modified to fit the needs of the endpoint.
-
-snippet: DockerErrorHandling
+partial: host
 
 
 ### license.xml
@@ -47,7 +35,7 @@ An endpoint running in Docker will look for the `license.xml` file in [the same 
 
 This file contains the instructions for compiling the endpoint and creating the Docker image.
 
-The endpoint will be hosted in a container that is based on the `microsoft/dotnet:2.1-runtime` image. Once built, the container image contains the compiled artifacts of the endpoint project, and it will launch that endpoint when the container is run.
+partial: docker-image
 
 To compile the endpoint and create the Docker image, run the following command:
 
@@ -67,7 +55,5 @@ ENTRYPOINT ["dotnet", "MyEndpoint.dll"]
 ```
 
 
-### Program.cs
-
-The `Program.cs` file contains the infrastructure required to successfully start an endpoint and gracefully shut it down when the `docker stop` command has been issued.
+partial: program
 
