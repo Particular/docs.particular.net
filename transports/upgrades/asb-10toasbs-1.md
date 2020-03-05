@@ -1,7 +1,7 @@
 ---
-title: Azure Service Bus Transport Legacy 9.1 to Azure Service Bus 1.0
+title: Azure Service Bus Transport Legacy 10 to Azure Service Bus 1.0
 summary: Azure Service Bus legacy to Azure Service Bus transport upgrade guide.
-reviewed: 2020-02-26
+reviewed: 2020-03-05
 component: ASBS
 related:
  - transports/azure-service-bus
