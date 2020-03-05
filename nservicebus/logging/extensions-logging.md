@@ -17,7 +17,7 @@ Via this common logging abstraction it is possible to log to various logging pro
 
 Although NServiceBus has native support for various logging frameworks like log4net, NLog, CommonLogging, EventSourceLogging is it recommended to use these frameworks via Microsoft.Extensions.Logging for new projects.
 
-At the time of this writing Microsoft.Extensions.Logging can be used to replace our following providers:
+At the time of this writing Microsoft.Extensions.Logging can be used to replace the following providers:
 
 - [Common.Logging](common-logging.md) (Only if the configured provider in Common.Logging is supported by Microsoft.Extensions.Logging)
 - [EventSource](eventsourcelogging.md)
@@ -26,7 +26,7 @@ At the time of this writing Microsoft.Extensions.Logging can be used to replace 
 
 ## Supported providers
 
-For an up-to-date list please read the Microsoft.Extensions.Logging fundamentals documentation, specifically the listed [built-in](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/#built-in-logging-providers) and [thirdparty](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/#third-party-logging-providers) providers.
+For an up-to-date list, read the Microsoft.Extensions.Logging fundamentals documentation, specifically the [built-in](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/#built-in-logging-providers) and [thirdparty](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/#third-party-logging-providers) providers.
 
 ## Usage
 
