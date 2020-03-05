@@ -63,7 +63,7 @@ The configuration options for controlling Connectivity as well as the Physical A
   * `MessageSenders`
 * Physical Addressing Logic
   * `UseNamespaceNamesInsteadOfConnectionStrings`
-  * `Sanitization`
+  * `Sanitization` - Some of which have been replaced with shorteners
   * `Individualization`
   * `NamespacePartitioning`
   * `Composition`
