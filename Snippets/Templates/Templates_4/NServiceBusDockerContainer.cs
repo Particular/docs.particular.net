@@ -45,7 +45,7 @@ namespace Templates_4
                         endpointConfiguration.EnableInstallers();
                     }
 
-                    // TODO: replace the license.xml file with your license file
+                    // TODO: replace the license.xml file with a valid license file
 
                     return endpointConfiguration;
                 });
