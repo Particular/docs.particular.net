@@ -52,7 +52,7 @@ The following settings can be configured via the [Azure CLI](https://docs.micros
 
 Any configuration options not already explictly covered that was previously accessed via the `Queues()`, `Topcis()`, or `Subscriptions` [settings](/transports/azure-service-bus/legacy/configuration/full.md#controlling-entities) has been removed.
 
-The configuration options for controlling Connectivity as well as the Physical Addressing logic have also been removed. These settings include:
+The configuration options for controlling Connectivity as well as the Physical Addressing logic have also been removed and replace with optimal defaults for most use cases. These settings include:
 
 * Controlling Connectivity
   * `NumberOfClientsPerEntity`
@@ -63,7 +63,9 @@ The configuration options for controlling Connectivity as well as the Physical A
   * `MessageSenders`
 * Physical Addressing Logic
   * `UseNamespaceNamesInsteadOfConnectionStrings`
-  * `Sanitization` - Some of which have been replaced with shorteners
+  * `Sanitization` - the new transport offers [shorteners](/transports/azure-service-bus/configuration.md#entity-creation) for subscriptions and rules to control entity name length
   * `Individualization`
   * `NamespacePartitioning`
   * `Composition`
+
+NOTE: some of the legacy transport features, such as namespace partitioning for high availability, were removed in favor of the native broker features. Customers are advised to evaluate use of the Service Bus Premium tier to take advantage of those native features.
