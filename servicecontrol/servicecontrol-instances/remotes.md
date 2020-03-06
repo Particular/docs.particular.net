@@ -106,7 +106,7 @@ NOTE: Changes to the configuration file will not take effect until the primary i
 ```
 
 
-## Powershell
+## PowerShell
 
 The following cmdlets are available in ServiceControl version 4 and above, for the management of ServiceControl remotes.
 

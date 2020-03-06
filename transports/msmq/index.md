@@ -112,7 +112,7 @@ See the [recoverability documentation](/nservicebus/recoverability/configure-err
 
 ## Public queues
 
-Although MSMQ has the concept of both [public and private queues](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753440(v=ws.10)), public queues require Active Directory as a pre-requisite and are not available in a workgroup environment. Therefore, NServiceBus supports only private queues and uses the path name addressing scheme for its routing. Installing MSMQ with Active Directory may interfere with the addressing scheme when sending messages and for this reason, it is recommended not to include Active Directory when installing MSMQ.
+Although MSMQ has the concept of both [public and private queues](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753440(v=ws.10)), public queues require Active Directory as a prerequisite and are not available in a workgroup environment. Therefore, NServiceBus supports only private queues and uses the path name addressing scheme for its routing. Installing MSMQ with Active Directory may interfere with the addressing scheme when sending messages and for this reason, it is recommended not to include Active Directory when installing MSMQ.
 
 
 ## Permissions

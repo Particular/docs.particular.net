@@ -1,4 +1,4 @@
-## Installing Counters
+## Installing counters
 
 
 ### [NServiceBus.Metrics.PerformanceCounters.MsBuild](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters.MsBuild/)
@@ -7,7 +7,7 @@ This packages installs into the MSBuild pipeline and generates all performance c
 
 NOTE: Performance Counters **Versions 1.1 and above:** is dependent on `NServiceBus.Metrics` in calculating counters values.  
 
-### Script Creation
+### Script creation
 
 Performance counter installation scripts are created at compile time by the `NServiceBus.Metrics.PerformanceCounters.MsBuild` NuGet package.
 
@@ -16,24 +16,24 @@ Scripts will be created in the directory format of `[CurrentProjectDebugDir]\NSe
 For example: A project named `ClassLibrary` built in Debug mode will have the following directories created:
 
  * `ClassLibrary\bin\Debug\NServiceBus.Metrics.PerformanceCounters\CSharp`
- * `ClassLibrary\bin\Debug\NServiceBus.Metrics.PerformanceCounters\Powershell`
+ * `ClassLibrary\bin\Debug\NServiceBus.Metrics.PerformanceCounters\PowerShell`
 
 Scripts will also be included in the list of project output files. This means those files produced will be copied to the output directory of any project that references it.
 
 Scripts creation can be configured by applying `[PerformanceCounterSettings]` to the target assembly.
 
 
-### To Produce All scripts
+### To produce all scripts
 
 snippet: perfcounter-script-all
 
 
-### To Produce only CSharp scripts
+### To produce only C# scripts
 
 snippet: perfcounter-script-csharp
 
 
-### To Produce only Powershell scripts
+### To produce only PowerShell scripts
 
 snippet: perfcounter-script-powershell
 
@@ -56,7 +56,7 @@ snippet: perfcounter-script-promotion
 The path calculation is performed relative to the current project directory. For example, a value of `PromotedScripts` (with no tokens) would evaluate as `$(ProjectDir)PromotedScripts`.
 
 
-### Script Usage
+### Script usage
 
 The above task takes preconfigured values based on configured [Metrics](.)-generated PowerShell and/or .cs files containing code creating performance counters. After running that task to create performance counters, the following calls have to be made with elevated permissions:
 

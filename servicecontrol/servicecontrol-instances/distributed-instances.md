@@ -49,7 +49,7 @@ Primary -. connected to .-> Secondary
 ```
 
 Setup steps:
-1. Install the ServiceControl secondary instance (on separate infrastructure) which points to `audit` according to the [installation guidelines](/servicecontrol/installation.md). Each secondary instance must have a unique name. The ServiceControl instance name and the port are required to configure the primary instance (for example `Particular.ServiceControl.Secondary` and the port `33334`). Make sure error queue processing is disabled by specifying `!disable` as the error queue field in the ServiceControl Management Utility, or as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script, or by editing `ServiceControl.exe.config` as shown below:
+1. Install the ServiceControl secondary instance (on separate infrastructure) which points to `audit` according to the [installation guidelines](/servicecontrol/installation.md). Each secondary instance must have a unique name. The ServiceControl instance name and the port are required to configure the primary instance (for example `Particular.ServiceControl.Secondary` and the port `33334`). Make sure error queue processing is disabled by specifying `!disable` as the error queue field in the ServiceControl Management Utility, or as the error queue parameter of the [PowerShell](/servicecontrol/installation-powershell.md) installation script, or by editing `ServiceControl.exe.config` as shown below:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -98,7 +98,7 @@ Primary -. connected to .-> Secondary
 
 Setup steps:
 
-1. Install the ServiceControl secondary instance (on separate infrastructure) which ingests messages from the `audit-secondary` queue according to the [installation guidelines](/servicecontrol/installation.md). Each secondary instance must have a unique name. The ServiceControl instance name and the port are required to configure the primary instance. In this example, the name `Particular.ServiceControl.Secondary` and the port `33334` is used. Make sure error queue processing is disabled by specifying `!disable` as the error queue field in the ServiceControl Management Utility, or as the error queue parameter of the [Powershell](/servicecontrol/installation-powershell.md) installation script, or by editing `ServiceControl.exe.config` as shown below:
+1. Install the ServiceControl secondary instance (on separate infrastructure) which ingests messages from the `audit-secondary` queue according to the [installation guidelines](/servicecontrol/installation.md). Each secondary instance must have a unique name. The ServiceControl instance name and the port are required to configure the primary instance. In this example, the name `Particular.ServiceControl.Secondary` and the port `33334` is used. Make sure error queue processing is disabled by specifying `!disable` as the error queue field in the ServiceControl Management Utility, or as the error queue parameter of the [PowerShell](/servicecontrol/installation-powershell.md) installation script, or by editing `ServiceControl.exe.config` as shown below:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>

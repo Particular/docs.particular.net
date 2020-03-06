@@ -20,7 +20,7 @@ In NServiceBus.Metrics.PerformanceCounters 4.0, the [NServiceBus.Metrics.Perform
 
 Version 4.0.0 of NServiceBus.Metrics.PerformanceCounters.MsBuild will be the last release of this package. When included in a project, it will produce this error at compile time:
 
-> The NServiceBus.Metrics.PerformanceCounters.MsBuild package is deprecated and should be removed from the project. The Powershell script to create performance counter objects is now included in the NServiceBus.Metrics.PerformanceCounters package.
+> The NServiceBus.Metrics.PerformanceCounters.MsBuild package is deprecated and should be removed from the project. The PowerShell script to create performance counter objects is now included in the NServiceBus.Metrics.PerformanceCounters package.
 
 In all projects where the NServiceBus.Metrics.PerformanceCounters.MsBuild package is in use, it can be removed when upgrading to NServiceBus.Metrics.PerformanceCounters 4.0, and the PowerShell script will continue to be included in the build output.
 

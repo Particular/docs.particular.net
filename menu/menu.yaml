@@ -1113,7 +1113,7 @@
       Url: servicecontrol/upgrades/1to2
   - Title: Licensing
     Url: servicecontrol/license
-  - Title: Powershell
+  - Title: PowerShell
     Url: servicecontrol/powershell
   - Title: ServiceControl instances
     Url: servicecontrol/servicecontrol-instances
@@ -1186,7 +1186,7 @@
       - Title: Installation
         Url: servicecontrol/monitoring-instances/installation
         Articles:
-          - Title: Managing via Powershell
+          - Title: Managing via PowerShell
             Url: servicecontrol/monitoring-instances/installation/installation-powershell
           - Title: Settings
             Url: servicecontrol/monitoring-instances/installation/creating-config-file

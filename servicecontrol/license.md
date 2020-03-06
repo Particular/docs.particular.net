@@ -22,7 +22,7 @@ The designated license file will be imported into the registry. The license file
 
 To import a license using PowerShell:
 
- * Start PowerShell from the start menu, ensure [ServiceControl Powershell Module](/servicecontrol/powershell.md) is loaded
+ * Start PowerShell from the start menu, ensure [ServiceControl PowerShell Module](/servicecontrol/powershell.md) is loaded
  * Execute the following cmdlet with the path to the license file.
 
 ```ps

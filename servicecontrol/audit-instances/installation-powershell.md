@@ -6,7 +6,7 @@ tags:
  - PowerShell
 ---
 
-NOTE: For general information about ServiceControl Powershell, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
+NOTE: For general information about ServiceControl PowerShell, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
 
 
 ## ServiceControl Audit instance Cmdlets and Aliases

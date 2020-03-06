@@ -132,7 +132,7 @@ The ServiceControl queue name is required for configuring the endpoint plugins. 
 
 To perform a clean uninstallation of ServiceControl from a machine:
 
-1. Remove each ServiceControl instance using ServiceControl Management (or Powershell)
+1. Remove each ServiceControl instance using ServiceControl Management (or PowerShell)
 2. Uninstall ServiceControl Management using Add or Remove programs
 
 

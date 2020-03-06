@@ -22,7 +22,7 @@ redirects:
 |Timeouts                   |Native (Requires FIFO Queues)
 |Large message bodies       |Native (Requires S3)
 |Scale-out             |Competing consumer
-|Scripted Deployment        |Powershell, Terraform, C#
+|Scripted Deployment        |PowerShell, Terraform, C#
 |Installers                 |Optional
 
 ## Advantages
