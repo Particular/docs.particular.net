@@ -1,0 +1,18 @@
+---
+title: Azure Service Bus Transport Upgrade Version 9 to 10
+summary: Tips when upgrading Azure Service Bus transport from version 9 to 10.
+reviewed: 2020-03-02
+component: ASB
+related:
+ - transports/azure-service-bus
+isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 7
+ ---
+
+
+## .Net Framework 4.6.2.
+
+Version 10 of the Azure Service Bus transport depends on version 6.0.0 of the WindowsAzure.ServiceBus package, which in turn requires at least .Net Framework 4.6.2.
+
+Follow the official guidance to determine which .Net Framework versions are installed, https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed, and install the required version if needed from https://www.microsoft.com/en-us/download/details.aspx?id=53345.

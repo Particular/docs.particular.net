@@ -9,7 +9,7 @@ related:
 redirects:
  - nservicebus/shared-hosting-nservicebus-in-windows-azure-cloud-services
  - nservicebus/azure/shared-hosting-nservicebus-in-windows-azure-cloud-services
-reviewed: 2018-05-25
+reviewed: 2020-03-05
 ---
 
 include: cloudserviceshost-deprecated-warning

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 
 class Program
@@ -15,7 +16,18 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
-        var queueClient = QueueClient.CreateFromConnectionString(connectionString, "Samples.ASB.NativeIntegration");
+        var managementClient = NamespaceManager.CreateFromConnectionString(connectionString);
+        var integrationQueue = "Samples.ASB.NativeIntegration";
+
+        if (!await managementClient.QueueExistsAsync(integrationQueue)
+            .ConfigureAwait(false))
+
+        {
+            await managementClient.CreateQueueAsync(integrationQueue)
+                .ConfigureAwait(false);
+        }
+
+        var queueClient = QueueClient.CreateFromConnectionString(connectionString, integrationQueue);
 
         #region SerializedMessage
 
