@@ -37,7 +37,7 @@ partial: master
 
 ### When self-hosting
 
-When [self hosting](/nservicebus/hosting/) the endpoint, use this configuration:
+When [self-hosting](/nservicebus/hosting/) the endpoint, use this configuration:
 
 snippet: ConfiguringDistributor
 

@@ -81,7 +81,7 @@ NServiceBus can be hosted in any web technology that supports .NET. See [Web App
 
 ### WebJob hosting
 
-NServiceBus can be hosted in a WebJob. See [Self Hosting in Azure WebJobs](/samples/azure/webjob-host)
+NServiceBus can be hosted in a WebJob. See [Self-Hosting in Azure WebJobs](/samples/azure/webjob-host)
 
 ### Service Fabric hosting
 
@@ -144,7 +144,7 @@ There are multiple ways to host in Azure. Depending on the requirements, self-ho
 Related:
 
  * [Shared Hosting in Azure Cloud Services Sample](/samples/azure/shared-host/)
- * [Self Hosting in Azure WebJobs](/samples/azure/webjob-host/)
+ * [Self-Hosting in Azure WebJobs](/samples/azure/webjob-host/)
  
 
 ## ILMerging NServiceBus assemblies

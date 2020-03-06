@@ -70,7 +70,7 @@ Note: CORS is enabled via `builder.UseCors(CorsOptions.AllowAll);`. In most case
 
 ## WebServer/OWIN Hosting
 
-This sample uses a [self hosted](https://katanaproject.codeplex.com/wikipage?title=Selfhosting) instance of [Katana](https://www.asp.net/aspnet/overview/owin-and-katana) to serve up HTTP and provide an OWIN pipeline.
+This sample uses a [self-hosted](https://katanaproject.codeplex.com/wikipage?title=Selfhosting) instance of [Katana](https://www.asp.net/aspnet/overview/owin-and-katana) to serve up HTTP and provide an OWIN pipeline.
 
 
 ## The endpoint configuration

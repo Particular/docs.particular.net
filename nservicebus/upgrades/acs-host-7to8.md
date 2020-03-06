@@ -12,21 +12,21 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-The NServiceBus Azure Host will be deprecated as of Version 9 and users are recommended to switch to self hosting for new endpoints. Upgrading existing endpoints is still supported for Version 8.
+The NServiceBus Azure Host will be deprecated as of Version 9 and users are recommended to switch to self-hosting for new endpoints. Upgrading existing endpoints is still supported for Version 8.
 
 include: host-deprecate
 
 
 ## Migrating procedure
 
-See the [self hosting sample](/samples/azure/self-host/) for details. For multi-hosting it is recommended to apply self-hosting with multiple endpoints similar to the [multi hosting sample](/samples/hosting/multi-hosting).
+See the [self-hosting sample](/samples/azure/self-host/) for details. For multi-hosting it is recommended to apply self-hosting with multiple endpoints similar to the [multi hosting sample](/samples/hosting/multi-hosting).
 
 If process isolation is required between the endpoints it is advised to stay with the latest version of the cloud host. Process isolation will be addressed in the upgrade guides when the host is fully deprecated.
 
 
 ### Configuration
 
-Self hosting gives access to the same configuration options. See below for migration of host specific configuration APIs.
+Self-hosting gives access to the same configuration options. See below for migration of host specific configuration APIs.
 
 
 #### Custom endpoint configuration
