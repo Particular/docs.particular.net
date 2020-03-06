@@ -656,8 +656,17 @@
       Title: Backwards compatibility
     - Url: transports/azure-service-bus/transaction-support
       Title: Transaction support
+      Articles:
+        - Url: nservicebus/azure/understanding-transactionality-in-azure
+          Title: Transactions in Azure
+        - Url: nservicebus/azure/ways-to-live-without-transactions
+          Title: Avoiding Transactions
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational scripting
+    - Title: Routing
+      Articles:
+      - Url: nservicebus/azure/data-distribution
+        Title: Data distribution      
   - Url: transports/azure-service-bus/legacy
     Title: Azure Service Bus (Legacy)
     Articles:
@@ -722,10 +731,11 @@
     Articles:
     - Url: transports/azure-storage-queues/transaction-support
       Title: Transaction Support
-    - Url: nservicebus/azure/understanding-transactionality-in-azure
-      Title: Transactions in Azure
-    - Url: nservicebus/azure/ways-to-live-without-transactions
-      Title: Avoiding Transactions
+      Articles:
+        - Url: nservicebus/azure/understanding-transactionality-in-azure
+          Title: Transactions in Azure
+        - Url: nservicebus/azure/ways-to-live-without-transactions
+          Title: Avoiding Transactions
     - Url: transports/azure-storage-queues/configuration
       Title: Configuration
     - Url: transports/azure-storage-queues/delayed-delivery
@@ -736,8 +746,10 @@
       Title: Performance Tuning
     - Url: transports/azure-storage-queues/multi-storageaccount-support
       Title: Multiple storage accounts
-    - Url: nservicebus/azure/data-distribution
-      Title: Data distribution
+    - Title: Routing
+      Articles:
+      - Url: nservicebus/azure/data-distribution
+        Title: Data distribution
   - Url: transports/sql
     Title: SQL Server
     Articles:
