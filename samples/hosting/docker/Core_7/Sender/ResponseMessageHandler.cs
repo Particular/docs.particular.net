@@ -1,15 +1,19 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
+using Shared;
 
-public class ResponseMessageHandler
-    : IHandleMessages<ResponseMessage>
+namespace Sender
 {
-    static ILog log = LogManager.GetLogger<ResponseMessageHandler>();
-
-    public Task Handle(ResponseMessage message, IMessageHandlerContext context)
+    public class ResponseMessageHandler
+        : IHandleMessages<ResponseMessage>
     {
-        log.Info($"Response received with description: {message.Data}");
-        return Task.CompletedTask;
+        static ILog log = LogManager.GetLogger<ResponseMessageHandler>();
+
+        public Task Handle(ResponseMessage message, IMessageHandlerContext context)
+        {
+            log.Info($"Response received with description: {message.Data}");
+            return Task.CompletedTask;
+        }
     }
 }

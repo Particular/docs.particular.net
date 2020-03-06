@@ -1,40 +1,75 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using NServiceBus;
+using NServiceBus.Logging;
 
 namespace Receiver
 {
     class Program
     {
-        static SemaphoreSlim semaphore = new SemaphoreSlim(0);
-
-        static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.CancelKeyPress += CancelKeyPress;
-            AppDomain.CurrentDomain.ProcessExit += ProcessExit;
-
-            var host = new Host();
-
-            Console.Title = host.EndpointName;
-
-            await host.Start();
-            await Console.Out.WriteLineAsync("Press Ctrl+C to exit...");
-
-            // wait until notified that the process should exit
-            await semaphore.WaitAsync();
-
-            await host.Stop();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        static void CancelKeyPress(object sender, ConsoleCancelEventArgs e)
+        static IHostBuilder CreateHostBuilder(string[] args)
         {
-            e.Cancel = true;
-            semaphore.Release();
+            return Host.CreateDefaultBuilder(args)
+                .UseConsoleLifetime()
+                .UseNServiceBus(ctx =>
+                {
+                    var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");
+                    #region TransportConfiguration
+
+                    var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+                    transport.ConnectionString("host=rabbitmq");
+                    transport.UseConventionalRoutingTopology();
+
+                    #endregion
+
+                    endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+                    endpointConfiguration.EnableInstallers();
+                    endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
+                    return endpointConfiguration;
+                }).ConfigureLogging(logging => { logging.ClearProviders(); })
+                .ConfigureServices(services => services.AddHostedService<DockerComposeIndicator>());
         }
 
-        static void ProcessExit(object sender, EventArgs e)
+        static async Task OnCriticalError(ICriticalErrorContext context)
         {
-            semaphore.Release();
+            // TODO: decide if stopping the endpoint and exiting the process is the best response to a critical error
+            // https://docs.particular.net/nservicebus/hosting/critical-errors
+            try
+            {
+                await context.Stop();
+            }
+            finally
+            {
+                FailFast($"Critical error, shutting down: {context.Error}", context.Exception);
+            }
         }
+
+        static void FailFast(string message, Exception exception)
+        {
+            try
+            {
+                log.Fatal(message, exception);
+
+                // TODO: when using an external logging framework it is important to flush any pending entries prior to calling FailFast
+                // https://docs.particular.net/nservicebus/hosting/critical-errors#when-to-override-the-default-critical-error-action
+            }
+            finally
+            {
+                Environment.FailFast(message, exception);
+            }
+        }
+
+        // TODO: optionally choose a custom logging library
+        // https://docs.particular.net/nservicebus/logging/#custom-logging
+        // LogManager.Use<TheLoggingFactory>();
+        static readonly ILog log = LogManager.GetLogger(typeof(Program));
     }
 }
