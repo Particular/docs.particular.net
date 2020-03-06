@@ -5,7 +5,10 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.2" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="5.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.0.0" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.2.0" />
     <PackageReference Include="RabbitMQ.Client" Version="5.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
