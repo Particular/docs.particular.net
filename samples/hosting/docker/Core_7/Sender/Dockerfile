@@ -1,6 +1,7 @@
-FROM mcr.microsoft.com/dotnet/core/runtime:2.1 AS base
+FROM mcr.microsoft.com/dotnet/core/runtime:3.1 AS base
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.1 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+
 WORKDIR /src
 COPY . .
 WORKDIR /src/Sender
