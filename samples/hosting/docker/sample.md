@@ -96,8 +96,6 @@ services:
         build:
             context: .
             dockerfile: ./Sender/Dockerfile
-        networks:
-            - new
         depends_on:
             rabbitmq:
                 condition: service_healthy
@@ -106,8 +104,6 @@ services:
         build:
             context: .
             dockerfile: ./Receiver/Dockerfile
-        networks:
-            - new
         depends_on:
             rabbitmq:
                 condition: service_healthy
@@ -115,14 +111,11 @@ services:
         image: "rabbitmq:3.8-management"
         ports:
             - "15672:15672"
-        networks:
-            - new
+            - "5672:5672"
         healthcheck:
             test: ["CMD-SHELL", "if rabbitmqctl status; then \nexit 0 \nfi \nexit 1"]
             interval: 10s
             retries: 5
-networks:
-    new:
 ```
 
 ### Transport configuration
