@@ -615,14 +615,19 @@ File extensions scanned for snippets include:
 
  * `.config`
  * `.cs`
- * `.ps`
  * `.cscfg`
  * `.csdef`
+ * `csproj`
  * `.html`
  * `.sql`
  * `.txt`
  * `.xml`
-
+ * `.xsd`
+ * `ps1`
+ * `.ps`
+ * `.json`
+ * `.proto`
+ * `.config`
 
 ### Snippets are highlighted using highlightjs
 
