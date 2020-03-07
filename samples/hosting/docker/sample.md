@@ -67,56 +67,13 @@ This sample consists of `Sender` and `Receiver` endpoints exchanging messages us
 
 Each endpoint is a container built on top of the official `mcr.microsoft.com/dotnet/core/runtime:3.1` image from [Docker Hub](https://hub.docker.com/). The container image builds and publishes the endpoint binaries and then uses those artifacts to build the final container image:
 
-```dockerfile
-FROM mcr.microsoft.com/dotnet/core/runtime:3.1 AS base
-
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
-
-WORKDIR /src
-COPY . .
-WORKDIR /src/Receiver
-RUN dotnet publish -c Release -o /app
-
-FROM base AS final
-WORKDIR /app
-COPY --from=build /app .
-ENTRYPOINT ["dotnet", "Receiver.dll"]
-```
-
+snippet: receiver
 
 ### Multi-container application
 
 Endpoint container images for the `Sender` and the `Receiver` are combined with an official [RabbitMQ image](https://hub.docker.com/_/rabbitmq/) to create a multi-container application using [Docker Compose](https://docs.docker.com/compose/):
 
-```yaml
-version: "2.3"
-services:   
-    sender:
-        image: sender
-        build:
-            context: .
-            dockerfile: ./Sender/Dockerfile
-        depends_on:
-            rabbitmq:
-                condition: service_healthy
-    receiver:
-        image: receiver
-        build:
-            context: .
-            dockerfile: ./Receiver/Dockerfile
-        depends_on:
-            rabbitmq:
-                condition: service_healthy
-    rabbitmq:
-        image: "rabbitmq:3.8-management"
-        ports:
-            - "15672:15672"
-            - "5672:5672"
-        healthcheck:
-            test: ["CMD-SHELL", "if rabbitmqctl status; then \nexit 0 \nfi \nexit 1"]
-            interval: 10s
-            retries: 5
-```
+snippet: compose
 
 ### Transport configuration
 

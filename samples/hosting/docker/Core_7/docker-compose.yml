@@ -1,3 +1,4 @@
+# startcode compose
 version: "2.3"
 services:   
     sender:
@@ -25,3 +26,4 @@ services:
             test: ["CMD-SHELL", "if rabbitmqctl status; then \nexit 0 \nfi \nexit 1"]
             interval: 10s
             retries: 5
+# endcode            
