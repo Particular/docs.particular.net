@@ -1,7 +1,7 @@
 ---
 title: Outbox with SQL persistence
 component: SqlPersistence
-reviewed: 2018-05-28
+reviewed: 2020-03-09
 tags:
  - Outbox
 related:
