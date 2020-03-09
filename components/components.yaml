@@ -497,6 +497,7 @@
   Category: Logger
   ProjectUrl: https://github.com/Particular/NServiceBus.NLog
   NugetOrder:
+    - NServiceBus.Extensions.Logging
     - NServiceBus.NLog
     - NServiceBus
 
