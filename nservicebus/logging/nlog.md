@@ -12,9 +12,7 @@ related:
 Support for writing all NServiceBus log entries to [NLog](https://nlog-project.org/).
 
 
-## Usage
-
-snippet: NLogInCode
+partial: usage
 
 
 ## Filtering
