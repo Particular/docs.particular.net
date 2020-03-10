@@ -69,7 +69,7 @@ NHibernate persistence has an option to use [explicit version column](/persisten
 
 This requires changing the sagas code and altering the saga table schema by adding a column.
 
-NHibernate adds this column for you if the [endpoint is started or created with EnableInstallers enabled](/nservicebus/operations/installers.md#running-installers). 
+NHibernate adds this column if the [endpoint is started or created with EnableInstallers enabled](/nservicebus/operations/installers.md#running-installers). 
 
 
 ### Enforce NHibernate 4 backward compatibility
