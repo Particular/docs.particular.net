@@ -336,11 +336,44 @@ We also implemented an additional event subscriber, showing how to decouple inde
 
 SUCCESS: Now that you've seen what NServiceBus can do, take the next step and learn how to build a system like this one from the ground up. In the next tutorial, find out how to build the same solution starting from **File** > **New Project**.
 
-<!-- Twitter single-event website tag code -->
+<!-- Twitter -->
 <script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
-<script type="text/javascript">twttr.conversion.trackPid('o3ay4', { tw_sale_amount: 0, tw_order_quantity: 0 });</script>
+<script type="text/javascript">
+  twttr.conversion.trackPid('o3ay4', { tw_sale_amount: 0, tw_order_quantity: 0 });
+  twttr.conversion.trackPid('o3bkg', { tw_sale_amount: 0, tw_order_quantity: 0 });
+</script>
 <noscript>
 <img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=o3ay4&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
 <img height="1" width="1" style="display:none;" alt="" src="https://t.co/i/adsct?txn_id=o3ay4&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
+<img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=o3bkg&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
+<img height="1" width="1" style="display:none;" alt="" src="https://t.co/i/adsct?txn_id=o3bkg&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
 </noscript>
-<!-- End Twitter single-event website tag code -->
+<!-- /Twitter -->
+<!-- Google -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-691241604"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-691241604', {'transport_type': 'beacon'});
+  gtag('event', 'conversion', {'send_to': 'AW-691241604/vSZvCJ-K78kBEISFzskC'});
+  (function () {
+    var track = function () {
+      $('.inline-download .dropdown-menu a:first').click(function(e) {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-691241604/ERjYCIn31ckBEISFzskC',
+          'transaction_id': ''
+        });
+      });
+    };
+    var init = function () {
+      if(window.$) {
+        track();
+      } else {
+        setTimeout(function() { init(); }, 500);
+      }
+    };
+    init();
+  }());
+</script>
+<!-- /Google -->
