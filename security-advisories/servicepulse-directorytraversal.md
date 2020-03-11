@@ -2,8 +2,7 @@
 title: Security Advisory 2020-03-11
 summary: ServicePulse directory traversal vulnerability
 reviewed: 2020-03-11
-tags:
- - ServicePulse
+tags: 
  - Security
 ---
 
