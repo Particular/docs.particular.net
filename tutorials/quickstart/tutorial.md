@@ -41,7 +41,7 @@ The solution mimics a real-life retail system, where [the command](/nservicebus/
 
 ## Running the solution
 
-The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>) it should open the web application in your browser, and two console applications, one window for each messaging endpoint. (The Platform console app will also open briefly and then immediately close.)
+The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>) it should open the web application in your browser, and two console applications, one window for each messaging endpoint. (The Particular Service Platform Launcher console app will also open. Depending on your version of Visual Studio, it may persist or immediately close.)
 
 ![ClientUI Web Application](webapp-start.png)
 ![2 console applications, one for endpoint implemented as a console app](2-console-windows.png)
@@ -98,7 +98,7 @@ With NServiceBus we don't need manual intervention. If an exception is thrown, t
 
 Let's simulate a transient failure in the **Sales** endpoint and see retries in action:
 
-1. In the **Sales** endpoint, locate and open the **PlaceOrderHandler.cs** file.
+1. Stop the solution (if you haven't already) and in the **Sales** endpoint, locate and open the **PlaceOrderHandler.cs** file.
 1. Uncomment the code inside the **ThrowTransientException** region shown here. This will cause an exception to be thrown 20% of the time a message is processed:
 
 snippet: ThrowTransientException
@@ -119,7 +119,7 @@ INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e1d86cb9
 
 NOTE: If you didn't detach the debugger, you must click the **Continue** button in the Exception Assistant dialog before the message will be printed in the **Sales** window.
 
-5. Comment the code inside the **ThrowTransientException** region, so no exceptions are thrown in the future.
+5. Stop the solution and re-comment the code inside the **ThrowTransientException** region, so no exceptions are thrown in the future.
 
 Automatic retries allow us to avoid losing data or having our system left in an inconsistent state because of a random transient exception. We won't need to manually dig through the database to fix things anymore!
 
@@ -162,7 +162,7 @@ The purpose of this app is to host different tools within a sandbox environment,
 
 ![Service Pulse: Dashboard View](pulse-dashboard.png)
 
-The screenshot shows how ServicePulse monitors the operational health of your system. It tracks **Hearbeats** from your messaging endpoints, ensuring that they are running and able to send messages. It tracks **Failed Messages** and allows you to retry them. It also supports **Custom Checks** allowing you to write code that checks the health of your external dependencies (such as connectivity to a web service or FTP server) so you can get a better idea of the overall health of your system.
+The screenshot shows how ServicePulse monitors the operational health of your system. It tracks **Heartbeats** from your messaging endpoints, ensuring that they are running and able to send messages. It tracks **Failed Messages** and allows you to retry them. It also supports **Custom Checks** allowing you to write code that checks the health of your external dependencies (such as connectivity to a web service or FTP server) so you can get a better idea of the overall health of your system.
 
 Another feature of ServicePulse is the **Monitoring** view, which tracks performance statistics for your endpoints:
 
@@ -279,7 +279,7 @@ Now that we have a project for the Shipping endpoint, we need to add some code t
 
 snippet: ShippingProgram
 
-We want the **Shipping** endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx) feature to configure the **Shipping** endpoint to start along with **ClientUI**, **Sales**, and **Billing**.
+We want the **Shipping** endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects) feature to configure the **Shipping** endpoint to start along with **ClientUI**, **Sales**, and **Billing**.
 
 
 ### Create a new message handler
