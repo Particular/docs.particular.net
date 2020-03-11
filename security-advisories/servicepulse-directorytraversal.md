@@ -47,7 +47,7 @@ If it is not possible to immediately upgrade ServicePulse to the latest version,
 
 This vulnerability can be fixed by upgrading ServicePulse to the latest version. Upgrades should be performed as follows:
 
-[Download](https://particular.net/start-servicepulse-download) and run the latest version of the ServicePulse installer following our online [installation instructions](/servicepulse/installation#installation)
+[Download](https://particular.net/start-servicepulse-download) and run the latest version of the ServicePulse installer following the online [installation instructions](/servicepulse/installation#installation)
 
 
 ### Contact info
