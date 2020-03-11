@@ -10,3 +10,5 @@ suppressRelated: true
   * MSMQ permissions vulnerability.
 * [Security Advisory 2018-01-19](asq-alias-for-default-connectionstring.md)
   * Azure Storage Queues vulnerability.
+* [Security Advisory 2020-03-11](servicepulse-directorytraversal.md)
+  * ServicePulse Directory Traversal vulnerability.
