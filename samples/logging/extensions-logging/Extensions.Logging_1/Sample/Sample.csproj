@@ -5,7 +5,7 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Logging" Version="1.0.0-*" />
+    <PackageReference Include="NServiceBus.Extensions.Logging" Version="1.0.*" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.*" />
   </ItemGroup>
 </Project>
