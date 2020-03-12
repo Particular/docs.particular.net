@@ -62,6 +62,7 @@ Manually alter the schema of existing saga tables to use the new `DateTime2(7)` 
 
 ```sql
 ALTER TABLE [MySagaTable] ALTER COLUMN [OneOfMyColumns] DATETIME2 NULL
+```
 
 NHibernate does not alter columns manually.
 
