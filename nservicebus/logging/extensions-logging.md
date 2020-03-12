@@ -28,7 +28,7 @@ At the time of this writing Microsoft.Extensions.Logging can be used to replace 
 
 For an up-to-date list, read the Microsoft.Extensions.Logging fundamentals documentation, specifically the [built-in](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/#built-in-logging-providers) and [thirdparty](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/#third-party-logging-providers) providers.
 
-## Support for ILogger<>
+## Support for ILogger<TCategoryName>
 
 Microsoft.Extensions.Logging abstractions provide an generic interface that is allows a dependency injection (DI) friendly way to create loggers. NServiceBus.Extensions.Logging does not register any resolver for type `ILogger<>`. Usage of `ILogger<>` requires the use an external DI container like [NServiceBus.Extensions.DependencyInjection](/nservicebus/dependency-injection/extensions-dependencyinjection.md) that contains registrations for the Microsoft.Extensions.Logging abstractions.
 
