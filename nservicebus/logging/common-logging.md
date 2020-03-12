@@ -1,6 +1,6 @@
 ---
 title: Common.Logging
-summary: Using Common.Logging logging abstraction with NServiceBus
+summary: Using Common.Logging abstraction with NServiceBus
 component: CommonLogging
 reviewed: 2020-03-11
 related:
