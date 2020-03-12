@@ -60,14 +60,17 @@ INFO: For saga tables it is advised to both **upgrade the database schemas to us
 
 Manually alter the schema of existing saga tables to use the new `DateTime2(7)` data type. Such alteration can be done in-place without any data/precision loss.
 
+```sql
+ALTER TABLE [MySagaTable] ALTER COLUMN [OneOfMyColumns] DATETIME2 NULL
+
 NHibernate does not alter columns manually.
 
 
 ### Use explicit version column for Optimistic Concurrency Control
 
-NHibernate persistence has an option to use [explicit version column](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version) for optimistic concurrency checks (OCC).
+NHibernate persistence has an option to use an [explicit version column](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version) for optimistic concurrency checks (OCC) and during an update or delete only a single `int` column will be compared.
 
-This requires changing the sagas code and altering the saga table schema by adding a column.
+This requires adding a version property to the code of sagas and altering the database saga table schema by adding a column.
 
 NHibernate adds this column if the [endpoint is started or created with EnableInstallers enabled](/nservicebus/operations/installers.md#running-installers). 
 
