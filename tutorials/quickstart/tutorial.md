@@ -336,30 +336,23 @@ We also implemented an additional event subscriber, showing how to decouple inde
 
 SUCCESS: Now that you've seen what NServiceBus can do, take the next step and learn how to build a system like this one from the ground up. In the next tutorial, find out how to build the same solution starting from **File** > **New Project**.
 
-<!-- Twitter -->
 <script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
-<script type="text/javascript">
-  twttr.conversion.trackPid('o3ay4', { tw_sale_amount: 0, tw_order_quantity: 0 });
-  twttr.conversion.trackPid('o3bkg', { tw_sale_amount: 0, tw_order_quantity: 0 });
-</script>
-<noscript>
-<img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=o3ay4&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
-<img height="1" width="1" style="display:none;" alt="" src="https://t.co/i/adsct?txn_id=o3ay4&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
-<img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=o3bkg&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
-<img height="1" width="1" style="display:none;" alt="" src="https://t.co/i/adsct?txn_id=o3bkg&p_id=Twitter&tw_sale_amount=0&tw_order_quantity=0" />
-</noscript>
-<!-- /Twitter -->
-<!-- Google -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-691241604"></script>
-<script>
+<script type="text/javascript">
+  // Twitter view
+  twttr.conversion.trackPid('o3bkg', { tw_sale_amount: 0, tw_order_quantity: 0 });
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'AW-691241604', {'transport_type': 'beacon'});
+  // Google view
   gtag('event', 'conversion', {'send_to': 'AW-691241604/vSZvCJ-K78kBEISFzskC'});
   (function () {
     var track = function () {
       $('.inline-download .dropdown-menu a:first').click(function(e) {
+        // Twitter download
+        twttr.conversion.trackPid('o3ay4', { tw_sale_amount: 0, tw_order_quantity: 0 });
+        // Google download
         gtag('event', 'conversion', {
           'send_to': 'AW-691241604/ERjYCIn31ckBEISFzskC',
           'transaction_id': ''
@@ -376,4 +369,3 @@ SUCCESS: Now that you've seen what NServiceBus can do, take the next step and le
     init();
   }());
 </script>
-<!-- /Google -->
