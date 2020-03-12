@@ -1,14 +1,13 @@
 ---
-title: CommonLogging
-summary: Logging to CommonLogging
+title: Common.Logging
+summary: Using Common.Logging abstraction with NServiceBus
 component: CommonLogging
-reviewed: 2019-07-29
+reviewed: 2020-03-11
 related:
 - samples/logging/commonlogging
 ---
 
-Support for writing all NServiceBus log entries to [CommonLogging](https://github.com/net-commons/common-logging).
-
+Support for writing all NServiceBus log entries to [Common.Logging](https://github.com/net-commons/common-logging). Common.Logging provides a simple logging abstraction to switch between different logging implementations and is similar to [Microsoft.Extensions.Logging](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.logging).
 
 ## Usage
 

@@ -323,6 +323,15 @@
   NugetOrder:
     - Particular.PlatformSample
 
+- Key: Extensions.Logging
+  Name: NServiceBus Extensions Logging
+  DocoUrl: nservicebus/logging/extensions-logging
+  GitHubOwner: Particular
+  Category: Logger
+  ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.Logging
+  NugetOrder:
+    - NServiceBus.Extensions.Logging
+  
 - Key: Log4Net
   Name: Log4Net Logger
   DocoUrl: nservicebus/logging/log4net
@@ -488,6 +497,7 @@
   Category: Logger
   ProjectUrl: https://github.com/Particular/NServiceBus.NLog
   NugetOrder:
+    - NServiceBus.Extensions.Logging
     - NServiceBus.NLog
     - NServiceBus
 
