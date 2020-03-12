@@ -1,6 +1,6 @@
 ---
 title: NHibernate Persistence Upgrade Version 8.0 to 8.1
-summary: Instructions on how to upgrade NHibernate Persistence Version 8.0 to 8.1.
+summary: Instructions on how to upgrade NHibernate Persistence Version 8.0 to 8.1 to resolve StaleObjectStateException errors.
 reviewed: 2019-04-05
 component: NHibernate
 isUpgradeGuide: true
@@ -37,29 +37,47 @@ The actual number of milliseconds stored is 336 and two-thirds but when the valu
 
 Later, when building the update command, NHibernate passes that converted value as the `DateTime2(7)` type. This means that the database understands that the value is as precise as this new type permits: `2016-10-23 12:45:37.3370000`.
 
-Because the value in the table is of `DateTime` type the SQL Server engine up-converts it to match the more precise `DateTime2(7)` in order to compare equality. Based on the [new conversions rules in SQL Server 2016](https://support.microsoft.com/en-us/help/4010261/sql-server-and-azure-sql-database-improvements-in-handling-data-types) the conversion yields `2016-10-23 12:45:37.3366666` which is not equal to `2016-10-23 12:45:37.3370000`. As a result, the update statement does not modify any rows which triggers NHibernate to raise `NHibernate.StaleStateException` to indicate that the value has been changed since it has been read.
+Because the value in the table is of `DateTime` type the SQL Server engine up-converts it to match the more precise `DateTime2(7)` in order to compare equality. Based on the [new conversions rules in SQL Server 2016](https://support.microsoft.com/en-us/help/4010261/sql-server-and-azure-sql-database-improvements-in-handling-data-types) the conversion yields `2016-10-23 12:45:37.3366666` which is not equal to `2016-10-23 12:45:37.3370000`. As a result, the update statement does not modify any rows which triggers NHibernate to raise `NHibernate.StaleObjectStateException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect)` to indicate that the value has been changed since it has been read.
 
 
 ## Upgrade paths
 
-Because, as mentioned, NHibernate 5 defaults to `DateTime2(7)` type, all new saga tables will use that new type for storing .NET `DateTime` values. These new sagas will work correctly with Version 8.1 of NHibernate persistence.
+NHibernate 5 defaults to `DateTime2(7)` type, all newly created saga tables will use that new type for storing .NET `DateTime` values. These new sagas will work correctly with Version 8.1 of NHibernate persistence.
 
-All the existing sagas that use `DateTime` type in their tables stop working with Version 8.1 of NHibernate persistence due to the optimistic concurrency problem manifesting in `NHibernate.StaleStateException` being thrown. There are three upgrade paths to make these existing sagas work.
+All existing sagas that use `DateTime` type in their tables stop working with Version 8.1 of NHibernate persistence due to the optimistic concurrency problem manifesting in `NHibernate.StaleObjectStateException` being thrown.
+
+There are three upgrade paths to make these existing sagas work.
+
+1. Alter schema to use the `DateTime2(7)` type
+2. Use explicit version column for Optimistic Concurrency Control
+3. Enforce NHibernate 4 backward compatibility mode
+4. Set SQL compatibility mode to SQL Server 2014
+
+INFO: For saga tables it is advised to both **upgrade the database schemas to use `DateTime2(7)`** and to **use an explicit version column**.
 
 
-### Alter schema
+### Alter schema to use the `DateTime2(7)` type
 
-One way to solve the problem is to alter the schema of existing saga tables to use the new `DateTime2(7)` data type. Such alteration can be done in-place without any data/precision loss.
+Manually alter the schema of existing saga tables to use the new `DateTime2(7)` data type. Such alteration can be done in-place without any data/precision loss.
+
+```sql
+ALTER TABLE [MySagaTable] ALTER COLUMN [OneOfMyColumns] DATETIME2 NULL
+
+NHibernate does not alter columns manually.
 
 
-### Use explicit version field
+### Use explicit version column for Optimistic Concurrency Control
 
-NHibernate persistence has an option to use [explicit version column](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version) for optimistic concurrency checks. This is usually a better option because the resulting update command is much simpler. Enabling the explicit versioning requires changing the sagas code and altering the saga table schema (adding a column). 
+NHibernate persistence has an option to use an [explicit version column](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version) for optimistic concurrency checks (OCC) and during an update or delete only a single `int` column will be compared.
+
+This requires adding a version property to the code of sagas and altering the database saga table schema by adding a column.
+
+NHibernate adds this column if the [endpoint is started or created with EnableInstallers enabled](/nservicebus/operations/installers.md#running-installers). 
 
 
-### Force backward compatibility
+### Enforce NHibernate 4 backward compatibility
 
-If altering the schema is not an option, NHibernate offers a configuration switch to fall back to using the classic `DateTime` data type
+If altering the database schema is not an option, NHibernate offers a configuration switch to fall back to using the classic `DateTime` data type
 
 snippet: NHibernateLegacyDateTimeUpgrade7To8
 
