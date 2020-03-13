@@ -15,4 +15,4 @@ upgradeGuideCoreVersions:
 
 Version 10 of the Azure Service Bus transport depends on version 6.0.0 of the WindowsAzure.ServiceBus package, which in turn requires at least .NET Framework 4.6.2.
 
-Follow the [official guidance](/transports/upgrades/asb-10toasbs-1#api-differences-azure-cli-options) to determine which .NET Framework versions are installed, and install the required version if needed from https://www.microsoft.com/en-us/download/details.aspx?id=53345.
+Follow the [official guidance](/transports/upgrades/asb-10toasbs-1.md#api-differences-azure-cli-options) to determine which .NET Framework versions are installed, and install the required version if needed from https://www.microsoft.com/en-us/download/details.aspx?id=53345.
