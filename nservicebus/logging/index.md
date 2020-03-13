@@ -68,9 +68,12 @@ snippet: OverrideLoggingDirectoryInCode
 
 ## Custom Logging
 
+Note: For custom logging it is recommended to use [Microsoft.Extensions.Logging](extensions-logging.md) and use a supported provider.
+
 For more advanced logging, it is recommended to utilize one of the many mature logging libraries available for .NET.
 
- * [Log4Net integration](log4net.md)
+ * [Microsoft.Extensions.Logging](extensions-logging.md)
+ * [Log4Net integration](log4net.md) (Recommended to log
  * [NLog integration](nlog.md)
  * [CommonLogging integration](common-logging.md)
  * [EventSourceLogging integration](eventsourcelogging.md)
