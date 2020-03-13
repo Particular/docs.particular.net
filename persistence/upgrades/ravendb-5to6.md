@@ -184,7 +184,7 @@ update {
 }
 ```
 
-Only timeout documents with with the old format are modified. Timeout documents already in the new format are not modified.
+Only timeout documents with the old format are modified. Timeout documents already in the new format are not modified.
 
 For example
 
