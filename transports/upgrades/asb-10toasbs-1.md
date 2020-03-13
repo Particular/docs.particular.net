@@ -44,7 +44,7 @@ Yes. While the new transport has been built with reasonable defaults, if a handl
 
 The following settings can be configured via the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/servicebus/queue?view=azure-cli-latest#az-servicebus-queue-update) or a third party tool. These options were configured using the Endpoint Configuration API in the legacy Azure Service Bus transport.
 
-* Forward dead-lettered messages to. I.e. the queue to which dead-lettered messages should be sent
+* Dead-lettered messages forwarding
 * Default message time to live. Alternatively, message time to live can be configured using one of the methods of [discarding old messages](/nservicebus/messaging/discard-old-messages.md).
 * Enable dead-lettering on message expiration
 * Auto-delete on idle
