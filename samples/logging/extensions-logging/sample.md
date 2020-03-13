@@ -16,12 +16,12 @@ Both Microsoft.Extensions.Logging and NServiceBus.Logging are logging abstractio
 The following logging chain is created:
 
 
-   NServiceBus.Logging
-   -> NServiceBus.Extensions.Logging
-     -> Microsoft.Extensions.Logging
-       -> NLog.Extensions.Logging
-         -> NLog
-           -> Console output
+- NServiceBus.Logging
+  - NServiceBus.Extensions.Logging
+    - Microsoft.Extensions.Logging
+      - NLog.Extensions.Logging
+        - NLog
+          - Console output
 
 
 ### Configure NLog
