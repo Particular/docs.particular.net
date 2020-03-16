@@ -2,7 +2,7 @@
 title: Upgrade Bridge 2 to Router 2
 summary: Instructions on how to upgrade NServiceBus.Bridge Version 2 to NServiceBus.Router Version 2.
 component: Bridge
-reviewed: 2018-06-08
+reviewed: 2020-03-16
 redirects:
 - nservicebus/bridge/bridge-router
 isUpgradeGuide: true
@@ -10,7 +10,7 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-The NServiceBus.Bridge package has been deprecated and replaced by the more powerful NServiceBus.Router. The bridge-based and switch-and-port-based APIs available in the Bridge package have been replaced by a single router-interface-based API.
+The `NServiceBus.Bridge` package has been deprecated and replaced by the more powerful `NServiceBus.Router` package. The bridge-based and switch-and-port-based APIs available in the Bridge package have been replaced by a single router-interface-based API.
 
 ## Endpoint-side
 
@@ -23,7 +23,7 @@ NOTE: When connecting to the router, use the name of router's interface, not the
 
 ## Bridge to router
 
-A simple bridge between two transports could be constructed using the `Bridge.Between<TLeft>(...).And<TRight>(...)` construct. This API is no longer available. The following code is an equivalent using the router APIs.
+A simple bridge between two transports can be constructed using the `Bridge.Between<TLeft>(...).And<TRight>(...)` construct. This API is no longer available. The following code is an equivalent using the router API.
 
 snippet: bridge-to-router-simple-router
 
@@ -35,8 +35,8 @@ A switch could be used to forward messages between more than two transports/brok
 
 snippet: bridge-to-router-switch
 
-NOTE: When using a switch endpoints must be explicitly mapped to ports, either in the bridge connector or in the bridge itself.
+NOTE: When using a switch, endpoints must be explicitly mapped to ports, either in the bridge connector or in the bridge itself.
 
-The replacement router configuration is similar but uses interfaces instead of ports. The router interface mapping is more powerful than switch port mapping and allows for complex routing rules based on both the incoming interface and the destination. The result is the outgoing interface and, optionally, a next hop router (also known as gateway).
+The replacement router configuration is similar but uses interfaces instead of ports. The router interface mapping is more powerful than switch port mapping and allows for complex routing rules based on both the incoming interface and the destination. The result is the outgoing interface and, optionally, a next hop router (also known as a [gateway](/nservicebus/gateway)).
 
 snippet: bridge-to-router-three-way-router
