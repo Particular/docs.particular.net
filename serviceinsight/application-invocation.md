@@ -1,6 +1,6 @@
 ---
 title: ServiceInsight Application Invocation
-reviewed: 2018-06-07
+reviewed: 2020-03-16
 component: ServiceInsight
 summary: How the integration between ServicePulse and ServiceInsight works and how to use the parameterized invocation of ServiceInsight.
 tags:
