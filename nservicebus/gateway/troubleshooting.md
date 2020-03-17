@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 summary: How to solve common issues that arise with the gateway
-reviewed: 2018-05-30
+reviewed: 2020-03-17
 redirects:
  - nservicebus/gateway-trouble-shooting
  - nservicebus/gateway-service-point-manager
