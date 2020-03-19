@@ -1,5 +1,5 @@
 ---
-title: Licensing
+title: License file information
 summary: Outlines license usage, management, and restrictions
 component: core
 reviewed: 2019-05-27
