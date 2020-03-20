@@ -26,6 +26,19 @@ At the time of this writing Microsoft.Extensions.Logging can be used to replace 
 
 ## Supported providers
 
+At the time of this writing NServiceBus supports the following logging frameworks via Microsoft.Extensions.Logging:
+
+- elmah.io
+- Gelf
+- JSNLog
+- KissLog.net
+- Log4Net
+- Loggr
+- NLog
+- Sentry
+- Serilog
+- Stackdriver
+
 For an up-to-date list, read the Microsoft.Extensions.Logging fundamentals documentation, specifically the [built-in](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/#built-in-logging-providers) and [thirdparty](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/#third-party-logging-providers) providers.
 
 ## Support for ILogger<TCategoryName>

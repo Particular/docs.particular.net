@@ -26,6 +26,17 @@ The following adapter packages will no longer be provided:
 
 NServiceBus container adapters supported [automatic property injection](/nservicebus/dependency-injection/extensions-dependencyinjection.md#property-injection), this is not possible via `Microsoft.Extensions.DependencyInjection` and must be explicitly enabled using the native API of containers that supports it.
 
+## Support for external logging providers
+
+Support for external logging providers is no longer provided by NServiceBus adapters for each logging framework. Instead, the [`NServiceBus.Extensions.Logging` package](/nservicebus/logging/extensions-logging.md) provides the ability to use any logging provider that conforms to the `Microsoft.Extensions.Logging` abstraction.
+
+The following provider packages will no longer be provided:
+
+* [Common.Logging](/nservicebus/logging/common-logging.md)
+* [EventSource](/nservicebus/logging/eventsourcelogging.md)
+* [Log4net](/nservicebus/logging/log4net.md)
+* [NLog](/nservicebus/logging/nlog.md)
+
 ## New gateway persistence API
 
 The NServiceBus gateway has been moved to a separate `NServiceBus.Gateway` package and all gateway public APIs in NServiceBus are obsolete and will produce the following warning:
