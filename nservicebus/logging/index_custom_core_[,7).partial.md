@@ -1,4 +1,4 @@
-For more advanced logging, it is recommended to utilize one of the many mature logging libraries available for .NET.
+For more advanced logging, it is recommended to use one of the logging libraries available for .NET.
 
  * [Log4Net integration](log4net.md)
  * [NLog integration](nlog.md)
