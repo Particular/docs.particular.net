@@ -6,7 +6,7 @@ versions: '[6,]'
 tags:
 - Azure
 - Transactions
-reviewed: 2018-06-15
+reviewed: 2020-03-23
 redirects:
  - nservicebus/azure-storage-queues/transaction-support
  ---
