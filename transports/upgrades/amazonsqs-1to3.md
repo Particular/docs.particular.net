@@ -3,7 +3,7 @@ title: Upgrade AmazonSQS Transport Version 1 to 3
 summary: Instructions on how to upgrade the AmazonSQS transport from version 1 to 3.
 component: SQS
 isUpgradeGuide: true
-reviewed: 2018-06-15
+reviewed: 2020-03-23
 upgradeGuideCoreVersions:
  - 6
 ---
