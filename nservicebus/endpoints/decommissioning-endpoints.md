@@ -1,7 +1,7 @@
 ---
 title: Decommissioning Endpoints
 summary: Describes the process of permanently shutting down endpoints
-reviewed: 2018-06-18
+reviewed: 2020-03-23
 tags:
  - Endpoint
  - Endpoint Instance
