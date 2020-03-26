@@ -1,7 +1,7 @@
 ---
 title: Simple SQL Persistence Usage
 summary: Using SQL Persistence to store sagas and timeouts.
-reviewed: 2018-06-20
+reviewed: 2020-03-26
 component: SqlPersistence
 tags:
  - Saga
