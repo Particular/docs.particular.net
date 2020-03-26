@@ -1,7 +1,7 @@
 ---
 title: Optimizing ServiceControl for use in different environments
 summary: Tips for running ServiceControl efficiently
-reviewed: 2018-06-20
+reviewed: 2020-03-26
 isLearningPath: true
 ---
 
