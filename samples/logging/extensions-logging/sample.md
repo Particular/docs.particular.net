@@ -2,7 +2,7 @@
 title: NServiceBus.Extensions.Logging Usage
 summary: A sample that uses Microsoft.Extensions.Logging with NLog
 component: Extensions.Logging
-reviewed: 2020-03-20
+reviewed: 2020-03-26
 tags:
  - logging
 related:
@@ -30,7 +30,7 @@ NLog in this example is configured in code:
 
 snippet: NLogConfiguragion
 
-INFO: There is no preference on how NLog is configuredNLog. Based on the NLog documentation the most used method is with an [NLog configuration file](https://github.com/nlog/nlog/wiki/Configuration-file#configuration).
+INFO: There is no preference on how NLog is configured. Based on the NLog documentation the most used method is with an [NLog configuration file](https://github.com/nlog/nlog/wiki/Configuration-file#configuration).
 
 WARNING: It is important that the NLog, Microsoft.Extensions.Logging, and NServiceBus.Logging abstractions are initialized before `Endpoint.Create` or `Endpoint.Start` is invoked. If logging is not fully initialized it is not guaranteed that logging will work as expected.
 
