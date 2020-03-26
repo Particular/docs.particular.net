@@ -4,7 +4,7 @@ summary: Tips on how to get the best performance from the Azure Storage Queues t
 component: ASQ
 isLearningPath: true
 versions: '[7,]'
-reviewed: 2018-06-18
+reviewed: 2020-03-25
 tags:
 - Azure
 - Transport
