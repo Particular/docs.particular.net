@@ -8,6 +8,7 @@ related:
  - nservicebus/upgrades/supported-versions
  - nservicebus/upgrades/supported-platforms
  - servicecontrol/upgrades/support-policy
+ - previews/support-policy
 ---
 
 ## Supported versions
