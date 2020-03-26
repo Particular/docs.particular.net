@@ -16,7 +16,7 @@ In order to [deserialize](/nservicebus/serialization/) a message coming from a t
 
 The sender can specify a message type with the [NServiceBus.EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes).
 
-Some serialiazers can infer the message type from information embedded in the message body. 
+Some serializers can infer the message type from information embedded in the message body. 
 
  * [Xml](/nservicebus/serialization/xml.md) 
  * [Json](/nservicebus/serialization/json.md)
