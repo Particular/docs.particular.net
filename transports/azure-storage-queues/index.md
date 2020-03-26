@@ -6,7 +6,7 @@ tags:
  - Azure
 related:
  - samples/azure/storage-queues
-reviewed: 2018-06-18
+reviewed: 2020-03-25
 redirects:
  - nservicebus/azure-storage-queues
 ---
