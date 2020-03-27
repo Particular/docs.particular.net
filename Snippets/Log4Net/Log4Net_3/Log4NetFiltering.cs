@@ -29,6 +29,7 @@ class Log4NetFiltering
     #endregion
     public Log4NetFiltering()
     {
+        #pragma warning disable CS0618 // Type or member is obsolete
         #region Log4NetFilterUsage
 
         var appender = new ConsoleAppender
@@ -47,5 +48,6 @@ class Log4NetFiltering
         NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
 
         #endregion
+        #pragma warning restore CS0618 // Type or member is obsolete
     }
 }

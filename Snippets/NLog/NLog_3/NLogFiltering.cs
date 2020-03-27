@@ -7,6 +7,7 @@ public class NLogFiltering
 {
     public NLogFiltering()
     {
+        #pragma warning disable CS0618 // Type or member is obsolete
         #region NLogFiltering
 
         var config = new LoggingConfiguration();
@@ -20,5 +21,6 @@ public class NLogFiltering
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
 
         #endregion
+        #pragma warning restore CS0618 // Type or member is obsolete
     }
 }

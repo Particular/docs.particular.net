@@ -7,6 +7,7 @@ class Usage
 {
     Usage()
     {
+        #pragma warning disable CS0618 // Type or member is obsolete
         #region NLogInCode
 
         var config = new LoggingConfiguration();
@@ -23,5 +24,6 @@ class Usage
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
 
         #endregion
+        #pragma warning restore CS0618 // Type or member is obsolete
     }
 }

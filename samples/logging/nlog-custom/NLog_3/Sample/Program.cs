@@ -26,6 +26,7 @@ class Program
 
         #endregion
 
+        #pragma warning disable CS0618 // Type or member is obsolete
         #region UseConfig
 
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
@@ -33,6 +34,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.NLogCustom");
 
         #endregion
+        #pragma warning restore CS0618 // Type or member is obsolete
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
