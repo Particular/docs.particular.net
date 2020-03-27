@@ -30,6 +30,7 @@ class Program
         BasicConfigurator.Configure(repository, consoleAppender);
         #endregion
 
+        #pragma warning disable CS0618 // Type or member is obsolete
         #region UseConfig
 
         LogManager.Use<Log4NetFactory>();
@@ -38,6 +39,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.Log4NetCustom");
 
         #endregion
+        #pragma warning restore CS0618 // Type or member is obsolete
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

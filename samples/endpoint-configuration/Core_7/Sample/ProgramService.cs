@@ -44,6 +44,7 @@ class ProgramService :
 
     async Task AsyncOnStart()
     {
+        #pragma warning disable CS0618 // Type or member is obsolete
         #region logging
 
         var layout = new PatternLayout
@@ -65,6 +66,7 @@ class ProgramService :
         LogManager.Use<Log4NetFactory>();
 
         #endregion
+        #pragma warning restore CS0618 // Type or member is obsolete
 
         #region create-config
 

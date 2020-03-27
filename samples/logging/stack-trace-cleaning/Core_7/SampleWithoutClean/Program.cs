@@ -5,6 +5,7 @@ using NLog.Config;
 using NLog.Targets;
 using NServiceBus;
 
+#pragma warning disable CS0618 // Type or member is obsolete
 class Program
 {
     static async Task Main()
@@ -76,3 +77,4 @@ class Program
         }
     }
 }
+#pragma warning restore CS0618 // Type or member is obsolete

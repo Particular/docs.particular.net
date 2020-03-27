@@ -10,6 +10,7 @@ class Usage
 {
     Usage()
     {
+        #pragma warning disable CS0618 // Type or member is obsolete
         #region Log4NetInCode
 
         var layout = new PatternLayout
@@ -31,5 +32,6 @@ class Usage
         LogManager.Use<Log4NetFactory>();
 
         #endregion
+        #pragma warning restore CS0618 // Type or member is obsolete
     }
 }
