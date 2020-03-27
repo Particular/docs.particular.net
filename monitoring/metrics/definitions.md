@@ -47,6 +47,8 @@ Critical time is the time between when a message is sent and when it is fully pr
 
 Note: Critical time does not include the time to store the outbox operation, transmit messages to the transport, and complete the incoming message (i.e. commit the transport transaction or acknowledge).
 
+Note: Due to the fact that the critical time is calculated based on timestamps taken on two different machines (the sender and the receiver of a message), it is affected by the [clock drift problem](https://en.wikipedia.org/wiki/Clock_drift). In cases where the clocks of the machines differ significantly, the critical time may be reported as a negative value. Use well-known clock synchronization solutions such as NTP to mitigate the issue.
+
 ### Retries
 
 This metric measures the number of [retries](/nservicebus/recoverability) scheduled by the endpoint (immediate or delayed).
