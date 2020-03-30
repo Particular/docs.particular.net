@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Analyzer
 summary: How to use the NServiceBus analyzer to avoid missing awaits
-reviewed: 2018-06-29
+reviewed: 2020-03-30
 component: Core
 versions: '[6,]'
 ---

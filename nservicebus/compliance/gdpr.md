@@ -6,7 +6,7 @@ component: core
 isLearningPath: true
 tags:
  - Compliance
-reviewed: 2018-06-29
+reviewed: 2020-03-30
 ---
 
 When operating an NServiceBus-based application, the platform will collect various pieces of information that are necessary to fulfill its operations. It is possible that some of this information will need to be considered when evaluating the application for GDPR compliance.

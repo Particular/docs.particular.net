@@ -1,7 +1,7 @@
 ---
 title: Securing ServiceControl
 summary: How security is addressed in ServiceControl and how to limit access to ServiceControl data.
-reviewed: 2018-06-21
+reviewed: 2020-03-30
 tags:
 - Security
 related:

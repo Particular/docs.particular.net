@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Capacity Planning
 summary: Outlines the ServiceControl capacity, throughput, and storage considerations to plan and support production environments
-reviewed: 2018-06-21
+reviewed: 2020-03-30
 isLearningPath: true
 ---
 
