@@ -10,7 +10,7 @@ related:
  - samples/dependency-injection/aspnetcore
 ---
 
-The `NServiceBus.Extensions.Hosting` provides easy integration with the [.NET Core Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host).
+NOTE: Not compatible with `Microsoft.Extensions.Logging`, please use community package [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) as shown in [.NET Core Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) sample.
 
 ## Configuration
 
