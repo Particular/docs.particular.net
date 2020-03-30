@@ -1,7 +1,7 @@
 ---
 title: Satellites
 summary: Extension point for raw processing of messages.
-reviewed: 2018-07-05
+reviewed: 2020-03-30
 component: Core
 versions: '[5,]'
 related:

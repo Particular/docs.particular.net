@@ -3,7 +3,7 @@ title: Startup diagnostics
 summary: Describes the mechanism for gathering diagnostic information when endpoints start
 component: Core
 versions: '[7,)'
-reviewed: 2018-06-29
+reviewed: 2020-03-30
 ---
 
 To make troubleshooting easier, diagnostic information is collected during endpoint startup and written to a `.diagnostics` sub-folder in the host output directory.
