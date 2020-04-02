@@ -10,6 +10,15 @@ related:
 
 Product Previews will always be released as a major version 0. Once a product releases version 1 or greater, it is no longer part of the Preview program and does not follow this support policy.
 
+For example:
+
+| Version | Covered by this plicy |
+| --- | --- |
+| 0.1.0 | Yes |
+| 0.2.0 | Yes |
+| 0.2.1 | Yes |
+| 1.0 | No |
+
 WARN: Only the latest minor version of the Preview will be supported.
 
 ## Compatibility guarantees
