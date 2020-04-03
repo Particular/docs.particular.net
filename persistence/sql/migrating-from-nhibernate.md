@@ -35,8 +35,8 @@ NHibernate has an `OutboxRecord` table and requires a separate DB catalog, schem
 
 If outbox retention period is set to a very large period and the message throughput is high then such a migration will take a while to complete. It is recommended to keep the retention period as low as possible. 
 
-- [NHibernate Deduplication record lifespan](https://docs.particular.net/persistence/nhibernate/outbox#deduplication-record-lifespan)
-- [SQL Persistence Deduplication record lifespan](https://docs.particular.net/persistence/sql/outbox#deduplication-record-lifespan)
+- [NHibernate Deduplication record lifespan](/persistence/nhibernate/outbox.md#deduplication-record-lifespan)
+- [SQL Persistence Deduplication record lifespan](/persistence/sql/outbox.md#deduplication-record-lifespan)
 
 ## Data migration
 
