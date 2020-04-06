@@ -96,3 +96,4 @@ PlatformSample: Particular.PlatformSample
 Extensions.Hosting: NServiceBus.Extensions.Hosting
 Extensions.DependencyInjection: NServiceBus.Extensions.DependencyInjection
 Extensions.Logging: NServiceBus.Extensions.Logging
+AttributeConventions: NServiceBus.AttributeConventions

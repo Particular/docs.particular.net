@@ -28,3 +28,15 @@ Messages can be defined in a *Portable Class Library* (PCL) and shared across mu
 snippet: MessageConventions
 
 Note: Note that in .NET, the namespace is optional and hence can be null. If any conventions do partial string checks, for example using `EndsWith` or `StartsWith`, then a null check should be used. So include `.Namespace != null` at the start of the convention. Otherwise a null reference exception will occur during the type scanning.
+
+## Using both default and custom conventions
+
+Defining conventions will replace any of the existing conventions. If both default and custom conventions are needed it is required to embed the NServiceBus marker interfaces/types into the new custom conventions.
+
+snippet: MessageConventionsDual
+
+
+## Attributes
+
+If attributes are preferred over marker interfaces then this can be achieved via the [NServiceBus.AttributeConventions](https://www.nuget.org/packages/NServiceBus.AttributeConventions) community package exists that allows using attributes instead of interfaces.
+
