@@ -866,3 +866,14 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
   NugetOrder:
     - NServiceBus.Extensions.DependencyInjection
+
+- Key: AttributeConventions
+  Name: NServiceBus.AttributeConventions
+  DocoUrl: nservicebus/router
+  GitHubOwner: mauroservienti
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/mauroservienti/NServiceBus.AttributeConventions/blob/master/LICENSE
+  ProjectUrl: https://github.com/mauroservienti/NServiceBus.AttributeConventions
+  NugetOrder:
+    - NServiceBus.AttributeConventions
