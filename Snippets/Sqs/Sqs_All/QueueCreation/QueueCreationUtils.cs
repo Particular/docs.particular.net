@@ -1,7 +1,6 @@
 ﻿namespace SqsAll.QueueCreation
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Amazon.SQS;
     using Amazon.SQS.Model;
@@ -24,11 +23,8 @@
 
                 if (queueName.EndsWith(".fifo"))
                 {
-                    sqsRequest.Attributes = new Dictionary<string, string>
-                    {
-                        {QueueAttributeName.FifoQueue, "true"},
-                        {QueueAttributeName.DelaySeconds, "900"}
-                    };
+                    sqsRequest.Attributes.Add(QueueAttributeName.FifoQueue, "true");
+                    sqsRequest.Attributes.Add(QueueAttributeName.DelaySeconds, "900");
                 }
 
                 try
