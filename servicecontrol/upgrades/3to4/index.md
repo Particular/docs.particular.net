@@ -60,6 +60,8 @@ Invoke-ServiceControlInstanceUpgrade -Name <Instance to Upgrade>
 
 If the ServiceControl instance being upgraded manages an audit queue, then additional parameters must be specified for the creation of a new ServiceControl Audit instance.
 
+WARN: The settings specified must not be for the current instance, but for the audit instance that will be created as part of this upgrade. Specifying settings that match the current instance will result in a failed upgrade.
+
 ```ps
 Invoke-ServiceControlInstanceUpgrade `
   -Name <Name of main instance> `
