@@ -23,7 +23,7 @@ namespace Core5.Conventions
 
         void MessageConventionsDual(BusConfiguration busConfiguration)
         {
-            #region MessageConventions
+            #region MessageConventionsDual
 
             var conventions = busConfiguration.Conventions();
             conventions.DefiningCommandsAs(type =>

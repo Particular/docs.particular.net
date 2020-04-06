@@ -23,7 +23,7 @@ namespace Core7.Conventions
 
         void MessageConventionsDual(EndpointConfiguration endpointConfiguration)
         {
-            #region MessageConventions
+            #region MessageConventionsDual
 
             var conventions = endpointConfiguration.Conventions();
             conventions.DefiningCommandsAs(type =>
