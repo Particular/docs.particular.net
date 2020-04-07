@@ -2,7 +2,7 @@
 title: Azure Blob Storage Data Bus Cleanup with Azure Functions
 summary: Using an Azure Function instead of the built in blob cleanup capabilities.
 component: ABSDataBus
-reviewed: 2018-07-06
+reviewed: 2020-04-07
 tags:
 - Azure
 - DataBus
