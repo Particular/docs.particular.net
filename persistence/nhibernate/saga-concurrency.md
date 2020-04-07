@@ -3,7 +3,7 @@ title: NHibernate Persistence Saga Concurrency
 summary: How to control concurrency in sagas with the NHibernate persistence
 component: NHibernate
 versions: '[6,]'
-reviewed: 2018-07-06
+reviewed: 2020-04-07
 tags:
  - Persistence
  - Saga

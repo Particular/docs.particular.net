@@ -3,7 +3,7 @@ title: Accessing data via NHibernate persistence
 summary: How to access business data using connections managed by the NServiceBus NHibernate persistence.
 component: NHibernate
 versions: '[4,]'
-reviewed: 2018-07-06
+reviewed: 2020-04-07
 related:
  - nservicebus/handlers/accessing-data
 redirects:
