@@ -1,6 +1,6 @@
 ---
 title: Simple RabbitMQ Transport Usage
-reviewed: 2018-07-06
+reviewed: 2020-04-07
 component: Rabbit
 related:
 - transports/rabbitmq
