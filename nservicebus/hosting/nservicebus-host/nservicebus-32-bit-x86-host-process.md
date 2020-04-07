@@ -4,7 +4,7 @@ summary: If 32-bit code must be invoked and loaded, use NServiceBus.Host32.exe
 component: Host
 redirects:
  - nservicebus/nservicebus-32-bit-x86-host-process
-reviewed: 2018-07-06
+reviewed: 2020-04-07
 ---
 
 NServiceBus is an "Any CPU" framework. It doesn't have 32-bit or 64-bit specific code. This enables transitioning between 32- and 64-bit operating systems. Unfortunately, not all assemblies can be compiled using the default Any CPU architecture. In many, this is related to legacy systems that have 32-bit specific code for platform interoperability with native C libraries, etc.
