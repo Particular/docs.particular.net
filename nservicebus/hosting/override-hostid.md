@@ -29,6 +29,6 @@ snippet: HostIdFixer
 
 ## Stable host identifiers when using Docker
 
-Docker containers hosted in Kubernetes pose unique challenges to creating a stable host identifier, as a [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) will not have a stable, unique identifier. This results in the endpoint having a new, random identity in ServicePulse and ServiceInsight every time the [Pod]() containing the endpoint is (re)scheduled on a different node.
+Docker containers hosted in Kubernetes pose unique challenges to creating a stable host identifier, as a [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) will not have a stable, unique identifier. This results in the endpoint having a new, random identity in ServicePulse and ServiceInsight every time the Pod containing the endpoint is (re)scheduled on a different node.
 
 Instead of a Deployment, an endpoint can be deployed to Kubernetes using a [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/), which provides stable, unique network identifiers, allowing the host identifier to be specified as shown above.
