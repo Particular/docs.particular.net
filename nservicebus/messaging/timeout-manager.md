@@ -45,3 +45,10 @@ snippet: TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
 
 NOTE: The timeout manager polls every minute. This means it could take more time then the configured *TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages* value before an issue is detected.
 
+When this happens the following critical error message will be raised:
+
+> Repeated failures when fetching timeouts from storage, endpoint will be terminated.
+
+If the NServiceBus.Host is used then the host will execute a fail-fast as documented in the [default critical error behavior for the NServiceBus.Host](/nservicebus/hosting/nservicebus-host/#endpoint-configuration-default-critical-error-action).
+
+
