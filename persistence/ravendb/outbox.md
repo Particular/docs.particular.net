@@ -31,7 +31,8 @@ snippet: OutboxRavendBTimeToKeep
 
 partial: disable-cleanup
 
+WARN: When running in [multi-tenant mode](/persistence/ravendb/#multi-tenant-support), cleanup needs to be manually handled since NServiceBus does not know what databases are in use.
+
 NOTE: It is advised to run the cleanup task on only one NServiceBus endpoint instance per RavenDB database and disable the cleanup task on all other NServiceBus endpoint instances for the most efficient cleanup execution.
 
 partial: effect-on-docstore
-
