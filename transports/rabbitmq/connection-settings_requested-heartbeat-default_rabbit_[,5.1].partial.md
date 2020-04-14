@@ -1,0 +1,1 @@
+Default: `5` seconds

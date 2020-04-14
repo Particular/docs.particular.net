@@ -77,7 +77,7 @@ Default: `guest`
 
 The interval for the heartbeats between the client and the server.
 
-Default: `5` seconds
+partial: requested-heartbeat-default
 
 
 partial: DequeueTimeout
