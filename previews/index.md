@@ -1,6 +1,6 @@
 ---
-title: Platform Previews
-reviewed: 2020-03-31
+title: Platform previews
+reviewed: 2020-04-07
 ---
 
-Particular Software may offer preview products to obtain customer feedback ("Previews").
+Particular Software may offer preview products to obtain customer feedback ("previews").
