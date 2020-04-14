@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Configuration
 summary: Explains the mechanics of MSMQ transport, its configuration options, and other configuration settings that were coupled to this transport
-reviewed: 2018-07-06
+reviewed: 2020-04-14
 component: MsmqTransport
 tags:
  - Transport
@@ -13,8 +13,6 @@ redirects:
  - nservicebus/msmqtransportconfig
  - nservicebus/msmq/transportconfig
 ---
-
-partial: intro
 
 partial: receivealgorithm
 
@@ -47,7 +45,7 @@ See also [Controlling Transaction Scope Options](/transports/transactions.md#con
 
 ### Transaction scope (distributed transaction)
 
-In this mode the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access.
+In this mode, the ambient transaction is started before receiving the message. The transaction encompasses all stages of processing including user data access and saga data access.
 
 
 partial: native-transactions
@@ -55,4 +53,4 @@ partial: native-transactions
 
 ### Unreliable (transactions disabled)
 
-In this mode, when a message is received, it is immediately removed from the input queue. If processing fails the message is lost because the operation cannot be rolled back. Any other operation that is performed, when processing the message, is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.
+In this mode, when a message is received, it is immediately removed from the input queue. If processing fails, the message is lost because the operation cannot be rolled back. Any other operation that is performed, when processing the message, is executed without a transaction and cannot be rolled back. This can lead to undesired side effects when message processing fails part way through.
