@@ -8,7 +8,6 @@ class DisableInstaller
 
         var transport = endpointConfiguration.UseTransport<MsmqTransport>();
         transport.DisableInstaller();
-
         #endregion
     }
 }

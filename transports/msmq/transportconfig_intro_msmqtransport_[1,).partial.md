@@ -1,1 +1,0 @@
-Provides support for sending messages over [MSMQ](/transports/msmq/).
