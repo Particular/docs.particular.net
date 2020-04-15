@@ -1,0 +1,2 @@
+
+With version 5.2 and above the connection string using [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html) can be used. Connection related configurations not supported by AMQP URI specifications and found with NServiceBus proprietary connection string format can be configured using explicit configuration APIs found in this document.

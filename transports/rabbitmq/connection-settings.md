@@ -1,7 +1,7 @@
 ---
 title: Connection settings
 summary: The various ways to customize the RabbitMQ transport.
-reviewed: 2018-11-22
+reviewed: 2020-04-15
 component: Rabbit
 redirects:
  - nservicebus/rabbitmq/connection-strings
@@ -9,7 +9,8 @@ redirects:
 ---
 
 
-The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker. While RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html), the RabbitMQ transport uses its own connection string format.
+The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker.
+partial: connection-string
 
 
 ### Specifying the connection string via code
