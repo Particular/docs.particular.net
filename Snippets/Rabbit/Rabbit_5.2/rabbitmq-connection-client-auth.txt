@@ -1,0 +1,3 @@
+﻿startcode rabbitmq-connection-client-auth
+host=broker1;UseTls=true;CertPath=C:\CertificatePath\ssl.pfx;CertPassphrase=securePassword
+endcode
