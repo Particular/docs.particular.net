@@ -180,6 +180,27 @@ class Usage
         #endregion
     }
 
+    void ChangeHeartbeatInterval(EndpointConfiguration endpointConfiguration)
+    {
+        #region change-heartbeat-interval
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.SetHeartbeatInterval(TimeSpan.FromSeconds(30));
+
+        #endregion
+    }
+
+    void ChangeNetworkRecoveryInterval(EndpointConfiguration endpointConfiguration)
+    {
+        #region change-network-recovery-interval
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.SetNetworkRecoveryInterval(TimeSpan.FromSeconds(30));
+
+        #endregion
+    }
+
+
     void DisableDurableExchangesAndQueues(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-disable-durable-exchanges

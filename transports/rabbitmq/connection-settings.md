@@ -133,3 +133,15 @@ partial: timetowaitbeforetriggering
 
 
 partial: delayafterfailure
+
+
+## Controlling intervals
+
+### RequestedHeartbeat
+
+partial: change-heartbeat-interval
+
+
+### RetryDelay
+
+partial: change-network-recovery-interval
