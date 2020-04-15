@@ -90,7 +90,7 @@ class Usage
         #region rabbitmq-config-useroutingtopologyDelegate
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseRoutingTopology(
+        transport.UseCustomRoutingTopology(
             topologyFactory: createDurableExchangesAndQueues =>
             {
                 return new MyRoutingTopology(createDurableExchangesAndQueues);
@@ -134,7 +134,7 @@ class Usage
         #region rabbitmq-client-certificates
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetClientCertificates(new X509CertificateCollection());
+        transport.SetClientCertificate(new X509Certificate2());
 
         #endregion
     }
