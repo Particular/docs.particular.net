@@ -98,6 +98,18 @@ Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 This setting will default to `Warn` if an invalid value is assigned.
 
 
+#### ServiceControl.Audit/TimeToRestartAuditIngestionAfterFailure
+
+Controls the maximum time delay to wait before restarting the audit ingestion pipeline after detecting a connection problem.
+This setting was introduced in ServiceControl version 4.7.0.
+
+Type: timespan
+
+Default: 60 seconds
+
+Valid settings are between 5 seconds and 1 hour.
+
+
 ## Data retention
 
 
