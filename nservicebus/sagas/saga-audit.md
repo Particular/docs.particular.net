@@ -6,7 +6,7 @@ versions: 'SagaAudit:*'
 reviewed: 2019-09-03
 ---
 
-DANGER: **For Development only**. This plugin will result in a significant increase in the load placed on ServiceControl. As such it should not be used in production.
+WARN: This plugin will result in a increase in the load placed on ServiceControl and the endpoint it is installed in. It should only be used if the environment is able to keep up with the increased load.
 
 The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view). 
 
