@@ -50,6 +50,7 @@ The IAM account requires the following permissions:
  * ChangeMessageVisibilityBatch
  * PurgeQueue
 
+partial: sns-permissions
 
 #### [S3 permissions](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html)
 
