@@ -10,6 +10,7 @@ redirects:
 
 
 The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker.
+
 partial: connection-string
 
 
