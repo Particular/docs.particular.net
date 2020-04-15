@@ -1,0 +1,3 @@
+### Publish/Subscribe
+
+The transport is a [Multicast-enabled transports](/transports/types#multicast-enabled-transports) and provide built-in support for [publish-subscribe messaging](/nservicebus/messaging/publish-subscribe/) using Amazon SNS. Publishing events to multiple endpoints is achieved by publishing a single message to an SNS topic to which multiple destination queues are subscribed. Subscriptions are created automatically by destination endpoints.
