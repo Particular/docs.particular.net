@@ -11,7 +11,7 @@ related:
  - persistence/sql/sqlsaga
 redirects:
  - nservicebus/sql-persistence/saga
-reviewed: 2018-07-19
+reviewed: 2020-04-15
 ---
 
 SQL persistence supports sagas using the core [NServiceBus.Saga](/nservicebus/sagas/) API or an [experimental API unique to SQL persistence](sqlsaga.md) that provides a simpler mapping API.
@@ -44,12 +44,12 @@ The value of `IContainSagaData.Id`. Primary Key.
 
 #### Metadata
 
-JSON-serialized dictionary containing all NServiceBus-managed information about the saga.
+A JSON-serialized dictionary containing all NServiceBus-managed information about the saga.
 
 
 #### Data
 
-JSON-serialized saga data
+The JSON-serialized saga data.
 
 
 #### PersistenceVersion
@@ -62,9 +62,9 @@ The assembly version of the SQL persister.
 The version of the assembly where the saga exists.
 
 
-#### Correlation IDs
+#### Correlation columns
 
-There is between 0 and 2 correlation ID columns named `Correlation_[PROPERTYNAME]`. The type will correspond to the .NET type of the mapped property on the saga data.
+There are between 0 and 2 correlation ID columns named `Correlation_[PROPERTYNAME]`. The type will correspond to the .NET type of the mapped property on the saga data.
 
 For each correlation ID there will be a corresponding index named `Index_Correlation_[PROPERTYNAME]`.
 
@@ -94,6 +94,7 @@ The following .NET types are interpreted as `CorrelationPropertyType.Int`:
 
 ## Json.net settings
 
+SQL persistence uses the [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) package to serialize saga data and metadata.
 
 ### Custom settings
 
