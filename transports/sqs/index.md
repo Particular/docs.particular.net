@@ -13,17 +13,7 @@ redirects:
 
 [Simple Queue Service (SQS)](https://aws.amazon.com/sqs/) is a message queue service provided by [Amazon Web Services](https://aws.amazon.com/).
 
-## Transport at a glance
-
-|Feature                    |   |  
-|:---                       |---
-|Transactions |None, ReceiveOnly (Message visibility timeout)
-|Pub/Sub                    |Message driven
-|Timeouts                   |Native (Requires FIFO Queues)
-|Large message bodies       |Native (Requires S3)
-|Scale-out             |Competing consumer
-|Scripted Deployment        |PowerShell, Terraform, C#
-|Installers                 |Optional
+partial: transport-at-a-glance
 
 ## Advantages
 
