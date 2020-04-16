@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <LangVersion>7.1</LangVersion>
+    <Configurations>Debug</Configurations>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="5.0.0-*" />
+  </ItemGroup>
+</Project>
