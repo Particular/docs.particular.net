@@ -1,15 +1,14 @@
 ---
 title: Connection settings
 summary: The various ways to customize the RabbitMQ transport.
-reviewed: 2018-11-22
+reviewed: 2020-04-15
 component: Rabbit
 redirects:
  - nservicebus/rabbitmq/connection-strings
  - nservicebus/rabbitmq/connection-settings
 ---
 
-
-The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker. While RabbitMQ uses the [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html), the RabbitMQ transport uses its own connection string format.
+partial: connection-string
 
 
 ### Specifying the connection string via code
@@ -75,9 +74,9 @@ Default: `guest`
 
 ### RequestedHeartbeat
 
-The interval for the heartbeats between the client and the server.
+The interval for heartbeats between the endpoint and the broker.
 
-Default: `5` seconds
+partial: requested-heartbeat-default
 
 
 partial: DequeueTimeout
@@ -99,11 +98,6 @@ Default: `10` seconds
 partial: tls-settings
 
 
-## Debugging recommendations
-
-partial: debugging-note
-
-
 partial: tls-details
 
 
@@ -120,6 +114,11 @@ partial: publisher-confirms-setting
 
 The RabbitMQ transport monitors the connection to the broker and will trigger the critical error action if the connection fails and stays disconnected for the configured amount of time.
 
+partial: heartbeat-interval
+
+
+partial: network-recovery-interval
+
 
 ### TimeToWaitBeforeTriggering
 
@@ -133,3 +132,8 @@ partial: timetowaitbeforetriggering
 
 
 partial: delayafterfailure
+
+
+## Debugging recommendations
+
+partial: debugging-note

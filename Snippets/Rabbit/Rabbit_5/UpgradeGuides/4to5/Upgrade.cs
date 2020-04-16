@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using NServiceBus;
+﻿using NServiceBus;
 
 partial class Upgrade
 {

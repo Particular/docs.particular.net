@@ -1,0 +1,1 @@
+Default: `60` seconds
