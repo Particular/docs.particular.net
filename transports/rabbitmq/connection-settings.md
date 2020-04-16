@@ -8,9 +8,6 @@ redirects:
  - nservicebus/rabbitmq/connection-settings
 ---
 
-
-The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker.
-
 partial: connection-string
 
 
@@ -77,7 +74,7 @@ Default: `guest`
 
 ### RequestedHeartbeat
 
-The interval for the heartbeats between the client and the server.
+The interval for heartbeats between the endpoint and the broker.
 
 partial: requested-heartbeat-default
 
@@ -101,11 +98,6 @@ Default: `10` seconds
 partial: tls-settings
 
 
-## Debugging recommendations
-
-partial: debugging-note
-
-
 partial: tls-details
 
 
@@ -122,6 +114,11 @@ partial: publisher-confirms-setting
 
 The RabbitMQ transport monitors the connection to the broker and will trigger the critical error action if the connection fails and stays disconnected for the configured amount of time.
 
+partial: heartbeat-interval
+
+
+partial: network-recovery-interval
+
 
 ### TimeToWaitBeforeTriggering
 
@@ -137,13 +134,6 @@ partial: timetowaitbeforetriggering
 partial: delayafterfailure
 
 
-## Controlling intervals
+## Debugging recommendations
 
-### RequestedHeartbeat
-
-partial: change-heartbeat-interval
-
-
-### RetryDelay
-
-partial: change-network-recovery-interval
+partial: debugging-note

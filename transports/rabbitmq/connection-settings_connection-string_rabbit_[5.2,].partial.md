@@ -1,2 +1,1 @@
-
-With version 5.2 and above the connection string using [AMQP URI Specification](https://www.rabbitmq.com/uri-spec.html) can be used. Connection related configurations not supported by AMQP URI specifications and found with NServiceBus proprietary connection string format can be configured using explicit configuration APIs found in this document.
+The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker, and there are two different styles to choose from. It can accept the standard [AMQP URI](https://www.rabbitmq.com/uri-spec.html) connection strings, and it also can use a custom format that is documented below.

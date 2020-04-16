@@ -129,9 +129,19 @@ class Usage
         #endregion
     }
 
-    void SetClientCertificates(EndpointConfiguration endpointConfiguration)
+    void SetClientCertificateFile(EndpointConfiguration endpointConfiguration)
     {
-        #region rabbitmq-client-certificates
+        #region rabbitmq-client-certificate-file
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.SetClientCertificate("path", "password");
+
+        #endregion
+    }
+
+    void SetClientCertificate(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-client-certificate
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.SetClientCertificate(new X509Certificate2());
@@ -176,6 +186,16 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ConnectionString("host=broker1;RequestedHeartbeat=600");
+
+        #endregion
+    }
+
+    void ChangeRequestedHeartbeatForDebugging(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-debug-api
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.SetHeartbeatInterval(TimeSpan.FromMinutes(10));
 
         #endregion
     }
