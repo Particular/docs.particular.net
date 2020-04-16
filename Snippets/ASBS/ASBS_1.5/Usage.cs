@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-using Microsoft.Azure.ServiceBus;
 using NServiceBus;
 
 class Usage
@@ -46,20 +45,5 @@ class Usage
         transport.RuleNameShortener(n => n.Length > MaxEntityName ? HashName(n) : n);
 
         #endregion
-
-        #region custom-retry-policy
-
-        transport.CustomRetryPolicy(new LinearRetryPolicy());
-
-        #endregion
-    }
-
-    class LinearRetryPolicy : RetryPolicy
-    {
-        protected override bool OnShouldRetry(TimeSpan remainingTime, int currentRetryCount, out TimeSpan retryInterval)
-        {
-            retryInterval = default;
-            return false;
-        }
     }
 }
