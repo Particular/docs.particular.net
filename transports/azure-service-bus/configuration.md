@@ -4,7 +4,7 @@ summary: Explains the configuration options
 component: ASBS
 tags:
  - Azure
-reviewed: 2019-06-12
+reviewed: 2020-04-15
 ---
 
 ## Entity creation
@@ -39,3 +39,5 @@ These settings control how the transport connects to the broker.
  * `UseWebSockets()`: Configures the transport to use AMQP over websockets.
  * `TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan)`: The time to wait before triggering the circuit breaker after a critical error occurred. Defaults to 2 minutes.
  * `CustomTokenProvider(ITokenProvider)`: Allows replacement of the default token provider, which uses the shared secret in the connection string for authentication. This opens up additional authentication mechanisms such as [shared access signatures](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-sas), [SAML, Oauth, SWT, windows authentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.tokenprovider?view=azure-dotnet), [managed identities for Azure resources](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-managed-service-identity), or even custom implementations.
+
+ partial: custom-retry-policy
