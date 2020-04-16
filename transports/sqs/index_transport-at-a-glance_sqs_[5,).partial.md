@@ -7,5 +7,5 @@
 |Timeouts                   |Native (Requires FIFO Queues)
 |Large message bodies       |Native (Requires S3)
 |Scale-out             |Competing consumer
-|Scripted Deployment        |PowerShell, Terraform, C#
+|Scripted Deployment        |PowerShell, CloudFormation, C#
 |Installers                 |Optional
