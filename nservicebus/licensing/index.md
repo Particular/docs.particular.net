@@ -42,6 +42,19 @@ partial: license-management
 
 ## Troubleshooting
 
+To troubleshoot license scanning issues you can [enable Debug logging](/nservicebus/logging/#default-logging-changing-the-defaults-changing-the-logging-level) and diagnose the log output  generated at startup as all traversed location and the scan result is logged. 
+
+```txt
+2020-04-17 12:11:31.979 DEBUG Looking for license in the following locations:
+License not found in S:\docs.particular.net\samples\pubsub\Core_7\Publisher\bin\Debug\netcoreapp2.1\license.xml
+License found in C:\Users\XXX\AppData\Local\ParticularSoftware\license.xml
+License not found in C:\ProgramData\ParticularSoftware\license.xml
+Selected active license from C:\Users\XXX\AppData\Local\ParticularSoftware\license.xml
+License Expiration: 2021-01-01
+```
+NOTE: Search/filter for logger `LicenseManager` or the text `Looking for license in the following locations:`.
+
+
 ### Failed to initialize the license
 
 The license management code requires write permissions to store metadata. If the process credentials don't have write permissions the following fatal event log item can be generated:
