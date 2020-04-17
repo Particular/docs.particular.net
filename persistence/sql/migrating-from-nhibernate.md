@@ -29,11 +29,11 @@ NHibernate has a `TimeoutEntity` table with an `Endpoint` column where SQL Persi
 
 ### Outbox
 
-NHibernate has an `OutboxRecord` table and requires a separate DB catalog, schema, or server for each logical endpoint. SQL Persistence has a table, `<endpoint_name>_OutboxData`, for each logical endpoint.
+NHibernate has an `OutboxRecord` table shared by all endpoints, where in later versions the endpoint name is prepended to the MessageId. SQL Persistence has a table, `<endpoint_name>_OutboxData`, for each logical endpoint.
 
-## Outbox retension
+## Outbox retention
 
-If outbox retention period is set to a very large period and the message throughput is high then such a migration will take a while to complete. It is recommended to keep the retention period as low as possible. 
+If the outbox retention period is set to a very large period and the message throughput is high then such a migration will take a while to complete. It is recommended to keep the retention period as low as possible. 
 
 - [NHibernate Deduplication record lifespan](/persistence/nhibernate/outbox.md#deduplication-record-lifespan)
 - [SQL Persistence Deduplication record lifespan](/persistence/sql/outbox.md#deduplication-record-lifespan)
