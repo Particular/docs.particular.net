@@ -1,7 +1,7 @@
 ---
 title: Transitioning Saga Correlation IDs
 summary: An approach for transitioning between different correlation IDs with no downtime
-reviewed: 2018-07-19
+reviewed: 2020-04-17
 component: SqlPersistence
 related:
  - nservicebus/sagas
