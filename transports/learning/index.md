@@ -19,6 +19,8 @@ include: learning-usages
 
 [ServiceControl](/servicecontrol/) (and therefore [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/)) are only supported for demonstration purposes through use of the [Platform Sample package](/platform/platform-sample-package.md).
 
+## Transport at a glance
+
 |Feature                    |   |  
 |:---                       |---
 |Transactions |None, ReceiveOnly, SendsWithAtomicReceive
