@@ -19,6 +19,18 @@ include: learning-usages
 
 [ServiceControl](/servicecontrol/) (and therefore [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/)) are only supported for demonstration purposes through use of the [Platform Sample package](/platform/platform-sample-package.md).
 
+## Transport at a glance
+
+|Feature                    |   |  
+|:---                       |---
+|Transactions |None, ReceiveOnly, SendsWithAtomicReceive
+|Pub/Sub                    |Native
+|Timeouts                   |Native
+|Large message bodies       |LearningTransport can handle arbitrary message size within available resources
+|Scale-out             |Competing consumer
+|Scripted Deployment        |Not supported
+|Installers                 |Not supported, the transport always create the required folder structure
+
 ### Publish and subscribe
 
 The learning transport simulates a [multicast transport](/transports/types.md#multicast-enabled-transports), which means that routing configuration isn't needed in order to publish events. See the [native publish/subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-native) documentation for further details.
