@@ -17,7 +17,7 @@ namespace SqlPersistence_1.UsingSaga
 
         protected override void ConfigureMapping(IMessagePropertyMapper mapper)
         {
-            mapper.ConfigureMapping<StartOrder>(_ => _.OrderId);
+            mapper.ConfigureMapping<StartOrder>(message => message.OrderId);
         }
 
         protected override string CorrelationPropertyName => nameof(SagaData.OrderId);

@@ -14,7 +14,7 @@ namespace SqlPersistence_1.UsingSaga
     {
         protected override void ConfigureMapping(IMessagePropertyMapper mapper)
         {
-            mapper.ConfigureMapping<StartSagaMessage>(_ => _.CorrelationProperty);
+            mapper.ConfigureMapping<StartSagaMessage>(message => message.CorrelationProperty);
         }
 
         protected override string CorrelationPropertyName => nameof(SagaData.CorrelationProperty);
