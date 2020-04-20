@@ -4,7 +4,6 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.TransportTests.Sources" Version="7.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
