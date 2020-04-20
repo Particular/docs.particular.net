@@ -15,7 +15,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [10.0.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/10.0.0) | 2020-03-05     | -                 | -                                 |
 | [9.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/9.1.3) | 2018-12-12     | 2021-03-05        | Superseded by 10.0.x              |
-| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/8.0.8) | ~~2018-05-29~~ | ~~2019-09-27~~    | ~~Superseded by 9.0.x~~           |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/7.2.18) | 2017-03-21     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | [6.4.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/6.4.3) | 2016-01-12     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
 
@@ -32,7 +31,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.1.2) | 2019-03-27     | -                 | -                                 |
+| [5.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.2.0) | 2020-04-17     | -                 | -                                 |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.1.2) | 2019-03-27     | 2020-07-17        | Superseded by 5.2.x               |
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/4.4.5) | 2017-09-18     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | [3.5.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/3.5.2) | 2016-09-20     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
 
@@ -51,7 +51,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.4.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.4.0) | 2019-12-05     | -                 | -                                 |
+| [1.5.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.0) | 2020-04-16     | -                 | -                                 |
+| [1.4.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.4.0) | 2019-12-05     | 2020-07-16        | Superseded by 1.5.x               |
 | [~~1.3.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.3.1) | ~~2019-12-03~~ | ~~2020-03-05~~    | ~~Superseded by 1.4.x~~           |
 | [~~1.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.2.1) | ~~2019-07-31~~ | ~~2020-03-03~~    | ~~Superseded by 1.3.x~~           |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.1.3) | ~~2019-03-27~~ | ~~2019-10-31~~    | ~~Superseded by 1.2.x~~           |
@@ -101,7 +102,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.2.0) | 2020-01-15     | -                 | -                                 |
-| [2.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.1.2) | 2018-12-12     | 2020-04-15        | Superseded by 2.2.x               |
+| [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.1.2) | ~~2018-12-12~~ | ~~2020-04-15~~    | ~~Superseded by 2.2.x~~           |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/1.1.1) | 2018-03-15     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 
 #### [NServiceBus.Persistence.Sql](/nuget/NServiceBus.Persistence.Sql)
@@ -129,7 +130,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/2.2.0) | 2020-01-20     | -                 | -                                 |
-| [2.1.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/2.1.0) | 2019-10-30     | 2020-04-20        | Superseded by 2.2.x               |
+| [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/2.1.0) | ~~2019-10-30~~ | ~~2020-04-20~~    | ~~Superseded by 2.2.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/2.0.0) | ~~2019-10-09~~ | ~~2020-01-30~~    | ~~Superseded by 2.1.x~~           |
 
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
@@ -172,7 +173,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.DependencyInjection/1.0.0) | 2020-02-26     | -                 | -                                 |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.DependencyInjection/1.0.1) | 2020-02-26     | -                 | -                                 |
 
 #### [NServiceBus.Ninject](/nuget/NServiceBus.Ninject)
 
@@ -206,7 +207,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | [10.2.x](https://www.nuget.org/packages/NServiceBus.Unity/10.2.0) | 2020-02-26     | -                 | -                                 |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.Unity/10.1.0) | 2019-07-30     | 2020-05-26        | Superseded by 10.2.x              |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.Unity/10.0.0) | ~~2019-03-22~~ | ~~2019-10-30~~    | ~~Superseded by 10.1.x~~          |
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Unity/9.0.1) | 2018-05-31     | 2020-03-22        | Superseded by 10.0.x              |
+| [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.Unity/9.0.1) | ~~2018-05-31~~ | ~~2020-03-22~~    | ~~Superseded by 10.0.x~~          |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Unity/8.1.5) | 2018-01-24     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.Unity/6.2.3) | 2015-10-08     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
 
@@ -216,15 +217,23 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.CommonLogging/5.0.0) | 2018-05-29     | -                 | -                                 |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.CommonLogging/5.1.0) | 2020-03-26     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.CommonLogging/5.0.0) | 2018-05-29     | 2020-06-26        | Superseded by 5.1.x               |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.CommonLogging/4.0.0) | 2016-11-16     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.CommonLogging/2.1.0) | 2015-02-18     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
+
+#### [NServiceBus.Extensions.Logging](/nuget/NServiceBus.Extensions.Logging)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/1.0.0) | 2020-03-12     | -                 | -                                 |
 
 #### [NServiceBus.Log4Net](/nuget/NServiceBus.Log4Net)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Log4Net/3.0.0) | 2018-05-29     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Log4Net/3.1.0) | 2020-03-26     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Log4Net/3.0.0) | 2018-05-29     | 2020-06-26        | Superseded by 3.1.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Log4Net/2.0.1) | 2016-10-11     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Log4Net/1.0.0) | 2014-09-29     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
 
@@ -232,7 +241,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.NLog/3.0.0) | 2018-05-29     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.NLog/3.1.0) | 2020-03-26     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.NLog/3.0.0) | 2018-05-29     | 2020-06-26        | Superseded by 3.1.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.NLog/2.0.0) | 2016-10-11     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.NLog/1.1.0) | 2015-06-12     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
 
@@ -268,7 +278,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/1.0.0) | 2019-11-13     | -                 | -                                 |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/1.0.1) | 2019-11-13     | -                 | -                                 |
 
 #### [NServiceBus.Host](/nuget/NServiceBus.Host)
 
@@ -290,7 +300,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | 2018-11-29     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/ParticularTemplates/4.0.0) | 2020-03-05     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | 2018-11-29     | 2021-03-05        | Superseded by 4.0.x               |
 | [~~2.0.x~~](https://www.nuget.org/packages/ParticularTemplates/2.0.0) | ~~2018-05-29~~ | ~~2019-11-29~~    | ~~Superseded by 3.0.x~~           |
 
 ### Other packages
@@ -334,7 +345,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.Gateway/3.1.0) | 2019-12-23     | -                 | -                                 |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Gateway/3.0.2) | 2018-05-29     | 2020-03-23        | Superseded by 3.1.x               |
+| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Gateway/3.0.2) | ~~2018-05-29~~ | ~~2020-03-23~~    | ~~Superseded by 3.1.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Gateway/2.0.3) | 2016-10-11     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Gateway/1.0.1) | 2014-09-29     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
 
@@ -432,18 +443,17 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.12.x](https://www.nuget.org/packages/Particular.PlatformSample/1.12.0) | 2020-02-12     | -                 | -                                 |
+| [1.13.x](https://www.nuget.org/packages/Particular.PlatformSample/1.13.0) | 2020-03-11     | -                 | -                                 |
+| [1.12.x](https://www.nuget.org/packages/Particular.PlatformSample/1.12.0) | 2020-02-12     | 2020-06-11        | Superseded by 1.13.x              |
 | [1.11.x](https://www.nuget.org/packages/Particular.PlatformSample/1.11.0) | 2020-02-11     | 2020-05-12        | Superseded by 1.12.x              |
 | [1.10.x](https://www.nuget.org/packages/Particular.PlatformSample/1.10.0) | 2020-01-03     | 2020-05-11        | Superseded by 1.11.x              |
-| [1.9.x](https://www.nuget.org/packages/Particular.PlatformSample/1.9.0) | 2019-11-22     | 2020-04-03        | Superseded by 1.10.x              |
+| [~~1.9.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.9.0) | ~~2019-11-22~~ | ~~2020-04-03~~    | ~~Superseded by 1.10.x~~          |
 | [~~1.8.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.8.0) | ~~2019-10-31~~ | ~~2020-02-22~~    | ~~Superseded by 1.9.x~~           |
 | [~~1.7.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.7.0) | ~~2019-10-22~~ | ~~2020-01-31~~    | ~~Superseded by 1.8.x~~           |
 | [~~1.6.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.6.0) | ~~2019-09-06~~ | ~~2020-01-22~~    | ~~Superseded by 1.7.x~~           |
 | [~~1.5.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.5.0) | ~~2019-08-23~~ | ~~2019-12-06~~    | ~~Superseded by 1.6.x~~           |
 | [~~1.4.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.4.0) | ~~2019-08-08~~ | ~~2019-11-23~~    | ~~Superseded by 1.5.x~~           |
 | [~~1.3.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.3.0) | ~~2019-06-17~~ | ~~2019-11-08~~    | ~~Superseded by 1.4.x~~           |
-| [~~1.2.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.2.1) | ~~2019-06-14~~ | ~~2019-09-17~~    | ~~Superseded by 1.3.x~~           |
-| [~~1.1.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.1.1) | ~~2019-03-18~~ | ~~2019-09-14~~    | ~~Superseded by 1.2.x~~           |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
