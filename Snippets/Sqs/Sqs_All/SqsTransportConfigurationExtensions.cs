@@ -10,7 +10,8 @@
 
         public static void ConfigureSqsTransport(this TransportExtensions<SqsTransport> transportConfiguration, string queueNamePrefix = null)
         {
-            transportConfiguration.ClientFactory(ClientFactory.CreateSqsClient);
+            transportConfiguration.ClientFactory(()=> ClientFactory.CreateSqsClient());
+            transportConfiguration.ClientFactory(() => ClientFactory.CreateSnsClient());
             if (queueNamePrefix != null)
             {
                 transportConfiguration.QueueNamePrefix(queueNamePrefix);
