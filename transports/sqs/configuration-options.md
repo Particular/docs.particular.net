@@ -82,3 +82,5 @@ partial: s3clientfactory
 partial: v1compatibilitymode
 
 partial: delayeddelivery
+
+partial: custom-topics-mappings

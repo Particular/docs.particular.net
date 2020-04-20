@@ -194,4 +194,42 @@ class Usage
 
         #endregion
     }
+
+    void CustomTopicsMappingsTypeToType(EndpointConfiguration endpointConfiguration)
+    {
+        #region CustomTopicsMappingsTypeToType
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        transport.MapEvent<SubscribedEvent, PublishedEvent>();
+
+        #endregion
+    }
+
+    void CustomTopicsMappingsTypeToTopic(EndpointConfiguration endpointConfiguration)
+    {
+        #region CustomTopicsMappingsTypeToTopic
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        transport.MapEvent<SubscribedEvent>("topic-used-by-the-publisher");
+
+        #endregion
+    }
+
+    void CustomTopicsMappingsTypeToTopicForTopology(EndpointConfiguration endpointConfiguration)
+    {
+        #region CustomTopicsMappingsTypeToTopicForTopology
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        transport.MapEvent<IOrderAccepted>("namespace-OrderAccepted");
+
+        #endregion
+    }
+
+    class SubscribedEvent { }
+
+    class PublishedEvent { }
+
+    interface IOrderAccepted { }
+
+    class OrderAccepted : IOrderAccepted{ }
 }
