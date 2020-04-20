@@ -32,8 +32,6 @@ Some packages do not currently support .NET Core or running on non-Windows platf
 
 * Transports
   * NServiceBus.Transport.Msmq - `System.Messaging` is not part of .NET Core, so MSMQ can't be supported on .NET Core.
-* Persistence
-  * NServiceBus.Persistence.Sql - Microsoft SQL Server, MySQL, and PostgreSQL are supported. Oracle is not supported due to the lack of a .NET Core version of Oracle.ManagedDataAccess.
 * Containers
   * NServiceBus.Spring - Spring.Core does not support .NET Core.
 * Hosts
