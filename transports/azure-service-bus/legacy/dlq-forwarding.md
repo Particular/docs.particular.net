@@ -2,7 +2,7 @@
 title: Dead Letter Queue Forwarding
 component: ASB
 versions: '[7,)'
-reviewed: 2018-08-07
+reviewed: 2020-04-19
 tags:
 - Azure
 - Error Handling
