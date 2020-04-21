@@ -70,7 +70,7 @@ All new features are backward compatible by default. In rare cases when this is 
 
 NServiceBus versions are wire-compatible; endpoints using different versions of NServiceBus can exchange messages with each other.
 
-However, some features might require data migration (e.g. converting from an old to a new format). The migration might be performed as a one-off automated action done through [installers](/nservicebus/operations/installers.md) or in the backtround by a running endpoint. If the conversion cannot be automated, the applicable upgrade guide will contain a description of the manual process (e.g. what script to run).
+However, some features might require data migration (e.g. converting from an old to a new format). The migration might be performed as a one-off automated action done through [installers](/nservicebus/operations/installers.md) or in the background by a running endpoint. If the conversion cannot be automated, the applicable upgrade guide will contain a description of the manual process (e.g. what script to run).
 
 Therefore the recommended approach is to upgrade *one* major version at a time, including a full regression test of the system and deployment to production after each major version upgrade.
 
