@@ -225,6 +225,16 @@ class Usage
         #endregion
     }
 
+    void EnableMessageDrivenPubSubCompatibilityMode(EndpointConfiguration endpointConfiguration)
+    {
+        #region EnableMessageDrivenPubSubCompatibilityMode
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        transport.EnableMessageDrivenPubSubCompatibilityMode();
+
+        #endregion
+    }
+
     class SubscribedEvent { }
 
     class PublishedEvent { }
