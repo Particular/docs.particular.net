@@ -11,7 +11,7 @@ WARNING: TLS 1.2 must be enabled on the broker to establish a secure connection.
 
 If the broker has been configured to require client authentication, a client certificate must be specified in the `CertPath` setting. If that certificate requires a password, it must be specified in the `CertPassphrase` setting.
 
-A sample connection string using these settings:
+Here is a sample connection string using these settings:
 
 snippet: rabbitmq-connection-client-auth
 
@@ -28,7 +28,7 @@ NOTE: If a certificate is specified via either code API, the `CertPath` and `Cer
 
 ### Remote certificate validation 
 
-By default, the RabbitMQ client will refuse to connect to the broker if the remote server certificate is invalid. In Versions 4.4 and above, this validation can be disabled by using the following setting:
+By default, the RabbitMQ client will refuse to connect to the broker if the remote server certificate is invalid. In versions 4.4 and above of the transport, this validation can be disabled by using the following setting:
 
 snippet: rabbitmq-disable-remote-certificate-validation
 

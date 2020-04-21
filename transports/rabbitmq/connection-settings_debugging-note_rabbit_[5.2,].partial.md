@@ -6,4 +6,4 @@ Or via the API:
 
 snippet: rabbitmq-debug-api
 
-Increasing this setting can help avoiding the connection timeout while the debugging.
+Increasing this setting can help to avoid connection timeouts while debugging.
