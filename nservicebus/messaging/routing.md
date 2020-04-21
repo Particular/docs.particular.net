@@ -67,3 +67,33 @@ In the `UnicastBusConfig/MessageEndpointMappings` configuration section, publish
 ## Reply routing
 
 Reply message are always routed based on the `ReplyTo` header of the initial message regardless of the endpoint's routing configuration. Only the sender of the initial message can influence the routing of a reply. Refer to documentation on [sending messages](/nservicebus/messaging/send-a-message.md) for further details.
+
+
+
+## Make instance uniquely addressable
+
+Note: It is not advised to not have routing logic to address a specific instance be part of different logical sender as this tighly couples the sender its sending logic to the reciepient its deployment configuration.
+
+Endpoints can be scaled-out and when using a message broker the default will be [competing consumer](/nservicebus/architecture/scaling#scaling-out-to-multiple-nodes-competing-consumers). If instances need to be addressable uniquely. This can be achieved by adding a suffix to the endpoint name like `Sales-InstanceB`. However, that will influence the logical routing to this endpoint as it can no longer be addressable as `Sales`. 
+
+Alternatively, the endpoint can be configured to be uniquely addressable. This will result in the endpoint instance to listen to 2 queues. A shared queue, as would normally exists but it will also can a second uniquely addressable queue with a configurable discriminator that will result in a queue name suffix:
+
+The following queues will be created for endpoint `Sales` is configured with discriminator `B`:
+
+- `Sales`
+- `Sales-InstanceB`
+
+```c#
+var endpointConfiguration = new EndpointConfiguration("Sales");
+endpointConfiguration.MakeInstanceUniquelyAddressable("B");
+```
+
+Uniquely addressable instances are used for [callbacks](https://docs.particular.net/nservicebus/messaging/callbacks) but can be used for other purposes like data partitioning with processing affinity or a form or processing prioritization.
+
+```c#
+var options = new SendOptions();
+options.RouteToThisInstance()
+options.RouteToSpecificInstance("B");
+endpointInstance.Send(new MyMessage(), options);
+```
+
