@@ -30,16 +30,16 @@
             {
                 SomeId = Data.SomeId
             };
-            return RequestTimeout(context, TimeSpan.FromHours(1), almostDoneMessage);
+            return ReplyToOriginator(context, almostDoneMessage);
         }
 
         public Task Timeout(MyCustomTimeout state, IMessageHandlerContext context)
         {
-            if (Data.Message2Arrived)
+            if (!Data.Message2Arrived)
             {
-                return Task.CompletedTask;
+                return ReplyToOriginator(context, new TiredOfWaitingForMessage2());
             }
-            return RequestTimeout(context, TimeSpan.FromHours(1), new TiredOfWaitingForMessage2());
+            return Task.CompletedTask;
         }
     }
 

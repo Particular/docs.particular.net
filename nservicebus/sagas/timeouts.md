@@ -32,6 +32,12 @@ A timeout may be requested specifying either a `DateTime` or `TimeSpan`. When sp
 
 NOTE: Timezone and DST information may change in the future, for timeouts that are already set. A saga containing business logic which is dependent on such changes must react to those changes appropriately.
 
+## Requesting multiple timeouts
+
+Multiple timeouts can be requested when processing a message. These can be of different types and different timeout durations.
+
+snippet: saga-multiple-timeouts
+
 ## Revoking timeouts
 
 A timeout that has been scheduled cannot be revoked. This means that when the timeout timestamp has elapsed then this timeout message will be queued and then processed.
