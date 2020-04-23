@@ -2,7 +2,7 @@
 
 The transport is a [Multicast-enabled transports](/transports/types#multicast-enabled-transports) and provide built-in support for [publish-subscribe messaging](/nservicebus/messaging/publish-subscribe/) using Amazon SNS. Publishing events to multiple endpoints is achieved by publishing a single message to an SNS topic to which multiple destination queues are subscribed.
 
-The topics and subscriptions topology is created automatically by destination endpoints if [installers](/nservicebus/operations/installers) are enabled.
+The topology (topics and subscriptions) is created automatically by destination endpoints if [installers](/nservicebus/operations/installers) are enabled. Topology deployment can be automated, or manually created, using the transport CLI tool. Refer to the [transport operations section](/transports/sqs/operations-scripting) for more information.
 
 #### Message inheritance support
 
