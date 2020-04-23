@@ -8,7 +8,7 @@ redirects:
  - nservicebus/rabbitmq/delayed-delivery
 ---
 
-WARNING: Messages can be delayed for a maximum of 268,435,455 seconds, or about 8.5 years. 
+NOTE: Messages can be delayed for a maximum of 268,435,455 seconds, or about 8.5 years. 
 
 In versions 4.3 and above, the RabbitMQ transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure inside the broker which can delay messages using native RabbitMQ features.
 
