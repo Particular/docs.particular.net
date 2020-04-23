@@ -72,7 +72,6 @@ Reply message are always routed based on the `ReplyTo` header of the initial mes
 
 ## Make instance uniquely addressable
 
-Note: It is not advised to not have routing logic to address a specific instance be part of different logical sender as this tighly couples the sender its sending logic to the reciepient its deployment configuration.
 
 When using a message broker, multiple instances of a scaled-out endpoint are consuming from the same address via the [competing consumer](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) model.
 
