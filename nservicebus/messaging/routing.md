@@ -98,6 +98,6 @@ endpointInstance.Send(new MyMessage(), options);
 
 Recommendations:
 
-- Avoid hard coding the discriminator for sending messages.
-- Avoid sending to a specific instances of a different logical endpoint to prevent coupling.
-- Avoid using `MakeInstanceUniquelyAddressable` for priority queues
+- Avoid hard coding the discriminator when sending messages.
+- Avoid using `MakeInstanceUniquelyAddressable` for priority queues.
+- Consider using [routing extendability](/nservicebus/messaging/routing-extensibility.md) for routing to specific instances.
