@@ -877,3 +877,14 @@
   ProjectUrl: https://github.com/mauroservienti/NServiceBus.AttributeConventions
   NugetOrder:
     - NServiceBus.AttributeConventions
+
+- Key: LambdaHandlers
+  Name: Community.NServiceBus.LambdaHandlers
+  DocoUrl: https://github.com/timbussmann/Community.NServiceBus.LambdaHandlers/blob/master/README.md
+  GitHubOwner: timbussmann
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/timbussmann/Community.NServiceBus.LambdaHandlers/blob/master/LICENSE
+  ProjectUrl: https://github.com/timbussmann/Community.NServiceBus.LambdaHandlers
+  NugetOrder:
+    - Community.NServiceBus.LambdaHandlers
