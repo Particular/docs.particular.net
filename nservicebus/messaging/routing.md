@@ -96,3 +96,9 @@ options.RouteToThisInstance()
 options.RouteToSpecificInstance("B");
 endpointInstance.Send(new MyMessage(), options);
 ```
+
+Recommendations:
+
+- Avoid hard coding the discriminator for sending messages.
+- Avoid sending to a specific instances of a different logical endpoint to prevent coupling.
+- Avoid using `MakeInstanceUniquelyAddressable` for priority queues
