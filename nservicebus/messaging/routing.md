@@ -88,7 +88,7 @@ var endpointConfiguration = new EndpointConfiguration("Sales");
 endpointConfiguration.MakeInstanceUniquelyAddressable("B");
 ```
 
-Uniquely addressable instances are used for [callbacks](https://docs.particular.net/nservicebus/messaging/callbacks) but can be used for other purposes like data partitioning with processing affinity or a form or processing prioritization.
+Uniquely addressable instances are used for [callbacks](/nservicebus/messaging/callbacks.md) but can be used for other purposes like data partitioning with processing affinity or a form or processing prioritization.
 
 ```c#
 var options = new SendOptions();
