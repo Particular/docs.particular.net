@@ -32,9 +32,9 @@ A timeout may be requested specifying either a `DateTime` or `TimeSpan`. When sp
 
 NOTE: Timezone and DST information may change in the future, for timeouts that are already set. A saga containing business logic which is dependent on such changes must react to those changes appropriately.
 
-## Set multiple timeouts
+## Requesting multiple timeouts
 
-You can send multiple timeouts when processing a message. You can set several timeouts of the same or different types.
+Multiple timeouts can be requested when processing a message. These can be of different types and different timeout durations.
 
 snippet: saga-multiple-timeouts
 
