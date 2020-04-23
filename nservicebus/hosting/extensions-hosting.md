@@ -10,7 +10,7 @@ related:
  - samples/dependency-injection/aspnetcore
 ---
 
-NOTE: Not compatible with `Microsoft.Extensions.Logging`, please use community package [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) as shown in [.NET Core Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) sample.
+NOTE: Not compatible with `Microsoft.Extensions.Logging`, use community package [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) as shown in [.NET Core Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) sample.
 
 ## Configuration
 
