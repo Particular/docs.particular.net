@@ -34,10 +34,12 @@ A subscriber endpoint running in backwards compatibility mode will send subscrip
 
 snippet: 4to5-configure-message-driven-pub-sub-routing
 
-NOTE: Once the publishing endpoint has been upgraded, this configuration can optionally be removed. 
+NOTE: Once the publishing endpoint has been upgraded, this configuration can optionally be removed.
 
 A publisher endpoint running backwards compatibility mode will also handle incoming subscription related control messages to update both the native subscription table and the private subscription persistence.
 
 ### Operations
 
-TDB
+Alongside with the transport a new .NET Core tool `NServiceBus.AmazonSQS.CommandLine` was released that allows to setup the required SQS queue, SNS topics/subscriptions, SQS policies for SNS as well as the optional S3 buckets for large message support.
+
+You can read more about [the command line tool](/transports/sqs/operations-scripting) in the documentation.
