@@ -40,4 +40,4 @@ A publisher endpoint running backwards compatibility mode will also handle incom
 
 ### Operations
 
-Alongside with the transport a new .NET Core tool `NServiceBus.AmazonSQS.CommandLine` was released, for setting up the required SQS queues, SNS topics/subscriptions, SQS policies for SNS, and the optional S3 buckets for large message support. For information, see the [documentation](https://docs.particular.net/transports/sqs/operations-scripting).
+Alongside with the transport a new .NET Core tool `NServiceBus.AmazonSQS.CommandLine` was released, for setting up the required SQS queues, SNS topics/subscriptions, SQS policies for SNS, and the optional S3 buckets for large message support. For information, see the [documentation](/transports/sqs/operations-scripting.md).
