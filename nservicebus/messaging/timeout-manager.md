@@ -13,7 +13,7 @@ related:
 {{NOTE:
 Duplicate timeouts can be dispatched if the transport and persistence is configured not to use or does not support [TransactionScope mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction). Scaled-out environments are extra vulnerable. The receiving endpoint must account for that via for example [Outbox](/nservicebus/outbox/) or otherwise idempotent processing.
 
-Exact-once timeouts only possible with MSMQ and SQL Transports in combination with NHibernate or SQL Persistence with (their default) transaction mode TransactionScope.
+Exact-once timeouts are only possible with MSMQ and SQL Transports with NHibernate or SQL Persistence when they are configured to share the transactional context.
 }}
 
 
