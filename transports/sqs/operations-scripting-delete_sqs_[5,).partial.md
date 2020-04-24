@@ -50,7 +50,6 @@ sqs-transport endpoint remove [name] delay-delivery-support
                               [--secret]
                               [--region]
                               [--prefix]
-                              [--suffix]
 ```
 
 #### arguments
@@ -66,8 +65,6 @@ sqs-transport endpoint remove [name] delay-delivery-support
 `-r` | `--region`: Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'
 
 `-p` | `--prefix`: Prefix to prepend before the delay delivery queue
-
-`-x` | `--suffix`: Suffix to append to the delay delivery queue (defaults to '-delay.fifo')
 
 ### sqs-transport endpoint remove large-message-support
 

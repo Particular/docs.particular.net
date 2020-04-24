@@ -57,9 +57,7 @@ sqs-transport endpoint add [name] delay-delivery-support
                               [--secret]
                               [--region]
                               [--prefix]
-                              [--delay]
                               [--retention]
-                              [--suffix]
 ```
 
 #### arguments
@@ -76,11 +74,7 @@ sqs-transport endpoint add [name] delay-delivery-support
 
 `-p` | `--prefix`: Prefix to prepend before the delay delivery queue
 
-`-d` | `--delay`: Delay in seconds (defaults to 900)
-
 `-t` | `--retention`: Retention Period in seconds (defaults to 345600)
-
-`-x` | `--suffix`: Suffix to append to the delay delivery queue (defaults to '-delay.fifo')
 
 ### sqs-transport endpoint add large-message-support
 
