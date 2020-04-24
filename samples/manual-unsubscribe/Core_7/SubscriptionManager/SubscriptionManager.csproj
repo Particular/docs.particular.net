@@ -1,13 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net4.6.2</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <ProjectReference Include="..\Messages\Messages.csproj" />
-    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
   </ItemGroup>
 </Project>
