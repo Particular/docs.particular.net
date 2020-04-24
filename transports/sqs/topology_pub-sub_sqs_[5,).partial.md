@@ -1,8 +1,8 @@
 ### Publish/Subscribe
 
-The transport is a [Multicast-enabled transport](/transports/types#multicast-enabled-transports) and provides built-in support for [publish-subscribe messaging](/nservicebus/messaging/publish-subscribe/) using Amazon Simple Notification Service (SNS). Publishing events to multiple endpoints is achieved by publishing a single message to an SNS topic to which multiple destination queues are subscribed.
+The transport is a [Multicast-enabled transport](/transports/types.md#multicast-enabled-transports) and provides built-in support for [publish-subscribe messaging](/nservicebus/messaging/publish-subscribe/) using Amazon Simple Notification Service (SNS). Publishing events to multiple endpoints is achieved by publishing a single message to an SNS topic to which multiple destination queues are subscribed.
 
-The topology (topics and subscriptions) is created automatically by the subscribing endpoints. Topology deployment can be automated, or manually created, using the transport CLI tool. Refer to the [transport operations section](/transports/sqs/operations-scripting) for more information.
+The topology (topics and subscriptions) is created automatically by the subscribing endpoints. Topology deployment can be automated, or manually created, using the transport CLI tool. Refer to the [transport operations section](/transports/sqs/operations-scripting.md) for more information.
 
 #### Message inheritance support
 
@@ -16,4 +16,4 @@ snippet: CustomTopicsMappingsTypeToTopicForTopology
 
 The above snippet instructs the subscriber's subscription manager to create and subscribe to a topic named `namespace-OrderAccepted` when subscribing to the `IOrderAccepted` event.
 
-More information about the custom mapping API can be found in the [configuration options](/transports/sqs/configuration-options#custom-topics-mappings?version=sqs_5) documentation.
+More information about the custom mapping API can be found in the [configuration options](/transports/sqs/configuration-options.md#custom-topics-mappings) documentation.
