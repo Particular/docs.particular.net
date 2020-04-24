@@ -2,7 +2,7 @@
 title: Topology
 summary: Identify the physical components used by the Amazon SQSL transport and how they interact.
 component: SQS
-reviewed: 2019-05-03
+reviewed: 2020-04-27
 tags:
 - AWS
 ---
@@ -10,7 +10,6 @@ tags:
 The topology used by the transport is composed of several AWS components.
 
 partial: pub-sub-diagram
-
 
 ## SQS
 
@@ -22,9 +21,7 @@ The transport uses SQS [Standard Queues](https://docs.aws.amazon.com/AWSSimpleQu
 
 SQS queues support [competing consumers](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html). When an endpoint scales out to multiple instances, each instance consumes messages from the same input queue.
 
-
 partial: pub-sub
-
 
 ## S3
 

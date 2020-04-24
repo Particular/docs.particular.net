@@ -2,7 +2,7 @@
 title: Amazon SQS Transport
 summary: A transport for Amazon Web Services Simple Queue Service.
 component: SQS
-reviewed: 2019-02-22
+reviewed: 2020-04-27
 related:
  - samples/sqs/simple
 tags:
@@ -22,12 +22,10 @@ partial: transport-at-a-glance
  * Can be used as a gateway between endpoints that may not have direct connectivity to each-other.
  * Can send and receive large messages that exceed the queue limitations by storing large payloads in S3. For more information review the documentation for the transport [topology](topology.md#s3) and [configuration options](configuration-options.md).
 
-
 ## Disadvantages
 
  * Like other message brokers, there is no local store-and-forward mechanism available. If an endpoint cannot reach SQS, either due to network problems or if SQS is unavailable, the endpoint will not be able to send nor receive messages.
  * Can be relatively expensive when using larger volumes of messages.
-
 
 ## Getting started
 
@@ -63,7 +61,6 @@ partial: sns-permissions
  * ListAllMyBuckets
 
 partial: credentials
-
 
 ## Retries and timeouts
 
