@@ -1,6 +1,6 @@
 ### Custom topics mappings
 
-The [transport topology](topology.md#publishsubscribe) describes in depth how the topology is determined by subscribers. There are scenarios in which a custom mapping is needed.
+The [transport topology](topology.md#sqs-publishsubscribe) describes in depth how the topology is determined by subscribers. There are scenarios in which a custom mapping is needed.
 
 The `MapEvent` transport configuration API can be used to customize the way subscribers determine the topic to subscribe to. If the subscribers has knowledge of both the published event type and the subscribed one, the following API can be used:
 
