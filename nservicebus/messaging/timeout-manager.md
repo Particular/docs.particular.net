@@ -10,7 +10,12 @@ related:
  - nservicebus/messaging/delayed-delivery
 ---
 
-NOTE: Duplicate timeouts can be dispatched if the transport and persistence is configured not to use or does not support [TransactionScope mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction). Scaled-out environments are extra vulnerable. The receiving endpoint must account for that via for example [Outbox](/nservicebus/outbox/) or otherwise idempotent processing.
+{{NOTE:
+Duplicate timeouts can be dispatched if the transport and persistence is configured not to use or does not support [TransactionScope mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction). Scaled-out environments are extra vulnerable. The receiving endpoint must account for that via for example [Outbox](/nservicebus/outbox/) or otherwise idempotent processing.
+
+Exact-once timeouts only possible with MSMQ and SQL Transports in combination with NHibernate or SQL Persistence with (their default) transaction mode TransactionScope.
+}}
+
 
 NServiceBus provides a delayed-delivery implementation for transports that don't support it natively. All Transports except MSMQ support delayed delivery natively.
 
