@@ -16,4 +16,4 @@ snippet: CustomTopicsMappingsTypeToTopicForTopology
 
 The above snippet instructs the subscriber's subscription manager to create and subscribe to a topic named `namespace-OrderAccepted` when subscribing to the `IOrderAccepted` event.
 
-More information about the custom mapping API can be found in the [configuration options](/transports/sqs/configuration-options.md?version=sqs_5#custom-topics-mappings) documentation.
+More information about the custom mapping API can be found in the [configuration options](/transports/sqs/configuration-options.md#custom-topics-mappings) documentation.

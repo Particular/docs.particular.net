@@ -1,4 +1,4 @@
-### Custom topics mappings
+## Custom topics mappings
 
 The [transport topology](topology.md#sqs-publishsubscribe) describes in depth how the topology is determined by subscribers. There are scenarios in which a custom mapping is needed.
 
