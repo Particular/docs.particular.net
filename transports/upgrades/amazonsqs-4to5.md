@@ -18,6 +18,15 @@ Before they are upgraded, endpoints running on older versions of the transport a
 
 The transport provides a compatibility mode that allows the endpoint to use both forms of publish-subscribe at the same time. When it is enabled and the endpoint publishes an event, the native susbcription leveraging SNS and the message-driven subscription persistence are checked for subscriber information. This subscriber information is deduplicated before the event is published, so even if a subscriber appears in both places it will only receive a single copy of each event.
 
+### Required [SNS permissions](https://docs.aws.amazon.com/sns/latest/dg/sns-access-policy-language-api-permissions-reference.html)
+
+ * ListTopics
+ * Unsubscribe
+ * SetEndpointAttributes
+ * ListSubscriptions
+ * GetSubscriptionAttributes
+ * SetSubscriptionAttributes
+
 ### Upgrading
 
 Upgrade a single endpoint to version 5 at a time. Each upgraded endpoint should be configured to run in backwards compatibility mode and be deployed into production before upgrading the next endpoint. At startup, the upgraded endpoint will create the necessary topics on SNS and subscribe to them. It will also send subscribe control messages to each of it's configured publishers.
