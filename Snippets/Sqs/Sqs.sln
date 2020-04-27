@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sqs_4", "Sqs_4\Sqs_4.csproj", "{2CAF782F-8127-40EE-A34C-05D5AB56CCC5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sqs_5", "Sqs_5\Sqs_5.csproj", "{C6C8DE1B-3266-47C7-8EF6-83594D17308C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,8 @@ Global
 		{63A17C17-79A5-4C85-8AB7-7E00B7845DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CAF782F-8127-40EE-A34C-05D5AB56CCC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2CAF782F-8127-40EE-A34C-05D5AB56CCC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6C8DE1B-3266-47C7-8EF6-83594D17308C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6C8DE1B-3266-47C7-8EF6-83594D17308C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

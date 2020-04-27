@@ -2,7 +2,7 @@
 title: Amazon SQS Transport
 summary: A transport for Amazon Web Services Simple Queue Service.
 component: SQS
-reviewed: 2019-02-22
+reviewed: 2020-04-27
 related:
  - samples/sqs/simple
 tags:
@@ -13,17 +13,7 @@ redirects:
 
 [Simple Queue Service (SQS)](https://aws.amazon.com/sqs/) is a message queue service provided by [Amazon Web Services](https://aws.amazon.com/).
 
-## Transport at a glance
-
-|Feature                    |   |  
-|:---                       |---
-|Transactions |None, ReceiveOnly (Message visibility timeout)
-|Pub/Sub                    |Message driven
-|Timeouts                   |Native (Requires FIFO Queues)
-|Large message bodies       |Native (Requires S3)
-|Scale-out             |Competing consumer
-|Scripted Deployment        |PowerShell, Terraform, C#
-|Installers                 |Optional
+partial: transport-at-a-glance
 
 ## Advantages
 
@@ -32,12 +22,10 @@ redirects:
  * Can be used as a gateway between endpoints that may not have direct connectivity to each-other.
  * Can send and receive large messages that exceed the queue limitations by storing large payloads in S3. For more information review the documentation for the transport [topology](topology.md#s3) and [configuration options](configuration-options.md).
 
-
 ## Disadvantages
 
  * Like other message brokers, there is no local store-and-forward mechanism available. If an endpoint cannot reach SQS, either due to network problems or if SQS is unavailable, the endpoint will not be able to send nor receive messages.
  * Can be relatively expensive when using larger volumes of messages.
-
 
 ## Getting started
 
@@ -60,6 +48,7 @@ The IAM account requires the following permissions:
  * ChangeMessageVisibilityBatch
  * PurgeQueue
 
+partial: sns-permissions
 
 #### [S3 permissions](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html)
 
@@ -72,7 +61,6 @@ The IAM account requires the following permissions:
  * ListAllMyBuckets
 
 partial: credentials
-
 
 ## Retries and timeouts
 

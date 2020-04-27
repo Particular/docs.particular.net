@@ -2,15 +2,14 @@
 title: Topology
 summary: Identify the physical components used by the Amazon SQSL transport and how they interact.
 component: SQS
-reviewed: 2019-05-03
+reviewed: 2020-04-27
 tags:
 - AWS
 ---
 
 The topology used by the transport is composed of several AWS components.
 
-![Topology](topology.png)
-
+partial: pub-sub-diagram
 
 ## SQS
 
@@ -22,11 +21,7 @@ The transport uses SQS [Standard Queues](https://docs.aws.amazon.com/AWSSimpleQu
 
 SQS queues support [competing consumers](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html). When an endpoint scales out to multiple instances, each instance consumes messages from the same input queue.
 
-
-### Publish/Subscribe
-
-The transport is [unicast-only](/transports/types.md#unicast-only-transports) and does not provide built-in support for [publish-subscribe messaging](/nservicebus/messaging/publish-subscribe/). Publishing events to multiple endpoints is achieved with multiple transport-level sends to each destination. Subscriptions are created using [persistence-based and message-driven mechanics](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based).
-
+partial: pub-sub
 
 ## S3
 
