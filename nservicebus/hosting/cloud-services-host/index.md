@@ -14,7 +14,7 @@ redirects:
 related:
  - samples/azure/shared-host
  - nservicebus/lifecycle
-reviewed: 2018-08-09
+reviewed: 2020-04-26
 ---
 
 include: cloudserviceshost-deprecated-warning
