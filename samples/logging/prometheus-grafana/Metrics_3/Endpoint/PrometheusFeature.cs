@@ -79,7 +79,17 @@ class PrometheusFeature : Feature
                 continue;
             }
             var prometheusName = nameMapping[duration.Name];
-            var summary = Metrics.CreateSummary(prometheusName, duration.Description, Labels);
+            var summary = Metrics.CreateSummary(prometheusName, duration.Description,
+                                                new SummaryConfiguration
+                                                {
+                                                    Objectives = new[]
+                                                                 {
+                                                                     new QuantileEpsilonPair(0.5, 0.05),
+                                                                     new QuantileEpsilonPair(0.9, 0.01),
+                                                                     new QuantileEpsilonPair(0.99, 0.001)
+                                                                 },
+                                                    LabelNames = Labels
+                                                });
             duration.Register((ref DurationEvent @event) => summary.Labels(labelValues).Observe(@event.Duration.TotalSeconds));
         }
 

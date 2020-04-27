@@ -10,6 +10,6 @@
     <Reference Include="System.Windows" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Metrics" Version="3.*" />
-    <PackageReference Include="prometheus-net" Version="2.*" />
+    <PackageReference Include="prometheus-net" Version="3.*" />
   </ItemGroup>
 </Project>
