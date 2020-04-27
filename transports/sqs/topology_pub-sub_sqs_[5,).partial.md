@@ -17,3 +17,23 @@ snippet: CustomTopicsMappingsTypeToTopicForTopology
 The above snippet instructs the subscriber's subscription manager to create and subscribe to a topic named `namespace-OrderAccepted` when subscribing to the `IOrderAccepted` event.
 
 More information about the custom mapping API can be found in the [configuration options](/transports/sqs/configuration-options.md?version=sqs_5#custom-topics-mappings) documentation.
+
+#### Evolving an existing topology
+
+Evolving an existing topology needs to be handled with care. The SQS Transport never deletes any resource so it might happen that messages are routed to undesirable destinations if or when message handlers are moved to a different endpoint, or completely removed.
+
+For instance, in the following scenario:
+
+- The system is composed by a publisher and a scaled-out subscribers (two instances, for the sake of the sample)
+- An event needs to be removed as not anymore needed
+- The message handler, for the removed event, needs to be removed with no subscribers downtime
+
+The following steps needs to be put in place:
+
+1. Change the publisher first to stop publishing the event for which the handler needs to be removed
+1. Deploy the publisher changes
+1. Wait for in-flight messages to be consumed
+1. Change the subscriber by removing the not anymore needed handler
+1. Deploy subscribers instances one-by-one with no downtime
+1. Remove the SNS to SQS subscription for the specific event in AWS
+1. If not anymore needed, remove the SNS topic for the specific event
