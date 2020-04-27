@@ -2,7 +2,7 @@
 title: Configure delayed retries
 summary: How to configure delayed retries as a second stage of recoverability.
 component: Core
-reviewed: 2018-08-09
+reviewed: 2020-04-26
 tags:
  - Error Handling
  - Exceptions
