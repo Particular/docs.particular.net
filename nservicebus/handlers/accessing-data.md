@@ -84,5 +84,5 @@ and think about the behavior of the message processing:
  - If outgoing messages are sent before state change is committed (e.g if code above used [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately)) there is a risk of creating *ghost messages* -- messages that carry the state change that has never been made durable
  - If outgoing messages are sent after the state change is committed there is risk of message loss if the send operation fails. To prevent this, the outgoing messages need to be sent **even if we suspect a message is a duplicate**
  - If message identity is used for de-duplication, message IDs need to be generated in a deterministic manner
- - If outgoing messages depend on the application state, **the code above is incorrect when messages can get re-ordered** (e.g. by infrastructure failures, [recoverability](/nservicebus/recoverability.md) or competing consumers)
+ - If outgoing messages depend on the application state, **the code above is incorrect when messages can get re-ordered** (e.g. by infrastructure failures, [recoverability](/nservicebus/recoverability) or competing consumers)
 
