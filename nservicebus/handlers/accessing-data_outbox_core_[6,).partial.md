@@ -1,1 +1,0 @@
-When using the [Outbox](/nservicebus/outbox) NServiceBus itself guarantees the *idempotency* of data access operations executed via `SynchronizedStorageSession`. The Outbox is a generic implementation of the `IdempotencyEnforcer` handler from the previous section.
