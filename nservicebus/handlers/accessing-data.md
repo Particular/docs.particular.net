@@ -61,16 +61,16 @@ In order to use this mode, the transport needs to be configured to use `Transact
 
 ### Outbox
 
-[The Outbox](/nservicebus/outbox.md) is a pattern that provides *exactly-once* message processing experience even when dealing with transport and database that don't support distributed transactions e.g. RabbitMQ and MongoDB. It achieves it by storing the incoming message ID and the outgoing messages in the same transaction as the business state change.
+[The Outbox](/nservicebus/outbox) is a pattern that provides *exactly-once* message processing experience even when dealing with transport and database that don't support distributed transactions e.g. RabbitMQ and MongoDB. It achieves it by storing the incoming message ID and the outgoing messages in the same transaction as the business state change.
 
-The Outbox can be used with any transport and with any persistence component that [support the Synchronized Storage Session](#Synchronized-Storage-Session).
+The Outbox can be used with any transport and with any persistence component that [support the Synchronized Storage Session](#synchronized-storage-session).
 
 Instead of preventing the duplicates, the Outbox detects them and ensures that the effects of processing duplicate messages are ignored (not persisted).
 
 
 ## Manual de-duplication
 
-In situations where neither of the built-in de-duplication strategies can be applied, the de-duplication of messages needs to be handled at the application level, in the message handler itself. In these cases the [Synchronized Storage Session](#Synchronized-Storage-Session) should not be used and each handler should guarantee the idempotence of its behavior.
+In situations where neither of the built-in de-duplication strategies can be applied, the de-duplication of messages needs to be handled at the application level, in the message handler itself. In these cases the [Synchronized Storage Session](#synchronized-storage-session) should not be used and each handler should guarantee the idempotence of its behavior.
 
 ### Idempotence caveats
 
