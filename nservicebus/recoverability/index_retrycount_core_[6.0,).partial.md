@@ -33,12 +33,12 @@ Affected transports:
 - RabbitMQ
 - Amazon SQS
 - Learning (Only if running multiple instance on the same machine which is not advised)
-- MSMQ (Only if running multiple instance on the same machine which is not advised)
+- MSMQ (only if running multiple instance on the same machine)
 
-Unaffected transports:
+Azure Service Bus transports use native delivery counter for immediate retries which guarantees that the retry number is the same regardless if the endpoint is scaled out.
 
-- Azure Service Bus (native delivery counter)
-- Azure Service Bus Legacy (native delivery counter)
+- Azure Service Bus
+- Azure Service Bus Legacy
 
 The number of instances act as a multiplier for the maximum number of attempts.
 
