@@ -1,30 +1,30 @@
 ---
-title: Install Heartbeats Plugin
-summary: Enabling endpoint instance monitoring by installing the Heartbeats plugin
+title: Heartbeat plugin installation
+summary: Enabling endpoint instance monitoring by installing the heartbeat plugin
 reviewed: 2018-07-30
 component: Heartbeats
 versions: 'Heartbeats:*'
 ---
 
-To install the Heartbeats plugin into an endpoint, reference the [NServiceBus.Heartbeat NuGet package](https://www.nuget.org/packages/NServiceBus.Heartbeat/) and add the following to the endpoint configuration:
+To install the heartbeat plugin in an endpoint, reference the [NServiceBus.Heartbeat NuGet package](https://www.nuget.org/packages/NServiceBus.Heartbeat/) and configure the endpoint to send heartbeats:
 
 snippet: HeartbeatsNew_Enable
 
-NOTE: `ServiceControl_Queue` is a placeholder for the actual ServiceControl input queue. The ServiceControl input queue is equal to the [ServiceControl service name](/servicecontrol/installation.md#service-name-and-plugins) as configured in the ServiceControl Management tool.
+NOTE: `ServiceControl_Queue` is a placeholder for the name of the ServiceControl input queue. The name of the ServiceControl input queue matches the [ServiceControl service name](/servicecontrol/installation.md#service-name-and-plugins) configured in the ServiceControl Management application.
 
 
 ### Heartbeat interval
 
-Heartbeat messages are sent by the plugin at a predefined interval of 10 seconds. As shown above, the interval value can be overridden on a per-endpoint basis.
+The plugin sends heartbeat messages with a default frequency of 10 seconds. As shown above, the frequency may be overridden for each endpoint.
 
-NOTE: When configuring the heartbeat interval, ensure the ServiceContol setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) is greater than the heartbeat interval.
+NOTE: The frequency must be lower than the [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
 
 
 ### Time-To-Live (TTL)
 
-When the plugin sends heartbeat messages, the default TTL is fixed to four times the value of the heartbeat interval. As shown above, the interval value can be overridden on a per-endpoint basis. See [Expired heartbeats](expired-heartbeats.md) for more information about what happens to expired heartbeats.
+The plugin sends heartbeat messages with a default TTL of four times the frequency. As shown above, the TTL may be overridden for each endpoint. See the documentation for [expired heartbeats](expired-heartbeats.md) for more information.
 
 
 ### Identifying scaled-out endpoints
 
-When installing the heartbeat plugin on a scaled-out endpoint, also configure each instance with a deterministic [Host Identifier](/nservicebus/hosting/override-hostid.md). This identifier is used to keep track of which instance is sending heartbeat messages to the ServiceControl instance.
+When the heartbeat plugin is installed in a scaled-out endpoint, each endpoint instance must be configured with a unique [host identifier](/nservicebus/hosting/override-hostid.md). The identifiers are used by ServiceControl to keep track of all instances and to identify which instance sent a given heartbeat message.
