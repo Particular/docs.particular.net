@@ -21,6 +21,7 @@ So for example given a variety of Immediate and Delayed here are the resultant p
 | 2                | 1              | 6                       |
 | 2                | 2              | 9                       |
 | 3                | 1              | 8                       |
+| 3                | 5              | 24                      |
 
 ### Scale-out multiplier
 
@@ -32,13 +33,15 @@ Affected transports:
 - SQL Server
 - RabbitMQ
 - Amazon SQS
-- Learning (Only if running multiple instance on the same machine which is not advised)
 - MSMQ (only if running multiple instance on the same machine)
 
-Azure Service Bus transports use native delivery counter for immediate retries which guarantees that the retry number is the same regardless if the endpoint is scaled out.
+Unaffected transports:
 
 - Azure Service Bus
 - Azure Service Bus Legacy
+
+Azure Service Bus transports use a native delivery counter for immediate retries which guarantees that the retry number is the same regardless if the endpoint is scaled out.
+
 
 The number of instances act as a multiplier for the maximum number of attempts.
 
@@ -46,3 +49,8 @@ The number of instances act as a multiplier for the maximum number of attempts.
 Mininum Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:NumberOfRetries + 1)
 Maximum Attempts = MininumAttempts * NumberOfInstances
 ```
+
+Example:
+
+When taking the default values for immediate (5) and delayed retries (3) and 5 instances the total number of attempts will be a minumum of (5+1)*(3+1)=24 attempts and a maximum of 120.
+
