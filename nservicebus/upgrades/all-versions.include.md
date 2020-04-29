@@ -35,7 +35,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.0) | 2019-11-27     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.0) | 2020-04-27     | -                 | -                                 |
+| [4.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.0) | 2019-11-27     | 2021-04-27        | Superseded by 5.0.x               |
 | [~~4.3.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.3.5) | ~~2019-02-22~~ | ~~2020-02-27~~    | ~~Superseded by 4.4.x~~           |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.2.3) | ~~2018-12-12~~ | ~~2019-05-22~~    | ~~Superseded by 4.3.x~~           |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.1.3) | ~~2018-06-01~~ | ~~2019-03-12~~    | ~~Superseded by 4.2.x~~           |
@@ -75,10 +76,10 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.2.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/8.2.0) | 2020-03-05     | -                 | -                                 |
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/8.1.4) | 2018-09-27     | 2020-06-05        | Superseded by 8.2.x               |
+| [8.2.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/8.2.2) | 2020-03-05     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/8.1.5) | 2018-09-27     | 2020-06-05        | Superseded by 8.2.x               |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/8.0.1) | ~~2018-05-29~~ | ~~2018-12-27~~    | ~~Superseded by 8.1.x~~           |
-| [7.5.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/7.5.7) | 2017-12-04     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
+| [7.5.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/7.5.8) | 2017-12-04     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | [~~7.4.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/7.4.3) | ~~2017-07-17~~ | ~~2018-03-04~~    | ~~Superseded by 7.5.x~~           |
 | [~~7.3.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/7.3.0) | ~~2017-06-02~~ | ~~2017-10-17~~    | ~~Superseded by 7.4.x~~           |
 | [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/7.2.0) | ~~2017-03-24~~ | ~~2017-09-02~~    | ~~Superseded by 7.3.x~~           |
@@ -327,7 +328,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.CastleWindsor/7.2.0) | 2020-02-26     | -                 | -                                 |
 | [7.1.x](https://www.nuget.org/packages/NServiceBus.CastleWindsor/7.1.0) | 2020-01-27     | 2020-05-26        | Superseded by 7.2.x               |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.CastleWindsor/7.0.0) | 2018-05-29     | 2020-04-27        | Superseded by 7.1.x               |
+| [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.CastleWindsor/7.0.0) | ~~2018-05-29~~ | ~~2020-04-27~~    | ~~Superseded by 7.1.x~~           |
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.CastleWindsor/6.1.1) | 2017-09-15     | 2020-05-29        | Extended by NServiceBus 6.5.x     |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.CastleWindsor/6.0.0) | ~~2016-10-11~~ | ~~2017-12-15~~    | ~~Superseded by 6.1.x~~           |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.CastleWindsor/5.0.1) | 2014-09-29     | 2018-10-11        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2020-10-11 |
