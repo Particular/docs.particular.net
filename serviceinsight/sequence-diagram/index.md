@@ -1,7 +1,7 @@
 ---
 title: Sequence Diagram
 summary: The ServiceInsight sequence diagram view
-reviewed: 2018-08-03
+reviewed: 2020-04-29
 component: ServiceInsight
 ---
 
