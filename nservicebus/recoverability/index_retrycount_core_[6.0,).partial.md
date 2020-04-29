@@ -25,6 +25,8 @@ So for example given a variety of Immediate and Delayed here are the resultant p
 
 ### Scale-out multiplier
 
+NOTE: When scaled-out this behavior can be interpreted as if retries result in duplicates. Although this behavior can result in excessive retries no duplicate messages are created. Ensure that logging uses unique identifiers for each instance.
+
 If an endpoint is scaled-out the number of attempts increases if instance are retrieving messages from the same queue and the transport does not have a native delivery counter.
 
 Affected transports:
