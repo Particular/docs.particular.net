@@ -10,7 +10,9 @@ class Program
         Console.Title = "Samples.ServiceControl.ASBAdapter.Shipping";
         var endpointConfiguration = new EndpointConfiguration("Samples.ServiceControl.ASBAdapter.Shipping");
 
+#pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+#pragma warning restore 618
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2");
         if (string.IsNullOrWhiteSpace(connectionString))
         {

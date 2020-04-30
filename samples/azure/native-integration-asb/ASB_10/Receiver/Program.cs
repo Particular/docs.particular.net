@@ -23,7 +23,9 @@ class Program
 
         #region BrokeredMessageConvention
 
+#pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+#pragma warning restore 618
         var topologySettings = transport.UseEndpointOrientedTopology();
         topologySettings.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
 

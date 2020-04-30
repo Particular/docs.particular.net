@@ -14,7 +14,9 @@ class Program
         Console.Title = "Samples.ServiceControl.ASBAdapter.Adapter";
         #region AdapterTransport
 
+#pragma warning disable 618
         var transportAdapterConfig = new TransportAdapterConfig<AzureServiceBusTransport, AzureServiceBusTransport>("ServiceControl.ASB.Adapter");
+#pragma warning restore 618
 
         #endregion
 
@@ -102,7 +104,9 @@ class Program
             .ConfigureAwait(false);
     }
 
+#pragma warning disable 618
     static void WorkaroundForServializerRequiredByASB(TransportExtensions<AzureServiceBusTransport> transport)
+#pragma warning restore 618
     {
         var settings = transport.GetSettings();
         var serializer = Tuple.Create(new FakeSerializer() as SerializationDefinition, new SettingsHolder());

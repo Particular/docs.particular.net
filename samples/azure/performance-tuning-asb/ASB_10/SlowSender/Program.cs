@@ -13,7 +13,9 @@ class Program
     {
         Console.Title = "Samples.ASB.Performance.SlowSender";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Performance.Sender");
+#pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+#pragma warning restore 618
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {

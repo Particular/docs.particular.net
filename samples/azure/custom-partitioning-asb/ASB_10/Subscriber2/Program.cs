@@ -7,8 +7,10 @@ class Program
     static async Task Main()
     {
         Console.Title = "Samples.ASB.Partitioning.Subscriber with AzureServiceBus.ConnectionString2";
-    var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Partitioning.Subscriber");
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Partitioning.Subscriber");
+#pragma warning disable 618
+    var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+#pragma warning restore 618
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString2");
         if (string.IsNullOrWhiteSpace(connectionString))
         {

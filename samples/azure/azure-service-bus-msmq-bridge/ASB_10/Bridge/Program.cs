@@ -21,7 +21,9 @@ class Program
         #region bridge-general-configuration
 
         var bridgeConfiguration = new RouterConfiguration("Bridge");
+#pragma warning disable 618
         var azureInterface = bridgeConfiguration.AddInterface<AzureServiceBusTransport>("ASB", transport =>
+#pragma warning restore 618
         {
             //Prevents ASB from using TransactionScope
             transport.Transactions(TransportTransactionMode.ReceiveOnly);

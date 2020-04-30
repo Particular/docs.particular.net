@@ -14,7 +14,9 @@ public class SideBySide
 
         #region transport-asb-alias-usage
 
+#pragma warning disable 618
         var legacyASB = configurationASB.UseTransport<LegacyASB::NServiceBus.AzureServiceBusTransport>();
+#pragma warning restore 618
 
         #endregion
 
