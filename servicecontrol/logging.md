@@ -29,9 +29,9 @@ When Save is clicked the service will be restarted to apply the change.
 
 ### Customize logging
 
-ServiceControl by default logs to the filesystem and generates `logfile.${shortdate}.txt` and `ravenlog.${shortdate}.txt` files. ServiceControl uses [NLog](https://nlog-project.org/) for logging where the configuration can be overriden by supplying a custom `nlog.config` configuraion file in the ServiceControl application folder. A wide variety of [NLog logging targets](https://nlog-project.org/config/?tab=targets) can be used to log to almost any possible destination.
+ServiceControl by default logs to the filesystem and generates `logfile.${shortdate}.txt` and `ravenlog.${shortdate}.txt` files. ServiceControl uses [NLog](https://nlog-project.org/) for logging where the configuration can be overriden by supplying a custom `nlog.config` configuraion file in the ServiceControl, ServiceControl.Audit, and ServiceControl.Monitoring application folders. A wide variety of [NLog logging targets](https://nlog-project.org/config/?tab=targets) can be used to log to almost any possible destination.
 
-NOTE: Any logging related settings are ignored when overriding the NLog configuration.
+NOTE: Any logging related settings (i.e. `ServiceControl/LogLevel`, `ServiceControl/LogPath`, `ServiceControl/RavenDBLogLevel`) are ignored when overriding the NLog configuration.
 
 Example:
 ```xml
