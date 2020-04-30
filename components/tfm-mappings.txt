@@ -1,10 +1,14 @@
-# Mappings from target framework moniker (TFM) to display name
+# Mappings from target framework moniker (TFM) to display name. Also drives sort order of download options.
+# When adding new frameworks, add in chronological order of release date.
+# Download options will be presented in newest-framework-first order.
 net45: .NET Framework 4.5
+net451: .NET Framework 4.5.1
 net452: .NET Framework 4.5.2
 net46: .NET Framework 4.6
 net461: .NET Framework 4.6.1
 net462: .NET Framework 4.6.2
 net47: .NET Framework 4.7
+net471: .NET Framework 4.7.1
 net472: .NET Framework 4.7.2
 net48: .NET Framework 4.8
 netcoreapp2.1: .NET Core 2.1
