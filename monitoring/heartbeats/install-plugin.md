@@ -1,7 +1,7 @@
 ---
 title: Heartbeat plugin installation
 summary: Enabling endpoint instance monitoring by installing the heartbeat plugin
-reviewed: 2018-07-30
+reviewed: 2020-04-29
 component: Heartbeats
 versions: 'Heartbeats:*'
 ---
