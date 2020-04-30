@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <LangVersion>7.1</LangVersion>
+    <NoWarn>CS0618</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" Version="10.*" />
