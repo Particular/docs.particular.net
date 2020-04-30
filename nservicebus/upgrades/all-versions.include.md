@@ -55,7 +55,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/10.1.0) | 2020-04-30     | -                 | -                                 |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/10.1.0) | 2020-04-30     | -                 | Deprecated as of 2021-05-01.      |
 | [10.0.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/10.0.0) | 2020-03-05     | 2020-07-30        | Superseded by 10.1.x              |
 | [9.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/9.1.3) | 2018-12-12     | 2021-03-05        | Superseded by 10.0.x              |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/9.0.5) | ~~2018-09-27~~ | ~~2019-03-12~~    | ~~Superseded by 9.1.x~~           |

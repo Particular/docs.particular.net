@@ -267,7 +267,14 @@ public static class TextWriterExtensions
 			}
 			else
 			{
-				output.Write($"{open}{(version.PatchingEnd.HasValue ? version.PatchingEndReason : "-")}{close}".PadRight(33));
+				// Indicate deprecated package which is a bit of an odditiy that we haven't had before, in case we have more cases like this it might make sense to generalize it
+				if(package.Id == "NServiceBus.Azure.Transports.WindowsAzureServiceBus" && version.Last.Identity.Version.Major >= 10 && version.Last.Identity.Version.Minor >= 1) 
+				{
+					output.Write($"Deprecated as of 2021-05-01. ".PadRight(33));
+				}
+				else {
+					output.Write($"{open}{(version.PatchingEnd.HasValue ? version.PatchingEndReason : "-")}{close}".PadRight(33));
+				}
 			}
 			output.WriteLine(" |");
 		}
