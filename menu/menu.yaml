@@ -658,6 +658,10 @@
       Title: Native message access
     - Url: transports/azure-service-bus/compatibility
       Title: Backwards compatibility
+    - Url: transports/azure-service-bus/native-integration
+      Title: Native Integration
+    - Url: transports/azure-service-bus/topology
+      Title: Topology
     - Url: transports/azure-service-bus/transaction-support
       Title: Transaction support
       Articles:
