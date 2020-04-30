@@ -17,7 +17,9 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.AddDeserializer<XmlSerializer>();
+#pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+#pragma warning restore 618
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {

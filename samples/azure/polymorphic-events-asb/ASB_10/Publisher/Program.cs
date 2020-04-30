@@ -9,7 +9,9 @@ class Program
     {
         Console.Title = "Samples.ASB.Polymorphic.Publisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Polymorphic.Publisher");
+#pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+#pragma warning restore 618
         transport.UseEndpointOrientedTopology();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))

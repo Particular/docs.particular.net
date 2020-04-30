@@ -12,7 +12,9 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Endpoint1");
         endpointConfiguration.SendFailedMessagesTo("error");
+#pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+#pragma warning restore 618
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {

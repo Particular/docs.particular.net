@@ -17,7 +17,9 @@ class Program
         ReceiveCounter.Subscribe(i => log.Warn($"Processed {i} & sent {i * SomeMessageHandler.NumberOfMessagesToSend} messages"));
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Performance.Receiver");
+#pragma warning disable 618
         var transportConfiguration = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+#pragma warning restore 618
 
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))

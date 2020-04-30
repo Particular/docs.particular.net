@@ -13,7 +13,9 @@ class Program
         var random = new Random();
         var endpointConfiguration = new EndpointConfiguration("Samples.ServiceControl.ASBAdapter.Sales");
 
+#pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+#pragma warning restore 618
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.1");
         if (string.IsNullOrWhiteSpace(connectionString))
         {

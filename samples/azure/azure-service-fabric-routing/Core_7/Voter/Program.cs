@@ -15,7 +15,9 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
+#pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+#pragma warning restore 618
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
@@ -91,7 +93,7 @@ class Program
 
         Console.WriteLine("Press any key to exit the sample");
         Console.ReadKey(true);
-        
+
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
