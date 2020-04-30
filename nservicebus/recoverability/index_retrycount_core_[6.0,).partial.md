@@ -5,7 +5,7 @@ The total number of possible retries can be calculated with the following formul
 Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:NumberOfRetries + 1)
 ```
 
-So for example given a variety of Immediate and Delayed here are the resultant possible attempts.
+Given a variety of Immediate and Delayed configuration values here are the resultant possible attempts.
 
 | ImmediateRetries | DelayedRetries | Total possible attempts |
 |------------------|----------------|-------------------------|
@@ -25,9 +25,9 @@ So for example given a variety of Immediate and Delayed here are the resultant p
 
 ### Scale-out multiplier
 
-NOTE: When scaled-out this behavior can be interpreted as if retries result in duplicates. Although this behavior can result in excessive retries no duplicate messages are created. Ensure that logging uses unique identifiers for each instance.
+NOTE: Retry behavior can be interpreted as if retries result in duplicates when scaled-out. Retry behavior can result in excessive processing attempts but no duplicate messages are created. Ensure that logging uses unique identifiers for each endpoint instance.
 
-If an endpoint is scaled-out the number of attempts increases if instance are retrieving messages from the same queue and the transport does not have a native delivery counter.
+If an endpoint is scaled-out the number of processing attempts increase if instances are retrieving messages from the same queue and the transport does not have a native delivery counter.
 
 Affected transports:
 
@@ -42,7 +42,7 @@ Unaffected transports:
 - Azure Service Bus
 - Azure Service Bus Legacy
 
-Azure Service Bus transports use a native delivery counter for immediate retries which guarantees that the retry number is the same regardless if the endpoint is scaled out.
+Azure Service Bus transports use a native delivery counter which is incremented after any endpoint instance fetches a message from a (shared) queue. The native delivery counter guarantees that the retry number is the same regardless if the endpoint is scaled out.
 
 
 The number of instances act as a multiplier for the maximum number of attempts.
