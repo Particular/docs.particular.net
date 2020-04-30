@@ -1,6 +1,6 @@
 ---
 title: Migrating the distributor to use sender-side distribution
-reviewed: 2018-08-09
+reviewed: 2020-04-30
 related:
  - samples/scaleout/distributor-upgrade
 redirects:
