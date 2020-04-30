@@ -27,6 +27,32 @@ To change the location ServiceControl stores logs:
 
 When Save is clicked the service will be restarted to apply the change.
 
+### Customize logging
+
+ServiceControl by default logs to the filesystem and generates `logfile.${shortdate}.txt` and `ravenlog.${shortdate}.txt` files. ServiceControl uses [NLog](https://nlog-project.org/) for logging where the configuration can be overriden by supplying a custom `nlog.config` configuraion file in the ServiceControl, ServiceControl.Audit, and ServiceControl.Monitoring application folders. A wide variety of [NLog logging targets](https://nlog-project.org/config/?tab=targets) can be used to log to almost any possible destination.
+
+NOTE: Any logging related settings (i.e. `ServiceControl/LogLevel`, `ServiceControl/LogPath`, `ServiceControl/RavenDBLogLevel`) are ignored when overriding the NLog configuration.
+
+Example:
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <time type="FastUTC" />
+  <targets async="true">
+    <target name="fileErrorsTarget" xsi:type="File" fileName="exceptions.log" keepFileOpen="true" concurrentWrites="true" layout="${longdate:universalTime=true}|${level:uppercase=true}|${threadid}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}" />
+    <target name="fileTraceTarget" xsi:type="File" fileName="trace.log" keepFileOpen="true" concurrentWrites="true" layout="${longdate:universalTime=true}|${level:uppercase=true}|${threadid}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}" />
+    <target name="consoleTarget" xsi:type="ColoredConsole" layout="${longdate}|${level:uppercase=true}|${threadid}|${logger}|${message}" />
+    <target name="debugTarget" xsi:type="OutputDebugString" layout="${level:uppercase=true}|${threadid}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"/>
+  </targets>
+  <rules>
+    <logger name="Raven.*" maxLevel="Info" final="true" />  <!-- BlackHole for Raven non-critical log levels -->
+    <logger name="*" minlevel="Info" writeTo="consoleTarget,fileTraceTarget" />
+    <logger name="*" minlevel="Trace" writeTo="debugTarget" />
+    <logger name="*" minlevel="Error" writeTo="fileErrorsTarget" />
+  </rules>
+</nlog>
+```
+
 ### Log File Names and Retention
 
 #### Versions 1.9 and below
