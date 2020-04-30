@@ -43,7 +43,7 @@ snippet: MongoDBDatabaseName
 
 ## Transactions
 
-MongoDB [transactions](https://docs.mongodb.com/manual/core/transactions/) are enabled and required by default. This allows the persister to update multiple saga instances and commit them atomically during message processing.
+MongoDB [transactions](https://docs.mongodb.com/manual/core/transactions/) are enabled and required by default. This allows the persister to use pessimistic locking and also update multiple saga instances and commit them atomically during message processing.
 
 WARN: MongoDB transactions require a replica set or sharded cluster. Refer to the [MongoDB transaction documentation](https://docs.mongodb.com/manual/core/transactions/#transactions-and-atomicity) for more information about supported configurations and required MongoDB server versions.
 
@@ -54,6 +54,8 @@ NOTE: The MongoDB persister supports transactions on shared clusters starting fr
 The following configuration API is available for compatibility with MongoDB server configurations which don't support transactions:
 
 snippet: MongoDBDisableTransactions
+
+Remember that this disables the ability to use pessimistic locking for sagas which might result in high contention issues.
 
 ### Shared transactions
 
