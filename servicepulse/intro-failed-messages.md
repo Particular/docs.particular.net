@@ -47,6 +47,8 @@ The display of failed message groups can be changed via the "Group by" drop-down
  * **Exception Type and Stack Trace** - groups messages both by exception type and stack trace. It is the default way of categorizing failed messages.   
  * **Message Type** - groups messages by message type. 
  * **Endpoint Address** - groups messages by endpoint address where the failure occurred.
+ * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
+ * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
  
 Note: the number of listed groups may differ depending on the selected classifications type view.
 
@@ -104,7 +106,25 @@ The following actions can also be taken on any given message:
 
 The URL from that message's page can be copied to share the details of a specific message from ServicePulse.
 
-## Archived Messages tab
+## Archived Messages
+
+### Archived Message Groups
+
+This list shows all groups of archived messages.
+
+![Archived Message Groups Tab](images/archivegroups.png 'width=500')
+
+The display of archive message groups can be changed via the "Group by" drop-down menu, according to the following classification types:
+
+ * **Exception Type and Stack Trace** - groups messages both by exception type and stack trace. It is the default way of categorizing failed messages.   
+ * **Message Type** - groups messages by message type. 
+ * **Endpoint Address** - groups messages by endpoint address where the failure occurred.
+ * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
+ * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
+ 
+Note: the number of listed groups may differ depending on the selected classifications type view.
+
+### Archived Messages
 
 Failed messages that cannot be processed successfully (or could not be retried due to various application-specific reasons) can be archived and later viewed in the Archived Messages tab.
 
