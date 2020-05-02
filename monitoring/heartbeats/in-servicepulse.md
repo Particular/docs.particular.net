@@ -14,12 +14,15 @@ Click this icon to go to the endpoints overview. This page shows a list of activ
 
 ![Endpoints overview page](endpoints-overview.png)
 
+The list of endpoints can be sorted or filtered by using the sort dropdown and the filter textbox on the right hand side of the page.
+
+![Sort and filter Entpoinds](sort-endpoints.png)
 
 ## Hiding endpoints
 
 By default, each new endpoint discovered by ServicePulse is monitored for heartbeats. If the endpoint is not sending heartbeats (either because it is offline or because it does not have the heartbeats plugin installed) it will immediately be marked as inactive.
 
-Whether or not an endpoint instance is monitored can be configured in the ServicePulse configuration page.
+Whether or not an endpoint instance is monitored can be configured in the configuration tab of the Heartbeats page.
 
 ![Configuration page](sp-configuration-page.png)
 
