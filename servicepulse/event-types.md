@@ -41,3 +41,12 @@ More details on [failed message monitoring in ServicePulse](intro-failed-message
 ### Custom check / Periodic check
 
 Custom checks allow an endpoint to notify ServicePulse if a business related condition is not met. The endpoint heartbeat signals that the endpoint is running, a custom check can add more information, such as the endpoint is running and can access the external resources required to operate correctly.
+
+## Dashboard screen
+
+On the dashboard one can see the latest 10 events that were reported by ServiceControl.
+![dashboard](images/events-dashboard.png 'width=500')
+
+If one is interested in seeing all events there is an 'Events' option in the menu as well as on the dashboard there is a button 'View all events' that redirects to a dedicated event page.
+
+![event page](images/events-page.png 'width=500')
