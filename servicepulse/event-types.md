@@ -48,6 +48,6 @@ The dashboard shows the last 10 events that were reported by ServiceControl.
 
 ![dashboard](images/events-dashboard.png 'width=500')
 
-All events cen be seen by clicking on the 'Events' link in the menu. The is also a 'View all events' link on the dashboard that redirects to the dedicated events page.
+All events cen be seen by clicking on the 'Events' link in the menu or the 'View all events' link on the dashboard. These links redirect to the dedicated events page which shows all events captured within ServiceControl.
 
 ![event page](images/events-page.png 'width=500')
