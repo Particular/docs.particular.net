@@ -44,9 +44,10 @@ Custom checks allow an endpoint to notify ServicePulse if a business related con
 
 ## Dashboard screen
 
-On the dashboard one can see the latest 10 events that were reported by ServiceControl.
+The dashboard shows the last 10 events that were reported by ServiceControl.
+
 ![dashboard](images/events-dashboard.png 'width=500')
 
-If one is interested in seeing all events there is an 'Events' option in the menu as well as on the dashboard there is a button 'View all events' that redirects to a dedicated event page.
+All events cen be seen by clicking on the 'Events' link in the menu. The is also a 'View all events' link on the dashboard that redirects to the dedicated events page.
 
 ![event page](images/events-page.png 'width=500')
