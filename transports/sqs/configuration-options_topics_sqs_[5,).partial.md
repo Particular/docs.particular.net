@@ -24,7 +24,7 @@ DEV-MyNameSpace-MyEvent
 
 Provides the ability to override the topic name generation with a custom function that enables to create topics in alignment with custom conventions.
 
-snippet: TopicNamePrefix
+snippet: TopicNameGenerator
 
 Be aware that currently ServiceControl doesn't allow to customize this convention when ServiceControl published the ServiceControl events. ServiceControl events will be published using the default naming convention.
 
