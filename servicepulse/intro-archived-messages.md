@@ -26,7 +26,7 @@ Archived messages can be found in ServicePulse in a tab in the Failed Messages p
 
 ## Managing archived messages
 
-The Archived Messages tab will open showing messages archived in the last 2 hours. 
+The Archived Messages tab will open showing messages archived and not yet cleaned up according to the [retention policy](/servicecontrol/creating-config-file.md#data-retention-servicecontrolhourstokeepmessagesbeforeexpiring).
 
 ![Archived Messages Tab](images/archive.png 'width=500')
 
@@ -39,6 +39,20 @@ Each message on screen contains information about when it's scheduled for deleti
 ![Retention Countdown](images/archive-schedule.png 'width=500')
 
 See [Service Control Error Retention Period](/servicecontrol/creating-config-file.md) to learn more about scheduling automatic disposal of archived messages.
+
+### Archived Message Groups
+
+The Archived Message Groups tab shows the archived messages grouped by the following options:
+
+ * **Exception Type and Stack Trace** - groups messages both by exception type and stack trace. It is the default way of categorizing failed messages.   
+ * **Message Type** - groups messages by message type. 
+ * **Endpoint Address** - groups messages by endpoint address where the failure occurred.
+ * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
+ * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
+ 
+Note: the number of listed groups may differ depending on the selected classifications type view.
+
+Clicking on a group of messages will navigate to the Archived Messages page containing all the messages from that group.
 
 ## Unarchiving failed messages
 
