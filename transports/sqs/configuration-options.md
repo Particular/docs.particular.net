@@ -83,6 +83,6 @@ partial: v1compatibilitymode
 
 partial: delayeddelivery
 
-partial: custom-topics-mappings
+partial: topics
 
 partial: message-driven-pubsub-compatibility-mode
