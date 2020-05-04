@@ -59,7 +59,7 @@ This warning indicator will show in the instances break down on the endpoint det
 
 ### Removing disconnected endpoints
 
-If the endpoint instance should be removed from the set of instances for a logical endpoint, it can be removed by hovering over the stale instance and then clicking the "Remove endpoint" icon.
+If the endpoint instance should be removed from the set of instances for a logical endpoint, it can be removed by hovering over the stale instance row and then clicking the "Remove endpoint" icon.
 
 ![Remove endpoint](remove-endpoint-instance.png)
 
