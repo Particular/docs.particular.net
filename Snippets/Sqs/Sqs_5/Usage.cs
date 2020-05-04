@@ -18,7 +18,7 @@ class Usage
 
         #endregion
     }
-    
+
     void DelayedDelivery(EndpointConfiguration endpointConfiguration)
     {
         #region DelayedDelivery
@@ -76,7 +76,7 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         transport.ClientFactory(() => new AmazonSQSClient(
-            new AmazonSQSConfig { 
+            new AmazonSQSConfig {
                 RegionEndpoint = RegionEndpoint.APSoutheast2
             }));
 
@@ -106,7 +106,7 @@ class Usage
         transport.ClientFactory(() => new AmazonSQSClient(new AmazonSQSConfig()));
 
         #endregion
-    }    
+    }
 
     void S3BucketForLargeMessages(EndpointConfiguration endpointConfiguration)
     {
@@ -159,10 +159,10 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         transport.ClientFactory(() => new AmazonSQSClient(
-            new AmazonSQSConfig { 
+            new AmazonSQSConfig {
                 ProxyCredentials = new NetworkCredential(userName, password),
-                ProxyHost = "127.0.0.1", 
-                ProxyPort = 8888 
+                ProxyHost = "127.0.0.1",
+                ProxyPort = 8888
             }));
 
         #endregion
@@ -231,6 +231,26 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         transport.EnableMessageDrivenPubSubCompatibilityMode();
+
+        #endregion
+    }
+
+    void TopicNamePrefix(EndpointConfiguration endpointConfiguration)
+    {
+        #region TopicNamePrefix
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        transport.TopicNamePrefix("DEV-");
+
+        #endregion
+    }
+
+    void TopicNameGenerator(EndpointConfiguration endpointConfiguration)
+    {
+        #region TopicNameGenerator
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        transport.TopicNameGenerator((eventType, topicNamePrefix) => $"{topicNamePrefix}{eventType.Name}");
 
         #endregion
     }
