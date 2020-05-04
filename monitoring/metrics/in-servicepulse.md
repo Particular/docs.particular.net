@@ -48,14 +48,19 @@ All performance metric data is retained in memory in the ServiceControl Monitori
 
 Performance metric data is only kept by the ServiceControl Monitoring instance long enough to support the most prolonged reporting period (1 hour).
 
-
 ## Disconnected endpoints
 
-If an endpoint instance stops sending metric data, it will appear with a warning indicator.
+Overview:
 
-![ServicePulse disconnected endpoint warning indicator](servicepulse-warningindicator.png)
+If all instances of an endpoint stop sending metric data, a connectivity warning indicator will appear.
 
-This warning indicator will show in the instances break down on the endpoint details page for each instance that is not sending metric data.
+![ServicePulse disconnected endpoint warning indicator on monitoring endpoint overview](servicepulse-warningindicator.png)
+
+Details:
+
+This connectivity warning indicator will show in the instances break down on the endpoint details page for each instance that is not sending metric data.
+
+![ServicePulse disconnected endpoint warning indicator on monitoring endpoint details](servicepulse-warningindicator-details.png)
 
 ### Removing disconnected endpoints
 
