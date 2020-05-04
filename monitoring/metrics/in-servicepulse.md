@@ -57,6 +57,14 @@ If an endpoint instance stops sending metric data, it will appear with a warning
 
 This warning indicator will show in the instances break down on the endpoint details page for each instance that is not sending metric data.
 
+### Removing disconnected endpoints
+
+If the endpoint instance should be removed from the set of instances for a logical endpoint, it can be removed by hovering over the stale instance and then clicking the "Remove endpoint" icon.
+
+![Remove endpoint](remove-endpoint-instance.png)
+
+This removes the endpoint instance from the list of tracked endpoint instances for that logical endpoint.
+
 
 ## Endpoints with failed messages
 
