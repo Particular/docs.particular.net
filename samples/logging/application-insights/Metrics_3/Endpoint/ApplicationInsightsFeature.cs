@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights.Extensibility;
 using NServiceBus;
 using NServiceBus.Features;
 
@@ -31,7 +32,10 @@ class ApplicationInsightsFeature : Feature
         var endpoint = settings.EndpointName();
         var queue = settings.LocalAddress();
 
+        var telemetryConfiguration = settings.Get<TelemetryConfiguration>();
+
         collector = new ProbeCollector(
+            telemetryConfiguration,
             endpoint,
             discriminator,
             instance,

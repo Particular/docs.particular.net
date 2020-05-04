@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.DataContracts;
+using Microsoft.ApplicationInsights.Extensibility;
 using NServiceBus;
 
 class ProbeCollector
@@ -18,12 +19,11 @@ class ProbeCollector
         {"Processing Time", "Processing Time (ms)"},
     };
 
-    public ProbeCollector(string endpointName, string discriminator, string instanceIdentifier, string queue)
+    public ProbeCollector(TelemetryConfiguration telemetryConfiguration, string endpointName, string discriminator, string instanceIdentifier, string queue)
     {
         #region telemetry-client
-
-        telemetryClient = new TelemetryClient();
-        var properties = telemetryClient.Context.Properties;
+        telemetryClient = new TelemetryClient(telemetryConfiguration);
+        var properties = telemetryClient.Context.GlobalProperties;
         properties.Add("Endpoint", endpointName);
         properties.Add("EndpointInstance", instanceIdentifier);
         properties.Add("MachineName", Environment.MachineName);
