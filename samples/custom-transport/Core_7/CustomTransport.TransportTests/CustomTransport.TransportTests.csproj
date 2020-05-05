@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.TransportTests.Sources" Version="7.*" />
+    <PackageReference Include="NUnit" Version="3.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>
