@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase2.csproj" />
-    <PackageReference Include="Oracle.ManagedDataAccess" Version="12.*" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointOracle\Program.cs" />
