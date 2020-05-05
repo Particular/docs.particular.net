@@ -1,6 +1,6 @@
 ## Create resources
 
-In order to provision the resources required by an endpoint, the `sqs-transport` command line (CLI) tool can be used.
+In order to provision the resources required by an endpoint, use the `sqs-transport` command line (CLI) tool.
 
 The tool can be obtained from NuGet and installed using the following command:
 
@@ -43,7 +43,7 @@ sqs-transport endpoint create [name]
 
 `-r` | `--region`: Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'
 
-`-p` | `--prefix`: Prefix to prepend before the endpoint queue
+`-p` | `--prefix`: Prefix to prepend to the endpoint queue
 
 `-t` | `--retention`: Retention Period in seconds (defaults to 345600)
 
@@ -72,9 +72,9 @@ sqs-transport endpoint add [name] delay-delivery-support
 
 `-r` | `--region`: Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'
 
-`-p` | `--prefix`: Prefix to prepend before the delay delivery queue
+`-p` | `--prefix`: Prefix to prepend to the delay delivery queue
 
-`-t` | `--retention`: Retention Period in seconds (defaults to 345600)
+`-t` | `--retention`: Retention period in seconds (defaults to 345600)
 
 ### sqs-transport endpoint add large-message-support
 
@@ -132,4 +132,4 @@ sqs-transport endpoint subscribe [name] [event-type]
 
 `-r` | `--region`: Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'
 
-`-p` | `--prefix`: Prefix to prepend before the topic provisioned for the event type and the subscribing queue
+`-p` | `--prefix`: Prefix to prepend to the topic provisioned for the event type and the subscribing queue

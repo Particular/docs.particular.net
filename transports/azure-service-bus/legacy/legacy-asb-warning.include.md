@@ -1,1 +1,1 @@
-WARNING: This page refers to the **deprecated** legacy Azure Service Bus transport. The [Azure Service Bus transport](/transports/azure-service-bus) transport should be used instead. Migrate to the new [Azure Service Bus transport](/transports/azure-service-bus) transport.
+WARNING: This page refers to the **deprecated** legacy Azure Service Bus transport. All users should migrate to the [Azure Service Bus transport](/transports/azure-service-bus) transport.

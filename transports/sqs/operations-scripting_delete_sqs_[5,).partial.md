@@ -36,7 +36,7 @@ sqs-transport endpoint unsubscribe [name] [event-type]
 
 `-r` | `--region`: Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'
 
-`-p` | `--prefix`: Prefix prepended before the topic provisioned for the event type and the subscribing queue
+`-p` | `--prefix`: Prefix prepended to the topic provisioned for the event type and the subscribing queue
 
 `-f` | `--remove-shared-resources`: Remove shared resources (the topic provisioned for the event type)
 
@@ -64,7 +64,7 @@ sqs-transport endpoint remove [name] delay-delivery-support
 
 `-r` | `--region`: Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'
 
-`-p` | `--prefix`: Prefix to prepend before the delay delivery queue
+`-p` | `--prefix`: Prefix to prepend to the delay delivery queue
 
 ### sqs-transport endpoint remove large-message-support
 
@@ -118,4 +118,4 @@ sqs-transport endpoint delete name
 
 `-r` | `--region`: Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'
 
-`-p` | `--prefix`: Prefix to prepend before the endpoint queue
+`-p` | `--prefix`: Prefix to prepend to the endpoint queue

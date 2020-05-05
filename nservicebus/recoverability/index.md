@@ -40,7 +40,7 @@ By default up to five immediate retries are performed if the message processing 
 
 Note: The configured value describes the minimum number of times a message will be retried if its processing consistently fails. Especially in environments with competing consumers on the same queue, there is an increased chance of retrying a failing message more times across the endpoints.
 
-Note: Number of immediate retries is best effort. Immediate retries might be performed more than configured amount of time (even if configured to be off). To ensure messages are processed at-most-once the endpoint needs to be configured to [transaction mode](/transports/transactions.md) `None`.
+Note: The actual number of immediate retries performed is done on a best-effort basis. Immediate retries might be performed more than configured number of times (even if configured to be off) depending on the environment (e.g. when there are competing consumers). To ensure messages are processed once at most, the endpoint must be configured to use [transaction mode](/transports/transactions.md) `None`.
 
 
 ### Transport transaction requirements

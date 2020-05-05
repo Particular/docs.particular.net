@@ -9,12 +9,11 @@ reviewed: 2020-04-29
 
 Messaging topology is a specific arrangement of the messaging entities, such as queues, topics, subscriptions, and rules.
 
-Azure Service Bus transport operates on a topology created on the broker. Topology handles exchanging messages between endpoints, by creating and configuring Azure Service Bus entities.
-
+Azure Service Bus transport operates on a topology created on the broker. The topology handles exchanging messages between endpoints, by creating and configuring Azure Service Bus entities.
 
 The built-in topology, also know as `ForwardingTopology`, was introduced to take advantage of the broker nature of the Azure Service Bus and to leverage its native capabilities.
 
-The topology creates a single input queue per endpoint and implements [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) mechanism with all publishers using a single topic.
+The topology creates a single input queue per endpoint and implements a [publish-subscribe](/nservicebus/messaging/publish-subscribe/) mechanism with all publishers using a single topic.
 
 
 Subscriptions are created under the topic with one subscription entity per subscribing endpoint. Each subscription contains multiple rules; there's one rule per event type that the subscribing endpoint is interested in. This enables a complete decoupling between publishers and subscribers. All messages received by subscription are forwarded to the input queue of the subscriber.
