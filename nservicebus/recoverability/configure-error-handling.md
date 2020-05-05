@@ -2,7 +2,7 @@
 title: Configure error handling
 summary: Error handler configuration when messages are forwarded to the error queue after failing a certain number of times
 component: Core
-reviewed: 2018-08-09
+reviewed: 2020-05-05
 tags:
  - Error Handling
  - Exceptions
