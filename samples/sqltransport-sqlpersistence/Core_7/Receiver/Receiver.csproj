@@ -1,8 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net48</TargetFrameworks>
     <OutputType>exe</OutputType>
-    <LangVersion>7.1</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.*" />

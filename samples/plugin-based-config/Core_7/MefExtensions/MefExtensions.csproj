@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net48</TargetFrameworks>
     <OutputPath>..\MefExtensionEndpoint\bin\Debug\</OutputPath>
-    <LangVersion>7.1</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
