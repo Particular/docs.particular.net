@@ -29,8 +29,6 @@ public class Startup
             applicationBuilder.UseDeveloperExceptionPage();
         }
 
-        #region RequestHandling
-
         applicationBuilder.Run(
             handler: context =>
             {
@@ -39,6 +37,7 @@ public class Startup
                     // only handle requests at the root
                     return Task.CompletedTask;
                 }
+
                 var applicationServices = applicationBuilder.ApplicationServices;
                 var endpointInstance = applicationServices.GetService<IMessageSession>();
                 var myMessage = new MyMessage();
@@ -47,7 +46,5 @@ public class Startup
                     endpointInstance.SendLocal(myMessage),
                     context.Response.WriteAsync("Message sent"));
             });
-
-        #endregion
     }
 }
