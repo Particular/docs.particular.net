@@ -24,7 +24,9 @@ class Program
 
         #region configure-ai-instrumentation-key
 
-        TelemetryConfiguration.Active.InstrumentationKey = instrumentationKey;
+        var telemetryConfiguration = new TelemetryConfiguration(instrumentationKey);
+
+        endpointConfiguration.EnableApplicationInsights(telemetryConfiguration);
 
         #endregion
 

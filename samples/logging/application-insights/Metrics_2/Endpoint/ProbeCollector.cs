@@ -23,7 +23,7 @@ class ProbeCollector
         #region telemetry-client
 
         telemetryClient = new TelemetryClient();
-        var properties = telemetryClient.Context.Properties;
+        var properties = telemetryClient.Context.GlobalProperties;
         properties.Add("Endpoint", endpointName);
         properties.Add("EndpointInstance", instanceIdentifier);
         properties.Add("MachineName", Environment.MachineName);
