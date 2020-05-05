@@ -161,7 +161,7 @@ Since outbox data is only persisted for a period of days, and the conversion has
 
 ## No longer converting legacy timeouts
 
-In NServiceBus Versions 3 and 4, RavenDB Persistence was part of the main NServiceBus library, and `TimeoutData` had a different class and namespace name. All versions of NServiceBus.RavenDB until now have included a converter that changes the class name on deserialization, causing automatic conversions of timeouts as they expire. Timeouts that have been generated with NServiceBus versions 3 and 4 still present at the time of the upgrade with a lapse date in the future must be converted to the new format manually. 
+In NServiceBus versions 3 and 4, RavenDB persistence was part of the main NServiceBus library, and `TimeoutData` had a different class and namespace name. All versions of the NServiceBus.RavenDB package include a converter that changes the class name on deserialization, causing automatic conversions of timeouts as they expire. Timeouts that have been generated with NServiceBus versions 3 and 4 that are still present at the time of the upgrade with a lapse date in the future must be converted to the new format manually. 
 
 ### Patching legacy timeouts
 

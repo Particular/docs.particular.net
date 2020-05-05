@@ -34,7 +34,7 @@ NOTE: Timezone and DST information may change in the future, for timeouts that a
 
 ## Requesting multiple timeouts
 
-Multiple timeouts can be requested when processing a message. These can be of different types and different timeout durations.
+Multiple timeouts can be requested when processing a message. The individual timeouts can be different types and different timeout durations.
 
 snippet: saga-multiple-timeouts
 

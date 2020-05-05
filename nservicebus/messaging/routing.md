@@ -69,9 +69,7 @@ In the `UnicastBusConfig/MessageEndpointMappings` configuration section, publish
 Reply message are always routed based on the `ReplyTo` header of the initial message regardless of the endpoint's routing configuration. Only the sender of the initial message can influence the routing of a reply. Refer to documentation on [sending messages](/nservicebus/messaging/send-a-message.md) for further details.
 
 
-
 ## Make instance uniquely addressable
-
 
 When using a message broker, multiple instances of a scaled-out endpoint are consuming from the same address via the [competing consumer](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) model.
 
@@ -98,6 +96,6 @@ endpointInstance.Send(new MyMessage(), options);
 
 Recommendations:
 
-- Avoid hard coding the discriminator when sending messages.
+- Avoid hard-coding the discriminator when sending messages.
 - Avoid using `MakeInstanceUniquelyAddressable` for priority queues.
-- Consider using [routing extendability](/nservicebus/messaging/routing-extensibility.md) for routing to specific instances.
+- Consider using [routing extensibility](/nservicebus/messaging/routing-extensibility.md) for routing to specific instances.
