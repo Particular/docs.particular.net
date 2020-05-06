@@ -7,7 +7,7 @@ tags:
 related:
  - samples/azure-service-bus-netstandard/send-reply
  - samples/azure-service-bus-netstandard/native-integration
-reviewed: 2019-02-07
+reviewed: 2020-05-06
 ---
 
 The Azure Service Bus transport leverages the .NET Standard [Microsoft.Azure.ServiceBus](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus/) client SDK.
@@ -25,6 +25,8 @@ The Azure Service Bus transport leverages the .NET Standard [Microsoft.Azure.Ser
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Supported using `NServiceBus.Transport.AzureServiceBus.CommandLine`
 |Installers                 |Optional
+
+NOTE: The Azure Service Bus transport only supports Standard and Premium tiers of the Microsoft Azure Service Bus service. Premium tier is recommended for production environments.
 
 ## Configuring an endpoint
 
