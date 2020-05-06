@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using NUnit.Framework;
@@ -7,10 +7,10 @@ namespace IntegrityTests
 {
     public class ProjectFrameworks
     {
-       [Test]
-        public void DoNotUseTargetFrameworksPlural()
+        [Test]
+        public void TargetFrameworkElementShouldAgreeWithFrameworkCount()
         {
-            new TestRunner("*.csproj", "Project files should not be multi-targeted with <TargetFrameworks> element")
+            new TestRunner("*.csproj", "Project files with <TargetFrameworks> element should list multiple frameworks")
                 .IgnoreSnippets()
                 .Run(projectFilePath =>
                 {
@@ -21,27 +21,14 @@ namespace IntegrityTests
                     }
 
                     var firstTargetFrameworksElement = xdoc.XPathSelectElement("/Project/PropertyGroup/TargetFrameworks");
-                    return firstTargetFrameworksElement == null;
-                });
-        }
-
-        [Test]
-        public void EnsureSingleTargetFramework()
-        {
-            new TestRunner("*.csproj", "Project files should only contain a single <TargetFramework> element")
-                .Run(projectFilePath =>
-                {
-                    var xdoc = XDocument.Load(projectFilePath);
-                    if (xdoc.Root.Attribute("xmlns") != null)
+                    if(firstTargetFrameworksElement == null)
                     {
                         return true;
                     }
 
-                    var targetFrameworkElements = xdoc.XPathSelectElements("/Project/PropertyGroup/TargetFramework");
+                    var tfmList = firstTargetFrameworksElement.Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
-                    // Project may have zero of these if it has TargetFrameworks, but then it fails DoNotUseTargetFrameworksPlural
-                    // Projects with no target framework will not build at all
-                    return targetFrameworkElements.Count() <= 1;
+                    return tfmList.Length > 1;
                 });
         }
     }
