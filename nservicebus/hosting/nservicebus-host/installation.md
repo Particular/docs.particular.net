@@ -19,6 +19,8 @@ NServiceBus.Host.exe /?
 
 ## Installing a Windows service
 
+NOTE: It is not advised to use sc.exe to register the host process as a Windows Service.
+
 To install the process as a Windows service, include `/install` as a command line argument to the host. Using `/install` also causes the host to invoke the [installers](/nservicebus/operations/installers.md).
 
 ```dos
