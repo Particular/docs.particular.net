@@ -334,7 +334,7 @@ Some things to keep in mind:
 
 * The same list of target frameworks must be used for each project, **in the same order**.
 * Target framework monikers (i.e. `netcoreapp3.1`) are translated to framework display names (i.e. `.NET Core 3.1`) in [/components/tfm-mappings.txt](https://github.com/Particular/docs.particular.net/blob/master/components/tfm-mappings.txt).
-  * Item's in a download dropdown are ordered by position in this file descending, so that options for newer frameworks are presented first.
+  * Download dropdown items are ordered by position in this file descending, so that options for newer frameworks are presented first.
 
 
 ## Menu
