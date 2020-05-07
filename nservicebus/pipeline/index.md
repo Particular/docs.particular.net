@@ -1,7 +1,7 @@
 ---
 title: Message Handling Pipeline
 summary: Overview of the message handling pipeline
-reviewed: 2018-08-17
+reviewed: 2020-05-07
 tags:
 - Pipeline
 redirects:
