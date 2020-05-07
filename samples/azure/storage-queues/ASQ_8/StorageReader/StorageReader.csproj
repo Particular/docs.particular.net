@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
-    <LangVersion>7.1</LangVersion>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net48</TargetFrameworks>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.*" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 </Project>

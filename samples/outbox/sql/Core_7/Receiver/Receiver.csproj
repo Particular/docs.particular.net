@@ -1,15 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net462</TargetFramework>
-    <LangVersion>7.1</LangVersion>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net48</TargetFrameworks>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="5.*" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Startup.sql" CopyToOutputDirectory="PreserveNewest" />
