@@ -1,6 +1,6 @@
 ---
 title: Endpoint API changes in NServiceBus Version 6
-reviewed: 2018-08-17
+reviewed: 2020-05-07
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
