@@ -18,6 +18,52 @@
   NugetOrder:
     - Aggregates.NET
 
+- Key: Anotar
+  Name: Anotar Logger
+  DocoUrl: https://github.com/Fody/Anotar
+  Category: Logger
+  GitHubOwner: Fody
+  SupportLevel: Community
+  LicenseUrl: https://github.com/Fody/Home/blob/master/pages/licensing-patron-faq.md
+  ProjectUrl: https://github.com/Fody/Anotar
+  NugetOrder:
+    - Anotar.NServiceBus.Fody
+
+- Key: ApprovalTests
+  Name: NServiceBus ApprovalTests
+  DocoUrl: nservicebus/testing/approvaltests
+  Category: Other
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ApprovalTests
+  NugetOrder:
+    - NServiceBus.ApprovalTests
+
+- Key: AttachmentsSql
+  Name: Sql Attachments
+  DocoUrl: nservicebus/messaging/attachments-sql
+  Category: Other
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Attachments
+  NugetOrder:
+    - NServiceBus.Attachments.Sql
+    - NServiceBus.Attachments.Sql.Raw
+
+- Key: AttachmentsFileShare
+  Name: FileShare Attachments
+  DocoUrl: nservicebus/messaging/attachments-fileshare
+  Category: Other
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Attachments
+  NugetOrder:
+    - NServiceBus.Attachments.FileShare
+    - NServiceBus.Attachments.FileShare.Raw
+
 - Key: ABSDataBus
   Name: Azure Blob Storage Databus
   DocoUrl: nservicebus/azure
@@ -27,6 +73,17 @@
   NugetOrder:
     - NServiceBus.DataBus.AzureBlobStorage
     - NServiceBus.Azure
+
+- Key: AuditFilter
+  Name: Audit Filter
+  DocoUrl: nservicebus/audit-filter
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  Category: Other
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  NugetOrder:
+    - NServiceBus.AuditFilter
 
 - Key: SQS
   Name: Amazon SQS Transport
@@ -83,6 +140,26 @@
   NugetOrder:
     - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.Autofac
+
+- Key: Bond
+  Name: Bond Serializer
+  DocoUrl: nservicebus/serialization/bond
+  GitHubOwner: NServiceBusExtensions
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Bond
+  NugetOrder:
+    - NServiceBus.Bond
+
+- Key: Binary
+  Name: Binary Serializer
+  DocoUrl: nservicebus/serialization/binary
+  Category: Serializer
+  GitHubOwner: Particular
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
 
 - Key: Callbacks
   Name: Callbacks
@@ -279,6 +356,28 @@
   NugetOrder:
     - NServiceBus.Host
 
+- Key: HandlerOrdering
+  Name: Handler ordering by interface
+  DocoUrl: nservicebus/handlers/handler-ordering-by-interface
+  GitHubOwner: NServiceBusExtensions
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.HandlerOrdering
+  NugetOrder:
+    - NServiceBus.HandlerOrdering
+
+- Key: Hyperion
+  Name: Hyperion Serializer
+  DocoUrl: nservicebus/serialization/hyperion
+  GitHubOwner: NServiceBusExtensions
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Hyperion
+  NugetOrder:
+    - NServiceBus.Hyperion
+
 - Key: InMemoryPersistence
   Name: InMemory Persistence 
   DocoUrl: persistence/in-memory
@@ -287,6 +386,28 @@
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
     - NServiceBus
+
+- Key: Utf8Json
+  Name: Utf8Json Serializer
+  DocoUrl: nservicebus/serialization/utf8json
+  GitHubOwner: NServiceBusExtensions
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Utf8Json
+  NugetOrder:
+    - NServiceBus.Utf8Json
+
+- Key: Jil
+  Name: Jil Serializer
+  DocoUrl: nservicebus/serialization/jil
+  GitHubOwner: NServiceBusExtensions
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Jil
+  NugetOrder:
+    - NServiceBus.Jil
 
 - Key: Json
   Name: Json Serializer
@@ -371,6 +492,17 @@
   NugetOrder:
     - NServiceBus.Metrics.ServiceControl.Msmq
 
+- Key: MsLogging
+  Name: MicrosoftLogging
+  DocoUrl: nservicebus/logging/microsoft
+  Category: Logger
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.MicrosoftLogging
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  NugetOrder:
+    - NServiceBus.MicrosoftLogging
+
 - Key: MsmqTransport
   Name: MSMQ Transport
   DocoUrl: transports/msmq
@@ -401,6 +533,28 @@
   ProjectUrl: https://github.com/jbogard/NServiceBus.MessageRouting
   NugetOrder:
     - NServiceBus.MessageRouting
+
+- Key: MessagePack
+  Name: MessagePack Serializer
+  DocoUrl: nservicebus/serialization/messagepack
+  GitHubOwner: NServiceBusExtensions
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.MessagePack
+  NugetOrder:
+    - NServiceBus.MessagePack
+
+- Key: MsgPack
+  Name: MsgPack Serializer
+  DocoUrl: nservicebus/serialization/msgpack
+  GitHubOwner: NServiceBusExtensions
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.MsgPack
+  NugetOrder:
+    - NServiceBus.MsgPack
 
 - Key: MongoDB
   Name: MongoDB Persistence
@@ -461,6 +615,17 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Newtonsoft.Json
   NugetOrder:
     - NServiceBus.Newtonsoft.Json
+
+- Key: NewtonsoftEncryption
+  Name: Newtonsoft Encryption
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  DocoUrl: https://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  Category: Other
+  ProjectUrl: https://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption
+  NugetOrder:
+    - NServiceBus.Newtonsoft.Encryption
 
 - Key: NHibernate
   Name: NHibernate Persistence
@@ -533,6 +698,28 @@
   NugetOrder:
     - NServiceBus.PostgreSQL
 
+- Key: ProtoBufNet
+  Name: ProtoBuf-Net Serializer
+  DocoUrl: nservicebus/serialization/protobufnet
+  GitHubOwner: NServiceBusExtensions
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet
+  NugetOrder:
+    - NServiceBus.ProtoBuf
+
+- Key: ProtoBufGoogle
+  Name: ProtoBuf-Google Serializer
+  DocoUrl: nservicebus/serialization/protobufgoogle
+  GitHubOwner: NServiceBusExtensions
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufGoogle
+  NugetOrder:
+    - NServiceBus.ProtoBufGoogle
+
 - Key: Rabbit
   Name: RabbitMQ Transport
   DocoUrl: transports/rabbitmq
@@ -595,6 +782,17 @@
     - ServiceControl.Plugin.Nsb6.SagaAudit
     - ServiceControl.Plugin.Nsb5.SagaAudit
     - ServiceControl.Plugin.Nsb4.SagaAudit
+
+- Key: Serilog
+  Name: Serilog Logger
+  DocoUrl: nservicebus/logging/serilog
+  GitHubOwner: NServiceBusExtensions
+  Category: Logger
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Serilog
+  NugetOrder:
+    - NServiceBus.Serilog
 
 - Key: ServiceBootstrap
   Name: Windows Service Bootstrap
@@ -692,6 +890,28 @@
     - NServiceBus.Transport.SqlServer
     - NServiceBus.SqlServer
 
+- Key: SqlTransportNative
+  Name: SQL Server Transport - Native
+  DocoUrl: transports/sql/sql-native
+  Category: Transport
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Native
+  NugetOrder:
+    - NServiceBus.SqlServer.Native
+
+- Key: SqlHttpPassthrough
+  Name: SQL Server - HTTP Passthrough
+  DocoUrl: transports/sql/sql-http-passthrough
+  Category: Other
+  GitHubOwner: NServiceBusExtensions
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Native
+  NugetOrder:
+    - NServiceBus.SqlServer.HttpPassthrough
+
 - Key: StructureMap
   Name: StructureMap Dependency Injection
   DocoUrl: nservicebus/dependency-injection/structuremap
@@ -730,6 +950,17 @@
     - NServiceBus.Extensions.DependencyInjection
     - NServiceBus.Unity
 
+- Key: Wire
+  Name: Wire Serializer
+  DocoUrl: nservicebus/serialization/wire
+  GitHubOwner: NServiceBusExtensions
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Wire
+  NugetOrder:
+    - NServiceBus.Wire
+
 - Key: Wcf
   Name: WCF Support
   DocoUrl: nservicebus/wcf
@@ -748,6 +979,17 @@
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
     - NServiceBus
+
+- Key: ZeroFormatter
+  Name: ZeroFormatter Serializer
+  DocoUrl: nservicebus/serialization/zeroformatter
+  GitHubOwner: NServiceBusExtensions
+  Category: Serializer
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.ZeroFormatter
+  NugetOrder:
+    - NServiceBus.ZeroFormatter
 
 - Key: Bridge
   Name: Transport Bridge
@@ -804,6 +1046,28 @@
   ProjectUrl: https://github.com/welshdave/NServiceBus.Gateway.Channels.HttpVNext
   NugetOrder:
     - NServiceBus.Gateway.Channels.HttpVNext
+
+- Key: FluentValidation
+  Name: FluentValidation Message Validator
+  DocoUrl: nservicebus/messaging/validation-fluentvalidation
+  GitHubOwner: NServiceBusExtensions
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Validation
+  NugetOrder:
+    - NServiceBus.FluentValidation
+
+- Key: DataAnnotations
+  Name: DataAnnotations Message Validator
+  DocoUrl: nservicebus/messaging/validation-dataannotations
+  GitHubOwner: NServiceBusExtensions
+  Category: Other
+  SupportLevel: Community
+  LicenseUrl: https://github.com/NServiceBusExtensions/Home#licensingpatron-faq
+  ProjectUrl: https://github.com/NServiceBusExtensions/NServiceBus.Validation
+  NugetOrder:
+    - NServiceBus.DataAnnotations
 
 - Key: Serverless
   Name: Serverless
