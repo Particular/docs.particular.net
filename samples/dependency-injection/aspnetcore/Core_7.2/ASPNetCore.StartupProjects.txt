@@ -1,1 +1,1 @@
-Sample\Sample.Core.csproj
+Sample\Sample.csproj
