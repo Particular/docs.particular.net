@@ -11,7 +11,7 @@ static class Program
 
         #region ContainerConfiguration
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.NServiceBus.Extensions.DependencyInjection");
+        var endpointConfiguration = new EndpointConfiguration("Sample");
 
         // Use the default ServiceProvider factory, using Microsoft's built-in DI container:
         var containerSettings = endpointConfiguration.UseContainer(new DefaultServiceProviderFactory());
