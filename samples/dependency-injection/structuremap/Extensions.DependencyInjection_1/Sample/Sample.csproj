@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Extensions.DependencyInjection" Version="1.*" />
-    <PackageReference Include="StructureMap.Microsoft.DependencyInjection" Version="2.0.0" />
-    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+    <PackageReference Include="StructureMap.Microsoft.DependencyInjection" Version="2.*" />
+    <PackageReference Include="StructureMap" Version="4.*" />
   </ItemGroup>
 </Project>
