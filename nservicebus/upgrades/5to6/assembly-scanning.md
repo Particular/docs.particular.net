@@ -1,6 +1,6 @@
 ---
 title: Assembly Scanning Changes in NServiceBus Version 6
-reviewed: 2018-08-17
+reviewed: 2020-05-07
 component: Core
 related:
  - nservicebus/hosting/assembly-scanning
