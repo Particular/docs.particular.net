@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "Sample": {
-      "commandName": "Executable",
-      "executablePath": "C:\\Code\\Particular\\docs.particular.net\\samples\\hosting\\nservicebus-host\\Host_5\\Sample\\bin\\Debug\\net461\\NServiceBus.Host.exe"
-    }
-  }
-}
