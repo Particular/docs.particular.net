@@ -4,8 +4,10 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.*" />
-    <ProjectReference Include="..\Store.Messages\Store.Messages.csproj" />
-    <ProjectReference Include="..\Store.Shared\Store.Shared.csproj" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="3.*" />
   </ItemGroup>
 </Project>

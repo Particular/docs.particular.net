@@ -1,21 +1,26 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.SignalR;
+using Microsoft.AspNetCore.SignalR;
 using NServiceBus;
 using Store.Messages.Events;
 
 public class OrderIsReadyHandler :
     IHandleMessages<DownloadIsReady>
 {
+    private IHubContext<OrdersHub> ordersHubContext;
+
+    public OrderIsReadyHandler(IHubContext<OrdersHub> ordersHubContext)
+    {
+        this.ordersHubContext = ordersHubContext;
+    }
+
     public Task Handle(DownloadIsReady message, IMessageHandlerContext context)
     {
-        var hubContext = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
-        hubContext.Clients.Client(message.ClientId)
-            .orderReady(new
+        return ordersHubContext.Clients.Client(message.ClientId).SendAsync("orderReady",
+            new
             {
                 message.OrderNumber,
-                ProductUrls = message.ProductUrls.Select(pair => new { Id = pair.Key, Url = pair.Value }).ToArray()
+                ProductUrls = message.ProductUrls.Select(pair => new {Id = pair.Key, Url = pair.Value}).ToArray()
             });
-        return Task.CompletedTask;
     }
 }

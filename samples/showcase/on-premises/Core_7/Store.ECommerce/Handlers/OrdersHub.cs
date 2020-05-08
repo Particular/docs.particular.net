@@ -1,32 +1,35 @@
-﻿using System.Threading;
-using Microsoft.AspNet.SignalR;
-using NServiceBus;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
+using NServiceBus;
 using Store.Messages.Commands;
 
-public class OrdersHub :
-    Hub
+public class OrdersHub : Hub
 {
-    static int orderNumber;
+    private static int orderNumber;
+    private IMessageSession messageSession;
 
-    public async Task CancelOrder(int orderNumber)
+    public OrdersHub(IMessageSession messageSession)
+    {
+        this.messageSession = messageSession;
+    }
+
+    public async Task CancelOrder(int orderNumber, bool isDebug)
     {
         var command = new CancelOrder
         {
             ClientId = Context.ConnectionId,
             OrderNumber = orderNumber
         };
-
-        var isDebug = (bool)Clients.Caller.debug;
+        
         var sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        await MvcApplication.EndpointInstance.Send(command, sendOptions);
+        await messageSession.Send(command, sendOptions);
     }
 
-    public async Task PlaceOrder(string[] productIds)
+    public async Task PlaceOrder(string[] productIds, bool isDebug)
     {
-        var isDebug = (bool)Clients.Caller.debug;
         if (isDebug)
         {
             Debugger.Break();
@@ -45,6 +48,6 @@ public class OrdersHub :
 
         var sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        await MvcApplication.EndpointInstance.Send(command, sendOptions);
+        await messageSession.Send(command, sendOptions);
     }
 }
