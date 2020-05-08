@@ -8,7 +8,6 @@ redirects:
  - nservicebus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service
  - nservicebus/hosting/expose-an-endpoint-as-a-web-wcf-service
 related:
- - samples/web/wcf-callbacks
  - nservicebus/messaging/callbacks
  - samples/wcf
 reviewed: 2018-09-28
