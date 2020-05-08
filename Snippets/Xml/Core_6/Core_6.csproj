@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <RootNamespace>Core7</RootNamespace>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
