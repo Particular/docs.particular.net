@@ -45,7 +45,6 @@ namespace IntegrityTests
             var tfmString = string.Join(", ", sdkProjectAllowedTfmList);
 
             new TestRunner("*.csproj", "Allowed target frameworks are: " + tfmString)
-                //.IgnoreSnippets()
                 .Run(projectFilePath =>
                 {
                     var xdoc = XDocument.Load(projectFilePath);
