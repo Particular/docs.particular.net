@@ -39,7 +39,17 @@ If the application is intended to send large messages, it should leverage the [d
 
 The transport deals with this problem for a large part by performing an [estimated batch size calculation](batching.md#batching-messages-sent-from-a-handler-padding-and-estimated-batch-size-calculation) that includes both body and headers as well as a percentage for padding due to serialization.
 
-Even with this calculation in place, there is no guarantee that a message will eventually fit the limits after serialization. And if it doesn't then the Azure Service Bus client will throw a `MessageSizeExceededException`. The transport will catch this exception and invoke an instance of `IHandleOversizedBrokeredMessages`, which has a default implementation that throws a `MessageTooLargeException` suggesting to use the Data bus feature. A [custom implementation](oversized-sends.md) for handling of oversized sends can be provided.
+Even with this calculation in place, there is no guarantee that a message will eventually fit the limits after serialization. And if it doesn't then the Azure Service Bus client will throw a `MessageSizeExceededException` like the following:
+
+> Microsoft.Azure.ServiceBus.MessageSizeExceededException: The received message (delivery-id:0, size:262626 bytes) exceeds the limit (262144 bytes) currently allowed on the link.
+
+The transport will catch this exception and invoke an instance of `IHandleOversizedBrokeredMessages`, which has a default implementation that throws a `MessageTooLargeException` suggesting to use the Data bus feature. A [custom implementation](oversized-sends.md) for handling of oversized sends can be provided.
+
+1. Go to Premium which allows 1MB messages
+2. Use the [data bus](/nservicebus/messaging/databus/) feature
+3. Transmit smaller message bodies
+
+NOTE: Sometimes this exception can occur when forwarding a messsage to the audit or error queue as the headers are expanded with meta data which can result in the message size limit to be exceeded. Ensure that any message will have enough remaining space in the header to accomodate for this header data expansion.
 
 
 ## Dead Letter Queue
