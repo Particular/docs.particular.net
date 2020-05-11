@@ -46,7 +46,7 @@ Even with this calculation in place, there is no guarantee that a message will e
 The transport will catch this exception and invoke an instance of `IHandleOversizedBrokeredMessages`, which has a default implementation that throws a `MessageTooLargeException` suggesting to use the Data bus feature. A [custom implementation](oversized-sends.md) for handling of oversized sends can be provided.
 
 1. Go to Premium which allows 1MB messages
-2. Use the [data bus](https://docs.particular.net/nservicebus/messaging/databus/) feature
+2. Use the [data bus](/nservicebus/messaging/databus/) feature
 3. Transmit smaller message bodies
 
 NOTE: Sometimes this exception can occur when forwarding a messsage to the audit or error queue as the headers are expanded with meta data which can result in the message size limit to be exceeded. Ensure that any message will have enough remaining space in the header to accomodate for this header data expansion.
