@@ -6,7 +6,7 @@ using Amazon.Lambda.SQSEvents;
 using NServiceBus;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
-[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
 public class Function
 {
@@ -17,7 +17,7 @@ public class Function
     #region FunctionHandler
     public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
     {
-        using (var cancellationTokenSource = new CancellationTokenSource(context.RemainingTime.Subtract(DefaultRemainingTimeGracePeriod)))
+        using (var cancellationTokenSource = new CancellationTokenSource())
         {
             await serverlessEndpoint.Process(evnt, context, cancellationTokenSource.Token);
         }
