@@ -50,6 +50,16 @@ Third-party container-native APIs can be accessed by with `ConfigureContainer`.
 snippet: settings-configurecontainer
 
 
+## DependencyLifecycle mapping
+
+[`DependencyLifecycle`](/nservicebus/dependency-injection/) maps to [ServiceLifetime](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-scope) as follows:
+
+| `DependencyLifecycle`                                                                                             | Service Lifetime                                                                                                        |
+|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| [InstancePerCall](/nservicebus/dependency-injection/) | [ServiceLifetime.Singleton](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [ServiceLifetime.Scoped](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime) |
+| [SingleInstance](/nservicebus/dependency-injection/)                                  | [ServiceLifetime.Singleton](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)                          |
+
 ## Property injection
 
 The `NServiceBus.Extensions.DependencyInjection` package does not support property injection out of the box. To enable property injection, refer to the configured container's documentation.
