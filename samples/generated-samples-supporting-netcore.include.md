@@ -81,7 +81,6 @@
 * [Report metrics to Azure Monitor Application Insights](/samples/logging/application-insights/?version=metrics_3)
 * [Scheduler](/samples/scheduling/scheduler/?version=core_7)
 * [Self-Hosting in Azure WebJobs](/samples/azure/webjob-host/?version=core_7)
-* [Sending from a Nancy module](/samples/web/send-from-nancy-module/?version=core_7)
 * [Session filter pipeline extension](/samples/pipeline/session-filtering/?version=core_7)
 * [Simple AmazonSQS Transport usage](/samples/sqs/simple/?version=sqs_4)
 * [Simple NHibernate Persistence Usage](/samples/nhibernate/simple/?version=nhibernate_8)
