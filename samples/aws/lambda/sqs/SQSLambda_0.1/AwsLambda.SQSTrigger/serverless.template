@@ -29,7 +29,7 @@
       "Type" : "AWS::Serverless::Function",
       "Properties": {
         "Handler": "AwsLambda.SQSTrigger::Function::FunctionHandler",
-        "Runtime": "dotnetcore2.1",
+        "Runtime": "dotnetcore3.1",
         "CodeUri": "",
         "Description": "Default function",
         "MemorySize": 256,
