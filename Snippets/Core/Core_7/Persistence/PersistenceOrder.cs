@@ -13,7 +13,7 @@
 
             endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
-            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
 
             #endregion
         }
@@ -23,8 +23,6 @@
             #region PersistenceOrder_Explicit
 
             endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
-
-            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
 
             endpointConfiguration.UsePersistence<RavenDBPersistence, StorageType.Sagas>();
             endpointConfiguration.UsePersistence<RavenDBPersistence, StorageType.Subscriptions>();
@@ -39,7 +37,7 @@
 
             endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
-            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
+            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
 
             // This one will override the above settings
             endpointConfiguration.UsePersistence<RavenDBPersistence>();

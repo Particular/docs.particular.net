@@ -16,7 +16,7 @@ When using different persistence options for storage types, the configuration or
 
 ### Example 1
 
-In this example, RavenDB persistence is used for all storage types as it overwrites the configuration for the Outbox and GatewayDeduplication storage types.
+In this example, RavenDB persistence is used for all storage types as it overwrites the configuration for the Outbox and Subscription storage types.
 
 snippet: PersistenceOrder_Incorrect
 
@@ -30,6 +30,6 @@ snippet: PersistenceOrder_Explicit
 
 ### Example 3
 
-Instead of explicitly defining all storage types, the generic persistence option can specified before the explicit overwrites. In this example, RavenDB persistence will be used for all storage types except for the Outbox and GatewayDeduplication.
+Instead of explicitly defining all storage types, the generic persistence option can specified before the explicit overwrites. In this example, RavenDB persistence will be used for all storage types except for the Outbox and Subscriptions.
 
 snippet: PersistenceOrder_Correct
