@@ -52,7 +52,7 @@ snippet: settings-configurecontainer
 
 ## DependencyLifecycle mapping
 
-[`DependencyLifecycle`](/nservicebus/dependency-injection/) maps to [ServiceLifetime](https://docs.autofac.org/en/latest/lifetime/instance-scope.html#instance-scope) as follows:
+[`DependencyLifecycle`](/nservicebus/dependency-injection/) maps to [ServiceLifetime](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime) as follows:
 
 | `DependencyLifecycle`                                                                                             | Service Lifetime                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
