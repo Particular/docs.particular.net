@@ -5,8 +5,10 @@ tags:
  - Hosting
 related:
  - samples/azure/functions
-reviewed: 2019-09-23
+reviewed: 2020-05-12
 ---
+
+include: azure-functions-experimental
 
 Azure Functions, and serverless computing in general, are designed to accelerate and simplify application development. NServiceBus endpoints can be hosted in Azure Functions and are subject to the constraints enforced by the Azure Functions hosting and development model.
 
