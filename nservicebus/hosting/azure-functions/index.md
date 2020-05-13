@@ -30,4 +30,4 @@ When using Azure Functions with Azure Service Bus (ASB) or Azure Storage Queues 
 - The NServiceBus `ILog` logging abstraction and the Azure Functions `ILogger` are not wired to work together.
 - When using the default recoverability or specifying custom number of immediate retries, the number of delivery attempts specified on the underlying queue (ASB) or Azure Functions host (ASB) must be more than then number of the immediate retries. The Azure Functions defaults are 10 (`MaxDeliveryCount`) for the ASB trigger and 5 (`DequeueCount`) for the ASQ trigger.
 - Delayed Retries are supported only with Azure Service Bus, and not with Azure Storage Queues.
-- Message handlers have to be included in the the Azure Functions assembly
+- Message handlers have to be included in the the Azure Functions assembly.
