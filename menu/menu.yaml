@@ -922,6 +922,8 @@
         Title: Version 4 to 5        
       - Url: persistence/upgrades/sql-4.2to4.3
         Title: Version 4.2 to 4.3
+      - Url: persistence/upgrades/sql-4.0to4.1.1
+        Title: Version 4.0 to 4.1.1       
       - Url: persistence/upgrades/sql-2to3
         Title: Version 2 to 3
       - Url: persistence/upgrades/sql-1to2
