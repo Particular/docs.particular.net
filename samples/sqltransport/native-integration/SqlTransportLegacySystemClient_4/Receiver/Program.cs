@@ -26,7 +26,7 @@ class Program
             .Settings(new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,
-                SerializationBinder = new SkipAssemblyNameForMessageTypesBinder(new[] { typeof(PlaceOrder) })
+                SerializationBinder = new SkipAssemblyNameForMessageTypesBinder(new[] { typeof(PlaceOrder), typeof(LegacyOrderDetected) })
             });
         #endregion
 
