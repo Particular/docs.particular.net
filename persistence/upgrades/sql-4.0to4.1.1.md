@@ -10,4 +10,4 @@ upgradeGuideCoreVersions:
 
 ## Pessimistic concurrency
 
-Up to and including version 4.1, SQL persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data. In almost all cases pessimistic concurrency control will improve performance, but in some edge cases optimistic concurrency control can actually be much faster. It is recommended to performance test if you suspect that upgrading might cause issues.
+Up to and including version 4.1, SQL persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data. In almost all cases pessimistic concurrency control will improve performance, but in some edge cases optimistic concurrency control can actually be much faster. It is recommended to performance test if upgrading might cause issues.
