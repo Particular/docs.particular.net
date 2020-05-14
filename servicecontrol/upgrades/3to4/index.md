@@ -58,6 +58,11 @@ Use the `Invoke-ServiceControlInstanceUpgrade` PowerShell cmdlet to  upgrade an 
 Invoke-ServiceControlInstanceUpgrade -Name <Instance to Upgrade>
 ```
 
+Example:
+```ps
+Invoke-ServiceControlInstanceUpgrade -Name Particular.ServiceControl
+```
+
 If the ServiceControl instance being upgraded manages an audit queue, then additional parameters must be specified for the creation of a new ServiceControl Audit instance.
 
 WARN: The settings specified must not be for the current instance, but for the audit instance that will be created as part of this upgrade. Specifying settings that match the current instance will result in a failed upgrade.
@@ -73,6 +78,18 @@ Invoke-ServiceControlInstanceUpgrade `
   [-ServiceAccountPassword <password for service account>] `
   [-Force]
 ```
+
+Example:
+```ps
+Invoke-ServiceControlInstanceUpgrade `
+  -Name Particular.ServiceControl `
+  -InstallPath "C:\Program Files (x86)\Particular Software\Particular.Servicecontrol.Audit" `
+  -DBPath "P:\Particular.Servicecontrol.Audit\DB" `
+  -LogPath "P:\Particular.Servicecontrol.Audit\Logs" `
+  -Port 44444 `
+  -DatabaseMaintenancePort 44445 
+```
+
 The following information is copied from the existing ServiceControl instance:
 
 - Audit queue
@@ -84,7 +101,7 @@ The following information is copied from the existing ServiceControl instance:
 - Host name
 - Service account
 
-NOTE: If this instance uses a domain account, the the account password must be supplied.
+NOTE: If this instance uses a domain account, the  account password must be supplied.
 
 The name of the new audit instance will be derived from the name of the original instance.
 
