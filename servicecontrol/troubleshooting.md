@@ -72,3 +72,23 @@ If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.In
  1. If having issues remotely connecting to ServiceControl. Verify that firewall settings do not block access to the ServiceControl port specified in the URL.
 
 NOTE: Before changing firewall setting to expose ServiceControl read [Securing ServiceControl](securing-servicecontrol.md).
+
+### Method not found: 'Void System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.set_SerializerSettings(Newtonsoft.Json.JsonSerializerSettings)'
+
+If the following exception occurs at startup than this is likely because there are one or more versions of `Newtonsoft.Json` registered in the Global Assembly Cache (GAC).
+
+```txt
+Service cannot be started. System.MissingMethodException: Method not found: 'Void System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.set_SerializerSettings(Newtonsoft.Json.JsonSerializerSettings)'.
+```
+
+Removing these entries from the GAC should resolve this problem. 
+
+These can be removed by running the following in an elevated (administrator) console:
+
+```cmd
+gacutil /u Newtonsoft.Json
+```
+
+It might be required to remove all `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Assemblies\Global Newtonsoft.Json` keys from the registry to be able to remove it with `gacutil /u Newtonsoft.Json`.
+
+ 
