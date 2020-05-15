@@ -72,10 +72,7 @@ echo "::endgroup::"
 $exitCode = 0
 
 foreach($sample in $samples) {
-    echo "::group::Build Project"
-
-    echo ("::debug::Building {0}" -f $sample.FullName)
-	
+    echo ("::group::Build Project {0}" -f $sample.FullName)	
     
     Set-Location -Path $sample.Directory.FullName
     Get-ChildItem -inc bin,obj -rec | Remove-Item -rec -force
@@ -85,8 +82,6 @@ foreach($sample in $samples) {
 	if( -not $? ) {
 		$exitCode = 1
 		echo ("::error::Build failed: {0}" -f $sample.FullName)
-	} else {
-		echo ("::debug::Build OK: {0}" -f $sample.FullName)
 	}
 	
     echo "::endgroup::"
