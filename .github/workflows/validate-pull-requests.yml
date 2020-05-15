@@ -43,4 +43,4 @@ jobs:
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1
       - name: Build affected samples & snippets
-        run: powershell.exe -NonInteractive -File .\tools\build-samples-and-snippets.ps1
+        run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1

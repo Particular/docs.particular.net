@@ -66,23 +66,30 @@ function Get-BuildSolutions
     return $result | Sort-Object | Get-Unique
 }
  
+"::group::Get build solutions"
 $samples = Get-BuildSolutions
+"::endgroup::"
+
 $exitCode = 0
 
 foreach($sample in $samples) {
-    ("##[group]Build Sample - {0}" -f $sample.FullName)
+    ("::group::Build Sample - {0}" -f $sample.FullName)
     
     Set-Location -Path $sample.Directory.FullName
     Get-ChildItem -inc bin,obj -rec | Remove-Item -rec -force
     
+	"::echo::on"
     msbuild $sample.Name -nodeReuse:true -verbosity:normal -restore -property:RestorePackagesConfig=true
+	"::echo::off"
 	
 	if( -not $? ) {
 		$exitCode = 1
-		("##[error]Build failed: {0}" -f $sample.FullName)
+		("::error::Build failed: {0}" -f $sample.FullName)
+	} else {
+		("::error::Build OK: {0}" -f $sample.FullName)
 	}
 	
-    "##[endgroup]"
+    "::endgroup::"
 }
 
 exit $exitCode
