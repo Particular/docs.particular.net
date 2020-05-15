@@ -67,9 +67,12 @@ function Get-BuildSolutions
  
 echo "::group::Get build solutions"
 $samples = Get-BuildSolutions
+Write-Host "Projects to build"
+$samples | ForEach-Object { echo (" * {0}" -f $_.FullName) }
 echo "::endgroup::"
 
 $exitCode = 0
+$failedProjects = New-Object Collections.Generic.List[String]
 
 foreach($sample in $samples) {
     echo ("::group::Build Project {0}" -f $sample.FullName)	
@@ -82,9 +85,15 @@ foreach($sample in $samples) {
 	if( -not $? ) {
 		$exitCode = 1
 		echo ("::error::Build failed: {0}" -f $sample.FullName)
+		$failedProjects.Add($sample.FullName)
 	}
-	
     echo "::endgroup::"
+}
+
+If ( $failedProjects.Count -ne 0 ) {
+	Write-Host "::group::Failed Projects"
+	$failedProjects | ForEach-Object { echo ("::error::{0}" -f $_) }
+	Write-Host "::endgroup::"
 }
 
 exit $exitCode
