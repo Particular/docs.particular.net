@@ -5,7 +5,7 @@ The total number of possible retries can be calculated with the following formul
 Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:NumberOfRetries + 1)
 ```
 
-Given a variety of Immediate and Delayed configuration values here are the resultant possible attempts.
+Given a variety of immediate and delayed configuration values here are the resultant possible attempts.
 
 | ImmediateRetries | DelayedRetries | Total possible attempts |
 |------------------|----------------|-------------------------|
@@ -45,14 +45,14 @@ Unaffected transports:
 Azure Service Bus transports use a native delivery counter which is incremented after any endpoint instance fetches a message from a (shared) queue. The native delivery counter guarantees that the retry number is the same regardless if the endpoint is scaled out.
 
 
-The number of instances act as a multiplier for the maximum number of attempts.
+The number of instances acts as a multiplier for the maximum number of attempts.
 
 ```txt
-Mininum Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:NumberOfRetries + 1)
+Minimum Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:NumberOfRetries + 1)
 Maximum Attempts = MininumAttempts * NumberOfInstances
 ```
 
 Example:
 
-When taking the default values for immediate (5) and delayed retries (3) and 5 instances the total number of attempts will be a minumum of (5+1)*(3+1)=24 attempts and a maximum of 120.
+When taking the default values for immediate and delayed retries (five and three, respectively) and 6 instances the total number of attempts will be a minumum of (5+1)*(3+1)=24 attempts and a maximum of 24*6=144 attempts.
 

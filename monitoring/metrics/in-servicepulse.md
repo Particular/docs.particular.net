@@ -58,13 +58,13 @@ If all instances of an endpoint stop sending metric data, a connectivity warning
 
 Details:
 
-This connectivity warning indicator will show in the instances break down on the endpoint details page for each instance that is not sending metric data.
+This connectivity warning indicator appears in the instances breakdown on the endpoint details page for each instance that is not sending metric data.
 
 ![ServicePulse disconnected endpoint warning indicator on monitoring endpoint details](servicepulse-warningindicator-details.png)
 
 ### Removing disconnected endpoints
 
-If the endpoint instance should be removed from the set of instances for a logical endpoint, it can be removed by hovering over the stale instance row and then clicking the "Remove endpoint" icon.
+If the endpoint instance should be removed from the set of instances for a logical endpoint, this can be done by hovering over the stale instance row and clicking the "Remove endpoint" icon.
 
 ![Remove endpoint](remove-endpoint-instance.png)
 

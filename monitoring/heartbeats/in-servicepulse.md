@@ -14,7 +14,7 @@ Click this icon to go to the endpoints overview. This page shows a list of activ
 
 ![Endpoints overview page](endpoints-overview.png)
 
-The list of endpoints can be sorted or filtered by using the sort dropdown and the filter textbox on the right hand side of the page.
+The list of endpoints can be sorted or filtered using the sort dropdown and the filter textbox on the right side of the page.
 
 ![Sort and filter Entpoinds](sort-endpoints.png)
 

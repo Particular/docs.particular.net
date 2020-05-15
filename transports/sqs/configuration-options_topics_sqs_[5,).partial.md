@@ -22,11 +22,11 @@ DEV-MyNameSpace-MyEvent
 
 **Default**: `$"{topicNamePrefix}{eventType.FullName}` with unsupported characters like `.` being replaced with a hyphen `-`
 
-Provides the ability to override the topic name generation with a custom function that enables to create topics in alignment with custom conventions.
+Provides the ability to override the topic name generation with a custom function that allows creating topics in alignment with custom conventions.
 
 snippet: TopicNameGenerator
 
-Be aware that currently ServiceControl doesn't allow to customize this convention when ServiceControl published the ServiceControl events. ServiceControl events will be published using the default naming convention.
+Be aware that ServiceControl doesn't allow customization of this convention when publishing ServiceControl events. ServiceControl events will be published using the default naming convention.
 
 ## Custom topics mappings
 
@@ -38,6 +38,6 @@ snippet: CustomTopicsMappingsTypeToType
 
 NOTE: The types are only used to determine the topic name; subscribers can define dummy empty types to use the strongly typed API shown above.
 
-If the published type is not known at compilation time the following API can be used:
+If the published type is not known at compilation time, the following API can be used:
 
 snippet: CustomTopicsMappingsTypeToTopic
