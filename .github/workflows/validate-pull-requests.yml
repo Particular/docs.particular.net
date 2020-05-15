@@ -1,4 +1,4 @@
-name: Validate pull requests
+name: PullRequest
 on: pull_request
 env:
   DOTNET_NOLOGO: true # Won't work until dotnet 3.1.300, then --nologo not needed
@@ -35,8 +35,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Fetch history for all branches ## So diff-to-master optimization will work
-        run: git fetch --prune --unshallow
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1
       - name: Build affected samples & snippets
