@@ -5,28 +5,48 @@ on:
       - master
 jobs:
   content-verification:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Checkout
-       uses: actions/checkout@v2
-     - name: Setup .NET Core SDK
-       uses: actions/setup-dotnet@v1.4.0
-       with:
-         dotnet-version: 3.1.201
-         config-file: nuget.config
-     - name: Install docstool
-       run: dotnet tool install -g Particular.DocsTool --add-source=https://www.myget.org/F/particular/api/v3/index.json
-     - name: Run docstool
-       run: docstool test
+    name: Content verification
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.4.0
+        with:
+          dotnet-version: 3.1.201
+          config-file: nuget.config
+      - name: Install docstool
+        run: dotnet tool install -g Particular.DocsTool --add-source=https://www.myget.org/F/particular/api/v3/index.json
+      - name: Run docstool
+        run: docstool test
   integrity-tests:
+    name: Integrity tests
     runs-on: ubuntu-latest
     steps:
-     - name: Checkout
-       uses: actions/checkout@v2
-     - name: Setup .NET Core SDK
-       uses: actions/setup-dotnet@v1.4.0
-       with:
-         dotnet-version: 3.1.201
-         config-file: nuget.config
-     - name: Run integrity tests
-       run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.4.0
+        with:
+          dotnet-version: 3.1.201
+          config-file: nuget.config
+      - name: Run integrity tests
+        run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release
+  build-projects:
+    name: Build samples & snippets
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Fetch history for all branches ## So diff-to-master optimization will work
+        run: git fetch --prune --unshallow
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1.4.0
+        with:
+          dotnet-version: 3.1.201
+          config-file: nuget.config
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1
+      - name: Build affected samples & snippets
+        run: .\tools\build-samples-and-snippets.ps1
+        shell: pwsh
