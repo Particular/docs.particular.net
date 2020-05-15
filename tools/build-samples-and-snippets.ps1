@@ -1,6 +1,3 @@
-# Set up command echoing
-echo "::echo::on"
-	
 # Assumes working directory is Docs repository root folder
 function CombinePaths()
 {
@@ -75,9 +72,9 @@ echo "::endgroup::"
 $exitCode = 0
 
 foreach($sample in $samples) {
-    echo "::group::Build Sample/Snippet"
+    echo "::group::Build Project"
 
-    echo ("Building {0}" -f $sample.FullName)
+    echo ("::debug::Building {0}" -f $sample.FullName)
 	
     
     Set-Location -Path $sample.Directory.FullName
@@ -89,7 +86,7 @@ foreach($sample in $samples) {
 		$exitCode = 1
 		echo ("::error::Build failed: {0}" -f $sample.FullName)
 	} else {
-		echo ("::error::Build OK: {0}" -f $sample.FullName)
+		echo ("::debug::Build OK: {0}" -f $sample.FullName)
 	}
 	
     echo "::endgroup::"
