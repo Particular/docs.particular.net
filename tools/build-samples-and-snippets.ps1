@@ -73,7 +73,7 @@ foreach($sample in $samples) {
     Get-ChildItem -inc bin,obj -rec | Remove-Item -rec -force
     ("##teamcity[blockOpened name='Build Sample - {0}']" -f $sample.FullName)
  
-    dotnet nuget restore $sample.Name
+    nuget restore $sample.Name
  
     $buildoutput =  (. msbuild $sample.Name /nr:true /verbosity:normal) 
     $errors = $buildoutput | Select-String -pattern "^Build FAILED"
