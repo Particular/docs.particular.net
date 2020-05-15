@@ -83,7 +83,7 @@ and think about the behavior of the message processing:
  - NServiceBus by default defers sending out messages until message handler has completed so the behavior of the code above is as if the call to `Send` **was after** the call to `ModifyState`
  - If outgoing messages are sent before state change is committed (e.g if code above used [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately)) there is a risk of creating *ghost messages* -- messages that carry the state change that has never been made durable
  - If outgoing messages are sent after the state change is committed there is risk of message loss if the send operation fails. To prevent this, the outgoing messages need to be re-sent **even if it appears to be a duplicate**
- - If we implement re-sending messages, multiple copies of the same message may be sent to the downstream endpoints  
+ - If re-sending messages is implemented, multiple copies of the same message may be sent to the downstream endpoints  
  - If message identity is used for de-duplication, message IDs need to be generated in a deterministic manner
  - If outgoing messages depend on the application state, **the code above is incorrect when messages can get re-ordered** (e.g. by infrastructure failures, [recoverability](/nservicebus/recoverability) or competing consumers)
 
