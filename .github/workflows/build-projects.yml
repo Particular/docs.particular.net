@@ -1,0 +1,17 @@
+name: BuildProjects
+on:
+  schedule:
+    - cron: '0 */4 * * 1-5' # Every 4 hours, Monday-Friday
+env:
+  DOTNET_NOLOGO: true # Won't work until dotnet 3.1.300, then --nologo not needed
+jobs:
+  build-projects:
+    name: Build samples & snippets
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1
+      - name: Build affected samples & snippets
+        run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1
