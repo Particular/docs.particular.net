@@ -1,5 +1,7 @@
+# Set up command echoing
+echo "::echo::on"
+	
 # Assumes working directory is Docs repository root folder
-
 function CombinePaths()
 {
     param
@@ -66,30 +68,31 @@ function Get-BuildSolutions
     return $result | Sort-Object | Get-Unique
 }
  
-"::group::Get build solutions"
+echo "::group::Get build solutions"
 $samples = Get-BuildSolutions
-"::endgroup::"
+echo "::endgroup::"
 
 $exitCode = 0
 
 foreach($sample in $samples) {
-    ("::group::Build Sample - {0}" -f $sample.FullName)
+    echo "::group::Build Sample/Snippet"
+
+    echo ("Building {0}" -f $sample.FullName)
+	
     
     Set-Location -Path $sample.Directory.FullName
     Get-ChildItem -inc bin,obj -rec | Remove-Item -rec -force
     
-	"::echo::on"
     msbuild $sample.Name -nodeReuse:true -verbosity:normal -restore -property:RestorePackagesConfig=true
-	"::echo::off"
 	
 	if( -not $? ) {
 		$exitCode = 1
-		("::error::Build failed: {0}" -f $sample.FullName)
+		echo ("::error::Build failed: {0}" -f $sample.FullName)
 	} else {
-		("::error::Build OK: {0}" -f $sample.FullName)
+		echo ("::error::Build OK: {0}" -f $sample.FullName)
 	}
 	
-    "::endgroup::"
+    echo "::endgroup::"
 }
 
 exit $exitCode
