@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
 
@@ -17,10 +18,8 @@ namespace IntegrityTests
         {
             this.glob = glob;
             this.errorMessage = errorMessage;
-            ignoreRegexes = new List<Regex>
-            {
-                new Regex(@"\\IntegrityTests\\")
-            };
+            ignoreRegexes = new List<Regex>();
+            IgnoreRegex(@"\\IntegrityTests\\");
         }
 
         public void Run(Func<string, bool> testDelegate)
@@ -55,6 +54,10 @@ namespace IntegrityTests
 
         public TestRunner IgnoreRegex(string pattern, RegexOptions regexOptions = RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
         {
+            if(!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                pattern = pattern.Replace("\\\\", "/");
+            }
             ignoreRegexes.Add(new Regex(pattern, regexOptions));
             return this;
         }
