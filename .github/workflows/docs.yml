@@ -2,7 +2,7 @@ name: Content verification & deploy
 on:
   push:
 jobs:
-  build:
+  verify-content:
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -15,3 +15,15 @@ jobs:
         run: dotnet tool install -g Particular.DocsTool --add-source https://www.myget.org/F/particular/api/v3/index.json
       - name: Run docstool
         run: docstool test
+  integrity-tests:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Checkout
+       uses: actions/checkout@v2
+     - name: Setup .NET Core SDK
+       uses: actions/setup-dotnet@v1.4.0
+       with:
+         dotnet-version: 3.1.201
+         config-file: nuget.config
+     - name: Run integrity tests
+       run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release
