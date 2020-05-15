@@ -67,24 +67,22 @@ function Get-BuildSolutions
 }
  
 $samples = Get-BuildSolutions
+$exitCode = 0
+
 foreach($sample in $samples) {
- 
+    ("##[group]Build Sample - {0}" -f $sample.FullName)
+    
     Set-Location -Path $sample.Directory.FullName
     Get-ChildItem -inc bin,obj -rec | Remove-Item -rec -force
-    ("##teamcity[blockOpened name='Build Sample - {0}']" -f $sample.FullName)
- 
-    nuget restore $sample.Name
- 
-    $buildoutput =  (. msbuild $sample.Name /nr:true /verbosity:normal) 
-    $errors = $buildoutput | Select-String -pattern "^Build FAILED"
- 
-    if ($errors) {
-       $buildoutput
-       ("##teamcity[buildProblem description='Build Failed - {0}']" -f $sample.FullName)
-    }
-    else {
-        "Build succeeded."
-    }
- 
-    ("##teamcity[blockClosed name='Build Sample - {0}']" -f $sample.Name)
+    
+    msbuild $sample.Name -nodeReuse:true -verbosity:normal -restore -property:RestorePackagesConfig=true
+	
+	if( -not $? ) {
+		$exitCode = 1
+		("##[error]Build failed: {0}" -f $sample.FullName)
+	}
+	
+    "##[endgroup]"
 }
+
+exit $exitCode

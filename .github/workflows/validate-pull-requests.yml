@@ -40,11 +40,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Fetch history for all branches ## So diff-to-master optimization will work
         run: git fetch --prune --unshallow
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1.4.0
-        with:
-          dotnet-version: 3.1.201
-          config-file: nuget.config
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1
       - name: Build affected samples & snippets
