@@ -7,4 +7,6 @@ suppressRelated: true
 isLearningPath: true
 ---
 
+Hello all you fancy Particles!
+
 include: nservicebus
