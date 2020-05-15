@@ -22,11 +22,11 @@ namespace IntegrityTests
             // to filter the set of files we run against based on changes in a given PR
 
             var currentDirectory = TestContext.CurrentContext.TestDirectory;
-            DocsRootPath = Path.GetFullPath(Path.Combine(currentDirectory, @"..\..\..\..\.."));
+            DocsRootPath = Path.GetFullPath(Path.Combine(currentDirectory, "..", "..", "..", "..", ".."));            
 
             RootDirectories = new[] { DocsRootPath };
 
-            var componentsYamlPath = Path.Combine(TestSetup.DocsRootPath, "components\\components.yaml");
+            var componentsYamlPath = Path.Combine(TestSetup.DocsRootPath, "components", "components.yaml");
             var componentsText = File.ReadAllText(componentsYamlPath);
 
             var builder = new DeserializerBuilder();
