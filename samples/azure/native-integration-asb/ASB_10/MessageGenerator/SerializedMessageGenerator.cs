@@ -12,7 +12,7 @@ public class SerializedMessageGenerator
         var message = new NativeMessage
         {
             Content = "Hello from native sender",
-            SendOnUtc = DateTime.UtcNow
+            SentOnUtc = DateTime.UtcNow
         };
         var serializedMessage = JsonConvert.SerializeObject(message);
         Debug.WriteLine("Serialized message to paste in code:\n");

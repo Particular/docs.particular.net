@@ -22,7 +22,7 @@ class Program
         var nativeMessage = new NativeMessage
         {
             Content = "Hello from native sender",
-            SendOnUtc = DateTime.UtcNow
+            SentOnUtc = DateTime.UtcNow
         };
 
         var json = JsonConvert.SerializeObject(nativeMessage);

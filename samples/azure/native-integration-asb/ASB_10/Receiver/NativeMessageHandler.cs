@@ -12,7 +12,7 @@ public class NativeMessageHandler :
     public Task Handle(NativeMessage message, IMessageHandlerContext context)
     {
         log.Info($"Message content: {message.Content}");
-        log.Info($"Received native message sent on {message.SendOnUtc} UTC");
+        log.Info($"Received native message sent on {message.SentOnUtc} UTC");
         return Task.CompletedTask;
     }
 }

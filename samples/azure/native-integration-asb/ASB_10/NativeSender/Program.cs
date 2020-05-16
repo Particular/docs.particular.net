@@ -31,7 +31,7 @@ class Program
 
         #region SerializedMessage
 
-        var nativeMessage = @"{""Content"":""Hello from native sender"",""SendOnUtc"":""2015-10-27T20:47:27.4682716Z""}";
+        var nativeMessage = @"{""Content"":""Hello from native sender"",""SentOnUtc"":""2015-10-27T20:47:27.4682716Z""}";
 
         #endregion
 
