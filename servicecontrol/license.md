@@ -13,7 +13,9 @@ include: registry-licensing
 
 ServiceControl has a license user interface which can be accessed in ServiceControl Management. ServiceControl Management is installed together with ServiceControl and can be found in the Windows Start Menu.
 
-The designated license file will be imported into the registry. The license file is added to the `HKEY_LOCAL_MACHINE` registry hive so it is available to all instances of ServiceControl regardless of the service account used.
+The designated license file will be imported into the file system at `%ProgramData%\ParticularSoftware\license.xml` so it is available to all instances ServiceControl regardless of the service account used.
+
+A copy of the imported license will be added to the `HKEY_LOCAL_MACHINE` registry hive for backward compatibility with older instances of ServiceControl.
 
 ![](managementutil-addlicense.png 'width=500')
 
