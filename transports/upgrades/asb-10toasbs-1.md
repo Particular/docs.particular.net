@@ -14,6 +14,12 @@ upgradeGuideCoreVersions:
 
 Endpoints using the Azure Service Bus transport can be run side-by-side with endpoints using the legacy Azure Service Bus transport as long as the [backward compatibility](/transports/azure-service-bus/compatibility.md) requirements are met.
 
+## Infrastructure differences
+
+The Azure Service Bus transport uses ports 5671, 5672, and 443 to communicate with Azure servers. Configure firewall rules to allow outbound traffic through these ports.
+
+The legacy Azure Service Bus transport uses ports 9350 to 9354 to communicate with Azure servers. These ports are not used by the Azure Service Bus transport. Any previously configured firewall rules to allow outbound traffic through these ports can be decommissioned.
+
 ## API Differences
 
 There are differences between the API for the legacy Azure Service Bus and the Azure Service Bus transports.
