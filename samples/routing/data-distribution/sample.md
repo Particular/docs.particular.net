@@ -2,7 +2,7 @@
 title: Data distribution
 summary: Implementing data distribution on top of NServiceBus
 component: Core
-reviewed: 2018-09-05
+reviewed: 2020-05-18
 tags:
 - Routing
 ---
@@ -32,7 +32,7 @@ Make sure MSMQ is installed and configured as described in the [MSMQ transport -
 
 ## Code walk-through
 
-This sample contains four projects.
+This sample contains four projects, three of which are executables and one which is a shared library.
 
 
 ### Client
