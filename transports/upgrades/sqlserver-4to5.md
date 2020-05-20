@@ -23,7 +23,7 @@ SQL Server transport version 5 introduces [native support for the publish subscr
 
 Before they are upgraded, endpoints running on older versions of the transport are not able to aceess the subscription data provided by native publish-subscribe. They will continue to send subscribe and unsubscribe control messages and will manage their own subscription storage, as described in [Message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based).
 
-The transport provides a compatibility mode that allows the endpoint to use both forms of publish-subscribe at the same time. When it is enabled and the endpoint publishes an event, the native susbcription table and the message-driven subscription persistence are checked for subscriber information. This subscriber information is deduplicated before the event it published, so even if a subscriber appears in both places it will only receive a single copy of each event.
+The transport provides a compatibility mode that allows the endpoint to use both forms of publish-subscribe at the same time. When it is enabled and the endpoint publishes an event, the native subscription table and the message-driven subscription persistence are checked for subscriber information. This subscriber information is deduplicated before the event it published, so even if a subscriber appears in both places it will only receive a single copy of each event.
 
 
 ### Upgrading
