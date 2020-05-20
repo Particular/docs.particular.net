@@ -1,7 +1,7 @@
 ---
 title: Installers
 summary: Installers ensure endpoint-specific artifacts are installed and configured during endpoint startup.
-reviewed: 2018-09-05
+reviewed: 2020-05-20
 component: core
 related:
  - nservicebus/operations
@@ -11,7 +11,7 @@ redirects:
  - nservicebus/nservicebus-installers
 ---
 
-Installers ensure that endpoint-specific artifacts (e.g. database tables, queues, directories, etc.) are created and configured when the endpoint is started.
+Installers ensure that endpoint-specific artifacts (e.g. database tables, queues, directories, etc.) are created and configured.
 
 ## When to run installers
 
@@ -35,14 +35,13 @@ For example, installers can be enabled based on command line arguments:
 
 snippet: InstallersRunWhenNecessaryCommandLine
 
-NOTE: Some transports / persisters may require `.Start` to be called instead of `.Create`. In this case call both `.Start` and `.Stop` and allow the endpoint to shutdown immediately after startup.
-
 They can also be enabled by a machine name convention:
 
 snippet: InstallersRunWhenNecessaryMachineNameConvention
 
 partial: disable
 
+NOTE: Some combinations of transports / persisters / DI containers may require `.Start` to be called instead of `.Create`. In this case call both `.Start` and `.Stop` and allow the endpoint to shutdown immediately after startup.
 
 ## Custom installers
 
