@@ -1,7 +1,7 @@
 ---
 title: Installing the Particular Platform Without the Platform Installer
 summary: How to install the Particular Platform with no internet connection
-reviewed: 2018-09-05
+reviewed: 2020-05-20
 ---
 
 The [Particular Platform Installer](/platform/installer) handles installing prerequisites for NServiceBus and the Particular Platform products. This guide details how to install to achieve the same results on a computer that does not have internet connectivity.
@@ -9,7 +9,7 @@ The [Particular Platform Installer](/platform/installer) handles installing prer
 
 ## .NET prerequisite version
 
-The Particular Platform products require [.NET 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42643). Before proceeding, ensure that this version of .NET is available on the system. More detailed information about .NET can be found on the [Wikipedia .NET Overview](https://en.wikipedia.org/wiki/.NET_Framework_version_history#Overview).
+The Particular Platform products require [.NET 4.6.2](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net462-offline-installer). Before proceeding, ensure that this version of .NET is available on the system. More detailed information about .NET can be found on the [Wikipedia .NET Overview](https://en.wikipedia.org/wiki/.NET_Framework_version_history#Overview).
 
 
 ##  Platform Installer components
