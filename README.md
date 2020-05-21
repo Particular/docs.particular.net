@@ -1,4 +1,4 @@
-![VerifyMaster](https://github.com/Particular/docs.particular.net/workflows/VerifyMaster/badge.svg?branch=master)
+![VerifyMaster](https://github.com/Particular/docs.particular.net/workflows/VerifyMaster/badge.svg?branch=master) ![BuildProjects](https://github.com/Particular/docs.particular.net/workflows/BuildProjects/badge.svg)
 
 # How to Contribute
 
