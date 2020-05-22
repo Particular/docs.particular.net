@@ -1,5 +1,6 @@
 ---
 title: Error Handling
+summary: Describes the native error-handling capabilities of Azure Service Bus
 reviewed: 2019-02-19
 component: ASB
 tags:
@@ -12,7 +13,7 @@ redirects:
 
 include: legacy-asb-warning
 
-Next to [Recoverability](/nservicebus/recoverability/), the Azure Service Bus also provides error handling capabilities of its own. This document describes the native error handling capabilities and compensating actions should there be a need.
+Next to [recoverability](/nservicebus/recoverability/), the Azure Service Bus also provides error handling capabilities of its own. This document describes the native error-handling capabilities and compensating actions should there be a need.
 
 
 ## Azure Service Bus SDK
@@ -31,7 +32,7 @@ A subset of these exceptions originate from within the Azure Service Bus service
 Note: If broker side exceptions persist the `TrackingId` value can be used to contact Azure Support to investigate further with Microsoft and Azure Service Bus teams.
 
 
-### Message Size problems
+### Message size problems
 
 A peculiar behavior of the Azure Service Bus SDK is how it reports on message size. It can only do so accurately after a message has been sent. Before sending the reported message size only covers the body section and not the final size that would include header and serialization overhead. This can obviously lead to unexpected results when trying to send a message.
 
@@ -39,20 +40,20 @@ If the application is intended to send large messages, it should leverage the [d
 
 The transport deals with this problem for a large part by performing an [estimated batch size calculation](batching.md#batching-messages-sent-from-a-handler-padding-and-estimated-batch-size-calculation) that includes both body and headers as well as a percentage for padding due to serialization.
 
-Even with this calculation in place, there is no guarantee that a message will eventually fit the limits after serialization. And if it doesn't then the Azure Service Bus client will throw a `MessageSizeExceededException` like the following:
+Even with this calculation in place, there is no guarantee that a message will eventually fit the limits after serialization. If it doesn't, then the Azure Service Bus client will throw a `MessageSizeExceededException` similar to the following:
 
 > Microsoft.Azure.ServiceBus.MessageSizeExceededException: The received message (delivery-id:0, size:262626 bytes) exceeds the limit (262144 bytes) currently allowed on the link.
 
-The transport will catch this exception and invoke an instance of `IHandleOversizedBrokeredMessages`, which has a default implementation that throws a `MessageTooLargeException` suggesting to use the Data bus feature. A [custom implementation](oversized-sends.md) for handling of oversized sends can be provided.
+The transport will catch this exception and invoke an instance of `IHandleOversizedBrokeredMessages`, which has a default implementation that throws a `MessageTooLargeException` suggesting to use the data bus feature. A [custom implementation](oversized-sends.md) for handling of oversized sends can be provided.
 
 1. Go to Premium which allows 1MB messages
 2. Use the [data bus](/nservicebus/messaging/databus/) feature
 3. Transmit smaller message bodies
 
-NOTE: Sometimes this exception can occur when forwarding a messsage to the audit or error queue as the headers are expanded with meta data which can result in the message size limit to be exceeded. Ensure that any message will have enough remaining space in the header to accomodate for this header data expansion.
+NOTE: Sometimes this exception can occur when forwarding a messsage to the audit or error queue as the headers are expanded with metadata which can result in the message size limit being exceeded. Ensure that any message will have enough remaining space in the header to allow for this header data expansion.
 
 
-## Dead Letter Queue
+## Dead letter queue
 
 Next to the client-side error handling concerns described above, the broker itself also has several error handling capabilities:
 
