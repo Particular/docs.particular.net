@@ -326,6 +326,8 @@
         Title: Azure Blob Storage
       - Url: nservicebus/messaging/databus/custom
         Title: Custom
+    - Url: nservicebus/messaging/data-distribution
+      Title: Data distribution
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
@@ -671,10 +673,6 @@
           Title: Avoiding Transactions
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational scripting
-    - Title: Routing
-      Articles:
-      - Url: nservicebus/azure/data-distribution
-        Title: Data distribution      
   - Url: transports/azure-service-bus/legacy
     Title: Azure Service Bus (Legacy)
     Articles:
@@ -705,8 +703,6 @@
         Title: Publishers name configuration
       - Url: transports/azure-service-bus/legacy/multiple-namespaces-support
         Title: Multiple namespaces
-      - Url: nservicebus/azure/data-distribution
-        Title: Data distribution
     - Url: transports/azure-service-bus/legacy/performance-tuning
       Title: Performance Tuning
       Articles:
@@ -754,10 +750,6 @@
       Title: Performance Tuning
     - Url: transports/azure-storage-queues/multi-storageaccount-support
       Title: Multiple storage accounts
-    - Title: Routing
-      Articles:
-      - Url: nservicebus/azure/data-distribution
-        Title: Data distribution
   - Url: transports/sql
     Title: SQL Server
     Articles:
