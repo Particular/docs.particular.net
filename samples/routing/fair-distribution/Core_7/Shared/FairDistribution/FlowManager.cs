@@ -6,7 +6,7 @@ class FlowManager
 {
     public long GetNextMarker(string transportAddress)
     {
-        var f = data.GetOrAdd(transportAddress, s => new FlowData(transportAddress));
+        var f = data.GetOrAdd(transportAddress, address => new FlowData(address));
         return f.GenerateMarker();
     }
 
