@@ -52,7 +52,7 @@ class MarkerProcessor :
             ["NServiceBus.FlowControl.Address"] = localAddress,
             ["NServiceBus.FlowControl.SessionId"] = sessionId
         };
-        var ackMessage = new OutgoingMessage(Guid.NewGuid().ToString(), ackHeaders, new byte[0]);
+        var ackMessage = new OutgoingMessage(Guid.NewGuid().ToString(), ackHeaders, Array.Empty<byte>());
         var ackContext = this.CreateRoutingContext(ackMessage, controlAddress, context);
         return fork(ackContext);
     }

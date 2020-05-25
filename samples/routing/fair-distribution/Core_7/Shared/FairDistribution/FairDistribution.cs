@@ -8,7 +8,7 @@ public class FairDistribution :
 {
     public FairDistribution()
     {
-        Defaults(s => s.Set<FlowManager>(new FlowManager()));
+        Defaults(s => s.Set(new FlowManager()));
     }
 
     protected override void Setup(FeatureConfigurationContext context)
