@@ -618,6 +618,8 @@
         Title: Version 3 to 4
     - Title: SQL Server
       Articles:
+      - Url: transports/upgrades/sqlserver-non-clustered-index
+        Title: Non-clustered index in the input queue
       - Url: transports/upgrades/sqlserver-5to6
         Title: Version 5 to 6        
       - Url: transports/upgrades/sqlserver-4to5
