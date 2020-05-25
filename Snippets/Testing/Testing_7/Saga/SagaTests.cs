@@ -11,6 +11,7 @@ public class SagaTests
     [Test]
     public async Task ShouldProcessDiscountOrder()
     {
+        // arrange
         var saga = new DiscountPolicy
         {
             Data = new DiscountPolicyData()
@@ -24,11 +25,15 @@ public class SagaTests
             TotalAmount = 1000
         };
 
+        // act
         await saga.Handle(discountOrder, context)
             .ConfigureAwait(false);
 
+
+        // assert
         var processMessage = (ProcessOrder)context.SentMessages[0].Message;
-        Assert.AreEqual(900, processMessage.TotalAmount);
+        Assert.That(processMessage.TotalAmount, Is.EqualTo(900));
+        Assert.That(saga.Completed, Is.False);
     }
     #endregion
 }
