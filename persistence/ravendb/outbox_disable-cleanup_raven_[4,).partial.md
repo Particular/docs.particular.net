@@ -1,3 +1,0 @@
-The cleanup task can be disabled by specifying a large value for `SetFrequencyToRunDeduplicationDataCleanup`, for example `TimeSpan.FromYears(20). This can be useful when an endpoint is scaled out and instances are competing to run the cleanup task.
-
-NOTE: Regardless of the setting for `SetFrequencyToRunDeduplicationDataCleanup`, the cleanup process will always execute once when the endpoint starts up.
