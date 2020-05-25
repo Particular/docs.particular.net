@@ -18,7 +18,7 @@ Endpoints using the Azure Service Bus transport can be run side-by-side with end
 
 The Azure Service Bus transport uses ports 5671, 5672, and 443 to communicate with Azure servers. Configure firewall rules to allow outbound traffic through these ports.
 
-The legacy Azure Service Bus transport uses ports 9350 to 9354 to communicate with Azure servers. These ports are not used by the Azure Service Bus transport. Any previously configured firewall rules to allow outbound traffic through these ports can be decommissioned.
+The legacy Azure Service Bus transport uses ports 9350 to 9354 to communicate with Azure servers. These ports are not used by the latest (non-legacy) Azure Service Bus transport. Any previously configured firewall rules to allow outbound traffic through these ports can be decommissioned.
 
 ## API Differences
 
