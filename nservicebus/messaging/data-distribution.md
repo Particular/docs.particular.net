@@ -9,7 +9,7 @@ redirects:
 
 Data distribution refers to a pattern where asynchronous messages (e.g. using NServiceBus) are used to deliver data to multiple targets in some coordinated fashion.
 
-A common example of data distribution scenario is having cached data on multiple scaled-out web servers, and then attempting to use messages delivered to all web servers in a cache-busting fashion, so that each web server drops its current cache entries, and then is forced to retrieve fresh data from the database.
+A common example of a data distribution scenario is having cached data on multiple scaled-out web servers, and then attempting to use messages delivered to all web servers in a cache-busting fashion, so that each web server drops its current cache entries, and then is forced to retrieve fresh data from the database.
 
 ## Timing and reliability
 
@@ -23,7 +23,7 @@ These sorts of failures are difficult to track down, as they depend upon more th
 
 Data distribution employs a broadcast distribution strategy, delivering the information to all physical nodes. This is different than a publish/subscribe scenario, which is designed to reliably deliver a message to only one logical endpoint.
 
-In a system in which a message processing endpoint is not scaled out, there is no difference. But when scaled out, multiple physical endpoint _instances_ together make up one logical endpoint, all cooperating to process messages from the same input queue.
+In a system in which a message processing endpoint is not scaled out, there is no difference. However, when scaled out, multiple physical endpoint _instances_ together make up one logical endpoint, all cooperating to process messages from the same input queue.
 
 In a publish/subscribe scenario, messages are routed to a _logical_ endpoint, and it makes no difference which physical endpoint instance ends up processing it.
 
@@ -31,7 +31,7 @@ A data distribution operation is a _broadcast_ operation, which is logically dif
 
 ## Recommendations
 
-Asynchronous messaging (i.e. NServiceBus) is **not** an optimal solution for data distribution scenarios. It is usually better to use a dedicated data distribution technology, such as a distributed cache or distributed configuration service. These kinds of services are difficult to implement because of the inevitable race conditions and consensus issues. Dedicated tools have sprung up that solve these problems and do it well.
+Asynchronous messaging (e.g. NServiceBus) is **not** an optimal solution for data distribution scenarios. It is usually better to use a dedicated data distribution technology, such as a distributed cache or distributed configuration service. These kinds of services are difficult to implement because of the inevitable race conditions and consensus issues. Dedicated tools have sprung up that solve these problems and do it well.
 
 Distributed caches, such as [Redis](https://redis.io/), [NCache](https://www.alachisoft.com/ncache/), or [Memcached](http://memcached.org/) can provide fast, local data caching with built-in replication. They solve the problems above efficiently, which enables thinking of the cache as one global service, rather than trying to synchronize many disparate caches by exchanging messages.
 
