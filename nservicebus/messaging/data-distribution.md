@@ -7,7 +7,7 @@ redirects:
 - samples/routing/data-distribution
 ---
 
-Data distribution refers to a pattern where asynchronous messages (i.e. using NServiceBus) are used to deliver data to multiple targets in some coordinated fashion.
+Data distribution refers to a pattern where asynchronous messages (e.g. using NServiceBus) are used to deliver data to multiple targets in some coordinated fashion.
 
 A common example of data distribution scenario is having cached data on multiple scaled-out web servers, and then attempting to use messages delivered to all web servers in a cache-busting fashion, so that each web server drops its current cache entries, and then is forced to retrieve fresh data from the database.
 
