@@ -618,7 +618,7 @@
         Title: Version 3 to 4
     - Title: SQL Server
       Articles:
-      - Url: transports/upgrades/sqlserver-non-clustered-index
+      - Url: transports/upgrades/sqlserver-non-clustered-idx
         Title: Non-clustered index in the input queue
       - Url: transports/upgrades/sqlserver-5to6
         Title: Version 5 to 6        
@@ -787,6 +787,8 @@
       Title: Entity Framework caveats
     - Url: transports/sql/callbacks
       Title: Callback support
+    - Url: transports/sql/sql-azure 
+      Title: Azure SQL considerations
   - Url: transports/msmq
     Title: MSMQ
     Articles:
