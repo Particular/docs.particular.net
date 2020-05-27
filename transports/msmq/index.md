@@ -11,8 +11,6 @@ reviewed: 2020-01-30
 redirects:
  - nservicebus/msmq-information
  - nservicebus/msmq
-tags:
- - Transport
 ---
 
 WARNING: As Microsoft is not making MSMQ available for .NET Core, building new systems using MSMQ is not recommended. 

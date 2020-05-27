@@ -3,8 +3,6 @@ title: ServiceControl and Multi-Instance Mode
 summary: ServiceControl and SQL Server transport multi-instance mode configuration guidance
 reviewed: 2019-12-10
 hidden: true
-tags:
- - Transport
 redirects:
 - nservicebus/sqlserver/service-control
 - transports/sqlserver/service-control

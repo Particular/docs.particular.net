@@ -7,9 +7,6 @@ related:
  - nservicebus/operations
 redirects:
  - nservicebus/azure-storage-persistence/scripting
-tags:
-- Azure
-- Persistence
 ---
 
 ## Removing subscriptions

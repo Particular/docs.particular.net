@@ -1,9 +1,6 @@
 ---
 title: Azure Service Bus Transport
 component: ASBS
-tags:
- - Azure
- - Transport
 related:
  - samples/azure-service-bus-netstandard/send-reply
  - samples/azure-service-bus-netstandard/native-integration

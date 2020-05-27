@@ -2,8 +2,6 @@
 title: Logging from the user code
 reviewed: 2019-07-29
 component: Core
-tags:
-- Logging
 redirects:
 - nservicebus/logging-writing
 ---

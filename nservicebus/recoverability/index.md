@@ -3,11 +3,6 @@ title: Recoverability
 summary: Explains how exceptions are handled, and actions retried, during message processing
 component: Core
 isLearningPath: true
-tags:
- - Exceptions
- - Error Handling
- - Retry
- - Recoverability
 reviewed: 2018-10-29
 redirects:
  - nservicebus/how-do-i-handle-exceptions

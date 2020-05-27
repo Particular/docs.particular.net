@@ -2,8 +2,6 @@
 title: Native message access
 component: ASBS
 versions: '[1.4.0,]'
-tags:
- - Azure
 reviewed: 2019-12-02
 ---
 

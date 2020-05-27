@@ -4,8 +4,6 @@ summary: Configuring ServiceControl's data retention policy
 related:
  - nservicebus/recoverability
  - nservicebus/operations/auditing
-tags:
-- Expiration
 reviewed: 2018-10-05
 ---
 

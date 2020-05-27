@@ -2,8 +2,6 @@
 title: File Share Data Bus Usage
 reviewed: 2019-12-12
 component: FileShareDataBus
-tags:
- - DataBus
 redirects:
  - nservicebus/attachments-databus-sample
 related:

@@ -2,8 +2,6 @@
 title: MongoDB Persistence
 component: mongodb
 versions: '[2,)'
-tags:
-- Persistence
 related:
 - samples/mongodb
 redirects:

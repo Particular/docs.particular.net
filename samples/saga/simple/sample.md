@@ -3,9 +3,6 @@ title: Simple Saga Usage
 summary: How build and use a saga.
 reviewed: 2019-03-01
 component: Core
-tags:
-- Saga
-- SagaFinder
 redirects:
 - samples/saga/complexfindinglogic
 related:

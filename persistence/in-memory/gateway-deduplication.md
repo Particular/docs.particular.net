@@ -4,8 +4,6 @@ summary: In-memory gateway persistence stores data in a non-durable manner for d
 component: Gateway
 versions: '[3.1,)'
 reviewed: 2019-12-17
-tags:
-- Persistence
 ---
 
 DANGER: All information stored is discarded when the process ends. This can result in more-than-once message delivery.

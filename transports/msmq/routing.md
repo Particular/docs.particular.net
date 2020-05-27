@@ -3,9 +3,6 @@ title: Physical routing with MSMQ
 summary: Configuring physical routing with MSMQ transport
 component: MsmqTransport
 reviewed: 2020-05-20
-tags:
- - Routing
- - MSMQ
 related:
  - nservicebus/messaging/routing
  - transports/msmq/routing-extensibility

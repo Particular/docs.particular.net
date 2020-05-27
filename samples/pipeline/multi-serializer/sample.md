@@ -3,9 +3,6 @@ title: Control of serialization via the pipeline
 summary: Add support for attribute based message serialization.
 reviewed: 2018-11-07
 component: Core
-tags:
-- Pipeline
-- Serialization
 related:
 - nservicebus/pipeline
 - nservicebus/serialization

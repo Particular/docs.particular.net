@@ -3,9 +3,6 @@ title: Dead Letter Queue Forwarding
 component: ASB
 versions: '[7,)'
 reviewed: 2020-04-19
-tags:
-- Azure
-- Error Handling
 redirects:
  - nservicebus/azure-service-bus/dlq-forwarding
  - transports/azure-service-bus/dlq-forwarding

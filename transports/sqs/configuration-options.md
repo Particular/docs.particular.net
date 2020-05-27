@@ -3,8 +3,6 @@ title: Configuration Options
 summary: Configuration options for the SQS transport.
 component: SQS
 reviewed: 2019-10-17
-tags:
-- AWS
 redirects:
 - nservicebus/sqs/configuration-options
 ---

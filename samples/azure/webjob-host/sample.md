@@ -4,9 +4,6 @@ summary: Uses NServiceBus the self-hosting capability to host an endpoint in an 
 component: Core
 reviewed: 2020-02-26
 isLearningPath: true
-tags:
-- Azure
-- Hosting
 related:
 - samples/dependency-injection/aspnetcore
 

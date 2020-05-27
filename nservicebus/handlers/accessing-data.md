@@ -9,9 +9,6 @@ related:
  - persistence/sql/accessing-data
  - persistence/mongodb
  - persistence/ravendb
-tags:
- - Persistence
- - Saga
 ---
 
 In most cases [handlers](/nservicebus/handlers/) are meant to modify the internal state of an application based on the received message. In a messaging system it is critical to make sure the state change is persisted exactly once. The scenarios below discuss in detail how NServiceBus transaction and persistence settings affect the way business data is stored.
@@ -86,4 +83,3 @@ and think about the behavior of the message processing:
  - If re-sending messages is implemented, multiple copies of the same message may be sent to the downstream endpoints  
  - If message identity is used for de-duplication, message IDs must be generated in a deterministic manner
  - If outgoing messages depend on the application state, **the code above is incorrect when messages can get re-ordered** (e.g. by infrastructure failures, [recoverability](/nservicebus/recoverability) or competing consumers)
-

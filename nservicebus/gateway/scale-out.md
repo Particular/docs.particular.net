@@ -1,8 +1,6 @@
 ---
 title: Scale out
 reviewed: 2019-07-18
-tags:
- - scalability
 related:
  - samples/gateway
 ---

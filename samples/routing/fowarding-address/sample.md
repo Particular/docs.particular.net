@@ -3,8 +3,6 @@ title: Forwarding address
 summary: Implementing forwarding address for in-flight messages during handler migration
 component: Core
 reviewed: 2019-06-25
-tags:
-- Routing
 ---
 
 When a handler is moved to a new endpoint, there may still be "in-flight" messages, bound for the original endpoint. When those messages arrive at the original endpoint, they need to be re-routed to the new endpoint.

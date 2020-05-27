@@ -2,8 +2,6 @@
 title: Message Throughput Throttling
 reviewed: 2019-05-06
 component: Core
-tags:
-- Throttling
 related:
 - nservicebus/pipeline/manipulate-with-behaviors
 - nservicebus/operations/tuning

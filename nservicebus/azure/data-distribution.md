@@ -4,9 +4,6 @@ summary: How to configure NServiceBus to distribute data to all instances of a g
 component: Core
 reviewed: 2018-12-06
 versions: "[5,)"
-tags:
-- Azure
-- Transport
 redirects:
 - nservicebus/scalability-and-ha/individualizing-queues-when-scaling-out
 ---

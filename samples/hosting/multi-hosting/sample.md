@@ -3,8 +3,6 @@ title: Endpoints multi hosting
 summary: Hosting multiple endpoints in one process.
 reviewed: 2019-09-16
 component: Core
-tags:
-- Hosting
 related:
 - nservicebus/hosting
 - nservicebus/hosting/assembly-scanning

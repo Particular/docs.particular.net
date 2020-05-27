@@ -1,9 +1,6 @@
 ---
 title: Manage ServiceControl instances via PowerShell
 reviewed: 2019-07-02
-tags:
- - Installation
- - PowerShell
 ---
 
 NOTE: For general information about using PowerShell with ServiceControl, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).

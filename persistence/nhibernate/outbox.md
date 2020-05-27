@@ -4,8 +4,6 @@ summary: How to use the outbox with NHibernate
 versions: '[6.0,)'
 component: NHibernate
 reviewed: 2020-02-18
-tags:
- - Outbox
 related:
 - nservicebus/outbox
 redirects:

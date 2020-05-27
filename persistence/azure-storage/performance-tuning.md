@@ -7,10 +7,6 @@ related:
  - nservicebus/operations
 redirects:
  - nservicebus/azure-storage-persistence/performance-tuning
-tags:
- - Azure
- - Persistence
- - Performance
 ---
 
 ## General guidelines

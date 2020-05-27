@@ -1,9 +1,6 @@
 ---
 title: Generating secure random strong encryption keys
 summary: Options for generating secure random strong encryption keys
-tags:
- - Encryption
- - Security
 reviewed: 2018-10-18
 related:
  - nservicebus/security

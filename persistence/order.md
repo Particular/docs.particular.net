@@ -4,8 +4,6 @@ summary: When configuring persistence, order is important
 component: Core
 reviewed: 2018-10-26
 versions: '[5.0,)'
-tags:
-- Persistence
 redirects:
 - nservicebus/persistence-order
 - nservicebus/persistence/order

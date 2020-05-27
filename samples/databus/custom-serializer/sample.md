@@ -2,8 +2,6 @@
 title: Custom Serializer for Data Bus
 reviewed: 2019-12-11
 component: Core
-tags:
- - DataBus
 related:
  - nservicebus/messaging/databus
 ---

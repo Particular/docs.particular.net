@@ -3,8 +3,6 @@ title: Topology
 summary: Identify the physical components used by the Amazon SQSL transport and how they interact.
 component: SQS
 reviewed: 2020-04-27
-tags:
-- AWS
 ---
 
 The topology used by the transport is composed of several AWS components.

@@ -3,8 +3,6 @@ title: Sagas
 summary: NServiceBus uses event-driven architecture to include fault-tolerance and scalability in long-term business processes.
 component: Core
 reviewed: 2019-09-16
-tags:
-- Saga
 redirects:
 - nservicebus/sagas-in-nservicebus
 related:

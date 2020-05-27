@@ -1,8 +1,6 @@
 ---
 title: Configuration
 summary: Configuring the endpoint when hosting in Azure cloud services
-tags:
-- Azure
 reviewed: 2020-02-27
 ---
 

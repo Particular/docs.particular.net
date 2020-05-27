@@ -2,8 +2,6 @@
 title: Autofac Dependency Injection Usage
 component: Autofac
 reviewed: 2019-09-10
-tags:
- - dependency injection
 related:
  - nservicebus/dependency-injection
  - nservicebus/dependency-injection/autofac

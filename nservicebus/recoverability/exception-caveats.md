@@ -3,9 +3,6 @@ title: Exception caveats
 summary: NServiceBus cannot guarantee the handling of certain types of exceptions.
 component: core
 reviewed: 2018-12-28
-tags:
- - Exceptions
- - Error Handling
 redirects:
  - nservicebus/errors/exception-caveats
 ---

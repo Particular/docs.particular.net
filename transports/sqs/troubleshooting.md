@@ -6,8 +6,6 @@ reviewed: 2019-02-22
 related:
  - transports/sqs
  - samples/sqs/simple
-tags:
-- AWS
 ---
 
 ## Viewing the message ID on the SQS message

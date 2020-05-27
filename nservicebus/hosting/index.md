@@ -3,8 +3,6 @@ title: Hosting
 summary: Describes the various approaches to endpoint hosting
 component: Core
 reviewed: 2020-01-03
-tags:
-- Hosting
 redirects:
 - nservicebus/hosting/self-hosting
 - nservicebus/hosting/self-hosting-v4.x

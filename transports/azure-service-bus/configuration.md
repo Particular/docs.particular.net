@@ -2,8 +2,6 @@
 title: Configuration
 summary: Explains the configuration options
 component: ASBS
-tags:
- - Azure
 reviewed: 2020-04-15
 ---
 

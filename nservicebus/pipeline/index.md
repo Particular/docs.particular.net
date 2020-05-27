@@ -2,8 +2,6 @@
 title: Message Handling Pipeline
 summary: Overview of the message handling pipeline
 reviewed: 2020-05-07
-tags:
-- Pipeline
 redirects:
 - nservicebus/nservicebus-pipeline-intro
 related:

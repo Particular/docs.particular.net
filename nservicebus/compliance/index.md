@@ -2,8 +2,6 @@
 title: Compliance
 summary: Compliance Table of Contents
 reviewed: 2020-03-16
-tags:
- - Compliance
 ---
 
 Systems built using NServiceBus often run in environments requiring high levels of government and/or regulatory compliance.

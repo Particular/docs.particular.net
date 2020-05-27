@@ -3,8 +3,6 @@ title: Command routing
 summary: Basic NServiceBus message routing
 component: Core
 reviewed: 2019-10-09
-tags:
-- Routing
 ---
 
 The sample demonstrates basic command routing between endpoints.

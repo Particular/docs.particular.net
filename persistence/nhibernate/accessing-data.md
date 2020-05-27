@@ -8,8 +8,6 @@ related:
  - nservicebus/handlers/accessing-data
 redirects:
  - nservicebus/nhibernate/accessing-data
-tags:
- - Saga
 ---
 
 NHibernate persistence supports a mechanism that allows using the same data context used by NServiceBus internals to also store business data. This ensures atomicity of changes done across multiple handlers and sagas involved in processing of the same message. See [accessing data](/nservicebus/handlers/accessing-data.md) to learn more about other ways of accessing the data in the handlers.

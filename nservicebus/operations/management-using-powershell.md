@@ -5,9 +5,6 @@ reviewed: 2018-11-20
 isLearningPath: true
 related:
  - nservicebus/operations
-tags:
-- PowerShell
-- installation
 redirects:
 - nservicebus/managing-nservicebus-using-powershell
 ---

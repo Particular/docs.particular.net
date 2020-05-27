@@ -2,8 +2,6 @@
 title: Configuration
 component: ASB
 versions: '[7,)'
-tags:
-- Azure
 reviewed: 2019-02-19
 redirects:
  - nservicebus/azure-service-bus/configuration

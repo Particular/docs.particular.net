@@ -3,8 +3,6 @@ title: Data distribution
 summary: Implementing data distribution on top of NServiceBus
 component: Core
 reviewed: 2020-05-18
-tags:
-- Routing
 ---
 
 DANGER: Asynchronous messaging is not an optimal solution for data distribution scenarios. It is usually better to use a dedicated data distribution technology, such as a distributed cache or distributed configuration service. This sample is meant to demonstrate the flexibility of the NServiceBus routing engine.

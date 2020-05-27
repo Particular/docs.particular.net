@@ -2,8 +2,6 @@
 title: Exposing Endpoints via WCF
 summary: Receiving and processing messages which pass through Windows Communication Foundation
 component: Wcf
-tags:
- - Hosting
 redirects:
  - nservicebus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service
  - nservicebus/hosting/expose-an-endpoint-as-a-web-wcf-service

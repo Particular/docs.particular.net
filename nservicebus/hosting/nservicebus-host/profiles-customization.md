@@ -1,11 +1,6 @@
 ---
 title: NServiceBus Host Profiles Customization 
 summary: 'Create custom NServiceBus host profiles and customize default NServiceBus host profiles.'
-tags:
-- Profiles
-- Hosting
-- Logging
-- Persistence
 component: Host
 reviewed: 2019-01-09
 ---

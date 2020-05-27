@@ -5,8 +5,6 @@ reviewed: 2019-11-25
 component: Core
 isLearningPath: true
 versions: "[5,)"
-tags:
-- DTC
 redirects:
 - nservicebus/no-dtc
 related:

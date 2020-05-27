@@ -3,8 +3,6 @@ title: CommonLogging Usage
 summary: Using CommonLogging logging capability of NServiceBus.
 reviewed: 2019-07-30
 component: CommonLogging
-tags:
-- Logging
 related:
 - nservicebus/logging
 ---

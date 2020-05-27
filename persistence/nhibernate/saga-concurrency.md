@@ -4,9 +4,6 @@ summary: How to control concurrency in sagas with the NHibernate persistence
 component: NHibernate
 versions: '[6,]'
 reviewed: 2020-04-07
-tags:
- - Persistence
- - Saga
 related:
  - nservicebus/sagas/concurrency
 redirects:

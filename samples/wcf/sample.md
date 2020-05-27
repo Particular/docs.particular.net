@@ -3,8 +3,6 @@ title: WCF to messaging bridge
 summary: Reliable WCF communication over messaging.
 component: Wcf
 reviewed: 2019-06-25
-tags:
- - Hosting
 related:
  - nservicebus/wcf
 ---

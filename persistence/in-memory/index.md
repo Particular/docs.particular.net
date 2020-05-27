@@ -5,8 +5,6 @@ component: InMemoryPersistence
 reviewed: 2019-12-17
 redirects:
 - nservicebus/persistence/in-memory
-tags:
-- Persistence
 ---
 
 Some scenarios require an in-memory persistence such as the development environment or a lightweight client not interested in durability across restarts:

@@ -1,8 +1,6 @@
 ---
 title: Azure Functions
 summary: Hosting NServiceBus in Azure Functions
-tags:
- - Hosting
 related:
  - samples/azure/functions
 reviewed: 2020-05-12

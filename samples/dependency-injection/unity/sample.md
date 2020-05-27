@@ -2,8 +2,6 @@
 title: Unity Dependency Injection Usage
 component: Unity
 reviewed: 2019-09-16
-tags:
-- dependency injection
 related:
 - nservicebus/dependency-injection
 - nservicebus/dependency-injection/unity

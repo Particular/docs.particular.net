@@ -2,9 +2,6 @@
 title: Azure Cloud Services Host FAQ
 summary: Frequently asked questions related to the Azure Cloud Services host.
 component: CloudServicesHost
-tags:
-- Azure
-- Hosting
 reviewed: 2020-05-05
 ---
 

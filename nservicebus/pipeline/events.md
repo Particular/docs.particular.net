@@ -4,9 +4,6 @@ summary: Subscribe to events raised by the pipeline
 component: Core
 reviewed: 2019-01-15
 versions: '[6,)'
-tags:
-- Pipeline
-- Notifications
 related: 
 - nservicebus/recoverability
 ---

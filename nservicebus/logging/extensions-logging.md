@@ -3,8 +3,6 @@ title: NServiceBus.Extensions.Logging
 summary: Logging with Microsoft.Extensions.Logging
 reviewed: 2020-03-20
 component: Extensions.Logging
-tags:
-- Logging
 related:
 - samples/logging/extensions-logging
 ---

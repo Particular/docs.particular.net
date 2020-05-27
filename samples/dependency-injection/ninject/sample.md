@@ -2,8 +2,6 @@
 title: Ninject Dependency Injection Usage
 component: Ninject
 reviewed: 2019-09-11
-tags:
- - dependency injection
 related:
  - nservicebus/dependency-injection
  - nservicebus/dependency-injection/ninject

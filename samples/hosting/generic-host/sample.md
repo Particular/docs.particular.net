@@ -3,8 +3,6 @@ title: Endpoint hosting with the Generic Host
 summary: Hosting an endpoint with the Generic Host.
 reviewed: 2020-02-27
 component: Core
-tags:
-- Hosting
 related:
 - nservicebus/hosting
 - nservicebus/hosting/assembly-scanning

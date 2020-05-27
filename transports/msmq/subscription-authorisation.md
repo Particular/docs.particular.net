@@ -3,8 +3,6 @@ title: MSMQ Subscription Authorization
 summary: Managing authorization of subscribers in the MSMQ Transport
 component: MsmqTransport
 reviewed: 2018-09-21
-tags:
-- Security
 redirects:
 related:
  - samples/pubsub

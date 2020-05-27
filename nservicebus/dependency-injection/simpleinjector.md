@@ -3,8 +3,6 @@ title: Simple Injector
 summary: Configure NServiceBus to use Simple Injector for dependency injection.
 component: SimpleInjector
 reviewed: 2018-12-05
-tags:
- - Dependency Injection
 related:
  - samples/dependency-injection/simpleinjector
 redirects:

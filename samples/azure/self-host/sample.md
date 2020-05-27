@@ -3,9 +3,6 @@ title: Self-Hosting in Azure Cloud Services
 summary: Using the NServiceBus self-hosting capability to host an endpoint in an Azure instance.
 component: Core
 reviewed: 2019-07-02
-tags:
-- Azure
-- Hosting
 related:
 - nservicebus/hosting/cloud-services-host/shared-hosting
 ---

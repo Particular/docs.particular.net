@@ -4,9 +4,6 @@ summary: Implement a Feature for advanced extension of NServiceBus.
 reviewed: 2019-02-04
 component: Core
 versions: '[5.0,)'
-tags:
- - feature
- - pipeline
 related:
  - samples/feature
  - samples/header-manipulation

@@ -4,8 +4,6 @@ summary: An interface that supports hooking into the configuration sequence of N
 reviewed: 2019-12-20
 component: Core
 versions: '[,6.0)'
-tags:
- - lifecycle
 related:
  - samples/startup-shutdown-sequence
 ---

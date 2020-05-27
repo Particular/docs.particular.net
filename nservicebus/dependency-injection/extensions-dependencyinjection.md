@@ -3,8 +3,6 @@ title: NServiceBus.Extensions.DependencyInjection
 summary: Provides integration with the Microsoft.Extensions.DependencyInjection abstraction
 reviewed: 2020-02-17
 component: Extensions.DependencyInjection
-tags:
- - Dependency Injection
 related:
  - samples/dependency-injection/extensions-dependency-injection
  - samples/hosting/generic-host

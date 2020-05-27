@@ -3,10 +3,6 @@ title: Scaling out MSMQ endpoints
 summary: How to scale out when using the MSMQ transport
 reviewed: 2018-09-28
 component: MsmqTransport
-tags:
-- scalability
-- Routing
-- MSMQ
 related:
 - nservicebus/messaging/routing
 redirects:

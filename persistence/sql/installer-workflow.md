@@ -1,8 +1,6 @@
 ---
 title: Installer Workflow
 component: SqlPersistence
-tags:
- - Persistence
 related:
  - nservicebus/operations
  - samples/sql-persistence

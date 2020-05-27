@@ -3,11 +3,6 @@ title: Automatic Retries
 summary: Shows immediate and delayed retries when a handler throws an exception.
 reviewed: 2018-11-14
 component: Core
-tags:
-- Delayed Retries
-- Error Handling
-- Exceptions
-- Retry
 related:
 - nservicebus/recoverability
 ---

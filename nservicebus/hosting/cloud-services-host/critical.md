@@ -3,9 +3,6 @@ title: Critical Error Behavior
 summary: Handling Critical errors in Azure Cloud Services
 component: CloudServicesHost
 reviewed: 2019-11-04
-tags:
- - Hosting
- - Azure
 ---
 
 include: cloudserviceshost-deprecated-warning

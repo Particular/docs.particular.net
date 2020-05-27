@@ -3,8 +3,6 @@ title: Timeout Manager
 summary: NServiceBus persistent delayed message store
 component: core
 reviewed: 2018-11-09
-tags:
- - Defer
 related:
  - samples/delayed-delivery
  - nservicebus/messaging/delayed-delivery
@@ -50,5 +48,4 @@ When this happens the following critical error message will be raised:
 > Repeated failures when fetching timeouts from storage, endpoint will be terminated.
 
 If the NServiceBus.Host is used then the host will execute a fail-fast as documented in the [default critical error behavior for the NServiceBus.Host](/nservicebus/hosting/nservicebus-host/#endpoint-configuration-default-critical-error-action).
-
 

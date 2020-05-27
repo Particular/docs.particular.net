@@ -3,10 +3,6 @@ title: Header Manipulation
 summary: All extension points for mutating messages.
 reviewed: 2019-09-16
 component: Core
-tags:
-- Header
-- Mutator
-- Pipeline
 related:
 - samples/messagemutators
 - samples/pipeline

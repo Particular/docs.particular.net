@@ -4,8 +4,6 @@ summary: How NServiceBus routes messages between endpoints.
 reviewed: 2019-12-23
 component: Core
 isLearningPath: true
-tags:
-- routing
 redirects:
 - nservicebus/how-do-i-specify-to-which-destination-a-message-will-be-sent
 - nservicebus/messaging/specify-message-destination

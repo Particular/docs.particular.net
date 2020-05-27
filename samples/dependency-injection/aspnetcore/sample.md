@@ -2,8 +2,6 @@
 title: ASP.NET Core 3 Dependency Injection Integration
 component: Extensions.Hosting
 reviewed: 2020-02-24
-tags:
- - dependency injection
 related:
  - nservicebus/dependency-injection
 ---

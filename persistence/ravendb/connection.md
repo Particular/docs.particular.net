@@ -1,8 +1,6 @@
 ---
 title: Connection Options
 component: raven
-tags:
- - Persistence
 related:
  - samples/ravendb
 redirects:

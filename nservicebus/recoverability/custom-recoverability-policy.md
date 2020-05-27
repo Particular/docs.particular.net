@@ -4,11 +4,6 @@ summary: Shows how to take full control over Recoverability by implementing a Re
 component: Core
 reviewed: 2020-01-29
 versions: '[6.0,)'
-tags:
- - Error Handling
- - Exceptions
- - Retry
- - Recoverability
 related:
  - samples/faulttolerance
 ---

@@ -1,8 +1,6 @@
 ---
 title: RavenDB Version Compatibility
 summary: The various approaches used by different versions of NServiceBus when integrating with RavenDB
-tags:
-- Persistence
 reviewed: 2019-06-10
 redirects:
  - nservicebus/ravendb/version-compatibility

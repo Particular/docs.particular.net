@@ -3,8 +3,6 @@ title: Topologies
 reviewed: 2018-12-11
 component: ASB
 versions: '[7,)'
-tags:
- - Azure
 related:
  - nservicebus/operations
  - samples/azure/azure-service-bus

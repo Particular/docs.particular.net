@@ -3,9 +3,6 @@ title: Migrating from the endpoint-oriented topology
 summary: Migrating a system using the Azure Service Bus transport from the endpoint-oriented topology to the forwarding topology
 component: ASB
 versions: '[9.1,)'
-tags:
-- Azure
-- Transport
 reviewed: 2020-04-30
 related:
  - transports/azure-service-bus/legacy/topologies

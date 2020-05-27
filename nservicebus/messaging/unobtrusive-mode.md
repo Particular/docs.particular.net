@@ -2,8 +2,6 @@
 title: Unobtrusive Mode Messages
 summary: How to avoid referencing NServiceBus assemblies from message assemblies.
 reviewed: 2019-09-03
-tags:
-- Convention
 related:
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/conventions

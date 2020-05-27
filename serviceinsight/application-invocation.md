@@ -3,7 +3,6 @@ title: ServiceInsight Application Invocation
 reviewed: 2020-03-16
 component: ServiceInsight
 summary: How the integration between ServicePulse and ServiceInsight works and how to use the parameterized invocation of ServiceInsight.
-tags:
 ---
 
 It is possible to load any given message in ServiceInsight from ServicePulse by clicking the "Open in ServiceInsight" link.

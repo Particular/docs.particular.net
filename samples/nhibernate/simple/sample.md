@@ -3,9 +3,6 @@ title: Simple NHibernate Persistence Usage
 summary: Using NHibernate to store sagas and timeouts.
 reviewed: 2020-01-27
 component: NHibernate
-tags:
- - Saga
- - Timeout
 related:
  - nservicebus/sagas
  - persistence

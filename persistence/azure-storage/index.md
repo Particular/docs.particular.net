@@ -3,11 +3,6 @@ title: Azure Storage Persistence
 summary: Using Azure Storage as persistence
 reviewed: 2019-10-01
 component: ASP
-tags:
- - Azure
- - Persistence
- - Performance
- - Hosting
 related:
  - persistence/upgrades/asp-saga-deduplication
  - persistence/upgrades/asp-saga-pruning
