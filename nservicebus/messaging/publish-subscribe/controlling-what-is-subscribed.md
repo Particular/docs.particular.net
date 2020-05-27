@@ -4,15 +4,15 @@ summary: When applying the publish-subscribe pattern, there are several ways to 
 component: Core
 tags:
 - Publish Subscribe
-reviewed: 2018-09-14
+reviewed: 2020-05-27
 ---
 
 
 ## Automatic subscriptions
 
-The default mode for managing subscriptions is *auto-subscribe*.  Every time a subscriber endpoint starts, it determines which events it needs to subscribe to and automatically subscribes to them. For more information on how publish and subscribe works, refer to [Publish-Suscribe](/nservicebus/messaging/publish-subscribe).
+The default mode for managing subscriptions is *auto-subscribe*. Every time a subscriber endpoint starts, it determines which events it needs to subscribe to and automatically subscribes to them. For more information on how publish and subscribe works, refer to [Publish-Subscribe](/nservicebus/messaging/publish-subscribe).
 
-Messages matching both of the following criteria will be auto-subscribed at startup.
+Messages matching both of the following criteria will be auto-subscribed at startup:
 
  1. Defined as an event either using `IEvent` or by the `.DefiningEventsAs` convention.
  1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given event.
