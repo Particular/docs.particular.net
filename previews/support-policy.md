@@ -35,4 +35,4 @@ Previews may break backwards compatibility at any time. This includes, but is no
 Product previews are public for a limited time. When this time has elapsed, they are either:
 
 - Promoted to being part of the Particular Service Platform with a 1.0 release, and supported according to standard support policies.
-- Converted into community projects with no further guaranteed maintenance or support.
+- Converted into community projects with no further guaranteed maintenance or support by Particular Software.
