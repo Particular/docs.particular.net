@@ -1,7 +1,7 @@
 ---
 title: Mapping Endpoint Instances With a Shared File
 summary: Mapping logical endpoints to physical instances with a shared file
-reviewed: 2018-09-14
+reviewed: 2020-05-27
 component: Core
 ---
 
@@ -41,7 +41,7 @@ snippet: instanceMapping
 
 ### Client
 
-The client application submits the orders for processing by the back-end systems by sending a `PlaceOrder` command. The client, as well as all other endpoints, uses the file based instance mapping:
+The client application submits the orders for processing by the back-end systems by sending a `PlaceOrder` command. The client, as well as all other endpoints, uses the file-based instance mapping:
 
 snippet: FileInstanceMapping
 

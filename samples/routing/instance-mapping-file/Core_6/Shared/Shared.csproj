@@ -4,7 +4,6 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data" />
     <PackageReference Include="NServiceBus" Version="6.*" />
   </ItemGroup>
 </Project>
