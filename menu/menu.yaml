@@ -910,6 +910,8 @@
       Articles:
       - Url: persistence/upgrades/ravendb-6to7
         Title: Version 6 to 7
+      - Url: persistence/upgrades/ravendb-6.2to6.3
+        Title: Version 6.2 to 6.3
       - Url: persistence/upgrades/ravendb-5to6
         Title: Version 5 to 6
       - Url: persistence/upgrades/ravendb-4to5

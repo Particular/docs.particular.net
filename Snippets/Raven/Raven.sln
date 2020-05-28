@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_6", "Raven_6\Raven_6.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_6.1", "Raven_6.1\Raven_6.1.csproj", "{A34F6A59-E929-4D5D-B407-21FA974086CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_6.3", "Raven_6.3\Raven_6.3.csproj", "{806EA7B8-5242-4459-AD53-6F8E05492F5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,8 @@ Global
 		{495186E6-37F3-4F3C-BFC7-12C3478113D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A34F6A59-E929-4D5D-B407-21FA974086CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A34F6A59-E929-4D5D-B407-21FA974086CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{806EA7B8-5242-4459-AD53-6F8E05492F5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{806EA7B8-5242-4459-AD53-6F8E05492F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
