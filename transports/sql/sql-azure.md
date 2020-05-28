@@ -22,7 +22,7 @@ A small set of stress tests has been done to estimate the maximum throughput on 
 |16|800|
 
 
-While useful, they results are not representative of most real-life scenarios. In most deployments there are at least 10s or even 100s of endpoints, each processing messages with much smaller throughput.
+While useful, these results are not representative of most real-life scenarios. In most deployments there are at least 10s or even 100s of endpoints, each processing messages with much smaller throughput.
 
 A set of load tests were designed to measure the CPU usage while processing messages coming at a constant rate. Messages were processed by a chain of 15 endpoints. Each endpoint in the chain was forwarding messages to the next one.
 
