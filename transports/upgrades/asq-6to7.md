@@ -60,7 +60,7 @@ snippet: AzureStorageQueuePurgeOnStartup
 
 ### DefaultQueuePerInstance
 
-The `DefaultQueuePerInstance` setting is deprecated. For setting this behavior, refer to the [Data distribution](/nservicebus/azure/data-distribution.md) article.
+The `DefaultQueuePerInstance` setting is deprecated.
 
 
 ### Default value changes
