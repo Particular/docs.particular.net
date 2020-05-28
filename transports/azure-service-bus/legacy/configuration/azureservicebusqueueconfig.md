@@ -3,8 +3,6 @@ title: Queue Configuration Section
 summary: Configuring Azure Service Bus as transport
 component: ASB
 versions: '[5,7)'
-tags:
-- Azure
 reviewed: 2019-02-19
 redirects:
  - transports/azure-service-bus/configuration/azureservicebusqueueconfig

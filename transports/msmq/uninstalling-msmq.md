@@ -2,10 +2,6 @@
 title: Uninstalling the MSMQ Service
 summary: How to remove the Microsoft Messaging Queue (MSMQ) service
 reviewed: 2020-01-24
-tags:
- - Transport
- - MSMQ
- - Installation
 redirects:
  - nservicebus/msmq/uninstalling-msmq
 ---

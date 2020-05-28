@@ -1,9 +1,6 @@
 ---
 title: Conventions
 summary: Custom conventions for defining how certain things are detected
-tags:
-- Unobtrusive
-- Convention
 component: Core
 reviewed: 2019-09-03
 related:
@@ -39,4 +36,3 @@ snippet: MessageConventionsDual
 ## Attributes
 
 If attributes are preferred over marker interfaces then this can be achieved via the [NServiceBus.AttributeConventions](https://www.nuget.org/packages/NServiceBus.AttributeConventions) community package exists that allows using attributes instead of interfaces.
-

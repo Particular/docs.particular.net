@@ -3,11 +3,6 @@ title: Avoiding excessive memory consumption
 summary: Explains how to avoid excessive memory consumption due to recoverability exception caching
 component: Core
 versions: '[6, )'
-tags:
- - Exceptions
- - Error Handling
- - Retry
- - Recoverability
 reviewed: 2019-09-09
 ---
 

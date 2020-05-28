@@ -3,8 +3,6 @@ title: MongoDB Persistence
 summary: Using MongoDB to store sagas.
 reviewed: 2019-05-29
 component: mongodb
-tags:
-- Saga
 related:
 - nservicebus/sagas
 redirects:

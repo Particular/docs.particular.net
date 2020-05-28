@@ -3,8 +3,6 @@ title: Host Profile Logging
 summary: Configure logging using the profile functionality of the NServiceBus host.
 reviewed: 2019-08-09
 component: Host
-tags:
-- Logging
 related:
 - nservicebus/logging
 ---

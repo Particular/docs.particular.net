@@ -3,9 +3,6 @@ title: Transaction support
 summary: The design and implementation details of SQL Server transport transaction support
 reviewed: 2019-12-19
 component: SqlTransport
-tags:
-- Transactions
-- Transport
 redirects:
 - nservicebus/sqlserver/transactions
 - transports/sqlserver/transactions

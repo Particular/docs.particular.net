@@ -2,8 +2,6 @@
 title: Deployment options
 reviewed: 2019-10-24
 component: SqlTransport
-tags:
-- Transport
 related:
  - nservicebus/operations
 redirects:

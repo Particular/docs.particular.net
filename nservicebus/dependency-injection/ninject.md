@@ -3,8 +3,6 @@ title: Ninject
 summary: Configure NServiceBus to use Ninject for dependency injection.
 reviewed: 2018-12-05
 component: Ninject
-tags:
- - Dependency Injection
 related:
  - samples/dependency-injection/ninject
  - nservicebus/dependency-injection/child-lifetime

@@ -3,9 +3,6 @@ title: Messages, events and commands
 summary: Messages, events, and commands and how to define them.
 component: Core
 reviewed: 2018-12-28
-tags:
- - Unobtrusive
- - Convention
 related:
  - nservicebus/messaging/conventions
  - nservicebus/messaging/unobtrusive-mode

@@ -3,8 +3,6 @@ title: Default Logging
 summary: The default logging capability of NServiceBus.
 reviewed: 2019-08-06
 component: Core
-tags:
-- Logging
 related:
 - nservicebus/logging
 ---

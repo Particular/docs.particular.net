@@ -3,9 +3,6 @@ title: Mapping Endpoint Instances With a Shared File
 summary: Mapping logical endpoints to physical instances with a shared file
 reviewed: 2020-05-27
 component: Core
-tags:
- - Routing
- - MSMQ
 ---
 
 The sample demonstrates how to use a file to describe the mapping between logical endpoints and their physical instances (i.e. deployments of a given logical endpoint to a concrete virtual machine).

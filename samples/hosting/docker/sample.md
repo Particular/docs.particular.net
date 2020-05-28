@@ -3,8 +3,6 @@ title: Hosting endpoints in Docker Linux containers
 summary: Hosting multiple endpoints in several Docker Linux containers managed by Docker Compose
 reviewed: 2019-12-16
 component: Core
-tags:
-- Hosting
 related:
 - nservicebus/hosting/docker-host
 - nservicebus/hosting

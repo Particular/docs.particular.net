@@ -3,8 +3,6 @@ title: Why Use SQS?
 summary: Explore when it makes sense to use SQS as a transport.
 component: SQS
 reviewed: 2019-07-15
-tags:
-- AWS
 redirects:
  - nservicebus/sqs/why-use-sqs
 ---

@@ -4,8 +4,6 @@ summary: How to configure the NHibernate-based persistence for NServiceBus when 
 component: NHibernate
 versions: '[6,]'
 reviewed: 2020-03-20
-tags:
- - Persistence
 related:
  - persistence/nhibernate/accessing-data
 redirects:

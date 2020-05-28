@@ -3,9 +3,6 @@ title: Publishers name configuration
 summary: Configuration mapping between publisher names and event types for the endpoint-oriented topology
 component: ASB
 versions: "[7,)"
-tags:
-- Azure
-- Transport
 reviewed: 2018-12-11
 redirects:
  - nservicebus/azure-service-bus/publisher-names-configuration

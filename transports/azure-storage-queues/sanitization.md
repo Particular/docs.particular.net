@@ -2,8 +2,6 @@
 title: Azure Storage Queues Sanitization
 component: ASQ
 versions: '[8,)'
-tags:
-- Azure
 related:
 - transports/azure-storage-queues/configuration
 - samples/azure/storage-queues

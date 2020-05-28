@@ -1,8 +1,6 @@
 ---
 title: Installing ServiceControl Monitoring Instances
 reviewed: 2019-05-03
-tags:
- - Installation
 ---
 
 The ServiceControl installation file consists of an MSI bootstrapper EXE and an embedded MSI. This installation can be executed standalone or via the [Platform Installer](/platform/installer/). The installation package includes a utility to manage the installation, upgrade, and removal of ServiceControl services, including monitoring instances. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.

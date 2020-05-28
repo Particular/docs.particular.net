@@ -3,9 +3,6 @@ title: Audit Filter Pipeline Extension
 summary: Extending the pipeline to stop certain messages from being audited
 reviewed: 2019-01-09
 component: Core
-tags:
- - Pipeline
- - Audit
 related:
  - nservicebus/pipeline
  - nservicebus/operations/auditing

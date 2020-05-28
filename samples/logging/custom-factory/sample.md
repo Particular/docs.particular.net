@@ -3,8 +3,6 @@ title: Custom Logger Factory
 summary: Illustrates a custom implementation of a logging factory.
 reviewed: 2019-07-30
 component: Core
-tags:
- - Logging
 related:
  - nservicebus/logging
 ---

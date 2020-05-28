@@ -4,8 +4,6 @@ summary: A description of the transport transaction modes supported by RabbitMQ
 reviewed: 2020-01-24
 versions: '[4,]'
 component: Rabbit
-tags:
- - Transactions
 redirects:
  - nservicebus/rabbitmq/transactions-and-delivery-guarantees
 ---

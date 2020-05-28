@@ -2,10 +2,6 @@
 title: Publishing from Web Applications
 summary: Guidelines for publishing messages from within web applications
 component: core
-tags:
-- event
-- scalability
-- publish subscribe
 related:
 - samples/web
 reviewed: 2018-10-18

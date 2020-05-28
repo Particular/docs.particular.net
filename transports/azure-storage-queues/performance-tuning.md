@@ -5,10 +5,6 @@ component: ASQ
 isLearningPath: true
 versions: '[7,]'
 reviewed: 2020-03-25
-tags:
-- Azure
-- Transport
-- Performance
 related:
  - nservicebus/operations
 redirects:

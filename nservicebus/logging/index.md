@@ -4,8 +4,6 @@ summary: NServiceBus logging
 reviewed: 2019-07-29
 component: Core
 isLearningPath: true
-tags:
-- Logging
 redirects:
 - nservicebus/logging-in-nservicebus
 related:

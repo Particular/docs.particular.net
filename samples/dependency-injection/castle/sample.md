@@ -2,8 +2,6 @@
 title: Windsor Dependency Injection Usage
 component: Castle
 reviewed: 2019-09-11
-tags:
- - dependency injection
 related:
  - nservicebus/dependency-injection
  - nservicebus/dependency-injection/castlewindsor

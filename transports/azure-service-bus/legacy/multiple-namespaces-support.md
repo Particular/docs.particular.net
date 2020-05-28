@@ -4,9 +4,6 @@ summary: Configuring Azure Service Bus transport to support different partitioni
 reviewed: 2019-10-06
 component: ASB
 versions: '[7,)'
-tags:
-- Azure
-- Transport
 related:
 - samples/azure/custom-partitioning-asb
 redirects:

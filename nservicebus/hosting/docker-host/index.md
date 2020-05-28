@@ -1,8 +1,6 @@
 ---
 title: Docker Container Host
 summary: Take advantage of process isolation by hosting endpoints in Docker containers
-tags:
- - Hosting
 related:
  - nservicebus/dotnet-templates
  - nservicebus/licensing
@@ -56,4 +54,3 @@ ENTRYPOINT ["dotnet", "MyEndpoint.dll"]
 
 
 partial: program
-

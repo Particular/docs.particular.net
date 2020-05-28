@@ -3,9 +3,6 @@ title: Retry behavior
 summary: Describes the relationship between the NServiceBus retry behavior and the Azure Service Bus native retry behavior
 component: ASB
 versions: '[7,)'
-tags:
-- Azure
-- Transport
 reviewed: 2019-02-19
 redirects:
  - nservicebus/azure-service-bus/retries

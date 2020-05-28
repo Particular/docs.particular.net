@@ -5,8 +5,6 @@ component: SQS
 reviewed: 2020-04-27
 related:
  - samples/sqs/simple
-tags:
-- AWS
 redirects:
 - nservicebus/sqs/index
 ---

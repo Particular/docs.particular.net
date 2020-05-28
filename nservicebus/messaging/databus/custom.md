@@ -3,8 +3,6 @@ title: Custom Data Bus Implementation
 summary: Details how to register and plug in a custom data bus implementation into an endpoint.
 component: Core
 reviewed: 2019-05-12
-tags:
-- DataBus
 redirects:
 - nservicebus/plugin-custom-databus
 related:

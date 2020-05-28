@@ -1,9 +1,6 @@
 ---
 title: Managing ServiceControl via PowerShell
 reviewed: 2019-05-03
-tags:
- - Installation
- - PowerShell
 ---
 
 

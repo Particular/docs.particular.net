@@ -3,9 +3,6 @@ title: Performance Tuning
 summary: Guidance to tweak the performance of the SQS transport
 component: SQS
 reviewed: 2020-05-25
-tags:
-- AWS
-- Performance
 ---
 
 NOTE: It is difficult to give performance tuning guidelines that will be generally applicable. Results may vary greatly depending on many factors such as bandwidth, latency, client version, and much more. As always with performance tuning: Measure, don't assume.

@@ -3,8 +3,6 @@ title: Spring
 summary: Details on how to Configure NServiceBus to use Spring for dependency injection. Includes usage examples as well as lifecycle mappings.
 component: Spring
 reviewed: 2018-12-05
-tags:
- - Dependency Injection
 related:
  - samples/dependency-injection/spring
 redirects:

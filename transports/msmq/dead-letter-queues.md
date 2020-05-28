@@ -3,8 +3,6 @@ title: MSMQ Dead Letter Queues
 summary: Controlling MSMQ Dead Letter Queue behavior
 reviewed: 2019-09-16
 component: MsmqTransport
-tags:
- - Transport
 redirects:
  - nservicebus/msmq/dead-letter-queues
 related:

@@ -3,8 +3,6 @@ title: Full Configuration API
 summary: List of all Azure Service Bus Transport configuration settings
 component: ASB
 versions: '[7,)'
-tags:
-- Azure
 redirects:
  - nservicebus/azure-service-bus/configuration/configuration
  - nservicebus/azure-service-bus/configuration/full

@@ -1,8 +1,6 @@
 ---
 title: Installing ServiceControl
 reviewed: 2020-03-16
-tags:
- - Installation
 redirects:
  - servicecontrol/multi-transport-support
 ---

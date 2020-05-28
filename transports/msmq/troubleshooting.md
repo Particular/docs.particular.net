@@ -4,9 +4,6 @@ summary: Resolutions for common problems with the MSMQ transport.
 reviewed: 2019-10-18
 component: MsmqTransport
 isLearningPath: true
-tags:
-- Transport
-- MSMQ
 redirects:
  - nservicebus/messagequeueexception-insufficient-resources-to-perform-operation
  - nservicebus/msmq/messagequeueexception-insufficient-resources-to-perform-operation

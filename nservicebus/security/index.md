@@ -3,9 +3,6 @@ title: Security
 summary: Security features for messages, transports, and persisters
 reviewed: 2018-10-11
 isLearningPath: true
-tags:
- - Encryption
- - Security
 redirects:
  - nservicebus/security/encryption
 ---

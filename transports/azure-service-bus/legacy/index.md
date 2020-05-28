@@ -1,8 +1,6 @@
 ---
 title: Azure Service Bus Transport (Legacy)
 component: ASB
-tags:
- - Azure
 redirects:
  - nservicebus/using-azure-servicebus-as-transport-in-nservicebus
  - nservicebus/azure/azure-servicebus-transport

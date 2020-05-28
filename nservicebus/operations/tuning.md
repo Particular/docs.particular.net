@@ -8,10 +8,6 @@ redirects:
  - nservicebus/how-to-reduce-throughput-of-an-endpoint
  - nservicebus/operations/reducing-throughput
  - nservicebus/operations/throughput
-tags:
- - performance
- - throttling
- - concurrency
 reviewed: 2018-10-10
 ---
 

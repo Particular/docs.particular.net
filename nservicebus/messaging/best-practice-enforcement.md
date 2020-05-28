@@ -4,10 +4,6 @@ summary: How to enable/disable the enforcement of messaging best practices based
 component: Core
 reviewed: 2018-09-21
 versions: '[6.0,)'
-tags:
- - Convention
- - Command
- - Event
 ---
 
 By default, [messaging best practices](messages-events-commands.md) are enforced for messages defined as either commands or events.

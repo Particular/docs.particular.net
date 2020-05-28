@@ -4,8 +4,6 @@ summary: Information about PII stored by NServiceBus
 versions: "[5,)"
 component: core
 isLearningPath: true
-tags:
- - Compliance
 reviewed: 2020-03-30
 ---
 

@@ -2,10 +2,6 @@
 title: Securing Connection Strings To Namespaces
 component: ASB
 versions: '[7,)'
-tags:
-- Azure
-- Transport
-- Security
 reviewed: 2019-02-19
 related:
  - nservicebus/operations

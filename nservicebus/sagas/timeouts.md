@@ -3,8 +3,6 @@ title: Saga Timeouts
 summary: Call back into a saga after a defined period of time.
 reviewed: 2019-12-24
 component: Core
-tags:
-- Saga
 related:
 - samples/saga
 - nservicebus/sagas

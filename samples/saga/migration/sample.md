@@ -3,8 +3,6 @@ title: Migrating saga persistence
 summary: How to migrate from one type of saga persistence to another without an off-line migration procedure
 component: Core
 reviewed: 2019-10-04
-tags:
-- Saga
 related:
 - nservicebus/sagas
 - persistence/nhibernate

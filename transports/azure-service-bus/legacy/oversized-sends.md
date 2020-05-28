@@ -3,9 +3,6 @@ title: Oversized Sends
 reviewed: 2019-02-27
 component: ASB
 versions: '[7,)'
-tags:
-- Azure
-- Error Handling
 redirects:
  - nservicebus/azure-service-bus/oversized-sends
  - transports/azure-service-bus/oversized-sends

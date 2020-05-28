@@ -3,12 +3,6 @@ title: Configure delayed retries
 summary: How to configure delayed retries as a second stage of recoverability.
 component: Core
 reviewed: 2020-04-26
-tags:
- - Error Handling
- - Exceptions
- - Retry
- - Recoverability
- - Delayed Retries
 redirects:
  - nservicebus/second-level-retries
 related:

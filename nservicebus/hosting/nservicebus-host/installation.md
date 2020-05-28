@@ -1,8 +1,6 @@
 ---
 title: Installation
 summary: How to install the NServiceBus.Host as a Windows service
-tags:
-- Hosting
 reviewed: 2020-04-30
 ---
 

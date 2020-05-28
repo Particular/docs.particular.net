@@ -3,10 +3,6 @@ title: SQL Transport Design
 summary: The design and implementation details of SQL Server Transport
 reviewed: 2019-10-08
 component: SqlTransport
-tags:
-- Transactions
-- Transport
-- Concurrency
 redirects:
  - nservicebus/sqlserver/design
  - transports/sqlserver/design

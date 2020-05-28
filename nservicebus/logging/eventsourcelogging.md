@@ -3,8 +3,6 @@ title: Event Tracing for Windows
 summary: Logging to Event Tracing for Windows (ETW)
 reviewed: 2019-07-29
 component: EventSourceLogging
-tags:
-- Logging
 related:
 - samples/logging/eventsourcelogging
 ---
@@ -15,4 +13,3 @@ Support for writing all NServiceBus log entries to [event tracing for Windows (E
 
 
 include: eventsourcelogging
-

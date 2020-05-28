@@ -3,9 +3,6 @@ title: Transport Transactions
 summary: Supported transaction modes and their consistency guarantees
 component: Core
 versions: "[4,)"
-tags:
- - Transactions
- - Transport
 redirects:
  - nservicebus/messaging/transactions
  - nservicebus/transports/transactions

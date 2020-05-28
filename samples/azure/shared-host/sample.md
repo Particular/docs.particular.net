@@ -3,9 +3,6 @@ title: Shared Hosting in Azure Cloud Services
 summary: Uses the NServiceBus Hosting Azure HostProcess to achieve shared hosting of multiple NServiceBus endpoints in an Azure instance.
 component: CloudServicesHost
 reviewed: 2019-03-05
-tags:
-- Azure
-- Hosting
 related:
 - nservicebus/hosting/cloud-services-host/shared-hosting
 ---

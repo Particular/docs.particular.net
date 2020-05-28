@@ -3,8 +3,6 @@ title: Naming Conventions
 summary: Naming Conventions for Azure Service Bus, Versions 6 and below.
 component: ASB
 versions: '[6,7)'
-tags:
- - Azure
 reviewed: 2019-02-13
 redirects:
  - nservicebus/azure-service-bus/naming-conventions

@@ -3,8 +3,6 @@ title: NServiceBus.Extensions.Hosting
 summary: NServiceBus integration with Microsoft.Extensions.Hosting
 component: Extensions.Hosting
 reviewed: 2019-11-08
-tags:
- - Hosting
 related:
  - samples/hosting/generic-host
  - samples/dependency-injection/aspnetcore

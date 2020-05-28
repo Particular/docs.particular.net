@@ -3,9 +3,6 @@ title: SQL Persistence Saga Rename
 summary: Renaming a saga that is stored in the SQL Persistence
 reviewed: 2020-01-27
 component: SqlPersistence
-tags:
- - Saga
- - Timeout
 related:
  - nservicebus/sagas
 ---

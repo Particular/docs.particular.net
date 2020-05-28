@@ -1,9 +1,6 @@
 ---
 title: Topology
 component: ASBS
-tags:
- - Azure
- - Transport
 reviewed: 2020-04-29
 ---
 

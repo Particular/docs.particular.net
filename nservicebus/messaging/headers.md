@@ -4,8 +4,6 @@ summary: List of built-in NServiceBus message headers.
 reviewed: 2019-10-04
 component: Core
 versions: '[5.0,)'
-tags:
- - Header
 redirects:
  - nservicebus/message-headers
  - nservicebus/messaging/headers

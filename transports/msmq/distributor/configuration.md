@@ -3,8 +3,6 @@ title: Configuring Distributor and Workers
 summary: Describes how to configure the distributor and its workers.
 component: distributor
 reviewed: 2018-10-24
-tags:
- - Scalability
 redirects:
  - nservicebus/msmq/distributor/configuration
 ---

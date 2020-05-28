@@ -4,8 +4,6 @@ summary: How to report NServiceBus metrics data to Azure Monitor Application Ins
 component: Metrics
 isLearningPath: true
 reviewed: 2019-07-23
-tags:
-- Azure
 related:
  - monitoring/metrics
  - samples/azure

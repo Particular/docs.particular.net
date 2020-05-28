@@ -3,8 +3,6 @@ title: Initialization
 summary: An interface that supports hooking into the very beginning of the bus creation sequence of NServiceBus.
 component: Core
 reviewed: 2019-07-18
-tags:
- - lifecycle
 related:
  - samples/startup-shutdown-sequence
 ---

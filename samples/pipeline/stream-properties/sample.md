@@ -3,8 +3,6 @@ title: Handling Stream Properties Via the Pipeline
 summary: Add support for writing streams to a file share that can be accessed by multiple endpoints.
 reviewed: 2019-12-11
 component: Core
-tags:
-- Pipeline
 related:
 - nservicebus/pipeline
 ---

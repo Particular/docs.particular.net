@@ -3,11 +3,6 @@ title: Unobtrusive
 summary: Demonstrates NServiceBus operating in unobtrusive mode.
 reviewed: 2019-05-06
 component: Core
-tags:
-- Unobtrusive
-- Command
-- Event
-- Convention
 redirects:
 - nservicebus/unobtrusive-sample
 related:

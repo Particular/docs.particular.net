@@ -2,8 +2,6 @@
 title: Different transport types
 summary: The main transport type differences explained
 component: Core
-tags:
- - Transport
 reviewed: 2018-11-27
 ---
 

@@ -3,8 +3,6 @@ title: Manipulating message headers
 summary: Access and manipulate the built-in NServiceBus headers or add custom headers
 reviewed: 2020-01-03
 component: Core
-tags:
-- Header
 redirects:
 - nservicebus/how-do-i-get-technical-information-about-a-message
 related:

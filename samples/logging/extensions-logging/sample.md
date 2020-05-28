@@ -3,8 +3,6 @@ title: NServiceBus.Extensions.Logging Usage
 summary: A sample that uses Microsoft.Extensions.Logging with NLog
 component: Extensions.Logging
 reviewed: 2020-03-26
-tags:
- - logging
 related:
  - nservicebus/logging
 ---

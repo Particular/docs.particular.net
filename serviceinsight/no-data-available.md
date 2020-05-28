@@ -3,8 +3,6 @@ title: Data not available
 reviewed: 2020-03-16
 summary: Why ServiceInsight cannot visualize a conversation
 component: ServiceInsight
-tags:
-- Expiration
 ---
 
 When selecting a message in ServiceInsight, the visualization windows may show the message "Data not available".

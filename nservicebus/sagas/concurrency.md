@@ -2,8 +2,6 @@
 title: Saga concurrency
 summary: NServiceBus ensures consistency between saga state and messaging.
 component: Core
-tags:
-- Saga
 redirects:
 - nservicebus/nservicebus-sagas-and-concurrency
 reviewed: 2019-09-24

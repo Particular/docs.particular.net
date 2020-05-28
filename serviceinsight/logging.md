@@ -3,8 +3,6 @@ title: Logging in ServiceInsight
 reviewed: 2020-02-27
 summary: How logging works and how to access the log files
 component: ServiceInsight
-tags:
- - Logging
 redirects:
  - serviceinsight/how-logging-works
 ---

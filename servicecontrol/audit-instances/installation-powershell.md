@@ -1,9 +1,6 @@
 ---
 title: Managing ServiceControl Audit instances via PowerShell
 reviewed: 2019-07-09
-tags:
- - Installation
- - PowerShell
 ---
 
 NOTE: For general information about ServiceControl PowerShell, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).

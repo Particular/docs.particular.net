@@ -4,8 +4,6 @@ summary: How to use NServiceBus in environments requiring Fully Qualified Domain
 component: MsmqTransport
 versions: '[4,)'
 reviewed: 2018-10-29
-tags:
-- MSMQ
 redirects:
  - nservicebus/msmq/full-qualified-domain-name
 ---

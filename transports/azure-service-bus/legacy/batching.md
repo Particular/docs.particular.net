@@ -2,9 +2,6 @@
 title: Batching
 summary: Batching with Azure Service Bus and how it works
 component: ASB
-tags:
-- Azure
-- Transport
 reviewed: 2019-02-13
 redirects:
  - nservicebus/azure-service-bus/batching

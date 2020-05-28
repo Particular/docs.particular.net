@@ -3,9 +3,6 @@ title: Transaction Support
 reviewed: 2019-02-06
 component: ASB
 versions: '[7,)'
-tags:
- - Azure
- - Transactions
 redirects:
  - nservicebus/azure-service-bus/transaction-support
  - transports/azure-service-bus/transaction-support

@@ -2,8 +2,6 @@
 title: Azure Storage Queues Delayed Delivery
 component: ASQ
 versions: '[7,)'
-tags:
-- Azure
 related:
 - persistence
 - persistence/azure-storage

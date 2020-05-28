@@ -1,11 +1,6 @@
 ---
 title: Understanding Transactions in Azure
 summary: Things to keep in mind when using transactions with NServiceBus in Azure
-tags:
-- Azure
-- Transactions
-- Idempotency
-- DTC
 redirects:
  - nservicebus/transactions
  - nservicebus/understanding-transactions-in-windows-azure

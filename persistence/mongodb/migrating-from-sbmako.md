@@ -2,8 +2,6 @@
 title: Migrating from NServiceBus.MongoDB
 component: mongodb
 versions: '[1,)'
-tags:
- - Persistence
 related:
  - persistence/mongodb/migrating-from-tekmaven
 reviewed: 2019-05-29

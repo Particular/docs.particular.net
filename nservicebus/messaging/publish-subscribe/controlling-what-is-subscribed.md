@@ -2,8 +2,6 @@
 title: Controlling What Is Subscribed
 summary: When applying the publish-subscribe pattern, there are several ways to control what messages are subscribed to
 component: Core
-tags:
-- Publish Subscribe
 reviewed: 2020-05-27
 ---
 
@@ -57,4 +55,3 @@ Events can manually be subscribed and unsubscribed to:
 snippet: ExplicitSubscribe
 
 partial: manualsubscriptions
-

@@ -3,9 +3,6 @@ title: Endpoints
 summary: Describe the concepts of Endpoint and Endpoint Instance.
 reviewed: 2019-07-18
 component: Core
-tags:
-- Endpoint
-- Endpoint Instance
 related:
  - samples/endpoint-configuration
 redirects:

@@ -2,10 +2,6 @@
 title: Hosting in Azure Cloud Services
 summary: Using Azure Cloud Services to host NServiceBus.
 component: CloudServicesHost
-tags:
- - Hosting
- - Azure
- - Logging
 redirects:
  - nservicebus/hosting-nservicebus-in-windows-azure-cloud-services
  - nservicebus/azure/hosting-nservicebus-in-windows-azure-cloud-services

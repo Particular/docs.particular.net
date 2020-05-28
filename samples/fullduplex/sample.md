@@ -3,8 +3,6 @@ title: Full Duplex
 summary: Using full-duplex and request/response communication.
 reviewed: 2019-09-16
 component: Core
-tags:
-- Messaging Patterns
 redirects:
 - nservicebus/full-duplex-sample
 ---

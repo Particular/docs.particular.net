@@ -3,9 +3,6 @@ title: Message lock renewal
 summary: Extending message lock for long-running operations
 component: ASB
 versions: '[7,)'
-tags:
-- Azure
-- Transport
 reviewed: 2019-03-22
 related:
  - samples/azure/azure-service-bus-long-running

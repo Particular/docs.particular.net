@@ -2,9 +2,6 @@
 title: Simple RavenDB Persistence Usage
 summary: Using RavenDB to store Sagas and Timeouts.
 component: Raven
-tags:
- - Saga
- - Timeout
 related:
  - nservicebus/sagas
  - persistence/ravendb

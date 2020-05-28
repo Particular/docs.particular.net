@@ -2,8 +2,6 @@
 title: RavenDB Persistence
 component: raven
 versions: '[2,)'
-tags:
- - Persistence
 related:
  - samples/ravendb
  - samples/multi-tenant/ravendb

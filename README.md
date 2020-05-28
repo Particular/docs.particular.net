@@ -44,7 +44,6 @@ As part of a full review the following should be done:
  * All links are relevant. No 3rd party links have redirects or 404s.
  * Are there any more links that can be added to improve the content
  * Content is correct up to and including the current released version
- * Tags are correct
  * Summary and title is adequate
  * Update reviewed date in header, even if no changes were made.
 
@@ -74,9 +73,6 @@ For example:
 title: Auditing Messages
 summary: Provides built-in message auditing for every endpoint.
 versions: '[4,)'
-tags:
-- Auditing
-- Forwarding Messages
 related:
 - samples/custom-checks/monitoring3rdparty
 redirects:
@@ -137,28 +133,6 @@ summary: Provides built-in message auditing for every endpoint.
 ```
 
 Optional. Used for the meta description tag (`<meta name="description" />`) and displaying the search results.
-
-
-### Tags
-
-```
-tags:
-- Auditing
-- Forwarding Messages
-```
-
-Optional. Used to flag the article as being part of a group of articles.
-
-Tags are rendered in the articles content with the full list of tags being rendered at [https://docs.particular.net/tags](https://docs.particular.net/tags). Untagged articles will be rendered here [https://docs.particular.net/tags/untagged](https://docs.particular.net/tags/untagged)
-
-Tags are interpreted in two ways.
-
-* For inclusion in URLs:
-   * Tag are lower case
-   * Spaces are replaced with dashes (`-`)
-* For display purposes:
-   * Tags are lower case
-   * Dashes (`-`) are replaced with spaces
 
 
 ### Hidden
@@ -249,9 +223,6 @@ To mark a page as belonging to the [Particular Software Learning Path](https://p
 ---
 title: ServiceInsight Interaction
 summary: 'Using ServiceInsight Together'
-tags:
-- Invocation
-- Debugging
 redirects:
 - servicecontrol/sc-si
 - servicecontrol/debugging-servicecontrol

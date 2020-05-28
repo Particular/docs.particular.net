@@ -3,11 +3,6 @@ title: Avoiding Transactions in Azure
 summary: Options for avoiding transactions in Azure
 reviewed: 2020-02-20
 isLearningPath: true
-tags:
- - Azure
- - Transactions
- - Idempotency
- - DTC
 ---
 
 Some [transports](/transports/) in NServiceBus rely on the [Distributed Transaction Coordinator (DTC)](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85)) to make a distributed system reliable and to ensure consistency. In Azure, DTC should be avoided since many services don't support transactions, as explained in [Understanding Transactionality in Azure](understanding-transactionality-in-azure.md).

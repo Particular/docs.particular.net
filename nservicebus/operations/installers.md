@@ -5,8 +5,6 @@ reviewed: 2020-05-20
 component: core
 related:
  - nservicebus/operations
-tags:
- - Installation
 redirects:
  - nservicebus/nservicebus-installers
 ---
@@ -50,4 +48,3 @@ Implement the `INeedToInstallSomething` interface to create a custom installer:
 snippet: InstallSomething
 
 Assemblies in the runtime directory are scanned for installers so no code is needed to register them.
-
