@@ -117,7 +117,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.2.0) | 2020-02-12     | -                 | -                                 |
+| [6.3.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.3.0) | 2020-05-28     | -                 | -                                 |
+| [6.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.2.0) | 2020-02-12     | 2020-08-28        | Superseded by 6.3.x               |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.1.0) | ~~2020-02-06~~ | ~~2020-05-12~~    | ~~Superseded by 6.2.x~~           |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.0.0) | ~~2019-06-10~~ | ~~2020-05-06~~    | ~~Superseded by 6.1.x~~           |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB/5.0.1) | 2018-05-29     | 2020-06-10        | Superseded by 6.0.x               |
