@@ -889,13 +889,12 @@
   NugetOrder:
     - Community.NServiceBus.LambdaHandlers
 
-  - Key: Migrations
-    Name: Particular.TimeoutMigration
-    DocsUrl: nservicebus/tools
-    GitHubOwner: Particular
-    Category: Tools
-    LicenseUrl: https://github.com/Particular/TimeoutMigrationTool/blob/master/LICENSE.md
-    ProjectUrl: https://github.com/Particular/TimeoutMigrationTool
-    NugetOrder:
-      - Particular.TimeoutMigration
-
+- Key: Migrations
+  Name: Particular.TimeoutMigration
+  DocsUrl: nservicebus/tools
+  GitHubOwner: Particular
+  Category: Tools
+  LicenseUrl: https://github.com/Particular/TimeoutMigrationTool/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/TimeoutMigrationTool
+  NugetOrder:
+    - Particular.TimeoutMigration

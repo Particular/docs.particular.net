@@ -1,6 +1,7 @@
 ---
 title: Migrating to native delivery
 summary: An overview of the tool supporting migrating from timeout manager to native delivery
+reviewed: 2020-05-29
 ---
 
 In v7 we introduced [native delayed delivery](/nservicebus/messaging/delayed-delivery.md) across most transports we support today.
