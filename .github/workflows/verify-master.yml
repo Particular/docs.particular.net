@@ -28,8 +28,10 @@ jobs:
           status: ${{ job.status }}
           author_name: Integrity Tests
           fields: repo,message,commit,author,action,eventName,ref,workflow
+          username: GitHub Actions
+          icon_emoji: ":github_actions:"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # optional
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
   integrity-tests:
     name: Integrity tests
@@ -50,6 +52,8 @@ jobs:
           status: ${{ job.status }}
           author_name: Integrity Tests
           fields: repo,message,commit,author,action,eventName,ref,workflow
+          username: GitHub Actions
+          icon_emoji: ":github_actions:"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # optional
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
