@@ -4,8 +4,6 @@ summary: The Particular Platform is open source and takes contributions from the
 reviewed: 2018-11-09
 ---
 
-you
-
 ## Getting Started
 
  1. Create a [GitHub account](https://github.com/join).
