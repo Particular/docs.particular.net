@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - workflow-update
 env:
   DOTNET_NOLOGO: true # Won't work until dotnet 3.1.300, then --nologo not needed
 jobs:
