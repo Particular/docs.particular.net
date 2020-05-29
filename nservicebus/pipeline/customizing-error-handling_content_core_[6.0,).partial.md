@@ -1,4 +1,6 @@
-The `IManageMessageFailures` interface has been deprecated. Instead, the same functionality can be achieved by adding a new behavior which is invoked during the message processing pipeline. Read this article on how to [manipulate the pipeline with behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
+Custom exception handling can be implemented using pipeline behaviors. To learn more about pipeline and behaviors refer to [manipulate the pipeline with behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
+
+NOTE: Behaviors are to meant to to customize recoverability i.e. how many times and under which conditions a message should be re-tried. To read more about customizing recoverability refer to the [recoverability page](/nservicebus/recoverability/).
 
 
 ### Create a new behavior
@@ -34,6 +36,6 @@ snippet: RollbackMessage
 
 ### Registering the Behavior
 
-In the example below, the new behavior `CustomErrorHandlingBehavior` is registered to be part of the message handling pipeline. This new behavior is registered such that it will be invoked after NServiceBus has invoked the [recoverability mechanism](/nservicebus/recoverability/). This includes Second-Level Retries if they are enabled.
+In the example below, the new behavior `CustomErrorHandlingBehavior` is registered to be part of the message handling pipeline. This new behavior is placed at the very beginning of the pipeline. Such placement allows to insert code right after a message has been received from the transport and right before the [recoverability](/nservicebus/recoverability/) policy is invoked.
 
 snippet: RegisterCustomErrorHandlingBehavior
