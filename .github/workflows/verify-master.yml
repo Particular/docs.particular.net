@@ -26,8 +26,9 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          author_name: Integrity Tests
-          fields: repo,message,commit,author,action,eventName,ref,workflow
+          text: Content verification has failed.
+          author_name: Content Verification
+          fields: message,author,action,eventName,ref,workflow
           username: GitHub Actions
           icon_emoji: ":github_actions:"
         env:
@@ -50,8 +51,8 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          author_name: Integrity Tests
-          fields: repo,message,commit,author,action,eventName,ref,workflow
+          author_name: Integrity tests have failed.
+          fields: message,author,action,eventName,ref,workflow
           username: GitHub Actions
           icon_emoji: ":github_actions:"
         env:
