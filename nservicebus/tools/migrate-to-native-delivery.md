@@ -40,6 +40,20 @@ It should be listed there.
 
 ## Using the tool
 
+Preview the migration
+
+```
+dotnet migrate-timeouts preview
+                        -t|--target <targetConnectionString>
+                        -c|--cutofftime <cutofftime>
+                        [--endpoint <endpointName>]
+                        [--allendpoints]
+                        [-a|--abort]
+
+```
+
+Running a migration
+
 ```
 dotnet migrate-timeouts -t|--target <targetConnectionString>
                         -c|--cutofftime <cutofftime>
@@ -61,8 +75,7 @@ This option will perform the following actions:
  - validate if there are timeouts the tool is [unable to migrate](migrate-to-native-delivery.md#limitations)
 
 Once this information has been reviewed, the migration process can be initialized.
-It is highly suggested to migrate endpoint by endpoint, especially for critical endpoints. Even when selecting the -allendpoints options, the tool will conduct an endpoint-by-endpoint migration behind the scenes.
-
+Even though the tool supports migrating all endpoints connected to the persistence at once, it is highly suggested to migrate endpoint by endpoint, especially for critical endpoints. Even when selecting the -allendpoints options, the tool will conduct an endpoint-by-endpoint migration behind the scenes.
 
 ## Limitations
 
@@ -70,3 +83,7 @@ As documented in the [RabbitMQ transport](/transports/rabbitmq/delayed-delivery.
 
 If the tool presents endpoints that are not part of the system when running the --analyze option, it might be that an endpoint was renamed at some point.
 Any timeouts that were stored for that endpoint, might already be late in delivery and should be handled seperate from the migration tool since the tool has no way to detect where to migrate them to.
+
+## What if something goes wrong
+
+If the migration is stopped or fails for some reason, the tool is able to recover and continue where it left off last time, considering that the tool is run with the same parameters. In order to run the tool with different parameters after initialising the migration process, the running migration process needs to be aborted using the --abort option. Any timeouts that have been fully migrated at that point will not be rollbacked, they will have already be delivered to the target transport and may even have been already delivered to the destination endpoint. Timeouts that were scheduled to migrate will be rollbacked and reappear to the legacy TimeoutManager.
