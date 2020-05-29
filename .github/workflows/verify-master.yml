@@ -1,7 +1,8 @@
 name: VerifyMaster
 on:
   push:
-    branches: master
+    branches:
+      - master
 env:
   DOTNET_NOLOGO: true # Won't work until dotnet 3.1.300, then --nologo not needed
 jobs:
@@ -18,7 +19,20 @@ jobs:
       - name: Install docstool
         run: dotnet tool install -g Particular.DocsTool --add-source=https://www.myget.org/F/particular/api/v3/index.json
       - name: Run docstool
-        run: docstool test
+        run: docstool test --no-version-check
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: Content verification has failed.
+          author_name: Content Verification
+          fields: message,author,action,eventName,ref,workflow
+          username: GitHub Actions
+          icon_emoji: ":github_actions:"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
   integrity-tests:
     name: Integrity tests
     runs-on: windows-latest
@@ -31,3 +45,15 @@ jobs:
           dotnet-version: 3.1.201
       - name: Run integrity tests
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --nologo
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          author_name: Integrity tests have failed.
+          fields: message,author,action,eventName,ref,workflow
+          username: GitHub Actions
+          icon_emoji: ":github_actions:"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
