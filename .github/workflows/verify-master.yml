@@ -18,7 +18,7 @@ jobs:
       - name: Install docstool
         run: dotnet tool install -g Particular.DocsTool --add-source=https://www.myget.org/F/particular/api/v3/index.json
       - name: Run docstool
-        run: docstool test
+        run: docstool test --no-version-check
   integrity-tests:
     name: Integrity tests
     runs-on: windows-latest
