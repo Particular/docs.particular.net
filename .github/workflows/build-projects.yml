@@ -15,3 +15,16 @@ jobs:
         uses: microsoft/setup-msbuild@v1
       - name: Build affected samples & snippets
         run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: Build Samples & Snippets has failed.
+          author_name: Samples and Snippets
+          fields: message,author,action,eventName,ref,workflow
+          username: GitHub Actions
+          icon_emoji: ":github_actions:"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
