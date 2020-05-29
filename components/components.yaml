@@ -103,7 +103,7 @@
   NugetOrder:
     - NServiceBus.Callbacks.Testing
     - NServiceBus.Callbacks
-    - NServiceBus    
+    - NServiceBus
 
 - Key: Castle
   Name: Castle Dependency Injection
@@ -332,7 +332,7 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.Logging
   NugetOrder:
     - NServiceBus.Extensions.Logging
-  
+
 - Key: Log4Net
   Name: Log4Net Logger
   DocsUrl: /nservicebus/logging/log4net
@@ -888,3 +888,14 @@
   ProjectUrl: https://github.com/timbussmann/Community.NServiceBus.LambdaHandlers
   NugetOrder:
     - Community.NServiceBus.LambdaHandlers
+
+  - Key: Migrations
+    Name: Particular.TimeoutMigration
+    DocsUrl: nservicebus/tools
+    GitHubOwner: Particular
+    Category: Tools
+    LicenseUrl: https://github.com/Particular/TimeoutMigrationTool/blob/master/LICENSE.md
+    ProjectUrl: https://github.com/Particular/TimeoutMigrationTool
+    NugetOrder:
+      - Particular.TimeoutMigration
+
