@@ -1,7 +1,6 @@
 ---
 title: Platform previews
-summary: An overview of how Particular makes use of preview versions of the platform
-reviewed: 2020-05-20
+reviewed: 2020-06-01
 ---
 
 Previews allow Particular Software to develop new features more quickly while better addressing user needs.
@@ -11,3 +10,9 @@ Before deciding to launch a preview, a research process is undertaken to determi
 Previews typically run for some period of time and their success is determined by customer adoption. If successful, it will translate into the adoption into the platform. Previews that are insufficiently used in production will be converted into a community project.
 
 During a preview, user feedback is central, so the more feedback is received, the better the end result will be. 
+
+## Previews
+
+| Name                       | Private | Public | Outcome    | Notes  |
+|----------------------------|:-------:|:------:|:----------:|--------|
+| [NServiceBus.AzureFunctions](LINK)|:white_check_mark:|:green_square:|  | [Forum discussion](LINK) |
