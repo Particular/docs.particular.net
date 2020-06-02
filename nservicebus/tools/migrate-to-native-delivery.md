@@ -40,25 +40,97 @@ It should be listed there.
 
 ## Using the tool
 
-Preview the migration
+The migration tool expects a few parameters in order to successfully migrate the timeouts.
+
+These parameters are required independent of the persistence used:
+```--target```:         The connection string of the target transport
+```--cutofftime```:     The time from which to start migrating timeouts, usually you wan't to keep some time
+```--endpoint```:       The endpoint to migrate.
+```--allendpoints```:   Indicates to migrate all endpoints in one run
+Even though parameters --endpoint and --allendpoints are option, one of them is required by the tool.
+
+Depending on the persistence, there are a few additonal parameters needed in order to run the migration:
+
+For RavenDB:
+```--serverUrl```:      The server url for the persistence
+```--databaseName```:   The name of the database in which timeouts are stored
+```--prefix```:         The prefix used for storage of timeouts, the default is "TimeoutDatas"
+```--ravenVersion```:   The supported versions for RavenDB are 3.5 and 4
+
+For SQL:
+```--source```:         The connection string to the database
+```--tablename```:      The name of the table in which timeouts are stored
+```--dialect```:        The sql dialect used to access the database
+
+#### Preview the migration
+
+The tool can be run in preview mode in order to get an overview of the endpoints available, and the timeouts within those endpoint to migrate.
+It's highly suggested to run in preview mode first and verify that the results match the expected timeouts to migrate.
+
+RavenDB example:
 
 ```
-dotnet migrate-timeouts preview
+dotnet migrate-timeouts preview ravendb
                         -t|--target <targetConnectionString>
                         -c|--cutofftime <cutofftime>
-                        [--endpoint <endpointName>]
+                        --serverUrl <serverUrl>
+                        --databaseName <databaseName>
+                        [--prefix] <prefix>
+                        [--ravenVersion] <ravenVersion>
+                        [--endpoint] <endpointName>
+                        [--allendpoints]
+```
+
+SQL example:
+
+```
+dotnet migrate-timeouts preview sqlp
+                        -t|--target <targetConnectionString>
+                        -c|--cutofftime <cutofftime>
+                        --source <source>
+                        --tablename <tablename>
+                        --dialect <sqlDialect>
+                        [--endpoint] <endpointName>
+                        [--allendpoints]
+```
+
+#### Running a migration
+
+Migrating from RavenDB persistence
+
+```
+dotnet migrate-timeouts ravendb
+                        -t|--target <targetConnectionString>
+                        -c|--cutofftime <cutofftime>
+                        --serverUrl <serverUrl>
+                        --databaseName <databaseName>
+                        [--prefix] <prefix>
+                        [--ravenVersion] <ravenVersion>
+                        [--endpoint] <endpointName>
                         [--allendpoints]
                         [-a|--abort]
 
 ```
 
-Running a migration
+Migrating from Sql persistence
 
 ```
-dotnet migrate-timeouts -t|--target <targetConnectionString>
+dotnet migrate-timeouts preview sqlp
+                        -t|--target <targetConnectionString>
                         -c|--cutofftime <cutofftime>
-                        [--endpoint <endpointName>]
+                        --source <source>
+                        --tablename <tablename>
+                        --dialect <sqlDialect>
+                        [--endpoint] <endpointName>
                         [--allendpoints]
+                        [-a|--abort]
+
+```
+
+Aborting a migration
+
+```
+dotnet migrate-timeouts <repeat previous parameters>
                         [-a|--abort]
 
 ```
