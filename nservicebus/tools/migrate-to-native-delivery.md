@@ -7,7 +7,7 @@ reviewed: 2020-05-29
 In v7 [native delayed delivery](/nservicebus/messaging/delayed-delivery.md) was introduced across most transports that are supported today.
 Hybrid mode was made available for endpoints, which means that the timeouts that were already registered in the system, would still be consumed by the legacy [TimeoutManager] (/nservicebus/messaging/timeout-manager.md) and the new delayed deliveries  would flow through the native implementation.
 
-In v8, support for the hybrid mode is removed. Most of the timeouts that were still registered through the legacy timeout manager might have been consumed by now, but there might be scenario's in the system in which there are remain timeouts waiting to expire.
+Most of the timeouts that were registered through the legacy timeout manager might have been consumed by now. There might be scenarios in which there are timeouts waiting to expire, and those are stored in the timeout storage.
 For those use cases, there is a .NET Core global tool that enables migration of those timeouts to the native delayed delivery infrastructure.
 
 The tool supports live-migration so there's no need to shut down the endpoints before running the tool. The tool will hide the timeouts it will migrate from the legacy TimeoutManager to eliminate duplicate deliveries in the system.
