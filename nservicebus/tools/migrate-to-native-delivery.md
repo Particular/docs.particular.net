@@ -46,7 +46,7 @@ Verify the tool is listed among the available installed tools.
 The migration tool expects a few parameters in order to successfully migrate the timeouts.
 
 These parameters are required independent of the persistence used:
-```--target```:         The connection string of the target transport
+- `--target`: The connection string of the target transport
 ```--cutofftime```:     The time from which to start migrating timeouts, it makes sense to start migrating timeouts that will expire at least one day in the future.
 ```--endpoint```:       The endpoint to migrate.
 ```--allendpoints```:   Indicates to migrate all endpoints in one run
