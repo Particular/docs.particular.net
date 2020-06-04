@@ -62,8 +62,8 @@ For RavenDB:
 
 For SQL:
 - `--source`: The connection string to the database
-```--tablename```:      The name of the table in which timeouts are stored
-```--dialect```:        The sql dialect used to access the database
+- `--tablename`: The name of the table in which timeouts are stored
+- `--dialect`: The SQL dialect used to access the database
 
 #### Preview the migration
 
@@ -73,7 +73,7 @@ It's highly suggested to run in preview mode first and verify that the results m
 RavenDB example:
 
 ```
-dotnet migrate-timeouts preview ravendb
+migrate-timeouts preview ravendb
                         -t|--target <targetConnectionString>
                         -c|--cutofftime <cutofftime>
                         --serverUrl <serverUrl>
@@ -87,7 +87,7 @@ dotnet migrate-timeouts preview ravendb
 SQL example:
 
 ```
-dotnet migrate-timeouts preview sqlp
+migrate-timeouts preview sqlp
                         -t|--target <targetConnectionString>
                         -c|--cutofftime <cutofftime>
                         --source <source>
@@ -102,7 +102,7 @@ dotnet migrate-timeouts preview sqlp
 Migrating from RavenDB persistence
 
 ```
-dotnet migrate-timeouts ravendb
+migrate-timeouts ravendb
                         -t|--target <targetConnectionString>
                         -c|--cutofftime <cutofftime>
                         --serverUrl <serverUrl>
@@ -118,7 +118,7 @@ dotnet migrate-timeouts ravendb
 Migrating from Sql persistence
 
 ```
-dotnet migrate-timeouts preview sqlp
+migrate-timeouts preview sqlp
                         -t|--target <targetConnectionString>
                         -c|--cutofftime <cutofftime>
                         --source <source>
@@ -133,7 +133,7 @@ dotnet migrate-timeouts preview sqlp
 Aborting a migration
 
 ```
-dotnet migrate-timeouts <repeat previous parameters>
+migrate-timeouts <repeat previous parameters>
                         [-a|--abort]
 
 ```
@@ -144,12 +144,12 @@ Before actually migrating any timeouts, it's highly recommended to use the previ
 This option will perform the following actions:
  - check that the tool can connect to the storage
  - check that the tool can connect to the target transport
- - verify that the necessary topology is in place in the target transport to support native delayed delivery
+ - verify that the necessary topology is in place and the target transport supports native delayed delivery
  - list all the endpoints for which the tool can detect timeouts
  - calculate the amount of timeouts to migrate per endpoint
  - validate if there are timeouts the tool is [unable to migrate](migrate-to-native-delivery.md#limitations)
 
-Once this information has been reviewed, the migration process can be initialized.
+Once this information has been reviewed, the migration process can be started.
 Even though the tool supports migrating all endpoints connected to the persistence at once, it is highly suggested to migrate endpoint by endpoint, especially for critical endpoints. Even when selecting the `--allendpoints` option, the tool will execute an endpoint-by-endpoint migration behind the scenes.
 
 ## Limitations
