@@ -14,7 +14,15 @@ Most of the timeouts that were registered through the legacy timeout manager mig
 For those use cases, the timeout migration .NET Core global tool enables migrating timeouts to the native delayed delivery infrastructure.
 
 The tool supports live-migration so there's no need to shut down the endpoints before running the tool. The tool will hide the timeouts it will migrate from the legacy TimeoutManager to eliminate duplicate deliveries in the system.
-The tool provides a preview command in order to gather an overview of the endpoints and timeouts to migrate in the system.
+
+It's important to note the definition of an endpoint to migrate in the context of the tool. The legacy [TimeoutManager](/nservicebus/messaging/timeout-manager.md) stored timeouts at the sending side and sent them out to the destination endpoint at delivery time. Pre-native delivery timeouts are owned by the TimeoutManager.
+Native delivery timeouts however, are owned by the transport. Since the tool is migrating timeouts from the legacy implemetation, the endpoints that are being migrated are the sending endpoints.
+
+Example:
+Let's say you have a Sales endpoint that requested a timeout to be delivered to the Billing endpoint. The Billing endpoint is not requesting any timeouts.
+Using the legacy [TimeoutManager](/nservicebus/messaging/timeout-manager.md), this means that the timeouts will be sent out by the Sales endpoint to the Billing endpoint when the delivery time is reached.
+The tool will list the Sales endpoint as one of the options to migrate. Given that the Billing endpoint does not send timeouts, it won't be listed.
+The tool will check that the Billing endpoint has the necessary infrastructure in place to handle native delivery.
 
 ## Supported persistence mechanisms
 
@@ -65,38 +73,6 @@ For SQL:
 - `--tablename`: The name of the table in which timeouts are stored
 - `--dialect`: The SQL dialect used to access the database
 
-#### Preview the migration
-
-The tool can be run in preview mode in order to get an overview of the endpoints available, and the timeouts within those endpoint to migrate.
-It's highly suggested to run in preview mode first and verify that the results match the expected timeouts to migrate.
-
-RavenDB example:
-
-```
-migrate-timeouts preview ravendb
-                        -t|--target <targetConnectionString>
-                        -c|--cutofftime <cutofftime>
-                        --serverUrl <serverUrl>
-                        --databaseName <databaseName>
-                        [--prefix] <prefix>
-                        [--ravenVersion] <ravenVersion>
-                        [--endpoint] <endpointName>
-                        [--allendpoints]
-```
-
-SQL example:
-
-```
-migrate-timeouts preview sqlp
-                        -t|--target <targetConnectionString>
-                        -c|--cutofftime <cutofftime>
-                        --source <source>
-                        --tablename <tablename>
-                        --dialect <sqlDialect>
-                        [--endpoint] <endpointName>
-                        [--allendpoints]
-```
-
 #### Running a migration
 
 Migrating from RavenDB persistence
@@ -117,7 +93,7 @@ migrate-timeouts ravendb
 Migrating from Sql persistence
 
 ```
-migrate-timeouts preview sqlp
+migrate-timeouts sqlp
                         -t|--target <targetConnectionString>
                         -c|--cutofftime <cutofftime>
                         --source <source>
@@ -137,10 +113,9 @@ migrate-timeouts <repeat previous parameters>
 
 ## How the tool works
 
-Before actually migrating any timeouts, it's highly recommended to use the preview option.
-This option will perform the following actions:
- - check that the tool can connect to the storage
- - check that the tool can connect to the target transport
+The migration tool will perform a few health checks:
+ - verify it's able to connect to the storage
+ - verify it's able to connect to the target transport
  - verify that the necessary topology is in place and the target transport supports native delayed delivery
  - list all the endpoints for which the tool can detect timeouts
  - calculate the amount of timeouts to migrate per endpoint
@@ -158,6 +133,8 @@ Any timeouts that were stored for that endpoint, might already be late in delive
 
 ## What if something goes wrong
 
-If the migration is stopped or fails, the migration tool can recover and continue where it left off. To resume an interrupted migration the tool must be run with the same arguments.
+Verify that you provided the correct arguments in order to connect to the storage and the destination transport.
+
+If the migration started but stopped or failed along the way, the migration tool can recover and continue where it left off. To resume an interrupted migration the tool must be run with the same arguments.
 
 To run the tool with different arguments any in-progress or pending migration needs to be aborted using the `--abort` option. Any timeouts that have been fully migrated at that point will not be rollbacked, they will have already been delivered to the target transport and may even have been already consumed by the destination endpoint. Timeouts that were scheduled to migrate will be rollbacked and made available again to the legacy TimeoutManager.
