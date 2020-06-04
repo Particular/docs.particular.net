@@ -30,7 +30,7 @@ The tool supports the following transports:
 ## How to install
 
 ```
-dotnet tool install migrate-timeouts -g --source
+dotnet tool install migrate-timeouts -g
 ```
 
 To verify if the tool was installed correctly, run:
