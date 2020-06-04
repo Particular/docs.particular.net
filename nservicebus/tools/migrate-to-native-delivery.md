@@ -112,7 +112,6 @@ migrate-timeouts ravendb
                         [--endpoint] <endpointName>
                         [--allendpoints]
                         [-a|--abort]
-
 ```
 
 Migrating from Sql persistence
@@ -127,7 +126,6 @@ migrate-timeouts preview sqlp
                         [--endpoint] <endpointName>
                         [--allendpoints]
                         [-a|--abort]
-
 ```
 
 Aborting a migration
@@ -135,7 +133,6 @@ Aborting a migration
 ```
 migrate-timeouts <repeat previous parameters>
                         [-a|--abort]
-
 ```
 
 ## How the tool works
