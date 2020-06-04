@@ -8,7 +8,7 @@ redirects:
 related:
  - nservicebus/messaging/callbacks
  - samples/wcf
-reviewed: 2018-09-28
+reviewed: 2020-06-04
 ---
 
 It is possible to expose the message send+receive action as a WCF service. In effect, this allows a WCF service call to be "proxied" through to a message being sent, and then wait for the response to return the WCF result.
@@ -62,7 +62,7 @@ To expose the WCF service, change the configuration as shown below:
 </system.serviceModel>
 ```
 
-The service name in `<service name="XXX"` must match the [`Type.FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TRequest, TResponse>`.
+The service name in `<service name="XXX"` must match the [`Type.FullName`](https://docs.microsoft.com/en-us/dotnet/api/system.type.fullname) that derives from `NServiceBus.WcfService<TRequest, TResponse>`.
 
 partial: bindingaddressincode
 
