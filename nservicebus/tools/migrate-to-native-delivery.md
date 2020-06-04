@@ -50,7 +50,7 @@ These parameters are required independent of the persistence used:
 - `--cutofftime`: The time from which to start migrating timeouts, it makes sense to start migrating timeouts that will expire at least one day in the future.
 - `--endpoint`: The endpoint to migrate.
 - `--allendpoints`: Indicates to migrate all endpoints in one run
-Even though parameters --endpoint and --allendpoints are option, one of them is required by the tool.
+`--endpoint` and `--allendpoints` arguments are mutually exclusive, either one is required.
 
 Depending on the persistence, there are a few additonal parameters needed in order to run the migration:
 
