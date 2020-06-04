@@ -19,7 +19,7 @@ The tool provides a preview command in order to gather an overview of the endpoi
 ## Supported persistence mechanisms
 
 The current version of the tool supports the following persistence mechanisms:
-- [SQL](/persistence/sql/) using SQL Server under the hood
+- [SQL Persistence](/persistence/sql/) using the SQL Server implementation
 - [RavenDB](/persistence/ravendb) versions 3 and 4
 
 ## Supported transports
