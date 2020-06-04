@@ -161,4 +161,6 @@ Any timeouts that were stored for that endpoint, might already be late in delive
 
 ## What if something goes wrong
 
-If the migration is stopped or fails for some reason, the tool is able to recover and continue where it left off last time, considering that the tool is run with the same parameters. In order to run the tool with different parameters after initialising the migration process, the running migration process needs to be aborted using the --abort option. Any timeouts that have been fully migrated at that point will not be rollbacked, they will have already be delivered to the target transport and may even have been already delivered to the destination endpoint. Timeouts that were scheduled to migrate will be rollbacked and reappear to the legacy TimeoutManager.
+If the migration is stopped or fails, the migration tool can recover and continue where it left off. To resume an interrupted migration the tool must be run with the same arguments.
+
+To run the tool with different arguments any in-progress or pending migration needs to be aborted using the `--abort` option. Any timeouts that have been fully migrated at that point will not be rollbacked, they will have already been delivered to the target transport and may even have been already consumed by the destination endpoint. Timeouts that were scheduled to migrate will be rollbacked and made available again to the legacy TimeoutManager.
