@@ -24,7 +24,7 @@ The current version of the tool supports the following persistence mechanisms:
 
 ## Supported transports
 
-The current version of the tool supports the following transports:
+The tool supports the following transports:
 - [RabbitMQ](/transports/rabbitmq/)
 
 ## How to install
