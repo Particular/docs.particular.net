@@ -52,7 +52,7 @@ These parameters are required independent of the persistence used:
 - `--allendpoints`: Indicates to migrate all endpoints in one run
 `--endpoint` and `--allendpoints` arguments are mutually exclusive, either one is required.
 
-Depending on the persistence, there are a few additonal parameters needed in order to run the migration:
+Depending on the persistence, there are additional parameters required in order to run the migration:
 
 For RavenDB:
 - `--serverUrl`: The RavenDB server URL
