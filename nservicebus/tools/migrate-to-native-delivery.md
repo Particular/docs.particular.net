@@ -150,7 +150,7 @@ This option will perform the following actions:
  - validate if there are timeouts the tool is [unable to migrate](migrate-to-native-delivery.md#limitations)
 
 Once this information has been reviewed, the migration process can be initialized.
-Even though the tool supports migrating all endpoints connected to the persistence at once, it is highly suggested to migrate endpoint by endpoint, especially for critical endpoints. Even when selecting the -allendpoints options, the tool will conduct an endpoint-by-endpoint migration behind the scenes.
+Even though the tool supports migrating all endpoints connected to the persistence at once, it is highly suggested to migrate endpoint by endpoint, especially for critical endpoints. Even when selecting the `--allendpoints` option, the tool will execute an endpoint-by-endpoint migration behind the scenes.
 
 ## Limitations
 
