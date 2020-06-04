@@ -1,7 +1,7 @@
 ---
 title: Viewing MSMQ content
 summary: Provides options for visualizing messages and queues in MSMQ
-reviewed: 2018-09-21
+reviewed: 2020-06-04
 redirects:
  - nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine
  - nservicebus/viewing-message-content-in-msmq
