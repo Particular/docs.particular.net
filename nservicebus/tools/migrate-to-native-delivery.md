@@ -61,7 +61,7 @@ For RavenDB:
 - `--ravenVersion`: The allowed values are "3.5" and "4"
 
 For SQL:
-```--source```:         The connection string to the database
+- `--source`: The connection string to the database
 ```--tablename```:      The name of the table in which timeouts are stored
 ```--dialect```:        The sql dialect used to access the database
 
