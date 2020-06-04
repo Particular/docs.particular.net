@@ -39,7 +39,7 @@ To verify if the tool was installed correctly, run:
 dotnet tool list -g
 ```
 
-It should be listed there.
+Verify the tool is listed among the available installed tools.
 
 ## Using the tool
 
