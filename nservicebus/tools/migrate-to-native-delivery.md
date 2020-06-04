@@ -154,7 +154,7 @@ Even though the tool supports migrating all endpoints connected to the persisten
 
 ## Limitations
 
-As documented in the [RabbitMQ transport](/transports/rabbitmq/delayed-delivery.md), the maximum delay value of a timeout is 8,5 years. If the migration tool encounters any timeouts that have delivery times set beyond that, it won't be possible to migrate that endpoint.
+As documented in the [RabbitMQ transport](/transports/rabbitmq/delayed-delivery.md), the maximum delay value of a timeout is 8,5 years. If the migration tool encounters any timeouts that have delivery time set beyond that, it won't be possible to migrate that endpoint.
 
 If the tool presents endpoints that are not part of the system when running the --analyze option, it might be that an endpoint was renamed at some point.
 Any timeouts that were stored for that endpoint, might already be late in delivery and should be handled seperate from the migration tool since the tool has no way to detect where to migrate them to.
