@@ -2,7 +2,7 @@
 title: Startup Behavior
 summary: Running code at startup when hosting in Azure Cloud Services.
 component: CloudServicesHost
-reviewed: 2018-09-19
+reviewed: 2020-06-04
 ---
 
 include: cloudserviceshost-deprecated-warning
