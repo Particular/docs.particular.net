@@ -47,7 +47,7 @@ The migration tool expects a few parameters in order to successfully migrate the
 
 These parameters are required independent of the persistence used:
 - `--target`: The connection string of the target transport
-```--cutofftime```:     The time from which to start migrating timeouts, it makes sense to start migrating timeouts that will expire at least one day in the future.
+- `--cutofftime`: The time from which to start migrating timeouts, it makes sense to start migrating timeouts that will expire at least one day in the future.
 ```--endpoint```:       The endpoint to migrate.
 ```--allendpoints```:   Indicates to migrate all endpoints in one run
 Even though parameters --endpoint and --allendpoints are option, one of them is required by the tool.
