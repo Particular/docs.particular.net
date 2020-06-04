@@ -24,7 +24,6 @@ DANGER: The `Start` and `Stop` methods will block start up and shut down of the 
 
 include: non-null-task
 
-
 ### Exceptions
 
 Exceptions thrown in the constructors of instances of `IWantToRunWhenEndpointStartsAndStops` are unhandled by NServiceBus. These will prevent the endpoint from starting up.
