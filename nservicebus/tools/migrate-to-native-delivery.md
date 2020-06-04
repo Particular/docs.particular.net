@@ -55,7 +55,7 @@ These parameters are required independent of the persistence used:
 Depending on the persistence, there are a few additonal parameters needed in order to run the migration:
 
 For RavenDB:
-```--serverUrl```:      The server url for the persistence
+- `--serverUrl`: The RavenDB server URL
 ```--databaseName```:   The name of the database in which timeouts are stored
 ```--prefix```:         The prefix used for storage of timeouts, the default is "TimeoutDatas"
 ```--ravenVersion```:   The supported versions for RavenDB are 3.5 and 4
