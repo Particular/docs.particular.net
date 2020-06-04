@@ -4,7 +4,7 @@ summary: An overview of the tool supporting migrating from timeout manager to na
 reviewed: 2020-05-29
 ---
 
-In v7 [native delayed delivery](/nservicebus/messaging/delayed-delivery.md) was introduced across most transports that are supported today.
+In v7 [native delayed delivery](/nservicebus/messaging/delayed-delivery.md) was introduced across most supported transports.
 Hybrid mode was made available for endpoints, which means that the timeouts that were already registered in the system, would still be consumed by the legacy [TimeoutManager] (/nservicebus/messaging/timeout-manager.md) and the new delayed deliveries  would flow through the native implementation.
 
 Most of the timeouts that were registered through the legacy timeout manager might have been consumed by now. There might be scenarios in which there are timeouts waiting to expire, and those are stored in the timeout storage.
