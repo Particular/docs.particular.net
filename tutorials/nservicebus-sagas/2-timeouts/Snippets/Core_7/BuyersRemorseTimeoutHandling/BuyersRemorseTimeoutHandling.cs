@@ -25,8 +25,6 @@
                 OrderId = Data.OrderId
             };
 
-            // TODO: Save order state in database?
-
             await context.Publish(orderPlaced);
 
             MarkAsComplete();
