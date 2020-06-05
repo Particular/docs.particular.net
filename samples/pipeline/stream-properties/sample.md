@@ -95,4 +95,4 @@ snippet: message-with-stream-handler
 
 ## Difference to the databus
 
-The [built-in database](/nservicebus/messaging/databus/) relies on byte arrays and memory streams to operate. As such, there are limits to the amount of data that it can send.
+The [built-in databus](/nservicebus/messaging/databus/) relies on byte arrays and memory streams to operate. As such, there are limits to the amount of data that it can send.
