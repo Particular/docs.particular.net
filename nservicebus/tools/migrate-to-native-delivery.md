@@ -70,7 +70,6 @@ For RavenDB:
 
 For SQL:
 - `--source`: The connection string to the database
-- `--tablename`: The name of the table in which timeouts are stored
 - `--dialect`: The SQL dialect used to access the database
 
 #### Running a migration
@@ -97,7 +96,6 @@ migrate-timeouts sqlp
                         -t|--target <targetConnectionString>
                         -c|--cutofftime <cutofftime>
                         --source <source>
-                        --tablename <tablename>
                         --dialect <sqlDialect>
                         [--endpoint] <endpointName>
                         [--allendpoints]
