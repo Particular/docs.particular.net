@@ -102,6 +102,8 @@ migrate-timeouts sqlp
                         [-a|--abort]
 ```
 
+NOTE: The listed endpoints will be the in the escaped form that is used to prefix the endpoints timeout table
+
 Aborting a migration
 
 ```
