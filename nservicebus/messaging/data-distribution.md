@@ -13,7 +13,7 @@ A common example of a data distribution scenario is having cached data on multip
 
 ## Timing and reliability
 
-The goal of data distribution is generally to cause a change in data and/or behavior in multiple locations at the same time. Messages sent with NServiceBus, however do not care if they are received or processed at the same time. There is no urgency to act _now_ with a message sent with NServiceBus. Because asynchronous messages are intended for eventual consistency, each receiver would be free to process it at their leisure, whenever it gets around to handling that message in the queue.
+The goal of data distribution is generally to cause a change in data and/or behavior in multiple locations at the same time. Messages sent with NServiceBus, however do not care if they are received or processed at the same time. There is no urgency to act _now_ with a message sent with NServiceBus. Because asynchronous messages are intended for eventual consistency, each receiver is free to process it at their leisure, whenever it gets around to handling that message in the queue.
 
 In the worst-case scenario, some receivers of a data distribution message might succeed, while others encounter an unknown error causing the message to be moved to the error queue. In the time until an administrator is able to diagnose the failure and return the message to its source queue, transactions would be handled very differently by nodes that had received the message and those that had not.
 
