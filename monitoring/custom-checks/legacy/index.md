@@ -45,7 +45,7 @@ The result of a custom check is either success or failure (with a detailed descr
 
 NOTE: It is essential to deploy this plugin to the endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
 
-NOTE: Custom checks are discovered at runtime using assembly scanning. This means they can also be deployed to endpoints as Nuget packages.
+NOTE: Custom checks are discovered at runtime using assembly scanning. This means they can also be deployed to endpoints as NuGet packages.
 
 
 ### Deprecated NuGet Packages

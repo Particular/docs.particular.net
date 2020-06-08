@@ -10,7 +10,7 @@ Azure Service Bus queues each come with an associated dead letter queue. When Se
 
 #### Failed imports
 
-When ServiceControl is unable to properly import an audit or error message, the error is logged and the message is stored separately in ServiceControl. ServiceControl will monitor these failed import stores and notify when any are found. Read more about re-importing failed messages [here](/servicecontrol/import-failed-messages.md).
+When ServiceControl is unable to properly import an audit or error message, the error is logged and the message is stored separately in ServiceControl. ServiceControl will monitor these failed import stores and notify when any are found. For more information, see [re-importing failed messages](/servicecontrol/import-failed-messages.md).
 
 #### Error Message Ingestion Process
 

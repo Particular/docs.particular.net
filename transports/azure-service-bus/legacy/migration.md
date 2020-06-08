@@ -19,8 +19,7 @@ Before migrating to the new Azure Service Bus transport, a system using the endp
 
 ## Namespace validation
 
-To proceed with migration, it's recommended to verify Azure Service Bus namespaces support the migration feature.
-Verification steps are described [here](https://github.com/Particular/NServiceBus.AzureServiceBus/issues/810). 
+To proceed with migration, it's recommended to verify Azure Service Bus namespaces support the migration feature. See [verification steps for migration](https://github.com/Particular/NServiceBus.AzureServiceBus/issues/810). 
 
 All namespaces used for development, testing, and production should be validated prior to migration taking place.
 

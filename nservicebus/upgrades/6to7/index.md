@@ -116,7 +116,7 @@ snippet: 6to7endpoint-mapping-Routing-RegisterPublisher
 
 ### Access to settings
 
-The `GetSettings` extension method has been moved from `NServiceBus.Configuration.AdvanceExtensibility` to the `NServiceBus.Configuration.AdvancedExtensibility` namespace. More details on advanced access to settings can be found [here](/nservicebus/pipeline/features.md#feature-settings-endpointconfiguration).
+The `GetSettings` extension method has been moved from `NServiceBus.Configuration.AdvanceExtensibility` to the `NServiceBus.Configuration.AdvancedExtensibility` namespace.
 
 
 ###  ContextBag extensions

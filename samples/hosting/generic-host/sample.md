@@ -8,7 +8,7 @@ related:
 - nservicebus/hosting/assembly-scanning
 ---
 
-The sample uses the Generic Host and the [`Microsoft.Extensions.Hosting.WindowsServices`](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices/) nuget package to host NServiceBus as a Windows Service using the Generic Host underneath.
+The sample uses the Generic Host and the [`Microsoft.Extensions.Hosting.WindowsServices`](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices/) NuGet package to host NServiceBus as a Windows Service using the Generic Host underneath.
 
 downloadbutton
 

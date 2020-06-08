@@ -17,7 +17,7 @@ upgradeGuideCoreVersions:
 WARNING: Upgrades from NServiceBus.Azure versions 6.2.3 and below will need to apply the [saga de-duplication patch](/persistence/upgrades/asp-saga-deduplication.md) followed by the [saga index patch](/persistence/upgrades/asp-saga-pruning.md) before completing the remainder of these upgrade steps.
 
 
-## Changing Nuget packages and namespaces
+## Changing NuGet packages and namespaces
 
 One of the most visible changes for this persister was moving it from the NServiceBus.Azure package to the NServiceBus.Persistence.AzureStorage package. This change in packaging has reset the version number to version 1.
 
