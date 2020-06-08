@@ -1,7 +1,7 @@
 ---
 title: Interface lifecycles
 summary: The lifecycles of the various NServiceBus configuration interfaces
-reviewed: 2018-09-21
+reviewed: 2020-06-08
 ---
 
 Each endpoint instance goes through a series of events as it is configured, constructed, started, and stopped. NServiceBus provides extension points that allow to execute code at specific stages of the instance lifecycle. 
