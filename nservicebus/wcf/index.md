@@ -8,7 +8,7 @@ redirects:
 related:
  - nservicebus/messaging/callbacks
  - samples/wcf
-reviewed: 2018-09-28
+reviewed: 2020-06-08n
 ---
 
 It is possible to expose the message send+receive action as a WCF service. In effect, this allows a WCF service call to be "proxied" through to a message being sent, and then wait for the response to return the WCF result.
@@ -82,7 +82,7 @@ When performing operations that aren't as straightforward as a simple query to r
 
 ## Calling Web/WCF services
 
-When invoke a Web/WCF service as a part of message handling logic, where that logic also updates transactional resources like a database, the best practice is to split it into two endpoints.
+When invoking a Web/WCF service as a part of message handling logic, where that logic also updates transactional resources like a database, the best practice is to split it into two endpoints.
 
 If no response is required from the Web/WCF service then use [publish-subscribe](/nservicebus/messaging/publish-subscribe/). Have the first endpoint publish an event, to which the second endpoint subscribes, and have the second endpoint call the Web/WCF service. 
 
