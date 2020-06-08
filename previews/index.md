@@ -1,6 +1,6 @@
 ---
 title: Previews
-reviewed: 2020-06-01
+reviewed: 2020-06-08
 ---
 
 Previews allow Particular Software to develop new features more quickly while better addressing user needs.
@@ -15,4 +15,8 @@ During a preview, user feedback is central, so the more feedback is received, th
 
 | Name                       | Private | Public | Outcome    | Notes  |
 |----------------------------|:-------:|:------:|:----------:|--------|
-| [NServiceBus.AzureFunctions](LINK)|:white_check_mark:|:green_square:|  | [Forum discussion](LINK) |
+| [NServiceBus.AzureFunctions](LINK)|:white_check_mark:|:white_large_square:|  | [Forum discussion](LINK) |
+
+:white_large_square: - not started<br>
+:green_square: - in progress<br>
+:white_check_mark: - completed<br>
