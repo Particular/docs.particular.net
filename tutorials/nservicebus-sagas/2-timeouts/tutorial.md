@@ -89,7 +89,7 @@ Handling a timeout method is similar to how other handlers work. But instead of 
 
 snippet: BuyersRemorseTimeoutHandling
 
-Most of the code in the `Timeout` method is business logic; stuff that is supposed to happen when an order is placed, like logging and storing data. When we're done, we publish an `OrderPlaced` event to let any other handlers know that something important has happened. Remember, our `ShippingPolicy` saga still needs to know that an order has been placed so it can be shipped.
+The code in the `Timeout` method is business logic; stuff that is supposed to happen when an order is placed. When we're done, we publish an `OrderPlaced` event to let any other handlers know that something important has happened. Remember, our `ShippingPolicy` saga still needs to know that an order has been placed so it can be shipped.
 
 The last line of the method is a call to the `MarkAsComplete` method. This is important because it tells the saga instance that it's finished. Any further messages to this instance will be ignored because there is no further work to be done for the saga. We'll return to this concept in the next section when handling cancellation.
 
