@@ -1,5 +1,5 @@
 ---
-title: Platform previews
+title: Previews
 reviewed: 2020-06-01
 ---
 
