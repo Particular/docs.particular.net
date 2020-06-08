@@ -9,8 +9,8 @@ WARNING: Implementations of `IWantToRunWhenEndpointStartsAndStops` are not start
  * Instances of `IWantToRunWhenEndpointStartsAndStops` are located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured dependency injection](/nservicebus/dependency-injection/) during endpoint creation. These are registered as `Instance Per Call`.
  * They are started before the transport and any satellites have started. Therefore the endpoint will not receive any messages until this process has completed.
  * These instances are created through [dependency injection](/nservicebus/dependency-injection/) which means they:
-  * Will have dependencies injected.
-  * Do not require a default constructor.
+    * Will have dependencies injected.
+    * Do not require a default constructor.
  * These instances will be started asynchronously in the same method which started the bus.
  * Once created `Start` is called on each instance asynchronously without awaiting its completion.
  * Instances of `IWantToRunWhenEndpointStartsAndStops` which successfully start are kept internally to be stopped when the endpoint is stopped.
