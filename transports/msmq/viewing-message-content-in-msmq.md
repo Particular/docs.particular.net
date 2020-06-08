@@ -1,7 +1,8 @@
 ---
 title: Viewing MSMQ content
 summary: Provides options for visualizing messages and queues in MSMQ
-reviewed: 2018-09-21
+component: MsmqTransport
+reviewed: 2020-08-06
 redirects:
  - nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine
  - nservicebus/viewing-message-content-in-msmq
@@ -16,11 +17,11 @@ The queues on the local machine can be listed using Server Explorer in Visual St
 
 ![Server Explorer](server-explorer.png "Server Explorer")
 
-If there is a message in one of the queues, select it and view the properties of the message in the property panel in Visual Studio (usually on the bottom right):
+If there is a message in one of the queues, select it and view the properties of the message in the property panel (press <kbd>F4</kbd> to open) in Visual Studio:
 
 ![Visual Studio properties](visual-studio-properties.png "Visual Studio properties")
 
-The most interesting property is the BodyStream as it shows the contents of the message:
+The BodyStream property shows the contents of the message:
 
 ![Message contents](body-stream.png "Message contents")
 
@@ -29,7 +30,7 @@ The most interesting property is the BodyStream as it shows the contents of the 
 
 The MSMQ MMC snap-in can be used to manage queues.
 
-Use one of the following based in Windows:
+Use one of the following based on Windows operating system version:
 
 ```
 Start > Run > compmgmt.msc > Features > Message Queuing
@@ -55,7 +56,7 @@ http://www.cogin.com/mq/
 
 ### Mqueue Viewer
 
-Mqueue Viewer is a fast and free tool to manage MSMQ messages and queues. More advanced features are available in its paid version.
+Mqueue Viewer is a fast and free tool to manage MSMQ messages and queues. More advanced features are available in the paid version.
 
 https://www.mqueue.net/
 
