@@ -8,7 +8,7 @@ redirects:
 related:
  - samples/azure/azure-service-bus
  - samples/azure-service-bus-netstandard/asbs-asb-side-by-side
-reviewed: 2018-09-27
+reviewed: 2020-06-08
 ---
 
 include: legacy-asb-warning
