@@ -79,7 +79,7 @@ public class ScriptWriter
             Write(directory, variant, "SagaSave", sagaCommandBuilder.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
             Write(directory, variant, "SagaUpdate", sagaCommandBuilder.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
 
-            // since we don't have doco on oracle saga finders
+            // since we don't have docs on oracle saga finders
             if (variant != SqlVariant.Oracle)
             {
                 Write(directory, variant, "SagaSelect", sagaCommandBuilder.BuildSelectFromCommand("EndpointName_SagaName"));

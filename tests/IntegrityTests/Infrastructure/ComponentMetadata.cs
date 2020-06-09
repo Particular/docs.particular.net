@@ -6,7 +6,7 @@ namespace IntegrityTests
     {
         public string Key { get; set; }
         public string Name { get; set; }
-        public string DocoUrl { get; set; }
+        public string DocsUrl { get; set; }
         public string Category { get; set; }
         public bool UsesNuget { get; set; }
         public string GitHubOwner { get; set; }

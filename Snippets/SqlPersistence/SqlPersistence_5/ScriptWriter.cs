@@ -86,7 +86,7 @@ public class ScriptWriter
             Write(directory, dialect, "SagaSave", dialectAsDynamic.BuildSaveCommand("CorrelationProperty", "TransitionalCorrelationProperty", "EndpointName_SagaName"));
             Write(directory, dialect, "SagaUpdate", dialectAsDynamic.BuildUpdateCommand("TransitionalCorrelationProperty", "EndpointName_SagaName"));
 
-            // since we don't have doco on oracle saga finders
+            // since we don't have docs on oracle saga finders
             if (!(dialect is SqlDialect.Oracle))
             {
                 var createSelectWithWhereClause = dialectAsDynamic.BuildSelectFromCommand("EndpointName_SagaName");
