@@ -1,6 +1,6 @@
 - Key: Core
   Name: NServiceBus
-  DocsUrl: nservicebus
+  DocsUrl: /nservicebus
   Category: Core
   GitHubOwner: Particular
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -20,7 +20,7 @@
 
 - Key: ABSDataBus
   Name: Azure Blob Storage Databus
-  DocsUrl: nservicebus/azure
+  DocsUrl: /nservicebus/azure
   GitHubOwner: Particular
   Category: Databus
   ProjectUrl: https://github.com/Particular/NServiceBus.DataBus.AzureBlobStorage
@@ -30,7 +30,7 @@
 
 - Key: SQS
   Name: Amazon SQS Transport
-  DocsUrl: transports/sqs
+  DocsUrl: /transports/sqs
   GitHubOwner: Particular
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AmazonSQS
@@ -39,7 +39,7 @@
 
 - Key: ASB
   Name: Azure Service Bus Transport (Legacy)
-  DocsUrl: transports/azure-service-bus/legacy
+  DocsUrl: /transports/azure-service-bus/legacy
   GitHubOwner: Particular
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureServiceBus
@@ -48,7 +48,7 @@
 
 - Key: ASBS
   Name: Azure Service Bus Transport
-  DocsUrl: transports/azure-service-bus
+  DocsUrl: /transports/azure-service-bus
   GitHubOwner: Particular
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.Transport.AzureServiceBus
@@ -57,7 +57,7 @@
 
 - Key: ASP
   Name: Azure Storage Persistence 
-  DocsUrl: persistence/azure-storage
+  DocsUrl: /persistence/azure-storage
   GitHubOwner: Particular
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.AzureStorage
@@ -67,7 +67,7 @@
 
 - Key: ASQ
   Name: Azure Storage Queues Transport
-  DocsUrl: transports/azure-storage-queues
+  DocsUrl: /transports/azure-storage-queues
   GitHubOwner: Particular
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureStorageQueues
@@ -76,7 +76,7 @@
 
 - Key: Autofac
   Name: Autofac Dependency Injection
-  DocsUrl: nservicebus/dependency-injection/autofac
+  DocsUrl: /nservicebus/dependency-injection/autofac
   GitHubOwner: Particular
   Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
@@ -86,7 +86,7 @@
 
 - Key: Callbacks
   Name: Callbacks
-  DocsUrl: nservicebus/messaging/callbacks
+  DocsUrl: /nservicebus/messaging/callbacks
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Callbacks
@@ -96,7 +96,7 @@
 
 - Key: CallbacksTesting
   Name: Callbacks.Testing
-  DocsUrl: nservicebus/messaging/callbacks-testing
+  DocsUrl: /nservicebus/messaging/callbacks-testing
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Callbacks
@@ -107,7 +107,7 @@
 
 - Key: Castle
   Name: Castle Dependency Injection
-  DocsUrl: nservicebus/dependency-injection/castlewindsor
+  DocsUrl: /nservicebus/dependency-injection/castlewindsor
   GitHubOwner: Particular
   Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
@@ -117,7 +117,7 @@
 
 - Key: CloudServicesHost
   Name: Azure Cloud Service Host
-  DocsUrl: nservicebus/hosting/cloud-services-host
+  DocsUrl: /nservicebus/hosting/cloud-services-host
   GitHubOwner: Particular
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Host.AzureCloudService
@@ -126,7 +126,7 @@
 
 - Key: CommonLogging
   Name: CommonLogging
-  DocsUrl: nservicebus/logging/common-logging
+  DocsUrl: /nservicebus/logging/common-logging
   GitHubOwner: Particular
   Category: Logger
   ProjectUrl: https://github.com/Particular/NServiceBus.CommonLogging
@@ -135,7 +135,7 @@
 
 - Key: CustomChecks
   Name: ServiceControl CustomChecks
-  DocsUrl: monitoring/custom-checks
+  DocsUrl: /monitoring/custom-checks
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/?q=CustomChecks
@@ -159,7 +159,7 @@
 
 - Key: FileShareDataBus
   Name: File Share Databus
-  DocsUrl: nservicebus/messaging/databus/file-share
+  DocsUrl: /nservicebus/messaging/databus/file-share
   GitHubOwner: Particular
   Category: Databus
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -168,7 +168,7 @@
 
 - Key: FileBasedRouting
   Name: FileBasedRouting
-  DocsUrl: nservicebus/messaging/file-based-routing  
+  DocsUrl: /nservicebus/messaging/file-based-routing  
   Category: Other
   SupportLevel: Labs
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.FileBasedRouting
@@ -177,7 +177,7 @@
 
 - Key: Distributor
   Name: Distributor
-  DocsUrl: transports/msmq/distributor
+  DocsUrl: /transports/msmq/distributor
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Distributor.Msmq
@@ -197,7 +197,7 @@
 
 - Key: EventSourceLogging
   Name: EventSourceLogging
-  DocsUrl: nservicebus/logging/eventsourcelogging
+  DocsUrl: /nservicebus/logging/eventsourcelogging
   GitHubOwner: robv8r
   Category: Logger
   SupportLevel: Community
@@ -220,7 +220,7 @@
 
 - Key: EventStoreTransport
   Name: EventStore Transport
-  DocsUrl: transports/eventstore
+  DocsUrl: /transports/eventstore
   GitHubOwner: SzymonPobiega
   Category: Transport
   SupportLevel: Community
@@ -231,7 +231,7 @@
 
 - Key: Gateway
   Name: Gateway
-  DocsUrl: nservicebus/gateway
+  DocsUrl: /nservicebus/gateway
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Gateway
@@ -241,7 +241,7 @@
 
 - Key: GatewayRavenDB
   Name: RavenDB Gateway Storage
-  DocsUrl: nservicebus/gateway/ravendb
+  DocsUrl: /nservicebus/gateway/ravendb
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Gateway.RavenDB
@@ -250,7 +250,7 @@
 
 - Key: GatewaySql
   Name: SQL Gateway Storage
-  DocsUrl: nservicebus/gateway/sql
+  DocsUrl: /nservicebus/gateway/sql
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Gateway.Sql
@@ -259,7 +259,7 @@
 
 - Key: Heartbeats
   Name: ServiceControl Heartbeats
-  DocsUrl: monitoring/heartbeats
+  DocsUrl: /monitoring/heartbeats
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/?q=Heartbeat
@@ -272,7 +272,7 @@
 
 - Key: Host
   Name: NServiceBus Host
-  DocsUrl: nservicebus/hosting/nservicebus-host
+  DocsUrl: /nservicebus/hosting/nservicebus-host
   GitHubOwner: Particular
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Host
@@ -281,7 +281,7 @@
 
 - Key: InMemoryPersistence
   Name: InMemory Persistence 
-  DocsUrl: persistence/in-memory
+  DocsUrl: /persistence/in-memory
   GitHubOwner: Particular
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -290,7 +290,7 @@
 
 - Key: Json
   Name: Json Serializer
-  DocsUrl: nservicebus/serialization/json
+  DocsUrl: /nservicebus/serialization/json
   Category: Serializer
   GitHubOwner: Particular
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -299,7 +299,7 @@
 
 - Key: LearningPersistence
   Name: Learning Persistence 
-  DocsUrl: persistence/learning
+  DocsUrl: /persistence/learning
   GitHubOwner: Particular
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -308,7 +308,7 @@
 
 - Key: LearningTransport
   Name: Learning Transport
-  DocsUrl: transports/learning
+  DocsUrl: /transports/learning
   GitHubOwner: Particular
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -317,7 +317,7 @@
 
 - Key: PlatformSample
   Name: Platform Sample
-  DocsUrl: platform/installation
+  DocsUrl: /platform/installation
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/Particular.PlatformSample
@@ -326,7 +326,7 @@
 
 - Key: Extensions.Logging
   Name: NServiceBus Extensions Logging
-  DocsUrl: nservicebus/logging/extensions-logging
+  DocsUrl: /nservicebus/logging/extensions-logging
   GitHubOwner: Particular
   Category: Logger
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.Logging
@@ -335,7 +335,7 @@
   
 - Key: Log4Net
   Name: Log4Net Logger
-  DocsUrl: nservicebus/logging/log4net
+  DocsUrl: /nservicebus/logging/log4net
   GitHubOwner: Particular
   Category: Logger
   ProjectUrl: https://github.com/Particular/NServiceBus.Log4Net
@@ -345,7 +345,7 @@
 
 - Key: Metrics
   Name: Metrics
-  DocsUrl: monitoring/metrics
+  DocsUrl: /monitoring/metrics
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Metrics
@@ -354,7 +354,7 @@
 
 - Key: MetricsServiceControl
   Name: Metrics.ServiceControl
-  DocsUrl: monitoring/metrics
+  DocsUrl: /monitoring/metrics
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.ServiceControl
@@ -364,7 +364,7 @@
 
 - Key: MetricsServiceControlMsmq
   Name: Metrics.ServiceControl.Msmq
-  DocsUrl: monitoring/metrics
+  DocsUrl: /monitoring/metrics
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.ServiceControl.Msmq
@@ -373,7 +373,7 @@
 
 - Key: MsmqTransport
   Name: MSMQ Transport
-  DocsUrl: transports/msmq
+  DocsUrl: /transports/msmq
   Category: Transport
   GitHubOwner: Particular
   ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Msmq
@@ -383,7 +383,7 @@
 
 - Key: MsmqPersistence
   Name: MSMQ Persistence
-  DocsUrl: persistence/msmq/subscription
+  DocsUrl: /persistence/msmq/subscription
   Category: Persistence
   GitHubOwner: Particular
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -404,7 +404,7 @@
 
 - Key: MongoDB
   Name: MongoDB Persistence
-  DocsUrl: persistence/mongodb
+  DocsUrl: /persistence/mongodb
   GitHubOwner: Particular
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Storage.MongoDB
@@ -444,7 +444,7 @@
 
 - Key: Mailer
   Name: NServiceBus Mailer
-  DocsUrl: nservicebus/mailer
+  DocsUrl: /nservicebus/mailer
   LicenseUrl: https://github.com/HEskandari/NServiceBus.Mailer/blob/master/license.txt
   GitHubOwner: HEskandari
   Category: Other
@@ -455,7 +455,7 @@
 
 - Key: Newtonsoft
   Name: Newtonsoft Serializer
-  DocsUrl: nservicebus/serialization/newtonsoft
+  DocsUrl: /nservicebus/serialization/newtonsoft
   GitHubOwner: Particular
   Category: Serializer
   ProjectUrl: https://github.com/Particular/NServiceBus.Newtonsoft.Json
@@ -464,7 +464,7 @@
 
 - Key: NHibernate
   Name: NHibernate Persistence
-  DocsUrl: persistence/nhibernate
+  DocsUrl: /persistence/nhibernate
   GitHubOwner: Particular
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.NHibernate
@@ -473,7 +473,7 @@
 
 - Key: Ninject
   Name: Ninject Dependency Injection
-  DocsUrl: nservicebus/dependency-injection/ninject
+  DocsUrl: /nservicebus/dependency-injection/ninject
   GitHubOwner: Particular
   Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Ninject
@@ -493,7 +493,7 @@
 
 - Key: NLog
   Name: NLog Logger
-  DocsUrl: nservicebus/logging/nlog
+  DocsUrl: /nservicebus/logging/nlog
   GitHubOwner: Particular
   Category: Logger
   ProjectUrl: https://github.com/Particular/NServiceBus.NLog
@@ -504,7 +504,7 @@
 
 - Key: PropertyEncryption
   Name: Message Property Encryption
-  DocsUrl: nservicebus/security/property-encryption
+  DocsUrl: /nservicebus/security/property-encryption
   Category: Other
   GitHubOwner: Particular
   ProjectUrl: https://github.com/Particular/NServiceBus.Encryption.MessageProperty
@@ -514,7 +514,7 @@
 
 - Key: PerfCounters
   Name: Performance Counters
-  DocsUrl: monitoring/metrics/performance-counters
+  DocsUrl: /monitoring/metrics/performance-counters
   Category: Other
   GitHubOwner: Particular
   ProjectUrl: https://github.com/Particular/NServiceBus.Metrics.PerformanceCounters
@@ -535,7 +535,7 @@
 
 - Key: Rabbit
   Name: RabbitMQ Transport
-  DocsUrl: transports/rabbitmq
+  DocsUrl: /transports/rabbitmq
   GitHubOwner: Particular
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.RabbitMQ
@@ -544,7 +544,7 @@
 
 - Key: Raven
   Name: RavenDB Persistence
-  DocsUrl: persistence/ravendb
+  DocsUrl: /persistence/ravendb
   GitHubOwner: Particular
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.RavenDB
@@ -553,7 +553,7 @@
 
 - Key: RawMessaging
   Name: NServiceBus raw messaging
-  DocsUrl: nservicebus/rawmessaging
+  DocsUrl: /nservicebus/rawmessaging
   GitHubOwner: SzymonPobiega
   Category: Other
   SupportLevel: Community
@@ -577,7 +577,7 @@
 
 - Key: SqlPersistence
   Name: Sql Persistence
-  DocsUrl: persistence/sql
+  DocsUrl: /persistence/sql
   GitHubOwner: Particular
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.Sql
@@ -586,7 +586,7 @@
 
 - Key: SagaAudit
   Name: ServiceControl SagaAudit
-  DocsUrl: servicecontrol/plugins/saga-audit
+  DocsUrl: /servicecontrol/plugins/saga-audit
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/?q=SagaAudit
@@ -598,7 +598,7 @@
 
 - Key: ServiceBootstrap
   Name: Windows Service Bootstrap
-  DocsUrl: nservicebus/hosting/windows-service
+  DocsUrl: /nservicebus/hosting/windows-service
   GitHubOwner: Particular
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Bootstrap.WindowsService
@@ -607,7 +607,7 @@
 
 - Key: ServiceControl
   Name: ServiceControl
-  DocsUrl: servicecontrol
+  DocsUrl: /servicecontrol
   GitHubOwner: Particular
   Category: Other
   UsesNuget: false
@@ -617,7 +617,7 @@
 
 - Key: ServiceControlContracts
   Name: ServiceControl Contracts
-  DocsUrl: servicecontrol/contracts
+  DocsUrl: /servicecontrol/contracts
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/ServiceControl.Contracts
@@ -626,7 +626,7 @@
 
 - Key: SCTransportAdapter
   Name: ServiceControl Transport Adapter
-  DocsUrl: servicecontrol/transport-adapter
+  DocsUrl: /servicecontrol/transport-adapter
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/ServiceControl.TransportAdapter
@@ -635,7 +635,7 @@
 
 - Key: Templates
   Name: dotnet new Templates
-  DocsUrl: nservicebus/dotnet-templates
+  DocsUrl: /nservicebus/dotnet-templates
   GitHubOwner: Particular
   Category: Host
   ProjectUrl: https://github.com/Particular/dotnetTemplates
@@ -644,7 +644,7 @@
 
 - Key: ServicePulse
   Name: ServicePulse
-  DocsUrl: servicepulse
+  DocsUrl: /servicepulse
   GitHubOwner: Particular
   Category: Other
   UsesNuget: false
@@ -654,7 +654,7 @@
 
 - Key: ServiceInsight
   Name: ServiceInsight
-  DocsUrl: serviceinsight
+  DocsUrl: /serviceinsight
   GitHubOwner: Particular
   Category: Other
   UsesNuget: false
@@ -664,7 +664,7 @@
 
 - Key: SimpleInjector
   Name: SimpleInjector Dependency Injection
-  DocsUrl: nservicebus/dependency-injection/simpleinjector
+  DocsUrl: /nservicebus/dependency-injection/simpleinjector
   GitHubOwner: WilliamBZA
   Category: DependencyInjection
   SupportLevel: Community
@@ -675,7 +675,7 @@
 
 - Key: Spring
   Name: Spring Dependency Injection
-  DocsUrl: nservicebus/dependency-injection/spring
+  DocsUrl: /nservicebus/dependency-injection/spring
   GitHubOwner: Particular
   Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Spring
@@ -684,7 +684,7 @@
 
 - Key: SqlTransport
   Name: SQL Server Transport
-  DocsUrl: transports/sql
+  DocsUrl: /transports/sql
   GitHubOwner: Particular
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.SqlServer
@@ -694,7 +694,7 @@
 
 - Key: StructureMap
   Name: StructureMap Dependency Injection
-  DocsUrl: nservicebus/dependency-injection/structuremap
+  DocsUrl: /nservicebus/dependency-injection/structuremap
   GitHubOwner: Particular
   Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
@@ -704,7 +704,7 @@
 
 - Key: ServiceFabricPersistence
   Name: Service Fabric Persistence 
-  DocsUrl: persistence/service-fabric
+  DocsUrl: /persistence/service-fabric
   GitHubOwner: Particular
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.ServiceFabric
@@ -713,7 +713,7 @@
 
 - Key: Testing
   Name: Testing
-  DocsUrl: nservicebus/testing
+  DocsUrl: /nservicebus/testing
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Testing
@@ -722,7 +722,7 @@
 
 - Key: Unity
   Name: Unity Dependency Injection
-  DocsUrl: nservicebus/dependency-injection/unity
+  DocsUrl: /nservicebus/dependency-injection/unity
   GitHubOwner: Particular
   Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
@@ -732,7 +732,7 @@
 
 - Key: Wcf
   Name: WCF Support
-  DocsUrl: nservicebus/wcf
+  DocsUrl: /nservicebus/wcf
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.Wcf
@@ -742,7 +742,7 @@
 
 - Key: Xml
   Name: Xml Serializer
-  DocsUrl: nservicebus/serialization/xml
+  DocsUrl: /nservicebus/serialization/xml
   Category: Serializer
   GitHubOwner: Particular
   ProjectUrl: https://github.com/Particular/NServiceBus
@@ -751,7 +751,7 @@
 
 - Key: Bridge
   Name: Transport Bridge
-  DocsUrl: nservicebus/router
+  DocsUrl: /nservicebus/router
   GitHubOwner: SzymonPobiega
   Category: Other
   SupportLevel: Community
@@ -763,7 +763,7 @@
 
 - Key: Wormhole
   Name: Wormhole Gateway
-  DocsUrl: nservicebus/upgrades/wormhole-router
+  DocsUrl: /nservicebus/upgrades/wormhole-router
   GitHubOwner: SzymonPobiega
   Category: Other
   SupportLevel: Community
@@ -775,7 +775,7 @@
 
 - Key: Router
   Name: NServiceBus.Router
-  DocsUrl: nservicebus/router
+  DocsUrl: /nservicebus/router
   GitHubOwner: SzymonPobiega
   Category: Other
   SupportLevel: Community
@@ -787,7 +787,7 @@
 
 - Key: UniformSession
   Name: UniformSession Support
-  DocsUrl: nservicebus/messaging/uniformsession
+  DocsUrl: /nservicebus/messaging/uniformsession
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.UniformSession
@@ -796,7 +796,7 @@
 
 - Key: GatewayChannelHttpVNext
   Name: HttpVNext Gateway Channel
-  DocsUrl: nservicebus/gateway/httpvnext-channel
+  DocsUrl: /nservicebus/gateway/httpvnext-channel
   GitHubOwner: welshdave
   Category: Other
   SupportLevel: Community
@@ -807,7 +807,7 @@
 
 - Key: Serverless
   Name: Serverless
-  DocsUrl: nservicebus
+  DocsUrl: /nservicebus
   GitHubOwner: Particular
   Category: Host
   SupportLevel: Labs
@@ -818,7 +818,7 @@
 
 - Key: ASBFunctions
   Name: Azure Functions (Service Bus Trigger)
-  DocsUrl: nservicebus
+  DocsUrl: /nservicebus
   GitHubOwner: Particular
   Category: Host
   SupportLevel: Labs
@@ -829,7 +829,7 @@
 
 - Key: ASQFunctions
   Name: Azure Functions (Storage Queue Trigger)
-  DocsUrl: nservicebus
+  DocsUrl: /nservicebus
   GitHubOwner: Particular
   Category: Host
   SupportLevel: Labs
@@ -840,7 +840,7 @@
 
 - Key: SQSLambda
   Name: AWS Lambda (SQS)
-  DocsUrl: nservicebus
+  DocsUrl: /nservicebus
   GitHubOwner: Particular
   Category: Host
   SupportLevel: Labs
@@ -851,7 +851,7 @@
 
 - Key: Extensions.Hosting
   Name: NServiceBus.Extensions.Hosting
-  DocsUrl: nservicebus/hosting/extensions-hosting
+  DocsUrl: /nservicebus/hosting/extensions-hosting
   GitHubOwner: Particular
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.Hosting
@@ -860,7 +860,7 @@
 
 - Key: Extensions.DependencyInjection
   Name: NServiceBus.Extensions.DependencyInjection
-  DocsUrl: nservicebus/dependency-injection/extensions-dependencyinjection
+  DocsUrl: /nservicebus/dependency-injection/extensions-dependencyinjection
   GitHubOwner: Particular
   Category: DependencyInjection
   ProjectUrl: https://github.com/Particular/NServiceBus.Extensions.DependencyInjection
@@ -869,7 +869,7 @@
 
 - Key: AttributeConventions
   Name: NServiceBus.AttributeConventions
-  DocsUrl: nservicebus/router
+  DocsUrl: /nservicebus/router
   GitHubOwner: mauroservienti
   Category: Other
   SupportLevel: Community
