@@ -88,7 +88,7 @@ Installs the ServiceControl application. This MSI can be downloaded directly fro
 
 ### Downloads
 
-The Platform Installer caches the downloaded MSI files in `%temp%\Particular\PlatformInstaller`. These files are downloaded directly from GitHub. Some corporate firewalls prevent the downloading of executable files via content filters or by white/black listing specific web sites. If the Platform Installer cannot download the individual applications, consult with the network administration staff.
+The Platform Installer caches the downloaded MSI files in `%temp%\Particular\PlatformInstaller`. These files are downloaded directly from GitHub. Some corporate firewalls prevent the downloading of executable files via content filters or by allowing / denying specific web sites. If the Platform Installer cannot download the individual applications, consult with the network administration staff.
 
 
 ### Logs

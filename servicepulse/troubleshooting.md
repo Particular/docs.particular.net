@@ -18,7 +18,7 @@ component: ServicePulse
  * Follow the guidance in [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md).
  * Restart the endpoint after copying the endpoint plugin files into the endpoint's `bin` directory.
  * Ensure [auditing](/nservicebus/operations/auditing.md) is enabled for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl.
- * Ensure the relevant ServiceControl assemblies are included in the whitelist or are not excluded in the blacklist. For more details refer to [Assembly scanning](/nservicebus/hosting/assembly-scanning.md).
+ * Ensure the relevant ServiceControl assemblies are included in the allowed list or are not excluded in the blocked list. For more details refer to [Assembly scanning](/nservicebus/hosting/assembly-scanning.md).
  * Ensure the endpoint references NServiceBus version 4.0.0 or later.
 
 
