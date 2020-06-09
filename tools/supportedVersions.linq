@@ -533,7 +533,7 @@ public class SerializationComponent
 	public string Name { get; set; }
 	public string Description { get; set; }
 	public string Key { get; set; }
-	public string DocoUrl { get; set; }
+	public string DocsUrl { get; set; }
 	public string ProjectUrl { get; set; }
 	public string LicenseUrl { get; set; }
 	public string GitHubOwner { get; set; }
