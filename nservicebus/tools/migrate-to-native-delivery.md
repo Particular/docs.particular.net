@@ -24,6 +24,13 @@ Using the legacy [TimeoutManager](/nservicebus/messaging/timeout-manager.md), th
 The tool will list the Sales endpoint as one of the options to migrate. Given that the Billing endpoint does not send timeouts, it won't be listed.
 The tool will check that the Billing endpoint has the necessary infrastructure in place to handle native delivery.
 
+The tool supports the use of the `--cutofftime`. This is the starting point in time from which timeouts become elegible to migrate, based on the time to deliver set in the timeout.
+There are two main reasons to make use of this:
+- SLA compliance: In case there are many timeouts in the storage to migrate, it might take some time for the migration to complete. Since the timeouts are first hidden from the legacy [TimeoutManager](/nservicebus/messaging/timeout-manager.md) and then migrated, this might result in some timeouts being delivered later than their original delivery time in case of large migrations.
+- Phasing the migration: In case of big loads of timeouts to migrate, it might be interesting to run a phased migration based on the original delivery time of the timeouts. This can be realised by setting the `--cutofftime` to a far point in the future, and decrease it each run.
+When the tool starts, it will first analyse the endpoints that have timeouts to migrate, and will generate an overview of the number of timeouts for that endpoint.
+
+
 ## Supported persistence mechanisms
 
 The current version of the tool supports the following persistence mechanisms:
