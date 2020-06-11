@@ -122,6 +122,7 @@ Function SetDefaultPermissionsForQueue
     $Queue.SetPermissions($Account, "WriteMessage", "Allow")
     $Queue.SetPermissions($Account, "ReceiveMessage", "Allow")
     $Queue.SetPermissions($Account, "PeekMessage", "Allow")
+    $Queue.SetPermissions($Account, "GetQueueProperties", "Allow")
 }
 
 # endcode
