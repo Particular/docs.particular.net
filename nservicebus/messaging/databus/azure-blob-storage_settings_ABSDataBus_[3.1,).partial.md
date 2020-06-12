@@ -6,7 +6,7 @@
  * `NumberOfIOThreads`: Number of blocks that will be simultaneously uploaded; defaults to 1 thread.
  * `BackOffInterval`: The back-off time between retries; defaults to 30 seconds.
  * `BlockSize`: The size of a single block for upload when the number of I/O threads is more than 1; defaults to 4MB.
- * `CleanupInterval`: The default time interval to perform periodic clean-up of blobs for expired messages with specific TTL; disabled by defaults.
+ * `CleanupInterval`: The default time interval to perform periodic clean-up of blobs for expired messages with specific TTL; disabled by default.
  * `AuthenticateWithManagedIdentity(storageAccountName, renewalTimeBeforeTokenExpires, endpointSuffix)`: Authenticate with Azure Managed Identity instead of connection string.
    * `storageAccountName`: The storage account name used for the data bus.
    * `renewalTimeBeforeTokenExpires`: How long before the current token expires a token renewal request should be be issued.

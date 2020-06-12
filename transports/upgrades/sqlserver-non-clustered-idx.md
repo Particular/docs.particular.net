@@ -1,8 +1,8 @@
 ---
 title: SQL Server Transport Upgrade - Non-clustered index in the input queue
-summary: How to migrate to the new input queue schema without a clustered index
+summary: How to migrate to the input queue schema in the SQL Server transport without a clustered index
 component: SqlTransport
-reviewed: 2020-05-25
+reviewed: 2020-06-12
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 3
