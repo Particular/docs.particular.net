@@ -25,7 +25,5 @@ When using Azure Functions with Azure Service Bus (ASB) or Azure Storage Queues 
   - [`QueueTrigger`](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue) for Azure Storage Queues
   - Other triggers will not result in the invocation of the NServiceBus pipeline, but can be used with a send-only endpoint to translate a function invocation into a command.
 - The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` method to allow customization; however, not all of the options will be applicable to execution within Azure Functions.
-- The NServiceBus `ILog` logging abstraction and the Azure Functions `ILogger` are not wired to work together.
 - When using the default recoverability or specifying custom number of immediate retries, the number of delivery attempts specified on the underlying queue (ASB) or Azure Functions host (ASB) must be more than then number of the immediate retries. The Azure Functions defaults are 10 (`MaxDeliveryCount`) for the ASB trigger and 5 (`DequeueCount`) for the ASQ trigger.
 - Delayed Retries are supported only with Azure Service Bus, and not with Azure Storage Queues.
-- Message handlers have to be included in the the Azure Functions assembly.
