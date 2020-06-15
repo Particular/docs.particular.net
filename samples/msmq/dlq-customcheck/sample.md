@@ -1,6 +1,6 @@
 ---
 title: Basic MSMQ Dead Letter Queue Monitoring With Custom Checks
-reviewed: 2018-09-28
+reviewed: 2020-06-15
 component: MsmqTransport
 related:
 - transports/msmq
