@@ -1,9 +1,9 @@
 ---
 title: Using NServiceBus in Azure Functions with Service Bus triggers
-reviewed: 2019-09-23
+reviewed: 2020-06-15
 component: ASBFunctions
 related:
- - samples/azure/functions/storage-queues
+ - samples/previews/azure/functions/storage-queues
 ---
 
 include: azure-functions-experimental
