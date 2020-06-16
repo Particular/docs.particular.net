@@ -49,7 +49,9 @@ The static NServiceBus endpoint must be configured using details that come from 
 
 snippet: EndpointSetup
 
-Alternatively, the endpoint can be automatically configured with the endpoint name, the transport connection string, and the logger passed into the function using a static factory method provided by `StorageQueueTriggeredEndpointConfiguration.FromAttributes` method.
+The endpoint is automatically configured with the endpoint name, the transport connection string, and the logger passed into the function using a static factory method provided by `StorageQueueTriggeredEndpointConfiguration.FromAttributes` method.
+
+Alternatively, the endpoint name and the transport connection string can be passed in manually:
 
 snippet: AlternativeEndpointSetup
 
