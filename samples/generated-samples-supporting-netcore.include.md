@@ -115,5 +115,5 @@
 * [Windsor Dependency Injection Usage](/samples/dependency-injection/castle/?version=extensions.dependencyinjection_1)
 * [XML Serializer](/samples/serializers/xml/?version=core_7)
 * [Using NServiceBus in AWS Lambda with SQS](/samples/aws/lambda/sqs/?version=sqslambda_0.1)
-* [Using NServiceBus in Azure Functions with Service Bus triggers](/samples/azure/functions/service-bus/?version=asbfunctions_0.1)
-* [Using NServiceBus in Azure Functions with Storage Queue triggers](/samples/azure/functions/storage-queues/?version=asqfunctions_0.1)
+* [Using NServiceBus in Azure Functions with Service Bus triggers](/samples/previews/azure-functions/service-bus/?version=asbfunctions_0.1)
+* [Using NServiceBus in Azure Functions with Storage Queue triggers](/samples/previews/azure-functions/storage-queues/?version=asqfunctions_0.1)
