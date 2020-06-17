@@ -1,6 +1,6 @@
 ---
 title: Side-by-side with legacy Azure Service Bus
-reviewed: 2018-10-04
+reviewed: 2020-06-17
 component: ASBS
 related:
 - transports/azure-service-bus
