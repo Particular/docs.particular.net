@@ -7,3 +7,14 @@ snippet: enable-journaling
 
 WARNING: This setting can potentially use up the MSMQ storage quota based on the message volume.
 
+
+The global journaling behavior can be overriden for specific messages via send, publish, or reply options.
+
+Enable:
+
+snippet: UseJournalQueue
+
+Disable:
+
+snippet: UseJournalQueueFalse
+

@@ -7,3 +7,13 @@ Call this API to disable storing undeliverable messages in the DLQ. This setting
  
 snippet: disable-dlq
 
+The global dead-letter-queueing behavior can be overriden for specific messages via send, publish, or reply options.
+
+Enable:
+
+snippet: UseDeadLetterQueue
+
+Disable:
+
+snippet: UseDeadLetterQueueFalse
+
