@@ -2,7 +2,7 @@
 title: Non-Durable Messaging
 summary: Information on how non-durable messaging affects the behaviors of endpoints and message delivery.
 component: Core
-reviewed: 2018-10-04
+reviewed: 2020-06-17
 redirects:
  - nservicebus/messaging/express-messages
  - samples/non-durable-messaging
