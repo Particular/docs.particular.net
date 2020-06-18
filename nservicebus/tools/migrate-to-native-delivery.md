@@ -173,7 +173,25 @@ The migration tool will perform a few health checks:
 - validate if there are timeouts the tool is [unable to migrate](migrate-to-native-delivery.md#limitations)
 
 Once this information has been reviewed, the migration process can be started.
-Even though the tool supports migrating all endpoints connected to the persistence at once, it is highly suggested to migrate endpoint by endpoint, especially for critical endpoints. Even when selecting the `--allendpoints` option, the tool will execute an endpoint-by-endpoint migration behind the scenes.
+Even though the tool supports migrating all endpoints connected to the persistence at once, it is highly suggested to migrate endpoint by endpoint, especially for critical endpoints. Even when selecting the `--allEndpoints` option, the tool will execute an endpoint-by-endpoint migration behind the scenes.
+
+## Cleanup
+
+The tool will not delete any timeouts or tables to prevent message loss. This section describes how to cleanup archived timeouts and remove no longer used tables once the migration have been verified.
+
+WARN: This is a destructive operation and should only be performed once its been verified that the migration has been successful.
+
+### RavenDB
+
+TBD
+
+### Sql persistence
+
+Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. For all the successful once do the following:
+
+- Make sure that [RabbitMQ compatibility mode](/transports/rabbitmq/delayed-delivery.md#backwards-compatibility) is turned off
+- Delete the `{EndpointName}_TimeoutData` table
+- Delete the migration table named `TimeoutData_migration_{MigrationRunId}`, where `MigrationRunId` is taken from the output of the `TimeoutsMigration_State` query.
 
 ## Limitations
 
