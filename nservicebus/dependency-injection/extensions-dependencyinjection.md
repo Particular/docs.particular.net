@@ -1,7 +1,7 @@
 ---
 title: NServiceBus.Extensions.DependencyInjection
 summary: Provides integration with the Microsoft.Extensions.DependencyInjection abstraction
-reviewed: 2020-02-17
+reviewed: 2020-06-18
 component: Extensions.DependencyInjection
 related:
  - samples/dependency-injection/extensions-dependency-injection
@@ -54,7 +54,7 @@ snippet: settings-configurecontainer
 
 | `DependencyLifecycle`                                                                                             | Service Lifetime                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/) | [ServiceLifetime.Singleton](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)         |
+| [InstancePerCall](/nservicebus/dependency-injection/) | [ServiceLifetime.Transient](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)         |
 | [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [ServiceLifetime.Scoped](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime) |
 | [SingleInstance](/nservicebus/dependency-injection/)                                  | [ServiceLifetime.Singleton](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime)                          |
 
