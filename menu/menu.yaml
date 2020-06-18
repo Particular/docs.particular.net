@@ -1267,9 +1267,8 @@
     - Title: Support Policy
       Url: previews/support-policy
   - Title: Azure Functions
-    Url: previews/azure-functions
     Articles:
-    - Title: Azure Service Bus triggered
-      Url: previews/azure-functions/azure-service-bus
-    - Title: Azure Storage Queues triggered
-      Url: previews/azure-functions/azure-storage-queues
+    - Title: NServiceBus.AzureFunctions.ServiceBus
+      Url: previews/azure-functions-service-bus
+    - Title: NServiceBus.AzureFunctions.StorageQueues
+      Url: previews/azure-functions-storage-queues
