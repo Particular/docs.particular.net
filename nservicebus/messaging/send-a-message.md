@@ -1,6 +1,6 @@
 ---
 title: Sending messages
-reviewed: 2018-10-04
+reviewed: 2020-06-18
 component: Core
 redirects:
  - nservicebus/how-do-i-send-a-message
