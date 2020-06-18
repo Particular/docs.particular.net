@@ -3,7 +3,7 @@ title: Azure Functions with Azure Service Bus
 summary: Azure Functions Preview
 related:
  - samples/previews/azure-functions
-reviewed: 2020-06-09
+reviewed: 2020-06-18
 ---
 
 ## Basic Usage
