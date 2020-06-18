@@ -1,5 +1,5 @@
 ---
-title: Migrating to native delivery
+title: Migrating from timeout manager to native delivery
 summary: An overview of the tool supporting migrating from timeout manager to native delivery
 reviewed: 2020-05-29
 ---
@@ -8,16 +8,14 @@ The timeout migration tool is designed to help system administrators migrate exi
 
 NOTE: Make sure to use the `preview` option of the tool to make sure that the transport supports native delayed delivery before performing any migration attempt.
 
-In v7 [native delayed delivery](/nservicebus/messaging/delayed-delivery.md) was introduced across most supported transports.
-Hybrid mode was made available, and enabled by default, for endpoints. When running in hybrid mode, endpoints consume timeouts that were already registered in the system using the legacy [Timeout Manager](/nservicebus/messaging/timeout-manager.md) and new delayed messages flow through the native implementation.
+In v7 [native delayed delivery](/nservicebus/messaging/delayed-delivery.md) was introduced across most supported transports and a hybrid mode was made available, and enabled by default. When running in hybrid mode, endpoints consume timeouts that were already registered in the system using the legacy [Timeout Manager](/nservicebus/messaging/timeout-manager.md) and new delayed messages flow through the native implementation.
 
-Most of the timeouts that were registered through the legacy timeout manager might have been consumed by now. There might be scenarios in which there are timeouts waiting to expire, and those are stored in the timeout storage.
-For those use cases, the timeout migration .NET Core global tool enables migrating timeouts to the native delayed delivery infrastructure.
+Most of the timeouts that were registered through the legacy timeout manager might have been consumed by now. But there might be scenarios in which there are timeouts waiting to expire, and those are stored in the timeout storage.
+For those use cases, the timeout migration tool enables migrating timeouts to the native delayed delivery infrastructure so that the storage can be decommissioned.
 
 The tool supports live-migration so there's no need to shut down the endpoints before running the tool. The tool will hide the timeouts it will migrate from the legacy Timeout Manager to eliminate duplicate deliveries in the system.
 
-It's important to note the definition of an endpoint to migrate in the context of the tool. The legacy [Timeout Manager](/nservicebus/messaging/timeout-manager.md) stored timeouts at the sending side and sent them out to the destination endpoint at delivery time. Pre-native delivery timeouts are owned by the Timeout Manager.
-Native delivery timeouts however, are owned by the transport. Since the tool is migrating timeouts from the legacy implementation, the endpoints that are being migrated are the sending endpoints.
+It's important to note the definition of an endpoint to migrate in the context of the tool. The legacy [Timeout Manager](/nservicebus/messaging/timeout-manager.md) stored timeouts at the sending side and sent them out to the destination endpoint at delivery time. This means that the endpoint names listed by the tool is for the endpoints **sending** the delayed message and not the destination.
 
 Example:
 
@@ -26,16 +24,15 @@ Using the legacy [Timeout Manager](/nservicebus/messaging/timeout-manager.md), t
 The tool will list the Sales endpoint as one of the options to migrate. Given that the Billing endpoint does not send timeouts, it won't be listed.
 The tool will check that the Billing endpoint has the necessary infrastructure in place to handle native delivery.
 
-The tool supports the use of the `--cutofftime`. This is the starting point in time from which timeouts become eligible to migrate, based on the time to deliver set in the timeout.
+The tool optionally supports the use of the `--cutoffTime`. This is the starting point in time from which timeouts become eligible to migrate, based on the time to deliver set in the timeout.
 There are two main reasons to make use of this:
 
 - SLA compliance: In case there are many timeouts in the storage to migrate, it might take some time for the migration to complete. Since the timeouts are first hidden from the legacy [Timeout Manager](/nservicebus/messaging/timeout-manager.md) and then migrated, this might result in some timeouts being delivered later than their original delivery time in case of large migrations.
-- Phasing the migration: In case of big loads of timeouts to migrate, it might be interesting to run a phased migration based on the original delivery time of the timeouts. This can be realised by setting the `--cutofftime` to a far point in the future, and decrease it each run.
-When the tool starts, it will first analyse the endpoints that have timeouts to migrate, and will generate an overview of the number of timeouts for that endpoint.
+- Phasing the migration: In case of big loads of timeouts to migrate, it might be interesting to run a phased migration based on the original delivery time of the timeouts. This can be achieved by setting the `--cutoffTime` to a far point in the future, and decrease it each run.
 
-## Supported persistence mechanisms
+## Supported legacy persistence
 
-The current version of the tool supports the following persistence mechanisms:
+The current version of the tool supports the following persisters:
 
 - [SQL Persistence](/persistence/sql/) using the SQL Server implementation
 - [RavenDB](/persistence/ravendb) versions 3.5.x and 4.x of the RavenDB database server
@@ -58,19 +55,9 @@ Verify the tool is listed among the available installed tools.
 
 ## Using the tool
 
-The migration tool expects a few parameters in order to successfully migrate the timeouts.
+The migration tool provides a `preview`, `migrate` and `abort` command.
 
-These parameters are required independent of the persistence used:
-
-- `--target`: The connection string of the target transport
-- `--endpoint`(Optional): The endpoint to migrate.
-- `--allEndpoints`(Optional): Indicates to migrate all endpoints in one run
-- `--cutofftime`(Optional): The time from which to start migrating timeouts, it makes sense to start migrating timeouts that will expire at least one day in the future. The format in which to specify the `cutofftime` is `yyyy-MM-dd HH:mm:ss:ffffff Z`. The migration tool will convert the specified `cutofftime` to UTC time.
-- `--verbose`(Optional): Turn verbose logging on.
-
-NOTE: `--endpoint` and `--allendpoints` arguments are mutually exclusive, either one is required.
-
-Depending on the persistence, there are additional parameters required in order to run the migration:
+Depending on the persistence, there are additional parameters required in order to run the tool:
 
 For RavenDB:
 
@@ -86,7 +73,9 @@ For SQL:
 
 ### Preview
 
-To get a preview of endpoints and their status use the following command.
+To get a preview of endpoints and their status use the `preview` command with the following extra parameters.
+
+- `--target`: The connection string of the target transport used to validate destinations
 
 **RavenDB**
 
@@ -112,7 +101,14 @@ NOTE: The listed endpoints will be the in the escaped form that is used to prefi
 
 ### Running a migration
 
-To run a migration for selected endpoint(s) use the following command.
+To run a migration for selected endpoint(s) use the `migrate` command with the following parameters.
+
+- `--target`: The connection string of the target transport
+- `--endpoint`(Optional): The endpoint to migrate.
+- `--allEndpoints`(Optional): Indicates to migrate all endpoints in one run
+- `--cutoffTime`(Optional): The time from which to start migrating timeouts, it makes sense to start migrating timeouts that will expire at least one day in the future. The format in which to specify the `cutoffTime` is `yyyy-MM-dd HH:mm:ss`. The migration tool will convert the specified `cutoffTime` to UTC time.
+
+NOTE: `--endpoint` and `--allEndpoints` arguments are mutually exclusive, either one is required.
 
 **RavenDB**
 
@@ -144,7 +140,7 @@ NOTE: The listed endpoints will be the in the escaped form that is used to prefi
 
 ### Aborting a migration
 
-To abort an ongoing migration use the following command.
+To abort an ongoing migration use the `abort` command.
 
 **RavenDB**
 
@@ -170,7 +166,8 @@ The migration tool will perform a few health checks:
 
 - verify it's able to connect to the storage
 - verify it's able to connect to the target transport
-- verify that the necessary topology is in place and the target transport supports native delayed delivery
+- verify that the target transport supports native delayed delivery
+- check that necessary infrastructure for native delays is setup for all delayed message destinations found
 - list all the endpoints for which the tool can detect timeouts
 - calculate the amount of timeouts to migrate per endpoint
 - validate if there are timeouts the tool is [unable to migrate](migrate-to-native-delivery.md#limitations)
@@ -191,4 +188,8 @@ Verify that the correct arguments were provided in order to connect to the stora
 
 If the migration started but stopped or failed along the way, the migration tool can recover and continue where it left off. To resume an interrupted migration the tool must be run with the same arguments.
 
-To run the tool with different arguments any in-progress or pending migration needs to be aborted using the `abort` command. Any timeouts that have been fully migrated at that point will not be rollbacked, they will have already been delivered to the target transport and may even have been already consumed by the destination endpoint. Timeouts that were scheduled to migrate will be rollbacked and made available again to the legacy Timeout Manager.
+To run the tool with different arguments any in-progress migration needs to be aborted using the `abort` command. Any timeouts that have been fully migrated at that point will not be restored since they already have been delivered to the native timeout infrastructure. Timeouts that were scheduled to migrate will be made available again to the legacy Timeout Manager.
+
+### Logging
+
+Turn on verbose logging using the `--verbose` option.
