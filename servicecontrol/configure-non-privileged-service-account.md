@@ -1,7 +1,7 @@
 ---
 title: Configuring a Non-Privileged Account
 summary: Using a low privilege account for ServiceControl
-reviewed: 2018-10-04
+reviewed: 2020-06-18
 ---
 
 To allow a low-privileged account to function as the service account for ServiceControl, the following should be considered:
