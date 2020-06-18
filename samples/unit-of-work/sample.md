@@ -1,7 +1,7 @@
 ---
 title: Unit of Work Usage
 summary: How to create a custom unit of work
-reviewed: 2018-10-04
+reviewed: 2020-06-18
 component: Core
 related:
  - nservicebus/pipeline/unit-of-work
