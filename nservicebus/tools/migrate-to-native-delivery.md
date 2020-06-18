@@ -182,9 +182,7 @@ As documented in the [RabbitMQ transport](/transports/rabbitmq/delayed-delivery.
 If the tool presents endpoints that are not part of the system when running the `preview` command, it might be that an endpoint was renamed at some point.
 Any timeouts that were stored for that endpoint, might already be late in delivery and should be handled separate from the migration tool since the tool has no way to detect where to migrate them to.
 
-## What if something goes wrong
-
-Verify that the correct arguments were provided in order to connect to the storage and the destination transport.
+## Troubleshooting
 
 If the migration started but stopped or failed along the way, the migration tool can recover and continue where it left off. To resume an interrupted migration the tool must be run with the same arguments.
 
@@ -193,3 +191,21 @@ To run the tool with different arguments any in-progress migration needs to be a
 ### Logging
 
 Turn on verbose logging using the `--verbose` option.
+
+### RavenDB
+
+TBD
+
+### Sql Persistence
+
+The history and migrated data is always kept in the database so nothing can get lost.
+
+To list the history and status of migrations execute:
+
+`SELECT * FROM TimeoutsMigration_State`
+
+To list the status of timeouts for an a previous/in-progress run take the `MigrationRunId` from the query about and execute:
+
+`SELECT * FROM TimeoutData_migration_{MigrationRunId}`
+
+This will show all the timeouts and to which batch they belong and also that status of that batch, `0=Pending`, `1=Staged` and `2=Completed`.
