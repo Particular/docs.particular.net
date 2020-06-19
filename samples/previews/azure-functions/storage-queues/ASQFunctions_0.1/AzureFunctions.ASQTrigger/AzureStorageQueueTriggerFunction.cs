@@ -43,24 +43,4 @@ public class AzureStorageQueueTriggerFunction
     });
 
     #endregion
-
-    #region AlternativeEndpointSetup
-
-    private static FunctionEndpoint manuallyConfiguredEndpoint = new FunctionEndpoint(executionContext =>
-    {
-        var configuration = new StorageQueueTriggeredEndpointConfiguration(EndpointName);
-
-        configuration.UseSerialization<NewtonsoftSerializer>();
-
-        // optional: log startup diagnostics using Functions provided logger
-        configuration.AdvancedConfiguration.CustomDiagnosticsWriter(diagnostics =>
-        {
-            executionContext.Logger.LogInformation(diagnostics);
-            return Task.CompletedTask;
-        });
-
-        return configuration;
-    });
-
-    #endregion
 }
