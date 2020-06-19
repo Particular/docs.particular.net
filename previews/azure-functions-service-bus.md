@@ -6,9 +6,29 @@ related:
 reviewed: 2020-06-18
 ---
 
+Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/).
+
 ## Basic Usage
 
+### Endpoint configuration
+
+snippet: endpoint-configuration
+
+The endpoint is automatically configured with the endpoint name, the transport connection string, and the logger passed into the function using a static factory method provided by `ServiceBusTriggeredEndpointConfiguration.FromAttributes` method.
+
+Alternatively, the endpoint name can be passed in manually:
+
+snippet: alternative-endpoint-setup
+
+### Azure Function definition
+
+snippet: function-definition
+
 ## Configuration
+
+### Custom diagnostics
+
+snippet: custom-diagnostics
 
 ## Known constraints and limitations
 

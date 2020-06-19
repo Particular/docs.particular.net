@@ -43,23 +43,4 @@ public class AzureServiceBusTriggerFunction
     });
 
     #endregion
-
-    #region AlternativeEndpointSetup
-
-    private static readonly FunctionEndpoint manuallyConfiguredEndpoint = new FunctionEndpoint(executionContext =>
-    {
-        var configuration = new ServiceBusTriggeredEndpointConfiguration(EndpointName);
-        configuration.UseSerialization<NewtonsoftSerializer>();
-
-        // optional: log startup diagnostics using Functions provided logger
-        configuration.AdvancedConfiguration.CustomDiagnosticsWriter(diagnostics =>
-        {
-            executionContext.Logger.LogInformation(diagnostics);
-            return Task.CompletedTask;
-        });
-
-        return configuration;
-    });
-
-    #endregion EndpointSetup
 }
