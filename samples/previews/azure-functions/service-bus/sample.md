@@ -49,12 +49,6 @@ The static NServiceBus endpoint must be configured using details that come from 
 
 snippet: EndpointSetup
 
-The endpoint is automatically configured with the endpoint name, the transport connection string, and the logger passed into the function using a static factory method provided by `ServiceBusTriggeredEndpointConfiguration.FromAttributes` method.
-
-Alternatively, the endpoint name and the transport connection string can be passed in manually:
-
-snippet: AlternativeEndpointSetup
-
 The same class defines the Azure Function which makes up the hosting for the NServiceBus endpoint. The Function hands off processing of the message to NServiceBus:
 
 snippet: Function

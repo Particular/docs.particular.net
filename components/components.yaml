@@ -822,8 +822,8 @@
   GitHubOwner: Particular
   Category: Host
   SupportLevel: Labs
-  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions
+  LicenseUrl: https://github.com/Particular/NServiceBus.AzureFunctions.ServiceBus/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.ServiceBus
   NugetOrder:
     - NServiceBus.AzureFunctions.ServiceBus
 
@@ -833,8 +833,8 @@
   GitHubOwner: Particular
   Category: Host
   SupportLevel: Labs
-  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AzureFunctions
+  LicenseUrl: https://github.com/Particular/NServiceBus.AzureFunctions.StorageQueues/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.StorageQueues
   NugetOrder:
     - NServiceBus.AzureFunctions.StorageQueues
 
