@@ -21,6 +21,8 @@ partial: caveats
 
 snippet: handler-sqlPersistenceSession
 
+partial: di
+
 
 ### Using in a Saga
 
