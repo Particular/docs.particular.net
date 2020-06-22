@@ -183,7 +183,7 @@ WARN: This is a destructive operation and should only be performed once its been
 
 ### RavenDB
 
-TBD
+Delete all the documents in the `TimeoutDatas` collection that have an `OwningTimeoutManager` starting with `__migrated__`.
 
 ### Sql persistence
 
@@ -212,7 +212,7 @@ Turn on verbose logging using the `--verbose` option.
 
 ### RavenDB
 
-TBD
+Use the Raven Studio to check the state of ongoing and previous migrations by filtering documents using the prefix `TimeoutMigrationTool`. Completed migrations will be named `TimeoutMigrationTool/MigrationRun-{endpoint}-{completed-time}` while any ongoing migration will be present as `TimeoutMigrationTool/State`. The contents of the documents contains metadata about the migration such as the time started, time completed, used cutoff time etc.
 
 ### Sql Persistence
 
