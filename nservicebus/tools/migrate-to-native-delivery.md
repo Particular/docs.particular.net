@@ -43,6 +43,10 @@ The tool supports the following transports:
 
 - [RabbitMQ](/transports/rabbitmq/)
 
+## Before using the tool
+
+Even that considerations were made to not delete any information when doing the migration it is recomended to follow industry standards related to modyfing the database. It is advisable to make a backup of production database and first perfrom the migration on the test enviornment.  
+
 ## How to install
 
 `dotnet tool install migrate-timeouts -g`
