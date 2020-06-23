@@ -1,6 +1,6 @@
 ---
 title: Licensing ServiceControl
-reviewed: 2018-10-10
+reviewed: 2020-06-23
 ---
 
 There are a few options to add a license to ServiceControl.
