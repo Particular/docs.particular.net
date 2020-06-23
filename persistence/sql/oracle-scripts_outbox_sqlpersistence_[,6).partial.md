@@ -1,0 +1,1 @@
+snippet: Oracle_OutboxStoreSql
