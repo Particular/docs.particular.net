@@ -15,8 +15,8 @@ During a preview, user feedback is central, so the more feedback is received, th
 
 | Name                       | Private | Public | Outcome    | Notes  |
 |----------------------------|:-------:|:------:|:----------:|--------|
-| [NServiceBus.AzureFunctions.ServiceBus](/previews/azure-functions-service-bus.md)|:white_check_mark:|:green_square:|:white_large_square:| [Forum discussion](https://discuss.particular.net/t/nservicebus-azurefunctions-servicebus-public-preview/1910) |
-| [NServiceBus.AzureFunctions.StorageQueues](/previews/azure-functions-storage-queues.md)|:white_check_mark:|:green_square:|:white_large_square:| [Forum discussion](https://discuss.particular.net/t/nservicebus-azurefunctions-storagequeues-public-preview/1911) |
+| [NServiceBus.AzureFunctions.ServiceBus](/previews/azure-functions-service-bus.md)| :white_check_mark: | :green_square: | :white_large_square: | [Forum discussion](https://discuss.particular.net/t/nservicebus-azurefunctions-servicebus-public-preview/1910) |
+| [NServiceBus.AzureFunctions.StorageQueues](/previews/azure-functions-storage-queues.md)| :white_check_mark: | :green_square: | :white_large_square: | [Forum discussion](https://discuss.particular.net/t/nservicebus-azurefunctions-storagequeues-public-preview/1911) |
 
 :white_large_square: - not started<br>
 :green_square: - in progress<br>
