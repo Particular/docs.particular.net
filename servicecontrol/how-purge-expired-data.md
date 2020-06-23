@@ -4,7 +4,7 @@ summary: Configuring ServiceControl's data retention policy
 related:
  - nservicebus/recoverability
  - nservicebus/operations/auditing
-reviewed: 2018-10-05
+reviewed: 2020-06-23
 ---
 
 ServiceControl stores audit and error data. Any audit and error data that is older than the specified thresholds is deleted from the embedded RavenDB. The expiration thresholds for both faulted and audited messages must be set during installation. These values can be modified later by launching ServiceControl Management and editing the configuration settings for the instance.
