@@ -173,6 +173,6 @@ It is safe to operate a combination of native-delay and non-native-delay endpoin
 
 partial: timeout-manager
 
-## Migrating timeouts
+## Migrating timeouts to Native Delayed Delivery
 
 In order to migrate timeouts to the native-delay delivery implementation, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used.
