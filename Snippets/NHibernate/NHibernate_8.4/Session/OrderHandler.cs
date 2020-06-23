@@ -25,19 +25,21 @@ namespace NHibernate_8.Session
 
     #endregion
 
-    #region AccessingDataConfigureISessionDI
 
     public class EndpointWithSessionRegistered
     {
         public void Configure(EndpointConfiguration config)
         {
+            #region AccessingDataConfigureISessionDI
+
             config.RegisterComponents(c =>
             {
                 c.ConfigureComponent(b => b.Build<INHibernateStorageSession>().Session,
                     DependencyLifecycle.InstancePerUnitOfWork);
             });
+
+            #endregion
         }
     }
 
-    #endregion
 }
