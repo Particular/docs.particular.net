@@ -1,7 +1,7 @@
 ---
 title: RavenDB Embedded Location
 summary: Increase space for monitored data by configuring ServiceControl to save data in a location other than the default
-reviewed: 2018-10-05
+reviewed: 2020-06-23
 ---
 
 Each ServiceControl service stores its data in a RavenDB embedded database. The location of the database is set at install time.
