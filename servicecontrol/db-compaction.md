@@ -1,7 +1,7 @@
 ---
 title: Compacting RavenDB
 summary: How to compact the RavenDB database backing ServiceControl
-reviewed: 2018-10-05
+reviewed: 2020-06-23
 ---
 
 
