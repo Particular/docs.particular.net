@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Forwarding Log Queues
 summary: Details of the ServiceControl audit and error configuration and forwarding behavior 
-reviewed: 2018-10-05
+reviewed: 2020-06-23
 ---
 
 ### Audit and error queues
