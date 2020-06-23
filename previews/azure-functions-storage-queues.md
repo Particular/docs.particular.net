@@ -1,5 +1,6 @@
 ---
 title: Azure Functions with Azure Storage Queues
+component: ASQFunctions
 summary: Azure Functions Preview
 related:
  - samples/previews/azure-functions
