@@ -13,7 +13,7 @@ The MSMQ transport can handle messages with a [Time-To-Be-Received (TTBR)](/nser
 
 When a message with a TTBR set is sent, NServiceBus translates the TTBR value to the [native time to be received property](https://docs.microsoft.com/en-us/dotnet/api/system.messaging.message.timetobereceived) of the MSMQ message. MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space gets reclaimed. 
 
-NOTE: MSMQ enforces a single TimeToBeReceived value for all messages in a transaction. If multiple messages enlist in a single transaction, then the TimeToBeReceived from the first message will be used for all messages, leading to potentially, unintentional message expiration. To prevent message loss, `TimeToBeReceived` is not supported out of the box for endpoints with [transaction mode](/transports/transactions.md) `TransportTransactionMode.AtomicSendsWithReceive` or `Transaction Scope (Distributed Transaction)`.
+NOTE: MSMQ enforces a single TimeToBeReceived value for all messages in a transaction. If multiple messages enlist in a single transaction, then the TimeToBeReceived from the first message will be used for all messages, leading to potentially, unintentional message expiration. To prevent message loss, `TimeToBeReceived` is not supported out of the box for endpoints with [transaction mode](/transports/transactions.md) `SendsAtomicWithReceive` or `TransactionScope`.
 
 partial: ttbr-send
 
@@ -23,6 +23,3 @@ partial: ttbr-send
 NServiceBus also annotates outgoing messages with an `NServiceBus.TimeToBeReceived` [header](/nservicebus/messaging/headers.md).
 
 partial: ttbr-receive
-
-
-

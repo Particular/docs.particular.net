@@ -8,7 +8,4 @@ WARNING: The `NServiceBus.TimeSent` header is based on the clock of the sending 
 
 The transport can be configured to ignore the `NServiceBus.TimeToBeReceived` header on incoming messages.
 
-```csharp
-var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-transport.IgnoreIncomingTimeToBeReceivedHeaders();
-```
+snippet: ignore-incoming-ttbr-headers
