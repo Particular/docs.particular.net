@@ -214,7 +214,7 @@ Any timeouts that were stored for that endpoint, might already be late in delive
 
 If the migration started but stopped or failed along the way, the migration tool can recover and continue where it left off. To resume an interrupted migration the tool must be run with the same arguments.
 
-To run the tool with different arguments any in-progress migration needs to be aborted using the `abort` command. Any timeouts that have been fully migrated at that point will not be restored since they already have been delivered to the native timeout infrastructure. Timeouts that were scheduled to migrate will be made available again to the legacy Timeout Manager.
+To run the tool with different arguments, any in-progress migrations first need to be aborted using the `abort` command. Any timeouts that have been fully migrated at that point will not be restored since they have already been migrated to the native timeout infrastructure. Timeouts that were scheduled to migrate will be made available again to the legacy Timeout Manager.
 
 ### Logging
 
