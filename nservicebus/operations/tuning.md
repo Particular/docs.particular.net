@@ -8,7 +8,7 @@ redirects:
  - nservicebus/how-to-reduce-throughput-of-an-endpoint
  - nservicebus/operations/reducing-throughput
  - nservicebus/operations/throughput
-reviewed: 2018-10-10
+reviewed: 2020-06-23
 ---
 
 NServiceBus uses defaults that ensure good performance in common cases. While this is usually the preferred mode of operation there are situations where tuning might be desired.
