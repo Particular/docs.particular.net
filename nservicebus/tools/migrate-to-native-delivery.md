@@ -111,6 +111,7 @@ To run a migration for selected endpoint(s) use the `migrate` command with the f
 - `--endpoint`(Optional): The endpoint to migrate.
 - `--allEndpoints`(Optional): Indicates to migrate all endpoints in one run
 - `--cutoffTime`(Optional): The time from which to start migrating timeouts, it makes sense to start migrating timeouts that will expire at least one day in the future. The format in which to specify the `cutoffTime` is `yyyy-MM-dd HH:mm:ss`. The migration tool will convert the specified `cutoffTime` to UTC time.
+- `forceUseIndex`(Optional): Required when migrating large amounts or timeouts. Requires all endpoints using the database to be turned off to not modify the timeout data.
 
 NOTE: `--endpoint` and `--allEndpoints` arguments are mutually exclusive, either one is required.
 
@@ -126,6 +127,7 @@ migrate-timeouts ravendb migrate
                         [--endpoint] <endpointName>
                         [-c|--cutofftime <cutofftime>]
                         [--allendpoints]
+                        [--forceUseIndex]
 ```
 
 **Sql Persistence**
