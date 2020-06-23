@@ -821,7 +821,7 @@
   DocsUrl: /nservicebus
   GitHubOwner: Particular
   Category: Host
-  SupportLevel: Labs
+  SupportLevel: Preview
   LicenseUrl: https://github.com/Particular/NServiceBus.AzureFunctions.ServiceBus/blob/master/LICENSE.md
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.ServiceBus
   NugetOrder:
@@ -832,7 +832,7 @@
   DocsUrl: /nservicebus
   GitHubOwner: Particular
   Category: Host
-  SupportLevel: Labs
+  SupportLevel: Preview
   LicenseUrl: https://github.com/Particular/NServiceBus.AzureFunctions.StorageQueues/blob/master/LICENSE.md
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.StorageQueues
   NugetOrder:
