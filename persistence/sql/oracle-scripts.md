@@ -104,7 +104,7 @@ snippet: Oracle_OutboxSetAsDispatchedSql
 
 Used by `IOutboxStorage.Store`.
 
-snippet: Oracle_OutboxStoreSql
+partial: outbox
 
 
 ### Saga

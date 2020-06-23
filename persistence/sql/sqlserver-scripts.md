@@ -103,7 +103,7 @@ snippet: MsSqlServer_OutboxSetAsDispatchedSql
 
 Used by `IOutboxStorage.Store`.
 
-snippet: MsSqlServer_OutboxStoreSql
+partial: outbox
 
 
 ### Saga

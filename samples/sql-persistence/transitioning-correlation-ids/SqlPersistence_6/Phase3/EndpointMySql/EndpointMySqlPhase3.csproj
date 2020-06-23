@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net48</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\SharedPhase3.csproj" />
+    <PackageReference Include="MySql.Data" Version="6.*" ExcludeAssets="contentFiles" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Phase1\EndpointMySql\Program.cs" />
+  </ItemGroup>
+</Project>
