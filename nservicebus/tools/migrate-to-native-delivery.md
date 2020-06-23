@@ -188,7 +188,7 @@ Even though the tool supports migrating all endpoints connected to the persisten
 
 The tool will not delete any timeouts or storage artifacts to prevent data loss. This section describes how to cleanup archived timeouts and remove no longer used storage artifacts.
 
-WARN: This is a destructive operation and should only be performed once its been verified that the migration has been successful.
+WARN: This is a destructive operation and should only be performed once it has been verified that the migration has been successful.
 
 ### RavenDB
 
