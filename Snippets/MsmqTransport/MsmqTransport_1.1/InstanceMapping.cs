@@ -29,5 +29,17 @@ namespace Core6.Routing
 
             #endregion
         }
+
+        public void StrictSchemaValidation(EndpointConfiguration endpointConfiguration)
+        {
+            #region Strict-Schema-Validation
+
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var routing = transport.Routing();
+            var instanceMappingFile = routing.InstanceMappingFile();
+            instanceMappingFile.EnforceStrictSchemaValidation();
+
+            #endregion
+        }
     }
 }
