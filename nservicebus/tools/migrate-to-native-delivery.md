@@ -6,7 +6,7 @@ reviewed: 2020-06-22
 
 The timeout migration tool is designed to help system administrators migrate existing timeouts from the legacy [Timeout Manager](/nservicebus/messaging/timeout-manager.md) storage to the [native delayed delivery](/nservicebus/messaging/delayed-delivery.md) infrastructure of the currently used transport.
 
-In v7 [native delayed delivery](/nservicebus/messaging/delayed-delivery.md) was introduced across most supported transports and a hybrid mode was made available, and enabled by default. When running in hybrid mode, endpoints consume timeouts that were already registered in the system using the legacy [Timeout Manager](/nservicebus/messaging/timeout-manager.md) and new delayed messages flow through the native implementation.
+[Native delayed delivery](/nservicebus/messaging/delayed-delivery.md) was introduced in NServiceBus version 7 across most supported transports and a hybrid mode was made available which is enabled by default. When running in hybrid mode, endpoints consume timeouts that were registered in the system using the legacy [Timeout Manager](/nservicebus/messaging/timeout-manager.md) while new delayed messages flow through the native implementation.
 
 NOTE: Make sure to use the `preview` option of the tool to make sure that the transport supports native delayed delivery before performing any migration attempt.
 
