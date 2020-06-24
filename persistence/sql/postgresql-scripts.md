@@ -102,8 +102,7 @@ snippet: PostgreSQL_OutboxSetAsDispatchedSql
 
 Used by `IOutboxStorage.Store`.
 
-snippet: PostgreSQL_OutboxStoreSql
-
+partial: outbox
 
 ### Saga
 

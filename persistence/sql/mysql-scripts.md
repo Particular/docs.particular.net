@@ -103,7 +103,7 @@ snippet: MySql_OutboxSetAsDispatchedSql
 
 Used by `IOutboxStorage.Store`.
 
-snippet: MySql_OutboxStoreSql
+partial: outbox
 
 
 ### Saga

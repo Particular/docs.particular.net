@@ -1,6 +1,5 @@
 using Microsoft.Data.SqlClient;
 using NServiceBus;
-using NServiceBus.Transport.SqlServer;
 
 class NamedConnectionString
 {

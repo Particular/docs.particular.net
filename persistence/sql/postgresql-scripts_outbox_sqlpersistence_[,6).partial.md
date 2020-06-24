@@ -1,0 +1,1 @@
+snippet: PostgreSQL_OutboxStoreSql

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
-namespace NHibernate_7.Session
+namespace NHibernate_8.Session
 {
     #region NHibernateAccessingDataViaContextHandler
 
