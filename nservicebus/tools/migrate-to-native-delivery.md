@@ -70,8 +70,8 @@ For RavenDB:
 
 - `--serverUrl`: The RavenDB server URL
 - `--databaseName`: The database name where timeouts to migrate are stored
-- `--prefix`: The prefix used for storage of timeouts. The default value is "TimeoutDatas"
 - `--ravenVersion`: The allowed values are "3.5" and "4"
+- `--prefix`(optional): The prefix used for storage of timeouts. The default value is "TimeoutDatas"
 
 For SQL:
 
@@ -91,8 +91,8 @@ migrate-timeouts ravendb preview
                         -t|--target <targetConnectionString>
                         --serverUrl <serverUrl>
                         --databaseName <databaseName>
+                        --ravenVersion <ravenVersion>
                         [--prefix] <prefix>
-                        [--ravenVersion] <ravenVersion>
 ```
 
 **Sql Persistence**
@@ -126,10 +126,10 @@ migrate-timeouts ravendb migrate
                         -t|--target <targetConnectionString>
                         --serverUrl <serverUrl>
                         --databaseName <databaseName>
+                        --ravenVersion <ravenVersion>
                         [--prefix] <prefix>
-                        [--ravenVersion] <ravenVersion>
+                        [-c|--cutoffTime <cutoffTime>]
                         [--endpoint] <endpointName>
-                        [-c|--cutofftime <cutofftime>]
                         [--allendpoints]
                         [--forceUseIndex]
 ```
@@ -141,7 +141,7 @@ migrate-timeouts sqlp migrate
                         -t|--target <targetConnectionString>
                         --source <source>
                         --dialect <sqlDialect>
-                        [-c|--cutofftime <cutofftime>]
+                        [-c|--cutofTime <cutoffTime>]
                         [--endpoint] <endpointName>
                         [--allendpoints]
 ```
@@ -158,8 +158,8 @@ To abort an ongoing migration use the `abort` command.
 migrate-timeouts ravendb abort
                         --serverUrl <serverUrl>
                         --databaseName <databaseName>
+                        --ravenVersion <ravenVersion>
                         [--prefix] <prefix>
-                        [--ravenVersion] <ravenVersion>
 ```
 
 **Sql Persistence**
