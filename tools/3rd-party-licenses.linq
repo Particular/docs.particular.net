@@ -54,12 +54,6 @@ async Task Main()
         .OrderBy(package => package.Id)
         .ToList();
 
-    corePackage.Dump();
-    foreach (var package in downstreamPackages)
-    {
-        package.Dump();
-    }
-
     using (var output = new StreamWriter(includePath, append: false))
 	{
 		output.WriteLine("## [NServiceBus](/nuget/NServiceBus)");
@@ -107,6 +101,8 @@ public static class TextWriterExtensions
     }
     public static void WritePackage(this TextWriter output, Package package, params Action[] writeHeadings)
     {
+        package.Dump();
+        
         if (!package.Dependencies.Any())
         {
             return;
