@@ -226,7 +226,7 @@ Use the Raven Studio to check the state of ongoing and previous migrations by fi
 
 ### Sql Persistence
 
-The history and migrated data is always kept in the database so nothing can get lost.
+The history and migrated data is always kept in the database.
 
 To list the history and status of migrations execute:
 
