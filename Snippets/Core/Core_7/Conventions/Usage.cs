@@ -28,15 +28,15 @@ namespace Core7.Conventions
             var conventions = endpointConfiguration.Conventions();
             conventions.DefiningCommandsAs(type =>
                 type.Namespace == "MyNamespace.Messages.Commands"
-                || type.IsAssignableFrom(typeof(ICommand))
+                || typeof(ICommand).IsAssignableFrom(type)
             );
             conventions.DefiningEventsAs(type =>
                 type.Namespace == "MyNamespace.Messages.Events"
-                || type.IsAssignableFrom(typeof(IEvent))
+                || typeof(IEvent).IsAssignableFrom(type)
             );
             conventions.DefiningMessagesAs(type =>
                 type.Namespace == "MyNamespace.Messages"
-                || type.IsAssignableFrom(typeof(IMessage))
+                || typeof(IMessage).IsAssignableFrom(type)
             );
             conventions.DefiningDataBusPropertiesAs(property =>
                 property.Name.EndsWith("DataBus")
