@@ -93,8 +93,8 @@ public static class TextWriterExtensions
     {
         package.Dump();
         
-        output.WriteLine("| Depencency | Version | License | Project Site |");
-        output.WriteLine("|:-----------|:-------:|:-------:|:------------:|");
+        output.WriteLine("| Depencency | License | Project Site |");
+        output.WriteLine("|:-----------|:-------:|:------------:|");
 
         foreach (var dependency in package.Dependencies)
         {
@@ -102,9 +102,10 @@ public static class TextWriterExtensions
             {
                 package.Dump();
             }
-            output.Write($"| ");
+            
+            output.Write("| ");
             output.WriteExternalLink(dependency.Id, $"https://www.nuget.org/packages/{dependency.Id}/");
-            output.Write($" | {dependency.Version} | ");
+            output.Write(" | ");
             
             if(dependency.License != null)
 			{
@@ -176,7 +177,6 @@ public static class PackageMetadataResourceExtensions
             result.Add(new DependencyInfo
             {
                 Id = dependency.Id,
-				Version = dependencyPackage.Identity.Version,
                 License = dependencyPackage.LicenseMetadata,
 				LicenseUrl = dependencyPackage.LicenseUrl?.ToString(),
                 ProjectUrl = dependencyPackage.ProjectUrl?.ToString()
@@ -239,7 +239,6 @@ public class Package
 public class DependencyInfo
 {
     public string Id { get; set; }
-    public NuGetVersion Version { get; set; }
     public LicenseMetadata License { get; set; }
     public string LicenseUrl { get; set; }
     public string ProjectUrl { get; set; }
