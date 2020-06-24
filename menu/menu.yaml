@@ -87,6 +87,8 @@
         Title: Supported platforms
     - Url: nservicebus/upgrades/release-policy
       Title: Release Policy
+    - Url: nservicebus/upgrades/third-party-licenses
+      Title: Third-party licenses
     - Url: security-advisories
       Title: Security Advisories
       Articles:
