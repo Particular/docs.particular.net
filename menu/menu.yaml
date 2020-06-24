@@ -797,6 +797,9 @@
       Title: Viewing content
     - Url: transports/msmq/transportconfig
       Title: Configuration
+      Articles:
+      - Url: transports/msmq/discard-expired-messages
+        Title: Discarding expired messages
     - Url: transports/msmq/troubleshooting
       Title: Troubleshooting
     - Url: transports/msmq/subscription-authorisation
