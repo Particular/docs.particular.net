@@ -54,6 +54,7 @@ internal static class MsmqUtils
         queue.SetPermissions(account, MessageQueueAccessRights.WriteMessage, allow);
         queue.SetPermissions(account, MessageQueueAccessRights.ReceiveMessage, allow);
         queue.SetPermissions(account, MessageQueueAccessRights.PeekMessage, allow);
+        queue.SetPermissions(account, MessageQueueAccessRights.GetQueueProperties, allow);
     }
 
     static string AdminGroup = GetGroupName(WellKnownSidType.BuiltinAdministratorsSid);
