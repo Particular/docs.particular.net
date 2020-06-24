@@ -65,12 +65,12 @@ async Task Main()
         .OrderBy(package => package.Id)
         .ToList();
 
-//    corePackage.Dump();
-//    foreach (var package in downstreamPackages)
-//    {
-//        package.Dump();
-//    }
-//    serviceControlPackage.Dump();
+    corePackage.Dump();
+    foreach (var package in downstreamPackages)
+    {
+        package.Dump();
+    }
+    serviceControlPackage.Dump();
 
     using (var output = new StreamWriter(includePath, append: false))
     {
@@ -188,8 +188,7 @@ public static class PackageMetadataResourceExtensions
         NoCache = true,
     };
 
-    public static async Task<List<DependencyInfo>> GetDependencies(
-        this NuGetSearcher searcher, string packageId, ILogger logger)
+    public static async Task<List<DependencyInfo>> GetDependencies(this NuGetSearcher searcher, string packageId, ILogger logger)
     {
         var latestPackage = (await searcher.GetPackageAsync(packageId))
             .OrderByDescending(pkg => pkg.Identity.Version)
@@ -224,18 +223,6 @@ public static class PackageMetadataResourceExtensions
         }
 
         return result;
-    }
-}
-
-public static class PackageExtensions
-{
-    public static void Dump(this Package package, DateTimeOffset utcTomorrow)
-    {
-        package.Id.Dump("Package");
-
-        package.Dependencies
-            .OrderBy(d => d.Id)
-            .Dump("Dependencies");
     }
 }
 
