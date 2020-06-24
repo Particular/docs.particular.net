@@ -39,7 +39,8 @@ class CustomConnectionAndTransaction
 
         #region UseCustomSqlConnection
 
-        using (var scope = new TransactionScope(TransactionScopeOption.RequiresNew, TransactionScopeAsyncFlowOption.Enabled))
+        using (var scope = new TransactionScope(TransactionScopeOption.RequiresNew, 
+            TransactionScopeAsyncFlowOption.Enabled))
         {
             using (var connection = new SqlConnection(connectionString))
             {
