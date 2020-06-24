@@ -58,7 +58,7 @@ async Task Main()
 	{
 		output.WriteLine("## [NServiceBus](/nuget/NServiceBus)");
 		output.WriteLine();
-		output.WritePackage(corePackage);
+		output.WritePackageDependencies(corePackage);
         output.WritePackages(downstreamPackages);
     }
 }
@@ -69,50 +69,27 @@ public static class TextWriterExtensions
     {
         foreach (ComponentCategory category in Enum.GetValues(typeof(ComponentCategory)))
         {
-            var categoryHeadingWritten = false;
+            var writePackages = packages.Where(package => package.Category == category)
+                .Where(package => package.Dependencies.Any())
+                .OrderBy(package => package.Id);
+                
+            if(writePackages.Any())
+			{
+				output.WriteLine($"## {category} packages");
+				output.WriteLine();
+			}
 
-            foreach (var package in packages.Where(package => package.Category == category))
-            {
-                var packageHeadingWritten = false;
-
-                output.WritePackage(
-                    package,
-                    () =>
-                    {
-                        if (!categoryHeadingWritten)
-                        {
-                            output.WriteLine($"## {category} packages");
-                            output.WriteLine();
-                            categoryHeadingWritten = true;
-                        }
-                    },
-                    () =>
-                    {
-                        if (!packageHeadingWritten)
-                        {
-                            output.WriteLine($"### [{package.Id}](/nuget/{package.Id})");
-                            output.WriteLine();
-
-                            packageHeadingWritten = true;
-                        }
-                    });
+            foreach (var package in writePackages)
+			{
+				output.WriteLine($"### [{package.Id}](/nuget/{package.Id})");
+				output.WriteLine();
+                
+				output.WritePackageDependencies(package);
             }
         }
     }
-    public static void WritePackage(this TextWriter output, Package package, params Action[] writeHeadings)
+    public static void WritePackageDependencies(this TextWriter output, Package package)
     {
-        package.Dump();
-        
-        if (!package.Dependencies.Any())
-        {
-            return;
-        }
-
-        foreach (var writeHeading in writeHeadings)
-        {
-            writeHeading();
-        }
-
         output.WriteLine("| Depencency | Version | License | Project Site |");
         output.WriteLine("|:-----------|:-------:|:-------:|:------------:|");
 
