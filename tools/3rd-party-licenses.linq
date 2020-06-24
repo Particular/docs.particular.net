@@ -250,17 +250,6 @@ public static class PackageExtensions
     }
 }
 
-public static class PackageSearchMetadataExtensions
-{
-    public static string ToMinorString(this IPackageSearchMetadata package) =>
-        package == null ? null : $"{package.Identity.Id} {package.Identity.Version.ToMinorString()}";
-}
-
-public static class NugetVersionExtensions
-{
-    public static string ToMinorString(this NuGetVersion version) => $"{version.Major}.{version.Minor}.x";
-}
-
 static IEnumerable<SerializationComponent> GetComponents(string path, string corePackageId)
 {
     List<SerializationComponent> components;
@@ -300,27 +289,6 @@ public class NuGetSearcher
             dictionary.TryAdd(packageId, metadata);
         }
         return metadata;
-    }
-
-    public IEnumerable<PackageDependency> GetDependencies(IPackageSearchMetadata package)
-    {
-        foreach (var dependency in package.DependencySets.SelectMany(x => x.Packages))
-        {
-            yield return dependency;
-            if (dictionary.TryGetValue(dependency.Id, out var dependencyPackageList))
-            {
-                foreach (var subPackage in dependencyPackageList.OrderBy(x => x.Identity.Version))
-                {
-                    if (dependency.VersionRange.Satisfies(subPackage.Identity.Version))
-                    {
-                        foreach (var subDependency in GetDependencies(subPackage))
-                        {
-                            yield return subDependency;
-                        }
-                    }
-                }
-            }
-        }
     }
 }
 
