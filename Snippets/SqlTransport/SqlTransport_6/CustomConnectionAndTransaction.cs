@@ -1,8 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
-using System.Transactions;
 using NServiceBus;
-using NServiceBus.Transport.SqlServer;
 
 class CustomConnectionAndTransaction
 {
@@ -18,48 +16,16 @@ class CustomConnectionAndTransaction
             {
                 var sqlCommand = new SqlCommand(commandText, connection, transaction);
 
-                //Exectute SQL statement
+                //Execute SQL statement
                 sqlCommand.ExecuteNonQuery();
 
-                var options = new SendOptions();
-
-                options.UseCustomSqlTransaction(transaction);
-
-                //Send bunch of messages using the same transaction
-                await session.Send(new Message(), options);
-                await session.Send(new Message(), options);
-                await session.Send(new Message(), options);
+                //Send a message
+                var sendOptions = new SendOptions();
+                sendOptions.UseCustomSqlTransaction(transaction);
+                await session.Send(new Message(), sendOptions);
 
                 transaction.Commit();
             }
-        }
-
-        #endregion
-
-        #region UseCustomSqlConnection
-
-        using (var scope = new TransactionScope(TransactionScopeOption.RequiresNew, TransactionScopeAsyncFlowOption.Enabled))
-        {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                var sqlCommand = new SqlCommand(commandText, connection);
-
-                //Exectute SQL statement
-                sqlCommand.ExecuteNonQuery();
-
-                var options = new SendOptions();
-
-                options.UseCustomSqlConnection(connection);
-
-                //Send bunch of messages using the same transaction
-                await session.Send(new Message(), options);
-                await session.Send(new Message(), options);
-                await session.Send(new Message(), options);
-            }
-
-            scope.Complete();
         }
 
         #endregion

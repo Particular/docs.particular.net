@@ -19,17 +19,13 @@
                 {
                     var sqlCommand = new SqlCommand(commandText, connection, transaction);
 
-                    //Exectute SQL statement
+                    //Execute SQL statement
                     sqlCommand.ExecuteNonQuery();
 
-                    var options = new SendOptions();
-
-                    options.UseCustomSqlConnectionAndTransaction(connection, transaction);
-
-                    //Send bunch of messages using the same transaction
-                    await session.Send(new Message(), options);
-                    await session.Send(new Message(), options);
-                    await session.Send(new Message(), options);
+                    //Send a message
+                    var sendOptions = new SendOptions();
+                    sendOptions.UseCustomSqlConnectionAndTransaction(connection, transaction);
+                    await session.Send(new Message(), sendOptions);
 
                     transaction.Commit();
                 }
