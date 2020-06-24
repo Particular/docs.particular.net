@@ -33,9 +33,6 @@ async Task Main()
         Dependencies = await searcher.GetDependencies(corePackageId, logger)
     };
 
-    var mygetPackageMetadata = await new SourceRepository(new PackageSource(mygetSource), Repository.Provider.GetCoreV3()).GetResourceAsync<PackageMetadataResource>();
-    var mygetSearcher = new NuGetSearcher(mygetPackageMetadata, logger);
-
     var downstreamPackages =
         (await Task.WhenAll(GetComponents(componentsPath, corePackageId)
             .SelectMany(component => component.NugetOrder
