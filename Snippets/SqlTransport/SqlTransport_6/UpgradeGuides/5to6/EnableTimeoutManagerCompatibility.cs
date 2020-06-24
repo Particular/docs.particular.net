@@ -1,5 +1,4 @@
 ﻿using NServiceBus;
-using NServiceBus.Transport.SqlServer;
 
 class EnableTimeoutManagerCompatibility
 {
