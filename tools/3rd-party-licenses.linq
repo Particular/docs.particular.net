@@ -10,12 +10,12 @@
   <Namespace>System.Threading.Tasks</Namespace>
   <Namespace>YamlDotNet.Serialization</Namespace>
   <Namespace>System.Collections.Concurrent</Namespace>
+  <Namespace>NuGet.Packaging</Namespace>
 </Query>
 
 async Task Main()
 {
     var source = "https://api.nuget.org/v3/index.json";
-    var mygetSource = "https://www.myget.org/F/particular/api/v3/index.json";
     var componentsPath = Path.Combine(Util.CurrentQuery.Location, @"..\components\components.yaml");
 
     var corePackageId = "NServiceBus";
@@ -59,6 +59,7 @@ async Task Main()
 		output.WriteLine("## [NServiceBus](/nuget/NServiceBus)");
 		output.WriteLine();
 		output.WritePackageDependencies(corePackage);
+        
         output.WritePackages(downstreamPackages);
     }
 }
@@ -90,6 +91,8 @@ public static class TextWriterExtensions
     }
     public static void WritePackageDependencies(this TextWriter output, Package package)
     {
+        package.Dump();
+        
         output.WriteLine("| Depencency | Version | License | Project Site |");
         output.WriteLine("|:-----------|:-------:|:-------:|:------------:|");
 
@@ -99,19 +102,27 @@ public static class TextWriterExtensions
             {
                 package.Dump();
             }
-            output.Write($"| [{dependency.Id}](https://www.nuget.org/packages/{dependency.Id}/) | {dependency.Version} | ");
-            if(dependency.LicenseUrl != null)
+            output.Write($"| ");
+            output.WriteExternalLink(dependency.Id, $"https://www.nuget.org/packages/{dependency.Id}/");
+            output.Write($" | {dependency.Version} | ");
+            
+            if(dependency.License != null)
 			{
-				output.Write($"[View License]({dependency.LicenseUrl})");
+                output.WriteExternalLink(dependency.License.License, dependency.License.LicenseUrl.ToString());
+            }
+            else if(dependency.LicenseUrl != null)
+			{
+                output.WriteExternalLink("View License", dependency.LicenseUrl);
 			}
             else
             {
                 output.Write("<i title=\"The NuGet package contains no license information. Try checking the project site instead.\">None provided</i>");
             }
+            
 			output.Write(" | ");
 			if (dependency.ProjectUrl != null)
 			{
-				output.Write($"[Project Site]({dependency.ProjectUrl})");
+                output.WriteExternalLink("Project Site", dependency.ProjectUrl);
 			}
             else
             {
@@ -121,6 +132,11 @@ public static class TextWriterExtensions
         }
 
         output.WriteLine();
+    }
+    
+    public static void WriteExternalLink(this TextWriter output, string text, string url)
+    {
+        output.Write($"<a href=\"{url}\" target=\"_blank\">{text}</a>");
     }
 }
 
@@ -161,6 +177,7 @@ public static class PackageMetadataResourceExtensions
             {
                 Id = dependency.Id,
 				Version = dependencyPackage.Identity.Version,
+                License = dependencyPackage.LicenseMetadata,
 				LicenseUrl = dependencyPackage.LicenseUrl?.ToString(),
                 ProjectUrl = dependencyPackage.ProjectUrl?.ToString()
             });
@@ -223,6 +240,7 @@ public class DependencyInfo
 {
     public string Id { get; set; }
     public NuGetVersion Version { get; set; }
+    public LicenseMetadata License { get; set; }
     public string LicenseUrl { get; set; }
     public string ProjectUrl { get; set; }
 }
