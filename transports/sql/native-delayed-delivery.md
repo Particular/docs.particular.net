@@ -6,7 +6,7 @@ component: SqlTransport
 versions: '[3,)'
 ---
 
-The SQL Server transport can take advantage of native [delayed delivery](/nservicebus/messaging/delayed-delivery.md) without the need to run the [timeout manager](/nservicebus/messaging/timeout-manager.md). Instead, the transport creates infrastructure which can delay messages using native SQL Server transport features. 
+The SQL Server transport can take advantage of native [delayed delivery](/nservicebus/messaging/delayed-delivery.md) without the need to run the [timeout manager](/nservicebus/messaging/timeout-manager.md). Instead, the transport creates infrastructure which can delay messages using native SQL Server transport features.
 
 NOTE: The native delayed delivery of SQL Server transport is available only in endpoints that are not configured as [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting).
 
@@ -36,7 +36,11 @@ When the delay time lapses, SQL Server transport moves a batch of messages to th
 
 When upgrading to a version of the transport that supports native delayed delivery, it is safe to operate a combination of endpoints using native delayed delivery and endpoints using timeout manager at the same time:
 
-* Endpoints with native delayed delivery can send delayed messages to endpoints using timeout manager. 
+* Endpoints with native delayed delivery can send delayed messages to endpoints using timeout manager.
 * Endpoints with native delayed delivery can continue to receive delayed messages from endpoints using timeout manager.
 
 partial: timeoutmanager
+
+## Migrating timeouts
+
+In order to migrate timeouts to the native-delay delivery implementation, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used.

@@ -98,3 +98,4 @@ Extensions.DependencyInjection: NServiceBus.Extensions.DependencyInjection
 Extensions.Logging: NServiceBus.Extensions.Logging
 AttributeConventions: NServiceBus.AttributeConventions
 LambdaHandlers: Community.NServiceBus.LambdaHandlers
+TimeoutMigration: Particular.TimeoutMigration
