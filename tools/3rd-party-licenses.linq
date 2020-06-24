@@ -14,11 +14,6 @@
 
 async Task Main()
 {
-    var endOfLifePackages = new Dictionary<string, string>
-    {
-        { "NServiceBus.Azure", "This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage." }
-    };
-
     var source = "https://api.nuget.org/v3/index.json";
     var mygetSource = "https://www.myget.org/F/particular/api/v3/index.json";
     var componentsPath = Path.Combine(Util.CurrentQuery.Location, @"..\components\components.yaml");
@@ -36,7 +31,7 @@ async Task Main()
     {
         Id = corePackageId,
         Category = ComponentCategory.Core,
-        Dependencies = await searcher.GetDependencies(corePackageId, logger, endOfLifePackages)
+        Dependencies = await searcher.GetDependencies(corePackageId, logger)
     };
 
     var mygetPackageMetadata = await new SourceRepository(new PackageSource(mygetSource), Repository.Provider.GetCoreV3()).GetResourceAsync<PackageMetadataResource>();
@@ -46,7 +41,7 @@ async Task Main()
     {
         Id = serviceControlPackageId,
         Category = ComponentCategory.Other,
-        Dependencies = await mygetSearcher.GetDependencies(serviceControlPackageId, logger, endOfLifePackages)
+        Dependencies = await mygetSearcher.GetDependencies(serviceControlPackageId, logger)
     };
 
     var downstreamPackages =
@@ -65,7 +60,7 @@ async Task Main()
                 {
                     Id = package.Id,
                     Category = package.Category,
-                    Dependencies = await searcher.GetDependencies(package.Id, logger, endOfLifePackages)
+                    Dependencies = await searcher.GetDependencies(package.Id, logger)
                 })))
         .OrderBy(package => package.Id)
         .ToList();
@@ -80,7 +75,7 @@ async Task Main()
     using (var output = new StreamWriter(includePath, append: false))
     {
         output.WritePackage(corePackage);
-        output.WritePackages(downstreamPackages, endOfLifePackages);
+        output.WritePackages(downstreamPackages);
         output.WriteServiceControl(serviceControlPackage);
     }
 }
@@ -105,7 +100,7 @@ public static class TextWriterExtensions
                 output.WriteLine();
             });            
 
-    public static void WritePackages(this TextWriter output, IEnumerable<Package> packages, Dictionary<string, string> endOfLifePackages)
+    public static void WritePackages(this TextWriter output, IEnumerable<Package> packages)
     {
         foreach (ComponentCategory category in Enum.GetValues(typeof(ComponentCategory)))
         {
@@ -132,12 +127,6 @@ public static class TextWriterExtensions
                         {
                             output.WriteLine($"### [{package.Id}](/nuget/{package.Id})");
                             output.WriteLine();
-
-                            if (endOfLifePackages.TryGetValue(package.Id, out var reason))
-                            {
-                                output.WriteLine($"_{reason}_");
-                                output.WriteLine();
-                            }
 
                             packageHeadingWritten = true;
                         }
@@ -200,7 +189,7 @@ public static class PackageMetadataResourceExtensions
     };
 
     public static async Task<List<DependencyInfo>> GetDependencies(
-        this NuGetSearcher searcher, string packageId, ILogger logger, Dictionary<string, string> endOfLifePackages)
+        this NuGetSearcher searcher, string packageId, ILogger logger)
     {
         var latestPackage = (await searcher.GetPackageAsync(packageId))
             .OrderByDescending(pkg => pkg.Identity.Version)
@@ -259,7 +248,7 @@ static IEnumerable<SerializationComponent> GetComponents(string path, string cor
     }
 
     return components
-        .Where(component => component.UsesNuget && component.SupportLevel == SupportLevel.Regular);
+        .Where(component => component.UsesNuget && (component.SupportLevel == SupportLevel.Regular || component.SupportLevel == SupportLevel.Preview));
 }
 
 public class NuGetSearcher
@@ -335,6 +324,7 @@ public enum SupportLevel
     Regular,
     Labs,
     Community,
+    Preview,
 }
 
 public enum ComponentCategory
