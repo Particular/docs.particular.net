@@ -52,7 +52,7 @@ Even though the tool doesn't delete any timeout information when doing the migra
 
 ## How to install
 
-`dotnet tool install migrate-timeouts -g`
+`dotnet tool install Particular.TimeoutMigration -g`
 
 To verify if the tool was installed correctly, run:
 
