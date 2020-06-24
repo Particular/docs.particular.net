@@ -8,7 +8,6 @@ public class Program
     {
         #region EndpointConfiguration
         var host = Host.CreateDefaultBuilder()
-            .ConfigureWebHostDefaults(c => c.UseStartup<Startup>())
             .UseNServiceBus(context =>
             {
                 var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
@@ -21,6 +20,7 @@ public class Program
 
                 return endpointConfiguration;
             })
+            .ConfigureWebHostDefaults(c => c.UseStartup<Startup>())
             .Build();
         #endregion
 
