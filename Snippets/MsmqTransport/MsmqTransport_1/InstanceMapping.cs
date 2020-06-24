@@ -29,5 +29,17 @@ namespace Core6.Routing
 
             #endregion
         }
+
+        public void InstanceMappingUriPath(EndpointConfiguration endpointConfiguration)
+        {
+            #region InstanceMappingFile-UriPath
+
+            var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+            var routing = transport.Routing();
+            var instanceMappingFile = routing.InstanceMappingFile();
+            instanceMappingFile.Path(new Uri("http://myserver/instance-mapping.xml"));
+
+            #endregion
+        }
     }
 }
