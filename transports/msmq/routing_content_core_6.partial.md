@@ -38,7 +38,7 @@ Default: 30 seconds
 snippet: InstanceMappingFile-RefreshInterval
 
 
-### FilePath
+### File Path
 
 Specifies the path and file name of the instance mapping file. This can be a relative or an absolute file path. Relative file paths are resolved from `AppDomain.BaseDirectory`.
 
