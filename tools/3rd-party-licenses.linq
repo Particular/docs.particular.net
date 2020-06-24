@@ -19,7 +19,6 @@ async Task Main()
     var componentsPath = Path.Combine(Util.CurrentQuery.Location, @"..\components\components.yaml");
 
     var corePackageId = "NServiceBus";
-    var serviceControlPackageId = "Particular.PlatformSample.ServiceControl";
     var includePath = Path.Combine(Util.CurrentQuery.Location, @"..\nservicebus\upgrades\third-party-license-data.include.md");
 
     var logger = new Logger();
@@ -36,13 +35,6 @@ async Task Main()
 
     var mygetPackageMetadata = await new SourceRepository(new PackageSource(mygetSource), Repository.Provider.GetCoreV3()).GetResourceAsync<PackageMetadataResource>();
     var mygetSearcher = new NuGetSearcher(mygetPackageMetadata, logger);
-
-    var serviceControlPackage = new Package
-    {
-        Id = serviceControlPackageId,
-        Category = ComponentCategory.Other,
-        Dependencies = await mygetSearcher.GetDependencies(serviceControlPackageId, logger)
-    };
 
     var downstreamPackages =
         (await Task.WhenAll(GetComponents(componentsPath, corePackageId)
@@ -70,36 +62,18 @@ async Task Main()
     {
         package.Dump();
     }
-    serviceControlPackage.Dump();
 
     using (var output = new StreamWriter(includePath, append: false))
-    {
-        output.WritePackage(corePackage);
+	{
+		output.WriteLine("## [NServiceBus](/nuget/NServiceBus)");
+		output.WriteLine();
+		output.WritePackage(corePackage);
         output.WritePackages(downstreamPackages);
-        output.WriteServiceControl(serviceControlPackage);
     }
 }
 
 public static class TextWriterExtensions
 {
-    public static void WritePackage(this TextWriter output, Package package) =>
-        output.Write(
-            package,
-            () =>
-            {
-                output.WriteLine($"## [{package.Id}](/nuget/{package.Id})");
-                output.WriteLine();
-            });
-            
-    public static void WriteServiceControl(this TextWriter output, Package package) =>
-        output.Write(
-            package,
-            () =>
-            {
-                output.WriteLine($"## ServiceControl");
-                output.WriteLine();
-            });            
-
     public static void WritePackages(this TextWriter output, IEnumerable<Package> packages)
     {
         foreach (ComponentCategory category in Enum.GetValues(typeof(ComponentCategory)))
@@ -110,7 +84,7 @@ public static class TextWriterExtensions
             {
                 var packageHeadingWritten = false;
 
-                output.Write(
+                output.WritePackage(
                     package,
                     () =>
                     {
@@ -134,7 +108,7 @@ public static class TextWriterExtensions
             }
         }
     }
-    private static void Write(this TextWriter output, Package package, params Action[] writeHeadings)
+    public static void WritePackage(this TextWriter output, Package package, params Action[] writeHeadings)
     {
         if (!package.Dependencies.Any())
         {
