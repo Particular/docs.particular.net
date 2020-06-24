@@ -572,6 +572,11 @@
       Title: GDPR
     - Url: nservicebus/compliance/fips
       Title: FIPS
+  - Url: nservicebus/tools
+    Title: Supported Tools
+    Articles:
+    - Url: nservicebus/tools/migrate-to-native-delivery
+      Title: Migrating timeouts    
 
 - Name: Transports
   Url: transports
