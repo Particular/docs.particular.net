@@ -21,3 +21,5 @@ partial: scale-out
 ## Physical mapping
 
 partial: content
+
+partial: schema-validation
