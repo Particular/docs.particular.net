@@ -6,3 +6,11 @@ If a database driver configured for the persistence does not support this method
  * use database that supports distributed transactions (such as SQL Server or Oracle) or
  * enable [Outbox](/nservicebus/outbox/) or
  * rewrite message handler logic to ensure it is idempotent.
+
+ Even if the database driver supports `TransactionScope`, it must be used with a transport that also supports `TransactionScope` (i.e. MSMQ or SQL Server). If a transaction is elevated to a distributed transaction and the transport or environment doesn't support it, the following exception will be thrown:
+
+```
+System.Transactions.TransactionAbortedException: The transaction has aborted. 
+System.Transactions.TransactionManagerCommunicationException: Communication with the underlying transaction manager has failed.
+System.Runtime.InteropServices.COMException: The Transaction Manager is not available. (Exception from HRESULT: 0x8004D01B)
+```
