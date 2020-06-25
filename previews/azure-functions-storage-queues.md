@@ -42,6 +42,7 @@ When using Azure Functions with Azure Storage Queues, the following points must 
 - When using the default recoverability or specifying custom number of immediate retries, the number of delivery attempts specified on the underlying queue or Azure Functions host must be more than then number of the immediate retries. The Azure Functions default is 5 (`DequeueCount`) for the Azure Storage Queues trigger.
 - Delayed Retries are not supported.
 - Saga timeouts are not supported.
+- Delayed messages sent to Function endpoints are not supported.
 
 ## Preparing the Azure Storage account
 
