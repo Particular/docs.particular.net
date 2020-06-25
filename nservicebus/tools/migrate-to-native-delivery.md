@@ -71,7 +71,7 @@ For RavenDB:
 - `--serverUrl`: The RavenDB server URL
 - `--databaseName`: The database name where timeouts to migrate are stored
 - `--ravenVersion`: The allowed values are "3.5" and "4"
-- `--prefix`(optional): The prefix used for storage of timeouts. The default value is "TimeoutDatas".
+- `--prefix`(optional): The prefix used for storage of timeouts. The default value is "TimeoutDatas"
 
 For SQL:
 
@@ -193,7 +193,7 @@ WARN: This is a destructive operation and should only be performed once it has b
 ### RavenDB
 
 - Make sure that [RabbitMQ compatibility mode](/transports/rabbitmq/delayed-delivery.md#backwards-compatibility) is turned off
-- Delete all the documents in the `TimeoutDatas` documents that have an `OwningTimeoutManager` starting with `__migrated__`.
+- Delete all the documents in the `TimeoutDatas` documents that have an `OwningTimeoutManager` starting with `__migrated__`
 
 ### Sql persistence
 
@@ -201,7 +201,7 @@ Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. Fo
 
 - Make sure that [RabbitMQ compatibility mode](/transports/rabbitmq/delayed-delivery.md#backwards-compatibility) is turned off
 - Delete the empty `{EndpointName}_TimeoutData` table
-- Delete the migration table named `TimeoutData_migration_{MigrationRunId}`, where `MigrationRunId` is taken from the output of the `TimeoutsMigration_State` query (this will free up the diskspace used by the timeouts).
+- Delete the migration table named `TimeoutData_migration_{MigrationRunId}`, where `MigrationRunId` is taken from the output of the `TimeoutsMigration_State` query (this will free up the diskspace used by the timeouts)
 
 ## Limitations
 
