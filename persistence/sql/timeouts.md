@@ -10,3 +10,7 @@ versions: '[4,)'
 The timeouts persister can be configured to use a dedicated connection builder. For example, it may be used for creating timeouts tables in a separate database.
 
 snippet: SqlPersistenceTimeoutConnection
+
+## Migrating timeouts
+
+In order to migrate timeouts to the native-delay delivery implementation, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used.
