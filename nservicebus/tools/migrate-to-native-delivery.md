@@ -71,7 +71,7 @@ For RavenDB:
 - `--serverUrl`: The RavenDB server URL
 - `--databaseName`: The database name where timeouts to migrate are stored
 - `--ravenVersion`: The allowed values are "3.5" and "4"
-- `--prefix`(optional): The prefix used for storage of timeouts. The default value is "TimeoutDatas"
+- `--prefix`(optional): The prefix used for storage of timeouts. The default value is "TimeoutDatas".
 
 For SQL:
 
@@ -205,10 +205,17 @@ Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. Fo
 
 ## Limitations
 
+### RabbitMQ
+
 As documented in the [RabbitMQ transport](/transports/rabbitmq/delayed-delivery.md), the maximum delay value of a timeout is 8 and a half years. If the migration tool encounters any timeouts that have delivery time set beyond that, it will not migrate that endpoint's timeouts.
 
 If the tool presents endpoints that are not part of the system when running the `preview` command, it might be that an endpoint was renamed at some point.
 Any timeouts that were stored for that endpoint, might already be late in delivery and should be handled separate from the migration tool since the tool has no way to detect where to migrate them to.
+
+### RavenDB
+
+The tool expects a `--prefix` parameter. This is used to detect all the timeout documents in the storage. If the system being migrated is using custom ID generation strategies when persisting timeout documents, a prefix may not be applicable.
+Scanning timeouts without a well-known prefix is currently not supported.
 
 ## Troubleshooting
 

@@ -21,9 +21,9 @@ The delayed-delivery feature uses a built-in persistent store and requires using
 
 ### Storing timeout messages
 
-When NServiceBus detects that an outgoing message should be delayed, it routes it to to the `[endpoint_queue_name].Timeouts` queue instead of directly to the destination queue. The ultimate destination address is preserved in a header. 
+When NServiceBus detects that an outgoing message should be delayed, it routes it to to the `[endpoint_queue_name].Timeouts` queue instead of directly to the destination queue. The ultimate destination address is preserved in a header.
 
-The `[endpoint_queue_name].Timeouts` queue is monitored by NServiceBus [internal receiver](/nservicebus/satellites). The receiver picks up timeout messages and stores them using the selected NServiceBus persistence. 
+The `[endpoint_queue_name].Timeouts` queue is monitored by NServiceBus [internal receiver](/nservicebus/satellites). The receiver picks up timeout messages and stores them using the selected NServiceBus persistence.
 
 The delayed messages will be stored for the specified delay time, using persistance implementation specified in the configuration:
 
@@ -49,3 +49,6 @@ When this happens the following critical error message will be raised:
 
 If the NServiceBus.Host is used then the host will execute a fail-fast as documented in the [default critical error behavior for the NServiceBus.Host](/nservicebus/hosting/nservicebus-host/#endpoint-configuration-default-critical-error-action).
 
+### Migrating timeouts to Native Delayed Delivery
+
+If a persistence is being used that supports native delayed delivery and the system still contains timeouts that were scheduled using the timeout manager, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used to migrate these timeouts into the native-delay delivery implementation.
