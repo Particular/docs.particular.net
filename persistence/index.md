@@ -14,10 +14,10 @@ NServiceBus needs to store data for various purposes, such as persisting the sta
 
  * [Sagas](/nservicebus/sagas/)
  * [Outbox](/nservicebus/outbox/)
- * [Subscriptions](/nservicebus/messaging/publish-subscribe/)
- * [Timeouts](/nservicebus/sagas/timeouts.md)
- * [Delayed Retries](/nservicebus/recoverability/#delayed-retries)
- * [Deferral](/nservicebus/messaging/delayed-delivery.md)
+ * [Subscriptions](/nservicebus/messaging/publish-subscribe/) (Storage required if transport does not support native publish-subscribe)
+ * [Timeouts](/nservicebus/sagas/timeouts.md) (Storage required if the transport does not support native delayed delivery)
+ * [Delayed Retries](/nservicebus/recoverability/#delayed-retries) (Storage required if the transport does not support native delayed delivery)
+ * [Deferral](/nservicebus/messaging/delayed-delivery.md) (Storage required if the transport does not support native delayed delivery)
  * [Gateway Deduplication](/nservicebus/gateway/)
 
 ## Selecting a persister
