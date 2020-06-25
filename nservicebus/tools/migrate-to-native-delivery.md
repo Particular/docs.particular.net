@@ -193,7 +193,7 @@ WARN: This is a destructive operation and should only be performed once it has b
 ### RavenDB
 
 - Make sure that [RabbitMQ compatibility mode](/transports/rabbitmq/delayed-delivery.md#backwards-compatibility) is turned off
-- Delete all the documents in the `TimeoutDatas` documents that have an `OwningTimeoutManager` starting with `__migrated__`.
+- Delete all the documents in the `TimeoutDatas` documents that have an `OwningTimeoutManager` starting with `__migrated__`
 
 ### Sql persistence
 
@@ -201,14 +201,21 @@ Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. Fo
 
 - Make sure that [RabbitMQ compatibility mode](/transports/rabbitmq/delayed-delivery.md#backwards-compatibility) is turned off
 - Delete the empty `{EndpointName}_TimeoutData` table
-- Delete the migration table named `TimeoutData_migration_{MigrationRunId}`, where `MigrationRunId` is taken from the output of the `TimeoutsMigration_State` query (this will free up the diskspace used by the timeouts).
+- Delete the migration table named `TimeoutData_migration_{MigrationRunId}`, where `MigrationRunId` is taken from the output of the `TimeoutsMigration_State` query (this will free up the diskspace used by the timeouts)
 
 ## Limitations
+
+### RabbitMQ
 
 As documented in the [RabbitMQ transport](/transports/rabbitmq/delayed-delivery.md), the maximum delay value of a timeout is 8 and a half years. If the migration tool encounters any timeouts that have delivery time set beyond that, it will not migrate that endpoint's timeouts.
 
 If the tool presents endpoints that are not part of the system when running the `preview` command, it might be that an endpoint was renamed at some point.
 Any timeouts that were stored for that endpoint, might already be late in delivery and should be handled separate from the migration tool since the tool has no way to detect where to migrate them to.
+
+### RavenDB
+
+The tool requires the timeouts documents to be discoverable through a known prefix. The prefix is passed to the tool by using the `--prefix` parameter. When not provided, the default is set to `TimeoutDatas`. If the system being migrated is using custom ID generation strategies when persisting timeout documents, a prefix may not be applicable.
+Scanning timeouts without a well-known prefix is currently not supported.
 
 ## Troubleshooting
 
