@@ -214,7 +214,7 @@ Any timeouts that were stored for that endpoint, might already be late in delive
 
 ### RavenDB
 
-The tool expects a `--prefix` parameter. This is used to detect all the timeout documents in the storage. If the system being migrated is using custom ID generation strategies when persisting timeout documents, a prefix may not be applicable.
+The tool requires the timeouts documents to be discoverable through a known prefix. The prefix is passed to the tool by using the `--prefix` parameter. When not provided, the default is set to `TimeoutDatas`. If the system being migrated is using custom ID generation strategies when persisting timeout documents, a prefix may not be applicable.
 Scanning timeouts without a well-known prefix is currently not supported.
 
 ## Troubleshooting
