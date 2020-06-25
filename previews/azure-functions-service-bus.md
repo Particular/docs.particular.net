@@ -27,6 +27,10 @@ snippet: function-definition
 
 ## Configuration
 
+## License
+
+To provide a license for the endpoints hosted as Azure Functions, the environment varialbe (Function setting) `NSERVICEBUS_LICENSE` should be used.
+
 ### Custom diagnostics
 
 snippet: custom-diagnostics
