@@ -29,7 +29,10 @@ snippet: function-definition
 
 ## License
 
-To provide a license for the endpoints hosted as Azure Functions, the environment varialbe (Function setting) `NSERVICEBUS_LICENSE` should be used.
+To provide a license for the endpoints hosted as Azure Functions, the environment varialbe (Function setting) `NSERVICEBUS_LICENSE` should be used contain license as escaped text.
+For local development, `local.settings.json` can be used. In Azure, specify a Function setting using environment variable as the key.
+
+include: license-file-local-setting-file
 
 ### Custom diagnostics
 
