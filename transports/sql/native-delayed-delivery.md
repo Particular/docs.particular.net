@@ -40,7 +40,3 @@ When upgrading to a version of the transport that supports native delayed delive
 * Endpoints with native delayed delivery can continue to receive delayed messages from endpoints using timeout manager.
 
 partial: timeoutmanager
-
-## Migrating timeouts
-
-In order to migrate timeouts to the native-delay delivery implementation, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used.
