@@ -74,6 +74,8 @@ echo "::endgroup::"
 $exitCode = 0
 $failedProjects = New-Object Collections.Generic.List[String]
 
+echo "::group::Build Projects"
+
 foreach($sample in $samples) {
     echo ("::group::Build Project {0}" -f $sample.FullName)	
     
@@ -89,6 +91,8 @@ foreach($sample in $samples) {
 	}
     echo "::endgroup::"
 }
+
+echo "::endgroup::"
 
 If ( $failedProjects.Count -ne 0 ) {
 	Write-Host "::group::Failed Projects"
