@@ -10,10 +10,10 @@ upgradeGuideCoreVersions:
 
 ## Move to .NET 4.6.1
 
-The minimum .NET Framework version for version 5 is [.NET 4.6.1](https://dotnet.microsoft.com/download/dotnet-framework/net461).
+The minimum .NET Framework version for version 6 is [.NET 4.6.1](https://dotnet.microsoft.com/download/dotnet-framework/net461).
 
-**All projects must be updated to .NET Framework 4.6.1 before upgrading to version 5.**
+**All projects must be updated to .NET Framework 4.6.1 before upgrading to version 6.**
 
-It is recommended to update to .NET Framework 4.6.1 and perform a full migration to production **before** updating to version 5. This will help isolate any issues that may occur.
+It is recommended to update to .NET Framework 4.6.1 and perform a full migration to production **before** updating to version 6. This will help isolate any issues that may occur.
 
 For solutions with many projects, the [Target Framework Migrator](https://marketplace.visualstudio.com/items?itemName=PavelSamokha.TargetFrameworkMigrator) Visual Studio extension can reduce the manual effort required in performing an upgrade.
