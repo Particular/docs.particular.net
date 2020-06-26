@@ -7,7 +7,7 @@ The Particular Preview program was created to make it easier for Particular Soft
 
 Previews are production-ready capabilities, [licensed separately](https://particular.net/eula/previews) from the rest of the Particular Platform, and falling under a different [support policy](support-policy.md) from the rest of the platform.
 
-Verified customer adoption is key to our decision to adopt the new capability. Once a Preview is launched, a previews runs for some period of time while we measure customer adoption. If successful, the Preview will transition into a fully adopted capability of the Particular Platform. Previews that do not generate enough interest will either be reworked or converted into a [community project](support-policy.md).
+Verified customer usage in production is key to our decision to adopt the new capability. Once a Preview is launched, a previews runs for some period of time while we measure customer adoption. If successful, the Preview will transition into a fully adopted capability of the Particular Platform. Previews that do not generate enough interest will either be reworked or converted into a [community project](support-policy.md).
 
 Leading up to the launch of a new Preview, in order to help ensure the success of the preview, a research process is undertaken to identify and validate customer needs and determine the most important features that are required to meet those needs.
 
