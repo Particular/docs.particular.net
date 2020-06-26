@@ -33,7 +33,7 @@ public class EndpointWithConnectionInjected
 
         config.RegisterComponents(c =>
         {
-            c.ConfigureComponent<MyRepository>(b =>
+            c.ConfigureComponent(b =>
             {
                 var session = b.Build<ISqlStorageSession>();
                 var repository = new MyRepository(

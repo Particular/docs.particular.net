@@ -36,7 +36,7 @@ namespace NHibernate_8.Session
 
             config.RegisterComponents(c =>
             {
-                c.ConfigureComponent<MyRepository>(b =>
+                c.ConfigureComponent(b =>
                 {
                     var session = b.Build<INHibernateStorageSession>();
                     var repository = new MyRepository(session.Session);
