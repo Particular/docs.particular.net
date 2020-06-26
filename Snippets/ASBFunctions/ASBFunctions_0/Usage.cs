@@ -26,7 +26,7 @@ class Usage
     static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
         var serviceBusTriggeredEndpointConfiguration = ServiceBusTriggeredEndpointConfiguration.FromAttributes();
-
+        // customize configuration here
         return serviceBusTriggeredEndpointConfiguration;
     });
 
