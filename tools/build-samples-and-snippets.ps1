@@ -64,17 +64,16 @@ function Get-BuildSolutions
 
     return $result | Sort-Object | Get-Unique
 }
+
+$exitCode = 0
+$failedProjects = New-Object Collections.Generic.List[String]
+$failedProjectsOutput = CombinePaths $pwd.Path $sln.Name
  
 echo "::group::Get build solutions"
 $samples = Get-BuildSolutions
 Write-Host "Projects to build"
 $samples | ForEach-Object { echo (" * {0}" -f $_.FullName) }
 echo "::endgroup::"
-
-$exitCode = 0
-$failedProjects = New-Object Collections.Generic.List[String]
-
-echo "::group::Build Projects"
 
 foreach($sample in $samples) {
     echo ("::group::Build Project {0}" -f $sample.FullName)	
@@ -92,12 +91,11 @@ foreach($sample in $samples) {
     echo "::endgroup::"
 }
 
-echo "::endgroup::"
-
 If ( $failedProjects.Count -ne 0 ) {
-	Write-Host "::group::Failed Projects"
-	$failedProjects | ForEach-Object { echo ("::error::{0}" -f $_) }
-	Write-Host "::endgroup::"
+	New-Item -ItemType "file" -Path $failedProjectsOutput
+	$failedProjects | ForEach-Object { 
+        Add-Content $failedProjectsOutput $_ 
+    }
 }
 
 exit $exitCode
