@@ -67,7 +67,7 @@ function Get-BuildSolutions
 
 $exitCode = 0
 $failedProjects = New-Object Collections.Generic.List[String]
-$failedProjectsOutput = CombinePaths $pwd.Path $sln.Name
+$failedProjectsOutput = CombinePaths $pwd.Path "failed-projects.log"
  
 echo "::group::Get build solutions"
 $samples = Get-BuildSolutions
