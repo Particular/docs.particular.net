@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 summary: Troubleshooting ServiceControl installation and common issues
-reviewed: 2018-10-10
+reviewed: 2020-06-26
 ---
 
 ### Check the configuration via ServiceControl Management
