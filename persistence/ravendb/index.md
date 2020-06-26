@@ -77,3 +77,8 @@ partial: subscription-versioning
 ## Viewing the data
 
 Open a web browser and type the URL of the RavenDB server. This opens the [RavenDB Studio](https://ravendb.net/docs/search/latest/csharp?searchTerm=management-studio).
+
+
+## Migrating timeouts
+
+In order to migrate timeouts to the native-delay delivery implementation, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used.
