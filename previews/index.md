@@ -3,15 +3,15 @@ title: Platform previews
 reviewed: 2020-06-18
 ---
 
-The Particular Preview program was created to make it easier for Particular Software to advance new capabilities to the Particular Platform with the goals of improving user involvement, validating user interest, and increasing the rate at which new capabilities can be adopted.
+The Particular Preview program was created to make it easier for Particular Software to advance new capabilities to the Particular Platform while improving user involvement, validating user interest in those capabilities, and increasing the rate at which new capabilities can be adopted.
 
-Before deciding to launch a preview, a research process is undertaken to identify and validate customer needs, after which we determine the most important features that meet those needs to help ensure the success of a preview.
+Previews are production-ready capabilities, [licensed separately](https://particular.net/eula/previews) from the rest of the Particular Platform, and falling under a different [support policy](support-policy.md) from the rest of the platform.
 
-Once a Preview is launched, a previews runs for some period of time while we measure customer adoption. Ultimately verified customer adoption in production determines the success of a given Preview. If successful, the Preview will transition into a fully adopted capability of the Particular Platform. Previews that are insufficiently used in production will be converted into a [community project](support-policy.md).
+Verified customer adoption is key to our decision to adopt the new capability. Once a Preview is launched, a previews runs for some period of time while we measure customer adoption. If successful, the Preview will transition into a fully adopted capability of the Particular Platform. Previews that do not generate enough interest will either be reworked or converted into a [community project](support-policy.md).
 
-Previews are licensed separately from the rest of the Particular Platform, and they also have a different support policy until they are fully adopted.
+Leading up to the launch of a new Preview, in order to help ensure the success of the preview, a research process is undertaken to identify and validate customer needs and determine the most important features that are required to meet those needs.
 
-During a preview, user feedback is central, so the more feedback is received, the better the end result will be. 
+User feedback is central to the Preview program, so the more feedback is received, the better the end result will be. 
 
 ## Previews
 
