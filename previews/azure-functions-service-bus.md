@@ -15,7 +15,7 @@ Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-
 
 snippet: endpoint-configuration
 
-The endpoint is automatically configured with the endpoint name, the transport connection string, and the logger passed into the function using a static factory method provided by `ServiceBusTriggeredEndpointConfiguration.FromAttributes` method.
+The endpoint is automatically configured with the endpoint name and the transport connection string based on the values defined in the `[ServiceBusTrigger]` attribute using the `ServiceBusTriggeredEndpointConfiguration.FromAttributes` method.
 
 Alternatively, the endpoint name can be passed in manually:
 
