@@ -67,4 +67,4 @@ WARN: When not using the `asb-tranport` command-line tool to create the queue, i
 asb-transport endpoint subscribe name eventtype
 ```
 
-For full documentation see the [asb-transport endpoint subscribe]()
+See the [full documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-subscribe) for the `asb-transport endpoint subscribe` command for more details.
