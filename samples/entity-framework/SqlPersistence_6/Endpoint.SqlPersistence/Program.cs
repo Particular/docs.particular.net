@@ -14,7 +14,7 @@ class Program
         Console.Title = "Samples.EntityFrameworkUnitOfWork.SQL";
         using (var connection = new SqlConnection(connectionString))
         {
-            using (var receiverDataContext = new ReceiverDataContext(connection, null))
+            using (var receiverDataContext = new ReceiverDataContext(connection))
             {
                 Database.SetInitializer(new CreateDatabaseIfNotExists<ReceiverDataContext>());
                 receiverDataContext.Database.Initialize(true);
