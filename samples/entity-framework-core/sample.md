@@ -1,8 +1,8 @@
 ---
 title: Entity Framework Core integration with SQL Persistence
 summary: Integrating Entity Framework Core with SQL Persistence.
-reviewed: 2019-10-25
-component: Core
+reviewed: 2020-06-26
+component: SqlPersistence
 related:
 - persistence/sql
 ---
@@ -12,7 +12,7 @@ related:
 
 include: sql-prereq
 
-The database created by this sample is `NsbSamplesEfUowSql`.
+The database created by this sample is `NsbSamplesEfCoreUowSql`.
 
 
 ## Running the project
@@ -67,15 +67,11 @@ Notice how storing the shipment retrieves the `Order` from the session cache of 
 
 The integration with Entity Framework allows users to take advantage of *Unit of Work* semantics of Entity Framework's `DataContext`. A single instance of the context is shared among all handlers and the `SaveChanges` method is called after all handlers do their work.
 
-#### Setting up
-
-The setup behavior makes sure that there is an instance of the unit of work wrapper class before the handlers are called.
-
-snippet: SetupBehavior
+partial: behavior
 
 #### Creating data context
 
-The data context is created only once, before it is first accessed from a handler. In order for the outbox to work, the business data has to reuse the same connection context as NServiceBus persistence. With SQL persistence, this is achieved by using the same ADO.NET connection and transaction objects in both NServiceBus and Entity Framework.
+The data context is created only once, before it is first accessed from a handler. To maintain consistency, the business data has to reuse the same connection context as NServiceBus persistence. With SQL persistence, this is achieved by using the same ADO.NET connection and transaction objects in both NServiceBus and Entity Framework.
 
 snippet: UnitOfWork_SQL
 

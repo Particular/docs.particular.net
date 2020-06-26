@@ -33,12 +33,34 @@ public class EndpointWithConnectionInjected
 
         config.RegisterComponents(c =>
         {
-            c.ConfigureComponent(b => b.Build<ISqlStorageSession>().Connection, 
-                DependencyLifecycle.InstancePerUnitOfWork);
-            c.ConfigureComponent(b => b.Build<ISqlStorageSession>().Transaction,
-                DependencyLifecycle.InstancePerUnitOfWork);
+            c.ConfigureComponent<MyRepository>(b =>
+            {
+                var session = b.Build<ISqlStorageSession>();
+                var repository = new MyRepository(
+                    session.Connection, 
+                    session.Transaction);
+
+                //Ensure changes are saved before the transaction is committed
+                session.OnSaveChanges(s => repository.SaveChangesAsync());
+
+                return repository;
+            }, DependencyLifecycle.InstancePerUnitOfWork);
         });
 
         #endregion
     }
+
+    public class MyRepository
+    {
+        public MyRepository(DbConnection connection, DbTransaction transaction)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task SaveChangesAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }
+

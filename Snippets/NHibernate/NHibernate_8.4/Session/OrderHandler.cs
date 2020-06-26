@@ -3,6 +3,8 @@ using NServiceBus;
 
 namespace NHibernate_8.Session
 {
+    using NHibernate;
+
     #region NHibernateAccessingDataViaDI
 
     public class OrderHandler :
@@ -34,11 +36,23 @@ namespace NHibernate_8.Session
 
             config.RegisterComponents(c =>
             {
-                c.ConfigureComponent(b => b.Build<INHibernateStorageSession>().Session,
-                    DependencyLifecycle.InstancePerUnitOfWork);
+                c.ConfigureComponent<MyRepository>(b =>
+                {
+                    var session = b.Build<INHibernateStorageSession>();
+                    var repository = new MyRepository(session.Session);
+                    return repository;
+                }, DependencyLifecycle.InstancePerUnitOfWork);
             });
 
             #endregion
+        }
+
+        public class MyRepository
+        {
+            public MyRepository(ISession session)
+            {
+                throw new System.NotImplementedException();
+            }
         }
     }
 
