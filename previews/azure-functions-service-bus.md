@@ -54,7 +54,7 @@ Use the [`asb-transport` command line (CLI) tool](/transports/azure-service-bus/
 ### Creating the endpoint queue
 
 ```
-asb-transport endpoint create 
+asb-transport endpoint create <queue name>
 ```
 
 See the [full documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-create) for the `asb-transport endpoint create` command for more details.
@@ -64,7 +64,7 @@ WARN: When not using the `asb-tranport` command-line tool to create the queue, i
 ### Subscribing to events
 
 ```
-asb-transport endpoint subscribe name eventtype
+asb-transport endpoint subscribe <queue name> <eventtype>
 ```
 
 See the [full documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-subscribe) for the `asb-transport endpoint subscribe` command for more details.
