@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence Upgrade Version 4.2 to 4.3
 summary: Instructions on how to upgrade to SQL Persistence version 4.3
-reviewed: 2018-10-15
+reviewed: 2020-06-29
 component: SqlPersistence
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
