@@ -1,7 +1,7 @@
 ---
 title: Upgrade Guides
 summary: General guidelines when upgrading NServiceBus from one major version to another
-reviewed: 2018-10-18
+reviewed: 2020-06-29
 suppressRelated: true
 redirects:
  - nservicebus/upgradeguides
