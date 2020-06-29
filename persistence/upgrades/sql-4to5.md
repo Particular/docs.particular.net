@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence Upgrade Version 4 to 5
 summary: Instructions on how to upgrade to SQL Persistence version 5
-reviewed: 2018-10-15
+reviewed: 2020-06-29
 component: SqlPersistence
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
