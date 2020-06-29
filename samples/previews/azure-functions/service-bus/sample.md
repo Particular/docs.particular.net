@@ -10,7 +10,7 @@ This sample shows how to host NServiceBus within an Azure Function, in this case
 
 When hosting NServiceBus within Azure Functions, each Function (as identified by the `[FunctionName]` attribute) hosts an NServiceBus endpoint that is capable of processing different message types.
 
-The Azure Functions SDK enforces certain constraints that are also applied to NServiceBus endpoints. Review these [constraints](/nservicebus/hosting/azure-functions/) before running the sample.
+The Azure Functions SDK enforces certain constraints that are also applied to NServiceBus endpoints. Review these [constraints](/previews/azure-functions-service-bus.md) before running the sample.
 
 downloadbutton
 
