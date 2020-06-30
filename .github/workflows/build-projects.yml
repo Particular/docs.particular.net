@@ -30,4 +30,4 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
       - name: Output failed projects
         if: ${{ failure() }}
-        run: echo .\failed-projects.log
+        run: cat .\failed-projects.log
