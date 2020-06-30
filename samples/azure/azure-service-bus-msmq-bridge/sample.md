@@ -1,5 +1,5 @@
 ---
-title: MSMQ to Azure Service Bus Transport Bridge
+title: MSMQ to legacy Azure Service Bus Transport Bridge
 reviewed: 2019-09-02
 component: ASB
 related:
