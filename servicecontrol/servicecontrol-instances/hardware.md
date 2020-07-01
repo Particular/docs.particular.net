@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Hardware Considerations
 summary: Hardware recommendations for running ServiceControl
-reviewed: 2018-10-17
+reviewed: 2020-07-07
 ---
 
 ServiceControl as an application can be used to process the entire message load of a system. This article provides general guidelines, recommendations, and performance benchmarks to help determine the resources to provide for a production environment. To identify the hardware specifications for any system environment, a combination of testing with the system and the information provided below will need to be used.
