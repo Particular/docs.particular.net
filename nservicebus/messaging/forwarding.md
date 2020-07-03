@@ -9,7 +9,7 @@ related:
 
 Use this feature to forward successfully processed messages from an endpoint to a specific destination endpoint. Forwarding messages is particularly useful in complex upgrade scenarios, when the old version and new version of a particular endpoint are running side-by-side.
 
-## Auditing vs Fowarding
+## Auditing vs Forwarding
 
 [Auditing](/nservicebus/operations/auditing.md) and Forwarding are very similar, both send a copy of the processed message to another queue. The main difference are intended usage scenarios.
 
