@@ -12,11 +12,7 @@ class Usage
     {
         #region custom-diagnostics
 
-        serviceBusTriggeredEndpointConfiguration.AdvancedConfiguration.CustomDiagnosticsWriter(diagnostics =>
-        {
-            executionContext.Logger.LogInformation(diagnostics);
-            return Task.CompletedTask;
-        });
+        serviceBusTriggeredEndpointConfiguration.LogDiagnostics();
 
         #endregion
     }

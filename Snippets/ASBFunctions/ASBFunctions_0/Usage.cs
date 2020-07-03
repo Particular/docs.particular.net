@@ -10,13 +10,9 @@ class Usage
 {
     Usage(ServiceBusTriggeredEndpointConfiguration serviceBusTriggeredEndpointConfiguration, FunctionExecutionContext executionContext)
     {
-        #region custom-diagnostics
+        #region enable-diagnostics
 
-        serviceBusTriggeredEndpointConfiguration.AdvancedConfiguration.CustomDiagnosticsWriter(diagnostics =>
-        {
-            executionContext.Logger.LogInformation(diagnostics);
-            return Task.CompletedTask;
-        });
+        serviceBusTriggeredEndpointConfiguration.LogDiagnostics();
 
         #endregion
     }

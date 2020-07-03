@@ -36,7 +36,7 @@ include: license-file-local-setting-file
 
 ### Custom diagnostics
 
-snippet: custom-diagnostics
+snippet: enable-diagnostics
 
 ## Known constraints and limitations
 

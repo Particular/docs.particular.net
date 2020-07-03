@@ -33,11 +33,7 @@ public class AzureServiceBusTriggerFunction
         configuration.UseSerialization<NewtonsoftSerializer>();
 
         // optional: log startup diagnostics using Functions provided logger
-        configuration.AdvancedConfiguration.CustomDiagnosticsWriter(diagnostics =>
-        {
-            executionContext.Logger.LogInformation(diagnostics);
-            return Task.CompletedTask;
-        });
+        configuration.LogDiagnostics();
 
         return configuration;
     });
