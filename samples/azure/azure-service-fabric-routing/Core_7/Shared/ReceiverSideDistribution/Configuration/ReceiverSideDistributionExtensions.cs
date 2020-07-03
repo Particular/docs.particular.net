@@ -11,7 +11,7 @@ public static class ReceiverSideDistributionExtensions
         if (!settings.TryGet(out PartitionAwareReceiverSideDistributionConfiguration config))
         {
             config = new PartitionAwareReceiverSideDistributionConfiguration(routingSettings, discriminators);
-            settings.Set<PartitionAwareReceiverSideDistributionConfiguration>(config);
+            settings.Set(config);
             settings.Set(typeof(ReceiverSideDistribution).FullName, FeatureState.Enabled);
         }
 
