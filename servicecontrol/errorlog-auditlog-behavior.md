@@ -19,9 +19,9 @@ This behavior can be set through ServiceControl Management.
 
 ## Processing failures are not forwarded immediately
 
-Failed imports are not forwarded to the error log queue immediately. These will be stored in ServiceControl as Failed Imports or in the error queue of the ServiceControl instance type. Messages are only forwarded by ServiceControl once it is successfully stored in its datebase.
+Failed imports are not forwarded to the error log queue immediately. These will be stored in ServiceControl as Failed Imports or in the error queue of the ServiceControl instance type. Messages are forwarded by ServiceControl only after it is successfully stored in its datebase.
 
-If it is important that messages are forwarded immediately even if ServiceControl cannot process the messages, the solution is to invert the processing order. Failed messages should be sent to a `process_errors` queue. A custom process will then read from the `process_errors` queue and then forward the messages to the `error` that ServiceControl will process.
+If messages must be forwarded immediately, even if ServiceControl cannot process the messages, the solution is to invert the processing order. Failed messages should be sent to a `process_errors` queue. A custom process will read from the `process_errors` queue, then forward the messages to the `error` queue that ServiceControl will process.
 
 The same can be done for audit messages.
 

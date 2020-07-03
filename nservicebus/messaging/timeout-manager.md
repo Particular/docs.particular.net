@@ -49,6 +49,6 @@ When this happens the following critical error message will be raised:
 
 If the NServiceBus.Host is used then the host will execute a fail-fast as documented in the [default critical error behavior for the NServiceBus.Host](/nservicebus/hosting/nservicebus-host/#endpoint-configuration-default-critical-error-action).
 
-### Migrating timeouts to Native Delayed Delivery
+### Migrating timeouts to native delayed delivery
 
-If a persistence is being used that supports native delayed delivery and the system still contains timeouts that were scheduled using the timeout manager, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used to migrate these timeouts into the native-delay delivery implementation.
+If a persistence that supports native delayed delivery is used, and the system still contains timeouts that were scheduled using the timeout manager, use the [timeout migration tool](/nservicebus/tools/migrate-to-native-delivery.md) to migrate these timeouts to the native-delay delivery implementation.

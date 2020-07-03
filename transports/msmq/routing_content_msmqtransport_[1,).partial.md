@@ -47,7 +47,7 @@ snippet: InstanceMappingFile-FilePath
 
 ### Uri Path (Requires version 1.1+)
 
-Specifies an uri path of the instance mapping file. Relative paths are assumed to be file paths.
+Specifies a URI path of the instance mapping file. Relative paths are assumed to be file paths.
 
 
 snippet: InstanceMappingFile-UriPath

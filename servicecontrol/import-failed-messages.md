@@ -8,13 +8,13 @@ redirects:
 - servicecontrol/import-failed-audit
 ---
 
-Messages can fail to be imported into the ServiceControl database due to the following reasons:
- * Messages themselves are malformed (e.g., missing headers).
-   * This happens e.g., when an outdated version of NServiceBus that contained a bug was used to process the messages.
- * Messages are well-formed, but there was an intermittent database problem lasting long enough that the built-in retries did not resolve the problem.
+Messages can fail to be imported into the ServiceControl database for the following reasons:
+ * Messages are malformed (e.g. missing headers)
+   * This can happen, for example, when an outdated version of NServiceBus that contained a bug was used to process the messages.
+ * Messages are well-formed, but an intermittent database problem lasts long enough that the built-in retries did not resolve the problem.
  * [Forwarding](/servicecontrol/errorlog-auditlog-behavior.md) is enabled, and the destination queue does not exist, or ServiceControl cannot send messages to it. This could happen when the message or size limit has been reached or storage resources are exhausted.
 
-NOTE: Messages that have corrupt (i.e. unreadable, not deserializable) header data will fail to be processed at all and will be moved to ServiceControl's 'error' queue.
+NOTE: Messages that have corrupt (i.e. unreadable, not deserializable) header data will not be processed at all and will move to ServiceControl's 'error' queue.
 
 Messages that fail to be imported are stored in the ServiceControl database in the `FailedAuditImports` and `FailedErrorImports` collections.
 
@@ -28,7 +28,7 @@ When a failed import is detected in the ServiceControl database, the [**Message 
 
 To reimport the failed messages, the instance must be shut down and started from a command line using one of the following commands:
 
-NOTE: The value to use for `--serviceName` is equal to the instance name. It also is available in the Windows Service information
+NOTE: The value to use for `--serviceName` is the instance name. It is available in the Windows Service information as well as the ServiceControl Management Utility.
 
 **ServiceControl instance:**
 
@@ -44,7 +44,7 @@ ServiceControl.exe --serviceName=Particular.Servicecontrol --import-failed-error
 ServiceControl.Audit.exe --serviceName=Particular.Servicecontrol.Audit --import-failed-audits
 ```
 
-While in import mode, ServiceControl or ServiceControl Audit will not be processing its input queues. Once the message is re-processed successfully, it will be available in ServicePulse and ServiceInsight. ServiceControl or ServiceControl Audit instance can then be started normally again.
+While in import mode, ServiceControl or ServiceControl Audit will not process its input queues. Once the message is re-processed successfully, it is available in ServicePulse and ServiceInsight. ServiceControl or ServiceControl Audit instance can then be started again.
 
 The custom check will no longer be displayed if all failed imports have been successfully reimported
 

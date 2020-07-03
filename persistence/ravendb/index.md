@@ -81,4 +81,4 @@ Open a web browser and type the URL of the RavenDB server. This opens the [Raven
 
 ## Migrating timeouts
 
-In order to migrate timeouts to the native-delay delivery implementation, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used.
+Timeouts can be migrated to the native-delay delivery implementation with the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md).
