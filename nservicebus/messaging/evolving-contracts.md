@@ -23,11 +23,11 @@ Ensure that messages can be evolved by following general [messages design guidel
 
 ### Solution structure
 
-Messages define the data contract between two endpoints. 
+Messages define the data contract between two endpoints.
 
 It's recommended to use a dedicated assembly for message definitions. By keeping messages in a separate assembly, the amount of information and dependencies shared between services is minimized. Message definitions can be divided between multiple assemblies, which can be useful in more complex systems, for example, to narrow down the number of contracts exposed to different services.
 
-It's also possible to share messages as C# source files without packaging them into an assembly. One advantage of this approach is that messages don't need to be compiled against specific NServiceBus versions, so assembly redirects are not necessary. 
+It's also possible to share messages as C# source files without packaging them into an assembly. One advantage of this approach is that messages don't need to be compiled against specific NServiceBus versions, so assembly redirects are not necessary. This can be accomplished by using [unobstrusive mode messages](/nservicebus/messaging/unobtrusive-mode.md) as well.
 
 
 ## Common challenges
