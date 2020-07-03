@@ -21,17 +21,17 @@ namespace FrontEnd
         }
         
         [HttpPost]
-        public async Task<ActionResult> Index(CustomerModel model)
+        public async Task<ActionResult> Index(ViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             
-            await messageSession.Send(new SendEmail { CustomerName = model.Name })
+            await messageSession.Send(new SomeMessage { Number = model.Number })
                 .ConfigureAwait(false);
 
-            ViewBag.Message = "Email message queued.";
+            ViewBag.Message = "Request was queued successfully.";
             
             return View(model);
         }

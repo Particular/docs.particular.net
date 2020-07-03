@@ -20,7 +20,7 @@ namespace FrontEnd
                     endpointConfiguration.SendOnly();
 
                     var transport = endpointConfiguration.UseTransport<LearningTransport>();
-                    transport.Routing().RouteToEndpoint(typeof(SendEmail), "Sample.BackEnd");
+                    transport.Routing().RouteToEndpoint(typeof(SomeMessage), "Sample.BackEnd");
 
                     return endpointConfiguration;
                 })

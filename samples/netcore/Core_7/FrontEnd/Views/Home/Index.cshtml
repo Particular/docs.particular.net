@@ -1,4 +1,4 @@
-﻿@model FrontEnd.Models.CustomerModel
+﻿@model FrontEnd.Models.ViewModel
 
 <div class="row">
     <form asp-controller="Home">
@@ -8,11 +8,11 @@
                     <h5 class="card-title">Send a message</h5>
                     <p class="card-text">The following action will send a message through NServiceBus session.</p>
             
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control"/>
-                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <label asp-for="Number" class="control-label"></label>
+                    <input asp-for="Number" class="form-control"/><br/>
+                    <span asp-validation-for="Number" class="text-danger"></span><br/>
             
-                    <input type="submit" value="Send Email" class="btn btn-primary mt-2"/>
+                    <input type="submit" value="Send" class="btn btn-primary mt-2"/>
                 </div>
             </div>
         </div>

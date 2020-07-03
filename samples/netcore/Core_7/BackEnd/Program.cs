@@ -8,9 +8,9 @@ using NServiceBus;
 
 internal class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
-        CreateHostBuilder(args).Build().Run();
+        await CreateHostBuilder(args).Build().RunAsync();
     }
 
     private static IHostBuilder CreateHostBuilder(string[] args)
@@ -39,14 +39,16 @@ internal class Program
 
         return builder.ConfigureServices(services =>
         {
-            services.AddSingleton<IEmailService, EmailService>();
+            services.AddSingleton<ICalculateStuff, CalculateStuff>();
         });
     }
 
     private static async Task OnCriticalError(ICriticalErrorContext context)
     {
-        var fatalMessage =
-            $"The following critical error was encountered:{Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
+        var fatalMessage = $"The following critical error was " +
+                           $"encountered: {Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. " +
+                           $"StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
+        
         EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
 
         try

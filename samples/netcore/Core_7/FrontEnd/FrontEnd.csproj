@@ -45,5 +45,9 @@
     <Folder Include="wwwroot\lib" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Index.cshtml" />
+  </ItemGroup>
+
 
 </Project>
