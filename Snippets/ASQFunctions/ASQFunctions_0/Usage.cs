@@ -8,11 +8,11 @@ using NServiceBus.AzureFunctions.StorageQueues;
 
 class Usage
 {
-    Usage(StorageQueueTriggeredEndpointConfiguration serviceBusTriggeredEndpointConfiguration, FunctionExecutionContext executionContext)
+    Usage(StorageQueueTriggeredEndpointConfiguration storageQueueTriggeredEndpointConfiguration, FunctionExecutionContext executionContext)
     {
         #region custom-diagnostics
 
-        serviceBusTriggeredEndpointConfiguration.LogDiagnostics();
+        storageQueueTriggeredEndpointConfiguration.LogDiagnostics();
 
         #endregion
     }
@@ -21,9 +21,9 @@ class Usage
 
     static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
-        var serviceBusTriggeredEndpointConfiguration = StorageQueueTriggeredEndpointConfiguration.FromAttributes();
+        var storageQueueTriggeredEndpointConfiguration = StorageQueueTriggeredEndpointConfiguration.FromAttributes();
 
-        return serviceBusTriggeredEndpointConfiguration;
+        return storageQueueTriggeredEndpointConfiguration;
     });
 
     #endregion
@@ -48,9 +48,9 @@ class Usage
 
         static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
         {
-            var serviceBusTriggeredEndpointConfiguration = new StorageQueueTriggeredEndpointConfiguration("ASQTriggerQueue");
+            var storageQueueTriggeredEndpointConfiguration = new StorageQueueTriggeredEndpointConfiguration("ASQTriggerQueue");
 
-            return serviceBusTriggeredEndpointConfiguration;
+            return storageQueueTriggeredEndpointConfiguration;
         });
 
         #endregion
