@@ -4,7 +4,7 @@ component: ASBFunctions
 summary: Azure Functions Preview
 related:
  - samples/previews/azure-functions
-reviewed: 2020-06-18
+reviewed: 2020-07-06
 ---
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/).
@@ -35,6 +35,8 @@ For local development, `local.settings.json` can be used. In Azure, specify a Fu
 include: license-file-local-setting-file
 
 ### Custom diagnostics
+
+[NServiceBus startup diagnostics](nservicebus/hosting/startup-diagnostics.md) are disabled by default when using Azure Functions. Diagnostics can be written to the logs via the following snippet:
 
 snippet: enable-diagnostics
 
