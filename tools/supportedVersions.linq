@@ -285,12 +285,6 @@ public static class TextWriterExtensions
 
 public static class PackageMetadataResourceExtensions
 {
-	private static SourceCacheContext sourceCacheContext = new SourceCacheContext
-	{
-		MaxAge = DateTimeOffset.UtcNow,
-		NoCache = true,
-	};
-
 	public static async Task<List<Version>> GetVersions(
 		this NuGetSearcher searcher, string packageId, ILogger logger, int majorOverlapYears, int minorOverlapMonths, List<Version> upstreamVersions, Dictionary<string, string> endOfLifePackages, int[] extendedSupportVersions)
 	{
@@ -341,7 +335,6 @@ public static class PackageMetadataResourceExtensions
 
 				DateTime? patchingEnd = null;
 				string patchingEndReason = null;
-				var extendedSupport = false;
 
 				var boundedBy = latestUpstreamsWithPatchingEnd.FirstOrDefault();
 				var extendedBy = lastMinorToSupportLastUpstreamToEndPatching?.Last.Identity.Version == minor.Last.Identity.Version
@@ -377,8 +370,6 @@ public static class PackageMetadataResourceExtensions
 					patchingEnd = minor.Last.Published.Value.UtcDateTime.Date;
 					patchingEndReason = $"End of life";
 				}
-
-				
 
 				return new Version
 				{
