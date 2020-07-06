@@ -226,18 +226,7 @@ class Usage
         #region rabbitmq-disable-durable-exchanges
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.DisableDurableExchangesAndQueues(false);
-
-        #endregion
-    }
-
-    void DisableDurableMessagesAndEnableDurableExchangesAndQueues(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-disable-durable-messages
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        endpointConfiguration.DisableDurableMessages();
-        transport.UseDurableExchangesAndQueues(true);
+        transport.DisableDurableExchangesAndQueues();
 
         #endregion
     }
