@@ -7,7 +7,7 @@ suppressRelated: true
 
 NServiceBus makes it quick and easy to send, process, and publish messages across a wide variety of on-premises and cloud-based queuing technologies. With all the low-level serialization, threading, and transaction management handled out-of-the box, just grab the NuGet package and go.
 
-NOTE: Don't know where to start? Follow our [Learning Path](https://particular.net/learn/getting-started).
+NOTE: For more resources to get started, follow our [learning path](https://particular.net/learn/getting-started).
 
 
 ### Installing
