@@ -12,8 +12,12 @@ Version 6 is focused on supporting RabbitMQ.Client 6.1.0.
 
 The minimal .NET Framework version is changed from 4.5.8 to 4.6.1 as this is the minimum version of RabbitMQ.Client 6.1.0.
 
-## ReadOnlyMemory<byte>
+## ReadOnlyMemory<byte> in `IRoutingTopology.RawSendInCaseOfFailure`
 
-RabbitMQ.Client 6.x is making use of `ReadOnlyMemory<byte>` where previously this was using `byte[]`. This changes leaks into `IRoutingTopology.RawSendInCaseOfFailure`.
+RabbitMQ.Client 6.x moves from `byte[]` to `ReadOnlyMemory<byte>` usage. This change is reflected in `IRoutingTopology.RawSendInCaseOfFailure` signature.
+
+## `UseDurableExchangesAndQueues` is deprecated
+
+`UseDurableExchangesAndQueues` has been deprecated in verson 6. The exchanges and queues are durable by default. User can turn the durability off by calling `DisableDurableExchangesAndQueues`.
 
 More information on usage [ReadOnlyMemory<T>](https://docs.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines)
