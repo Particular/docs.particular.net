@@ -3,7 +3,6 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 using System.Threading.Tasks;
-using NServiceBus.AzureFunctions.ServiceBus;
 
 public class AzureServiceBusTriggerFunction
 {
