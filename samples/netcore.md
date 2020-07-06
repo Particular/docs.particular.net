@@ -29,6 +29,7 @@ To get started with .NET Core and NServiceBus, the following samples are recomme
 * [Full Duplex](/samples/fullduplex/?version=core_7) - sending and receiving with NServiceBus endpoints
 * [Publish/Subscribe](/samples/pubsub/?version=core_7) - publishing events to multiple subscribers
 * [Simple Saga Usage](/samples/saga/simple/?version=core_7)
+* [Using NServiceBus in a .NET Core 3.1 Generic host](/samples/netcore-reference/?version=core_7)
 * [Using NServiceBus in an ASP.NET Core WebAPI Application](/samples/web/send-from-aspnetcore-webapi/?version=core_7)
 * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/?version=core_7)
 * [ASP.NET Core 3 Dependency Injection Integration](/samples/dependency-injection/aspnetcore/?version=core_7)
