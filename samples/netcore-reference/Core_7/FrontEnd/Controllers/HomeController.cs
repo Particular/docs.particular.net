@@ -6,6 +6,7 @@ using NServiceBus;
 
 namespace FrontEnd
 {
+    #region front-end-controller
     public class HomeController : Controller
     {
         IMessageSession messageSession;
@@ -36,4 +37,5 @@ namespace FrontEnd
             return View(model);
         }
     }
+    #endregion
 }

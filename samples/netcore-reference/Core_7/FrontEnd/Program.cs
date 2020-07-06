@@ -7,6 +7,7 @@ namespace FrontEnd
 {
     public class Program
     {
+        #region front-end-wire-up
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
@@ -29,5 +30,6 @@ namespace FrontEnd
                     webBuilder.UseStartup<Startup>();
                 })
             ;
+        #endregion
     }
 }

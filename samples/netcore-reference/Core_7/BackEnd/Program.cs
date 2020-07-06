@@ -27,6 +27,8 @@ internal class Program
             logging.AddConsole();
         });
 
+        #region back-end-use-nservicebus
+
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("Sample.BackEnd");
@@ -37,10 +39,16 @@ internal class Program
             return endpointConfiguration;
         });
 
-        return builder.ConfigureServices(services =>
+        #endregion
+
+        #region back-end-register-service
+        builder.ConfigureServices(services =>
         {
             services.AddSingleton<ICalculateStuff, CalculateStuff>();
         });
+        #endregion
+
+        return builder;
     }
 
     private static async Task OnCriticalError(ICriticalErrorContext context)

@@ -2,6 +2,7 @@
 using Messages;
 using NServiceBus;
 
+#region back-end-handler
 public class SomeHandler : IHandleMessages<SomeMessage>
 {
     private readonly ICalculateStuff stuffCalculator;
@@ -18,3 +19,4 @@ public class SomeHandler : IHandleMessages<SomeMessage>
         // Do some more stuff if needed
     }
 }
+#endregion
