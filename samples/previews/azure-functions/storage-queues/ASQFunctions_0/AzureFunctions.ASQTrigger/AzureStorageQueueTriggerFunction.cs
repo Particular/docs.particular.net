@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Queue;
 using NServiceBus;
-using NServiceBus.AzureFunctions.StorageQueues;
 using System.Threading.Tasks;
 
 public class AzureStorageQueueTriggerFunction
