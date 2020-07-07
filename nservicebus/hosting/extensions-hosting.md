@@ -6,6 +6,7 @@ reviewed: 2019-11-08
 related:
  - samples/hosting/generic-host
  - samples/dependency-injection/aspnetcore
+ - samples/netcore-reference
 ---
 
 NOTE: Not compatible with `Microsoft.Extensions.Logging`, use community package [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) as shown in [.NET Core Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) sample.
