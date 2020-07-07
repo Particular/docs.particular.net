@@ -34,6 +34,9 @@ public class AzureStorageQueueTriggerFunction
         // optional: log startup diagnostics using Functions provided logger
         configuration.LogDiagnostics();
 
+        // Disable persistence requirement
+        configuration.Transport.DisablePublishing();
+
         return configuration;
     });
 

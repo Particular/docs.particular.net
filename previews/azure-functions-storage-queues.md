@@ -49,11 +49,26 @@ When using Azure Functions with Azure Storage Queues, the following points must 
   - Subscription records in storage for events
 - The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` method to allow customization; however, not all of the options will be applicable to execution within Azure Functions.
 - When using the default recoverability or specifying custom number of immediate retries, the number of delivery attempts specified on the underlying queue or Azure Functions host must be more than then number of the immediate retries. The Azure Functions default is 5 (`DequeueCount`) for the Azure Storage Queues trigger.
-- Features not [guaranteed to execute as expected](https://github.com/Particular/NServiceBus.AzureFunctions.StorageQueues/issues/10):
-  - Delayed Retries
-  - Saga timeouts
-  - Delayed messages destined to endpoints hosted with Azure Functions
+
+### Unsupported features
+
+The following feature are not supported:
+  - [Delayed Retries](nservicebus/recoverability#delayed-retries)
+  - [Saga timeouts](nservicebus/sagas/timeouts)
+  - [Delayed messages](transports/azure-storage-queues/delayed-delivery) destined to endpoints hosted with Azure Functions
+
+### Persistence
+
+Azure Storage Queues based transport requires a persistence for pub/sub and sagas to work.
+
+snippet: enable-persistence
+
+Endpoints that do not have sagas and do not require pub/sub can omit persistence registration using the following transport option:
+
+snippet: disable-publishing
 
 ## Preparing the Azure Storage account
 
-Queues and subscriptions have to be provisioned manually.
+Queues have to be provisioned manually.
+
+Subscriptions to events will be created when the endpoint executes at least once. To ensure the endpoint processes all the events, subscriptions should be created manually.

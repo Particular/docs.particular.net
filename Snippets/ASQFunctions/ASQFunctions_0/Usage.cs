@@ -3,8 +3,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Queue;
 using NServiceBus;
-using NServiceBus.AzureFunctions;
-using NServiceBus.AzureFunctions.StorageQueues;
+using NServiceBus.Persistence;
 
 class Usage
 {
@@ -27,6 +26,28 @@ class Usage
     });
 
     #endregion
+
+    public static void EnablePersistence(StorageQueueTriggeredEndpointConfiguration endpointConfiguration)
+    {
+        #region enable-persistence
+
+        var persistence = endpointConfiguration.AdvancedConfiguration.UsePersistence<AzureStoragePersistence>();
+        persistence.ConnectionString("<connection-string>");
+
+        #endregion
+    }
+
+    public static void DisablePublishing(StorageQueueTriggeredEndpointConfiguration endpointConfiguration)
+    {
+        #region disable-publishing
+
+        var routing = endpointConfiguration.Transport.Routing();
+        routing.RegisterPublisher(eventType: typeof(SomeEvent), publisherEndpoint: "<publisher-endpoint-name>");
+
+        #endregion
+    }
+
+    class SomeEvent { }
 
     #region function-definition
 
@@ -55,4 +76,10 @@ class Usage
 
         #endregion
     }
+}
+
+internal class AzureStoragePersistence : PersistenceDefinition { }
+internal static class ConfigureFakeAzureStorage
+{
+    public static PersistenceExtensions<AzureStoragePersistence> ConnectionString(this PersistenceExtensions<AzureStoragePersistence> config, string connectionString) => config;
 }
