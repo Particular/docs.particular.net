@@ -63,7 +63,7 @@ When using Azure Functions with Azure Storage Queues, the following points must 
 ### Unsupported features
 
 The following feature are not supported:
-  - [Delayed Retries](/nservicebus/recoverability/index.md#delayed-retries)
+  - [Delayed Retries](/nservicebus/recoverability/#delayed-retries)
   - [Saga timeouts](/nservicebus/sagas/timeouts.md)
   - [Delayed messages](/transports/azure-storage-queues/delayed-delivery.md) destined to endpoints hosted with Azure Functions
 
