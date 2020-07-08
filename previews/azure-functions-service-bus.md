@@ -40,7 +40,7 @@ include: license-file-local-setting-file
 
 ### Custom diagnostics
 
-[NServiceBus startup diagnostics](nservicebus/hosting/startup-diagnostics.md) are disabled by default when using Azure Functions. Diagnostics can be written to the logs via the following snippet:
+[NServiceBus startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) are disabled by default when using Azure Functions. Diagnostics can be written to the logs via the following snippet:
 
 snippet: enable-diagnostics
 
