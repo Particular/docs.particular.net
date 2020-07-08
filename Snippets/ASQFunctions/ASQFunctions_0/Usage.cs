@@ -9,7 +9,7 @@ class Usage
 {
     Usage(StorageQueueTriggeredEndpointConfiguration storageQueueTriggeredEndpointConfiguration, FunctionExecutionContext executionContext)
     {
-        #region custom-diagnostics
+        #region enable-diagnostics
 
         storageQueueTriggeredEndpointConfiguration.LogDiagnostics();
 
