@@ -10,5 +10,6 @@
     <PackageReference Include="NHibernate.Mapping.Attributes" Version="5.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.*" />
   </ItemGroup>
 </Project>
