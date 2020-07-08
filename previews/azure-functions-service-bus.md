@@ -7,7 +7,7 @@ related:
 reviewed: 2020-07-06
 ---
 
-Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/).
+Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
 
 ## Basic Usage
 
@@ -23,11 +23,15 @@ snippet: alternative-endpoint-setup
 
 ### Azure Function definition
 
+Pass the incoming message to the NServiceBus endpoint:
+
 snippet: function-definition
+
+NServiceBus can directly log into the Azure Functions logging infrastructure by passing the `ILogger` instance from the function parameters to the endpoint's `Process` method.
 
 ## Configuration
 
-## License
+### License
 
 The license can be provided via the `NSERVICEBUS_LICENSE` environment variable which can be set via the Function settings in the Azure Portal.
 For local development, `local.settings.json` can be used. In Azure, specify a Function setting using environment variable as the key.
