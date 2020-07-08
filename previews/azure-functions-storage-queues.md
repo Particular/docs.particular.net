@@ -36,7 +36,7 @@ include: license-file-local-setting-file
 
 ### Custom diagnostics
 
-[NServiceBus startup diagnostics](nservicebus/hosting/startup-diagnostics.md) are disabled by default when using Azure Functions. Diagnostics can be written to the logs via the following snippet:
+[NServiceBus startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) are disabled by default when using Azure Functions. Diagnostics can be written to the logs via the following snippet:
 
 snippet: enable-diagnostics
 
@@ -63,9 +63,9 @@ When using Azure Functions with Azure Storage Queues, the following points must 
 ### Unsupported features
 
 The following feature are not supported:
-  - [Delayed Retries](nservicebus/recoverability#delayed-retries)
-  - [Saga timeouts](nservicebus/sagas/timeouts)
-  - [Delayed messages](transports/azure-storage-queues/delayed-delivery) destined to endpoints hosted with Azure Functions
+  - [Delayed Retries](/nservicebus/recoverability#delayed-retries)
+  - [Saga timeouts](/nservicebus/sagas/timeouts)
+  - [Delayed messages](/transports/azure-storage-queues/delayed-delivery) destined to endpoints hosted with Azure Functions
 
 ## Preparing the Azure Storage account
 
