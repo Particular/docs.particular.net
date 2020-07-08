@@ -27,7 +27,7 @@ snippet: function-definition
 
 ## Configuration
 
-## License
+### License
 
 To provide a license for the endpoints hosted as Azure Functions, the environment varialbe (Function setting) `NSERVICEBUS_LICENSE` should be used contain license as escaped text.
 For local development, `local.settings.json` can be used. In Azure, specify a Function setting using environment variable as the key.
@@ -39,6 +39,16 @@ include: license-file-local-setting-file
 [NServiceBus startup diagnostics](nservicebus/hosting/startup-diagnostics.md) are disabled by default when using Azure Functions. Diagnostics can be written to the logs via the following snippet:
 
 snippet: enable-diagnostics
+
+### Persistence
+
+Azure Storage Queues based transport requires a persistence for pub/sub and sagas to work.
+
+snippet: enable-persistence
+
+Endpoints that do not have sagas and do not require pub/sub can omit persistence registration using the following transport option:
+
+snippet: disable-publishing
 
 ## Known constraints and limitations
 
@@ -56,16 +66,6 @@ The following feature are not supported:
   - [Delayed Retries](nservicebus/recoverability#delayed-retries)
   - [Saga timeouts](nservicebus/sagas/timeouts)
   - [Delayed messages](transports/azure-storage-queues/delayed-delivery) destined to endpoints hosted with Azure Functions
-
-### Persistence
-
-Azure Storage Queues based transport requires a persistence for pub/sub and sagas to work.
-
-snippet: enable-persistence
-
-Endpoints that do not have sagas and do not require pub/sub can omit persistence registration using the following transport option:
-
-snippet: disable-publishing
 
 ## Preparing the Azure Storage account
 
