@@ -41,8 +41,7 @@ class Usage
     {
         #region disable-publishing
 
-        var routing = endpointConfiguration.Transport.Routing();
-        routing.RegisterPublisher(eventType: typeof(SomeEvent), publisherEndpoint: "<publisher-endpoint-name>");
+        endpointConfiguration.Transport.DisablePublishing();
 
         #endregion
     }
