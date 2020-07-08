@@ -4,4 +4,4 @@
 
 snippet: rabbitmq-config-disablepublisherconfirms
 
-Note: When publisher confirms are disabled send operations will not verify if relevant exchanges and/or queues exists and will not fail.
+Note: When publisher confirms are disabled, send operations might not fail with an exception when the destination exchanges/queues don't exist.
