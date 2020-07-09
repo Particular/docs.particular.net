@@ -14,7 +14,7 @@ The minimum .NET Framework version is changed from 4.5.2 to 4.6.1 as this is the
 
 ## `ReadOnlyMemory<byte>` in `IRoutingTopology.RawSendInCaseOfFailure`
 
-This affects the [custom routing topology](https://docs.particular.net/transports/rabbitmq/routing-topology#custom-routing-topology). RabbitMQ.Client 6.x uses `ReadOnlyMemory<byte>` where it previously used `byte[]`. This change is reflected in the `IRoutingTopology.RawSendInCaseOfFailure` signature.
+This affects the [custom routing topology](/transports/rabbitmq/routing-topology.md#custom-routing-topology). RabbitMQ.Client 6.x uses `ReadOnlyMemory<byte>` where it previously used `byte[]`. This change is reflected in the `IRoutingTopology.RawSendInCaseOfFailure` signature.
 
 More information on usage [ReadOnlyMemory<T>](https://docs.microsoft.com/en-us/dotnet/standard/memory-and-spans/memory-t-usage-guidelines)
 
