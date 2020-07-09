@@ -21,3 +21,7 @@ More information on usage [ReadOnlyMemory<T>](https://docs.microsoft.com/en-us/d
 ## `UseDurableExchangesAndQueues` is deprecated
 
 The `UseDurableExchangesAndQueues` API has been deprecated in version 6. The exchanges and queues are durable by default. Non-durable exchanges and queues can be used by calling `DisableDurableExchangesAndQueues`.
+
+## `UsePublisherConfirms` is deprecated
+
+The `UsePublisherConfirms` API has been deprecated in version 6. Publisher confirms are always enabled and there no longer is a way to disable publisher confirms.
