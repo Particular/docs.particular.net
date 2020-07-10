@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
@@ -13,6 +14,15 @@ class Usage
         #region enable-diagnostics
 
         serviceBusTriggeredEndpointConfiguration.LogDiagnostics();
+
+        #endregion
+    }
+
+    public static void EnableDelayedRetries(ServiceBusTriggeredEndpointConfiguration endpointConfiguration)
+    {
+        #region configure-error-queue
+
+        endpointConfiguration.AdvancedConfiguration.SendFailedMessagesTo("error");
 
         #endregion
     }

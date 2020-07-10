@@ -1,7 +1,7 @@
 ---
 title: Support policy for previews
 summary: Describes the details for the support policy for previews
-reviewed: 2020-04-07
+reviewed: 2020-07-09
 related:
  - nservicebus/upgrades/support-policy
 ---

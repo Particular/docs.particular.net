@@ -4,7 +4,7 @@ component: ASBFunctions
 summary: Hosting NServiceBus endpoints with Service Bus triggered Azure Functions
 related:
  - samples/previews/azure-functions
-reviewed: 2020-07-06
+reviewed: 2020-07-09
 ---
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
@@ -33,8 +33,8 @@ NServiceBus can directly log into the Azure Functions logging infrastructure by 
 
 ### License
 
-The license can be provided via the `NSERVICEBUS_LICENSE` environment variable which can be set via the Function settings in the Azure Portal.
-For local development, `local.settings.json` can be used. In Azure, specify a Function setting using environment variable as the key.
+The license can be provided via the `NSERVICEBUS_LICENSE` environment variable, which can be set via the Function settings in the Azure Portal.
+For local development, `local.settings.json` can be used. In Azure, specify a Function setting using the environment variable as the key.
 
 include: license-file-local-setting-file
 
@@ -43,6 +43,12 @@ include: license-file-local-setting-file
 [NServiceBus startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) are disabled by default when using Azure Functions. Diagnostics can be written to the logs via the following snippet:
 
 snippet: enable-diagnostics
+
+### Error queue
+
+For recoverability to move the continuously failing messages to the error queue rather than to the Azure Service Bus dead-letter queue, the error queue needs to be created upfront and configured using the following API:
+
+snippet: configure-error-queue
 
 ## Known constraints and limitations
 

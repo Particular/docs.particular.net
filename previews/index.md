@@ -1,6 +1,6 @@
 ---
 title: Platform previews
-reviewed: 2020-06-18
+reviewed: 2020-07-09
 ---
 
 The Particular Preview program was created to make it easier for Particular Software to advance new capabilities to the Particular Platform while improving user involvement, validating user interest in those capabilities, and increasing the rate at which new capabilities can be adopted.

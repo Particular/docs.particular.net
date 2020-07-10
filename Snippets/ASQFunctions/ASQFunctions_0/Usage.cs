@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Queue;
@@ -33,6 +34,26 @@ class Usage
 
         var persistence = endpointConfiguration.AdvancedConfiguration.UsePersistence<AzureStoragePersistence>();
         persistence.ConnectionString("<connection-string>");
+
+        #endregion
+    }
+
+    public static void EnableDelayedRetries(StorageQueueTriggeredEndpointConfiguration endpointConfiguration, int numberOfDelayedRetries, TimeSpan timeIncreaseBetweenDelayedRetries)
+    {
+        #region enable-delayed-retries
+
+        var recoverability = endpointConfiguration.AdvancedConfiguration.Recoverability();
+        recoverability.Delayed(settings =>
+        {
+            settings.NumberOfRetries(numberOfDelayedRetries);
+            settings.TimeIncrease(timeIncreaseBetweenDelayedRetries);
+        });
+
+        #endregion
+
+        #region configure-error-queue
+
+        endpointConfiguration.AdvancedConfiguration.SendFailedMessagesTo("error");
 
         #endregion
     }
