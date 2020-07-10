@@ -56,18 +56,13 @@ Non-durable messages require the queues to be [non-transactional](https://msdn.m
 
 Note: When using non-transactional queues, an endpoint must be [configured not to use transactions](/transports/transactions.md#transactions-unreliable-transactions-disabled).
 
-
 ### RabbitMQ
 
-partial: rabbitmq
-
-partial: rabbitmq-confirms
-
+RabbitMQ supports (non)durable exchanges and queues as well as [publisher confirms](https://www.rabbitmq.com/confirms.html). Non-durable messaging varies per version documented in the [RabbitMQ Transport documentation](/transports/rabbitmq/#non-durable)
 
 ### SQL Server
 
 The SQL Server transport has no support for this setting and it is ignored.
-
 
 ### Azure
 
