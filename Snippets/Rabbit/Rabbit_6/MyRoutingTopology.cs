@@ -27,7 +27,7 @@ class MyRoutingTopology :
     {
     }
 
-    public void RawSendInCaseOfFailure(IModel channel, string address, byte[] body, IBasicProperties properties)
+    public void RawSendInCaseOfFailure(IModel channel, string address, ReadOnlyMemory<byte> body, IBasicProperties properties)
     {
     }
 
