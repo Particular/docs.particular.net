@@ -17,6 +17,7 @@ For example:
 | 0.1.0 | Yes |
 | 0.2.0 | Yes |
 | 0.2.1 | Yes |
+|  ...  | Yes |
 | 1.0.0 | No |
 
 WARN: Only the latest minor version of a preview is supported.
