@@ -2,4 +2,4 @@ Non-durable messages are sent using RabbitMQ's non-persistent delivery mode, whi
 
 If durable messaging has been disabled globally, the exchanges and queues created by the broker will be declared as non-durable as well. If the broker is restarted, all non-durable exchanges and queues will be removed along with any messages in those queues.
 
-NOTE: When using non-durable messaging, [publisher confirms](connection-settings.md?version=rabbit_4#publisher-confirms) can be disabled to improve sending performance at the expense of reliability.
+NOTE: When using non-durable messaging, [publisher confirms](connection-settings.md) can be disabled to improve sending performance at the expense of reliability.
