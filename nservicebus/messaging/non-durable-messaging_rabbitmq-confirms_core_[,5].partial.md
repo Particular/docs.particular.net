@@ -1,0 +1,1 @@
+NOTE: When using non-durable messaging, the RabbitMQ transport disables [publisher confirms](https://www.rabbitmq.com/confirms.html) as well, to improve sending performance at the expense of reliability.

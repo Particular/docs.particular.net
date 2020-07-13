@@ -35,9 +35,6 @@ snippet: rabbitmq-config-basic
 
 The RabbitMQ transport requires a connection string to connect to the broker. See [connection settings](/transports/rabbitmq/connection-settings.md) for options on how to provide the connection string.
 
-## Non-Durable
-
-partial: non-durable
 
 ### Routing topology
 
@@ -45,16 +42,18 @@ partial: topology
 
 ## Advantages and disadvantages
 
+
 ### Advantages
 
-* Provides [native reliability](https://www.rabbitmq.com/reliability.html) and [high-availability](https://www.rabbitmq.com/ha.html) features.
-* Offers a native publish-subscribe mechanism; therefore it doesn't require NServiceBus persistence for storing event subscriptions.
-* Wide range of [supported clients](https://www.rabbitmq.com/devtools.html) allows for integrating the system with applications written in other languages using native RabbitMQ features.
-* Supports the [competing consumers](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html) pattern out of the box. Messages are received by instances in a round-robin fashion without additional configuration.
+ * Provides [native reliability](https://www.rabbitmq.com/reliability.html) and [high-availability](https://www.rabbitmq.com/ha.html) features.
+ * Offers a native publish-subscribe mechanism; therefore it doesn't require NServiceBus persistence for storing event subscriptions.
+ * Wide range of [supported clients](https://www.rabbitmq.com/devtools.html) allows for integrating the system with applications written in other languages using native RabbitMQ features.
+ * Supports the [competing consumers](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html) pattern out of the box. Messages are received by instances in a round-robin fashion without additional configuration.
+
 
 ### Disadvantages
 
-* Doesn't handle [network partitions](https://www.rabbitmq.com/partitions.html) well; partitioning across a WAN requires dedicated features.
-* Requires careful consideration for duplicate messages, e.g. using the [outbox](/nservicebus/outbox/) feature or making all endpoints idempotent.
-* Many organizations don't have the same level of expertise with RabbitMQ as with other technologies, such as SQL Server, so it may require additional training.
-* May require covering additional costs of [commercial RabbitMQ license and support](https://www.rabbitmq.com/services.html).
+ * Doesn't handle [network partitions](https://www.rabbitmq.com/partitions.html) well; partitioning across a WAN requires dedicated features.
+ * Requires careful consideration for duplicate messages, e.g. using the [outbox](/nservicebus/outbox/) feature or making all endpoints idempotent.
+ * Many organizations don't have the same level of expertise with RabbitMQ as with other technologies, such as SQL Server, so it may require additional training.
+ * May require covering additional costs of [commercial RabbitMQ license and support](https://www.rabbitmq.com/services.html).
