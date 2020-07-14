@@ -4,6 +4,10 @@ reviewed: 2020-03-30
 isLearningPath: true
 summary: A step-by-step guide to building an NServiceBus saga to handle a common business case of taking action once multiple messages have been successfully received.
 previewImage: feature-image.png
+extensions:
+- !!tutorial
+  nextText: "Next Lesson: Timeouts"
+  nextUrl: tutorials/nservicebus-sagas/2-timeouts
 ---
 
 When you build a system with asynchronous messages, you divide each process into discrete message handlers that are executed when an incoming message arrives. Your system naturally becomes more reliable because each of these message handlers can be retried until they are successful. Additionally, it becomes easier to understand since each message handler handles just one specific task. This means  there's less code to keep in your head at any one time.
@@ -237,4 +241,4 @@ In this lesson, we learned to think of sagas as a tool to implement a business p
 
 Using an NServiceBus saga, we designed a state machine to satisfy these business requirements. As a message-driven state machine, a saga is a perfect way to implement a business policy as it describes the conditions that must be satisfied in order to make a decision.
 
-In the next lesson (*Coming Soon*) we'll see how using timeouts enables us to add the dimension of time to our business policies, allowing us to send messages into the future to wake up our saga and take action, even if nothing else is happening. Until then, you can check out the documentation for [saga timeouts](/nservicebus/sagas/timeouts.md), sign up for a [free proof of concept with one of our Solution Architects](https://particular.net/proof-of-concept), or chat with us using the chat widget in the corner of this page.
+In the next lesson we'll see how [using timeouts](/tutorials/nservicebus-sagas/2-timeouts/) enables us to add the dimension of time to our business policies, allowing us to send messages into the future to wake up our saga and take action, even if nothing else is happening.
