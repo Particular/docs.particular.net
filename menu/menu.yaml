@@ -1270,13 +1270,17 @@
     Articles:
     - Title: Upgrading to native queue length metric
       Url: monitoring/upgrade-guides/native-queue-length
-
-## This section has been staged for Preview launch. Contact Exploration for questions
-#- Name: Previews
-#  Url: previews
-#  Topics:
-#  - Title: General
-#    Url: previews
-#    Articles:
-#    - Title: Support Policy
-#      Url: previews/support-policy
+- Name: Previews
+  Url: previews
+  Topics:
+  - Title: General
+    Url: previews
+    Articles:
+    - Title: Support Policy
+      Url: previews/support-policy
+  - Title: Azure Functions
+    Articles:
+    - Title: NServiceBus.AzureFunctions.ServiceBus
+      Url: previews/azure-functions-service-bus
+    - Title: NServiceBus.AzureFunctions.StorageQueues
+      Url: previews/azure-functions-storage-queues

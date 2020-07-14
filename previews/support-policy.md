@@ -1,7 +1,7 @@
 ---
 title: Support policy for previews
 summary: Describes the details for the support policy for previews
-reviewed: 2020-04-07
+reviewed: 2020-07-09
 related:
  - nservicebus/upgrades/support-policy
 ---
@@ -17,6 +17,7 @@ For example:
 | 0.1.0 | Yes |
 | 0.2.0 | Yes |
 | 0.2.1 | Yes |
+|  ...  | Yes |
 | 1.0.0 | No |
 
 WARN: Only the latest minor version of a preview is supported.
