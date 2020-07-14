@@ -817,7 +817,7 @@
     - NServiceBus.Serverless
 
 - Key: ASBFunctions
-  Name: Azure Functions (Service Bus Trigger)
+  Name: NServiceBus.AzureFunctions.ServiceBus
   DocsUrl: /previews/azure-functions-service-bus
   GitHubOwner: Particular
   Category: Host
@@ -828,7 +828,7 @@
     - NServiceBus.AzureFunctions.ServiceBus
 
 - Key: ASQFunctions
-  Name: Azure Functions (Storage Queue Trigger)
+  Name: NServiceBus.AzureFunctions.StorageQueues
   DocsUrl: /previews/azure-functions-storage-queues
   GitHubOwner: Particular
   Category: Host
