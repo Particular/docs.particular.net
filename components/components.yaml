@@ -818,7 +818,7 @@
 
 - Key: ASBFunctions
   Name: Azure Functions (Service Bus Trigger)
-  DocsUrl: /nservicebus
+  DocsUrl: /previews/azure-functions-service-bus
   GitHubOwner: Particular
   Category: Host
   SupportLevel: Preview
@@ -829,7 +829,7 @@
 
 - Key: ASQFunctions
   Name: Azure Functions (Storage Queue Trigger)
-  DocsUrl: /nservicebus
+  DocsUrl: /previews/azure-functions-storage-queues
   GitHubOwner: Particular
   Category: Host
   SupportLevel: Preview
