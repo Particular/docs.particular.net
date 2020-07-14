@@ -3,7 +3,7 @@ title: Azure Functions with Azure Storage Queues
 component: ASQFunctions
 summary: Hosting NServiceBus endpoints with Storage Queues triggered Azure Functions
 related:
- - samples/previews/azure-functions
+ - samples/previews/azure-functions/storage-queues
 reviewed: 2020-07-09
 ---
 
