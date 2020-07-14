@@ -3,7 +3,7 @@ title: Using NServiceBus in Azure Functions with Storage Queue triggers
 reviewed: 2020-06-15
 component: ASQFunctions
 related:
- - samples/previews/azure-functions/service-bus
+ - previews/azure-functions-storage-queues
 ---
 
 This sample shows how to host NServiceBus within an Azure Function, in this case, a function triggered by an incoming Storage Queues message. This enables hosting message handlers in Azure Functions, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message processing pipeline.
