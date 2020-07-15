@@ -33,7 +33,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/RabbitMQ.Client/" target="_blank">RabbitMQ.Client</a> | <a href="https://www.nuget.org/packages/RabbitMQ.Client/5.2.0/license" target="_blank">View License</a> | <a href="https://www.rabbitmq.com/dotnet.html" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/RabbitMQ.Client/" target="_blank">RabbitMQ.Client</a> | <a href="https://www.nuget.org/packages/RabbitMQ.Client/6.1.0/license" target="_blank">View License</a> | <a href="https://www.rabbitmq.com/dotnet.html" target="_blank">Project Site</a> |
 
 ### [NServiceBus.SqlServer](/nuget/NServiceBus.SqlServer)
 
@@ -184,6 +184,18 @@
 | <a href="https://www.nuget.org/packages/WindowsAzure.Storage/" target="_blank">WindowsAzure.Storage</a> | <a href="https://github.com/Azure/azure-storage-net/blob/master/LICENSE.txt" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-storage-net" target="_blank">Project Site</a> |
 
 ## Host packages
+
+### [NServiceBus.AzureFunctions.ServiceBus](/nuget/NServiceBus.AzureFunctions.ServiceBus)
+
+| Depencency | License | Project Site |
+|:-----------|:-------:|:------------:|
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.ServiceBus/" target="_blank">Microsoft.Azure.WebJobs.Extensions.ServiceBus</a> | <a href="https://go.microsoft.com/fwlink/?linkid=2028464" target="_blank">View License</a> | <a href="http://go.microsoft.com/fwlink/?LinkID=320972" target="_blank">Project Site</a> |
+
+### [NServiceBus.AzureFunctions.StorageQueues](/nuget/NServiceBus.AzureFunctions.StorageQueues)
+
+| Depencency | License | Project Site |
+|:-----------|:-------:|:------------:|
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.Storage/" target="_blank">Microsoft.Azure.WebJobs.Extensions.Storage</a> | <a href="https://go.microsoft.com/fwlink/?linkid=2028464" target="_blank">View License</a> | <a href="http://go.microsoft.com/fwlink/?LinkID=320972" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Extensions.Hosting](/nuget/NServiceBus.Extensions.Hosting)
 
