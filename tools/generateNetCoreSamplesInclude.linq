@@ -27,26 +27,18 @@ void Main()
         })
         .Select(versionPath => 
         {
-            var version = Path.GetFileName(versionPath).ToLowerInvariant();
             var sampleDirPath = Path.GetDirectoryName(versionPath);
             var mdPath = Path.Combine(sampleDirPath, "sample.md");
             var url = sampleDirPath.Substring(rootPath.Length).Replace("\\", "/") + "/";
             return new {
-                Version = version,
                 MarkdownPath = mdPath,
                 Url = url
             };
         })
-        .GroupBy(x => x.MarkdownPath)
+        .Distinct()
         .Select(sample =>
         {
-            if (sample.Count() > 1)
-            {
-                $"More than one version for {sample.Key}".Dump();
-            }
-
-            var first = sample.OrderByDescending(x => x.Version).First();
-            var markdownPath = first.MarkdownPath;
+            var markdownPath = sample.MarkdownPath;
             var depth = markdownPath.Count(ch => ch == '\\');
             var metadata = GetSampleMetadata(markdownPath);
             
@@ -54,7 +46,7 @@ void Main()
             {
                 Title = metadata.Title,
                 Depth = depth,
-                Url = first.Url
+                Url = sample.Url
             };
         })
         .OrderBy(sample => sample.Depth)
