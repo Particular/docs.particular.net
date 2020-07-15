@@ -22,32 +22,23 @@ void Main()
                 .Any(proj =>
                 {
                     var projContents = File.ReadAllText(proj);
-                    return projContents.Contains("netcoreapp2");
+                    return projContents.Contains("netcoreapp");
                 });
         })
         .Select(versionPath => 
         {
-            var version = Path.GetFileName(versionPath).ToLowerInvariant();
             var sampleDirPath = Path.GetDirectoryName(versionPath);
             var mdPath = Path.Combine(sampleDirPath, "sample.md");
-            var urlPath = sampleDirPath.Substring(rootPath.Length).Replace("\\", "/");
-            var url = $"{urlPath}/?version={version}";
+            var url = sampleDirPath.Substring(rootPath.Length).Replace("\\", "/") + "/";
             return new {
-                Version = version,
                 MarkdownPath = mdPath,
                 Url = url
             };
         })
-        .GroupBy(x => x.MarkdownPath + x.Version)
+        .Distinct()
         .Select(sample =>
         {
-            if (sample.Count() > 1)
-            {
-                throw new Exception($"More than one version for {sample.Key}");
-            }
-
-            var first = sample.First();
-            var markdownPath = first.MarkdownPath;
+            var markdownPath = sample.MarkdownPath;
             var depth = markdownPath.Count(ch => ch == '\\');
             var metadata = GetSampleMetadata(markdownPath);
             
@@ -55,7 +46,7 @@ void Main()
             {
                 Title = metadata.Title,
                 Depth = depth,
-                Url = first.Url
+                Url = sample.Url
             };
         })
         .OrderBy(sample => sample.Depth)
