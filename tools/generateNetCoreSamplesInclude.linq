@@ -31,22 +31,21 @@ void Main()
             var sampleDirPath = Path.GetDirectoryName(versionPath);
             var mdPath = Path.Combine(sampleDirPath, "sample.md");
             var urlPath = sampleDirPath.Substring(rootPath.Length).Replace("\\", "/");
-            var url = $"{urlPath}/?version={version}";
             return new {
                 Version = version,
                 MarkdownPath = mdPath,
-                Url = url
+                Url = urlPath
             };
         })
-        .GroupBy(x => x.MarkdownPath + x.Version)
+        .GroupBy(x => x.MarkdownPath)
         .Select(sample =>
         {
             if (sample.Count() > 1)
             {
-                throw new Exception($"More than one version for {sample.Key}");
+                $"More than one version for {sample.Key}".Dump();
             }
 
-            var first = sample.First();
+            var first = sample.OrderByDescending(x => x.Version).First();
             var markdownPath = first.MarkdownPath;
             var depth = markdownPath.Count(ch => ch == '\\');
             var metadata = GetSampleMetadata(markdownPath);
