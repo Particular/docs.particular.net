@@ -30,11 +30,11 @@ void Main()
             var version = Path.GetFileName(versionPath).ToLowerInvariant();
             var sampleDirPath = Path.GetDirectoryName(versionPath);
             var mdPath = Path.Combine(sampleDirPath, "sample.md");
-            var urlPath = sampleDirPath.Substring(rootPath.Length).Replace("\\", "/");
+            var url = sampleDirPath.Substring(rootPath.Length).Replace("\\", "/") + "/";
             return new {
                 Version = version,
                 MarkdownPath = mdPath,
-                Url = urlPath
+                Url = url
             };
         })
         .GroupBy(x => x.MarkdownPath)
