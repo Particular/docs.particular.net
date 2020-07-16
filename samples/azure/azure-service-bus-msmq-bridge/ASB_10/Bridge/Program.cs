@@ -39,7 +39,10 @@ class Program
             var topology = transport.UseEndpointOrientedTopology().EnableMigrationToForwardingTopology();
             topology.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
         });
-        var msmqInterface = bridgeConfiguration.AddInterface<MsmqTransport>("MSQM", transport => { });
+        var msmqInterface = bridgeConfiguration.AddInterface<MsmqTransport>("MSMQ", transport =>
+        {
+            transport.Transactions(TransportTransactionMode.ReceiveOnly);
+        });
         msmqInterface.EnableMessageDrivenPublishSubscribe(new InMemorySubscriptionStorage());
 
         bridgeConfiguration.AutoCreateQueues();
@@ -47,12 +50,12 @@ class Program
         var staticRouting = bridgeConfiguration.UseStaticRoutingProtocol();
 
         staticRouting.AddForwardRoute(
-            incomingInterface: "MSQM",
+            incomingInterface: "MSMQ",
             outgoingInterface: "ASB");
 
         staticRouting.AddForwardRoute(
             incomingInterface: "ASB",
-            outgoingInterface: "MSQM");
+            outgoingInterface: "MSMQ");
 
         #endregion
 

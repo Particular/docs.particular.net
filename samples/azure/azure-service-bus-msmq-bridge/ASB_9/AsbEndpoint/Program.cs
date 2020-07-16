@@ -28,14 +28,14 @@ class Program
 
         #region topology-setup-subscriber
 
-        topology.RegisterPublisher(typeof(MyEvent), "Bridge-ASB");
+        topology.RegisterPublisher(typeof(MyEvent), "Bridge");
 
         #endregion
 
         #region connect-asb-side-of-bridge
 
         var routing = transport.Routing();
-        var bridge = routing.ConnectToBridge("Bridge-ASB");
+        var bridge = routing.ConnectToBridge("Bridge");
 
         #endregion
 
