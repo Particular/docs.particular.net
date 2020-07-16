@@ -1,7 +1,7 @@
 ---
 title: Unit of work using the pipeline
 summary: Shows how to use IoC and the pipeline to create a unit of work implementation.
-reviewed: 2018-10-26
+reviewed: 2020-07-16
 component: Core
 related:
  - nservicebus/pipeline
