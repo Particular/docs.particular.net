@@ -28,6 +28,24 @@ Each endpoint in the system should be [configured to send audit copies of every 
 
 Each ServiceControl Audit instance stores data in an embedded database. Audit data is retained for 30 days. [This retention period can be customized](/servicecontrol/audit-instances/creating-config-file.md#data-retention).
 
+## Multiple instances
+
+Multiple audit instance are supported in various configurations. Reasons for running multiple instances are:
+
+- Performance: A single audit instance cannot ingest fast enough due to a bottle neck in the network or disk.
+- Storage Size: A single instance database grows too much to handle on a single disk.
+- Retension differences: Retension is configured per instance. Each audit instance can have its own retension duration.
+
+Scal-out can be achieved by increasing the number of audit instances but still share a single audit queue or also increase the number of audit queues.
+
+Supported configurations:
+
+- Single audit queue, single audit reader
+- Single audit queue, multiple audit readers (competing consumer)
+- Multiple audit queues, single reader per audit queue
+- Multiple audit queues, multiple audit readers per audit queue (competing consumer)
+
+
 ## Connected to a ServiceControl instance
 
 When using ServiceControl Management to create a new ServiceControl instance, a connected ServiceControl Audit instance is automatically created. Using PowerShell, create the ServiceControl instance first, then the ServiceControl Audit instance. 
