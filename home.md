@@ -112,6 +112,9 @@ span.blue {
 .mainicon{
   font-size: 67px;
 }
+#new-user-quickstart-alert {
+    display: none !important;
+}
 </style>
 <div class="row">
 <div class="col-md-12 block top clearfix">
