@@ -2,7 +2,7 @@
 title: Multi-message conversations when scaling out
 summary: How messages belong to the same conversation are routed depending on the scaling out approach used
 component: Distributor
-reviewed: 2018-10-26
+reviewed: 2020-07-22
 related:
  - transports/msmq/sender-side-distribution
  - transports/msmq/distributor

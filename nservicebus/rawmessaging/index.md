@@ -2,7 +2,7 @@
 title: Raw messaging using NServiceBus
 summary: How to send and receive raw messages using NServiceBus transport infrastructure
 component: RawMessaging
-reviewed: 2018-10-29
+reviewed: 2020-07-22
 ---
 
 `NServiceBus.Raw` allows sending and receiving raw messages using the [NServiceBus transport infrastructure](/transports/). It is flexible in terms of message manipulation, therefore it is a good fit for integrations with 3rd party systems, building gateways and bridges.
