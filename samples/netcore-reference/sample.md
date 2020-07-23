@@ -10,7 +10,7 @@ related:
 
 This sample implements a very simple application running on .NET Core 3.1. It shows how to integrate NServiceBus with an ASP.NET Core Web API project and a simple back-end process running in the .NET Core generic host. It also demonstrates using the built-in tools to inject dependencies into message handler classes.
 
-NOTE: Currently to use `Microsoft.Extensions.Logging` library, the `NServiceBus.MicrosoftLogging.Hosting` community package should be used.
+NOTE: Currently to use `Microsoft.Extensions.Logging` library, the `NServiceBus.MicrosoftLogging` community package should be used.
 
 ## Front-end
 
