@@ -39,6 +39,8 @@ Received message #{Number}
 ```
 - Once done, run `Stop-Service WorkerTest` and `Remove-Service WorkerTest`
 
+NOTE: Currently to use `Microsoft.Extensions.Logging` library, the `NServiceBus.MicrosoftLogging.Hosting` community package should be used.
+
 ## Code walk-through
 
 snippet: generic-host-service-lifetime
