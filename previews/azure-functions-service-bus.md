@@ -1,15 +1,15 @@
 ---
 title: Azure Functions with Azure Service Bus
 component: ASBFunctions
-summary: Hosting NServiceBus endpoints with Service Bus triggered Azure Functions
+summary: Hosting NServiceBus endpoints with Azure Functions triggered by Azure Service Bus
 related:
  - samples/previews/azure-functions/service-bus
-reviewed: 2020-07-09
+reviewed: 2020-07-23
 ---
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
 
-## Basic Usage
+## Basic usage
 
 ### Endpoint configuration
 
@@ -27,14 +27,14 @@ Pass the incoming message to the NServiceBus endpoint:
 
 snippet: function-definition
 
-NServiceBus can directly log into the Azure Functions logging infrastructure by passing the `ILogger` instance from the function parameters to the endpoint's `Process` method.
+NServiceBus interacts directly with the Azure Functions logging infrastructure by passing the `ILogger` instance from the function parameters to the endpoint's `Process` method.
 
 ## Configuration
 
 ### License
 
-The license can be provided via the `NSERVICEBUS_LICENSE` environment variable, which can be set via the Function settings in the Azure Portal.
-For local development, `local.settings.json` can be used. In Azure, specify a Function setting using the environment variable as the key.
+The license is provided via the `NSERVICEBUS_LICENSE` environment variable, which is set via the Function settings in the Azure Portal.
+For local development, use `local.settings.json`. In Azure, specify a Function setting using the environment variable as the key.
 
 include: license-file-local-setting-file
 
@@ -46,7 +46,7 @@ snippet: enable-diagnostics
 
 ### Error queue
 
-For recoverability to move the continuously failing messages to the error queue rather than to the Azure Service Bus dead-letter queue, the error queue needs to be created upfront and configured using the following API:
+For recoverability to move the continuously failing messages to the error queue rather than to the Azure Service Bus dead-letter queue, the error queue must be created in advance and configured using the following API:
 
 snippet: configure-error-queue
 
@@ -71,7 +71,7 @@ asb-transport endpoint create <queue name>
 
 See the [full documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-create) for the `asb-transport endpoint create` command for more details.
 
-WARN: When not using the `asb-tranport` command-line tool to create the queue, it is recommended to set the `MaxDeliveryCount` setting to the maximum value.
+WARN: If the `asb-tranport` command-line tool is not used to create the queue, it is recommended to set the `MaxDeliveryCount` setting to the maximum value.
 
 ### Subscribing to events
 
