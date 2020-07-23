@@ -54,7 +54,7 @@ class Program
     {
         var message = new MessageWithXml
         {
-            SomeProperty = "Some content in a Xml message",
+            SomeProperty = "Some content in an XML message",
         };
         await endpointInstance.Send("Samples.MultiSerializer.Receiver", message)
             .ConfigureAwait(false);
@@ -65,10 +65,10 @@ class Program
     {
         var message = new MessageWithJson
         {
-            SomeProperty = "Some content in a json message",
+            SomeProperty = "Some content in a JSON message",
         };
         await endpointInstance.Send("Samples.MultiSerializer.Receiver", message)
             .ConfigureAwait(false);
-        Console.WriteLine("Json Message sent");
+        Console.WriteLine("JSON message sent");
     }
 }
