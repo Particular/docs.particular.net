@@ -1,12 +1,10 @@
 ---
-title: Troubleshooting
-summary: NServiceBus common issues troubl0eshooting
+title: Troubleshooting message loss
+summary: NServiceBus troubl0eshooting message loss
 reviewed: 2020-07-24
 component: NServiceBus
 ---
-# Troubleshooting
-
-## Experiencing message loss
+# Troubleshooting message loss
 
 Sometimes customers are experiencing message loss scenarios. In most cases the cause is in any of the following scenarios:
 
@@ -18,8 +16,7 @@ All these will prevent NServiceBus its recovery mechanism to work correctly as a
 
 Consider enabling [message auditing](https://docs.particular.net/nservicebus/operations/auditing) so that atleast the message is not lost.
 
-
-### Missing await keyword
+## Missing await keyword
 
 Although all async methods that are provided in our API's do not have the `Async` suffix these methods **must** be awaited. All async methods must be awaited, including async methods from other libraries.
 
@@ -30,7 +27,7 @@ Resolve this by:
 - If await cannot be used append `.GetAwaiter().GetResult()` but consider to fully make the call stack async to prevent potential deadlocks
 
 
-### Usage of async void
+## Usage of async void
 
 Making of use `async void` is very similar in behavior to missing await. This is often done to workaround the fact that the method calls async methods but function invoking it does not have a valid signature.
 
@@ -56,7 +53,7 @@ Resolve this by:
 - Changing the signature to `async Task` and `await` this in the method that is invoking this method. Also see [Missing await keyword](#missing-await-keyword).
 
 
-### Caching exceptions
+## Catching exceptions
 
 The following is often observed:
 
