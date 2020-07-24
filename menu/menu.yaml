@@ -574,6 +574,11 @@
     Articles:
     - Url: nservicebus/tools/migrate-to-native-delivery
       Title: Migrating timeouts    
+  - Url: nservicebus/troubleshooting
+    Title: Troubleshooting
+    Articles:
+    - Url: nservicebus/troubleshooting/message-loss
+      Title: Message loss   
 
 - Name: Transports
   Url: transports
