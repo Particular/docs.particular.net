@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting message loss
-summary: NServiceBus troubl0eshooting message loss
+summary: NServiceBus troubleshooting message loss
 reviewed: 2020-07-24
 component: NServiceBus
 ---
