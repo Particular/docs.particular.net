@@ -26,7 +26,7 @@ Real disk, CPU, RAM, and network performance can be monitored with the Windows R
 It is recommended to:
 
 - Store ServiceControl data on its own isolated disk. This makes low-level resource monitoring easy and ensures different applications are not competing for storage IOPS.
-- Disable disk write caching to prevent data corruption if the (virtual) server or disk controler fails.
+- Disable disk write caching to prevent data corruption if the (virtual) server or disk controler fails. This is a general best practice for databases.
 
 ## Benchmark data
 
