@@ -21,6 +21,13 @@ Due to changes in the system it supports, the requirements for a server hosting 
 
 Real disk, CPU, RAM, and network performance can be monitored with the Windows Resource Monitor and/or Windows Performance counters.
 
+### Storage
+
+It is recommended to:
+
+- Store ServiceControl data on its own isolated disk. This makes low-level resource monitoring easy and ensures different applications are not competing for storage IOPS.
+- Disable disk write caching to prevent data corruption if the (virtual) server or disk controler fails.
+
 ## Benchmark data
 
 ServiceControl version 3.0.0 was tested to validate performance improvements made between version 2 and version 3. 
