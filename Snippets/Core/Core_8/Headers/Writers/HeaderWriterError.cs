@@ -1,11 +1,9 @@
-﻿#pragma warning disable 618
-namespace Core7.Headers.Writers
+﻿namespace Core8.Headers.Writers
 {
     using System;
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
-    using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
     using NServiceBus.Pipeline;
     using NUnit.Framework;
@@ -14,14 +12,7 @@ namespace Core7.Headers.Writers
     public class HeaderWriterError
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterErrorV7";
-
-        [SetUp]
-        [TearDown]
-        public void Setup()
-        {
-            DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName);
-        }
+        string endpointName = "HeaderWriterErrorV8";
 
         [Test]
         public async Task Write()
@@ -32,7 +23,7 @@ namespace Core7.Headers.Writers
             errorIngestion.UseTransport<LearningTransport>();
             errorIngestion.Pipeline.Register(typeof(ErrorMutator),"Capture headers on failed messages");
             await Endpoint.Start(errorIngestion);
-            
+
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.SendFailedMessagesTo("error");
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
@@ -60,7 +51,7 @@ namespace Core7.Headers.Writers
             IMessage
         {
         }
-        
+
         class ErrorMutator : Behavior<IIncomingPhysicalMessageContext>
         {
             public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
@@ -108,4 +99,3 @@ namespace Core7.Headers.Writers
         }
     }
 }
-#pragma warning restore 618
