@@ -67,6 +67,8 @@ snippet: ravendb-persistence-customize-document-session
 
 include: raven-dispose-warning
 
+partial: pessimistic-locking
+
 partial: multitenant
 
 partial: unsafereads
