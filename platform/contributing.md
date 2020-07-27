@@ -1,7 +1,7 @@
 ---
 title: How to contribute
 summary: The Particular Platform is open source and takes contributions from the community.
-reviewed: 2018-11-09
+reviewed: 2020-07-27
 ---
 
 ## Getting Started
@@ -37,6 +37,9 @@ For more information on Pull Requests see:
  * [Working with forks](https://help.github.com/articles/working-with-forks/)
  * [Creating a pull request from a fork](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
 
+### Contributor License Agreement (CLA)
+
+When opening a Pull Request in a Particular Software repository the [CLA assistant](https://cla-assistant.io/) will verify the GitHub account submitting the Pull Request has signed the Particular Software [Contributor License Agreement](https://gist.github.com/020497b0e1e81c97c8613be5e93c7d3f). Pull Requests cannot be accepted until the CLA has been signed.
 
 ## Additional Resources
 
