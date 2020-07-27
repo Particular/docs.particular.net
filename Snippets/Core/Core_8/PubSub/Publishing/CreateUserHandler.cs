@@ -1,4 +1,4 @@
-﻿namespace Core7.PubSub.Publishing
+﻿namespace Core8.PubSub.Publishing
 {
     using System.Threading.Tasks;
     using NServiceBus;

@@ -1,4 +1,4 @@
-﻿namespace Core7.Recoverability.Immediate
+﻿namespace Core8.Recoverability.Immediate
 {
     using NServiceBus;
 

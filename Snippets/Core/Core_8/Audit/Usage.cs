@@ -1,4 +1,4 @@
-﻿namespace Core7.Audit
+﻿namespace Core8.Audit
 {
     using NServiceBus;
 

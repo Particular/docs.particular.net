@@ -1,4 +1,4 @@
-﻿namespace Core7.Scheduling
+﻿namespace Core8.Scheduling
 {
     using System;
     using System.Threading.Tasks;

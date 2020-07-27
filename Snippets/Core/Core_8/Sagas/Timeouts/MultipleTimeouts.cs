@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Core7.Sagas.Timeouts
+namespace Core8.Sagas.Timeouts
 {
     public abstract class MultipleTimeoutsMySaga :
         Saga<MySagaData>,

@@ -1,4 +1,4 @@
-﻿namespace Core7.Lifecycle
+﻿namespace Core8.Lifecycle
 {
     using NServiceBus;
 

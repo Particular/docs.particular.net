@@ -1,4 +1,4 @@
-﻿namespace Core7.Container
+﻿namespace Core8.Container
 {
     public class MyService
     {

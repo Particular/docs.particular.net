@@ -1,5 +1,5 @@
 ﻿#pragma warning disable IDE0059 // Unnecessary assignment of a value
-namespace Core7.Pipeline
+namespace Core8.Pipeline
 {
     using System;
     using System.Threading.Tasks;

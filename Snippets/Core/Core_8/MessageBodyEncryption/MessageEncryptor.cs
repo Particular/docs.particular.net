@@ -1,4 +1,4 @@
-﻿namespace Core7.MessageBodyEncryption
+﻿namespace Core8.MessageBodyEncryption
 {
     using System.Linq;
     using System.Threading.Tasks;

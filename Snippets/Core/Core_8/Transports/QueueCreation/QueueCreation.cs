@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 1998
-namespace Core7.Transports.QueueCreation
+namespace Core8.Transports.QueueCreation
 {
     using System.Threading.Tasks;
     using NServiceBus;

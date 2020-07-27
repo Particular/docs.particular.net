@@ -1,4 +1,4 @@
-namespace Core7.Mutators.Transport
+namespace Core8.Mutators.Transport
 {
     public static class ServiceThatChangesBody
     {

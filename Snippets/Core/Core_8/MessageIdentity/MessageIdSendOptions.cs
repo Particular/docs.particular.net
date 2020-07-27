@@ -1,4 +1,4 @@
-﻿namespace Core7.MessageIdentity
+﻿namespace Core8.MessageIdentity
 {
     using System.Threading.Tasks;
     using NServiceBus;

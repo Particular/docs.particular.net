@@ -1,4 +1,4 @@
-﻿namespace Core7.Handlers
+﻿namespace Core8.Handlers
 {
     public class MyMessage
     {

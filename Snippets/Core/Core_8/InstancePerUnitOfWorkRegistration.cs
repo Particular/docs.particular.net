@@ -1,4 +1,4 @@
-﻿namespace Core7
+﻿namespace Core8
 {
     using System;
     using System.Threading.Tasks;

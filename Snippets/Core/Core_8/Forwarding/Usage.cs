@@ -1,4 +1,4 @@
-﻿namespace Core7.Forwarding
+﻿namespace Core8.Forwarding
 {
     using System.Threading.Tasks;
     using NServiceBus;

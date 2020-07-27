@@ -1,4 +1,4 @@
-﻿namespace Core7.NonDurable
+﻿namespace Core8.NonDurable
 {
     using NServiceBus;
 

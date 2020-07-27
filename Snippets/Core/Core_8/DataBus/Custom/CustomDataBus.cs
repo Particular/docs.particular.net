@@ -1,4 +1,4 @@
-﻿namespace Core7.DataBus.Custom
+﻿namespace Core8.DataBus.Custom
 {
     using System;
     using System.IO;

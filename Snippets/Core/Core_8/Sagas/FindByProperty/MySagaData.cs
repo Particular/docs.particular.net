@@ -1,4 +1,4 @@
-namespace Core7.Sagas.FindByProperty
+namespace Core8.Sagas.FindByProperty
 {
     using NServiceBus;
 

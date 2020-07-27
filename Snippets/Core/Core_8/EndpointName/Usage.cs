@@ -1,4 +1,4 @@
-﻿namespace Core7.EndpointName
+﻿namespace Core8.EndpointName
 {
     using System;
     using NServiceBus;

@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core8.Headers.Writers
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -12,7 +12,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        const string endpointName = "HeaderWriterAuditV7";
+        const string endpointName = "HeaderWriterAuditV8";
 
         [Test]
         public async Task Write()

@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 1998
-namespace Core7.ServiceFabricHosting
+namespace Core8.ServiceFabricHosting
 {
     using System.Collections.Generic;
     using System.Fabric;

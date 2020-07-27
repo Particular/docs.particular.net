@@ -1,4 +1,4 @@
-﻿namespace Core7.Mutators
+﻿namespace Core8.Mutators
 {
     using System.Threading.Tasks;
     using NServiceBus;

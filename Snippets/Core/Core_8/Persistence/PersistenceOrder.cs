@@ -1,4 +1,4 @@
-﻿namespace Core7.Persistence
+﻿namespace Core8.Persistence
 {
     using NServiceBus;
     using NServiceBus.Persistence;

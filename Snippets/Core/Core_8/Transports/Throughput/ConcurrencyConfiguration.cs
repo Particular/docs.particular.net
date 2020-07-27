@@ -1,4 +1,4 @@
-﻿namespace Core7.Transports.Throughput
+﻿namespace Core8.Transports.Throughput
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-﻿namespace Core7.Recoverability.Delayed.CustomPolicies
+﻿namespace Core8.Recoverability.Delayed.CustomPolicies
 {
     using System;
     using NServiceBus;

@@ -1,4 +1,4 @@
-﻿namespace Core7.Sagas.Timeouts
+﻿namespace Core8.Sagas.Timeouts
 {
     public class AlmostDoneMessage
     {

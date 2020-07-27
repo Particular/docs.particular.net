@@ -1,4 +1,4 @@
-﻿namespace Core7.Serialization
+﻿namespace Core8.Serialization
 {
     using NServiceBus;
 

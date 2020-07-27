@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Core7.Handlers;
+using Core8.Handlers;
 using NServiceBus;
 
 public class ConversationIdHeaderOverride

@@ -1,4 +1,4 @@
-﻿namespace Core7.ImmediateDispatch
+﻿namespace Core8.ImmediateDispatch
 {
     using System.Threading.Tasks;
     using NServiceBus;

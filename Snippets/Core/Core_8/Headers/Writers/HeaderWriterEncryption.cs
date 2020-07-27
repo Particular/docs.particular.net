@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core8.Headers.Writers
 {
     using System;
     using System.Text;
@@ -15,7 +15,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterEncryptionV7";
+        string endpointName = "HeaderWriterEncryptionV8";
 
         [Test]
         public async Task Write()

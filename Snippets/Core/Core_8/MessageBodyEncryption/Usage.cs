@@ -1,4 +1,4 @@
-﻿namespace Core7.MessageBodyEncryption
+﻿namespace Core8.MessageBodyEncryption
 {
     using NServiceBus;
     using NServiceBus.MessageMutator;

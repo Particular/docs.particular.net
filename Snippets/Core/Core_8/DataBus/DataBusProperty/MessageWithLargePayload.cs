@@ -1,4 +1,4 @@
-﻿namespace Core7.DataBus.DataBusProperty
+﻿namespace Core8.DataBus.DataBusProperty
 {
     using NServiceBus;
 

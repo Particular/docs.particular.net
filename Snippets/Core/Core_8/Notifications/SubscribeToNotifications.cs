@@ -1,6 +1,6 @@
 ﻿// ReSharper disable UnusedParameter.Local
 
-namespace Core7.Notifications
+namespace Core8.Notifications
 {
     using System.Threading.Tasks;
     using NServiceBus;

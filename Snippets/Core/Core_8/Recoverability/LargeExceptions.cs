@@ -1,4 +1,4 @@
-﻿namespace Core7.Recoverability
+﻿namespace Core8.Recoverability
 {
     using System;
     using System.Net;

@@ -1,4 +1,4 @@
-﻿namespace Core7.Container.Custom
+﻿namespace Core8.Container.Custom
 {
     using System.Threading.Tasks;
     using NServiceBus;

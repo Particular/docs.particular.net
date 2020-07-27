@@ -1,5 +1,5 @@
 ﻿
-namespace Core7.DataBus.Conventions
+namespace Core8.DataBus.Conventions
 {
 
     #region MessageWithLargePayloadUsingConvention

@@ -1,4 +1,4 @@
-﻿namespace Core7.Handlers
+﻿namespace Core8.Handlers
 {
     using System;
     using System.Diagnostics;

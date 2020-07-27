@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core8.Headers.Writers
 {
     using System.Text;
     using System.Threading;
@@ -13,7 +13,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterDataBusConventionV7";
+        string endpointName = "HeaderWriterDataBusConventionV8";
 
         [Test]
         public async Task Write()

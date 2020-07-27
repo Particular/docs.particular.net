@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core8.Headers.Writers
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -11,7 +11,7 @@
     public class HeaderWriterReply
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterReplyV7";
+        string endpointName = "HeaderWriterReplyV8";
 
         [Test]
         public async Task Write()

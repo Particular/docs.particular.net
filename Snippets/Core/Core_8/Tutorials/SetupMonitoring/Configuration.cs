@@ -1,4 +1,4 @@
-﻿namespace Core7.Tutorials.SetupMonitoring
+﻿namespace Core8.Tutorials.SetupMonitoring
 {
     using NServiceBus;
     using System;

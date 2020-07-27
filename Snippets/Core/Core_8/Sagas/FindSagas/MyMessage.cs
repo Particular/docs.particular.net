@@ -1,4 +1,4 @@
-namespace Core7.Sagas.FindSagas
+namespace Core8.Sagas.FindSagas
 {
     public class MyMessage
     {

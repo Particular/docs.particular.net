@@ -1,4 +1,4 @@
-﻿namespace Core7.Sagas.SimpleSaga
+﻿namespace Core8.Sagas.SimpleSaga
 {
     using System.Threading.Tasks;
     using NServiceBus;

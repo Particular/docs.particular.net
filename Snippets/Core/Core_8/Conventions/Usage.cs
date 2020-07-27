@@ -1,4 +1,4 @@
-namespace Core7.Conventions
+namespace Core8.Conventions
 {
     using System;
     using System.Reflection;

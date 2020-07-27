@@ -1,4 +1,4 @@
-﻿namespace Core7.Sagas.Reply
+﻿namespace Core8.Sagas.Reply
 {
     using System.Threading.Tasks;
     using NServiceBus;

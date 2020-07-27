@@ -1,5 +1,5 @@
 ﻿// ReSharper disable RedundantJumpStatement
-namespace Core7
+namespace Core8
 {
     using System;
     using System.Linq;

@@ -1,4 +1,4 @@
-﻿namespace Core7.Features
+﻿namespace Core8.Features
 {
     using System.Threading.Tasks;
     using NServiceBus;

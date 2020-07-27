@@ -1,4 +1,4 @@
-﻿namespace Core7.PublishSubscribe
+﻿namespace Core8.PublishSubscribe
 {
     using NServiceBus;
     using NServiceBus.Routing;

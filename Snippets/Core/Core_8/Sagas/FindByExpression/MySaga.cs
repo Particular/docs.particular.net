@@ -1,4 +1,4 @@
-﻿namespace Core7.Sagas.FindByExpression
+﻿namespace Core8.Sagas.FindByExpression
 {
     using System.Threading.Tasks;
     using NServiceBus;

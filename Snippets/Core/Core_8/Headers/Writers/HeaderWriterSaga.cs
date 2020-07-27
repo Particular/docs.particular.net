@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core8.Headers.Writers
 {
     using System;
     using System.Threading;
@@ -12,7 +12,7 @@
     public class HeaderWriterSaga
     {
         static CountdownEvent CountdownEvent = new CountdownEvent(4);
-        string endpointName = "HeaderWriterSagaV7";
+        string endpointName = "HeaderWriterSagaV8";
 
         [Test]
         public async Task Write()

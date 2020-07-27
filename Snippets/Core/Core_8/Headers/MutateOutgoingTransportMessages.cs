@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers
+﻿namespace Core8.Headers
 {
     using System.Threading.Tasks;
     using NServiceBus.MessageMutator;

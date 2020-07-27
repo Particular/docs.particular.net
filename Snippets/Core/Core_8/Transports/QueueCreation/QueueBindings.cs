@@ -1,4 +1,4 @@
-﻿namespace Core7.Transports.QueueCreation
+﻿namespace Core8.Transports.QueueCreation
 {
     using NServiceBus.Features;
     using NServiceBus.Transport;

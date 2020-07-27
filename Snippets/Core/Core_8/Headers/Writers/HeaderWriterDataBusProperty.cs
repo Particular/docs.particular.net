@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core8.Headers.Writers
 {
     using System.Text;
     using System.Threading;
@@ -13,7 +13,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterDataBusPropertyV7";
+        string endpointName = "HeaderWriterDataBusPropertyV8";
 
         [Test]
         public async Task Write()
@@ -24,7 +24,7 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.UseTransport<LearningTransport>();
-            endpointConfiguration.RegisterMessageMutator(new Mutator());    
+            endpointConfiguration.RegisterMessageMutator(new Mutator());
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
