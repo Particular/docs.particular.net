@@ -39,7 +39,7 @@ For more information on Pull Requests see:
 
 ### Contributor License Agreement (CLA)
 
-When you open a Pull Request in a Particular Software repository the [CLA assistant](https://cla-assistant.io/) will verify the GitHub account submitting the Pull Request has signed the Particular Software [Contributor License Agreement](https://gist.github.com/020497b0e1e81c97c8613be5e93c7d3f). Pull Requests cannot be accepted until the CLA has been signed.
+When opening a Pull Request in a Particular Software repository the [CLA assistant](https://cla-assistant.io/) will verify the GitHub account submitting the Pull Request has signed the Particular Software [Contributor License Agreement](https://gist.github.com/020497b0e1e81c97c8613be5e93c7d3f). Pull Requests cannot be accepted until the CLA has been signed.
 
 ## Additional Resources
 
