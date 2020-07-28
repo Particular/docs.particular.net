@@ -87,7 +87,6 @@ Uniquely addressable instances are used for [callbacks](/nservicebus/messaging/c
 
 ```c#
 var options = new SendOptions();
-options.RouteToThisInstance()
 options.RouteToSpecificInstance("B");
 endpointInstance.Send(new MyMessage(), options);
 ```
