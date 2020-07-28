@@ -1,6 +1,6 @@
 ---
 title: Multi-Site Deployments
-reviewed: 2018-11-14
+reviewed: 2020-07-28
 summary: How to handle multi-site communication.
 component: Gateway
 redirects:
