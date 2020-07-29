@@ -72,6 +72,13 @@ To disable publishing on an endpoint, the declarative API should be used instead
 snippet: DisablePublishing-UpgradeGuide
 
 
+## Connection strings
+
+Configuring a transport's connection using `.ConnectionStringName(name)`, which was removed for .NET Core in NServiceBus version 7, has been removed all platforms in NServiceBus version 8. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the `.ConnectionString(value)` configuration.
+
+A connection string named `NServiceBus/Transport` will also **no longer be detected automatically** on any platform. The connection string value must be configured explicitly using `.ConnectionString(value)`.
+
+
 ## Change to license file locations
 
  will no longer attempt to load the license file from the `appSettings` section of an app.config or web.config file, in order to create better alignment between .NET Framework 4.x and .NET Core.
