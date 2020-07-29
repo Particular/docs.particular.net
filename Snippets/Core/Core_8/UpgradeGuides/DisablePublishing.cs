@@ -1,15 +1,15 @@
-﻿namespace Core7.PublishSubscribe
+﻿namespace Core8.PublishSubscribe
 {
     using NServiceBus;
     using NServiceBus.Routing;
     using NServiceBus.Settings;
     using NServiceBus.Transport;
 
-    class DisablePublishing
+    class DisablePublishingUpgradeGuide
     {
         void DisablePublishingConfiguration(EndpointConfiguration endpointConfiguration)
         {
-            #region DisablePublishing
+            #region DisablePublishing-UpgradeGuide
             var transportConfiguration = endpointConfiguration.UseTransport<TransportDefinition>();
             transportConfiguration.DisablePublishing();
             #endregion

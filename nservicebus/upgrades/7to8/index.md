@@ -50,3 +50,32 @@ The NServiceBus gateway has been moved to a separate `NServiceBus.Gateway` packa
 - Configure the gateway API by invoking the `endpointConfiguration.Gateway(...)` method, passing as an argument the selected storage configuration instance:
   - [Documentation for NServiceBus.Gateway.Sql](/nservicebus/gateway/sql/)
   - [Documentation for NServiceBus.Gateway.RavenDB](/nservicebus/gateway/ravendb/)
+
+
+## Error notification events
+
+In NServiceBus version 7.2, error notification events for `MessageSentToErrorQueue`, `MessageHasFailedAnImmediateRetryAttempt`, and `MessageHasBeenSentToDelayedRetries` using .NET events were deprecated in favor of `Task`-based callbacks. In NServiceBus version 8 and above, the event-based notifications will throw an error.
+
+Error notifications can be set with the `Task`-based callbacks through the recoverability settings:
+
+snippet: SubscribeToErrorsNotifications-UpgradeGuide
+
+
+## Disabling subscriptions
+
+In previous versions, users sometimes disabled the `MessageDrivenSubscriptions` feature to remove the need for a subscription storage on endpoints that do not publish events, which could cause other unintended consequences.
+
+While NServiceBus still supports message-driven subscriptions for transports that do not have native publish/subscribe capabilities, the `MessageDrivenSubscriptions` feature itself has been deprecated.
+
+To disable publishing on an endpoint, the declarative API should be used instead:
+
+snippet: DisablePublishing-UpgradeGuide
+
+
+## Change to license file locations
+
+ will no longer attempt to load the license file from the `appSettings` section of an app.config or web.config file, in order to create better alignment between .NET Framework 4.x and .NET Core.
+
+In NServiceBus version 6 and below, the license path could be loaded from the `NServiceBus/LicensePath` app setting, or the license text itself could be loaded from the `NServiceBus/License` app setting.
+
+Starting in NServiceBus version 8, one of the [other methods of providing a license](/nservicebus/licensing/?version=core_8) must be used.
