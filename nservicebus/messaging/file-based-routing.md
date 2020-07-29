@@ -1,7 +1,7 @@
 ---
 title: Centralized file-based routing
 summary: How NServiceBus message routing can be configured via a file that can be shared between all endpoints
-reviewed: 2018-11-14
+reviewed: 2020-07-29
 component: FileBasedRouting
 related:
 - nservicebus/messaging/routing-extensibility
