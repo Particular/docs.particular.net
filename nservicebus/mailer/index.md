@@ -2,7 +2,7 @@
 title: NServiceBus Mailer
 component: Mailer
 versions: '[3,)'
-reviewed: 2018-11-14
+reviewed: 2020-07-29
 related:
  - samples/mailer
 ---
