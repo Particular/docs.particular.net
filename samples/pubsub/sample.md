@@ -1,7 +1,7 @@
 ---
 title: Publish/Subscribe
 summary: Publish/Subscribe, fault-tolerant messaging, and durable subscriptions.
-reviewed: 2018-11-14
+reviewed: 2020-07-30
 component: Core
 redirects:
  - nservicebus/publish-subscribe-sample
