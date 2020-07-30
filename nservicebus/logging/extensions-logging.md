@@ -13,12 +13,11 @@ With this common logging abstraction, it is possible to log to different logging
 
 ## Compatibility
 
-Although NServiceBus has native support for logging frameworks like log4net, NLog, CommonLogging, and EventSourceLogging, it is recommended to use Microsoft.Extensions.Logging with these frameworks for new projects.
+Although NServiceBus has native support for logging frameworks like log4net, NLog, and CommonLogging, it is recommended to use Microsoft.Extensions.Logging with these frameworks for new projects.
 
 Microsoft.Extensions.Logging can be used to replace the following providers:
 
 - [Common.Logging](common-logging.md) (Only if the configured provider in Common.Logging is supported by Microsoft.Extensions.Logging)
-- [EventSource](eventsourcelogging.md)
 - [Log4net](log4net.md)
 - [NLog](nlog.md)
 
