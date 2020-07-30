@@ -33,7 +33,6 @@ Support for external logging providers is no longer provided by NServiceBus adap
 The following provider packages will no longer be provided:
 
 * [Common.Logging](/nservicebus/logging/common-logging.md)
-* [EventSource](/nservicebus/logging/eventsourcelogging.md)
 * [Log4net](/nservicebus/logging/log4net.md)
 * [NLog](/nservicebus/logging/nlog.md)
 

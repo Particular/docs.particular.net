@@ -529,8 +529,6 @@
       Title: NLog
     - Url: nservicebus/logging/common-logging
       Title: CommonLogging
-    - Url: nservicebus/logging/eventsourcelogging
-      Title: EventSourceLogging
     - Url: nservicebus/operations/auditing
       Title: Auditing Messages
   - Url: nservicebus/security

@@ -19,7 +19,6 @@ It is also possible to see full implementations of logging factories by looking 
  * [Log4Net integration](/nservicebus/logging/log4net.md)
  * [NLog integration](/nservicebus/logging/nlog.md)
  * [CommonLogging integration](/nservicebus/logging/common-logging.md)
- * [EventSourceLogging integration](/nservicebus/logging/eventsourcelogging.md)
 
 
 ## Logging Definition
