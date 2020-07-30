@@ -40,7 +40,7 @@ This location can be expressed using environment variables on Windows, or as a l
 
 ### Windows Registry
 
-WARNING: This option is only available when targeting the full .NET Framework.
+WARNING: This option not available when targeting .NET Core.
 
 Licenses stored in a registry key named `License` in the following registry locations are automatically detected:
 * `HKEY_LOCAL_MACHINE\Software\ParticularSoftware`
