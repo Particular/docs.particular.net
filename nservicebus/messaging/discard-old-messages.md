@@ -13,7 +13,7 @@ A message sent through the Particular Service Platform may have Time-To-Be-Recei
 
 Setting TimeToBeReceived might be beneficial in environments with high volumes of messages where there is little business value in processing a delayed message since it will already be replaced by a newer, more relevant version.
 
-TTBR applies only to messages that have not been handled. A failed message moved to the error queue or a successfully processed message is considered handled, as well as audit message when generated. Removing TTBR from handeled messages ensures no messages are lost. The TTBR value from the original message can be inspected by looking at the `NServiceBus.TimeToBeReceived` [header](/nservicebus/messaging/headers.md).
+TTBR applies only to messages that have not been handled. A failed message moved to the error queue or a successfully processed message is considered handled, as well as audit message when generated. Removing TTBR from handled messages ensures no messages are lost. The TTBR value from the original message can be inspected by looking at the `NServiceBus.TimeToBeReceived` [header](/nservicebus/messaging/headers.md).
 
 If there is no value in a message being received by the target process after a given time period it may be desirable to indicate that it can be discarded by specifying TimeToBeReceived.
 
