@@ -1,6 +1,7 @@
 ﻿using Ninject;
 using NServiceBus;
 using NServiceBus.ObjectBuilder.Ninject;
+using Ninject.Extensions.ContextPreservation;
 
 class Usage
 {
@@ -57,6 +58,19 @@ class Usage
         kernel.Bind<MyService>().ToSelf()
             .WhenInUnitOfWork()
             .InSingletonScope();
+
+        #endregion
+    }
+
+    void UseFuncBinding()
+    {
+        #region NinjectContextPreservationFuncBinding
+
+        var kernel = new StandardKernel();
+
+        kernel.Bind<MyService>()
+            .ToMethod(ctx => ctx.ContextPreservingGet<MyService>())
+            .InUnitOfWorkScope();
 
         #endregion
     }
