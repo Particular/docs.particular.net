@@ -1,6 +1,6 @@
 ---
 title: NServiceBus Mailer
-reviewed: 2018-11-21
+reviewed: 2020-08-03
 component: Mailer
 ---
 

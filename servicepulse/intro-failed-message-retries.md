@@ -2,7 +2,7 @@
 title: Retrying failed messages
 summary: Describes the concept and lifecycle of retrying messages in ServicePulse
 component: ServicePulse
-reviewed: 2018-11-14
+reviewed: 2020-08-03
 ---
 
 After resolving the issue that caused message processing failures, failed messages can be resent for reprocessing by the corresponding endpoint(s). This is referred to as a "retry" (or a manual retry, in contrast to the automated and configurable [Recoverability](/nservicebus/recoverability/)).
