@@ -112,3 +112,4 @@ For more information on the outbox persistence options available refer to the de
 - [RavenDB](/persistence/ravendb/outbox.md)
 - [SQL](/persistence/sql/outbox.md)
 - [ServiceFabric](/persistence/service-fabric/outbox.md)
+- [MongoDB](/persistence/mongodb/#outbox-cleanup)
