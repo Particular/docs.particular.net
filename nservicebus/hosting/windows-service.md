@@ -1,7 +1,7 @@
 ---
 title: Windows Service Installation
 summary: How to install an NServiceBus endpoint as a Windows service
-reviewed: 2018-11-22
+reviewed: 2020-08-03
 component: Core
 isLearningPath: true
 related:

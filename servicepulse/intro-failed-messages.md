@@ -2,7 +2,7 @@
 title: Failed Message Monitoring
 summary: Describes how ServicePulse detects and monitors failed messages, and allows retrying, or archiving of failed messages
 component: ServicePulse
-reviewed: 2018-11-14
+reviewed: 2020-08-03
 related:
 - serviceinsight/managing-errors-and-retries
 ---
@@ -89,7 +89,7 @@ As of version 1.8.0 and above, each message can be browsed to see in-depth detai
 
 Individual messages can be accessed by clicking the respective entry in any of the message list views.
 
-Each invidual failed message page allows for viewing the following additional message details:
+Each individual failed message page allows for viewing the following additional message details:
 
 * **Message metadata** - Failure timestamp, endpoint name and location, retry status.
 * **StackTrace** - Full .NET exception stacktrace.
