@@ -4,13 +4,13 @@ summary: The Particular Platform is open source and takes contributions from the
 reviewed: 2020-07-27
 ---
 
-## Getting Started
+## Getting started
 
  1. Create a [GitHub account](https://github.com/join).
  1. Find the relevant repository by browsing the [list of extensions](/components/).
 
 
-## Raising Bugs/Feature Requests
+## Raising bugs/feature requests
 
 This is done using GitHub Issues.
 
@@ -23,7 +23,7 @@ For more information on issues see:
  * [Creating an issue](https://help.github.com/articles/creating-an-issue/)
  
 
-## Submitting Changes
+## Submitting changes
 
 This is done using GitHub Pull Requests.
 
@@ -39,9 +39,9 @@ For more information on Pull Requests see:
 
 ### Contributor License Agreement (CLA)
 
-When opening a Pull Request in a Particular Software repository the [CLA assistant](https://cla-assistant.io/) will verify the GitHub account submitting the Pull Request has signed the Particular Software [Contributor License Agreement](https://gist.github.com/020497b0e1e81c97c8613be5e93c7d3f). Pull Requests cannot be accepted until the CLA has been signed.
+When opening a pull request in a Particular Software repository, the [CLA assistant](https://cla-assistant.io/) will verify that the GitHub account submitting the pull request has signed the Particular Software [Contributor License Agreement](https://gist.github.com/020497b0e1e81c97c8613be5e93c7d3f). Pull requests cannot be accepted until the CLA has been signed.
 
-## Additional Resources
+## Additional resources
 
  * [GitHub introduction](https://guides.github.com/activities/hello-world/)
  * [General GitHub documentation](https://help.github.com/)
