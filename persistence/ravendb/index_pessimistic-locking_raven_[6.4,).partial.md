@@ -14,7 +14,7 @@ The pessimistick locking behavior can be customized using the following options:
 
 ### Pessimistic Lease Lock Time: (Requires version 6.4+)
 
-By default, the persister locks a saga data document for 60 seconds. It is not recommended to have long running sagas but it might sometimes be required to increase the lease duration.
+By default, the persister locks a saga data document for 60 seconds. It is not recommended to have long-running handlers in sagas but it might sometimes be required to increase the lease duration.
 
 The lease duration can be adjusted using the following API:
 
