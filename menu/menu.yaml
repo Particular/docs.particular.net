@@ -1012,7 +1012,7 @@
     Title: RavenDB
     Articles:
     - Url: persistence/ravendb/connection
-      Title: Connection Options
+      Title: Connection options
     - Url: persistence/ravendb/saga-concurrency
       Title: Saga concurrency
     - Url: persistence/ravendb/operations-scripting
@@ -1024,9 +1024,9 @@
     - Url: persistence/ravendb/outbox
       Title: Outbox
     - Url: persistence/ravendb/version-compatibility
-      Title: RavenDB Client Versions
+      Title: RavenDB client versions
     - Url: persistence/ravendb/reroute-existing-timeouts
-      Title: Reroute Existing Timeouts
+      Title: Reroute existing timeouts
     - Url: persistence/ravendb/subscription-versioning
       Title: Subscription versioning
     - Url: persistence/ravendb/dtc

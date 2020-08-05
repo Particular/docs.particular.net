@@ -1,5 +1,7 @@
 ---
-title: RavenDB Persistence Saga concurrency
+title: RavenDB Persistence Saga Concurrency
+summary: Explains how concurrency works with sagas in the RavenDB persister
+component: raven
 reviewed: 2019-06-10
 related:
  - nservicebus/sagas/concurrency
@@ -23,7 +25,7 @@ Raven.Client.Exceptions.ConcurrencyException: Document OrderSagaData/OrderId/316
 
 ### Updating or deleting saga data
 
-RavenDB persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
+partial: concurrency
 
 WARNING: When a message handler does not change saga data, the RavenDB client will not attempt to write the associated document to storage. If a consistency check is required, a property value must be changed. For example, a counter property may be incremented.
 
@@ -34,3 +36,5 @@ Raven.Client.Exceptions.ConcurrencyException: Document OrderSagaDatas/f23921c9-7
 ```
 
 include: saga-concurrency
+
+partial: pessimistic-locking
