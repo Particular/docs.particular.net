@@ -7,9 +7,11 @@
     {
         Usage(EndpointConfiguration endpointConfiguration, IMessageHandlerContext context)
         {
+#pragma warning disable 618
             #region ForwardingWithCode
             endpointConfiguration.ForwardReceivedMessagesTo("destinationQueue@machine");
             #endregion
+#pragma warning restore 618
 
             Task.Run(async () =>
             {
