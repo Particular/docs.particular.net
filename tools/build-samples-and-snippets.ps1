@@ -35,6 +35,15 @@ function Get-BuildSolutions
     	throw "Unable to fetch origin/master"
     }
     Write-Host "::endgroup::"
+    
+    Write-Host "::group::Debugging"
+    Write-Host "--- Running git status ---"
+    git status
+    Write-Host "--- Running ls ---"
+    ls
+    Write-Host "GH Actions branch = $env:GITHUB_REF"
+    Write-Host "::endgroup::"
+    
  
     Write-Host "::group::Comparing origin/master to HEAD to get modified files"
     # `origin/master...HEAD` references commit where master & current branch diverged
