@@ -14,13 +14,13 @@ function CombinePaths()
 # Assumes that the current working directory is the root of the docs repo
 function Get-BuildSolutions
 {
-    # Retrieves the current branch name
-    Write-Host "Sniffing current branch"
+    Write-Host "::group::Sniffing current branch"
     $branch = git rev-parse --abbrev-ref HEAD
     if( -not $? ) {
     	throw "Unable to determine current branch"
     }
     Write-Host "Current branch is $branch"
+    Write-Host "::endgroup::"
 
     if($branch -eq "master")
     {
@@ -29,21 +29,24 @@ function Get-BuildSolutions
         return $result
     }
 
-    Write-Host "Fetching origin/master to do a comparison"
-    git fetch origin master
+    Write-Host "::group::Fetching origin/master to do a comparison"
+    git --progress fetch origin master
     if( -not $? ) {
     	throw "Unable to fetch origin/master"
     }
-
+    Write-Host "::endgroup::"
+ 
+    Write-Host "::group::Comparing origin/master to HEAD to get modified files"
     # `origin/master...HEAD` references commit where master & current branch diverged
     # Just comparing to master will grab changes that occurred in master as well
-    Write-Host "Comparing origin/master to HEAD to get modified files"
     $changes = git diff origin/master...HEAD --name-only
     if( -not $? ) {
     	throw "Unable to determine differences between master and current branch"
     }
-    $result = @()
+    Write-Host "::endgroup::"
     
+    Write-Host "::group::Determining solutions to build from changed files"
+    $result = @()
     foreach($change in $changes)
     {
         $file = CombinePaths $pwd.Path $change
@@ -73,6 +76,7 @@ function Get-BuildSolutions
             $dir = CombinePaths $dir ".."
         }
     }
+    Write-Host "::endgroup::"
 
     return $result | Sort-Object | Get-Unique
 }
@@ -81,9 +85,10 @@ $exitCode = 0
 $failedProjects = New-Object Collections.Generic.List[String]
 $failedProjectsOutput = CombinePaths $pwd.Path "failed-projects.log"
  
-echo "::group::Get build solutions"
+
 $samples = Get-BuildSolutions
-Write-Host "Projects to build"
+
+echo "::group::Projects to build"
 $samples | ForEach-Object { echo (" * {0}" -f $_.FullName) }
 echo "::endgroup::"
 
