@@ -95,19 +95,8 @@ The following .NET types are interpreted as `CorrelationPropertyType.Int`:
 ## Json.net settings
 
 SQL persistence uses the [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) package to serialize saga data and metadata.
-The saga data is persisted in the `Data` column 
 
-The saga data can be queried by taking advantage of the [JSON querying capababilities SqlServer offers](https://docs.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server) as shown here:
-
-`
-SELECT [Correlation_OrderId], OrderData.OrderDescription
-FROM [NsbSamplesSqlPersistence].[dbo].[Samples_SqlPersistence_EndpointSqlServer_OrderSaga]
-CROSS APPLY OPENJSON([Data]) WITH
-(
-	OrderId NVARCHAR(500) N'$.OrderId',
-	OrderDescription NVARCHAR(2000) N'$.OrderDescription'
-) as OrderData
-`
+The saga data can be queried by taking advantage of the [JSON querying capababilities SqlServer offers](https://docs.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server).
 
 ### Custom settings
 
