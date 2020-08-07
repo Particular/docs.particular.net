@@ -32,14 +32,13 @@ function Get-BuildSolutions
     Write-Host "::endgroup::"
     
     Write-Host "::group::Debugging"
-    Write-Host "--- Running git status ---"
+    Write-Host "Running git status"
     git status > git-status.txt
-    Get-Content git-status.txt
-    Write-Host "--- Running git branch ---"
-    git branch
-    Write-Host "--- Running ls (actually Get-ChildItem) ---"
-    Get-ChildItem
-    Write-Host "GH Actions branch = $env:GITHUB_REF"
+    Get-Content git-status.txt | Write-Host
+    Write-Host "Running git branch"
+    git branch | Write-Host
+    Write-Host "Running ls (actually Get-ChildItem)"
+    Get-ChildItem | Write-Host
     Write-Host "::endgroup::"
     
  
