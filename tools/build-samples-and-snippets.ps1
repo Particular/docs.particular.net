@@ -17,6 +17,9 @@ function Get-BuildSolutions
     # Retrieves the current branch name
     Write-Host "Sniffing current branch"
     $branch = git rev-parse --abbrev-ref HEAD
+    if( -not $? ) {
+    	throw "Unable to determine current branch"
+    }
     Write-Host "Current branch is $branch"
 
     if($branch -eq "master")
@@ -27,12 +30,18 @@ function Get-BuildSolutions
     }
 
     Write-Host "Fetching origin/master to do a comparison"
-    $ignoreGitFetchOutput = git fetch origin master
+    git fetch origin master
+    if( -not $? ) {
+    	throw "Unable to fetch origin/master"
+    }
 
     # `origin/master...HEAD` references commit where master & current branch diverged
     # Just comparing to master will grab changes that occurred in master as well
     Write-Host "Comparing origin/master to HEAD to get modified files"
     $changes = git diff origin/master...HEAD --name-only
+    if( -not $? ) {
+    	throw "Unable to determine differences between master and current branch"
+    }
     $result = @()
     
     foreach($change in $changes)
