@@ -7,10 +7,6 @@
     {
         Usage(EndpointConfiguration endpointConfiguration, IMessageHandlerContext context)
         {
-            #region ForwardingWithCode
-            endpointConfiguration.ForwardReceivedMessagesTo("destinationQueue@machine");
-            #endregion
-
             Task.Run(async () =>
             {
                 #region ForwardingMessageFromHandler
