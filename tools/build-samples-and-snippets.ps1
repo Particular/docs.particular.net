@@ -14,15 +14,10 @@ function CombinePaths()
 # Assumes that the current working directory is the root of the docs repo
 function Get-BuildSolutions
 {
-    Write-Host "::group::Sniffing current branch"
-    $branch = git rev-parse --abbrev-ref HEAD
-    if( -not $? ) {
-    	throw "Unable to determine current branch"
-    }
+    $branch = $env:GITHUB_REF
     Write-Host "Current branch is $branch"
-    Write-Host "::endgroup::"
 
-    if($branch -eq "master")
+    if($branch -eq "refs/heads/master")
     {
         # For master branch, build every solution file in repo
         $result = Get-ChildItem -Filter *.sln -Recurse | sort LastWriteTime -Descending
@@ -38,9 +33,12 @@ function Get-BuildSolutions
     
     Write-Host "::group::Debugging"
     Write-Host "--- Running git status ---"
-    git status
-    Write-Host "--- Running ls ---"
-    ls
+    git status > git-status.txt
+    Get-Content git-status.txt
+    Write-Host "--- Running git branch ---"
+    git branch
+    Write-Host "--- Running ls (actually Get-ChildItem) ---"
+    Get-ChildItem
     Write-Host "GH Actions branch = $env:GITHUB_REF"
     Write-Host "::endgroup::"
     
