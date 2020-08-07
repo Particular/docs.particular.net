@@ -86,3 +86,8 @@ A connection string named `NServiceBus/Transport` will also **no longer be detec
 In NServiceBus version 7 and below, the license path could be loaded from the `NServiceBus/LicensePath` app setting, or the license text itself could be loaded from the `NServiceBus/License` app setting.
 
 Starting in NServiceBus version 8, one of the [other methods of providing a license](/nservicebus/licensing/?version=core_8) must be used.
+
+
+## Support for message forwarding
+
+Support for forwarding a copy of every message processed by the endpoint is no longer provided by NServiceBus. Instead, create a custom behavior to forward a copy of every procesed message as described in [this sample](/samples/routing/message-forwarding).
