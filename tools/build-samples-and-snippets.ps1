@@ -15,7 +15,9 @@ function CombinePaths()
 function Get-BuildSolutions
 {
     # Retrieves the current branch name
+    Write-Host "Sniffing current branch"
     $branch = git rev-parse --abbrev-ref HEAD
+    Write-Host "Current branch is $branch"
 
     if($branch -eq "master")
     {
@@ -24,11 +26,12 @@ function Get-BuildSolutions
         return $result
     }
 
-    # Fetch to update origin/master to the proper position
+    Write-Host "Fetching origin/master to do a comparison"
     $ignoreGitFetchOutput = git fetch origin master
 
     # `origin/master...HEAD` references commit where master & current branch diverged
     # Just comparing to master will grab changes that occurred in master as well
+    Write-Host "Comparing origin/master to HEAD to get modified files"
     $changes = git diff origin/master...HEAD --name-only
     $result = @()
     
