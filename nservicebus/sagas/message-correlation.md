@@ -27,6 +27,8 @@ It is possible to specify the mapping to the message using expressions if the co
 
 snippet: saga-find-by-expression
 
+partial: find-by-header
+
 
 ## Auto-correlation
 
