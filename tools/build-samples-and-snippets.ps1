@@ -30,7 +30,7 @@ function Get-BuildSolutions
     }
 
     Write-Host "::group::Fetching origin/master to do a comparison"
-    git --progress fetch origin master
+    git fetch --progress origin master
     if( -not $? ) {
     	throw "Unable to fetch origin/master"
     }
