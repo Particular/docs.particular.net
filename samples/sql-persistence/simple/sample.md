@@ -92,13 +92,5 @@ SQL persistence uses the [Newtonsoft.Json](https://www.nuget.org/packages/Newton
 The saga data can be queried by taking advantage of the [JSON querying capababilities SqlServer offers](https://docs.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server).
 It is stored inside the `Data` column and can be queried as shown here:
 
-`
-SELECT [Correlation_OrderId], OrderData.OrderDescription
-FROM [NsbSamplesSqlPersistence].[dbo].[Samples_SqlPersistence_EndpointSqlServer_OrderSaga]
-CROSS APPLY OPENJSON([Data]) WITH
-(
-	OrderId NVARCHAR(500) N'$.OrderId',
-	OrderDescription NVARCHAR(2000) N'$.OrderDescription'
-) as OrderData
-`
+snippet: SqlServerSagaJsonQuery
 
