@@ -45,7 +45,7 @@ function Get-BuildSolutions
     Write-Host "::group::Comparing origin/master to HEAD to get modified files"
     # `origin/master...HEAD` references commit where master & current branch diverged
     # Just comparing to master will grab changes that occurred in master as well
-    $changes = git diff origin/master...HEAD --name-only
+    $changes = git diff origin/master..HEAD --name-only
     if( -not $? ) {
     	throw "Unable to determine differences between master and current branch"
     }
