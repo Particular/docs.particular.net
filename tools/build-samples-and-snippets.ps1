@@ -29,22 +29,12 @@ function Get-BuildSolutions
     if( -not $? ) {
     	throw "Unable to fetch origin/master"
     }
-    Write-Host "::endgroup::"
-    
-    Write-Host "::group::Debugging"
-    Write-Host "Running git status"
-    git status > git-status.txt
-    Get-Content git-status.txt | Write-Host
-    Write-Host "Running git branch"
-    git branch | Write-Host
-    Write-Host "Running ls (actually Get-ChildItem)"
-    Get-ChildItem | Write-Host
-    Write-Host "::endgroup::"
-    
+    Write-Host "::endgroup::"    
  
     Write-Host "::group::Comparing origin/master to HEAD to get modified files"
     # `origin/master...HEAD` references commit where master & current branch diverged
     # Just comparing to master will grab changes that occurred in master as well
+    # Except currently we have a detached HEAD so there is no merge parent so must do .. which compares arbitrary commits
     $changes = git diff origin/master..HEAD --name-only
     if( -not $? ) {
     	throw "Unable to determine differences between master and current branch"
