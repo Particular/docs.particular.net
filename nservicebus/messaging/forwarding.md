@@ -18,13 +18,10 @@ Auditing is used for collecting information on what is happening in the system, 
 
 partial: headers
 
-
-## Configuring Message Forwarding
-
 partial: config
 
 ## Forwarding a message from the handler
 
-Individual messages can be forwarded directly from the handler if the desired behavior is not to forward all messages that were successfully processed by an endpoint:
+Individual messages can be forwarded directly from the handler:
 
 snippet: ForwardingMessageFromHandler

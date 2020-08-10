@@ -14,15 +14,15 @@
             transportConfiguration.DisablePublishing();
             #endregion
         }
-    }
 
-    class TransportDefinition : NServiceBus.Transport.TransportDefinition, IMessageDrivenSubscriptionTransport
-    {
-        public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+        class TransportDefinition : NServiceBus.Transport.TransportDefinition, IMessageDrivenSubscriptionTransport
         {
-            throw new System.NotImplementedException();
-        }
+            public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+            {
+                throw new System.NotImplementedException();
+            }
 
-        public override string ExampleConnectionStringForErrorMessage { get; }
+            public override string ExampleConnectionStringForErrorMessage { get; }
+        }
     }
 }
