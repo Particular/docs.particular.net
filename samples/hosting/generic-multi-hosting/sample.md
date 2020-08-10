@@ -5,7 +5,6 @@ reviewed: 2020-08-10
 component: Core
 related:
 - nservicebus/hosting
-- nservicebus/hosting/multi-hosting
 ---
 
 ## Code walk-through
