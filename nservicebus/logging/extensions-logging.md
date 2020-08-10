@@ -11,6 +11,8 @@ The `NServiceBus.Extensions.Logging` package provides support for writing NServi
 
 With this common logging abstraction, it is possible to log to different logging providers. Some third-party frameworks can perform semantic logging, also known as structured logging.
 
+NOTE: This package should only be used when configuring logging stand-alone. If hosting with the [.NET Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) use [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting/) instead.
+
 ## Compatibility
 
 Although NServiceBus has native support for logging frameworks like log4net, NLog, and CommonLogging, it is recommended to use Microsoft.Extensions.Logging with these frameworks for new projects.
