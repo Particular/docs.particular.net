@@ -8,7 +8,7 @@
     <ProjectReference Include="..\Instance1\Instance1.csproj" />
     <ProjectReference Include="..\Instance2\Instance2.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-	<PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
 </Project>
