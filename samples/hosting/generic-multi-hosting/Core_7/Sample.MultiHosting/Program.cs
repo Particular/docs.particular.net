@@ -10,7 +10,6 @@ class Program
     static async Task Main(string[] args)
     {
         Console.Title = "Samples.MultiHosting";
-        #region multi-hosting
 
         var endpointOneBuilder = ConfigureEndpointOne(Host.CreateDefaultBuilder(args)).Build();
         var endpointTwoBuilder = ConfigureEndpointTwo(Host.CreateDefaultBuilder(args)).Build();
@@ -19,11 +18,9 @@ class Program
         var endpointTwoTask = endpointTwoBuilder.RunAsync();
         
         await Task.WhenAll(endpointOneTask, endpointTwoTask);
-
-        #endregion
     }
     
-    private static IHostBuilder ConfigureEndpointOne(IHostBuilder builder)
+    static IHostBuilder ConfigureEndpointOne(IHostBuilder builder)
     {
         builder.UseConsoleLifetime();
         builder.ConfigureLogging((ctx, logging) =>
@@ -32,9 +29,7 @@ class Program
             logging.AddEventLog();
             logging.AddConsole();
         });
-
-        #region endpoint-one-use-nservicebus
-
+        
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("Sample.MultiHosting.Instance1");
@@ -47,12 +42,10 @@ class Program
             return endpointConfiguration;
         });
 
-        #endregion
-
         return builder;
     }
     
-    private static IHostBuilder ConfigureEndpointTwo(IHostBuilder builder)
+    static IHostBuilder ConfigureEndpointTwo(IHostBuilder builder)
     {
         builder.UseConsoleLifetime();
         builder.ConfigureLogging((ctx, logging) =>
@@ -61,9 +54,7 @@ class Program
             logging.AddEventLog();
             logging.AddConsole();
         });
-
-        #region endpoint-one-use-nservicebus
-
+        
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("Sample.MultiHosting.Instance2");
@@ -75,13 +66,11 @@ class Program
 
             return endpointConfiguration;
         });
-
-        #endregion
-
+        
         return builder;
     }
 
-    private static async Task OnCriticalError(ICriticalErrorContext context)
+    static async Task OnCriticalError(ICriticalErrorContext context)
     {
         var fatalMessage = "The following critical error was " +
                            $"encountered: {Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. " +

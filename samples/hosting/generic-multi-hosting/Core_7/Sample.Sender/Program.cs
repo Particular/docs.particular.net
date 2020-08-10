@@ -49,8 +49,6 @@ namespace Sample.Sender
         
         static Task<IEndpointInstance> StartSendOnlyEndpoint()
         {
-            #region start-send-only
-
             var endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.SendOnly");
             var scanner = endpointConfiguration.AssemblyScanner();
             
@@ -60,8 +58,6 @@ namespace Sample.Sender
             endpointConfiguration.UseTransport<LearningTransport>();
 
             return Endpoint.Start(endpointConfiguration);
-
-            #endregion
         }
     }
 }
