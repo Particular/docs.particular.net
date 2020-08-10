@@ -81,7 +81,16 @@ partial: postgresql
 
 snippet: sagadata
 
-
 ## Order Saga
 
 snippet: thesaga
+
+## Querying the Saga Data
+
+SQL persistence uses the [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) package to serialize saga data and metadata.
+
+The saga data can be queried by taking advantage of the [JSON querying capababilities SqlServer offers](https://docs.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server).
+It is stored inside the `Data` column and can be queried as shown here:
+
+snippet: SqlServerSagaJsonQuery
+
