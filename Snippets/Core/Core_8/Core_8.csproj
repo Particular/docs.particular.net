@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <RootNamespace>Core8</RootNamespace>
@@ -7,7 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.530" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-*" />
     <PackageReference Include="NServiceBus.Autofac" Version="7.*" />
     <PackageReference Include="NServiceBus.Callbacks" Version="3.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="2.*" />
