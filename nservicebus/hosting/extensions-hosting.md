@@ -9,8 +9,6 @@ related:
  - samples/netcore-reference
 ---
 
-NOTE: [NServiceBus.Extensions.Logging](/nservicebus/logging/extensions-logging) or [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) is not needed when this package is used since NServiceBus logging is automatically integrated with the generic host logging.
-
 ## Configuration
 
 An NServiceBus endpoint can be hosted within the generic host with the `UseNServiceBus` extension method:
@@ -20,6 +18,12 @@ snippet: extensions-host-configuration
 This code will register the endpoint with the hosting infrastructure and automatically start and stop it based on the host's application lifetime.
 
 WARNING: `UseNServiceBus` must be specified before any other service (e.g. `ConfigureWebHostDefaults`) which requires access to the `IMessageSession`.
+
+## Logging integration
+
+NSericeBus logging will be automatically configured to use the [logging configured](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging) for the [generic host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) so no NServiceBus specific logging configuration is needed.
+
+NOTE: [NServiceBus.Extensions.Logging](/nservicebus/logging/extensions-logging) or [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) should not be used.
 
 ## Dependency injection integration
 
