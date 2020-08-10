@@ -1,15 +1,22 @@
 ---
-title: Different transport types
-summary: The main transport type differences explained
+title: Transport types 
+summary: A list of all transports offered by the Particular Service Platform
 component: Core
-reviewed: 2018-11-27
+reviewed: 2020-08-10
 ---
 
-NServiceBus transports can be divided into several categories.
+NServiceBus transports can be divided into several categories:
+
+- Federated transports
+- Broker transports
+- Unicast-only transports
+- Multicast-enabled transports
+
+A description of each of these appears in the corresponding category below.
 
 ## Federated transports
 
-Federated transports are inherently distributed. Each endpoint instance may connect to a different node of the queueing technology. Messages are routed transparently between the nodes but the physical routing layer needs to contain information as to which node particular endpoint is connected to.
+Federated transports are inherently distributed. Each endpoint instance may connect to a different node of the queueing technology. Messages are routed transparently between the nodes but the physical routing layer must contain information as to which node a particular endpoint is connected to.
 
 Federated transports include:
 
@@ -18,7 +25,7 @@ Federated transports include:
 
 ## Broker transports
 
-Broker transports are inherently centralized. Even if there are multiple servers, they act as a single logical instance that hosts all the queues (and/or topics/exchanges).
+Broker transports are inherently centralized. Even if there are multiple servers, there is a single logical instance that hosts all the queues (and/or topics/exchanges).
 
 Broker transports include:
 
