@@ -23,7 +23,7 @@ WARNING: `UseNServiceBus` must be specified before any other service (e.g. `Conf
 
 NSericeBus logging will be automatically configured to use the [logging configured](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging) for the [generic host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) so no NServiceBus specific logging configuration is needed.
 
-NOTE: [NServiceBus.Extensions.Logging](/nservicebus/logging/extensions-logging) or [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) should not be used.
+WARNING: [NServiceBus.Extensions.Logging](/nservicebus/logging/extensions-logging.md) or [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) should not be used.
 
 ## Dependency injection integration
 
