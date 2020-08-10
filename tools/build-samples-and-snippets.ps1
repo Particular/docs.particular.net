@@ -14,24 +14,35 @@ function CombinePaths()
 # Assumes that the current working directory is the root of the docs repo
 function Get-BuildSolutions
 {
-    # Retrieves the current branch name
-    $branch = git rev-parse --abbrev-ref HEAD
+    $branch = $env:GITHUB_REF
+    Write-Host "Current branch is $branch"
 
-    if($branch -eq "master")
+    if($branch -eq "refs/heads/master")
     {
         # For master branch, build every solution file in repo
         $result = Get-ChildItem -Filter *.sln -Recurse | sort LastWriteTime -Descending
         return $result
     }
 
-    # Fetch to update origin/master to the proper position
-    $ignoreGitFetchOutput = git fetch origin master
-
+    Write-Host "::group::Fetching origin/master to do a comparison"
+    git fetch --progress origin master
+    if( -not $? ) {
+    	throw "Unable to fetch origin/master"
+    }
+    Write-Host "::endgroup::"    
+ 
+    Write-Host "::group::Comparing origin/master to HEAD to get modified files"
     # `origin/master...HEAD` references commit where master & current branch diverged
     # Just comparing to master will grab changes that occurred in master as well
-    $changes = git diff origin/master...HEAD --name-only
-    $result = @()
+    # Except currently we have a detached HEAD so there is no merge parent so must do .. which compares arbitrary commits
+    $changes = git diff origin/master..HEAD --name-only
+    if( -not $? ) {
+    	throw "Unable to determine differences between master and current branch"
+    }
+    Write-Host "::endgroup::"
     
+    Write-Host "::group::Determining solutions to build from changed files"
+    $result = @()
     foreach($change in $changes)
     {
         $file = CombinePaths $pwd.Path $change
@@ -61,6 +72,7 @@ function Get-BuildSolutions
             $dir = CombinePaths $dir ".."
         }
     }
+    Write-Host "::endgroup::"
 
     return $result | Sort-Object | Get-Unique
 }
@@ -69,9 +81,10 @@ $exitCode = 0
 $failedProjects = New-Object Collections.Generic.List[String]
 $failedProjectsOutput = CombinePaths $pwd.Path "failed-projects.log"
  
-echo "::group::Get build solutions"
+
 $samples = Get-BuildSolutions
-Write-Host "Projects to build"
+
+echo "::group::Projects to build"
 $samples | ForEach-Object { echo (" * {0}" -f $_.FullName) }
 echo "::endgroup::"
 
