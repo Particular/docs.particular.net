@@ -9,7 +9,7 @@ related:
  - samples/netcore-reference
 ---
 
-NOTE: Not compatible with `Microsoft.Extensions.Logging`, use community package [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) as shown in [.NET Core Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) sample.
+NOTE: [NServiceBus.Extensions.Logging](/nservicebus/logging/extensions-logging) or [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) is not needed when this package is used since NServiceBus logging is automatically integrated with the generic host logging.
 
 ## Configuration
 
