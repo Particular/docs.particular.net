@@ -43,7 +43,7 @@ Note that step IDs are hard-coded strings and may change in the future resulting
 
 Note: Steps can also be registered from a [feature](features.md).
 
-Note: Adding or replacing behaviors is only possible before the endpoint has started.
+partial: pipelinecheck
 
 ## Exception handling
 
