@@ -1,30 +1,27 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 #region generic-host-worker
 class Worker : BackgroundService
 {
-    private readonly IServiceProvider provider;
+    private readonly IMessageSession messageSession;
 
-    public Worker(IServiceProvider provider)
+    public Worker(IMessageSession messageSession)
     {
-        this.provider = provider;
+        this.messageSession = messageSession;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         try
         {
-            var session = provider.GetService<IMessageSession>();
-
             var number = 0;
             while (!stoppingToken.IsCancellationRequested)
             {
-                await session.SendLocal(new MyMessage {Number = number++})
+                await messageSession.SendLocal(new MyMessage {Number = number++})
                     .ConfigureAwait(false);
 
                 await Task.Delay(1000, stoppingToken).ConfigureAwait(false);
