@@ -96,6 +96,7 @@ Related:
 
  * [Multi-Hosting Sample](/samples/hosting/multi-hosting/).
 
+partial: reusing-endpointconfig
 
 ### Accessing the bus
 

@@ -43,6 +43,7 @@ Note that step IDs are hard-coded strings and may change in the future resulting
 
 Note: Steps can also be registered from a [feature](features.md).
 
+partial: pipelinecheck
 
 ## Exception handling
 
