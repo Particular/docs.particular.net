@@ -32,9 +32,9 @@ class Program
         
         builder.UseNServiceBus(ctx =>
         {
-            var endpointConfiguration = new EndpointConfiguration("Sample.MultiHosting.Instance1");
+            var endpointConfiguration = new EndpointConfiguration("Instance1");
             var scanner = endpointConfiguration.AssemblyScanner();
-            scanner.ExcludeAssemblies("Sample.MultiHosting.Instance2");
+            scanner.ExcludeAssemblies("Instance2");
             
             endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
@@ -57,9 +57,9 @@ class Program
         
         builder.UseNServiceBus(ctx =>
         {
-            var endpointConfiguration = new EndpointConfiguration("Sample.MultiHosting.Instance2");
+            var endpointConfiguration = new EndpointConfiguration("Instance2");
             var scanner = endpointConfiguration.AssemblyScanner();
-            scanner.ExcludeAssemblies("Sample.MultiHosting.Instance1");
+            scanner.ExcludeAssemblies("Instance1");
             
             endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);

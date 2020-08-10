@@ -24,13 +24,13 @@ namespace Sample.Sender
                     var message = new MyMessage();
                     if (key.Key == ConsoleKey.D1)
                     {
-                        await sendOnlyInstance.Send("Sample.MultiHosting.Instance2", message)
+                        await sendOnlyInstance.Send("Instance1", message)
                             .ConfigureAwait(false);
                         continue;
                     }
                     if (key.Key == ConsoleKey.D2)
                     {
-                        await sendOnlyInstance.Send("Sample.MultiHosting.Instance1", message)
+                        await sendOnlyInstance.Send("Instance2", message)
                             .ConfigureAwait(false);
                         continue;
                     }
@@ -51,8 +51,6 @@ namespace Sample.Sender
         {
             var endpointConfiguration = new EndpointConfiguration("Samples.MultiHosting.SendOnly");
             var scanner = endpointConfiguration.AssemblyScanner();
-            
-            scanner.ExcludeAssemblies("Instance2");
 
             endpointConfiguration.UsePersistence<LearningPersistence>();
             endpointConfiguration.UseTransport<LearningTransport>();
