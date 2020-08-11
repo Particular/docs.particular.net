@@ -16,6 +16,8 @@ The `NServiceBus.Extensions.DependencyInjection` package provides integration wi
 
 NOTE: It's recommended to use [Microsoft's generic host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) to manage application and dependency injection container lifecycle. Use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package to host an NServiceBus endpoint with the generic host.
 
+WARN: `IServiceCollection` and `IServiceProvider` instances must not be shared across mutliple NServiceBus endpoints to avoid conflicting registration that might cause incorrect behavior or runtime errors.
+
 ## Usage with ServiceCollection
 
 The following snippet shows how to configure NServiceBus to use Microsoft's built-in dependency injection container:
