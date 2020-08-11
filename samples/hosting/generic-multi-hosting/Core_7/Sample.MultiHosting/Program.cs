@@ -11,6 +11,8 @@ class Program
     {
         Console.Title = "Samples.MultiHosting";
 
+        #region multi-hosting-startup
+        
         var endpointOneBuilder = ConfigureEndpointOne(Host.CreateDefaultBuilder(args)).Build();
         var endpointTwoBuilder = ConfigureEndpointTwo(Host.CreateDefaultBuilder(args)).Build();
         
@@ -18,6 +20,8 @@ class Program
         var endpointTwoTask = endpointTwoBuilder.RunAsync();
         
         await Task.WhenAll(endpointOneTask, endpointTwoTask);
+        
+        #endregion
     }
     
     static IHostBuilder ConfigureEndpointOne(IHostBuilder builder)
@@ -30,11 +34,16 @@ class Program
             logging.AddConsole();
         });
         
+        
         builder.UseNServiceBus(ctx =>
         {
+            #region multi-hosting-assembly-scan
+            
             var endpointConfiguration = new EndpointConfiguration("Instance1");
             var scanner = endpointConfiguration.AssemblyScanner();
             scanner.ExcludeAssemblies("Instance2");
+            
+            #endregion
             
             endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
