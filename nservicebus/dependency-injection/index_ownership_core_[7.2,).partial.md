@@ -20,7 +20,7 @@ Later, during the resolution phase, the `Start` method requires an instance of `
 
 snippet: ExternalStart
 
-NOTE: The `Adapt` methods are implemented by the user and are container-specific. [NServiceBus.Extensions.DependencyInjection]() supports externally managed mode using `Microsoft.Extensions.DependencyInejction` abstractions (`IServiceCollection` and `IServiceProvider`) that are supported by most dependency injection containers.
+NOTE: The `Adapt` methods are implemented by the user and are container-specific. [NServiceBus.Extensions.DependencyInjection](/nservicebus/dependency-injection/extensions-dependencyinjection.md) supports externally managed mode using `Microsoft.Extensions.DependencyInejction` abstractions (`IServiceCollection` and `IServiceProvider`) that are supported by most dependency injection containers.
 
 ### Injecting the message session
 
