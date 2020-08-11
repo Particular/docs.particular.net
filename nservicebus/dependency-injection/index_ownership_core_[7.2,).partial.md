@@ -10,6 +10,8 @@ include: internallymanagedcontainer
 
 In *externally managed* mode, NServiceBus registers its components in the container but does not own the container's lifecycle. The container is provided by the user in two phases, one for registration (`IConfigureComponents`) and one for resolution (`IBuilder`).
 
+WARN: Every NServiceBus endpoint requires its own dependency injection container. Sharing containers across multiple endpoints results in conflicting registrations and might cause incorrect behavior or runtime errors.
+
 During the registration phase, an instance of `IConfigureComponents` is passed to the `EndpointWithExternallyManagedContainer.Create` method. For example, for Autofac's `ContainerBuilder`, this is the phase during which its type registration methods would be called.
 
 snippet: ExternalPrepare
@@ -18,7 +20,7 @@ Later, during the resolution phase, the `Start` method requires an instance of `
 
 snippet: ExternalStart
 
-NOTE: The `Adapt` methods are implemented by the user and are container-specific. See the [ASP.NET Core sample](/samples/dependency-injection/aspnetcore/) to see how these methods are implemented based on the ASP.NET Core dependency injection abstractions.
+NOTE: The `Adapt` methods are implemented by the user and are container-specific. [NServiceBus.Extensions.DependencyInjection](/nservicebus/dependency-injection/extensions-dependencyinjection.md) supports externally managed mode using `Microsoft.Extensions.DependencyInejction` abstractions (`IServiceCollection` and `IServiceProvider`) that are supported by most dependency injection containers.
 
 ### Injecting the message session
 
