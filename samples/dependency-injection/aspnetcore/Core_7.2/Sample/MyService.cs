@@ -1,11 +1,16 @@
-﻿using NServiceBus.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 public class MyService
 {
-    static ILog log = LogManager.GetLogger<MyService>();
+    readonly ILogger logger;
+
+    public MyService(ILogger logger)
+    {
+        this.logger = logger;
+    }
 
     public void WriteHello()
     {
-        log.Info("Hello from MyService.");
+        logger.LogInformation("Hello from MyService.");
     }
 }
