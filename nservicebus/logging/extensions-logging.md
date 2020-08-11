@@ -11,7 +11,7 @@ The `NServiceBus.Extensions.Logging` package provides support for writing NServi
 
 With this common logging abstraction, it is possible to log to different logging providers. Some third-party frameworks can perform semantic logging, also known as structured logging.
 
-NOTE: This package should only be used when configuring logging stand-alone. If hosting with the [.NET Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) use [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) instead.
+NOTE: This package should only be used when configuring logging in a self-host model. If hosting with the [.NET Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) use [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package instead.
 
 ## Compatibility
 
