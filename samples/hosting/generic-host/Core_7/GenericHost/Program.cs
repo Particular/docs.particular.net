@@ -33,7 +33,6 @@ internal class Program
 
         #region generic-host-logging
 
-        builder.UseMicrosoftLogFactoryLogging();
         builder.ConfigureLogging((ctx, logging) =>
         {
             logging.AddConfiguration(ctx.Configuration.GetSection("Logging"));
