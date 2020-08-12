@@ -9,8 +9,6 @@ related:
  - samples/netcore-reference
 ---
 
-NOTE: Not compatible with `Microsoft.Extensions.Logging`, use community package [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) as shown in [.NET Core Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) sample.
-
 ## Configuration
 
 An NServiceBus endpoint can be hosted within the generic host with the `UseNServiceBus` extension method:
@@ -19,7 +17,13 @@ snippet: extensions-host-configuration
 
 This code will register the endpoint with the hosting infrastructure and automatically start and stop it based on the host's application lifetime.
 
-WARNING: `UseNServiceBus` must be specified before any other service (e.g. `ConfigureWebHostDefaults`) which requires access to the `IMessageSession`.
+WARNING: `UseNServiceBus` must be specified before any other service (e.g. `ConfigureWebHostDefaults`) which requires access to the `IMessageSession`. Incorrect usage will result in `System.InvalidOperationException` with the following message `The message session can't be used before NServiceBus is started. Place UseNServiceBus() on the host builder before registering any hosted service (i.ex. services.AddHostedService<HostedServiceAccessingTheSession>()) or the web host configuration (i.ex. builder.ConfigureWebHostDefaults) should hosted services or controllers require access to the session`.
+
+## Logging integration
+
+NSericeBus logging will be automatically configured to use the [logging configured](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging) for the [generic host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) so no NServiceBus specific logging configuration is needed.
+
+WARNING: [NServiceBus.Extensions.Logging](/nservicebus/logging/extensions-logging.md) or [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) should not be used.
 
 ## Dependency injection integration
 

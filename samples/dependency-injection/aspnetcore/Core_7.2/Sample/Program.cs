@@ -20,7 +20,6 @@ static class Program
     static IHostBuilder CreateHostBuilder(string[] args) =>
     #region ContainerConfiguration
         Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>())
             .ConfigureServices(services =>
             {
                 services.AddSingleton<MyService>();
@@ -30,6 +29,7 @@ static class Program
                 var endpointConfiguration = new EndpointConfiguration("Sample.Core");
                 endpointConfiguration.UseTransport<LearningTransport>();
                 return endpointConfiguration;
-            });
+            })
+            .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
     #endregion
 }

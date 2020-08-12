@@ -10,7 +10,6 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="3.*" />
     <PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="3.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.*" />
-    <PackageReference Include="NServiceBus.MicrosoftLogging.Hosting" Version="1.*" />
   </ItemGroup>
 
 </Project>

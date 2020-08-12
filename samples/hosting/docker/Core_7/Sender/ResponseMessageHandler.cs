@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using Shared;
 
 namespace Sender
@@ -8,11 +8,16 @@ namespace Sender
     public class ResponseMessageHandler
         : IHandleMessages<ResponseMessage>
     {
-        static ILog log = LogManager.GetLogger<ResponseMessageHandler>();
+        readonly ILogger logger;
+
+        public ResponseMessageHandler(ILogger logger)
+        {
+            this.logger = logger;
+        }
 
         public Task Handle(ResponseMessage message, IMessageHandlerContext context)
         {
-            log.Info($"Response received with description: {message.Data}");
+            logger.LogInformation($"Response received with description: {message.Data}");
             return Task.CompletedTask;
         }
     }

@@ -18,18 +18,15 @@ static class Program
     }
 
     static IHostBuilder CreateHostBuilder(string[] args) =>
-        #region ServiceProviderFactoryAutofac
+    #region ServiceProviderFactoryAutofac
         Host.CreateDefaultBuilder(args)
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-        #endregion
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            })
+    #endregion
             .UseNServiceBus(c =>
             {
                 var endpointConfiguration = new EndpointConfiguration("Sample.Core");
                 endpointConfiguration.UseTransport<LearningTransport>();
                 return endpointConfiguration;
-            });
+            })
+            .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
 }

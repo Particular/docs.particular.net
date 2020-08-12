@@ -67,9 +67,6 @@ namespace Receiver
             }
         }
 
-        // TODO: optionally choose a custom logging library
-        // https://docs.particular.net/nservicebus/logging/#custom-logging
-        // LogManager.Use<TheLoggingFactory>();
         static readonly ILog log = LogManager.GetLogger(typeof(Program));
     }
 }

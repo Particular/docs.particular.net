@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using Shared;
@@ -10,15 +9,13 @@ namespace Sender
 {
     class MessageSender : IHostedService
     {
-        public MessageSender(IServiceProvider serviceProvider)
+        public MessageSender(IMessageSession messageSession)
         {
-            this.serviceProvider = serviceProvider;
+            this.messageSession = messageSession;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            var messageSession = serviceProvider.GetService<IMessageSession>();
-
             Console.WriteLine("Sending a message...");
 
             var guid = Guid.NewGuid();
@@ -42,6 +39,6 @@ namespace Sender
             return Task.CompletedTask;
         }
 
-        readonly IServiceProvider serviceProvider;
+        readonly IMessageSession messageSession;
     }
 }

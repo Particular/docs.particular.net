@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 class SimulateWorkHostedService : IHostedService
 {
-    public SimulateWorkHostedService(IServiceProvider provider)
+    public SimulateWorkHostedService(IMessageSession messageSession)
     {
-        this.provider = provider;
+        this.messageSession = messageSession;
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
@@ -28,13 +27,10 @@ class SimulateWorkHostedService : IHostedService
     {
         try
         {
-            // we can only retrieve it here because the job host is started before NServiceBus is started
-            var session = provider.GetService<IMessageSession>();
-
             while (!cancellationToken.IsCancellationRequested)
             {
                 // sending here to simulate work
-                await session.SendLocal(new MyMessage())
+                await messageSession.SendLocal(new MyMessage())
                     .ConfigureAwait(false);
 
                 await Task.Delay(1000, cancellationToken).ConfigureAwait(false);
@@ -46,7 +42,7 @@ class SimulateWorkHostedService : IHostedService
         }
     }
 
-    readonly IServiceProvider provider;
+    readonly IMessageSession messageSession;
     readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     Task worker;
 }
