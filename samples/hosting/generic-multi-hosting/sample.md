@@ -5,7 +5,7 @@ reviewed: 2020-08-10
 component: Core
 related:
 - nservicebus/hosting
-redirect:
+redirects:
 - samples/hosting/multi-hosting
 ---
 
