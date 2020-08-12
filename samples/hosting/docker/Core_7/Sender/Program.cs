@@ -20,6 +20,12 @@ namespace Sender
         {
             return Host.CreateDefaultBuilder(args)
                 .UseConsoleLifetime()
+                .ConfigureLogging(logging =>
+                {
+                    logging.AddConsole();
+                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+                })
+                .ConfigureServices(sp => sp.AddSingleton<IHostedService>(new ProceedIfRabbitMqIsAlive("rabbitmq")))
                 .UseNServiceBus(ctx =>
                 {
                     var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
@@ -36,7 +42,6 @@ namespace Sender
                     endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
                     return endpointConfiguration;
                 })
-                .ConfigureLogging(logging => { logging.ClearProviders(); })
                 .ConfigureServices(services => services.AddHostedService<MessageSender>());
         }
 

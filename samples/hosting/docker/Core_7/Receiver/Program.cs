@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 using NServiceBus.Logging;
+using Shared;
 
 namespace Receiver
 {
@@ -19,6 +20,12 @@ namespace Receiver
         {
             return Host.CreateDefaultBuilder(args)
                 .UseConsoleLifetime()
+                .ConfigureLogging(logging =>
+                {
+                    logging.AddConsole();
+                    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+                })
+                .ConfigureServices(services => services.AddSingleton<IHostedService>(new ProceedIfRabbitMqIsAlive("rabbitmq")))
                 .UseNServiceBus(ctx =>
                 {
                     var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");
@@ -34,8 +41,7 @@ namespace Receiver
                     endpointConfiguration.EnableInstallers();
                     endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
                     return endpointConfiguration;
-                }).ConfigureLogging(logging => { logging.ClearProviders(); })
-                .ConfigureServices(services => services.AddHostedService<DockerComposeIndicator>());
+                });
         }
 
         static async Task OnCriticalError(ICriticalErrorContext context)
