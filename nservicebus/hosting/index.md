@@ -94,7 +94,7 @@ It is safe for multiple endpoints to share the same AppDomain or use multiple Ap
 
 Related:
 
- * [Multi-Hosting Sample](/samples/hosting/multi-hosting/).
+ * [Multi-Hosting in the Generic Host](/samples/hosting/generic-multi-hosting/).
 
 partial: reusing-endpointconfig
 

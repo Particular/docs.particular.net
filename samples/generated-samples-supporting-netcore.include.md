@@ -49,7 +49,7 @@
 * [Default Logging](/samples/logging/default/)
 * [Dispatch notification pipeline extension](/samples/pipeline/dispatch-notifications/)
 * [Endpoint hosting with the Generic Host](/samples/hosting/generic-host/)
-* [Endpoints multi hosting](/samples/hosting/multi-hosting/)
+* [Endpoint multi-hosting with the Generic host](/samples/hosting/generic-multi-hosting/)
 * [FluentScheduler Usage](/samples/scheduling/fluentscheduler/)
 * [Forwarding address](/samples/routing/fowarding-address/)
 * [Handling Stream Properties Via the Pipeline](/samples/pipeline/stream-properties/)
