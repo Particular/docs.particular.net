@@ -1,6 +1,7 @@
 ---
 title: Routing topology
-reviewed: 2018-11-22
+summary: Information about the routing topology options available in RabbitMQ and how they impact NServiceBus systems
+reviewed: 2020-08-12
 component: Rabbit
 versions: '[2,]'
 related:
@@ -10,7 +11,7 @@ redirects:
 ---
 
 
-The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the exchanges it creates to send and publish messages. All endpoints in a system must use the same topology to be able to communicate with each other. For the new systems the [conventional routing topology](routing-topology.md#conventional-routing-topology) should be used. The [direct routing topology](routing-topology.md#direct-routing-topology) is only recommended when adding an endpoint to an existing system that already uses that topology. Custom topology might be useful when integrating with a legacy system.
+The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the exchanges it creates to send and publish messages. All endpoints in a system must use the same topology to be able to communicate with each other. For new systems, the [conventional routing topology](routing-topology.md#conventional-routing-topology) should be used. The [direct routing topology](routing-topology.md#direct-routing-topology) is recommended only when adding an endpoint to an existing system that already uses that topology. A custom topology can be useful when integrating with a legacy system.
 
 
 ## Conventional routing topology
