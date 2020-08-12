@@ -36,6 +36,7 @@ namespace Receiver
 
                     endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
                     endpointConfiguration.EnableInstallers();
+                    endpointConfiguration.DefineCriticalErrorAction(CriticalErrorActions.RestartContainer);
                     return endpointConfiguration;
                 });
         }

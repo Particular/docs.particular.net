@@ -36,6 +36,7 @@ namespace Sender
 
                     endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
                     endpointConfiguration.EnableInstallers();
+                    endpointConfiguration.DefineCriticalErrorAction(CriticalErrorActions.RestartContainer);
                     return endpointConfiguration;
                 })
                 .ConfigureServices(services => services.AddHostedService<MessageSender>());
