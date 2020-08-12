@@ -15,7 +15,6 @@ Given a variety of immediate and delayed configuration values here are the resul
 | 0                | 3              | 4                       |
 | 1                | 0              | 2                       |
 | 1                | 1              | 4                       |
-| 1                | 1              | 4                       |
 | 1                | 2              | 6                       |
 | 1                | 3              | 8                       |
 | 2                | 1              | 6                       |
