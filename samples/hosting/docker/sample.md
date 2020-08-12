@@ -81,4 +81,6 @@ snippet: TransportConfiguration
 
 ### Waiting for RabbitMQ broker to become available
 
-This sample takes advantage of Docker [healthchecks](https://docs.docker.com/engine/reference/builder/#healthcheck) to ensure RabbitMQ is available before starting the endpoints.
+Both endpoints blocks startup until broker becomes available using the shared `ProceedIfRabbitMqIsAlive` hosted service.
+
+See the [docker documentation for other options to control startup order](https://docs.docker.com/compose/startup-order/).

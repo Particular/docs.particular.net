@@ -1,5 +1,5 @@
 # startcode compose
-version: "2.3"
+version: "3.8"
 services:   
     sender:
         image: sender
@@ -7,16 +7,14 @@ services:
             context: .
             dockerfile: ./Sender/Dockerfile
         depends_on:
-            rabbitmq:
-                condition: service_healthy
+            - rabbitmq
     receiver:
         image: receiver
         build:
             context: .
             dockerfile: ./Receiver/Dockerfile
         depends_on:
-            rabbitmq:
-                condition: service_healthy
+            - rabbitmq
     rabbitmq:
         image: "rabbitmq:3.8-management"
         ports:

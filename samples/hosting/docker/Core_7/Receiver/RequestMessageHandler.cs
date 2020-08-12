@@ -10,7 +10,7 @@ namespace Receiver
     {
         readonly ILogger logger;
 
-        public RequestMessageHandler(ILogger logger)
+        public RequestMessageHandler(ILogger<RequestMessageHandler> logger)
         {
             this.logger = logger;
         }
