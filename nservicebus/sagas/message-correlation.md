@@ -18,6 +18,7 @@ snippet: saga-find-by-property
 
 When an instance of `MyMessage` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `MySagaData` that has a property `SomeId` whose value is the same as the `SomeId` property of the message. If found, the saga instance will be loaded and the `Handle` method for the `MyMessage` message will be invoked. Should the saga instance not be found, the saga is not started and the [saga not found](saga-not-found.md) handlers will be invoked.
 
+partial: reverse-api
 
 ## Message property expression
 
