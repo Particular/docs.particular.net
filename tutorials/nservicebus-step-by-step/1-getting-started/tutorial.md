@@ -1,6 +1,6 @@
 ---
-title: "NServiceBus Step-by-step: Getting Started"
-reviewed: 2018-11-26
+title: "NServiceBus Step-by-step: Getting started"
+reviewed: 2020-08-12
 summary: In this 10-15 minute tutorial, you will learn how to set up a development machine for NServiceBus and create your very first messaging endpoint.
 redirects:
 - tutorials/intro-to-nservicebus/1-getting-started
@@ -41,21 +41,21 @@ Next, add the NServiceBus NuGet package as a dependency. From the [NuGet Package
 Install-Package NServiceBus -ProjectName ClientUI
 ```
 
-This adds a reference to the NServiceBus.Core assembly to ClientUI. Now we're ready to start writing code.
+This adds an NServiceBus.Core assembly reference to the ClientUI project. Now we're ready to start writing code.
 
 
 ### Configure an endpoint
 
 We're ready to create a [**messaging endpoint**](/nservicebus/endpoints/). A messaging endpoint (or just **endpoint**) is a logical component capable of sending and receiving messages. An endpoint is hosted within a process, which in this case is a simple console application, but could be a web application or other .NET process.
 
-If you [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/4-ways-to-enable-the-latest-c-features), you can take advantage of the [Async Main](https://blogs.msdn.microsoft.com/mazhou/2017/05/30/c-7-series-part-2-async-main/) feature and avoid some boilerplate code.
+If you [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/4-ways-to-enable-the-latest-c-features), you can take advantage of the [Async Main](https://docs.microsoft.com/en-us/archive/blogs/mazhou/c-7-series-part-2-async-main) feature and avoid some boilerplate code.
 
 In the **Program.cs** file, modify the code to look like the following:
 
 snippet: EmptyProgram
 
 {{NOTE:
-In this tutorial, for the sake of brevity, code snippets will not contain the `using` statements needed to import namespaces. If you're using Visual Studio, unknown references such as `Task` or NServiceBus types will generate a "red squiggly" underline effect. If you hover or click on the red squiggly, you can click on the "light bulb" icon or press <span style="white-space: nowrap"><kbd>Ctrl</kbd> + <kbd>.</kbd></span> to see the available fixes and insert the appropriate `using` statements for the missing namespaces.
+For the sake of brevity, code snippets in this tutorial do not contain the `using` statements needed to import namespaces. If you're using Visual Studio, unknown references such as `Task` or NServiceBus types will generate a "red squiggly" underline effect. If you hover or click on the red squiggly, you can click on the "light bulb" icon or press <span style="white-space: nowrap"><kbd>Ctrl</kbd> + <kbd>.</kbd></span> to see the available fixes and insert the appropriate `using` statements for the missing namespaces.
 
 Alternatively, in the code snippet's **Copy/Edit** menu you will find a **Copy usings** item that will copy the namespaces used by the snippet to your clipboard.
 }}
@@ -89,18 +89,18 @@ The `EndpointConfiguration` class is where we define all the settings that deter
 
 snippet: LearningTransport
 
-This setting defines the [**transport**](/transports/) that NServiceBus will use to send and receive messages. We are using the [LearningTransport](/transports/learning/), which is bundled in the NServiceBus core library as a starter transport for learning how to use NServiceBus without any additional dependencies. All other transports are provided using different NuGet packages.
+This setting defines the [**transport**](/transports/) that NServiceBus will use to send and receive messages. We are using the [Learning transport](/transports/learning/), which is bundled in the NServiceBus core library as a starter transport for learning how to use NServiceBus without additional dependencies. All other transports are provided using different NuGet packages.
 
 Capturing the `transport` settings in a variable as shown will make things easier in [Lesson 3](../3-multiple-endpoints/) when we start defining message routing rules.
 
 
 ### Starting up
 
-At the end of the `AsyncMain` method, after the configuration code, add the following code which will: start the endpoint, keep it running until we press the Enter key, then shut it down.
+At the end of the `AsyncMain` method, after the configuration code, add the following code which will: start the endpoint, keep it running until we press the <kbd>Enter</kbd> key, then shut it down.
 
 snippet: Startup
 
-NOTE: In this tutorial we will always use `.ConfigureAwait(false)` when awaiting tasks in order to [avoid capturing and restoring the `SynchronizationContext`](https://msdn.microsoft.com/en-us/magazine/jj991977.aspx).
+NOTE: In this tutorial we will always use `.ConfigureAwait(false)` when awaiting tasks in order to [avoid capturing and restoring the `SynchronizationContext`](https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming).
 
 The endpoint is initialized according to the settings defined by the `EndpointConfiguration` class. Once the endpoint starts, changes to the configuration information are no longer applied.
 
