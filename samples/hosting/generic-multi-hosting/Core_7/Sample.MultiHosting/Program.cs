@@ -12,18 +12,15 @@ class Program
         Console.Title = "Samples.MultiHosting";
 
         #region multi-hosting-startup
-        
+
         var endpointOneBuilder = ConfigureEndpointOne(Host.CreateDefaultBuilder(args)).Build();
         var endpointTwoBuilder = ConfigureEndpointTwo(Host.CreateDefaultBuilder(args)).Build();
-        
-        var endpointOneTask = endpointOneBuilder.RunAsync();
-        var endpointTwoTask = endpointTwoBuilder.RunAsync();
-        
-        await Task.WhenAll(endpointOneTask, endpointTwoTask);
-        
+
+        await Task.WhenAll(endpointOneBuilder.RunAsync(), endpointTwoBuilder.RunAsync());
+
         #endregion
     }
-    
+
     static IHostBuilder ConfigureEndpointOne(IHostBuilder builder)
     {
         builder.UseConsoleLifetime();
@@ -33,18 +30,17 @@ class Program
             logging.AddEventLog();
             logging.AddConsole();
         });
-        
-        
+
         builder.UseNServiceBus(ctx =>
         {
             #region multi-hosting-assembly-scan
-            
+
             var endpointConfiguration = new EndpointConfiguration("Instance1");
             var scanner = endpointConfiguration.AssemblyScanner();
             scanner.ExcludeAssemblies("Instance2");
-            
+
             #endregion
-            
+
             endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
@@ -53,7 +49,7 @@ class Program
 
         return builder;
     }
-    
+
     static IHostBuilder ConfigureEndpointTwo(IHostBuilder builder)
     {
         builder.UseConsoleLifetime();
@@ -63,19 +59,19 @@ class Program
             logging.AddEventLog();
             logging.AddConsole();
         });
-        
+
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("Instance2");
             var scanner = endpointConfiguration.AssemblyScanner();
             scanner.ExcludeAssemblies("Instance1");
-            
+
             endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
             return endpointConfiguration;
         });
-        
+
         return builder;
     }
 
@@ -84,7 +80,7 @@ class Program
         var fatalMessage = "The following critical error was " +
                            $"encountered: {Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. " +
                            $"StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
-        
+
         EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
 
         try
