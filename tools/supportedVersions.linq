@@ -544,6 +544,7 @@ public enum SupportLevel
 	Regular,
 	Labs,
 	Community,
+	Preview
 }
 
 public enum ComponentCategory
