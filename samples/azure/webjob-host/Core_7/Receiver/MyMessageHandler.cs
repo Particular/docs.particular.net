@@ -4,7 +4,7 @@ using NServiceBus;
 
 public class MyMessageHandler : IHandleMessages<MyMessage>
 {
-    public MyMessageHandler(ILogger logger)
+    public MyMessageHandler(ILogger<MyMessageHandler> logger)
     {
         this.logger = logger;
     }
