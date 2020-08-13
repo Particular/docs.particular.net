@@ -4,7 +4,7 @@ public class MyService
 {
     readonly ILogger logger;
 
-    public MyService(ILogger logger)
+    public MyService(ILogger<MyService> logger)
     {
         this.logger = logger;
     }

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 internal class CalculateStuff : ICalculateStuff
 {
-    private readonly ILogger<CalculateStuff> logger;
+    private readonly ILogger logger;
 
     public CalculateStuff(ILogger<CalculateStuff> logger)
     {
