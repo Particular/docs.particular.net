@@ -110,6 +110,8 @@ WARN: Attempting to override an existing Conversation Id is not supported and wi
 Cannot set the NServiceBus.ConversationId header to 'XXXXX' as it cannot override the incoming header value ('2f4076a0-d8de-4297-9d18-a830015dd42a').
 ```
 
+partial: newconversationid
+
 NOTE: `Conversation Id` is very similar to `Correlation Id`. Both headers are copied to each new message that an endpoint produces. Whereas `Conversation Id` is always copied from the incoming message being handled, `Correlation Id` can come from another source (such as when replying from a saga using `ReplyToOriginator(...)`).
 
 

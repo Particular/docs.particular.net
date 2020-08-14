@@ -32,6 +32,7 @@ Defining conventions will replace any of the existing conventions. If both defau
 
 snippet: MessageConventionsDual
 
+partial: encapsulated-conventions
 
 ## Attributes
 
