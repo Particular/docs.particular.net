@@ -3,7 +3,7 @@ title: Installing ServiceControl Monitoring Instances
 reviewed: 2019-05-03
 ---
 
-The ServiceControl installation file consists of an MSI bootstrapper EXE and an embedded MSI. This installation can be executed standalone or via the [Platform Installer](/platform/installer/). The installation package includes a utility to manage the installation, upgrade, and removal of ServiceControl services, including monitoring instances. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
+The ServiceControl installation file consists of an MSI bootstrapper EXE and an embedded MSI. The installation package includes a utility to manage the installation, upgrade, and removal of ServiceControl services, including monitoring instances. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
 
 
 ## Prerequisites
@@ -11,8 +11,6 @@ The ServiceControl installation file consists of an MSI bootstrapper EXE and an 
 The ServiceControl installation has the following prerequisites:
 
 * [Microsoft .NET 4.6.1 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=49982)
-
-If ServiceControl is installed via the Platform Installer, then the installer will manage installation and configuration of the prerequisites.
 
 NOTE: Each environment should contain a single [ServiceControl instance](/servicecontrol/servicecontrol-instances/) and a single [monitoring instance](/servicecontrol/monitoring-instances/). In high-throughput scenarios, it is recommended that these instances each run on a separate dedicated machine.
 

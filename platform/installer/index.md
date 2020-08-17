@@ -4,6 +4,8 @@ summary: Guidance on how to use the Platform Installer and its underlying compon
 reviewed: 2020-05-20
 ---
 
+WARN: The Platform Installer is no longer maintained. [Individual product installers](https://particular.net/downloads) should be used instead.
+
 The Platform Installer is recommended for use on development machines only. This is because:
 
  * The Platform Installer requires internet access which may not be available in a production environment.

@@ -59,8 +59,6 @@
       Title: dotnet new Templates
     - Url: nservicebus/vscode
       Title: Debugging in VS Code
-    - Url: platform/installer
-      Title: Platform Installer
     - Url: nservicebus/licensing
       Title: License
     - Url: components
@@ -541,8 +539,6 @@
     Articles:
     - Url: platform/installer/offline
       Title: Particular Service Platform Installation 
-    - Url: platform/installer
-      Title: Particular Service Platform Installer
     - Url: nservicebus/hosting/startup-diagnostics
       Title: Startup diagnostics
     - Url: nservicebus/operations/transactions-message-processing

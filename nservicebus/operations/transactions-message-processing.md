@@ -21,7 +21,7 @@ The default [`TransactionScope`](https://msdn.microsoft.com/en-us/library/system
 
 In Windows, the Distributed Transaction Coordinator (DTC) is an OS-level service which manages transactions that span multiple resources, e.g. queues and databases.
 
-The easiest way to configure DTC for NServiceBus is to run the [PlatformInstaller](/platform/installer/) for NServiceBus, or to use the dedicated [PowerShell commandlets](/nservicebus/operations/management-using-powershell.md).
+The easiest way to configure DTC for NServiceBus is to follow the [installation guide](https://support.microsoft.com/en-us/help/817064/how-to-enable-network-dtc-access-in-windows-server-2003), or to use the dedicated [PowerShell commandlets](/nservicebus/operations/management-using-powershell.md).
 
 
 ### Troubleshooting Distributed Transaction Coordinator

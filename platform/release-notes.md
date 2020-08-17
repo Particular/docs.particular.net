@@ -4,13 +4,6 @@ summary: Links to current and previous releases as well as release notes for the
 reviewed: 2020-06-15
 ---
 
-
-### Platform Installer
-
- * [Download and launch the Platform Installer](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
- * [Release notes](installer)
-
-
 ### Applications and tools
 
 The Particular Service Platform source code, current and previous releases, and release notes are available as public repositories in [GitHub](https://github.com/particular).

@@ -16,8 +16,6 @@ related:
 
 ## Installation
 
-Install ServicePulse using the [Particular Service Platform Installer](/platform/installer) (recommended) or independently using the following procedure:
-
  1. Download and install [ServiceControl](https://github.com/Particular/ServiceControl/releases)
  1. Download and install [ServicePulse](https://github.com/Particular/ServicePulse/releases)
  1. After accepting the license terms and conditions, click "Install" (the installer will require elevated privileges)
