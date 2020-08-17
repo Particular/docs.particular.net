@@ -79,9 +79,6 @@ Both of these instance types can be set-up and managed with the `ServiceControl 
 
 In order to configure an environment for monitoring with the Particular Service Platform you will need to install and configure the components in the order listed.
 
-NOTE: The easiest way to install the Platform tools is by running the [Particular Platform Installer](https://particular.net/downloads) which automates downloading and installing all tools. Individual installers can still be downloaded for environments that are not directly connected to the internet.
-
-
 ### Install ServiceControl
 
 The main ServiceControl installer includes a desktop utility called the `ServiceControl Management Utility` which can create and manage both types of instance.

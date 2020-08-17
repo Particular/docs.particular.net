@@ -12,8 +12,6 @@ The ServiceControl installation has the following prerequisites:
 
 * [Microsoft .NET 4.6.1 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=49982)
 
-If ServiceControl is installed via the Platform Installer, then the installer will manage installation and configuration of the prerequisites.
-
 NOTE: Each environment should contain a single [ServiceControl instance](/servicecontrol/servicecontrol-instances/) and a single [monitoring instance](/servicecontrol/monitoring-instances/). In high-throughput scenarios, it is recommended that these instances each run on a separate dedicated machine.
 
 

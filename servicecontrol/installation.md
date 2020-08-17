@@ -5,7 +5,7 @@ redirects:
  - servicecontrol/multi-transport-support
 ---
 
-The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI. This installation can be executed standalone or via the [Platform Installer](/platform/installer/). The installation package includes a utility to install, upgrade, and remove ServiceControl services. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
+The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI. The installation package includes a utility to install, upgrade, and remove ServiceControl services. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
 
 NOTE: A [community managed puppet module](https://forge.puppet.com/tragiccode/nservicebusservicecontrol) is available to install ServiceControl.
 
@@ -14,8 +14,6 @@ NOTE: A [community managed puppet module](https://forge.puppet.com/tragiccode/ns
 The ServiceControl installation has the following prerequisites:
 
 * [Microsoft .NET 4.6.1 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=49982)
-
-If ServiceControl is installed via the Platform Installer, then the installer will manage installation and configuration of the prerequisites.
 
 NOTE: ServiceControl should be installed on a separate dedicated machine with dedicated storage in a production environment to isolate the audit and error queue message ingestion. These operations have a big impact on other processes. ServiceControl must be given sufficient CPU, RAM (6GB minimum) and storage suitable for low-latency write operations, similar to how a database server would be provisioned. See [ServiceControl Capacity Planning](capacity-and-planning.md) for more guidance.
 
@@ -82,7 +80,7 @@ The following ServiceControl connection string options are available in versions
 
 Metrics are reported via the [performance counters](/monitoring/metrics/performance-counters.md) if the counters are installed.
 
-For instructions on how to install the performance counters without the Platform Installer, refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
+For instructions on how to install the performance, refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 
 The installation of the NServiceBus performance counters is optional for ServiceControl version 1.7 and above.
 
