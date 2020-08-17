@@ -10,16 +10,16 @@ Given a variety of immediate and delayed configuration values here are the resul
 | ImmediateRetries | DelayedRetries | Total possible attempts |
 |------------------|----------------|-------------------------|
 | 0                | 0              | 1                       |
-| 0                | 1              | 2                       |
-| 0                | 2              | 3                       |
-| 0                | 3              | 4                       |
 | 1                | 0              | 2                       |
+| 2                | 0              | 3                       |
+| 3                | 0              | 4                       |
+| 0                | 1              | 2                       |
 | 1                | 1              | 4                       |
-| 1                | 2              | 6                       |
-| 1                | 3              | 8                       |
 | 2                | 1              | 6                       |
-| 2                | 2              | 9                       |
 | 3                | 1              | 8                       |
+| 1                | 2              | 6                       |
+| 2                | 2              | 9                       |
+| 1                | 3              | 8                       |
 | **3**            | **5**          | **24  (default)**       |
 
 ### Scale-out multiplier
