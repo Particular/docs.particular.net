@@ -43,7 +43,7 @@ Adding third-party transports via the ServiceControl Management application is n
 
 #### MSMQ
 
-If MSMQ is the selected transport, ensure the MSMQ service has been installed and configured as outlined in [Installing The Platform Components](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
+If MSMQ is the selected transport, ensure the MSMQ service has been installed and configured as outlined in [Installing The Platform Components](/platform/installer/offline.md#msmq-prerequisites).
 
 #### RabbitMQ
 
