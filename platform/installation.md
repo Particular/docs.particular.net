@@ -1,16 +1,16 @@
 ---
 title: Platform Installation
 summary: Guidance on the different ways to install and use the platform
-reviewed: 2019-07-06
+reviewed: 2020-08-17
 ---
 
 The Particular Service Platform may be installed on either a server, for use in production environments, or a workstation, during development. A portable version is also available, for use in samples or demonstrations.
 
 Note that, for the purposes of this document, shared testing environments may be treated in the same way as production environments.
 
-## For production environments
+## Installation
 
-For use in production environments it is recommended to install the various components separately. More details can be found on the [download page](https://particular.net/downloads).
+Platform components are installed separately using dedicated [installation packages](https://particular.net/downloads).
 
 ### ServiceControl
 
@@ -31,10 +31,6 @@ ServicePulse runs as a Windows Service and can be installed more than once on a 
 ### ServiceInsight
 
 The instance of ServiceControl can be chosen in the [Endpoint Explorer](/serviceinsight/#endpoint-explorer).
-
-## During development
-
-The easiest way to install the Platform on a development machine is to use the [Platform Installer](/platform/installer/), which requires an internet connection. For offline scenarios, the [individual components can be installed separately](/platform/installer/offline.md), to achieve the same result.
 
 ## Portable version
 
