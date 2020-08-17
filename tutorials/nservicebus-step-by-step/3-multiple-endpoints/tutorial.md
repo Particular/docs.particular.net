@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Step-by-step: Multiple Endpoints"
-reviewed: 2018-11-29
+reviewed: 2020-08-17
 summary: In this 15-20 minute tutorial, you'll learn how to send messages between multiple endpoints and control the logical routing of messages between endpoints.
 redirects:
 - tutorials/intro-to-nservicebus/3-multiple-endpoints
