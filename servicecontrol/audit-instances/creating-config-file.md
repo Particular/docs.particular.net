@@ -161,6 +161,20 @@ Type: string
 Default: `100`
 
 
+#### ServiceControl.Audit/MaximumConcurrencyLevel
+
+The maximum number of messages that can be concurrently pulled from the message transport. Higher numbers can result in faster audit message ingestion, but also consume more server resources, and can increase costs in the case of cloud transports that have associated per-operation costs.
+
+ServiceControl version 4.12.0 introduces batch ingestion, which allows for multiple audit messsages (up to the maximum concurrency level) to be persisted to the database in a batch. With this change, the default was changed from `10` to `32`. Cloud transports with higher latency can benefit from higher concurrency values, but costs can increase as well. Local transports using fast local SSD drives and low latency do not benefit as much.
+
+Type: int
+
+Default:
+
+* In ServiceControl version 4.12 and above: `32`
+* In ServiceControl version 4.11 and below: `10`
+
+
 ## Transport
 
 #### ServiceControl.Audit/TransportType
