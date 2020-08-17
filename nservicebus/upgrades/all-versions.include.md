@@ -607,7 +607,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/ParticularTemplates/4.0.0) | 2020-03-05     | -                 | -                                 |
+| [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/ParticularTemplates/4.0.0) | 2020-03-05     | 2020-11-14        | Superseded by 4.1.x               |
 | [3.0.x](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | 2018-11-29     | 2021-03-05        | Superseded by 4.0.x               |
 | [~~2.0.x~~](https://www.nuget.org/packages/ParticularTemplates/2.0.0) | ~~2018-05-29~~ | ~~2019-11-29~~    | ~~Superseded by 3.0.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/ParticularTemplates/1.0.0) | ~~2017-10-05~~ | ~~2019-05-29~~    | ~~Superseded by 2.0.x~~           |
