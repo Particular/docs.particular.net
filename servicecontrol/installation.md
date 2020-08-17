@@ -45,9 +45,7 @@ Adding third-party transports via the ServiceControl Management application is n
 
 #### MSMQ
 
-If MSMQ is the selected transport, ensure the MSMQ service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
-
-Installing MSMQ is optional in the Platform Installer. See [Platform Installer - MSMQ](/platform/installer/#select-items-to-install-configure-microsoft-message-queuing).
+If MSMQ is the selected transport, ensure the MSMQ service has been installed and configured as outlined in [Installing The Platform Components](/platform/installer/offline.md#platform-installer-components-nservicebus-prerequisites).
 
 #### RabbitMQ
 
@@ -87,8 +85,6 @@ Metrics are reported via the [performance counters](/monitoring/metrics/performa
 For instructions on how to install the performance counters without the Platform Installer, refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 
 The installation of the NServiceBus performance counters is optional for ServiceControl version 1.7 and above.
-
-Performance counters are not installed by the [Platform Installer](/platform/installer/).
 
 
 ## Using ServiceControl Management to upgrade ServiceControl instances
