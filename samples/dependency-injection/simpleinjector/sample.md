@@ -1,7 +1,7 @@
 ---
 title: SimpleInjector Dependency Injection Usage
 component: SimpleInjector
-reviewed: 2019-02-06
+reviewed: 2020-08-18
 related:
  - nservicebus/dependency-injection
  - nservicebus/dependency-injection/simpleinjector
