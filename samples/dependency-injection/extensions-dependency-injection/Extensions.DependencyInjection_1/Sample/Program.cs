@@ -9,27 +9,35 @@ static class Program
     {
         Console.Title = "Samples.NServiceBus.Extensions.DependencyInjection";
 
+        var endpointConfiguration = new EndpointConfiguration("Sample");
+        endpointConfiguration.UseTransport<LearningTransport>();
+
         #region ContainerConfiguration
 
-        var endpointConfiguration = new EndpointConfiguration("Sample");
+        var serviceCollection = new ServiceCollection();
+        serviceCollection.AddSingleton<MyService>();
+        serviceCollection.AddSingleton<MessageSenderService>();
 
-        // Use the default ServiceProvider factory, using Microsoft's built-in DI container:
-        var containerSettings = endpointConfiguration.UseContainer(new DefaultServiceProviderFactory());
-        containerSettings.ServiceCollection.AddSingleton(new MyService());
+        var endpointWithExternallyManagedServiceProvider = EndpointWithExternallyManagedServiceProvider
+            .Create(endpointConfiguration, serviceCollection);
+        // if needed register the session
+        serviceCollection.AddSingleton(p => endpointWithExternallyManagedServiceProvider.MessageSession.Value);
 
         #endregion
 
-        endpointConfiguration.UseTransport<LearningTransport>();
+        using (var serviceProvider = serviceCollection.BuildServiceProvider())
+        {
+            var endpoint = await endpointWithExternallyManagedServiceProvider.Start(serviceProvider)
+                .ConfigureAwait(false);
 
-        var endpoint = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+            var senderService = serviceProvider.GetRequiredService<MessageSenderService>();
+            await senderService.SendMessage()
+                .ConfigureAwait(false);
 
-        var myMessage = new MyMessage();
-        await endpoint.SendLocal(myMessage)
-            .ConfigureAwait(false);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpoint.Stop()
-            .ConfigureAwait(false);
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
+            await endpoint.Stop()
+                .ConfigureAwait(false);
+        }
     }
 }

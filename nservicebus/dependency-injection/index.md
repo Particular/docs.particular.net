@@ -9,6 +9,7 @@ redirects:
  - nservicebus/dependency-injection/msdependencyinjection
 related:
  - samples/dependency-injection
+ - samples/dependency-injection/extensions-dependency-injection
 ---
 NServiceBus automatically registers and invokes message handlers, sagas, and other user-provided extension points using a dependency injection container.
 
