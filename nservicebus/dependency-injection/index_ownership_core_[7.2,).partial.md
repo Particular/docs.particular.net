@@ -27,3 +27,5 @@ NOTE: The `Adapt` methods are implemented by the user and are container-specific
 `IMessageSession` is not registered automatically in the container and must be registered explicitly to be injected. Access to the session is provided via `IStartableEndpointWithExternallyManagedContainer.MessageSession`
 
 Note: The session is only valid for use after the endpoint have been started, so it is provided as `Lazy<IMessageSession>`.
+
+[This sample](samples/dependency-injection/extensions-dependency-injection/) demonstrates how to register the message session.
