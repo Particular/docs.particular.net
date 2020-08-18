@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
+#region InjectingMessageSession
 public class MessageSenderService
 {
     private readonly IMessageSession messageSession;
@@ -16,3 +17,4 @@ public class MessageSenderService
         return messageSession.SendLocal(myMessage);
     }
 }
+#endregion
