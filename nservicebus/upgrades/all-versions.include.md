@@ -799,7 +799,8 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.18.x](https://www.nuget.org/packages/Particular.PlatformSample/1.18.0) | 2020-07-06     | -                 | -                                 |
+| [1.19.x](https://www.nuget.org/packages/Particular.PlatformSample/1.19.0) | 2020-08-17     | -                 | -                                 |
+| [1.18.x](https://www.nuget.org/packages/Particular.PlatformSample/1.18.0) | 2020-07-06     | 2020-11-17        | Superseded by 1.19.x              |
 | [1.17.x](https://www.nuget.org/packages/Particular.PlatformSample/1.17.0) | 2020-06-08     | 2020-10-06        | Superseded by 1.18.x              |
 | [1.16.x](https://www.nuget.org/packages/Particular.PlatformSample/1.16.0) | 2020-06-01     | 2020-09-08        | Superseded by 1.17.x              |
 | [1.15.x](https://www.nuget.org/packages/Particular.PlatformSample/1.15.0) | 2020-05-06     | 2020-09-01        | Superseded by 1.16.x              |
