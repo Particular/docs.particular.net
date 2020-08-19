@@ -90,4 +90,4 @@ Starting in NServiceBus version 8, one of the [other methods of providing a lice
 
 ## Support for message forwarding
 
-Support for forwarding a copy of every message processed by the endpoint is no longer provided by NServiceBus. Instead, create a custom behavior to forward a copy of every procesed message as described in [this sample](/samples/routing/message-forwarding).
+NServiceBus no longer natively supports forwarding a copy of every message processed by an endpoint. Instead, create a custom behavior to forward a copy of every procesed message as described in [this sample](/samples/routing/message-forwarding).
