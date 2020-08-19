@@ -96,7 +96,7 @@ The following .NET types are interpreted as `CorrelationPropertyType.Int`:
 
 SQL persistence uses the [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) package to serialize saga data and metadata.
 
-The saga data can be queried by taking advantage of the [JSON querying capababilities SqlServer offers](https://docs.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server).
+The saga data can be queried by taking advantage of the [JSON querying capababilities of SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server).
 
 ### Custom settings
 
