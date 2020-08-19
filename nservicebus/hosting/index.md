@@ -42,27 +42,27 @@ partial: dispose
 A [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host NServiceBus in Windows.
 
 Related:
- * [Generic Host as Windows Service](/samples/hosting/generic-host)
+ * [Generic host as Windows Service](/samples/hosting/generic-host)
  * [NServiceBus Windows Service template](/nservicebus/dotnet-templates.md#nservicebus-windows-service)
- * [Windows Service Installation](windows-service.md)
- * [Endpoint Configuration Choices](/samples/endpoint-configuration/)
+ * [Windows Service installation](windows-service.md)
+ * [Endpoint configuration choices](/samples/endpoint-configuration/)
 
-### Generic Host hosting
+### Generic host hosting
 
-The [Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) is the most common way to host NServiceBus on .NET Core.
+The [generic host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) is the most common way to host NServiceBus on .NET Core.
 
 Related:
- * [Generic Host](/samples/hosting/generic-host)
+ * [Generic host](/samples/hosting/generic-host)
 
 ### Docker container hosting
 
 An endpoint can be hosted inside a [Docker](https://www.docker.com/) container.
 
 Related:
- * [Docker Container Host](/nservicebus/hosting/docker-host/)
- * [NServiceBus Docker Container template](/nservicebus/dotnet-templates.md#nservicebus-docker-container)
+ * [Docker container host](/nservicebus/hosting/docker-host/)
+ * [NServiceBus Docker container template](/nservicebus/dotnet-templates.md#nservicebus-docker-container)
  * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/)
- * [Generic Host](/samples/hosting/generic-host)
+ * [Generic host](/samples/hosting/generic-host)
 
 ### Send-only hosting
 
@@ -94,7 +94,7 @@ It is safe for multiple endpoints to share the same AppDomain or use multiple Ap
 
 Related:
 
- * [Multi-Hosting in the Generic Host](/samples/hosting/generic-multi-hosting/).
+ * [Multi-Hosting in the generic host](/samples/hosting/generic-multi-hosting/).
 
 partial: reusing-endpointconfig
 

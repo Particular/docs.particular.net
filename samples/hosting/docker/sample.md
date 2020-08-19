@@ -81,6 +81,6 @@ snippet: TransportConfiguration
 
 ### Waiting for RabbitMQ broker to become available
 
-Both endpoints blocks startup until broker becomes available using the shared `ProceedIfRabbitMqIsAlive` hosted service.
+Both endpoints block startup until the broker becomes available using the shared `ProceedIfRabbitMqIsAlive` hosted service.
 
 See the [docker documentation for other options to control startup order](https://docs.docker.com/compose/startup-order/).
