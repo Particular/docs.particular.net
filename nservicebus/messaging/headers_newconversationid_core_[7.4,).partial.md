@@ -1,3 +1,4 @@
+#### Starting a new conversation
 
 In some scenarios though, starting a new conversation might be desirable. For example, a batch import that reads thousands of records and starts a workflow on each one would normally result in a giant visualization, where it would be more appropriate for each record to be a new conversation.
 
