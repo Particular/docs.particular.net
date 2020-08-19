@@ -1,13 +1,13 @@
 ---
 title: "NServiceBus Step-by-step: Retrying errors"
-reviewed: 2018-11-30
+reviewed: 2020-08-19
 summary: In this 25-30 minute tutorial, you'll learn the different causes of errors and how to manage them with NServiceBus.
 redirects:
 - tutorials/intro-to-nservicebus/5-retrying-errors
 - tutorials/nservicebus-101/lesson-5
 extensions:
 - !!tutorial
-  nextText: "Next: Replaying failed messages"
+  nextText: "Start: Replaying failed messages"
   nextUrl: tutorials/message-replay
 ---
 
@@ -161,4 +161,4 @@ In this lesson, we explored different causes for exceptions and how NServiceBus 
 
 You've completed the last lesson in the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step). You've learned how to create endpoints, send and receive commands, publish events, and deal with message failures.
 
-SUCCESS: Now that you've learned how to build messaging systems with NServiceBus, take the next step and see how replaying failed messages transforms the way you build software. When a message fails, our tools let you see the exception details as well as contents of the message so you can pinpoint and fix the problem. Then you can replay the message as if nothing ever happened. In the next tutorial, you can experience it for yourself!
+SUCCESS: Now that you've learned how to build messaging systems with NServiceBus, continue your learning and see how replaying failed messages transforms the way you build software. When a message fails, our tools let you see the exception details as well as contents of the message so you can pinpoint and fix the problem. Then you can replay the message as if nothing ever happened. Start the tutorial to experience it for yourself!
