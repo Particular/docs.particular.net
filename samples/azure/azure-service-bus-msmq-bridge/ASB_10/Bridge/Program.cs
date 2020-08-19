@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Configuration.AdvancedExtensibility;
 using NServiceBus.Router;
+using NServiceBus.Routing;
 using NServiceBus.Serialization;
 using SettingsHolder = NServiceBus.Settings.SettingsHolder;
 
@@ -44,6 +46,13 @@ class Program
             transport.Transactions(TransportTransactionMode.ReceiveOnly);
         });
         msmqInterface.EnableMessageDrivenPublishSubscribe(new InMemorySubscriptionStorage());
+
+        //Configure the host of the MSMQ endpoint
+        msmqInterface.EndpointInstances.AddOrReplaceInstances("publishers", new List<EndpointInstance>
+        {
+            new EndpointInstance("Samples.Azure.ServiceBus.MsmqEndpoint").AtMachine(Environment.MachineName)
+        });
+
 
         bridgeConfiguration.AutoCreateQueues();
 
