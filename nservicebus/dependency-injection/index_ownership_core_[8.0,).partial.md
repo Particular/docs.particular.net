@@ -4,7 +4,56 @@ NServiceBus supports two modes of operation for containers, *internally managed*
 
 In *internally managed* mode, NServiceBus manages the entire lifecycle of the container, including registration, component resolution, and disposal.
 
-include: internallymanagedcontainer
+### Built-in default container
+
+NServiceBus has a built-in default container with an API for registration of user types. The following dependency lifecycles are supported:
+
+#### Instance per call
+
+A new instance will be returned for each call.
+
+Represented by the enum value `DependencyLifecycle.InstancePerCall`.
+
+snippet: InstancePerCall
+
+or using a delegate:
+
+snippet: DelegateInstancePerCall
+
+#### Instance per unit of work
+
+The instance will be a singleton for the duration of the [unit of work](/nservicebus/pipeline/unit-of-work.md). In practice this means the processing of a single transport message.
+
+Represented by the enum value `DependencyLifecycle.InstancePerUnitOfWork`.
+
+snippet: InstancePerUnitOfWork
+
+or using a delegate:
+
+snippet: DelegateInstancePerUnitOfWork
+
+#### Single instance
+
+The same instance will be returned each time.
+
+Represented by the enum value `DependencyLifecycle.SingleInstance`.
+
+WARNING: `SingleInstance` components that have dependencies that are scoped `InstancePerCall` or `InstancePerUnitOfWork` will still resolve. In effect, these dependencies, while not scoped as `SingleInstance`, will behave as if they are `SingleInstance` because the instances will exist inside the parent component.
+
+snippet: SingleInstance
+
+or using a delegate:
+
+snippet: DelegateSingleInstance
+
+or using the explicit singleton API:
+
+snippet: RegisterSingleton
+
+### Using a third party containers
+
+third party or custom dependency injection containers can be used via the [externally managed mode](#externally-managed-mode).
+
 
 ## Externally managed mode
 
