@@ -26,15 +26,5 @@ namespace Core8.Container.Custom
 
             #endregion
         }
-
-        IServiceCollection CreateServiceCollection()
-        {
-            throw new NotImplementedException();
-        }
-
-        IServiceProvider CreateServiceProvider(IServiceCollection serviceCollection)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
