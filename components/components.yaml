@@ -828,14 +828,14 @@
 
 - Key: SQSLambda
   Name: AWS Lambda (SQS)
-  DocsUrl: /nservicebus
+  DocsUrl: /previews/aws-lambda-simple-queue-service
   GitHubOwner: Particular
   Category: Host
-  SupportLevel: Labs
-  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.AwsLambda/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AwsLambda
+  SupportLevel: Preview
+  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.AwsLambda.Sqs/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AwsLambda.Sqs
   NugetOrder:
-    - NServiceBus.AwsLambda.SQS
+    - NServiceBus.AwsLambda.Sqs
 
 - Key: Extensions.Hosting
   Name: NServiceBus.Extensions.Hosting
