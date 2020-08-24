@@ -1,7 +1,7 @@
 ---
 title: Unobtrusive property encryption
 summary: Encrypting specific parts of a message using conventions.
-reviewed: 2018-12-11
+reviewed: 2020-08-24
 component: PropertyEncryption
 ---
 
