@@ -1278,3 +1278,7 @@
       Url: previews/azure-functions-service-bus
     - Title: NServiceBus.AzureFunctions.StorageQueues
       Url: previews/azure-functions-storage-queues
+  - Title: AWS Lambda
+    Articles:
+    - Title: NServiceBus.AwsLambda.Sqs
+      Url: previews/aws-lambda-simple-queue-service
