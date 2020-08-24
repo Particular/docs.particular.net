@@ -1,12 +1,10 @@
 ---
 title: Using NServiceBus in AWS Lambda with SQS
-reviewed: 2019-08-30
+reviewed: 2020-08-24
 component: SQSLambda
 related:
  - samples/sqs
 ---
-
-include: aws-lambda-experimental
 
 This sample shows how to host NServiceBus within an AWS Lambda, in this case, a function triggered by incoming SQS messages. This enables hosting message handlers in AWS Lambda, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message-processing pipeline.
 
