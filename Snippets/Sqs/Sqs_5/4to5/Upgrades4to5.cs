@@ -4,12 +4,14 @@ class MessageDrivenPubSub
 {
     void Configure(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable 618
         #region 4to5-enable-message-driven-pub-sub-compatibility-mode
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         var pubSubCompatibilityMode = transport.EnableMessageDrivenPubSubCompatibilityMode();
 
         #endregion
+#pragma warning restore 618
 
         #region 4to5-configure-message-driven-pub-sub-routing
 

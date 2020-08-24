@@ -227,12 +227,14 @@ class Usage
 
     void EnableMessageDrivenPubSubCompatibilityMode(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable 618
         #region EnableMessageDrivenPubSubCompatibilityMode
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         transport.EnableMessageDrivenPubSubCompatibilityMode();
 
         #endregion
+#pragma warning restore 618
     }
 
     void TopicNamePrefix(EndpointConfiguration endpointConfiguration)

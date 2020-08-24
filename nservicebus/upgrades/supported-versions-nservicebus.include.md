@@ -2,7 +2,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.4.x](https://www.nuget.org/packages/NServiceBus/7.4.0) | 2020-08-14     | -                 | -                                 |
+| [7.4.x](https://www.nuget.org/packages/NServiceBus/7.4.1) | 2020-08-14     | -                 | -                                 |
 | [7.3.x](https://www.nuget.org/packages/NServiceBus/7.3.0) | 2020-05-08     | 2021-02-14        | Superseded by 7.4.x               |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus/7.2.4) | 2019-10-23     | 2020-11-08        | Superseded by 7.3.x               |
 | [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus/7.1.13) | ~~2018-08-30~~ | ~~2020-04-23~~    | ~~Superseded by 7.2.x~~           |
