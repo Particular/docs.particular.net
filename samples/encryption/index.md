@@ -1,6 +1,6 @@
 ---
 title: Encryption samples
-reviewed: 2018-12-11
+reviewed: 2020-08-24
 related:
  - nservicebus/security/property-encryption
  - nservicebus/security/body-encryption

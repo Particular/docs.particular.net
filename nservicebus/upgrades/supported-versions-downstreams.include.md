@@ -4,7 +4,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | 2020-04-27     | -                 | -                                 |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.0) | 2020-08-24     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | 2020-04-27     | 2020-11-24        | Superseded by 5.1.x               |
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.1) | 2019-11-27     | 2021-04-27        | Superseded by 5.0.x               |
 | [~~4.3.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.3.5) | ~~2019-02-22~~ | ~~2020-02-27~~    | ~~Superseded by 4.4.x~~           |
 | [3.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/3.3.5) | 2018-05-14     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
@@ -88,7 +89,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.4.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.4.2) | 2020-06-24     | -                 | -                                 |
+| [8.4.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.4.3) | 2020-06-24     | -                 | -                                 |
 | [8.3.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.3.0) | 2020-02-12     | 2020-09-24        | Superseded by 8.4.x               |
 | [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/8.2.0) | ~~2019-07-26~~ | ~~2020-05-12~~    | ~~Superseded by 8.3.x~~           |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.NHibernate/7.2.5) | 2017-04-19     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
@@ -115,7 +116,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.0.2) | 2020-06-24     | -                 | -                                 |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.0.3) | 2020-06-24     | -                 | -                                 |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/5.0.0) | 2020-02-07     | 2021-06-24        | Superseded by 6.0.x               |
 | [4.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/4.6.1) | 2019-07-26     | 2021-02-07        | Superseded by 5.0.x               |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/3.2.0) | 2018-07-09     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
@@ -470,7 +471,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | [~~1.11.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.11.0) | ~~2020-02-11~~ | ~~2020-05-12~~    | ~~Superseded by 1.12.x~~          |
 | [~~1.10.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.10.0) | ~~2020-01-03~~ | ~~2020-05-11~~    | ~~Superseded by 1.11.x~~          |
 | [~~1.9.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.9.0) | ~~2019-11-22~~ | ~~2020-04-03~~    | ~~Superseded by 1.10.x~~          |
-| [~~1.8.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.8.0) | ~~2019-10-31~~ | ~~2020-02-22~~    | ~~Superseded by 1.9.x~~           |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 

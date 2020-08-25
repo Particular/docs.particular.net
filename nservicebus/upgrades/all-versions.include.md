@@ -2,7 +2,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.4.x](https://www.nuget.org/packages/NServiceBus/7.4.0) | 2020-08-14     | -                 | -                                 |
+| [7.4.x](https://www.nuget.org/packages/NServiceBus/7.4.1) | 2020-08-14     | -                 | -                                 |
 | [7.3.x](https://www.nuget.org/packages/NServiceBus/7.3.0) | 2020-05-08     | 2021-02-14        | Superseded by 7.4.x               |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus/7.2.4) | 2019-10-23     | 2020-11-08        | Superseded by 7.3.x               |
 | [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus/7.1.13) | ~~2018-08-30~~ | ~~2020-04-23~~    | ~~Superseded by 7.2.x~~           |
@@ -37,7 +37,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | 2020-04-27     | -                 | -                                 |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.0) | 2020-08-24     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | 2020-04-27     | 2020-11-24        | Superseded by 5.1.x               |
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.1) | 2019-11-27     | 2021-04-27        | Superseded by 5.0.x               |
 | [~~4.3.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.3.5) | ~~2019-02-22~~ | ~~2020-02-27~~    | ~~Superseded by 4.4.x~~           |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.2.3) | ~~2018-12-12~~ | ~~2019-05-22~~    | ~~Superseded by 4.3.x~~           |
@@ -191,7 +192,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.4.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.4.2) | 2020-06-24     | -                 | -                                 |
+| [8.4.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.4.3) | 2020-06-24     | -                 | -                                 |
 | [8.3.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.3.0) | 2020-02-12     | 2020-09-24        | Superseded by 8.4.x               |
 | [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/8.2.0) | ~~2019-07-26~~ | ~~2020-05-12~~    | ~~Superseded by 8.3.x~~           |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/8.1.1) | ~~2018-07-12~~ | ~~2019-10-26~~    | ~~Superseded by 8.2.x~~           |
@@ -244,7 +245,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.0.2) | 2020-06-24     | -                 | -                                 |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.0.3) | 2020-06-24     | -                 | -                                 |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/5.0.0) | 2020-02-07     | 2021-06-24        | Superseded by 6.0.x               |
 | [4.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/4.6.1) | 2019-07-26     | 2021-02-07        | Superseded by 5.0.x               |
 | [~~4.5.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/4.5.1) | ~~2019-03-12~~ | ~~2019-10-26~~    | ~~Superseded by 4.6.x~~           |
