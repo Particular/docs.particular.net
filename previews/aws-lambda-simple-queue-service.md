@@ -12,3 +12,5 @@ Host NServiceBus endpoints with [AWS Lambda](https://aws.amazon.com/lambda/).
 ## Basic usage
 
 ### Endpoint configuration
+
+snippet: endpoint-configuration
