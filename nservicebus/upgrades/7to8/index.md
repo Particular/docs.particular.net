@@ -13,7 +13,7 @@ NOTE: This is a working document; there is currently no timeline for the release
 
 ## Support for external dependency injection containers
 
-Support for external dependency injection containers is no longer provided by NServiceBus adapters for each container library. Instead, the [`NServiceBus.Extensions.DependencyInjection` package](/nservicebus/dependency-injection/extensions-dependencyinjection.md) provides the ability to use any container that conforms to the `Microsoft.Extensions.DependencyInjection` container abstraction.
+Support for external dependency injection containers is no longer provided by NServiceBus adapters for each container library. Instead, NServiceBus V8 directly provides the ability to use any container that conforms to the `Microsoft.Extensions.DependencyInjection` container abstraction.
 
 The following adapter packages will no longer be provided:
 
