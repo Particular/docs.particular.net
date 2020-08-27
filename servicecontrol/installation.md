@@ -80,7 +80,7 @@ The following ServiceControl connection string options are available in versions
 
 Metrics are reported via the [performance counters](/monitoring/metrics/performance-counters.md) if the counters are installed.
 
-For instructions on how to install the performance, refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
+For instructions on how to install the performance counters, refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 
 The installation of the NServiceBus performance counters is optional for ServiceControl version 1.7 and above.
 

@@ -6,17 +6,17 @@ reviewed: 2020-08-17
 
 ## .NET prerequisite version
 
-The Particular Platform products require [.NET 4.6.2](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net462-offline-installer). Before proceeding, ensure that this version of .NET is available on the system. More detailed information about .NET can be found on the [Wikipedia .NET Overview](https://en.wikipedia.org/wiki/.NET_Framework_version_history#Overview).
+The Particular Service Platform products require [.NET 4.6.2](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net462-offline-installer). Before proceeding, ensure that this version of .NET is available on the system. 
 
 
-## MSMQ Prerequisites
+## MSMQ prerequisites
 
 The following steps are required when running NServiceBus endpoints using Microsoft Message Queuing (MSMQ):
 
- * Adds, configures, and starts the MSMQ service.
- * Configures and starts the Microsoft Distributed Coordinator Service.
+ * Add, configure, and start the MSMQ service.
+ * Configure and start the Microsoft Distributed Coordinator Service.
 
-These actions can be perfomred using the [NServiceBus PowerShell module](https://github.com/Particular/NServiceBus.PowerShell/releases/latest), that is available as a standalone installation. Once the module is installed, open a PowerShell prompt as an administrator and issue the following commands:
+These actions can be performed using the [NServiceBus PowerShell module](https://github.com/Particular/NServiceBus.PowerShell/releases/latest) which is available as a standalone installation. Once the module is installed, open a PowerShell prompt as an administrator and issue the following commands:
 
 ```ps
 Import-Module NServiceBus.PowerShell
