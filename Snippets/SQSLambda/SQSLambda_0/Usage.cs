@@ -50,12 +50,6 @@ class Usage
 
     static void LicenseFile(AwsLambdaSQSEndpointConfiguration endpointConfiguration, ILambdaContext context)
     {
-        #region set-license-environment-variable
-
-
-
-        #endregion
-
         #region load-license-file
 
         var licenseText = Environment.GetEnvironmentVariable("NServiceBusLicenseText");
