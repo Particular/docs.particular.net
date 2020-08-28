@@ -25,7 +25,7 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 
 INFO: It is not possible at this stage to use the AWS .NET Mock Lambda Test Tool to run the sample locally.
 
-INFO: This section assumes a single deployemnt of the sample per AWS Account. The [side-by-side deployments](#side-by-side-deployments) section describes how to deploy multiple instnaces of the sample under the same account.
+INFO: This section assumes a single deployment of the sample per AWS Account. The [side-by-side deployments](#side-by-side-deployments) section describes how to deploy multiple instances of the sample under the same account.
 
  Run the following command from the `AwsLambda.SQSTrigger` directory to deploy the Lambda project:
 
