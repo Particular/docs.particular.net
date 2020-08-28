@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DefaultNamespace;
 using NServiceBus;
 
 class Program
@@ -38,7 +39,8 @@ class Program
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
             var transport = endpointConfiguration.UseTransport<SqsTransport>();
-                
+            transport.QueueNamePrefix(Constants.QueuePrefix);
+
             sqsEndpoint = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
         }
 

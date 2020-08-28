@@ -10,5 +10,5 @@
   "configuration": "Release",
   "framework": "netcoreapp3.1",
   "template": "serverless.template",
-  "template-parameters": ""
+  "template-parameters": "ResourcePrefix="
 }

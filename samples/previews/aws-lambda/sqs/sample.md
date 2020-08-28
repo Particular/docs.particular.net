@@ -25,6 +25,8 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 
 INFO: It is not possible at this stage to use the AWS .NET Mock Lambda Test Tool to run the sample locally.
 
+INFO: This section assumes a single deployemnt of the sample per AWS Account. The [side-by-side deployments](#side-by-side-deployments) section describes how to deploy multiple instnaces of the sample under the same account.
+
  Run the following command from the `AwsLambda.SQSTrigger` directory to deploy the Lambda project:
 
 `dotnet lambda deploy-serverless`
@@ -67,3 +69,15 @@ To remove the deployed stack enter:
 `dotnet lambda delete-serverless`
 
 and provide the previously chosen stack name.
+
+## Side-by-side deployments
+
+It's possible to deploy multiple instances of this sample to the same AWS Account. This can be done by specifying a unique prefix per deployment that will be added to all resources created. The prefix value has to be provided in `serverless.template` file:
+
+``` json
+  "template-parameters": "ResourcePrefix=<value>"
+```
+
+and assinged to the `Constants.QueuePrefix` property in `Constants.cs` file:
+
+snippet: ConfigureQueuePrefixValue

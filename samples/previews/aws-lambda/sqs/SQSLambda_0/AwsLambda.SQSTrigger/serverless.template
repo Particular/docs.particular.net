@@ -1,32 +1,63 @@
 {
-  "AWSTemplateFormatVersion" : "2010-09-09",
-  "Transform" : "AWS::Serverless-2016-10-31",
-  "Description" : "Template that creates an SQS queue and a function that is invoked when a new message arrives.",
-  "Resources" : {
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Transform": "AWS::Serverless-2016-10-31",
+  "Description": "\"Template that creates an SQS queue and a function that is invoked when a new message arrives",
+  "Parameters": {
+    "ResourcePrefix": {
+      "Type": "String",
+      "Default": "",
+      "Description": "Name prefix added to every resource in the stack"
+    }
+  },
+  "Resources": {
 
-	"ErrorQueue": {
+    "ErrorQueue": {
       "Properties": {
-        "QueueName": "ErrorAwsLambdaSQSTrigger"
+        "QueueName": {
+          "Fn::Join": [
+            "",
+            [
+              { "Ref": "ResourcePrefix" },
+              "ErrorAwsLambdaSQSTrigger"
+            ]
+          ]
+        }
       },
       "Type": "AWS::SQS::Queue"
     },
 
-	"SenderQueue": {
+    "SenderQueue": {
       "Properties": {
-        "QueueName": "AwsLambda-Sender"
+        "QueueName": {
+          "Fn::Join": [
+            "",
+            [
+              { "Ref": "ResourcePrefix" },
+              "AwsLambda-Sender"
+            ]
+          ]
+        }
       },
       "Type": "AWS::SQS::Queue"
     },
 
-	"InputQueue": {
+    "InputQueue": {
       "Properties": {
-        "QueueName": "AwsLambdaSQSTrigger"
+        "QueueName": {
+          "Fn::Join": [
+            "",
+            [
+              { "Ref": "ResourcePrefix" },
+              "AwsLambdaSQSTrigger"
+            ]
+          ]
+        }
       },
       "Type": "AWS::SQS::Queue"
     },
 
-    "SQSTriggerFunction" : {
-      "Type" : "AWS::Serverless::Function",
+    "SQSTriggerFunction": {
+      "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "AwsLambda.SQSTrigger::Function::FunctionHandler",
         "Runtime": "dotnetcore3.1",
@@ -35,36 +66,51 @@
         "MemorySize": 256,
         "Timeout": 30,
         "Role": null,
+        "FunctionName": {
+          "Fn::Join": [
+            "",
+            [
+              { "Ref": "ResourcePrefix" },
+              "AwsLambdaSQSTrigger"
+            ]
+          ]
+        },
         "Policies": [ "AWSLambdaFullAccess", "AmazonSQSFullAccess" ],
-		"Events": {
-            "SqsEvent" : {
-                "Type" : "SQS",
-                "Properties" : {
-                    "BatchSize" : 10,
-					"Queue": { "Fn::GetAtt" : ["InputQueue", "Arn"] }
-                }
+        "Events": {
+          "SqsEvent": {
+            "Type": "SQS",
+            "Properties": {
+              "BatchSize": 10,
+              "Queue": { "Fn::GetAtt": [ "InputQueue", "Arn" ] }
             }
+          }
         }
       }
     }
   },
-  "Outputs" : {
-	"ErrorQueueQueueURL": {
+  "Outputs": {
+    "ErrorQueueQueueURL": {
       "Description": "The URL of the queue",
       "Value": {
         "Ref": "ErrorQueue"
       }
     },
-	"InputQueueQueueURL": {
+    "InputQueueQueueURL": {
       "Description": "The URL of the input queue",
       "Value": {
         "Ref": "InputQueue"
       }
     },
-	"SenderQueueQueueURL": {
+    "SenderQueueQueueURL": {
       "Description": "The URL of the input queue",
       "Value": {
         "Ref": "SenderQueue"
+      }
+    },
+    "SQSTriggerFunctionURL": {
+      "Description": "The URL of the SQSTrigger Lambda",
+      "Value": {
+        "Ref": "SQSTriggerFunction"
       }
     }
   }

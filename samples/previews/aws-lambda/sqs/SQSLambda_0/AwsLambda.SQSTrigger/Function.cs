@@ -34,6 +34,9 @@ public class Function
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
         var transport = endpointConfiguration.Transport;
+
+        transport.QueueNamePrefix(Constants.QueuePrefix);
+
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(BackToSenderMessage), "AwsLambda.Sender");
 
