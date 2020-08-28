@@ -103,13 +103,6 @@ partial: reusing-endpointconfig
 Most usages of the bus will occur where the NServiceBus APIs are used, for example [handlers](/nservicebus/handlers/) and [sagas](/nservicebus/sagas/). However, there are other scenarios that may require an alternate approach where the user needs to directly access the bus from outside of the framework.
 
 
-#### Using dependency injection
-
-NServiceBus supports [dependency injection](/nservicebus/dependency-injection/). At startup, the instance of a bus session will be injected into the configured dependency injection and can be access via that instance.
-
-partial: injecting
-
-
 #### Static variable
 
 For many scenarios, dependency injection is not required. In these cases, a simple public static variable on the startup class will suffice. This variable can then be access globally in the application. For example:

@@ -1,9 +1,9 @@
 ﻿namespace Core8.Features
 {
+    using System;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Features;
-    using NServiceBus.ObjectBuilder;
     using NServiceBus.Transport;
 
     #region SimpleSatelliteFeature
@@ -27,7 +27,7 @@
                 onMessage: OnMessage);
         }
 
-        Task OnMessage(IBuilder builder, MessageContext context)
+        Task OnMessage(IServiceProvider serviceProvider, MessageContext context)
         {
             // Implement what this satellite needs to do once it receives a message
             var messageId = context.MessageId;

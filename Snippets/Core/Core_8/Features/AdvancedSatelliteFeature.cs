@@ -2,9 +2,9 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.DependencyInjection;
     using NServiceBus;
     using NServiceBus.Features;
-    using NServiceBus.ObjectBuilder;
     using NServiceBus.Transport;
 
     public class MyAdvancedSatelliteFeature :
@@ -30,12 +30,12 @@
                 onMessage: OnMessage);
         }
 
-        Task OnMessage(IBuilder builder, MessageContext context)
+        Task OnMessage(IServiceProvider serviceProvider, MessageContext context)
         {
             // To raise a critical error
             var exception = new Exception("CriticalError occurred");
 
-            var criticalError = builder.Build<CriticalError>();
+            var criticalError = serviceProvider.GetService<CriticalError>();
             criticalError.Raise("Something bad happened - trigger critical error", exception);
 
             return Task.CompletedTask;

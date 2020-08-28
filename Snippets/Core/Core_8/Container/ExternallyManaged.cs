@@ -1,44 +1,30 @@
-﻿namespace Core8.Container.Custom
+﻿// ReSharper disable SuggestVarOrType_SimpleTypes
+namespace Core8.Container.Custom
 {
+    using System;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.DependencyInjection;
     using NServiceBus;
-    using NServiceBus.ObjectBuilder;
 
     public class ExternallyManaged
     {
-        async Task Usage(EndpointConfiguration endpointConfiguration, MyCustomContainer myCustomContainer)
+        async Task Usage(EndpointConfiguration endpointConfiguration)
         {
             #region ExternalPrepare
 
-            IConfigureComponents configureComponents =
-                AdaptContainerForRegistrationPhase(myCustomContainer);
+            IServiceCollection serviceCollection = new ServiceCollection();
 
-            var startableEndpoint = EndpointWithExternallyManagedContainer.Create(endpointConfiguration, configureComponents);
+            var startableEndpoint = EndpointWithExternallyManagedContainer.Create(endpointConfiguration, serviceCollection);
 
             #endregion
 
             #region ExternalStart
 
-            IBuilder builder = AdaptContainerForResolutionPhase(myCustomContainer);
+            IServiceProvider builder = serviceCollection.BuildServiceProvider();
 
             var startedEndpoint = await startableEndpoint.Start(builder);
 
             #endregion
-        }
-
-        IBuilder AdaptContainerForResolutionPhase(MyCustomContainer myCustomContainer)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        IConfigureComponents AdaptContainerForRegistrationPhase(MyCustomContainer myCustomContainer)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        class MyCustomContainer
-        {
-
         }
     }
 }

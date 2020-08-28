@@ -57,21 +57,5 @@
             }
         }
         #endregion
-
-        async Task InjectEndpoint()
-        {
-            #region Hosting-Inject
-
-            var containerBuilder = new ContainerBuilder();
-            var endpointConfiguration = new EndpointConfiguration("EndpointName");
-            // Apply other necessary endpoint configuration, e.g. transport
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
-            containerBuilder.Register(_ => endpointInstance).InstancePerDependency();
-
-            #endregion
-
-        }
-
     }
 }
