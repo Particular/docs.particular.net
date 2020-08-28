@@ -7,25 +7,27 @@ related:
 reviewed: 2020-08-24
 ---
 
-Host NServiceBus endpoints with [AWS Lambda](https://aws.amazon.com/lambda/) and [Simple Queue Service](https://aws.amazon.com/sqs/) trigger.
+Host NServiceBus endpoints with [AWS Lambda](https://aws.amazon.com/lambda/) using [Simple Queue Service](https://aws.amazon.com/sqs/) as a trigger.
 
 ## Basic usage
 
-Setting up AWS Lambda endpoint requires instantiating `AwsLambdaSQSEndpoint` instance and calling it from AWS Lambda definition 
+Setting up AWS Lambda endpoint requires instantiating an `AwsLambdaSQSEndpoint` instance and calling the `Process` method from within an AWS Lambda definition.
 
 ### AwsLambdaSQSEndpoint creation
 
-The endpoint should be configured and instantiated as a `static` field making sure that it's created only once when the lambda is first called:
+The endpoint should be configured and instantiated as a `static` field, making sure that it's created only once when the lambda is first called:
 
 snippet: endpoint-creation
 
+Since the initial cost of starting an `AwsLambdaSQSEndpoint` endpoint can be high, it is recommended to [configure the lambda's concurrency](https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html) to ensure that cold starts are minimized.
+
 ### AWS Lambda definition
 
-`AwsLambdaSQSEndpoint` should be invoked inside the function handler:
+`AwsLambdaSQSEndpoint.Process` should be invoked inside the function handler:
 
 snippet: function-definition
 
-## Configuraiton
+## Configuration
 
 ### Routing
 
@@ -52,3 +54,21 @@ snippet: configure-dont-move-to-error
 ### Serializer
 
 snippet: custom-serializer
+
+### Licenses
+
+License information can be specified using Environment Variables so that license details can be updated at runtime.
+
+snippet: load-license-file
+
+Updating the environment variable can be done by [configuring the environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html) for the lambda.
+
+## Supported features
+
+The `AwsLambdaSQSEndpoint` class supports the full featureset of NServiceBus, including:
+
+* Outbox
+* Sagas
+* Delayed Delivery
+* Recoverability
+* Publish / Subscribe

@@ -48,6 +48,25 @@ class Usage
         #endregion
     }
 
+    static void LicenseFile(AwsLambdaSQSEndpointConfiguration endpointConfiguration, ILambdaContext context)
+    {
+        #region set-license-environment-variable
+
+
+
+        #endregion
+
+        #region load-license-file
+
+        var licenseText = Environment.GetEnvironmentVariable("NServiceBusLicenseText");
+
+        var advanced = endpointConfiguration.AdvancedConfiguration;
+        
+        advanced.License(licenseText);
+
+        #endregion
+    }
+
     static void ConfigureErrorQueue(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
     {
         #region configure-error-queue
