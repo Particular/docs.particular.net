@@ -47,9 +47,11 @@ snippet: custom-diagnostics
 
 snippet: delayed-retries
 
-If the time increase is expected to be greater than [15 minutes](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery), it might be required to enable `UnrestrictedDurationDelayedDelivery` on the endpoint:
+If the time increase is expected to be greater than [15 minutes](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery), it will be required to enable `UnrestrictedDurationDelayedDelivery` on the endpoint:
 
 snippet: unrestricted-delayed-delivery
+
+Note: The queues required for unrestricted delayed delivery have to be [provisioned manually](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery-manual-fifo-queue-creation) since Transport Installers are not supported for AWS Lambdas.
 
 ### Error queue
 
