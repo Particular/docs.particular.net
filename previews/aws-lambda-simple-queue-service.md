@@ -41,6 +41,16 @@ snippet: configure-routing
 
 snippet: custom-diagnostics
 
+### Delayed Retries
+
+[Delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) are disabled by default when using AWS Lambdas. Delayed retries can be configured using the following snippet:
+
+snippet: delayed-retries
+
+If the time increase is expected to be greater than 15 minutes, it might be required to enable `UnrestrictedDurationDelayedDelivery` on the endpoint:
+
+snippet: unrestricted-delayed-delivery
+
 ### Error queue
 
 Continuously failing messages are moved to the error queue that must be defined with the following API:
@@ -72,3 +82,9 @@ The `AwsLambdaSQSEndpoint` class supports the full featureset of NServiceBus, in
 * Delayed Delivery
 * Recoverability
 * Publish / Subscribe
+
+A persistence is required to use some of these features.
+
+### Transactionality
+
+As the `AwsLambdaSQSEndpoint` uses the `SqsTransport`, it only supports Receive Only, or Disabled transaction modes.
