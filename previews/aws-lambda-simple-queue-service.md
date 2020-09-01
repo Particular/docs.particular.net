@@ -27,6 +27,10 @@ Since the initial cost of starting an `AwsLambdaSQSEndpoint` endpoint can be hig
 
 snippet: function-definition
 
+### Queue creation
+
+Transport installers are not supported. The required queues will have to be [provisioned manually](/transports/sqs/operations-scripting.md#create-resources).
+
 ## Configuration
 
 ### Routing
