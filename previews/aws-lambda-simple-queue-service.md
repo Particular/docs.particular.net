@@ -27,6 +27,10 @@ Since the initial cost of starting an `AwsLambdaSQSEndpoint` endpoint can be hig
 
 snippet: function-definition
 
+### Queue creation
+
+Transport installers are not supported. The required queues will have to be [provisioned manually](/transports/sqs/operations-scripting.md#create-resources).
+
 ## Configuration
 
 ### Routing
@@ -40,6 +44,18 @@ snippet: configure-routing
 [NServiceBus startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) are disabled by default when using AWS Lambdas. Diagnostics can be written to the logs via the following snippet:
 
 snippet: custom-diagnostics
+
+### Delayed Retries
+
+[Delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) are disabled by default when using AWS Lambdas. Delayed retries can be configured using the following snippet:
+
+snippet: delayed-retries
+
+If the time increase is expected to be greater than [15 minutes](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery), it will be required to enable `UnrestrictedDurationDelayedDelivery` on the endpoint:
+
+snippet: unrestricted-delayed-delivery
+
+Note: The queues required for unrestricted delayed delivery have to be [provisioned manually](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery-manual-fifo-queue-creation) since Transport Installers are not supported for AWS Lambdas.
 
 ### Error queue
 
@@ -72,3 +88,9 @@ The `AwsLambdaSQSEndpoint` class supports the full featureset of NServiceBus, in
 * Delayed Delivery
 * Recoverability
 * Publish / Subscribe
+
+A persistence is required to use some of these features.
+
+### Transactionality
+
+As the `AwsLambdaSQSEndpoint` uses the `SqsTransport`, it only supports Receive Only, or Disabled transaction modes.

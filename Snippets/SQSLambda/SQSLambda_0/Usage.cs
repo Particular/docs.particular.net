@@ -61,6 +61,26 @@ class Usage
         #endregion
     }
 
+    static void Recoverability(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
+    {
+        #region delayed-retries
+
+        var recoverability = endpointConfiguration.AdvancedConfiguration.Recoverability();
+        recoverability.Delayed(customization =>
+        {
+            customization.NumberOfRetries(5);
+            customization.TimeIncrease(TimeSpan.FromSeconds(15));
+        });
+
+        #endregion
+
+        #region unrestricted-delayed-delivery
+
+        endpointConfiguration.Transport.UnrestrictedDurationDelayedDelivery();
+
+        #endregion
+    }
+
     static void ConfigureErrorQueue(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
     {
         #region configure-error-queue
