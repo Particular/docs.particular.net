@@ -23,7 +23,7 @@ class Usage
         var maxNumberOfRetryAttempts = 3;
         var numberOfIoThreads = 3;
         var backOffIntervalBetweenRetriesInSecs = 1000;
-        var cleanupIntervalInMilSecs = 600000;
+        var cleanupIntervalInMilliseconds = 600000;
 
         #region AzureDataBusSetup
 
@@ -36,7 +36,7 @@ class Usage
         dataBus.MaxRetries(maxNumberOfRetryAttempts);
         dataBus.NumberOfIOThreads(numberOfIoThreads);
         dataBus.BackOffInterval(backOffIntervalBetweenRetriesInSecs);
-        dataBus.CleanupInterval(cleanupIntervalInMilSecs);
+        dataBus.CleanupInterval(cleanupIntervalInMilliseconds);
 
         #endregion
 
