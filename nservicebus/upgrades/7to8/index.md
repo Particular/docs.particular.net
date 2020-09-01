@@ -23,7 +23,7 @@ The following adapter packages will no longer be provided:
 * [Ninject](/nservicebus/dependency-injection/ninject.md)
 * [Unity](/nservicebus/dependency-injection/unity.md)
 
-Instead of the container adapter packages, use the [externally managed container mode](/nservicebus/dependency-injection#externally-managed-mode) to use a third party dependency injection container. See the [Migrating to externally managed container mode](#migrating-to-externally-managed-container-mode) section for examples using common dependency injection containers.
+Instead of the container adapter packages, use the [externally managed container mode](/nservicebus/dependency-injection#externally-managed-mode) to use a third party dependency injection container. See the [Migrating to externally managed mode](#Migrating-to-externally-managed-mode) section for examples using common dependency injection containers.
 
 ### Property injection
 
@@ -37,7 +37,7 @@ The `UseContainer` API to integrate third party containers with NServiceBus has 
 
 The externally managed container mode allows to integrate third party dependency injection containers with NServiceBus that conform to the `Microsoft.Extensions.DependencyInjection.Abstractions` model via the `EndpointWithExternallyManagedContainer.Create` API. See the following sections for examples using common DI containers.
 
-#### Migrating to externally managed container mode
+#### Migrating to externally managed mode
 
 ##### Microsoft.Extensions.DependencyInjection
 
