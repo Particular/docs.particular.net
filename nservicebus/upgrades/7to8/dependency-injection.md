@@ -19,15 +19,15 @@ The following adapter packages will no longer be provided:
 * [Ninject](/nservicebus/dependency-injection/ninject.md)
 * [Unity](/nservicebus/dependency-injection/unity.md)
 
-Instead of the container adapter packages, use the [externally managed container mode](/nservicebus/dependency-injection#externally-managed-mode) to use a third party dependency injection container. See the [migrating to externally managed mode](#externally-managed-container-mode-migrating-to-externally-managed-mode) section for examples using common dependency injection containers.
+Instead of the container adapter packages, use the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode) to use a third party dependency injection container. See the [migrating to externally managed mode](#externally-managed-container-mode-migrating-to-externally-managed-mode) section for examples using common dependency injection containers.
 
 ## Property injection
 
-Property injection is not covered by `Microsoft.Extensions.DependencyInjection.Abstractions`, therefore the NServiceBus default dependency injection container does not support property injection anymore. Property injection might be supported by third party containers that can be enabled using the [externally managed container mode](/nservicebus/dependency-injection#externally-managed-mode).
+Property injection is not covered by `Microsoft.Extensions.DependencyInjection.Abstractions`, therefore the NServiceBus default dependency injection container does not support property injection anymore. Property injection might be supported by third party containers that can be enabled using the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode).
 
 ## UseContainer is deprecated
 
-The `UseContainer` API to integrate third party containers with NServiceBus has been removed as it does not align with the `Microsoft.Extensions.DependencyInjection.Abstractions` model. To use a custom dependency injection container with NServiceBus, use the [externally managed container mode](/nservicebus/dependency-injection#externally-managed-mode).
+The `UseContainer` API to integrate third party containers with NServiceBus has been removed as it does not align with the `Microsoft.Extensions.DependencyInjection.Abstractions` model. To use a custom dependency injection container with NServiceBus, use the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode).
 
 ## Externally managed container mode
 
