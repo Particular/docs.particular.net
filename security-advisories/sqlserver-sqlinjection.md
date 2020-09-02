@@ -1,7 +1,7 @@
 ---
 title: Security Advisory 2016-07-05
 summary: NServiceBus SQL Server Transport injection vulnerability
-reviewed: 2018-12-09
+reviewed: 2020-09-02
 ---
 
 This advisory discloses a security vulnerability that has been found in the [SQL Server Transport](/transports/sql/) and fixed in a recently released version.
