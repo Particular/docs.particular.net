@@ -100,6 +100,9 @@
       Title: Callbacks 1 to 2
     - Url: nservicebus/upgrades/7to8
       Title: NServiceBus 7 to 8
+      Articles:
+      - Url: nservicebus/upgrades/7to8/dependency-injection
+        Title: Dependency Injection Changes
     - Url: nservicebus/upgrades/6to7
       Title: NServiceBus 6 to 7
       Articles:
