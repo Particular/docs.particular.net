@@ -11,20 +11,10 @@ upgradeGuideCoreVersions:
 
 NOTE: This is a working document; there is currently no timeline for the release of NServiceBus version 8.0.
 
-## Support for external dependency injection containers
+## Dependency injection
 
-Support for external dependency injection containers is no longer provided by NServiceBus adapters for each container library. Instead, NServiceBus version 8 directly provides the ability to use any container that conforms to the `Microsoft.Extensions.DependencyInjection` container abstraction.
+Support for external dependency injection containers is no longer provided by NServiceBus adapters for each container library. Instead, NServiceBus version 8 directly provides the ability to use any container that conforms to the `Microsoft.Extensions.DependencyInjection.Abstractions` container abstraction. Visit the dedicated [dependency injection changes](/nservicebus/upgrades/7to8/dependency-injection.md) section of the upgrade guide for further information.
 
-The following adapter packages will no longer be provided:
-
-* [Autofac](/nservicebus/dependency-injection/autofac.md)
-* [Castle](/nservicebus/dependency-injection/castlewindsor.md)
-* [StructureMap](/nservicebus/dependency-injection/structuremap.md)
-* [Unity](/nservicebus/dependency-injection/unity.md)
-
-### Property injection
-
-NServiceBus container adapters supported [automatic property injection](/nservicebus/dependency-injection/extensions-dependencyinjection.md#property-injection), this is not possible via `Microsoft.Extensions.DependencyInjection` and must be explicitly enabled using the native API of containers that supports it.
 
 ## Support for external logging providers
 
