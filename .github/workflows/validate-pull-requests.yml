@@ -39,3 +39,9 @@ jobs:
         uses: microsoft/setup-msbuild@v1
       - name: Build affected samples & snippets
         run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1
+      - name: Create binlog artifact
+        uses: actions/upload-artifact@v2
+        if: ${{ failure() }}
+        with:
+          name: binlog
+          path: "**/*.binlog"
