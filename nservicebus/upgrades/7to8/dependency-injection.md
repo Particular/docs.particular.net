@@ -1,6 +1,6 @@
 ---
-title: Dependency Injection Changes
-summary: Dependency injection changes from NServiceBus 7 to 8.
+title: Dependency Injection changes
+summary: Dependency Injection changes from NServiceBus 7 to 8.
 reviewed: 2020-02-20
 component: Core
 isUpgradeGuide: true
@@ -31,7 +31,7 @@ The `UseContainer` API to integrate third party containers with NServiceBus has 
 
 ## Externally managed container mode
 
-The externally managed container mode allows to integrate third party dependency injection containers with NServiceBus that conform to the `Microsoft.Extensions.DependencyInjection.Abstractions` model via the `EndpointWithExternallyManagedContainer.Create` API. See the following sections for examples using common DI containers.
+The externally managed container mode allows integrating third-party dependency injection containers, that conform to the `Microsoft.Extensions.DependencyInjection.Abstractions` model, with NServiceBus via the `EndpointWithExternallyManagedContainer.Create` API. See the following sections for examples of using common DI containers.
 
 ### Migrating to externally managed mode
 
@@ -62,6 +62,8 @@ var endpointInstance = await startableEndpoint.Start(new AutofacServiceProvider(
 
 #### StructureMap
 
+Note: StructureMap has been sunsetted. The maintainers recommend to use [Lamar](https://jasperfx.github.io/lamar/) instead.
+
 The following snippet configures NServiceBus to use StructureMap as its dependency injection container. This requires the `StructureMap.Microsoft.DependencyInjection` NuGet package.
 
 ```csharp
@@ -73,7 +75,6 @@ container.Populate(serviceCollection);
 var endpointInstance = await startableEndpoint.Start(container.GetInstance<IServiceProvider>());
 ```
 
-Note: StructureMap has been sunsetted. The maintainers recommend to use [Lamar](https://jasperfx.github.io/lamar/) instead.
 
 #### Castle Windsor
 
