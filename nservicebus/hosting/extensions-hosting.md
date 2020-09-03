@@ -30,3 +30,7 @@ WARNING: [NServiceBus.Extensions.Logging](/nservicebus/logging/extensions-loggin
 NServiceBus endpoints hosted as part of the generic host automatically use the provided `IServiceCollection` and `IServiceProvider` dependency injection infrastructure. Message handlers can resolve dependencies which are registered in the `IServiceCollection`.
 
 `UseNServiceBus` automatically registers an `IMessageSession` with the container which can be resolved from the `IServiceProvider` or via dependency injection during runtime.
+
+### Configure custom containers
+
+Custom dependency injection containers can be configured using the `IWebHostBuilder.UseServiceProviderFactory` option. NServiceBus automatically uses the host's dependency injection container. Refer to the container's documentation for further details.
