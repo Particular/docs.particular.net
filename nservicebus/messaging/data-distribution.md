@@ -19,7 +19,7 @@ In the worst-case scenario, some receivers of a data distribution message may su
 
 These kinds of failures are difficult to track down. They depend upon more than the contents of a message and the code handling it. The results are also dependent upon the state of the data being handled by data distribution, which will not be consistent across all servers in a cluster.
 
-## Differences to publish/subscribe
+## Differences from publish/subscribe
 
 Data distribution employs a broadcast distribution strategy, delivering information to all physical nodes. This is different to publish/subscribe, which is designed to reliably deliver a message to one logical endpoint only.
 
