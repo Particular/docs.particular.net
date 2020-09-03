@@ -9,6 +9,7 @@ redirects:
  - nservicebus/containers/simpleinjector
 ---
 
+include: container-deprecation-notice
 
 NServiceBus can be configured to use [Simple Injector](https://simpleinjector.org) for dependency injection.
 

@@ -10,6 +10,8 @@ redirects:
  - nservicebus/containers/ninject
 ---
 
+include: container-deprecation-notice
+
 NServiceBus can be configured to use [Ninject](http://www.ninject.org/) for dependency injection.
 
 
