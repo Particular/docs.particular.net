@@ -9,6 +9,8 @@ related:
  - samples/dependency-injection/structuremap
 ---
 
+include: container-deprecation-notice
+
 partial: usage
 
 ## DependencyLifecycle Mapping

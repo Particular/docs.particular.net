@@ -9,6 +9,8 @@ redirects:
  - nservicebus/containers/autofac
 ---
 
+include: container-deprecation-notice
+
 partial: usage
 
 ## DependencyLifecycle mapping

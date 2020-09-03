@@ -9,6 +9,7 @@ redirects:
  - nservicebus/containers/spring
 ---
 
+include: container-deprecation-notice
 
 NServiceBus can be configured to use [Spring](https://www.springframework.net/) for dependency injection.
 

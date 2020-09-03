@@ -9,6 +9,8 @@ redirects:
  - nservicebus/containers/castle
 ---
 
+include: container-deprecation-notice
+
 partial: usage
 
 ### DependencyLifecycle Mapping

@@ -9,6 +9,8 @@ redirects:
  - nservicebus/containers/unity
 ---
 
+include: container-deprecation-notice
+
 partial: usage
 
 ## DependencyLifecycle mapping
