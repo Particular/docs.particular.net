@@ -51,6 +51,8 @@ namespace Tracing
             catch
             {
                 success = false;
+
+                throw;
             }
             finally
             {
@@ -95,6 +97,8 @@ namespace Tracing
             catch
             {
                 success = false;
+                
+                throw;
             }
             finally
             {
