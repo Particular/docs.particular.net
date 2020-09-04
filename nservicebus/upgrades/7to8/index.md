@@ -81,3 +81,13 @@ Starting in NServiceBus version 8, one of the [other methods of providing a lice
 ## Support for message forwarding
 
 NServiceBus no longer natively supports forwarding a copy of every message processed by an endpoint. Instead, create a custom behavior to forward a copy of every procesed message as described in [this sample](/samples/routing/message-forwarding).
+
+
+## NServiceBus Host
+
+The `NServiceBus.Host` package has been deprecated. See the [NServiceBus Host upgrade guide](/nservicebus/upgrades/host-7to8.md) for further details and alternatives.
+
+
+## NServiceBus Azure Host
+
+The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` have been deprecated.See the [NServiceBus Azure Host upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for further details and alternatives.
