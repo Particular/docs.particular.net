@@ -1,6 +1,6 @@
 ---
 title: Consume raw data from Metrics
-reviewed: 2019-09-16
+reviewed: 2020-09-04
 component: Metrics
 related:
  - nservicebus/operations
@@ -9,6 +9,7 @@ related:
  - samples/logging/application-insights
  - samples/logging/prometheus-grafana
  - samples/logging/new-relic
+ - samples/logging/datadog
 redirects:
  - nservicebus/operations/metrics/raw
 ---
