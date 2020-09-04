@@ -1,7 +1,7 @@
 ---
 title: Discarding Old Messages
 summary: Automatically discard messages if they have not been processed within a given period of time.
-reviewed: 2018-12-17
+reviewed: 2020-09-04
 component: Core
 related:
  - nservicebus/operations/auditing
