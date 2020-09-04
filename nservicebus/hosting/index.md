@@ -120,29 +120,6 @@ snippet: Hosting-Static
 A "Custom host" is a process or library that wraps the NServiceBus library to take partial control of configuration, startup and shutdown. This host exposes extension points for common activities and uses conventions and/or sensible defaults for many other configuration options.
 
 
-### NServiceBus host
-
-WARN: The NServiceBus host is no longer supported starting from NServiceBus version 8. It's recommended to use [self-hosting](#self-hosting) or the [Microsoft Generic Host](#microsoft-generic-host) instead.
-
-The [NServiceBus host](/nservicebus/hosting/nservicebus-host/) takes a more opinionated approach to hosting. It allows the execution as both a Windows service and a console application (for development). It also adds the concepts of [profiles](/nservicebus/hosting/nservicebus-host/profiles.md) and [custom installation](/nservicebus/hosting/nservicebus-host/installation.md).
-
-Related:
-
- * [NServiceBus Host Sample](/samples/hosting/nservicebus-host/)
-
-
-### Hosting in Azure
-
-WARN: The NServiceBus Azure Host package is no longer supported starting from NServiceBus version 8. It's recommended to use [self-hosting](#self-hosting) instead.
-
-There are multiple ways to host in Azure. Depending on the requirements, self-hosting may be an option or a custom Azure host may be required. See [Hosting in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/) for more information.
-
-Related:
-
- * [Shared Hosting in Azure Cloud Services Sample](/samples/azure/shared-host/)
- * [Self-Hosting in Azure WebJobs](/samples/azure/webjob-host/)
- 
-
 ## ILMerging NServiceBus assemblies
 
 Since NServiceBus makes assumptions on aspects like assembly names, ILMerging any of the NServiceBus* assemblies is not supported.
