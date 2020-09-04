@@ -22,6 +22,8 @@ namespace Tracing.AppInsights
 
         public void OnNext(KeyValuePair<string, object> value)
         {
+            #region ActivityProcessing
+
             var key = value.Key;
             var activity = Activity.Current;
 
@@ -44,6 +46,8 @@ namespace Tracing.AppInsights
                     operation.Dispose();
                 }
             }
+
+            #endregion
         }
 
         public void Dispose()

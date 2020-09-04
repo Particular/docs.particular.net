@@ -24,10 +24,13 @@ namespace Tracing
 
     public class TraceOutgoingMessageBehavior : Behavior<IOutgoingPhysicalMessageContext>
     {
+
         public override async Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
         {
             Activity activity = null;
             var success = true;
+
+            #region ActivityCreation
 
             if (diagnosticSource.IsEnabled(MessageTracing.SendMessage))
             {
@@ -43,6 +46,8 @@ namespace Tracing
                 //This needs to happen after StartActivity to make sure Id is initialized
                 context.Headers.Add(MessageTracing.ParentActivityIdHeaderName, activity.Id);
             }
+
+            #endregion
 
             try
             {
@@ -63,8 +68,11 @@ namespace Tracing
             }
         }
 
+        #region DiagnosticSourceDefinition
+
         static DiagnosticSource diagnosticSource = new DiagnosticListener(MessageTracing.SendMessage);
 
+        #endregion
     }
     public class TraceIncomingMessagesBehavior : Behavior<IIncomingPhysicalMessageContext>
     {

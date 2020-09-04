@@ -38,6 +38,8 @@ namespace Tracing.AppInsights
 
         public void OnNext(DiagnosticListener value)
         {
+            #region TracingListenerRegistration
+
             if (value.Name == MessageTracing.ReceiveMessage)
             {
                 var listener = new NServiceBusTracingListener(client);
@@ -46,6 +48,7 @@ namespace Tracing.AppInsights
                 subscriptions.Add(subscription);
                 listeners.Add(listener);
             }
+            #endregion
             else if (value.Name == MessageTracing.SendMessage)
             {
                 var listener = new NServiceBusTracingListener(client);
