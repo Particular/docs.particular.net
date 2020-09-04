@@ -248,46 +248,65 @@ public static class TextWriterExtensions
 			return;
 		}
 
-		output.WriteLine("| Version   | Released       | Supported until   | Notes                             |");
-		output.WriteLine("|:---------:|:--------------:|:-----------------:|:---------------------------------:|");
+		output.WriteLine("| Version   | Released       | Supported until   | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) | Notes |");
+		output.WriteLine("|:---------:|:--------------:|:-----------------:|:----------------------------------------------------------------------------------:|:-----:|");
 
 		foreach (var version in relevantVersions.OrderByDescending(version => version.First.Identity.Version))
 		{
-			var isSupported = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow || version.ExtendedSupport;
-			var open = isSupported ? "" : "~~";
-			var close = isSupported ? "" : "~~";
+            var isMainstream = !version.PatchingEnd.HasValue || version.PatchingEnd.Value > utcTomorrow;
+			var isSupported = isMainstream || version.ExtendedSupport;
+            
+            var notMainstream = !isMainstream;
+            var notSupported = !isSupported;
+
 
 			output.Write($"| ");
-			output.Write($"[{open}{version.First.Identity.Version.ToMinorString()}{close}](https://www.nuget.org/packages/{package.Id}/{version.Last.Identity.Version})".PadRight(9));
+			output.Write($"[{StrikethruIf(notSupported, version.First.Identity.Version.ToMinorString())}](https://www.nuget.org/packages/{package.Id}/{version.Last.Identity.Version})".PadRight(9));
 			output.Write($" | ");
-			output.Write($"{open}{version.First.Published.Value.UtcDateTime.Date.ToString("yyyy-MM-dd")}{close}".PadRight(14));
+			output.Write($"{StrikethruIf(notSupported, version.First.Published.Value.UtcDateTime.Date.ToString("yyyy-MM-dd"))}".PadRight(14));
 			output.Write($" | ");
-			output.Write($"{open}{version.PatchingEnd?.ToString("yyyy-MM-dd") ?? "-"}{close}".PadRight(17));
+			output.Write($"{StrikethruIf(notMainstream, version.PatchingEnd?.ToString("yyyy-MM-dd") ?? "2+ years")}".PadRight(17));
 			output.Write($" | ");
+            
+            if(version.ExtendedSupport)
+            {
+                var end = version.PatchingEnd.Value.AddYears(2);
+                output.Write($"Ends {end:yyyy-MM-dd}");
+            }
+            else if (version.PatchingEnd.HasValue)
+            {
+                output.Write("None");
+            }
+            else
+            {
+                output.Write($"4+ years");
+            }
+            output.Write($" | ");
 
-			if (version.ExtendedSupport)
-			{
-				var end = version.PatchingEnd.Value.AddYears(2);
-				output.Write($"[Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until {end:yyyy-MM-dd}");
-			}
-			else
-			{
-				// Indicate deprecated package which is a bit of an odditiy that we haven't had before, in case we have more cases like this it might make sense to generalize it
-				if (package.Id == "NServiceBus.Azure.Transports.WindowsAzureServiceBus" && version.Last.Identity.Version.Major >= 10 && version.Last.Identity.Version.Minor >= 1)
-				{
-					output.Write($"Deprecated as of 2021-05-01. ".PadRight(33));
-				}
-				else
-				{
-					output.Write($"{open}{(version.PatchingEnd.HasValue ? version.PatchingEndReason : "-")}{close}".PadRight(33));
-				}
-			}
+            // Indicate deprecated package which is a bit of an odditiy that we haven't had before, in case we have more cases like this it might make sense to generalize it
+            if (package.Id == "NServiceBus.Azure.Transports.WindowsAzureServiceBus" && version.Last.Identity.Version.Major >= 10 && version.Last.Identity.Version.Minor >= 1)
+            {
+                output.Write($"Deprecated as of 2021-05-01. ".PadRight(33));
+            }
+            else if (version.PatchingEnd.HasValue)
+            {
+                output.Write($"{StrikethruIf(notSupported, version.PatchingEndReason)}".PadRight(33));
+            }
+            else
+            {
+                output.Write($"Exact dates set on release of NServiceBus {version.CoreMajorVersion+1}.0.".PadRight(33));
+            }
 
-			output.WriteLine(" |");
+            output.WriteLine(" |");
 		}
 
 		output.WriteLine();
 	}
+    
+    private static string StrikethruIf(bool condition, string text)
+    {
+        return condition ? $"~~{text}~~" : text;
+    }
 }
 
 public static class PackageMetadataResourceExtensions
