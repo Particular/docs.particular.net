@@ -1,5 +1,5 @@
 ---
-title: Externally managed container mode usage
+title: Externally Managed Container Mode Usage
 summary: A sample that uses the NServiceBus externally managed container mode to configure a DI container.
 component: Core
 reviewed: 2020-09-04
