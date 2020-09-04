@@ -13,6 +13,11 @@ At its core NServiceBus is a library; as such it can be hosted in any .NET proce
 
 There are several approaches to hosting.
 
+## Microsoft Generic Host
+
+The [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) is the most common way to host NServiceBus on .NET Core. NServiceBus can be integrated easily wth the generic host using the [NServiceBus.Extensions.Hosting package](/nservicebus/hosting/extensions-hosting.md).
+
+
 ## Self-hosting
 
 "Self-hosting" is a general term used when the application code takes full control over all facets of hosting NServiceBus. This includes the following actions:
@@ -47,12 +52,7 @@ Related:
  * [Windows Service installation](windows-service.md)
  * [Endpoint configuration choices](/samples/endpoint-configuration/)
 
-### Generic host hosting
 
-The [generic host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) is the most common way to host NServiceBus on .NET Core.
-
-Related:
- * [Generic host](/samples/hosting/generic-host)
 
 ### Docker container hosting
 
@@ -122,6 +122,8 @@ A "Custom host" is a process or library that wraps the NServiceBus library to ta
 
 ### NServiceBus host
 
+WARN: The NServiceBus host is no longer supported starting from NServiceBus version 8. It's recommended to use [self-hosting](#self-hosting) or the [Microsoft Generic Host](#microsoft-generic-host) instead.
+
 The [NServiceBus host](/nservicebus/hosting/nservicebus-host/) takes a more opinionated approach to hosting. It allows the execution as both a Windows service and a console application (for development). It also adds the concepts of [profiles](/nservicebus/hosting/nservicebus-host/profiles.md) and [custom installation](/nservicebus/hosting/nservicebus-host/installation.md).
 
 Related:
@@ -130,6 +132,8 @@ Related:
 
 
 ### Hosting in Azure
+
+WARN: The NServiceBus Azure Host package is no longer supported starting from NServiceBus version 8. It's recommended to use [self-hosting](#self-hosting) instead.
 
 There are multiple ways to host in Azure. Depending on the requirements, self-hosting may be an option or a custom Azure host may be required. See [Hosting in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/) for more information.
 
