@@ -2,7 +2,7 @@
 title: Monitor with ServiceControl events
 summary: A sample showing how to monitor events in ServiceControl
 component: ServiceControlContracts
-reviewed: 2018-12-18
+reviewed: 2020-09-04
 related:
  - servicecontrol
  - servicecontrol/contracts
