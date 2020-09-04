@@ -12,11 +12,12 @@ redirects:
  - nservicebus/property-injection-in-handlers
 ---
 
+WARN: Starting with NServiceBus version 8, the `NServiceBus.Extensions.DependencyInjection` package is no longer required. NServiceBus directly supports the `Microsoft.Extensions.DependencyInjection.Abstractions` model via the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode). Visit the [dependency injection upgrade guide](/nservicebus/upgrades/7to8/dependency-injection.md) for further information.
+
 The `NServiceBus.Extensions.DependencyInjection` package provides integration with the `Microsoft.Extensions.DependencyInjection` dependency injection abstraction.
 
 NOTE: It's recommended to use [Microsoft's generic host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) to manage application and dependency injection container lifecycle. Use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package to host an NServiceBus endpoint with the generic host.
 
-WARN: `IServiceCollection` and `IServiceProvider` instances must not be shared across mutliple NServiceBus endpoints to avoid conflicting registration that might cause incorrect behavior or runtime errors.
 
 ## Usage with ServiceCollection
 
@@ -71,3 +72,5 @@ The `NServiceBus.Extensions.DependencyInjection` package does not support proper
 The package allows the container to be used in [externally managed mode](/nservicebus/dependency-injection/#externally-managed-mode) for full control of the dependency injection container via the `EndpointWithExternallyManagedServiceProvider` extension point:
 
 snippet: externally-managed-mode
+
+WARN: `IServiceCollection` and `IServiceProvider` instances must not be shared across mutliple NServiceBus endpoints to avoid conflicting registration that might cause incorrect behavior or runtime errors.
