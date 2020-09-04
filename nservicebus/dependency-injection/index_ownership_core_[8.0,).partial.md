@@ -78,3 +78,7 @@ NOTE: Refer to the container's documentation on how to use the container with th
 Note: The session is only valid for use after the endpoint have been started, so it is provided as `Lazy<IMessageSession>`.
 
 [This sample](/samples/dependency-injection/extensions-dependency-injection/) demonstrates how to register the message session.
+
+## Microsoft Generic Host
+
+When hosting NServiceBus with the [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) using the `NServiceBus.Extensions.Hosting` package, refer to the [configure custom containers documentation](/nservicebus/hosting/extensions-hosting.md#dependency-injection-integration-configure-custom-containers) for further details.

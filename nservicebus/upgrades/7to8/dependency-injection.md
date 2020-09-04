@@ -19,15 +19,59 @@ The following adapter packages will no longer be provided:
 * [Ninject](/nservicebus/dependency-injection/ninject.md)
 * [Unity](/nservicebus/dependency-injection/unity.md)
 
-Instead of the container adapter packages, use the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode) to use a third party dependency injection container. See the [migrating to externally managed mode](#externally-managed-container-mode-migrating-to-externally-managed-mode) section for examples using common dependency injection containers.
+Instead of the container adapter packages, use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package or the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode) to use a third party dependency injection container. See the [migrating to the Generic Host](#microsoft-generic-host) or [migrating to externally managed mode](#externally-managed-container-mode) sections for further information.
 
 ## Property injection
 
-Property injection is not covered by `Microsoft.Extensions.DependencyInjection.Abstractions`, therefore the NServiceBus default dependency injection container does not support property injection anymore. Property injection might be supported by third party containers that can be enabled using the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode).
+Property injection is not covered by `Microsoft.Extensions.DependencyInjection.Abstractions`, therefore the NServiceBus default dependency injection container does not support property injection anymore. Property injection might be supported by third party containers.
 
 ## UseContainer is deprecated
 
 The `UseContainer` API to integrate third party containers with NServiceBus has been removed as it does not align with the `Microsoft.Extensions.DependencyInjection.Abstractions` model. To use a custom dependency injection container with NServiceBus, use the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode).
+
+## Microsoft Generic Host
+
+NServiceBus integrates with the [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) and automatically uses the host's managed dependency injection container. Most third party dependency injection containers support the Generic Host.
+
+### Migrating to the Generic Host
+
+To host NServiceBus as part of the Generic Host, install the `NServiceBus.Extensions.Hosting` NuGet package and refer to the [documentation](/nservicebus/hosting/extensions-hosting.md) for further details. Refer to the container's documentation for configuration instructions. By default, the Generic Host uses the [Microsoft.Extensions.DependencyInjection] container. See the following examples on how to integrate common DI containers with the generic host. Other supported DI containers are listed on the [official documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection1#default-service-container-replacement).
+
+#### Autofac
+
+The snippet shows how to configure Autofac using the `Autofac.Extensions.DependencyInjection` NuGet package:
+
+```csharp
+Host.CreateDefaultBuilder(args)
+    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+    .UseNServiceBus(...)
+    ...
+    .Build();
+```
+
+#### Lamar
+
+The snippet shows how to configure Lamar using the `Lamar.Microsoft.DependencyInjection` NuGet package:
+
+```csharp
+Host.CreateDefaultBuilder(args)
+    .UseLamar()
+    .UseNServiceBus(...)
+    ...
+    .Build();
+```
+
+#### Unity
+
+The snippet shows how to configure Unity using the `Unity.Microsoft.DependencyInjection` NuGet package:
+
+```csharp
+Host.CreateDefaultBuilder(args)
+    .UseUnityServiceProvider()
+    .UseNServiceBus(...)
+    ...
+    .Build();
+```
 
 ## Externally managed container mode
 
@@ -101,3 +145,4 @@ var container = new WindsorContainer();
 var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(container, serviceCollection);
 var endpointInstance = await startableEndpoint.Start(serviceProvider);
 ```
+
