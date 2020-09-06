@@ -7,11 +7,11 @@ related:
 reviewed: 2020-08-24
 ---
 
-Host NServiceBus endpoints with [AWS Lambda](https://aws.amazon.com/lambda/) using [Simple Queue Service](https://aws.amazon.com/sqs/) as a trigger.
+Host NServiceBus endpoints with [AWS Lambda](https://aws.amazon.com/lambda/) using the [Simple Queue Service](https://aws.amazon.com/sqs/) as a trigger.
 
 ## Basic usage
 
-Setting up AWS Lambda endpoint requires instantiating an `AwsLambdaSQSEndpoint` instance and calling the `Process` method from within an AWS Lambda definition.
+Setting up an NServiceBus endpoint with AWS Lambda requires instantiating an `AwsLambdaSQSEndpoint` instance and calling the `Process` method from within an AWS Lambda definition.
 
 ### AwsLambdaSQSEndpoint creation
 
