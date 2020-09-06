@@ -23,7 +23,7 @@ Since the initial cost of starting an `AwsLambdaSQSEndpoint` endpoint can be hig
 
 ### AWS Lambda definition
 
-`AwsLambdaSQSEndpoint.Process` should be invoked inside the function handler:
+The `AwsLambdaSQSEndpoint.Process` method should be invoked inside the function handler:
 
 snippet: function-definition
 
