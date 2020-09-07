@@ -29,7 +29,7 @@ snippet: function-definition
 
 ### Queue creation
 
-Transport installers are not supported. The required queues will have to be [provisioned manually](/transports/sqs/operations-scripting.md#create-resources).
+Transport installers are not supported. The creation of the required queues can be scripted via the [CLI](/transports/sqs/operations-scripting.md#create-resources).
 
 ## Configuration
 
