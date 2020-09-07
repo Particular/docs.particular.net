@@ -22,7 +22,7 @@ It does not discuss the transaction isolation aspect. Transaction isolation appl
 
 ## Transactions
 
-Four levels of guarantees with regards to message processing are offered. A levels availability depends on the selected transport.
+Four levels of guarantees with regards to message processing are offered. A level's availability depends on the selected transport.
 
 
 ### Transaction levels supported by NServiceBus transports
@@ -76,7 +76,7 @@ partial: native
 
 ### Unreliable (Transactions Disabled)
 
-Disabling transactions is generally not recommended, because it might lead to the message loss. It might be considered if losing some messages is not problematic and if the messages get outdated quickly, e.g. when sending readings from sensors at regular intervals.
+Disabling transactions is generally not recommended, because it might lead to message loss. It might be considered if losing some messages is not problematic and if the messages get outdated quickly, e.g. when sending readings from sensors at regular intervals.
 
 DANGER: In this mode, when encountering a critical failure such as system or endpoint crash, the message is **permanently lost**.
 
@@ -96,7 +96,7 @@ When using the Outbox, any messages resulting from processing a given received m
 
 ## Avoiding partial updates
 
-In transaction modes lower than [TransactionScope](#transactions-transaction-scope-distributed-transaction) there is a risk of partial updates because one handler might succeed in updating business data while another handler fails. To avoid this configure NServiceBus to wrap all handlers in a `TransactionScope` that will act as a unit of work and make sure that there is no partial updates. Use following code to enable a wrapping scope:
+In transaction modes lower than [TransactionScope](#transactions-transaction-scope-distributed-transaction) there is a risk of partial updates because one handler might succeed in updating business data while another handler fails. To avoid this configure NServiceBus to wrap all handlers in a `TransactionScope` that will act as a unit of work and make sure that there are no partial updates. Use the following code to enable a wrapping scope:
 
 snippet: TransactionsWrapHandlersExecutionInATransactionScope
 
