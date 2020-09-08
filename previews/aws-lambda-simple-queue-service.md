@@ -69,7 +69,7 @@ snippet: configure-dont-move-to-error
 
 ### Serializer
 
-By default, an AWS Lambda endpoint will use [Json.Net Serializer](/nservicebus/serialization/newtonsoft). This can be changed using:
+By default, an AWS Lambda endpoint will use [Json.Net Serializer](/nservicebus/serialization/newtonsoft/index.md). This can be changed using:
 
 snippet: custom-serializer
 
