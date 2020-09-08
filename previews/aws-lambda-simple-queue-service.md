@@ -55,7 +55,7 @@ If the time increase is expected to be greater than [15 minutes](/transports/sqs
 
 snippet: unrestricted-delayed-delivery
 
-Note: The queues required for unrestricted delayed delivery have to be [provisioned manually](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery-manual-fifo-queue-creation) since Transport Installers are not supported for AWS Lambdas.
+Note: Automatic creation of the required queues for unrestricted delayed delivery is not supported. The creation of the required queues can be scripted via the [CLI](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery-manual-fifo-queue-creation).
 
 ### Error queue
 
