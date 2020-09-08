@@ -29,6 +29,41 @@ Property injection is not covered by `Microsoft.Extensions.DependencyInjection.A
 
 The `UseContainer` API to integrate third party containers with NServiceBus has been removed as it does not align with the `Microsoft.Extensions.DependencyInjection.Abstractions` model. To use a custom dependency injection container with NServiceBus, use the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode).
 
+## RegisterComponents changes
+
+The `EndpointConfiguration.RegisterComponents` API now provides access to the underlying `IServiceCollection`. The registration methods formerly provided by `IConfigureComponents` are available as extension methods to simplify migration. However, it is recommended to use to the official `IServiceCollection` registration API instead. 
+
+The NServiceBus `DependencyLifecycle` can be mapped directly to the ServiceDescriptor `ServiceLifetime`:
+
+| DependencyLifecycle   | ServiceLifetime |
+| --------------------- | --------------- |
+| InstancePerCall       | Transient       |
+| SingleInstance        | Singleton       |
+| InstancePerUnitOfWork | Scoped          |
+
+for example, instead of 
+
+```
+endpointConfiguration.RegisterComponents(s => 
+    s.ConfigureComponent<MyService>(DependencyLifecyle.InstancePerCall));
+```
+
+use 
+
+```
+endpointConfiguration.RegisterComponents(s => s.AddTransient<MyService>());
+```
+
+`ConfigureComponents` automatically registeres all interfaces of a given type. The `IServiceCollection.Add` methods do not register interfaces. Instead, forward additional registration to a type as following:
+
+```
+endpointConfiguration.RegisterComponents(s => {
+    s.AddSingleton<MyService>(); // MyService implements both IServiceA and IServiceB interfaces
+    s.AddSingleton<IServiceA>(serviceProvider => serviceProvider.GetService<MyService>());
+    s.AddSingleton<IServiceB>(serviceProvider => serviceProvider.GetService<MyService>());
+});
+```
+
 ## Microsoft Generic Host
 
 NServiceBus integrates with the [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) and automatically uses the host's managed dependency injection container. Most third party dependency injection containers support the Generic Host.

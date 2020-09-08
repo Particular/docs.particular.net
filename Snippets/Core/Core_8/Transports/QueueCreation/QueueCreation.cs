@@ -2,6 +2,7 @@
 namespace Core8.Transports.QueueCreation
 {
     using System.Threading.Tasks;
+    using Microsoft.Extensions.DependencyInjection;
     using NServiceBus;
     using NServiceBus.Transport;
 
@@ -11,11 +12,10 @@ namespace Core8.Transports.QueueCreation
         {
             #region RegisteringTheQueueCreator
 
-            configuration.RegisterComponents(
-                registration: components =>
-                {
-                    components.ConfigureComponent<YourQueueCreator>(DependencyLifecycle.InstancePerCall);
-                });
+            configuration.RegisterComponents(serviceCollection =>
+            {
+                serviceCollection.AddTransient<ICreateQueues, YourQueueCreator>();
+            });
 
             #endregion
         }

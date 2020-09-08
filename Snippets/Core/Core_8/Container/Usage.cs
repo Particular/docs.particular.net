@@ -1,5 +1,6 @@
 ﻿namespace Core8.Container
 {
+    using Microsoft.Extensions.DependencyInjection;
     using NServiceBus;
 
     class Usage
@@ -11,7 +12,7 @@
             endpointConfiguration.RegisterComponents(
                 registration: configureComponents =>
                 {
-                    configureComponents.ConfigureComponent<MyService>(DependencyLifecycle.InstancePerCall);
+                    configureComponents.AddTransient<MyService>();
                 });
 
             #endregion
@@ -24,12 +25,7 @@
             endpointConfiguration.RegisterComponents(
                 registration: configureComponents =>
                 {
-                    configureComponents.ConfigureComponent(
-                        componentFactory: () =>
-                        {
-                            return new MyService();
-                        },
-                        dependencyLifecycle: DependencyLifecycle.InstancePerCall);
+                    configureComponents.AddTransient(serviceProvider => new MyService());
                 });
 
             #endregion
@@ -42,7 +38,7 @@
             endpointConfiguration.RegisterComponents(
                 registration: configureComponents =>
                 {
-                    configureComponents.ConfigureComponent<MyService>(DependencyLifecycle.InstancePerUnitOfWork);
+                    configureComponents.AddScoped<MyService>();
                 });
 
             #endregion
@@ -55,12 +51,7 @@
             endpointConfiguration.RegisterComponents(
                 registration: configureComponents =>
                 {
-                    configureComponents.ConfigureComponent(
-                        componentFactory: () =>
-                        {
-                            return new MyService();
-                        },
-                        dependencyLifecycle: DependencyLifecycle.InstancePerUnitOfWork);
+                    configureComponents.AddScoped(serviceProvider => new MyService());
                 });
 
             #endregion
@@ -73,7 +64,7 @@
             endpointConfiguration.RegisterComponents(
                 registration: configureComponents =>
                 {
-                    configureComponents.ConfigureComponent<MyService>(DependencyLifecycle.SingleInstance);
+                    configureComponents.AddSingleton<MyService>();
                 });
 
             #endregion
@@ -86,29 +77,10 @@
             endpointConfiguration.RegisterComponents(
                 registration: configureComponents =>
                 {
-                    configureComponents.ConfigureComponent(
-                        componentFactory: () =>
-                        {
-                            return new MyService();
-                        },
-                        dependencyLifecycle: DependencyLifecycle.SingleInstance);
+                    configureComponents.AddSingleton(serviceProvider => new MyService());
                 });
 
             #endregion
         }
-
-        void RegisterSingleton(EndpointConfiguration endpointConfiguration)
-        {
-            #region RegisterSingleton
-
-            endpointConfiguration.RegisterComponents(
-                registration: configureComponents =>
-                {
-                    configureComponents.RegisterSingleton(new MyService());
-                });
-
-            #endregion
-        }
-
     }
 }
