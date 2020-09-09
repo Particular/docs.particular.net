@@ -85,9 +85,9 @@ NServiceBus no longer natively supports forwarding a copy of every message proce
 
 ## NServiceBus Host
 
-The `NServiceBus.Host` package has been deprecated. See the [NServiceBus Host upgrade guide](/nservicebus/upgrades/host-7to8.md) for further details and alternatives.
+The `NServiceBus.Host` package is deprecated. See the [NServiceBus Host upgrade guide](/nservicebus/upgrades/host-7to8.md) for details and alternatives.
 
 
 ## NServiceBus Azure Host
 
-The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` have been deprecated.See the [NServiceBus Azure Host upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for further details and alternatives.
+The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are deprecated.See the [NServiceBus Azure Host upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for details and alternatives.
