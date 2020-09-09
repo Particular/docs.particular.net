@@ -79,7 +79,7 @@ License text may be specified using an environment variable, which may be update
 
 snippet: load-license-file
 
-The environment variable may be updating by [configuring environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html) for the lambda.
+The environment variable may be updated by [configuring environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html) for the lambda.
 
 ## Supported features
 
