@@ -31,7 +31,7 @@ The `UseContainer` API to integrate third party containers with NServiceBus has 
 
 ## RegisterComponents changes
 
-The `EndpointConfiguration.RegisterComponents` API now provides access to the underlying `IServiceCollection`. The registration methods formerly provided by `IConfigureComponents` are available as extension methods to simplify migration. However, it is recommended to use to the official `IServiceCollection` registration API instead. 
+The `EndpointConfiguration.RegisterComponents` API now provides access to the underlying `IServiceCollection`. The registration methods formerly provided by `IConfigureComponents` are available as extension methods to simplify migration. However, it is recommended to use the official `IServiceCollection` registration API instead. 
 
 The NServiceBus `DependencyLifecycle` can be mapped directly to the ServiceDescriptor `ServiceLifetime`:
 
@@ -54,7 +54,7 @@ use
 endpointConfiguration.RegisterComponents(s => s.AddTransient<MyService>());
 ```
 
-`ConfigureComponents` automatically registeres all interfaces of a given type. The `IServiceCollection.Add` methods do not register interfaces. Instead, forward additional registration to a type as following:
+`ConfigureComponents` automatically registers all interfaces of a given type. The `IServiceCollection.Add` methods do not register interfaces. Instead, forward additional registration to a type as follows:
 
 ```
 endpointConfiguration.RegisterComponents(s => {
@@ -180,4 +180,3 @@ var container = new WindsorContainer();
 var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(container, serviceCollection);
 var endpointInstance = await startableEndpoint.Start(serviceProvider);
 ```
-
