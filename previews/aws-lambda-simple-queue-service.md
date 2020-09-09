@@ -51,7 +51,7 @@ snippet: custom-diagnostics
 
 snippet: delayed-retries
 
-If the time increase is expected to be greater than [15 minutes](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery), it will be required to enable `UnrestrictedDurationDelayedDelivery` on the endpoint:
+If the time increase is expected to be greater than [15 minutes](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery), `UnrestrictedDurationDelayedDelivery` must be enabled on the endpoint:
 
 snippet: unrestricted-delayed-delivery
 
@@ -89,7 +89,7 @@ The `AwsLambdaSQSEndpoint` class supports the full featureset of NServiceBus, in
 * Recoverability
 * Publish / Subscribe
 
-A persistence is required to use some of these features.
+A [persister](/persistence) is required to use some of these features.
 
 ### Transactionality
 
