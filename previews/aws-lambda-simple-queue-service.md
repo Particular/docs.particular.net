@@ -4,84 +4,86 @@ component: SQSLambda
 summary: Hosting NServiceBus endpoints with AWS Lambda triggered by Simple Queue Service
 related:
  - samples/previews/aws-lambda/sqs
-reviewed: 2020-08-24
+reviewed: 2020-09-08
 ---
 
 Host NServiceBus endpoints with [AWS Lambda](https://aws.amazon.com/lambda/) using the [Simple Queue Service](https://aws.amazon.com/sqs/) as a trigger.
 
 ## Basic usage
 
-Setting up an NServiceBus endpoint with AWS Lambda requires instantiating an `AwsLambdaSQSEndpoint` instance and calling the `Process` method from within an AWS Lambda definition.
+An NServiceBus endpoint is hosted in AWS Lambda by creating an `AwsLambdaSQSEndpoint` instance and calling the `Process` method from within an AWS Lambda definition.
 
-### AwsLambdaSQSEndpoint creation
+### `AwsLambdaSQSEndpoint` creation
 
-The endpoint should be configured and instantiated as a `static` field, making sure that it's created only once when the lambda is first called:
+The endpoint should be instantiated only once, when the lambda is first called, and assigned to a `static` field:
 
 snippet: endpoint-creation
 
-Since the initial cost of starting an `AwsLambdaSQSEndpoint` endpoint can be high, it is recommended to [configure the lambda's concurrency](https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html) to ensure that cold starts are minimized.
+Since the cost of starting an `AwsLambdaSQSEndpoint` endpoint can be high, it is recommended to [configure the lambda's concurrency](https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html) to minimize cold starts.
 
-### AWS Lambda definition
+### Calling the `Process` method
 
-The `AwsLambdaSQSEndpoint.Process` method should be invoked inside the function handler:
+The `AwsLambdaSQSEndpoint.Process` method is invoked inside the function handler:
 
 snippet: function-definition
 
 ### Queue creation
 
-Transport installers are not supported. The creation of the required queues can be scripted via the [CLI](/transports/sqs/operations-scripting.md#create-resources).
+Transport installers are not supported. The creation of the required queues may be scripted using the [CLI](/transports/sqs/operations-scripting.md#create-resources).
 
 ## Configuration
 
 ### Routing
 
-[Command routing](/nservicebus/messaging/routing.md#command-routing) for AWS Lambda endpoint can be specified with the following API: 
+Specifying [command routing](/nservicebus/messaging/routing.md#command-routing) for an AWS Lambda endpoint:
 
 snippet: configure-routing
 
 ### Diagnostics
 
-[NServiceBus startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) are disabled by default when using AWS Lambdas. Diagnostics can be written to the logs via the following snippet:
+[NServiceBus startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) are disabled by default when using AWS Lambda. Diagnostics may be enabled as follows:
 
 snippet: custom-diagnostics
 
 ### Delayed Retries
 
-[Delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) are disabled by default when using AWS Lambdas. Delayed retries can be configured using the following snippet:
+[Delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) are disabled by default when using AWS Lambdas. Delayed retries may be enabled as follows:
 
 snippet: delayed-retries
 
-If the time increase is expected to be greater than [15 minutes](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery), `UnrestrictedDurationDelayedDelivery` must be enabled on the endpoint:
+If the accumulated time increase is expected to be greater than [15 minutes](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery), `UnrestrictedDurationDelayedDelivery` must be enabled:
 
 snippet: unrestricted-delayed-delivery
 
-Note: Automatic creation of the required queues for unrestricted delayed delivery is not supported. The creation of the required queues can be scripted via the [CLI](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery-manual-fifo-queue-creation).
+Note: Automatic creation of the required queues for unrestricted delayed delivery is not supported. The creation of the required queues may be scripted using the [CLI](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery-manual-fifo-queue-creation).
 
 ### Error queue
 
-Continuously failing messages are moved to the error queue that must be defined with the following API:
+Messages which fail all retries are moved to the error queue, which must be defined as follows:
 
 snippet: configure-error-queue
 
-It is posible to configure AWS Lambda endpoint to never move failing messages to the error queue with:
+Alternatively, the endpoint may be configured to never move failing messages to the error queue as follows:
 
 snippet: configure-dont-move-to-error
 
 ### Serializer
 
+There is no default [serializer](/nservicebus/serialization), so one must be configured. For example:
+
 snippet: custom-serializer
 
 ### Licenses
 
-License information can be specified using Environment Variables so that license details can be updated at runtime.
+License text may be specified using an environment variable, which may be updated during runtime.
 
 snippet: load-license-file
 
-Updating the environment variable can be done by [configuring the environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html) for the lambda.
+The environment variable may be updated by [configuring environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html) for the lambda.
 
 ## Supported features
 
-The `AwsLambdaSQSEndpoint` class supports the full featureset of NServiceBus, including:
+The `AwsLambdaSQSEndpoint` class supports the full feature set of NServiceBus including:
 
 * Outbox
 * Sagas
@@ -89,8 +91,8 @@ The `AwsLambdaSQSEndpoint` class supports the full featureset of NServiceBus, in
 * Recoverability
 * Publish / Subscribe
 
-A [persister](/persistence) is required to use some of these features.
+[Persistence](/persistence) is required to use some of these features.
 
-### Transactionality
+### Transactions
 
-As the `AwsLambdaSQSEndpoint` uses the `SqsTransport`, it only supports Receive Only, or Disabled transaction modes.
+As the `AwsLambdaSQSEndpoint` uses the `SqsTransport`, it only supports the Receive Only and Disabled [transaction modes](/transports/transactions.md).
