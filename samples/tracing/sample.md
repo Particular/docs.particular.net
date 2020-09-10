@@ -15,7 +15,7 @@ related:
 
 Running the sample requires an Application Insights resource. The [Instrumentation Key](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-resources-app-insights-keys?view=azure-bot-service-4.0#instrumentation-key) must be provided by setting the `ApplicationInsightsKey` environment variable.
 
-After starting the sample, pressing <kbd>Enter</kbd> sends an `InitialCommand`. When that command is handled, a `FollowUpEvent` is published. Trace data for both actions is pushed to Application Insights and available as an [end-to-end transaction](https://docs.microsoft.com/en-us/azure/azure-monitor/app/transaction-diagnostics#transaction-diagnostics-experience) trace:
+After starting the sample, pressing <kbd>Enter</kbd> sends an `InitialCommand`. When that command is handled, a `FollowUpEvent` is published. Trace data for both actions is pushed to Application Insights and available on the [transaction diagnostics](https://docs.microsoft.com/en-us/azure/azure-monitor/app/transaction-diagnostics#transaction-diagnostics-experience) pane:
 
 NOTE: It may take [a couple of minutes](https://github.com/MicrosoftDocs/azure-docs/issues/14183) before the data is available on the dashboard.
 
