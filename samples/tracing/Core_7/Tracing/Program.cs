@@ -85,7 +85,7 @@ namespace Tracing
 
         static string GetAppInsightsInstrumentationKey()
         {
-            var envInstrumentationKey = "ApplicationInsightKey";
+            var envInstrumentationKey = "ApplicationInsightsKey";
             var instrumentationKey = Environment.GetEnvironmentVariable(envInstrumentationKey);
 
             if (string.IsNullOrEmpty(instrumentationKey))
