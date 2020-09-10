@@ -6,13 +6,13 @@ In *internally managed* mode, NServiceBus manages the entire lifecycle of the co
 
 ### Built-in default container
 
-NServiceBus has a built-in default container with an API for registration of user types. The following dependency lifecycles are supported:
+NServiceBus has a built-in default container that supports the `Microsoft.Extensions.DependencyInjection.Abstractions` model. Custom services can be registered via the `IServiceCollection` API.
 
 #### Instance per call
 
 A new instance will be returned for each call.
 
-Represented by the enum value `DependencyLifecycle.InstancePerCall`.
+Represented by the enum value `ServiceLifetime.Transient`.
 
 snippet: InstancePerCall
 
@@ -24,7 +24,7 @@ snippet: DelegateInstancePerCall
 
 The instance will be a singleton for the duration of the [unit of work](/nservicebus/pipeline/unit-of-work.md). In practice this means the processing of a single transport message.
 
-Represented by the enum value `DependencyLifecycle.InstancePerUnitOfWork`.
+Represented by the enum value `ServiceLifetime.Scoped`.
 
 snippet: InstancePerUnitOfWork
 
@@ -36,19 +36,15 @@ snippet: DelegateInstancePerUnitOfWork
 
 The same instance will be returned each time.
 
-Represented by the enum value `DependencyLifecycle.SingleInstance`.
+Represented by the enum value `ServiceLifetime.Singleton`.
 
-WARNING: `SingleInstance` components that have dependencies that are scoped `InstancePerCall` or `InstancePerUnitOfWork` will still resolve. In effect, these dependencies, while not scoped as `SingleInstance`, will behave as if they are `SingleInstance` because the instances will exist inside the parent component.
+WARNING: Singleton components that have dependencies that are scoped `Transient` or `Scoped` will still resolve. In effect, these dependencies, while not scoped as `SingleInstance`, will behave as if they are `Singleton` because the instances will exist inside the parent component.
 
 snippet: SingleInstance
 
 or using a delegate:
 
 snippet: DelegateSingleInstance
-
-or using the explicit singleton API:
-
-snippet: RegisterSingleton
 
 ### Using a third party containers
 

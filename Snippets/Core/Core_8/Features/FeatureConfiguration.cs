@@ -3,6 +3,7 @@ namespace Core8.Features
 {
     using System;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.DependencyInjection;
     using NServiceBus;
     using NServiceBus.Features;
     using NServiceBus.Pipeline;
@@ -16,7 +17,7 @@ namespace Core8.Features
         {
             var configurationValue = context.Settings.Get<string>("Key");
 
-            context.Container.RegisterSingleton(new MessageHandlerDependency());
+            context.Services.AddSingleton(new MessageHandlerDependency());
 
             context.Pipeline.Register(new CustomBehavior(configurationValue), "custom pipeline behavior");
         }

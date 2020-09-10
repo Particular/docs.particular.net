@@ -1,6 +1,7 @@
 ﻿namespace Core8.DataBus.Custom
 {
-    using NServiceBus;
+    using Microsoft.Extensions.DependencyInjection;
+    using NServiceBus.DataBus;
     using NServiceBus.Features;
 
     #region CustomDataBusFeature
@@ -14,7 +15,7 @@
         protected override void Setup(FeatureConfigurationContext context)
         {
             var dataBus = new CustomDataBus();
-            context.Container.ConfigureComponent(b => dataBus, DependencyLifecycle.SingleInstance);
+            context.Services.AddSingleton<IDataBus>(dataBus);
         }
     }
     #endregion

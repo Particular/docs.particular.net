@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.DependencyInjection;
     using NServiceBus;
     using NServiceBus.UnitOfWork;
 
@@ -14,7 +15,7 @@
             endpointConfiguration.RegisterComponents(
                 registration: components =>
                 {
-                    components.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerUnitOfWork);
+                    components.AddScoped<IManageUnitsOfWork, MyUnitOfWork>();
                 });
 
             #endregion
