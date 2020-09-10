@@ -21,7 +21,7 @@ END
 
 CREATE TABLE {0} (
     QueueAddress NVARCHAR(200) NOT NULL,
-    Endpoint NVARCHAR(200),
+    Endpoint NVARCHAR(200) NOT NULL,
     Topic NVARCHAR(200) NOT NULL,
     PRIMARY KEY CLUSTERED
     (
