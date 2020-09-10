@@ -23,7 +23,7 @@ Instead of the container adapter packages, use the [NServiceBus.Extensions.Hosti
 
 ## Property injection
 
-Property injection is not covered by `Microsoft.Extensions.DependencyInjection.Abstractions`, therefore the NServiceBus default dependency injection container does not support property injection anymore. Property injection might be supported by third party containers.
+Property injection is not covered by `Microsoft.Extensions.DependencyInjection.Abstractions`. Therefore, the NServiceBus default dependency injection container no longer supports property injection. Property injection might still be supported by third party containers.
 
 ## UseContainer is deprecated
 
@@ -70,7 +70,7 @@ NServiceBus integrates with the [Microsoft Generic Host](https://docs.microsoft.
 
 ### Migrating to the Generic Host
 
-To host NServiceBus as part of the Generic Host, install the `NServiceBus.Extensions.Hosting` NuGet package and refer to the [documentation](/nservicebus/hosting/extensions-hosting.md) for further details. Refer to the container's documentation for configuration instructions. By default, the Generic Host uses the [Microsoft.Extensions.DependencyInjection] container. See the following examples on how to integrate common DI containers with the generic host. Other supported DI containers are listed on the [official documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection1#default-service-container-replacement).
+To host NServiceBus as part of the Generic Host, install the `NServiceBus.Extensions.Hosting` NuGet package and refer to the [documentation](/nservicebus/hosting/extensions-hosting.md) for further details. Refer to the container's documentation for configuration instructions. By default, the Generic Host uses the [Microsoft.Extensions.DependencyInjection] container. See the following examples on how to integrate common DI containers with the generic host. Other supported DI containers are listed in the [official documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection1#default-service-container-replacement).
 
 #### Autofac
 
