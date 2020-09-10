@@ -43,7 +43,7 @@ namespace Tracing
 
                 diagnosticSource.StartActivity(activity, context.Headers);
 
-                //This needs to happen after StartActivity to make sure Id is initialized
+                // This must happen after StartActivity to ensure the Id is initialized
                 context.Headers.Add(MessageTracing.ParentActivityIdHeaderName, activity.Id);
             }
 
