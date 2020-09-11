@@ -1285,3 +1285,10 @@
     Articles:
     - Title: NServiceBus.AwsLambda.Sqs
       Url: previews/aws-lambda-simple-queue-service
+  - Title: Cosmos DB
+    Url: previews/cosmosdb
+    Articles:
+    - Title: Transactions
+      Url: previews/cosmosdb/transactions
+    - Title: Local Outbox
+      Url: previews/cosmosdb/localoutbox
