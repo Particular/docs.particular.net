@@ -1,0 +1,58 @@
+---
+title: Transactions in Azure Cosmos DB persistence
+component: cosmosdb
+related:
+- samples/previews/cosmosdb/physicalbehavior
+- samples/previews/cosmosdb/logicalbehavior
+reviewed: 2020-09-11
+---
+
+By default, the persister does not attempt to atomically commit saga data and/or business data. Through the use of the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
+
+A custom ['Behavior'](/nservicebus/pipeline/manipulate-with-behaviors) must be introduced to identify and insert the [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) value into the pipeline context for use by storage operations that occur during the processing of a given message.
+
+WARN: Do not use a message mutator to identify the PartitionKey. Message mutators do not offer the necessary control or timing to reliably interact with this persistance.
+
+There are 2 options for which stage to choose to introduce the custom behavior:
+
+## `ITransportReceiveContext` stage
+
+This is the earliest stage in the message processing pipeline. At this stage only the headers and a byte array representation of the message body are available. 
+
+snippet: ITransportReceiveContextBehavior
+
+### Interaction with Outbox
+
+This stage occurs before the Outbox feature behaviors are executed. Identifying the [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) this stage allows the Outbox feature to work entirely as intended. In the case where the PartitionKey cannot be identified using only the message headers, a behavior in the `IIncomingLogicalMessageContext` stage can be introduced instead.
+
+## `IIncomingLogicalMessageContext` stage
+
+This is the first stage in the pipeline that allows access to the deserialized message body. At this stage both the message headers and deserialized message object are available.
+
+snippet: IIncomingLogicalMessageContextBehavior
+
+### Interaction with Outbox
+
+This stage occurs after the Outbox feature behaviors are executed. To preserve most Outbox functionality in this case, this persistance introduces a [new `LogicalOutboxBehavior`](logicaloutbox.md) in the same `IIncomingLogicalMessageContext` stage as the custom behavior. As a result, the custom behavior must be inserted into the pipeline _before_ the LogicalOutboxBehavior.
+
+To specify the ordering:
+
+snippet: InsertBeforeLogicalOutbox
+
+To register the behavior:
+
+snippet: CosmosDBRegisterLogicalBehavior
+
+WARN: Caution must be used when custom behaviors have been introduced in the pipeline that [dispatch messages immediately](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately). If these behaviors execute before the [`LogicalOutboxBehavior`](logicaloutbox.md) the [Outbox message guarantees](/nservicebus/outbox/#how-it-works) may be broken.
+
+## Sharing the transaction
+
+Once a behavior is introduced to identify the partition key for a given message, it is possible to share a Cosmos DB transactional batch between both the Saga persistence and business data. The shared transaction can then be used to persist document updates for both concerns atomically.
+
+To use the shared transaction in a message handler:
+
+snippet: CosmosDBHandlerSharedTransaction
+
+#### Testing
+
+The `TestableCosmosSynchronizedStorageSession` class in the `NServiceBus.Testing` namespace has been provided to facilitate [testing a handler](/nservicebus/testing/) that utilizes the shared transaction feature.
