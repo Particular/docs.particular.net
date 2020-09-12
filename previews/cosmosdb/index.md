@@ -4,7 +4,7 @@ component: cosmosdb
 reviewed: 2020-09-11
 ---
 
-Uses the [Azure Cosmos DB NoSQL database] for storage.
+Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) NoSQL database service for storage.
 
 ## Supported persistence types
 
