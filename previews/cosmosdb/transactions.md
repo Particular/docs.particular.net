@@ -2,8 +2,6 @@
 title: Transactions in Azure Cosmos DB persistence
 component: cosmosdb
 related:
-- samples/previews/cosmosdb/physicalbehavior
-- samples/previews/cosmosdb/logicalbehavior
 - nservicebus/outbox
 reviewed: 2020-09-11
 ---

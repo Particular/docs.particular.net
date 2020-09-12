@@ -1,8 +1,6 @@
 ---
 title: Azure Cosmos DB Persistence
 component: cosmosdb
-related:
-- samples/previews/cosmosdb/simple
 reviewed: 2020-09-11
 ---
 

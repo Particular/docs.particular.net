@@ -1290,5 +1290,3 @@
     Articles:
     - Title: Transactions
       Url: previews/cosmosdb/transactions
-    - Title: Local Outbox
-      Url: previews/cosmosdb/localoutbox
