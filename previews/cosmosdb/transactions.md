@@ -8,7 +8,7 @@ reviewed: 2020-09-11
 
 By default, the persister does not attempt to atomically commit saga data and/or business data. Through the use of the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
 
-A custom ['Behavior'](/nservicebus/pipeline/manipulate-with-behaviors) must be introduced to identify and insert the [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) value into the pipeline context for use by storage operations that occur during the processing of a given message.
+A custom ['Behavior'](/nservicebus/pipeline/manipulate-with-behaviors.md) must be introduced to identify and insert the [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) value into the pipeline context for use by storage operations that occur during the processing of a given message.
 
 WARN: Do not use a message mutator to identify the PartitionKey. Message mutators do not offer the necessary control or timing to reliably interact with this persistance.
 
