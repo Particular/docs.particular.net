@@ -4,6 +4,7 @@ component: cosmosdb
 related:
 - samples/previews/cosmosdb/physicalbehavior
 - samples/previews/cosmosdb/logicalbehavior
+- nservicebus/outbox
 reviewed: 2020-09-11
 ---
 
@@ -21,9 +22,9 @@ This is the earliest stage in the message processing pipeline. At this stage onl
 
 snippet: ITransportReceiveContextBehavior
 
-### Interaction with Outbox
+### Interaction with outbox
 
-This stage occurs before the Outbox feature behaviors are executed. Identifying the [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) this stage allows the Outbox feature to work entirely as intended. In the case where the PartitionKey cannot be identified using only the message headers, a behavior in the `IIncomingLogicalMessageContext` stage can be introduced instead.
+This stage occurs before the [outbox](/nservicebus/outbox) logic is executed. Identifying the [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) during this stage allows the outbox feature to work entirely as intended. In the case where the `PartitionKey` cannot be identified using only the message headers, a behavior in the `IIncomingLogicalMessageContext` stage can be introduced instead.
 
 ## `IIncomingLogicalMessageContext` stage
 
@@ -31,19 +32,21 @@ This is the first stage in the pipeline that allows access to the deserialized m
 
 snippet: IIncomingLogicalMessageContextBehavior
 
-### Interaction with Outbox
+### Interaction with outbox
 
-This stage occurs after the Outbox feature behaviors are executed. To preserve most Outbox functionality in this case, this persistance introduces a [new `LogicalOutboxBehavior`](logicaloutbox.md) in the same `IIncomingLogicalMessageContext` stage as the custom behavior. As a result, the custom behavior must be inserted into the pipeline _before_ the LogicalOutboxBehavior.
+[Outbox](/nservicebus/outbox) message guarantees work by bypassing the remaining message processing pipeline when an outbox record is located. Since this stage occurs after the normal bypass logic is executed, no [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) is available to locate an existing outbox record. 
 
-To specify the ordering:
+This persistance introduces a new `LogicalOutboxBehavior` to locate the outbox record and bypass the remaining message processing pipeline in the same `IIncomingLogicalMessageContext` stage as the custom `PartitionKey` behavior. As a result, the custom behavior must be inserted into the pipeline _before_ the `LogicalOutboxBehavior`.
+
+To specify the ordering for the custom `PartitionKey` behavior:
 
 snippet: InsertBeforeLogicalOutbox
 
-To register the behavior:
+To register the custom `PartitionKey` behavior:
 
 snippet: CosmosDBRegisterLogicalBehavior
 
-WARN: Caution must be used when custom behaviors have been introduced in the pipeline that [dispatch messages immediately](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately). If these behaviors execute before the [`LogicalOutboxBehavior`](logicaloutbox.md) the [Outbox message guarantees](/nservicebus/outbox/#how-it-works) may be broken.
+WARN: Caution must be used when custom behaviors have been introduced in the pipeline that [dispatch messages immediately](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately). If these behaviors execute before the `LogicalOutboxBehavior` the [Outbox message guarantees](/nservicebus/outbox/#how-it-works) may be broken.
 
 ## Sharing the transaction
 
@@ -52,6 +55,8 @@ Once a behavior is introduced to identify the partition key for a given message,
 To use the shared transaction in a message handler:
 
 snippet: CosmosDBHandlerSharedTransaction
+
+NOTE: The shared [`TransactionalBatch`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.transactionalbatch?view=azure-dotnet) will not perform any actions when `ExecuteAsync()` is called. This allows NServiceBus to safely manage the unit of work. `ExecuteAsync` does not need to be called within the handler.
 
 #### Testing
 
