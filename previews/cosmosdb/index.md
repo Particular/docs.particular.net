@@ -11,6 +11,8 @@ Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/
 * [Sagas](/nservicebus/sagas/)
 * [Outbox](/nservicebus/outbox/)
 
+NOTE: [Transactions](#transactions) are required to utilize the Outbox feature.
+
 ## Usage
 
 Add a NuGet package reference to `NServiceBus.Persistence.CosmosDB`. Configure the endpoint to use the persistence through the following configuration API:
@@ -28,6 +30,12 @@ snippet: CosmosDBDatabaseName
 Customize the container used using the following configuration API
 
 snippet: CosmosDBContainer
+
+## Transactions
+
+The persister supports using the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/). However, Cosmos DB only allows operations to be batched if all operations are performed within the same logical partition key. This is due to the distributed nature of the Cosmos DB service, which [does not support distributed transactions](/nservicebus/azure/understanding-transactionality-in-azure.md).
+
+The [transactions](transactions.md) documentation provides additional details on how to configure NServiceBus to resolve the incoming message to a specific partition key to take advantage of this Cosmos DB feature.
 
 ## Outbox cleanup 
 
