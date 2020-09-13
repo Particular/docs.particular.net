@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Azure.Cosmos;
 using NServiceBus;
+using NServiceBus.Outbox;
 using NServiceBus.Persistence;
 
 class Usage
@@ -32,9 +33,8 @@ class Usage
 
         #region CosmosDBOutboxCleanup
 
-        endpointConfiguration.UsePersistence<CosmosDbPersistence>()
-            .CosmosClient(new CosmosClient("ConnectionString"))
-            .TimeToKeepOutboxDeduplicationData(TimeSpan.FromDays(7));
+        var outbox = endpointConfiguration.EnableOutbox();
+        outbox.TimeToKeepOutboxDeduplicationData(TimeSpan.FromDays(7));
 
         #endregion
 
@@ -54,5 +54,5 @@ static class TempExtensions
 
     public static TransactionalBatch GetSharedTransactionalBatch(this SynchronizedStorageSession session) => container.CreateTransactionalBatch(PartitionKey.None);
 
-    public static PersistenceExtensions<CosmosDbPersistence> TimeToKeepOutboxDeduplicationData(this PersistenceExtensions<CosmosDbPersistence> persistenceExtensions, TimeSpan timeToLive) => persistenceExtensions;
+    public static void TimeToKeepOutboxDeduplicationData(this OutboxSettings outboxSettings, TimeSpan timeToKeepOutboxDeduplicationData) { }
 }
