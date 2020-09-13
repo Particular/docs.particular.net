@@ -69,7 +69,7 @@ snippet: configure-dont-move-to-error
 
 ### Serializer
 
-There is no default [serializer](/nservicebus/serialization), so one must be configured. For example:
+The default serializer is the [XmlSerializer](/nservicebus/serialization/xml.md). A different serializer can be configured:
 
 snippet: custom-serializer
 
