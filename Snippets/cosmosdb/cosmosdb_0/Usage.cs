@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Azure.Cosmos;
 using NServiceBus;
-using NServiceBus.Outbox;
 using NServiceBus.Persistence;
 
 class Usage
@@ -53,6 +52,4 @@ static class TempExtensions
     #pragma warning restore 0649
 
     public static TransactionalBatch GetSharedTransactionalBatch(this SynchronizedStorageSession session) => container.CreateTransactionalBatch(PartitionKey.None);
-
-    public static void TimeToKeepOutboxDeduplicationData(this OutboxSettings outboxSettings, TimeSpan timeToKeepOutboxDeduplicationData) { }
 }
