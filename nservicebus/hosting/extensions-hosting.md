@@ -33,4 +33,4 @@ NServiceBus endpoints hosted as part of the generic host automatically use the p
 
 ### Configure custom containers
 
-Custom dependency injection containers can be configured using the `IWebHostBuilder.UseServiceProviderFactory` option. NServiceBus automatically uses the host's dependency injection container. Refer to the container's documentation for further details.
+Custom dependency injection containers may be configured using `IWebHostBuilder.UseServiceProviderFactory`. NServiceBus automatically uses the host's dependency injection container. Refer to the container's documentation for further details.
