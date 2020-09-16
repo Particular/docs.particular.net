@@ -33,7 +33,7 @@ The `UseContainer` API to integrate third party containers with NServiceBus has 
 
 The `EndpointConfiguration.RegisterComponents` API now provides access to the underlying `IServiceCollection`. The registration methods formerly provided by `IConfigureComponents` are available as extension methods to simplify migration. However, it is recommended to use the official `IServiceCollection` registration API instead. 
 
-The NServiceBus `DependencyLifecycle` can be mapped directly to the ServiceDescriptor `ServiceLifetime`:
+NServiceBus `DependencyLifecycle` maps directly to ServiceDescriptor `ServiceLifetime`:
 
 | DependencyLifecycle   | ServiceLifetime |
 | --------------------- | --------------- |
@@ -41,20 +41,20 @@ The NServiceBus `DependencyLifecycle` can be mapped directly to the ServiceDescr
 | SingleInstance        | Singleton       |
 | InstancePerUnitOfWork | Scoped          |
 
-for example, instead of 
+For example, this statement:
 
 ```
 endpointConfiguration.RegisterComponents(s => 
     s.ConfigureComponent<MyService>(DependencyLifecyle.InstancePerCall));
 ```
 
-use 
+may be replaced with:
 
 ```
 endpointConfiguration.RegisterComponents(s => s.AddTransient<MyService>());
 ```
 
-`ConfigureComponents` automatically registers all interfaces of a given type. The `IServiceCollection.Add` methods do not register interfaces. Instead, forward additional registration to a type as follows:
+The former `ConfigureComponents` automatically registered all interfaces of a given type. The `IServiceCollection.Add` methods do not do this. Any inherited interfaces must be registered explicitly. For example, their registrations may be forwarded to the inheriting type:
 
 ```
 endpointConfiguration.RegisterComponents(s => {
