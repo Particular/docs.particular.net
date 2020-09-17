@@ -53,7 +53,7 @@
             // override delayed retry decision for custom exception
             // i.e. MyOtherBusinessException should do fixed backoff of 5 seconds
             if (context.Exception is MyOtherBusinessException &&
-                context.DelayedDeliveriesPerformed <= config.Delayed.MaxNumberOfRetries)
+                context.DelayedDeliveriesPerformed < config.Delayed.MaxNumberOfRetries)
             {
                 return RecoverabilityAction.DelayedRetry(TimeSpan.FromSeconds(5));
             }
