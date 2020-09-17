@@ -4,7 +4,7 @@ summary: How to connect more than two transports with a single router
 component: Router
 related:
 - samples/router/sql-switch
-reviewed: 2018-12-28
+reviewed: 2020-09-17
 ---
 
 ![Multi-way](multi-way.svg)
