@@ -1,9 +1,13 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Azure.Cosmos;
 using NServiceBus;
 
-class MyMessage { }
+class MyMessage
+{
+    public string ItemId { get; set; }
+}
 
-class MyMessageHandler : IHandleMessages<MyMessage>
+class UsageHandler : IHandleMessages<MyMessage>
 {
     ToDoActivity test1 = new ToDoActivity();
     ToDoActivity test2 = new ToDoActivity();
@@ -29,3 +33,60 @@ class MyMessageHandler : IHandleMessages<MyMessage>
     }
     #endregion
 }
+
+#region TransactionalBatchRegisteredWithDependencyInjectionResolvedInHandler
+
+class MyHandler : IHandleMessages<MyMessage>
+{
+    public MyHandler(TransactionalBatch transactionalBatch)
+    {
+        this.transactionalBatch = transactionalBatch;
+    }
+
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        transactionalBatch.DeleteItem(message.ItemId);
+
+        return Task.CompletedTask;
+    }
+
+    private readonly TransactionalBatch transactionalBatch;
+}
+
+#endregion
+
+#region TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
+
+class MyCustomDependency
+{
+    private readonly TransactionalBatch transactionalBatch;
+
+    public MyCustomDependency(TransactionalBatch transactionalBatch)
+    {
+        this.transactionalBatch = transactionalBatch;
+    }
+
+    public void DeleteItemInCosmos(string itemId)
+    {
+        transactionalBatch.DeleteItem(itemId);
+    }
+}
+
+class MyHandlerWithCustomDependency : IHandleMessages<MyMessage>
+{
+    public MyHandlerWithCustomDependency(MyCustomDependency customDependency)
+    {
+        this.customDependency = customDependency;
+    }
+
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        customDependency.DeleteItemInCosmos(message.ItemId);
+
+        return Task.CompletedTask;
+    }
+
+    private readonly MyCustomDependency customDependency;
+}
+
+#endregion

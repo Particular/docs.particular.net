@@ -26,7 +26,9 @@ class Usage
 
         endpointConfiguration.UsePersistence<CosmosDbPersistence>()
             .CosmosClient(new CosmosClient("ConnectionString"))
-            .DefaultContainer(containerName: "ContainerName", partitionKeyPath: "/partition/key/path");
+            .DefaultContainer(
+                containerName: "ContainerName",
+                partitionKeyPath: "/partition/key/path");
 
         #endregion
 
@@ -34,7 +36,9 @@ class Usage
 
         endpointConfiguration.UsePersistence<CosmosDbPersistence>()
             .CosmosClient(new CosmosClient("ConnectionString"))
-            .DefaultContainer(new ContainerInformation("ContainerName", new PartitionKeyPath("/partition/key/path")));
+            .DefaultContainer(new ContainerInformation(
+                containerName: "ContainerName",
+                partitionKeyPath: new PartitionKeyPath("/partition/key/path")));
 
         #endregion
 
@@ -48,6 +52,13 @@ class Usage
         #region CosmosDBRegisterLogicalBehavior
 
         endpointConfiguration.Pipeline.Register(new RegisterMyBehavior());
+
+        #endregion
+
+        #region RegisterSharedTransactionalBatchForDependencyInjection
+
+        var persistence = endpointConfiguration.UsePersistence<CosmosDbPersistence>();
+        persistence.RegisterSharedTransactionalBatchForDependencyInjection();
 
         #endregion
     }

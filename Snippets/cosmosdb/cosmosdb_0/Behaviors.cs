@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
+using NServiceBus;
 using NServiceBus.Persistence.CosmosDB;
 using NServiceBus.Pipeline;
 
@@ -42,4 +43,41 @@ public class RegisterMyBehavior : RegisterStep
         InsertBeforeIfExists(nameof(LogicalOutboxBehavior));
     }
 }
+#endregion
+
+
+#region CustomContainerNameUsingITransportReceiveContextBehavior
+
+class ContainerInfoTransportReceiveContextBehavior
+    : Behavior<ITransportReceiveContext>
+{
+    public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
+    {
+        context.Extensions.Set(
+            new ContainerInformation(
+                containerName: "containerName",
+                partitionKeyPath: new PartitionKeyPath("partitionKeyPath")));
+
+        await next().ConfigureAwait(false);
+    }
+}
+
+#endregion
+
+#region CustomContainerNameUsingIIncomingLogicalMessageContextBehavior
+
+class ContainerInfoLogicalReceiveContextBehavior
+    : Behavior<IIncomingLogicalMessageContext>
+{
+    public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
+    {
+        context.Extensions.Set(
+            new ContainerInformation(
+                containerName: "containerName",
+                partitionKeyPath: new PartitionKeyPath("partitionKeyPath")));
+
+        await next().ConfigureAwait(false);
+    }
+}
+
 #endregion

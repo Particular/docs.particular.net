@@ -50,12 +50,24 @@ WARN: Caution must be used when custom behaviors have been introduced in the pip
 
 Once a behavior is introduced to identify the partition key for a given message, it is possible to share a Cosmos DB [TransactionalBatch](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.transactionalbatch?view=azure-dotnet) between both the Saga persistence and business data. The shared `TransactionalBatch` can then be used to persist document updates for both concerns atomically.
 
+NOTE: The shared [`TransactionalBatch`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.transactionalbatch?view=azure-dotnet) will not perform any actions when [`ExecuteAsync()`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.transactionalbatch.executeasync?view=azure-dotnet) is called. This allows NServiceBus to safely manage the unit of work. `ExecuteAsync` does not need to be called within the handler.
+
+### Within a handler method using `IMessageHandlerContext`
+
 To use the shared `TransactionalBatch` in a message handler:
 
 snippet: CosmosDBHandlerSharedTransaction
 
-NOTE: The shared [`TransactionalBatch`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.transactionalbatch?view=azure-dotnet) will not perform any actions when [`ExecuteAsync()`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.transactionalbatch.executeasync?view=azure-dotnet) is called. This allows NServiceBus to safely manage the unit of work. `ExecuteAsync` does not need to be called within the handler.
-
 #### Testing
 
 The `TestableCosmosSynchronizedStorageSession` class in the `NServiceBus.Testing` namespace has been provided to facilitate [testing a handler](/nservicebus/testing/) that utilizes the shared transaction feature.
+
+### With dependency injection
+
+For custom types that require access to the shared `TransactionalBatch`:
+
+snippet: TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
+
+And alternatively to using the the extension method `IMessageHandlerContext.SynchronizedStorageSession.GetSharedTransactionalBatch()`:
+
+snippet: TransactionalBatchRegisteredWithDependencyInjectionResolvedInHandler

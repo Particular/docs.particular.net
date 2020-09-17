@@ -19,7 +19,7 @@ Add a NuGet package reference to `NServiceBus.Persistence.CosmosDB`. Configure t
 
 snippet: CosmosDBUsage
 
-### Customizing the database or container used
+### Customizing the database used
 
 By default, the persister will store records in a database named `NServiceBus` and use a container per endpoint using the endpoint name as to name the container.
 
@@ -27,9 +27,23 @@ Customize the database name using the following configuration API:
 
 snippet: CosmosDBDatabaseName
 
-Customize the container used using the following configuration API
+### Customizing the container used
+
+Setting the default container used using the following configuration API
 
 snippet: CosmosDBDefaultContainer
+
+#### Advanced customization
+
+WARN: When this approach is used, the default container needs to be configured using [configuration API](#usage-customizing-the-container-used).
+
+The container name can be provided using a custom behavior at the physical stage
+
+snippet: CustomContainerNameUsingITransportReceiveContextBehavior
+
+or at the logical stage
+
+snippet: CustomContainerNameUsingIIncomingLogicalMessageContextBehavior
 
 ## Transactions
 
