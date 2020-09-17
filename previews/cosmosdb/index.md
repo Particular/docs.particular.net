@@ -29,7 +29,7 @@ snippet: CosmosDBDatabaseName
 
 Customize the container used using the following configuration API
 
-snippet: CosmosDBContainer
+snippet: CosmosDBDefaultContainer
 
 ## Transactions
 

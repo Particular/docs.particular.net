@@ -22,11 +22,19 @@ class Usage
 
         #endregion
 
-        #region CosmosDBContainer
+        #region CosmosDBDefaultContainer
 
         endpointConfiguration.UsePersistence<CosmosDbPersistence>()
             .CosmosClient(new CosmosClient("ConnectionString"))
-            .Container(containerName: "ContainerName", partitionKeyPath: "/partition/key/path");
+            .DefaultContainer(containerName: "ContainerName", partitionKeyPath: "/partition/key/path");
+
+        #endregion
+
+        #region CosmosDBDefaultContainerContainerInfo
+
+        endpointConfiguration.UsePersistence<CosmosDbPersistence>()
+            .CosmosClient(new CosmosClient("ConnectionString"))
+            .DefaultContainer(new ContainerInformation("ContainerName", new PartitionKeyPath("/partition/key/path")));
 
         #endregion
 
