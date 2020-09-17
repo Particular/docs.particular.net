@@ -94,7 +94,7 @@ This is very similar to [Migrate data to a different disk](#migrate-data-to-a-di
 
 1. Install the same version of ServiceControl on the new server.
 2. Create an instance that has the exact same instance name.
-  - Name must be identical! This defines the queue name.
+  - The instance name must be identical as this defines the queue name.
   - Disk locations can be different
 3. Stop the instance.
 4. Open the database location and remove all data.
