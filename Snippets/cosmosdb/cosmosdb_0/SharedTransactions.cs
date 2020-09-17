@@ -23,7 +23,7 @@ class MyMessageHandler : IHandleMessages<MyMessage>
                 .CreateItem<ToDoActivity>(test1)
                 .ReplaceItem<ToDoActivity>(test2.id, test2)
                 .UpsertItem<ToDoActivity>(test3)
-                .DeleteItem("reading");
+                .DeleteItem("/item/id");
 
         return Task.CompletedTask;
     }
