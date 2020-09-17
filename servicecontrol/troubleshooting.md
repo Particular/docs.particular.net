@@ -72,3 +72,31 @@ If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.In
  1. If having issues remotely connecting to ServiceControl. Verify that firewall settings do not block access to the ServiceControl port specified in the URL.
 
 NOTE: Before changing firewall setting to expose ServiceControl read [Securing ServiceControl](securing-servicecontrol.md).
+
+## Migrate data to a different disk
+
+If the disk containing the ServiceControl database is either to small or is too slow then the files can easily be migrated to another disk.
+
+1. Open the ServiceControl Management Utility.
+2. Stop the ServiceControl instance type.
+3. Open the DB location by clickinb DB Path.
+4. Copy the files to their new destination and ensure ServiceControl has read/write permissions (Moving is not recommended).
+5. Update the database path 
+6. Start the instance.
+7. Verify if it is running without issues by inspecting the log files.
+8. Archive or delete the data from the original location.
+
+## Migrate data to a different server
+
+This is very similar to [Migrate data to a different disk](#migrate-data-to-a-different-disk).
+
+1. Install the same version of ServiceControl on the new server.
+2. Create an instance that has the exact same instance name.
+  - Name must be identical! This defines the queue name.
+  - Disk locations can be different
+3. Stop the instance.
+4. Open the database location and remove all data.
+5. Copy the database files from the previous location to the new location as per [Migrate data to a different disk](#migrate-data-to-a-different-disk).
+7. Verify if it is running without issues by inspecting the log files.
+8. Archive or delete the data from the original location.
+
