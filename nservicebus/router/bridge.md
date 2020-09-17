@@ -4,7 +4,7 @@ summary: How to connect two transports with a router
 component: Router
 related:
 - samples/router/mixed-transports
-reviewed: 2018-12-28
+reviewed: 2020-09-17
 ---
 
 In the simplest form, the Router can be used to create a bi-directional bridge between two NServiceBus transports.
