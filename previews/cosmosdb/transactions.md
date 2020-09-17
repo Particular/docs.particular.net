@@ -8,15 +8,15 @@ reviewed: 2020-09-11
 
 By default, the persister does not attempt to atomically commit saga data and/or business data. Through the use of the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
 
-A custom ['Behavior'](/nservicebus/pipeline/manipulate-with-behaviors.md) must be introduced to identify and insert the [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) value into the pipeline context for use by storage operations that occur during the processing of a given message.
+A custom [Behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) must be introduced to identify and insert the [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) value into the pipeline context for use by storage operations that occur during the processing of a given message.
 
-WARN: Do not use a [message mutator](/nservicebus/pipeline/message-mutators.md) to identify the PartitionKey. Message mutators do not offer the necessary control or timing to reliably interact with this persistance.
+WARN: Do not use a [message mutator](/nservicebus/pipeline/message-mutators.md) to identify the partition key. Message mutators do not offer the necessary control or timing to reliably interact with this persistence.
 
-There are 2 options for which stage to choose to introduce the custom behavior:
+The custom behavior can be introduced in one of the two stages:
 
 ## `ITransportReceiveContext` stage
 
-This is the earliest stage in the message processing pipeline. At this stage only the headers and a byte array representation of the message body are available. 
+This is the earliest stage in the message processing pipeline. At this stage only the message ID, the headers and a byte array representation of the message body are available. 
 
 snippet: ITransportReceiveContextBehavior
 
@@ -34,7 +34,7 @@ snippet: IIncomingLogicalMessageContextBehavior
 
 [Outbox](/nservicebus/outbox) message guarantees work by bypassing the remaining message processing pipeline when an outbox record is located. Since this stage occurs after the normal bypass logic is executed, no [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) is available to locate an existing outbox record. 
 
-This persistance introduces a new `LogicalOutboxBehavior` to locate the outbox record and bypass the remaining message processing pipeline in the same `IIncomingLogicalMessageContext` stage as the custom `PartitionKey` behavior. As a result, the custom behavior must be inserted into the pipeline _before_ the `LogicalOutboxBehavior`.
+Cosmos DB persistence introduces a new `LogicalOutboxBehavior` to locate the outbox record and bypass the remaining message processing pipeline in the same `IIncomingLogicalMessageContext` stage as the custom `PartitionKey` behavior. As a result, the custom behavior must be inserted into the pipeline _before_ the `LogicalOutboxBehavior`.
 
 To specify the ordering for the custom `PartitionKey` behavior:
 
