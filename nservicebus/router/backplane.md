@@ -4,7 +4,7 @@ summary: How to connect parts of the system using a shared backplane
 component: Router
 related:
 - samples/router/backplane
-reviewed: 2018-12-28
+reviewed: 2020-09-17
 ---
 
 Two or more routers can be connected together to form a _backplane_ topology.
