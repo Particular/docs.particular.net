@@ -6,10 +6,7 @@ public class MyHandler :
 {
     MyService myService;
 
-    public MyHandler(MyService myService)
-    {
-        this.myService = myService;
-    }
+    public MyHandler(MyService myService) => this.myService = myService;
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {

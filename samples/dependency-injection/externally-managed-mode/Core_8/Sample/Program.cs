@@ -20,7 +20,8 @@ static class Program
 
         var endpointWithExternallyManagedContainer = EndpointWithExternallyManagedContainer
             .Create(endpointConfiguration, serviceCollection);
-        // if needed register the session
+
+        // if required, register the session
         serviceCollection.AddSingleton(p => endpointWithExternallyManagedContainer.MessageSession.Value);
 
         #endregion
