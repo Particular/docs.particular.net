@@ -88,6 +88,8 @@ If the disk containing the ServiceControl database is either to small or is too 
 
 ## Migrate data to a different server
 
+Note: Federated transports (MSMQ) are required to also update all endpoint configurations as the server name for the all related ServiceControl queues need to be updated. Brokered transports (RabbitMQ, SQL Transport, Azure Service Bus, AmazonSQS, Azure Storge Queues) do not require any reconfiguration of endpoints.
+
 This is very similar to [Migrate data to a different disk](#migrate-data-to-a-different-disk).
 
 1. Install the same version of ServiceControl on the new server.
