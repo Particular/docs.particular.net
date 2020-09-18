@@ -3,6 +3,7 @@ title: Distributed tracing with Azure Monitor Application Insights
 summary: How to extend the NServiceBus pipeline to send trace data to Azure Monitor Application Insights
 component: Core
 reviewed: 2020-09-10
+previewImage: sample-trace.png
 related:
  - monitoring/metrics
 ---
