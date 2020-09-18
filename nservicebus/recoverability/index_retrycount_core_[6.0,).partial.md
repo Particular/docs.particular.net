@@ -20,7 +20,7 @@ Given a variety of immediate and delayed configuration values here are the resul
 | 1                | 2              | 6                       |
 | 2                | 2              | 9                       |
 | 1                | 3              | 8                       |
-| **3**            | **5**          | **24  (default)**       |
+| **5**            | **3**          | **24  (default)**       |
 
 ### Scale-out multiplier
 
