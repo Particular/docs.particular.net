@@ -48,10 +48,10 @@ The number of instances acts as a multiplier for the maximum number of attempts.
 
 ```txt
 Minimum Attempts = (ImmediateRetries:NumberOfRetries + 1) * (DelayedRetries:NumberOfRetries + 1)
-Maximum Attempts = MininumAttempts * NumberOfInstances
+Maximum Attempts = MinimumAttempts * NumberOfInstances
 ```
 
 Example:
 
-When taking the default values for immediate and delayed retries (five and three, respectively) and 6 instances the total number of attempts will be a minumum of (5+1)*(3+1)=24 attempts and a maximum of 24*6=144 attempts.
+When taking the default values for immediate and delayed retries (five and three, respectively) and 6 instances the total number of attempts will be a minimum of `(5+1)*(3+1)=24` attempts and a maximum of `24*6=144` attempts.
 
