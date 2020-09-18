@@ -7,9 +7,9 @@ related:
  - monitoring/metrics
 ---
 
-## Introduction
-
 .NET Core 3.1 introduced support for distributed tracing. Types in the [System.Diagnostics](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics?view=dotnet-plat-ext-3.1) namespace may be used to expose and correlate execution data from a distributed system. This sample shows how to extend the NServiceBus pipeline with custom behaviors that publish trace data and how to send that data to [Azure Monitor Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) for analysis and visualization.
+
+downloadbutton
 
 ## Running the sample
 
