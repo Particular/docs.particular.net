@@ -48,19 +48,6 @@ class Usage
         #endregion
     }
 
-    static void LicenseFile(AwsLambdaSQSEndpointConfiguration endpointConfiguration, ILambdaContext context)
-    {
-        #region load-license-file
-
-        var licenseText = Environment.GetEnvironmentVariable("NServiceBusLicenseText");
-
-        var advanced = endpointConfiguration.AdvancedConfiguration;
-        
-        advanced.License(licenseText);
-
-        #endregion
-    }
-
     static void Recoverability(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
     {
         #region delayed-retries
