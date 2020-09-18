@@ -21,13 +21,11 @@ Design processes with more than one remote call to use sagas.
 
 While it may seem excessive at first, the business implications of the system getting out of sync with the other systems it interacts with can be substantial. It's not just about exceptions that end up in the logs.
 
-
 ## A simple saga
 
 With NServiceBus, behavior is specified by writing a class that inherits from `Saga<T>` where `T` is the saga data class. There is also a base class for sagas that contains many features required for implementing long-running processes.
 
 snippet: simple-saga
-
 
 ## Long-running means stateful
 
@@ -37,11 +35,9 @@ Using NServiceBus, it is possible to explicitly define the data used for this st
 
 snippet: simple-saga-data
 
-
 ## Adding behavior
 
 The important part of a long-running process is its behavior. Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled.
-
 
 ## Starting a saga
 
@@ -54,7 +50,6 @@ This interface tells NServiceBus that the saga not only handles `StartOrder`, bu
 > Create a new instance if an existing one can't be found
 
 partial: at-least-one
-
 
 ### Dealing with out of order delivery
 
@@ -75,23 +70,21 @@ In the previous example, the `StartOrder` message contains both an `OrderId` and
 
 When messages arrive in reverse order, the handler for the `CompleteOrder` message does not yet have access to the `CustomerId` because the related `StartOrder` message has not been processed yet. In this case, when the `StartOrder` message arrives later, the handler must notice that the `CompleteOrder` has already been processed and use its `CustomerId` to initiate the shipping process and complete the saga. This complicates the design of the saga, but makes it more resilient and allows it to handle messages out of order.
 
-
 #### Relying on recoverability
 
 In most scenarios, an acceptable solution to deal with out of order message delivery is to throw an exception when the saga instance does not exist. The message will be automatically retried, which may resolve the issue, or it will end up in the error queue, where it can be manually retried.
 
 To override the default saga not found behavior [implement `IHandleSagaNotFound` and throw an exception](saga-not-found.md).
 
-
 ## Correlating messages to a saga
 
 Correlation is needed in order to find existing saga instances based on data on the incoming message. See [Message Correlation](message-correlation.md) for more details.
 
+Note: The saga `Id` available via `IContainSagaData` or `ContainSagaData` must not be used and is considered internal to NServiceBus. It is recommended to add an additional property that contains a unique saga instance identifier.
 
 ## Discarding messages when saga is not found
 
 If a saga handles a message, but no related saga instance is found, then that message is discarded by default. Typically that happens when the saga has been already completed when the messages arrives and discarding the message is correct. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md).
-
 
 ## Ending a saga
 
@@ -121,7 +114,6 @@ This issue can be avoided by:
  1. Ensure that no outgoing messages will be dispatched by completing the saga from a timeout or sending an explicit command to self.
  1. Replace saga completion with soft delete by setting a flag/timestamp and use some native mechanism of the selected storage to cleanup old saga instances.
 
-
 ## Notifying callers of status
 
 Messages can be published from a saga at any time. This is often used to notify the original caller that initiated the saga of some interim state that isn't relevant to other subscribers.
@@ -134,18 +126,15 @@ snippet: saga-with-reply
 
 This is one of the methods on the saga base class that would be very difficult to implement without tying the saga code to low-level parts of the NServiceBus infrastructure.
 
-
 ## Configuring saga persistence
 
 Make sure to configure appropriate [saga persistence](/persistence/).
 
 snippet: saga-configure
 
-
 ## Sagas and automatic subscriptions
 
 The auto subscription feature applies to sagas as well as the regular message handlers.
-
 
 ## Sagas and request/response
 
@@ -154,7 +143,6 @@ Sagas often play the role of coordinator, especially when used in integration sc
 A common scenario is a saga controlling the process of billing a customer through Visa or MasterCard. It is often the case that there are separate endpoints for making the web service/rest-calls to each payment provider and a saga coordinating retries and fallback rules. Each payment request would be a separate saga instance, so how would the instance hydrate and invoke when the response returns?
 
 The usual way is to correlate on some kind of ID and let the user control how to find the correct saga instance using that ID. NServiceBus provides native support for these types of interactions. If a `Reply` is done in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that it can correlate the reply back to the saga instance that issued the request. The exception to this rule is the request/response message exchange between two sagas. In such case the automatic correlation won't work and the reply message needs to be explicitly mapped using `ConfigureHowToFindSaga`.
-
 
 ## Accessing databases and other resources from a saga
 
@@ -171,7 +159,6 @@ Since sagas, when they're not processing messages, are effectively a record in a
 This approach often results in sagas whose responsibility grows enough to be considered an [Aggregate Root in Domain-Driven Design](https://martinfowler.com/bliki/DDD_Aggregate.html).
 
 When it comes to integration scenarios, like calling external systems, dedicated sagas should be designed to manage the interaction - yet those sagas shouldn't perform the external calls directly. Instead, those sagas should send messages to other endpoints which will perform those actions. It is common for those endpoints to send response messages back to the saga, as described in the previous section. These endpoints can be hosted in separate processes or in the same process as the saga depending on other architectural decisions.
-
 
 ## Querying saga data
 
