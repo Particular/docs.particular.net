@@ -37,8 +37,7 @@ public class OrderSaga :
 
         return Task.WhenAll(
             context.SendLocal(shipOrder),
-            Task.CompletedTask
-            //RequestTimeout(context, TimeSpan.FromSeconds(5), timeoutData)
+            RequestTimeout(context, TimeSpan.FromSeconds(5), timeoutData)
         );
     }
 
