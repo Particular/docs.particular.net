@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Azure.Cosmos;
 using NServiceBus;
-using NServiceBus.Persistence;
 
 class Usage
 {
@@ -36,9 +35,9 @@ class Usage
 
         endpointConfiguration.UsePersistence<CosmosDbPersistence>()
             .CosmosClient(new CosmosClient("ConnectionString"))
-            .DefaultContainer(new ContainerInformation(
+            .DefaultContainer(
                 containerName: "ContainerName",
-                partitionKeyPath: new PartitionKeyPath("/partition/key/path")));
+                partitionKeyPath: new PartitionKeyPath("/partition/key/path"));
 
         #endregion
 
@@ -54,21 +53,5 @@ class Usage
         endpointConfiguration.Pipeline.Register(new RegisterMyBehavior());
 
         #endregion
-
-        #region RegisterSharedTransactionalBatchForDependencyInjection
-
-        var persistence = endpointConfiguration.UsePersistence<CosmosDbPersistence>();
-        persistence.RegisterSharedTransactionalBatchForDependencyInjection();
-
-        #endregion
     }
-}
-
-static class TempExtensions
-{
-    #pragma warning disable 0649
-    readonly static Container container;
-    #pragma warning restore 0649
-
-    public static TransactionalBatch GetSharedTransactionalBatch(this SynchronizedStorageSession session) => container.CreateTransactionalBatch(PartitionKey.None);
 }

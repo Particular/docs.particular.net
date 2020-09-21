@@ -23,7 +23,9 @@ class UsageHandler : IHandleMessages<MyMessage>
     {
         //setup the items for the batch...
 
-        context.SynchronizedStorageSession.GetSharedTransactionalBatch()
+        var transactionalBatch = context.SynchronizedStorageSession.GetSharedTransactionalBatch();
+
+        transactionalBatch
                 .CreateItem<ToDoActivity>(test1)
                 .ReplaceItem<ToDoActivity>(test2.id, test2)
                 .UpsertItem<ToDoActivity>(test3)
@@ -38,9 +40,9 @@ class UsageHandler : IHandleMessages<MyMessage>
 
 class MyHandler : IHandleMessages<MyMessage>
 {
-    public MyHandler(TransactionalBatch transactionalBatch)
+    public MyHandler(ICosmosDBStorageSession storageSession)
     {
-        this.transactionalBatch = transactionalBatch;
+        transactionalBatch = storageSession.Batch;
     }
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
@@ -61,9 +63,9 @@ class MyCustomDependency
 {
     private readonly TransactionalBatch transactionalBatch;
 
-    public MyCustomDependency(TransactionalBatch transactionalBatch)
+    public MyCustomDependency(ICosmosDBStorageSession storageSession)
     {
-        this.transactionalBatch = transactionalBatch;
+        transactionalBatch = storageSession.Batch;
     }
 
     public void DeleteItemInCosmos(string itemId)
