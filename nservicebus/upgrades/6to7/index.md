@@ -94,7 +94,7 @@ snippet: 6to7ErrorReadAppSettings
 Configuring endpoint mappings via the following APIs has been deprecated:
 
  * `IProvideConfiguration<UnicastBusConfig>`
- * `UnicastBusConfig` in an app.config `configSections`
+ * `UnicastBusConfig/MessageEndpointMappings` in an app.config `configSections`
  * Returning a `UnicastBusConfig` from an `IConfigurationSource`
 
 NOTE: **MSMQ**: [Machine names are set via the MSMQ transport routing configuration](/transports/msmq/routing.md).
