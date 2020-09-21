@@ -17,7 +17,7 @@ The default policy works in the following way:
 
  1. If an unrecoverable exception is raised, then the `MoveToError` action is returned immediately with the default error queue. 
  1. If the `ImmediateProcessingFailures` value is less or equal to the configured `MaxNumberOfRetries` for Immediate Retries, then the `ImmediateRetry` action is returned.
- 1. If Immediate Retries are exceeded, then the Delayed Retries configuration is considered. If the `DelayedDeliveriesPerformed` is less or equal than `MaxNumberOfRetries` and the message hasn't reached the maximum time allowed for retries (24 hours), then the `DelayedRetry` action is returned. The delay is calculated according to the following formula:
+ 1. If Immediate Retries are exceeded, then the Delayed Retries configuration is considered. If the `DelayedDeliveriesPerformed` is less than `MaxNumberOfRetries` and the message hasn't reached the maximum time allowed for retries (24 hours), then the `DelayedRetry` action is returned. The delay is calculated according to the following formula:
 
     `delay = DelayedRetry.TimeIncrease * (DelayedDeliveriesPerformed + 1)`.
 
