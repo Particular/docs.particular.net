@@ -47,7 +47,7 @@ Heartbeat messages tend to be frequent, and a large backlog can occur if Service
 
 ### Saga audit
 
-The [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin produces a lot of data. Its use outside of a development environment is not recommended. If the saga audit plugin is already deployed in production, [follow the instructions outlined](/servicecontrol/plugins/saga-audit.md#removing-the-plugin-from-production) to remove it.
+The [Saga Audit](/servicecontrol/plugins/saga-audit.md) can add significant load on ServiceControl due to volume of messages it sends but is invaluable when diagnosing issues with Saga behavior. In order to use it in the production environment make sure to use ServiceControl 4.13.1 or later and configure the Saga Audit plugin to send messages to the `audit` queue. If necessary consider [scaling out the audit processing](/servicecontrol/servicecontrol-instances/distributed-instances.md).
 
 
 ## Performance considerations

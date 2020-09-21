@@ -21,6 +21,7 @@ graph LR
   Audit -- Audit<br>Data --> AuditQ[Audit Queue]
   Error -- Error<br>Data --> ErrorQ[Error Queue]
   Plugins -- Plugin<br>Data --> SCQ
+  Plugins -- Audit<br>Data --> AuditQ[Audit Queue]
 	
   SCQ[ServiceControl<br>Input Queue] --> SC[ServiceControl<br>Instance]
   AuditQ --> SC
@@ -31,6 +32,8 @@ graph LR
   SC --> ErrorLog[Error.Log<br>Queue]
   SC -. Integration<br>Events .-> Watchers[Alert<br>Subscribers]
 ```
+
+Note: Prior to version 4.13.0, Saga Audit plugin data could only be processed via the `ServiceControl Queue` (the input queue of the main ServiceControl instance). Starting with 4.13.0, the Saga Audit plugin data can also be processed by the ServiceControl Audit instance via the `audit` queue. The latter approach is recommended.
 
 Each endpoint in the system should be [configured to send audit copies of every message that is processed into a central audit queue](/nservicebus/operations/auditing.md). A ServiceControl instance reads the messages in the audit queue and makes them available for visualization in ServiceInsight. ServiceControl can [optionally forward these messages into an Audit Log queue](/servicecontrol/errorlog-auditlog-behavior.md) for further processing if required.
 

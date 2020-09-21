@@ -25,7 +25,7 @@ NOTE: Endpoint lists, message information, and message flows will not be populat
 
 ```mermaid
 graph RL
-EP[Endpoint]-- Audits -->AQ
+EP[Endpoint]-- Audits/SagaAudits -->AQ
 EP-- Errors -->EQ
 EP-- SagaAudits -->SCQ
 AQ(Audit Queue)-- Ingests -->SC
@@ -33,6 +33,8 @@ EQ(Error Queue)-- Ingests -->SC
 SCQ(ServiceControl Queue)-- Ingests -->SC
 SC[ServiceControl]-- HTTP API ---SI[ServiceInsight]
 ```
+
+Note: Prior to version 4.13.0, Saga state change (SagaAudit) information could only be processed via the `ServiceControl Queue` (the input queue of the main ServiceControl instance). Starting with 4.13.0, the SagaAudit data can also be processed by the ServiceControl Audit instance via the `audit` queue. The latter approach is recommended.
 
 ## The Messages window
 

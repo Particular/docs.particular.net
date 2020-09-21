@@ -8,6 +8,12 @@ class API
         #region SagaAuditNew_Enable
 
         var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
+
+        //For ServiceControl 4.13.0 and later
+        endpointConfiguration.AuditSagaStateChanges(
+            serviceControlQueue: "audit@machine");
+
+        //For previous versions of ServiceControl
         endpointConfiguration.AuditSagaStateChanges(
             serviceControlQueue: "particular.servicecontrol@machine");
 
