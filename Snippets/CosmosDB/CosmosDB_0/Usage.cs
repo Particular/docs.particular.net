@@ -31,13 +31,14 @@ class Usage
 
         #endregion
 
-        #region CosmosDBDefaultContainerContainerInfo
+        #region CosmosDBDisableContainerCreation
 
         endpointConfiguration.UsePersistence<CosmosDbPersistence>()
             .CosmosClient(new CosmosClient("ConnectionString"))
             .DefaultContainer(
                 containerName: "ContainerName",
-                partitionKeyPath: new PartitionKeyPath("/partition/key/path"));
+                partitionKeyPath: "/partition/key/path")
+            .DisableContainerCreation();
 
         #endregion
 
@@ -45,6 +46,13 @@ class Usage
 
         var outbox = endpointConfiguration.EnableOutbox();
         outbox.TimeToKeepOutboxDeduplicationData(TimeSpan.FromDays(7));
+
+        #endregion
+
+        #region CosmosDBMigrationMode
+
+        endpointConfiguration.UsePersistence<CosmosDbPersistence>()
+            .EnableMigrationMode();
 
         #endregion
 

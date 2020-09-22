@@ -33,9 +33,13 @@ Setting the default container used using the following configuration API
 
 snippet: CosmosDBDefaultContainer
 
-#### Advanced customization
+When installers are enabled the default container will be created if it doesn't exist. To opt-out from creating the default container either disable the installers or use
 
-WARN: When this approach is used, the default container needs to be configured using [configuration API](#usage-customizing-the-container-used).
+snippet: CosmosDBDisableContainerCreation
+
+#### Advanced container customization
+
+WARN: When the container name and partition key path are provided at runtime it takes precedence over any default container configured using [configuration API](#usage-customizing-the-container-used). The container specified at runtime has to exist and be configured properly to order to work.
 
 The container name can be provided using a custom behavior at the physical stage
 
@@ -44,6 +48,16 @@ snippet: CustomContainerNameUsingITransportReceiveContextBehavior
 or at the logical stage
 
 snippet: CustomContainerNameUsingIIncomingLogicalMessageContextBehavior
+
+### Customizing the CosmosClient provider
+
+In cases when the CosmosClient is configured and used via dependency injection a custom provider can be implemented
+
+snippet: CosmosDBCustomClientProvider
+
+and registered on the container
+
+snippet: CosmosDBCustomClientProviderRegistration
 
 ## Transactions
 
@@ -68,7 +82,7 @@ include: saga-concurrency
 Example exception:
 
 ```
-INSERT FULL EXCEPTION TYPE HERE: INSERT MESSAGE HERE
+The 'OrderSagaData' saga with id '7ac4d199-6560-4d1a-b83a-b3dad94b0802' could not be created possibly due to a concurrency conflict.
 ```
 
 ### Updating or deleting saga data
@@ -76,5 +90,11 @@ INSERT FULL EXCEPTION TYPE HERE: INSERT MESSAGE HERE
 Example exception:
 
 ```
-INSERT FULL EXCEPTION TYPE HERE: INSERT MESSAGE HERE
+The 'OrderSagaData' saga with id '7ac4d199-6560-4d1a-b83a-b3dad94b0802' was updated by another process or no longer exists.
 ```
+
+## Migration mode
+
+By enabling the migration mode the saga persister will attempt to query the container and the stored saga metadata in case a saga was migrated from another storage persistence.
+
+snippet: CosmosDBMigrationMode
