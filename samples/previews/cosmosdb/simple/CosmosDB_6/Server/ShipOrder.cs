@@ -2,7 +2,7 @@
 using NServiceBus;
 
 public class ShipOrder :
-    IMessage, IProvideOrderId
+    IMessage
 {
     public Guid OrderId { get; set; }
 }

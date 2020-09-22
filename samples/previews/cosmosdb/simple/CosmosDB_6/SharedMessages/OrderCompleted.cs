@@ -2,7 +2,7 @@ using System;
 using NServiceBus;
 
 public class OrderCompleted :
-    IEvent, IProvideOrderId
+    IEvent
 {
     public Guid OrderId { get; set; }
 }
