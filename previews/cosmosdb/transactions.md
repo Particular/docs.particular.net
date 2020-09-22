@@ -1,6 +1,6 @@
 ---
 title: Transactions in Azure Cosmos DB persistence
-component: cosmosdb
+component: CosmosDB
 related:
 - nservicebus/outbox
 reviewed: 2020-09-11

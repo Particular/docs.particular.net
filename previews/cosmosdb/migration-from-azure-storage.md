@@ -1,6 +1,6 @@
 ---
 title: Migration from Azure Storage Persistence
-component: cosmosdb
+component: CosmosDB
 related:
 - persistence/azure-storage
 reviewed: 2020-09-20

@@ -1,6 +1,6 @@
 ---
 title: Azure Cosmos DB Persistence
-component: cosmosdb
+component: CosmosDB
 reviewed: 2020-09-11
 related:
 - samples/previews/cosmosdb/transactions
