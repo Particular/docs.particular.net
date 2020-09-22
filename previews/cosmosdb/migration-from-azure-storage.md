@@ -6,7 +6,7 @@ related:
 reviewed: 2020-09-20
 ---
 
-For existing system running in Azure and using [Azure Storage Persistence](persistence/azure-storage), a two-step migration process is recommended, using Particular and Azure Cosmos DB tools.
+For existing system running in Azure and using [Azure Storage Persistence](/persistence/azure-storage), a two-step migration process is recommended, using Particular and Azure Cosmos DB tools.
 
 The migration would include three major steps required for **each** Azure Storage Persistence table containing saga data:
 
