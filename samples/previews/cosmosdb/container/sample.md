@@ -39,7 +39,7 @@ In the non-transactional mode the saga id is used as a partition key and thus th
 
 ## Behaviors
 
-For all messages destined to go to the `ShipOrderSaga` the container is overriden at runtime to use `ShipOrderSagaData` container.
+For all messages destined to go to the `ShipOrderSaga` the container is overridden at runtime to use `ShipOrderSagaData` container.
 
 snippet: BehaviorAddingContainerInfo
 
