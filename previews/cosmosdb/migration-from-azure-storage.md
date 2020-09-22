@@ -57,4 +57,24 @@ where the following parameters need to be adjusted:
 
 The data can and should be inspected for quality either before or after the import.
 
-WARN: Dates stored using `DateTimeOffest` data type are susceptible to incorrect translation. Saga data storing properties using `DateTimeOffset` should be verified after saga data import is completed to ensure accurate converstion.
+WARN: Dates stored using `DateTimeOffset` data type are susceptible to incorrect translation. Saga data storing properties using `DateTimeOffset` should be verified after saga data import is completed to ensure accurate conversion.
+
+## Completing the migration
+
+Perform the following query on each collection containing migrated saga data:
+
+```SQL
+SELECT COUNT(c["_NServiceBus-Persistence-Metadata"]["SagaDataContainer-MigratedSagaId"]) AS SagasInMigration FROM c
+```
+
+This will produce a result that returns the number of migrated sagas still open:
+
+```JSON
+[
+    {
+        "SagasInMigration": 2
+    }
+]
+```
+
+Migration mode can be disabled when the query result returns 0 for all collections containing migrated saga data.
