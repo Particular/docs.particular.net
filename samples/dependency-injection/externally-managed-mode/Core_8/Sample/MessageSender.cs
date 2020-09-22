@@ -2,14 +2,12 @@
 using NServiceBus;
 
 #region InjectingMessageSession
-public class MessageSenderService
+public class MessageSender
 {
     private readonly IMessageSession messageSession;
 
-    public MessageSenderService(IMessageSession messageSession)
-    {
+    public MessageSender(IMessageSession messageSession) =>
         this.messageSession = messageSession;
-    }
 
     public Task SendMessage()
     {

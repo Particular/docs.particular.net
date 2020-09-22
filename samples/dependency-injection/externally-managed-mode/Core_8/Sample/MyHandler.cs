@@ -4,13 +4,14 @@ using NServiceBus;
 public class MyHandler :
     IHandleMessages<MyMessage>
 {
-    MyService myService;
+    private readonly Greeter greeter;
 
-    public MyHandler(MyService myService) => this.myService = myService;
+    public MyHandler(Greeter greeter) =>
+        this.greeter = greeter;
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        myService.WriteHello();
+        greeter.SayHello();
         return Task.CompletedTask;
     }
 }
