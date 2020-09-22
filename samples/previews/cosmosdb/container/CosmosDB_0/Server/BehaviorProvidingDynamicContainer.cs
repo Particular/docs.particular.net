@@ -15,7 +15,7 @@ class BehaviorProvidingDynamicContainer : Behavior<IIncomingLogicalMessageContex
         {
             Log.Info($"Message '{context.Message.MessageType.FullName}' destined to be handled by '{nameof(ShipOrderSaga)}' will use 'ShipOrderSagaData' container.");
 
-            context.Extensions.Set(new ContainerInformation("ShipOrderSagaData", new PartitionKeyPath("/Id")));
+            context.Extensions.Set(new ContainerInformation("ShipOrderSagaData", new PartitionKeyPath("/id")));
         }
         else
         {

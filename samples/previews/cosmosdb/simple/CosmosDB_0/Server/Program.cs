@@ -17,7 +17,7 @@ class Program
         var connection = @"AccountEndpoint = https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
         persistence.DatabaseName("Samples.CosmosDB.Simple");
         persistence.CosmosClient(new CosmosClient(connection));
-        persistence.DefaultContainer("Server", "/Id");
+        persistence.DefaultContainer("Server", "/id");
 
         #endregion
 

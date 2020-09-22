@@ -18,7 +18,7 @@ class Program
         persistence.DatabaseName("Samples.CosmosDB.Container");
         var cosmosClient = new CosmosClient(connection);
         persistence.CosmosClient(cosmosClient);
-        persistence.DefaultContainer("OrderSagaData", "/Id");
+        persistence.DefaultContainer("OrderSagaData", "/id");
 
         #endregion
 
@@ -33,7 +33,7 @@ class Program
 
         await cosmosClient.CreateDatabaseIfNotExistsAsync("Samples.CosmosDB.Container");
         var database = cosmosClient.GetDatabase("Samples.CosmosDB.Container");
-        await database.CreateContainerIfNotExistsAsync("ShipOrderSagaData", "/Id");
+        await database.CreateContainerIfNotExistsAsync("ShipOrderSagaData", "/id");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

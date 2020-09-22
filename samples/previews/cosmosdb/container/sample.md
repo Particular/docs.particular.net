@@ -35,7 +35,7 @@ Configure the endpoint to use CosmosDB Persistence.
 
 snippet: CosmosDBConfig
 
-In the non-transactional mode the saga id is used as a partition key and thus the container needs to use `/Id` as the partition key path.
+In the non-transactional mode the saga id is used as a partition key and thus the container needs to use `/id` as the partition key path.
 
 ## Behaviors
 
