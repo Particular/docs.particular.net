@@ -14,7 +14,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Container.Server");
 
         var persistence = endpointConfiguration.UsePersistence<CosmosDbPersistence>();
-        var connection = @"AccountEndpoint = https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+        var connection = @"AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
         persistence.DatabaseName("Samples.CosmosDB.Container");
         var cosmosClient = new CosmosClient(connection);
         persistence.CosmosClient(cosmosClient);
