@@ -6,8 +6,8 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CosmosDB.Client";
-        var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Client");
+        Console.Title = "Samples.CosmosDB.Simple.Client";
+        var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Simple.Client");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
@@ -30,7 +30,7 @@ class Program
             };
             if (key.Key == ConsoleKey.S)
             {
-                await endpointInstance.Send("Samples.CosmosDB.Server", startOrder)
+                await endpointInstance.Send("Samples.CosmosDB.Simple.Server", startOrder)
                     .ConfigureAwait(false);
                 Console.WriteLine($"StartOrder Message sent to Server with OrderId {orderId}");
                 continue;
