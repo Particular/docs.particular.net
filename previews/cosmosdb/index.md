@@ -2,6 +2,10 @@
 title: Azure Cosmos DB Persistence
 component: cosmosdb
 reviewed: 2020-09-11
+related:
+- samples/previews/cosmosdb/transactions
+- samples/previews/cosmosdb/container
+- samples/previews/cosmosdb/simple
 ---
 
 Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) NoSQL database service for storage.
