@@ -6,7 +6,7 @@ related:
 reviewed: 2020-09-11
 ---
 
-By default, the persister does not attempt to atomically commit saga data and/or business data. Through the use of the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
+By default, the persister does not attempt to atomically commit saga data and/or business data and uses the saga id as partition key to store sagas. Through the use of the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
 
 A custom [Behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) must be introduced to identify and insert the [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) value into the pipeline context for use by storage operations that occur during the processing of a given message.
 
@@ -50,7 +50,7 @@ WARN: Caution must be used when custom behaviors have been introduced in the pip
 
 Once a behavior is introduced to identify the partition key for a given message, it is possible to share a Cosmos DB [TransactionalBatch](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.transactionalbatch?view=azure-dotnet) between both the Saga persistence and business data. The shared `TransactionalBatch` can then be used to persist document updates for both concerns atomically.
 
-NOTE: The shared [`TransactionalBatch`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.transactionalbatch?view=azure-dotnet) will not perform any actions when [`ExecuteAsync()`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.transactionalbatch.executeasync?view=azure-dotnet) is called. This allows NServiceBus to safely manage the unit of work. `ExecuteAsync` does not need to be called within the handler.
+NOTE: The shared [`TransactionalBatch`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.transactionalbatch?view=azure-dotnet) will not perform any actions when [`ExecuteAsync()`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.transactionalbatch.executeasync?view=azure-dotnet) is called. This allows NServiceBus to safely manage the unit of work. `ExecuteAsync` does not need to be called within the handler. All stream resources passed to the shared transaction will be properly disposed when NServiceBus executes the batch.
 
 ### Within a handler method using `IMessageHandlerContext`
 
