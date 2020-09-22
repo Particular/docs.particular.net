@@ -20,7 +20,7 @@ Once installed, the `export-aspsagas` command line tool will be available for us
  
 `-c` | `--connectionstring` : Set the connection string to the table storage
 
-`-s` | `--sagadataname`: The saga data class name without the namespace (i.ex. `OrderSagaData`) of the saga data to export. This will be used to derive the table storage name from.
+`-s` | `--sagadataname`: The saga data class name without the namespace (e.g. `OrderSagaData`) of the saga data to export. This will be used to derive the table storage name from.
 
 ## Migration
 
