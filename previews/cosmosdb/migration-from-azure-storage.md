@@ -49,9 +49,9 @@ dt.exe /s:JsonFile /s.Files:C:\\path\\to\\OrderSagaData\\*.* /t:DocumentDB /t.Id
 ```
 where the following parameters need to be adjusted:
 
-`s.Files`: file path to the folder containing a specific saga data JSON files exported from Table Storage.
-`t.Collection`: Cosmos DB collection to be used for the imported data.
-`t.ConnectionString`: Cosmos DB connection string including Cosmos SB database name (e.g`;database=MyCosmosDb`).
+`s.Files`: file path to the folder containing a specific saga data JSON files exported from Table Storage.<br/>
+`t.Collection`: Cosmos DB collection to be used for the imported data.<br/>
+`t.ConnectionString`: Cosmos DB connection string including Cosmos SB database name (e.g`;database=MyCosmosDb`).<br/>
 
 ## Data inspection
 
