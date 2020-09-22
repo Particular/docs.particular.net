@@ -10,6 +10,8 @@ related:
 
 Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) NoSQL database service for storage.
 
+WARN: It is important to [read and understand](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) partitioning in Azure Cosmos DB before using `NServiceBus.Persistence.CosmosDB`.
+
 ## Supported persistence types
 
 * [Sagas](/nservicebus/sagas/)
