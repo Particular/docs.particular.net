@@ -132,7 +132,7 @@ WARNING: In order to use the portable version of the Particular Service Platform
 
 A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Usually these are just plain old bugs. Most of the time these kinds of failures require a redeployment with new code in order to fix. But what happens to the messages when this happens?
 
-NOTE: For a good introduction to different types of errors and how to handle them with message-based systems, see [But all my errors are severe!](https://particular.net/blog/but-all-my-errors-are-severe)
+NOTE: For a good introduction to different types of errors and how to handle them with message-based systems, see [I caught an exception. Now what?](https://particular.net/blog/but-all-my-errors-are-severe)
 
 Let's cause a systemic failure and see how we can use the Particular Service Platform tools to handle it.
 
@@ -249,12 +249,12 @@ To start, in the **Solution Explorer** window, right-click the **RetailDemo** so
 4. Click **OK** to create the project and add it to the solution.
 
 {{NOTE:
-**ProTip:** The existing projects in this solution are using .NET Core-style project files, but the current Visual Studio tooling doesn't make it very easy to do the same for the **Shipping** project. If you like, you can create a project of type **Console App (.NET Core)** and then manually edit the **Shipping.csproj** file to change the `TargetFramework` value from `netcoreapp2.0` to `net461`.
+**Tip:** The existing projects in this solution are using the simpler .NET Core-style project file syntax, but the current Visual Studio tooling makes it difficult to do the same for the **Shipping** project. If you'd like to use the newer format, create a project of type **Console App (.NET Core)** and then manually edit the **Shipping.csproj** file and change the `TargetFramework` value from `netcoreapp2.0` to `net461`.
 
-Creating a **Console App (.NET Framework)** project which uses the older-style `*.csproj` file will work just fine, but will just look slightly different in Visual Studio, with nested **Properties**, **References**, and **packages.config** items instead of **Dependencies**.
+Creating a **Console App (.NET Framework)** project which uses the older `*.csproj` file syntax will work just fine, but will look slightly different in Visual Studio, with nested **Properties**, **References**, and **packages.config** items instead of **Dependencies**.
 }}
 
-By default, Visual Studio will create the project using C# 7.0. Let's change it to C# 7.1 so that we can use nice features like [an async Main method](https://blogs.msdn.microsoft.com/mazhou/2017/05/30/c-7-series-part-2-async-main/):
+Depending on your environment, Visual Studio may create the project using C# 7.0. Let's change it to at least C# 7.1 so that we can use nice features like [an async Main method](https://blogs.msdn.microsoft.com/mazhou/2017/05/30/c-7-series-part-2-async-main/):
 
 1. In the **Solution Explorer**, right-click on the **Shipping** project and choose **Properties**.
 1. Switch to the **Build** tab.
