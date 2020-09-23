@@ -18,9 +18,9 @@ In the next 15-20 minutes, you will learn how to define messages and message han
 
 ## What is a message
 
-A [**message**](/nservicebus/messaging/messages-events-commands.md) is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we define message via simple classes.
+A [**message**](/nservicebus/messaging/messages-events-commands.md) is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we define messages via simple classes.
 
-In this lesson, we'll focus on [commands](/nservicebus/messaging/messages-events-commands.md). In [Lesson 4: Publishing events](../4-publishing-events/) we'll expand to look at events as well.
+In this lesson, we'll focus on one type of message: [commands](/nservicebus/messaging/messages-events-commands.md). In [Lesson 4: Publishing events](../4-publishing-events/) we'll expand to look at another type of message, events, as well.
 
 To define a command, create a class and mark it with the `ICommand` interface.
 
@@ -38,7 +38,7 @@ Messages can even contain child objects or collections. The supported range of s
 
 snippet: ComplexCommand
 
-Messages are a contract between two endpoints. Any change to the message will likely involve a change on both the sender and receiver side. The more properties you have on a message, the more reasons it has to change, so keep your messages as slim as possible.
+Messages are a contract between two endpoints. Any change to the message will likely involve a change on both the sender and receiver side. The more properties you have on a message, the more reasons it has to change, so keep your messages [as slim as possible](https://particular.net/blog/putting-your-events-on-a-diet).
 
 Also, do not embed logic within your message classes. Each message should contain only automatic properties and not computed properties or methods. It is a good practice to initialize collection properties as shown above, so that you never have to deal with a null collection.
 

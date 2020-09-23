@@ -18,8 +18,8 @@ Starting from NServiceBus version 7.4, the [NServiceBus.EnclosedMessageTypes hea
 
 Some serializers can infer the message type from information embedded in the message body. 
 
- * [Xml](/nservicebus/serialization/xml.md) 
- * [Json](/nservicebus/serialization/json.md)
+ * [XML](/nservicebus/serialization/xml.md) 
+ * [JSON](/nservicebus/serialization/json.md)
  * [Newtonsoft](/nservicebus/serialization/newtonsoft.md)
 
 The [RabbitMQ](/samples/rabbitmq/native-integration/), [SQL](/samples/sqltransport/native-integration/), and [Azure Service Bus](/samples/azure/native-integration-asb/) native integration samples demonstrate inferring message type from the message body.

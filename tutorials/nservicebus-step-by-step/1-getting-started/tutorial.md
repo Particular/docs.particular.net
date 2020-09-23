@@ -91,12 +91,12 @@ snippet: LearningTransport
 
 This setting defines the [**transport**](/transports/) that NServiceBus will use to send and receive messages. We are using the [Learning transport](/transports/learning/), which is bundled in the NServiceBus core library as a starter transport for learning how to use NServiceBus without additional dependencies. All other transports are provided using different NuGet packages.
 
-Capturing the `transport` settings in a variable as shown will make things easier in [Lesson 3](../3-multiple-endpoints/) when we start defining message routing rules.
+Capturing the `transport` settings in a variable as shown will make things easier in [a later lesson](../3-multiple-endpoints/) when we start defining message routing rules.
 
 
 ### Starting up
 
-At the end of the `AsyncMain` method, after the configuration code, add the following code which will: start the endpoint, keep it running until we press the <kbd>Enter</kbd> key, then shut it down.
+At the end of the `Main (or `AsyncMain`) method, after the configuration code, add the following code which will: start the endpoint, keep it running until we press the <kbd>Enter</kbd> key, then shut it down.
 
 snippet: Startup
 

@@ -20,5 +20,5 @@ NServiceBus uses the AssemblyQualifiedName when emitting messages.
 
 ## Serializers that support message type inference
 
-* [Xml](/nservicebus/serialization/xml.md#inferring-message-type-from-root-node-name) via the root node name
-* [Json.NET](/nservicebus/serialization/newtonsoft.md#inferring-message-type-from-type) via a custom `$type` property
+* [XML](/nservicebus/serialization/xml.md#inferring-message-type-from-root-node-name) via the root node name
+* [JSON.NET](/nservicebus/serialization/newtonsoft.md#inferring-message-type-from-type) via a custom `$type` property
