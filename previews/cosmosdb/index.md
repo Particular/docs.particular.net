@@ -98,9 +98,3 @@ Example exception:
 ```
 The 'OrderSagaData' saga with id '7ac4d199-6560-4d1a-b83a-b3dad94b0802' was updated by another process or no longer exists.
 ```
-
-## Migration mode
-
-By enabling the migration mode the saga persister will attempt to query the container and the stored saga metadata in case a saga was migrated from another storage persistence.
-
-snippet: CosmosDBMigrationMode
