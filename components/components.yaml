@@ -886,3 +886,14 @@
   ProjectUrl: https://github.com/Particular/TimeoutMigrationTool
   NugetOrder:
     - Particular.TimeoutMigration
+
+- Key: CosmosDB
+  Name: NServiceBus.Persistence.CosmosDB
+  DocsUrl: previews/cosmosdb
+  GitHubOwner: Particular
+  Category: Persistence
+  SupportLevel: Preview
+  LicenseUrl: https://github.com/Particular/NServiceBus.Persistence.CosmosDB/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.CosmosDB
+  NugetOrder:
+    - NServiceBus.Persistence.CosmosDB
