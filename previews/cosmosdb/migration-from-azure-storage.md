@@ -24,7 +24,7 @@ Prior to starting the endpoint, configure the endpoint to [use migration mode](#
 To export data from Table Storage, a .NET tool provided by Particular is required. The tool can be obtained from MyGet and installed using the following command:
 
 ```
-dotnet tool install NServiceBus.Persistence.CosmosDB.AzureStorageSagaExporter --tool-path=<installation-path> --add-source=https://www.myget.org/F/particular/api/v3/index.json --version 0.1.0-alpha.*
+dotnet tool install NServiceBus.Export.AspSagas --tool-path <installation-path> --add-source https://www.myget.org/F/particular/api/v3/index.json --version 0.1.0-alpha.*
 ```
 
 Once installed, the `export-aspsagas` command line tool will be available for use at the installation path used earlier. For example:
@@ -46,7 +46,7 @@ Once the tool is executed, saga data for the selected saga data table will be st
 The tool can be update using the following command:
 
 ```
-dotnet tool update --tool-path <installation-path> NServiceBus.Persistence.CosmosDB.AzureStorageSagaExporter --add-source=https://www.myget.org/F/particular/api/v3/index.json --version 0.1.0-alpha.*
+dotnet tool update --tool-path <installation-path> NServiceBus.Export.AspSagas --add-source https://www.myget.org/F/particular/api/v3/index.json --version 0.1.0-alpha.*
 ```
 
 ### Exported saga Id
