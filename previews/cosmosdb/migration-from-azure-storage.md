@@ -29,7 +29,9 @@ dotnet tool install NServiceBus.Export.AspSagas --tool-path <installation-path> 
 
 Once installed, the `export-aspsagas` command line tool will be available for use at the installation path used earlier. For example:
 
-`export-aspsagas -c "UseDevelopmentStorage=true" -s OrderSagaData`
+```
+export-aspsagas -c "UseDevelopmentStorage=true" -s OrderSagaData
+```
 
 `<exported-path>` is the destination path where the `export-aspsagas.exe` will be found.
 
@@ -37,9 +39,11 @@ Once the tool is executed, saga data for the selected saga data table will be st
 
 ### Export tool options
  
-`-c` | `--connectionstring` : Set the connection string to the table storage
-
-`-s` | `--sagadataname`: The saga data class name without the namespace (e.g. `OrderSagaData`) of the saga data to export. This will be used to derive the table storage name from.
+`-c` | `--connectionstring`: Set the connection string to the table storage<br>
+`-s` | `--sagadataname`: The saga data class name without the namespace (e.g. `OrderSagaData`) of the saga data to export. This will be used to derive the table storage name from.<br>
+`-i | --ignore-updates`: Allow using the tool even if a newer version is available.<br>
+`-v | --verbose`: Enable verbose output.<br>
+`--version`: Show the current version of the tool.
 
 #### Updating the tool
 
