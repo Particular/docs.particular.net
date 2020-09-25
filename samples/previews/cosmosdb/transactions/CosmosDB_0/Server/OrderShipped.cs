@@ -4,5 +4,5 @@ using NServiceBus;
 public class OrderShipped : IEvent
 {
     public Guid OrderId { get; set; }
-    public DateTime ShippingDate { get; set; }
+    public DateTimeOffset ShippingDate { get; set; }
 }
