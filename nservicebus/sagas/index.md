@@ -80,7 +80,7 @@ To override the default saga not found behavior [implement `IHandleSagaNotFound`
 
 Correlation is needed in order to find existing saga instances based on data on the incoming message. See [Message Correlation](message-correlation.md) for more details.
 
-Note: The saga `Id` available via `IContainSagaData` or `ContainSagaData` must not be used and is considered internal to NServiceBus. It is recommended to add an additional property that contains a unique saga instance identifier.
+Note: The saga `Id` available via `IContainSagaData` or `ContainSagaData` is considered internal to NServiceBus and must not be used to correlate messages. Instead, add an additional property that contains a unique saga instance identifier.
 
 ## Discarding messages when saga is not found
 
