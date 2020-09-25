@@ -17,7 +17,7 @@ WARN: It is important to [read and understand](https://docs.microsoft.com/en-us/
 * [Sagas](/nservicebus/sagas/)
 * [Outbox](/nservicebus/outbox/)
 
-NOTE: [Transactions](#transactions) are required to utilize the Outbox feature.
+NOTE: The Outbox feature requires partition planning.
 
 ## Usage
 
