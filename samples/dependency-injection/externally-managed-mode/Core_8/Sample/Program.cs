@@ -7,20 +7,26 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.NServiceBus.Extensions.DependencyInjection";
+        Console.Title = "Samples.NServiceBus.ExternallyManagedContainer";
 
         var endpointConfiguration = new EndpointConfiguration("Sample");
         endpointConfiguration.UseTransport<LearningTransport>();
 
         #region ContainerConfiguration
 
+        // ServiceCollection is provided by Microsoft.Extensions.DependencyInjection
         var serviceCollection = new ServiceCollection();
-        serviceCollection.AddSingleton<MyService>();
-        serviceCollection.AddSingleton<MessageSenderService>();
 
+        // most dependencies may now be registered
+        serviceCollection.AddSingleton<Greeter>();
+        serviceCollection.AddSingleton<MessageSender>();
+
+        // EndpointWithExternallyManagedContainer.Create accepts an IServiceCollection,
+        // which is inherited by ServiceCollection
         var endpointWithExternallyManagedContainer = EndpointWithExternallyManagedContainer
             .Create(endpointConfiguration, serviceCollection);
-        // if needed register the session
+
+        // if IMessageSession is required as dependency, it may now be registered
         serviceCollection.AddSingleton(p => endpointWithExternallyManagedContainer.MessageSession.Value);
 
         #endregion
@@ -30,8 +36,8 @@ static class Program
             var endpoint = await endpointWithExternallyManagedContainer.Start(serviceProvider)
                 .ConfigureAwait(false);
 
-            var senderService = serviceProvider.GetRequiredService<MessageSenderService>();
-            await senderService.SendMessage()
+            var sender = serviceProvider.GetRequiredService<MessageSender>();
+            await sender.SendMessage()
                 .ConfigureAwait(false);
 
             Console.WriteLine("Press any key to exit");

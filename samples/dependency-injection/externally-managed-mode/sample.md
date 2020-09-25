@@ -1,33 +1,28 @@
 ---
-title: Externally Managed Container Mode Usage
-summary: A sample that uses the NServiceBus externally managed container mode to configure a DI container.
+title: Externally managed mode
+summary: A sample that uses NServiceBus externally managed mode to configure a DI container.
 component: Core
-reviewed: 2020-09-04
+reviewed: 2020-09-22
 related:
  - nservicebus/dependency-injection
 ---
 
-### Configuring an endpoint to use ServiceProvider
+### Configuring the endpoint
 
-The following code configures an endpoint with the [externally managed mode](/nservicebus/dependency-injection/#externally-managed-mode) using Microsoft's dependency injection container.
+The sample configures an endpoint to use [externally managed mode](/nservicebus/dependency-injection/#externally-managed-mode) with [Microsoft's dependency injection container](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection) and registers some dependencies.
 
 snippet: ContainerConfiguration
 
-### Injecting the dependency in the handler
+### Injecting dependencies into handlers
 
-Services that have been registered with the `IServiceCollection` can be injected into message handlers via constructor injection:
+Registered dependencies may be injected into message handlers using constructor injection:
 
 snippet: InjectingDependency
 
-### Injecting the message session into dependencies
+### Injecting the message session into other types
 
-The `IMessageSession` can be registered with the `IServiceCollection` so it can be injected as a dependency into other classes:
-
-```csharp
-serviceCollection.AddSingleton(p => endpointWithExternallyManagedContainer.MessageSession.Value);
-```
+When `IMessageSession` has been registered as shown above, it may be injected into other types using constructor injection:
 
 snippet: InjectingMessageSession
 
-NOTE: The `IMessageSession` can only be resolved from the `IServiceProvider` once the endpoint has been started.
-
+NOTE: An `IMessageSession` may only be injected by the container _after the endpoint has been started_.
