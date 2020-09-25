@@ -42,7 +42,7 @@ Most messages implement `IProvideOrderId` and thus a logical behavior can use th
 
 snippet: BehaviorUsingIProvideOrderId
 
-One handler publishes an event that doesn't implement `IProvideOrderId` but adds a custom header to indicate the order identification.
+One handler publishes an event that doesn't implement `IProvideOrderId` but adds a custom header to indicate the order identification. The handler also creates `OrderShippingInformation` by participating in the transactional batch provided by NServiceBus.
 
 snippet: UseHeader
 
