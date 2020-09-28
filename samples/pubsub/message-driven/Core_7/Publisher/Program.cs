@@ -16,13 +16,13 @@ static class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        await Start(endpointInstance)
+        await PublishOrderEvent(endpointInstance)
             .ConfigureAwait(false);
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
 
-    static async Task Start(IEndpointInstance endpointInstance)
+    static async Task PublishOrderEvent(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press '1' to publish the OrderReceived event");
         Console.WriteLine("Press any other key to exit");
