@@ -7,7 +7,7 @@ related:
  - nservicebus/messaging/publish-subscribe
 ---
 
-This sample shows how to publish an event message from a messaging endpoint in one physical process, subscribe to the event in a separate messaging endpoint in a second physical process, and execute a message handler when an event message is received. This sample uses the [message-driven publish-subscribe mechanism](/nservicebus/messaging/publish-subscribe#mechanics-message-driven-persistence-based) used for unicast transports.
+This sample shows how to publish an event message from a messaging endpoint in one physical process, subscribe to the event in a separate messaging endpoint in a second physical process, and execute a message handler when an event message is received. This sample uses the [message-driven publish-subscribe mechanism](/nservicebus/messaging/publish-subscribe#mechanics-message-driven-persistence-based) for unicast transports.
 
 downloadbutton
 

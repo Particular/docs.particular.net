@@ -1,7 +1,7 @@
 ---
-title: Publish/Subscribe
-summary: Publish/Subscribe, fault-tolerant messaging, and durable subscriptions.
-reviewed: 2020-07-30
+title: Native Publish/Subscribe
+summary: Publish/Subscribe with multicast-enabled transports.
+reviewed: 2020-09-28
 component: Core
 redirects:
  - nservicebus/publish-subscribe-sample
@@ -29,7 +29,7 @@ snippet: PublishLoop
 
 ## Implementing subscribers
 
-To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/messaging/publish-subscribe/) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](/nservicebus/messaging/publish-subscribe/) that tells the endpoint where to send subscriptions for messages for transports that use [message-driven publish/subscribe](/nservicebus/messaging/publish-subscribe/):
+To receive messages from the publisher, the subscribers must subscribe to the message types they are designed to handle.
 
  * The `Subscriber` handles and subscribes to the `OrderReceived` type.
  * The handlers in each project are in files that end with the word `Handler` for example `OrderReceivedHandler.cs`.
@@ -43,7 +43,7 @@ Click the `1` key repeatedly in the `Publisher` process console window and notic
 
 ## Message Flow
 
-The exact message flow may differ between [unicast transports](/transports/types.md#unicast-only-transports) and [broker transports](/transports/types.md#broker-transports). See the [publish-subscribe documentation](/nservicebus/messaging/publish-subscribe/) for further details.
+In multicast-enabled transports, the broker handles the subscription mechanism, routing published events to all subscribed endpoints. See the [publish-subscribe documentation](/nservicebus/messaging/publish-subscribe/#mechanics-native) for further details.
 
 ## Fault-tolerant messaging
 
@@ -51,4 +51,4 @@ Shut down `Subscriber` by closing its console window. Return to the `Publisher` 
 
 In Visual Studio, right-click the project of the closed subscriber. Restart it by right-clicking the `Subscriber` project and selecting `Debug` followed by `Start new instance`.
 
-partial: faulttolerance
+Note how `Subscriber` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case LearningTransport without knowledge of the running status of any subscriber. LearningTransport safely places the message in the inbound queue of the subscriber where it awaits handling. Even when processes or machines restart, NServiceBus protects messages from being lost. 
