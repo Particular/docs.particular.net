@@ -1,6 +1,6 @@
 ---
 title: Message-driven Publish/Subscribe
-summary: Persistence based Publish/Subscribe, fault-tolerant messaging, and durable subscriptions.
+summary: Persistence based Publish/Subscribe for unicast-only transports.
 reviewed: 2020-09-28
 component: Core
 related:
