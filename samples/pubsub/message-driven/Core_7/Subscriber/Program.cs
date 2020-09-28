@@ -6,10 +6,14 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.PubSub.Subscriber";
-        var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        Console.Title = "Samples.PubSub.MessageDrivenSubscriber";
+        var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.MessageDrivenSubscriber");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+
+        #region SubscriptionConfiguration
+        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
+        transport.Routing().RegisterPublisher(typeof(OrderReceived), "Samples.PubSub.MessageDrivenPublisher");
+        #endregion
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

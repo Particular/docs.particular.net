@@ -6,10 +6,10 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.PubSub.Publisher";
-        var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Publisher");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport<LearningTransport>();
+        Console.Title = "Samples.PubSub.MessageDrivenPublisher";
+        var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.MessageDrivenPublisher");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

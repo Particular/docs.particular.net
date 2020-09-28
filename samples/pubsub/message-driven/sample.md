@@ -1,17 +1,13 @@
 ---
-title: Publish/Subscribe
-summary: Publish/Subscribe, fault-tolerant messaging, and durable subscriptions.
-reviewed: 2020-07-30
+title: Message-driven Publish/Subscribe
+summary: Persistence based Publish/Subscribe, fault-tolerant messaging, and durable subscriptions.
+reviewed: 2020-09-28
 component: Core
-redirects:
- - nservicebus/publish-subscribe-sample
 related:
  - nservicebus/messaging/publish-subscribe
 ---
 
-The Publish/Subscribe pattern allows greater flexibility in developing distributed systems by decoupling system components from each other. Once the system is capable of publishing an event, additional capabilities can be added to the system by adding a new event subscriber. A new subscriber can be added in a separate physical process, without changing or redeploying the code that publishes the message.
-
-This sample shows how to publish an event message from a messaging endpoint in one physical process, subscribe to the event in a separate messaging endpoint in a second physical process, and execute a message handler when an event message is received.
+This sample shows how to publish an event message from a messaging endpoint in one physical process, subscribe to the event in a separate messaging endpoint in a second physical process, and execute a message handler when an event message is received. This sample uses the [message-driven publish-subscribe mechanism](/nservicebus/messaging/publish-subscribe#mechanics-message-driven-persistence-based) used for unicast transports.
 
 downloadbutton
 
@@ -29,7 +25,9 @@ snippet: PublishLoop
 
 ## Implementing subscribers
 
-To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/messaging/publish-subscribe/) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](/nservicebus/messaging/publish-subscribe/) that tells the endpoint where to send subscriptions for messages for transports that use [message-driven publish/subscribe](/nservicebus/messaging/publish-subscribe/):
+To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/messaging/publish-subscribe/) they are designed to handle. A subscriber must have a handler for the type of message and a configuration that tells the endpoint where to send subscriptions for messages to:
+
+snippet: SubscriptionConfiguration
 
  * The `Subscriber` handles and subscribes to the `OrderReceived` type.
  * The handlers in each project are in files that end with the word `Handler` for example `OrderReceivedHandler.cs`.
@@ -43,7 +41,7 @@ Click the `1` key repeatedly in the `Publisher` process console window and notic
 
 ## Message Flow
 
-The exact message flow may differ between [unicast transports](/transports/types.md#unicast-only-transports) and [broker transports](/transports/types.md#broker-transports). See the [publish-subscribe documentation](/nservicebus/messaging/publish-subscribe/) for further details.
+When starting up, the `Subscriber` endpoint sends a subscription message to the `Publisher` endpoint. The `Publisher` then retrieves all subscribed endpoints from the persistence once an event is published. See the [publish-subscribe documentation](/nservicebus/messaging/publish-subscribe#mechanics-message-driven-persistence-based) for further details.
 
 ## Fault-tolerant messaging
 
@@ -51,4 +49,4 @@ Shut down `Subscriber` by closing its console window. Return to the `Publisher` 
 
 In Visual Studio, right-click the project of the closed subscriber. Restart it by right-clicking the `Subscriber` project and selecting `Debug` followed by `Start new instance`.
 
-partial: faulttolerance
+Note how `Subscriber` immediately receives the messages that were published while it was not running. The publisher safely places the event into the subscriber's queue without knowledge of the running status of any subscriber. Even when processes or machines restart, NServiceBus protects messages from being lost. 
