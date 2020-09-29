@@ -26,7 +26,7 @@ class Program
 
     static async Task SendMessages(IMessageSession messageSession)
     {
-        Console.WriteLine("Press [c] to send a command, or [e] to send an event. Press [Esc] to exit.");
+        Console.WriteLine("Press [c] to send a command, or [e] to publish an event. Press [Esc] to exit.");
         while (true)
         {
             var input = Console.ReadKey();
