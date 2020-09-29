@@ -8,8 +8,6 @@ class Program
     {
         Console.Title = "Samples.SqlServer.SimpleSender";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleSender");
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
 
         #region TransportConfiguration
