@@ -9,4 +9,7 @@
     <PackageReference Include="NServiceBus.RabbitMQ" Version="5.*" />
     <PackageReference Include="RabbitMQ.Client" Version="5.*" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ---
 title: Simple RabbitMQ Transport Usage
-reviewed: 2020-04-07
+reviewed: 2020-09-29
 component: Rabbit
 related:
 - transports/rabbitmq
@@ -15,7 +15,7 @@ Ensure an instance of RabbitMQ is running and accessible.
 
 ## Code walk-through
 
-This sample shows basic usage of RabbitMQ as a transport for NServiceBus. The application sends an empty message to itself, via the RabbitMQ broker, and writes to the console when the message is received.
+This sample shows basic usage of RabbitMQ as a transport for NServiceBus to connect two endpoints. The sender either sends a command or publishes an event to a receiver endpoint, via the RabbitMQ broker, and writes to the console when the message is received.
 
 
 ### Configuration
