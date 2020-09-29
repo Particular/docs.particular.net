@@ -12,9 +12,10 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.SimpleSender");
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         transport.S3("bucketname", "my/key/prefix");
-        transport.Routing().RouteToEndpoint(typeof(MyCommand), "Samples.Sqs.SimpleReceiver");
 
         #endregion
+
+        transport.Routing().RouteToEndpoint(typeof(MyCommand), "Samples.Sqs.SimpleReceiver");
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
