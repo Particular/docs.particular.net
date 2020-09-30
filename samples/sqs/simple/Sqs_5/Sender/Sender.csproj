@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
@@ -11,5 +11,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.AmazonSQS" Version="5.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>
