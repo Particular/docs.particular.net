@@ -12,15 +12,12 @@ related:
 
 include: sql-prereq
 
-The database created by this sample is called `NsbSamplesSqlTransport`.
+The database created by this sample is called `SQLServerSimple`.
 
 
 ## Running the project
 
- 1. Start both the Sender and Receiver projects
- 1. At startup Sender will send a message to Receiver.
- 1. Receiver will handle the message.
-
+partial: running-the-project
 
 ## Code walk-through
 

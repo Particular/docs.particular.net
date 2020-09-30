@@ -8,13 +8,11 @@ class Program
     {
         Console.Title = "Samples.SqlServer.SimpleReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleReceiver");
-        endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         var connection = @"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True;Max Pool Size=100";
         transport.ConnectionString(connection);
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
 
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
 
         SqlHelper.EnsureDatabaseExists(connection);
