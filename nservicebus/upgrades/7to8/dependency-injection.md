@@ -70,7 +70,7 @@ NServiceBus integrates with the [Microsoft Generic Host](https://docs.microsoft.
 
 ### Migrating to the Generic Host
 
-To host NServiceBus as part of the Generic Host, install the `NServiceBus.Extensions.Hosting` NuGet package and refer to the [documentation](/nservicebus/hosting/extensions-hosting.md) for further details. Refer to the container's documentation for configuration instructions. By default, the Generic Host uses the [Microsoft.Extensions.DependencyInjection] container. See the following examples on how to integrate common DI containers with the generic host. Other supported DI containers are listed in the [official documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection1#default-service-container-replacement).
+To host NServiceBus as part of the Generic Host, install the `NServiceBus.Extensions.Hosting` NuGet package and refer to the [documentation](/nservicebus/hosting/extensions-hosting.md) for further details. Refer to the container's documentation for configuration instructions. By default, the Generic Host uses the [Microsoft.Extensions.DependencyInjection] container. See the following examples on how to integrate common DI containers with the generic host. Other supported DI containers are listed in the [official documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.1#default-service-container-replacement).
 
 #### Autofac
 
