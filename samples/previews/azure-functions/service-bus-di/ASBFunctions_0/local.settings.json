@@ -4,6 +4,6 @@
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
 
-    "AzureWebJobsServiceBus": "<set your ASB connection string here>"
+    "AzureWebJobsServiceBus": "Endpoint=sb://seanfeldman-test.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=1ND+Opax1xwBqTuUmnkk9tvMlb1s2BUjCJt/NaJceoQ="
   }
 }

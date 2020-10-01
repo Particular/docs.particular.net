@@ -1,0 +1,2 @@
+AzureFunctions.ASBTrigger.DI\AzureFunctions.ASBTrigger.DI.csproj
+AzureFunctions.Console\AzureFunctions.Sender.csproj
