@@ -369,6 +369,6 @@ In Version 7 tasks are executed as part of the receive pipeline using an `await`
 
 This means that the task now participates in the [transport transaction](/transports/transactions) and is therefore exposed to the transaction timeout.
 
-To get the Version 6 behavior please make sure to execute the task in a `Task.Run` as shown below:
+To achieve the Version 6 behavior, please make sure to execute the task in a `Task.Run` as shown below:
 
 snippet: 6to7ExecuteScheduledTaskUsingTaskRun
