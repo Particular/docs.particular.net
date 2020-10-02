@@ -39,7 +39,7 @@ The Outbox is that piece of infrastructure.
 
 ## How it works
 
-The Outbox guarantees exactly-once message processing by piggybacking on the database transaction used to store business data.
+The Outbox guarantees exactly-once message processing by taking advantage of the database transaction used to store business data.
 
 Returning to the earlier example of creating a `User` and then publishing a `UserCreated` event, NServiceBus will follow this process when processing a message using the outbox feature. Extended descriptions can be found beneath the diagram.
 
@@ -90,7 +90,7 @@ Here is more detail on each stage of the process:
 
 ## Important design considerations
 
-* Outbox data must be stored in the same database as business data, so that the outbox is able to piggyback on the single local database transaction.
+* Outbox data must be stored in the same database as business data, so that the outbox is able to take advantage of the single local database transaction.
 * The outbox works only in an NServiceBus message handler.
 * Because deduplication is done using `MessageId`, messages sent outside of an NServiceBus message handler (i.e. from a Web API) cannot be deduplicated unless they are sent with the same `MessageId`.
 * The outbox is _expected to_ generate duplicate messages from time to time, especially if there is unreliable communication between the endpoint and the message broker.
