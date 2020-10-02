@@ -360,7 +360,7 @@ This article so far covers the changes between NServiceBus 6 and NServiceBus 7. 
 
 In Version 6, scheduled tasks were invoked as a separate `System.Task` using `Task.Run`.
 
-This would mean that:
+This means that:
 
 * They are not able participate in the [transport transaction](/transports/transactions)
 * They are not limited in time by the timeout of the transport transaction
