@@ -94,7 +94,7 @@ In production, the creation of queues, database tables, and other tables should 
 
 Because message queues generally do not support any form of transactions, message handlers that modify business data in a database run into problems when the messages that are sent become inconsistent with the changes made to business data, resulting in ghost messages or phantom records.
 
-Using the Outbox guarantees exactly-once message processing by piggybacking on the local database transaction used to store business data.
+Using the Outbox guarantees exactly-once message processing by taking advantage of the local database transaction used to store business data.
 
 When using transports that only support [receive-only or sends-atomic-with-receives transactions](/transports/transactions.md), the Outbox ensures that outgoing messages are consistent with changes made to business data in the database.
 
