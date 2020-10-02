@@ -8,17 +8,25 @@ This article will present recommendations to keep in mind when designing a syste
 
 ## Architecture
 
-:heavy_check_mark: **DO split up endpoints before scaling out**
+:heavy_check_mark: **DO limit the number of handlers in each endpoint**
 
-Multiple message handlers can be combined inside a single logical endpoint. These handlers all share a single queue for different types of messages. This can decrease throughput of messages.
+Multiple message handlers can be combined inside a single logical endpoint. However, these handlers all share a single message queue for different types of messages.
 
-Instead of scaling out endpoints over different hosts (virtual machines, docker containers, etc), it's better to split up handlers over different logical endpoints. The comparison can also be made to a monolith, which is harder to maintain, update and deploy than smaller services/endpoints. Every logical endpoint can adhere to the Single Responsibility Principle and be responsible for certain types of message handlers. Like `Finance.Invoicing` and `Finance.Orders` and `Finance.Pricing`.
+The endpoint is the fundamental unit of scale for an NServiceBus system. If one message handler has much higher throughput requirements, it can only be independently scaled if it exists in an endpoint by itself. In separate endpoints, only the message handler that has the unique scalability requirements has to be scaled out.
 
-:heavy_check_mark: **DO split up endpoints to separate message processing**
+The endpoint is also the fundamental unit of deployment for an NServcieBus system. That means that if a fix is required to one message handler, the entire endpoint must be redeployed. The fewer message handlers in each endpoint, the less likely any individual deployment is to cause a problem in the system, since the whole system does not have to be redeployed on every change.
 
-Different types of messages might require a different service-level agreement (SLA). Combining their message handlers inside a single logical endpoint makes it harder to meet a higher SLA, as different message types are waiting to be processed in the same queue.
 
-An example of this are how strategic customers are processed over regular customers. Having different logical endpoints provide options for different SLA and even different business processing of those message. Different ways of processing these message can be read in the blogpost on [why you don't need priority queues](https://bloggingabout.net/2020/07/16/priority-queues-why-you-dont-need-them/).
+:heavy_check_mark: **CONSIDER grouping message handlers by SLA**
+
+Different message handlers commonly have very different timing requirements. A back-end, largely async process may take 30 seconds or more to complete, where nobody will notice or care if it happens to take longer. On the other hand, commands sent directly from the customer UI tend to be processed very quickly, and there is an expectation that processing complete within a second or two.
+
+This time is the service-level agreement (SLA) for that message handler. It is unwise to group message handlers with different SLAs in the same endpoint, because all the handlers share the same queue. When SLAs are mixed, it becomes possible for a 1-second-SLA message to get stuck in line behind a batch of 60-second-SLA messages, causing the SLA of the shorter message to be breached.
+
+With message handlers separated by SLA, the scalability needs for the message handlers can be adjusted to make sure that the [critical time](/monitoring/metrics/definitions.md#metrics-captured-critical-time) (the amount of time the message waits to be processed + the processing time) does not exceed that SLA.
+
+For more information on monitoring the critical time, see [Monitoring NServiceBus solutions: Getting started](/tutorials/monitoring-setup/)
+
 
 :x: **DO NOT abstract away NServiceBus**
 
