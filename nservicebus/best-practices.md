@@ -58,15 +58,15 @@ Asynchronous messaging (e.g. NServiceBus) is **not** a good solution for data di
 
 Message handlers should be fairly simple, and focused on only the business code needed to handle the message. Infrastructure code for logging, exception management, timing, auditing, authorization, unit of work, message signing/encryption (the list could go on forever) should not be included in a message handler.
 
-Instead, implement this functionality separately in a [message pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md), which enables inserting additional functionality into the NServiceBus message processing pipeline, kind of like an [ASP.NET ActionFilter except for messaging.
+Instead, implement this functionality separately in a [message pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md), which enables inserting additional functionality into the NServiceBus message processing pipeline, kind of like an ASP.NET ActionFilter except for messaging.
 
 For a high-level overview of infrastructure concerns and behaviors, see the blog post [Infrastructure soup](https://particular.net/blog/infrastructure-soup).
 
 :x: **DO NOT catch exceptions in a message handler**
 
-NServiceBus relies on a message handler completing _without_ throwing an exception to know that the message was processed successfully. If an exception is thrown, the message can be retried until it succeeds, which resolves many transient errors. (See the blog post [I caught an exception. Now what?](https://particular.net/blog/but-all-my-errors-are-severe).) If too many retries occur, the message is moved to an error queue where a developer can figure out what's wrong with it and correct the underlying issue.
+NServiceBus relies on a message handler completing _without_ throwing an exception to know that the message was processed successfully. If an exception is thrown, the message can be retried until it succeeds, which resolves many transient errors. (See the blog post [I caught an exception. Now what?](https://particular.net/blog/but-all-my-errors-are-severe).) If too many retries occur, the message is moved to an error queue where a developer can use [ServicePulse](/servicepulse/) to [view the failed message details](/servicepulse/intro-failed-messages.md) to figure out what's wrong with it and correct the underlying issue.
 
-If exceptions are caught in a message handler, the message will be consumed, without the ability to be retried, regardless of the error.
+If the message handler catches the exception, the message will be consumed and removed from the queue, without the ability to be retried, regardless of the error.
 
 If it is necessary to catch certain kinds of exceptions, consider throwing a new exception with a more specific message to give context about what is going on in the message handler that led to the failure. Always be sure to include the original error in the constructor of the new exception, so that the `InnerException` property will show the stack trace of the original failure.
 
@@ -102,7 +102,7 @@ For occasionally-connected clients, consider another communication medium, such 
 
 The Heartbeats plugin sends a message to [ServiceControl](/servicecontrol/) at regular intervals to demonstrate that the process is not only executing (which would be provided by any suite of system monitoring tools) but is also capable of interacting with the message transport.
 
-If ServiceControl stops receiving heartbeat messages from an endpoint, that endpoint will be shown as [inactive in ServicePulse](/monitoring/heartbeats/in-servicepulse.md). In addition, ServiceControl will publish a [`H`eartbeatStopped` event](/monitoring/heartbeats/notification-events.md) so that operations staff can be notified and respond.
+If ServiceControl stops receiving heartbeat messages from an endpoint, that endpoint will be shown as [inactive in ServicePulse](/monitoring/heartbeats/in-servicepulse.md). In addition, ServiceControl will publish a [`HeartbeatStopped` event](/monitoring/heartbeats/notification-events.md) so that operations staff can be notified and respond.
 
 
 :heavy_check_mark: **DO use monitoring**
