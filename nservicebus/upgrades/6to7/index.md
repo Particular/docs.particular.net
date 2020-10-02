@@ -367,7 +367,7 @@ This would mean that:
 
 In Version 7 tasks are executed as part of the receive pipeline using an `await`.
 
-This means that task now will participate in the [transport transaction](/transports/transactions) and is therefor exposed to the transaction timeout.
+This means that the task now participates in the [transport transaction](/transports/transactions) and is therefore exposed to the transaction timeout.
 
 To get the Version 6 behavior please make sure to execute the task in a `Task.Run` as shown below:
 
