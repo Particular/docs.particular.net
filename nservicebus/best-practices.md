@@ -21,6 +21,11 @@ Because of these qualities, abstractions over NServiceBus tend to basically mimi
 
 Meanwhile, a custom abstraction makes this NServiceBus documentation fairly useless as developers must code to a custom, often undocumented API instead of directly against the NServiceBus API.
 
+:x: **DO NOT use NServiceBus to query data**
+
+When high throughput systems use the traditional approach of persisting data, those systems often run into all kinds of issues due to the nature of how databases work with transactions and locking data. Messaging can eliviate many of these issues as adding messages to a queue doesn't require locking other data. Another benefit is being able to manage the concurrency of a messaging endpoint up to a point that the database can persist data, but more importantly serve data to clients.
+
+These benefits are not applicable when simply retrieving data to provide to clients.
 
 :x: **DO NOT create a messaging endpoint for every single web request**
 
