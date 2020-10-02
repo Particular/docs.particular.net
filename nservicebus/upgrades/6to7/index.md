@@ -358,7 +358,7 @@ This article so far covers the changes between NServiceBus 6 and NServiceBus 7. 
 
 ## Scheduled tasks
 
-In Version 6 scheduled tasks would be invoked as a separate `System.Task` using `Task.Run`.
+In Version 6, scheduled tasks were invoked as a separate `System.Task` using `Task.Run`.
 
 This would mean that:
 
