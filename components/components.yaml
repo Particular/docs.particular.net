@@ -857,7 +857,7 @@
 
 - Key: AttributeConventions
   Name: NServiceBus.AttributeConventions
-  DocsUrl: /nservicebus/router
+  DocsUrl: https://github.com/mauroservienti/NServiceBus.AttributeConventions
   GitHubOwner: mauroservienti
   Category: Other
   SupportLevel: Community
