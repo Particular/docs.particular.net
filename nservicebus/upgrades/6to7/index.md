@@ -355,3 +355,20 @@ This article so far covers the changes between NServiceBus 6 and NServiceBus 7. 
 
  * [NServiceBus Testing](../testing-6to7.md)
  * [Azure Blob Storage Data Bus](../absdatabus-1to2.md)
+
+## Scheduled tasks
+
+In Version 6 scheduled tasks would be invoked as a separate `System.Task` using `Task.Run`.
+
+This would mean that:
+
+* They wouldn't be able participate in the [transport transaction](/transports/transactions)
+* They wouldn't be limited in time by the timeout of the transport transaction
+
+In Version 7 tasks are executed as part of the receive pipeline using an `await`.
+
+This means that task now will participate in the [transport transaction](/transports/transactions) and is therefor exposed to the transaction timeout.
+
+Should you need to Version 6 behavior please make sure to execute your tasks in a `Task.Run` as shown below:
+
+snippet: 6to7ExecuteScheduledTaskUsingTaskRun
