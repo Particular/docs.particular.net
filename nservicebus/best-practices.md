@@ -32,11 +32,13 @@ Because of these qualities, abstractions over NServiceBus tend to basically mimi
 
 Meanwhile, a custom abstraction makes this NServiceBus documentation fairly useless as developers must code to a custom, often undocumented API instead of directly against the NServiceBus API.
 
-:x: **DO NOT use NServiceBus to query data**
 
-When high throughput systems use the traditional approach of persisting data, those systems often run into all kinds of issues due to the nature of how databases work with transactions and locking data. Messaging can eliviate many of these issues as adding messages to a queue doesn't require locking other data. Another benefit is being able to manage the concurrency of a messaging endpoint up to a point that the database can persist data, but more importantly serve data to clients.
+:x: **AVOID using asynchronous messages for synchronous communication, including queries**
 
-These benefits are not applicable when simply retrieving data to provide to clients.
+It is best to embrace the asynchronous nature of NServiceBus messages, and not use an asynchronous message (or a pair of messages in a request/reply scenario) for synchronous communication, especially when the scenario expects an answer to be available _right now_. This is especially important with queries: [messaging should not be used for queries](http://andreasohlund.net/2010/04/22/messaging-shouldnt-be-used-for-queries/).
+
+When a previously-defined user interface demands an immediate response, such as inserting a new item into a grid and then immediately refreshing the grid to include the new item, the [client-side callbacks package](/nservicebus/messaging/callbacks.md) can be used, but this should be considered a crutch until a more [task- or command-focused UI](https://cqrs.wordpress.com/documents/task-based-ui/) can replace it.
+
 
 :x: **DO NOT create a messaging endpoint for every single web request**
 
@@ -96,6 +98,17 @@ Message queues are long-lasting and durable. Occasionally-connected clients, suc
 For occasionally-connected clients, consider another communication medium, such as in the [Near real-time transient clients sample](/samples/near-realtime-clients/) which communicates with clients using [SignalR](https://dotnet.microsoft.com/apps/aspnet/signalr).
 
 
+:heavy_check_mark: **CONSIDER [identifying message types using conventions](/nservicebus/messaging/unobtrusive-mode.md) to make upgrading to new versions of NServiceBus easier**
+
+By default, NServiceBus will identify classes implementing `ICommand` as commands, `IEvent` as events, and `IMessage` as other types of messages such as replies. This is quick and easy, but also causes message projects to have a dependency on the NServiceBus NuGet package.
+
+Because NServiceBus is wire-compatible between major versions, in a complex system it's useful to be able to upgrade one endpoint at a time. But message assemblies are shared between multiple endpoints, which can cause challenges during upgrades when one endpoint using a message assembly has upgraded to the next major version, but the other has not.
+
+These versioning problems can be fixed using [assembly binding redirects](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/redirect-assembly-versions), but it can be easier to use [unobtrusive-mode messages](/nservicebus/messaging/unobtrusive-mode.md) by defining [message conventions](/nservicebus/messaging/conventions.md) independent of the `ICommand`/`IEvent`/`IMessage` interfaces.
+
+These conventions can even be [encapsulated in a class](/nservicebus/messaging/conventions.md#encapsulated-conventions), and many can be used within one endpoint, so that messages from multiple teams who have made different choices on message conventions can be used together.
+
+
 ## System monitoring
 
 :heavy_check_mark: **DO install the [Heartbeats plugin](/monitoring/heartbeats/) in all endpoints to monitor for endpoint health**
@@ -121,21 +134,3 @@ For more information, see an [introductory video on monitoring](https://particul
 When these things occur, ServiceControl will publish an NServiceBus message that can be subscribed to like any other NServiceBus message. From this message handler, any action that can be performed from code is possible: send an email to system administrators, notify a Slack channel, log it to a database…anything is possible.
 
 It is better to be notified when things go wrong than to find out after it's too late.
-
-
-:heavy_check_mark: **CONSIDER [identifying message types using conventions](/nservicebus/messaging/unobtrusive-mode.md) to make upgrading to new versions of NServiceBus easier**
-
-By default, NServiceBus will identify classes implementing `ICommand` as commands, `IEvent` as events, and `IMessage` as other types of messages such as replies. This is quick and easy, but also causes message projects to have a dependency on the NServiceBus NuGet package.
-
-Because NServiceBus is wire-compatible between major versions, in a complex system it's useful to be able to upgrade one endpoint at a time. But message assemblies are shared between multiple endpoints, which can cause challenges during upgrades when one endpoint using a message assembly has upgraded to the next major version, but the other has not.
-
-These versioning problems can be fixed using [assembly binding redirects](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/redirect-assembly-versions), but it can be easier to use [unobtrusive-mode messages](/nservicebus/messaging/unobtrusive-mode.md) by defining [message conventions](/nservicebus/messaging/conventions.md) independent of the `ICommand`/`IEvent`/`IMessage` interfaces.
-
-These conventions can even be [encapsulated in a class](/nservicebus/messaging/conventions.md#encapsulated-conventions), and many can be used within one endpoint, so that messages from multiple teams who have made different choices on message conventions can be used together.
-
-
-:x: **AVOID using asynchronous messages for synchronous communication**
-
-It is best to embrace the asynchronous nature of NServiceBus messages, and not use an asynchronous message (or a pair of messages in a request/reply scenario) for synchronous communication, especially when the scenario expects an answer to be available _right now_. This is especially important with queries: [messaging should not be used for queries](http://andreasohlund.net/2010/04/22/messaging-shouldnt-be-used-for-queries/).
-
-When a previously-defined user interface demands an immediate response, such as inserting a new item into a grid and then immediately refreshing the grid to include the new item, the [client-side callbacks package](/nservicebus/messaging/callbacks.md) can be used, but this should be considered a crutch until a more [task- or command-focused UI](https://cqrs.wordpress.com/documents/task-based-ui/) can replace it.
