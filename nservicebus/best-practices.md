@@ -8,6 +8,17 @@ This article will present recommendations to keep in mind when designing a syste
 
 ## Architecture
 
+:heavy_check_mark: **DO split up endpoints before scaling out**
+
+Multiple message handlers can be combined inside a single logical endpoint. These handlers all share a single queue for different types of messages. This can decrease throughput of messages.
+
+Instead of scaling out endpoints over different hosts (virtual machines, docker containers, etc), it's better to split up handlers over different logical endpoints. The comparison can also be made to a monolith, which is harder to maintain, update and deploy than smaller services/endpoints. Every logical endpoint can adhere to the Single Responsibility Principle and be responsible for certain types of message handlers. Like `Finance.Invoicing` and `Finance.Orders` and `Finance.Pricing`.
+
+:heavy_check_mark: **DO split up endpoints to separate message processing**
+
+Different types of messages might require a different service-level agreement (SLA). Combining their message handlers inside a single logical endpoint makes it harder to meet a higher SLA, as different message types are waiting to be processed in the same queue.
+
+An example of this are how strategic customers are processed over regular customers. Having different logical endpoints provide options for different SLA and even different business processing of those message. Different ways of processing these message can be read in the blogpost on [why you don't need priority queues](https://bloggingabout.net/2020/07/16/priority-queues-why-you-dont-need-them/).
 
 :x: **DO NOT abstract away NServiceBus**
 
