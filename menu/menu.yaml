@@ -873,8 +873,6 @@
       Title: Scripting
     - Url: transports/sqs/troubleshooting
       Title: Troubleshooting
-  - Url: transports/eventstore
-    Title: Event Store
 
 - Name: Persistence
   Url: persistence

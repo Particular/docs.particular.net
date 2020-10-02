@@ -195,28 +195,6 @@
   NugetOrder:
     - GoodlyFere.NServiceBus.EntityFramework
 
-- Key: EventStorePersistence
-  Name: EventStore Persistence
-  DocsUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
-  GitHubOwner: SzymonPobiega
-  Category: Persistence
-  SupportLevel: Community
-  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
-  NugetOrder:
-    - NServiceBus.EventStore
-
-- Key: EventStoreTransport
-  Name: EventStore Transport
-  DocsUrl: /transports/eventstore
-  GitHubOwner: SzymonPobiega
-  Category: Transport
-  SupportLevel: Community
-  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.EventStore
-  NugetOrder:
-    - NServiceBus.EventStore
-
 - Key: Gateway
   Name: Gateway
   DocsUrl: /nservicebus/gateway
