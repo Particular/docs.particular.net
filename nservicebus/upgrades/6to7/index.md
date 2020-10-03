@@ -358,17 +358,17 @@ This article so far covers the changes between NServiceBus 6 and NServiceBus 7. 
 
 ## Scheduled tasks
 
-In Version 6 scheduled tasks would be invoked as a separate `System.Task` using `Task.Run`.
+In Version 6, scheduled tasks were invoked as a separate `System.Task` using `Task.Run`.
 
-This would mean that:
+This means that:
 
-* They wouldn't be able participate in the [transport transaction](/transports/transactions)
-* They wouldn't be limited in time by the timeout of the transport transaction
+* They are not able participate in the [transport transaction](/transports/transactions)
+* They are not limited in time by the timeout of the transport transaction
 
 In Version 7 tasks are executed as part of the receive pipeline using an `await`.
 
-This means that task now will participate in the [transport transaction](/transports/transactions) and is therefor exposed to the transaction timeout.
+This means that the task now participates in the [transport transaction](/transports/transactions) and is therefore exposed to the transaction timeout.
 
-To get the Version 6 behavior make sure to execute the task in a `Task.Run` as shown below:
+To achieve the Version 6 behavior, make sure to execute the task in a `Task.Run` as shown below:
 
 snippet: 6to7ExecuteScheduledTaskUsingTaskRun
