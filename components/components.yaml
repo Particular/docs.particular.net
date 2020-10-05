@@ -410,7 +410,7 @@
 
 - Key: Mailer
   Name: NServiceBus Mailer
-  DocsUrl: /nservicebus/mailer
+  DocsUrl: https://github.com/HEskandari/NServiceBus.Mailer
   LicenseUrl: https://github.com/HEskandari/NServiceBus.Mailer/blob/master/license.txt
   GitHubOwner: HEskandari
   Category: Other
