@@ -15,9 +15,14 @@ related:
 Uses the [NHibernate ORM](https://nhibernate.info/) for persistence.
 
 
-## Supported persistence types
+## Persistence at a glance
 
-partial: supported-persistence
+|Feature                    |   |
+|:---                       |---
+|Supported Storage Types    |Sagas, Outbox, Subscriptions, Timeouts
+|Unsupported Storage Types  |None
+|Scripted Deployment        |Not supported
+|Installers                 |Optional
 
 
 ## Supported database engines

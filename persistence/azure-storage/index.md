@@ -15,6 +15,17 @@ redirects:
 
 Certain features of NServiceBus require persistence to permanently store data. Among them are subscription storage, sagas, and timeouts. Various storage options are available including Azure Storage Services.
 
+Azure Storage Persistence stores NServiceBus data in [Azure Table storage](https://azure.microsoft.com/en-us/services/storage/tables/).
+
+## Persistence at a glance
+
+|Feature                    |   |
+|:---                       |---
+|Supported Storage Types    |Sagas, Subscriptions, Timeouts
+|Unsupported Storage Types  |Outbox
+|Scripted Deployment        |Not supported
+|Installers                 |Not supported, the required table structure is created if required
+
 
 ### Enable Azure Storage Persistence
 

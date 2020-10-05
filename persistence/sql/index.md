@@ -16,6 +16,15 @@ reviewed: 2020-06-29
 
 Stores NServiceBus data in various relational database engines, without the need for an intermediate ORM, using only a configured `DbConnection`.
 
+## Persistence at a glance
+
+|Feature                    |   |
+|:---                       |---
+|Storage Types              |Sagas, Outbox, Subscriptions, Timeouts
+|Unsupported Storage Types  |None
+|Scripted Deployment        |SQL scripts generated at compile time, can be [promoted outside build directory](controlling-script-generation.md#promotion)
+|Installers                 |Optional
+
 
 ## Highlights
 

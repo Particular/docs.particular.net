@@ -1048,7 +1048,7 @@
       Title: SQL Azure
     - Url: persistence/nhibernate/scripting
       Title: Scripting
-  - Url: persistence/msmq/subscription
+  - Url: persistence/msmq
     Title: MSMQ Subscription
   - Url: persistence/mongodb
     Title: MongoDB

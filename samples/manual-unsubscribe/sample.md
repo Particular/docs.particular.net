@@ -81,7 +81,7 @@ snippet: event-handler
 
 snippet: publisher-config
 
-This specific sample is configured to use [MSMQ Subscription Persistence](/persistence/msmq/subscription.md).
+This specific sample is configured to use [MSMQ Subscription Persistence](/persistence/msmq/).
 
 
 #### Subscriber decommissioning

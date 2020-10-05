@@ -9,6 +9,16 @@ related:
 A persister built on top of [Service Fabric Reliable Collections](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
 
 
+## Persistence at a glance
+
+|Feature                    |   |
+|:---                       |---
+|Supported Storage Types    |Sagas, Outbox
+|Unsupported Storage Types  |Subscriptions, Timeouts
+|Scripted Deployment        |Not supported
+|Installers                 |Not supported
+
+
 ## Usage
 
 Add a NuGet package reference to `NServiceBus.Persistence.ServiceFabric`. Configure the persistence technology using the following configuration API.

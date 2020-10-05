@@ -317,7 +317,7 @@
 
 - Key: MsmqPersistence
   Name: MSMQ Persistence
-  DocsUrl: /persistence/msmq/subscription
+  DocsUrl: /persistence/msmq/
   Category: Persistence
   GitHubOwner: Particular
   ProjectUrl: https://github.com/Particular/NServiceBus

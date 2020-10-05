@@ -14,11 +14,14 @@ Uses the [MongoDB document database](https://www.mongodb.com/) for storage.
 
 NOTE: NServiceBus.Storage.MongoDB supports MongoDB server versions 3.6 and higher
 
-## Supported persistence types
+## Persistence at a glance
 
-* [Subscriptions](/nservicebus/messaging/publish-subscribe/)
-* [Sagas](/nservicebus/sagas/)
-* [Outbox](/nservicebus/outbox/)
+|Feature                    |   |
+|:---                       |---
+|Supported Storage Types    |Sagas, Outbox, Subscriptions
+|Unsupported Storage Types  |Timeouts
+|Scripted Deployment        |Not supported
+|Installers                 |Not supported, documents are created in database as needed
 
 
 ## Usage

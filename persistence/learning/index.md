@@ -18,6 +18,16 @@ Added in NServiceBus 6.3.
 include: learning-usages
 
 
+## Persistence at a glance
+
+|Feature                    |   |
+|:---                       |---
+|Storage Types              |Sagas
+|Unsupported Storage Types  |Outbox - Subscriptions/Timeouts handled natively by Learning Transport
+|Scripted Deployment        |Not supported
+|Installers                 |Not supported, the required folder structure is always created
+
+
 ## Usage
 
 snippet: LearningPersistence

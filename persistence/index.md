@@ -34,5 +34,5 @@ It can be a challenge to decide whether or not a persister is needed and which o
 - [RavenDB](/persistence/ravendb/)
 - [Service Fabric](/persistence/service-fabric/)
 - [NHibernate](/persistence/nhibernate/)
-- [MSMQ](/persistence/msmq/subscription.md)
+- [MSMQ](/persistence/msmq/)
 - [MongoDB](/persistence/mongodb/)

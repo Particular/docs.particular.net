@@ -1,10 +1,34 @@
 ---
-title: MSMQ Persistence
-summary: MSMQ Subscription Persistence for NServiceBus
+title: MSMQ Subscription Persistence
+summary: How to configure the MQMQ persistence for subscriptions
 component: MSMQPersistence
 reviewed: 2019-09-26
+related:
+ - samples/msmq/persistence
+redirects:
+ - persistence/msmq/subscription
 ---
 
 The MSMQ Subscription storage can be used to enable publish/subscribe with MSMQ without the need for any additional persister.
 
 NOTE: This can only be used to store subscriptions. To use sagas, timeouts, deferred messages, or the Outbox, a different persister is required.
+
+## Persistence at a glance
+
+|Feature                    |   |
+|:---                       |---
+|Supported Storage Types    |Subscriptions
+|Unsupported Storage Types  |Sagas, Outbox, Timeouts
+|Scripted Deployment        |Not supported
+|Installers                 |Optional
+
+## Configuration
+
+WARN: MSMQ Persistence does not support scaled-out publishers. This is because the MSMQ storage is local to the machine, and a subscription message will only be delivered to one endpoint instance of a given logical endpoint, and only that instance will be able to update its information, while other instances remain unaware of the new subscriber.
+
+Note: The subscription queue can contain duplicate entries. This is by design and does not result in events being published multiple times. Subscription entries are added for each subscription request received. After a publisher restarts, the subscription queue state will be rewritten and deduplicated.
+
+partial: config
+
+
+partial: timeouts
