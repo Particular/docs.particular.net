@@ -32,7 +32,7 @@ Upgrade a single endpoint to version 5 at a time. Each upgraded endpoint should 
 
 NOTE: The first endpoint to be deployed to each environment will need to create the shared native subscriptions table. This can be done by [enabling installers on the endpoint](/nservicebus/operations/installers.md) or by using the script found below.
 
-Once all endpoints in the system have been upgraded to version 5, the code that enables compatibility mode can be safely removed from each endpoint. It is recommended to run the entire system in backwards compatibility mode for a day or two before beginning to remove backwards compatibility mode. This allows all of the subscription control messages sent at endpoint startup to reach their destination and be fully processed.
+Once all endpoints in the system have been upgraded to version 5, the code that enables compatibility mode can be safely removed from each endpoint. It is recommended to run the entire system in backwards compatibility mode for a day or two before beginning to remove backwards compatibility mode. This allows all of the subscription control messages sent at endpoint startup to reach their destination and be fully processed. After removing backwards compatibility mode from all the endpoints the subscription data managed by the persisters is no longer needed and can be safely removed.
 
 
 #### Native subscriptions configuration
