@@ -362,7 +362,7 @@ In Version 6, scheduled tasks were invoked as a separate `System.Task` using `Ta
 
 This means that:
 
-* They are not able participate in the [transport transaction](/transports/transactions)
+* They are not able participate in the [transport transaction](/transports/transactions.md)
 * They are not limited in time by the timeout of the transport transaction
 
 In Version 7 tasks are executed as part of the receive pipeline using an `await`.
