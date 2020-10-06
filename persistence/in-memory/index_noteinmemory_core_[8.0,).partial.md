@@ -1,0 +1,1 @@
+﻿NOTE: The `InMemoryPersistence` has been renamed and moved to a dedicated package called [the `NonDurablePersistence`](/nservicebus/persistence/non-durable)

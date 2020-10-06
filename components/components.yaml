@@ -222,6 +222,15 @@
   NugetOrder:
     - NServiceBus
 
+- Key: NonDurablePersistence
+  Name: NonDurable Persistence
+  DocsUrl: /persistence/non-durable
+  GitHubOwner: Particular
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.NonDurable
+  NugetOrder:
+    - NServiceBus.Persistence.NonDurable
+
 - Key: Json
   Name: Json Serializer
   DocsUrl: /nservicebus/serialization/json
