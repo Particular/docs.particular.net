@@ -50,4 +50,21 @@
     }
 
     #endregion
+
+    #region RegisterOrReplaceStep
+
+    public class RegisterOrReplaceStep :
+        INeedInitialization
+    {
+        public void Customize(EndpointConfiguration endpointConfiguration)
+        {
+            var pipeline = endpointConfiguration.Pipeline;
+            pipeline.RegisterOrReplace(
+                stepId: "StepIdThatMayOrMayNotExist",
+                behavior: typeof(SampleBehavior),
+                description: "Description");
+        }
+    }
+
+    #endregion
 }

@@ -45,6 +45,8 @@ Note: Steps can also be registered from a [feature](features.md).
 
 partial: pipelinecheck
 
+partial: registerorreplace
+
 ## Exception handling
 
 Exceptions thrown from a behavior's `Invoke` method bubble up the chain. If the exception is not handled by a behavior, the message is considered as faulted which results in putting the message back in the queue (and rolling back the transaction) or moving it to the error queue (depending on the endpoint configuration).
