@@ -13,10 +13,16 @@ Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/
 
 WARN: It is important to [read and understand](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) partitioning in Azure Cosmos DB before using `NServiceBus.Persistence.CosmosDB`.
 
-## Supported persistence types
+## Persistence at a glance
 
-* [Sagas](/nservicebus/sagas/)
-* [Outbox](/nservicebus/outbox/)
+|Feature                    |   |
+|:---                       |---
+|Supported Storage Types    |Sagas, Outbox
+|Unsupported Storage Types  |Subscriptions, Timeouts
+|Transactions               |Using TransactionalBatch, [with caveats](transactions.md)
+|Saga Concurrency Control   |Optimistic concurrency
+|Scripted Deployment        |Not supported
+|Installers                 |Optional
 
 NOTE: The Outbox feature requires partition planning.
 
