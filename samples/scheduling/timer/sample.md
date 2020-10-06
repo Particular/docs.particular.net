@@ -1,12 +1,12 @@
 ---
-title: Scheduler
-summary: A simple example of the NServiceBus scheduler API
+title: Scheduling with Timers
+summary: An example of scheduling using .NET Timers
 reviewed: 2019-06-20
 component: Core
 related:
  - nservicebus/scheduling
 ---
 
-This sample illustrates a simple example of a .NET Timer [scheduler](/nservicebus/scheduling/) to schedule recurring tasks.
+This sample illustrates the use a [.NET Timer](https://docs.microsoft.com/en-us/dotnet/api/system.threading.timer) trigger scheduled tasks. To get the benefit of [NServiceBus retries](https://docs.particular.net/nservicebus/recoverability.md) and [consistency of outgoing messages with the transport transaction](/transports/transactions,md) the tasks are implemented as regular message handlers. This also gives full traceability of invoked tasks in platform tools like [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight).
 
 snippet: ScheduleUsingTimer
