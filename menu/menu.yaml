@@ -44,6 +44,8 @@
   - Url: nservicebus
     Title: General
     Articles:
+    - Url: nservicebus/best-practices
+      Title: Best practices
     - Url: platform
       Title: Service Platform
       Articles:
