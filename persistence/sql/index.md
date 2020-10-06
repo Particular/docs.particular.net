@@ -22,6 +22,8 @@ Stores NServiceBus data in various relational database engines, without the need
 |:---                       |---
 |Storage Types              |Sagas, Outbox, Subscriptions, Timeouts
 |Unsupported Storage Types  |None
+|Transactions               |SQL transactions
+|Saga Concurrency Control   |Optimistic concurrency for correctness + pessimistic concurrency for performance
 |Scripted Deployment        |SQL scripts generated at compile time, can be [promoted outside build directory](controlling-script-generation.md#promotion)
 |Installers                 |Optional
 

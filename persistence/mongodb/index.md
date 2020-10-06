@@ -20,6 +20,8 @@ NOTE: NServiceBus.Storage.MongoDB supports MongoDB server versions 3.6 and highe
 |:---                       |---
 |Supported Storage Types    |Sagas, Outbox, Subscriptions
 |Unsupported Storage Types  |Timeouts
+|Transactions               |Enabled and required by default
+|Saga Concurrency Control   |Pessimistic concurrency only
 |Scripted Deployment        |Not supported
 |Installers                 |Not supported, documents are created in database as needed
 

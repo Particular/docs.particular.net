@@ -21,6 +21,8 @@ Uses the [NHibernate ORM](https://nhibernate.info/) for persistence.
 |:---                       |---
 |Supported Storage Types    |Sagas, Outbox, Subscriptions, Timeouts
 |Unsupported Storage Types  |None
+|Transactions               |SQL transactions
+|Saga Concurrency Control   |Optimistic concurrency for correctness + pessimistic concurrency for performance
 |Scripted Deployment        |Not supported
 |Installers                 |Optional
 

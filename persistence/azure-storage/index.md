@@ -23,6 +23,8 @@ Azure Storage Persistence stores NServiceBus data in [Azure Table storage](https
 |:---                       |---
 |Supported Storage Types    |Sagas, Subscriptions, Timeouts
 |Unsupported Storage Types  |Outbox
+|Transactions               |None
+|Saga Concurrency Control   |Optimistic concurrency
 |Scripted Deployment        |Not supported
 |Installers                 |Not supported, the required table structure is created if required
 

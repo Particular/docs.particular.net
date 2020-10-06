@@ -19,6 +19,8 @@ NOTE: This can only be used to store subscriptions. To use sagas, timeouts, defe
 |:---                       |---
 |Supported Storage Types    |Subscriptions
 |Unsupported Storage Types  |Sagas, Outbox, Timeouts
+|Transactions               |Not supported
+|Saga Concurrency Control   |Not supported
 |Scripted Deployment        |Not supported
 |Installers                 |Optional
 

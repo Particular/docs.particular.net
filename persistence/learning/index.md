@@ -24,6 +24,8 @@ include: learning-usages
 |:---                       |---
 |Storage Types              |Sagas
 |Unsupported Storage Types  |Outbox - Subscriptions/Timeouts handled natively by Learning Transport
+|Transactions               |None
+|Saga Concurrency Control   |Optimistic concurrency via file locks
 |Scripted Deployment        |Not supported
 |Installers                 |Not supported, the required folder structure is always created
 

@@ -23,6 +23,8 @@ Uses the [RavenDB document database](https://ravendb.net/) for storage.
 |:---                       |---
 |Supported Storage Types    |Sagas, Outbox, Subscriptions, Timeouts
 |Unsupported Storage Types  |None
+|Transactions               |via `IDocumentSession.SaveChanges()`
+|Saga Concurrency Control   |Optimistic concurrency, optional custom pessimistic concurrency for performance
 |Scripted Deployment        |Not supported
 |Installers                 |Not supported, required indexes are created in the database as needed
 

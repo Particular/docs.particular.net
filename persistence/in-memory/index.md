@@ -15,6 +15,8 @@ Some scenarios require an in-memory persistence such as the development environm
 |:---                       |---
 |Storage Types              |Sagas, Outbox, Subscriptions, Timeouts
 |Unsupported Storage Types  |None
+|Transactions               |None
+|Saga Concurrency Control   |Optimistic concurrency
 |Scripted Deployment        |Not supported
 |Installers                 |Not supported, the required folder structure is always created
 
