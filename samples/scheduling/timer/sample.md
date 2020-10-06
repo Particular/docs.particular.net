@@ -7,6 +7,6 @@ related:
  - nservicebus/scheduling
 ---
 
-This sample illustrates the use a [.NET Timer](https://docs.microsoft.com/en-us/dotnet/api/system.threading.timer) trigger scheduled tasks. To get the benefit of [NServiceBus retries](https://docs.particular.net/nservicebus/recoverability.md) and [consistency of outgoing messages with the transport transaction](/transports/transactions.md) the tasks are implemented as regular message handlers. This also gives full traceability of invoked tasks in platform tools like [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight).
+This sample illustrates the use a [.NET Timer](https://docs.microsoft.com/en-us/dotnet/api/system.threading.timer) trigger scheduled tasks. To get the benefit of [NServiceBus retries](/nservicebus/recoverability.md) and [consistency of outgoing messages with the transport transaction](/transports/transactions.md) the tasks are implemented as regular message handlers. This also gives full traceability of invoked tasks in platform tools like [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight).
 
 snippet: ScheduleUsingTimer
