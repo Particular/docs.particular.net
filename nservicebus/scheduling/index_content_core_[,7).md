@@ -1,15 +1,3 @@
----
-title: Scheduling
-summary: Schedule a task or an action/lambda, to be executed repeatedly at a given interval.
-component: Core
-related:
- - samples/scheduling
-redirects:
-- nservicebus/scheduling-with-nservicebus
-reviewed: 2020-08-24
----
-partial: content
-
 The Scheduler is a lightweight/non-durable API that helps schedule a task that needs to be executed repeatedly based on a specified interval. In order to benefit from NServiceBus features such as built-in retries and forwarding to the error queue, it's recommended that scheduled tasks only send messages in order to perform the actual work. One example would be to query the database for orders that need some action to be taken and emit individual messages for each order that is found.
 
 {{WARNING:
