@@ -316,8 +316,6 @@
         Title: Upgrade NServiceBus.Bridge to NServiceBus.Router
     - Url: nservicebus/rawmessaging
       Title: Raw messaging
-    - Url: nservicebus/mailer
-      Title: Mailer
     - Url: nservicebus/outbox
       Title: Outbox
     - Url: nservicebus/messaging/databus
