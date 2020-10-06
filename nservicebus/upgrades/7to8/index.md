@@ -105,4 +105,4 @@ If you're currently using the scheduler use the following steps to migrate each 
 
 NOTE: The reason for sending a message to the local is to make sure that the business logic of the task is invoked within the transport transaction.
 
-See the [scheduling with .NET Timers sample](TBD) for more details.
+See the [scheduling with .NET Timers sample](/samples/scheduling/timer) for more details.
