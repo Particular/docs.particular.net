@@ -630,7 +630,7 @@
 
 - Key: SimpleInjector
   Name: SimpleInjector Dependency Injection
-  DocsUrl: /nservicebus/dependency-injection/simpleinjector
+  DocsUrl: https://github.com/WilliamBZA/NServicebus.SimpleInjector
   GitHubOwner: WilliamBZA
   Category: DependencyInjection
   SupportLevel: Community

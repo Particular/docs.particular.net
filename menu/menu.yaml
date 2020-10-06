@@ -509,8 +509,6 @@
       Title: Ninject
     - Url: nservicebus/dependency-injection/spring
       Title: Spring
-    - Url: nservicebus/dependency-injection/simpleinjector
-      Title: SimpleInjector
     - Url: nservicebus/dependency-injection/structuremap
       Title: StructureMap
     - Url: nservicebus/dependency-injection/unity
