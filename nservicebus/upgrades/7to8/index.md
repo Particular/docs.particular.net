@@ -100,8 +100,9 @@ If you're currently using the scheduler use the following steps to migrate each 
 
 1. Create a message-type named after your scheduled task, eg. `public class MyScheduledTask : IMessage {}`
 1. Add a message handler for the message and move the code executed in `.ScheduleEvery()` into the `Handle` method of the handler.
-1. Create a .NET Timer with the same interval as the scheduled task and use `IMessageSession.SendLocal` to send a `MyScheduledTask` to the local endpoint instance
-1. TBD - Make sure to wrap your business logic in a try catch and just log the exception to preserve v7 behaviour
+1. Create a .NET Timer with the same interval as the scheduled task and use `IMessageSession.SendLocal` to send a `MyScheduledTask` message to the local endpoint instance
+
+INFO:  If you want the exact v7 behaviour Make sure to wrap your business logic in a try catch and just log the exception to
 
 NOTE: The reason for sending a message to the local is to make sure that the business logic of the task is invoked within the transport transaction.
 
