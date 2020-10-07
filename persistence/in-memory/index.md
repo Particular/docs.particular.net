@@ -18,7 +18,7 @@ Some scenarios require an in-memory persistence such as the development environm
 |Transactions               |None
 |Saga Concurrency Control   |Optimistic concurrency
 |Scripted Deployment        |Not supported
-|Installers                 |Not supported, the required folder structure is always created
+|Installers                 |Not supported
 
 ## Configuration
 
