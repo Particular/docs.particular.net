@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NServiceBus;
+using NServiceBus.Faults;
 using NServiceBus.Persistence.Sql;
 using NServiceBus.Transport.SQLServer;
 
@@ -10,7 +11,7 @@ class Program
 {
     static async Task Main()
     {
-        var connection = @"Data Source=(local);Database=.\sqlexpress;Integrated Security=True;Max Pool Size=100";
+        var connection = @"server=(local)\sqlexpress;database=nservicebus;Integrated Security=True;Max Pool Size=100";
         Console.Title = "Samples.EntityFrameworkUnitOfWork.SQL";
 
         using (var receiverDataContext = new ReceiverDataContext(new DbContextOptionsBuilder<ReceiverDataContext>()
