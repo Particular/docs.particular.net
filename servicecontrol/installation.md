@@ -121,6 +121,34 @@ When adding the first instance of the ServiceControl service, the default servic
 
 The ServiceControl queue name is required for configuring the endpoint plugins. See [Install Heartbeats Plugin](/monitoring/heartbeats/install-plugin.md) and [Install Custom Checks Plugin](/monitoring/custom-checks/install-plugin.md) for more information.
 
+## Moving / Migrating
+
+In order to migrate an instance of ServiceControl to another host, the following must be performed:
+
+1. Ensure the same Windows version is used on the new machine as storage is not compatible between Windows versions.
+1. Stop and disable the current instance of ServiceControl in the Windows Service Manager.
+1. Install and configure a new instance of ServiceControl using the same name on the new server.
+1. Ensure the name is identical
+1. Stop the newly installed instance of ServiceControl.
+1. Copy the data from the previous instance to the new instance server (moving is not advised).
+1. Start the new service.
+1. Remove the old instance of ServiceControl.
+
+NOTE: If the database of the instance being migrated is very large, no downtime can be tolerated, the destination uses a different Windows version, or the instance uses a different name, then consider to [scale-out ServiceControl via remote instances](/servicecontrol/servicecontrol-instances/remotes).
+
+Ensure that:
+
+- First update the current instance to the [latest version](https://github.com/Particular/ServiceControl/releases).
+- Optionally, use the same installer as the current version. Database schemas are not guaranteed to be compatible between different versions.
+- Optionally, [script ServiceControl installations via powershell](/servicecontrol/installation-powershell) instead of running installers manually
+
+ServiceControl configuration settings are accessible via the  Service Control Management Utility user-interface or by navigating to the configuration files on the file-system stored in `ServiceControl.exe.config`, `ServiceControl.Audit.exe.config`, and `ServiceControl.Monitoring.exe.config`. 
+
+Note: If ServiceControl was previously installed via the ServiceControl Management Utility then all instances are installed on a single machine by default. If the system has considerable load or has a large retention period, consider installing a single instance type on a server to scale out. This can be done via Powershell.
+
+WARNING: Care should be taken when planning to move ServiceControl from one server to another. Moving databases between servers can be problematic. The embedded RavenDB does not support moving from a new versions of Windows back to older versions of Windows. See Getting error while restoring backup file in raven DB for more details.
+
+
 
 ## Removing ServiceControl
 
