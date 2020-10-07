@@ -91,3 +91,12 @@ The `NServiceBus.Host` package is deprecated. See the [NServiceBus Host upgrade 
 ## NServiceBus Azure Host
 
 The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are deprecated.See the [NServiceBus Azure Host upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for details and alternatives.
+
+
+## DateTimeOffset
+
+The `DateTime` type has always been the pain for problems related to incorrect use of the type as it can result in numerous issues caused by disalignment in timezone offsets. These can then result in all types of time calculation errors. Although a `DateTime.Kind` property exists, it is often ignored during DateTime math and it is up to the user to ensure values are aligned in their offset. The `DateTimeOffset` type fixes this. It does not contain any timezone information, only an offset, which is sufficient to get all the math right. 
+
+[> These uses for DateTimeOffset values are much more common than those for DateTime values. As a result, DateTimeOffset should be considered the default date and time type for application development."](https://docs.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime)
+
+There is no good reason to continue using `DateTime` values in APIs and to fully embrace `DateTimeOffset` in all our APIs.
