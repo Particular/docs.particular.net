@@ -23,9 +23,9 @@ class UsageHandler : IHandleMessages<MyMessage>
     {
         //setup the items for the batch...
 
-        var transactionalBatch = context.SynchronizedStorageSession.GetSharedTransactionalBatch();
+        var session = context.SynchronizedStorageSession.CosmosPersistenceSession();
 
-        transactionalBatch
+        session.Batch
                 .CreateItem<ToDoActivity>(test1)
                 .ReplaceItem<ToDoActivity>(test2.id, test2)
                 .UpsertItem<ToDoActivity>(test3)
