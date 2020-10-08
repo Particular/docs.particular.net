@@ -65,8 +65,6 @@
       Title: License
     - Url: nservicebus/community
       Title: Community extensions and integrations
-    - Url: components
-      Title: Extensions
     - Url: platform/contributing
       Title: Contributing
     - Url: nservicebus/architecture/principles
