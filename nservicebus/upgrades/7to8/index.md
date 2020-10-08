@@ -99,4 +99,4 @@ The `DateTime` type has always been the pain for problems related to incorrect u
 
 [> These uses for DateTimeOffset values are much more common than those for DateTime values. As a result, DateTimeOffset should be considered the default date and time type for application development."](https://docs.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime)
 
-There is no good reason to continue using `DateTime` values in APIs and to fully embrace `DateTimeOffset` in all our APIs.
+ All API's migrated from using `DateTime` to `DateTimeOffset` type.
