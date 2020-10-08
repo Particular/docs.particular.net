@@ -11,7 +11,6 @@ related:
  - persistence/ravendb
 ---
 
-## Accessing business data
 
 In most cases [handlers](/nservicebus/handlers/) are meant to modify the internal state of an application based on the received message. In any system it is critical to make sure the state change is persisted exactly once. In a messaging system this can be a challenge as exactly-once delivery is not guaranteed by any single queuing technology. NServiceBus provides several strategies to be able to mitigate the risk of an inconsistent application state.
 
