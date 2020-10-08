@@ -29,13 +29,13 @@ public class ShipOrderHandler :
 
     private static void Store(OrderShippingInformation orderShippingInformation, IMessageHandlerContext context)
     {
-        var transactionalBatch = context.SynchronizedStorageSession.GetSharedTransactionalBatch();
+        var session = context.SynchronizedStorageSession.CosmosPersistenceSession();
         var requestOptions = new TransactionalBatchItemRequestOptions
         {
             EnableContentResponseOnWrite = false,
         };
 
-        transactionalBatch.CreateItem(orderShippingInformation, requestOptions);
+        session.Batch.CreateItem(orderShippingInformation, requestOptions);
     }
 
     static ILog Log = LogManager.GetLogger<ShipOrderHandler>();
