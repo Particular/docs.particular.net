@@ -942,6 +942,11 @@
     Articles:
     - Url: persistence/in-memory/gateway-deduplication
       Title: Gateway Deduplication
+  - Url: persistence/non-durable
+    Title: Non-Durable
+    Articles:
+    - Url: persistence/non-durable/gateway-deduplication
+      Title: Gateway Deduplication
   - Url: persistence/sql
     Title: SQL
     Articles:
