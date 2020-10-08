@@ -1,6 +1,6 @@
 ---
 title: Particular Preview Program
-reviewed: 2020-07-23
+reviewed: 2020-10-08
 ---
 
 Particular Previews are [production-supported](support-policy.md) components that are a introduced through the Particular Preview Program. This program was created to make it easier for Particular Software to advance new capabilities to the Particular Platform while improving user involvement, validating user interest in those capabilities, and increasing the rate at which new capabilities can be adopted.
