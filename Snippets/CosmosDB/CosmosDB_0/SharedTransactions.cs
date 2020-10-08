@@ -40,7 +40,7 @@ class UsageHandler : IHandleMessages<MyMessage>
 
 class MyHandler : IHandleMessages<MyMessage>
 {
-    public MyHandler(ICosmosDBStorageSession storageSession)
+    public MyHandler(ICosmosStorageSession storageSession)
     {
         transactionalBatch = storageSession.Batch;
     }
@@ -63,7 +63,7 @@ class MyCustomDependency
 {
     private readonly TransactionalBatch transactionalBatch;
 
-    public MyCustomDependency(ICosmosDBStorageSession storageSession)
+    public MyCustomDependency(ICosmosStorageSession storageSession)
     {
         transactionalBatch = storageSession.Batch;
     }
