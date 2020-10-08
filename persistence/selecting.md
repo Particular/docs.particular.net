@@ -52,9 +52,9 @@ If a datastore has already been selected to store business data and NServiceBus 
 
 The learning persister is not meant for production usage.
 
-### In-Memory
+### Non-durable
 
-The in-memory persister is not mentioned in the decision chart, as it is appropriate only in very specific scenarios where the volatility of data is not an issue. 
+The non-durable persister is not mentioned in the decision chart, as it is appropriate only in very specific scenarios where the volatility of data is not an issue. 
 
 ### Azure
 
