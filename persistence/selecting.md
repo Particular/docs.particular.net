@@ -102,10 +102,6 @@ If a business system already stores its data in RavenDB, NServiceBus supports st
 
 RavenDB Persistence [allows accessing the `IAsyncRavenSession`](/persistence/ravendb/#shared-session) from within message handlers to enable saving business data and NServiceBus data with the same `SaveChanges()` call.
 
-### Other options
-
-If the NServiceBus persisters are lacking an option for a specific data store, there are additional options to be found in the [community extensions](/components/#persisters). Although Particular Software will do its best to help with these extensions, they are not officially supported.
-
 ### The recommended choice
 
 If there is no obvious contender based on the guidelines presented here, the SQL persister is the recommended default. Relational databases are often used for business applications and many developers have knowledge on them. The SQL persister also supports [multiple database engines](/persistence/sql/#supported-sql-implementations) and can be used with many object/relational mappers, such as Entity Framework, NHibernate, Dapper, and others.

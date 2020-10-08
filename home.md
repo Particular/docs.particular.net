@@ -183,11 +183,11 @@ span.blue {
       <p>All questions and answers tagged 'NServiceBus'</p>
     </div>
     <div class="col-md-6">
-      <a href="/components">
+      <a href="/nservicebus/community/">
         <img src="/home/extensions_v1.svg" width="36" height="36">
         <h3>Extensions and integrations</h3>
       </a>
-      <p>Extensions developed by both the community and Particular</p>
+      <p>Extensions developed by the community</p>
     </div>
   </div>
 </div>
