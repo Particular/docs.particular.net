@@ -1,6 +1,6 @@
 ---
-title: Externally managed mode
-summary: A sample that uses NServiceBus externally managed mode to configure a DI container.
+title: Externally Managed Mode
+summary: A sample that uses NServiceBus's externally managed mode feature to configure a DI container.
 component: Core
 reviewed: 2020-09-22
 related:

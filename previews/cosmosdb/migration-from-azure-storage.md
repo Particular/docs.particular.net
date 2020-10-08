@@ -40,14 +40,14 @@ Once the tool is executed, saga data for the selected saga data table will be st
 ### Export tool options
  
 `-c` | `--connectionstring`: Set the connection string to the table storage<br>
-`-s` | `--sagadataname`: The saga data class name without the namespace (e.g. `OrderSagaData`) of the saga data to export. This will be used to derive the table storage name from.<br>
+`-s` | `--sagadataname`: The saga data class name without the namespace (e.g. `OrderSagaData`) of the saga data to export. This will be used to derive the table storage name.<br>
 `-i | --ignore-updates`: Allow using the tool even if a newer version is available.<br>
 `-v | --verbose`: Enable verbose output.<br>
 `--version`: Show the current version of the tool.
 
 #### Updating the tool
 
-The tool can be update using the following command:
+The tool can be updated with the following command:
 
 ```
 dotnet tool update --tool-path <installation-path> Particular.Asp.Export --add-source https://www.myget.org/F/particular/api/v3/index.json --version 0.1.0-alpha.*

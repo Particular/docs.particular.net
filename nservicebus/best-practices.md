@@ -126,7 +126,7 @@ The Heartbeats plugin sends a message to [ServiceControl](/servicecontrol/) at r
 If ServiceControl stops receiving heartbeat messages from an endpoint, that endpoint will be shown as [inactive in ServicePulse](/monitoring/heartbeats/in-servicepulse.md). In addition, ServiceControl will publish a [`HeartbeatStopped` event](/monitoring/heartbeats/notification-events.md) so that operations staff can be notified and respond.
 
 
-:heavy_check_mark: **DO monitor your distributed system**
+:heavy_check_mark: **DO monitor distributed systems**
 
 It's important to know how a system is performing. With the performance monitoring capabilities in ServiceControl and ServicePulse, the queue length, throughput, retry rate, processing time, and critical time for every endpoint can be monitored in a single view with graphs.
 
