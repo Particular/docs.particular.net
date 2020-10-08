@@ -36,4 +36,4 @@ partial: encapsulated-conventions
 
 ## Attributes
 
-If attributes are preferred over marker interfaces then this can be achieved via the [NServiceBus.AttributeConventions](https://www.nuget.org/packages/NServiceBus.AttributeConventions) community package exists that allows using attributes instead of interfaces.
+If attributes are preferred over marker interfaces then this can be achieved via [NServiceBus.AttributeConventions](https://github.com/mauroservienti/NServiceBus.AttributeConventions), a [community package](/nservicebus/community/) that allows using attributes instead of interfaces.
