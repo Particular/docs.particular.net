@@ -21,7 +21,6 @@ CloudServicesHost: NServiceBus.Hosting.Azure
 Distributor: NServiceBus.Distributor.MSMQ
 FileBasedRouting: NServiceBus.FileBasedRouting
 Gateway: NServiceBus.Gateway
-GatewayChannelHttpVNext: NServiceBus.Gateway.Channels.HttpVNext
 GatewayRavenDB: NServiceBus.Gateway.RavenDB
 GatewaySql: NServiceBus.Gateway.Sql
 Heartbeats3: ServiceControl.Plugin.Nsb3.Heartbeat

@@ -641,17 +641,6 @@
   NugetOrder:
     - NServiceBus.UniformSession
 
-- Key: GatewayChannelHttpVNext
-  Name: HttpVNext Gateway Channel
-  DocsUrl: /nservicebus/gateway/httpvnext-channel
-  GitHubOwner: welshdave
-  Category: Other
-  SupportLevel: Community
-  LicenseUrl: https://github.com/welshdave/NServiceBus.Gateway.Channels.HttpVNext/blob/master/LICENSE
-  ProjectUrl: https://github.com/welshdave/NServiceBus.Gateway.Channels.HttpVNext
-  NugetOrder:
-    - NServiceBus.Gateway.Channels.HttpVNext
-
 - Key: Serverless
   Name: Serverless
   DocsUrl: /nservicebus

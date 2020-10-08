@@ -8,6 +8,7 @@ redirects:
  - nservicebus/dependency-injection/simpleinjector
  - samlpes/dependency-injection/simpleinjector
  - transports/eventstore
+ - nservicebus/gateway/httpvnext-channel
 ---
 
 This is a curated list of community-developed extensions and integrations for the NServiceBus ecosystem.
