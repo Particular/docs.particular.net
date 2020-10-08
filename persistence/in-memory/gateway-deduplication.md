@@ -2,7 +2,7 @@
 title: In-memory gateway deduplication persistence
 summary: In-memory gateway persistence stores data in a non-durable manner for development-time only
 component: Gateway
-versions: '[3.1,)'
+versions: '[3.1,4.0)'
 reviewed: 2019-12-17
 ---
 
