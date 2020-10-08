@@ -30,7 +30,7 @@ partial: interval
 
 partial: ttbr
 
-### Instance Id
+### Instance ID
 
 An override for `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`.
 

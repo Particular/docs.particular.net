@@ -24,7 +24,7 @@ When setting the body, raw sending is the most likely scenario. See [Raw sending
 Both `IncomingMessage` and `OutgoingMessage` provide a headers dictionary to get or set headers of the property `Headers`.
 
 
-## Id
+## ID
 
 Both `IncomingMessage` and `OutgoingMessage` provide a message ID of the property `MessageId`.
 

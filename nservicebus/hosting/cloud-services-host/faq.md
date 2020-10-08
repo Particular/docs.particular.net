@@ -39,4 +39,4 @@ snippet: EndpointNameInCodeForAzureHost
 
 The cloud services role entry point takes care of updating these values, used for identification of the endpoint instance in ServiceControl, automatically, i.e. the `$.diagnostics.hostdisplayname` defaults to the role name and the `$.diagnostics.hostid` contains the instance ID.
 
-In web roles these values must be set manually, refer to [Override Host Id](/nservicebus/hosting/override-hostid.md) for more information on this topic.
+In web roles these values must be set manually, refer to [Override Host ID](/nservicebus/hosting/override-hostid.md) for more information on this topic.

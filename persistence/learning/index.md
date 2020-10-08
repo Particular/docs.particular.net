@@ -31,7 +31,7 @@ To configure the storage location:
 
 snippet: LearningPersistenceSagaStorageDirectory
 
-Each saga will be stored a sub-directory matching the saga type name with the saga data being serialized into a `.json` file named based on the saga Id.
+Each saga will be stored a sub-directory matching the saga type name with the saga data being serialized into a `.json` file named based on the saga ID.
 
 ## Saga concurrency
 
