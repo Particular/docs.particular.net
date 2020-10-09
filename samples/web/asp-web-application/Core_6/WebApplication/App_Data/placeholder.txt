@@ -1,1 +1,0 @@
-Ensures the App_Data is created.
