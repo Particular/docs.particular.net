@@ -20,11 +20,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |Feature                    |   |
 |:---                       |---
 |Supported Storage Types    |Sagas, Outbox
-|Unsupported Storage Types  |Subscriptions, Timeouts
 |Transactions               |Using TransactionalBatch, [with caveats](transactions.md)
 |Saga Concurrency Control   |Optimistic concurrency
 |Scripted Deployment        |Not supported
-|Installers                 |Optional
+|Installers                 |Container is created by installers.
 
 NOTE: The Outbox feature requires partition planning.
 

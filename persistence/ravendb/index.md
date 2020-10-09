@@ -24,11 +24,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |Feature                    |   |
 |:---                       |---
 |Supported Storage Types    |Sagas, Outbox, Subscriptions, Timeouts
-|Unsupported Storage Types  |None
 |Transactions               |via `IDocumentSession.SaveChanges()`
 |Saga Concurrency Control   |Optimistic concurrency, optional custom pessimistic concurrency for performance
 |Scripted Deployment        |Not supported
-|Installers                 |Not supported, required indexes are created in the database as needed
+|Installers                 |None. Required indexes are created in the database as needed.
 
 
 ## RavenDB versions

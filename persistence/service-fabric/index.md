@@ -16,11 +16,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |Feature                    |   |
 |:---                       |---
 |Supported Storage Types    |Sagas, Outbox
-|Unsupported Storage Types  |Subscriptions, Timeouts
 |Transactions               |Yes
 |Saga Concurrency Control   |Pessimistic concurrency via [exclusive locks](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections-transactions-locks#locks)
 |Scripted Deployment        |Not supported
-|Installers                 |Not supported
+|Installers                 |None
 
 
 ## Usage

@@ -23,11 +23,11 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |Feature                    |   |
 |:---                       |---
 |Storage Types              |Sagas, Outbox, Subscriptions, Timeouts
-|Unsupported Storage Types  |None
-|Transactions               |SQL transactions
+|Transactions               |Local database transactions or distributed transactions when available
 |Saga Concurrency Control   |Optimistic concurrency for correctness + pessimistic concurrency for performance
-|Scripted Deployment        |SQL scripts generated at compile time, can be [promoted outside build directory](controlling-script-generation.md#promotion)
-|Installers                 |Optional
+|Scripted Deployment        |SQL scripts generated at compile time, can be [promoted outside build directory](controlling-script-generation.md#promotion).
+|Installers                 |Installers execute the generated scripts, which can be enabled in development.
+
 
 
 ## Highlights

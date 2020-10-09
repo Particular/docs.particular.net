@@ -42,7 +42,10 @@ It can be a challenge to decide whether or not a persister is needed and which o
 
 The main page for each persistence library includes a **Persistence at a glance** section that calls out some of the important differences between each option. This section describes what each item means and why it is important.
 
-* **Supported storage types**: The [features](#features-that-require-persistence) that are supported by the library. May include Sagas, Outbox, Subscriptions, and Timeouts. Support for timeouts includes delayed retries and message deferral as well. Gateway deduplication is not covered, as the [gateway component](/nservicebus/gateway/) is a separate package from NServiceBus and has its own persistence packages.
+* **Supported storage types**: The [features](#features-that-require-persistence) that are supported by the library.
+  * May include Sagas, Outbox, Subscriptions, and Timeouts.
+  * Support for timeouts includes delayed retries and message deferral as well.
+  * Gateway deduplication is not covered, as the [gateway component](/nservicebus/gateway/) is a separate package from NServiceBus and has its own persistence packages.
 * **Transactions**: Describes how changes to saga and/or outbox data are kept consistent with each other and with changes to business data made in message handlers.
 * **Saga concurrency control**: Describes how the persistence behaves when multiple message handlers attempt to update saga data simultaneously. Packages that enable pessimistic concurrency offer [better performance for sagas implementing a scatter-gather pattern](https://particular.net/blog/optimizations-to-scatter-gather-sagas).
 * **Scripted deployment**: Describes how storage prerequisites (such as table schema) can be deployed as part of a DevOps process.

@@ -24,11 +24,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |Feature                    |   |
 |:---                       |---
 |Supported Storage Types    |Sagas, Subscriptions, Timeouts
-|Unsupported Storage Types  |Outbox
 |Transactions               |None
 |Saga Concurrency Control   |Optimistic concurrency
 |Scripted Deployment        |Not supported
-|Installers                 |Not supported, the required table structure is created if required
+|Installers                 |None. The required table structure is always created at runtime if required.
 
 
 ### Enable Azure Storage Persistence

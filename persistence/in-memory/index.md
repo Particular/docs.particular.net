@@ -16,11 +16,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |Feature                    |   |
 |:---                       |---
 |Storage Types              |Sagas, Outbox, Subscriptions, Timeouts
-|Unsupported Storage Types  |None
 |Transactions               |None
 |Saga Concurrency Control   |Optimistic concurrency
-|Scripted Deployment        |Not supported
-|Installers                 |Not supported
+|Scripted Deployment        |Does not apply
+|Installers                 |Does not apply
 
 ## Configuration
 
