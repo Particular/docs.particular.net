@@ -112,7 +112,7 @@ By default, NServiceBus will identify classes implementing `ICommand` as command
 
 Because NServiceBus is wire-compatible between major versions, in a complex system it's useful to be able to upgrade one endpoint at a time. But message assemblies are shared between multiple endpoints, which can cause challenges during upgrades when one endpoint using a message assembly has upgraded to the next major version, but the other has not.
 
-These versioning problems can be fixed using [assembly binding redirects](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/redirect-assembly-versions), but it can be easier to use [unobtrusive-mode messages](/nservicebus/messaging/unobtrusive-mode.md) by defining [message conventions](/nservicebus/messaging/conventions.md) independent of the `ICommand`/`IEvent`/`IMessage` interfaces.
+These versioning problems can be addressed using [unobtrusive-mode messages](/nservicebus/messaging/unobtrusive-mode.md) by defining [message conventions](/nservicebus/messaging/conventions.md) independent of the `ICommand`/`IEvent`/`IMessage` interfaces.
 
 These conventions can even be [encapsulated in a class](/nservicebus/messaging/conventions.md#encapsulated-conventions), and many can be used within one endpoint, so that messages from multiple teams who have made different choices on message conventions can be used together.
 
