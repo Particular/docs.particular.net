@@ -1,6 +1,6 @@
 ---
 title: Non-durable persistence
-summary: Non-durable persistence stores data in a non-durable manner
+summary: Non-durable persistence (previously known as In-Memory persistence) stores data in a non-durable manner
 component: NonDurablePersistence
 reviewed: 2019-12-17
 redirects:
