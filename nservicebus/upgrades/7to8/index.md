@@ -102,6 +102,6 @@ Use the following steps to migrate existing scheduled tasks:
 1. Add a message handler for the message and move the code executed in `.ScheduleEvery()` into the `Handle` method of the handler.
 1. Create a .NET Timer with the same interval as the scheduled task and use `IMessageSession.SendLocal` to send a `MyScheduledTask` message to the local endpoint instance
 
-INFO: The Version 7 behaviour is to not retry the task on failures so make sure to wrap the business logic in a `try` `catch` statement.
+INFO: The Version 7 behavior is to **not** retry the task on failures, so make sure to wrap the business logic in a `try` `catch` statement.
 
 See the [scheduling with .NET Timers sample](/samples/scheduling/timer) for more details.
