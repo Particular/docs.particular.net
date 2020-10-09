@@ -5,6 +5,7 @@ env:
 jobs:
   content-verification:
     name: Content verification
+    needs: build-projects
     runs-on: windows-latest
     steps:
       - name: Checkout
