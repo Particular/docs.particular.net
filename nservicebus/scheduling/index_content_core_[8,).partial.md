@@ -1,4 +1,4 @@
-Executing code on various intervals is a common need when building enterprise systems. NServiceBus provides the following uptions for scheduling:
+Executing code at various intervals is a common need when building enterprise systems. Particular Software proposes the following options for scheduling:
 
 - A [.NET Timer](https://msdn.microsoft.com/en-us/library/system.threading.timer.aspx).
 - [NServiceBus Sagas](/nservicebus/sagas/)
