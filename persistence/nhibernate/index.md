@@ -17,6 +17,8 @@ Uses the [NHibernate ORM](https://nhibernate.info/) for persistence.
 
 ## Persistence at a glance
 
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
 |Feature                    |   |
 |:---                       |---
 |Supported Storage Types    |Sagas, Outbox, Subscriptions, Timeouts

@@ -16,6 +16,8 @@ NOTE: NServiceBus.Storage.MongoDB supports MongoDB server versions 3.6 and highe
 
 ## Persistence at a glance
 
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
 |Feature                    |   |
 |:---                       |---
 |Supported Storage Types    |Sagas, Outbox, Subscriptions

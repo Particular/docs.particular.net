@@ -11,6 +11,8 @@ A persister built on top of [Service Fabric Reliable Collections](https://docs.m
 
 ## Persistence at a glance
 
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
 |Feature                    |   |
 |:---                       |---
 |Supported Storage Types    |Sagas, Outbox

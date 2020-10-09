@@ -20,6 +20,8 @@ include: learning-usages
 
 ## Persistence at a glance
 
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
 |Feature                    |   |
 |:---                       |---
 |Storage Types              |Sagas

@@ -11,6 +11,8 @@ Some scenarios require an in-memory persistence such as the development environm
 
 ## Persistence at a glance
 
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
 |Feature                    |   |
 |:---                       |---
 |Storage Types              |Sagas, Outbox, Subscriptions, Timeouts

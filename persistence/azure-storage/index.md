@@ -19,6 +19,8 @@ Azure Storage Persistence stores NServiceBus data in [Azure Table storage](https
 
 ## Persistence at a glance
 
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
 |Feature                    |   |
 |:---                       |---
 |Supported Storage Types    |Sagas, Subscriptions, Timeouts

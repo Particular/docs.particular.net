@@ -15,6 +15,8 @@ NOTE: This can only be used to store subscriptions. To use sagas, timeouts, defe
 
 ## Persistence at a glance
 
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
 |Feature                    |   |
 |:---                       |---
 |Supported Storage Types    |Subscriptions

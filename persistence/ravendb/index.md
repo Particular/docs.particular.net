@@ -19,6 +19,8 @@ Uses the [RavenDB document database](https://ravendb.net/) for storage.
 
 ## Persistence at a glance
 
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
 |Feature                    |   |
 |:---                       |---
 |Supported Storage Types    |Sagas, Outbox, Subscriptions, Timeouts
