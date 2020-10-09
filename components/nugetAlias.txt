@@ -84,3 +84,4 @@ Extensions.DependencyInjection: NServiceBus.Extensions.DependencyInjection
 Extensions.Logging: NServiceBus.Extensions.Logging
 TimeoutMigration: Particular.TimeoutMigration
 CosmosDB: NServiceBus.Persistence.CosmosDB
+NonDurablePersistence: NServiceBus.Persistence.NonDurable

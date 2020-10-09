@@ -213,21 +213,15 @@
   NugetOrder:
     - NServiceBus.Host
 
-- Key: InMemoryPersistence
-  Name: InMemory Persistence 
-  DocsUrl: /persistence/in-memory
-  GitHubOwner: Particular
-  Category: Persistence
-  ProjectUrl: https://github.com/Particular/NServiceBus
-  NugetOrder:
-    - NServiceBus
-
 - Key: NonDurablePersistence
-  Name: NonDurable Persistence
+  Name: Non-Durable Persistence 
   DocsUrl: /persistence/non-durable
   GitHubOwner: Particular
   Category: Persistence
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.NonDurable
+  NugetOrder:
+    - NServiceBus.Persistence.NonDurable
+    - NServiceBus
 
 - Key: Json
   Name: Json Serializer

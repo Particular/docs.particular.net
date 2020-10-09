@@ -1,4 +1,4 @@
-﻿namespace Core8
+﻿namespace NonDurablePersistence_1
 {
     using NServiceBus;
 

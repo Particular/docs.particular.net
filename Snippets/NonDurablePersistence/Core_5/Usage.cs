@@ -9,7 +9,7 @@
         {
 #pragma warning disable 618
 
-            #region ConfiguringInMemory 5.0
+            #region ConfiguringNonDurable 5.0
 
             var persistence = busConfiguration.UsePersistence<InMemoryPersistence>();
             persistence.For(
@@ -26,7 +26,7 @@
 
         void Version_5_2(BusConfiguration busConfiguration)
         {
-            #region ConfiguringInMemory 5.2
+            #region ConfiguringNonDurable 5.2
 
             busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
             busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();

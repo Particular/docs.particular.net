@@ -35,7 +35,7 @@ partial: timeout
 
 ### Storage types
 
-Currently saga and outbox storage types are supported. For timeouts, subscriptions or gateway deduplication use either the native capability of the transport of choice or another persistence such as [Azure Storage Persistence](/persistence/azure-storage) or [In-Memory persistence](/persistence/in-memory/).
+Currently saga and outbox storage types are supported. For timeouts, subscriptions or gateway deduplication use either the native capability of the transport of choice or another persistence such as [Azure Storage Persistence](/persistence/azure-storage) or [Non-durable persistence](/persistence/non-durable/).
 
 
 ### Viewing the data

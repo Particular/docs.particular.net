@@ -7,7 +7,7 @@
     {
         Usage(EndpointConfiguration endpointConfiguration)
         {
-            #region ConfiguringInMemory
+            #region ConfiguringNonDurable
 
             endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
             endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();

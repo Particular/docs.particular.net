@@ -1,8 +1,8 @@
 ---
 title: Non-durable gateway deduplication persistence
-summary: Non-durable gateway persistence stores data in a non-durable manner for development-time only
+summary: Non-durable gateway persistence stores data in a non-durable manner
 component: Gateway
-versions: '[4.0,)'
+versions: '[3.1,4.0)'
 reviewed: 2019-12-17
 ---
 

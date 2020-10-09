@@ -43,7 +43,7 @@ Sender and Receiver use different schemas within one database. This creates a lo
 
 ## Sender project
 
-The Sender mimics the front-end system where orders are submitted by customers and passed as messages to the back-end. It is configured to use the [SQL Server transport](/transports/sql/) and the [in-memory persister](/persistence/in-memory/). In-memory persistence is used since for the purposes of this sample, Sender does not need to persist data. The transport is configured to use `sender` for the schema.
+The Sender mimics the front-end system where orders are submitted by customers and passed as messages to the back-end. It is configured to use the [SQL Server transport](/transports/sql/) and the [non-durable persister](/persistence/non-durable/). Non-durable persistence is used since for the purposes of this sample, Sender does not need to persist data. The transport is configured to use `sender` for the schema.
 
 snippet: SenderConfiguration
 

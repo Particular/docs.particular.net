@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net48</TargetFrameworks>
+    <OutputType>exe</OutputType>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.591" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="5.*" />
+    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="6.*" />
+    <PackageReference Include="ServiceStack.OrmLite.SqlServer.Data.Core" Version="5.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.*" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <None Update="Startup.sql" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
