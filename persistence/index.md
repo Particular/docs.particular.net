@@ -46,7 +46,7 @@ The main page for each persistence library includes a **Persistence at a glance*
   * May include Sagas, Outbox, Subscriptions, and Timeouts.
   * Support for timeouts includes delayed retries and message deferral as well.
   * Gateway deduplication is not covered, as the [gateway component](/nservicebus/gateway/) is a separate package from NServiceBus and has its own persistence packages.
-* **Transactions**: Describes how changes to saga and/or outbox data are kept consistent with each other and with changes to business data made in message handlers.
+* **Transactions**: Describes how changes to saga and/or outbox data are kept consistent with each other and with changes to business data made in message handlers. Persistence that has this type of transactional capability will expose access to the transaction/session through the `SynchronizedStorageSession` property of `IMessageHandlerContext`.
 * **Saga concurrency control**: Describes how the persistence behaves when multiple message handlers attempt to update saga data simultaneously. Packages that enable pessimistic concurrency offer [better performance for sagas implementing a scatter-gather pattern](https://particular.net/blog/optimizations-to-scatter-gather-sagas).
 * **Scripted deployment**: Describes how storage prerequisites (such as table schema) can be deployed as part of a DevOps process.
 * **Installers**: Describes whether the persistence can create storage prerequisites (such as table schema) at runtime via the [installers feature](/nservicebus/operations/installers.md) for a smoother development-time experience.
