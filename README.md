@@ -567,7 +567,7 @@ The `nextText` parameter is optional, and will default to the title of the linke
 
 ## Markdown partials
 
-Partials are version specific files that contain markdown.
+Partials are version-specific files that contain markdown.
 
 They are only rendered in the target page when the version filter matches the convention for a give file.
 
@@ -1132,7 +1132,7 @@ Another option is using [LucidChart](https://www.lucidchart.com). LucidChart all
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 
-# Writing Style
+# Writing style
 
 
 ## Language Preferences
@@ -1142,18 +1142,21 @@ For consistency, prefer American English.
 No personal voice. I.e. no "we", "you", "your", "our" etc.
 
 
-## Version Language
+## Version language
 
 Avoid ambiguity.
 
- * Range: **version X and above** and **version Y and below** and **version X to version Y**.
- * Singular: **version X** and NOT **VX**.
+* Range: **version X and above** and **version Y and below** and **version X to version Y**.
+* Singular: **version X** and NOT **VX**.
 
- Don't capitalize "version" unnecessarily.
+Don't capitalize "version" unnecessarily.
 
- * **NServiceBus version 6** and NOT **NServiceBus Version 6**
- * **NServiceBus version 5 and below** and NOT **NServiceBus Version 5 and below**
+* **NServiceBus version 6** and NOT **NServiceBus Version 6**
+* **NServiceBus version 5 and below** and NOT **NServiceBus Version 5 and below**
 
+Don't assume the latest version of a product is the only one being used
+
+* Instead of "Prior to NServiceBus version 6.5, sagas could not...", say "In NServiceBus 6.4.x and below, sagas can not..."
 
 ## Embedding videos
 
