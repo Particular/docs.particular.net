@@ -1,9 +1,9 @@
-This sample shows basic usage of SQS as a transport for NServiceBus. The application sends an empty message to itself, via the SQS transport, and writes to the console when the message is received.
+This sample shows basic usage of SQS as a transport for NServiceBus. The application sends an empty message to itself via the SQS transport, and writes a message to the console when the message is received.
 
 downloadbutton
 
 
-## AWS Setup
+## AWS setup
 
 
 ### Security and access configuration
@@ -14,28 +14,28 @@ Add the [AWS Access Key ID and AWS Secret Access Key](https://docs.aws.amazon.co
  * Secret Access Key in `AWS_SECRET_ACCESS_KEY`
  * Default Region in `AWS_REGION`
 
-See also [AWS Account Identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html), [Managing Access Keys for a AWS Account](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html), and [IAM Security Credentials](https://console.aws.amazon.com/iam/home#/security_credential).
+See also [AWS Account Identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html), [Managing Access Keys for an AWS Account](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html), and [IAM Security Credentials](https://console.aws.amazon.com/iam/home#/security_credential).
 
 See also [AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande.html) for a list of available regions.
 
 
 ### SQS
 
-Several [Amazon SQS](https://aws.amazon.com/sqs/) queues are required to run this sample. These will be created at start-up via the [Installer mechanism](/nservicebus/operations/installers.md) of NServiceBus. The queues can be seen in the [SQS management UI](https://console.aws.amazon.com/sqs/home).
+Several [Amazon SQS](https://aws.amazon.com/sqs/) queues are required to run this sample. These will be created at start-up via the [installer mechanism](/nservicebus/operations/installers.md) of NServiceBus. The queues can be seen in the [SQS management UI](https://console.aws.amazon.com/sqs/home).
 
  * `Samples-Sqs-Simple`: The main message processing queue.
- * `Samples-Sqs-Simple-Retries`: Queue used for [Delayed Retries](/nservicebus/recoverability/#delayed-retries).
- * `error`: Queue used for [Error handling](/nservicebus/recoverability/configure-error-handling.md).
+ * `Samples-Sqs-Simple-Retries`: Queue used for [delayed retries](/nservicebus/recoverability/#delayed-retries).
+ * `error`: Queue used for [error handling](/nservicebus/recoverability/configure-error-handling.md).
 
 
 ### S3
 
-A [Amazon S3](https://console.aws.amazon.com/s3) bucket is required to leverage the [S3 Bucket For Large Messages](/transports/sqs/configuration-options.md#s3bucketforlargemessages) feature of the SQS transport. [Create an S3 Bucket](https://docs.aws.amazon.com/AmazonS3/latest/UG/CreatingaBucket.html) and replace the `bucketname` in the sample startup with the the name of the created bucket.
+An [Amazon S3](https://console.aws.amazon.com/s3) bucket is required to leverage the [S3 bucket For large messages](/transports/sqs/configuration-options.md#s3bucketforlargemessages) feature of the SQS transport. [Create an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/UG/CreatingaBucket.html) and replace the `bucketname` in the sample startup with the the name of the created bucket.
 
 
-## Endpoint Configuration
+## Endpoint configuration
 
-Configure the endpoint to use the [SQS Transport](/transports/sqs/).
+Configure the endpoint to use the [SQS transport](/transports/sqs/).
 
 snippet: ConfigureEndpoint
 
@@ -47,15 +47,15 @@ Start the endpoint. A message will be sent and received by a handler.
 
 ### View a message in transit
 
-At startup the endpoint will send two messages. One is a message that falls under the 256kb size limit. The other is above that limit and will leverage the [S3 Bucket For Large Messages](/transports/sqs/configuration-options.md#s3bucketforlargemessages) feature of the SQS transport.
+At startup the endpoint will send two messages. One is a message that falls under the 256kb size limit. The other is above that limit and will leverage the [S3 bucket for large messages](/transports/sqs/configuration-options.md#s3bucketforlargemessages) feature of the SQS transport.
 
 snippet: sends
 
-To view a message in transit change the endpoint to be [Send Only](/nservicebus/hosting/#self-hosting-send-only-hosting). There is commented out code already in this samples configuration.
+To view a message in transit change the endpoint to be [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting). There is commented out code already in this samples configuration.
 
 snippet: sendonly
 
-Start the endpoint. Since the endpoint is now Send Only, the messages will be written to SQS but not dequeued. The message can now be viewed in the [SQS management UI](https://console.aws.amazon.com/sqs/home). 
+Start the endpoint. Since the endpoint is now send-only, the messages are written to SQS but not dequeued. The message can now be viewed in the [SQS management UI](https://console.aws.amazon.com/sqs/home). 
 
 ![](message.png "width=300")
 
