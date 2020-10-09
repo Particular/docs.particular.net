@@ -26,8 +26,8 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |:---                       |---
 |Storage Types              |Sagas only. Subscriptions/Timeouts handled natively by Learning Transport.
 |Transactions               |None
-|Saga Concurrency Control   |Optimistic concurrency via file locks
-|Scripted Deployment        |Not supported
+|Concurrency control        |Optimistic concurrency via file locks
+|Scripted deployment        |Not supported
 |Installers                 |None. The required folder structure is always created at runtime.
 
 

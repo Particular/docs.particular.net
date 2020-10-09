@@ -19,10 +19,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 |Feature                    |   |
 |:---                       |---
-|Supported Storage Types    |Subscriptions only
+|Supported storage types    |Subscriptions only
 |Transactions               |Does not apply to subscriptions.
-|Saga Concurrency Control   |Does not apply to subscriptions.
-|Scripted Deployment        |Not supported
+|Concurrency control        |Does not apply to subscriptions.
+|Scripted deployment        |Not supported
 |Installers                 |Subscription queues are created by installers.
 
 ## Configuration

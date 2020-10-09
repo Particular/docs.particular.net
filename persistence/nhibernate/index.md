@@ -21,10 +21,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 |Feature                    |   |
 |:---                       |---
-|Supported Storage Types    |Sagas, Outbox, Subscriptions, Timeouts
+|Supported storage types    |Sagas, Outbox, Subscriptions, Timeouts
 |Transactions               |Local database transactions or distributed transactions when available
-|Saga Concurrency Control   |Optimistic concurrency for correctness + pessimistic concurrency for performance
-|Scripted Deployment        |Not supported
+|Concurrency control        |Optimistic concurrency for correctness + pessimistic concurrency for performance
+|Scripted deployment        |Not supported
 |Installers                 |Table structure is created by installers.
 
 

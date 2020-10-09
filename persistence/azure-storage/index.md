@@ -23,10 +23,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 |Feature                    |   |
 |:---                       |---
-|Supported Storage Types    |Sagas, Subscriptions, Timeouts
+|Supported storage types    |Sagas, Subscriptions, Timeouts
 |Transactions               |None
-|Saga Concurrency Control   |Optimistic concurrency
-|Scripted Deployment        |Not supported
+|Concurrency control        |Optimistic concurrency
+|Scripted deployment        |Not supported
 |Installers                 |None. The required table structure is always created at runtime if required.
 
 

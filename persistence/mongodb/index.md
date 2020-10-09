@@ -20,10 +20,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 |Feature                    |   |
 |:---                       |---
-|Supported Storage Types    |Sagas, Outbox, Subscriptions
+|Supported storage types    |Sagas, Outbox, Subscriptions
 |Transactions               |Enabled and required by default
-|Saga Concurrency Control   |Pessimistic concurrency only
-|Scripted Deployment        |Not supported
+|Concurrency control        |Pessimistic concurrency only
+|Scripted deployment        |Not supported
 |Installers                 |None. Documents are created in database at runtime as needed.
 
 

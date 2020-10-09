@@ -23,10 +23,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 |Feature                    |   |
 |:---                       |---
-|Supported Storage Types    |Sagas, Outbox, Subscriptions, Timeouts
+|Supported storage types    |Sagas, Outbox, Subscriptions, Timeouts
 |Transactions               |via `IDocumentSession.SaveChanges()`
-|Saga Concurrency Control   |Optimistic concurrency, optional custom pessimistic concurrency for performance
-|Scripted Deployment        |Not supported
+|Concurrency control        |Optimistic concurrency, optional custom pessimistic concurrency for performance
+|Scripted deployment        |Not supported
 |Installers                 |None. Required indexes are created in the database as needed.
 
 
