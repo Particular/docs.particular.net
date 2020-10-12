@@ -26,4 +26,4 @@ Multiple tests can then be created using the helper methods. According to the cu
 
 snippet: test-example
 
-There are additional tests in the sample that show how can be verified to which error queue a message was send.
+There are additional tests in the sample that show how it is possible to verify which error queue a message was sent to.
