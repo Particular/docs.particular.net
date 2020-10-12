@@ -23,14 +23,24 @@ partial class Program
 
         var timer = new Timer(async state =>
         {
-            await endpointInstance.SendLocal(new MyScheduledTask());
-            log.Info(nameof(MyScheduledTask) + " scheduled");
+            try
+            {
+                await endpointInstance.SendLocal(new MyScheduledTask());
+                log.Info(nameof(MyScheduledTask) + " scheduled");
+            }
+            catch (Exception ex)
+            {
+                log.Error(nameof(MyScheduledTask) + " could not be scheduled", ex);
+            }
         }, null, interval, interval);
 
         #endregion
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
+
+        timer.Dispose();
+
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
