@@ -26,7 +26,6 @@ redirects:
  - nservicebus/serialization/utf8json
  - nservicebus/serialization/wire
  - nservicebus/serialization/zeroformatter
- - nservicebus/serialization/bond
  - samples/attachments-fileshare
  - samples/attachments-sql
  - samples/audit-filter
