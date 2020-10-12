@@ -63,6 +63,8 @@ void CleanUpSolutions()
 
 void CleanUpProjects()
 {
+    var noBomUtf8Encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
+    
 	foreach (var projectFile in Directory.EnumerateFiles(docsDirectory, "*.csproj", SearchOption.AllDirectories))
 	{
 		var xdocument = XDocument.Load(projectFile, LoadOptions.PreserveWhitespace);
@@ -91,7 +93,7 @@ void CleanUpProjects()
             }
         }
         
-        var settings = new XmlWriterSettings { Encoding = new UTF8Encoding(), Indent = true, OmitXmlDeclaration = true };
+        var settings = new XmlWriterSettings { Encoding = noBomUtf8Encoding, OmitXmlDeclaration = true };
         using (var writer = XmlWriter.Create(projectFile, settings))
         {
             xdocument.Save(writer);
