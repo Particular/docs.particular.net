@@ -1,4 +1,4 @@
-The Scheduler is a lightweight/non-durable API that helps schedule a task that needs to be executed repeatedly based on a specified interval. In order to benefit from NServiceBus features such as built-in retries and forwarding to the error queue, it's recommended that scheduled tasks only send messages in order to perform the actual work. One example would be to query the database for orders that need some action to be taken and emit individual messages for each order that is found.
+The Scheduler is a lightweight/non-durable API that helps schedule a task that needs to be executed repeatedly based on a specified interval. In order to benefit from NServiceBus features such as built-in retries and forwarding to the error queue, it's recommended that scheduled tasks only `Send` or `SendLocal` a single message in order to perform the actual work. One example would be to query the database for orders that need some action to be taken and emit individual messages for each order that is found.
 
 {{WARNING:
 
