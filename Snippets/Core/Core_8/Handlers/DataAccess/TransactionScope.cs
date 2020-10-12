@@ -1,4 +1,4 @@
-﻿namespace Core7.Handlers.DataAccess
+﻿namespace Core8.Handlers.DataAccess
 {
     using System.Data.SqlClient;
     using System.Threading.Tasks;
