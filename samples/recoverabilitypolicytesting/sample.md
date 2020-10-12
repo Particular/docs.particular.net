@@ -8,11 +8,12 @@ related:
 - nservicebus/recoverability/custom-recoverability-policy
 - nservicebus/testing
 ---
+
 This sample demonstrates how to test custom recoverability policies. The sample uses the policy as explained in the [custom recoverability policy documentation](/nservicebus/recoverability/custom-recoverability-policy.md#implement-a-custom-policy-full-customization).
 
 ## Creating the policy
 
-Any recoverability policy with NServiceBus requires a `RecoverabilityConfig` which contains information about immediate- and delayed retries and about what happens when all retries have been exhausted. This information is configured with an `EndpointConfiguration` and provided by NServiceBus to the recoverability policy. This behavior can be imitated and added to a helper method:
+Any recoverability policy with NServiceBus requires a `RecoverabilityConfig` which contains information about immediate and delayed retries and about what happens when all retries have been exhausted. This information is configured with an `EndpointConfiguration` and provided by NServiceBus to the recoverability policy. This behavior can be imitated and added to a helper method:
 
 snippet: create-policy
 
