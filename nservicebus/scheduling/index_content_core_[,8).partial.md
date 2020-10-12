@@ -2,7 +2,7 @@ The Scheduler is a lightweight/non-durable API that helps schedule a task that n
 
 {{WARNING:
 
-Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery.md). If the delayed delivery operation fails, the Scheduler will be interrupted and a `ScheduledTask` message will be forwarded to the error queue. When this happens the scheduled task will stop executing unless the `ScheduledTask` message is retried.
+Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery.md). If the delayed delivery operation fails, the Scheduler will be interrupted and a `ScheduledTask` message will be forwarded to the error queue. When this happens the scheduled task will stop executing unless the `ScheduledTask` message is retried or the endpoint instance is restarted.
 
 The Scheduler leverages the queuing system to trigger scheduled actions. Under heavy load there may be some disparity between the expected time of a scheduled action and execution time due to the delay between timeout messages being generated and processed. An approach to mitigate this behavior is to run the Scheduler in a dedicated endpoint so that appropriate resource allocation can put in place to ensure timely execution of scheduled actions. Or, alternatively, use a difference scheduling technology, for example:
 
