@@ -1,7 +1,7 @@
 ---
 title: Community extensions and integrations
 summary: curated list of community-developed extensions and integrations for the NServiceBus ecosystem.
-reviewed: 2020-10-08
+reviewed: 2020-10-12
 redirects:
  - nservicebus/mailer
  - samples/mailer
@@ -9,6 +9,45 @@ redirects:
  - samlpes/dependency-injection/simpleinjector
  - transports/eventstore
  - nservicebus/gateway/httpvnext-channel
+ - nservicebus/audit-filter
+ - nservicebus/handlers/handler-ordering-by-interface
+ - nservicebus/messaging/attachments-fileshare
+ - nservicebus/messaging/attachments-sql
+ - nservicebus/messaging/validation-dataannotations
+ - nservicebus/messaging/validation-fluentvalidation
+ - nservicebus/serialization/bond
+ - nservicebus/serialization/hyperion
+ - nservicebus/serialization/jil
+ - nservicebus/serialization/messagepack
+ - nservicebus/upgrades/messagepack-changes
+ - nservicebus/serialization/msgpack
+ - nservicebus/serialization/protobufgoogle
+ - nservicebus/serialization/protobufnet
+ - nservicebus/serialization/utf8json
+ - nservicebus/serialization/wire
+ - nservicebus/serialization/zeroformatter
+ - nservicebus/serialization/bond
+ - samples/attachments-fileshare
+ - samples/attachments-sql
+ - samples/audit-filter
+ - samples/data-annotations-validation
+ - samples/encryption/newtonsoft-json-encryption
+ - samples/fluent-validation
+ - samples/handler-ordering-by-interface
+ - samples/serializers/bond
+ - samples/serializers/hyperion
+ - samples/serializers/jil
+ - samples/serializers/messagepack
+ - samples/serializers/msgpack
+ - samples/serializers/protobufgoogle
+ - samples/serializers/protobufnet
+ - samples/serializers/utf8json
+ - samples/serializers/wire
+ - samples/serializers/zeroformatter
+ - samples/sqltransport/sql-native
+ - samples/web/sql-http-passthrough
+ - transports/sql/sql-http-passthrough
+ - transports/sql/sql-native
 ---
 
 This is a curated list of community-developed extensions and integrations for the NServiceBus ecosystem.
@@ -61,3 +100,72 @@ Created by [Mauro Servienti](https://milestone.topics.it/).
 Provides operations support for RabbitMQ applications that run on NServiceBus via a grahpical user interface.
 
 Created by [SouthsideSoft](http://southsidesoft.com/).
+
+
+## [Verify.NServiceBus](https://github.com/NServiceBusExtensions/Verify.NServiceBus)
+
+Adds [Verify](https://github.com/VerifyTests/Verify) support to verify NServiceBus test contexts. Given an NServiceBus message handler, Verify.NServiceBus writes the results of the handler's execution (messages sent, published, etc.) to a file that is diffed against the previous test run to make sure the results are as expected without needing to write multiple assertions for each property.
+
+Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+
+
+## [NServiceBus.Attachments](https://github.com/NServiceBusExtensions/NServiceBus.Attachments)
+
+Adds a streaming based attachment functionality to NServiceBus.
+
+Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+
+
+## [NServiceBus.AuditFilter](https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter)
+
+Adds audit message filtering functionality to NServiceBus, so that certain message types can be included/excluded from normal NServiceBus auditing by adding an attribute to the message type.
+
+Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+
+
+## [HandlerOrdering](https://github.com/NServiceBusExtensions/NServiceBus.HandlerOrdering)
+
+Allows a more expressive way to [order message handlers](/nservicebus/handlers/handler-ordering.md). HandlerOrdering allows the dependency between handlers to be expressed via interfaces and the resulting order is derived at runtime.
+
+Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+
+
+[Newtonsoft.Json.Encryption](https://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption)
+
+Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the nodes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
+
+Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+
+
+## [NServiceBus.SqlServer.Native](https://github.com/NServiceBusExtensions/NServiceBus.Native)
+
+SQL Server Transport Native is a shim providing low-level access to the [NServiceBus SQL Server Transport](/transports/sql/) with no NServiceBus or SQL Server Transport reference required.
+
+Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+
+
+## [NServiceBus Validation](https://github.com/NServiceBusExtensions/NServiceBus.Validation)
+
+Allows validating message contents with options to use [DataAnnotations](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) and [FluentValidation](https://github.com/JeremySkinner/FluentValidation).
+
+Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+
+
+## Serializers
+
+These packages add support for alternate message serialization technologies. These can be useful in situations where special requirements for messages serialization, such as speed, compactness, or integration with external systems are necessary.
+
+### NServiceBusExtensions Serializers
+
+These serializer packages are part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions:
+
+* [Bond](https://github.com/NServiceBusExtensions/NServiceBus.Bond)
+* [Hyperion](https://github.com/NServiceBusExtensions/NServiceBus.Hyperion)
+* [Jil](https://github.com/NServiceBusExtensions/NServiceBus.Jil)
+* [MessagePack](https://github.com/NServiceBusExtensions/NServiceBus.MessagePack)
+* [MsgPack](https://github.com/NServiceBusExtensions/NServiceBus.MsgPack)
+* [ProtoBuf-Google](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufGoogle)
+* [ProtoBuf-Net](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet)
+* [Utf8Json](https://github.com/NServiceBusExtensions/NServiceBus.Utf8Json)
+* [Wire](https://github.com/NServiceBusExtensions/NServiceBus.Wire)
+* [ZeroFormatter](https://github.com/NServiceBusExtensions/NServiceBus.ZeroFormatter)
