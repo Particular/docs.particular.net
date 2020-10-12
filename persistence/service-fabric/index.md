@@ -9,6 +9,19 @@ related:
 A persister built on top of [Service Fabric Reliable Collections](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
 
 
+## Persistence at a glance
+
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
+|Feature                    |   |
+|:---                       |---
+|Supported storage types    |Sagas, Outbox
+|Transactions               |Yes
+|Concurrency control        |Pessimistic concurrency via [exclusive locks](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections-transactions-locks#locks)
+|Scripted deployment        |Not supported
+|Installers                 |None
+
+
 ## Usage
 
 Add a NuGet package reference to `NServiceBus.Persistence.ServiceFabric`. Configure the persistence technology using the following configuration API.

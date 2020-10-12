@@ -15,9 +15,17 @@ related:
 Uses the [NHibernate ORM](https://nhibernate.info/) for persistence.
 
 
-## Supported persistence types
+## Persistence at a glance
 
-partial: supported-persistence
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
+|Feature                    |   |
+|:---                       |---
+|Supported storage types    |Sagas, Outbox, Subscriptions, Timeouts
+|Transactions               |Local database transactions or distributed transactions when available
+|Concurrency control        |Optimistic concurrency for correctness + pessimistic concurrency for performance
+|Scripted deployment        |Not supported
+|Installers                 |Table structure is created by installers.
 
 
 ## Supported database engines

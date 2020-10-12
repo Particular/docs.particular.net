@@ -18,6 +18,19 @@ Added in NServiceBus 6.3.
 include: learning-usages
 
 
+## Persistence at a glance
+
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
+|Feature                    |   |
+|:---                       |---
+|Storage Types              |Sagas only. Subscriptions/Timeouts handled natively by Learning Transport.
+|Transactions               |None
+|Concurrency control        |Optimistic concurrency via file locks
+|Scripted deployment        |Not supported
+|Installers                 |None. The required folder structure is always created at runtime.
+
+
 ## Usage
 
 snippet: LearningPersistence

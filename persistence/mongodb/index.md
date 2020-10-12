@@ -14,11 +14,17 @@ Uses the [MongoDB document database](https://www.mongodb.com/) for storage.
 
 NOTE: NServiceBus.Storage.MongoDB supports MongoDB server versions 3.6 and higher
 
-## Supported persistence types
+## Persistence at a glance
 
-* [Subscriptions](/nservicebus/messaging/publish-subscribe/)
-* [Sagas](/nservicebus/sagas/)
-* [Outbox](/nservicebus/outbox/)
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
+|Feature                    |   |
+|:---                       |---
+|Supported storage types    |Sagas, Outbox, Subscriptions
+|Transactions               |Enabled and required by default
+|Concurrency control        |Pessimistic concurrency only
+|Scripted deployment        |Not supported
+|Installers                 |None. Documents are created in database at runtime as needed.
 
 
 ## Usage

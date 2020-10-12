@@ -7,7 +7,21 @@ redirects:
 - nservicebus/persistence/in-memory
 ---
 
-Some scenarios require an in-memory persistence such as the development environment or a lightweight client not interested in durability across restarts:
+Some scenarios require an in-memory persistence such as the development environment or a lightweight client not interested in durability across restarts.
+
+## Persistence at a glance
+
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
+|Feature                    |   |
+|:---                       |---
+|Storage Types              |Sagas, Outbox, Subscriptions, Timeouts
+|Transactions               |None
+|Concurrency control        |Optimistic concurrency
+|Scripted deployment        |Does not apply
+|Installers                 |Does not apply
+
+## Configuration
 
 snippet: ConfiguringInMemory
 
