@@ -94,7 +94,7 @@ The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are 
 
 ## NServiceBus Scheduler
 
-In Version 8 the scheduler API has been deprecated in favour of options like [sagas](/nservicebus/sagas/) and production-grade schedulers like Hangfire, Quarts, FluentScheduler etc.
+In Version 8 the scheduler API has been deprecated in favor of options like [sagas](/nservicebus/sagas/) and production-grade schedulers like Hangfire, Quarts, FluentScheduler etc.
 
 Use the following steps to migrate existing scheduled tasks:
 
