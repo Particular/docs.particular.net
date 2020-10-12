@@ -41,11 +41,6 @@ void CleanUpSolutions()
 						continue;
 					}
 					//https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes
-					if (line.StartsWith("VisualStudioVersion = "))
-					{
-						writer.WriteLine("VisualStudioVersion = 16.0.29728.190");
-						continue;
-					}
 					if (line.StartsWith("MinimumVisualStudioVersion = "))
 					{
 						writer.WriteLine("MinimumVisualStudioVersion = 15.0.26730.12");
@@ -70,7 +65,7 @@ void CleanUpProjects()
 {
 	foreach (var projectFile in Directory.EnumerateFiles(docsDirectory, "*.csproj", SearchOption.AllDirectories))
 	{
-		var xdocument = XDocument.Load(projectFile);
+		var xdocument = XDocument.Load(projectFile, LoadOptions.PreserveWhitespace);
 
 		var propertyGroup = xdocument.Descendants("PropertyGroup").FirstOrDefault();
 
@@ -80,11 +75,11 @@ void CleanUpProjects()
             
 			if (langVersion == null)
 			{
-				propertyGroup.Add(new XElement("LangVersion", "7.1"));
+				propertyGroup.Add(new XElement("LangVersion", "7.3"));
 			}
 			else
 			{
-				langVersion.Value = "7.1";
+				langVersion.Value = "7.3";
 			}
 
             var targetFrameworks = propertyGroup.Element("TargetFrameworks");
