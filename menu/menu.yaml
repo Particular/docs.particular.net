@@ -63,8 +63,8 @@
       Title: Debugging in VS Code
     - Url: nservicebus/licensing
       Title: License
-    - Url: components
-      Title: Extensions
+    - Url: nservicebus/community
+      Title: Community extensions and integrations
     - Url: platform/contributing
       Title: Contributing
     - Url: nservicebus/architecture/principles

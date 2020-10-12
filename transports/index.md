@@ -29,7 +29,3 @@ Initially, it's challenging to decide which queuing technology may be best for a
 - [SQL Server](/transports/sql/)
 - [RabbitMQ](/transports/rabbitmq/)
 - [Amazon SQS](/transports/sqs/)
-
-## Community-maintained transports
-
-There are several community-maintained transports which can be found in the full list of [extensions](/components#transports).
