@@ -20,7 +20,11 @@ Accessing application state can be achieved in a number of ways and should not b
 
 ### TransactionScope
 
-Using the TransactionScope makes a block of code transactional, resulting in any code that stores data will automatically enlist in the transaction. This is configured on the transport and automatically includes any message handler.
+NOTE: This section only applies to .NET Framework as .NET Core does not support distributed transactions.
+
+In .NET, using the [TransactionScope](https://docs.microsoft.com/en-us/dotnet/api/system.transactions.transactionscope) makes a block of code transactional, resulting in any code that stores data will automatically enlist in the transaction.
+
+This is configured on the transport and automatically includes any message handler.
 
 snippet: BusinessData-ConfigureTransactionScope
 
@@ -28,11 +32,11 @@ The code in a handler will automatically enlist in the transaction without any a
 
 snippet: BusinessData-InsideTransactionScope
 
-When using a transactionmode lower than TransactionScope, NServiceBus also provides the ability to wrap handlers inside a TransactionScope to [avoid partial updates](https://docs.particular.net/transports/transactions#avoiding-partial-updates).
+When using a transaction mode lower than TransactionScope, NServiceBus also provides the ability to wrap handlers inside a TransactionScope to [avoid partial updates](/transports/transactions.md#avoiding-partial-updates).
 
 ### Synchronized storage session
 
-Synchronized storage session is NServiceBus its built-in implementation of Unit of Work pattern. It provides a data access context that is shared by all handlers that process a given message. The state change is committed after the execution of the last handler, provided that there were no exceptions during processing. The synchronized storage session is accessible via `IMessageHandlerContext`:
+A synchronized storage session an NServiceBus implementation of the unit of work pattern. It provides a data access context that is shared by all handlers that process a given message. The state change is committed after the execution of message handlers, provided that there were no exceptions during processing. The synchronized storage session is accessible via the `IMessageHandlerContext`:
 
 snippet: BusinessData-SynchronizedStorageSession
 
@@ -42,6 +46,7 @@ The synchronized storage session feature is supported by most NServiceBus persis
  - [NHibernate](/persistence/nhibernate/accessing-data.md)
  - [MongoDB](/persistence/mongodb/#transactions-shared-transactions)
  - [RavenDB](/persistence/ravendb/#shared-session)
+ - [Service Fabric](/persistence/service-fabric/transaction-sharing.md)
 
 Synchronized storage session by itself only guarantees that there will be no *partial failures* i.e. cases where one of the handlers has modified its state while another has not. This guarantee extends to [sagas](/nservicebus/sagas/) as they are persisted using the synchronized storage session.
 
@@ -51,13 +56,9 @@ However, the synchronized storage session **does not guarantee that each state c
 
 When using an Object/Relational Mapper (ORM) like Entity Framework for data access, there is the ability to either inject the data context object via dependency injection or create a data context on the fly and reuse the connection.
 
-#### Create data context
-
 Creating a data context on-the-fly means that any other handler will work disconnected from that data context. This is a fairly easy approach, except when messages are processed by more than one handler, this is not a suggested approach.
 
-#### Data context via dependency injection
-
-An alternative option that does work with multiple handlers processing a single message, is to inject the data context of an ORM via dependency injection. More information can be found in the SQL persistence documentation about [persistence/sql/accessing-data.md](persistence/sql/accessing-data).
+An alternative option that does work with multiple handlers processing a single message, is to inject the data context of an ORM via dependency injection. More information can be found in the SQL persistence documentation about [accessing data](/persistence/sql/accessing-data.md).
 
 
 
