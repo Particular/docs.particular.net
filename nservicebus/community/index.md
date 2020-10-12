@@ -122,13 +122,6 @@ Adds audit message filtering functionality to NServiceBus, so that certain messa
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
 
 
-## [HandlerOrdering](https://github.com/NServiceBusExtensions/NServiceBus.HandlerOrdering)
-
-Allows a more expressive way to [order message handlers](/nservicebus/handlers/handler-ordering.md). HandlerOrdering allows the dependency between handlers to be expressed via interfaces and the resulting order is derived at runtime.
-
-Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
-
-
 [Newtonsoft.Json.Encryption](https://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption)
 
 Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the nodes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
