@@ -96,12 +96,8 @@ The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are 
 
 In Version 8 the scheduler API has been deprecated in favor of options like [sagas](/nservicebus/sagas/) and production-grade schedulers like Hangfire, Quarts, FluentScheduler etc.
 
-Use the following steps to migrate existing scheduled tasks:
+The recommendation is to create a .NET Timer with the same interval as the scheduled task and use `IMessageSession.SendLocal that sends a message to process. Using message processing has the benefit of using Recoverability and uses a Transactional context. If these benefits are unwanted then do not send a message at all and directly invoke logic from the timer.
 
-1. Create a message-type named after the scheduled task, eg. `public class MyScheduledTask : IMessage {}`
-1. Add a message handler for the message and move the code executed in `.ScheduleEvery()` into the `Handle` method of the handler.
-1. Create a .NET Timer with the same interval as the scheduled task and use `IMessageSession.SendLocal` to send a `MyScheduledTask` message to the local endpoint instance
-
-INFO: The Version 7 behavior is to **not** retry the task on failures, so make sure to wrap the business logic in a `try` `catch` statement.
+INFO: The Version 7 behavior is to **not** retry the task on failures, so make sure to wrap the business logic in a `try` `catch` statement if you would want a similar experience to prevent any retries.
 
 See the [scheduling with .NET Timers sample](/samples/scheduling/timer) for more details.
