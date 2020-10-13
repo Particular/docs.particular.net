@@ -26,9 +26,9 @@ class UsageHandler : IHandleMessages<MyMessage>
         var session = context.SynchronizedStorageSession.CosmosPersistenceSession();
 
         session.Batch
-                .CreateItem<ToDoActivity>(test1)
-                .ReplaceItem<ToDoActivity>(test2.id, test2)
-                .UpsertItem<ToDoActivity>(test3)
+                .CreateItem(test1)
+                .ReplaceItem(test2.id, test2)
+                .UpsertItem(test3)
                 .DeleteItem("/item/id");
 
         return Task.CompletedTask;
