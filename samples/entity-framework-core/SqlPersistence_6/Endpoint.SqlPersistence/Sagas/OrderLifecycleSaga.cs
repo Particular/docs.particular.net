@@ -7,7 +7,7 @@ using NServiceBus.Persistence.Sql;
 public class OrderLifecycleSaga :
     SqlSaga<OrderLifecycleSagaData>,
     IAmStartedByMessages<OrderSubmitted>,
-    IHandleTimeouts<OrderTimeout>
+    IHandleTimeouts<OrderLifecycleSaga.OrderTimeout>
 {
     static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
 
@@ -42,5 +42,9 @@ public class OrderLifecycleSaga :
             OrderId = Data.OrderId
         };
         return context.SendLocal(completeOrder);
+    }
+
+    public class OrderTimeout
+    {
     }
 }

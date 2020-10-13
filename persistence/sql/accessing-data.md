@@ -6,9 +6,12 @@ reviewed: 2019-02-04
 related:
  - nservicebus/handlers/accessing-data
  - samples/sqltransport-sqlpersistence
+ - samples/entity-framework
 redirects:
  - nservicebus/sql-persistence/accessing-data
 ---
+
+Accessing business data
 
 SQL persistence supports a mechanism that allows using the same data context used by NServiceBus internals to also store business data. This ensures atomicity of changes done across multiple handlers and sagas involved in processing of the same message. See [accessing data](/nservicebus/handlers/accessing-data.md) to learn more about other ways of accessing the data in the handlers.
 
@@ -17,11 +20,17 @@ The current [DbConnection](https://msdn.microsoft.com/en-us/library/system.data.
 partial: caveats
 
 
-### Using in a Handler
+### Using SQL data context
 
 snippet: handler-sqlPersistenceSession
 
 partial: di
+
+### Using Entity Framework
+
+When using Entity Framework (or a different kind of object/relational mappe) to access business data, there is the option to create an Entity Framework data context within a handler and use the Synchronized Storage Session to reuse the connection to the database.
+
+Another option is to inject the Entity Framework data context into the handler. When NServiceBus has finished processing a message it will publish an in-process event that provides the ability to call the `SaveChanges` method on the Entity Framework data context. More information can be found in the sample for using [samples/entity-framework](/samples/entity-framework-core/).
 
 
 ### Using in a Saga
