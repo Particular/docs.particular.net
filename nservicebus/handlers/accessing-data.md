@@ -17,22 +17,8 @@ In most cases [handlers](/nservicebus/handlers/) are meant to modify the interna
 Accessing application state can be achieved in a number of ways and should not be enforced or restricted by NServiceBus. The scenarios below provide guidance on several ways of accessing application state by using the same data context as NServiceBus uses internally.
 
 
+partial: transactionscope
 
-### TransactionScope
-
-NOTE: This section only applies to .NET Framework as .NET Core does not support distributed transactions.
-
-In .NET, using the [TransactionScope](https://docs.microsoft.com/en-us/dotnet/api/system.transactions.transactionscope) makes a block of code transactional, resulting in any code that stores data will automatically enlist in the transaction.
-
-This is configured on the transport and automatically includes any message handler.
-
-snippet: BusinessData-ConfigureTransactionScope
-
-The code in a handler will automatically enlist in the transaction without any additional configuration. If a handler fails processing a message the data in the datastore will automatically be rolled back.
-
-snippet: BusinessData-InsideTransactionScope
-
-When using a transaction mode lower than TransactionScope, NServiceBus also provides the ability to wrap handlers inside a TransactionScope to [avoid partial updates](/transports/transactions.md#avoiding-partial-updates).
 
 ### Synchronized storage session
 
