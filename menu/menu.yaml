@@ -937,10 +937,10 @@
         Title: Support NServiceBus 5 subscribers
   - Url: persistence/learning
     Title: Learning Persistence
-  - Url: persistence/in-memory
-    Title: In-Memory
+  - Url: persistence/non-durable
+    Title: Non-Durable
     Articles:
-    - Url: persistence/in-memory/gateway-deduplication
+    - Url: persistence/non-durable/gateway-deduplication
       Title: Gateway Deduplication
   - Url: persistence/sql
     Title: SQL

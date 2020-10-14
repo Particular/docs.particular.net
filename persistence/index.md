@@ -28,7 +28,7 @@ It can be a challenge to decide whether or not a persister is needed and which o
 ## Supported persisters
 
 - [Learning](/persistence/learning/)
-- [In-Memory](/persistence/in-memory/)
+- [Non-Durable](/persistence/non-durable/)
 - [SQL](/persistence/sql/)
 - [Azure Storage](/persistence/azure-storage/)
 - [RavenDB](/persistence/ravendb/)

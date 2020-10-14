@@ -64,7 +64,7 @@ Samples default to the [learning transport](/transports/learning/) as it has the
 
 ### [Persistence](/persistence/)
 
-Samples default to either the [learning persistence](/persistence/learning/) or the [InMemory persistence](/persistence/in-memory/) since both have no requirement on installed infrastructure. **The [learning persistence](/persistence/learning/) is not for production use**.
+Samples default to either the [learning persistence](/persistence/learning/) or the [Non-Durable persistence](/persistence/non-durable/) since both have no requirement on installed infrastructure. **The [learning persistence](/persistence/learning/) is not for production use**.
 
 
 ### Console hosting

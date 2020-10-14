@@ -65,6 +65,6 @@ As a shortcut an incoming saga message can be re-used as timeout state by passin
 
 Some form of [Persistence](/persistence/) is required to store the timestamp and the state of a timeout.
 
-WARNING: A durable persistence (i.e. NOT [InMemory](/persistence/in-memory/) or [Learning Persistence](/persistence/learning/)) should be chosen before moving to production.
+WARNING: A durable persistence (i.e. NOT [Non-Durable](/persistence/non-durable/) or [Learning Persistence](/persistence/learning/)) should be chosen before moving to production.
 
 In order to learn how delayed delivery works in more detail, refer to the [Delayed Delivery - How it works](/nservicebus/messaging/delayed-delivery.md#how-it-works) section.

@@ -5,7 +5,7 @@ class Usage
 {
     public void InMemoryDeduplicationConfigurationCacheSize(EndpointConfiguration endpointConfiguration)
     {
-        #region InMemoryDeduplicationConfigurationCacheSize
+        #region NonDurableDeduplicationConfigurationCacheSize
 
         var gatewayStorageConfiguration = new InMemoryDeduplicationConfiguration
         {
