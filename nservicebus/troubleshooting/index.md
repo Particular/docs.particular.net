@@ -1,6 +1,7 @@
 ---
 title: Troubleshooting NServiceBus
 summary: Overview of common problems faced when using NServiceBus
+component: core
 reviewed: 2020-10-14
 related:
 - nservicebus/gateway/troubleshooting
@@ -12,3 +13,7 @@ related:
 - servicecontrol/troubleshooting
 - servicepulse/troubleshooting
 ---
+
+## Messaging
+
+- [Troubleshooting message loss](message-loss.md)
