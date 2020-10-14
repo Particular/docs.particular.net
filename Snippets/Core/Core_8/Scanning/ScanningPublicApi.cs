@@ -89,7 +89,7 @@ namespace Core8.Scanning
             #endregion
         }
 
-        void ScanningNestedAssembliesEnabled(EndpointConfiguration endpointConfiguration)
+        void AdditionalAssemblyScanningPath(EndpointConfiguration endpointConfiguration)
         {
             var additionalPathToScanAssemblies = "";
 
