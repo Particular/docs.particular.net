@@ -91,3 +91,13 @@ The `NServiceBus.Host` package is deprecated. See the [NServiceBus Host upgrade 
 ## NServiceBus Azure Host
 
 The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are deprecated.See the [NServiceBus Azure Host upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for details and alternatives.
+
+## NServiceBus Scheduler
+
+In Version 8 the scheduler API has been deprecated in favor of options like [sagas](/nservicebus/sagas/) and production-grade schedulers like Hangfire, Quarts, FluentScheduler etc.
+
+The recommendation is to create a .NET Timer with the same interval as the scheduled task and use `IMessageSession.SendLocal` that sends a message to process. Using message processing has the benefit of using Recoverability and uses a Transactional context. If these benefits are unwanted then do not send a message at all and directly invoke logic from the timer.
+
+INFO: The Version 7 behavior is to **not** retry the task on failures, so make sure to wrap the business logic in a `try` `catch` statement to get the same behavior in Version 8.
+
+See the [scheduling with .NET Timers sample](/samples/scheduling/timer) for more details.
