@@ -9,7 +9,7 @@ Preview components are offered under a more [permissive license](https://particu
 
 NOTE: Some components cannot be used independently of the NServiceBus and the Particular Platform, which requires a commercial license to use in Production.
 
-Verified customer usage in production is a key component for when to release the commercial version of the component. Once a preview is launched, a preview period continues until the preview has reached sufficient customer adoption, after which the preview will transition into a fully adopted component of the Particular Platform.
+Verified customer usage in production is a key factor for deciding when to release the commercial version of the component. Once a preview is launched, a preview period continues until the preview has reached sufficient customer adoption, after which the preview will transition into a fully adopted component of the Particular Platform.
 
 Leading up to the launch of a new preview, in order to help ensure adoption of the preview, a research process is undertaken to identify and validate customer needs and determine the most important component features that are required to meet those needs.
 
