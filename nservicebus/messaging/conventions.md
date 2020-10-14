@@ -17,7 +17,6 @@ Currently conventions exist to identify:
  * [Messages](/nservicebus/messaging/messages-events-commands.md)
  * [Message Property Encryption](/nservicebus/security/property-encryption.md)
  * [Data Bus](/nservicebus/messaging/databus/)
- * [Express messages](/nservicebus/messaging/non-durable-messaging.md)
  * [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md)
 
 Messages can be defined in a *Portable Class Library* (PCL) and shared across multiple platforms even if the platform does not use NServiceBus for message processing.
