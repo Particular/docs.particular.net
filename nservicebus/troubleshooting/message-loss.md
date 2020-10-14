@@ -1,24 +1,22 @@
 ---
 title: Troubleshooting message loss
 summary: NServiceBus troubleshooting message loss
-reviewed: 2020-07-24
-component: NServiceBus
+reviewed: 2020-10-14
+component: core
 ---
-# Troubleshooting message loss
-
 Sometimes customers are experiencing message loss scenarios. In most cases the cause is in any of the following scenarios:
 
 - Missing `await` keyword on async methods
 - Usage of `async void` in the call stack
 - Catching (generic) exceptions but not rethrowing the exception
 
-All these will prevent NServiceBus its recovery mechanism to work correctly as any exception will never be catched by NServiceBus. This results in NServiceBus to think processing was succesful while it (potentially) was not. Another side effect of the async related issues it that transactions can be committed too early which can cause corruption in your storage.
+All these will prevent NServiceBus its recovery mechanism to work correctly as any exception will never be catched by NServiceBus. This results in NServiceBus to think processing was succesful while it (potentially) was not. Another side effect of the async related issues it that transactions can be committed too early which can cause corruption in storage.
 
-Consider enabling [message auditing](https://docs.particular.net/nservicebus/operations/auditing) so that atleast the message is not lost.
+Consider enabling [message auditing](/nservicebus/operations/auditing.md) so that atleast the message is not lost.
 
 ## Missing await keyword
 
-Although all async methods that are provided in our API's do not have the `Async` suffix these methods **must** be awaited. All async methods must be awaited, including async methods from other libraries.
+Although all async methods that are provided in Particular API's do not have the `Async` suffix these methods **must** be awaited. All async methods must be awaited, including async methods from other libraries.
 
 Resolve this by:
 
