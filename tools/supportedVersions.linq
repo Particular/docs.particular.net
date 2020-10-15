@@ -26,7 +26,7 @@ async Task Main()
 	var corePackageId = "NServiceBus";
 	var serviceControlPackageId = "Particular.PlatformSample.ServiceControl";
 
-	var extendedSupportVersions = new[] { 5, 6 };
+	var extendedSupportVersions = new[] { 6 };
 	var servicControlExtendedSupportVersions = new int[0];
 
 	var coreMajorOverlapYears = 2;
