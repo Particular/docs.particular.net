@@ -85,8 +85,7 @@ Here is more detail on each stage of the process:
 7. Dispatch the outgoing messages stored in the outbox storage to the message transport.
    * If processing fails at this point, it's possible that duplicate messages will be dispatched to the message transport. These messages will all have the same `MessageId`, and will be deduplicated by the outbox feature (in Step 2) by the message endpoint that receives the duplicate messages.
 8. Update the outbox storage to show that the outgoing messages have been dispatched.
-9.  Consume (ACK) the incoming message so that the messaging infrastructure knows it has been processed successfully.
-
+9. Consume (ACK) the incoming message so that the messaging infrastructure knows it has been processed successfully.
 
 ## Important design considerations
 
@@ -95,7 +94,6 @@ Here is more detail on each stage of the process:
 * Because deduplication is done using `MessageId`, messages sent outside of an NServiceBus message handler (i.e. from a Web API) cannot be deduplicated unless they are sent with the same `MessageId`.
 * The outbox is _expected to_ generate duplicate messages from time to time, especially if there is unreliable communication between the endpoint and the message broker.
 * Endpoints using the outbox feature should not send messages to endpoints using DTC (see below) as the DTC-enabled endpoints will treat duplicates coming from Outbox-enabled endpoints as multiple messages.
-
 
 ## Comparison to DTC
 
@@ -109,13 +107,11 @@ The rise of cloud infrastructure and [decline of MSMQ](https://particular.net/bl
 
 The outbox feature is designed to provide the same utility to developers in terms of consistency between messaging and data operations so that it is easier to design distributed systems without needing to make every operation idempotent.
 
-
 ## Enabling the outbox
 
 partial: enable-outbox
 
 Each NServiceBus persistence package contains different configuration options, such as a time to keep deduplication data and deduplication data cleanup interval. For details, refer to the specific page for each persistence package in the [Persistence section](#persistence) below.
-
 
 ## Converting from DTC to outbox
 
@@ -129,32 +125,29 @@ In order to gradually convert an entire system from the DTC to the outbox:
 1. Enable the outbox on any endpoints that only send or publish messages to already-converted endpoints, where the outbox will be able to properly handle any duplicate messages.
 1. Progress outward until all endpoints are converted.
 
-WARNING: When verifying outbox functionality, it can sometimes be helpful to temporarily [stop the MSDTC Service](https://technet.microsoft.com/en-us/library/cc770732.aspx). This ensures that the outbox is working as expected, and no other resources are enlisting in distributed transactions.
-
+WARNING: When verifying outbox functionality, it can sometimes be helpful to temporarily [stop the MS DTC Service](https://technet.microsoft.com/en-us/library/cc770732.aspx). This ensures that the outbox is working as expected, and no other resources are enlisting in distributed transactions.
 
 ## Message identity
 
 The outbox only uses the incoming [message identifier](/nservicebus/messaging/message-identity.md) as a unique key for deduplicating messages. If the sender does not use outbox when sending messages, it is responsible for ensuring that the message identifier value is consistent when that message is sent multiple times.
 
-
 ## Outbox expiration duration
 
-To determine if a message has been processed before, the identification data for each outbox record is retained. The duration that this data is retained for will vary depending on the persistence chosen for the outbox. The default duration, as well as the frequency of data removal, can be overriden for all outbox persisters.
+To determine if a message has been processed before, the identification data for each outbox record is retained. The duration that this data is retained for will vary depending on the persistence chosen for the outbox. The default duration, as well as the frequency of data removal, can be overridden for all outbox persisters.
 
 After the outbox data retention period has lapsed, a retried message will be seen as the first of its kind and will be reprocessed. It is important to ensure that the retention period of outbox data is longer than the maximum time the message can be retried, including delayed retries and manual retries via ServicePulse.
 
 Depending on the throughput of the system's endpoints, the outbox cleanup interval may need to be run more frequently. Increased frequency will allow each cleanup operation to purge the fewest records possible each time it runs. Purging fewer records will make the purge operation run faster which will ensure that it completes before the next purge operation is due to start.
 
-
 ## Storage requirements
 
 The amount of storage space required for the outbox can be calculated as follows:
 
-    Total outbox records = Message througput per second * Deduplication period in seconds
+`Total outbox records = Message throughput per second * Deduplication period in seconds`
 
 A single outbox record, after all transport operations have been dispatched, usually requires less than 50 bytes, most of which are taken for storing the original message ID as this is a string value.
 
-NOTE: If the system is processing a high volume of messages, having a long deduplication timeframe will increase the amount of storage space that is required by outbox.
+NOTE: If the system is processing a high volume of messages, having a long deduplication time frame will increase the amount of storage space that is required by outbox.
 
 ## Persistence
 
@@ -162,8 +155,8 @@ The outbox feature requires persistence in order to perform deduplication and to
 
 For more information on the outbox persistence options available refer to the dedicated persistence pages:
 
-- [NHibernate](/persistence/nhibernate/outbox.md)
-- [RavenDB](/persistence/ravendb/outbox.md)
-- [SQL](/persistence/sql/outbox.md)
-- [ServiceFabric](/persistence/service-fabric/outbox.md)
-- [MongoDB](/persistence/mongodb/#outbox-cleanup)
+* [NHibernate](/persistence/nhibernate/outbox.md)
+* [RavenDB](/persistence/ravendb/outbox.md)
+* [SQL](/persistence/sql/outbox.md)
+* [ServiceFabric](/persistence/service-fabric/outbox.md)
+* [MongoDB](/persistence/mongodb/#outbox-cleanup)
