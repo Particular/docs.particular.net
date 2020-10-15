@@ -15,103 +15,110 @@ related:
 - persistence/sql/outbox
 ---
 
-Because message queues generally do not support any form of transactions, message handlers that modify business data in a database run into problems when the messages that are sent become inconsistent with the changes made to business data, resulting in **ghost messages** or **phantom records**.
+Most message queues, and some data stores, do not support distributed transactions. This may cause problems when message handlers modify business data. Business data and messages may become inconsistent in the form of **phantom records** or **ghost messages** (see below).
 
-The **Outbox** is an NServiceBus feature that makes changes to business data consistent with messaging operations as if both the database and messaging layer were bound by an atomic transaction.
+The NServiceBus **outbox** feature ensures consistency between business data and messages. It simulates an atomic transaction, distributed across both the data store used for business data and the message queue used for messaging.
 
 ## The consistency problem
 
-Consider a message handler that creates a `User` in the business database, and also publishes a `UserCreated` event. If a failure occurs during the execution of the message handler, two different scenarios can occur based on the order of operations.
+Consider a message handler that creates a `User` in the business database, and also publishes a `UserCreated` event. If a failure occurs during the execution of the message handler, two scenarios may occur, depending on the order of operations.
 
-1. **Phantom record**: The handler inserts the `User` in the database, then publishes `UserCreated` event.
-   * If a failure occurs between these two operations, the `User` would be committed to the database, but no `UserCreated` event is published.
-   * The message handler did not complete, so the message is retried, and both operations are repeated. This results in a duplicate `User` in the database, known as a phantom record, which is never announced to the rest of the system.
-2. **Ghost message**: The handler publishes the `UserCreated` event first, then inserts the `User` in the database.
-   * If a failure occurs between these two operations, the `UserCreated` event is published and dispatched immediately, but the `User` it refers to is never committed to the database.
-   * The rest of the system is notified about the creation of data that never existed, causing further errors in other message handlers down the line.
+1. **Phantom record**: The handler creates the `User` in the database first, then publishes the `UserCreated` event. If a failure occurs between these two operations:
+   * The `User` is created in the database, but the `UserCreated` event is not published.
+   * The message handler does not complete, so the message is retried, and both operations are repeated. This results in a duplicate `User` in the database, known as a phantom record, which is never announced to the rest of the system.
+2. **Ghost message**: The handler publishes the `UserCreated` event first, then creates the `User` in the database. If a failure occurs between these two operations:
+   * The `UserCreated` event is published, but the `User` is not created in the database.
+   * The rest of the system is notified about the creation of the `User`, but the `User` does not exist in the database. This causes further errors in other message handlers which expect the `User` to exist in the database.
 
 To avoid these problems, developers of distributed systems have two options:
 
-* Be very careful to make every single message handler [idempotent](https://en.wikipedia.org/wiki/Idempotence)—that is, coded so that the message handler can be executed multiple times without adverse side effects.
-* Implement infrastructure to create consistency between messaging and data operations so that hard idempotency is no longer a requirement.
+1. Ensure all message handlers are [idempotent](https://en.wikipedia.org/wiki/Idempotence). This means each message handler can handle the same message multiple times without adverse side effects. This is often very difficult to achieve.
+2. Implement infrastructure which guarantees consistency between business data and messages. This avoids the need for all messages handlers to be idempotent.
 
-The Outbox is that piece of infrastructure.
+The outbox feature is the infrastructure described in the second option.
 
 ## How it works
 
-The Outbox guarantees exactly-once message processing by taking advantage of the database transaction used to store business data.
+The outbox feature guarantees that each message is processed once and once only, using the database transaction used to store business data.
 
-Returning to the earlier example of creating a `User` and then publishing a `UserCreated` event, NServiceBus will follow this process when processing a message using the outbox feature. Extended descriptions can be found beneath the diagram.
+Returning to the earlier example of a message handler which creates a `User` and then publishes a `UserCreated` event, the following process occurs. Detailed descriptions are beneath the diagram.
 
 ```mermaid
 graph TD
-  createTx(1. Begin transaction)
-  dedupe{2. Deduplication}
-  handler(3. Execute handler)
-  storeOutbox(4. Store outgoing<br/>messages in outbox)
-  commitTx(5. Commit transaction)
-  isDispatched{6. Have outgoing<br/>messages been<br/>dispatched?}
-  dispatch(7. Dispatch messages)
-  updateOutbox(8. Set as dispatched)
-  ack(9. Consume message)
+  receiveMessage(1. Receive incoming message)
+  createTx(2. Begin transaction)
+  dedupe{3. Deduplication}
+  handler(4. Execute handler)
+  storeOutbox(5. Store outgoing<br/>messages in outbox)
+  commitTx(6. Commit transaction)
+  areSent{7. Have outgoing<br/>messages been<br/>sent?}
+  send(8. Sent messages)
+  updateOutbox(9. Set as sent)
+  ack(10. Acknowledge incoming message)
 
+  receiveMessage-->createTx
   createTx-->dedupe
   dedupe-- No record found -->handler
   handler-->storeOutbox
   storeOutbox-->commitTx
-  commitTx-->isDispatched
-  dispatch-->updateOutbox
+  commitTx-->areSent
+  send-->updateOutbox
   updateOutbox-->ack
 
   dedupe-- Record found -->commitTx
-  isDispatched-- No -->dispatch
-  isDispatched-- Yes -->ack
+  areSent-- No -->send
+  areSent-- Yes -->ack
 ```
 
-Here is more detail on each stage of the process:
+More detail on each stage of the process:
 
-1. Begin a database transaction on the business database.
-2. Check the outbox storage in the business database to see if this message has been processed before. This is called **deduplication**.
-   * If the message has been processed before, skip to **Step 5**.
-   * If the message has never been seen before, continue to **Step 3**.
-3. Execute the message handler.
-   * Any outgoing messages are not dispatched immediately but stored in RAM.
-4. Create a record in outbox storage in the business database containing the details of all outgoing messages.
-5. Commit the transaction on the business database.
+1. Receive the incoming message from the queue.
+   * Do not acknowledge receipt of the message yet, so that if processing fails, the message will be delivered again.
+2. Begin a transaction in the database.
+3. Check outbox storage in the database to see if the incoming message has already been processed. This is called **deduplication**.
+   * If the message has already been processed, skip to **step 6**.
+   * If the message has not yet been processed, continue to **step 4**.
+4. Execute the message handler for the incoming message
+   * Any outgoing messages are not immediately sent.
+5. Store any outgoing messages in outbox storage in the database.
+6. Commit the transaction in the database.
    * This is the operation that ensures consistency between messaging and database operations.
-6. Determine if the outgoing messages have been dispatched yet.
-   * If messages have already been dispatched, this message is a duplicate, so skip to **Step 9**.
-   * If there are still messages to dispatch, continue to **Step 7**.
-7. Dispatch the outgoing messages stored in the outbox storage to the message transport.
-   * If processing fails at this point, it's possible that duplicate messages will be dispatched to the message transport. These messages will all have the same `MessageId`, and will be deduplicated by the outbox feature (in Step 2) by the message endpoint that receives the duplicate messages.
-8. Update the outbox storage to show that the outgoing messages have been dispatched.
-9. Consume (ACK) the incoming message so that the messaging infrastructure knows it has been processed successfully.
+7. Check if the outgoing messages have already been sent.
+   * If the outgoing messages have already been sent, the incoming message is a duplicate, so skip to **step 10**.
+   * If the outgoing messages have not yet been sent, continue to **Step 8**.
+8. Send the outgoing messages to the queue.
+   * If processing fails at this point, duplicate messages may be sent to the queue. Any duplicates will have the same `MessageId`, so they will be deduplicated by the outbox feature (in **step 3**) in the endpoint that receives them.
+9. Update outbox storage to show that the outgoing messages have been sent.
+10. Acknowledge (ACK) receipt of the incoming message so that it is removed from the queue and will not be delivered again.
 
 ## Important design considerations
 
-* Outbox data must be stored in the same database as business data, so that the outbox is able to take advantage of the single local database transaction.
+* The performance of the outbox feature depends on the scope of the transactions used to update business data and outbox data. Transactions may be scoped to a single database, multiple databases on a single server, or multiple databases on multiple servers.
+  * Transactions scoped to a single database are supported by all persisters and usually have the best performance, so it is usually best to store outbox data in the same database as business data.
+  * Transactions scoped to multiple databases on a single server, also known as _cross-database transactions_, are supported by some persisters, such as those which use SQL Server. These transactions may have reasonably good performance but they may introduce other concerns. For example, [cross-database transaction are not supported by all types of tables in SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/in-memory-oltp/cross-database-queries).
+  * Transactions scoped to multiple databases on multiple servers, also known as _distributed transactions_, are supported by persisters which use SQL Server, but they require the use of MSDTC and should generally be avoided for the same reasons as those listed in the [comparison with MSDTC](#comparison-with-msdtc) below.
 * The outbox works only in an NServiceBus message handler.
 * Because deduplication is done using `MessageId`, messages sent outside of an NServiceBus message handler (i.e. from a Web API) cannot be deduplicated unless they are sent with the same `MessageId`.
 * The outbox is _expected to_ generate duplicate messages from time to time, especially if there is unreliable communication between the endpoint and the message broker.
 * Endpoints using the outbox feature should not send messages to endpoints using DTC (see below) as the DTC-enabled endpoints will treat duplicates coming from Outbox-enabled endpoints as multiple messages.
 
-## Comparison to DTC
+## Comparison with MSDTC
 
-The Distributed Transaction Coordinator (DTC) is a Windows technology that enlists multiple local transactions (called resource managers) within a single distributed `TransactionScope` so that all enlisted transactions either complete successfully as a set or are all rolled back.
+The [Microsoft Distributed Transaction Coordinator (DTC)](https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator) is a Windows technology that enlists multiple local transactions (called resource managers) within a single distributed `TransactionScope`. All enlisted transactions either complete successfully as a set or are all rolled back.
 
-DTC is a very chatty protocol, due to the need for multiple resource managers needing to continually check up on each other to make sure they are prepared to commit their results. An example of where this works well would be a distributed transaction between an MSMQ message queue and business data stored in SQL Server. The communication with MSMQ is local and therefore very low-latency, and there are only two resource managers to coordinate with only one communication path between them. The very first versions of NServiceBus primarily used only MSMQ and SQL Server and so with those systems, use of the DTC is prevalent.
+MSDTC uses a very chatty protocol, due to the need for multiple resource managers to continually check on each other to make sure they are prepared to commit their results. An example of where this works well is a distributed transaction including consuming messages from an MSMQ message queue and storing business data in SQL Server. The communication with MSMQ is local and has very low latency, and there are only two resource managers to coordinate, with only one communication path between them. Early versions of NServiceBus primarily used MSMQ and SQL Server and systems built with those versions tended to use MSDTC.
 
-The more resource managers involved and/or the higher the latency between them, the more poorly DTC performs. Cloud environments, in particular, have much higher latency when the message queue and the data store are probably not even located in the same server rack.
+The more resource managers involved and/or the higher the latency between them, the more poorly MSDTC performs. Cloud environments, in particular, have much higher latency and the message queue and the data store are probably not even located in the same server rack.
 
-The rise of cloud infrastructure and [decline of MSMQ](https://particular.net/blog/msmq-is-dead) have contributed to the overall decline in use of DTC in the software development industry.
+The rise of cloud infrastructure and [decline of MSMQ](https://particular.net/blog/msmq-is-dead) have contributed to the overall decline in use of MSDTC in the software development industry.
 
-The outbox feature is designed to provide the same utility to developers in terms of consistency between messaging and data operations so that it is easier to design distributed systems without needing to make every operation idempotent.
+The outbox feature is designed to provide the same level of consistency between business data and messages provided by MSDTC, without the need to coordinate multiple resource managers.
 
 ## Enabling the outbox
 
 partial: enable-outbox
 
-Each NServiceBus persistence package contains different configuration options, such as a time to keep deduplication data and deduplication data cleanup interval. For details, refer to the specific page for each persistence package in the [Persistence section](#persistence) below.
+Each NServiceBus persistence package may contain specific configuration options, such as a time to keep deduplication data and a deduplication data cleanup interval. For details, refer to the specific page for each persistence package in the [persistence section](#persistence) below.
 
 ## Converting from DTC to outbox
 
