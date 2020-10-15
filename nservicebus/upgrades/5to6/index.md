@@ -127,37 +127,3 @@ See also:
 
  * [Migrating from IBus](moving-away-from-ibus.md)
  * [Messaging Changes in NServiceBus Version 6](messaging.md)
-
-
-## Final steps
-
-This covers the basic steps required to update an endpoint to NServiceBus Version 6. Each of the other NServiceBus dependencies may also require additional steps. See the dependency specific upgrade guides for more information.
-
-
-#### Hosting
-
- * [NServiceBus Host](../host-6to7.md)
- * [Azure Cloud Services Host](../acs-host-6to7.md)
-
-
-#### Transports
-
- * MSMQ - There are no special upgrade requirements for endpoints using the MSMQ transport. If the solution being upgraded includes the distributor component, see [Upgrading an endpoint using the distributor from version 5 to 6](/samples/scaleout/distributor-upgrade/).
- * [Azure Service Bus](/transports/upgrades/asb-6to7.md)
- * [Azure Storage Queues](/transports/upgrades/asq-6to7.md)
- * [RabbitMQ](/transports/upgrades/rabbitmq-3to4.md)
- * [SQL Server](/transports/upgrades/sqlserver-2to3.md)
-
-
-#### Persistence
-
- * [Azure Storage](/persistence/upgrades/asp-6to1.md)
- * [NHibernate](/persistence/upgrades/nhibernate-6to7.md)
- * [RavenDB](/persistence/upgrades/ravendb-3to4.md)
-
-
-#### Others
-
- * [NServiceBus Testing](../testing-5to6.md)
- * [Gateway](../gateway-1to2.md)
- * [Azure Blob Storage Data Bus](../absdatabus-6to1.md)
