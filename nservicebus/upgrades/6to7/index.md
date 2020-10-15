@@ -328,30 +328,3 @@ Routing messages to the local endpoint or local instance is no longer allowed fo
 As of NServiceBus version 7, all packages support [Source Link](https://github.com/dotnet/designs/blob/master/accepted/diagnostics/source-link.md), a developer productivity feature that allows debugging into NServiceBus code by downloading the source directly from GitHub.
 
 There is currently a bug with Visual Studio 2017 [SDK-style projects](https://github.com/dotnet/sdk/issues/1458) that prevents Source Link from working when the project targets the .NET Framework. A [workaround](https://github.com/dotnet/sdk/issues/1458#issuecomment-362685678) for the bug is to add the [SourceLink.Copy.PdbFiles NuGet package](https://www.nuget.org/packages/SourceLink.Copy.PdbFiles) to the project.
-
-## Changes in other packages
-
-This article so far covers the changes between NServiceBus 6 and NServiceBus 7. Depending on the other packages in use, there may be other changes to be aware of:
-
-#### Hosting
-
- * [NServiceBus Host](../host-7to8.md)
- * [Azure Cloud Services Host](../acs-host-7to8.md)
-
-#### Transports
-
- * MSMQ - The MSMQ transport has moved to a new package and is [mentioned above](#msmq).
- * [Azure Service Bus](/transports/upgrades/asb-7to8.md)
- * [Azure Storage Queues](/transports/upgrades/asq-7to8.md)
- * [RabbitMQ](/transports/upgrades/rabbitmq-4to5.md)
-
-#### Persistence
-
- * [Azure Storage](/persistence/upgrades/asp-1to2.md)
- * [RavenDB](/persistence/upgrades/ravendb-4to5.md)
-
-
-#### Others
-
- * [NServiceBus Testing](../testing-6to7.md)
- * [Azure Blob Storage Data Bus](../absdatabus-1to2.md)
