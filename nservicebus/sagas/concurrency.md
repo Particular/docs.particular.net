@@ -11,7 +11,7 @@ related:
 - persistence/sql/saga-concurrency
 ---
 
-An [endpoint](/nservicebus/concept-overview.md#endpoint) may be configured to allow [concurrent handling of messages](/nservicebus/operations/tuning.md#tuning-concurrency). An endpoint may also be [scaled out](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes) to multiple nodes. In these scenarios, multiple messages may be received simultaneously which correlate to a single saga instance. Handling those messages may cause saga state to be created, updated, or deleted, and may cause new messages to be sent.
+An [endpoint](/nservicebus/concepts/concept-overview.md#endpoint) may be configured to allow [concurrent handling of messages](/nservicebus/operations/tuning.md#tuning-concurrency). An endpoint may also be [scaled out](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes) to multiple nodes. In these scenarios, multiple messages may be received simultaneously which correlate to a single saga instance. Handling those messages may cause saga state to be created, updated, or deleted, and may cause new messages to be sent.
 
 NOTE: With respect to sagas, "handling" a message refers to the invocation of any saga method that processes a message, such as `IAmStartedByMessages<T>.Handle()`, `IHandleTimeouts<T>.Timeout()`, etc.
 

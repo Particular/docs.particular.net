@@ -1,6 +1,6 @@
 NServiceBus is the heart of a distributed system and the Particular Service Platform. It helps create systems that are scalable, reliable, and flexible.
 
-At its core, NServiceBus works by routing _messages_ between _endpoints_. [Messages](/nservicebus/concept-overview.md#message) are plain C# classes that contain meaningful data for the business process that is being modeled.
+At its core, NServiceBus works by routing _messages_ between _endpoints_. [Messages](/nservicebus/concepts/concept-overview.md#message) are plain C# classes that contain meaningful data for the business process that is being modeled.
 
 ```csharp
 public class ProcessOrder
@@ -9,7 +9,7 @@ public class ProcessOrder
 }
 ```
 
-[Endpoints](/nservicebus/concept-overview.md#endpoint) are logical entities that send and/or receive messages.
+[Endpoints](/nservicebus/concepts/concept-overview.md#endpoint) are logical entities that send and/or receive messages.
 
 ```csharp
 // Sending endpoint

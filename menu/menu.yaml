@@ -45,7 +45,16 @@
     Title: General
     Articles:
     - Url: nservicebus/best-practices
-      Title: Best practices
+      Title: Best practices  
+    - Url: nservicebus/concepts
+      Title: Messaging Concepts
+      Articles:
+      - Url: nservicebus/concepts/concept-overview
+        Title: Overview
+      - Url: nservicebus/concepts/priority-queues
+        Title: Priority Queues    
+      - Url: nservicebus/concepts/data-distribution
+        Title: Data distribution
     - Url: platform
       Title: Service Platform
       Articles:
@@ -55,8 +64,6 @@
         Title: Platform Sample Installation
     - Url: samples/endpoint-configuration
       Title: Configuration choices Sample
-    - Url: nservicebus/concept-overview
-      Title: Concepts
     - Url: nservicebus/dotnet-templates
       Title: dotnet new Templates
     - Url: nservicebus/vscode
@@ -329,8 +336,6 @@
         Title: Azure Blob Storage
       - Url: nservicebus/messaging/databus/custom
         Title: Custom
-    - Url: nservicebus/messaging/data-distribution
-      Title: Data distribution
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:

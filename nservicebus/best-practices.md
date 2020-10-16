@@ -55,11 +55,11 @@ NServiceBus does a lot of work when it first starts up, scanning through assembl
 An NServiceBus endpoint is designed to be a long-lived object that persists for the entire life of the application process. Once the `IMessageSession` is created, use dependency injection to inject it into controllers or wherever else it is needed. If necessary, assign the `IMessageSession` to a global variable.
 
 
-:x: **DO NOT use messaging for [data distribution](/nservicebus/messaging/data-distribution.md)**
+:x: **DO NOT use messaging for [data distribution](/nservicebus/concepts/data-distribution.md)**
 
 A common example of a data distribution scenario is having cached data on multiple scaled-out web servers and attempting to deliver a message to each of them. The message indicates each server should drop their current cache entries and retrieve fresh data from the database.
 
-Asynchronous messaging (e.g. NServiceBus) is **not** a good solution for data distribution scenarios. Other technologies that are designed specifically to solve these problems should be used instead. Some examples can be found in the [recommendations section](/nservicebus/messaging/data-distribution.md#recommendations) of the data distribution article.
+Asynchronous messaging (e.g. NServiceBus) is **not** a good solution for data distribution scenarios. Other technologies that are designed specifically to solve these problems should be used instead. Some examples can be found in the [recommendations section](/nservicebus/concepts/data-distribution.md#recommendations) of the data distribution article.
 
 
 ## Message endpoints
