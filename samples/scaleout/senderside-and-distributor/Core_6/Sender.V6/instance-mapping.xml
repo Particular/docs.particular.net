@@ -1,0 +1,7 @@
+﻿<endpoints>
+  <endpoint name="Samples.Scaleout.Worker">
+    <!-- Scaled-out endpoint -->
+    <instance queue="Samples.Scaleout.Worker-1"/>
+    <instance queue="Samples.Scaleout.Worker-2"/>
+  </endpoint>
+</endpoints>
