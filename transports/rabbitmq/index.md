@@ -56,7 +56,7 @@ partial: topology
  * Doesn't handle [network partitions](https://www.rabbitmq.com/partitions.html) well; partitioning across a WAN requires dedicated features.
  * Requires careful consideration for duplicate messages, e.g. using the [outbox](/nservicebus/outbox/) feature or making all endpoints idempotent.
  * Many organizations don't have the same level of expertise with RabbitMQ as with other technologies, such as SQL Server, so it may require additional training.
- * May require covering additional costs of [commercial RabbitMQ license and support](https://www.rabbitmq.com/services.html).
+ * May require additional costs of [commercial RabbitMQ license and support](https://www.rabbitmq.com/services.html).
 
 ## Controlling delivery mode
 
