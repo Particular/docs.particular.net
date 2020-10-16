@@ -1,13 +1,10 @@
 ---
-title: Concepts Overview
-summary: A high level feature and concept overview
-reviewed: 2019-07-17
-redirects:
-- nservicebus/fluent-config-api-v3-v4
-- nservicebus/fluent-config-api-v3-v4-intro
+title: Glossary of messaging terms
+summary: A glossary of terms used in distributed systems related to NServiceBus.
+reviewed: 2020-10-16
 ---
 
-A high level overview of the concepts, features and vernacular of NServiceBus.
+A glossary of terms used in distributed systems related to NServiceBus.
 
 
 ### [Message](/nservicebus/messaging/)

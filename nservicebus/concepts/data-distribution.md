@@ -5,6 +5,7 @@ reviewed: 2020-09-01
 redirects:
 - nservicebus/azure/data-distribution
 - samples/routing/data-distribution
+- nservicebus/messaging/data-distribution
 ---
 
 Data distribution refers to a pattern where asynchronous messages (e.g. using NServiceBus) are used to deliver data to multiple targets in some coordinated fashion.
