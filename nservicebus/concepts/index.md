@@ -3,7 +3,7 @@ title: Messaging concepts
 summary: Overview of messaging concepts
 reviewed: 2020-10-15
 redirects:
-- nservicebus/concepts
+- nservicebus/concept-overview
 ---
 
 Messaging is typically used for communication across processes, also known as communication across components. It is typically used to communicate between components within a system, as opposed to integration based communication which is often used to communicate outside of a single system.
@@ -28,4 +28,4 @@ Occasionally a scenario exists where the sender of a message requires a blocking
 
 ### NServiceBus concepts
 
-Even though [NServiceBus introduces its own concepts](/nservicebus/concepts/concept-overview.md), many of them already existed for quite a while. A good source of information is Gregor Hohpe is [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/) website and accompanying book.
+Even though [NServiceBus introduces its own concepts](/nservicebus/concepts/glossary.md), many of them already existed for quite a while. A good source of information is Gregor Hohpe is [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/) website and accompanying book.

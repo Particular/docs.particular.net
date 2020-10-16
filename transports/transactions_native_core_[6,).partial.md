@@ -17,7 +17,7 @@ In this mode some (or all) handlers might get invoked multiple times and partial
  * partial updates - where one handler succeeded updating its data but the other didn't
  * partial sends - where some of the messages have been sent but others not
 
-When using this mode all handlers must be [idempotent](/nservicebus/concepts/concept-overview.md#idempotence), i.e. the result needs to be consistent from a business perspective even when the message is processed more than once.
+When using this mode all handlers must be [idempotent](/nservicebus/concepts/glossary.md#idempotence), i.e. the result needs to be consistent from a business perspective even when the message is processed more than once.
 
 See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
 

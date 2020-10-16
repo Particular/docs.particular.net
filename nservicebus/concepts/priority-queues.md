@@ -32,4 +32,4 @@ A solution is to place the responsibility of deciding which message is a priorit
 
 Another option could be using publish/subscribe where both the regular- and high priority endpoint both subscribe to a publishing endpoint.
 
-In a [series of blogposts about priority queues](https://bloggingabout.net/2020/07/16/priority-queues-why-you-dont-need-them/), Dennis van der Stelt goes into more details of both the problem and possible solutions and their trade-offs. He provides a third solution that is not discussed here, that involves a different view on responsibilities and deployment using concepts from the 4+1 architectural view model.
+In a [series of blog posts about priority queues](https://bloggingabout.net/2020/07/16/priority-queues-why-you-dont-need-them/), Dennis van der Stelt goes into more details of both the problem and possible solutions and their trade-offs. He provides a third solution that is not discussed here, that involves a different view on responsibilities and deployment using concepts from the 4+1 architectural view model.

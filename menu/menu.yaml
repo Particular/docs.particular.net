@@ -49,8 +49,8 @@
     - Url: nservicebus/concepts
       Title: Messaging Concepts
       Articles:
-      - Url: nservicebus/concepts/concept-overview
-        Title: Overview
+      - Url: nservicebus/concepts/glossary
+        Title: Glossary
       - Url: nservicebus/concepts/priority-queues
         Title: Priority Queues    
       - Url: nservicebus/concepts/data-distribution
