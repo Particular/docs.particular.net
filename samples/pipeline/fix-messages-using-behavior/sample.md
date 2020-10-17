@@ -2,7 +2,7 @@
 title: Repair malformed messages using pipeline behavior
 summary: A sample showing how repair malformed messages by implementing a pipeline behavior
 component: Core
-reviewed: 2019-01-07
+reviewed: 2020-10-17
 ---
 
 This sample shows how to repair a malformed message by implementing a pipeline behavior. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
