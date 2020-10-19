@@ -13,6 +13,7 @@ reviewed: 2019-09-26
 
 SQL persistence supports [SQL Server Version 2012](https://docs.microsoft.com/en-us/sql/release-notes/sql-server-2012-release-notes). It does not work with lower versions due to the use of the [THROW functionality](https://docs.microsoft.com/en-us/sql/t-sql/language-elements/throw-transact-sql).
 
+NOTE: SQL Server Always Encrypted feature is currently not supported by the persister when using SQL Server dialect
 
 ## Usage
 
