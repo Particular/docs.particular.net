@@ -33,6 +33,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
  * [Microsoft SQL Server](https://www.microsoft.com/en-au/sql-server/) ([Version 2012](https://docs.microsoft.com/en-us/sql/release-notes/sql-server-2012-release-notes) and above).
  * [Oracle Database](https://www.oracle.com/database/index.html) ([Version 11g Release 2](https://docs.oracle.com/cd/E11882_01/readmes.112/e41331/chapter11204.htm) and above).
 
+NOTE: SQL Server Always Encrypted feature is currently not supported by the persister when using Microsoft SQL Server
 
 NOTE: When connecting to an Oracle Database, only the ODP.NET managed driver is supported. The driver is available via the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/packages/Oracle.ManagedDataAccess).
 
