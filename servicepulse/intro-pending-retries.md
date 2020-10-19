@@ -1,6 +1,6 @@
 ---
 title: Pending Retries Message Management
-summary: Describes how ServicePulse detects and monitors failed messages in the pending state, and allows retrying, or archiving them.
+summary: Describes how ServicePulse detects and monitors failed messages in the pending state, and allows retrying, or deleting them.
 reviewed: 2019-07-26
 ---
 

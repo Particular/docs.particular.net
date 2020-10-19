@@ -33,7 +33,7 @@ The `MessageFailed` event is published to notify that a message has failed all t
 
  * `Failed`: The message has failed and has arrived for the first time in the error queue;
  * `RepeatedFailure`: The message has failed multiple times;
- * `ArchivedFailure`: The message has been archived;
+ * `ArchivedFailure`: The message has been deleted;
 
 More details on [failed message monitoring in ServicePulse](intro-failed-messages.md).
 

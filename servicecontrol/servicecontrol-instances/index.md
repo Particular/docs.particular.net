@@ -45,7 +45,7 @@ Each endpoint may have additional plugins installed which collect and send data 
 
 Each ServiceControl instance raises external integration events when important situations are detected. These are standard NServiceBus events that can be subscribed to by any NServiceBus endpoint. See [Use ServiceControl events](/servicecontrol/contracts.md) for a complete list.
 
-Each ServiceControl instance stores data in an embedded database. Audit data is retained for 30 days. Failed message data is retained until the message is retried or manually archived. [These retention periods can be customized](/servicecontrol/creating-config-file.md#data-retention).
+Each ServiceControl instance stores data in an embedded database. Audit data is retained for 30 days. Failed message data is retained until the message is retried or manually deleted. [These retention periods can be customized](/servicecontrol/creating-config-file.md#data-retention).
 
 Each environment should have a single audit queue and a single error queue that all endpoints are configured to use. Each environment should have a single ServiceControl instance that is connected to it's audit and error queues. Consider the advice given in the [Planning](/servicecontrol/servicecontrol-in-practice.md) section of the documentation before creating a new ServiceControl instance.
 
