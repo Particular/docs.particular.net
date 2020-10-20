@@ -104,4 +104,4 @@ See the [scheduling with .NET Timers sample](/samples/scheduling/timer) for more
 
 ## Meaningful exceptions when stopped
 
-The core is now throwing an `InvalidOperationException` when invoking message opererations on `IMessageSession` when the endpoint instance is stopping or stopped to indicate that the instance can no longer be used.
+NServiceBus is now throwing an `InvalidOperationException` when invoking message opererations on `IMessageSession` when the endpoint instance is stopping or stopped to indicate that the instance can no longer be used.
