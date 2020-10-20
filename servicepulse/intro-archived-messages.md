@@ -15,7 +15,7 @@ Archiving in ServicePulse means that the failed messages are marked as `Deleted`
 
 NOTE: Deleted failed messages are still included in [ServiceInsight](/serviceinsight/) diagrams and search results.
 
-## Archiving messages
+## Deleting messages
 
 Deleted messages can be found in ServicePulse in a tab in the Failed Messages page. From the Failed Messages page, messages can also be deleted from:
 
