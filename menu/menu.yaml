@@ -1105,7 +1105,7 @@
     - Url: servicepulse/intro-editing-messages
       Title: Fixing malformed messages
     - Url: servicepulse/intro-archived-messages
-      Title: Archived Messages
+      Title: Deleted Messages
     - Url: servicepulse/intro-pending-retries
       Title: Pending Retries
     - Url: servicepulse/redirect

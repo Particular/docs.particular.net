@@ -65,12 +65,12 @@ The monitoring view shows an overview of all logical endpoints in a system showi
 
 Failed messages are indicated in the ServicePulse dashboard by a red icon showing the number of failing messages.
 
-The Failed Messages tab allows inspection of failed messages in more detail and to react to failures (by manually retrying or archiving messages). The messages are grouped by the exception type and the exception message to simplify group actions.
+The Failed Messages tab allows inspection of failed messages in more detail and to react to failures (by manually retrying or deleting messages). The messages are grouped by the exception type and the exception message to simplify group actions.
 
 **Learn more:**
 
  * [Failed Message Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md)
- * [Archived Message Management in ServicePulse](/servicepulse/intro-archived-messages.md)
+ * [Deleted Message Management in ServicePulse](/servicepulse/intro-archived-messages.md)
 
 
 ## Custom checks

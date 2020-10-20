@@ -42,6 +42,25 @@ All graphs present the data collected during this reporting period. Where an ave
 NOTE: The screen is refreshed more frequently when a shorter reporting period is selected.
 
 
+## Managing the list of endpoints
+
+The list of endpoints in the monitoring view can be managed in multiple ways.
+
+Endpoints can be filtered using a keyword in the filter input:
+
+![Filtering endpoints in the monitoring view](monitored-endpoints-filtering.png)
+
+Grouping can be applied in order to group endpoints that share similar prefixes in their names. The prefix of an endpoint is subdivided in segments delimited by periods (`.`). The number of segments available for grouping can be selected and can go up to the total number of segments detected in the prefix.
+
+![Grouping endpoints in the monitoring view](monitored-endpoints-grouping.png)
+
+Sorting can be applied to each column by clicking the respective label. If clicked again, sorting can be toggled between ascending and descending. When sorting by any of the metrics, the average metric value will be used for sorting. If the list switches sorting positions too quickly, then a longer period of time may need to be selected to obtain more stable averages.
+
+NOTE: Sorting can only be used if no endpoint grouping is applied.
+
+![Sorting endpoints in the monitoring view](monitored-endpoints-sorting.png)
+
+
 ## Data retention
 
 All performance metric data is retained in memory in the ServiceControl Monitoring instance. Restarting the ServiceControl Monitoring instance will cause all performance metric data to be lost.
