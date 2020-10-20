@@ -101,3 +101,7 @@ The recommendation is to create a .NET Timer with the same interval as the sched
 INFO: The Version 7 behavior is to **not** retry the task on failures, so make sure to wrap the business logic in a `try` `catch` statement to get the same behavior in Version 8.
 
 See the [scheduling with .NET Timers sample](/samples/scheduling/timer) for more details.
+
+## Meaningful exceptions when stopped
+
+NServiceBus is now throwing an `InvalidOperationException` when invoking message opererations on `IMessageSession` when the endpoint instance is stopping or stopped to indicate that the instance can no longer be used.
