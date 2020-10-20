@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_5.2", "Rabbit_5.2\Ra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_6", "Rabbit_6\Rabbit_6.csproj", "{7D02993B-3237-421A-8FD7-83075CFEF40E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_7", "Rabbit_7\Rabbit_7.csproj", "{A430519F-73A4-4CCE-B965-357556D99D04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{7D02993B-3237-421A-8FD7-83075CFEF40E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D02993B-3237-421A-8FD7-83075CFEF40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D02993B-3237-421A-8FD7-83075CFEF40E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A430519F-73A4-4CCE-B965-357556D99D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A430519F-73A4-4CCE-B965-357556D99D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A430519F-73A4-4CCE-B965-357556D99D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A430519F-73A4-4CCE-B965-357556D99D04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

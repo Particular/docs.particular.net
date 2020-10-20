@@ -10,7 +10,7 @@ For existing system running in Azure and using [Azure Storage Persistence](/pers
 
 WARN: The endpoint being migrated must be offline while migrating saga data.
 
-For each Azure Storage Persistence table containing saga data, the following five major steps must be performed:
+For each Azure Storage Persistence table containing saga data, the following four major steps must be performed:
 
 1. [Export saga data from Table Storage](#export-data)
 1. [Inspect exported saga data](#data-inspection) for quality
@@ -21,7 +21,7 @@ Prior to starting the endpoint, configure the endpoint to [use migration mode](#
 
 ## Export data
 
-To export data from Table Storage, a .NET tool provided by Particular is required. The tool can be obtained from MyGet and installed using the following command:
+To export data from Table Storage, a .NET tool provided by Particular is required. Install the tool from MyGet using the following command:
 
 ```
 dotnet tool install Particular.Asp.Export --tool-path <installation-path> --add-source https://www.myget.org/F/particular/api/v3/index.json --version 0.1.0-alpha.*
@@ -39,23 +39,23 @@ Once the tool is executed, saga data for the selected saga data table will be st
 
 ### Export tool options
  
-`-c` | `--connectionstring`: Set the connection string to the table storage<br>
-`-s` | `--sagadataname`: The saga data class name without the namespace (e.g. `OrderSagaData`) of the saga data to export. This will be used to derive the table storage name from.<br>
-`-i | --ignore-updates`: Allow using the tool even if a newer version is available.<br>
+`-c` | `--connectionstring`: Set the connection string to the Table Storage<br>
+`-s` | `--sagadataname`: The saga data class name without the namespace (e.g. `OrderSagaData`) of the saga data to export. This will be used to derive the table storage name.<br>
+`-i | --ignore-updates`: Allow use of the tool even if a newer version is available.<br>
 `-v | --verbose`: Enable verbose output.<br>
 `--version`: Show the current version of the tool.
 
 #### Updating the tool
 
-The tool can be update using the following command:
+The tool can be updated with the following command:
 
 ```
 dotnet tool update --tool-path <installation-path> Particular.Asp.Export --add-source https://www.myget.org/F/particular/api/v3/index.json --version 0.1.0-alpha.*
 ```
 
-### Exported saga Id
+### Exported saga ID
 
-As part of the export process a new saga Id is generated for each saga that is compliant with the `NServiceBus.Persistence.CosmosDB` package. The original saga Id is stored in the `_NServiceBus-Persistence-Metadata.SagaDataContainer-MigratedSagaId` metadata property embedded in the exported saga data.
+As part of the export process a new saga ID is generated for each saga that is compliant with the `NServiceBus.Persistence.CosmosDB` package. The original saga ID is stored in the `_NServiceBus-Persistence-Metadata.SagaDataContainer-MigratedSagaId` metadata property embedded in the exported saga data.
 
 ### Export tool customizations
 
@@ -63,14 +63,14 @@ For customers that require a certain degree of customization, the .NET tool code
 
 ## Import data
 
-The exported saga data JSON files can be imported into Cosmos DB using the [Data migration tool](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#Install) provided by Microsoft. The import tool provides both [UI and a command line](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#AzureTableSource) options.
+The exported saga data JSON files can be imported into Cosmos DB using the [Data migration tool](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#Install) provided by Microsoft. The import tool provides both [a UI and a command line](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#AzureTableSource) option.
 
 For example, to import a single saga data table called `OrderSagaData` originally exported to the location `C:\path\to\OrderSagaData`, the following command is required:
 
 ```
 dt.exe /s:JsonFile /s.Files:C:\\path\\to\\OrderSagaData\\*.* /t:DocumentDB /t.IdField:id /t.DisableIdGeneration /t.Collection:OrderSagaData /t.PartitionKey:/id /t.ConnectionString:AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==;database=CosmosDBPersistence
 ```
-where the following parameters need to be adjusted:
+where the following parameters must be adjusted:
 
 `s.Files`: file path to the folder containing a specific saga data JSON files exported from Table Storage.<br/>
 `t.Collection`: Cosmos DB collection to be used for the imported data.<br/>
@@ -78,17 +78,17 @@ where the following parameters need to be adjusted:
 
 ## Data inspection
 
-Due to the [limited types](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model#property-types) supported by Azure Storage Tables some types are stored in the table by the [Azure Storage Persistence](/persistence/azure-storage) as serialized JSON strings. The export tool makes a _best effort_ to re-serialize these values for import into Cosmos DB. As a result, the data can and should be inspected for quality both before and after the import. The migrated endpoint and all saga types migrated should be thoroughly tested before moving into production to ensure the migration is correct.
+Due to the [limited types](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model#property-types) supported by Azure Storage Tables, some types are stored in the table by the [Azure Storage persister](/persistence/azure-storage) as serialized JSON strings. The export tool makes a _best effort_ to re-serialize these values for import into Cosmos DB. As a result, the data can and should be inspected for quality both before and after the import. The migrated endpoint and all saga types migrated should be thoroughly tested before moving into production to ensure the migration is correct.
 
 WARN: Dates stored using `DateTimeOffset` data type are susceptible to incorrect translation. Saga data storing properties using `DateTimeOffset` should be verified after saga data import is completed to ensure accurate conversion.
 
 ## Using migration mode
 
-[Auto-correlated messages](/nservicebus/sagas/message-correlation.md#auto-correlation) include the saga Id in the [message headers](/nservicebus/messaging/headers.md#saga-related-headers-replying-to-a-saga). For unprocessed auto-correlated messages sent prior to migration, this may result in a saga not found error, since the saga Id contained in the message headers is not the [new saga Id](#export-data-exported-saga-id) expected by the Cosmos DB persister.
+[Auto-correlated messages](/nservicebus/sagas/message-correlation.md#auto-correlation) include the saga ID in the [message headers](/nservicebus/messaging/headers.md#saga-related-headers-replying-to-a-saga). For unprocessed auto-correlated messages sent prior to migration, this may result in a saga not found error, since the saga ID contained in the message headers is not the [new saga ID](#export-data-exported-saga-id) expected by the Cosmos DB persister.
 
-By enabling the migration mode, only for auto correlated messages, the saga persister will attempt to query the collection using the [original saga ID in the saga metadata](#export-data-exported-saga-id) when the saga is not found. Messages [explicitly mapped using the `ConfigureHowToFindSaga` method](/nservicebus/sagas/message-correlation.md) do not require the additional query. 
+By enabling migration mode only for auto correlated messages, the saga persister will attempt to query the collection using the [original saga ID in the saga metadata](#export-data-exported-saga-id) when the saga is not found. Messages [explicitly mapped using the `ConfigureHowToFindSaga` method](/nservicebus/sagas/message-correlation.md) do not require the additional query. 
 
-NOTE: Querying by the original saga Id using migration mode will incur additional RU usage on the collection.
+NOTE: Querying by the original saga ID with migration mode will incur additional RU usage on the collection.
 
 NOTE: [Saga timeouts](/nservicebus/sagas/timeouts.md) always use auto-correlation.
 

@@ -3,7 +3,7 @@ title: Accessing and modifying data from a message handler
 summary: How to access business data from a message handler in sync with message consumption and modifications to NServiceBus-controlled data.
 component: Core
 versions: '[6,)'
-reviewed: 2020-04-28
+reviewed: 2020-10-06
 related:
  - persistence/nhibernate/accessing-data
  - persistence/sql/accessing-data
@@ -11,24 +11,41 @@ related:
  - persistence/ravendb
 ---
 
-In most cases [handlers](/nservicebus/handlers/) are meant to modify the internal state of an application based on the received message. In a messaging system it is critical to make sure the state change is persisted exactly once. The scenarios below discuss in detail how NServiceBus transaction and persistence settings affect the way business data is stored.
+
+In most cases [handlers](/nservicebus/handlers/) are meant to modify the internal state of an application based on the received message. In any system it is critical to make sure the state change is persisted exactly once. In a messaging system this can be a challenge as exactly-once delivery is not guaranteed by any single queuing technology. NServiceBus provides several strategies to be able to mitigate the risk of an inconsistent application state.
+
+Accessing application state can be achieved in a number of ways and should not be enforced or restricted by NServiceBus. The scenarios below provide guidance on several ways of accessing application state by using the same data context as NServiceBus uses internally.
 
 
-## Synchronized storage session
+partial: transactionscope
 
-Synchronized storage session is NServiceBus's built-in implementation of Unit of Work pattern. It provides a data access context that is shared by all handlers that process a given message. The state change is committed after the execution of the last handler, provided that there were no exceptions during processing. The synchronized storage session is accessible via `IMessageHandlerContext`:
+
+### Synchronized storage session
+
+A synchronized storage session an NServiceBus implementation of the unit of work pattern. It provides a data access context that is shared by all handlers that process a given message. The state change is committed after the execution of message handlers, provided that there were no exceptions during processing. The synchronized storage session is accessible via the `IMessageHandlerContext`:
 
 snippet: BusinessData-SynchronizedStorageSession
 
-The synchronized storage session feature is supported by most NServiceBus persistence packages:
+The synchronized storage session feature is supported by most NServiceBus persistence packages and additional guidance for accessing data can be found there:
+
  - [SQL](/persistence/sql/accessing-data.md)
  - [NHibernate](/persistence/nhibernate/accessing-data.md)
  - [MongoDB](/persistence/mongodb/#transactions-shared-transactions)
  - [RavenDB](/persistence/ravendb/#shared-session)
+ - [Service Fabric](/persistence/service-fabric/transaction-sharing.md)
 
 Synchronized storage session by itself only guarantees that there will be no *partial failures* i.e. cases where one of the handlers has modified its state while another has not. This guarantee extends to [sagas](/nservicebus/sagas/) as they are persisted using the synchronized storage session.
 
 However, the synchronized storage session **does not guarantee that each state change is persisted exactly once**. To ensure *exactly-once* message processing, synchronized storage session has to support a de-duplication strategy.
+
+### Object/Relational Mappers
+
+When using an Object/Relational Mapper (ORM) like Entity Framework for data access, there is the ability to either inject the data context object via dependency injection or create a data context on the fly and reuse the connection.
+
+Creating a data context on-the-fly means that any other handler will work disconnected from that data context. This is a fairly easy approach, except when messages are processed by more than one handler, this is not a suggested approach.
+
+An alternative option that does work with multiple handlers processing a single message, is to inject the data context of an ORM via dependency injection. More information can be found in the SQL persistence documentation about [accessing data](/persistence/sql/accessing-data.md).
+
 
 
 ## Message de-duplication strategies

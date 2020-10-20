@@ -11,7 +11,7 @@ related:
 ## Prerequisites
 
  * .NET Framework 4.5 or later
- * A currently-supported version of Internet Explorer, Chrome, Firefox, or Safari
+ * A currently-supported version of Microsoft Edge, Chrome, Firefox, or Safari
  * A running instance of [ServiceControl](/servicecontrol)
 
 ## Installation

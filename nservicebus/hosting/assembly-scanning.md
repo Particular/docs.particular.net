@@ -55,3 +55,5 @@ partial: mixing
 partial: appdomain
 
 partial: suppress
+
+partial: additional-path

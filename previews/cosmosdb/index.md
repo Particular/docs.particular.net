@@ -1,5 +1,6 @@
 ---
 title: Azure Cosmos DB Persistence
+summary: How to use NServiceBus with Azure Cosmos DB
 component: CosmosDB
 reviewed: 2020-09-11
 related:
@@ -12,10 +13,17 @@ Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/
 
 WARN: It is important to [read and understand](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) partitioning in Azure Cosmos DB before using `NServiceBus.Persistence.CosmosDB`.
 
-## Supported persistence types
+## Persistence at a glance
 
-* [Sagas](/nservicebus/sagas/)
-* [Outbox](/nservicebus/outbox/)
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
+|Feature                    |   |
+|:---                       |---
+|Supported storage types    |Sagas, Outbox
+|Transactions               |Using TransactionalBatch, [with caveats](transactions.md)
+|Concurrency control        |Optimistic concurrency
+|Scripted deployment        |Not supported
+|Installers                 |Container is created by installers.
 
 NOTE: The Outbox feature requires partition planning.
 
@@ -67,7 +75,7 @@ snippet: CosmosDBCustomClientProviderRegistration
 
 ## Transactions
 
-This persistence supports using the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/). However, Cosmos DB only allows operations to be batched if all operations are performed within the same logical partition key. This is due to the distributed nature of the Cosmos DB service, which [does not support distributed transactions](/nservicebus/azure/understanding-transactionality-in-azure.md).
+The Cosmos DB persister supports using the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/). However, Cosmos DB only allows operations to be batched if all operations are performed within the same logical partition key. This is due to the distributed nature of the Cosmos DB service, which [does not support distributed transactions](/nservicebus/azure/understanding-transactionality-in-azure.md).
 
 The [transactions](transactions.md) documentation provides additional details on how to configure NServiceBus to resolve the incoming message to a specific partition key to take advantage of this Cosmos DB feature.
 

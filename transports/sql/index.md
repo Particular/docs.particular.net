@@ -29,6 +29,8 @@ WARNING: Although this transport will run on the free version of the engine, i.e
 |Scripted Deployment        |Sql Scripts
 |Installers                 |Optional
 
+NOTE: SQL Server Always Encrypted feature is currently not supported by the transport
+
 ## Usage
 
 A basic use of the SQL Server transport is as follows:

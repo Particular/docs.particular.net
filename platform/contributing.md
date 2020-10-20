@@ -7,7 +7,7 @@ reviewed: 2020-07-27
 ## Getting started
 
  1. Create a [GitHub account](https://github.com/join).
- 1. Find the relevant repository by browsing the [list of extensions](/components/).
+ 2. Find the relevant repository by browsing the [list of repositories](https://github.com/Particular).
 
 
 ## Raising bugs/feature requests

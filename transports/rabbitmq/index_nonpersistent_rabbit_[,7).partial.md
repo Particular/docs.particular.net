@@ -1,0 +1,1 @@
+See the the [non-durable messaging documentation](/nservicebus/messaging/non-durable-messaging.md) for more details.

@@ -51,7 +51,7 @@ NServiceBus also supports the following third party containers:
 * [Autofac](autofac.md)
 * [CastleWindsor](castlewindsor.md)
 * [Ninject](ninject.md)
-* [SimpleInjector](https://github.com/WilliamBZA/NServicebus.SimpleInjector) (Community project)
+* [SimpleInjector](https://github.com/WilliamBZA/NServicebus.SimpleInjector) ([Community project](/nservicebus/community/))
 * [Spring](spring.md)
 * [StructureMap](structuremap.md)
 * [Unity](unity.md)

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <RootNamespace>Core_8</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.591" />
+    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="0.2.0-alpha.23" />
+  </ItemGroup>
+</Project>

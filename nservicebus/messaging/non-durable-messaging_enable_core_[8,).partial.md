@@ -1,0 +1,1 @@
+See the documentation of the individual transport for details on how to enable non-durable messaging.

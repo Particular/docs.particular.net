@@ -6,6 +6,7 @@ reviewed: 2020-01-29
 versions: '[6.0,)'
 related:
  - samples/faulttolerance
+ - samples/recoverabilitypolicytesting
 ---
 
 

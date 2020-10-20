@@ -17,6 +17,19 @@ include: dtc-warning
 Uses the [RavenDB document database](https://ravendb.net/) for storage.
 
 
+## Persistence at a glance
+
+For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
+
+|Feature                    |   |
+|:---                       |---
+|Supported storage types    |Sagas, Outbox, Subscriptions, Timeouts
+|Transactions               |via `IDocumentSession.SaveChanges()`
+|Concurrency control        |Optimistic concurrency, optional custom pessimistic concurrency for performance
+|Scripted deployment        |Not supported
+|Installers                 |None. Required indexes are created in the database as needed.
+
+
 ## RavenDB versions
 
 Specific versions of RavenDB Persistence are tied to a major version of NServiceBus and also designed to work with a specific version of the RavenDB client library. When releasing a new major version of NServiceBus, the corresponding RavenDB Persistence release will use the last supported version of RavenDB, so that it is never necessary to upgrade both NServiceBus and RavenDB at the same time.

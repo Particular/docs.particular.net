@@ -52,9 +52,9 @@ If a datastore has already been selected to store business data and NServiceBus 
 
 The learning persister is not meant for production usage.
 
-### In-Memory
+### Non-durable
 
-The in-memory persister is not mentioned in the decision chart, as it is appropriate only in very specific scenarios where the volatility of data is not an issue. 
+The non-durable persister is not mentioned in the decision chart, as it is appropriate only in very specific scenarios where the volatility of data is not an issue. 
 
 ### Azure
 
@@ -101,10 +101,6 @@ This option is relevant only if endpoints are hosted in Service Fabric.
 If a business system already stores its data in RavenDB, NServiceBus supports storing data inside RavenDB as well. This removes the need to introduce additional storage.
 
 RavenDB Persistence [allows accessing the `IAsyncRavenSession`](/persistence/ravendb/#shared-session) from within message handlers to enable saving business data and NServiceBus data with the same `SaveChanges()` call.
-
-### Other options
-
-If the NServiceBus persisters are lacking an option for a specific data store, there are additional options to be found in the [community extensions](/components/#persisters). Although Particular Software will do its best to help with these extensions, they are not officially supported.
 
 ### The recommended choice
 

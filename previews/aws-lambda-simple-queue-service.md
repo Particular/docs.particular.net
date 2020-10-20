@@ -69,17 +69,13 @@ snippet: configure-dont-move-to-error
 
 ### Serializer
 
-There is no default [serializer](/nservicebus/serialization), so one must be configured. For example:
+The default serializer is the [XmlSerializer](/nservicebus/serialization/xml.md). A different serializer can be configured:
 
 snippet: custom-serializer
 
 ### Licenses
 
-License text may be specified using an environment variable, which may be updated during runtime.
-
-snippet: load-license-file
-
-The environment variable may be updated by [configuring environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html) for the lambda.
+The license is provided via the `NSERVICEBUS_LICENSE` environment variable, which can be set via the Function settings in the [Lambda console](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).
 
 ## Supported features
 

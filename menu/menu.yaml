@@ -45,7 +45,16 @@
     Title: General
     Articles:
     - Url: nservicebus/best-practices
-      Title: Best practices
+      Title: Best practices  
+    - Url: nservicebus/concepts
+      Title: Messaging Concepts
+      Articles:
+      - Url: nservicebus/concepts/glossary
+        Title: Glossary
+      - Url: nservicebus/concepts/priority-queues
+        Title: Priority Queues    
+      - Url: nservicebus/concepts/data-distribution
+        Title: Data distribution
     - Url: platform
       Title: Service Platform
       Articles:
@@ -55,16 +64,14 @@
         Title: Platform Sample Installation
     - Url: samples/endpoint-configuration
       Title: Configuration choices Sample
-    - Url: nservicebus/concept-overview
-      Title: Concepts
     - Url: nservicebus/dotnet-templates
       Title: dotnet new Templates
     - Url: nservicebus/vscode
       Title: Debugging in VS Code
     - Url: nservicebus/licensing
       Title: License
-    - Url: components
-      Title: Extensions
+    - Url: nservicebus/community
+      Title: Community extensions and integrations
     - Url: platform/contributing
       Title: Contributing
     - Url: nservicebus/architecture/principles
@@ -329,8 +336,6 @@
         Title: Azure Blob Storage
       - Url: nservicebus/messaging/databus/custom
         Title: Custom
-    - Url: nservicebus/messaging/data-distribution
-      Title: Data distribution
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
@@ -574,6 +579,11 @@
     Articles:
     - Url: nservicebus/tools/migrate-to-native-delivery
       Title: Migrating timeouts    
+  - Url: nservicebus/troubleshooting
+    Title: Troubleshooting
+    Articles:
+    - Url: nservicebus/troubleshooting/message-loss
+      Title: Message loss   
 
 - Name: Transports
   Url: transports
@@ -921,6 +931,8 @@
         Title: Version 3 to 4
     - Title: SQL
       Articles:
+      - Url: persistence/upgrades/sql-5to6
+        Title: Version 5 to 6 
       - Url: persistence/upgrades/sql-4to5
         Title: Version 4 to 5        
       - Url: persistence/upgrades/sql-4.2to4.3
@@ -937,10 +949,10 @@
         Title: Support NServiceBus 5 subscribers
   - Url: persistence/learning
     Title: Learning Persistence
-  - Url: persistence/in-memory
-    Title: In-Memory
+  - Url: persistence/non-durable
+    Title: Non-Durable
     Articles:
-    - Url: persistence/in-memory/gateway-deduplication
+    - Url: persistence/non-durable/gateway-deduplication
       Title: Gateway Deduplication
   - Url: persistence/sql
     Title: SQL
@@ -1048,7 +1060,7 @@
       Title: SQL Azure
     - Url: persistence/nhibernate/scripting
       Title: Scripting
-  - Url: persistence/msmq/subscription
+  - Url: persistence/msmq
     Title: MSMQ Subscription
   - Url: persistence/mongodb
     Title: MongoDB

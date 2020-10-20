@@ -16,8 +16,8 @@ NServiceBus needs to store data for various purposes, such as persisting the sta
  * [Outbox](/nservicebus/outbox/)
  * [Subscriptions](/nservicebus/messaging/publish-subscribe/) (Storage required if transport does not support native publish-subscribe)
  * [Timeouts](/nservicebus/sagas/timeouts.md) (Storage required if the transport does not support native delayed delivery)
- * [Delayed Retries](/nservicebus/recoverability/#delayed-retries) (Storage required if the transport does not support native delayed delivery)
- * [Deferral](/nservicebus/messaging/delayed-delivery.md) (Storage required if the transport does not support native delayed delivery)
+   * [Delayed Retries](/nservicebus/recoverability/#delayed-retries) (Storage required if the transport does not support native delayed delivery)
+   * [Deferral](/nservicebus/messaging/delayed-delivery.md) (Storage required if the transport does not support native delayed delivery)
  * [Gateway Deduplication](/nservicebus/gateway/)
 
 ## Selecting a persister
@@ -28,15 +28,25 @@ It can be a challenge to decide whether or not a persister is needed and which o
 ## Supported persisters
 
 - [Learning](/persistence/learning/)
-- [In-Memory](/persistence/in-memory/)
+- [Non-Durable](/persistence/non-durable/)
 - [SQL](/persistence/sql/)
 - [Azure Storage](/persistence/azure-storage/)
 - [RavenDB](/persistence/ravendb/)
 - [Service Fabric](/persistence/service-fabric/)
 - [NHibernate](/persistence/nhibernate/)
-- [MSMQ](/persistence/msmq/subscription.md)
+- [MSMQ](/persistence/msmq/)
 - [MongoDB](/persistence/mongodb/)
 
-## Community-maintained persisters
 
-There are several community-maintained persisters which can be found in the full list of [extensions](/components#persisters).
+## Persistence at a glance
+
+The main page for each persistence library includes a **Persistence at a glance** section that calls out some of the important differences between each option. This section describes what each item means and why it is important.
+
+* **Supported storage types**: The [features](#features-that-require-persistence) that are supported by the library.
+  * May include Sagas, Outbox, Subscriptions, and Timeouts.
+  * Support for timeouts includes delayed retries and message deferral as well.
+  * Gateway deduplication is not covered, as the [gateway component](/nservicebus/gateway/) is a separate package from NServiceBus and has its own persistence packages.
+* **Transactions**: Describes how changes to saga and/or outbox data are kept consistent with each other and with changes to business data made in message handlers. Persistence that has this type of transactional capability will expose access to the transaction/session through the `SynchronizedStorageSession` property of `IMessageHandlerContext`.
+* **Concurrency control**: Describes how the persistence behaves when multiple message handlers attempt to update saga data simultaneously. Packages that enable pessimistic concurrency offer [better performance for sagas implementing a scatter-gather pattern](https://particular.net/blog/optimizations-to-scatter-gather-sagas).
+* **Scripted deployment**: Describes how storage prerequisites (such as table schema) can be deployed as part of a DevOps process.
+* **Installers**: Describes whether the persistence can create storage prerequisites (such as table schema) at runtime via the [installers feature](/nservicebus/operations/installers.md) for a smoother development-time experience.

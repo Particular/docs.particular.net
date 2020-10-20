@@ -8,14 +8,14 @@ class Usage
     {
         #region CosmosDBUsage
 
-        endpointConfiguration.UsePersistence<CosmosDbPersistence>()
+        endpointConfiguration.UsePersistence<CosmosPersistence>()
             .CosmosClient(new CosmosClient("ConnectionString"));
 
         #endregion
 
         #region CosmosDBDatabaseName
 
-        endpointConfiguration.UsePersistence<CosmosDbPersistence>()
+        endpointConfiguration.UsePersistence<CosmosPersistence>()
             .CosmosClient(new CosmosClient("ConnectionString"))
             .DatabaseName("DatabaseName");
 
@@ -23,7 +23,7 @@ class Usage
 
         #region CosmosDBDefaultContainer
 
-        endpointConfiguration.UsePersistence<CosmosDbPersistence>()
+        endpointConfiguration.UsePersistence<CosmosPersistence>()
             .CosmosClient(new CosmosClient("ConnectionString"))
             .DefaultContainer(
                 containerName: "ContainerName",
@@ -33,7 +33,7 @@ class Usage
 
         #region CosmosDBDisableContainerCreation
 
-        endpointConfiguration.UsePersistence<CosmosDbPersistence>()
+        endpointConfiguration.UsePersistence<CosmosPersistence>()
             .CosmosClient(new CosmosClient("ConnectionString"))
             .DefaultContainer(
                 containerName: "ContainerName",
@@ -51,7 +51,7 @@ class Usage
 
         #region CosmosDBMigrationMode
 
-        endpointConfiguration.UsePersistence<CosmosDbPersistence>()
+        endpointConfiguration.UsePersistence<CosmosPersistence>()
             .EnableMigrationMode();
 
         #endregion

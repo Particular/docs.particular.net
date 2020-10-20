@@ -92,11 +92,24 @@ The `NServiceBus.Host` package is deprecated. See the [NServiceBus Host upgrade 
 
 The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are deprecated.See the [NServiceBus Azure Host upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for details and alternatives.
 
-
 ## DateTimeOffset instead of DateTime
 
 Usage of `DateTime` can result in numerous issues caused by disalignment in timezone offsets. These can then result in all types of time calculation errors. Although a `DateTime.Kind` property exists, it is often ignored during DateTime math and it is up to the user to ensure values are aligned in their offset. The `DateTimeOffset` type fixes this. It does not contain any timezone information, only an offset, which is sufficient to get all the math right. 
 
 [> These uses for DateTimeOffset values are much more common than those for DateTime values. As a result, DateTimeOffset should be considered the default date and time type for application development."](https://docs.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime)
 
- In Version 8 all API's have been migrated from `DateTime` to `DateTimeOffset`.
+In Version 8 all API's have been migrated from `DateTime` to `DateTimeOffset`.
+
+## NServiceBus Scheduler
+
+In Version 8 the scheduler API has been deprecated in favor of options like [sagas](/nservicebus/sagas/) and production-grade schedulers like Hangfire, Quarts, FluentScheduler etc.
+
+The recommendation is to create a .NET Timer with the same interval as the scheduled task and use `IMessageSession.SendLocal` that sends a message to process. Using message processing has the benefit of using Recoverability and uses a Transactional context. If these benefits are unwanted then do not send a message at all and directly invoke logic from the timer.
+
+INFO: The Version 7 behavior is to **not** retry the task on failures, so make sure to wrap the business logic in a `try` `catch` statement to get the same behavior in Version 8.
+
+See the [scheduling with .NET Timers sample](/samples/scheduling/timer) for more details.
+
+## Meaningful exceptions when stopped
+
+NServiceBus is now throwing an `InvalidOperationException` when invoking message opererations on `IMessageSession` when the endpoint instance is stopping or stopped to indicate that the instance can no longer be used.

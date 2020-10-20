@@ -58,7 +58,7 @@ In addition to the [connection string options of the transport](/transports/azur
 
 * `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - Specifies delay between queue length refresh queries. The default value is 500 ms.
 
-* `TopicName=<topic-bundle-name>` - Specifies [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instnace. The default value is `bundle-1`.
+* `TopicName=<topic-bundle-name>` - Specifies [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
 
 #### SQL 
 

@@ -17,7 +17,6 @@ Currently conventions exist to identify:
  * [Messages](/nservicebus/messaging/messages-events-commands.md)
  * [Message Property Encryption](/nservicebus/security/property-encryption.md)
  * [Data Bus](/nservicebus/messaging/databus/)
- * [Express messages](/nservicebus/messaging/non-durable-messaging.md)
  * [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md)
 
 Messages can be defined in a *Portable Class Library* (PCL) and shared across multiple platforms even if the platform does not use NServiceBus for message processing.
@@ -36,4 +35,4 @@ partial: encapsulated-conventions
 
 ## Attributes
 
-If attributes are preferred over marker interfaces then this can be achieved via the [NServiceBus.AttributeConventions](https://www.nuget.org/packages/NServiceBus.AttributeConventions) community package exists that allows using attributes instead of interfaces.
+If attributes are preferred over marker interfaces then this can be achieved via [NServiceBus.AttributeConventions](https://github.com/mauroservienti/NServiceBus.AttributeConventions), a [community package](/nservicebus/community/) that allows using attributes instead of interfaces.

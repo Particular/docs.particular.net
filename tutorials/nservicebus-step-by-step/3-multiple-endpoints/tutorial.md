@@ -46,9 +46,9 @@ This is **logical routing**, the mapping of specific message types to logical en
 We say *logical routing* because this is at a logical layer only, which isn't necessarily the same as *physical routing*. Within one *logical* endpoint, there may be many *physical* endpoint instances deployed to multiple servers.
 
 {{NOTE:
-An [**endpoint**](/nservicebus/concept-overview.md#endpoint) is a logical concept, defined by an endpoint name and associated code, that defines an owner responsible for processing messages.
+An [**endpoint**](/nservicebus/concepts/glossary.md#endpoint) is a logical concept, defined by an endpoint name and associated code, that defines an owner responsible for processing messages.
 
-An [**endpoint instance**](/nservicebus/concept-overview.md#endpoint-instance) is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
+An [**endpoint instance**](/nservicebus/concepts/glossary.md#endpoint-instance) is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
 }}
 
 For now we'll only concern ourselves with logical routing, and leave the rest of it (physical routing, scale-out, etc.) for a later time.
