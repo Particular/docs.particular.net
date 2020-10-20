@@ -5,7 +5,7 @@ component: ServicePulse
 reviewed: 2020-08-03
 ---
 
-## About message delition
+## About deleting messages
 
 In Versions 1.5.0 and above, a screen to manage deleted messages has been introduced in response to changes in ServiceControl relating to Deleted Message retention and disposal.
 
