@@ -113,3 +113,9 @@ See the [scheduling with .NET Timers sample](/samples/scheduling/timer) for more
 ## Meaningful exceptions when stopped
 
 NServiceBus is now throwing an `InvalidOperationException` when invoking message opererations on `IMessageSession` when the endpoint instance is stopping or stopped to indicate that the instance can no longer be used.
+
+## Non-durable messaging
+
+Support for non-durable messaging has been moved to the transports that can support it which at this time is RabbitMQ. If using any other transport use of `[Express]` or message conventions to request non-durable deliver can safely be removed.
+
+RabbitMQ user should use the new [`options.UseNonPersistentDeliveryMode()` API provided by `NServiceBus.RabbitMQ` Version 7](/transports/rabbitmq/#controlling-delivery-mode)
