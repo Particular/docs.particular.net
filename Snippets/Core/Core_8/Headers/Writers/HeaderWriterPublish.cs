@@ -22,7 +22,6 @@
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterMessageMutator(new Mutator());
             var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
 
