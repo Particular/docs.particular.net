@@ -10,7 +10,7 @@
         {
             #region configure-persistence-timeout
 
-            endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+            //No configuration needed as of Version 8
 
             #endregion
 

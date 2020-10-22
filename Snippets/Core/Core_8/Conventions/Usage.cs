@@ -42,17 +42,14 @@ namespace Core8.Conventions
                 property.Name.EndsWith("DataBus")
                 || typeof(IDataBusProperty).IsAssignableFrom(property.PropertyType) && typeof(IDataBusProperty) != property.PropertyType
             );
-            conventions.DefiningExpressMessagesAs(type =>
-                type.Name.EndsWith("Express")
-                || type.GetCustomAttribute<ExpressAttribute>(true) != null
-            );
             conventions.DefiningTimeToBeReceivedAs(type =>
-                type.Name.EndsWith("Expires")
+            type.Name.EndsWith("Expires")
                     ? TimeSpan.FromSeconds(30)
                     : type.GetCustomAttribute<TimeToBeReceivedAttribute>(false)?.TimeToBeReceived ?? TimeSpan.MaxValue
             );
 
             #endregion
         }
+#pragma warning restore 618
     }
 }
