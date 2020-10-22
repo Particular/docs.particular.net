@@ -27,7 +27,7 @@ It may be necessary to reserve the new URL for the account being used to run Ser
 netsh http add urlacl url=http://+:9090/ user=Everyone
 ```
 
-ServicePulse runs as a Windows Service and can be installed more than once on a single machine, with each instance listening on it's own port. This is done by [specifying appropriate arguments during installation](/servicepulse/installation.md#installation-available-installation-parameters).
+ServicePulse runs as a Windows Service.
 
 ## Default connections to ServiceControl and ServiceControl Monitoring
 
