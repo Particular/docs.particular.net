@@ -8,6 +8,12 @@
     {
         async Task SendDelayedMessage(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, IMessageHandlerContext handlerContext)
         {
+            #region configure-persistence-timeout
+
+            //No configuration needed as of Version 8
+
+            #endregion
+
             #region delayed-delivery-timespan
 
             var sendOptions = new SendOptions();
