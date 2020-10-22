@@ -1,3 +1,10 @@
+---
+title: "NServiceBus sagas: Integrations"
+reviewed: 2020-10-22
+isLearningPath: true
+summary: "third party services integration."
+---
+
 # Introduction to NServiceBus sagas: Third-party integration
 
 **TODO: Include downloadable solution to date**
