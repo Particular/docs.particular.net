@@ -36,9 +36,9 @@
             #region PersistenceOrder_Incorrect
 
             endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
-
+#pragma warning disable 0618
             endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
-
+#pragma warning restore 0618
             // This one will override the above settings
             endpointConfiguration.UsePersistence<RavenDBPersistence>();
             #endregion

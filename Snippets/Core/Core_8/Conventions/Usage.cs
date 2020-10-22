@@ -20,7 +20,7 @@ namespace Core8.Conventions
 
             #endregion
         }
-
+#pragma warning disable 0618
         void MessageConventionsDual(EndpointConfiguration endpointConfiguration)
         {
             #region MessageConventionsDual
@@ -54,5 +54,6 @@ namespace Core8.Conventions
 
             #endregion
         }
+#pragma warning restore 618
     }
 }

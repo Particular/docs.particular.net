@@ -9,9 +9,9 @@
         async Task SendDelayedMessage(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, IMessageHandlerContext handlerContext)
         {
             #region configure-persistence-timeout
-
+#pragma warning disable 0618
             endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
-
+#pragma warning restore  0618
             #endregion
 
             #region delayed-delivery-timespan
