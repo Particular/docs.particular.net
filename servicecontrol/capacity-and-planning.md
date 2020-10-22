@@ -3,6 +3,7 @@ title: ServiceControl capacity planning
 summary: Outlines the ServiceControl capacity, throughput, and storage considerations for planning and supporting production environments
 reviewed: 2020-06-21
 isLearningPath: true
+component: ServiceControl
 ---
 
 ServiceControl is a monitoring tool for production environments. As with other production monitoring tools, it is important to plan its deployment to ensure it remains performant over time.
