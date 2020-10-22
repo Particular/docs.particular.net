@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace Shipping
 {
-    class ShippingPolicy : Saga<ShippingPolicyData>,
+    class ShippingPolicy : 
+        Saga<ShippingPolicyData>,
         IAmStartedByMessages<OrderBilled>,
         IAmStartedByMessages<OrderPlaced>
     {
@@ -37,9 +38,17 @@ namespace Shipping
         {
             if (Data.IsOrderPlaced && Data.IsOrderBilled)
             {
-                await context.SendLocal(new ShipOrder() { OrderId = Data.OrderId });
+                await context.Send(new ShipOrder() { OrderId = Data.OrderId });
                 MarkAsComplete();
             }
         }
+    }
+
+    class ShippingPolicyData : 
+        ContainSagaData
+    {
+        public string OrderId { get; set; }
+        public bool IsOrderPlaced { get; set; }
+        public bool IsOrderBilled { get; set; }
     }
 }

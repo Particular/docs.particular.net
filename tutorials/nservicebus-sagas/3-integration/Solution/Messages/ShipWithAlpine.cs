@@ -2,10 +2,9 @@
 
 namespace Messages
 {
-    public class PlaceOrder :
+    public class ShipWithAlpine : 
         ICommand
     {
-        public string CustomerId { get; set; }
         public string OrderId { get; set; }
     }
 }

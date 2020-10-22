@@ -35,7 +35,8 @@ namespace ClientUI
         static async Task RunLoop(IEndpointInstance endpointInstance)
         {
             var lastOrder = string.Empty;
-
+			var customerID = "Particular";
+			
             while (true)
             {
                 log.Info("Press 'P' to place an order, 'C' to cancel last order, or 'Q' to quit.");
@@ -48,6 +49,7 @@ namespace ClientUI
                         // Instantiate the command
                         var command = new PlaceOrder
                         {
+                                CustomerId = customerID,
                             OrderId = Guid.NewGuid().ToString()
                         };
 

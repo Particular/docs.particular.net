@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using Messages;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
@@ -14,6 +15,13 @@ namespace Shipping
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
             var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+
+            var routing = transport.Routing();
+            routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
+            routing.RouteToEndpoint(typeof(ShipmentAcceptedByMaple), "Shipping");
+            routing.RouteToEndpoint(typeof(ShipmentAcceptedByAlpine), "Shipping");
+            routing.RouteToEndpoint(typeof(ShipWithMaple), "Shipping");
+            routing.RouteToEndpoint(typeof(ShipWithAlpine), "Shipping");
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);

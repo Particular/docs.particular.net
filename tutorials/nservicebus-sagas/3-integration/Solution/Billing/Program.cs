@@ -13,6 +13,14 @@ namespace Billing
             var endpointConfiguration = new EndpointConfiguration("Billing");
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+
+            endpointConfiguration.RegisterComponents(
+                c =>
+                {
+                    c.ConfigureComponent<OrderCalculator>(DependencyLifecycle.SingleInstance);
+                }
+                );
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);

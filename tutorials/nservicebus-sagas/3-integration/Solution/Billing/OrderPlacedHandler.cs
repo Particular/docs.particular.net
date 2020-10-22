@@ -8,7 +8,13 @@ namespace Billing
     public class OrderPlacedHandler :
         IHandleMessages<OrderPlaced>
     {
+        readonly OrderCalculator orderCalculator;
         static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
+
+        public OrderPlacedHandler(OrderCalculator orderCalculator)
+        {
+            this.orderCalculator = orderCalculator;
+        }
 
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
@@ -16,7 +22,9 @@ namespace Billing
 
             var orderBilled = new OrderBilled
             {
-                OrderId = message.OrderId
+                CustomerId = message.CustomerId,
+                OrderId = message.OrderId,
+                OrderValue = orderCalculator.GetOrderTotal(message.OrderId)
             };
             return context.Publish(orderBilled);
         }

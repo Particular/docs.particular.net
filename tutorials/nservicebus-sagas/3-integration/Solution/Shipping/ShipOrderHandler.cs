@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace Shipping
 {
-    class ShipOrderHandler : IHandleMessages<ShipOrder>
+    class ShipOrderHandler : 
+        IHandleMessages<ShipOrder>
     {
         static ILog log = LogManager.GetLogger<ShipOrderHandler>();
 
