@@ -28,8 +28,6 @@
         Title: Getting started
       - Url: tutorials/nservicebus-sagas/2-timeouts
         Title: Timeouts
-      - Url: tutorials/nservicebus-sagas/3-integration
-        Title: Integrations
     - Url: tutorials
       Title: More tutorials
       Articles:

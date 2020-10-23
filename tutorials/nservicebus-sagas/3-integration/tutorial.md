@@ -1,13 +1,11 @@
 ---
 title: "NServiceBus sagas: Integrations"
 reviewed: 2020-10-22
-isLearningPath: true
+## Once published, add to Learning Path pages on Website and remove comment here, and remove hidden attribute
+#isLearningPath: true
+hidden: true
 summary: "third party services integration."
 ---
-
-## Introduction to NServiceBus sagas: Third-party integration
-
-**TODO: Include downloadable solution to date**
 
 Sagas designed so far were awaiting for events and timeouts to participate in a business transaction. Those sagas were rather passive. Sagas can also take on a much more active role and execute several steps of a business process.
 
@@ -48,6 +46,18 @@ Up until now all our messages were either commands or events, we've been using `
 ## Exercise
 
 You've seen that the current `ShippingPolicy` in the `Shipping` endpoint is rather passive. To be able to deal with out-of-order delivery of messages, it waits for messages to arrive. After that, the order is ready to be shipped. This lesson continues with the process implementation and executes the shipment.
+
+{{NOTE:
+**What if I didn't do the previous tutorial?**
+
+No problem! You can get started learning sagas with the completed solution from the [previous lesson](/tutorials/nservicebus-sagas/2-timeouts/):
+
+downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/2-timeouts)
+
+The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+
+Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
+}}
 
 ### Multiple sagas for a process
 
