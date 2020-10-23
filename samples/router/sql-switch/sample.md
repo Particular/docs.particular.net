@@ -1,7 +1,7 @@
 ---
 title: Connecting multiple SQL Server instances with NServiceBus.Router
 summary: Use NServiceBus.Router to connect endpoints that use different SQL Server instances
-reviewed: 2018-12-28
+reviewed: 2020-10-24
 component: Router
 related:
 - transports/sql

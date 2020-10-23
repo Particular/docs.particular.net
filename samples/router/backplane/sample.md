@@ -2,7 +2,7 @@
 title: Connecting multiple SQL Server instances with a backplane
 summary: Use a backplane to connect endpoints that use different SQL Server instances 
 component: Router
-reviewed: 2018-12-28
+reviewed: 2020-10-24
 related:
 - transports/sql
 - transports/rabbitmq

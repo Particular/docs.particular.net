@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus.Router to connect different NServiceBus transports
 component: Router
-reviewed: 2018-12-28
+reviewed: 2020-10-24
 related:
  - nservicebus/router
 redirects:

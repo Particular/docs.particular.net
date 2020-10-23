@@ -1,6 +1,6 @@
 ---
 title: "Monitoring NServiceBus Demo - Setup instructions"
-reviewed: 2019-01-08
+reviewed: 2020-10-24
 summary: Detailed instructions for setting up the NServiceBus monitoring demo
 ---
 

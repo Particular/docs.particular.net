@@ -2,7 +2,7 @@
 title: Repair malformed messages using ServiceControl retry redirects 
 summary: A sample showing how repair malformed messages by redirecting them to a temporary endpoint
 component: Core
-reviewed: 2019-01-03
+reviewed: 2020-10-24
 ---
 
 This sample shows how to repair a malformed message by redirecting them to a temporary endpoint. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.

@@ -1,7 +1,7 @@
 ---
 title: Messaging
 summary: Outline the various approach to sending-receiving, defining messages and common messaging patterns.
-reviewed: 2019-01-10
+reviewed: 2020-10-24
 ---
 
 NServiceBus is an implementation of a [message based architecture](https://www.enterpriseintegrationpatterns.com/patterns/messaging/Messaging.html). As such it implements many of the common [messaging patterns](https://www.enterpriseintegrationpatterns.com/patterns/messaging/index.html)

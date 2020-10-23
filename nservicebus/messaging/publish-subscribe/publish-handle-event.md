@@ -2,7 +2,7 @@
 title: Publish and Handle an Event
 summary: How to define, publish, and handle events
 component: Core
-reviewed: 2019-01-09
+reviewed: 2020-10-24
 related:
 - samples/pubsub
 - tutorials/nservicebus-step-by-step

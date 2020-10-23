@@ -1,7 +1,7 @@
 ---
 title: Service Fabric Partition-Aware Routing
 summary: Implementing partition-aware routing for services hosted inside a Service Fabric cluster.
-reviewed: 2019-01-09
+reviewed: 2020-10-24
 component: Core
 related:
 - transports/azure-service-bus
