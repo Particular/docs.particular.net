@@ -5,7 +5,7 @@ isLearningPath: true
 summary: "third party services integration."
 ---
 
-# Introduction to NServiceBus sagas: Third-party integration
+## Introduction to NServiceBus sagas: Third-party integration
 
 **TODO: Include downloadable solution to date**
 
