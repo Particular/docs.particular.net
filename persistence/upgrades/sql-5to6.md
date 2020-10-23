@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence Upgrade Version 5 to 6
 summary: Instructions on how to upgrade to SQL Persistence version 6
-reviewed: 2020-06-25
+reviewed: 2020-10-22
 component: SqlPersistence
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -10,7 +10,7 @@ upgradeGuideCoreVersions:
 
 ## Move to .NET 4.6.1
 
-The minimum .NET Framework version for version 6 is [.NET 4.6.1](https://dotnet.microsoft.com/download/dotnet-framework/net461).
+The minimum .NET Framework version for NServiceBus.SqlServer version 6 is [.NET 4.6.1](https://dotnet.microsoft.com/download/dotnet-framework/net461).
 
 **All projects must be updated to .NET Framework 4.6.1 before upgrading to version 6.**
 
