@@ -4,15 +4,15 @@ summary: NServiceBus troubleshooting message loss
 reviewed: 2020-10-14
 component: core
 ---
-Sometimes customers are experiencing message loss scenarios. In most cases the cause is in any of the following scenarios:
+In most cases the cause of message loss is one of the following scenarios:
 
 - Missing `await` keyword on async methods
-- Usage of `async void` in the call stack
+- Using `async void` in the call stack
 - Catching (generic) exceptions but not rethrowing the exception
 
-All these will prevent NServiceBus its recovery mechanism to work correctly as any exception will never be catched by NServiceBus. This results in NServiceBus to think processing was succesful while it (potentially) was not. Another side effect of the async related issues it that transactions can be committed too early which can cause corruption in storage.
+All of these will prevent the recovery mechanism in NServiceBus from working correctly as exceptions will not be caught by NServiceBus. This results in NServiceBus assuming processing was succesful when it was not. Another side effect of the async related issues is that transactions can be committed too early which can cause corruption in storage.
 
-Consider enabling [message auditing](/nservicebus/operations/auditing.md) so that atleast the message is not lost.
+Consider enabling [message auditing](/nservicebus/operations/auditing.md) so that the message is not lost.
 
 ## Missing await keyword
 
@@ -21,13 +21,13 @@ Although all async methods that are provided in Particular API's do not have the
 Resolve this by:
 
 - Adding the `await` keyword everywhere in the call stack.
-- Most of the time these issues are highlighted by the compiler as compiler warning, consider enabling "warn as error".
-- If await cannot be used append `.GetAwaiter().GetResult()` but consider to fully make the call stack async to prevent potential deadlocks
+- Most of the time, these issues are highlighted by the compiler as compiler warning; consider enabling "warn as error".
+- If await cannot be used, append `.GetAwaiter().GetResult()`. This is considered a workaround and it's recommend to make the call stack fully asynchronous to prevent potential deadlocks
 
 
 ## Usage of async void
 
-Making of use `async void` is very similar in behavior to missing await. This is often done to workaround the fact that the method calls async methods but function invoking it does not have a valid signature.
+Using `async void` is very similar in behavior to missing await. This is often done to work around the fact that the method calls async methods but the function invoking it does not have a valid signature.
 
 ```c#
 void MyMethod()
@@ -48,7 +48,7 @@ async Task MyMethodAsync()
 
 Resolve this by:
 
-- Changing the signature to `async Task` and `await` this in the method that is invoking this method. Also see [Missing await keyword](#missing-await-keyword).
+- Changing the signature to `async Task` and `await` the call in the method that is invoking this method. Also see [Missing await keyword](#missing-await-keyword) above.
 
 
 ## Catching exceptions
@@ -60,16 +60,16 @@ try
 {
     // Code that throws an exception is here
 }
-catch(Exception e)
+catch (Exception e)
 {
 }
 ```
 
-The problem is that the exception is catched. This results in NServiceBus never receiving this exception in its pipeline. From the perspective of NServiceBus eveything is fine. The message will not be retried by the recovery mechanism.
+The problem here is that the exception is caught and discarded. Therefore NServiceBus will never receive this exception in its pipeline. From the perspective of NServiceBus, eveything is fine. The message will not be retried by the recovery mechanism.
 
 Resolve this by:
 
 - Completely remove the try-catch
-- Use the `throw` keyword in the catch (do not use `throw e` as that hides exception information)
+- Use the `throw` keyword in the `catch`. Do *not* use `throw e` as this hides exception information.
 - Use `throw new Exception("My detailed reason for this exception with the exception as inner exception", e)`
 
