@@ -37,7 +37,9 @@ In other cases, NServiceBus has [built-in recoverability](/nservicebus/recoverab
 
 Watch this video for a better picture of how failures can lead to lost data, and how using NServiceBus keeps data safe.
 
-<iframe src="https://www.youtube.com/embed/_Br9Me4tqPI" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen frameborder="0"></iframe>
+<div style="display:block;width:80%;margin:50px auto;position:relative;height:0;padding-bottom:45%"><iframe src="https://www.youtube.com/embed/_Br9Me4tqPI" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+
+NOTE: To see how NServiceBus prevents loss of data, adds failure recovery, and makes systems easier to extend, try the [NServiceBus Quick Start](/tutorials/quickstart/).
 
 ## Scalable
 
@@ -61,7 +63,9 @@ NServiceBus endpoints can be hosted anywhere code can be executed, such as in a 
 
 NServiceBus works with many different technology stacks, offering choices for [transport](/transports/) and [persistence](/persistence/). Out of the box, defaults are provided for [serialization](/nservicebus/serialization/), [dependency injection](/nservicebus/dependency-injection/), and [logging](/nservicebus/logging/). These defaults can be overridden if a specific technology is required. 
 
-The NServiceBus message processing and dispatching pipeline is modular and extensible. [Message mutators](/nservicebus/pipeline/message-mutators.md) inject code into the pipeline to modify messages as they are being sent or received. More complex pipeline manipulation can be done with [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md). NServiceBus extensions can be packaged up as [features](/nservicebus/pipeline/features.md), which can add behaviors to the pipeline and create tasks that get run when an endpoint starts and stops. Many of the existing capabilities of NServiceBus are implemented as behaviors and features. 
+The NServiceBus message processing and dispatching pipeline is modular and extensible. [Message mutators](/nservicebus/pipeline/message-mutators.md) inject code into the pipeline to modify messages as they are being sent or received. More complex pipeline manipulation can be done with [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md). NServiceBus extensions can be packaged up as [features](/nservicebus/pipeline/features.md), which can add behaviors to the pipeline and create tasks that get run when an endpoint starts and stops. Many of the existing capabilities of NServiceBus are implemented as behaviors and features.
+
+
 
 ## Particular Service Platform
 
