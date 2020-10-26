@@ -28,7 +28,7 @@ When sending a message as a request to another handler, the receiver might reply
 
 snippet: Replay
 
-Whenever a message is sent using NServiceBus additional [message headers](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-replytoaddress) are appended. As a result you can use the `reply()` method and NServiceBus will use information from the headers to return this message. The message metadata also includes identifier for that saga instance, so you don't need to map the response message to a saga instance in the `ConfigureHowToFindSaga()` method. NServiceBus will map it automatically.
+Whenever a message is sent using NServiceBus additional [message headers](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-replytoaddress) are appended. As a result you can use the `Reply()` method and NServiceBus will use information from the headers to return this message. The message metadata also includes identifier for that saga instance, so you don't need to map the response message to a saga instance in the `ConfigureHowToFindSaga()` method. NServiceBus will map it automatically.
 
 Another powerful method is the `ReplyToOriginator()` method available to sagas. It will send a message to the endpoint instance that originally started given saga.
 
@@ -57,7 +57,7 @@ Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes a
 
 ### Multiple sagas for a process
 
-With the Single Responsibility Principle in mind, this feature should not be added to the current `ShippingPolicy` saga. When this saga is done, it sends the command `ShipOrder` which we can use to create another saga to make this happen. We will call this saga `ShipPackagePolicy` and its responsibility is to orchestrate the shipment via Maple or Alpine. Add this saga to the `Shipping` project.
+With the Single Responsibility Principle in mind, this feature should not be added to the current `ShippingPolicy` saga. When this saga is done, it sends the command `ShipOrder` which we can use to create another saga to make this happen. We will call this saga `ShipOrderPolicy` and its responsibility is to orchestrate the shipment via Maple or Alpine. Add this saga to the `Shipping` project.
 
 snippet: ShipOrderPolicyShipOrder
 
