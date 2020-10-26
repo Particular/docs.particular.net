@@ -109,7 +109,7 @@ snippet: ShipmentAcceptedByAlpine
 
 ### Handling edge cases
 
-//TODO: introduce `business time top be processed` concept by adding to messages a `DoNotProcessAfter` date time property so that we make sure handlers discard messages that for whatever reason are delayed. If the `timeout` is longer than `DoNotProcessAfter` there should not be any edge case and we can adjust the following paragraph. For example: We first try courier A with a `DoNotProcessAfter` of 2 hours and set a timeout for 2 hours and 15 minutes. The edge case we now need to handle is only releated to the reply and not the original request, so the reply can be late and we need to deal wioth the fact that the second courier has already been contacted. We're reducing the failure surface.
+**//TODO: introduce `business time top be processed` concept by adding to messages a `DoNotProcessAfter` date time property so that we make sure handlers discard messages that for whatever reason are delayed. If the `timeout` is longer than `DoNotProcessAfter` there should not be any edge case and we can adjust the following paragraph. For example: We first try courier A with a `DoNotProcessAfter` of 2 hours and set a timeout for 2 hours and 15 minutes. The edge case we now need to handle is only releated to the reply and not the original request, so the reply can be late and we need to deal wioth the fact that the second courier has already been contacted. We're reducing the failure surface.**
 
 So far we've handled two scenarios
 
