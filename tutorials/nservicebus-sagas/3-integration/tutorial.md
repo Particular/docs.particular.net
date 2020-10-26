@@ -26,17 +26,13 @@ As a good rule of thumb, sagas should be simple process coordinators delegating 
 
 When sending a message as a request to another handler, the receiver might reply with a response. With NServiceBus it is very easy to work with these types of messages. Where normally you'd need to configure routing to specify where messages should be send, with replies it's much easier. In fact it is as easy as:
 
-```
-context.Reply(new ShipmentAcceptedByMaple());
-```
+snippet: Replay
 
 Whenever a message is sent using NServiceBus additional [message headers](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-replytoaddress) are appended. As a result you can use the `reply()` method and NServiceBus will use information from the headers to return this message. The message metadata also includes identifier for that saga instance, so you don't need to map the response message to a saga instance in the `ConfigureHowToFindSaga()` method. NServiceBus will map it automatically.
 
 Another powerful method is the `ReplyToOriginator()` method available to sagas. It will send a message to the endpoint instance that originally started given saga.
 
-```
-ReplyToOriginator(context, new PackageSuccessfullyShipped());
-```
+snippet: ReplyToOriginator
 
 #### Reply message type
 
@@ -63,30 +59,11 @@ Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes a
 
 With the Single Responsibility Principle in mind, this feature should not be added to the current `ShippingPolicy` saga. When this saga is done, it sends the command `ShipOrder` which we can use to create another saga to make this happen. We will call this saga `ShipPackagePolicy` and its responsibility is to orchestrate the shipment via Maple or Alpine. Add this saga to the `Shipping` project.
 
-```c#
-class ShipOrderPolicy : 
-        Saga<ShipOrderPolicy.ShipOrderData>,
-        IAmStartedByMessages<ShipOrder>
-{
-    public async Task Handle(ShipOrder message, IMessageHandlerContext context)
-    {    
-    }
-    
-    internal class ShipOrderData : ContainSagaData
-    {
-        public string OrderId { get; set; }
-    }    
-}
-```
+snippet: ShipOrderPolicyShipOrder
 
 The saga state is added as an embedded class into our saga `ShipOrderPolicy`. The `OrderId` is what makes the saga unique and to which you'll need to map the incoming `ShipOrder` message:
 
-```
-protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderData> mapper)
-{
-    mapper.ConfigureMapping<ShipOrder>(m => m.OrderId).ToSaga(s => s.OrderId);
-}
-```
+snippet: ShipOrderPolicyMapper
 
 You can now delete the `ShipOrderHandler` that was created in lesson 1, since this newly created saga will replace its functionalities.
 
@@ -96,40 +73,15 @@ As mentioned before, the integration to the Maple web service is delegated to a 
 
 Another thing that needs to be done is to issue a timeout, to be able to fallback to Alpine, if Maple does not respond in a timely manner. For testing purposes the system will wait only 20 seconds for a response.
 
-```
-public async Task Handle(ShipOrder message, IMessageHandlerContext context)
-{
-    // Execute order to ship with Maple
-    await context.Send(new ShipWithMaple() { OrderId = Data.OrderId}).ConfigureAwait(false);
-
-    // Add timeout to escalate if Maple did not ship in time.
-    await RequestTimeout(context, TimeSpan.FromSeconds(20),
-                         new ShippingEscalation()).ConfigureAwait(false);
-}
-```
+snippet: HandleShipOrder
 
 Have a look at the integration handler `ShipWithMapleHandler`. As you can see it emulates the fact that it might take a while for the webservice to respond. If everything goes well the `Reply()` method is used and the message `ShipmentAcceptedByMaple` will be received by your saga.
 
-```
-public Task Handle(ShipmentAcceptedByMaple message, IMessageHandlerContext context)
-{
-    log.Info($"Order [{Data.OrderId}] - Successfully shipped with Maple");
-
-    Data.ShipmentAcceptedByMaple = true;
-
-    return Task.CompletedTask;
-}
-```
+snippet: ShipmentAcceptedByMaple
 
 To be able to use the `ShipmentAcceptedByMaple` flag, it needs to be added to the saga state class.
 
-```
-internal class ShipOrderData : ContainSagaData
-{
-    public string OrderId { get; set; }
-    public bool ShipmentAcceptedByMaple { get; set; }
-}
-```
+snippet: ShipmentAcceptedByMapleData
 
 Right now, a notification that Maple accepted the shipment is logged, and the flag `ShipmentAcceptedByMaple` is set. The saga does nothing else.
 
@@ -139,20 +91,7 @@ In a real world scenario, perhaps another message needs to be send so that the c
 
 If the Maple integration handler does not respond in time, the timeout message will arrive.
 
-```
-public async Task Timeout(ShippingEscalation state, IMessageHandlerContext context)
-{
-    if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentOrderSentToAlpine)
-    {
-        log.Info($"We didn't receive answer from Maple, let's try Alpine.");
-        Data.ShipmentOrderSentToAlpine = true;
-        await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId })
-            .ConfigureAwait(false);
-        await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation())
-            .ConfigureAwait(false);
-    }
-}
-```
+snippet: ShippingEscalation
 
 If the shipment was not accepted by Maple, the system needs to execute the shipment via Alpine. It's less likely something will go wrong, since the web service is more reliable. But expect that anything can happen and be prepared for this. Therefore we also request another timeout.
 
@@ -166,16 +105,7 @@ The code also checks with `ShipmentOrderSentToAlpine` if an order Alpine to ship
 
 If the handler `ShipWithAlpineHandler` is able to ship the package using Alpine, it will reply with the `ShipmentAcceptedByAlpine` message. You will need to be able to handle this as well.
 
-```
-public Task Handle(ShipmentAcceptedByAlpine message, IMessageHandlerContext context)
-{
-    log.Info($"Order [{Data.OrderId}] - Succesfully shipped with Alpine");
-
-    Data.ShipmentAcceptedByAlpine = true;
-
-    return Task.CompletedTask;
-}
-```
+snippet: ShipmentAcceptedByAlpine
 
 ### Handling edge cases
 
@@ -188,36 +118,13 @@ So far we've handled two scenarios
 
 Another possible situation is that none of the shipping providers accepts the shipment and our package will be never shipped. To ensure that never happens, we request the `ShippingEscalation` timeout. When that timeout expires the same `Timeout()` method is executed again, however, this time the following line of code is executed:
 
-```
-if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentOrderSentToAlpine)
-```
+snippet: IfShipmentAccepted
 
 In this case the shipment was not accepted by Maple and we sent the request to Alpine, so the condition above will be satisfied. It means that both attempts to request delivery have failed. That could happen for a number of reasions, for example Alpine webservice could be down for maintenance or there was network issue and our request was never received.
 
 One way to handle such situation is to notify the sales department that will handle the issue manually, for example, can call either shipment provider and request delivery:
 
-```
-public async Task Timeout(ShippingEscalation state, IMessageHandlerContext context)
-{
-    if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentOrderSentToAlpine)
-    {
-        log.Info($"We didn't receive answer from Maple, let's try Alpine.");
-        Data.ShipmentOrderSentToAlpine = true;
-        await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId })
-           .ConfigureAwait(false);
-        await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation())
-           .ConfigureAwait(false);
-    }
-
-    // No response from Maple nor Alpine
-    if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentAcceptedByAlpine)
-    {
-        log.Warn($"We didn't receive answer from either Maple nor Alpine. We need to escalate!");
-        // escalate to Warehouse Manager!
-        await context.Publish<ShipmentFailed>().ConfigureAwait(false);
-    }
-}
-```
+snippet: ShippingEscalationAlt
 
 In our code saga does not send any emails or saves information about the failure to a database. It merely publishes an event, so another handler can take the appropriate action. Our saga is only orchestrating the process.
 
