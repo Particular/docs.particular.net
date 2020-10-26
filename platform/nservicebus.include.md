@@ -35,6 +35,10 @@ NServiceBus offers different ways of ensuring information is not lost due to fai
 
 In other cases, NServiceBus has [built-in recoverability](/nservicebus/recoverability) that can automatically adapt to common failures in a system. For intermittent failures, such as network outages, messages can be retried at regular intervals. For more serious errors, messages are set aside in a separate error queue so that they can be investigated at a later time without impacting the overall performance of the system.
 
+Watch this video for a better picture of how failures can lead to lost data, and how using NServiceBus keeps data safe.
+
+<iframe src="https://www.youtube.com/embed/_Br9Me4tqPI" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen frameborder="0"></iframe>
+
 ## Scalable
 
 NServiceBus is designed to handle a large number of messages. Endpoints are configured for high performance by default, handling multiple messages in parallel. Depending on the workload, the number of messages handled concurrently can be [increased to improve message throughput](/nservicebus/operations/tuning.md).
