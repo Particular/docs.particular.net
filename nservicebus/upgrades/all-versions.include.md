@@ -144,7 +144,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.5.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.0) | 2020-04-16     | -                 | -                                 |
+| [1.5.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.1) | 2020-10-27     | -                 | -                                 |
 | [~~1.4.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.4.0) | ~~2019-12-05~~ | ~~2020-07-16~~    | ~~Superseded by 1.5.x~~           |
 | [~~1.3.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.3.1) | ~~2019-12-03~~ | ~~2020-03-05~~    | ~~Superseded by 1.4.x~~           |
 | [~~1.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.2.1) | ~~2019-07-31~~ | ~~2020-03-03~~    | ~~Superseded by 1.3.x~~           |
