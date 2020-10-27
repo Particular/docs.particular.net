@@ -28,12 +28,12 @@ partial: di
 
 ### Using Entity Framework
 
-When using Entity Framework (or a different kind of object/relational mappe) to access business data, there is the option to create an Entity Framework data context within a handler and use the Synchronized Storage Session to reuse the connection to the database.
+When using Entity Framework (or another object/relational mapper) to access business data, there is the option to create an Entity Framework data context within a handler and use the Synchronized Storage Session to reuse the connection to the database.
 
 Another option is to inject the Entity Framework data context into the handler. When NServiceBus has finished processing a message it will publish an in-process event that provides the ability to call the `SaveChanges` method on the Entity Framework data context. More information can be found in the sample for using [samples/entity-framework](/samples/entity-framework-core/).
 
 
-### Using in a Saga
+### Using in a saga
 
 include: saga-business-data-access
 
