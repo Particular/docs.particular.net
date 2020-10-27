@@ -4,7 +4,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.1) | 2020-08-24     | -                 | -                                 |
+| [5.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.2.0) | 2020-10-20     | -                 | -                                 |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.1) | 2020-08-24     | 2021-01-20        | Superseded by 5.2.x               |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | 2020-04-27     | 2020-11-24        | Superseded by 5.1.x               |
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.1) | 2019-11-27     | 2021-04-27        | Superseded by 5.0.x               |
 | [3.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/3.3.5) | 2018-05-14     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
@@ -167,7 +168,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.CastleWindsor/7.2.0) | 2020-02-26     | -                 | -                                 |
 | [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus.CastleWindsor/7.1.0) | ~~2020-01-27~~ | ~~2020-05-26~~    | ~~Superseded by 7.2.x~~           |
-| [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.CastleWindsor/7.0.0) | ~~2018-05-29~~ | ~~2020-04-27~~    | ~~Superseded by 7.1.x~~           |
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.CastleWindsor/6.1.1) | 2017-09-15     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Extensions.DependencyInjection](/nuget/NServiceBus.Extensions.DependencyInjection)
