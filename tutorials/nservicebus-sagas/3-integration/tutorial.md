@@ -59,17 +59,27 @@ The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Sh
 Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
 }}
 
-### Multiple sagas for a process
+### A new saga
 
-With the Single Responsibility Principle in mind, this feature should not be added to the current `ShippingPolicy` saga. When this saga is done, it sends the command `ShipOrder` which we can use to create another saga to make this happen. We will call this saga `ShipOrderPolicy` and its responsibility is to orchestrate the shipment via Maple or Alpine. Add this saga to the `Shipping` project.
+While it would be possible to implement the new functionality in our existing `ShippingPolicy` saga, it's probably not a good idea. That saga is about making the decision whether or not to ship, while we are now dealing with the process of executing that shipment. It's best to keep the [single responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle) in mind and keep them separate. The result will be simpler sagas that are easier to test and easier to evolve in the future.
+
+In the `ShippingPolicy` saga class (inside the **Shipping** endpoint project) we already have the `ShipOrder` being sent from the `ProcessOrder` method at the end of the saga. Currently, this is being processed by the `ShipOrderHandler` class, also in the **Shipping** endpoint. Our aim is to replace that handler with a new saga.
+
+Create a new class in the **Shipping** project called `ShipOrderPolicy`:
 
 snippet: ShipOrderPolicyShipOrder
 
-The saga state is added as an embedded class into our saga `ShipOrderPolicy`. The `OrderId` is what makes the saga unique and to which you'll need to map the incoming `ShipOrder` message:
+This creates a saga that is started by `ShipOrder` messages and uses `ShipOrderData` to store its data. Because the saga data is tightly coupled to the saga implementation, we include it as an internal class. The `Handle` method is currently empty—we will need to complete that in just a bit.
+
+NOTE: For a more in-depth explanation of the basic saga concepts, check out [NServiceBus sagas: Getting started](/tutorials/nservicebus-sagas/1-getting-started/).
+
+The `OrderId` is what makes the saga unique. We need to show the saga how to identify the unique **correlation property** `OrderId` in the incoming `ShipOrder` message, and how to relate it to the `OrderId` property in the saga data.
+
+To do that, implement the saga base class's `ConfigureHowToFindSaga` class as shown here, or let the compiler generate the method and fill it in:
 
 snippet: ShipOrderPolicyMapper
 
-You can now delete the `ShipOrderHandler` that was created in lesson 1, since this newly created saga will replace its functionalities.
+You can now delete the `ShipOrderHandler` class that was created in a previous tutorial, since this newly created saga will replace its functionality.
 
 ### Calling web services
 
