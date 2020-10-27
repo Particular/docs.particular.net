@@ -21,7 +21,7 @@
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderData> mapper)
         {
-            mapper.ConfigureMapping<ShipOrder>(m => m.OrderId).ToSaga(s => s.OrderId);
+            mapper.ConfigureMapping<ShipOrder>(message => message.OrderId).ToSaga(saga => saga.OrderId);
         }
     }
 

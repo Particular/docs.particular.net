@@ -19,7 +19,7 @@ namespace Billing
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CustomerStatusState> mapper)
         {
-            mapper.ConfigureMapping<OrderBilled>(m => m.CustomerId).ToSaga(s => s.CustomerId);
+            mapper.ConfigureMapping<OrderBilled>(message => message.CustomerId).ToSaga(saga => saga.CustomerId);
         }
 
         public async Task Handle(OrderBilled message, IMessageHandlerContext context)
