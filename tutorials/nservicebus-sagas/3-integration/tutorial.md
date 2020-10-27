@@ -7,15 +7,19 @@ hidden: true
 summary: "third party services integration."
 ---
 
-Sagas designed so far were awaiting for events and timeouts to participate in a business transaction. Those sagas were rather passive. Sagas can also take on a much more active role and execute several steps of a business process.
+The need for orchestration of a business process arises quickly when integrating with third parties. We'll frequently need to call a third-party service, and then depending on the result, kick off a new process locally, or perhaps even turn around and call a different third party.
 
-This lesson focuses on third party services integration as, for example, shipping couriers web services. You'll make the system talk to two external fictional express couriers, called Alpine Delivery and Maple Shipping Services. Maple is currently cheaper, so it's the preferred delivery option. However, it also seems to be less reliable. There is a 24-hour delivery SLA with our customers, if Maple doesn't respond to our shipment request on time, we need to ask Alpite to deliver the package.
+We can't sit around passively waiting for events to float by to decide what needs to happen next. We need a process to take charge and execute several steps of a business process.
 
-In this lesson, you will learn how to orchestrate such a business process using NServiceBus sagas. We'll also see how we can react to failures from one or more of our third-party services.
+In this tutorial, let's consider shipping couriers used in a retail system. To avoid any unpleasant uses of registered trademarks, let's call our two fake shipping services **Alpine Delivery** and **Maple Shipping Service**. In our fictional world, Maple is currently cheaper, so it's our preferred delivery option. However, it also seems to be less reliable. There is a 24-hour delivery SLA with our customers, so if Maple doesn't respond to our shipment request on time, we need to ask Alpine to deliver the package instead.
 
-**TODO: We want to start from the solution at the end of the last lesson so we need an introductory section here to add placeholder handlers for Maple and Alpine**
+In this tutorial, we'll learn how to orchestrate this type of business process using an NServiceBus saga. We'll also see how we can react to failures from one or more of our third-party services.
+
+**TODO: We need to provide a way to just download the Alpine/Maple code. It would be nice if the engine could provide a separate download of assets, but the simplest thing may be to include it in the solution, ask the user to download the solution and pick out the required projects.**
 
 ## Commander sagas
+
+**TODO: These 2 sections seem out of place. "Hey by the way, two really weird and random tidbits because we'd rather be confusing than get right to the exercise??**
 
 The __Introduction to NServiceBus__ (**TODO: "introduction to NServiceBus"? Or "messaging basics"?**) tutorial covered how to send messages, configure routing and how the publish/subscribe pattern works. This lesson will focus on orchestrating a more complex business process that needs to call an external web service.
 
@@ -41,7 +45,7 @@ Up until now all our messages were either commands or events, we've been using `
 
 ## Exercise
 
-You've seen that the current `ShippingPolicy` in the `Shipping` endpoint is rather passive. To be able to deal with out-of-order delivery of messages, it waits for messages to arrive. After that, the order is ready to be shipped. This lesson continues with the process implementation and executes the shipment.
+In the exercises so far, we had a `ShippingPolicy` saga that was rather passive—it waited for `OrderPlaced` and `OrderBilled` to arrive (which could happen out of order) and then the order is ready to ship. In this exercise, we'll continue by implementing the actual shipment via one of our fictional shipping carriers, Alpine or Maple.
 
 {{NOTE:
 **What if I didn't do the previous tutorial?**
