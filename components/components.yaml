@@ -127,7 +127,7 @@
   DocsUrl: /monitoring/custom-checks
   GitHubOwner: Particular
   Category: Other
-  ProjectUrl: https://github.com/Particular/?q=CustomChecks
+  ProjectUrl: https://github.com/Particular/NServiceBus.CustomChecks
   NugetOrder:
     - NServiceBus.CustomChecks
     - ServiceControl.Plugin.Nsb6.CustomChecks
@@ -196,7 +196,7 @@
   DocsUrl: /monitoring/heartbeats
   GitHubOwner: Particular
   Category: Other
-  ProjectUrl: https://github.com/Particular/?q=Heartbeat
+  ProjectUrl: https://github.com/Particular/NServiceBus.Heartbeat
   NugetOrder:
     - NServiceBus.Heartbeat
     - ServiceControl.Plugin.Nsb6.Heartbeat
@@ -448,7 +448,7 @@
   DocsUrl: /servicecontrol/plugins/saga-audit
   GitHubOwner: Particular
   Category: Other
-  ProjectUrl: https://github.com/Particular/?q=SagaAudit
+  ProjectUrl: https://github.com/Particular/NServiceBus.SagaAudit
   NugetOrder:
     - NServiceBus.SagaAudit
     - ServiceControl.Plugin.Nsb6.SagaAudit
