@@ -2,6 +2,7 @@
 title: Configuration Settings
 summary: Categorized list of ServiceControl Audit configuration settings.
 reviewed: 2019-07-09
+component: ServiceControl
 ---
 
 
