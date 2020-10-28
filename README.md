@@ -982,7 +982,7 @@ The first (and all top level) headers in a `.md` page should be a `h2` (i.e. `##
 
 ## Spaces
 
-* Two empty lines before a heading and any other text
+* Add an empty line before a heading and any other text
 * Add an empty line after a heading
 * Add an empty line between paragraphs
 
