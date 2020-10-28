@@ -2,9 +2,10 @@
 
 namespace Messages
 {
-    public class ShipWithMaple : 
-        ICommand
+    #region ShipWithMapleCommand
+    public class ShipWithMaple : ICommand
     {
         public string OrderId { get; set; }
     }
+    #endregion
 }

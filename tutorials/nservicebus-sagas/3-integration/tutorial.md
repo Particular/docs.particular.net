@@ -57,13 +57,36 @@ You can now delete the `ShipOrderHandler` class that was created in a previous t
 
 ### Calling web services
 
+Recall that while Maple Shipping Service is cheaper, and thus our preferred vendor, they are sometimes unreliable, in which case we want to use Alpine as a backup. In order to accomplish this, we'll send a `ShipWithMaple` command immediately, and request a `ShippingEscalation` timeout in case Maple happens to be unreliable today.
+
+To do that, we'll first need to add a class for the command and for the timeout.
+
+In the **Messages** project, add a class for `ShipWithMaple`:
+
+snippet: ShipWithMapleCommand
+
+Then, back in the **Shipping** project, add `ShippingEscalation` as an internal class of `ShipOrderWorkflow`:
+
+snippet: ShippingEscalationTimeout
+
+The `ShippingEscalation` class doesn't need any special interface or contents. A timeout, after all, is just a fancy alarm clock—we get all we need to know just from the type name. Everything else will already exist in the saga's stored data. We create it as an `internal` class because it is very tightly coupled to the implementation of the saga. There's no need to use it anywhere else.
+
+NOTE: For more on saga timeouts, check out [NServiceBus sagas: Timeouts](/tutorials/nservicebus-sagas/3-integration/).
+
+Now, in our `ShipOrderWorkflow` class we can implement the `Handle` method as follows:
+
+snippet: HandleShipOrder
+
+DAVID LEFT OFF HERE
+
+NOTE: **Why not contact the web service directly within the saga?** Well, …TODO
+
 As mentioned before, the integration to the Maple web service is delegated to a separate handler. The `ShipWithMapleHandler` is already included in the project, so you only need to send a message to it.
 
-downloadbutton(Get external handlers from solution, /tutorials/nservicebus-sagas/3-integration)
 
 Another thing that needs to be done is to issue a timeout, to be able to fallback to Alpine, if Maple does not respond in a timely manner. For testing purposes the system will wait only 20 seconds for a response.
 
-snippet: HandleShipOrder
+
 
 Have a look at the integration handler `ShipWithMapleHandler`. As you can see it emulates the fact that it might take a while for the webservice to respond. If everything goes well the `Reply()` method is used and the message `ShipmentAcceptedByMaple` will be received by your saga.
 

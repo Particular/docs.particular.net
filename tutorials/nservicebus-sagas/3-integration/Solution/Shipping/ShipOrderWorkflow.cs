@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using Messages;
 
-    class ShipOrderWorkflow : 
+    class ShipOrderWorkflow :
         Saga<ShipOrderWorkflow.ShipOrderData>,
         IAmStartedByMessages<ShipOrder>,
         IHandleMessages<ShipmentAcceptedByMaple>,
@@ -47,7 +47,7 @@
 
             return Task.CompletedTask;
         }
-        
+
         public async Task Timeout(ShippingEscalation timeout, IMessageHandlerContext context)
         {
             if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentOrderSentToAlpine)
@@ -75,9 +75,10 @@
             public bool ShipmentAcceptedByAlpine { get; set; }
         }
 
+        #region ShippingEscalationTimeout
         internal class ShippingEscalation
         {
-
         }
+        #endregion
     }
 }
