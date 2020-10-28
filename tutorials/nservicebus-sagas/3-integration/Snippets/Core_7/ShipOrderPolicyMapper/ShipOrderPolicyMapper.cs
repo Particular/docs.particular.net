@@ -1,14 +1,14 @@
-﻿namespace Core_7.ShipOrderPolicyMapper
+﻿namespace Core_7.ShipOrderWorkflowMapper
 {
     using NServiceBus;
     using System;
     using System.Threading.Tasks;
 
-    class ShipOrderPolicy :
-        Saga<ShipOrderPolicy.ShipOrderData>,
+    class ShipOrderWorkflow :
+        Saga<ShipOrderWorkflow.ShipOrderData>,
         IAmStartedByMessages<ShipOrder>
     {
-        #region ShipOrderPolicyMapper
+        #region ShipOrderWorkflowMapper
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderData> mapper)
         {
             mapper.ConfigureMapping<ShipOrder>(message => message.OrderId).ToSaga(saga => saga.OrderId);

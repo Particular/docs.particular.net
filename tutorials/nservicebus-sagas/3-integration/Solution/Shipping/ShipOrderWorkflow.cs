@@ -6,14 +6,14 @@
     using System.Threading.Tasks;
     using Messages;
 
-    class ShipOrderPolicy : 
-        Saga<ShipOrderPolicy.ShipOrderData>,
+    class ShipOrderWorkflow : 
+        Saga<ShipOrderWorkflow.ShipOrderData>,
         IAmStartedByMessages<ShipOrder>,
         IHandleMessages<ShipmentAcceptedByMaple>,
         IHandleMessages<ShipmentAcceptedByAlpine>,
-        IHandleTimeouts<ShipOrderPolicy.ShippingEscalation>
+        IHandleTimeouts<ShipOrderWorkflow.ShippingEscalation>
     {
-        static ILog log = LogManager.GetLogger<ShipOrderPolicy>();
+        static ILog log = LogManager.GetLogger<ShipOrderWorkflow>();
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderData> mapper)
         {

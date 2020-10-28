@@ -15,34 +15,6 @@ In this tutorial, let's consider shipping couriers used in a retail system. To a
 
 In this tutorial, we'll learn how to orchestrate this type of business process using an NServiceBus saga. We'll also see how we can react to failures from one or more of our third-party services.
 
-**TODO: We need to provide a way to just download the Alpine/Maple code. It would be nice if the engine could provide a separate download of assets, but the simplest thing may be to include it in the solution, ask the user to download the solution and pick out the required projects.**
-
-## Commander sagas
-
-**TODO: These 2 sections seem out of place. "Hey by the way, two really weird and random tidbits because we'd rather be confusing than get right to the exercise??**
-
-The __Introduction to NServiceBus__ (**TODO: "introduction to NServiceBus"? Or "messaging basics"?**) tutorial covered how to send messages, configure routing and how the publish/subscribe pattern works. This lesson will focus on orchestrating a more complex business process that needs to call an external web service.
-
-As a good rule of thumb, sagas should be simple process coordinators delegating calling webservices or accessing databases to other classes. That allows to [avoid contention on the saga state](/nservicebus/sagas/#accessing-databases-and-other-resources-from-a-saga). Delegating the work is done by sending commands to other handlers, which is why these type of sagas are called `commander sagas`.
-
-
-## Replying
-
-When sending a message as a request to another handler, the receiver might reply with a response. With NServiceBus it is very easy to work with these types of messages. Where normally you'd need to configure routing to specify where messages should be send, with replies it's much easier. In fact it is as easy as:
-
-snippet: Replay
-
-Whenever a message is sent using NServiceBus additional [message headers](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-replytoaddress) are appended. As a result you can use the `Reply()` method and NServiceBus will use information from the headers to return this message. The message metadata also includes identifier for that saga instance, so you don't need to map the response message to a saga instance in the `ConfigureHowToFindSaga()` method. NServiceBus will map it automatically.
-
-Another powerful method is the `ReplyToOriginator()` method available to sagas. It will send a message to the endpoint instance that originally started given saga.
-
-snippet: ReplyToOriginator
-
-#### Reply message type
-
-Up until now all our messages were either commands or events, we've been using `ICommand` and `IEvent` interfaces to indicate that. Some messages though, are neither commands nor events. For example, in this exercise we'll have a message `ShipmentAcceptedByMaple` which is a response to a request. We'll mark such messages with the `IMessage` interface.
-
-
 ## Exercise
 
 In the exercises so far, we had a `ShippingPolicy` saga that was rather passive—it waited for `OrderPlaced` and `OrderBilled` to arrive (which could happen out of order) and then the order is ready to ship. In this exercise, we'll continue by implementing the actual shipment via one of our fictional shipping carriers, Alpine or Maple.
@@ -65,9 +37,11 @@ While it would be possible to implement the new functionality in our existing `S
 
 In the `ShippingPolicy` saga class (inside the **Shipping** endpoint project) we already have the `ShipOrder` being sent from the `ProcessOrder` method at the end of the saga. Currently, this is being processed by the `ShipOrderHandler` class, also in the **Shipping** endpoint. Our aim is to replace that handler with a new saga.
 
-Create a new class in the **Shipping** project called `ShipOrderPolicy`:
+While the previous saga `ShippingPolicy` was a passive observer, this new saga is commanding an active workflow, so we will call it `ShipOrderWorkflow`.
 
-snippet: ShipOrderPolicyShipOrder
+To get started, create a new class in the **Shipping** project called `ShipOrderWorkflow`:
+
+snippet: ShipOrderWorkflowShipOrder
 
 This creates a saga that is started by `ShipOrder` messages and uses `ShipOrderData` to store its data. Because the saga data is tightly coupled to the saga implementation, we include it as an internal class. The `Handle` method is currently empty—we will need to complete that in just a bit.
 
@@ -77,13 +51,15 @@ The `OrderId` is what makes the saga unique. We need to show the saga how to ide
 
 To do that, implement the saga base class's `ConfigureHowToFindSaga` class as shown here, or let the compiler generate the method and fill it in:
 
-snippet: ShipOrderPolicyMapper
+snippet: ShipOrderWorkflowMapper
 
 You can now delete the `ShipOrderHandler` class that was created in a previous tutorial, since this newly created saga will replace its functionality.
 
 ### Calling web services
 
 As mentioned before, the integration to the Maple web service is delegated to a separate handler. The `ShipWithMapleHandler` is already included in the project, so you only need to send a message to it.
+
+downloadbutton(Get external handlers from solution, /tutorials/nservicebus-sagas/3-integration)
 
 Another thing that needs to be done is to issue a timeout, to be able to fallback to Alpine, if Maple does not respond in a timely manner. For testing purposes the system will wait only 20 seconds for a response.
 
@@ -154,3 +130,35 @@ Be careful and ensure you discuss such edge cases with business before you jump 
 In this lesson, we learned about commander sagas that execute several steps within a business process. Sagas orchestrate and delegate the work to other handlers. The reason for delegation is to adhere to the Single Responsibility Principle and to avoid potential contention. We've also taken another look at timeouts. And finally we've seen how different scenarios in our business process can be modeled and implemented using sagas.
 
 In the next lesson we'll learn about sagas that never end.
+
+
+----------
+
+Moved stuff (for now) from above the Exercise below
+
+----------
+
+## Commander sagas
+
+**TODO: These 2 sections seem out of place. "Hey by the way, two really weird and random tidbits because we'd rather be confusing than get right to the exercise??**
+
+The __Introduction to NServiceBus__ (**TODO: "introduction to NServiceBus"? Or "messaging basics"?**) tutorial covered how to send messages, configure routing and how the publish/subscribe pattern works. This lesson will focus on orchestrating a more complex business process that needs to call an external web service.
+
+As a good rule of thumb, sagas should be simple process coordinators delegating calling webservices or accessing databases to other classes. That allows to [avoid contention on the saga state](/nservicebus/sagas/#accessing-databases-and-other-resources-from-a-saga). Delegating the work is done by sending commands to other handlers, which is why these type of sagas are called `commander sagas`.
+
+
+## Replying
+
+When sending a message as a request to another handler, the receiver might reply with a response. With NServiceBus it is very easy to work with these types of messages. Where normally you'd need to configure routing to specify where messages should be send, with replies it's much easier. In fact it is as easy as:
+
+snippet: Replay
+
+Whenever a message is sent using NServiceBus additional [message headers](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-replytoaddress) are appended. As a result you can use the `Reply()` method and NServiceBus will use information from the headers to return this message. The message metadata also includes identifier for that saga instance, so you don't need to map the response message to a saga instance in the `ConfigureHowToFindSaga()` method. NServiceBus will map it automatically.
+
+Another powerful method is the `ReplyToOriginator()` method available to sagas. It will send a message to the endpoint instance that originally started given saga.
+
+snippet: ReplyToOriginator
+
+#### Reply message type
+
+Up until now all our messages were either commands or events, we've been using `ICommand` and `IEvent` interfaces to indicate that. Some messages though, are neither commands nor events. For example, in this exercise we'll have a message `ShipmentAcceptedByMaple` which is a response to a request. We'll mark such messages with the `IMessage` interface.

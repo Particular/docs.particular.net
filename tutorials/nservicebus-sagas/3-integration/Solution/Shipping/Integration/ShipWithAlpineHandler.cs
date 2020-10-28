@@ -12,11 +12,11 @@ namespace Shipping.Integration
         static ILog log = LogManager.GetLogger<ShipWithAlpineHandler>();
 
         const int MaximumTimeMapleMightRespond = 30;
-        static Random rnd = new Random();
+        static Random random = new Random();
 
         public async Task Handle(ShipWithAlpine message, IMessageHandlerContext context)
         {
-            var waitingTime = rnd.Next(MaximumTimeMapleMightRespond);
+            var waitingTime = random.Next(MaximumTimeMapleMightRespond);
 
             log.Info($"Order #{message.OrderId} - Waiting {waitingTime} seconds.");
 

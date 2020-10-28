@@ -1,11 +1,11 @@
-﻿namespace Core_7.ShipOrderPolicyShipOrder
+﻿namespace Core_7.ShipOrderWorkflowShipOrder
 {
     using NServiceBus;
     using System.Threading.Tasks;
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    #region ShipOrderPolicyShipOrder
-    class ShipOrderPolicy :
-        Saga<ShipOrderPolicy.ShipOrderData>,
+    #region ShipOrderWorkflowShipOrder
+    class ShipOrderWorkflow :
+        Saga<ShipOrderWorkflow.ShipOrderData>,
         IAmStartedByMessages<ShipOrder>
     {
         public async Task Handle(ShipOrder message, IMessageHandlerContext context)
