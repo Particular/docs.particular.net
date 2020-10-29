@@ -9,6 +9,6 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-No real changes here!
+Nothing to report...
 
 
