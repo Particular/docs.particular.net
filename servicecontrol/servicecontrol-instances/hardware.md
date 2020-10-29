@@ -69,8 +69,6 @@ WARNING: When using ServiceInsight, the message body will not be viewable for me
 
 Use a dedicated disk for the ServiceControl [database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath).
 
-Additionally, it is possible to store the embedded database index files on a separate disk. Use the [`Raven/IndexStoragePath`](/servicecontrol/creating-config-file.md#host-settings-ravenindexstoragepath) setting to change the index storage location.
-
 ### Azure disk limitations
 
 Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#suggestions-to-improve-performance-scale-out).
