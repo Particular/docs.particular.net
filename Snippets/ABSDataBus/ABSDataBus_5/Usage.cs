@@ -43,14 +43,13 @@ class Usage
 
     public class CustomProvider : IProvideBlobServiceClient
     {
-        public CustomProvider()
+        // Leverage dependency injection to get a preconfigured BlobServiceClient with the suitable configuration
+        public CustomProvider(BlobServiceClient serviceClient)
         {
-            serviceClient = new BlobServiceClient("connectionString");
+            Client = serviceClient;
         }
 
-        public BlobServiceClient Client => serviceClient;
-
-        readonly BlobServiceClient serviceClient;
+        public BlobServiceClient Client { get; }
     }
     
     #endregion
