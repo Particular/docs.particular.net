@@ -1,0 +1,22 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABSDataBus_5", "ABSDataBus_5.csproj", "{BA41AE7D-8D47-4E98-AA8C-7F970D0F564C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA41AE7D-8D47-4E98-AA8C-7F970D0F564C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA41AE7D-8D47-4E98-AA8C-7F970D0F564C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7183A44E-D136-428C-91BA-92248D9DA7BF}
+	EndGlobalSection
+EndGlobal
