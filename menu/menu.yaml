@@ -1129,7 +1129,9 @@
     Url: servicecontrol/upgrades
     Articles:  
     - Title: Support policy
-      Url: servicecontrol/upgrades/support-policy    
+      Url: servicecontrol/upgrades/support-policy  
+    - Title: Version 4 to 5
+      Url: servicecontrol/upgrades/4to5   
     - Title: Version 3 to 4
       Url: servicecontrol/upgrades/3to4    
     - Title: Version 2 to 3
