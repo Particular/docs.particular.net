@@ -1,9 +1,10 @@
-﻿namespace Core_7.ShipOrderWorkflowShipOrder
+﻿#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+namespace Creation
 {
     using NServiceBus;
     using System.Threading.Tasks;
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    #region ShipOrderWorkflowShipOrder
+
+    #region Creation-SagaStart
     class ShipOrderWorkflow :
         Saga<ShipOrderWorkflow.ShipOrderData>,
         IAmStartedByMessages<ShipOrder>
@@ -19,15 +20,12 @@
         // ...
         #endregion
 
+        #region Creation-ConfigureHowToFindSaga
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderData> mapper)
         {
             mapper.ConfigureMapping<ShipOrder>(message => message.OrderId).ToSaga(saga => saga.OrderId);
         }
+        #endregion
     }
-
-    internal class ShipOrder
-    {
-        public string OrderId { get; internal set; }
-    }
-    #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 }
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously

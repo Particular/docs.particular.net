@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shipping.Integration
 {
-    class ShipWithAlpineHandler : 
-        IHandleMessages<ShipWithAlpine>
+    class ShipWithAlpineHandler : IHandleMessages<ShipWithAlpine>
     {
         static ILog log = LogManager.GetLogger<ShipWithAlpineHandler>();
 

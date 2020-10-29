@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Shipping.Integration
 {
-    class ShipWithMapleHandler : 
-        IHandleMessages<ShipWithMaple>
+    #region ShipWithMapleHandler
+
+    class ShipWithMapleHandler : IHandleMessages<ShipWithMaple>
     {
         static ILog log = LogManager.GetLogger<ShipWithMapleHandler>();
 
@@ -26,4 +27,6 @@ namespace Shipping.Integration
                 .ConfigureAwait(false);
         }
     }
+
+    #endregion
 }

@@ -36,7 +36,6 @@
             Data.ShipmentAcceptedByMaple = true;
 
             return Task.CompletedTask;
-
         }
 
         public Task Handle(ShipmentAcceptedByAlpine message, IMessageHandlerContext context)
@@ -75,10 +74,8 @@
             public bool ShipmentAcceptedByAlpine { get; set; }
         }
 
-        #region ShippingEscalationTimeout
         internal class ShippingEscalation
         {
         }
-        #endregion
     }
 }

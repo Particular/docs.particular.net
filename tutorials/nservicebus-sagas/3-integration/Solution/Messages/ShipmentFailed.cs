@@ -2,8 +2,7 @@
 
 namespace Shipping
 {
-    public class ShipmentFailed : 
-        IEvent
+    public class ShipmentFailed : IEvent
     {
     }
 }

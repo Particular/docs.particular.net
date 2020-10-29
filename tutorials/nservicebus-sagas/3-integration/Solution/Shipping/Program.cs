@@ -18,8 +18,6 @@ namespace Shipping
 
             var routing = transport.Routing();
             routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
-            routing.RouteToEndpoint(typeof(ShipmentAcceptedByMaple), "Shipping");
-            routing.RouteToEndpoint(typeof(ShipmentAcceptedByAlpine), "Shipping");
             routing.RouteToEndpoint(typeof(ShipWithMaple), "Shipping");
             routing.RouteToEndpoint(typeof(ShipWithAlpine), "Shipping");
 
