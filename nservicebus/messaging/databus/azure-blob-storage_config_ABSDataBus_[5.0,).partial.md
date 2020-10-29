@@ -2,6 +2,12 @@
 
 There are several ways to configure the `BlobServiceClient`. 
 
+#### Using a preconfigured BlobServiceClient
+
+A fully configured `BlobServiceClient` can be set through the settings:
+
+snippet: AzureDataBusConfigureServiceClient
+
 #### Using a custom provider
 
 A custom provider can be declared that provides a fully configured `BlobServiceClient`:
@@ -11,12 +17,6 @@ snippet: CustomBlobServiceClientProvider
 The provider is then registered in the container:
 
 snippet: AzureDataBusInjectServiceClient
-
-#### Using the databus settings
-
-A fully configured `BlobServiceClient` can be set through the settings:
-
-snippet: AzureDataBusConfigureServiceClient
 
 #### Providing a connection string and container name
 
