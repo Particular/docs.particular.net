@@ -124,21 +124,21 @@ Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) su
 
 [Newtonsoft.Json.Encryption](https://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption)
 
-Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the nodes that require encryption are touched, the remaining content is still human readable. This approach provides an compromise between readability/debugabaility and security.
+Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the nodes that require encryption are touched, the remaining content is still human readable. This approach provides a compromise between readability/debugability and security.
 
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
 
 
 ## [NServiceBus.SqlServer.Native](https://github.com/NServiceBusExtensions/NServiceBus.Native)
 
-SQL Server Transport Native is a shim providing low-level access to the [NServiceBus SQL Server Transport](/transports/sql/) with no NServiceBus or SQL Server Transport reference required.
+A shim providing low-level access to the [NServiceBus SQL Server Transport](/transports/sql/) with no NServiceBus or SQL Server Transport reference required.
 
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
 
 
 ## [NServiceBus Validation](https://github.com/NServiceBusExtensions/NServiceBus.Validation)
 
-Allows validating message contents with options to use [DataAnnotations](https://msdn.microsoft.com/en-us/library/system.componentmodel.dataannotations.aspx) and [FluentValidation](https://github.com/JeremySkinner/FluentValidation).
+Allows validating message contents with options to use [DataAnnotations](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations) and [FluentValidation](https://github.com/JeremySkinner/FluentValidation).
 
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
 
