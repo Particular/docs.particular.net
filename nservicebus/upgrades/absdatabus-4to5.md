@@ -9,6 +9,5 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-Nothing to report...
-
+Upgrade from version 7 to 8 does not require any code changes.
 

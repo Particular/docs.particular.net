@@ -22,4 +22,4 @@ snippet: AzureDataBusInjectServiceClient
 
 snippet: AzureDataBusConnectionAndContainer
 
-NOTE: The container name is not required and will be set to a default value unless a value is supplied.
+NOTE: The container name is optional and will be set to the default when omitted.
