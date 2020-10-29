@@ -48,22 +48,6 @@ The path where the internal RavenDB is located.
 Type: string
 
 
-#### Raven/IndexStoragePath
-
-The path for the indexes on disk.
-
-Type: string
-
-Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\indexes`
-
-#### Raven/Esent/LogsPath
-
-The path for the Esent logs on disk.
-
-Type: string
-
-Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs`
-
 #### ServiceControl.Audit/LogPath
 
 The path for the ServiceControl logs.
@@ -88,19 +72,6 @@ Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 This setting will default to `Warn` if an invalid value is assigned.
 
 
-#### ServiceControl.Audit/RavenDBLogLevel
-
-Controls the LogLevel of the RavenDB logs.
-
-Type: string
-
-Default: `Warn`
-
-Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
-
-This setting will default to `Warn` if an invalid value is assigned.
-
-
 #### ServiceControl.Audit/TimeToRestartAuditIngestionAfterFailure
 
 Controls the maximum time delay to wait before restarting the audit ingestion pipeline after detecting a connection problem.
@@ -110,6 +81,14 @@ Type: timespan
 Default: 60 seconds
 
 Valid settings are between 5 seconds and 1 hour.
+
+#### ServiceControl.Audit/RavenDBNetCoreRuntimeVersion
+
+Forces ServiceControl to use specific version of .NET Core runtime for RavenDB.
+
+Type: string (version number)
+
+Default: latest version found
 
 
 ## Data retention
