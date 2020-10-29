@@ -23,7 +23,7 @@ Type: int
 
 #### ServiceControl.Audit/DatabaseMaintenancePort
 
-The port to bind the RavenDB when in [maintenance mode](/servicecontrol/audit-instances/maintenance-mode.md).
+The port to bind the RavenDB when in maintenance mode or when RavenDB is configured to expose HTTP API.
 
 Type: int
 
