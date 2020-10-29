@@ -54,6 +54,14 @@ may be replaced with:
 endpointConfiguration.RegisterComponents(s => s.AddTransient<MyService>());
 ```
 
+See the following table for recommended replacements. See the [IServiceCollection documentation](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection?view=dotnet-plat-ext-3.1) for a full list of available registration methods.
+
+| `ConfigureComponents` usage                                               | Replacement                  |
+| ------------------------------------------------------------------------- | ---------------------------- |
+| `ConfigureComponent<MyService>(DependencyLifecyle.InstancePerCall)`       | `AddTransient<MyService>()`  |
+| `ConfigureComponent<MyService>(DependencyLifecyle.SingleInstance)`        | `AddSingleton<MyService>()`  |
+| `ConfigureComponent<MyService>(DependencyLifecyle.InstancePerUnitOfWork)` | `AddScoped<MyService>()`     |
+
 The former `ConfigureComponents` automatically registered all interfaces of a given type. The `IServiceCollection.Add` methods do not do this. Any inherited interfaces must be registered explicitly. For example, their registrations may be forwarded to the inheriting type:
 
 ```
