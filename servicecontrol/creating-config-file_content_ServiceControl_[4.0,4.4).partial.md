@@ -1,13 +1,3 @@
----
-title: Configuration Settings
-summary: Categorized list of ServiceControl configuration settings.
-reviewed: 2019-12-20
----
-
-
-The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
-
-
 ## Host settings
 
 The following documents should be reviewed prior to modifying configuration settings:

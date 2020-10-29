@@ -30,7 +30,21 @@ Warning: If the `ServiceControl/Port` setting is changed, and the `ServiceContro
 
 #### ServiceControl/DatabaseMaintenancePort
 
-The port to bind the RavenDB when in maintenance mode or [RavenDB is exposed](creating-config-file.md#troubleshooting-servicecontrolexposeravendb).
+
+The port to bind the embedded RavenDB database.
+
+NOTE: [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
+
+WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
+
+After restarting the ServiceControl Audit service, access the RavenDB studio locally at the following endpoint:
+
+```no-highlight
+http://localhost:{selected RavenDB port}/studio/index.html
+```
+
+NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](/servicecontrol/setting-custom-hostname.md).
+
 
 Type: int
 
@@ -97,6 +111,17 @@ Default: `Warn`
 Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`. This setting will default to `Warn` if an invalid value is assigned.
 
 
+#### ServiceControl/TimeToRestartErrorIngestionAfterFailure
+
+Controls the maximum time delay to wait before restarting the error ingestion pipeline after detecting a connection problem.
+
+Type: timespan
+
+Default: 60 seconds
+
+Valid settings are between 5 seconds and 1 hour.
+
+
 ## Data retention
 
 
@@ -109,18 +134,9 @@ Type: int
 Default: `600` (10 minutes). Setting the value to `0` will disable the expiration process. This is not recommended and it is only provided for fault finding. Valid range is `0` to `10800` (3 Hours).
 
 
-#### ServiceControl/ExpirationProcessBatchSize
-
-This setting was introduced in version 1.4. The minimum allowed value for this setting is `10240`; there is no hard-coded maximum as this is dependent on system performance.
-
-Type: int
-
-Default: `65512`.
-
-
 #### ServiceControl/AuditRetentionPeriod
 
-The period to keep an audit message before it is deleted.
+The period to keep an audit message before it is deleted. Although since Version 4 audit messages are not ingested in the main Service Control instance, this setting is still applicable as there might be existing audit information in the database.
 
 Type: timespan
 
@@ -156,15 +172,6 @@ Valid range for this setting is from 1 hour to 200 days.
 ## Performance tuning
 
 
-#### ServiceControl/MaxBodySizeToStore
-
-Maximum size of audit message payload stored in the ServiceControl database. Payloads of larger messages are dropped.
-
-Type: int
-
-Default: `102400` (100Kb)
-
-
 #### ServiceControl/HttpDefaultConnectionLimit
 
 The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, the number of concurrent connections can be increased to meet transport concurrency settings.
@@ -186,19 +193,12 @@ Default: `ServiceControl.Transports.Msmq.MsmqTransportCustomization, ServiceCont
 
 The assembly containing the transport type needs to be present in the ServiceControl directory for ServiceControl being able to instantiate the transport type.
 
+
 #### NServiceBus/Transport
 
 The connection string for the transport. This setting should be placed in the `connectionStrings` section of the configuration file.
 
 Type: string
-
-#### ServiceBus/AuditQueue
-
-The audit queue name.
-
-Type: string
-
-Default: `audit`
 
 
 #### ServiceBus/ErrorQueue
@@ -221,30 +221,6 @@ Default: `<ErrorQueue>.log`
 ServiceControl creates the queue specified by this setting only if `ServiceControl/ForwardErrorMessages` is enabled.
 
 NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
-
-#### ServiceBus/AuditLogQueue
-
-The audit queue name to use for forwarding audit messages. This works only if `ServiceControl/ForwardAuditMessages` is true.
-
-Type: string
-
-Default: `<AuditQueue>.log`
-
-ServiceControl creates the queue specified by this setting only if `ServiceControl/ForwardAuditMessages` is enabled.
-
-NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue. 
-
-#### ServiceControl/ForwardAuditMessages
-
-Use this setting to configure whether processed audit messages are forwarded to another queue or not. This queue is known as the Audit Forwarding Queue.
-
-Type: bool `true` or `false`
-
-There is no default for this setting. This setting needs to be specified.
-
-If this setting is not explicitly set to true or false, a warning is shown in the logs at startup.
-
-See [Installation](installation.md) for details on how to set this at install time.
 
 
 #### ServiceControl/ForwardErrorMessages
@@ -276,26 +252,6 @@ When configuring the heartbeat grace period, make sure it is greater than the [h
 Note: When monitoring multiple endpoints, ensure that the heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
 
 ## Troubleshooting
-
-#### ServiceControl/ExposeRavenDB
-
-ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio. 
-
-NOTE: [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
-
-WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
-
-Type: bool
-
-Default: `false`
-
-After restarting the ServiceControl service, access the RavenDB studio locally at the following endpoint:
-
-```no-highlight
-http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&database=%3Csystem%3E
-```
-
-NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).
 
 
 #### ServiceControl/DataSpaceRemainingThreshold
