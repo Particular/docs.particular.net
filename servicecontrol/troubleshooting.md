@@ -81,14 +81,12 @@ If the following exception occurs at startup than this is likely because there a
 Service cannot be started. System.MissingMethodException: Method not found: 'Void System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.set_SerializerSettings(Newtonsoft.Json.JsonSerializerSettings)'.
 ```
 
-Removing these entries from the GAC should resolve this problem. 
-
-These can be removed by running the following in an elevated (administrator) console:
+This problem can be resolved by removing `Newtonsoft.Json` entries from the GAC. It can be done with the following command in an elevated (administrator) console:
 
 ```cmd
 gacutil /u Newtonsoft.Json
 ```
 
-It might be required to remove all `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Assemblies\Global Newtonsoft.Json` keys from the registry to be able to remove it with `gacutil /u Newtonsoft.Json`.
+It may be required to first remove all `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Assemblies\Global Newtonsoft.Json` keys from the registry before using `gacutil /u Newtonsoft.Json`.
 
  
