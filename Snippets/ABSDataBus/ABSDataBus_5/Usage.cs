@@ -6,7 +6,6 @@ using NServiceBus.DataBus.AzureBlobStorage.Config;
 
 class Usage
 {
-
     Usage(EndpointConfiguration endpointConfiguration)
     {
         #region AzureDataBus
@@ -59,13 +58,11 @@ class Usage
         var azureStorageConnectionString = "";
         var basePathWithinContainer = "";
         var containerName = "";
-        var timeToLiveInSeconds = 1;
         var maxNumberOfRetryAttempts = 3;
         // number of parallel operations that may proceed.
         var numberOfIoThreads = 3;
         // number of blocks that may be simultaneously uploaded when uploading a blob that is greater than the value specified by the
         var backOffIntervalBetweenRetriesInSecs = 1000;
-        var cleanupIntervalInMilSecs = 600000;
         var renewFiveMinutesBeforeTokenExpires = TimeSpan.FromMinutes(5);
 
         #region AzureDataBusSetup
@@ -74,22 +71,10 @@ class Usage
         dataBus.ConnectionString(azureStorageConnectionString);
         dataBus.Container(containerName);
         dataBus.BasePath(basePathWithinContainer);
-        dataBus.DefaultTTL(timeToLiveInSeconds);
         dataBus.MaxRetries(maxNumberOfRetryAttempts);
         dataBus.NumberOfIOThreads(numberOfIoThreads);
         dataBus.BackOffInterval(backOffIntervalBetweenRetriesInSecs);
-        dataBus.CleanupInterval(cleanupIntervalInMilSecs);
-
-        #endregion
-    }
-
-    void Disable(EndpointConfiguration endpointConfiguration)
-    {
-        #region AzureDataBusDisableCleanup
-
-        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
-        dataBus.CleanupInterval(0);
-
+        
         #endregion
     }
 }
