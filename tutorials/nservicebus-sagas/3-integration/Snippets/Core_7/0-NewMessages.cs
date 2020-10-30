@@ -25,3 +25,10 @@ public class ShipmentAcceptedByAlpine : IMessage
 {
 }
 #endregion
+
+#region ShipmentFailedEvent
+public class ShipmentFailed : IEvent
+{
+    public string OrderId { get; set; }
+}
+#endregion

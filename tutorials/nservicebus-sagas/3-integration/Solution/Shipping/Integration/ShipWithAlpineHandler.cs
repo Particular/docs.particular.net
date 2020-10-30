@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Shipping.Integration
 {
+    #region ShipWithAlpineHandler
+
     class ShipWithAlpineHandler : IHandleMessages<ShipWithAlpine>
     {
         static ILog log = LogManager.GetLogger<ShipWithAlpineHandler>();
@@ -26,4 +28,6 @@ namespace Shipping.Integration
                 .ConfigureAwait(false);
         }
     }
+
+    #endregion
 }
