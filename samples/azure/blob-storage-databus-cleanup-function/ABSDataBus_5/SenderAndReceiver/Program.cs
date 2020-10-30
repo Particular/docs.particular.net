@@ -1,24 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Azure.Storage.Blobs;
 using NServiceBus;
 
 class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.AzureBlobStorageDataBus.Sender";
-        var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Sender");
+        Console.Title = "Samples.AzureDataBusCleanupWithFunctions.SenderAndReceiver";
+        var endpointConfiguration = new EndpointConfiguration("Samples.AzureDataBusCleanupWithFunctions.SenderAndReceiver");
 
-        #region ConfiguringDataBusLocation
-
-        var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
-        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>()
-            .Container("testcontainer")
-            .UseBlobServiceClient(blobServiceClient);
+        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
+        dataBus.ConnectionString("UseDevelopmentStorage=true");
         
-        #endregion
-
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.EnableInstallers();
@@ -57,17 +50,13 @@ class Program
     {
         Console.WriteLine("Sending message...");
 
-        #region SendMessageLargePayload
-
         var message = new MessageWithLargePayload
         {
             Description = "This message contains a large payload that will be sent on the Azure data bus",
             LargePayload = new DataBusProperty<byte[]>(new byte[1024*1024*5]) // 5MB
         };
-        await messageSession.Send("Samples.AzureBlobStorageDataBus.Receiver", message)
+        await messageSession.SendLocal(message)
             .ConfigureAwait(false);
-
-        #endregion
 
         Console.WriteLine("Message sent.");
     }

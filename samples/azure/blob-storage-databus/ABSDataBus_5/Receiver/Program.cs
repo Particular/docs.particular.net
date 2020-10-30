@@ -12,6 +12,7 @@ class Program
         
         var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>()
+            .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
         
         endpointConfiguration.UseTransport<LearningTransport>();
