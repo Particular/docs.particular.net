@@ -1,1 +1,1 @@
-The timeout manager has been depracated as of Version 8.
+The timeout manager has been deprecated as of Version 8.
