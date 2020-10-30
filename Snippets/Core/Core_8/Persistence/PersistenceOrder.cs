@@ -24,7 +24,6 @@
 
             endpointConfiguration.UsePersistence<RavenDBPersistence, StorageType.Sagas>();
             endpointConfiguration.UsePersistence<RavenDBPersistence, StorageType.Subscriptions>();
-            endpointConfiguration.UsePersistence<RavenDBPersistence, StorageType.Timeouts>();
             #endregion
         }
 

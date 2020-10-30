@@ -119,3 +119,16 @@ NServiceBus is now throwing an `InvalidOperationException` when invoking message
 Support for non-durable messaging has been moved to the transports that can support it which at this time is RabbitMQ. If using any other transport use of `[Express]` or message conventions to request non-durable deliver can safely be removed.
 
 RabbitMQ user should use the new [`options.UseNonPersistentDeliveryMode()` API provided by `NServiceBus.RabbitMQ` Version 7](/transports/rabbitmq/#controlling-delivery-mode)
+
+## Timeout manager removed
+
+With all transports in Version 8 supporting native delayed delivery using the [timeout manager](/nservicebus/messaging/timeout-manager.md) is no longer needed. Any calls to `EndpointConfiguration.TimeoutManager()` and `EndpointConfiguration.UseExternalTimeoutManager()` can safely be removed.
+
+If using a transport that previously relied on the timeout manager a require a migration of existing timeouts. Use the [timeouts migration tool](/nservicebus/tools/migrate-to-native-delivery.md) to detect and migrate timeouts as needed.
+
+The following transports might need migration:
+
+* RabbitMQ
+* Azure Storage Queues
+* SQL Transport
+* SQS
