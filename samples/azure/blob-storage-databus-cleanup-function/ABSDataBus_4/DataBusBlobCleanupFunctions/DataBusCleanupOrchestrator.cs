@@ -36,7 +36,8 @@ public static class DataBusCleanupOrchestrator
             log.LogInformation($"Waiting until {timeoutUntil}/{validUntilUtc} for blob at {blobData.Path}. Currently {context.CurrentUtcDateTime}.");
             await context.CreateTimer(DataBusBlobTimeoutCalculator.ToUtcDateTime(blobData.ValidUntilUtc), CancellationToken.None);
         } while (validUntilUtc > timeoutUntil);
-
+        
+        // code below needs to be wrapped into another function (activity trigger) that is then called in the method above
         var blob = await cloudBlobClient.GetBlobReferenceFromServerAsync(new Uri(blobData.Path));
         log.LogInformation($"Deleting blob at {blobData.Path}");
         await blob.DeleteIfExistsAsync();
