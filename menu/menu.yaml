@@ -188,6 +188,8 @@
         Title: Version 1 to 2
       - Url: nservicebus/upgrades/absdatabus-2to3
         Title: Version 2 to 3
+      - Url: nservicebus/upgrades/absdatabus-3to4
+        Title: Version 3 to 4
       - Url: nservicebus/upgrades/absdatabus-4to5
         Title: Version 4 to 5
     - Title: Azure Cloud Services Host
