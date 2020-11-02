@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence Upgrade Version 1 to 2
 summary: Instructions on how to upgrade to SQL Persistence version 2
-reviewed: 2019-01-11
+reviewed: 2020-11-02
 component: SqlPersistence
 isUpgradeGuide: true
 redirects:
@@ -16,7 +16,7 @@ upgradeGuideCoreVersions:
 
 [Subscription Caching](/persistence/sql/subscriptions.md) is now a required configuration option. 
 
-Either configure a period of time cache for:
+Either configure a time to cache for:
 
 snippet: 1to2_subscriptions_CacheFor
 
@@ -27,24 +27,24 @@ snippet: 1to2_subscriptions_Disable
 
 ## Inheriting from SqlSaga now required
 
-In Version 1 inheriting from `NServiceBus.Saga<T>` was partially supported. However this has two competing approaches that deliver the same features, causing significant confusion. In Version 2 `NServiceBus.Saga<T>` is no longer supported and either a build error, or an runtime exception for some edge cases, will occur.
+In Version 1, inheriting from `NServiceBus.Saga<T>` was partially supported. However, this has two competing approaches that deliver the same features, causing significant confusion. In Version 2, `NServiceBus.Saga<T>` is no longer supported, and either a build error, or a runtime exception for some edge cases will occur.
 
 
 ## Deep nested Saga hierarchies are no longer supported
 
-In Version 1 having deep class hierarchies inheriting from `SqlSaga<T>` was supported. This scenario is no longer supported and all sagas **must** inherit directly from `SqlSaga<T>`. This decision was made to bring the SQL persistence inline with the future design of NServiceBus.
+In Version 1, having deep class hierarchies inheriting from `SqlSaga<T>` was supported. This scenario is no longer supported, and all sagas **must** inherit directly from `SqlSaga<T>`. This decision was made to bring the SQL persistence inline with the future design of NServiceBus.
 
 
 ## Correlation Property
 
-The API for definition a Correlation Property has been moved from an attribute to a property at the saga class level.
+The API for defining a Correlation Property has been moved from an attribute to a property at the saga class level.
 
 snippet: 1to2_Correlation
 
 
 ## Message Mapping
 
-The API to define message mapping has been changed to bring it inline with the future design of NServiceBus:
+The API to define message mapping has been changed to bring it in line with the future design of NServiceBus:
 
  * `MapMessage` renamed to `ConfigureMapping`.
  * `MessagePropertyMapper<T>` renamed to `IMessagePropertyMapper`.
@@ -59,7 +59,7 @@ To simplify implementing a saga using `SqlSaga<T>` class, the method `SqlSaga<T>
 
 ## SqlPersistenceSettingsAttribute move to use properties
 
-Attribute have been moved to use properties instead of optional parameters in the constructor.
+Attributes have been moved to use properties instead of optional parameters in the constructor.
 
 snippet: 1to2_SqlPersistenceSettings
 
@@ -77,7 +77,7 @@ An explicit schema API has been added.
 
 snippet: 1to2_Schema
 
-If characters that required quoting were previously used in the table prefix, they can be removed and the following used:
+If characters that required quoting were previously used in the table prefix, they can be removed and the following can be used instead:
 
 snippet: 1to2_Schema_Extended
 
