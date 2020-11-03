@@ -11,7 +11,7 @@ class Program
 
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
         dataBus.ConnectionString("UseDevelopmentStorage=true");
-        
+
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.EnableInstallers();

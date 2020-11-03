@@ -1,11 +1,3 @@
 {
-  "disabled": false,
-  "version": "2.0",
-  "bindings": [
-    {
-      "name": "context",
-      "type": "orchestrationTrigger",
-      "direction": "in"
-    }
-  ]
+  "version": "2.0"
 }

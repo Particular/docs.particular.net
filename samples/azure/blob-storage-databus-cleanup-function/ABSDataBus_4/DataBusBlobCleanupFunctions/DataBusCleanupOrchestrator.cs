@@ -4,20 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
 
 public static class DataBusCleanupOrchestrator
 {
-    static DataBusCleanupOrchestrator()
-    {
-        var storageConnectionString = Environment.GetEnvironmentVariable("DataBusStorageAccount");
-        var cloudStorageAccount = CloudStorageAccount.Parse(storageConnectionString);
-        cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
-    }
-
     #region DataBusCleanupOrchestratorFunction
-    
+
     [FunctionName(nameof(DataBusCleanupOrchestrator))]
     public static async Task RunOrchestrator([OrchestrationTrigger] IDurableOrchestrationContext context, ILogger log)
     {
@@ -36,13 +27,10 @@ public static class DataBusCleanupOrchestrator
             log.LogInformation($"Waiting until {timeoutUntil}/{validUntilUtc} for blob at {blobData.Path}. Currently {context.CurrentUtcDateTime}.");
             await context.CreateTimer(DataBusBlobTimeoutCalculator.ToUtcDateTime(blobData.ValidUntilUtc), CancellationToken.None);
         } while (validUntilUtc > timeoutUntil);
-        
-        // code below needs to be wrapped into another function (activity trigger) that is then called in the method above
-        var blob = await cloudBlobClient.GetBlobReferenceFromServerAsync(new Uri(blobData.Path));
-        log.LogInformation($"Deleting blob at {blobData.Path}");
-        await blob.DeleteIfExistsAsync();
-    }
-    #endregion
 
-    static CloudBlobClient cloudBlobClient;
+
+        await context.CallActivityAsync("DeleteBlob", blobData);
+    }
+
+    #endregion
 }
