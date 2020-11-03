@@ -70,7 +70,7 @@ On the primary instance, change the error queue name to `!disable`. Restart the 
 
 SCREENSHOT of doing this
 
-TODO: We need to rename the existing instances so that endpoint plugins do not need to be re-configured. This may not be simple.
+TODO: Need to rename the existing instances so that endpoint plugins do not need to be re-configured. This may not be simple.
 
 After completing this step, the target environment will look like this:
 
@@ -214,7 +214,7 @@ Verify that the remote has been configured correctly:
 Get-ServiceControlRemotes -Name "Version 5 primary ServiceControl instance name"
 ```
 
-NOTE: The version 4 primary ServiceControl instance also includes the version 4 Audit ServiceControl instance in its list of remotes by default. This is not a problem and both primary instances can treat the same Audit instance as a remote instance without any clash. If this is not desired, use the [`Remove-ServiceControlRemote`](https://docs.particular.net/servicecontrol/servicecontrol-instances/remotes#powershell-remove-a-remote-instance) powershell cmdlet to break the link.
+NOTE: The version 4 primary ServiceControl instance also includes the version 4 Audit ServiceControl instance in its list of remotes by default. This is not a problem and both primary instances can treat the same Audit instance as a remote instance without any clash. If this is not desired, use the [`Remove-ServiceControlRemote`](/servicecontrol/servicecontrol-instances/remotes.md#powershell-remove-a-remote-instance) powershell cmdlet to break the link.
 
 ### 2. Configure health checks and notifications
 
