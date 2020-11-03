@@ -32,7 +32,7 @@ static class DataBusBlobTimeoutCalculator
 
         return DateTime.MaxValue;
     }
-    
+
     #endregion
 
     /// <summary>
@@ -74,43 +74,53 @@ static class DataBusBlobTimeoutCalculator
             switch (format[i])
             {
                 case 'y':
-                    if (digit < '0' || digit > '9') throw new FormatException(errorMessage);
+                    Guard(digit);
                     year = year * 10 + (digit - '0');
                     break;
 
                 case 'M':
-                    if (digit < '0' || digit > '9') throw new FormatException(errorMessage);
+                    Guard(digit);
                     month = month * 10 + (digit - '0');
                     break;
 
                 case 'd':
-                    if (digit < '0' || digit > '9') throw new FormatException(errorMessage);
+                    Guard(digit);
                     day = day * 10 + (digit - '0');
                     break;
 
                 case 'H':
-                    if (digit < '0' || digit > '9') throw new FormatException(errorMessage);
+                    Guard(digit);
                     hour = hour * 10 + (digit - '0');
                     break;
 
                 case 'm':
-                    if (digit < '0' || digit > '9') throw new FormatException(errorMessage);
+                    Guard(digit);
                     minute = minute * 10 + (digit - '0');
                     break;
 
                 case 's':
-                    if (digit < '0' || digit > '9') throw new FormatException(errorMessage);
+                    Guard(digit);
                     second = second * 10 + (digit - '0');
                     break;
 
                 case 'f':
-                    if (digit < '0' || digit > '9') throw new FormatException(errorMessage);
+                    Guard(digit);
                     microSecond = microSecond * 10 + (digit - '0');
                     break;
             }
         }
 
         return new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc).AddMicroseconds(microSecond);
+
+        void Guard(char digit)
+        {
+            if (digit >= '0' && digit <= '9')
+            {
+                return;
+            }
+
+            throw new FormatException(errorMessage);
+        }
     }
 
     static DateTime AddMicroseconds(this DateTime self, int microseconds)
