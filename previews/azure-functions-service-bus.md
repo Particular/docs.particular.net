@@ -19,7 +19,7 @@ The endpoint is automatically configured with the endpoint name and the transpor
 
 Alternatively, the endpoint name can be passed in manually:
 
-snippet: alternative-endpoint-setup
+snippet: asb-alternative-endpoint-setup
 
 ### Azure Function definition
 
