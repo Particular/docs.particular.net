@@ -13,8 +13,8 @@ NServiceBus helps create distributed .NET systems not only on premises but also 
 
 ## Serverless
 
-* [Azure Functions with Azure Service Bus](/previews/azure-functions-service-bus)
-* [Azure Functions with Azure Storage Queues](/previews/azure-functions-storage-queues)
+* [Azure Functions with Azure Service Bus](/previews/azure-functions-service-bus/)
+* [Azure Functions with Azure Storage Queues](/previews/azure-functions-storage-queues/)
 
 ### Self-hosting
 
