@@ -36,7 +36,7 @@ NServiceBus interacts directly with the Azure Functions logging infrastructure b
 The license is provided via the `NSERVICEBUS_LICENSE` environment variable, which is set via the Function settings in the Azure Portal.
 For local development, use `local.settings.json`. In Azure, specify a Function setting using the environment variable as the key.
 
-include: asb-license-file-local-setting-file
+include: license-file-local-setting-file
 
 ### Custom diagnostics
 
