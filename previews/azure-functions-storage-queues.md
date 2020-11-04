@@ -13,17 +13,17 @@ Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-
 
 ### Endpoint configuration
 
-snippet: endpoint-configuration
+snippet: asq-endpoint-configuration
 
 The endpoint is automatically configured with the endpoint name, the transport connection string, and the logger passed into the function using a static factory method provided by the `ServiceBusTriggeredEndpointConfiguration.FromAttributes` method.
 
 Alternatively, the endpoint name can be passed in manually:
 
-snippet: alternative-endpoint-setup
+snippet: asq-alternative-endpoint-setup
 
 ### Azure Function definition
 
-snippet: function-definition
+snippet: asq-function-definition
 
 ## Configuration
 
@@ -32,29 +32,29 @@ snippet: function-definition
 The license is provided via the `NSERVICEBUS_LICENSE` environment variable, which is set via the Function settings in the Azure Portal.
 Use a `local.settings.json` file for local development. In Azure, specify a Function setting using the environment variable as the key.
 
-include: license-file-local-setting-file
+include: asq-license-file-local-setting-file
 
 ### Custom diagnostics
 
 [NServiceBus startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) are disabled by default when using Azure Functions. Diagnostics can be written to the logs with the following snippet:
 
-snippet: enable-diagnostics
+snippet: asq-enable-diagnostics
 
 ### Persistence
 
 The Azure Storage Queues transport requires a persistence for pub/sub and sagas to work.
 
-snippet: enable-persistence
+snippet: asq-enable-persistence
 
 Endpoints that do not have sagas and do not require pub/sub can omit persistence registration using the following transport option:
 
-snippet: disable-publishing
+snippet: asq-disable-publishing
 
 ### Error queue
 
 For recoverability to move the continuously failing messages to the error queue rather than the Functions poison queue, the error queue must be created in advance and configured using the following API:
 
-snippet: configure-error-queue
+snippet: asq-configure-error-queue
 
 ## Known constraints and limitations
 
@@ -82,7 +82,7 @@ The following features are supported but are not guaranteed to execute timely on
 The following features require an explicit opt-in:
   - [Delayed retries](/nservicebus/recoverability/#delayed-retries)
 
-snippet: enable-delayed-retries
+snippet: asq-enable-delayed-retries
 
 ## Preparing the Azure Storage account
 

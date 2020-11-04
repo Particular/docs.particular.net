@@ -11,7 +11,7 @@ class Usage
 {
     Usage(ServiceBusTriggeredEndpointConfiguration serviceBusTriggeredEndpointConfiguration, FunctionExecutionContext executionContext)
     {
-        #region enable-diagnostics
+        #region asb-enable-diagnostics
 
         serviceBusTriggeredEndpointConfiguration.LogDiagnostics();
 
@@ -20,14 +20,14 @@ class Usage
 
     public static void EnableDelayedRetries(ServiceBusTriggeredEndpointConfiguration endpointConfiguration)
     {
-        #region configure-error-queue
+        #region asb-configure-error-queue
 
         endpointConfiguration.AdvancedConfiguration.SendFailedMessagesTo("error");
 
         #endregion
     }
 
-    #region endpoint-configuration
+    #region asb-endpoint-configuration
 
     static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
@@ -38,7 +38,7 @@ class Usage
 
     #endregion
 
-    #region function-definition
+    #region asb-function-definition
 
     [FunctionName("ASBTriggerQueue")]
     public static async Task Run(
@@ -54,7 +54,7 @@ class Usage
 
     class AlternativeConfiguration
     {
-        #region alternative-endpoint-setup
+        #region asb-alternative-endpoint-setup
 
         static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
         {

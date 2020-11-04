@@ -13,7 +13,7 @@ Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-
 
 ### Endpoint configuration
 
-snippet: endpoint-configuration
+snippet: asb-endpoint-configuration
 
 The endpoint is automatically configured with the endpoint name and the transport connection string based on the values defined in the `[ServiceBusTrigger]` attribute using the `ServiceBusTriggeredEndpointConfiguration.FromAttributes` method.
 
@@ -25,7 +25,7 @@ snippet: alternative-endpoint-setup
 
 Pass the incoming message to the NServiceBus endpoint:
 
-snippet: function-definition
+snippet: asb-function-definition
 
 NServiceBus interacts directly with the Azure Functions logging infrastructure by passing the `ILogger` instance from the function parameters to the endpoint's `Process` method.
 
@@ -36,19 +36,19 @@ NServiceBus interacts directly with the Azure Functions logging infrastructure b
 The license is provided via the `NSERVICEBUS_LICENSE` environment variable, which is set via the Function settings in the Azure Portal.
 For local development, use `local.settings.json`. In Azure, specify a Function setting using the environment variable as the key.
 
-include: license-file-local-setting-file
+include: asb-license-file-local-setting-file
 
 ### Custom diagnostics
 
 [NServiceBus startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) are disabled by default when using Azure Functions. Diagnostics can be written to the logs via the following snippet:
 
-snippet: enable-diagnostics
+snippet: asb-enable-diagnostics
 
 ### Error queue
 
 For recoverability to move the continuously failing messages to the error queue rather than to the Azure Service Bus dead-letter queue, the error queue must be created in advance and configured using the following API:
 
-snippet: configure-error-queue
+snippet: asb-configure-error-queue
 
 ## Known constraints and limitations
 
