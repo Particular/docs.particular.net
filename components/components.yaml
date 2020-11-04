@@ -681,8 +681,8 @@
   GitHubOwner: Particular
   Category: Host
   SupportLevel: Preview
-  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.AwsLambda.Sqs/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.AwsLambda.Sqs
+  LicenseUrl: https://github.com/Particular/NServiceBus.AwsLambda.Sqs/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.AwsLambda.Sqs
   NugetOrder:
     - NServiceBus.AwsLambda.Sqs
 
