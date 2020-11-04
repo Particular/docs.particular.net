@@ -17,7 +17,7 @@ An NServiceBus endpoint is hosted in AWS Lambda by creating an `AwsLambdaSQSEndp
 
 The endpoint should be instantiated only once, when the lambda is first called, and assigned to a `static` field:
 
-snippet: endpoint-creation
+snippet: aws-endpoint-creation
 
 Since the cost of starting an `AwsLambdaSQSEndpoint` endpoint can be high, it is recommended to [configure the lambda's concurrency](https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html) to minimize cold starts.
 
@@ -25,7 +25,7 @@ Since the cost of starting an `AwsLambdaSQSEndpoint` endpoint can be high, it is
 
 The `AwsLambdaSQSEndpoint.Process` method is invoked inside the function handler:
 
-snippet: function-definition
+snippet: aws-function-definition
 
 ### Queue creation
 
@@ -37,23 +37,23 @@ Transport installers are not supported. The creation of the required queues may 
 
 Specifying [command routing](/nservicebus/messaging/routing.md#command-routing) for an AWS Lambda endpoint:
 
-snippet: configure-routing
+snippet: aws-configure-routing
 
 ### Diagnostics
 
 [NServiceBus startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) are disabled by default when using AWS Lambda. Diagnostics may be enabled as follows:
 
-snippet: custom-diagnostics
+snippet: aws-custom-diagnostics
 
 ### Delayed Retries
 
 [Delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) are disabled by default when using AWS Lambdas. Delayed retries may be enabled as follows:
 
-snippet: delayed-retries
+snippet: aws-delayed-retries
 
 If the accumulated time increase is expected to be greater than [15 minutes](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery), `UnrestrictedDurationDelayedDelivery` must be enabled:
 
-snippet: unrestricted-delayed-delivery
+snippet: aws-unrestricted-delayed-delivery
 
 Note: Automatic creation of the required queues for unrestricted delayed delivery is not supported. The creation of the required queues may be scripted using the [CLI](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery-manual-fifo-queue-creation).
 
@@ -61,17 +61,17 @@ Note: Automatic creation of the required queues for unrestricted delayed deliver
 
 Messages which fail all retries are moved to the error queue, which must be defined as follows:
 
-snippet: configure-error-queue
+snippet: aws-configure-error-queue
 
 Alternatively, the endpoint may be configured to never move failing messages to the error queue as follows:
 
-snippet: configure-dont-move-to-error
+snippet: aws-configure-dont-move-to-error
 
 ### Serializer
 
 The default serializer is the [XmlSerializer](/nservicebus/serialization/xml.md). A different serializer can be configured:
 
-snippet: custom-serializer
+snippet: aws-custom-serializer
 
 ### Licenses
 
