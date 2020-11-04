@@ -10,14 +10,14 @@ class Usage
 {
     Usage(StorageQueueTriggeredEndpointConfiguration storageQueueTriggeredEndpointConfiguration, FunctionExecutionContext executionContext)
     {
-        #region enable-diagnostics
+        #region asq-enable-diagnostics
 
         storageQueueTriggeredEndpointConfiguration.LogDiagnostics();
 
         #endregion
     }
 
-    #region endpoint-configuration
+    #region asq-endpoint-configuration
 
     static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
@@ -30,7 +30,7 @@ class Usage
 
     public static void EnablePersistence(StorageQueueTriggeredEndpointConfiguration endpointConfiguration)
     {
-        #region enable-persistence
+        #region asq-enable-persistence
 
         var persistence = endpointConfiguration.AdvancedConfiguration.UsePersistence<AzureStoragePersistence>();
         persistence.ConnectionString("<connection-string>");
@@ -40,7 +40,7 @@ class Usage
 
     public static void EnableDelayedRetries(StorageQueueTriggeredEndpointConfiguration endpointConfiguration, int numberOfDelayedRetries, TimeSpan timeIncreaseBetweenDelayedRetries)
     {
-        #region enable-delayed-retries
+        #region asq-enable-delayed-retries
 
         var recoverability = endpointConfiguration.AdvancedConfiguration.Recoverability();
         recoverability.Delayed(settings =>
@@ -51,7 +51,7 @@ class Usage
 
         #endregion
 
-        #region configure-error-queue
+        #region asq-configure-error-queue
 
         endpointConfiguration.AdvancedConfiguration.SendFailedMessagesTo("error");
 
@@ -60,7 +60,7 @@ class Usage
 
     public static void DisablePublishing(StorageQueueTriggeredEndpointConfiguration endpointConfiguration)
     {
-        #region disable-publishing
+        #region asq-disable-publishing
 
         endpointConfiguration.Transport.DisablePublishing();
 
@@ -69,7 +69,7 @@ class Usage
 
     class SomeEvent { }
 
-    #region function-definition
+    #region asq-function-definition
 
     [FunctionName("ASQTriggerQueue")]
     public static async Task Run(
@@ -85,7 +85,7 @@ class Usage
 
     class AlternativeConfiguration
     {
-        #region alternative-endpoint-setup
+        #region asq-alternative-endpoint-setup
 
         static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
         {

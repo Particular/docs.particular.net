@@ -7,7 +7,7 @@ using NServiceBus;
 
 class Usage
 {
-    #region endpoint-creation
+    #region aws-endpoint-creation
 
     static readonly AwsLambdaSQSEndpoint endpoint = new AwsLambdaSQSEndpoint(context =>
     {
@@ -20,7 +20,7 @@ class Usage
 
     #endregion
 
-    #region function-definition
+    #region aws-function-definition
 
     public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
     {
@@ -35,7 +35,7 @@ class Usage
 
     static void CustomDiagnostics(AwsLambdaSQSEndpointConfiguration endpointConfiguration, ILambdaContext context)
     {
-        #region custom-diagnostics
+        #region aws-custom-diagnostics
 
         var advanced = endpointConfiguration.AdvancedConfiguration;
 
@@ -50,7 +50,7 @@ class Usage
 
     static void Recoverability(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
     {
-        #region delayed-retries
+        #region aws-delayed-retries
 
         var recoverability = endpointConfiguration.AdvancedConfiguration.Recoverability();
         recoverability.Delayed(customization =>
@@ -61,7 +61,7 @@ class Usage
 
         #endregion
 
-        #region unrestricted-delayed-delivery
+        #region aws-unrestricted-delayed-delivery
 
         endpointConfiguration.Transport.UnrestrictedDurationDelayedDelivery();
 
@@ -70,7 +70,7 @@ class Usage
 
     static void ConfigureErrorQueue(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
     {
-        #region configure-error-queue
+        #region aws-configure-error-queue
 
         var advanced = endpointConfiguration.AdvancedConfiguration;
 
@@ -81,7 +81,7 @@ class Usage
 
     static void ConfigureDontMoveToErrors(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
     {
-        #region configure-dont-move-to-error
+        #region aws-configure-dont-move-to-error
 
         endpointConfiguration.DoNotSendMessagesToErrorQueue();
 
@@ -89,7 +89,7 @@ class Usage
     }
     static void ConfigureSerializer(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
     {
-        #region custom-serializer
+        #region aws-custom-serializer
 
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         
@@ -98,7 +98,7 @@ class Usage
 
     static void RoutingConfiguration(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
     {
-        #region configure-routing
+        #region aws-configure-routing
 
         var transport = endpointConfiguration.Transport;
         var routing = transport.Routing();
