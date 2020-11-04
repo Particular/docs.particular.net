@@ -642,17 +642,6 @@
   NugetOrder:
     - NServiceBus.UniformSession
 
-- Key: Serverless
-  Name: Serverless
-  DocsUrl: /nservicebus
-  GitHubOwner: Particular
-  Category: Host
-  SupportLevel: Labs
-  LicenseUrl: https://github.com/ParticularLabs/NServiceBus.Serverless/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.Serverless
-  NugetOrder:
-    - NServiceBus.Serverless
-
 - Key: ASBFunctions
   Name: NServiceBus.AzureFunctions.ServiceBus
   DocsUrl: /previews/azure-functions-service-bus
