@@ -5,10 +5,20 @@ class DelayConfig
 {
     void ConfigurePeekDelay(EndpointConfiguration endpointConfiguration)
     {
-        #region sqlserver-config-delay
+        #region sqlserver-queue-peeker-config-delay
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.WithPeekDelay(TimeSpan.FromSeconds(5));
+        transport.QueuePeekerOptions(delay: TimeSpan.FromSeconds(5));
+
+        #endregion
+    }
+    
+    void ConfigurePeekBatchSize(EndpointConfiguration endpointConfiguration)
+    {
+        #region sqlserver-queue-peeker-config-batch-size
+
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        transport.QueuePeekerOptions(peekBatchSize: 50);
 
         #endregion
     }
