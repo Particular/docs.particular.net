@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 public static class DataBusBlobCreated
 {
     #region DataBusBlobCreatedFunction
+
     [FunctionName(nameof(DataBusBlobCreated))]
     public static async Task Run([BlobTrigger("databus/{name}", Connection = "DataBusStorageAccount")]CloudBlockBlob  myBlob, [DurableClient] IDurableOrchestrationClient starter, ILogger log)
     {
@@ -37,5 +38,6 @@ public static class DataBusBlobCreated
         });
 
     }
+
     #endregion
 }
