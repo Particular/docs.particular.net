@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus.Pipeline;
-
-namespace Core7
+﻿namespace Core7
 {
     using NServiceBus;
 
