@@ -19,7 +19,6 @@ public static class DeleteBlobFunction
     [FunctionName("DeleteBlob")]
     public static async Task DeleteBlob([ActivityTrigger] DataBusBlobData blobData, ILogger log)
     {
-        // var blobData = context.GetInput<DataBusBlobData>();
         var blob = await cloudBlobClient.GetBlobReferenceFromServerAsync(new Uri(blobData.Path));
         log.LogInformation($"Deleting blob at {blobData.Path}");
         await blob.DeleteIfExistsAsync();
