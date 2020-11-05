@@ -15,7 +15,6 @@ public static class DeleteBlobActivityFunction
     }
 
     [FunctionName("DeleteBlob")]
-    // public static async Task DeleteBlob([ActivityTrigger] IDurableActivityContext context, ILogger log)
     public static async Task DeleteBlob([ActivityTrigger] DataBusBlobData blobData, ILogger log)
     {
         // var blobData = context.GetInput<DataBusBlobData>();
