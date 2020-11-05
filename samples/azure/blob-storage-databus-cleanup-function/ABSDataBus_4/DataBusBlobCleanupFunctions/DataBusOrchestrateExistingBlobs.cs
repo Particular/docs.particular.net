@@ -18,6 +18,8 @@ public static class DataBusOrchestrateExistingBlobs
     [FunctionName(nameof(DataBusOrchestrateExistingBlobs))]
     public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, [DurableClient] IDurableOrchestrationClient starter, ILogger log)
     {
+        var counter = 0;
+
         try
         {
             var storageConnectionString = Environment.GetEnvironmentVariable("DataBusStorageAccount");
@@ -60,6 +62,8 @@ public static class DataBusOrchestrateExistingBlobs
                         Path = blockBlob.Uri.ToString(),
                         ValidUntilUtc = DataBusBlobTimeoutCalculator.ToWireFormattedString(validUntilUtc)
                     });
+
+                    counter++;
                 }
 
             } while (token != null);
@@ -74,7 +78,9 @@ public static class DataBusOrchestrateExistingBlobs
             return result;
         }
 
-        return new OkObjectResult("DataBusOrchestrateExistingBlobs has completed.");
+        var message = "DataBusOrchestrateExistingBlobs has completed." + (counter > 0 ? $" {counter} blob{(counter > 1 ? "s" : string.Empty)} will be tracked for clean-up." : string.Empty);
+
+        return new OkObjectResult(message);
     }
 
     #endregion
