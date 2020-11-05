@@ -25,7 +25,7 @@ This sample contains two projects:
  * DataBusBlobCleanupFunctions - An Azure Function project that contains the three Azure Functions that perform the cleanup. 
  * SenderAndReceiver - A console application responsible for sending and receiving the large message.
 
-### Databus blob cleanup functions
+### DatabusBlobCleanupFunctions
 
 #### DataBusBlobCreated
 
