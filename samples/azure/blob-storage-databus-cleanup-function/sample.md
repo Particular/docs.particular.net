@@ -25,7 +25,7 @@ This sample contains two projects:
  * DataBusBlobCleanupFunctions - An Azure Function project that contains the three Azure Functions that perform the cleanup. 
  * SenderAndReceiver - A console application responsible for sending and receiving the large message.
 
-### DataBusBlobCleanupFunctions
+### Databus blob cleanup functions
 
 #### DataBusBlobCreated
 
@@ -48,6 +48,8 @@ The timeout value is passed in when the `DataBusCleanupOrchestrator` orchestrati
 snippet: DataBusCleanupOrchestratorFunction
 
 The function uses a [durable function timer](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-timers) to delay execute deletion of the blob from azure storage.
+
+partial: delete
 
 #### Configuring time to live for large binary objects
 
@@ -85,7 +87,7 @@ In production this is set using an [applications settings](https://docs.microsof
 
 In environments where `NServiceBus.DataBus.AzureBlobStorage` is already in use the timeout function will need to be triggered for the existing attachments.
 
-A manually-triggered function is included to trigger orchestration for every existing blob in the container. 
+A manually-triggered function called `DataBusOrchestrateExistingBlobs` is included to trigger orchestration for every existing blob in the container. It's an HTTP triggered function that can be invoked using a browser.
 
 snippet: DataBusOrchestrateExistingBlobsFunction
 
