@@ -7,11 +7,11 @@ using Microsoft.Extensions.Logging;
 
 public class DeleteBlobFunction
 {
-    public DeleteBlobFunction()
+    readonly CloudBlobClient cloudBlobClient;
+
+    public DeleteBlobFunction(CloudBlobClient cloudBlobClient)
     {
-        var storageConnectionString = Environment.GetEnvironmentVariable("DataBusStorageAccount");
-        var cloudStorageAccount = Microsoft.Azure.Storage.CloudStorageAccount.Parse(storageConnectionString);
-        cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+        this.cloudBlobClient = cloudBlobClient;
     }
 
     #region DeleteBlobFunction
@@ -25,6 +25,4 @@ public class DeleteBlobFunction
     }
 
     #endregion
-
-    static CloudBlobClient cloudBlobClient;
 }

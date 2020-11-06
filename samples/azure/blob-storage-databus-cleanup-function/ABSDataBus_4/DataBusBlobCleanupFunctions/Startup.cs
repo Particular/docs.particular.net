@@ -12,15 +12,17 @@ namespace DataBusBlobCleanupFunctions
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
+            var storageConnectionString = Environment.GetEnvironmentVariable("DataBusStorageAccount");
+            if (!CloudStorageAccount.TryParse(storageConnectionString, out var cloudStorageAccount))
+            {
+                throw new InvalidOperationException("Invalid connection string.");
+            }
+
+            builder.Services.AddSingleton(typeof(CloudBlobClient), cloudStorageAccount.CreateCloudBlobClient());
+
             builder.Services.AddSingleton(typeof(CloudBlobContainer), b =>
             {
-                var storageConnectionString = Environment.GetEnvironmentVariable("DataBusStorageAccount");
-                if (!CloudStorageAccount.TryParse(storageConnectionString, out var storageAccount))
-                {
-                    throw new InvalidOperationException("Invalid connection string.");
-                }
-
-                var cloudBlobClient = storageAccount.CreateCloudBlobClient();
+                var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
                 var container = cloudBlobClient.GetContainerReference("databus");
 
                 return container;
