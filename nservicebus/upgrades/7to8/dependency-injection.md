@@ -21,6 +21,13 @@ The following adapter packages will no longer be provided:
 
 Instead of the container adapter packages, use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package or the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode) to use a third party dependency injection container. See the [migrating to the Generic Host](#microsoft-generic-host) or [migrating to externally managed mode](#externally-managed-container-mode) sections for further information.
 
+## Behavior changes
+
+The behavior has been aligned with the expectations of the `Microsoft.Extensions.DependencyInjection` package. The following changes have been introduced:
+
+- The same component can be registered multiple times
+- The last registration of the same component wins
+
 ## Property injection
 
 Property injection is not covered by `Microsoft.Extensions.DependencyInjection.Abstractions`. Therefore, the NServiceBus default dependency injection container no longer supports property injection. Property injection might still be supported by third party containers.
