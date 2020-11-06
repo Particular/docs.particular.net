@@ -4,33 +4,30 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Storage;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Storage.Blob;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 
-public static class DataBusOrchestrateExistingBlobs
+public class DataBusOrchestrateExistingBlobs
 {
+    readonly CloudBlobContainer container;
+
+    public DataBusOrchestrateExistingBlobs(CloudBlobContainer container)
+    {
+        this.container = container;
+    }
+
     #region DataBusOrchestrateExistingBlobsFunction
 
     [FunctionName(nameof(DataBusOrchestrateExistingBlobs))]
-    public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, [DurableClient] IDurableOrchestrationClient starter, ILogger log)
+    public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, [DurableClient] IDurableOrchestrationClient starter, ILogger log)
     {
         var counter = 0;
 
         try
         {
-            var storageConnectionString = Environment.GetEnvironmentVariable("DataBusStorageAccount");
-            if (!CloudStorageAccount.TryParse(storageConnectionString, out var storageAccount))
-            {
-                throw new InvalidOperationException("Invalid connection string.");
-            }
-
-            var cloudBlobClient = storageAccount.CreateCloudBlobClient();
-            var container = cloudBlobClient.GetContainerReference("databus");
-
             BlobContinuationToken token = null;
             do
             {

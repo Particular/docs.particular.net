@@ -5,9 +5,9 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Extensions.Logging;
 
-public static class DeleteBlobFunction
+public class DeleteBlobFunction
 {
-    static DeleteBlobFunction()
+    public DeleteBlobFunction()
     {
         var storageConnectionString = Environment.GetEnvironmentVariable("DataBusStorageAccount");
         var cloudStorageAccount = Microsoft.Azure.Storage.CloudStorageAccount.Parse(storageConnectionString);
@@ -17,7 +17,7 @@ public static class DeleteBlobFunction
     #region DeleteBlobFunction
 
     [FunctionName("DeleteBlob")]
-    public static async Task DeleteBlob([ActivityTrigger] DataBusBlobData blobData, ILogger log)
+    public async Task DeleteBlob([ActivityTrigger] DataBusBlobData blobData, ILogger log)
     {
         var blob = await cloudBlobClient.GetBlobReferenceFromServerAsync(new Uri(blobData.Path));
         log.LogInformation($"Deleting blob at {blobData.Path}");

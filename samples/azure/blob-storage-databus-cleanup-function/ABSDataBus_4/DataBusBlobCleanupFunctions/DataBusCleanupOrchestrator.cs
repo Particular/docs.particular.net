@@ -5,12 +5,12 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Extensions.Logging;
 
-public static class DataBusCleanupOrchestrator
+public class DataBusCleanupOrchestrator
 {
     #region DataBusCleanupOrchestratorFunction
 
     [FunctionName(nameof(DataBusCleanupOrchestrator))]
-    public static async Task RunOrchestrator([OrchestrationTrigger] IDurableOrchestrationContext context, ILogger log)
+    public async Task RunOrchestrator([OrchestrationTrigger] IDurableOrchestrationContext context, ILogger log)
     {
         var blobData = context.GetInput<DataBusBlobData>();
 
