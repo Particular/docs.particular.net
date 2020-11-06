@@ -23,7 +23,7 @@ public static class DataBusCleanupOrchestrator
         //Timeouts currently have a 7 day limit, use 6 day loops until the wait is less than 6 days
         do
         {
-            timeoutUntil = validUntilUtc > context.CurrentUtcDateTime.AddDays(2) ? context.CurrentUtcDateTime.AddDays(2) : validUntilUtc;
+            timeoutUntil = validUntilUtc > context.CurrentUtcDateTime.AddDays(6) ? context.CurrentUtcDateTime.AddDays(6) : validUntilUtc;
             log.LogInformation($"Waiting until {timeoutUntil}/{validUntilUtc} for blob at {blobData.Path}. Currently {context.CurrentUtcDateTime}.");
             await context.CreateTimer(DataBusBlobTimeoutCalculator.ToUtcDateTime(blobData.ValidUntilUtc), CancellationToken.None);
         } while (validUntilUtc > timeoutUntil);
