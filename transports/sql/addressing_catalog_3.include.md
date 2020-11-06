@@ -2,7 +2,7 @@ The SQL Server transport reads the default catalog from the `Initial catalog` or
 
 snippet: sqlserver-multicatalog-config-for-endpoint
 
-There are several cases when routing is not used and the transport needs specific configuration to find out the catalog for a specific queue table:
+There are several cases when routing is not used and the transport needs specific configuration to find out the catalog for a queue table:
 
  * [Error queue](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address)
  * [Audit queue](/nservicebus/operations/auditing.md#configuring-auditing)
@@ -10,11 +10,11 @@ There are several cases when routing is not used and the transport needs specifi
  * [Overriding the default routing mechanism](/nservicebus/messaging/send-a-message.md#overriding-the-default-routing)
  * Replies to endpoints using SQL Server transport version 2 and earlier
 
-Use the following API to configure the schema for a specific queue:
+Use the following API to configure the schema for a queue:
 
 snippet: sqlserver-multicatalog-config-for-queue
 
-The configuration above is applicable when sending to a specific queue or when a specific queue is passed in the configuration:
+The configuration above is applicable when sending to a queue or when a queue is passed in the configuration:
 
 snippet: sqlserver-multicatalog-config-for-queue-send
 
