@@ -1,12 +1,12 @@
 ## Format
 
-The SQL Server Transport address has following canonical form for version 3.0.x:
+The SQL Server Transport address has the following canonical form for version 3.0.x:
 
 ```
 table@[schema]
 ```
 
-while for Versions 3.1.x it includes also the optional catalog
+while for Versions 3.1.x, it also includes the optional catalog
 
 ```
 table@[schema]@[catalog]
@@ -17,7 +17,7 @@ include: addressing_parts_3
 
 ## Resolution
 
-The address is resolved into a fully-qualified table name that includes table name, its schema and catalog. In the address the table name is the only mandatory part. An address containing only a table name is a valid address e.g. `MyTable`.
+The address is resolved into a fully-qualified table name that includes the table name, its schema, and catalog. In the address, the table name is the only mandatory part. An address containing only a table name is a valid address, e.g. `MyTable`.
 
 
 ### Schema
