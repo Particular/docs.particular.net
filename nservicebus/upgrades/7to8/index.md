@@ -124,6 +124,8 @@ RabbitMQ user should use the new [`options.UseNonPersistentDeliveryMode()` API p
 
 With all transports in Version 8 supporting native delayed delivery using the [timeout manager](/nservicebus/messaging/timeout-manager.md) is no longer needed. Any calls to `EndpointConfiguration.TimeoutManager()` and `EndpointConfiguration.UseExternalTimeoutManager()` can safely be removed.
 
+### Data migration
+
 If using a transport that previously relied on the timeout manager a require a migration of existing timeouts. Use the [timeouts migration tool](/nservicebus/tools/migrate-to-native-delivery.md) to detect and migrate timeouts as needed.
 
 The following transports might need migration:
