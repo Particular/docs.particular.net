@@ -116,7 +116,7 @@ NServiceBus version 8 throws an `InvalidOperationException` when invoking messag
 
 ## Non-durable messaging
 
-Support for non-durable messaging has been moved to the transports that can support it which at this time is RabbitMQ. If using any other transport use of `[Express]` or message conventions to request non-durable deliver can safely be removed.
+Support for non-durable messaging has been moved to the transports that can support it, which as of November 2020 is only the RabbitMQ transport. When using another transport, use of `[Express]` or message conventions to request non-durable delivery can safely be removed.
 
 RabbitMQ user should use the new [`options.UseNonPersistentDeliveryMode()` API provided by `NServiceBus.RabbitMQ` Version 7](/transports/rabbitmq/#controlling-delivery-mode)
 
