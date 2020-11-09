@@ -96,7 +96,7 @@ Created by [Mauro Servienti](https://milestone.topics.it/).
 
 ## [Rabbit Operations](http://rabbitoperations.southsidesoft.com/)
 
-Provides operations support for RabbitMQ applications that run on NServiceBus via a grahpical user interface.
+Provides operations support for RabbitMQ applications that run on NServiceBus via a graphical user interface.
 
 Created by [SouthsideSoft](http://southsidesoft.com/).
 
@@ -117,7 +117,7 @@ Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) su
 
 ## [NServiceBus.AuditFilter](https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter)
 
-Adds audit message filtering functionality to NServiceBus, so that certain message types can be included/excluded from normal NServiceBus auditing by adding an attribute to the message type.
+Adds audit message filtering functionality to NServiceBus, so that certain message types can be included or excluded from normal NServiceBus auditing by adding an attribute to the message type.
 
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
 
