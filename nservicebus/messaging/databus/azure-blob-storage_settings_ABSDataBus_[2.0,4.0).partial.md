@@ -13,3 +13,5 @@
    * `storageAccountName`: The storage account name used for the data bus.
    * `renewalTimeBeforeTokenExpires`: How long before the current token expires a token renewal request should be be issued.
    * `endpointSuffix`: [Endpoint suffix](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities#azure-storage-blobs-and-queues) used for the storage account. The default is set to public Azure cloud (`core.windows.net`).
+
+Azure Blob Storage Data Bus will **remove** the [Azure storage blobs](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-blobs) used for physical attachments after the message is processed if the `TimeToBeReceived` value is specified. When this value isn't provided, the physical attachments will not be removed.

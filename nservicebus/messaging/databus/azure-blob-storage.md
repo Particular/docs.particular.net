@@ -1,15 +1,12 @@
 ---
 title: Azure Blob Storage Data Bus
 summary: The Azure Blob Storage implementation of databus
-reviewed: 2020-03-04
+reviewed: 2020-11-08
 component: ABSDataBus
 related:
  - samples/azure/blob-storage-databus
  - samples/azure/blob-storage-databus-cleanup-function
 ---
-
-Azure Blob Storage Data Bus will **remove** the [Azure storage blobs](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-blobs) used for physical attachments after the message is processed if the `TimeToBeReceived` value is specified. When this value isn't provided, the physical attachments will not be removed.
-
 
 ## Usage
 
