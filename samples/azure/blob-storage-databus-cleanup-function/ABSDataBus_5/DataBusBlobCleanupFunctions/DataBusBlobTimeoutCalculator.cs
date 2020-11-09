@@ -2,11 +2,11 @@
 using System.Globalization;
 using Microsoft.Azure.Storage.Blob;
 
-static class DataBusBlobTimeoutCalculator
+public class DataBusBlobTimeoutCalculator
 {
-    public static TimeSpan DefaultTtl { get; private set; }
+    public TimeSpan DefaultTtl { get; private set; }
 
-    static DataBusBlobTimeoutCalculator()
+    public DataBusBlobTimeoutCalculator()
     {
         var defaultTtlSettingValue = Environment.GetEnvironmentVariable("DefaultTimeToLiveInSeconds");
         if (defaultTtlSettingValue == null)
@@ -23,7 +23,7 @@ static class DataBusBlobTimeoutCalculator
     }
 
     #region GetValidUntil
-    public static DateTime GetValidUntil(CloudBlockBlob blockBlob)
+    public DateTime GetValidUntil(CloudBlockBlob blockBlob)
     {
         if (blockBlob.Metadata.TryGetValue("ValidUntilUtc", out var validUntilUtcString))
         {
@@ -38,7 +38,7 @@ static class DataBusBlobTimeoutCalculator
     /// <summary>
     /// Converts the <see cref="DateTime" /> to a <see cref="string" /> suitable for transport over the wire.
     /// </summary>
-    public static string ToWireFormattedString(DateTime dateTime)
+    public string ToWireFormattedString(DateTime dateTime)
     {
         return dateTime.ToUniversalTime().ToString(format, CultureInfo.InvariantCulture);
     }
@@ -47,7 +47,7 @@ static class DataBusBlobTimeoutCalculator
     /// Converts a wire-formatted <see cref="string" /> from <see cref="ToWireFormattedString" /> to a UTC
     /// <see cref="DateTime" />.
     /// </summary>
-    public static DateTime ToUtcDateTime(string wireFormattedString)
+    public DateTime ToUtcDateTime(string wireFormattedString)
     {
         if (string.IsNullOrWhiteSpace(wireFormattedString))
         {
@@ -110,7 +110,7 @@ static class DataBusBlobTimeoutCalculator
             }
         }
 
-        return new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc).AddMicroseconds(microSecond);
+        return AddMicroseconds(new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc), microSecond);
 
         void Guard(char digit)
         {
@@ -121,11 +121,11 @@ static class DataBusBlobTimeoutCalculator
 
             throw new FormatException(errorMessage);
         }
-    }
 
-    static DateTime AddMicroseconds(this DateTime self, int microseconds)
-    {
-        return self.AddTicks(microseconds * ticksPerMicrosecond);
+        DateTime AddMicroseconds(DateTime self, int microseconds)
+        {
+            return self.AddTicks(microseconds * ticksPerMicrosecond);
+        }
     }
 
     const string format = "yyyy-MM-dd HH:mm:ss:ffffff Z";

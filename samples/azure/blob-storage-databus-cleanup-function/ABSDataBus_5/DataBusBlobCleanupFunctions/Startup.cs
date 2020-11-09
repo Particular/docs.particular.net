@@ -18,6 +18,8 @@ namespace DataBusBlobCleanupFunctions
                 throw new InvalidOperationException("Invalid connection string.");
             }
 
+            builder.Services.AddSingleton(new DataBusBlobTimeoutCalculator());
+
             builder.Services.AddSingleton(typeof(CloudBlobClient), cloudStorageAccount.CreateCloudBlobClient());
 
             builder.Services.AddSingleton(typeof(CloudBlobContainer), b =>

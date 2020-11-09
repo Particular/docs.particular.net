@@ -13,10 +13,12 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 public class DataBusOrchestrateExistingBlobs
 {
     readonly CloudBlobContainer container;
+    private readonly DataBusBlobTimeoutCalculator calculator;
 
-    public DataBusOrchestrateExistingBlobs(CloudBlobContainer container)
+    public DataBusOrchestrateExistingBlobs(CloudBlobContainer container, DataBusBlobTimeoutCalculator calculator)
     {
         this.container = container;
+        this.calculator = calculator;
     }
 
     #region DataBusOrchestrateExistingBlobsFunction
@@ -46,7 +48,7 @@ public class DataBusOrchestrateExistingBlobs
                         continue;
                     }
 
-                    var validUntilUtc = DataBusBlobTimeoutCalculator.GetValidUntil(blockBlob);
+                    var validUntilUtc = calculator.GetValidUntil(blockBlob);
 
                     if (validUntilUtc == DateTime.MaxValue)
                     {
@@ -57,7 +59,7 @@ public class DataBusOrchestrateExistingBlobs
                     await starter.StartNewAsync(nameof(DataBusCleanupOrchestrator), instanceId, new DataBusBlobData
                     {
                         Path = blockBlob.Uri.ToString(),
-                        ValidUntilUtc = DataBusBlobTimeoutCalculator.ToWireFormattedString(validUntilUtc)
+                        ValidUntilUtc = calculator.ToWireFormattedString(validUntilUtc)
                     });
 
                     counter++;
