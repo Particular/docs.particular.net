@@ -4,10 +4,10 @@ summary: Describes what message redirects are and how to use them.
 related:
 - servicepulse/troubleshooting
 - samples/pipeline/fix-messages-using-behavior
-reviewed: 2019-01-10
+reviewed: 2020-11-09
 ---
 
-When a failed message needs to be retried but the destination endpoint no longer exists, and the message needs to be routed to a different endpoint than what is specified in the failed message headers, ServicePulse offers a redirect feature. This feature is available in ServicePulse version 1.6.6 and above.
+When a failed message needs to be retried, but the destination endpoint no longer exists, and the message needs to be routed to a different endpoint than what is specified in the failed message headers, ServicePulse offers a redirect feature. This feature is available in ServicePulse version 1.6.6 and above.
 
 WARNING: Message redirects are a feature of ServicePulse/ServiceControl only; they do not alter the routing for NServiceBus endpoints.
 
@@ -21,10 +21,10 @@ Redirects can be managed from the Configuration page by selecting the `Retry Red
 This page displays the configured redirects that are currently in effect along with the following information:
 
  * **Source Queue**: the queue for which this redirect will be applied.
- * **Destination Queue**: the queue that will be new destination when retrying.
+ * **Destination Queue**: the queue that will be the new destination when retrying.
  * **Last modified**: a timestamp of the last modification.
 
-To create a redirect click `Create Redirect`. A dialog will appear.
+To create a redirect, click `Create Redirect`. A dialog will appear.
 
 ![Create Redirects Dialog](images/redirects-create.png 'width=500')
 
@@ -32,7 +32,7 @@ Choose a source queue from the dropdown. Enter the queue name for the target of 
 
 Any existing redirects can be deleted using the `End Redirect` link.
 
-To change the target of a redirect, click the `Modify Redirect` link. Only the target queue can be modified, the source queue remains read-only.
+To change the target of a redirect, click the `Modify Redirect` link. Only the target queue can be modified. The source queue remains read-only.
 
 
 ### Immediately retry any matching failed messages
