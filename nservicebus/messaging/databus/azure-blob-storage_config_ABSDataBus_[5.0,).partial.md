@@ -14,7 +14,7 @@ A custom provider can be declared that provides a fully configured `BlobServiceC
 
 snippet: CustomBlobServiceClientProvider
 
-The provider is then registered in the container:
+The provider is then registered in the dependency injection container:
 
 snippet: AzureDataBusInjectServiceClient
 
