@@ -604,10 +604,12 @@
     Articles:
     - Title: Azure Storage Queues
       Articles:
-      - Url: transports/upgrades/asq-6to7
-        Title: Version 6 to 7
+      - Url: transports/upgrades/asq-8to9
+        Title: Version 8 to 9
       - Url: transports/upgrades/asq-7to8
         Title: Version 7 to 8
+      - Url: transports/upgrades/asq-6to7
+        Title: Version 6 to 7
     - Title: Azure Service Bus (Legacy)
       Articles:
       - Url: transports/upgrades/asb-10toasbs-1
@@ -624,6 +626,8 @@
         Title: Version 6 to 7
     - Title: RabbitMQ
       Articles:
+      - Url: transports/upgrades/rabbitmq-6to7
+        Title: Version 6 to 7
       - Url: transports/upgrades/rabbitmq-5to6
         Title: Version 5 to 6
       - Url: transports/upgrades/rabbitmq-4to5
@@ -634,10 +638,12 @@
         Title: Version 3 to 4
     - Title: SQL Server
       Articles:
+      - Url: transports/upgrades/sqlserver-6to7
+        Title: Version 6 to 7
       - Url: transports/upgrades/sqlserver-non-clustered-idx
         Title: Non-clustered index in the input queue
       - Url: transports/upgrades/sqlserver-5to6
-        Title: Version 5 to 6        
+        Title: Version 5 to 6
       - Url: transports/upgrades/sqlserver-4to5
         Title: Version 4 to 5
       - Url: transports/upgrades/sqlserver-31to4
@@ -897,6 +903,8 @@
     Articles:
     - Title: Azure Storage
       Articles:
+      - Url: persistence/upgrades/asp-2to3
+        Title: Version 2 to 3
       - Url: persistence/upgrades/asp-1to2
         Title: Version 1 to 2
       - Url: persistence/upgrades/asp-6to1
@@ -908,9 +916,9 @@
     - Title: NHibernate
       Articles:
       - Url: persistence/upgrades/nhibernate-8to9
-        Title: Version 8 to 9     
+        Title: Version 8 to 9
       - Url: persistence/upgrades/nhibernate-8to8.1
-        Title: Version 8 to 8.1      
+        Title: Version 8 to 8.1
       - Url: persistence/upgrades/nhibernate-6to7
         Title: Version 6 to 7
       - Url: persistence/upgrades/nhibernate-timeouts-index
@@ -931,14 +939,16 @@
         Title: Version 3 to 4
     - Title: SQL
       Articles:
+      - Url: persistence/upgrades/sql-6to7
+        Title: Version 6 to 7
       - Url: persistence/upgrades/sql-5to6
-        Title: Version 5 to 6 
+        Title: Version 5 to 6
       - Url: persistence/upgrades/sql-4to5
-        Title: Version 4 to 5        
+        Title: Version 4 to 5
       - Url: persistence/upgrades/sql-4.2to4.3
         Title: Version 4.2 to 4.3
       - Url: persistence/upgrades/sql-4.0to4.1.1
-        Title: Version 4.0 to 4.1.1       
+        Title: Version 4.0 to 4.1.1
       - Url: persistence/upgrades/sql-2to3
         Title: Version 2 to 3
       - Url: persistence/upgrades/sql-1to2
