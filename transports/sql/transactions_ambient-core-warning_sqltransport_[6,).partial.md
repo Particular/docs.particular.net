@@ -11,3 +11,5 @@ System.NotSupportedException: Enlisting in Ambient transactions is not supported
 ```
 
 To resolve this, choose one of the other transaction modes. Support for `TransactionScope` is expected to be added in future releases of .NET Core.
+
+It is still possible to use `TransactionScope` in .NET Core but it is not possible to enlist in ambient transactions. This allows for coordination of transactions by ensuring all connections have the same connection string. If `TransactionScope` is used within .NET Core, NServiceBus will log a warning to make sure that this is an explicit decision.
