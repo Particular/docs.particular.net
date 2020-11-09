@@ -39,7 +39,7 @@ NServiceBus can be registered and configured on the host builder using the `UseN
 
 snippet: asb-function-hostbuilder
 
-Any services registered via the `IFunctionsHostBuilder` will be available to message handlers via dependency injection.
+Any services registered via the `IFunctionsHostBuilder` will be available to message handlers via dependency injection. The startup class needs to be declared via the `FunctionStartup` attribute: `[assembly: FunctionsStartup(typeof(Startup))]`.
 
 ### Azure Function definition
 
