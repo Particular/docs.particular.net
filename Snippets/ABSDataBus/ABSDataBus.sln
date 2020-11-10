@@ -10,6 +10,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABSDataBus_2", "ABSDataBus_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABSDataBus_3", "ABSDataBus_3\ABSDataBus_3.csproj", "{7DD11891-DAC4-4803-8EAF-E7F23D1C99A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABSDataBus_4", "ABSDataBus_4\ABSDataBus_4.csproj", "{51E743E8-1C55-474B-BB67-95EEC1DAF5C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABSDataBus_5", "ABSDataBus_5\ABSDataBus_5.csproj", "{66817CE6-6E57-4EC2-BF07-82FC0ED2FD0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,10 @@ Global
 		{486B6044-13DA-47E0-ABAD-D96F271C4CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DD11891-DAC4-4803-8EAF-E7F23D1C99A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7DD11891-DAC4-4803-8EAF-E7F23D1C99A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E743E8-1C55-474B-BB67-95EEC1DAF5C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E743E8-1C55-474B-BB67-95EEC1DAF5C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66817CE6-6E57-4EC2-BF07-82FC0ED2FD0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66817CE6-6E57-4EC2-BF07-82FC0ED2FD0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

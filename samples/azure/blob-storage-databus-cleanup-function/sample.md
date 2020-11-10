@@ -7,18 +7,16 @@ related:
 - nservicebus/messaging/databus
 ---
 
-`NServiceBus.DataBus.AzureBlobStorage` has a built-in cleanup mechanism to remove blobs after a configured timeout. By default this runs on every endpoint and can become slow under systems with higher volumes of messages with databus properties.
-
-This sample shows how to use [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) to automatically trigger blob cleanup as an alternative to using the `NServiceBus.DataBus.AzureBlobStorage` built-in cleanup mechanism. This has the advantage of reducing processing load on the endpoints, instead using the on-demand scaling of Azure Functions. 
+This sample shows how to use [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) to automatically trigger blob cleanup. 
 
 downloadbutton
 
 ## Prerequisites
 
- 1. Make sure [Azure Functions Tools for Visual Studio 2017](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs#prerequisites) are setup correctly.
+ 1. Make sure [Azure Functions Tools for Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs#prerequisites) are setup correctly.
  1. Start [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator). Ensure the [latest version](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409) is installed.
  1. Run the solution. Two console applications start.
- 1. Find the `SenderAndReceiver` application by looking for the one with `SenderAndReceiver` in its path and press <kdb>enter</kbd> to send a message. A message has been sent that is larger than the 4MB allowed by MSMQ. NServiceBus sends it as an attachment via Azure storage. The `DataBusBlobCreated` Azure Function runs in the Function window, followed by the `DataBusCleanupOrchestrator`, deleting the blob when the time to live for the message is reached.
+ 1. Find the `SenderAndReceiver` application by looking for the one with `SenderAndReceiver` in its path and press <kdb>enter</kbd> to send a large message. NServiceBus sends it as an attachment via Azure storage. The `DataBusBlobCreated` trigger function runs in the Function window, followed by the `DataBusCleanupOrchestrator` orchestrator function, invoking the `DeleteBlob` activity function, deleting the blob when the time-to-live for the message is reached.
 
 ## Code walk-through
 
@@ -27,7 +25,7 @@ This sample contains two projects:
  * DataBusBlobCleanupFunctions - An Azure Function project that contains the three Azure Functions that perform the cleanup. 
  * SenderAndReceiver - A console application responsible for sending and receiving the large message.
 
-### DataBusBlobCleanupFunctions
+### DatabusBlobCleanupFunctions
 
 #### DataBusBlobCreated
 
@@ -50,6 +48,8 @@ The timeout value is passed in when the `DataBusCleanupOrchestrator` orchestrati
 snippet: DataBusCleanupOrchestratorFunction
 
 The function uses a [durable function timer](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-timers) to delay execute deletion of the blob from azure storage.
+
+partial: delete
 
 #### Configuring time to live for large binary objects
 
@@ -87,7 +87,7 @@ In production this is set using an [applications settings](https://docs.microsof
 
 In environments where `NServiceBus.DataBus.AzureBlobStorage` is already in use the timeout function will need to be triggered for the existing attachments.
 
-A manually-triggered function is included to trigger orchestration for every existing blob in the container. 
+A manually-triggered function called `DataBusOrchestrateExistingBlobs` is included to trigger orchestration for every existing blob in the container. It's an HTTP triggered function that can be invoked using a browser.
 
 snippet: DataBusOrchestrateExistingBlobsFunction
 
@@ -99,6 +99,4 @@ This function does not require downtime as the implemented [singleton orchestrat
 
 The project sends the `MessageWithLargePayload` message to itself, utilizing the NServiceBus attachment mechanism.
 
-The built-in data bus cleanup functionality for the endpoint is disabled by setting `CleanupInterval` to `0`.
-
-snippet: DisablingDataBusCleanupOnEndpoint
+partial: cleanup
