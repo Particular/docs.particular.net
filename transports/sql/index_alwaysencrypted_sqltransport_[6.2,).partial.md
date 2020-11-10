@@ -5,7 +5,7 @@ SQL Server Transport has support for [SQL Server Always Encrypted](https://docs.
 The steps to make use of SQL Always Encrypted are:
 
 1. Make sure SQL Always Encrypted is configured correctly with the correct certificate or key stores on the database engine and the client machines.
-1. Encrypt the `Body` and `Header` columns for the `endpoint` table that you are enabling encryption for.
+1. Encrypt the `Body` and `Header` columns for the `endpoint` table that encryption is being enabled for.
 1. Encrypt the `Body` and `Header` columns for the `endpoint.Delayed` table.
 1. Ensure the connection string for the endpoint includes the `Column Encryption Setting = Enabled;` connection string parameter.
 1. Ensure the connection string for ServiceControl also includes the `Column Encryption Setting = Enabled;` connection string parameter.
