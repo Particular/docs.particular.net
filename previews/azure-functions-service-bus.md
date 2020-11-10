@@ -4,7 +4,7 @@ component: ASBFunctions
 summary: Hosting NServiceBus endpoints with Azure Functions triggered by Azure Service Bus
 related:
  - samples/previews/azure-functions/service-bus
-reviewed: 2020-07-23
+reviewed: 2020-11-09
 ---
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
