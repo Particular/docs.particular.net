@@ -2,7 +2,7 @@
 title: Multiple storage accounts
 summary: Use multiple Azure storage accounts for scale out
 component: ASQ
-reviewed: 2019-08-06
+reviewed: 2020-11-09
 redirects:
  - nservicebus/using-multiple-azure-storage-accounts-for-scaleout
  - nservicebus/azure/using-multiple-azure-storage-accounts-for-scaleout
