@@ -21,7 +21,7 @@ The SQL Server transport supports the following [transport transaction modes](/t
 NOTE: `Exactly once` message processing without distributed transactions can be achieved with any transport using the [Outbox](/nservicebus/outbox/) feature. It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage.
 
 
-### Transaction scope (distributed transaction)
+### Transaction scope
 
 partial: ambient-core-warning
 
