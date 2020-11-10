@@ -4,7 +4,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.4.x](https://www.nuget.org/packages/NServiceBus/7.4.4) | 2020-08-14     | -                 | -                                 |
 | [7.3.x](https://www.nuget.org/packages/NServiceBus/7.3.2) | 2020-05-08     | 2021-02-14        | Superseded by 7.4.x               |
-| [7.2.x](https://www.nuget.org/packages/NServiceBus/7.2.5) | 2019-10-23     | 2020-11-08        | Superseded by 7.3.x               |
+| [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus/7.2.5) | ~~2019-10-23~~ | ~~2020-11-08~~    | ~~Superseded by 7.3.x~~           |
 | [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus/7.1.13) | ~~2018-08-30~~ | ~~2020-04-23~~    | ~~Superseded by 7.2.x~~           |
 | [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus/7.0.3) | ~~2018-05-29~~ | ~~2019-02-28~~    | ~~Superseded by 7.1.x~~           |
 | [6.5.x](https://www.nuget.org/packages/NServiceBus/6.5.10) | 2018-08-30     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
@@ -221,7 +221,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/2.4.1) | 2020-03-04     | -                 | -                                 |
+| [2.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/2.4.2) | 2020-03-04     | -                 | -                                 |
 | [~~2.3.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/2.3.0) | ~~2018-12-12~~ | ~~2020-06-04~~    | ~~Superseded by 2.4.x~~           |
 | [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/2.2.0) | ~~2018-09-28~~ | ~~2019-03-12~~    | ~~Superseded by 2.3.x~~           |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/2.1.0) | ~~2018-05-31~~ | ~~2018-12-28~~    | ~~Superseded by 2.2.x~~           |
