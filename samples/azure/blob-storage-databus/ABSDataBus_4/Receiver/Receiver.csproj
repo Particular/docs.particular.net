@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus" Version="7.4.4" />
-    <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="4.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="4.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>
