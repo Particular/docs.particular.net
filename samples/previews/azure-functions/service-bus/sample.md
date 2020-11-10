@@ -29,6 +29,13 @@ To use the sample, a valid Service Bus connection string must be configured in  
 * `AzureFunctions.Sender/local.settings.json`
 * `AzureFunctions.ASBTrigger/local.settings.json`
 
+## Sample structure
+
+The sample contains the following projects:
+- `AzureFunctions.Sender` - console application to generate a trigger message
+- `AzureFunctions.ASBTrigger.FunctionsHostBuilder` - implemenetation using `IFunctionHostBuilder` approach to host NServiceBus endpoint
+- `AzureFunctions.ASBTrigger.Static` - implementation using static approach to host NServiceBus endpoint
+
 ## Running the sample
 
 Running the sample will launch two console windows:
@@ -45,6 +52,22 @@ To try the Azure Function:
 
 ## Code walk-through
 
+### `IFunctionHostBuilder` approach
+
+The NServiceBus endpoint configured using `IFunctionHostBuilder` is using the convention and is wired using `Startup` class like this:
+
+snippet: configuration-with-function-host-builder
+
+`FunctionEndpoin` is then injected into the function class:
+
+snippet: endpoint-injection
+
+And is invoked in the following manner:
+
+snippet: injected-function
+
+### Static approach
+
 The static NServiceBus endpoint must be configured using details that come from the Azure Functions `ExecutionContext`. Since that is not available until a message is handled by the function, the NServiceBus endpoint instance is deferred until the first message is processed, using a lambda expression like this:
 
 snippet: EndpointSetup
@@ -54,6 +77,10 @@ The same class defines the Azure Function which makes up the hosting for the NSe
 snippet: Function
 
 Meanwhile, the message handlers for `TriggerMessage` and `FollowUpMessage`, also hosted within the Azure Functions project, are normal NServiceBus message handlers, which are also capable of sending messages themselves.
+
+### Handlers
+
+Both approaches use the same handlers code, with a `CustomDependency` passed in.
 
 snippet: TriggerMessageHandler
 

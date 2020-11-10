@@ -9,7 +9,7 @@ public class AzureServiceBusTriggerFunction
     internal const string EndpointName = "ASBTriggerQueue";
     readonly FunctionEndpoint endpoint;
 
-    #region EndpointInjection
+    #region endpoint-injection
 
     public AzureServiceBusTriggerFunction(FunctionEndpoint endpoint)
     {
@@ -18,7 +18,7 @@ public class AzureServiceBusTriggerFunction
 
     #endregion
 
-    #region InjectedFunction
+    #region injected-function
 
     [FunctionName(EndpointName)]
     public async Task Run(
