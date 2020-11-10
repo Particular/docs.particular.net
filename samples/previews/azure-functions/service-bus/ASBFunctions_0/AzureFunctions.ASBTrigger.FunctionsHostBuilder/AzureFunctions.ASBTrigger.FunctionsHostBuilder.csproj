@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
@@ -11,7 +11,6 @@
     <PackageReference Include="NServiceBus.AzureFunctions.ServiceBus" Version="0.3.0-*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.*" />
-    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AzureFunctions.Messages\AzureFunctions.Messages.csproj" />
