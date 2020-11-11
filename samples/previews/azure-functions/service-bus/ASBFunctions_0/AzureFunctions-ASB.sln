@@ -4,7 +4,7 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunctions.ASBTrigger.Static", "AzureFunctions.ASBTrigger.Static\AzureFunctions.ASBTrigger.Static.csproj", "{FCD1D39A-3BD0-4397-9619-783CE2EC1937}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunctions.Sender", "AzureFunctions.Console\AzureFunctions.Sender.csproj", "{0281DA3A-17DD-46F7-AAAD-397EA9DD3723}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunctions.Sender", "AzureFunctions.Sender\AzureFunctions.Sender.csproj", "{0281DA3A-17DD-46F7-AAAD-397EA9DD3723}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunctions.Messages", "AzureFunctions.Messages\AzureFunctions.Messages.csproj", "{8EB0DD38-EF11-4C6E-A8F6-9128463D22B9}"
 EndProject

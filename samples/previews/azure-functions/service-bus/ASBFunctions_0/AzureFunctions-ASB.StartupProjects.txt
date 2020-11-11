@@ -1,2 +1,2 @@
 AzureFunctions.ASBTrigger.FunctionsHostBuilder\AzureFunctions.ASBTrigger.FunctionsHostBuilder.csproj
-AzureFunctions.Console\AzureFunctions.Sender.csproj
+AzureFunctions.Sender\AzureFunctions.Sender.csproj
