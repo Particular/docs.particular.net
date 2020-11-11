@@ -60,7 +60,7 @@ NOTE: ServiceControl consumes messages from the Audit queue and stores it tempor
 
 ServicePulse does not contain any message data. ServicePulse only has a few configuration values stored in the following file `\app\js\app.constants.js`. By default ServicePulse is intalled in `C:\Program Files (x86)\Particular Software\ServicePulse`.
 
-Simply run the ServicePulse installer on the new (virtual) server manually or via [scripting powershell or a batch file](#installation-available-installation-parameters).
+Run the ServicePulse installer on the new server manually or via [scripting powershell or a batch file](#installation-available-installation-parameters) and copy the `\app\js\app.constants.js` to the new location.
 
 ## ServicePulse license
 
