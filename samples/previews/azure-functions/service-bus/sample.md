@@ -1,12 +1,16 @@
 ---
 title: Using NServiceBus in Azure Functions with Service Bus triggers
-reviewed: 2020-06-15
+reviewed: 2020-11-10
 component: ASBFunctions
 related:
  - previews/azure-functions-service-bus
 ---
 
 This sample shows how to host NServiceBus within an Azure Function, in this case, a function triggered by an incoming Service Bus message. This enables hosting message handlers in Azure Functions, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message processing pipeline.
+
+The sample demonstrates two approaches that achieve the same outcome:
+1. Using `IFunctionHostBuilder` and Microsoft DI container approach
+2. Static approach
 
 When hosting NServiceBus within Azure Functions, each Function (as identified by the `[FunctionName]` attribute) hosts an NServiceBus endpoint that is capable of processing different message types.
 
@@ -24,10 +28,7 @@ To create the queue with the Azure CLI, execute the following [Azure CLI](https:
 az servicebus queue create --name ASBTriggerQueue --namespace-name <asb-namespace-to-use> --resource-group <resource-group-containing-namespace>
 ```
 
-To use the sample, a valid Service Bus connection string must be configured in  2 locations:
-
-* `AzureFunctions.Sender/local.settings.json`
-* `AzureFunctions.ASBTrigger/local.settings.json`
+To use the sample, a valid Service Bus connection string must be provided in the `local.settings.json` file.
 
 ## Sample structure
 
@@ -35,6 +36,8 @@ The sample contains the following projects:
 - `AzureFunctions.Sender` - console application to generate a trigger message
 - `AzureFunctions.ASBTrigger.FunctionsHostBuilder` - implemenetation using `IFunctionHostBuilder` approach to host NServiceBus endpoint
 - `AzureFunctions.ASBTrigger.Static` - implementation using static approach to host NServiceBus endpoint
+
+NOTE: `AzureFunctions.ASBTrigger.FunctionsHostBuilder` and `AzureFunctions.ASBTrigger.Static`are both using the same trigger queue and should not be executed simultaneously. 
 
 ## Running the sample
 
