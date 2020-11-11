@@ -75,7 +75,7 @@ NOTE: Before changing firewall setting to expose ServiceControl read [Securing S
 
 ### Method not found: 'Void System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.set_SerializerSettings(Newtonsoft.Json.JsonSerializerSettings)'
 
-If the following exception occurs at startup than this is likely because there are one or more versions of `Newtonsoft.Json` registered in the Global Assembly Cache (GAC).
+If the following exception occurs at startup, this is likely because there are one or more versions of `Newtonsoft.Json` registered in the Global Assembly Cache (GAC).
 
 ```txt
 Service cannot be started. System.MissingMethodException: Method not found: 'Void System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.set_SerializerSettings(Newtonsoft.Json.JsonSerializerSettings)'.
