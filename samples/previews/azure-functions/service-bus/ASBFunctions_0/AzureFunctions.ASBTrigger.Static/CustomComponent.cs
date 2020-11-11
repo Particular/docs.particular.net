@@ -6,7 +6,7 @@ public class CustomComponent
 
     public CustomComponent(string initialValue)
     {
-        this.initialValue = $"{initialValue} {DateTime.UtcNow:O}";
+        this.initialValue = $"{initialValue} (Constructed at {DateTime.UtcNow:O})";
     }
 
     public string GetValue() => initialValue;
