@@ -8,9 +8,9 @@ related:
 
 This sample shows how to host NServiceBus within an Azure Function, in this case, a function triggered by an incoming Service Bus message. This enables hosting message handlers in Azure Functions, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message processing pipeline.
 
-The sample demonstrates two approaches that achieve the same outcome:
-1. Using `IFunctionHostBuilder` and Microsoft DI container approach
-2. Static approach
+The sample demonstrates two configuration approaches that achieve the same outcome:
+1. Integrating with the `IFunctionHostBuilder`, including the host managed DI container.
+2. Configuring the endpoint inside the trigger class as a static field.
 
 When hosting NServiceBus within Azure Functions, each Function (as identified by the `[FunctionName]` attribute) hosts an NServiceBus endpoint that is capable of processing different message types.
 
@@ -34,8 +34,8 @@ To use the sample, a valid Service Bus connection string must be provided in the
 
 The sample contains the following projects:
 - `AzureFunctions.Sender` - console application to generate a trigger message
-- `AzureFunctions.ASBTrigger.FunctionsHostBuilder` - implemenetation using `IFunctionHostBuilder` approach to host NServiceBus endpoint
-- `AzureFunctions.ASBTrigger.Static` - implementation using static approach to host NServiceBus endpoint
+- `AzureFunctions.ASBTrigger.FunctionsHostBuilder` - Using `IFunctionHostBuilder` approach to host the NServiceBus endpoint
+- `AzureFunctions.ASBTrigger.Static` - Using static approach to host the NServiceBus endpoint
 
 NOTE: `AzureFunctions.ASBTrigger.FunctionsHostBuilder` and `AzureFunctions.ASBTrigger.Static`are both using the same trigger queue and should not be executed simultaneously. 
 
@@ -83,7 +83,7 @@ Meanwhile, the message handlers for `TriggerMessage` and `FollowUpMessage`, also
 
 ### Handlers
 
-Both approaches use the same handlers code, with a `CustomDependency` passed in.
+Both approaches use the same message handlers, with a `CustomDependency` passed in.
 
 snippet: TriggerMessageHandler
 
