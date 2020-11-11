@@ -128,13 +128,13 @@ In order to migrate an instance of ServiceControl to another host, the following
 1. Start the new service.
 1. Remove the old instance of ServiceControl.
 
-NOTE: If the database of the instance being migrated is very large, no downtime can be tolerated, the destination uses a different Windows version, or the instance uses a different name, then consider to [scale-out ServiceControl via remote instances](/servicecontrol/servicecontrol-instances/remotes).
+NOTE: If the database of the instance being migrated is very large, no downtime can be tolerated, the destination uses a different Windows version, or the instance uses a different name, then consider to [scale-out ServiceControl via remote instances](/servicecontrol/servicecontrol-instances/remotes.md).
 
 Ensure that:
 
 * First update the current instance to the [latest version](https://github.com/Particular/ServiceControl/releases).
 * Optionally, use the same installer as the current version. Database schemas are not guaranteed to be compatible between different versions.
-* Optionally, [script ServiceControl installations via powershell](/servicecontrol/installation-powershell) instead of running installers manually
+* Optionally, [script ServiceControl installations via powershell](/servicecontrol/installation-powershell.md) instead of running installers manually
 
 ServiceControl configuration settings are accessible via the  Service Control Management Utility user-interface or by navigating to the configuration files on the file-system stored in `ServiceControl.exe.config`, `ServiceControl.Audit.exe.config`, and `ServiceControl.Monitoring.exe.config`.
 
