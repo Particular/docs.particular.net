@@ -26,7 +26,7 @@ ServiceControl Audit Instance
 
 The first phase of a side-by-side installation is to disconnect the existing version 4 instances of ServiceControl and ServiceControl Audit from their input queues and to plug new version 5 instances of ServiceControl and ServiceControl Audit into the same input queues. This will allow a seamless transition for the endpoints which will continue to send messages to the same input queues.
 
-WARN: It is recommended to complete both steps during the same change window. Once the first step has been completed, the audit and error queues are no longer being consumed and can grow in size indefinitely. In high-throughput environments, this may have an impact on the queuing system.
+WARN: It is recommended to complete all steps during the same change window. Once the first step has been completed, the audit and error queues are no longer being consumed and can grow in size indefinitely. In high-throughput environments, this may have an impact on the queuing system.
 
 Before commencing, the target environment will look like this:
 
@@ -70,8 +70,6 @@ On the primary instance, change the error queue name to `!disable`. Restart the 
 
 SCREENSHOT of doing this
 
-TODO: Need to rename the existing instances so that endpoint plugins do not need to be re-configured. This may not be simple.
-
 After completing this step, the target environment will look like this:
 
 ```mermaid
@@ -95,14 +93,74 @@ graph LR
 
   Audit -- "#10060;" --> SCA
   Error -- "#10060;" --> SC
-  SCQ -- "#10060;" --> SC
+  SCQ --> SC
   SCA --> SC
 
   SC --> ServicePulse
   SC --> ServiceInsight
 ```
 
-### 2. Install version 5 instances
+### 2. Rename version 4 instances
+
+Each ServiceControl installation has an input queue that is based on the primary instance name. This input queue is used by ServiceControl plugins and integration events. This step will re-name the existing instances, so that the new instances can re-use the original names. This allows swapping out ServiceControl instances without having to reconfigure or redeploy business critical endpoints.
+
+The log folder, database folder, installation folder, and windows service name of each instance are all based off of the instance name by default and will need to be changed to prevent a clash with the new instances.
+
+NOTE: If ServiceControl plugins or integration events are not being used, this step can be skipped and the new instances can be installed with a different name.
+
+Perform the following steps on the primary ServiceControl instance and the ServiceControl Audit instance that are being replaced.
+
+1. Stop the instance in the ServiceControl Management utility
+2. Open the Log folder and rename it to match the new instance name
+3. Open the Database folder and rename it to match the new instance name
+4. Open the Installation folder and rename it to match the new instance name
+5. In the Installation folder make the following edits to the configuration file:
+  - Change the log path to match the updated path from step 2
+  - Change the database path to match the updated path from step 3
+  - NOTE: The audit instance contains a setting for the address of it's primary ServiceControl instance. This does not need to be updated. The audit instance will send health check and successful retry detection messages to the new primary ServiceControl instance that will be installed in step 3 below.
+6. Open regedit.exe
+  - Find the key that matches the instance name under `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services` and rename it to match the new instance name
+  - Underneath the service key find the DisplayName string value and change it to match the new instance name
+  - Underneath the service key find the ImagePath string value and change it to match the new instance name
+    - NOTE: This will require changing the path to the executable as well as the `serviceName` parameter
+7. From an administrative console, run the instance in setup mode. This will ensure that all of the configured folders and queues are reachable
+  - `ServiceControl.exe /s --serviceName=Particular.Servicecontrol.Old`
+  - `ServiceControl.Audit.exe /s --serviceName=Particular.Servicecontrol.Audit.Old`
+8. Restart the server
+  - Changes to the Windows Services data in the windows registry are not picked up until the operating system is restarted.
+
+TODO: Screenshots of these steps 
+
+When this step is complete, the target environment will look like this:
+
+```mermaid
+graph LR
+  Endpoints
+
+  subgraph Queues
+    SCQ(ServiceControl Queue)
+    SCQL(Legacy ServiceControl Queue)
+    Audit
+    Error    
+  end
+
+  Endpoints --> SCQ
+  Endpoints --> Audit
+  Endpoints --> Error
+
+  subgraph "ServiceControl v4"
+    SCA(Service Control Audit)
+    SC(Service Control Primary)
+  end
+
+  SCQL --> SC
+  SCA --> SC
+
+  SC --> ServicePulse
+  SC --> ServiceInsight
+```
+
+### 3. Install version 5 instances
 
 Once the old instances are no longer consuming messages from the error and audit queues, it is time to create the new instances using ServiceControl Management (or powershell). Make sure to use the same instance names, audit queue, and error queue that the old instances were using before they were disabled. 
 
@@ -224,7 +282,7 @@ TODO: If the customer changed the name of their original primary instance and th
 
 ## Cleaning up
 
-After certain conditions are met, the old version 4 instances of ServiceControl and ServiceControl Audit can be safely removed.
+When they are no longer needed, the old version 4 instances of ServiceControl and ServiceControl Audit can be safely removed.
 
 ### Version 4 audit instance
 
