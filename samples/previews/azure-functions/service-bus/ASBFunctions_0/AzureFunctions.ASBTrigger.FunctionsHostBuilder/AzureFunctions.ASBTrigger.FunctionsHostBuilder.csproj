@@ -9,7 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.AzureFunctions.ServiceBus" Version="0.3.0-*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.*" />
   </ItemGroup>
   <ItemGroup>
