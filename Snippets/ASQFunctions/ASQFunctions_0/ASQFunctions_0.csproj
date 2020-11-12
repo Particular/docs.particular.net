@@ -4,6 +4,6 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.AzureFunctions.StorageQueues" Version="0.*" />
+    <PackageReference Include="NServiceBus.AzureFunctions.StorageQueues" Version="0.3.0-*" />
   </ItemGroup>
 </Project>
