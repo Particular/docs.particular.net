@@ -6,9 +6,9 @@ using Microsoft.WindowsAzure.Storage.Queue;
 using NServiceBus;
 using NServiceBus.Persistence;
 
-class Usage
+class StaticUsage
 {
-    Usage(StorageQueueTriggeredEndpointConfiguration storageQueueTriggeredEndpointConfiguration, FunctionExecutionContext executionContext)
+    StaticUsage(StorageQueueTriggeredEndpointConfiguration storageQueueTriggeredEndpointConfiguration, FunctionExecutionContext executionContext)
     {
         #region asq-enable-diagnostics
 
