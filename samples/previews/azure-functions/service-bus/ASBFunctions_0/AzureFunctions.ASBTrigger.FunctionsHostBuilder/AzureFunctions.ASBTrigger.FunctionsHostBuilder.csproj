@@ -6,6 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\AzureFunctions.ASBTrigger.Static\CustomComponent.cs" Link="CustomComponent.cs" />
+    <Compile Include="..\AzureFunctions.ASBTrigger.Static\FollowupMessageHandler.cs" Link="FollowupMessageHandler.cs" />
+    <Compile Include="..\AzureFunctions.ASBTrigger.Static\TriggerMessageHandler.cs" Link="TriggerMessageHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.AzureFunctions.ServiceBus" Version="0.3.0-*" />
