@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.WebJobs;
+﻿using System;
+using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Queue;
 using NServiceBus;
@@ -36,6 +37,12 @@ public class AzureStorageQueueTriggerFunction
 
         // Disable persistence requirement
         configuration.Transport.DisablePublishing();
+
+        configuration.AdvancedConfiguration.RegisterComponents(r => r.ConfigureComponent(() =>
+        {
+            var customComponentInitializationValue = Environment.GetEnvironmentVariable("CustomComponentValue");
+            return new CustomComponent(customComponentInitializationValue);
+        }, DependencyLifecycle.SingleInstance));
 
         return configuration;
     });

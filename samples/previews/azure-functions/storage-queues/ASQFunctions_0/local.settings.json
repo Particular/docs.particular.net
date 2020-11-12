@@ -1,7 +1,9 @@
 {
   "IsEncrypted": false,
   "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+    "CustomComponentValue": "Custom Component"
   }
 }
