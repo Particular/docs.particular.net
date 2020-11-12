@@ -91,7 +91,7 @@ It may be required to first remove all `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Inst
 
 ## Resolve messages that cannot be retried 
 
-If you are experiencing that certain messages are not scheduled for retry and the logs show the following message then it could be that the database is in an inconsistent state.
+If certain messages are not scheduled for retry and the logs show the following message then it could be that the database is in an inconsistent state.
 
     2020-10-16 13:31:58.9863|190|Info|ServiceControl.Recoverability.RetryProcessor|Retry batch RetryBatches/1c33af76-8177-494d-ae9a-af060cefae02 cancelled as all matching unresolved messages are already marked for retry as part of another batch.
     2020-10-16 13:31:59.2826|173|Info|ServiceControl.Recoverability.InMemoryRetry|Retry operation bf05499a-9261-41ec-9b49-da40e22a6f20 completed. 1 messages skipped, 0 forwarded. Total 1.
