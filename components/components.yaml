@@ -54,6 +54,17 @@
     - NServiceBus.Persistence.AzureStorage
     - NServiceBus.Azure
 
+- Key: ASTP
+  Name: Azure Table Persistence 
+  DocsUrl: /persistence/azure-table
+  GitHubOwner: Particular
+  Category: Persistence
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.AzureStorage
+  NugetOrder:
+    - NServiceBus.Persistence.AzureTable
+    - NServiceBus.Persistence.AzureStorage
+    - NServiceBus.Azure    
+
 - Key: ASQ
   Name: Azure Storage Queues Transport
   DocsUrl: /transports/azure-storage-queues
