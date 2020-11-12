@@ -1018,16 +1018,18 @@
       Title: Installer Workflow
     - Url: persistence/sql/migrating-from-nhibernate
       Title: Migrating from NHibernate      
-  - Url: persistence/azure-storage
-    Title: Azure Storage
+  - Url: persistence/azure-table
+    Title: Azure Table
     Articles:
-    - Url: persistence/azure-storage/configuration
+    - Url: persistence/azure-table/configuration
       Title: Configuration
+    - Url: persistence/azure-table/transactions
+      Title: Transactions    
     - Url: nservicebus/azure/understanding-transactionality-in-azure
       Title: Transactions in Azure
-    - Url: persistence/azure-storage/performance-tuning
+    - Url: persistence/azure-table/performance-tuning
       Title: Performance Tuning
-    - Url: persistence/azure-storage/scripting
+    - Url: persistence/azure-table/scripting
       Title: Scripting
   - Url: persistence/ravendb
     Title: RavenDB

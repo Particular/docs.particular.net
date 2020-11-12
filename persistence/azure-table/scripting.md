@@ -7,6 +7,7 @@ related:
  - nservicebus/operations
 redirects:
  - nservicebus/azure-storage-persistence/scripting
+ - persistence/azure-storage/scripting
 ---
 
 ## Removing subscriptions

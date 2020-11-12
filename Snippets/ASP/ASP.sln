@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Azure_5", "Azure_5\Azure_5.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP_2", "ASP_2\ASP_2.csproj", "{D0DC3C7B-A506-4CED-B4D7-8BCDDC35506E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASTP_3", "ASTP_3\ASTP_3.csproj", "{F83ED6B8-C08C-4B80-9053-22E274507624}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,8 @@ Global
 		{0E096763-0236-457E-9957-F888D4E0C3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0DC3C7B-A506-4CED-B4D7-8BCDDC35506E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D0DC3C7B-A506-4CED-B4D7-8BCDDC35506E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F83ED6B8-C08C-4B80-9053-22E274507624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F83ED6B8-C08C-4B80-9053-22E274507624}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,11 +11,12 @@ redirects:
  - nservicebus/using-azure-storage-persistence-in-nservicebus
  - nservicebus/azure/azure-storage-persistence
  - nservicebus/azure-storage-persistence
+ - persistence/azure-storage
 ---
 
-Certain features of NServiceBus require persistence to permanently store data. Among them are subscription storage, sagas, and timeouts. Various storage options are available including Azure Storage Services.
+Certain features of NServiceBus require persistence to permanently store data. Among them are subscription storage, sagas, and outbox. Various storage options are available including Azure Table and Azure Cosmos DB Table API.
 
-Azure Storage Persistence stores NServiceBus data in [Azure Table storage](https://azure.microsoft.com/en-us/services/storage/tables/).
+Azure Storage Persistence stores NServiceBus data in [Azure Table storage](https://azure.microsoft.com/en-us/services/storage/tables/) or [Azure Cosmos DB using the Table API](https://docs.microsoft.com/en-us/azure/cosmos-db/table-support/).
 
 ## Persistence at a glance
 
@@ -23,14 +24,14 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 |Feature                    |   |
 |:---                       |---
-|Supported storage types    |Sagas, Subscriptions, Timeouts
-|Transactions               |None
+|Supported storage types    |Sagas, Outbox, Subscriptions
+|Transactions               |Using TransactionalBatch, [with caveats](transactions.md)
 |Concurrency control        |Optimistic concurrency
 |Scripted deployment        |Not supported
-|Installers                 |None. The required table structure is always created at runtime if required.
+|Installers                 |Supported. Subscription, the default table or saga tables derived by convention when no default table is set are created at runtime, when enabled.
 
 
-### Enable Azure Storage Persistence
+### Enable Azure Table Persistence
 
 partial: config
 
