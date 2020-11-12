@@ -5,6 +5,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.AzureFunctions.ServiceBus" Version="0.3.0-*" />
-    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.*" />
   </ItemGroup>
 </Project>
