@@ -26,6 +26,11 @@ public class Startup : FunctionsStartup
         {
             var configuration = new StorageQueueTriggeredEndpointConfiguration(AzureStorageQueueTriggerFunction.EndpointName);
 
+            configuration.UseSerialization<NewtonsoftSerializer>();
+            
+            // Disable persistence requirement
+            configuration.Transport.DisablePublishing();
+
             // optional: log startup diagnostics using Functions provided logger
             configuration.LogDiagnostics();
 
