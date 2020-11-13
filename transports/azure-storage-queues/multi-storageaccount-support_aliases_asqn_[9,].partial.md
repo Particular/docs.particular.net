@@ -1,12 +1,13 @@
-### Using aliases instead of connection strings
+### Aliases instead of connection strings
 
-When multiple accounts are used, an alias has to be registered for each storage account.
+To avoid connection strings leaking, aliases are always used, using an empty string as the default.
+Therefore, when multiple accounts are used, an alias has to be registered for each storage account.
 
-To enable sending from `account_A` to `account_B`, following configuration has to be applied in the `account_A` endpoint
+To enable sending from `account_A` to `account_B`, the following configuration needs to be applied in the `account_A` endpoint:
 
 snippet: AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
 
-Aliases can be provided for both the endpoint's connection string as well as other accounts' connection strings. This enables using `@` notation for destination addresses `queue_name@accountAlias`.
+Aliases can be provided for both the endpoint's connection strings as well as other accounts' connection strings. This enables using the `@` notation for destination addresses like `queue_name@accountAlias`.
 
 snippet: storage_account_routing_send_options_alias
 
