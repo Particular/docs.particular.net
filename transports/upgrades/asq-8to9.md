@@ -54,4 +54,4 @@ Queue, Blob and Table clients are the recommended way to configure the transport
 
 ## Transport connection string
 
-The connection string set via `transport.ConnectionString()` is no longer mandatory and is only needed when no clients for queue, blob or table is configured.
+The connection string set via `transport.ConnectionString()` is no longer mandatory and is only needed when clients for queue, blob or table are not configured.
