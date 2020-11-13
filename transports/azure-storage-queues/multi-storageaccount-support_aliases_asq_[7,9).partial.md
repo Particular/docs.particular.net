@@ -1,4 +1,4 @@
-### Using aliases instead of connection strings
+### Aliases instead of connection strings
 
 In order to prevent accidentally leaking connection string values, it is recommended to use aliases instead of raw connection strings. When applied, raw connection string values are replaced with registered aliases removing the possibility of leaking a connection string value. When using a single account, aliasing connection string is limited to just enabling it. When multiple accounts are used, an alias has to be registered for each storage account.
 

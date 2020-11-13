@@ -6,4 +6,4 @@ Storage account aliases are enforced by default. The alias is mapped to the phys
 
 NOTE: the default alias is an empty string.
 
-See also [Using aliases instead of connection strings](/transports/azure-storage-queues/multi-storageaccount-support.md#cross-namespace-routing-using-aliases-instead-of-connection-strings) for multi-account support.
+See also [Using aliases instead of connection strings](/transports/azure-storage-queues/multi-storageaccount-support.md#cross-namespace-routing-aliases-instead-of-connection-strings) for multi-account support.
