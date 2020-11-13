@@ -27,3 +27,7 @@ Account aliases are enforced by default and `transport.UseAccountAliasesInsteadO
 ## Using clients
 
 Queue, Blob and Table clients are the recommended way to configure the transport instead of using connection strings. Connections strings are still supported but will be removed in the future versions. See [Configuration API](/transports/azure-storage-queues/configuration.md#configuration-api).
+
+## Transport connection string
+
+The connection string set via `transport.ConnectionString()` is no longer mandatory and is only needed when no clients for queue, blob or table is configured.
