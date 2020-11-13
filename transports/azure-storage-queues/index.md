@@ -4,7 +4,7 @@ summary: Using Azure Storage Queues as a message transport
 component: ASQ
 related:
  - samples/azure/storage-queues
-reviewed: 2020-03-25
+reviewed: 2020-11-12
 redirects:
  - nservicebus/azure-storage-queues
 ---
