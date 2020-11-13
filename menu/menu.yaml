@@ -332,7 +332,7 @@
     - Url: nservicebus/outbox
       Title: Outbox
     - Url: nservicebus/messaging/databus
-      Title: Databus
+      Title: Data Bus
       Articles:
       - Url: nservicebus/messaging/databus/file-share
         Title: File Share
