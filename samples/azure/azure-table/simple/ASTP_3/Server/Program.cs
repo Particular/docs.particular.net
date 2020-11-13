@@ -21,7 +21,6 @@ class Program
 
         var account = CloudStorageAccount.Parse(connection);
         persistence.UseCloudTableClient(account.CreateCloudTableClient());
-        persistence.DefaultTable("Server");
 
         #endregion
 
