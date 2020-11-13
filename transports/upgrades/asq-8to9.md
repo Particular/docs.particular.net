@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Queues Transport Upgrade Version 8 to 9
 summary: Migration instructions on how to upgrade Azure Storage Queues Transport from Version 8 to 9.
-reviewed: 2020-11-12
+reviewed: 2020-11-13
 component: ASQ
 related:
 - transports/azure-storage-queues
@@ -32,7 +32,7 @@ using NServiceBus.Transport.AzureStorageQueues;
 
 ## Move to .NET 4.7.2
 
-The minimum .NET Framework version for version 4 is [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472).
+The minimum .NET Framework version is [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472).
 
 **All projects must be updated to .NET Framework 4.7.2 before upgrading to NServiceBus.Transport.AzureStorageQueues version 9.**
 
