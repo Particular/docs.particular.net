@@ -30,9 +30,15 @@ with
 using NServiceBus.Transport.AzureStorageQueues;
 ```
 
-## .NET Framework
+## Move to .NET 4.7.2
 
-To run the package with .NET Framework will require at least .NET Framework 4.7.2.
+The minimum .NET Framework version for version 4 is [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472).
+
+**All projects must be updated to .NET Framework 4.7.2 before upgrading to NServiceBus.Transport.AzureStorageQueues version 9.**
+
+It is recommended to update to .NET Framework 4.7.2 and perform a full migration to production **before** updating to version 9. This will isolate any issues that may occur.
+
+For solutions with many projects, the [Target Framework Migrator](https://marketplace.visualstudio.com/items?itemName=PavelSamokha.TargetFrameworkMigrator) Visual Studio extension can reduce the manual effort required in performing an upgrade.
 
 ## Timeout manager
 
