@@ -14,10 +14,10 @@ class Usage
     void UseTransport(EndpointConfiguration endpointConfiguration)
     {
         #region AzureStorageQueueTransportWithAzure
-    
+
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
-    
+
         #endregion
     }
 
@@ -49,7 +49,7 @@ class Usage
         #region storage_account_routing_send_options_full_connectionstring
 
         await endpointInstance.Send(
-            destination: "sales@DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];",
+            destination: "sales@accountAlias",
             message: new MyMessage());
 
         #endregion
@@ -60,7 +60,7 @@ class Usage
         #region storage_account_routing_send_options_alias
 
         await endpointInstance.Send(
-            destination: "sales@accountName",
+            destination: "sales@accountAlias",
             message: new MyMessage());
 
         #endregion
