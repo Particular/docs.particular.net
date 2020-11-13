@@ -11,10 +11,10 @@ class Usage
     void UseTransport(EndpointConfiguration endpointConfiguration)
     {
         #region AzureStorageQueueTransportWithAzure
-
+    
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
-
+    
         #endregion
     }
 
