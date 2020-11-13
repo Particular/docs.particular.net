@@ -3,6 +3,9 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs;
+using Azure.Storage.Queues;
+using Microsoft.Azure.Cosmos.Table;
 using NServiceBus;
 
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
@@ -11,15 +14,20 @@ class Usage
     void UseTransport(EndpointConfiguration endpointConfiguration)
     {
         #region AzureStorageQueueTransportWithAzure
-    
+
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
-    
+
         #endregion
     }
 
     void CodeOnly(EndpointConfiguration endpointConfiguration)
     {
+        var queueServiceClient = new QueueServiceClient("connectionString", new QueueClientOptions());
+        var blobServiceClient = new BlobServiceClient("connectionString", new BlobClientOptions());
+        var cloudStorageAccount = CloudStorageAccount.Parse("connectionString");
+        var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
+
         #region AzureStorageQueueConfigCodeOnly
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
@@ -29,16 +37,9 @@ class Usage
         transport.DegreeOfReceiveParallelism(16);
         transport.PeekInterval(TimeSpan.FromMilliseconds(100));
         transport.MessageInvisibleTime(TimeSpan.FromSeconds(30));
-
-        #endregion
-    }
-
-    void AccountAliasesInsteadOfConnectionStrings(EndpointConfiguration endpointConfiguration)
-    {
-        #region AzureStorageQueueUseAccountAliasesInsteadOfConnectionStrings
-
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.UseAccountAliasesInsteadOfConnectionStrings();
+        transport.UseQueueServiceClient(queueServiceClient);
+        transport.UseBlobServiceClient(blobServiceClient);
+        transport.UseCloudTableClient(cloudTableClient);
 
         #endregion
     }
@@ -48,7 +49,7 @@ class Usage
         #region storage_account_routing_send_options_full_connectionstring
 
         await endpointInstance.Send(
-            destination: "sales@DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];",
+            destination: "sales@accountAlias",
             message: new MyMessage());
 
         #endregion
@@ -59,7 +60,7 @@ class Usage
         #region storage_account_routing_send_options_alias
 
         await endpointInstance.Send(
-            destination: "sales@accountName",
+            destination: "sales@accountAlias",
             message: new MyMessage());
 
         #endregion
@@ -112,7 +113,6 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("account_A_connection_string");
-        transport.UseAccountAliasesInsteadOfConnectionStrings();
         transport.DefaultAccountAlias("account_A");
         var accountRouting = transport.AccountRouting();
         accountRouting.AddAccount("account_B", "account_B_connection_string");
