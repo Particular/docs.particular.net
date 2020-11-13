@@ -16,7 +16,7 @@ upgradeGuideCoreVersions:
 This package was formerly known as `NServiceBus.Azure.Transports.WindowsAzureStorageQueues`.
 As of version 9 the package name is `NServiceBus.Transport.AzureStorageQueues`.
 
-### Moved types from namespace `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` to `NServiceBus.Transport.AzureStorageQueues`
+## Types from namespace `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` moved to `NServiceBus.Transport.AzureStorageQueues`
 
 Certain advanced configuration APIs have been moved from the namespace `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` to `NServiceBus.Transport.AzureStorageQueues`Code must to be adjusted accordingly. A straight forward way is to search and replace
 
@@ -30,7 +30,7 @@ with
 using NServiceBus.Transport.AzureStorageQueues;
 ```
 
-# .NET Framework
+## .NET Framework
 
 To run the package with .NET Framework will require at least .NET Framework 4.7.2.
 
