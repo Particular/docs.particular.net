@@ -152,6 +152,12 @@
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.1.3) | ~~2019-03-27~~ | ~~2019-10-31~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.0.2) | ~~2018-12-19~~ | ~~2019-06-27~~    | ~~Superseded by 1.1.x~~           |
 
+#### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/9.0.0) | 2020-11-13     | -                 | -                                 |
+
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
 
 | Version   | Released       | Supported until   | Notes                             |
@@ -564,7 +570,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/1.1.0) | 2020-08-12     | -                 | -                                 |
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/1.0.1) | 2019-11-13     | 2020-11-12        | Superseded by 1.1.x               |
+| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/1.0.1) | ~~2019-11-13~~ | ~~2020-11-12~~    | ~~Superseded by 1.1.x~~           |
 
 #### [NServiceBus.Host](/nuget/NServiceBus.Host)
 
@@ -617,7 +623,7 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | -                 | -                                 |
-| [4.0.x](https://www.nuget.org/packages/ParticularTemplates/4.0.0) | 2020-03-05     | 2020-11-14        | Superseded by 4.1.x               |
+| [~~4.0.x~~](https://www.nuget.org/packages/ParticularTemplates/4.0.0) | ~~2020-03-05~~ | ~~2020-11-14~~    | ~~Superseded by 4.1.x~~           |
 | [3.0.x](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | 2018-11-29     | 2021-03-05        | Superseded by 4.0.x               |
 | [~~2.0.x~~](https://www.nuget.org/packages/ParticularTemplates/2.0.0) | ~~2018-05-29~~ | ~~2019-11-29~~    | ~~Superseded by 3.0.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/ParticularTemplates/1.0.0) | ~~2017-10-05~~ | ~~2019-05-29~~    | ~~Superseded by 2.0.x~~           |
