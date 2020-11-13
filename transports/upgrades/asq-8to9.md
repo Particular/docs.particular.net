@@ -11,6 +11,11 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
+## Package name
+
+This package was formerly known as `NServiceBus.Azure.Transports.WindowsAzureStorageQueues`.
+As of version 9 the package name is `NServiceBus.Transport.AzureStorageQueues`.
+
 ## Timeout manager
 
 The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backwards compatibility mode obsolete. If backwards compatibility mode was enabled these API's must be removed.
