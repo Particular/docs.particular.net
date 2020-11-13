@@ -16,6 +16,24 @@ upgradeGuideCoreVersions:
 This package was formerly known as `NServiceBus.Azure.Transports.WindowsAzureStorageQueues`.
 As of version 9 the package name is `NServiceBus.Transport.AzureStorageQueues`.
 
+### Moved types from namespace `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` to `NServiceBus.Transport.AzureStorageQueues`
+
+Certain advanced configuration APIs have been moved from the namespace `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` to `NServiceBus.Transport.AzureStorageQueues`Code must to be adjusted accordingly. A straight forward way is to search and replace
+
+```
+using NServiceBus.Azure.Transports.WindowsAzureStorageQueues;
+```
+
+with
+
+```
+using NServiceBus.Transport.AzureStorageQueues;
+```
+
+# .NET Framework
+
+To run the package with .NET Framework will require at least .NET Framework 4.7.2.
+
 ## Timeout manager
 
 The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backwards compatibility mode obsolete. If backwards compatibility mode was enabled these API's must be removed.
