@@ -32,7 +32,6 @@ public class ShipOrderHandler :
     {
         var session = context.SynchronizedStorageSession.AzureTablePersistenceSession();
 
-        // this should really be done automatically
         orderShippingInformation.PartitionKey = session.PartitionKey;
 
         session.Batch.Add(TableOperation.Insert(orderShippingInformation));
