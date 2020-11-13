@@ -5,6 +5,8 @@ reviewed: 2020-11-13
 component: ASP
 related:
  - nservicebus/sagas
+redirects:
+ - samples/azure/storage-persistence
 ---
 
 ## Prerequisites

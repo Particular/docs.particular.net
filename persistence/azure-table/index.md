@@ -6,7 +6,7 @@ component: ASP
 related:
  - persistence/upgrades/asp-saga-deduplication
  - persistence/upgrades/asp-saga-pruning
- - samples/azure/storage-persistence
+ - samples/azure/azure-table
 redirects:
  - nservicebus/using-azure-storage-persistence-in-nservicebus
  - nservicebus/azure/azure-storage-persistence
