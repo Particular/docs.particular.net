@@ -63,6 +63,16 @@
   NugetOrder:
     - NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 
+- Key: ASQN
+  Name: Azure Storage Queues Transport 
+  DocsUrl: /transports/azure-storage-queues
+  GitHubOwner: Particular
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.AzureStorageQueues
+  NugetOrder:
+    - NServiceBus.Transport.AzureStorageQueues
+    - NServiceBus.Azure.Transports.WindowsAzureStorageQueues
+
 - Key: Autofac
   Name: Autofac Dependency Injection
   DocsUrl: /nservicebus/dependency-injection/autofac
