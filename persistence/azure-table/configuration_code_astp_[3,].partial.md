@@ -1,6 +1,6 @@
 ### Configuration with code
 
-For sagas, subscriptions and for timeouts:
+For sagas and subscriptions:
 
 snippet: AzurePersistenceSubscriptionsAllConnectionsCustomization
 
@@ -11,7 +11,3 @@ snippet: AzurePersistenceSagasCustomization
 For subscriptions:
 
 snippet: AzurePersistenceSubscriptionsCustomization
-
-For timeouts:
-
-snippet: AzurePersistenceTimeoutsCustomization
