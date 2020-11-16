@@ -21,6 +21,9 @@ partial: running-the-project
 
 ## Code walk-through
 
+When the endpoint starts up, it runs all `INeedInitialization` instances. In this sample, the `TruncateTableAtStartup` class is used to truncate the table if it exists at startup.
+
+snippet: TruncateTableAtStartup
 
 ### Configure the SQL Server transport
 
