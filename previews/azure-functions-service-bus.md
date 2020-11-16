@@ -4,7 +4,7 @@ component: ASBFunctions
 summary: Hosting NServiceBus endpoints with Azure Functions triggered by Azure Service Bus
 related:
  - samples/previews/azure-functions/service-bus
-reviewed: 2020-07-23
+reviewed: 2020-11-09
 ---
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
@@ -28,6 +28,24 @@ Pass the incoming message to the NServiceBus endpoint:
 snippet: asb-function-definition
 
 NServiceBus interacts directly with the Azure Functions logging infrastructure by passing the `ILogger` instance from the function parameters to the endpoint's `Process` method.
+
+## IFunctionsHostBuilder usage
+
+Alternatively to the configuration approach described in the previous section, using a static `FunctionEndpoint` field, an endpoint can also be configured using the `IFunctionsHostBuilder` API as described in [Use dependency injection in .NET Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection). 
+
+### Endpoint configuration
+
+NServiceBus can be registered and configured on the host builder using the `UseNServiceBus` extension method in the startup class:
+
+snippet: asb-function-hostbuilder
+
+Any services registered via the `IFunctionsHostBuilder` will be available to message handlers via dependency injection. The startup class needs to be declared via the `FunctionStartup` attribute: `[assembly: FunctionsStartup(typeof(Startup))]`.
+
+### Azure Function definition
+
+To access `FunctionEndpoint` from the Azure Function trigger, inject the `FunctionEndpoint` via constructor-injection into the containing class:
+
+snippet: asb-function-hostbuilder-trigger
 
 ## Configuration
 

@@ -1,15 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.AzureFunctions;
-using NServiceBus.AzureFunctions.ServiceBus;
 
-class Usage
+class StaticUsage
 {
-    Usage(ServiceBusTriggeredEndpointConfiguration serviceBusTriggeredEndpointConfiguration, FunctionExecutionContext executionContext)
+    StaticUsage(ServiceBusTriggeredEndpointConfiguration serviceBusTriggeredEndpointConfiguration, FunctionExecutionContext executionContext)
     {
         #region asb-enable-diagnostics
 
@@ -18,11 +15,11 @@ class Usage
         #endregion
     }
 
-    public static void EnableDelayedRetries(ServiceBusTriggeredEndpointConfiguration endpointConfiguration)
+    public static void EnableDelayedRetries(ServiceBusTriggeredEndpointConfiguration serviceBusTriggeredEndpointConfiguration)
     {
         #region asb-configure-error-queue
 
-        endpointConfiguration.AdvancedConfiguration.SendFailedMessagesTo("error");
+        serviceBusTriggeredEndpointConfiguration.AdvancedConfiguration.SendFailedMessagesTo("error");
 
         #endregion
     }
