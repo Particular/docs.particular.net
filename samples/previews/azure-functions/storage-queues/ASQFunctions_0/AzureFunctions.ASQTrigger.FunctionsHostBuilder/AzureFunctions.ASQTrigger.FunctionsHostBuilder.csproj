@@ -5,13 +5,16 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.AzureFunctions.StorageQueues" Version="0.2.*" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.*" />
+    <PackageReference Include="NServiceBus.AzureFunctions.StorageQueues" Version="0.3.*" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AzureFunctions.Messages\AzureFunctions.Messages.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AzureFunctions.ASQTrigger.Static\CustomComponent.cs" />
+    <Compile Include="..\AzureFunctions.ASQTrigger.Static\TriggerMessageHandler.cs" />
+    <Compile Include="..\AzureFunctions.ASQTrigger.Static\FollowupMessageHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\local.settings.json" Link="local.settings.json">
