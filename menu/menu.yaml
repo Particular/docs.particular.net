@@ -1314,5 +1314,5 @@
     Articles:
     - Title: Transactions
       Url: previews/cosmosdb/transactions
-    - Title: Migration from Azure Storage Persistence
-      Url: previews/cosmosdb/migration-from-azure-storage      
+    - Title: Migration from Azure Table Persistence
+      Url: previews/cosmosdb/migration-from-azure-table      

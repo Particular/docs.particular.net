@@ -1,12 +1,12 @@
 ---
-title: Migration from Azure Storage Persistence
+title: Migration from Azure Table Persistence
 component: CosmosDB
 related:
-- persistence/azure-storage
+- persistence/azure-table
 reviewed: 2020-09-20
 ---
 
-For existing system running in Azure and using [Azure Storage Persistence](/persistence/azure-storage), a multi-step migration process is recommended, using Particular and Azure Cosmos DB tools.
+For existing system running in Azure and using [Azure Table Persistence](/persistence/azure-table) where a migration to Azure Cosmos DB SQL API is desired, a multi-step migration process is recommended, using Particular and Azure Cosmos DB tools.
 
 WARN: The endpoint being migrated must be offline while migrating saga data.
 
@@ -78,7 +78,7 @@ where the following parameters must be adjusted:
 
 ## Data inspection
 
-Due to the [limited types](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model#property-types) supported by Azure Storage Tables, some types are stored in the table by the [Azure Storage persister](/persistence/azure-storage) as serialized JSON strings. The export tool makes a _best effort_ to re-serialize these values for import into Cosmos DB. As a result, the data can and should be inspected for quality both before and after the import. The migrated endpoint and all saga types migrated should be thoroughly tested before moving into production to ensure the migration is correct.
+Due to the [limited types](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model#property-types) supported by Azure Storage Tables, some types are stored in the table by the [Azure Storage persister](/persistence/azure-table) as serialized JSON strings. The export tool makes a _best effort_ to re-serialize these values for import into Cosmos DB. As a result, the data can and should be inspected for quality both before and after the import. The migrated endpoint and all saga types migrated should be thoroughly tested before moving into production to ensure the migration is correct.
 
 WARN: Dates stored using `DateTimeOffset` data type are susceptible to incorrect translation. Saga data storing properties using `DateTimeOffset` should be verified after saga data import is completed to ensure accurate conversion.
 
