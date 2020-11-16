@@ -7,6 +7,8 @@ hidden: true
 summary: "third party services integration."
 ---
 
+<div style="display:block;width:100%;margin:20px auto;position:relative;height:0;padding-bottom:56.25%"><iframe src="https://www.youtube.com/embed/oHg5SJYRHA0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+
 The need for orchestration of a business process arises quickly when integrating with third parties. We'll frequently need to call a third-party service, and then depending on the result, kick off a new process locally, or perhaps even turn around and call a different third party.
 
 We can't sit around passively waiting for events to float by to decide what needs to happen next. We need a process to take charge and execute several steps of a business process.
