@@ -17,7 +17,7 @@ public class AzureStorageQueueTriggerFunction
     }
     #endregion
 
-    #region Function
+    #region injected-function
     [FunctionName(EndpointName)]
     public async Task QueueTrigger(
         [QueueTrigger(EndpointName)]
