@@ -5,7 +5,6 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Persistence.AzureTable;
 
-#region UseHeader
 public class ShipOrderHandler :
     IHandleMessages<ShipOrder>
 {
@@ -36,4 +35,3 @@ public class ShipOrderHandler :
 
     static ILog Log = LogManager.GetLogger<ShipOrderHandler>();
 }
-#endregion
