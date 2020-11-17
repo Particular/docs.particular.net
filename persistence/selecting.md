@@ -54,13 +54,13 @@ The learning persister is not meant for production usage.
 
 ### Non-durable
 
-The non-durable persister is not mentioned in the decision chart, as it is appropriate only in very specific scenarios where the volatility of data is not an issue. 
+The non-durable persister is not mentioned in the decision chart, as it is appropriate only in very specific scenarios where the volatility of data is not an issue.
 
 ### Azure
 
 There are several options available when endpoints are hosted in Windows Azure. The most commonly used persisters are Azure Storage and Azure SQL, the fully managed SQL Server solution in Azure.
 
-One factor in the decision is whether the system is fully platform-as-a-service-enabled and whether it is designed to run fully on Azure (in which case, the Azure Storage persister may be appropriate). Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL persister with Azure SQL).
+One factor in the decision is whether the system is fully platform-as-a-service-enabled and whether it is designed to run fully on Azure (in which case, the Azure Table persistence may be appropriate). Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL persister with Azure SQL).
 
 **Azure SQL**
 

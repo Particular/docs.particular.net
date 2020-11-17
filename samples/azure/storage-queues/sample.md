@@ -25,9 +25,9 @@ This sample shows a simple two endpoint scenario.
  * `Endpoint2` replies to `Endpoint1` with a `Message2`.
 
 
-### Azure Storage configuration
+### Azure Table configuration
 
-The `Server` endpoint is configured to use the Azure Storage persistence in two locations.
+The `Server` endpoint is configured to use the Azure Table persistence in two locations.
 
 
 #### The endpoint configuration

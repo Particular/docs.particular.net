@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Persistence Scripts
-summary: Collection of scripts for managing Azure Storage Persistence
+title: Azure Table Persistence Scripts
+summary: Collection of scripts for managing Azure Table Persistence
 component: ASP
 reviewed: 2020-03-16
 related:

@@ -33,11 +33,11 @@ snippet: AzureStorageQueueTransportWithAzureHost
 
 ### Enabling the persistence
 
-The Azure Storage persistence can be enabled by calling `UsePersistence<AzureStoragePersistence>` on the endpoint config as well.
+The Azure Table persistence can be enabled by calling `UsePersistence<AzureTablePersistence>` on the endpoint config as well.
 
 snippet: PersistenceWithAzureHost
 
-NOTE: In Azure Storage Persistence version 4, when hosting in the Azure RoleEntryPoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
+NOTE: In Azure Table Persistence version 4, when hosting in the Azure RoleEntryPoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
 
 ## Convention to override configuration

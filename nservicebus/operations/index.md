@@ -66,7 +66,7 @@ Operational documentation is best reviewed from the perspective of the selected 
  * [Oracle Scripts](/persistence/sql/oracle-scripts.md)
 
 
-### [Azure Storage Persistence](/persistence/azure-table/)
+### [Azure Table Persistence](/persistence/azure-table/)
 
  * [Performance Tuning](/persistence/azure-table/performance-tuning.md)
  * [Scripting](/persistence/azure-table/scripting.md)

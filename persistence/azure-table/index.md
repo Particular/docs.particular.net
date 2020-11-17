@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Persistence
-summary: Using Azure Storage as persistence
+title: Azure Table Persistence
+summary: Using Azure Tables as persistence
 reviewed: 2019-10-01
 component: ASP
 related:
@@ -16,7 +16,7 @@ redirects:
 
 Certain features of NServiceBus require persistence to permanently store data. Among them are subscription storage, sagas, and outbox. Various storage options are available including Azure Table and Azure Cosmos DB Table API.
 
-Azure Storage Persistence stores NServiceBus data in [Azure Table storage](https://azure.microsoft.com/en-us/services/storage/tables/) or [Azure Cosmos DB using the Table API](https://docs.microsoft.com/en-us/azure/cosmos-db/table-support/).
+Azure Table Persistence stores NServiceBus data in [Azure Table storage](https://azure.microsoft.com/en-us/services/storage/tables/) or [Azure Cosmos DB using the Table API](https://docs.microsoft.com/en-us/azure/cosmos-db/table-support/).
 
 ## Persistence at a glance
 
@@ -65,7 +65,7 @@ NServiceBus.Persistence.AzureStorage.RetryNeededException: This operation requir
 
 #### Updating or deleting saga data
 
-Azure Storage Persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
+Azure Table Persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
 
 Example exception:
 

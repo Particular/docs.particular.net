@@ -10,7 +10,7 @@ For existing system running in Azure and using [Azure Table Persistence](/persis
 
 WARN: The endpoint being migrated must be offline while migrating saga data. The saga data must be using secondary indexes (introduced in Azure Table Persistence 2.x) or be stored with Azure Table Persistence Version 3 or higher for this upgrade guide to succeed. The migration scenario described assumes only saga data of a one saga is stored per table.
 
-For each Azure Storage Persistence table containing saga data, the following four major steps must be performed:
+For each Azure Table Persistence table containing saga data, the following four major steps must be performed:
 
 1. [Export saga data from Table Storage](#export-data)
 1. [Inspect exported saga data](#data-inspection) for quality
