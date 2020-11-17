@@ -28,5 +28,6 @@ A built-in example is the audit feature which needs the audit queue. During star
 
 snippet: queuebindings
 
+## Creation
 
-partial: creation
+Queues get created during [installation](/nservicebus/operations/installers.md) time only.
