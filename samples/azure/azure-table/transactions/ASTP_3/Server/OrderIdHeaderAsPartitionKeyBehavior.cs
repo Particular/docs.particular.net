@@ -20,18 +20,6 @@ class OrderIdHeaderAsPartitionKeyBehavior : Behavior<ITransportReceiveContext>
         return next();
     }
 
-    public class Registration : RegisterStep
-    {
-        public Registration() :
-            base(nameof(OrderIdHeaderAsPartitionKeyBehavior),
-                typeof(OrderIdHeaderAsPartitionKeyBehavior),
-                "Determines the PartitionKey from the logical message",
-                b => new OrderIdHeaderAsPartitionKeyBehavior())
-        {
-            InsertBefore(nameof(LogicalOutboxBehavior));
-        }
-    }
-
     static readonly ILog Log = LogManager.GetLogger<OrderIdHeaderAsPartitionKeyBehavior>();
 }
 #endregion
