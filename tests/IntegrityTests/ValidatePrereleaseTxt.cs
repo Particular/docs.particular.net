@@ -23,7 +23,7 @@ namespace IntegrityTests
                     var versionSplit = versionedName.Split('_');
                     var componentName = versionSplit[0];
 
-                    if (!TestSetup.ComponentMetadata.TryGetValue(componentName + "x", out var component))
+                    if (!TestSetup.ComponentMetadata.TryGetValue(componentName, out var component))
                     {
                         Assert.Warn($"Component metadata for component name '{componentName}' was not found.");
                     }
