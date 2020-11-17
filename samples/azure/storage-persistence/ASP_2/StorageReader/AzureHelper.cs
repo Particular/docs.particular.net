@@ -1,10 +1,11 @@
 ﻿using System.Diagnostics;
-using System.Linq;
+using System.IO;
+using System.Text;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Microsoft.Azure.Cosmos.Table;
 using NUnit.Framework;
-using Microsoft.WindowsAzure.Storage.Blob;
 
 [TestFixture]
 public class AzureHelper
@@ -25,26 +26,26 @@ public class AzureHelper
 
     static async Task WriteOutBlobContainer(string containerName)
     {
-        var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
-        var tableClient = storageAccount.CreateCloudBlobClient();
-        var container = tableClient.GetContainerReference(containerName);
+        var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
+        var container = blobServiceClient.GetBlobContainerClient(containerName);
         Debug.WriteLine($"'{containerName}' container contents");
-        BlobContinuationToken token = null;
-        do
+        var pages = container.GetBlobsAsync().AsPages();
+        await foreach (Azure.Page<BlobItem> blobPage in pages)
         {
-            var segment = await container.ListBlobsSegmentedAsync(token).ConfigureAwait(false);
-            token = segment.ContinuationToken;
-            foreach (var blob in segment.Results)
+            foreach (var blobItem in blobPage.Values)
             {
-                var name = blob.Uri.AbsolutePath.Split('/').Last();
+                var name = blobItem.Name;
                 Debug.WriteLine($"  Blob:= {name}");
-                var blockBlobReference = container.GetBlockBlobReference(name);
-                var text = await blockBlobReference.DownloadTextAsync()
-                    .ConfigureAwait(false);
-                Debug.WriteLine($"    {text}");
+                var blobClient = container.GetBlobClient(name);
+                using (var memoryStream = new MemoryStream())
+                {
+                    await blobClient.DownloadToAsync(memoryStream)
+                        .ConfigureAwait(false);
+                    var text = Encoding.UTF8.GetString(memoryStream.ToArray());
+                    Debug.WriteLine($"    {text}");
+                }
             }
         }
-        while (token != null);
         Debug.WriteLine("");
     }
 
@@ -108,9 +109,7 @@ public class AzureHelper
 
     static Task DeleteBlobContainer(string containerName)
     {
-        var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
-        var tableClient = storageAccount.CreateCloudBlobClient();
-        var container = tableClient.GetContainerReference(containerName);
-        return container.DeleteIfExistsAsync();
+        var containerClient = new BlobContainerClient("UseDevelopmentStorage=true", containerName);
+        return containerClient.DeleteIfExistsAsync();
     }
 }
