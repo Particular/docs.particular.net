@@ -18,7 +18,6 @@ public static class CommonConfiguration
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString(connectionString);
-        transport.SanitizeQueueNamesWith(queueName => queueName.Replace('.', '-'));
         var delayedDelivery = transport.DelayedDelivery();
         delayedDelivery.DisableTimeoutManager();
 

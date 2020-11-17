@@ -17,7 +17,7 @@ public class Program
         }
         var host = new JobHost(config);
 
-        Console.WriteLine("Starting Store.ContentManagement host");
+        Console.WriteLine("Starting Store-ContentManagement host");
         host.Call(typeof(Program).GetMethod(nameof(Program.AsyncMain)));
         host.RunAndBlock();
     }
@@ -26,13 +26,13 @@ public class Program
     public static async Task AsyncMain(CancellationToken cancellationToken)
     {
         Console.Title = "Samples.Store.ContentManagement";
-        var endpointConfiguration = new EndpointConfiguration("Store.ContentManagement");
+        var endpointConfiguration = new EndpointConfiguration("Store-ContentManagement");
         endpointConfiguration.ApplyCommonConfiguration(
             transport =>
             {
                 var routing = transport.Routing();
-                routing.RouteToEndpoint(typeof(ProvisionDownloadRequest), "Store.Operations");
-                routing.RegisterPublisher(typeof(OrderAccepted), "Store.Sales");
+                routing.RouteToEndpoint(typeof(ProvisionDownloadRequest), "Store-Operations");
+                routing.RegisterPublisher(typeof(OrderAccepted), "Store-Sales");
             });
 
 

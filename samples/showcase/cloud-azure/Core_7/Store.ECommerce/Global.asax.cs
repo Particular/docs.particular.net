@@ -23,16 +23,16 @@ public class MvcApplication :
 
     static async Task AsyncStart()
     {
-        var endpointConfiguration = new EndpointConfiguration("Store.ECommerce");
+        var endpointConfiguration = new EndpointConfiguration("Store-ECommerce");
         endpointConfiguration.PurgeOnStartup(true);
         endpointConfiguration.ApplyCommonConfiguration(
             transport =>
             {
                 var routing = transport.Routing();
-                routing.RouteToEndpoint(typeof(SubmitOrder).Assembly, "Store.Messages.Commands", "Store.Sales");
-                routing.RegisterPublisher(typeof(DownloadIsReady), "Store.ContentManagement");
-                routing.RegisterPublisher(typeof(OrderCancelled), "Store.Sales");
-                routing.RegisterPublisher(typeof(OrderPlaced), "Store.Sales");
+                routing.RouteToEndpoint(typeof(SubmitOrder).Assembly, "Store.Messages.Commands", "Store-Sales");
+                routing.RegisterPublisher(typeof(DownloadIsReady), "Store-ContentManagement");
+                routing.RegisterPublisher(typeof(OrderCancelled), "Store-Sales");
+                routing.RegisterPublisher(typeof(OrderPlaced), "Store-Sales");
             });
 
         EndpointInstance = await Endpoint.Start(endpointConfiguration)
