@@ -15,7 +15,7 @@ class Program
         #region AdapterTransport
 
         var transportAdapterConfig =
-            new TransportAdapterConfig<AzureStorageQueueTransport, AzureStorageQueueTransport>("ServiceControl.ASQ.Adapter");
+            new TransportAdapterConfig<AzureStorageQueueTransport, AzureStorageQueueTransport>("ServiceControl-ASQ-Adapter");
 
         #endregion
 
@@ -31,7 +31,6 @@ class Program
                 }
 
                 transport.ConnectionString(connectionString);
-                transport.UseAccountAliasesInsteadOfConnectionStrings();
                 transport.DefaultAccountAlias("storage_account");
 
                 // Required to address https://github.com/Particular/NServiceBus.AzureStorageQueues/issues/308
@@ -46,8 +45,6 @@ class Program
                 settings.Set("MainSerializer", serializer);
 
                 #endregion
-
-                transport.SanitizeQueueNamesWith(s => s.Replace(".", "-"));
             });
 
         #endregion
@@ -75,7 +72,6 @@ class Program
 
                 #endregion
 
-                transport.SanitizeQueueNamesWith(s => s.Replace(".", "-"));
             });
 
         #endregion
@@ -95,7 +91,7 @@ class Program
 
         #region ControlQueueOverride
 
-        transportAdapterConfig.ServiceControlSideControlQueue = "Particular.ServiceControl.ASQ";
+        transportAdapterConfig.ServiceControlSideControlQueue = "Particular-ServiceControl-ASQ";
 
         #endregion
 
