@@ -8,7 +8,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="9.*" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.*" />
     <PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
   </ItemGroup>
   <ItemGroup Label="Transitive dependencies">
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
