@@ -17,14 +17,14 @@ partial: code
 Each area of the persister (sagas, subscriptions and timeouts) have values that can be set or changed.
 
 #### Saga configuration
- 
+
 The following settings are available for changing the behavior of saga persistence section:
 
  * `ConnectionString`: Sets the connection string for the storage account to be used for storing saga information.
   * NServiceBus.Azure defaults to `UseDevelopmentStorage=true`.
   * NServiceBus.Persistence.AzureStorage version 1 and above defaults to `null`.
  * `CreateSchema`: Instructs the persister to create the table automatically. Defaults to `true`.
- * `AssumeSecondaryIndicesExist` (Added in version 1.4): Disables scanning for secondary index records when checking if a new saga should be created. A secondary index record was not created by the persister contained in the `NServiceBus.Azure` package. To provide backward compatibilty, the `NServiceBus.Persistence.AzureStorage` package performs a full table scan, across all partitions, for secondary index records before creating a new saga. For systems that have only used the `NServiceBus.Persistence.AzureStorage` library, or have verified that all saga instances have a secondary index record, full table scans can be safely disabled by using this configuration setting.
+ * `AssumeSecondaryIndicesExist` (Added in version 1.4): Disables scanning for secondary index records when checking if a new saga should be created. A secondary index record was not created by the persister contained in the `NServiceBus.Azure` package. To provide backward compatibility, the `NServiceBus.Persistence.AzureStorage` package performs a full table scan, across all partitions, for secondary index records before creating a new saga. For systems that have only used the `NServiceBus.Persistence.AzureStorage` library, or have verified that all saga instances have a secondary index record, full table scans can be safely disabled by using this configuration setting.
 
 #### Subscription configuration
 
