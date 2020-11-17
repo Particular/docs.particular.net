@@ -40,4 +40,7 @@ The following settings are available for changing the behavior of subscription p
 
 partial: timeouts
 
+partial: table-name-config
+
 For more information on connection string configuration see [Configuring Azure Connection Strings](https://docs.microsoft.com/en-us/azure/storage/storage-configure-connection-string).
+
