@@ -1,8 +1,9 @@
-﻿using System;
+﻿﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
-using NServiceBus.Pipeline;
+ using NServiceBus.Persistence.AzureTable;
+ using NServiceBus.Pipeline;
 
 #region BehaviorUsingHeader
 class OrderIdHeaderAsPartitionKeyBehavior : Behavior<ITransportReceiveContext>
@@ -19,6 +20,18 @@ class OrderIdHeaderAsPartitionKeyBehavior : Behavior<ITransportReceiveContext>
         return next();
     }
 
-    static readonly ILog Log = LogManager.GetLogger<OrderIdAsPartitionKeyBehavior>();
+    public class Registration : RegisterStep
+    {
+        public Registration() :
+            base(nameof(OrderIdHeaderAsPartitionKeyBehavior),
+                typeof(OrderIdHeaderAsPartitionKeyBehavior),
+                "Determines the PartitionKey from the logical message",
+                b => new OrderIdHeaderAsPartitionKeyBehavior())
+        {
+            InsertBefore(nameof(LogicalOutboxBehavior));
+        }
+    }
+
+    static readonly ILog Log = LogManager.GetLogger<OrderIdHeaderAsPartitionKeyBehavior>();
 }
 #endregion

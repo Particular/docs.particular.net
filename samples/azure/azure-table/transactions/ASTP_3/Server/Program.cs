@@ -30,7 +30,7 @@ class Program
 
         #region BehaviorRegistration
 
-        endpointConfiguration.Pipeline.Register(new OrderIdHeaderAsPartitionKeyBehavior(), "Extracts a partition key from a header");
+        endpointConfiguration.Pipeline.Register(new OrderIdHeaderAsPartitionKeyBehavior.Registration());
         endpointConfiguration.Pipeline.Register(new OrderIdAsPartitionKeyBehavior.Registration());
 
         #endregion

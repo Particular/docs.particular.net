@@ -13,6 +13,7 @@ public class OrderSaga :
 {
     static readonly ILog Log = LogManager.GetLogger<OrderSaga>();
 
+
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
