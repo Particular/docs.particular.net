@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Features;
-using AzureStorageQueueTransport = NServiceBus.AzureStorageQueueTransport;
 
 class Program
 {
@@ -17,7 +15,6 @@ class Program
         transport.ConnectionString("UseDevelopmentStorage=true");
         transport.DisablePublishing();
         transport.DelayedDelivery().DisableDelayedDelivery();
-        endpointConfiguration.DisableFeature<TimeoutManager>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
