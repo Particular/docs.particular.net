@@ -6,7 +6,7 @@ component: ASP
 related:
  - nservicebus/sagas
 redirects:
- - samples/azure/storage-persistence
+ - samples/azure/azure-table
 ---
 
 ## Prerequisites

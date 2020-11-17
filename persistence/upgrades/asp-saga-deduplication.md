@@ -5,7 +5,7 @@ reviewed: 2019-11-26
 component: ASP
 related:
  - nservicebus/sagas
- - persistence/azure-storage
+ - persistence/azure-table
 redirects:
  - nservicebus/upgrades/asp-saga-deduplication
 isUpgradeGuide: true

@@ -7,7 +7,7 @@ related:
  - nservicebus/operations
 redirects:
  - nservicebus/azure-storage-persistence/performance-tuning
- - persistence/azure-storage/performance-tuning
+ - persistence/azure-table/performance-tuning
 ---
 
 ## General guidelines
@@ -16,4 +16,4 @@ Microsoft's [Azure Storage Performance Checklist](https://docs.microsoft.com/en-
 
 ## Disabled secondary index scanning when creating new sagas
 
-A secondary index record was not created by the persister contained in the `NServiceBus.Azure` package. To provide backward compatibility, the `NServiceBus.Persistence.AzureStorage` package performs a full table scan across all partitions for secondary index records before creating a new saga. For systems that have only used the `NServiceBus.Persistence.AzureStorage` library, or have verified that all saga instances have a secondary index record, full table scans can be safely disabled by using the [AssumeSecondaryIndicesExist](/persistence/azure-storage/configuration.md#configuration-properties-saga-configuration) setting.
+A secondary index record was not created by the persister contained in the `NServiceBus.Azure` package. To provide backward compatibility, the `NServiceBus.Persistence.AzureStorage` package performs a full table scan across all partitions for secondary index records before creating a new saga. For systems that have only used the `NServiceBus.Persistence.AzureStorage` library, or have verified that all saga instances have a secondary index record, full table scans can be safely disabled by using the [AssumeSecondaryIndicesExist](/persistence/azure-table/configuration.md#configuration-properties-saga-configuration) setting.

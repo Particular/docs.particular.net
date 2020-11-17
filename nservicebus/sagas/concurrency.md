@@ -86,7 +86,7 @@ Due to recoverability, OCC conflicts in high data contention scenarios may resul
 
 The following saga persisters use OCC:
 
-- [Azure Storage](/persistence/azure-storage/)
+- [Azure Storage](/persistence/azure-table/)
 - [Non-Durable](/persistence/non-durable/)
 - [MongoDB](/persistence/mongodb/) (prior to 2.2.0)
 - [RavenDB](/persistence/ravendb/)

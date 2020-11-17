@@ -66,10 +66,10 @@ Operational documentation is best reviewed from the perspective of the selected 
  * [Oracle Scripts](/persistence/sql/oracle-scripts.md)
 
 
-### [Azure Storage Persistence](/persistence/azure-storage/)
+### [Azure Storage Persistence](/persistence/azure-table/)
 
- * [Performance Tuning](/persistence/azure-storage/performance-tuning.md)
- * [Scripting](/persistence/azure-storage/scripting.md)
+ * [Performance Tuning](/persistence/azure-table/performance-tuning.md)
+ * [Scripting](/persistence/azure-table/scripting.md)
 
 
 ### [RavenDB Persistence](/persistence/ravendb/)

@@ -7,7 +7,7 @@ related:
  - nservicebus/operations
 redirects:
  - nservicebus/azure-storage-persistence/scripting
- - persistence/azure-storage/scripting
+ - persistence/azure-table/scripting
 ---
 
 ## Removing subscriptions
@@ -25,7 +25,7 @@ function Remove-Subscriptions(
     # create Context
     $ctx = New-AzureStorageContext -StorageAccountName $accountStorageName -StorageAccountKey  $accountStorageKey
 
-    # get table 
+    # get table
     $table = Get-AzureStorageTable -Name $subscriptionTableName -Context $ctx -ErrorAction Ignore
 
     # if exists
@@ -47,7 +47,7 @@ function Remove-Subscriptions(
         #Set query details.
         $query.FilterString = "RowKey eq '" + $base64Encoded + "'"
         $query.SelectColumns = $list
-        
+
         #Execute the query.
         $entries = $table.CloudTable.ExecuteQuery($query)
 

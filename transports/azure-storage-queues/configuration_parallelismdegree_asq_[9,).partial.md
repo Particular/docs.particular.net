@@ -42,4 +42,4 @@ This means that `DegreeOfReceiveParallelism` message processing loops will recei
 
 WARNING: Changing the value of `DegreeOfReceiveParallelism` will influence the total number of storage operations against Azure Storage Services and can result in higher costs.
 
-WARNING: The values of `BatchSize` , `DegreeOfParallelism`, `Concurrency`, [ServicePointManager Settings](/persistence/azure-storage/performance-tuning.md) and the other parameters like `MaximumWaitTimeWhenIdle` must be selected carefully to get the desired speed from the transport without exceeding [the boundaries](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits) of the allowed number of operations per second.
+WARNING: The values of `BatchSize` , `DegreeOfParallelism`, `Concurrency`, [ServicePointManager Settings](/persistence/azure-table/performance-tuning.md) and the other parameters like `MaximumWaitTimeWhenIdle` must be selected carefully to get the desired speed from the transport without exceeding [the boundaries](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits) of the allowed number of operations per second.

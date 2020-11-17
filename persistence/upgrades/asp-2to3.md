@@ -4,7 +4,7 @@ summary: Instructions on how to migrate from Azure Storage Persistence version 2
 reviewed: 2020-11-06
 component: ASP
 related:
- - persistence/azure-storage
+ - persistence/azure-table
 redirects:
 isUpgradeGuide: true
 upgradeGuideCoreVersions:

@@ -4,8 +4,8 @@ component: ASQ
 versions: '[7,)'
 related:
 - persistence
-- persistence/azure-storage
-- persistence/azure-storage/performance-tuning
+- persistence/azure-table
+- persistence/azure-table/performance-tuning
 reviewed: 2019-10-01
 ---
 

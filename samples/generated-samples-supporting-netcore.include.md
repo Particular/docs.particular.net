@@ -35,7 +35,7 @@
 * [Azure Blob Storage DataBus](/samples/azure/blob-storage-databus/)
 * [Azure Service Bus Native Integration](/samples/azure-service-bus-netstandard/native-integration/)
 * [Azure Service Bus Send/Reply Sample](/samples/azure-service-bus-netstandard/send-reply/)
-* [Azure Storage Persistence](/samples/azure/storage-persistence/)
+* [Azure Storage Persistence](/samples/azure/azure-table/)
 * [Azure Storage Queues Transport](/samples/azure/storage-queues/)
 * [Change/Move Message Type](/samples/serializers/change-message-type/)
 * [Command routing](/samples/routing/command-routing/)

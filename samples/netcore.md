@@ -47,7 +47,7 @@ To get started with .NET Core and NServiceBus, the following samples are recomme
 
 * [Simple SQL Persistence Usage](/samples/sql-persistence/simple/?version=sqlpersistence_4)
 * [SQL Server Transport and SQL Persistence](/samples/sqltransport-sqlpersistence/?version=core_7)
-* [Azure Storage Persistence](/samples/azure/storage-persistence/?version=asp_2)
+* [Azure Storage Persistence](/samples/azure/azure-table/?version=astp_3)
 
 
 ## All .NET Core Samples
