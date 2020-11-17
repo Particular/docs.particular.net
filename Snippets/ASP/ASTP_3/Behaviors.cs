@@ -45,7 +45,7 @@ public class RegisterMyBehavior : RegisterStep
 #endregion
 
 
-#region CustomTableNameUsingITransportReceiveContextBehavior
+// #region CustomTableNameUsingITransportReceiveContextBehavior
 
 class ContainerInfoTransportReceiveContextBehavior
     : Behavior<ITransportReceiveContext>
@@ -60,9 +60,9 @@ class ContainerInfoTransportReceiveContextBehavior
     }
 }
 
-#endregion
+// #endregion
 
-#region CustomTableNameUsingIIncomingLogicalMessageContextBehavior
+// #region CustomTableNameUsingIIncomingLogicalMessageContextBehavior
 
 class ContainerInfoLogicalReceiveContextBehavior
     : Behavior<IIncomingLogicalMessageContext>
@@ -77,4 +77,4 @@ class ContainerInfoLogicalReceiveContextBehavior
     }
 }
 
-#endregion
+// #endregion
