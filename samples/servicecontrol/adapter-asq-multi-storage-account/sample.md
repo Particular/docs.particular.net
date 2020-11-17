@@ -81,8 +81,6 @@ The Shipping endpoint has the Heartbeats plugin installed to enable uptime monit
 
 Both endpoints are configured to use [secure connection strings](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts):
 
-snippet: featuresunsuportedbysc
-
 
 ### Adapter
 

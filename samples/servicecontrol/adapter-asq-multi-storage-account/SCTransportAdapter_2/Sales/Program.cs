@@ -21,12 +21,6 @@ class Program
 
         transport.ConnectionString(connectionString);
 
-        #region FeaturesUnsuportedBySC
-
-        // transport.UseAccountAliasesInsteadOfConnectionStrings();
-
-        #endregion
-
         transport.DefaultAccountAlias("storage_account");
 
         // Required to address https://github.com/Particular/NServiceBus.AzureStorageQueues/issues/308
