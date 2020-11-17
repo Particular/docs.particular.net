@@ -3,12 +3,12 @@ title: Migration from Azure Table Persistence
 component: CosmosDB
 related:
 - persistence/azure-table
-reviewed: 2020-09-20
+reviewed: 2020-11-17
 ---
 
 For existing system running in Azure and using [Azure Table Persistence](/persistence/azure-table) where a migration to Azure Cosmos DB SQL API is desired, a multi-step migration process is recommended, using Particular and Azure Cosmos DB tools.
 
-WARN: The endpoint being migrated must be offline while migrating saga data.
+WARN: The endpoint being migrated must be offline while migrating saga data. The saga data must be using secondary indexes (introduced in Azure Table Persistence 2.x) or be stored with Azure Table Persistence Version 3 or higher for this upgrade guide to succeed. The migration scenario described assumes only saga data of a one saga is stored per table.
 
 For each Azure Storage Persistence table containing saga data, the following four major steps must be performed:
 
@@ -24,7 +24,7 @@ Prior to starting the endpoint, configure the endpoint to [use migration mode](#
 To export data from Table Storage, a .NET tool provided by Particular is required. Install the tool from MyGet using the following command:
 
 ```
-dotnet tool install Particular.Asp.Export --tool-path <installation-path> --add-source https://www.myget.org/F/particular/api/v3/index.json --version 0.1.0-alpha.*
+dotnet tool install Particular.Asp.Export --tool-path <installation-path> --version 0.1.*
 ```
 
 Once installed, the `export-aspsagas` command line tool will be available for use at the installation path used earlier. For example:
@@ -50,7 +50,7 @@ Once the tool is executed, saga data for the selected saga data table will be st
 The tool can be updated with the following command:
 
 ```
-dotnet tool update --tool-path <installation-path> Particular.Asp.Export --add-source https://www.myget.org/F/particular/api/v3/index.json --version 0.1.0-alpha.*
+dotnet tool update --tool-path <installation-path> Particular.Asp.Export --version 0.1.*
 ```
 
 ### Exported saga ID
