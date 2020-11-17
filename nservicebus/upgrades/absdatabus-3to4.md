@@ -1,5 +1,6 @@
 ---
 title: Azure Blob Storage Databus Upgrade Version 3 to 4
+summary: A summary of changes when migrating Azure Blob Storage Data Bus from version 3 to version 4
 reviewed: 2020-11-08
 component: ABSDataBus
 isUpgradeGuide: true
@@ -7,9 +8,9 @@ isUpgradeGuide: true
 
 ## Move to .NET 4.7.2
 
-The minimum .NET Framework version for version 4 is [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472).
+The minimum .NET Framework version for NServiceBus.DataBus.AzureBlobStorage version 4 is [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472).
 
-**All projects must be updated to .NET Framework 4.7.2 before upgrading to Azure Blob Storage Databus version 4.**
+**All projects must be updated to .NET Framework 4.7.2 before upgrading to Azure Blob Storage Data Bus version 4.**
 
 It is recommended to update to .NET Framework 4.7.2 and perform a full migration to production **before** updating to version 4. This will isolate any issues that may occur.
 

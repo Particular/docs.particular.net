@@ -1,4 +1,4 @@
-In Versions 9.0 and above, the Azure Storage Queues transport no longer sanitizes queues. Queue names should follow Azure Storage Queues naming rules.
+In NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 9.0 and above, the transport no longer sanitizes queues. Queue names should follow Azure Storage Queues naming rules.
 
 
 ## Azure Storage Queues naming rules
@@ -13,7 +13,7 @@ In Versions 9.0 and above, the Azure Storage Queues transport no longer sanitize
 
 ## Backward compatibility with versions 7 and below
 
-To remain backward compatible with endpoints versions 8 and below, endpoints version 9 and above should be configured with proper queue names. To provide queue names that follow the old version sanitization rules, the following custom code can be used to ensure queues are named in a backwards compatible manner.
+To remain backward compatible with endpoints created with version 8 and below of the transport, endpoints created with version 9 and above should be configured with proper queue names. To provide queue names that follow the old version sanitization rules, the following custom code can be used to ensure queues are named in a backward-compatible manner.
 
 Sanitization code for MD5 and SHA1:
 

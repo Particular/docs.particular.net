@@ -1,7 +1,7 @@
 
 
-## Versions 8 and below sanitization source code
+## Queue name sanitization for previous versions
 
-Endpoints version 8 and supported queue name sanitization. The code used for the older samples to sanitize queue names:
+Queue name sanitization is supported in NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 8 and below. The code used in older samples to sanitize queue names is:
 
 snippet: BackwardsCompatibleQueueNameSanitizer

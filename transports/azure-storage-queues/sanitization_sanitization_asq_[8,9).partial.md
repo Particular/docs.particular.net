@@ -1,4 +1,4 @@
-In Versions 8.0 and above, the Azure Storage Queues transport no longer sanitizes queues by default.
+Starting with NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 8.0, the transport no longer sanitizes queues by default.
 
 
 ## Azure Storage Queues naming rules
@@ -22,7 +22,7 @@ When an endpoint is started, the sanitizer function will be invoked for each que
 
 ## Backward compatibility with versions 7 and below
 
-To remain backward compatible with endpoints versions 7 and below, endpoints version 8 and above should be configured to perform sanitization based on version 7 and below rules. The following custom code will ensure queues are sanitized in a backwards compatible manner.
+To remain backward compatible with endpoints created in version 7 and below of the transport, endpoints created in version 8 and above should be configured to perform sanitization based on version 7 and below rules. The following custom code will ensure queues are sanitized in a backward-compatible manner.
 
 snippet: azure-storage-queue-backwards-compatible-sanitization-with-md5
 
