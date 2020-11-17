@@ -1031,6 +1031,8 @@
       Title: Performance Tuning
     - Url: persistence/azure-table/scripting
       Title: Scripting
+    - Title: Migration from Azure Table Storage to Cosmos DB Table API
+      Url: persistence/azure-table/migration-from-azure-storage-table-to-cosmos-table           
   - Url: persistence/ravendb
     Title: RavenDB
     Articles:
