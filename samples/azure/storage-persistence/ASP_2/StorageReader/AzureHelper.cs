@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
 using Microsoft.Azure.Cosmos.Table;
 using NUnit.Framework;
 
@@ -29,11 +28,12 @@ public class AzureHelper
         var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
         var container = blobServiceClient.GetBlobContainerClient(containerName);
         Debug.WriteLine($"'{containerName}' container contents");
-        var pages = container.GetBlobsAsync().AsPages();
-        await foreach (Azure.Page<BlobItem> blobPage in pages)
+        var pages = container.GetBlobsAsync().AsPages().GetAsyncEnumerator();
+        try
         {
-            foreach (var blobItem in blobPage.Values)
+            while (await pages.MoveNextAsync())
             {
+                var blobItem = pages.Current.Values[0];
                 var name = blobItem.Name;
                 Debug.WriteLine($"  Blob:= {name}");
                 var blobClient = container.GetBlobClient(name);
@@ -46,6 +46,11 @@ public class AzureHelper
                 }
             }
         }
+        finally
+        {
+            await pages.DisposeAsync();
+        }
+
         Debug.WriteLine("");
     }
 
