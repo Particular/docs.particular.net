@@ -905,7 +905,7 @@
   - Url: persistence/upgrades
     Title: Upgrade Guides
     Articles:
-    - Title: Azure Storage
+    - Title: Azure Table
       Articles:
       - Url: persistence/upgrades/asp-2to3
         Title: Version 2 to 3
