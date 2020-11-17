@@ -24,7 +24,7 @@ Prior to starting the endpoint, configure the endpoint to [use migration mode](#
 To export data from Table Storage, a .NET tool provided by Particular is required. Install the tool from MyGet using the following command:
 
 ```
-dotnet tool install Particular.Asp.Export --tool-path <installation-path> --version 0.1.*
+dotnet tool install Particular.Asp.Export --tool-path <installation-path> --version 0.*
 ```
 
 Once installed, the `export-aspsagas` command line tool will be available for use at the installation path used earlier. For example:
@@ -38,7 +38,7 @@ export-aspsagas -c "UseDevelopmentStorage=true" -s OrderSagaData
 Once the tool is executed, saga data for the selected saga data table will be stored in the current working directory as a sub-folder named after the saga data class with each saga data record as individual JSON files. These files can be inspected and imported into Cosmos DB using the [instructions below](#import-data).
 
 ### Export tool options
- 
+
 `-c` | `--connectionstring`: Set the connection string to the Table Storage<br>
 `-s` | `--sagadataname`: The saga data class name without the namespace (e.g. `OrderSagaData`) of the saga data to export. This will be used to derive the table storage name.<br>
 `-i | --ignore-updates`: Allow use of the tool even if a newer version is available.<br>
@@ -50,7 +50,7 @@ Once the tool is executed, saga data for the selected saga data table will be st
 The tool can be updated with the following command:
 
 ```
-dotnet tool update --tool-path <installation-path> Particular.Asp.Export --version 0.1.*
+dotnet tool update --tool-path <installation-path> Particular.Asp.Export --version 0.*
 ```
 
 ### Exported saga ID
@@ -86,7 +86,7 @@ WARN: Dates stored using `DateTimeOffset` data type are susceptible to incorrect
 
 [Auto-correlated messages](/nservicebus/sagas/message-correlation.md#auto-correlation) include the saga ID in the [message headers](/nservicebus/messaging/headers.md#saga-related-headers-replying-to-a-saga). For unprocessed auto-correlated messages sent prior to migration, this may result in a saga not found error, since the saga ID contained in the message headers is not the [new saga ID](#export-data-exported-saga-id) expected by the Cosmos DB persister.
 
-By enabling migration mode only for auto correlated messages, the saga persister will attempt to query the collection using the [original saga ID in the saga metadata](#export-data-exported-saga-id) when the saga is not found. Messages [explicitly mapped using the `ConfigureHowToFindSaga` method](/nservicebus/sagas/message-correlation.md) do not require the additional query. 
+By enabling migration mode only for auto correlated messages, the saga persister will attempt to query the collection using the [original saga ID in the saga metadata](#export-data-exported-saga-id) when the saga is not found. Messages [explicitly mapped using the `ConfigureHowToFindSaga` method](/nservicebus/sagas/message-correlation.md) do not require the additional query.
 
 NOTE: Querying by the original saga ID with migration mode will incur additional RU usage on the collection.
 
