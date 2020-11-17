@@ -16,7 +16,7 @@ public class Program
         }
         var host = new JobHost(config);
 
-        Console.WriteLine("Starting Store.CustomerRelations host");
+        Console.WriteLine("Starting Store-CustomerRelations host");
         host.Call(typeof(Program).GetMethod(nameof(Program.AsyncMain)));
         host.RunAndBlock();
     }
@@ -25,13 +25,13 @@ public class Program
     public static async Task AsyncMain(CancellationToken cancellationToken)
     {
         Console.Title = "Samples.Store.CustomerRelations";
-        var endpointConfiguration = new EndpointConfiguration("Store.CustomerRelations");
+        var endpointConfiguration = new EndpointConfiguration("Store-CustomerRelations");
         endpointConfiguration.ApplyCommonConfiguration(
             transport =>
             {
                 var routing = transport.Routing();
-                routing.RegisterPublisher(typeof(ClientBecamePreferred).Assembly, "Store.Messages.Events", "Store.Sales");
-                routing.RegisterPublisher(typeof(ClientBecamePreferred), "Store.CustomerRelations");
+                routing.RegisterPublisher(typeof(ClientBecamePreferred).Assembly, "Store.Messages.Events", "Store-Sales");
+                routing.RegisterPublisher(typeof(ClientBecamePreferred), "Store-CustomerRelations");
             });
 
 

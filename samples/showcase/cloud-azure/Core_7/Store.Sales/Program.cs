@@ -24,7 +24,7 @@ public class Program
     public static async Task AsyncMain(CancellationToken cancellationToken)
     {
         Console.Title = "Samples.Store.Sales";
-        var endpointConfiguration = new EndpointConfiguration("Store.Sales");
+        var endpointConfiguration = new EndpointConfiguration("Store-Sales");
         endpointConfiguration.ApplyCommonConfiguration();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
