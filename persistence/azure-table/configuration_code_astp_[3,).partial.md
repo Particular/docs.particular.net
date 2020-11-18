@@ -1,4 +1,4 @@
-For sagas, subscriptions and for timeouts:
+For sagas and subscriptions:
 
 snippet: AzurePersistenceSubscriptionsAllConnectionsCustomization
 
@@ -23,7 +23,17 @@ The following settings are available for changing the behavior of subscription p
  * `ConnectionString`: Sets the connection string for the storage account to be used for storing subscription information.
  * `UseCloudTableClient`: Allows to set a fully pre-configured Cloud Table client instead of using a connection string.
 
-### Customizing the Client provider
+### Configuring a Cloud Table Client Provider
+
+A fully preconfigured CloudTableClient can be registered in the container through a custom provider.
+
+Create a customer provider:
+
+snippet: CustomClientProvider
+
+Then register the provider in the container:
+
+snippet: CustomClientProviderRegistration
 
 ### Table name settings
 

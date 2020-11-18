@@ -2,7 +2,7 @@
 using NServiceBus;
 using NServiceBus.Persistence.AzureTable;
 
-// #region CustomClientProvider
+ #region CustomClientProvider
 
 class CustomTableClientProvider
     : IProvideCloudTableClient
@@ -26,18 +26,19 @@ class CustomSubscriptionTableClientProvider
     }
     public CloudTableClient Client { get; }
 }
-// #endregion
+#endregion
 
 class CustomClientProviderRegistration
 {
     public CustomClientProviderRegistration(EndpointConfiguration endpointConfiguration)
     {
-        // #region CustomClientProviderRegistration
+        #region CustomClientProviderRegistration
 
         endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<CustomTableClientProvider>(DependencyLifecycle.SingleInstance));
+
         // optionally when subscriptions used
         endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<CustomSubscriptionTableClientProvider>(DependencyLifecycle.SingleInstance));
 
-        // #endregion
+        #endregion
     }
 }
