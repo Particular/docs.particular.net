@@ -1,6 +1,6 @@
 For sagas and subscriptions:
 
-snippet: AzurePersistenceSubscriptionsAllConnectionsCustomization
+snippet: AzurePersistenceAllConnectionsCustomization
 
 ### Saga configuration
 

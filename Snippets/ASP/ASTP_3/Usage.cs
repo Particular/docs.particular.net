@@ -34,7 +34,7 @@ class Usage
 
     void CustomizingAzurePersistenceAllConnections(EndpointConfiguration endpointConfiguration)
     {
-        #region AzurePersistenceSubscriptionsAllConnectionsCustomization
+        #region AzurePersistenceAllConnectionsCustomization
 
         var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence>();
         persistence.ConnectionString("connectionString");

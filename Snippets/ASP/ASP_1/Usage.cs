@@ -30,17 +30,7 @@ class Usage
 
     void CustomizingAzurePersistenceAllConnections(EndpointConfiguration endpointConfiguration)
     {
-        #region AzurePersistenceSubscriptionsAllConnectionsCustomization
-
-        var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
-        persistence.ConnectionString("connectionString");
-
-        #endregion
-    }
-
-    void CustomizingAzurePersistenceAllConnectionsUpgrade(EndpointConfiguration endpointConfiguration)
-    {
-        #region AzurePersistenceAllConnectionsUpgrade
+        #region AzurePersistenceAllConnectionsCustomization
 
         var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
         persistence.ConnectionString("connectionString");
