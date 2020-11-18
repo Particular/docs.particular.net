@@ -9,9 +9,10 @@ snippet: AzurePersistenceSagasCustomization
 The following settings are available for changing the behavior of saga persistence section:
 
  * `ConnectionString`: Sets the connection string for the storage account to be used for storing saga information.
- * `DisableSecondaryKeyLookupForSagasCorrelatedByProperties`: By default the persistence operates in migration mode to remain backwards compatible and tries to find sagas by using the secondary index property. If all sagas have been migrated, the lookup by secondary key can be disabled.
- * `AssumeSecondaryKeyUsesANonEmptyRowKeySetToThePartitionKey`: Sagas that have been stored with a secondary index used an empty RowKey on the secondary index entry. By enabling this setting the secondary key lookups will assume that the RowKey equals the PartitionKey.
- * `AllowSecondaryKeyLookupToFallbackToFullTableScan`: Opt-in to full table scanning for sagas that have been stored with version 1.4 or earlier when running in migration mode.
+ * `UseCloudTableClient`: Allows to set a fully pre-configured Cloud Table client instead of using a connection string.
+ * `DisableSecondaryKeyLookupForSagasCorrelatedByProperties`: By default the persistence operates in compatibility mode and tries to find sagas by using the secondary index property. If no more sagas are using the secondary index property `NServiceBus_2ndIndexKey`, the lookup by secondary key can be disabled.
+ * `AssumeSecondaryKeyUsesANonEmptyRowKeySetToThePartitionKey`: Sagas that have been stored with a secondary index used an empty RowKey on the secondary index entry. By enabling this setting the secondary key lookups will assume that the RowKey equals the PartitionKey, which is crucial for Azure Cosmos DB Table API usage.
+ * `AllowSecondaryKeyLookupToFallbackToFullTableScan`: Opt-in to full table scanning for sagas that have been stored with version 1.4 or earlier when running in compatibility mode.
 
 ### Subscription configuration
 
@@ -20,8 +21,7 @@ snippet: AzurePersistenceSubscriptionsCustomization
 The following settings are available for changing the behavior of subscription persistence:
 
  * `ConnectionString`: Sets the connection string for the storage account to be used for storing subscription information.
-
-TO COMPLETE
+ * `UseCloudTableClient`: Allows to set a fully pre-configured Cloud Table client instead of using a connection string.
 
 ### Customizing the Client provider
 
@@ -33,13 +33,13 @@ snippet: SetDefaultTable
 
 #### Configuring the table name
 
-When the default table is not set, the table information needs to be provided as part of the message handling pipeline.
+To provide a table at runtime or override the default table, the table information needs to be set as part of the message handling pipeline.
 
-A behavior at the level of the`ITransportReceiveContext`:
+A behavior at the stage of the`ITransportReceiveContext`:
 
 snippet: CustomTableNameUsingITransportReceiveContextBehavior
 
-A behavior at the level of the `IIncomingLogicalMessageContext` can be used as well:
+A behavior at the stage of the `IIncomingLogicalMessageContext` can be used as well:
 
 snippet: CustomTableNameUsingIIncomingLogicalMessageContextBehavior
 
