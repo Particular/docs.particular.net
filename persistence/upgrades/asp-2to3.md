@@ -54,5 +54,5 @@ For more information on how to migrate from Azure storage tables to Cosmos table
 The Azure Table Persistence has been enhanced to leverage transactions to atomically store data when using sagas or outbox.
 Multiple operations are atomically stored by making use of the [TableBatchOperation API](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.tablebatchoperation?view=azure-dotnet), only when the data is stored in the same partition within a container
 
-Note that this is not the default. To enable transactionality, a custom behavior needs to be put in place to identify the partition key. The [documentation](/persistence/azure-table/transactions.md) explains the details on how to do this, including some [samples](/samples/azure/azure-table/transactions/sample.md) as well.
+Note that this is not the default. To enable transactionality, a custom behavior needs to be put in place to identify the partition key. The [documentation](/persistence/azure-table/transactions.md) explains the details on how to do this, including some [samples](/samples/azure/azure-table/transactions) as well.
 
