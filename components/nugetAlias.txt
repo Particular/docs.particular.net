@@ -8,7 +8,6 @@ ASQFunctions: NServiceBus.AzureFunctions.StorageQueues
 ASP: NServiceBus.Persistence.AzureStorage
 ASTP: NServiceBus.Persistence.AzureTable
 Autofac: NServiceBus.Autofac
-Azure: NServiceBus.Azure
 Callbacks: NServiceBus.Callbacks
 CallbacksTesting: NServiceBus.Callbacks.Testing
 Castle: NServiceBus.CastleWindsor

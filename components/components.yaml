@@ -15,7 +15,6 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.DataBus.AzureBlobStorage
   NugetOrder:
     - NServiceBus.DataBus.AzureBlobStorage
-    - NServiceBus.Azure
 
 - Key: SQS
   Name: Amazon SQS Transport
@@ -45,7 +44,7 @@
     - NServiceBus.Transport.AzureServiceBus
 
 - Key: ASP
-  Name: Azure Table Persistence 
+  Name: Azure Table Persistence
   DocsUrl: /persistence/azure-table
   GitHubOwner: Particular
   Category: Persistence
@@ -53,7 +52,6 @@
   NugetOrder:
     - NServiceBus.Persistence.AzureTable
     - NServiceBus.Persistence.AzureStorage
-    - NServiceBus.Azure
 
 - Key: ASQ
   Name: Azure Storage Queues Transport
@@ -148,7 +146,7 @@
 
 - Key: FileBasedRouting
   Name: FileBasedRouting
-  DocsUrl: /nservicebus/messaging/file-based-routing  
+  DocsUrl: /nservicebus/messaging/file-based-routing
   Category: Other
   SupportLevel: Labs
   ProjectUrl: https://github.com/ParticularLabs/NServiceBus.FileBasedRouting
@@ -216,7 +214,7 @@
     - NServiceBus.Host
 
 - Key: NonDurablePersistence
-  Name: Non-Durable Persistence 
+  Name: Non-Durable Persistence
   DocsUrl: /persistence/non-durable
   GitHubOwner: Particular
   Category: Persistence
@@ -235,7 +233,7 @@
     - NServiceBus
 
 - Key: LearningPersistence
-  Name: Learning Persistence 
+  Name: Learning Persistence
   DocsUrl: /persistence/learning
   GitHubOwner: Particular
   Category: Persistence
@@ -553,7 +551,7 @@
     - NServiceBus.StructureMap
 
 - Key: ServiceFabricPersistence
-  Name: Service Fabric Persistence 
+  Name: Service Fabric Persistence
   DocsUrl: /persistence/service-fabric
   GitHubOwner: Particular
   Category: Persistence
