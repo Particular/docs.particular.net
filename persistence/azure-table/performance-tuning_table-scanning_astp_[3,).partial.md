@@ -1,0 +1,7 @@
+## Opting out of the compatibility mode
+
+`DisableSecondaryKeyLookupForSagasCorrelatedByProperties`
+
+AssumeSecondaryKeyUsesANonEmptyRowKeySetToThePartitionKey
+
+AllowSecondaryKeyLookupToFallbackToFullTableScan

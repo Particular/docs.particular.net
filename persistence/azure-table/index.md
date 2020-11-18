@@ -31,56 +31,23 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |Installers                 |Supported. Subscription, the default table or saga tables derived by convention when no default table is set are created at runtime, when enabled.
 
 
-### Enable Azure Table Persistence
+## Enable Azure Table Persistence
 
 partial: config
 
 
-### Saga correlation
+### Transactions
+TODO
+
+The Cosmos DB persister supports using the Cosmos DB transactional batch API. However, Cosmos DB only allows operations to be batched if all operations are performed within the same logical partition key. This is due to the distributed nature of the Cosmos DB service, which does not support distributed transactions.
+
+The transactions documentation provides additional details on how to configure NServiceBus to resolve the incoming message to a specific partition key to take advantage of this Cosmos DB feature.
 
 partial: correlation
 
-To ensure that only one saga can be created for a given correlation property value, secondary indexes are used. Entities for the secondary index are stored in the same table as a saga. When a saga is completed the secondary index entity is removed as well. It's possible, but highly unlikely, that the saga's completion can leave an orphaned secondary index record. This does not impact the behavior of the persistence as it can detect orphaned records, but may leave a dangling entity in a table with a following `WARN` entry in logs: `Removal of the secondary index entry for the following saga failed: {sagaId}`.
-
-If migrating from Version 6.2.3 or below without applying [saga deduplication](/persistence/upgrades/asp-saga-deduplication.md) a `DuplicatedSagaFoundException` can be thrown when when creating secondary index entities. The exception message will include all the information to track down the error for example:
-
-```
-Sagas of type MySaga with the following identifiers 'GUID1', 'GUID2' are considered duplicates because of the violation of the Unique property CorrelationId.
-```
-
-The upgrade guide linked above contains instructions.
-
-
 ### Saga concurrency
 
-When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
-
-#### Starting a saga
-
-Example exception:
-
-```
-NServiceBus.Persistence.AzureStorage.RetryNeededException: This operation requires a retry as it wasn't possible to successfully process it now.
-```
-
-#### Updating or deleting saga data
-
-Azure Table Persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
-
-Example exception:
-
-```
-Microsoft.WindowsAzure.Storage.StorageException: Element 0 in the batch returned an unexpected response code.
-
-Request Information
-RequestID:010c234e-3002-0145-06eb-72b85a000000
-RequestDate:Tue, 24 Sep 2019 15:16:45 GMT
-StatusMessage:The update condition specified in the request was not satisfied.
-ErrorCode:
-ErrorMessage:The update condition specified in the request was not satisfied.
-RequestId:010c234e-3002-0145-06eb-72b85a000000
-Time:2019-09-24T15:16:46.0746310Z
-```
+partial: saga-concurrency
 
 ### Supported saga properties' types
 
