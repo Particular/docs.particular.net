@@ -69,6 +69,20 @@ class Usage
 
         #endregion
     }
+
+    void CustomizingDefaultTableName(EndpointConfiguration endpointConfiguration)
+    {
+        #region SetDefaultTable
+
+        var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence>();
+        persistence.ConnectionString("connectionString");
+        persistence.DefaultTable("TableName");
+
+        // make sure the table name specified in the DefaultTable exists when calling DisableTableCreation
+        persistence.DisableTableCreation();
+
+        #endregion
+    }
 }
 
 // to avoid host reference

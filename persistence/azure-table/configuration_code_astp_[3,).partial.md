@@ -26,11 +26,13 @@ TO COMPLETE
 
 ### Table name settings
 
-TODO: add something for default
+The default table name will be used for Sagas, Outbox and Subscription storage and can be set as follows:
 
-#### Configure the table name
+snippet: SetDefaultTable
 
-To control the table in which the data is stored, custom behaviors can be used.
+#### Configuring the table name
+
+When the default table is not set, the table information needs to be provided as part of the message handling pipeline.
 
 A behavior at the level of the`ITransportReceiveContext`:
 
