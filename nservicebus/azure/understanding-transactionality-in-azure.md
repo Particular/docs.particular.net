@@ -24,8 +24,9 @@ It is important to understand, especially in the context of cloud services, that
 This is the primary reason many Azure hosted services do not support transactions at all or are very aggressive when it comes to the lock duration.
 For example, Azure SQL Server supports local transactions (with .NET 4.6.1 and higher), but grants locks on resources only for 20 seconds (when requested by a system task) or 24 hours (otherwise). See [Azure SQL Database resource limits](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-resource-limits) for more details.
 
-## todo daniel
-* Azure Storage Services officially do not participate in transactions. If transactional behavior is required, it must be implemented in the client system as atomic operations within the limits imposed by Azure Storage Services on atomicity.
+## Transactions bound to partitions
+
+Some Azure Services like Azure Table Storage, Azure Cosmos DB Table API, and Azure Cosmos DB SQL API offer transactionality, but the transactions are usually scoped to a single partition key. When transactions are scoped to a single partition key, all storage operations that need to be atomic have to share the same partition key on all read, update and delete operations to achieve atomicity. An additional requirement might be that the transaction needs to complete within a relatively short time window not to hold up transactional resources unnecessarily. 
 
 ## Understanding distributed transactions and the two-phase commit protocol
 
