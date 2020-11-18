@@ -7,7 +7,7 @@ related:
 reviewed: 2020-09-11
 ---
 
-By default, the persister does not attempt to atomically commit saga data and/or business data and uses the saga id as partition key to store sagas. Through the use of the [TableBatchOperation API](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.tablebatchoperation?view=azure-dotnet), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
+By default, the persistence does not attempt to atomically commit saga data and/or business data and uses the saga id as partition key to store sagas. Through the use of the [TableBatchOperation API](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.tablebatchoperation?view=azure-dotnet), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
 
 A custom [behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) must be introduced to identify and insert the `TableEntityPartitionKey` value into the pipeline context for use by storage operations that occur during the processing of a given message.
 

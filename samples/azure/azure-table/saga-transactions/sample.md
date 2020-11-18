@@ -1,6 +1,6 @@
 ---
 title: Azure Table Persistence Usage using Saga IDs as partition key
-summary: Using Azure Table Persistence to store sagas and outbox records atomically using the determinstic Saga ID as the partition key
+summary: Using Azure Table Persistence to store sagas and outbox records atomically using the deterministic Saga ID as the partition key
 reviewed: 2020-11-13
 component: ASP
 related:
@@ -38,7 +38,7 @@ The order id is used to derive the saga id from.
 
 ## Behaviors
 
-Most messages implement `IProvideOrderId`. By default Saga IDs are deterministically derived from the saga data, the correlation property name and the correlation property value. `IProvidePartitionKeyFromSagaId` is a helper that can be injected into behaviors in the logical pipeline stage if the Saga ID should be used as a partition key. 
+Most messages implement `IProvideOrderId`. By default Saga IDs are deterministically derived from the saga data, the correlation property name and the correlation property value. `IProvidePartitionKeyFromSagaId` is a helper that can be injected into behaviors in the logical pipeline stage if the Saga ID should be used as a partition key.
 
 snippet: BehaviorUsingIProvidePartitionKeyFromSagaId
 
