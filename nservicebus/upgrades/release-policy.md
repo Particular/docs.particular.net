@@ -74,8 +74,6 @@ The following table summarize the risk effort and urgency for the different type
 
 Patches are released as soon as an important issue is found. Read the release notes to determine if affected.
 
-NOTE: Any issue that could affect the production stability of the system will be classified as `hotfix` and hence extra attention to those.
-
 Patch releases are 100% backwards-compatible so it is safe to upgrade with low risk and effort. In rare cases a code change might be required in relation to the patch. Minimal testing may be required, but where possible verify that it fixes the issue in question.
 
 
