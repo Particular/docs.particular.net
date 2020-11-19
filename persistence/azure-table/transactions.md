@@ -4,7 +4,7 @@ component: ASP
 versions: 'ASTP:[3,]'
 related:
 - nservicebus/outbox
-reviewed: 2020-09-11
+reviewed: 2020-11-19
 ---
 
 By default, the persistence does not attempt to atomically commit saga data and/or business data and uses the saga id as partition key to store sagas. Through the use of the [TableBatchOperation API](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.tablebatchoperation?view=azure-dotnet), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
