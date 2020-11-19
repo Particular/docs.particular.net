@@ -81,6 +81,7 @@ Each endpoint should use a dedicated SQL Server principal with `SELECT` and `DEL
 
 [Multi-schema](/transports/sql/deployment-options.md#multi-schema) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
 
+partial: alwaysencrypted
 
 ### ServiceControl
 

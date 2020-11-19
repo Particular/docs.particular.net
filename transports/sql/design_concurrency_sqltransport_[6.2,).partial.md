@@ -8,11 +8,18 @@ In certain conditions the initial estimate of number of pending messages might b
 
 The default peek interval, if there is has been no messages in the queue, is 1 second. The recommended range for this setting is between 100 milliseconds to 10 seconds. If a value higher than the maximum recommended settings is used, a warning message will be logged. While a value less than 100 milliseconds will put too much unnecessary stress on the database, a value larger than 10 seconds should also be used with caution as it may result in messages backing up in the queue. 
 
-### Peek delay setting configuration
+### Queue peek settings
+
+#### Peek delay configuration
 
 Use the following code:
 
-snippet: sqlserver-config-delay
+snippet: sqlserver-queue-peeker-config-delay
 
+#### Peek batch size configuration
+
+Use the following code:
+
+snippet: sqlserver-queue-peeker-config-batch-size
 
 Read more information about [tuning endpoint message processing](/nservicebus/operations/tuning.md).
