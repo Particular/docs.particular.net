@@ -3,7 +3,7 @@ using Microsoft.Azure.Cosmos.Table;
 
 public class OrderShippingInformation : TableEntity
 {
-    [IgnoreProperty]
+    [IgnoreProperty] // makes sure the property doesn't get serialized
     public Guid Id
     {
         get => Guid.Parse(RowKey);
