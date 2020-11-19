@@ -15,15 +15,15 @@ NOTE: At the time of writing this guidance the Data migration tool did incorrect
 The saga data can be imported into Cosmos DB Table API using the [Data migration tool](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#Install) provided by Microsoft. The import tool provides both [a UI and a command line](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#AzureTableSource) option. The general command looks like the following
 
 ```
-dt.exe /s:AzureTable /s.ConnectionString:"_AzureTableStorageConnectionString_" /s.Table:_SagaTableName_ /s.InternalFields:All /s.Projection:"_SagaProperties_;Originator;OriginalMessageId;NServiceBus_2ndIndexKey;SagaId" /t:TableAPIBulk /t.ConnectionString:"AzureCosmosTableApiConnectionString" /t.TableName:_SagaTableName_ /ErrorLog:errors.csv /ErrorDetails:All /OverwriteErrorLog:true
+dt.exe /s:AzureTable /s.ConnectionString:"<AzureTableStorageConnectionString>" /s.Table:<SagaTableName> /s.InternalFields:All /s.Projection:"<SagaProperties>;Originator;OriginalMessageId;NServiceBus_2ndIndexKey;SagaId" /t:TableAPIBulk /t.ConnectionString:"<AzureCosmosTableApiConnectionString>" /t.TableName:<SagaTableName> /ErrorLog:errors.csv /ErrorDetails:All /OverwriteErrorLog:true
 ```
 
 ### Parameters
 
-`_AzureTableStorageConnectionString_`: The Azure Table Storage (source) connection string<br/>
-`_AzureCosmosTableApiConnectionString_`: The Azure Cosmos DB Table API (destination) connection string.<br/>
-`_SagaProperties_`: A semicolon seperated list of all saga properties that need to be projected (e.g `OrderId;OrderDescription;OrderState`). Make sure to leave `Originator;OriginalMessageId;NServiceBus_2ndIndexKey;SagaId` since those are standard columns that always need to be projected in case they are available.<br/>
-`_SagaTableName_`: The name of the saga data table (e.g `OrderSagaData`).<br/>
+`<AzureTableStorageConnectionString>`: The Azure Table Storage (source) connection string<br/>
+`<AzureCosmosTableApiConnectionString>`: The Azure Cosmos DB Table API (destination) connection string.<br/>
+`<SagaProperties>`: A semicolon seperated list of all saga properties that need to be projected (e.g `OrderId;OrderDescription;OrderState`). Make sure to leave `Originator;OriginalMessageId;NServiceBus_2ndIndexKey;SagaId` since those are standard columns that always need to be projected in case they are available.<br/>
+`<SagaTableName>`: The name of the saga data table (e.g `OrderSagaData`).<br/>
 
 ### Example
 
@@ -44,7 +44,7 @@ public class OrderSagaData : IContainSagaData
 the following command can be used:
 
 ```
-dt.exe /s:AzureTable /s.ConnectionString:"_AzureTableStorageConnectionString_" /s.Table:OrderSagaData /s.InternalFields:All /s.Projection:"OrderId;OrderDescription;OrderState;Originator;OriginalMessageId;NServiceBus_2ndIndexKey;SagaId" /t:TableAPIBulk /t.ConnectionString:"AzureCosmosTableApiConnectionString" /t.TableName:OrderSagaData /ErrorLog:errors.csv /ErrorDetails:All /OverwriteErrorLog:true
+dt.exe /s:AzureTable /s.ConnectionString:"<_>AzureTableStorageConnectionString>" /s.Table:OrderSagaData /s.InternalFields:All /s.Projection:"OrderId;OrderDescription;OrderState;Originator;OriginalMessageId;NServiceBus_2ndIndexKey;SagaId" /t:TableAPIBulk /t.ConnectionString:"<AzureCosmosTableApiConnectionString>" /t.TableName:OrderSagaData /ErrorLog:errors.csv /ErrorDetails:All /OverwriteErrorLog:true
 ```
 
 ## Data inspection
