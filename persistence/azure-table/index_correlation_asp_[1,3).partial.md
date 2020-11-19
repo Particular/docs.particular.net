@@ -12,4 +12,4 @@ If migrating from Version 6.2.3 or below without applying [saga deduplication](/
 Sagas of type MySaga with the following identifiers 'GUID1', 'GUID2' are considered duplicates because of the violation of the Unique property CorrelationId.
 ```
 
-The upgrade guide linked above contains instructions.
+Consolidate the [upgrade guide]((/persistence/upgrades/asp-saga-deduplication.md) for more instructions.
