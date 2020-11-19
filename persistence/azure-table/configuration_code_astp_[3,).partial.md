@@ -35,7 +35,7 @@ Then register the provider in the container:
 
 snippet: CustomClientProviderRegistration
 
-### Table name settings
+### Table name configuration and creation
 
 The default table name will be used for Sagas, Outbox and Subscription storage and can be set as follows:
 
@@ -52,4 +52,18 @@ snippet: CustomTableNameUsingITransportReceiveContextBehavior
 A behavior at the stage of the `IIncomingLogicalMessageContext` can be used as well:
 
 snippet: CustomTableNameUsingIIncomingLogicalMessageContextBehavior
+
+#### Enabling automatic table creation
+
+To enable table creation on endpoint start or during runtime, the `EnableInstallers` API needs to be called on the endpoint configuration.
+
+Note that when the default table is set, the table will be created on endpoint-start. When the table information is provided as part of the message handling pipeline, the tables will be created at runtime.
+
+snippet: EnableInstallersConfiguration
+
+#### Opting out from table creating when installers are enabled
+
+In case installers are enabled, but there's a need to opt out from creating the tables, the `DisableTableCreation`-API may be used:
+
+snippet: EnableInstallersConfigurationOptingOutFromTableCreation
 

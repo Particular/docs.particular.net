@@ -49,8 +49,6 @@ class Usage
         var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Subscriptions>();
         persistence.ConnectionString("connectionString");
         persistence.TableName("tableName");
-        // when installers enabled but no table should be created
-        persistence.DisableTableCreation();
 
         // Added in Version 1.3
         persistence.CacheFor(TimeSpan.FromMinutes(1));
@@ -64,8 +62,8 @@ class Usage
 
         var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Sagas>();
         persistence.ConnectionString("connectionString");
-        // when installers enabled but no table should be created
-        persistence.DisableTableCreation();
+
+        endpointConfiguration.EnableInstallers();
 
         #endregion
     }
@@ -78,7 +76,34 @@ class Usage
         persistence.ConnectionString("connectionString");
         persistence.DefaultTable("TableName");
 
+        endpointConfiguration.EnableInstallers();
+
+        #endregion
+    }
+
+    void EnableInstallersConfiguration(EndpointConfiguration endpointConfiguration)
+    {
+        #region EnableInstallersConfiguration
+
+        var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence>();
+        persistence.ConnectionString("connectionString");
+        persistence.DefaultTable("TableName");
+
+        endpointConfiguration.EnableInstallers();
+
+        #endregion
+    }
+
+    void EnableInstallersConfigurationOptingOutFromTableCreation(EndpointConfiguration endpointConfiguration)
+    {
+        #region EnableInstallersConfigurationOptingOutFromTableCreation
+
+        var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence>();
+        persistence.ConnectionString("connectionString");
+        persistence.DefaultTable("TableName");
+
         // make sure the table name specified in the DefaultTable exists when calling DisableTableCreation
+        endpointConfiguration.EnableInstallers();
         persistence.DisableTableCreation();
 
         #endregion
