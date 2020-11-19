@@ -91,3 +91,11 @@ The error queue name.
 Type: string
 
 Default: `error`
+
+### Monitoring/MaximumConcurrencyLevel
+
+The maximum concurrency that will be used for ingesting metric messages. 
+
+Type: int
+
+Default: `32`

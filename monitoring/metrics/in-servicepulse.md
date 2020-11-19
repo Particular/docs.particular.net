@@ -44,7 +44,7 @@ NOTE: The screen is refreshed more frequently when a shorter reporting period is
 
 ## Managing the list of endpoints
 
-The list of endpoints in the monitoring view can be managed in multiple ways.
+The list of endpoints in the monitoring view can be managed in several ways.
 
 Endpoints can be filtered using a keyword in the filter input:
 
@@ -54,7 +54,7 @@ Grouping can be applied in order to group endpoints that share similar prefixes 
 
 ![Grouping endpoints in the monitoring view](monitored-endpoints-grouping.png)
 
-Sorting can be applied to each column by clicking the respective label. If clicked again, sorting can be toggled between ascending and descending. When sorting by any of the metrics, the average metric value will be used for sorting. If the list switches sorting positions too quickly, then a longer period of time may need to be selected to obtain more stable averages.
+Results can be sorted by clicking the respective column label. If clicked again, sorting is toggled between ascending and descending order. When sorting by any of the metrics, the average metric value will be used for sorting. If the list switches sorting positions too quickly, then a longer period of time may need to be selected to obtain more stable averages.
 
 NOTE: Sorting can only be used if no endpoint grouping is applied.
 

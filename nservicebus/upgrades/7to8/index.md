@@ -94,11 +94,11 @@ The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are 
 
 ## DateTimeOffset instead of DateTime
 
-Usage of `DateTime` can result in numerous issues caused by disalignment in timezone offsets. These can then result in all types of time calculation errors. Although a `DateTime.Kind` property exists, it is often ignored during DateTime math and it is up to the user to ensure values are aligned in their offset. The `DateTimeOffset` type fixes this. It does not contain any timezone information, only an offset, which is sufficient to get all the math right. 
+Usage of `DateTime` can result in numerous issues caused by misalignment of timezone offsets, which can lead to time calculation errors. Although a `DateTime.Kind` property exists, it is often ignored during DateTime math and it is up to the user to ensure values are aligned in their offset. The `DateTimeOffset` type fixes this. It does not contain any timezone information, only an offset, which is sufficient to get the time calculations right. 
 
 [> These uses for DateTimeOffset values are much more common than those for DateTime values. As a result, DateTimeOffset should be considered the default date and time type for application development."](https://docs.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime)
 
-In Version 8 all API's have been migrated from `DateTime` to `DateTimeOffset`.
+In NServiceBus version 8, all APIs have been migrated from `DateTime` to `DateTimeOffset`.
 
 ## NServiceBus Scheduler
 
@@ -112,19 +112,21 @@ See the [scheduling with .NET Timers sample](/samples/scheduling/timer) for more
 
 ## Meaningful exceptions when stopped
 
-NServiceBus is now throwing an `InvalidOperationException` when invoking message opererations on `IMessageSession` when the endpoint instance is stopping or stopped to indicate that the instance can no longer be used.
+NServiceBus version 8 throws an `InvalidOperationException` when invoking message opererations on `IMessageSession` when the endpoint instance is stopping or stopped to indicate that the instance can no longer be used.
 
 ## Non-durable messaging
 
-Support for non-durable messaging has been moved to the transports that can support it which at this time is RabbitMQ. If using any other transport use of `[Express]` or message conventions to request non-durable deliver can safely be removed.
+Support for non-durable messaging has been moved to the transports that can support it, which as of November 2020 is only the RabbitMQ transport. When using another transport, use of `[Express]` or message conventions to request non-durable delivery can safely be removed.
 
 RabbitMQ user should use the new [`options.UseNonPersistentDeliveryMode()` API provided by `NServiceBus.RabbitMQ` Version 7](/transports/rabbitmq/#controlling-delivery-mode)
 
 ## Timeout manager removed
 
-With all transports in Version 8 supporting native delayed delivery using the [timeout manager](/nservicebus/messaging/timeout-manager.md) is no longer needed. Any calls to `EndpointConfiguration.TimeoutManager()` and `EndpointConfiguration.UseExternalTimeoutManager()` can safely be removed.
+With all currently-supported transports now supporting native delayed delivery, the [timeout manager](/nservicebus/messaging/timeout-manager.md) is no longer needed. Any calls to `EndpointConfiguration.TimeoutManager()` and `EndpointConfiguration.UseExternalTimeoutManager()` can safely be removed.
 
-If using a transport that previously relied on the timeout manager a require a migration of existing timeouts. Use the [timeouts migration tool](/nservicebus/tools/migrate-to-native-delivery.md) to detect and migrate timeouts as needed.
+### Data migration
+
+Using a transport that previously relied on the timeout manager may require a migration of existing timeouts. Use the [timeouts migration tool](/nservicebus/tools/migrate-to-native-delivery.md) to detect and migrate timeouts as needed.
 
 The following transports might need migration:
 

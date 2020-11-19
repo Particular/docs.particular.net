@@ -2,7 +2,7 @@
 title: Monitor Azure Storage Queues endpoints with ServiceControl adapter
 summary: Centralized monitoring of Azure Storage Queues endpoints with ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2019-10-24
+reviewed: 2020-11-16
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
@@ -80,8 +80,6 @@ The Sales and Shipping endpoints include a message processing failure simulation
 The Shipping endpoint has the Heartbeats plugin installed to enable uptime monitoring via ServicePulse.
 
 Both endpoints are configured to use [secure connection strings](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts):
-
-snippet: featuresunsuportedbysc
 
 
 ### Adapter

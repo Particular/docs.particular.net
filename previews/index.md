@@ -1,11 +1,12 @@
 ---
 title: Particular Preview Program
-reviewed: 2020-10-08
+summary: License details and other information about the Particular Preview Program
+reviewed: 2020-11-08
 ---
 
 Particular Previews are [production-supported](support-policy.md) components that are a introduced through the Particular Preview Program. This program was created to make it easier for Particular Software to advance new components into the platform while improving user involvement, validating user interest in those components, and increasing the rate at which new components can be adopted.
 
-Preview components are offered under a more [permissive license](https://particular.net/eula/previews) than the rest of the platform. This license permits use of the Preview component in production until the 1.0 version is released after which it falls under the standard platform license.
+Preview components are offered under a more [permissive license](https://particular.net/eula/previews) than the rest of the platform. The license permits use of the preview component in production until the 1.0 version is released after which it falls under the standard platform license.
 
 NOTE: Some components cannot be used independently of NServiceBus and the platform, which requires a commercial license to use in production.
 

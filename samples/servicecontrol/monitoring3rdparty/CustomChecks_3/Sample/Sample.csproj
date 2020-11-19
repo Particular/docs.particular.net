@@ -1,14 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net48</TargetFrameworks>
-    <OutputType>Exe</OutputType>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System.Net.Http" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
-    <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.CustomChecks" Version="3.*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netcoreapp3.1;netcoreapp2.1;net48</TargetFrameworks>
+        <OutputType>Exe</OutputType>
+        <LangVersion>7.3</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+        <Reference Include="System.Net.Http"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="12.*"/>
+        <PackageReference Include="NServiceBus" Version="7.*"/>
+        <PackageReference Include="NServiceBus.CustomChecks" Version="3.*"/>
+        <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*"/>
+    </ItemGroup>
 </Project>

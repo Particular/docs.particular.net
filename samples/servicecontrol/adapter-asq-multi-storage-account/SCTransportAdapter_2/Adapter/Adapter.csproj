@@ -6,11 +6,13 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
-    <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="9.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <PackageReference Include="NServiceBus.Raw" Version="3.*" />
     <PackageReference Include="ServiceControl.TransportAdapter" Version="2.*" />
-    <PackageReference Include="WindowsAzure.Storage " Version="9.*" />
+  </ItemGroup>
+  <ItemGroup Label="Force a later version of a transitive dependency">
+    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
   </ItemGroup>
 </Project>

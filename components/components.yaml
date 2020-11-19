@@ -61,6 +61,7 @@
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureStorageQueues
   NugetOrder:
+    - NServiceBus.Transport.AzureStorageQueues
     - NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 
 - Key: Autofac

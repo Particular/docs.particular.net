@@ -56,6 +56,11 @@ For details on ServiceControl, ServiceControl Monitoring and ServicePulse config
 
 NOTE: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. Set the message storage timespan by [setting automatic expiration for ServiceControl data](/servicecontrol/how-purge-expired-data.md).
 
+## Migrating / Moving
+
+ServicePulse does not contain any message data. ServicePulse only has a few configuration values stored in the following file `\app\js\app.constants.js`. By default ServicePulse is intalled in `C:\Program Files (x86)\Particular Software\ServicePulse`.
+
+Run the ServicePulse installer on the new server manually or via [scripting powershell or a batch file](#installation-available-installation-parameters) and copy the `\app\js\app.constants.js` to the new location.
 
 ## ServicePulse license
 

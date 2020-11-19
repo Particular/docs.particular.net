@@ -66,7 +66,7 @@ The following table summarize the risk effort and urgency for the different type
 |  | Patch | Minor | Major |
 |---------|----------------|--------|-------|
 | Risk | Extremely low | Medium | High |
-| Urgency | High to medium | Low | Low |
+| Urgency | Medium to High | Low | Low |
 | Effort | Minimal | Low | High |
 
 

@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Queues Transport
-reviewed: 2019-06-04
+reviewed: 2020-11-16
 component: ASQ
 related:
 - nservicebus/azure
@@ -33,8 +33,6 @@ The `Server` endpoint is configured to use the Azure Storage persistence in two 
 #### The endpoint configuration
 
 snippet: Config
-
-
 partial: sanitization
 
 
@@ -72,25 +70,26 @@ Run only `Endpoint1` and send a message. Notice the contents of the message in t
 ```json
 {
   "IdForCorrelation": null,
-  "Id": "bb6ec79c-984f-4d51-8dd6-a50e010564a5",
+  "Id": "5957b746-6636-43c7-89b9-ac6e01853eae",
   "MessageIntent": 1,
-  "ReplyToAddress": "Samples.Azure.StorageQueues.Endpoint1@UseDevelopmentStorage=true",
-  "TimeToBeReceived": "10675199.02:48:05.4775807",
+  "ReplyToAddress": "samples-azure-storagequeues-endpoint1",
+  "TimeToBeReceived": "00:00:00",
   "Headers": {
-    "NServiceBus.MessageId": "bb6ec79c-984f-4d51-8dd6-a50e010564a5",
-    "NServiceBus.CorrelationId": "bb6ec79c-984f-4d51-8dd6-a50e010564a5",
+    "NServiceBus.MessageId": "5957b746-6636-43c7-89b9-ac6e01853eae",
     "NServiceBus.MessageIntent": "Send",
-    "NServiceBus.Version": "5.2.5",
-    "NServiceBus.TimeSent": "2015-09-09 05:51:42:197915 Z",
+    "NServiceBus.ConversationId": "b01e3778-23a1-42b5-bcbd-ac6e01853eaf",
+    "NServiceBus.CorrelationId": "5957b746-6636-43c7-89b9-ac6e01853eae",
+    "NServiceBus.ReplyToAddress": "samples-azure-storagequeues-endpoint1",
+    "NServiceBus.OriginatingMachine": "BEAST",
+    "NServiceBus.OriginatingEndpoint": "Samples-Azure-StorageQueues-Endpoint1",
+    "$.diagnostics.originating.hostid": "27bfc91ba004f906eed90fc507597a11",
     "NServiceBus.ContentType": "application/json",
-    "NServiceBus.EnclosedMessageTypes": "Message1, Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-    "NServiceBus.ConversationId": "a496f0ce-a3c8-4f30-9598-a50e010564a5",
-    "NServiceBus.OriginatingMachine": "RETINA",
-    "NServiceBus.OriginatingEndpoint": "Samples.Azure.StorageQueues.Endpoint1",
-    "$.diagnostics.originating.hostid": "658a1d15fed47c77cd63a3e63da15cc6"
+    "NServiceBus.EnclosedMessageTypes": "Message1, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "NServiceBus.Version": "7.4.4",
+    "NServiceBus.TimeSent": "2020-11-09 23:37:11:901738 Z"
   },
   "Body": "77u/eyJQcm9wZXJ0eSI6IkhlbGxvIGZyb20gRW5kcG9pbnQxIn0=",
-  "CorrelationId": "bb6ec79c-984f-4d51-8dd6-a50e010564a5",
+  "CorrelationId": "5957b746-6636-43c7-89b9-ac6e01853eae",
   "Recoverable": true
 }
 ```

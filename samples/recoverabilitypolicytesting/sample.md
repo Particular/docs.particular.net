@@ -17,7 +17,7 @@ Any recoverability policy with NServiceBus requires a `RecoverabilityConfig` whi
 
 snippet: create-policy
 
-Executing the policy requires an error context, which provides information about what error occurred and how many retries have already been executed. The sample also includes a helper method that creates the error context.
+Executing the policy requires an error context, which provides information about the error that occurred and how many retries have already been executed. The sample also includes a helper method that creates the error context.
 
 snippet: create-error-context
 
