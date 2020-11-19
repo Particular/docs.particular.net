@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
 
 ## Timeout manager
 
-The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backwards compatibility mode obsolete. If backwards compatibility mode was enabled these API's must be removed.
+The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backwards compatibility mode obsolete. If backwards compatibility mode was enabled these APIs must be removed.
 
 ## WithPeekDelay replaced by QueuePeekerOptions
 

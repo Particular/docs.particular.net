@@ -16,7 +16,7 @@ Consider enabling [message auditing](/nservicebus/operations/auditing.md) so tha
 
 ## Missing await keyword
 
-Although all async methods that are provided in Particular API's do not have the `Async` suffix these methods **must** be awaited. All async methods must be awaited, including async methods from other libraries.
+Although all async methods that are provided in Particular APIs do not have the `Async` suffix these methods **must** be awaited. All async methods must be awaited, including async methods from other libraries.
 
 Resolve this by:
 
