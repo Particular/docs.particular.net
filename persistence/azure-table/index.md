@@ -35,13 +35,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 partial: config
 
-
-### Transactions
-TODO
-
-The Cosmos DB persister supports using the Cosmos DB transactional batch API. However, Cosmos DB only allows operations to be batched if all operations are performed within the same logical partition key. This is due to the distributed nature of the Cosmos DB service, which does not support distributed transactions.
-
-The transactions documentation provides additional details on how to configure NServiceBus to resolve the incoming message to a specific partition key to take advantage of this Cosmos DB feature.
+partial: transaction
 
 partial: correlation
 

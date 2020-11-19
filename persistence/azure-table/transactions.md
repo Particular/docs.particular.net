@@ -1,5 +1,5 @@
 ---
-title: Transactions in Azure CoTable persistence
+title: Transactions in Azure Table persistence
 component: ASP
 versions: 'ASTP:[3,]'
 related:
