@@ -7,7 +7,7 @@ using NServiceBus.Persistence.AzureTable;
 class CustomTableClientProvider
     : IProvideCloudTableClient
 {
-    // get fully configured via DI
+    // get fully configured via DI container
     public CustomTableClientProvider(CloudTableClient tableClient)
     {
         Client = tableClient;
@@ -19,7 +19,7 @@ class CustomTableClientProvider
 class CustomSubscriptionTableClientProvider
     : IProvideCloudTableClientForSubscriptions
 {
-    // get fully configured via DI
+    // get fully configured via DI container
     public CustomSubscriptionTableClientProvider(CloudTableClient tableClient)
     {
         Client = tableClient;

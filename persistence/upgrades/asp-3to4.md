@@ -15,7 +15,7 @@ upgradeGuideCoreVersions:
 
 The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout storage obsolete.
 
-- Any configuration API's can safely be removed.
+- Any timeout-related configuration API's can be safely removed.
 - Database tables must be manually removed from storage.
 
 NOTE: There is no automatic migration of timeout data. See [Timeout manager removed - Data migration](/nservicebus/upgrades/7to8/#timeout-manager-removed-data-migration).
