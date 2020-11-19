@@ -15,6 +15,10 @@ Before upgrading to ServiceControl version 5 the instance being upgraded must be
 
 For more information how to upgrade from Version 3.x to 4.13.0 consult the [upgrade documentation](/servicecontrol/upgrades/3to4).
 
+### Move to .NET 4.7.2
+
+The minimum .NET Framework version is [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472).
+
 ### Upgrading ServiceControl
 
 ServiceControl and ServiceControl.Audit instances cannot be upgraded in place. The data storage format used by ServiceControl and ServiceControl Audit version 5 is incompatible with previous versions.
