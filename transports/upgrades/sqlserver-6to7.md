@@ -14,3 +14,7 @@ upgradeGuideCoreVersions:
 ## Timeout manager
 
 The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backwards compatibility mode obsolete. If backwards compatibility mode was enabled these API's must be removed.
+
+## WithPeekDelay replaced by QueuePeekerOptions
+
+In version 6 of the transport it was possible to define the message peek delay using the `WithPeekDelay` configuration option. The configuration setting has been moved to a more generic `QueuePeekerOptions` that allows to configure also other parameters related to message peeking.
