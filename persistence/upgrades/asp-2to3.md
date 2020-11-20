@@ -64,7 +64,8 @@ Note that this is not the default. To enable transactionality, a custom behavior
 
 ## Installers
 
-The previous `CreateSchema`-method has been deprecated in favour of integration with the Installers-API available on the endpoint configuration.
+To make sure the persistence complies with the principle of least priviledge, the previous `CreateSchema`-method has been deprecated in favour of integration with the Installers-API available on the endpoint configuration.
+
 To enable the persistence to create the needed table(s), the endpoint will need to `EnableInstallers()`, which will result in the tables being created at endpoint startup when a default table was set, or at runtime when the table information is made available.
 
 To opt out of creating tables while still making use of the capabilities provided by `EnableInstallers()`, the `DisableTableCreation` method can be invoked.
