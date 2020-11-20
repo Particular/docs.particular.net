@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos.Table;
 using NServiceBus;
 using NServiceBus.Persistence.AzureTable;
@@ -10,17 +11,15 @@ class MyMessage
 
 class UsageHandler : IHandleMessages<MyMessage>
 {
-    ToDoActivity test1 = new ToDoActivity();
-    ToDoActivity test2 = new ToDoActivity();
-    ToDoActivity test3 = new ToDoActivity();
-    ToDoActivity test4 = new ToDoActivity();
-
     #region HandlerSharedTransaction
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        //setup the items for the batch...
-
         var session = context.SynchronizedStorageSession.AzureTablePersistenceSession();
+
+        var test1 = new ToDoActivity { PartitionKey = session.PartitionKey, RowKey = Guid.NewGuid().ToString() };
+        var test2 = new ToDoActivity { PartitionKey = session.PartitionKey, RowKey = Guid.NewGuid().ToString() };
+        var test3 = new ToDoActivity { PartitionKey = session.PartitionKey, RowKey = Guid.NewGuid().ToString() };
+        var test4 = new ToDoActivity { PartitionKey = session.PartitionKey, RowKey = Guid.NewGuid().ToString() };
 
         session.Batch.Add(TableOperation.Insert(test1));
         session.Batch.Add(TableOperation.Replace(test2));
@@ -43,23 +42,23 @@ class MyHandler : IHandleMessages<MyMessage>
 {
     public MyHandler(IAzureTableStorageSession storageSession)
     {
-        transactionalBatch = storageSession.Batch;
+        this.storageSession = storageSession;
     }
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         var entity = new ToDoActivity
         {
-            PartitionKey = "PartitionKey",
+            PartitionKey = storageSession.PartitionKey,
             RowKey = "RowKey"
         };
 
-        transactionalBatch.Add(TableOperation.Insert(entity));
+        storageSession.Batch.Add(TableOperation.Insert(entity));
 
         return Task.CompletedTask;
     }
 
-    private readonly TableBatchOperation transactionalBatch;
+    private readonly IAzureTableStorageSession storageSession;
 }
 
 #endregion
@@ -70,21 +69,21 @@ class MyCustomDependency
 {
     public MyCustomDependency(IAzureTableStorageSession storageSession)
     {
-        transactionalBatch = storageSession.Batch;
+        this.storageSession = storageSession;
     }
 
     public void DeleteInAzureTable(string itemId)
     {
         var entity = new ToDoActivity
         {
-            PartitionKey = "PartitionKey",
-            RowKey = "RowKey"
+            PartitionKey = storageSession.PartitionKey,
+            RowKey = itemId
         };
 
-        transactionalBatch.Add(TableOperation.Insert(entity));
+        storageSession.Batch.Add(TableOperation.Insert(entity));
     }
 
-    private readonly TableBatchOperation transactionalBatch;
+    private readonly IAzureTableStorageSession storageSession;
 }
 
 class MyHandlerWithCustomDependency : IHandleMessages<MyMessage>
