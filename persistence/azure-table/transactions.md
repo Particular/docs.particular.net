@@ -59,7 +59,7 @@ snippet: HandlerSharedTransaction
 
 #### Testing
 
-The `TestableCosmosSynchronizedStorageSession` class in the `NServiceBus.Testing` namespace has been provided to facilitate [testing a handler](/nservicebus/testing/) that utilizes the shared transaction feature.
+The `TestableAzureTableStorageSession` class in the `NServiceBus.Testing` namespace has been provided to facilitate [testing a handler](/nservicebus/testing/) that utilizes the shared transaction feature.
 
 ### With dependency injection
 
