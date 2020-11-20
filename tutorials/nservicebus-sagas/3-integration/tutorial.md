@@ -3,7 +3,6 @@ title: "NServiceBus sagas: Integrations"
 reviewed: 2020-10-22
 ## Once published, add to Learning Path pages on Website and remove comment here, and remove hidden attribute
 #isLearningPath: true
-hidden: true
 summary: In this tutorial, learn how to use NServiceBus sagas to manage integration with external systems that communicate via HTTP.
 previewImage: https://img.youtube.com/vi/BHlKPgY2xxg/maxresdefault.jpg
 ---
