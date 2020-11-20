@@ -52,7 +52,7 @@ graph TD
   storeOutbox(5. Store outgoing<br/>messages in outbox)
   commitTx(6. Commit transaction)
   areSent{7. Have outgoing<br/>messages been<br/>sent?}
-  send(8. Sent messages)
+  send(8. Send messages)
   updateOutbox(9. Set as sent)
   ack(10. Acknowledge incoming message)
 
