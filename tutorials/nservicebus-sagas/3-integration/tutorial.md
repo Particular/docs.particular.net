@@ -231,6 +231,14 @@ Dealing with these sorts of edge cases is not necessarily a technical decision, 
 
 In software, timeframes between business decisions can scale down to the millisecond, leading to apparent race conditions. But in real life, [race conditions don't exist](https://udidahan.com/2010/08/31/race-conditions-dont-exist/). It's important to ask business stakeholders what would happen in real life if the events had happened by phone rather than milliseconds apart, and use that to guide your workflows. Be careful and ensure you discuss such edge cases with business stakeholders before you jump straight to the implementation.
 
+## Running the solution
+
+The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>) it should open the four console applications, one window for each messaging endpoint.
+
+In the **ClientUI** application, press <kbd>P</kbd> to place an order, <kbd>C</kbd> to cancel last order, and watch what happens in  **Sales**,  **Billing** and **Shipping** endpoints windows.
+
+Press <kbd>Q</kbd> to quit.
+
 ## Summary
 
 In this lesson, we learned about commander sagas that execute several steps within a business process. Sagas orchestrate and delegate the work to other handlers. The reason for delegation is to adhere to the Single Responsibility Principle and to avoid potential contention. We've also taken another look at timeouts. And finally, we've seen how different scenarios in our business process can be modeled and implemented using sagas.
