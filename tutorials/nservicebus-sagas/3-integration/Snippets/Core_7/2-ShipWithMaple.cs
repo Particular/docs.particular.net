@@ -47,6 +47,8 @@ namespace Maple
 
             Data.ShipmentAcceptedByMaple = true;
 
+            MarkAsComplete();
+
             return Task.CompletedTask;
         }
         #endregion

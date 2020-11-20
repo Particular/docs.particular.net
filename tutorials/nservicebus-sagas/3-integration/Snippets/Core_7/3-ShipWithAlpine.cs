@@ -45,6 +45,8 @@ namespace Alpine
 
             Data.ShipmentAcceptedByMaple = true;
 
+            MarkAsComplete();
+
             return Task.CompletedTask;
         }
 

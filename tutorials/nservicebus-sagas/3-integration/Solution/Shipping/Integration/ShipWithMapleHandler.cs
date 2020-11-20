@@ -13,13 +13,14 @@ namespace Shipping.Integration
         static ILog log = LogManager.GetLogger<ShipWithMapleHandler>();
 
         const int MaximumTimeMapleMightRespond = 60;
-        static Random rnd = new Random();
+        static Random random = new Random();
 
         public async Task Handle(ShipWithMaple message, IMessageHandlerContext context)
         {
-            var waitingTime = rnd.Next(MaximumTimeMapleMightRespond);
+            var waitingTime = random.Next(MaximumTimeMapleMightRespond);
 
-            log.Info($"Order #{message.OrderId} - Waiting {waitingTime} seconds.");
+            log.Info($"ShipWithMapleHandler: Delaying Order #{message.OrderId} {waitingTime} seconds.");
+
             await Task.Delay(waitingTime * 1000)
                 .ConfigureAwait(false);
 

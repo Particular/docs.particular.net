@@ -35,6 +35,8 @@
 
             Data.ShipmentAcceptedByMaple = true;
 
+            MarkAsComplete();
+
             return Task.CompletedTask;
         }
 
@@ -43,6 +45,8 @@
             log.Info($"Order [{Data.OrderId}] - Succesfully shipped with Alpine");
 
             Data.ShipmentAcceptedByAlpine = true;
+
+            MarkAsComplete();
 
             return Task.CompletedTask;
         }
@@ -56,13 +60,14 @@
                 await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
                 await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());
             }
-
-            // No response from Maple nor Alpine
-            if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentAcceptedByAlpine)
+            else if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentAcceptedByAlpine) // No response from Maple nor Alpine
             {
                 log.Warn($"Order [{Data.OrderId}] - We didn't receive answer from either Maple nor Alpine. We need to escalate!");
+
                 // escalate to Warehouse Manager!
                 await context.Publish<ShipmentFailed>();
+
+                MarkAsComplete();
             }
         }
 
