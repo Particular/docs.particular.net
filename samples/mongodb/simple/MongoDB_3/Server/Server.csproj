@@ -7,6 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="MongoDB.Driver" Version="2.*" />
-    <PackageReference Include="NServiceBus.Storage.MongoDB" Version="3.0.0-*" />
+    <PackageReference Include="NServiceBus.Storage.MongoDB" Version="3.0.0-alpha.122" />
   </ItemGroup>
 </Project>
