@@ -22,7 +22,7 @@ The PowerShell module provides cmdlets to assist with:
 
 ## Prerequisites
 
-Prior to installation ensure that PowerShell 2 or higher is installed.
+Prior to installation ensure that PowerShell 2 or higher is installed. NServiceBus PowerShell modules are compatible with PowerShell 5. Versions of PowerShell later than 5 are not supported and might not work as expected.
 
 
 ## Installation
