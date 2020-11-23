@@ -176,28 +176,6 @@
 
 ### Persistence packages
 
-#### [NServiceBus.Azure](/nuget/NServiceBus.Azure)
-
-_This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage._
-
-| Version   | Released       | Supported until   | Notes                             |
-|:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Azure/7.0.0) | 2017-02-27     | 2017-02-27        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2019-02-27 |
-| [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.Azure/6.2.7) | ~~2015-02-13~~ | ~~2018-10-11~~    | ~~Extended by NServiceBus 5.2.x~~ |
-| [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Azure/6.1.6) | ~~2014-11-14~~ | ~~2015-05-13~~    | ~~Superseded by 6.2.x~~           |
-| [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure/6.0.8) | ~~2014-10-06~~ | ~~2015-02-14~~    | ~~Superseded by 6.1.x~~           |
-| [~~5.3.x~~](https://www.nuget.org/packages/NServiceBus.Azure/5.3.12) | ~~2014-04-22~~ | ~~2016-09-29~~    | ~~Extended by NServiceBus 4.7.x~~ |
-| [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.Azure/5.2.1) | ~~2014-04-16~~ | ~~2014-07-22~~    | ~~Superseded by 5.3.x~~           |
-| [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.Azure/5.1.1) | ~~2014-02-14~~ | ~~2014-07-16~~    | ~~Superseded by 5.2.x~~           |
-| [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure/5.0.0) | ~~2013-11-26~~ | ~~2014-05-14~~    | ~~Superseded by 5.1.x~~           |
-| [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.Azure/4.2.1) | ~~2013-10-28~~ | ~~2014-11-26~~    | ~~Superseded by 5.0.x~~           |
-| [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.Azure/4.1.6) | ~~2013-10-25~~ | ~~2014-01-28~~    | ~~Superseded by 4.2.x~~           |
-| [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure/4.0.9) | ~~2013-07-11~~ | ~~2014-01-25~~    | ~~Superseded by 4.1.x~~           |
-| [~~3.3.x~~](https://www.nuget.org/packages/NServiceBus.Azure/3.3.13) | ~~2012-10-29~~ | ~~2014-07-11~~    | ~~Superseded by 4.0.x~~           |
-| [~~3.2.x~~](https://www.nuget.org/packages/NServiceBus.Azure/3.2.8) | ~~2012-05-22~~ | ~~2013-01-29~~    | ~~Superseded by 3.3.x~~           |
-| [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Azure/3.1.1) | ~~2012-05-21~~ | ~~2012-08-22~~    | ~~Superseded by 3.2.x~~           |
-| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure/3.0.4) | ~~2012-03-08~~ | ~~2012-08-21~~    | ~~Superseded by 3.1.x~~           |
-
 #### [NServiceBus.NHibernate](/nuget/NServiceBus.NHibernate)
 
 | Version   | Released       | Supported until   | Notes                             |
@@ -528,28 +506,6 @@ No versions released.
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.NLog/1.0.0) | ~~2014-09-29~~ | ~~2015-09-12~~    | ~~Superseded by 1.1.x~~           |
 
 ### Databus packages
-
-#### [NServiceBus.Azure](/nuget/NServiceBus.Azure)
-
-_This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage._
-
-| Version   | Released       | Supported until   | Notes                             |
-|:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Azure/7.0.0) | 2017-02-27     | 2017-02-27        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2019-02-27 |
-| [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.Azure/6.2.7) | ~~2015-02-13~~ | ~~2018-10-11~~    | ~~Extended by NServiceBus 5.2.x~~ |
-| [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Azure/6.1.6) | ~~2014-11-14~~ | ~~2015-05-13~~    | ~~Superseded by 6.2.x~~           |
-| [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure/6.0.8) | ~~2014-10-06~~ | ~~2015-02-14~~    | ~~Superseded by 6.1.x~~           |
-| [~~5.3.x~~](https://www.nuget.org/packages/NServiceBus.Azure/5.3.12) | ~~2014-04-22~~ | ~~2016-09-29~~    | ~~Extended by NServiceBus 4.7.x~~ |
-| [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.Azure/5.2.1) | ~~2014-04-16~~ | ~~2014-07-22~~    | ~~Superseded by 5.3.x~~           |
-| [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.Azure/5.1.1) | ~~2014-02-14~~ | ~~2014-07-16~~    | ~~Superseded by 5.2.x~~           |
-| [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure/5.0.0) | ~~2013-11-26~~ | ~~2014-05-14~~    | ~~Superseded by 5.1.x~~           |
-| [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.Azure/4.2.1) | ~~2013-10-28~~ | ~~2014-11-26~~    | ~~Superseded by 5.0.x~~           |
-| [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.Azure/4.1.6) | ~~2013-10-25~~ | ~~2014-01-28~~    | ~~Superseded by 4.2.x~~           |
-| [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure/4.0.9) | ~~2013-07-11~~ | ~~2014-01-25~~    | ~~Superseded by 4.1.x~~           |
-| [~~3.3.x~~](https://www.nuget.org/packages/NServiceBus.Azure/3.3.13) | ~~2012-10-29~~ | ~~2014-07-11~~    | ~~Superseded by 4.0.x~~           |
-| [~~3.2.x~~](https://www.nuget.org/packages/NServiceBus.Azure/3.2.8) | ~~2012-05-22~~ | ~~2013-01-29~~    | ~~Superseded by 3.3.x~~           |
-| [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Azure/3.1.1) | ~~2012-05-21~~ | ~~2012-08-22~~    | ~~Superseded by 3.2.x~~           |
-| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure/3.0.4) | ~~2012-03-08~~ | ~~2012-08-21~~    | ~~Superseded by 3.1.x~~           |
 
 #### [NServiceBus.DataBus.AzureBlobStorage](/nuget/NServiceBus.DataBus.AzureBlobStorage)
 
