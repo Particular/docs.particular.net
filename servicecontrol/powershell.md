@@ -15,6 +15,7 @@ The ServiceControlMgmt module requires:
 
  * Microsoft PowerShell 3.0
 
+ServiceControlMgmt PowerShell module is compatible with PowerShell 5. Versions of PowerShell later than 5 are not supported and might not work as expected.
 
 ## Loading and running the PowerShell module
 
