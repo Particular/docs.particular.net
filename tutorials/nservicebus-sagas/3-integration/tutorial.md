@@ -87,13 +87,15 @@ Now, in our `ShipOrderWorkflow` class we can implement the `Handle` method as fo
 
 snippet: HandleShipOrder
 
-We've sent a `ShipWithMaple` command and requested a `ShippingEscalation` timeout of 20 seconds so that if Maple doesn't respond within that time we can ship with Alpine instead. Now that we've created this command and timeout, we need to do something with them, starting with the command.
+We've sent a `ShipWithMaple` command and requested a `ShippingEscalation` timeout of 20 seconds so that if Maple doesn't respond within that time we can ship with Alpine instead. Also, notice how we can use `Data.OrderId` immediately—because of the mapping in our `ConfigureHowToFindSaga` method, NServiceBus already knows that the saga data's `OrderId` property needs to be filled using the message's `OrderId` property, so it helpfully prefills this for us.
 
 {{NOTE:
 **Why 20 seconds?**
 
 In real life, timeouts like these would more likely be measured in hours, days, or even months. In this tutorial, we want to keep it to a matter of seconds so we can watch the entire process play out immediately.
 }}
+
+Now that we've created this command and timeout, we need to do something with them, starting with the command.
 
 ### Shipping with Maple
 
@@ -171,6 +173,18 @@ If the shipment was not accepted by Maple, the system needs to execute the shipm
 
 Note that this timeout handler also checks `Data.ShipmentOrderSentToAlpine` to see if we have already attempted to send the order to Alpine. This is because the same timeout message type is used twice. We could have created a separate timeout message type, but using a single type allows us to verify several possible scenarios with if/then logic in the same method, making the end result easier to read. We'll return to this method later in this tutorial.
 
+### Late arrivals
+
+Before we move on, it's important to remember that even once the timeout handler executes and we move on to requesting shipment through Alpine, it's _still possible for Maple to respond with `ShipmentAcceptedByMaple`_, but just later than we were willing to wait. This raises some additional concerns which we will discuss in the [Edge cases](#exercise-edge-cases) section toward the end, but for now, we need to change the handler so that the late arrival of a `ShipmentAcceptedByMaple` will not end the saga.
+
+In the **ShipOrderWorkflow**, modify the handler for `ShipmentAcceptedByMaple` like this:
+
+snippet: ShipWithMaple-ShipmentAcceptedRevision
+
+With this chane, if the `ShipmentAcceptedByMaple` message arrives after we've already set `Data.ShipmentOrderSentToAlpine` to `true`, the message handler will be a no-op and the message will essentially be ignored. It's possible in real life that we would want to send additional messages to cancel the shipment via Maple. This will be discussed in more detail in [Edge cases](#exercise-edge-cases).
+
+Now let's move on to handling the response from Alpine.
+
 ### Alpine response
 
 Just like with Maple, we'll need an external handler to mimic contacting Alpine Delivery, and a response message type so that Alpine can deliver its answer back to our saga.
@@ -195,7 +209,7 @@ Then, in the **ShipOrderWorkflow** class, implement `IHandleMessages<ShipmentAcc
 
 snippet: ShipmentAcceptedByAlpine
 
-In the same way as with Maple, we're not currently taking any action once the package is successfully shipped by Alpine. It might be appropriate to publish an event such as `ShipmentAccepted` at this point and then to call `MarkAsComplete()` to complete the saga, deleting it from the database. But first, let's look at some edge cases that could arise.
+In the same way as with Maple, we're not currently taking any action once the package is successfully shipped by Alpine other than to mark the saga as complete, which removes the saga data from the database. It might be appropriate to publish an event such as `ShipmentAccepted` at this point. But first, let's look at some edge cases that could arise.
 
 ### Edge cases
 
@@ -216,7 +230,7 @@ The best way to notify the sales department is via an event. Add `ShipmentFailed
 
 snippet: ShipmentFailedEvent
 
-Then, in the **ShipOrderWorkflow**, modify the `Timeout` method to handle the new case:
+Then, in the **ShipOrderWorkflow**, modify the `Timeout` method to handle the new case. Because both cases depend on `!Data.ShipmentAcceptedByMaple` we'll also refactor a bit for clarity:
 
 snippet: EdgeCases-ShipmentFailed
 
@@ -234,10 +248,76 @@ In software, timeframes between business decisions can scale down to the millise
 
 The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>) it should open the four console applications, one window for each messaging endpoint.
 
-In the **ClientUI** application, press <kbd>P</kbd> to place an order, <kbd>C</kbd> to cancel last order, and watch what happens in  **Sales**,  **Billing** and **Shipping** endpoints windows.
+In the **ClientUI** application, press <kbd>P</kbd> to place an order. To see what our saga does, we want to watch the **Shipping** endpoint and don't care too much about what hapepns in **Sales** or **Billing**, but we do need them running to do their part.
 
-Press <kbd>Q</kbd> to quit.
+It will take some time after placing an order to see anything in **Shipping** because the **BuyersRemorsePolicy** in **Sales** (from the [saga timeouts tutorial](../2-timeouts/) is implementing a 20-second timeout. If you'd like to speed this up for testing, you can edit **BuyersRemorsePolicy.cs** in the **Sales** project by temporarily setting the requested timeout to `TimeSpan.FromSeconds(1)`.
+
+Based on the randomized timeouts that occur in the Maple and Alpine handlers, there are a few different ways the saga could execute.
+
+### Happy path
+
+The happy path for this workflow is for Maple, our preferred provider, to respond quickly. When that occurs, the output in the **Shipping** console application will look like this:
+
+```
+12:48:02.112 INFO  ShipOrderWorkflow for Order [19da7b54-36c0-4f68-9db5-713738dccfcf] - Trying Maple first.
+12:48:02.152 INFO  ShipWithMapleHandler: Delaying Order [19da7b54-36c0-4f68-9db5-713738dccfcf] 7 seconds.
+12:48:09.196 INFO  Order [19da7b54-36c0-4f68-9db5-713738dccfcf] - Successfully shipped with Maple
+12:48:23.532 INFO  No saga found for timeout message c6dad340-8ee7-4d54-b23b-ac7c0135d2fd, ignoring since the saga has been marked as complete before the timeout fired
+```
+
+In this case, shipping via Maple was attempted first, and Maple responded in 7 seconds, which is shorter than the requested 20-second timeout.
+
+Note that the last `INFO` line mentions that a saga could not be found for a timeout message. This was our 20-second `ShippingEscalation` timeout, but by the time the timeout had arrived, the `ShipmentAcceptedByMaple` response had already been processed, resulting in the saga ending with the call to `MarkAsComplete()`. The saga data was deleted, and as a result, the timeout was ignored.
+
+_**This is perfectly fine.**_
+
+Timeouts are designed to be reminders for the saga to take action. If the saga determines before that time that its work is done, that's OK. That's why the log message (which comes from NServiceBus, not the code in ShipOrderWorkflow) is presented as `INFO` and not a warning or error.
+
+### Maple is slow, Alpine is fast
+
+The second case is when Maple takes longer than the 20-second timeout, but Alpine responds quickly.
+
+```
+13:24:47.214 INFO  ShipOrderWorkflow for Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] - Trying Maple first.
+13:24:47.275 INFO  ShipWithMapleHandler: Delaying Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] 42 seconds.
+13:25:29.324 INFO  Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] - No answer from Maple, let's try Alpine.
+13:25:29.386 INFO  ShipWithAlpineHandler: Delaying Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] 3 seconds.
+13:25:32.421 INFO  Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] - Successfully shipped with Alpine
+13:25:50.592 INFO  No saga found for timeout message 9cc0f019-f529-4c00-8eeb-ac7c01401c70, ignoring since the saga has been marked as complete before the timeout fired
+```
+
+Here, we see that Maple was attempted, but took 42 seconds to respond, which is past our requested 20-second timeout. So instead, the order was shipping via Alpine, which responded in 3 seconds, which was successful.
+
+Once again, a timeout was discarded after the saga completed its work, but in this case, it was the second timeout designed to make sure Alpine responded on time.
+
+### Everything is slow
+
+In the last case, both Maple and Alpine will take longer than their configured timeouts to respond:
+
+```
+13:36:21.825 INFO  ShipOrderWorkflow for Order [54775217-49ee-4856-82e5-1ccc432d1d60] - Trying Maple first.
+13:36:21.861 INFO  ShipWithMapleHandler: Delaying Order [54775217-49ee-4856-82e5-1ccc432d1d60] 42 seconds.
+13:37:03.914 INFO  Order [54775217-49ee-4856-82e5-1ccc432d1d60] - No answer from Maple, let's try Alpine.
+13:37:03.965 INFO  ShipWithAlpineHandler: Delaying Order [54775217-49ee-4856-82e5-1ccc432d1d60] 24 seconds.
+13:37:27.998 WARN  Order [54775217-49ee-4856-82e5-1ccc432d1d60] - No answer from Maple/Alpine. We need to escalate!
+13:37:28.032 INFO  Could not find a started saga for 'Messages.ShipmentAcceptedByAlpine' message type. Going to invoke SagaNotFoundHandlers.
+```
+
+We can see from the output that both timeouts were reached, resulting in the `WARN` statement, which we know would be accompanied by the `ShipmentFailed` event being published, but since we don't have any handler for that we don't see any evidence in the log.
+
+We also see a new message at the end, similar what happened when timeout messages were being ignored:
+
+```
+INFO  Could not find a started saga for 'Messages.ShipmentAcceptedByAlpine' message type. Going to invoke SagaNotFoundHandlers.
+```
+
+This is caused by the `ShipmentAcceptedByAlpine` message being returned _after_ the second timeout has already given up on Alpine, published `ShipmentFailed`, and marked the saga as complete, removing it from storage. As we've defined the saga thus far, this is working as intended, but this is another place where it all comes down to business requirements.
+
+It is possible to handle these instances by [creating an `IHandleSagaNotFound` implementation](/nservicebus/sagas/saga-not-found.md). Another possibility would be to keep the saga alive for longer (by not calling `MarkAsComplete()`) and setting another timeout to clean up the saga later on. It really depends on what the exact rules are for your specific scenario, which you can only discover through consultation with business stakeholders.
+
 
 ## Summary
 
 In this lesson, we learned about commander sagas that execute several steps within a business process. Sagas orchestrate and delegate the work to other handlers. The reason for delegation is to adhere to the Single Responsibility Principle and to avoid potential contention. We've also taken another look at timeouts. And finally, we've seen how different scenarios in our business process can be modeled and implemented using sagas.
+
+For more information on sagas, check out the [saga documentation](/nservicebus/sagas/) or our [other saga tutorials](/tutorials/nservicebus-sagas/). If you've got questions, you could also [talk to us about a proof of concept](https://particular.net/proof-of-concept), or chat with one of our developers using the chat box in the corner.

@@ -62,14 +62,14 @@
             {
                 if (!Data.ShipmentOrderSentToAlpine)
                 {
-                    log.Info($"Order [{Data.OrderId}] - We didn't receive answer from Maple, let's try Alpine.");
+                    log.Info($"Order [{Data.OrderId}] - No answer from Maple, let's try Alpine.");
                     Data.ShipmentOrderSentToAlpine = true;
                     await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
                     await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());
                 }
                 else if (!Data.ShipmentAcceptedByAlpine) // No response from Maple nor Alpine
                 {
-                    log.Warn($"Order [{Data.OrderId}] - We didn't receive answer from either Maple nor Alpine. We need to escalate!");
+                    log.Warn($"Order [{Data.OrderId}] - No answer from Maple/Alpine. We need to escalate!");
 
                     // escalate to Warehouse Manager!
                     await context.Publish<ShipmentFailed>();

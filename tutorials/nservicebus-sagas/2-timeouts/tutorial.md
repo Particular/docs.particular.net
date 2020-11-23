@@ -3,6 +3,11 @@ title: "NServiceBus sagas: Timeouts"
 reviewed: 2019-10-30
 isLearningPath: true
 summary: "Implement the buyer's remorse pattern using NServiceBus, a common business case to cancel orders within a certain amount of time after the purchase."
+previewImage: feature-image.png
+extensions:
+- !!tutorial
+  nextText: "Next Lesson: Third-party integration"
+  nextUrl: tutorials/nservicebus-sagas/3-integration
 ---
 
 Being able to model the concept of time as part of a long-running process is incredibly powerful. Batch jobs are a feeble attempt at this but fail at handling things in real-time and makes every instance of a long-running process dependent on every other instance, but what if the batch job fails?

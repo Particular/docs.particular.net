@@ -19,7 +19,7 @@ namespace Shipping.Integration
         {
             var waitingTime = random.Next(MaximumTimeAlpineMightRespond);
 
-            log.Info($"ShipWithAlpineHandler: Delaying Order #{message.OrderId} {waitingTime} seconds.");
+            log.Info($"ShipWithAlpineHandler: Delaying Order [{message.OrderId}] {waitingTime} seconds.");
 
             await Task.Delay(waitingTime * 1000);
 
