@@ -78,14 +78,6 @@
 
 ### Persistence packages
 
-#### [NServiceBus.Azure](/nuget/NServiceBus.Azure)
-
-_This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage._
-
-| Version   | Released       | Supported until   | Notes                             |
-|:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Azure/7.0.0) | 2017-02-27     | 2017-02-27        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2019-02-27 |
-
 #### [NServiceBus.NHibernate](/nuget/NServiceBus.NHibernate)
 
 | Version   | Released       | Supported until   | Notes                             |
@@ -251,14 +243,6 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.NLog/2.0.0) | 2016-10-11     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 ### Databus packages
-
-#### [NServiceBus.Azure](/nuget/NServiceBus.Azure)
-
-_This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage._
-
-| Version   | Released       | Supported until   | Notes                             |
-|:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Azure/7.0.0) | 2017-02-27     | 2017-02-27        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2019-02-27 |
 
 #### [NServiceBus.DataBus.AzureBlobStorage](/nuget/NServiceBus.DataBus.AzureBlobStorage)
 
