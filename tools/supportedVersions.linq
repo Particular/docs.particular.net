@@ -16,7 +16,6 @@ async Task Main()
 {
 	var endOfLifePackages = new Dictionary<string, string>
 	{
-		{ "NServiceBus.Azure", "This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServiceBus.Persistence.AzureStorage." }
 	};
 
 	var source = "https://api.nuget.org/v3/index.json";
