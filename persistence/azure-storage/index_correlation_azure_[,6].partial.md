@@ -1,1 +1,0 @@
-One of the limitations of the Azure Storage Persistence is support for only one `[Unique]` property (a saga property which value is guaranteed to be unique across all sagas of this type).

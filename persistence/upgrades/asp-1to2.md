@@ -4,7 +4,7 @@ summary: Instructions on how to migrate from Azure Storage Persistence version 1
 reviewed: 2020-08-17
 component: ASP
 related:
- - persistence/azure-storage
+ - persistence/azure-table
  - persistence/upgrades/asp-saga-deduplication
 redirects:
 isUpgradeGuide: true

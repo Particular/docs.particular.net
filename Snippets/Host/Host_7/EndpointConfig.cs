@@ -7,7 +7,7 @@
     {
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            //TODO: NServiceBus provides multiple durable storage options, including SQL Server, RavenDB, and Azure Storage Persistence.
+            //TODO: NServiceBus provides multiple durable storage options, including SQL Server, RavenDB, and Azure Table Persistence.
             // Refer to the documentation for more details on specific options.
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             // NServiceBus will move messages that fail repeatedly to a separate "error" queue. It is recommended

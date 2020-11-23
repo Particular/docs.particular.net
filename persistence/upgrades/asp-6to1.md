@@ -4,7 +4,7 @@ summary: Instructions on how to migrate from NServiceBus.Azure Storage Persisten
 reviewed: 2020-08-31
 component: ASP
 related:
- - persistence/azure-storage
+ - persistence/azure-table
  - persistence/upgrades/asp-saga-deduplication
 redirects:
  - nservicebus/upgrades/asp-6to1
@@ -32,13 +32,28 @@ In versions 6 and below, the Azure Storage Persistence was configured using XML 
 
 For example, the following XML:
 
-snippet: AzurePersistenceFromAppConfigUpgrade
+```
+<configSections>
+  <section name="AzureSubscriptionStorageConfig"
+           type="NServiceBus.Config.AzureSubscriptionStorageConfig, NServiceBus.Azure" />
+  <section name="AzureSagaPersisterConfig"
+           type="NServiceBus.Config.AzureSagaPersisterConfig, NServiceBus.Azure" />
+  <section name="AzureTimeoutPersisterConfig"
+           type="NServiceBus.Config.AzureTimeoutPersisterConfig, NServiceBus.Azure" />
+</configSections>
+<AzureSagaPersisterConfig ConnectionString="UseDevelopmentStorage=true" />
+<AzureTimeoutPersisterConfig ConnectionString="UseDevelopmentStorage=true" />
+<AzureSubscriptionStorageConfig ConnectionString="UseDevelopmentStorage=true" />
+```
 
 changes to this code configuration:
 
-snippet: AzurePersistenceAllConnectionsUpgrade
+```
+var persistence = endpointConfiguration.UsePersistence<AzureStoragePersistence>();
+persistence.ConnectionString("connectionString");
+```
 
-The new configuration APIs are accessible through extension methods on the `UsePersistence<AzureStoragePersistence, StorageType.Sagas>()`, `UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()`, and `UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()` extension points in the endpoint configuration. See [Azure Storage Persistence Code Configuration](/persistence/azure-storage/configuration.md#configuration-with-code) for more details on code configuration API use.
+The new configuration APIs are accessible through extension methods on the `UsePersistence<AzureStoragePersistence, StorageType.Sagas>()`, `UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()`, and `UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()` extension points in the endpoint configuration. See [Azure Storage Persistence Code Configuration](/persistence/azure-table/configuration.md) for more details on code configuration API use.
 
 Related errors:
 

@@ -4,8 +4,8 @@ component: ASQ
 versions: '[7,)'
 related:
 - persistence
-- persistence/azure-storage
-- persistence/azure-storage/performance-tuning
+- persistence/azure-table
+- persistence/azure-table/performance-tuning
 reviewed: 2019-10-01
 ---
 
@@ -17,7 +17,7 @@ In Versions 7.4 and above, the Azure Storage Queues transport no longer relies o
 
 When an endpoint is started, the transport creates a storage table to store the delayed messages. To ensure a single copy of delayed messages is dispatched by any endpoint instance, a blob container is used for leasing access to the delayed messages table.
 
-By default, the storage table and blob container names are constructed using a naming scheme that starts with the word `delays` followed by SHA-1 hash of the endpoint's name. For example, `delays2fd4e1c67a2d28fced849ee1bb76e7391b93eb12` where `2fd4e1c67a2d28fced849ee1bb76e7391b93eb12` is a SHA-1 hash of an endpoint name. 
+By default, the storage table and blob container names are constructed using a naming scheme that starts with the word `delays` followed by SHA-1 hash of the endpoint's name. For example, `delays2fd4e1c67a2d28fced849ee1bb76e7391b93eb12` where `2fd4e1c67a2d28fced849ee1bb76e7391b93eb12` is a SHA-1 hash of an endpoint name.
 
 
 ### Overriding table/container name

@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <RootNamespace>ASP_3</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Persistence.AzureTable" Version="3.*" />
+  </ItemGroup>
+</Project>

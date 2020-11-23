@@ -27,7 +27,7 @@ This sample shows a simple two endpoint scenario.
 
 ### Azure Service Bus configuration
 
-The `Server` endpoint is configured to use the Azure Storage persistence in two locations.
+The `Server` endpoint is configured to use the Azure Table persistence in two locations.
 
 snippet: Config
 

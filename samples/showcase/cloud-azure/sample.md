@@ -14,9 +14,7 @@ This sample implements a fictional store that can be deployed to Azure. It is di
  1. Run the solution. 4 console windows start and one web-site opens.
  1. Order products from the website. Once orders are submitted, there is a window of time allocated for handling cancellations due to buyer's remorse. Once the order has been accepted, they are provisioned and made available for download. If the order is cancelled before the buyer's remorse timeout, nothing is provisioned for download.
 
-
 include: showcase-walkthrough
-
 
 ## Feature usage
 
@@ -28,17 +26,16 @@ In implementing the above workflow various aspects are highlighted:
 All endpoints in the solution communicate using the [Azure Storage Queues transport](/transports/azure-storage-queues/). The sample has been configured to use the Azure Storage Emulator.
 
 
-### Azure Storage persistence
+### Azure Table persistence
 
-The endpoints in the solution persist data using the [Azure Storage persistence](/persistence/azure-storage/). This persistence is used to store subscription, timeout, and saga data.
+The endpoints in the solution persist data using the [Azure Table persistence](/persistence/azure-table/). This persistence is used to store subscription, timeout, and saga data.
 
-NOTE: The Azure Storage persistence does not support collection types. The `ProcessOrderSaga` avoids this issue by combining a collection of `ProductIds` into a single string for persistence.
+NOTE: The Azure Table persistence does not support collection types. The `ProcessOrderSaga` avoids this issue by combining a collection of `ProductIds` into a single string for persistence.
 
 
 ### Azure Web Sites and Web Jobs
 
 The `Ecommerce` project is configured to deploy as an [Azure Web Site](https://azure.microsoft.com/en-us/services/app-service/web/). The `ContentManagement`, `CustomerRelations`, `Operations`, and `Sales` endpoints are all configured to run as [Azure Web Jobs](https://docs.microsoft.com/en-us/azure/app-service-web/websites-webjobs-resources). The sample has been configured to run on the Azure Storage Emulator.
-
 
 include: showcase-featureusage
 

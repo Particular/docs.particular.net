@@ -5,7 +5,7 @@ reviewed: 2020-09-02
 component: ASP
 related:
  - nservicebus/sagas
- - persistence/azure-storage
+ - persistence/azure-table
 redirects:
  - nservicebus/upgrades/asp-saga-pruning
 isUpgradeGuide: true

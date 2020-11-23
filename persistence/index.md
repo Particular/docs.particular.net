@@ -30,7 +30,7 @@ It can be a challenge to decide whether or not a persister is needed and which o
 - [Learning](/persistence/learning/)
 - [Non-Durable](/persistence/non-durable/)
 - [SQL](/persistence/sql/)
-- [Azure Storage](/persistence/azure-storage/)
+- [Azure Table](/persistence/azure-table/)
 - [RavenDB](/persistence/ravendb/)
 - [Service Fabric](/persistence/service-fabric/)
 - [NHibernate](/persistence/nhibernate/)

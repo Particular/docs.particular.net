@@ -905,7 +905,7 @@
   - Url: persistence/upgrades
     Title: Upgrade Guides
     Articles:
-    - Title: Azure Storage
+    - Title: Azure Table
       Articles:
       - Url: persistence/upgrades/asp-2to3
         Title: Version 2 to 3
@@ -1018,17 +1018,21 @@
       Title: Installer Workflow
     - Url: persistence/sql/migrating-from-nhibernate
       Title: Migrating from NHibernate      
-  - Url: persistence/azure-storage
-    Title: Azure Storage
+  - Url: persistence/azure-table
+    Title: Azure Table
     Articles:
-    - Url: persistence/azure-storage/configuration
+    - Url: persistence/azure-table/configuration
       Title: Configuration
+    - Url: persistence/azure-table/transactions
+      Title: Transactions    
     - Url: nservicebus/azure/understanding-transactionality-in-azure
       Title: Transactions in Azure
-    - Url: persistence/azure-storage/performance-tuning
+    - Url: persistence/azure-table/performance-tuning
       Title: Performance Tuning
-    - Url: persistence/azure-storage/scripting
+    - Url: persistence/azure-table/scripting
       Title: Scripting
+    - Title: Migration from Azure Table Storage to Cosmos DB Table API
+      Url: persistence/azure-table/migration-from-azure-storage-table-to-cosmos-table           
   - Url: persistence/ravendb
     Title: RavenDB
     Articles:
@@ -1312,5 +1316,5 @@
     Articles:
     - Title: Transactions
       Url: previews/cosmosdb/transactions
-    - Title: Migration from Azure Storage Persistence
-      Url: previews/cosmosdb/migration-from-azure-storage      
+    - Title: Migration from Azure Table Persistence
+      Url: previews/cosmosdb/migration-from-azure-table      

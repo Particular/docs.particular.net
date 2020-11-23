@@ -71,7 +71,7 @@ Available subscription persisters include
  * [RavenDB](/persistence/ravendb)
  * [NHibernate](/persistence/nhibernate)
  * [Non-Durable](/persistence/non-durable)
- * [Azure Storage](/persistence/azure-storage)
+ * [Azure Storage](/persistence/azure-table)
  * [SQL Server](/persistence/sql)
 
 The publish workflow for [unicast transports](/transports/types.md#unicast-only-transports) is as follows:
@@ -97,7 +97,7 @@ partial: disable-publishing
 
 ### Native
 
-For multicast transports that [support publish–subscribe natively](/transports/types.md#multicast-enabled-transports) neither persistence nor control message exchange is required to complete the publish-subscribe workflow. 
+For multicast transports that [support publish–subscribe natively](/transports/types.md#multicast-enabled-transports) neither persistence nor control message exchange is required to complete the publish-subscribe workflow.
 
 
 #### Subscribe
