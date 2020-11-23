@@ -1,6 +1,5 @@
 ﻿using NServiceBus;
 using NServiceBus.Logging;
-using System;
 using System.Threading.Tasks;
 
 namespace AlpineAccepted
@@ -12,32 +11,26 @@ namespace AlpineAccepted
     {
         static ILog log = LogManager.GetLogger<ShipOrderWorkflow>();
 
-        public async Task Handle(ShipOrder message, IMessageHandlerContext context)
+        public Task Handle(ShipOrder message, IMessageHandlerContext context)
         {
-            // Execute order to ship with Maple
-            await context.Send(new ShipWithMaple() { OrderId = Data.OrderId })
-                .ConfigureAwait(false);
-
-            // Add timeout to escalate if Maple did not ship in time.
-            await RequestTimeout(context, TimeSpan.FromSeconds(20),
-                new ShippingEscalation()).ConfigureAwait(false);
+            // Stub
+            return Task.CompletedTask;
         }
 
         public Task Handle(ShipmentAcceptedByMaple message, IMessageHandlerContext context)
         {
-            log.Info($"Order [{Data.OrderId}] - Succesfully shipped with Maple");
-
-            Data.ShipmentAcceptedByMaple = true;
-
+            // Stub
             return Task.CompletedTask;
         }
 
         #region ShipmentAcceptedByAlpine
         public Task Handle(ShipmentAcceptedByAlpine message, IMessageHandlerContext context)
         {
-            log.Info($"Order [{Data.OrderId}] - Succesfully shipped with Alpine");
+            log.Info($"Order [{Data.OrderId}] - Successfully shipped with Alpine");
 
             Data.ShipmentAcceptedByAlpine = true;
+
+            MarkAsComplete();
 
             return Task.CompletedTask;
         }

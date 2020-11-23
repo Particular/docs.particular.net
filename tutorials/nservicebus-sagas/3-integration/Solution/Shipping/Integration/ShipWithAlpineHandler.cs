@@ -21,11 +21,9 @@ namespace Shipping.Integration
 
             log.Info($"ShipWithAlpineHandler: Delaying Order #{message.OrderId} {waitingTime} seconds.");
 
-            await Task.Delay(waitingTime * 1000)
-                .ConfigureAwait(false);
+            await Task.Delay(waitingTime * 1000);
 
-            await context.Reply(new ShipmentAcceptedByAlpine())
-                .ConfigureAwait(false);
+            await context.Reply(new ShipmentAcceptedByAlpine());
         }
     }
 

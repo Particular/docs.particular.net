@@ -22,6 +22,8 @@
 
         public async Task Handle(ShipOrder message, IMessageHandlerContext context)
         {
+            log.Info($"ShipOrderWorkflow for Order [{Data.OrderId}] - Trying Maple first.");
+
             // Execute order to ship with Maple
             await context.Send(new ShipWithMaple() { OrderId = Data.OrderId });
 
@@ -31,18 +33,21 @@
 
         public Task Handle(ShipmentAcceptedByMaple message, IMessageHandlerContext context)
         {
-            log.Info($"Order [{Data.OrderId}] - Succesfully shipped with Maple");
+            if (!Data.ShipmentOrderSentToAlpine)
+            {
+                log.Info($"Order [{Data.OrderId}] - Successfully shipped with Maple");
 
-            Data.ShipmentAcceptedByMaple = true;
+                Data.ShipmentAcceptedByMaple = true;
 
-            MarkAsComplete();
+                MarkAsComplete();
+            }
 
             return Task.CompletedTask;
         }
 
         public Task Handle(ShipmentAcceptedByAlpine message, IMessageHandlerContext context)
         {
-            log.Info($"Order [{Data.OrderId}] - Succesfully shipped with Alpine");
+            log.Info($"Order [{Data.OrderId}] - Successfully shipped with Alpine");
 
             Data.ShipmentAcceptedByAlpine = true;
 
@@ -53,21 +58,24 @@
 
         public async Task Timeout(ShippingEscalation timeout, IMessageHandlerContext context)
         {
-            if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentOrderSentToAlpine)
+            if (!Data.ShipmentAcceptedByMaple)
             {
-                log.Info($"Order [{Data.OrderId}] - We didn't receive answer from Maple, let's try Alpine.");
-                Data.ShipmentOrderSentToAlpine = true;
-                await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
-                await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());
-            }
-            else if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentAcceptedByAlpine) // No response from Maple nor Alpine
-            {
-                log.Warn($"Order [{Data.OrderId}] - We didn't receive answer from either Maple nor Alpine. We need to escalate!");
+                if (!Data.ShipmentOrderSentToAlpine)
+                {
+                    log.Info($"Order [{Data.OrderId}] - We didn't receive answer from Maple, let's try Alpine.");
+                    Data.ShipmentOrderSentToAlpine = true;
+                    await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
+                    await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());
+                }
+                else if (!Data.ShipmentAcceptedByAlpine) // No response from Maple nor Alpine
+                {
+                    log.Warn($"Order [{Data.OrderId}] - We didn't receive answer from either Maple nor Alpine. We need to escalate!");
 
-                // escalate to Warehouse Manager!
-                await context.Publish<ShipmentFailed>();
+                    // escalate to Warehouse Manager!
+                    await context.Publish<ShipmentFailed>();
 
-                MarkAsComplete();
+                    MarkAsComplete();
+                }
             }
         }
 

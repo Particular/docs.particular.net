@@ -28,27 +28,27 @@ namespace Alpine
     {
         static ILog log = LogManager.GetLogger<ShipOrderWorkflow>();
 
-        public async Task Handle(ShipOrder message, IMessageHandlerContext context)
+        public Task Handle(ShipOrder message, IMessageHandlerContext context)
         {
-            // Execute order to ship with Maple
-            await context.Send(new ShipWithMaple() { OrderId = Data.OrderId })
-                .ConfigureAwait(false);
-
-            // Add timeout to escalate if Maple did not ship in time.
-            await RequestTimeout(context, TimeSpan.FromSeconds(20),
-                new ShippingEscalation()).ConfigureAwait(false);
+            // Stub only
+            return Task.CompletedTask;
         }
 
+        #region ShipWithMaple-ShipmentAcceptedRevision
         public Task Handle(ShipmentAcceptedByMaple message, IMessageHandlerContext context)
         {
-            log.Info($"Order [{Data.OrderId}] - Succesfully shipped with Maple");
+            if (!Data.ShipmentOrderSentToAlpine)
+            {
+                log.Info($"Order [{Data.OrderId}] - Successfully shipped with Maple");
 
-            Data.ShipmentAcceptedByMaple = true;
+                Data.ShipmentAcceptedByMaple = true;
 
-            MarkAsComplete();
+                MarkAsComplete();
+            }
 
             return Task.CompletedTask;
         }
+        #endregion
 
         #region ShippingEscalation
         public async Task Timeout(ShippingEscalation timeout, IMessageHandlerContext context)
@@ -57,10 +57,8 @@ namespace Alpine
             {
                 log.Info($"Order [{Data.OrderId}] - We didn't receive answer from Maple, let's try Alpine.");
                 Data.ShipmentOrderSentToAlpine = true;
-                await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId })
-                    .ConfigureAwait(false);
-                await RequestTimeout(context, TimeSpan.FromSeconds(20),
-                    new ShippingEscalation()).ConfigureAwait(false);
+                await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
+                await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());
             }
         }
         #endregion
