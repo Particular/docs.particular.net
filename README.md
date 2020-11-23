@@ -888,10 +888,13 @@ In some cases it may be necessary to have merged documentation for unreleased fe
 
 ### Temporary unstables
 
-During a period of documenting an unstable feature those unstable packages need to be explicitly included via including a `-*`.
+During a period of documenting an unstable feature those unstable packages need to be explicitly using the exact prerelease package version via including a `-`. 
 
 ```
-<PackageReference Include="NServiceBus.RabbitMQ" Version="4.3.1-*" />
+<PackageReference Include="NServiceBus.RabbitMQ" Version="4.3.1-alpha.XYZ" />
+```
+
+Wildcard patterns, like `Version="4.3.1-*` are not allowed for pre-releases since they tend to break the snippet and sample builds.
 ```
 
 In snippets this can be safely done at any point in time. Note that when for applied to samples this can have side effects on a user who downloads a sample during that period. As such it is generally only done for samples that are marked with a `prerelease.txt` marker.
