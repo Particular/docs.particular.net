@@ -93,14 +93,19 @@ More detail on each stage of the process:
 
 ## Important design considerations
 
-* The performance of the outbox feature depends on the scope of the transactions used to update business data and outbox data. Transactions may be scoped to a single database, multiple databases on a single server, or multiple databases on multiple servers.
-  * Transactions scoped to a single database are supported by all persisters and usually have the best performance, so it is usually best to store outbox data in the same database as business data.
-  * Transactions scoped to multiple databases on a single server, also known as _cross-database transactions_, are supported by some persisters, such as those which use SQL Server. These transactions may have reasonably good performance but they may introduce other concerns. For example, [cross-database transaction are not supported by all types of tables in SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/in-memory-oltp/cross-database-queries).
-  * Transactions scoped to multiple databases on multiple servers, also known as _distributed transactions_, are supported by persisters which use SQL Server, but they require the use of MSDTC and should generally be avoided for the same reasons as those listed in the [comparison with MSDTC](#comparison-with-msdtc) below.
+* For best performance, outbox data should be stored in the same database as business data. For more information, see [_Transaction scope_](#important-design-considerations-transaction-scope) below.
 * The outbox works only in an NServiceBus message handler.
 * Because deduplication is done using `MessageId`, messages sent outside of an NServiceBus message handler (i.e. from a Web API) cannot be deduplicated unless they are sent with the same `MessageId`.
 * The outbox is _expected to_ generate duplicate messages from time to time, especially if there is unreliable communication between the endpoint and the message broker.
 * Endpoints using the outbox feature should not send messages to endpoints using DTC (see below) as the DTC-enabled endpoints will treat duplicates coming from Outbox-enabled endpoints as multiple messages.
+
+### Transaction scope
+
+The performance of the outbox feature depends on the scope of the transactions used to update business data and outbox data. Transactions may be scoped to a single database, multiple databases on a single server, or multiple databases on multiple servers.
+
+* Transactions scoped to a single database are supported by all persisters and usually have the best performance, so it is usually best to store outbox data in the same database as business data.
+* Transactions scoped to multiple databases on a single server, also known as _cross-database transactions_, are supported by some persisters, such as those which use SQL Server. These transactions may have reasonably good performance but they may introduce other concerns. For example, [cross-database transaction are not supported by all types of tables in SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/in-memory-oltp/cross-database-queries).
+* Transactions scoped to multiple databases on multiple servers, also known as _distributed transactions_, are supported by persisters which use SQL Server, but they require the use of MSDTC and should generally be avoided for the same reasons as those listed in the [comparison with MSDTC](#comparison-with-msdtc) below.
 
 ## Comparison with MSDTC
 
