@@ -15,7 +15,7 @@ namespace MongoDB_2
 
             //Define other update operations on the document
 
-            BsonDocument modifiedDocument = await collection.FindOneAndUpdateAsync<BsonDocument>(
+            var modifiedDocument = await collection.FindOneAndUpdateAsync<BsonDocument>(
                 filter: document => document["_id"] == documentId && document["_version"] == currentVersion,
                 update: updateDefinition,
                 options: new FindOneAndUpdateOptions<BsonDocument, BsonDocument> { IsUpsert = false, ReturnDocument = ReturnDocument.After });
