@@ -10,6 +10,10 @@ redirects:
 
 The Distributor starts sending messages to a Worker once it is aware of it. A Worker registers itself with a Distributor by sending a message containing a `SessionID` that identifies the current running Worker and the number of messages it can handle concurrently.
 
+## Prerequisites
+
+Prior to installation ensure that PowerShell 2 or higher is installed. NServiceBus PowerShell modules are compatible with PowerShell 5. Versions of PowerShell later than 5 are not supported and might not work as expected.
+
 ## Disconnecting a Worker
 
 If the Worker is configured using the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ), there is a PowerShell cmdlet that can be used to disconnect a Worker from a Distributor. The steps are the following:
