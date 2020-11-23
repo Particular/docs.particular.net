@@ -20,7 +20,7 @@
             #region MongoDBClient
 
             var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
-            persistence.MongoClient(new MongoDB.Driver.MongoClient("SharedMongoUrl"));
+            persistence.MongoClient(new MongoClient("SharedMongoUrl"));
 
             #endregion
         }
