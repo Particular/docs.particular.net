@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 namespace IntegrityTests
 {
-    public class ValidatePrereleaseTxt
+    public class ValidatePrerelease
     {
         [Test]
         public void VerifyPrereleaseTxtHasPrereleaseComponent()
@@ -68,6 +68,36 @@ namespace IntegrityTests
                 });
         }
 
+        [Test]
+        public void VerifyProjectsWithPrereleaseDontUseWildcards()
+        {
+            new TestRunner("*.csproj", "Found project with prerelease component using a wildcard nuget pattern.")
+                .IgnoreTutorials()
+                .IgnoreRegex(@"\\Snippets\\Common\\")
+                .Run(projPath =>
+                {
+                    var (versionedPath, componentName) = GetVersionedComponentPath(projPath);
+
+                    if (versionedPath == null)
+                    {
+                        return false;
+                    }
+
+                    // Temporarily skipping over, this probably means incorrect component names, but that's another test
+                    if (!TestSetup.ComponentMetadata.TryGetValue(componentName, out var component))
+                    {
+                        return true;
+                    }
+
+                    if (HasPrereleasePackagesNotLockedToSpecificVersion(projPath, component.NugetOrder))
+                    {
+                        return false;
+                    }
+
+                    return true;
+                });
+        }
+
         private (string path, string componentName) GetVersionedComponentPath(string path)
         {
             var dirPath = Path.GetDirectoryName(path);
@@ -87,7 +117,25 @@ namespace IntegrityTests
             return (null, null);
         }
 
-        private bool HasPrereleasePackages(string projectPath, IEnumerable<string> packageNames)
+        private static bool HasPrereleasePackages(string projectPath, IEnumerable<string> packageNames)
+        {
+            var packageRefs = QueryPackageRefs(projectPath);
+
+            return packageRefs
+                .Where(pkgRef => packageNames.Contains(pkgRef.Attribute("Include").Value, StringComparer.OrdinalIgnoreCase))
+                .Any(pkgRef => pkgRef.Attribute("Version").Value.Contains("-"));
+        }
+
+        private static bool HasPrereleasePackagesNotLockedToSpecificVersion(string projectPath, IEnumerable<string> packageNames)
+        {
+            var packageRefs = QueryPackageRefs(projectPath);
+
+            return packageRefs
+                .Where(pkgRef => packageNames.Contains(pkgRef.Attribute("Include").Value, StringComparer.OrdinalIgnoreCase) && pkgRef.Attribute("Version").Value.Contains("-"))
+                .Any(pkgRef =>  pkgRef.Attribute("Version").Value.Contains("*"));
+        }
+
+        static IEnumerable<XElement> QueryPackageRefs(string projectPath)
         {
             var xdoc = XDocument.Load(projectPath);
             var nsMgr = new XmlNamespaceManager(new NameTable());
@@ -101,10 +149,7 @@ namespace IntegrityTests
             }
 
             var packageRefs = xdoc.XPathSelectElements(query, nsMgr);
-
-            return packageRefs
-                .Where(pkgRef => packageNames.Contains(pkgRef.Attribute("Include").Value, StringComparer.OrdinalIgnoreCase))
-                .Any(pkgRef => pkgRef.Attribute("Version").Value.Contains("-"));
+            return packageRefs;
         }
     }
 }
