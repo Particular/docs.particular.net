@@ -39,7 +39,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.2.0) | 2020-10-20     | -                 | -                                 |
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.1) | 2020-08-24     | 2021-01-20        | Superseded by 5.2.x               |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | 2020-04-27     | 2020-11-24        | Superseded by 5.1.x               |
+| [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | ~~2020-04-27~~ | ~~2020-11-24~~    | ~~Superseded by 5.1.x~~           |
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.1) | 2019-11-27     | 2021-04-27        | Superseded by 5.0.x               |
 | [~~4.3.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.3.5) | ~~2019-02-22~~ | ~~2020-02-27~~    | ~~Superseded by 4.4.x~~           |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.2.3) | ~~2018-12-12~~ | ~~2019-05-22~~    | ~~Superseded by 4.3.x~~           |
@@ -239,6 +239,12 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | [~~1.3.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/1.3.0) | ~~2017-06-02~~ | ~~2017-09-16~~    | ~~Superseded by 1.4.x~~           |
 | [~~1.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/1.2.0) | ~~2017-03-24~~ | ~~2017-09-02~~    | ~~Superseded by 1.3.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/1.0.1) | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 1.2.x~~           |
+
+#### [NServiceBus.Persistence.AzureTable](/nuget/NServiceBus.Persistence.AzureTable)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.0.0) | 2020-11-23     | -                 | -                                 |
 
 #### [NServiceBus.Persistence.NonDurable](/nuget/NServiceBus.Persistence.NonDurable)
 

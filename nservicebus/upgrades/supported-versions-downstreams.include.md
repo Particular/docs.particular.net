@@ -6,7 +6,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.2.0) | 2020-10-20     | -                 | -                                 |
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.1) | 2020-08-24     | 2021-01-20        | Superseded by 5.2.x               |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | 2020-04-27     | 2020-11-24        | Superseded by 5.1.x               |
+| [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | ~~2020-04-27~~ | ~~2020-11-24~~    | ~~Superseded by 5.1.x~~           |
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.1) | 2019-11-27     | 2021-04-27        | Superseded by 5.0.x               |
 | [3.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/3.3.5) | 2018-05-14     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
@@ -101,6 +101,12 @@ _This package has been split into NServiceBus.DataBus.AzureBlobStorage and NServ
 | [2.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/2.4.2) | 2020-03-04     | -                 | -                                 |
 | [~~2.3.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/2.3.0) | ~~2018-12-12~~ | ~~2020-06-04~~    | ~~Superseded by 2.4.x~~           |
 | [1.5.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/1.5.2) | 2018-05-17     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
+
+#### [NServiceBus.Persistence.AzureTable](/nuget/NServiceBus.Persistence.AzureTable)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.0.0) | 2020-11-23     | -                 | -                                 |
 
 #### [NServiceBus.Persistence.ServiceFabric](/nuget/NServiceBus.Persistence.ServiceFabric)
 
