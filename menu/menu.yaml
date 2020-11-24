@@ -47,14 +47,14 @@
     Title: General
     Articles:
     - Url: nservicebus/best-practices
-      Title: Best practices  
+      Title: Best practices
     - Url: nservicebus/concepts
       Title: Messaging Concepts
       Articles:
       - Url: nservicebus/concepts/glossary
         Title: Glossary
       - Url: nservicebus/concepts/priority-queues
-        Title: Priority Queues    
+        Title: Priority Queues
       - Url: nservicebus/concepts/data-distribution
         Title: Data distribution
     - Url: platform
@@ -550,7 +550,7 @@
     Title: Operations
     Articles:
     - Url: platform/installer/offline
-      Title: Particular Service Platform Installation 
+      Title: Particular Service Platform Installation
     - Url: nservicebus/hosting/startup-diagnostics
       Title: Startup diagnostics
     - Url: nservicebus/operations/transactions-message-processing
@@ -584,12 +584,12 @@
     Title: Supported Tools
     Articles:
     - Url: nservicebus/tools/migrate-to-native-delivery
-      Title: Migrating timeouts    
+      Title: Migrating timeouts
   - Url: nservicebus/troubleshooting
     Title: Troubleshooting
     Articles:
     - Url: nservicebus/troubleshooting/message-loss
-      Title: Message loss   
+      Title: Message loss
 
 - Name: Transports
   Url: transports
@@ -805,7 +805,7 @@
       Title: Entity Framework caveats
     - Url: transports/sql/callbacks
       Title: Callback support
-    - Url: transports/sql/sql-azure 
+    - Url: transports/sql/sql-azure
       Title: Azure SQL considerations
   - Url: transports/msmq
     Title: MSMQ
@@ -882,7 +882,7 @@
     - Url: transports/sqs/configuration-options
       Title: Configuration Options
     - Url: transports/sqs/delayed-delivery
-      Title: Delayed Delivery      
+      Title: Delayed Delivery
     - Url: transports/sqs/why-use-sqs
       Title: Why use SQS?
     - Url: transports/sqs/topology
@@ -1021,14 +1021,14 @@
     - Url: persistence/sql/installer-workflow
       Title: Installer Workflow
     - Url: persistence/sql/migrating-from-nhibernate
-      Title: Migrating from NHibernate      
+      Title: Migrating from NHibernate
   - Url: persistence/azure-table
     Title: Azure Table
     Articles:
     - Url: persistence/azure-table/configuration
       Title: Configuration
     - Url: persistence/azure-table/transactions
-      Title: Transactions    
+      Title: Transactions
     - Url: nservicebus/azure/understanding-transactionality-in-azure
       Title: Transactions in Azure
     - Url: persistence/azure-table/performance-tuning
@@ -1036,7 +1036,7 @@
     - Url: persistence/azure-table/scripting
       Title: Scripting
     - Title: Migration from Azure Table Storage to Cosmos DB Table API
-      Url: persistence/azure-table/migration-from-azure-storage-table-to-cosmos-table           
+      Url: persistence/azure-table/migration-from-azure-storage-table-to-cosmos-table
   - Url: persistence/ravendb
     Title: RavenDB
     Articles:
@@ -1149,11 +1149,11 @@
   Topics:
   - Title: Upgrade Guides
     Url: servicecontrol/upgrades
-    Articles:  
+    Articles:
     - Title: Support policy
-      Url: servicecontrol/upgrades/support-policy    
+      Url: servicecontrol/upgrades/support-policy
     - Title: Version 3 to 4
-      Url: servicecontrol/upgrades/3to4    
+      Url: servicecontrol/upgrades/3to4
     - Title: Version 2 to 3
       Url: servicecontrol/upgrades/2to3
     - Title: Version 1 to 2
@@ -1186,9 +1186,9 @@
       - Title: Cluster Deployment
         Url: servicecontrol/deploying-servicecontrol-in-a-cluster
       - Title: Remote Instances
-        Url: servicecontrol/servicecontrol-instances/remotes          
+        Url: servicecontrol/servicecontrol-instances/remotes
       - Title: Multiple Instances
-        Url: servicecontrol/servicecontrol-instances/distributed-instances  
+        Url: servicecontrol/servicecontrol-instances/distributed-instances
       - Title: Settings
         Url: servicecontrol/creating-config-file
       - Title: Overriding the host identifier
@@ -1226,7 +1226,7 @@
       - Title: Settings
         Url: servicecontrol/audit-instances/creating-config-file
       - Title: Maintenance Mode
-        Url: servicecontrol/audit-instances/maintenance-mode            
+        Url: servicecontrol/audit-instances/maintenance-mode
   - Title: Monitoring instances
     Url: servicecontrol/monitoring-instances
     Articles:
@@ -1261,7 +1261,7 @@
     Url: monitoring
   - Title: Heartbeats
     Url: monitoring/heartbeats
-    Articles: 
+    Articles:
     - Title: Install plugin
       Url: monitoring/heartbeats/install-plugin
     - Title: Managing in ServicePulse
@@ -1321,4 +1321,4 @@
     - Title: Transactions
       Url: previews/cosmosdb/transactions
     - Title: Migration from Azure Table Persistence
-      Url: previews/cosmosdb/migration-from-azure-table      
+      Url: previews/cosmosdb/migration-from-azure-table
