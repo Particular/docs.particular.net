@@ -5,7 +5,6 @@ reviewed: 2020-11-13
 component: ASQ
 related:
 - transports/azure-storage-queues
-- nservicebus/upgrades/7to8
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
