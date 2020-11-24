@@ -10,7 +10,6 @@ redirects:
  - nservicebus/upgrades/asq-6to7
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
- - 5
  - 6
 ---
 
