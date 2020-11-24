@@ -909,6 +909,8 @@
     Articles:
     - Title: Azure Table
       Articles:
+      - Url: persistence/upgrades/asp-3to4
+        Title: Version 3 to 4
       - Url: persistence/upgrades/asp-2to3
         Title: Version 2 to 3
       - Url: persistence/upgrades/asp-1to2
