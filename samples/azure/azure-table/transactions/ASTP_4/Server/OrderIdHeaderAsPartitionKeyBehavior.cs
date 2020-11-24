@@ -1,9 +1,8 @@
-﻿﻿using System;
+﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
- using NServiceBus.Persistence.AzureTable;
- using NServiceBus.Pipeline;
+using NServiceBus.Pipeline;
 
 #region BehaviorUsingHeader
 class OrderIdHeaderAsPartitionKeyBehavior : Behavior<ITransportReceiveContext>

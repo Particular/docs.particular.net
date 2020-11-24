@@ -1,5 +1,6 @@
-﻿﻿using System;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Persistence.AzureTable;
@@ -47,7 +48,7 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
             base(nameof(OrderIdAsPartitionKeyBehavior),
                 typeof(OrderIdAsPartitionKeyBehavior),
                 "Determines the PartitionKey from the logical message",
-                b => new OrderIdAsPartitionKeyBehavior(b.Build<IProvidePartitionKeyFromSagaId>()))
+                b => new OrderIdAsPartitionKeyBehavior(b.GetRequiredService<IProvidePartitionKeyFromSagaId>()))
         {
             InsertBefore(nameof(LogicalOutboxBehavior));
         }
