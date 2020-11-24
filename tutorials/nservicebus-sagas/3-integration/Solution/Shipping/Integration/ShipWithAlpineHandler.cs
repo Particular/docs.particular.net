@@ -12,20 +12,18 @@ namespace Shipping.Integration
     {
         static ILog log = LogManager.GetLogger<ShipWithAlpineHandler>();
 
-        const int MaximumTimeMapleMightRespond = 30;
+        const int MaximumTimeAlpineMightRespond = 30;
         static Random random = new Random();
 
         public async Task Handle(ShipWithAlpine message, IMessageHandlerContext context)
         {
-            var waitingTime = random.Next(MaximumTimeMapleMightRespond);
+            var waitingTime = random.Next(MaximumTimeAlpineMightRespond);
 
-            log.Info($"Order #{message.OrderId} - Waiting {waitingTime} seconds.");
+            log.Info($"ShipWithAlpineHandler: Delaying Order [{message.OrderId}] {waitingTime} seconds.");
 
-            await Task.Delay(waitingTime * 1000)
-                .ConfigureAwait(false);
+            await Task.Delay(waitingTime * 1000);
 
-            await context.Reply(new ShipmentAcceptedByAlpine())
-                .ConfigureAwait(false);
+            await context.Reply(new ShipmentAcceptedByAlpine());
         }
     }
 

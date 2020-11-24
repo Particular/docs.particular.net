@@ -14,23 +14,24 @@ namespace EdgeCases
         #region EdgeCases-ShipmentFailed
         public async Task Timeout(ShippingEscalation timeout, IMessageHandlerContext context)
         {
-            if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentOrderSentToAlpine)
+            if (!Data.ShipmentAcceptedByMaple)
             {
-                log.Info($"Order [{Data.OrderId}] - We didn't receive answer from Maple, let's try Alpine.");
-                Data.ShipmentOrderSentToAlpine = true;
-                await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId })
-                    .ConfigureAwait(false);
-                await RequestTimeout(context, TimeSpan.FromSeconds(20),
-                    new ShippingEscalation()).ConfigureAwait(false);
-            }
+                if (!Data.ShipmentOrderSentToAlpine)
+                {
+                    log.Info($"Order [{Data.OrderId}] - No answer from Maple, let's try Alpine.");
+                    Data.ShipmentOrderSentToAlpine = true;
+                    await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
+                    await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());
+                }
+                else if (!Data.ShipmentAcceptedByAlpine) // No response from Maple nor Alpine
+                {
+                    log.Warn($"Order [{Data.OrderId}] - No answer from Maple/Alpine. We need to escalate!");
 
-            // No response from Maple nor Alpine
-            if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentAcceptedByAlpine)
-            {
-                log.Warn($"Order [{Data.OrderId}] - " +
-                    $"We didn't receive answer from either Maple nor Alpine. We need to escalate!");
-                // escalate to Warehouse Manager!
-                await context.Publish<ShipmentFailed>().ConfigureAwait(false);
+                    // escalate to Warehouse Manager!
+                    await context.Publish<ShipmentFailed>();
+
+                    MarkAsComplete();
+                }
             }
         }
         #endregion
