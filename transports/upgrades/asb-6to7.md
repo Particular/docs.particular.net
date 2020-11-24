@@ -1,7 +1,7 @@
 ---
-title: Azure Service Bus Transport Upgrade Version 6 to 7
+title: Azure Service Bus Transport (Legacy) Upgrade Version 6 to 7
 summary: Instructions on how to upgrade Azure Service Bus Transport Version 6 to 7.
-reviewed: 2019-03-01
+reviewed: 2020-11-23
 component: ASB
 related:
  - transports/azure-service-bus

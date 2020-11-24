@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Transport Upgrade Version 9 to 10
+title: Azure Service Bus Transport (Legacy) Upgrade Version 9 to 10
 summary: Tips for upgrading Azure Service Bus transport from version 9 to 10.
 reviewed: 2020-03-02
 component: ASB
