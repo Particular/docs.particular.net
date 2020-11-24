@@ -48,7 +48,7 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
             base(nameof(OrderIdAsPartitionKeyBehavior),
                 typeof(OrderIdAsPartitionKeyBehavior),
                 "Determines the PartitionKey from the logical message",
-                b => new OrderIdAsPartitionKeyBehavior(b.GetRequiredService<IProvidePartitionKeyFromSagaId>()))
+                provider => new OrderIdAsPartitionKeyBehavior(provider.GetRequiredService<IProvidePartitionKeyFromSagaId>()))
         {
             InsertBefore(nameof(LogicalOutboxBehavior));
         }
