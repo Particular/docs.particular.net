@@ -1,4 +1,5 @@
 ﻿using Microsoft.Azure.Cosmos.Table;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.Persistence.AzureTable;
 
@@ -34,10 +35,10 @@ class CustomClientProviderRegistration
     {
         #region CustomClientProviderRegistration
 
-        endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<CustomTableClientProvider>(DependencyLifecycle.SingleInstance));
+        endpointConfiguration.RegisterComponents(services => services.AddSingleton<CustomTableClientProvider>());
 
         // optionally when subscriptions used
-        endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<CustomSubscriptionTableClientProvider>(DependencyLifecycle.SingleInstance));
+        endpointConfiguration.RegisterComponents(services => services.AddSingleton<CustomSubscriptionTableClientProvider>());
 
         #endregion
     }
