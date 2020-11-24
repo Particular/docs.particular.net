@@ -1,7 +1,7 @@
 ---
 title: "NServiceBus Sagas"
 suppressRelated: true
-reviewed: 2020-03-05
+reviewed: 2020-11-24
 summary: An introduction to sagas and how to use them
 ---
 
@@ -11,7 +11,7 @@ However, message handlers are stateless and many business processes are not. For
 
 For these types of scenarios, you need a *stateful* message handler. Other ways to describe what is needed might include a message-driven state machine or an orchestration engine. In NServiceBus, we call these [**sagas**](/nservicebus/sagas/). In this tutorial, we'll build on the solution from the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/) and learn to master NServiceBus sagas.
 
-The lessons make the most sense when tackled in order, it's not required. Each tutorial can be accomplished in an hour or less.
+The lessons make the most sense when tackled in order, but it's not required. Each tutorial can be accomplished in an hour or less.
 
 1. [**Getting Started**](1-getting-started/) (20-25 minutes) - learn how to introduce sagas to complete the order shipping process.
 1. [**Timeouts**](2-timeouts/) (20-25 minutes) - learn how to delay processing of an order to implement the *buyer's remorse* pattern.
