@@ -4,7 +4,7 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="10.0.0-alpha.219" />
+    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="10.0.0-alpha.221" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>
 </Project>
