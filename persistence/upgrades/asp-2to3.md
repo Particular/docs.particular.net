@@ -69,3 +69,12 @@ To make sure the persistence complies with the principle of least priviledge, th
 To enable the persistence to create the needed table(s), the endpoint will need to `EnableInstallers()`, which will result in the tables being created at endpoint startup when a default table was set, or at runtime when the table information is made available.
 
 To opt out of creating tables while still making use of the capabilities provided by `EnableInstallers()`, the `DisableTableCreation` method can be invoked.
+
+## Timeout storage
+
+The [timeout manager will be removed in the next major version of NServiceBus](/nservicebus/upgrades/7to8/#timeout-manager-removed). The timeout manager has already been marked as obsolete and was removed in this version of the persister.
+
+- Any timeout-related configuration API's can be safely removed.
+- Database tables must be manually removed from storage.
+
+NOTE: There is no automatic migration of timeout data. See [Timeout manager removed - Data migration](/nservicebus/upgrades/7to8/#timeout-manager-removed-data-migration).
