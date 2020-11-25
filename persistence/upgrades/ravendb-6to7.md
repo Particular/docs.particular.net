@@ -8,6 +8,7 @@ related:
 reviewed: 2020-02-11
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
+ - 7
  - 8
 ---
 
