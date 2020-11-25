@@ -5,10 +5,31 @@ using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using NServiceBus;
 
 [SuppressMessage("ReSharper", "UnusedMember.Local")]
 public class Sanitization
 {
+    void CustomSanitization(EndpointConfiguration endpointConfiguration)
+    {
+        #region azure-storage-queue-sanitization
+
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport.SanitizeQueueNamesWith(queueName => queueName.Replace('.', '-'));
+
+        #endregion
+    }
+
+    void SanitizeWithMd5BackwardsCompatible(EndpointConfiguration endpointConfiguration)
+    {
+        #region azure-storage-queue-backwards-compatible-sanitization-with-md5
+
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport.SanitizeQueueNamesWith(BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener);
+
+        #endregion
+    }
+
     #region azure-storage-queue-backwards-compatible-sanitization
 
     public static class BackwardsCompatibleQueueNameSanitizer
