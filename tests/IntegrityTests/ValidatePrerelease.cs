@@ -21,14 +21,22 @@ namespace IntegrityTests
                     var versionedPath = Path.GetDirectoryName(path);
                     var versionedName = Path.GetFileName(versionedPath);
                     var versionSplit = versionedName.Split('_');
-                    var componentName = versionSplit[0];
+                    var aliasName = versionSplit[0];
 
-                    if (!TestSetup.ComponentMetadata.TryGetValue(componentName, out var component))
+                    if (!TestSetup.NugetAliases.TryGetValue(aliasName, out var nugetName))
                     {
-                        Assert.Warn($"Component metadata for component name '{componentName}' was not found.");
+                        Assert.Warn($"Nuget for alias name '{aliasName}' was not found.");
                     }
 
-                    var packageNames = component.NugetOrder;
+                    var componentMetadata = TestSetup.ComponentMetadata.Select(c => c.Value)
+                        .FirstOrDefault(c => c.NugetOrder.Contains(nugetName, StringComparer.OrdinalIgnoreCase));
+
+                    if (componentMetadata == null)
+                    {
+                        Assert.Warn($"Component metadata for alias name '{aliasName}' and nuget name '{nugetName}' was not found.");
+                    }
+
+                    var packageNames = componentMetadata.NugetOrder;
 
                     var directoryPath = Path.GetDirectoryName(path);
                     var projects = Directory.GetFiles(directoryPath, "*.csproj", SearchOption.AllDirectories);
@@ -45,7 +53,7 @@ namespace IntegrityTests
                 .IgnoreRegex(@"\\Snippets\\Common\\")
                 .Run(projPath =>
                 {
-                    var (versionedPath, componentName) = GetVersionedComponentPath(projPath);
+                    var (versionedPath, aliasName) = GetVersionedAliasPath(projPath);
 
                     if (versionedPath == null)
                     {
@@ -53,7 +61,16 @@ namespace IntegrityTests
                     }
 
                     // Temporarily skipping over, this probably means incorrect component names, but that's another test
-                    if (!TestSetup.ComponentMetadata.TryGetValue(componentName, out var component))
+                    if (!TestSetup.NugetAliases.TryGetValue(aliasName, out var nugetName))
+                    {
+                        return true;
+                    }
+
+                    var component = TestSetup.ComponentMetadata.Select(c => c.Value)
+                        .FirstOrDefault(c => c.NugetOrder.Contains(nugetName, StringComparer.OrdinalIgnoreCase));
+
+                    // Temporarily skipping over, this probably means incorrect component names, but that's another test
+                    if (component == null)
                     {
                         return true;
                     }
@@ -76,7 +93,7 @@ namespace IntegrityTests
                 .IgnoreRegex(@"\\Snippets\\Common\\")
                 .Run(projPath =>
                 {
-                    var (versionedPath, componentName) = GetVersionedComponentPath(projPath);
+                    var (versionedPath, aliasName) = GetVersionedAliasPath(projPath);
 
                     if (versionedPath == null)
                     {
@@ -84,7 +101,16 @@ namespace IntegrityTests
                     }
 
                     // Temporarily skipping over, this probably means incorrect component names, but that's another test
-                    if (!TestSetup.ComponentMetadata.TryGetValue(componentName, out var component))
+                    if (!TestSetup.NugetAliases.TryGetValue(aliasName, out var nugetName))
+                    {
+                        return true;
+                    }
+
+                    var component = TestSetup.ComponentMetadata.Select(c => c.Value)
+                        .FirstOrDefault(c => c.NugetOrder.Contains(nugetName, StringComparer.OrdinalIgnoreCase));
+
+                    // Temporarily skipping over, this probably means incorrect component names, but that's another test
+                    if (component == null)
                     {
                         return true;
                     }
@@ -98,7 +124,7 @@ namespace IntegrityTests
                 });
         }
 
-        private (string path, string componentName) GetVersionedComponentPath(string path)
+        private (string path, string componentName) GetVersionedAliasPath(string path)
         {
             var dirPath = Path.GetDirectoryName(path);
 
