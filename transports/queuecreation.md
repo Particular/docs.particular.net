@@ -30,4 +30,4 @@ snippet: queuebindings
 
 ## Creation
 
-Queues get created during [installation](/nservicebus/operations/installers.md) time only.
+Queues are created only during [installation](/nservicebus/operations/installers.md).

@@ -11,4 +11,4 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-Upgrade from version 9 to 10 does not require any code changes.
+Upgrading from NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 9 to 10 does not require any code changes.
