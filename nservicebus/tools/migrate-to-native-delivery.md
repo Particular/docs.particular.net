@@ -39,6 +39,8 @@ The current version of the tool supports the following persisters:
 - [SQL persistence](/persistence/sql/) using the SQL Server implementation
 - [RavenDB](/persistence/ravendb) versions 3.5.x and 4.x of the RavenDB database server
 
+NOTE: Additional persisters and targets will be added before NServiceBus version 8 is released. Namely Azure Storage and NHibernate Persistenc as sources and SQL Server, Azure Storage Queues and Amazon SQS transports as targets.
+
 ## Supported transports
 
 The tool supports the following transports:
