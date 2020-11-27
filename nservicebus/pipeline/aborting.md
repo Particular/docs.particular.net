@@ -8,7 +8,7 @@ reviewed: 2020-11-26
 
 ## From inside a Handler
 
-From the context of a Handler further handler execution can be aborted by calling the `DoNotContinueDispatchingCurrentMessageToHandlers()` method. This method instructs the bus not to pass the current message on to subsequent handlers in the pipeline. This is often used by authentication and authorization handlers when those checks fail.
+From the context of a Handler, further handler execution can be aborted by calling the `DoNotContinueDispatchingCurrentMessageToHandlers()` method. This method instructs the bus not to pass the current message on to subsequent handlers in the pipeline. This is often used by authentication and authorization handlers when those checks fail.
 
 snippet: AbortHandler
 
