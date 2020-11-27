@@ -42,7 +42,7 @@ To subscribe to the `MessageFailed` event:
  * Create an [NServiceBus endpoint](/nservicebus/hosting/nservicebus-host/).
  * Install the [ServiceControl.Contracts NuGet package](https://www.nuget.org/packages/ServiceControl.Contracts/).
  * Customize the endpoint configuration to use `JsonSerializer` as the message published by ServiceControl uses JSON serialization.
- * Customize the endpoint configuration so that the following conventions are used, as the `MessageFailed` event that is published by ServiceControl does not derive from `IEvent`.
+ * Customize the endpoint configuration so that the following conventions are used, as the events published by ServiceControl do not derive from `IEvent`.
 
 This code sample illustrates how to do this customization:
 
