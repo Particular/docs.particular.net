@@ -1,11 +1,11 @@
-Custom exception handling can be implemented using pipeline behaviors. To learn more about pipeline and behaviors refer to [manipulate the pipeline with behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
+Custom exception handling can be implemented using pipeline behaviors. To learn more about pipeline and behaviors refer to the documentation on [how to manipulate the pipeline with behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
 
-NOTE: Behaviors are to meant to to customize recoverability i.e. how many times and under which conditions a message should be re-tried. To read more about customizing recoverability refer to the [recoverability page](/nservicebus/recoverability/).
+NOTE: Behaviors are meant to customize recoverability i.e. how many times and under which conditions a message should be re-tried. To read more about customizing recoverability refer to the [recoverability documentation](/nservicebus/recoverability/).
 
 
 ### Create a new behavior
 
-Implement a new behavior, which extends the `ITransportReceiveContext` context. This context provides details about the message at the transport level. Calling `next()` in the pipeline will invoke the subsequent pipeline processing steps.
+Implement a new behavior, which extends the `ITransportReceiveContext` context interface. This context provides details about the message at the transport level. Calling `next()` in the pipeline will invoke the subsequent pipeline processing steps.
 
 snippet: ErrorHandlingBehavior
 
@@ -29,7 +29,7 @@ WARNING: Throwing the exception in the catch block will forward the message to t
 
 #### Rolling Back
 
-To rollback the receive operation, instead of either handling the message or to forward it to the error queue, invoke `AbortReceiveOperation` as shown below:
+To rollback the receive operation instead of handling the message or to forward it to the error queue, invoke `AbortReceiveOperation` as shown below:
 
 snippet: RollbackMessage
 

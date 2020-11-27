@@ -1,7 +1,7 @@
 ---
 title: Oracle Scripts
 component: SqlPersistence
-reviewed: 2019-01-24
+reviewed: 2020-11-26
 related:
  - nservicebus/operations
 redirects:
@@ -16,7 +16,7 @@ Scripts and SQL used when interacting with a [Oracle](https://www.oracle.com/dat
 ## Build Time
 
 Scripts created at build time and executed as part of a deployment or decommissioning of an endpoint.
- 
+
 
 ### Outbox
 
@@ -33,7 +33,7 @@ snippet: Oracle_OutboxDropSql
 
 ### Saga
 
-For a Saga with the following structure 
+For a Saga with the following structure
 
 snippet: CreationScriptSaga
 

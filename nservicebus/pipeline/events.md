@@ -2,9 +2,9 @@
 title: Pipeline events
 summary: Subscribe to events raised by the pipeline
 component: Core
-reviewed: 2019-01-15
+reviewed: 2020-11-26
 versions: '[6,)'
-related: 
+related:
 - nservicebus/recoverability
 ---
 
@@ -15,7 +15,7 @@ The pipeline raises the following notification events:
 
 Every time a receive pipeline is completed, a `ReceivePipelineCompleted` event will be raised. This event will not occur when message processing fails e.g. inside a handler.
 
-Use the following configuration code to subscribe to this event:
+Use the following configuration code to subscribe to the event:
 
 snippet: ReceivePipelineCompletedSubscriptionFromEndpointConfig
 

@@ -1,6 +1,6 @@
 ---
 title: Service Fabric Persistence
-reviewed: 2019-01-15
+reviewed: 2020-11-26
 component: ServiceFabricPersistence
 related:
 - samples/azure/azure-service-fabric-routing
@@ -42,4 +42,4 @@ Currently saga and outbox storage types are supported. For timeouts, subscriptio
 
 Currently, Service Fabric does not provide capabilities to view the data that is stored inside reliable collections. The data has to be programmatically accessed and exposed over customized infrastructure.
 
-Data also should be backed up and restored to avoid data loss. See Service Fabric [backup and restore APIs](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-backup-restore).
+Data should be backed up and restored to avoid data loss. See Service Fabric [backup and restore APIs](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-backup-restore) for additional information.

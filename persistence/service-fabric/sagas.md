@@ -1,6 +1,6 @@
 ---
 title: Service Fabric Persistence Sagas
-reviewed: 2019-01-16
+reviewed: 2020-11-26
 component: ServiceFabricPersistence
 ---
 
@@ -12,34 +12,34 @@ Saga data is stored in reliable dictionaries.
 
 ## Saga data serialization
 
-Saga data in stored in JSON format using [Json.NET](https://www.newtonsoft.com/json). 
+Saga data is stored in JSON format using [Json.NET](https://www.newtonsoft.com/json).
 
-Saga data serialization can be configured by providing custom [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) instance
+Saga data serialization can be configured by providing a custom [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) instance.
 
 snippet: ServiceFabricPersistenceSagaJsonSerializerSettings
 
-custom [JsonReader](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm) instance
+A custom [JsonReader](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm) instance:
 
 snippet: ServiceFabricPersistenceSagaReaderCreator
 
-or custom [JsonWriter](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm) instance
+Or a custom [JsonWriter](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm) instance:
 
 snippet: ServiceFabricPersistenceSagaWriterCreator
 
 
-## Saga data storage 
+## Saga data storage
 
-By default saga data stored in multiple reliable collections - one per saga data type. Reliable collection name can be changed at the level of saga data type
+By default saga data is stored in multiple reliable collections - one per saga data type. Reliable collection names can be changed at the level of saga data type.
 
 snippet: ServiceFabricPersistenceSagaWithCustomCollectionName
 
-Saga data identifier used as a key in reliable dictionary gets calculated, among others, from saga data type name. As a result, renaming saga data class name changes storage identifier for every saga data instance. This is a problem especially when some saga data instances have already been stored for a given saga data type. In such scenarios it is necessary to provide stable saga data type name
+The saga data identifier that's used as a key in the reliable dictionary is calculated, amongst others, from the saga data type name. As a result, renaming the saga data class name changes the storage identifier for every saga data instance. This is a problem especially when there are active saga instances stored for a given saga data type. In such scenarios it is necessary to provide a stable saga data type name:
 
 snippet: ServiceFabricPersistenceSagaWithCustomSagaDataName
 
 ## Saga concurrency
 
-When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
+When simultaneously handling messages, conflicts may occur. Below is a list of examples of exception that may be thrown _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
 ### Creating saga data
 
