@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Features;
+using AzureStorageQueueTransport = NServiceBus.AzureStorageQueueTransport;
 
 class Program
 {
     static async Task Main()
     {
-        var endpointName = "Samples-Azure-StorageQueues-Endpoint1";
+        #region endpointName
+
+        var endpointName = "Samples.Azure.StorageQueues.Endpoint1.With.A.Very.Long.Name.And.Invalid.Characters";
         var endpointConfiguration = new EndpointConfiguration(endpointName);
+
+        #endregion
 
         Console.Title = endpointName;
 
@@ -23,6 +29,13 @@ class Program
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.DisableFeature<TimeoutManager>();
+
+        #region sanitization
+
+        transport.SanitizeQueueNamesWith(BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener);
+
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

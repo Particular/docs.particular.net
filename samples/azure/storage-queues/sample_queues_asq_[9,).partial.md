@@ -1,1 +1,0 @@
-![](images/queues-as-is.png)
