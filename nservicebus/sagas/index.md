@@ -9,7 +9,7 @@ related:
 - samples/saga
 ---
 
-NOTE: Want to learn how to build sagas step-by-step? Check out our collection of [step-by-step saga tutorials](/tutorials/nservicebus-sagas/).
+NOTE: Want to learn how to build sagas step-by-step? Check out the [NServiceBus saga tutorials](/tutorials/nservicebus-sagas/).
 
 Long-running business processes exist in many systems. Whether the steps are automated, manual, or a combination, effective handling of these processes is critical. NServiceBus employs event-driven architectural principles to bake fault-tolerance and scalability into these processes. The saga is a pattern that addresses the challenges uncovered by the relational database community years ago, packaged in NServiceBus for ease of use.
 
