@@ -34,9 +34,9 @@
       Title: More tutorials
       Articles:
       - Url: tutorials/monitoring-setup
-        Title: Monitoring NServiceBus solutions
+        Title: NServiceBus monitoring setup
       - Url: tutorials/monitoring-demo
-        Title: Monitoring NServiceBus solutions:demo
+        Title: NServiceBus monitoring demo
     - Url: get-started/high-level-content
       Title: High-level content
     - Url: samples/netcore

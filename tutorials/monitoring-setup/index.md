@@ -1,5 +1,5 @@
 ---
-title: "Monitoring NServiceBus solutions: Getting started"
+title: "NServiceBus monitoring setup"
 reviewed: 2019-10-24
 summary: Setting up the Particular Service Platform to monitor an NServiceBus system.
 component: Core
@@ -11,7 +11,7 @@ redirects:
 
 This tutorial will guide you through the steps required to set up your NServiceBus solution for monitoring with the Particular Service Platform. The tutorial assumes that you're configuring monitoring for an existing solution and doesn't explain how to create a new application. See the [quick start tutorial](/tutorials/quickstart/) for details on how to do that.
 
-Note: If you are not yet sure which transport to choose and are looking to see the monitoring capabilities of the Particular platform, try the [monitoring demo](/tutorials/monitoring-demo/)
+Note: If you are not yet sure which transport to choose and are looking to see the monitoring capabilities of the Particular platform, try the [monitoring demo](/tutorials/monitoring-demo/).
 
 - [Component overview](/tutorials/monitoring-setup/#component-overview)
 - [Setting up Particular Service Platform](/tutorials/monitoring-setup/#setting-up-the-particular-service-platform)

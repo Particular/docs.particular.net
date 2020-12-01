@@ -1,5 +1,5 @@
 ---
-title: "Monitoring NServiceBus solutions: Demo"
+title: "NServiceBus monitoring demo"
 reviewed: 2020-09-14
 summary: A self-contained demo solution that you can run to explore the monitoring features of the Particular Service Platform.
 suppressRelated: true
@@ -7,7 +7,7 @@ redirects:
 - tutorials/monitoring/demo
 ---
 
-The best way to get started with the monitoring features in the Particular Service Platform is to try them out on ServicePulse with a real system. This downloadable sample contains all of the necessary parts of the platform, already configured and ready to run including four sample endpoints that communicate with each other by exchanging messages.
+See how to use the monitoring features in the Particular Service Platform by trying them out in ServicePulse with a real system. This downloadable sample contains all of the necessary parts of the platform, already configured and ready to run including four sample endpoints that communicate with each other by exchanging messages.
 
 <div class="text-center inline-download hidden-xs"><a id='download-demo' href='https://s3.amazonaws.com/particular.downloads/MonitoringDemo/Particular.MonitoringDemo.zip' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download demo</a>
 </div>
