@@ -1,1 +1,1 @@
-This walkthrough uses a self-contained demo environment to illustrate monitoring concepts in the Particular Service Platform. For instructions on how to download and run this sample, see the article [Monitoring NServiceBus solutions: Demo](/tutorials/monitoring-demo/).
+This walkthrough uses a self-contained demo environment to illustrate monitoring concepts in the Particular Service Platform. For instructions on how to download and run this sample, see the [NServiceBus monitoring demo](/tutorials/monitoring-demo/).

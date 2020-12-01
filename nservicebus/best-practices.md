@@ -25,7 +25,7 @@ This expected time is the service-level agreement (SLA) for that message handler
 
 With message handlers separated by SLA, the scalability needs for the message handlers can be adjusted to make sure that the [critical time](/monitoring/metrics/definitions.md#metrics-captured-critical-time) (the amount of time the message waits to be processed + the processing time) does not exceed that SLA.
 
-For more information on monitoring the critical time, see [Monitoring NServiceBus solutions: Getting started](/tutorials/monitoring-setup/)
+For more information on monitoring the critical time, see the [NServiceBus monitoring setup guide](/tutorials/monitoring-setup/).
 
 
 :x: **DO NOT abstract away NServiceBus**
@@ -132,7 +132,7 @@ It's important to know how a system is performing. With the performance monitori
 
 Critical time is especially important, as it describes how long it takes for a message to wait in the queue and be processed. Because most processes will (either explicitly or implicitly) come with some form of service-level agreement (SLA) for how long it can take for a new message of a given type to be processed, monitoring the endpoint's critical time is key to making sure that those SLAs are upheld.
 
-For more information, see an [introductory video on monitoring](https://particular.net/real-time-monitoring), the [getting started guide](/tutorials/monitoring-setup/), or the self-contained [monitoring demo](/tutorials/monitoring-demo/).
+For more information, see an [introductory video on monitoring](https://particular.net/real-time-monitoring), the [monitoring setup guide](/tutorials/monitoring-setup/), or the self-contained [monitoring demo](/tutorials/monitoring-demo/).
 
 
 :heavy_check_mark: **DO create a subscriber for [ServiceControl events](/servicecontrol/contracts.md) to be notified of failed messages and missed heartbeats**

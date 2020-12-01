@@ -53,7 +53,7 @@ Each endpoint tracks [key performance metrics](/monitoring/metrics/definitions.m
 
 NServiceBus is designed with simplicity in mind. Message handlers don't need additional code to manage logging, exception handling, serialization, transactions, or the specifics of a queueing technology. This allows message handler code to focus on business logic.
 
-Long-running business workflows can be modeled in NServiceBus using [sagas](/nservicebus/sagas/). A saga is a C# class that handles a number of different messages over time, persisting its state between each step in the workflow. NServiceBus makes sure that each saga instance only processes a single message at a time, keeping its internal state consistent. The [NServiceBus sagas: Getting started](/nservicebus/sagas/) tutorial provides more details.
+Long-running business workflows can be modeled in NServiceBus using [sagas](/nservicebus/sagas/). A saga is a C# class that handles a number of different messages over time, persisting its state between each step in the workflow. NServiceBus makes sure that each saga instance only processes a single message at a time, keeping its internal state consistent. The [NServiceBus saga tutorials](/tutorials/nservicebus-sagas/) provide more details.
 
 Message handlers and sagas can be [tested in isolation](/nservicebus/testing/). Simulating an incoming message is as simple as creating a new C# message object and passing it to the appropriate handler or saga. The framework includes a suite of testing tools that capture the behavior of message handlers and sagas under test, allowing assertions to be made about them.
 

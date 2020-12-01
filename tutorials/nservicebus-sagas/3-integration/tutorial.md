@@ -47,7 +47,7 @@ snippet: Creation-SagaStart
 
 This creates a saga that is started by `ShipOrder` messages and uses `ShipOrderData` to store its data. Because the saga data is tightly coupled to the saga implementation, we include it as an internal class. The `Handle` method is currently empty—we will need to complete that in just a bit.
 
-NOTE: For a more in-depth explanation of the basic saga concepts, check out [NServiceBus sagas: Getting started](/tutorials/nservicebus-sagas/1-getting-started/).
+NOTE: For a more in-depth explanation of the basic saga concepts, check out [NServiceBus sagas: Saga basics](/tutorials/nservicebus-sagas/1-saga-basics/).
 
 The `OrderId` is what makes the saga unique. We need to show the saga how to identify the unique **correlation property** `OrderId` in the incoming `ShipOrder` message, and how to relate it to the `OrderId` property in the saga data.
 

@@ -25,7 +25,7 @@ partial: transport-at-a-glance
  * Like other message brokers, there is no local store-and-forward mechanism available. If an endpoint cannot reach SQS, either due to network problems or if SQS is unavailable, the endpoint will not be able to send nor receive messages.
  * Can be relatively expensive when using larger volumes of messages.
 
-## Getting started
+## Prerequisites
 
 An [AWS IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) account with a pair of [Access Keys](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html) is required.
 
