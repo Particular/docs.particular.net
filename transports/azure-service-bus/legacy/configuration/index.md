@@ -10,7 +10,7 @@ redirects:
 
 include: legacy-asb-warning
 
-## Getting Started
+## Common settings
 
 In order to setup a basic endpoint using the Azure Service Bus transport the following configuration settings need to be provided.
 
