@@ -1,7 +1,7 @@
 ---
 title: Learning Persistence
 component: LearningPersistence
-reviewed: 2019-02-04
+reviewed: 2020-12-01
 related:
  - samples/saga/simple
  - transports/learning
