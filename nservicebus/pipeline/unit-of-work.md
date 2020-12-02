@@ -2,7 +2,7 @@
 title: Unit of Work
 summary: Implementing a unit of work in NServiceBus
 component: Core
-reviewed: 2019-02-05
+reviewed: 2020-12-02
 redirects:
  - nservicebus/unit-of-work-in-nservicebus
 related:
