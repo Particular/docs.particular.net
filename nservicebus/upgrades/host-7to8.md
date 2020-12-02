@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Host Upgrade Version 7 to 8
 summary: Instructions on how to upgrade NServiceBus Host Version 7 to 8.
-reviewed: 2019-01-27
+reviewed: 2020-12-02
 component: Host
 related:
  - nservicebus/upgrades/6to7
@@ -36,6 +36,8 @@ Code in `IConfigureThisEndpoint.Customize` can be transferred as-is to the confi
 The `AsA_Client` role can be replaced with the following configuration:
 
 snippet: 7to8AsAClient 
+
+NOTE: When trasitioning from `AsA_Client` to self-hosting the equivalent setting for the transport transaction mode is `None`. Please make sure that message loss is acceptable, see [transport transactions](/transports/transactions) documentation for more details.
 
 The `AsA_Server` role didn't change any configuration and can safely be ignored.
 
