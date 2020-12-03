@@ -2,7 +2,7 @@
 title: Accessing data via SQL persistence
 summary: How to access business data using connections managed by NServiceBus SQL persistence.
 component: SqlPersistence
-reviewed: 2019-02-04
+reviewed: 2020-12-03
 related:
  - nservicebus/handlers/accessing-data
  - samples/sqltransport-sqlpersistence
