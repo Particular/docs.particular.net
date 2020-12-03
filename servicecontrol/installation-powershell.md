@@ -58,7 +58,19 @@ There are additional parameters available to set additional configuration option
 Create a ServiceControl instance: 
 
 ```ps
-New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -DatabaseMaintenancePort 33335 -Transport MSMQ -ErrorQueue error1 -AuditQueue audit1 -ForwardAuditMessages:$false -AuditRetentionPeriod 01:00:00 -ErrorRetentionPeriod 10:00:00:00
+New-ServiceControlInstance `
+-Name Test.ServiceControl `
+-InstallPath C:\ServiceControl\Bin `
+-DBPath C:\ServiceControl\DB `
+-LogPath C:\ServiceControl\Logs `
+-Port 33334 `
+-DatabaseMaintenancePort 33335 `
+-Transport MSMQ `
+-ErrorQueue error1 `
+-AuditQueue audit1 `
+-ForwardAuditMessages:$false `
+-AuditRetentionPeriod 01:00:00 `
+-ErrorRetentionPeriod 10:00:00:00
 ```
 
 #### Version 4
@@ -66,15 +78,37 @@ New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceCont
 Create a ServiceControl instance:
 
 ```ps
-$serviceControlInstance = New-ServiceControlInstance -Name Test.ServiceControl -InstallPath C:\ServiceControl\Bin -DBPath C:\ServiceControl\DB -LogPath C:\ServiceControl\Logs -Port 33334 -DatabaseMaintenancePort 33335 -Transport MSMQ -ErrorQueue error1 -ErrorRetentionPeriod 10:00:00:00
+$serviceControlInstance = New-ServiceControlInstance `
+  -Name Test.ServiceControl `
+  -InstallPath C:\ServiceControl\Bin `
+  -DBPath C:\ServiceControl\DB `
+  -LogPath C:\ServiceControl\Logs `
+  -Port 33334 `
+  -DatabaseMaintenancePort 33335 `
+  -Transport MSMQ `
+  -ErrorQueue error1 `
+  -ErrorRetentionPeriod 10:00:00:00
 ```
 
 Optionally create a ServiceControl Audit instance to manage an audit queue:
 
 ```ps
-$auditInstance = New-ServiceControlAuditInstance -Name Test.ServiceControl.Audit -InstallPath C:\ServiceControl.Audit\Bin -DBPath C:\ServiceControl.Audit\DB -LogPath C:\ServiceControl.Audit\Logs -Port 44444 -DatabaseMaintenancePort 44445 -Transport MSMQ -AuditQueue audit1 -AuditRetentionPeriod 10:00:00:00 -ForwardAuditMessages:$false -ServiceControlQueueAddress Test.ServiceControl
+$auditInstance = New-ServiceControlAuditInstance `
+  -Name Test.ServiceControl.Audit `
+  -InstallPath C:\ServiceControl.Audit\Bin `
+  -DBPath C:\ServiceControl.Audit\DB `
+  -LogPath C:\ServiceControl.Audit\Logs `
+  -Port 44444 `
+  -DatabaseMaintenancePort 44445 `
+  -Transport MSMQ `
+  -AuditQueue audit1 `
+  -AuditRetentionPeriod 10:00:00:00 `
+  -ForwardAuditMessages:$false `
+  -ServiceControlQueueAddress Test.ServiceControl
 
-Add-ServiceControlRemote -Name $serviceControlInstance.Name -RemoteInstanceAddress $auditInstance.Url
+Add-ServiceControlRemote `
+  -Name $serviceControlInstance.Name `
+  -RemoteInstanceAddress $auditInstance.Url
 ```
 
 NOTE: The ServiceControl Audit instance must be configured with the transport address of a ServiceControl instance.
@@ -90,9 +124,13 @@ Remove-ServiceControlInstance -Name Test.ServiceControl -RemoveDB -RemoveLogs
 In version 4 and above, use the `Remove-ServiceControlAuditInstance` cmdlet to remove a ServiceControl Audit instance.
 
 ```ps
-Remove-ServiceControlRemote -Name Test.ServiceControl -RemoteInstanceAddress http://localhost:44444/api
+Remove-ServiceControlRemote `
+ -Name Test.ServiceControl `
+ -RemoteInstanceAddress http://localhost:44444/api
 
-Remove-AuditInstance -Name Test.ServiceControl.Audit -RemoveDB -RemoveLogs
+Remove-AuditInstance `
+  -Name Test.ServiceControl.Audit
+  -RemoveDB -RemoveLogs
 ```
 
 NOTE: All connected ServiceControl Audit instances should be removed before removing the main ServiceControl instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance.
