@@ -1,7 +1,7 @@
 ---
 title: Features
 summary: Implement a Feature for advanced extension of NServiceBus.
-reviewed: 2019-02-04
+reviewed: 2020-12-04
 component: Core
 versions: '[5.0,)'
 related:
@@ -131,7 +131,7 @@ If it's required to execute some feature-related logic after the feature has bee
 
 snippet: FeatureStartupTaskDefinition
 
-To associate a `FeatureStartupTask` with the feature, using `RegisterStartupTask`.
+To associate a `FeatureStartupTask` with the feature, use `RegisterStartupTask`.
 
 snippet: FeatureStartupTaskRegistration
 
