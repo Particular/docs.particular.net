@@ -1,5 +1,6 @@
 ---
 title: Native message access
+summary: Access native message information with the Azure Service Bus transport
 component: ASBS
 versions: '[1.4.0,)'
 reviewed: 2020-11-23
@@ -15,7 +16,7 @@ It can sometimes be useful to access the native Service Bus incoming message fro
 
 snippet: access-native-incoming-message
 
-The behavior above uses the native message's `LockedUntilUtc` system property to determine wherever the message has lost its lock as a result of aggressive prefetching and slow processing. The message with the lost lock will not go through recoverability, skipping attempted processing that otherwise would be guaranteed to fail due to the message's lost lock.
+The behavior above uses the native message's `LockedUntilUtc` system property to determine where the message lost its lock as a result of aggressive prefetching and slow processing. The message with the lost lock will not go through [the recoverability process](/nservicebus/recoverability/), skipping attempted processing that otherwise would be guaranteed to fail due to the message's lost lock.
 
 ## Access to the native Azure Service Bus outgoing message
 

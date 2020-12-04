@@ -72,9 +72,9 @@ To opt out of creating tables while still making use of the capabilities provide
 
 ## Timeout storage
 
-The [timeout manager will be removed in the next major version of NServiceBus](/nservicebus/upgrades/7to8/#timeout-manager-removed). The timeout manager has already been marked as obsolete and was removed in this version of the persister.
+The [timeout manager has been removed in `NServiceBus.Core` version 8](/nservicebus/upgrades/7to8/#timeout-manager-removed). Therefore, the timeout manager was removed in this version of the persister.
 
-- Any timeout-related configuration API's can be safely removed.
+- Any timeout-related configuration APIs can be safely removed.
 - Database tables must be manually removed from storage.
 
 NOTE: There is no automatic migration of timeout data. See [Timeout manager removed - Data migration](/nservicebus/upgrades/7to8/#timeout-manager-removed-data-migration).
