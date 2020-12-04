@@ -34,8 +34,8 @@ To use the sample, a valid Service Bus connection string must be provided in the
 
 The sample contains the following projects:
 - `AzureFunctions.Sender` - console application to generate a trigger message
-- `AzureFunctions.ASQTrigger.FunctionsHostBuilder` - Using `IFunctionHostBuilder` approach to host the NServiceBus endpoint
-- `AzureFunctions.ASQTrigger.Static` - Using static approach to host the NServiceBus endpoint
+- `AzureFunctions.ASQTrigger.FunctionsHostBuilder` - Using the `IFunctionHostBuilder` approach to host the NServiceBus endpoint
+- `AzureFunctions.ASQTrigger.Static` - Using a static approach to host the NServiceBus endpoint
 
 NOTE: `AzureFunctions.ASQTrigger.FunctionsHostBuilder` and `AzureFunctions.ASQTrigger.Static` are both using the same trigger queue and should not be executed simultaneously. 
 
@@ -65,7 +65,7 @@ snippet: configuration-with-function-host-builder
 
 snippet: endpoint-injection
 
-And is invoked in the following manner:
+It is invoked in the following manner:
 
 snippet: injected-function
 
