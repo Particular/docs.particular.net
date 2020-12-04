@@ -6,7 +6,7 @@ The scheduler is a lightweight/non-durable API that helps schedule a task that n
 
 Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery.md). If the delayed delivery operation fails, the scheduler will be interrupted and a `ScheduledTask` message will be forwarded to the error queue. When this happens the scheduled task will stop executing unless the `ScheduledTask` message is retried or the endpoint instance is restarted.
 
-Whenever execution history, a timely and/or fully-reliable scheduling is needed, it is recommended to use dedicated scheduling technology, for example:
+Whenever execution history, or timely or fully-reliable scheduling is needed, it is recommended to use dedicated scheduling technology. For example:
 
 * A [.NET Timer](https://msdn.microsoft.com/en-us/library/system.threading.timer.aspx).
 * [NServiceBus Sagas](/nservicebus/sagas/)

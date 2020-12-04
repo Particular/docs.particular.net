@@ -27,7 +27,7 @@ snippet: asq-function-definition
 
 ## IFunctionsHostBuilder usage
 
-Alternatively to the configuration approach described in the previous section, using a static `FunctionEndpoint` field, an endpoint can also be configured using the `IFunctionsHostBuilder` API as described in [Use dependency injection in .NET Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection).
+As an alternative to the configuration approach described in the previous section, an endpoint can also be configured with a static `FunctionEndpoint` field using the `IFunctionsHostBuilder` API as described in [Use dependency injection in .NET Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection). 
 
 ### Endpoint configuration
 

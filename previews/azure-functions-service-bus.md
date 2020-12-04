@@ -31,7 +31,7 @@ NServiceBus interacts directly with the Azure Functions logging infrastructure b
 
 ## IFunctionsHostBuilder usage
 
-Alternatively to the configuration approach described in the previous section, using a static `FunctionEndpoint` field, an endpoint can also be configured using the `IFunctionsHostBuilder` API as described in [Use dependency injection in .NET Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection). 
+As an alternative to the configuration approach described in the previous section, an endpoint can also be configured with a static `FunctionEndpoint` field using the `IFunctionsHostBuilder` API as described in [Use dependency injection in .NET Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection). 
 
 ### Endpoint configuration
 
@@ -39,7 +39,7 @@ NServiceBus can be registered and configured on the host builder using the `UseN
 
 snippet: asb-function-hostbuilder
 
-Any services registered via the `IFunctionsHostBuilder` will be available to message handlers via dependency injection. The startup class needs to be declared via the `FunctionStartup` attribute: `[assembly: FunctionsStartup(typeof(Startup))]`.
+Any services registered via the `IFunctionsHostBuilder` will be available to message handlers via dependency injection. The startup class must be declared via the `FunctionStartup` attribute: `[assembly: FunctionsStartup(typeof(Startup))]`.
 
 ### Azure Function definition
 

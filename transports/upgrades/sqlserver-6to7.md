@@ -18,4 +18,4 @@ The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-m
 
 ## WithPeekDelay replaced by QueuePeekerOptions
 
-In version 6 of the transport it is possible to define the message peek delay using the `WithPeekDelay` configuration option. The configuration setting has been moved to a more generic `QueuePeekerOptions` that allows configuration of other parameters related to message peeking.
+In version 6 of the transport, the message peek delay can be defined using the `WithPeekDelay` configuration option. The configuration setting has been moved to a more generic `QueuePeekerOptions` that allows configuration of other parameters related to message peeking.

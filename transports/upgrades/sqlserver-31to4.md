@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
 
 ## TransactionScope
 
-The [Transaction scope transaction mode](/transports/sql/transactions.md#transaction-scope) is not available in .NET Core 2.0 because the implementation of `SqlConnection` does not support enlisting in an ambient transaction. 
+[TransactionScope transaction mode](/transports/sql/transactions.md#transaction-scope) is not available in .NET Core 2.0 because the implementation of `SqlConnection` does not support enlisting in an ambient transaction. 
 
 To run the upgraded project on .NET Core the transport needs to be switched to one of the native transactions modes. Consider using the [Outbox](/nservicebus/outbox) to maintain the same *exactly-once processing* guarantees.
 
