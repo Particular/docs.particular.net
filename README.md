@@ -888,7 +888,7 @@ In some cases it may be necessary to have merged documentation for unreleased fe
 
 ### Temporary unstables
 
-During a period of documenting an unstable feature those unstable packages need to be explicitly using the exact prerelease package version via including a `-`. 
+When documenting an unstable feature, those unstable packages must be explicitly included using the exact prerelease package version using `-`. 
 
 ```
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.3.1-alpha.XYZ" />
