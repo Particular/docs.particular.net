@@ -2,7 +2,7 @@
 title: Data Bus
 summary: How to handle messages that are too large to be sent by a transport natively
 component: Core
-reviewed: 2019-01-27
+reviewed: 2020-12-01
 redirects:
  - nservicebus/databus
 related:
