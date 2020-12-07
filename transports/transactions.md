@@ -6,7 +6,7 @@ versions: "[4,)"
 redirects:
  - nservicebus/messaging/transactions
  - nservicebus/transports/transactions
-reviewed: 2019-02-07
+reviewed: 2020-12-07
 related:
  - nservicebus/azure/understanding-transactionality-in-azure
 ---
