@@ -145,7 +145,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.6.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.6.0) | 2020-11-02     | -                 | -                                 |
+| [1.7.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | 2020-11-24     | -                 | -                                 |
+| [1.6.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.6.0) | 2020-11-02     | 2021-02-24        | Superseded by 1.7.x               |
 | [1.5.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.1) | 2020-04-16     | 2021-02-02        | Superseded by 1.6.x               |
 | [~~1.4.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.4.0) | ~~2019-12-05~~ | ~~2020-07-16~~    | ~~Superseded by 1.5.x~~           |
 | [~~1.3.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.3.1) | ~~2019-12-03~~ | ~~2020-03-05~~    | ~~Superseded by 1.4.x~~           |
@@ -157,7 +158,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/9.0.0) | 2020-11-13     | -                 | -                                 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/9.0.1) | 2020-11-25     | -                 | -                                 |
 
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
 
