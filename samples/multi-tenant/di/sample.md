@@ -1,7 +1,7 @@
 ---
 title: Injecting tenant-aware components into message handlers
 summary: How to configure IoC to inject tenant-aware components into message handlers
-reviewed: 2019-02-07
+reviewed: 2020-12-07
 component: Core
 related:
 - nservicebus/pipeline/manipulate-with-behaviors
