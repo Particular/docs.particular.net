@@ -2,7 +2,7 @@
 title: Backwards Compatibility
 summary: Describes the requirements for backward compatibility with legacy Azure Service Bus
 component: ASBS
-reviewed: 2019-02-07
+reviewed: 2020-12-07
 ---
 
 The Azure Service Bus transport is backward compatible with the legacy Azure Service Bus transport under certain conditions.
