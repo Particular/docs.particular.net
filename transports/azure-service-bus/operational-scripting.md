@@ -2,7 +2,7 @@
 title: Operational Scripting
 summary: Explains how to create queues and topics with the Azure Service Bus transport using scripting
 component: ASBS
-reviewed: 2019-02-07
+reviewed: 2020-12-07
 ---
 
 ## Operational Scripting
