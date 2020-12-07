@@ -1,7 +1,7 @@
 ---
 title: Learning Transport
 component: LearningTransport
-reviewed: 2019-02-06
+reviewed: 2020-12-07
 related:
  - persistence/learning
 redirects:
