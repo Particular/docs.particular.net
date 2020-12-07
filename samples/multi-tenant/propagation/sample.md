@@ -1,7 +1,7 @@
 ---
 title: Propagating Tenant Information to Downstream Endpoints
 summary: How to configure the pipeline to automatically propagate tenant information to downstream endpoints
-reviewed: 2019-02-08
+reviewed: 2020-12-07
 component: Core
 related:
 - nservicebus/pipeline/manipulate-with-behaviors
