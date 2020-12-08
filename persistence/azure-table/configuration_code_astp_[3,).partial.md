@@ -69,8 +69,7 @@ snippet: EnableInstallersConfigurationOptingOutFromTableCreation
 
 ### Partitioning
 
-When storing saga's, saga IDs are by default deterministically derived from: the saga data, the correlation property name and the correlation property value. This deterministic ID is used as the partition key.
-To deviate from that, the `IProvidePartitionKeyFromSagaId` interface can be injected into behaviors in the logical pipeline stage to set the partition key.
+When storing sagas, saga IDs are by default deterministically derived from the saga data:  the correlation property name and the correlation property value. This deterministic ID is used as the partition key.
+To set a custom partition key derived from saga ID, the `IProvidePartitionKeyFromSagaId` interface implementation can be injected into behaviors in the logical pipeline stage.
 
 snippet: BehaviorUsingIProvidePartitionKeyFromSagaId
-
