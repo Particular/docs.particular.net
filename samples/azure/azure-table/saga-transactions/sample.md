@@ -40,7 +40,7 @@ The order id is used to derive the saga id from.
 
 Most messages implement `IProvideOrderId`. By default Saga IDs are deterministically derived from the saga data, the correlation property name and the correlation property value. `IProvidePartitionKeyFromSagaId` is a helper that can be injected into behaviors in the logical pipeline stage if the Saga ID should be used as a partition key.
 
-snippet: BehaviorUsingIProvidePartitionKeyFromSagaId
+# snippet: BehaviorUsingIProvidePartitionKeyFromSagaId
 
 One handler replies with a message that doesn't implement `IProvideOrderId`. Transactionality can still be achieved because messages that are part of a saga conversation flow will get the Saga ID set as a header. In such cases no correlation property information needs to be extracted to derive the Saga ID from.
 
