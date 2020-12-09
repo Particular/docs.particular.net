@@ -73,8 +73,8 @@ When storing sagas, saga IDs are by default deterministically derived from the s
 This deterministic ID is used as the partition key. The partition key is the key to achieving transactionality.
 
 There might be scenario's in which it's desirable to set a custom partition key:
-- When upgrading to the Azure Table Persistence, it's possible make use of the added transactionality-features by setting the partition key for existing sagas that may have in-flight messages
-- To enable business operations to participate in transactions before the saga has been created, the saga ID can be precomputed and set as the partition key
+- When upgrading to the Azure Table Persistence, it's possible to make use of the added transactional features by setting the partition key for existing sagas that may have in-flight messages
+- To enable business operations to participate in the transaction before the saga has been created, the saga ID can be precomputed and set as the partition key
 
 To set a custom partition key, the `IProvidePartitionKeyFromSagaId` interface implementation can be injected into behaviors in the logical pipeline stage.
 
