@@ -51,14 +51,11 @@ Get-Help Get-ServiceControlLicense
 
 ### Licensing
 
-Add the license file to the registry:
+Copies the license file to the correct location on the file system (`%PROGRAMDATA%/ParticularSoftware/license.xml`) so it is available to all instances of ServiceControl installed on the machine.
 
 ```ps
 Import-ServiceControlLicense <License-File>
 ```
-
-The license file is added to the `HKEY_LOCAL_MACHINE` registry hive so it is available to all instances of ServiceControl installed on the machine.
-
 
 ## Troubleshooting via PowerShell
 
