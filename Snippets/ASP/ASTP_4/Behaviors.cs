@@ -1,8 +1,11 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
+using NServiceBus.Logging;
 using NServiceBus.Persistence.AzureTable;
 using NServiceBus.Pipeline;
+using NServiceBus.Sagas;
 
 #region ITransportReceiveContextBehavior
 class PartitionKeyTransportReceiveContextBehavior
@@ -129,3 +132,15 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
     static readonly ILog Log = LogManager.GetLogger<OrderIdAsPartitionKeyBehavior>();
 }
 #endregion
+
+public interface IProvideOrderId
+{
+    Guid OrderId { get; }
+}
+
+public class OrderSagaData :
+    ContainSagaData
+{
+    public Guid OrderId { get; set; }
+    public string OrderDescription { get; set; }
+}

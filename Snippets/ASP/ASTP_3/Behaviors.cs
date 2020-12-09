@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 using NServiceBus.Persistence.AzureTable;
 using NServiceBus.Pipeline;
+using NServiceBus.Sagas;
 
 #region ITransportReceiveContextBehavior
 class PartitionKeyTransportReceiveContextBehavior
@@ -119,7 +121,7 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
             base(nameof(OrderIdAsPartitionKeyBehavior),
                 typeof(OrderIdAsPartitionKeyBehavior),
                 "Determines the PartitionKey from the logical message",
-                provider => new OrderIdAsPartitionKeyBehavior(provider.GetRequiredService<IProvidePartitionKeyFromSagaId>()))
+                b => new OrderIdAsPartitionKeyBehavior(b.Build<IProvidePartitionKeyFromSagaId>()))
         {
             InsertBefore(nameof(LogicalOutboxBehavior));
         }
@@ -129,3 +131,15 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
     static readonly ILog Log = LogManager.GetLogger<OrderIdAsPartitionKeyBehavior>();
 }
 #endregion
+
+public interface IProvideOrderId
+{
+    Guid OrderId { get; }
+}
+
+public class OrderSagaData :
+    ContainSagaData
+{
+    public Guid OrderId { get; set; }
+    public string OrderDescription { get; set; }
+}
