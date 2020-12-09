@@ -87,7 +87,7 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
 {
     public OrderIdAsPartitionKeyBehavior(IProvidePartitionKeyFromSagaId partitionKeyFromSagaId)
     {
-        partitionKeyFromSagaId1 = partitionKeyFromSagaId;
+        this.partitionKeyFromSagaId = partitionKeyFromSagaId;
     }
 
     public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
@@ -99,7 +99,7 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
             correlationProperty = new SagaCorrelationProperty("OrderId", partitionKeyValue);
         }
 
-        await partitionKeyFromSagaId1.SetPartitionKey<OrderSagaData>(context, correlationProperty);
+        await partitionKeyFromSagaId.SetPartitionKey<OrderSagaData>(context, correlationProperty);
 
         if (context.Headers.TryGetValue(Headers.SagaId, out var sagaIdHeader))
         {
@@ -128,7 +128,7 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
         }
     }
 
-    IProvidePartitionKeyFromSagaId partitionKeyFromSagaId1;
+    IProvidePartitionKeyFromSagaId partitionKeyFromSagaId;
     static readonly ILog Log = LogManager.GetLogger<OrderIdAsPartitionKeyBehavior>();
 }
 #endregion
