@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 using NServiceBus.Persistence.AzureTable;
 using NServiceBus.Pipeline;
+using NServiceBus.Sagas;
 
 #region ITransportReceiveContextBehavior
 class PartitionKeyTransportReceiveContextBehavior
@@ -77,3 +79,67 @@ class ContainerInfoLogicalReceiveContextBehavior
 }
 
 #endregion
+
+#region BehaviorUsingIProvidePartitionKeyFromSagaId
+
+class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
+{
+    public OrderIdAsPartitionKeyBehavior(IProvidePartitionKeyFromSagaId partitionKeyFromSagaId)
+    {
+        this.partitionKeyFromSagaId = partitionKeyFromSagaId;
+    }
+
+    public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
+    {
+        var correlationProperty = SagaCorrelationProperty.None;
+        if (context.Message.Instance is IProvideOrderId provideOrderId)
+        {
+            var partitionKeyValue = provideOrderId.OrderId;
+            correlationProperty = new SagaCorrelationProperty("OrderId", partitionKeyValue);
+        }
+
+        await partitionKeyFromSagaId.SetPartitionKey<OrderSagaData>(context, correlationProperty);
+
+        if (context.Headers.TryGetValue(Headers.SagaId, out var sagaIdHeader))
+        {
+            Log.Debug($"Saga Id Header: {sagaIdHeader}");
+        }
+
+        if (context.Extensions.TryGet<TableInformation>(out var tableInformation))
+        {
+            Log.Debug($"Table Information: {tableInformation.TableName}");
+        }
+
+        Log.Debug($"Found partition key '{context.Extensions.Get<TableEntityPartitionKey>().PartitionKey}' from '{nameof(IProvideOrderId)}'");
+
+        await next().ConfigureAwait(false);
+    }
+
+    public class Registration : RegisterStep
+    {
+        public Registration() :
+            base(nameof(OrderIdAsPartitionKeyBehavior),
+                typeof(OrderIdAsPartitionKeyBehavior),
+                "Determines the PartitionKey from the logical message",
+                b => new OrderIdAsPartitionKeyBehavior(b.Build<IProvidePartitionKeyFromSagaId>()))
+        {
+            InsertBefore(nameof(LogicalOutboxBehavior));
+        }
+    }
+
+    IProvidePartitionKeyFromSagaId partitionKeyFromSagaId;
+    static readonly ILog Log = LogManager.GetLogger<OrderIdAsPartitionKeyBehavior>();
+}
+#endregion
+
+public interface IProvideOrderId
+{
+    Guid OrderId { get; }
+}
+
+public class OrderSagaData :
+    ContainSagaData
+{
+    public Guid OrderId { get; set; }
+    public string OrderDescription { get; set; }
+}
