@@ -66,6 +66,6 @@ To simulate work, a BackgroundService called `Worker` is registered as a hosted 
 
 snippet: generic-host-worker-registration
 
-The worker takes a dependency on `IServiceProvider` in order to retrieve the message session. This is required because all hosted services are resolved from the container first and then started in the order of having been added. Therefore it is not possible to inject `IMessageSession` directly because the hosted service that starts the NServiceBus endpoint has not been started yet when the worker service constructor is being resolved from the container.
+The worker injects `IMessageSession` directly into the constructor to send messages at start.
 
 snippet: generic-host-worker
