@@ -482,7 +482,7 @@ Do not write a sample when:
  * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
  * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.
  * A sample must obey rules that are verified by [Integrity Tests](#integrity-tests).
- * Samples targeting .NET Core should be able to run across all platforms. To ensure that's the case, you can run the sample using WSL (Windows Subsystem for Linux) in VS Code. VS Code can be [configured to use WSL as the default development environment](https://code.visualstudio.com/docs/remote/wsl).
+ * Samples targeting .NET Core should be able to run across Windows, macOS, and Linux. To ensure that's the case, you can run the sample using WSL (Windows Subsystem for Linux) in VS Code. VS Code can be [configured to use WSL as the default development environment](https://code.visualstudio.com/docs/remote/wsl). If a sample cannot be designed to support one or more platforms add a note to the `sample.md`-file with the platforms that are unsupported and the reasoning.
 
 ### References
 
