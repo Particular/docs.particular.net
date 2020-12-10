@@ -102,15 +102,15 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
 
         if (context.Headers.TryGetValue(Headers.SagaId, out var sagaIdHeader))
         {
-            Log.Info($"Saga Id Header: {sagaIdHeader}");
+            Log.Debug($"Saga Id Header: {sagaIdHeader}");
         }
 
         if (context.Extensions.TryGet<TableInformation>(out var tableInformation))
         {
-            Log.Info($"Table Information: {tableInformation.TableName}");
+            Log.Debug($"Table Information: {tableInformation.TableName}");
         }
 
-        Log.Info($"Found partition key '{context.Extensions.Get<TableEntityPartitionKey>().PartitionKey}' from '{nameof(IProvideOrderId)}'");
+        Log.Debug($"Found partition key '{context.Extensions.Get<TableEntityPartitionKey>().PartitionKey}' from '{nameof(IProvideOrderId)}'");
 
         await next().ConfigureAwait(false);
     }
