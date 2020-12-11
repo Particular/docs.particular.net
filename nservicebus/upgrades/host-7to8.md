@@ -37,7 +37,7 @@ The `AsA_Client` role can be replaced with the following configuration:
 
 snippet: 7to8AsAClient 
 
-NOTE: When trasitioning from `AsA_Client` to self-hosting the equivalent setting for the transport transaction mode is `None`. Make sure that message loss is acceptable, see [transport transactions](/transports/transactions.md) documentation for more details.
+NOTE: When trasitioning from `AsA_Client` to self-hosting the equivalent setting for the transport transaction mode is `None`. Make sure that message loss is acceptable. See [transport transactions](/transports/transactions.md) documentation for more details.
 
 The `AsA_Server` role didn't change any configuration and can safely be ignored.
 
