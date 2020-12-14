@@ -63,6 +63,10 @@ ServiceControl/LicenseText=<?xml version="1.0" encoding="utf-8"?><license id="..
 ServiceControl/ConnectionString=data source=server,1433; user id=username; password=[password]; Initial Catalog=servicecontrol
 ```
 
+## Logging
+
+TODO: Info on default logging and path to map to log a volume or local mount point
+
 ## Running ServiceControl using Docker
 
 This section uses the SqlServer transport as an example on how to run ServiceControl using docker. The same steps are applicable to other transports.
