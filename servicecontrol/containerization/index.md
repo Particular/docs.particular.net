@@ -60,7 +60,7 @@ The runtime instance of ServiceControl can now be run:
 
 ServiceControl can now be accessed over port `33333`.
 
-
+All [supported parameters](https://docs.particular.net/servicecontrol/creating-config-file) for ServiceControl Error can be specified via environment variables.
 
 ### Audit instances
 
@@ -84,7 +84,7 @@ To complete the set up, the error instance of ServiceControl must be stopped and
 
 ServiceControl can now be accessed over port `44444`.
 
-All supported parameters for ServiceControl Audit can be found [here](https://docs.particular.net/servicecontrol/audit-instances/creating-config-file).
+All [supported parameters](https://docs.particular.net/servicecontrol/audit-instances/creating-config-file) for ServiceControl Audit can be specified via environment variables.
 
 ### Monitoring Instances
 
@@ -98,4 +98,4 @@ The runtime instance of ServiceControl Monitoring can now be run:
 
 `docker run -e "Monitoring/ConnectionString=[connectionstring]" -e 'Monitoring/LicenseText=[licensecontents]' -v c:/data/:c:/data/ -v c:/logs/:c:/logs/ -p 33633:33633 -d particular/servicecontrol.sqlserver.monitoring-windows:4`
 
-All supported parameters for ServiceControl Audit can be found [here](https://docs.particular.net/servicecontrol/monitoring-instances/installation/creating-config-file).
+All [supported parameters](https://docs.particular.net/servicecontrol/monitoring-instances/installation/creating-config-file) for ServiceControl Monitoring can be specified via environment variables.
