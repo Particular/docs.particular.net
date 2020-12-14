@@ -28,6 +28,12 @@ Each supported transport and topology for ServiceControl has further been broken
 * [RabbitMQ Direct Topology](https://hub.docker.com/search?q=servicecontrol.rabbitmq.direct&type=image)
 * [Sql Server](https://hub.docker.com/search?q=servicecontrol.sqlserver&type=image)
 
+## Parameters
+
+All parameters that the ServiceControl instance supports can be provided by passing the parameter as an environment variable. E.g.
+
+`-e "ServiceControl/Port=12345"`
+
 ## Running ServiceControl using Docker
 
 This section uses the SqlServer transport as an example on how to run ServiceControl using docker. The same steps are applicable to other transports.
@@ -54,6 +60,8 @@ The runtime instance of ServiceControl can now be run:
 
 ServiceControl can now be accessed over port `33333`.
 
+
+
 ### Audit instances
 
 A ServiceControl audit instance can be configured Once a ServiceControl error instance is running.
@@ -76,6 +84,8 @@ To complete the set up, the error instance of ServiceControl must be stopped and
 
 ServiceControl can now be accessed over port `44444`.
 
+All supported parameters for ServiceControl Audit can be found [here](https://docs.particular.net/servicecontrol/audit-instances/creating-config-file).
+
 ### Monitoring Instances
 
 Monitoring instances can be run standalone and therefore only need the init container to be run and then the runtime container.
@@ -87,3 +97,5 @@ The init container will run and shut down once the required queues and database 
 The runtime instance of ServiceControl Monitoring can now be run:
 
 `docker run -e "Monitoring/ConnectionString=[connectionstring]" -e 'Monitoring/LicenseText=[licensecontents]' -v c:/data/:c:/data/ -v c:/logs/:c:/logs/ -p 33633:33633 -d particular/servicecontrol.sqlserver.monitoring-windows:4`
+
+All supported parameters for ServiceControl Audit can be found [here](https://docs.particular.net/servicecontrol/monitoring-instances/installation/creating-config-file).
