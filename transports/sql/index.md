@@ -19,7 +19,7 @@ WARNING: Although this transport will run on the free version of the engine, i.e
 
 ## Transport at a glance
 
-|Feature                    |   |  
+|Feature                    |   |
 |:---                       |---
 |Transactions |None, ReceiveOnly, SendWithAtomicReceive, TransactionScope
 |Pub/Sub                    |Native
@@ -28,8 +28,6 @@ WARNING: Although this transport will run on the free version of the engine, i.e
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Sql Scripts
 |Installers                 |Optional
-
-NOTE: SQL Server Always Encrypted feature is currently not supported by the transport
 
 ## Usage
 
@@ -45,7 +43,7 @@ See also: [connection settings](/transports/sql/connection-settings.md).
 SQL Server transport uses SQL Server to store queues and messages. It doesn't use the queuing services provided by SQL Server; the queuing logic is implemented within the transport. The SQL Server transport is best considered as a brokered transport, like RabbitMQ, rather than [store-and-forward](/nservicebus/architecture/principles.md#messaging-versus-rpc-store-and-forward-messaging) transport, such as MSMQ.
 
 
-## Advantages 
+## Advantages
 
  * No additional licensing and training costs; many Microsoft stack organizations have SQL Server installed and have the knowledge required to manage it.
  * Mature tooling, such as [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms).
