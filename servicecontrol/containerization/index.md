@@ -34,6 +34,31 @@ All parameters that the ServiceControl instance supports can be provided by pass
 
 `-e "ServiceControl/Port=12345"`
 
+The most common paramaters used are likely to be:
+
+* ServiceControl/ConnectionString
+* ServiceControl/LicenseText
+* ServiceControl.Audit/ConnectionString
+* ServiceControl.Audit/LicenseText
+* ServiceControl.Audit/ServiceControlQueueAddress
+* ServiceControl/RemoteInstances
+* Monitoring/ConnectionString
+* Monitoring/LicenseText
+
+These paramaters can also be added by using a standard Docker environment file. Every parameter has its own line and does not need to be enclosed by  quotes. It can then be used by Docker as follows:
+
+`docker run --env-file servicecontrol.env [dockerimage]`
+
+An example of the servicecontrol.env file:
+
+```
+# License text
+ServiceControl/LicenseText=<?xml version="1.0" encoding="utf-8"?><license id="..."></license>
+
+# Connection string
+ServiceControl/ConnectionString=data source=server,1433; user id=username; password=[password]; Initial Catalog=servicecontrol
+```
+
 ## Running ServiceControl using Docker
 
 This section uses the SqlServer transport as an example on how to run ServiceControl using docker. The same steps are applicable to other transports.
