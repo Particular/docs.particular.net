@@ -15,7 +15,11 @@ ServiceControl is split into multiple docker images for each instance type. Thes
 
 The images for each of these containers are further split into an init container and a runtime container. This means that there are 6 images for all instances of ServiceControl.
 
-The init container is used to create or upgrade the infrastructure required for ServiceControl. This includes creating the database as well as the queues that ServiceControl uses. Once the init container has been run, it will shut down and the runtime container can be run. The runtime container will use the infrastructure that has been created.
+### Init containers
+
+The init containers are used to create or upgrade the infrastructure required for ServiceControl and are based on the [Kubernetes init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). Once the init container has been run, it will shut down and the runtime container can be run. The runtime container will use the infrastructure that has been created and if the init container was not run the runtime container will fail.
+
+The init containers are similar to [installing all ServiceControl service types (regular, error, and monitoring) via the ServiceControl Management Utility or the Powershell Cmdlets](/servicecontrol/installation.md). This includes creating the database as well as the queues that ServiceControl uses and runtime containers are similar to starting the corresponding Windows Services.
 
 ### Transports
 
