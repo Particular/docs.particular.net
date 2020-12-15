@@ -13,7 +13,6 @@ This sample shows how to host the [ServicePulse](/servicepulse/) and [ServiceCon
 
 ## Prerequisites
 
-- Windows 10, Windows 2016+
 - Ensure that Docker has been installed either for [Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client) or [Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server)
 - Valid license file available at `C:\ProgramData\ParticularSoftware\license.xml`
 - Azure Service Bus connection string
@@ -31,8 +30,6 @@ As the platform tools are licensed software the sofware needs a license file. Th
 ## Storage
 
 ServiceControl requires storage. Data stored by ServiceControl must be persistent and not stored in the container itself as containers often need to be rebuild. ServiceControl Data is stored via [docker volumes](https://docs.docker.com/storage/volumes/) which is resilient to container rebuilds so that data is not lost. This sample writes logs to a docker volume too to ensure logs are not lost.
-
-## Remote access
 
 ## Transport
 
@@ -71,13 +68,15 @@ docker-compose -f docker-compose.runtime.yml up --detach
 start http://localhost:9090
 ```
 
-## Semver
+### Teardown
+
+Gracefully stops and removes the containers and the configured volums
+
+### Updating
 
 The docker images are following semver. Meaning, breaking changes are only introduced in new majors. Releases are pushed as `major.minor.patch` and it is safe to follow a `major` tag to ensure updates.
 
 NOTE: Following `latest` is only recommended for developers in combination with recreating docker volumes via `docker compose up -d -V`.
-
-## Updating
 
 In order to update all containers to their latest versions:
 
@@ -89,5 +88,5 @@ docker pull particular/servicecontrol.azureservicebus.monitoring-windows:4
 docker pull particular/servicecontrol.azureservicebus.audit.init-windows:4
 docker pull particular/servicecontrol.azureservicebus.audit-windows:4
 docker pull particular/servicepulse-windows:1
-docker compose up --detach
+docker-compose -f docker-compose.runtime.yml up --detach
 ```
