@@ -13,7 +13,7 @@ services:
       - 33333:33333
     volumes:
       - error:c:/data
-      - C:/ProgramData/ParticularSoftware:C:/ProgramData/ParticularSoftware
+      - ${PROGRAMDATA}/ParticularSoftware:C:/ProgramData/ParticularSoftware
     env_file: environment.env
 
   monitoring:
@@ -21,7 +21,7 @@ services:
     ports:
       - 33633:33633
     volumes:
-      - C:/ProgramData/ParticularSoftware:C:/ProgramData/ParticularSoftware
+      - ${PROGRAMDATA}/ParticularSoftware:C:/ProgramData/ParticularSoftware
     env_file: environment.env
 
   audit:
@@ -30,7 +30,7 @@ services:
       - 44444:44444
     volumes:
       - audit:c:/data
-      - C:/ProgramData/ParticularSoftware:C:/ProgramData/ParticularSoftware
+      - ${PROGRAMDATA}/ParticularSoftware:C:/ProgramData/ParticularSoftware
     env_file: environment.env
 
   pulse:
