@@ -67,23 +67,21 @@ In case installers are enabled, but there's a need to opt out from creating the 
 
 snippet: EnableInstallersConfigurationOptingOutFromTableCreation
 
-### Partitioning and compatibility helpers
+### Partitioning and compatibility mode helpers
 
-To atomically store data within the same transaction, all data written as part of the same message handling pipeline needs to share the same partition key.
-When storing sagas, saga IDs are by default deterministically derived from the saga data: the correlation property name and the correlation property value. Therefore, in conversations concerning a saga as part of the message handling pipeline, this deterministically derived ID is a perfect fit to be used as a partition key. Unfortunately, the saga ID assignment happens quite late during the message handling process and is not exposed to the user code.
+During a given message handling pipeline, multiple data storage operations may occur. To commit them atomically, in a single transaction, they must share a partition key. In conversations involving a saga, the saga ID is a good candidate for a partition key. Unfortunately, saga IDs are determined late in the message handling process and are not exposed to user code.
 
 This makes it difficult to:
 
-* Support transactional processing for existing sagas that were stored with the previous version of the persister and may have in-flight messages
-* Expose the deterministic saga ID early enough to enable business operations to participate in the transaction before the saga has been created
+* Enable transactional saga data storage for existing sagas that were stored with the previous version of the persister.
+* Allow other data operations to participate in the saga data transaction.
 
-To support the above scenarios the `IProvidePartitionKeyFromSagaId` interface implementation can be injected into behaviors in the logical pipeline stage.
+To support the above scenarios, `IProvidePartitionKeyFromSagaId` may be injected into behaviors at the logical pipeline stage:
 
 snippet: BehaviorUsingIProvidePartitionKeyFromSagaId
 
-This component enables users to:
+`IProvidePartitionKeyFromSagaId` enables users to set the partition key based on of the following:
 
-* Derive the table in which business- and saga data will be stored by looking for the `TableInformation` or falling back to the default table
-* Extract the saga ID header and populate that header value with the partition key for previously created sagas
-  * When the header is not available and the compatibility mode is enabled, do the necessary secondary index lookups. Depending on the configuration, fallback to table scanning. Then populate the found saga ID as the partition key
-  * When no header information is available and the compatibility mode is disabled, precompute the deterministic saga ID based on the provided correlation property information and populate the precomputed value as the partition key
+* The `SagaId` header if present
+* The `SagaId` on the secondary index derived from the correlation property information when migration mode is enabled
+* The deterministic `SagaId` precalculated by using the correlation property information

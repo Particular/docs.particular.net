@@ -83,35 +83,40 @@ class ContainerInfoLogicalReceiveContextBehavior
 
 #region BehaviorUsingIProvidePartitionKeyFromSagaId
 
-class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
+internal class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
 {
-    public OrderIdAsPartitionKeyBehavior(IProvidePartitionKeyFromSagaId partitionKeyFromSagaId)
-    {
+    private static readonly ILog Log = LogManager.GetLogger<OrderIdAsPartitionKeyBehavior>();
+    
+    private readonly IProvidePartitionKeyFromSagaId partitionKeyFromSagaId;
+
+    public OrderIdAsPartitionKeyBehavior(IProvidePartitionKeyFromSagaId partitionKeyFromSagaId) =>
         this.partitionKeyFromSagaId = partitionKeyFromSagaId;
-    }
 
     public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
     {
         var correlationProperty = SagaCorrelationProperty.None;
+
         if (context.Message.Instance is IProvideOrderId provideOrderId)
         {
-            var partitionKeyValue = provideOrderId.OrderId;
-            correlationProperty = new SagaCorrelationProperty("OrderId", partitionKeyValue);
+            Log.Debug($"Order ID: '{provideOrderId.OrderId}'");
+
+            correlationProperty = new SagaCorrelationProperty("OrderId", provideOrderId.OrderId);
         }
 
-        await partitionKeyFromSagaId.SetPartitionKey<OrderSagaData>(context, correlationProperty);
+        await partitionKeyFromSagaId.SetPartitionKey<OrderSagaData>(context, correlationProperty)
+            .ConfigureAwait(false);
 
-        if (context.Headers.TryGetValue(Headers.SagaId, out var sagaIdHeader))
+        Log.Debug($"Partition key: {context.Extensions.Get<TableEntityPartitionKey>().PartitionKey}");
+
+        if (context.Headers.TryGetValue(Headers.SagaId, out var sagaId))
         {
-            Log.Debug($"Saga Id Header: {sagaIdHeader}");
+            Log.Debug($"Saga ID: {sagaId}");
         }
 
         if (context.Extensions.TryGet<TableInformation>(out var tableInformation))
         {
-            Log.Debug($"Table Information: {tableInformation.TableName}");
+            Log.Debug($"Table name: {tableInformation.TableName}");
         }
-
-        Log.Debug($"Found partition key '{context.Extensions.Get<TableEntityPartitionKey>().PartitionKey}' from '{nameof(IProvideOrderId)}'");
 
         await next().ConfigureAwait(false);
     }
@@ -122,14 +127,9 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
             base(nameof(OrderIdAsPartitionKeyBehavior),
                 typeof(OrderIdAsPartitionKeyBehavior),
                 "Determines the PartitionKey from the logical message",
-                provider => new OrderIdAsPartitionKeyBehavior(provider.GetRequiredService<IProvidePartitionKeyFromSagaId>()))
-        {
+                provider => new OrderIdAsPartitionKeyBehavior(provider.GetRequiredService<IProvidePartitionKeyFromSagaId>())) =>
             InsertBefore(nameof(LogicalOutboxBehavior));
-        }
     }
-
-    IProvidePartitionKeyFromSagaId partitionKeyFromSagaId;
-    static readonly ILog Log = LogManager.GetLogger<OrderIdAsPartitionKeyBehavior>();
 }
 #endregion
 
