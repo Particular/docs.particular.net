@@ -13,9 +13,9 @@ This sample shows how to host the [ServicePulse](/servicepulse/) and [ServiceCon
 
 ## Prerequisites
 
-- Ensure that Docker has been installed either for [Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client) or [Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server)
-- Valid license file available at `C:\ProgramData\ParticularSoftware\license.xml`
-- Azure Service Bus connection string
+- Ensure that Docker has been installed either for [Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client) or [Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server).
+- Valid license file available at `C:\ProgramData\ParticularSoftware\license.xml`.
+- Azure Service Bus connection string.
 
 ## Windows vs Linux
 
@@ -43,7 +43,7 @@ ServiceControl has a setup and a run-time stage. During the setup stage queues a
 
 The same stages are applied to docker. The `docker-compose.init.yml` docker compose file executes the [ServiceControl init containers](/servicecontrol/containerization/#init-containers).
 
-NOTE: The init and runtime compose files would be using different connection strings (administrative vs least priviledge) in a non-developer environment
+NOTE: The init and runtime compose files would be using different connection strings (administrative vs least priviledge) in a non-developer environment.
 
 ## Running the sample
 
@@ -53,7 +53,7 @@ The init containers need to be run before the runtime containers.
 
 Runs compose and wait until all init containers completed. This should automatically exist after all setup logic completed.
 
-NOTE: This is ommitting the `-d, --detach` argument to ensure issues are writting to the console. Alternatively, any issues are visible in the container logs
+NOTE: This is ommitting the `-d, --detach` argument to ensure issues are writting to the console. Alternatively, any issues are visible in the container logs.
 
 ```cmd
 docker-compose -f docker-compose.init.yml up
@@ -70,7 +70,7 @@ start http://localhost:9090
 
 ### Teardown
 
-Gracefully stops and removes the containers and the configured volums
+Gracefully stops and removes the containers and the configured volumes.
 
 ### Updating
 
