@@ -1,4 +1,10 @@
 version: '3.8'
+
+volumes:
+
+  error:
+  audit:
+  
 services:
 
   error:
@@ -31,7 +37,3 @@ services:
     image: particular/servicepulse-windows:1
     ports:
       - 9090:80
-
-volumes:
-  error:
-  audit:
