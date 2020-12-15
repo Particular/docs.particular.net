@@ -38,7 +38,7 @@ All parameters that the ServiceControl instance supports can be provided by pass
 
 `-e "ServiceControl/Port=12345"`
 
-The most common paramaters used are likely to be:
+The most common parameters used are likely to be:
 
 * ServiceControl/ConnectionString
 * ServiceControl/LicenseText
@@ -49,23 +49,24 @@ The most common paramaters used are likely to be:
 * Monitoring/ConnectionString
 * Monitoring/LicenseText
 
-These paramaters can also be added by using a standard Docker environment file. Every parameter has its own line and does not need to be enclosed by  quotes. It can then be used by Docker as follows:
+NOTE: For hosting in Azure Container Instances we support parameter names that use only underscores, e.g. ServiceControl_Audit_LicenseText
+
+These parameters can also be added by using a standard Docker environment file. Every parameter has its own line and does not need to be enclosed by  quotes. It can then be used by Docker as follows:
 
 `docker run --env-file servicecontrol.env [dockerimage]`
 
-An example of the servicecontrol.env file:
+An example of the `servicecontrol.env` file:
 
 ```
 # License text
 ServiceControl/LicenseText=<?xml version="1.0" encoding="utf-8"?><license id="..."></license>
 
 # Connection string
-ServiceControl/ConnectionString=data source=server,1433; user id=username; password=[password]; Initial Catalog=servicecontrol
+ServiceControl/ConnectionString=data source=[server],1433; user id=username; password=[password]; Initial Catalog=servicecontrol
+
+# Remote audit instances
+ServiceControl/RemoteInstances=[{'api_uri':'http://[host_ip_address]:44444/api'}]
 ```
-
-## Logging
-
-TODO: Info on default logging and path to map to log a volume or local mount point
 
 ## Running ServiceControl using Docker
 
@@ -132,3 +133,34 @@ The runtime instance of ServiceControl Monitoring can now be run:
 `docker run -e "Monitoring/ConnectionString=[connectionstring]" -e 'Monitoring/LicenseText=[licensecontents]' -v c:/data/:c:/data/ -v c:/logs/:c:/logs/ -p 33633:33633 -d particular/servicecontrol.sqlserver.monitoring-windows:4`
 
 All [supported parameters](/servicecontrol/monitoring-instances/installation/creating-config-file.md) for ServiceControl Monitoring can be specified via environment variables.
+
+## Volume mappings
+
+A general practice with containers is that no data is persisted inside a container, but rather outside the container on either the host machine, database or something similar. This makes it easier to backup data, share data among containers and more importantly, not lose the data when the container is updated to a later version. Storing files outside of the container can be achieved with volume mappings, or with folder mappings for Windows containers.
+
+Volume mappings can be used with ServiceControl for configuration files, storing logfiles and possibly reading a license file. More information on data storage can be found on the [Docker website](https://docs.docker.com/storage/).
+
+### Configuration and Logging
+
+Every image has a folder in `c:\data\` that can be mapped to a folder outside of the container. 
+
+`docker run -v c:\servicecontrol\:c:\data\ [imagename]`
+
+As a result, that container will write both logfiles and its database into that folder in respectively the `Logs` and `DB` folders. Another option is to map each folder specifically yourself for more control over their locations and divide them over separate drives, for example:
+
+`docker run -v c:\servicecontroldatabase\:c:\data\DB\ -v d:\servicecontrollogfiles\:c:\data\logs\ [imagename]`
+
+### License file
+
+The license file can be provided via an environment variable on the command-line or via an environment file. Another options is to map the folder where ServiceControl will look for the license file.
+
+`docker run -v c:\servicecontrol\license\:%PROGRAMDATA%\ParticularSoftware\ [imagename]`
+
+As the above command shows, ServiceControl will look for the license file in OS specific folders as can be found [in our documentation](https://docs.particular.net/nservicebus/licensing/#license-management-machine-wide-license-location).
+
+## ServiceControl maintenance
+
+TODO: --maintenance
+
+Also write this down in regular documentation.
+
