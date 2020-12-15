@@ -1,4 +1,10 @@
 version: '3.8'
+
+volumes:
+
+  error:
+  audit:
+
 services:
 
   error:
@@ -26,12 +32,3 @@ services:
       - audit:c:/data
       - C:/ProgramData/ParticularSoftware:C:/ProgramData/ParticularSoftware
     env_file: environment.env
-
-
-
-
-
-
-volumes:
-  error:
-  audit:
