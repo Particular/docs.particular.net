@@ -16,6 +16,7 @@ services:
       - ${PROGRAMDATA}/ParticularSoftware:C:/ProgramData/ParticularSoftware
     env_file: environment.env
 
+
   monitoring:
     image: particular/servicecontrol.azureservicebus.monitoring.init-windows:4
     ports:
@@ -23,6 +24,7 @@ services:
     volumes:
       - ${PROGRAMDATA}/ParticularSoftware:C:/ProgramData/ParticularSoftware
     env_file: environment.env
+
 
   audit:
     image: particular/servicecontrol.azureservicebus.audit.init-windows:4
