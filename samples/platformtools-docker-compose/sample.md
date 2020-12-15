@@ -15,7 +15,7 @@ This sample shows how to host the [ServicePulse](/servicepulse/) and [ServiceCon
 
 - Ensure that Docker has been installed either for [Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client) or [Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server).
 - Valid license file available at `C:\ProgramData\ParticularSoftware\license.xml`.
-- Azure Service Bus connection string.
+- Azure Service Bus connection string set in environment variable `AZURESERVICEBUS_CONNECTIONSTRING`
 
 ## Windows vs Linux
 
@@ -35,7 +35,7 @@ ServiceControl requires storage. Data stored by ServiceControl must be persisten
 
 The [Azure Service Bus Transport](/transports/azure-service-bus/) is used but docker works well with all supported [broker based transports](/transports/selecting.md#broker-versus-federated).
 
-Replace the Azure Service Bus connection string in the `environment.env` file (value `Endpoint=sb://xxx.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xxx`).
+Set the Azure Service Bus connection string in the `environment.env` file (value `Endpoint=sb://xxx.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xxx`).
 
 ## Init and Runtime containers
 
