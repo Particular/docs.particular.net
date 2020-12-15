@@ -16,7 +16,7 @@ This sample shows how to host the [ServicePulse](/servicepulse/) and [ServiceCon
 - Windows 10, Windows 2016+
 - Ensure that Docker has been installed either for [Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client) or [Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server)
 - Valid license file available at `C:\ProgramData\ParticularSoftware\license.xml`
-- SQL Server to be used by the configured SQL Transport
+- Azure Service Bus connection string
 
 ## Windows vs Linux
 
@@ -36,21 +36,15 @@ ServiceControl requires storage. Data stored by ServiceControl must be persisten
 
 ## Transport
 
-The [SQL transport](https://docs.particular.net/transports/sql/) is used but docker works well with all supported [broker based transports](/transports/selecting.md#broker-versus-federated).
+The [Azure Service Bus Transport](/transports/azure-service-bus/) is used but docker works well with all supported [broker based transports](/transports/selecting.md#broker-versus-federated).
 
-Server: localhost
-Port: 1433
-Catalog: SqlTransportTest
-Username: MyUser
-Password: pass@123
-
-Run the script `init-db.sql` to create a catalog, username and password.
+Replace the Azure Service Bus connection string in the `environment.env` file (value `Endpoint=sb://xxx.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xxx`).
 
 ## Init and Runtime containers
 
 ServiceControl has a setup and a run-time stage. During the setup stage queues are created but no messages are ingested and processed while during the run-time stage no setup is performed and messages are ingested. In a production environment often the setup stage is run with administrative access to resouces and the runtime stage is run least priviledge.
 
-The same stages are applied to docker. The `docker-compose.init.yml` docker compose file executes the [ServiceControl init containers](/servicecontrol/containerization/index.md#init-containers).
+The same stages are applied to docker. The `docker-compose.init.yml` docker compose file executes the [ServiceControl init containers](/servicecontrol/containerization/#init-containers).
 
 NOTE: The init and runtime compose files would be using different connection strings (administrative vs least priviledge) in a non-developer environment
 
@@ -88,12 +82,12 @@ NOTE: Following `latest` is only recommended for developers in combination with 
 In order to update all containers to their latest versions:
 
 ```cmd
-docker pull particular/servicecontrol.sqlserver.init-windows:4
-docker pull particular/servicecontrol.sqlserver-windows:4
-docker pull particular/servicecontrol.sqlserver.monitoring.init-windows:4
-docker pull particular/servicecontrol.sqlserver.monitoring-windows:4
-docker pull particular/servicecontrol.sqlserver.audit.init-windows:4
-docker pull particular/servicecontrol.sqlserver.audit-windows:4
+docker pull particular/servicecontrol.azureservicebus.init-windows:4
+docker pull particular/servicecontrol.azureservicebus-windows:4
+docker pull particular/servicecontrol.azureservicebus.monitoring.init-windows:4
+docker pull particular/servicecontrol.azureservicebus.monitoring-windows:4
+docker pull particular/servicecontrol.azureservicebus.audit.init-windows:4
+docker pull particular/servicecontrol.azureservicebus.audit-windows:4
 docker pull particular/servicepulse-windows:1
 docker compose up --detach
 ```
