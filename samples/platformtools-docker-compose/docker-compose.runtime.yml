@@ -15,6 +15,7 @@ services:
       - error:c:/data
       - ${PROGRAMDATA}/ParticularSoftware:C:/ProgramData/ParticularSoftware
     env_file: environment.env
+    restart: unless-stopped
 
   monitoring:
     image: particular/servicecontrol.azureservicebus.monitoring-windows:4
@@ -23,6 +24,7 @@ services:
     volumes:
       - ${PROGRAMDATA}/ParticularSoftware:C:/ProgramData/ParticularSoftware
     env_file: environment.env
+    restart: unless-stopped
 
   audit:
     image: particular/servicecontrol.azureservicebus.audit-windows:4
@@ -32,8 +34,10 @@ services:
       - audit:c:/data
       - ${PROGRAMDATA}/ParticularSoftware:C:/ProgramData/ParticularSoftware
     env_file: environment.env
+    restart: unless-stopped
 
   pulse:
     image: particular/servicepulse-windows:1
     ports:
       - 9090:80
+    restart: unless-stopped
