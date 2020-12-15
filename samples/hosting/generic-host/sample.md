@@ -66,6 +66,6 @@ To simulate work, a BackgroundService called `Worker` is registered as a hosted 
 
 snippet: generic-host-worker-registration
 
-The worker injects `IMessageSession` directly into the constructor to send messages at start.
+The `IMessageSession` is injected into the `Worker` constructor, and the `Worker` sends messages when it is executed.
 
 snippet: generic-host-worker
