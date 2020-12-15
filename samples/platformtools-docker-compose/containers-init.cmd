@@ -1,1 +1,1 @@
-docker-compose -f docker-compose.init.yml up
+docker-compose -f docker-compose.init.yml up %*
