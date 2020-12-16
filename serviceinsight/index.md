@@ -120,6 +120,32 @@ ServiceInsight can show the body of a message in either `XML` or `JSON` format, 
 
 ![Body Tab](images/overview-bodyview.png 'width=500')
 
+### Custom message viewers
+
+Starting with version 2.4.0, custom message body viewers can be plugged into ServiceInsight. A custom message viewer is useful to display message bodies that are not supported by default by ServiceInsight. ServiceInsight supports displaying message bodies in the following formats: XML, json, and hexadecimal. If the message stored in ServiceControl is, for example encrypted, the message body cannot be properly displayed by ServiceInsight. Custom message body viewers can be deployed to ServiceInsight to provide custom visual formatting for message bodies.
+
+To create a custom message body viewer it is necessary to:
+
+- create a new C# class library project targeting .NET Framework 4.8
+- configure the project to use WPF
+- reference the `ServiceInsight.Sdk`, installed with ServiceInsight.
+- create a Caliburn.Micro Screen class, a view model, that inherits from `Screen`, and implements`ICustomMessageBodyViewer`.
+- create a XAML view to bind data from the created view model
+
+To plugin in the custom viewer an Autofac Module is required to wire up the plugin into the ServiceInsight bootstrap porcess:
+
+- add, to the custom viewer assembly, a class the inherits from `Autofac.Module` and implement the `Load` method
+- in the `Load` method register in the container builder the view model and view as single instances. Make sure that components are registered as:
+  - `implemented interfaces`
+  - `as self`
+
+To deploy the custom message body viewer the artifacts needs to be deployed to one of the following locations:
+
+- the ServiceInsight installation directory
+- the user profile roaming folder, `%APPDATA%\Particular Software\ServiceInsight\MessageViewers`
+- the all users profile folder, `%ALLUSERSPROFILE%\Particular\ServiceInsight\MessageViewers`
+
+For more information, refer to the ServiceInsight custom message body viewer sample.
 
 ## Log view
 
