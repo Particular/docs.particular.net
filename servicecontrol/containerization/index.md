@@ -53,7 +53,7 @@ The most common parameters used are likely to be:
 
 NOTE: For hosting in Azure Container Instances parameter names are supported that use only underscores, e.g. ServiceControl_Audit_LicenseText
 
-These parameters can also be added by using a standard Docker environment file. Every parameter has its own line and does not need to be enclosed by  quotes. It can then be used by Docker as follows:
+These parameters can also be added by using a standard Docker environment file. Every parameter has its own line and does not need to be enclosed by quotes. It can then be used by Docker as follows:
 
 `docker run --env-file servicecontrol.env [dockerimage]`
 
@@ -168,4 +168,3 @@ If maintenance is required on the embedded RavenDb database of ServiceControl, t
 2. Starting a new container by adding the `--maintenance --portable` parameters and adding an additional port mapping for port 33334.
 
 `docker run -it -d particular/servicecontrol.sqlserver.init-windows:4 --maintenance --portable`
-
