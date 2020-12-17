@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="ServiceInsight.CustomViewer.Plugin.MyCustomDecryptionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:avalonedit="http://icsharpcode.net/sharpdevelop/avalonedit">
+    <avalonedit:TextEditor Name="document"
+                           FontFamily="{StaticResource MessageBodyFontFamily}"
+                           FontSize="{StaticResource MessageBodyFontSize}"
+                           IsReadOnly="True"
+                           WordWrap="True"
+                           SnapsToDevicePixels="True"
+                           SyntaxHighlighting="XML"
+                           UseLayoutRounding="True">
+        <avalonedit:TextEditor.ContextMenu>
+            <ContextMenu>
+                <MenuItem Command="Copy">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource Shell_CopyClipboard}" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </ContextMenu>
+        </avalonedit:TextEditor.ContextMenu>
+    </avalonedit:TextEditor>
+</UserControl>
