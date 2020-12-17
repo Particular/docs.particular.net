@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using NServiceBus.MessageMutator;
 using Shared;
 
-#region Mutator
 public class MessageEncryptor :
     IMutateIncomingTransportMessages,
     IMutateOutgoingTransportMessages,
@@ -33,4 +32,3 @@ public class MessageEncryptor :
         return cipherText.Reverse().ToArray();
     }
 }
-#endregion
