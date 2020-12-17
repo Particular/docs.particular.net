@@ -19,6 +19,8 @@ Most message queues, and some data stores, do not support distributed transactio
 
 The NServiceBus **outbox** feature ensures consistency between business data and messages. It simulates an atomic transaction, distributed across both the data store used for business data and the message queue used for messaging.
 
+Note: Messages dispatched to the transport as part of the Outbox dispatch stage will not be batched and each message is sent in isolation.
+
 ## The consistency problem
 
 Consider a message handler that creates a `User` in the business database, and also publishes a `UserCreated` event. If a failure occurs during the execution of the message handler, two scenarios may occur, depending on the order of operations.
