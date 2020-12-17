@@ -1,6 +1,7 @@
 ---
 title: Running ServiceControl in containers
 reviewed: 2020-12-10
+
 ---
 
 Docker images for ServiceControl exist on Dockerhub under the [Particular organization](https://hub.docker.com/u/particular). These can be used to run ServiceControl in docker containers. These docker images are only available for Windows.
@@ -160,7 +161,9 @@ As the above command shows, ServiceControl will look for the license file in OS 
 
 ## ServiceControl maintenance
 
-TODO: --maintenance
+If maintenance is required on the embedded RavenDb database of ServiceControl, this can be enabled on Docker by
 
-Also write this down in regular documentation.
+1. Stopping the ServiceControl container
+2. Starting a new container by adding the `--maintenance --portable` parameters and adding an additional port mapping for port 33334.
 
+`docker run -it -d particular/servicecontrol.sqlserver.init-windows:4 --maintenance --portable`
