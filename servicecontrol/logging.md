@@ -69,7 +69,9 @@ NOTE: The change in log naming will result in logs produced prior to Version 1.1
 
 ### Logging Levels
 
-Instances of the ServiceControl service write logging information and failed message import stack traces to the file system.
+Instances of the ServiceControl service write logging information and failed message import stack traces to the file system. 
+
+To configure logging for ServiceControl Audit and Monitoring instances, refer to the [ServiceControl Audit configuration settings](/servicecontrol/audit-instances/creating-config-file.md#host-settings-servicecontrol-auditloglevel) or [ServiceControl Monitoring configuration settings](/servicecontrol/monitoring-instances/installation/creating-config-file.md#logging-monitoringloglevel) documentation pages.
 
 #### Versions 1.8.3 and below
 
