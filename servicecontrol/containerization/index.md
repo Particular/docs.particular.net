@@ -3,9 +3,9 @@ title: Running ServiceControl in containers
 reviewed: 2020-12-10
 ---
 
-Docker images for ServiceControl exist on Dockerhub under the [Particular organization](https://hub.docker.com/u/particular). These can be used to run ServiceControl in docker containers. These docker images are only available for Windows.
+Docker images for ServiceControl exist on Dockerhub under the [Particular organization](https://hub.docker.com/u/particular). These can be used to run ServiceControl in docker containers. These docker images are only available for Windows due to ServiceControl's current dependency on Windows ESENT storage.
 
-NOTE: When shutting down a Docker container it will shut down all processes after 5 seconds. ServiceControl needs graceful shutdown or its embedded RavenDb database can get corrupted. Fixing this behavior is currently worked on and will be released as soon as possible.
+NOTE: The current base Windows 2016 operating system images for ServiceControl do not support notifying the application that it is being shut down when running `docker stop`. This means ServiceControl cannot perform a graceful shutdown which in very few cases could result in manual intervention to repair the underlying datastore.
 
 ## Containers overview
 
@@ -15,7 +15,7 @@ ServiceControl is split into multiple docker images for each instance type. Thes
 * The audit instance
 * The monitoring instance
 
-The images for each of these containers are further split into an init container and a runtime container. This means that there are 6 images for all instances of ServiceControl.
+The images for each of these containers are further split into an init container and a runtime container per transport.
 
 ## Init containers
 
