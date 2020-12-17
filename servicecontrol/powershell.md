@@ -13,6 +13,8 @@ ServiceControl version 1.7 introduced a new graphical management utility to add,
 
 ServiceControlMgmt PowerShell module is compatible with PowerShell 5. Versions of PowerShell later than 5 (including PowerShell Core) are not supported and might not work as expected.
 
+NOTE: In order to run PowerShell cmdlets, the PowerShell execution policy needs to be set to `Unrestricted` or a bypass neds to be granted to the module file. Refer to PowerShell documentation on how to change the execution policy.
+
 ## Loading and running the PowerShell module
 
 The majority of the ServiceControlMgmt PowerShell module cmdlets will only work if the PowerShell session is running with administrator privileges. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module automatically loaded. Alternatively, the module can be loaded directly into an an existing PowerShell session by loading `ServiceControlMgmt.psd1` using the `Import-Module` cmdlet as show below:

@@ -24,6 +24,7 @@ The PowerShell module provides cmdlets to assist with:
 
 Prior to installation ensure that PowerShell 2 or higher is installed. NServiceBus PowerShell modules are compatible with PowerShell 5. Versions of PowerShell later than 5 (including PowerShell Core) are not supported and might not work as expected.
 
+NOTE: In order to run PowerShell cmdlets, the PowerShell execution policy needs to be set to `Unrestricted` or a bypass neds to be granted to the module file. Refer to PowerShell documentation on how to change the execution policy.
 
 ## Installation
 
