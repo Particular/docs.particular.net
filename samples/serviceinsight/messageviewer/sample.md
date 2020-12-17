@@ -17,7 +17,7 @@ downloadbutton
 
 Running the project will result in 2 console windows. Wait a moment until the ServicePulse window opens in the browser. In the console output of the Endpoint2, make a note of the ServiceControl connection URL. Finally, perform the following steps:
 
- 1. Copy over the output of the plugin project (ServiceInsight.Plugin) to the paths specified in the documentation.
+ 1. Copy over the output of the plugin project (ServiceInsight.Plugin) to the paths specified in the [documentation](/serviceinsight/custom-message-viewers.md).
  2. Run ServiceInsight and connect to the noted ServiceControl connection URL from above.
  3. On the Messages window click on a message row.
  4. Click on the Body tab and note that there is a new viewer tab called "Decryption Viewer".
