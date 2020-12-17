@@ -108,8 +108,8 @@ The internal *FailedMessageRetries* collection must be purged in order to restor
 
 ## Microsoft Defender SmartScreen blocks installer 
 
-All code is code signed, but Microsoft SmartScreen (part of Windows Defender) can considers the certificate "untrusted" and shows a warning when trying to install our installable products (ServicePulse, ServiceInsight, ServiceControl, and NServiceBus.Powershell).
+All code is code signed, but Microsoft SmartScreen (part of Windows Defender) can considers the certificate "untrusted" and shows a warning when trying to install.
 
-The files are code signed correctly and show "NServiceBus Ltd" as the signee, but Microsoft needs to "build trust in" the certificate before not showing the warning. This involves some black magic Microsoft won't tell you, but one of the main inputs is to get users to override the warning and install the files. It is required to override that warning by clicking "Run Anyway" until our certificate gets trusted by Microsoft SmartScreen.
+The files are code signed correctly and show "NServiceBus Ltd" as the signee, but Microsoft needs to "build trust in" the certificate before not showing the warning. One of the main inputs is to get users to override the warning and install the files. It is required to override that warning by clicking "Run Anyway" until the NServiceBus code signing certificate gets trusted by Microsoft SmartScreen.
 
 All artifacts during builds are virus scanned before packaging.
