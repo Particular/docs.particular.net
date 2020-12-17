@@ -1,10 +1,11 @@
 ---
 title: Running ServiceControl in containers
 reviewed: 2020-12-10
-
 ---
 
 Docker images for ServiceControl exist on Dockerhub under the [Particular organization](https://hub.docker.com/u/particular). These can be used to run ServiceControl in docker containers. These docker images are only available for Windows.
+
+NOTE: When shutting down a Docker container it will shut down all processes after 5 seconds. ServiceControl needs graceful shutdown or its embedded RavenDb database can get corrupted. Fixing this behavior is currently worked on and will be released as soon as possible.
 
 ## Containers overview
 
@@ -50,7 +51,7 @@ The most common parameters used are likely to be:
 * Monitoring/ConnectionString
 * Monitoring/LicenseText
 
-NOTE: For hosting in Azure Container Instances we support parameter names that use only underscores, e.g. ServiceControl_Audit_LicenseText
+NOTE: For hosting in Azure Container Instances parameter names are supported that use only underscores, e.g. ServiceControl_Audit_LicenseText
 
 These parameters can also be added by using a standard Docker environment file. Every parameter has its own line and does not need to be enclosed by  quotes. It can then be used by Docker as follows:
 
@@ -147,7 +148,7 @@ Every image has a folder in `c:\data\` that can be mapped to a folder outside of
 
 `docker run -v c:\servicecontrol\:c:\data\ [imagename]`
 
-As a result, that container will write both logfiles and its database into that folder in respectively the `Logs` and `DB` folders. Another option is to map each folder specifically yourself for more control over their locations and divide them over separate drives, for example:
+As a result, that container will write both logfiles and its database into that folder in respectively the `Logs` and `DB` folders. Another option is to map each folder specifically, for more control over their locations and divide them over separate drives, for example:
 
 `docker run -v c:\servicecontroldatabase\:c:\data\DB\ -v d:\servicecontrollogfiles\:c:\data\logs\ [imagename]`
 
@@ -157,7 +158,7 @@ The license file can be provided via an environment variable on the command-line
 
 `docker run -v c:\servicecontrol\license\:%PROGRAMDATA%\ParticularSoftware\ [imagename]`
 
-As the above command shows, ServiceControl will look for the license file in OS specific folders as can be found [in our documentation](https://docs.particular.net/nservicebus/licensing/#license-management-machine-wide-license-location).
+As the above command shows, ServiceControl will look for the license file in OS specific folders as can be found [in the documentation](/nservicebus/licensing/#license-management-machine-wide-license-location).
 
 ## ServiceControl maintenance
 
@@ -167,3 +168,4 @@ If maintenance is required on the embedded RavenDb database of ServiceControl, t
 2. Starting a new container by adding the `--maintenance --portable` parameters and adding an additional port mapping for port 33334.
 
 `docker run -it -d particular/servicecontrol.sqlserver.init-windows:4 --maintenance --portable`
+
