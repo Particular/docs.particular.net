@@ -56,15 +56,15 @@ Runs compose and wait until all init containers completed. This should automatic
 NOTE: This is ommitting the `-d, --detach` argument to ensure issues are writting to the console. Alternatively, any issues are visible in the container logs.
 
 ```cmd
-docker-compose -f docker-compose.init.yml up
+docker-compose --file docker-compose.init.yml up
 ```
 
 ### Run
 
-Runs compose and launch ServicePulse via the configured default browser.
+Runs compose and launch ServicePulse via the configured default browser. This uses the default docker compose file `docker-compose.yml`.
 
 ```cmd
-docker-compose -f docker-compose.runtime.yml up --detach
+docker-compose up --detach
 start http://localhost:9090
 ```
 
