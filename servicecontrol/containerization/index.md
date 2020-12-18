@@ -156,7 +156,7 @@ As a result, that container will write both logfiles and its database into that 
 
 The license file can be provided via an environment variable on the command-line or via an environment file. Another options is to map the folder where ServiceControl will look for the license file.
 
-`docker run -v c:\servicecontrol\license\:%PROGRAMDATA%\ParticularSoftware\ [imagename]`
+`docker run -v c:\servicecontrol\license\:c:\ProgramData\ParticularSoftware\ [imagename]`
 
 As the above command shows, ServiceControl will look for the license file in OS specific folders as can be found [in the license documentation](/nservicebus/licensing/#license-management-machine-wide-license-location).
 
