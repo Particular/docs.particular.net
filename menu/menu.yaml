@@ -1111,10 +1111,12 @@
       Title: Managing Errors and Retries
     - Url: serviceinsight/sequence-diagram
       Title: Sequence Diagram
-    - Url: serviceinsight/logging
-      Title: Logging
+    - Url: serviceinsight/custom-message-viewers
+      Title: Custom Message Viewers    
     - Url: serviceinsight/no-data-available
       Title: Data not available
+    - Url: serviceinsight/logging
+      Title: Logging
 
 - Name: ServicePulse
   Topics:

@@ -76,6 +76,10 @@ The Endpoint Explorer indicates the connection to the ServiceControl instance pr
 
 Select endpoints to filter the message list. Select the root ServiceControl connection and the tree view to make the list expand to include all messages.
 
+### Multiple ServiceControl connections
+
+Starting with version 2.4.0, ServiceInsight can be connected to more than one ServiceControl instance at a time. Each ServiceControl connected instance will be displayed in the Endpoint Explorer and endpoints belonging to each instance will be grouped under the instance node. Selecting an instance allows to disconnect ServiceInsight from that ServiceControl instance.
+
 ## Flow diagram
 
 The flow diagram provides extensive message and system information. When messages are selected in the message list, the flow diagram illustrates the message and all related messages from the same conversation, along with the nature of the messages and the endpoints involved.
@@ -116,6 +120,11 @@ ServiceInsight can show the body of a message in either `XML` or `JSON` format, 
 
 ![Body Tab](images/overview-bodyview.png 'width=500')
 
+## Custom message viewers
+
+ServiceInsight has an extensibility point that allows creating custom message viewers. These are suitable when a custom serializer is used or when the message is partially or fully encrypted and access to messages in in clear text is required in ServiceInsight.
+
+Read more about the [custom message viewers](/serviceinsight/custom-message-viewers.md) and the plugin model.
 
 ## Log view
 

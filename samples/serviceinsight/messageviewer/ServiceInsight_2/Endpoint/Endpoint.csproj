@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.3</LangVersion>
+    <RootNamespace>Endpoint</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Particular.PlatformSample" Version="1.21.0" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+  </ItemGroup>
+</Project>
