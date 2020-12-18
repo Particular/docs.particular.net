@@ -106,7 +106,7 @@ The internal *FailedMessageRetries* collection must be purged in order to restor
 1. Delete all documents in the collection
 1. Stop maintenance mode
 
-## Microsoft Defender SmartScreen blocks installer 
+## SmartScreen blocks the installer
 
 All code is code signed, but Microsoft SmartScreen (part of Windows Defender) can considers the certificate "untrusted" and shows a warning when trying to install.
 
