@@ -108,7 +108,7 @@ The internal *FailedMessageRetries* collection must be purged in order to restor
 
 ## SmartScreen blocks the installer
 
-The installer is [code signed](https://en.wikipedia.org/wiki/Code_signing), but [SmartScreen](https://en.wikipedia.org/wiki/Microsoft_SmartScreen) may classify the code signing certificate as "untrusted" and block the installer from running until permission is granted by the user.
+The installer is [code signed](https://en.wikipedia.org/wiki/Code_signing), but [SmartScreen](https://en.wikipedia.org/wiki/Microsoft_SmartScreen) (called Windows SmartScreen, Windows Defender SmartScreen and SmartScreen Filter in different places) may classify the code signing certificate as "untrusted" and block the installer from running until permission is granted by the user.
 
 Although the installer is code signed correctly with a certificate owned by "NServiceBus Ltd", SmartScreen will block it from running until Microsoft has built enough "trust" in the certificate. One of the main inputs to building that trust is when users grant permission to run the installer. To grant permission to run the installer, click "Run Anyway". This will no longer be required when Microsoft decides to trust the certificate.
 
