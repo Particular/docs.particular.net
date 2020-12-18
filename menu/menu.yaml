@@ -1147,7 +1147,7 @@
     - Url: servicepulse/troubleshooting
       Title: Troubleshooting
   - Title: Containerization
-    Url: servicecontrol/containerization/
+    Url: servicecontrol/containerization
 
 - Name: ServiceControl
   Topics:
