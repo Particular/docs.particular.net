@@ -67,7 +67,7 @@ ServiceControl/LicenseText=<?xml version="1.0" encoding="utf-8"?><license id="..
 ServiceControl/ConnectionString=data source=[server],1433; user id=username; password=[password]; Initial Catalog=servicecontrol
 
 # Remote audit instances
-ServiceControl/RemoteInstances=[{'api_uri':'http://[host_ip_address]:44444/api'}]
+ServiceControl/RemoteInstances=[{'api_uri':'http://[hostname]:44444/api'}]
 ```
 
 ## Running ServiceControl using Docker
@@ -158,7 +158,7 @@ The license file can be provided via an environment variable on the command-line
 
 `docker run -v c:\servicecontrol\license\:%PROGRAMDATA%\ParticularSoftware\ [imagename]`
 
-As the above command shows, ServiceControl will look for the license file in OS specific folders as can be found [in the documentation](/nservicebus/licensing/#license-management-machine-wide-license-location).
+As the above command shows, ServiceControl will look for the license file in OS specific folders as can be found [in the license documentation](/nservicebus/licensing/#license-management-machine-wide-license-location).
 
 ## ServiceControl maintenance
 
@@ -167,4 +167,4 @@ If maintenance is required on the embedded RavenDb database of ServiceControl, t
 1. Stopping the ServiceControl container
 2. Starting a new container by adding the `--maintenance --portable` parameters and adding an additional port mapping for port 33334.
 
-`docker run -it -d particular/servicecontrol.sqlserver.init-windows:4 --maintenance --portable`
+`docker run --interactive --tty --detach particular/servicecontrol.sqlserver.init-windows:4 --maintenance --portable`
