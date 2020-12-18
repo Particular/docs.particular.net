@@ -110,6 +110,6 @@ The internal *FailedMessageRetries* collection must be purged in order to restor
 
 The installer is [code signed](https://en.wikipedia.org/wiki/Code_signing), but [SmartScreen](https://en.wikipedia.org/wiki/Microsoft_SmartScreen) may classify the code signing certificate as "untrusted" and block the installer from running until permission is granted by the user.
 
-The files are code signed correctly and show "NServiceBus Ltd" as the signee, but Microsoft needs to "build trust in" the certificate before not showing the warning. One of the main inputs is to get users to override the warning and install the files. It is required to override that warning by clicking "Run Anyway" until the NServiceBus code signing certificate gets trusted by Microsoft SmartScreen.
+Although the installer is code signed correctly with a certificate owned by "NServiceBus Ltd", SmartScreen will block it from running until Microsoft has built enough "trust" in the certificate. One of the main inputs to building that trust is when users grant permission to run the installer. To grant permission to run the installer, click "Run Anyway". This will no longer be required when Microsoft decides to trust the certificate.
 
 All artifacts during builds are virus scanned before packaging.
