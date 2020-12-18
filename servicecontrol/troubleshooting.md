@@ -108,7 +108,7 @@ The internal *FailedMessageRetries* collection must be purged in order to restor
 
 ## SmartScreen blocks the installer
 
-All code is code signed, but Microsoft SmartScreen (part of Windows Defender) can considers the certificate "untrusted" and shows a warning when trying to install.
+The installer is [code signed](https://en.wikipedia.org/wiki/Code_signing), but [SmartScreen](https://en.wikipedia.org/wiki/Microsoft_SmartScreen) may classify the code signing certificate as "untrusted" and block the installer from running until permission is granted by the user.
 
 The files are code signed correctly and show "NServiceBus Ltd" as the signee, but Microsoft needs to "build trust in" the certificate before not showing the warning. One of the main inputs is to get users to override the warning and install the files. It is required to override that warning by clicking "Run Anyway" until the NServiceBus code signing certificate gets trusted by Microsoft SmartScreen.
 
