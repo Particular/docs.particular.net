@@ -2,7 +2,7 @@
 title: Upgrade Version 1 to 2
 summary: Instructions on how to upgrade NServiceBus.Callbacks Version 1 to 2.
 component: Callbacks
-reviewed: 2019-02-11
+reviewed: 2020-12-22
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
