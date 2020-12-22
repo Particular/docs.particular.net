@@ -1,7 +1,7 @@
 ---
 title: NHibernate persistence in multi-tenant systems
 summary: Configure NHibernate persistence to support multi-tenant scenarios.
-reviewed: 2019-02-12
+reviewed: 2020-12-22
 component: NHibernate
 related:
 - persistence/nhibernate
