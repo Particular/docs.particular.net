@@ -28,7 +28,7 @@ To create the queue with the Azure CLI, execute the following [Azure CLI](https:
  az storage queue create --name ASQTriggerQueue --connection-string "<storage-account-connection-string>"
 ```
 
-To use the sample, a valid Service Bus connection string must be provided in the `local.settings.json` file.
+To use the sample, a valid Queue Storage connection string must be provided in the `local.settings.json` file.
 
 ## Sample structure
 
