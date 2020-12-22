@@ -1,7 +1,7 @@
 ---
 title: RavenDB Persistence in multi-tenant systems
 summary: Configure RavenDB Persistence to support multi-tenant scenarios.
-reviewed: 2019-02-15
+reviewed: 2020-12-22
 component: Raven
 related:
 - persistence/ravendb
