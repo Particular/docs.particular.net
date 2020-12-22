@@ -17,7 +17,10 @@ snippet: extensions-host-configuration
 
 This code will register the endpoint with the hosting infrastructure and automatically start and stop it based on the host's application lifetime.
 
-WARNING: `UseNServiceBus` must be specified before any other service (e.g. `ConfigureWebHostDefaults`) which requires access to the `IMessageSession`. Incorrect usage results in a `System.InvalidOperationException` with the following message `The message session can't be used before NServiceBus is started. Place UseNServiceBus() on the host builder before registering any hosted service (e.g. services.AddHostedService<HostedServiceAccessingTheSession>()) or the web host configuration (e.g. builder.ConfigureWebHostDefaults) if hosted services or controllers require access to the session`.
+{{WARNING:
+Specify `UseNServiceBus` before any other service (e.g. `ConfigureWebHostDefaults`) which requires access to the `IMessageSession`. Incorrect usage results in a `System.InvalidOperationException` with the following message:
+>`The message session can't be used before NServiceBus is started. Place UseNServiceBus() on the host builder before registering any hosted service (e.g. services.AddHostedService<HostedServiceAccessingTheSession>()) or the web host configuration (e.g. builder.ConfigureWebHostDefaults) if hosted services or controllers require access to the session`.
+}}
 
 ## Logging integration
 
