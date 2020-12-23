@@ -1,0 +1,4 @@
+ * `SubscriptionNameShortener(Func<string, string>)`: By default subscription names are derived from the endpoint name, which may exceed the maximum length of subscription names. This callback allows for a replacement name for the subscription. Subscription names must adhere to the limits outlined in [the Microsoft documentation on subscription creation](https://docs.microsoft.com/en-us/rest/api/servicebus/create-subscription).
+ * `RuleNameShortener(Func<string, string>)`: By default rule names are derived from the message type's full name, which may exceed the maximum length of rule names. This callback allows for a replacement name for the rule. Rule names must adhere to the limits outlined in [Service Bus quotas](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).
+ 
+WARN: The shorteners are invoked only when the entity name exceeds the maximum length.
