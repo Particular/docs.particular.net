@@ -4,3 +4,7 @@
  * `RuleNameShortener(Func<string, string>)`: By default rule names are derived from the message type's full name, which may exceed the maximum length of rule names. This callback allows for a replacement name for the rule. Rule names must adhere to the limits outlined in [Service Bus quotas](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).
  
 WARN: The shorteners are invoked only when the entity name exceeds the maximum length. Shorteners are deprecated and should be replaced with naming conventions.
+
+### Combining shorteners and naming conventions
+
+When both the shortener and the naming convention are provided for subscription or subscription rule, the naming convention is applied first and the result is then passed into the shortener.
