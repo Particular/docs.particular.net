@@ -14,10 +14,7 @@ WARNING: Entity creation settings are applied only at creation time of the corre
  * `TopicName(string)`: The name of the topic used to publish events between endpoints. This topic is shared by all endpoints, so ensure all endpoints configure the same topic name. Defaults to `bundle-1`. Topic names must adhere to the limits outlined in [the Microsoft documentation on topic creation](https://docs.microsoft.com/en-us/rest/api/servicebus/create-topic).
  * `EntityMaximumSize(int)`: The maximum entity size in GB. The value must correspond to a valid value for the namespace type. Defaults to 5. See [the Microsoft documentation on quotas and limits](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) for valid values.
  * `EnablePartitioning()`: Partitioned entities offer higher availability, reliability, and throughput over conventional non-partitioned queues and topics. For more information about partitioned entities [see the Microsoft documentation on partitioned messaging entities](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-partitioning).
- * `SubscriptionNameShortener(Func<string, string>)`: By default subscription names are derived from the endpoint name, which may exceed the maximum length of subscription names. This callback allows for a replacement name for the subscription. Subscription names must adhere to the limits outlined in [the Microsoft documentation on subscription creation](https://docs.microsoft.com/en-us/rest/api/servicebus/create-subscription).
- * `RuleNameShortener(Func<string, string>)`: By default rule names are derived from the message type's full name, which may exceed the maximum length of rule names. This callback allows for a replacement name for the rule. Rule names must adhere to the limits outlined in [Service Bus quotas](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).
- 
-WARN: The shorteners are invoked only when the entity name exceeds the maximum length.
+partial: subscription-rule-customization
 
 ## Controlling the prefetch count
 
