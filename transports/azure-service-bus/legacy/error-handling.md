@@ -1,7 +1,7 @@
 ---
 title: Error Handling
 summary: Describes the native error-handling capabilities of Azure Service Bus
-reviewed: 2019-02-19
+reviewed: 2020-12-24
 component: ASB
 redirects:
  - nservicebus/azure-service-bus/error-handling
