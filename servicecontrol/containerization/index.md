@@ -5,7 +5,7 @@ reviewed: 2020-12-10
 
 Docker images for ServiceControl exist on Dockerhub under the [Particular organization](https://hub.docker.com/u/particular). These can be used to run ServiceControl in docker containers. These docker images are only available for Windows due to ServiceControl's current dependency on Windows ESENT storage.
 
-NOTE: The current base Windows 2016 operating system images for ServiceControl do not support notifying the application that it is being shut down when running `docker stop`. This means ServiceControl cannot perform a graceful shutdown which in very few cases could result in manual intervention to repair the underlying datastore.
+NOTE: ServiceControl cannot perform a graceful shutdown which can result in manual intervention to repair the underlying datastore. The base Windows operating system images do not support notifying the application that it is being shut down when running `docker stop`. 
 
 ## Containers overview
 
