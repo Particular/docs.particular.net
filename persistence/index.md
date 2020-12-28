@@ -27,15 +27,16 @@ It can be a challenge to decide whether or not a persister is needed and which o
 
 ## Supported persisters
 
-- [Learning](/persistence/learning/)
-- [Non-Durable](/persistence/non-durable/)
 - [SQL](/persistence/sql/)
+- [NHibernate](/persistence/nhibernate/)
+- [Cosmos DB (preview)](/previews/cosmosdb/)
+- [MongoDB](/persistence/mongodb/)
 - [Azure Table](/persistence/azure-table/)
 - [RavenDB](/persistence/ravendb/)
 - [Service Fabric](/persistence/service-fabric/)
-- [NHibernate](/persistence/nhibernate/)
 - [MSMQ](/persistence/msmq/)
-- [MongoDB](/persistence/mongodb/)
+- [Learning](/persistence/learning/)
+- [Non-Durable](/persistence/non-durable/)
 
 
 ## Persistence at a glance
