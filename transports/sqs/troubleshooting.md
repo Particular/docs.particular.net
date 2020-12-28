@@ -46,12 +46,15 @@ A throttling error could result in partial message delivery while the incoming m
 
 Throttling errors are similar to any other technical error that can occur.
 
-
 ### Sending outside of a handler
 
 As message sending does not happen within a handler context any failures during sending will not rely or be covered by the [recoverability feature](/nservicebus/recoverability/) mechanism. Any retry logic must be manually implemented.
 
 When throttling occurs with no custom error logic implemented, one or more messages might not have been transmitted to Amazon SQS. The custom retry logic could either retry all messages to be sent again, including already succeeded messages or only retry individual messages that failed.
+
+## Deduplication and outbox
+
+Because the throttling errors are common when using SQS it is very important to make sure that the whole message processing logic is idempotent (including both updating the business state and generating outgoing messages). The simplest way to achieve this is to use the [Outbox](/nservicebus/outbox/) feature.
 
 ## On endpoint shutdown messages might be only visible after the visibility timeout has expired
 
