@@ -80,7 +80,7 @@ To support the above scenarios, `IProvidePartitionKeyFromSagaId` may be injected
 
 snippet: BehaviorUsingIProvidePartitionKeyFromSagaId
 
-`IProvidePartitionKeyFromSagaId` enables users to set the partition key based on of the following:
+`IProvidePartitionKeyFromSagaId` enables users to set the partition key based on one of the following:
 
 * The `SagaId` header if present
 * The `SagaId` on the secondary index derived from the correlation property information when migration mode is enabled
