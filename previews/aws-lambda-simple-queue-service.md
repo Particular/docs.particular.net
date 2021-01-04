@@ -23,7 +23,7 @@ Since the cost of starting an `AwsLambdaSQSEndpoint` endpoint can be high, it is
 
 ### Calling the `Process` method
 
-The `AwsLambdaSQSEndpoint.Process` method is invoked inside the function handler:
+The `IAwsLambdaSQSEndpoint.Process` method is invoked inside the function handler:
 
 snippet: aws-function-definition
 

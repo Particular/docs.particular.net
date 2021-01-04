@@ -22,10 +22,10 @@
         #region asb-function-hostbuilder-trigger
         class MyFunction
         {
-            readonly FunctionEndpoint endpoint;
+            readonly IFunctionEndpoint endpoint;
 
             // inject the FunctionEndpoint via dependency injection:
-            public MyFunction(FunctionEndpoint endpoint)
+            public MyFunction(IFunctionEndpoint endpoint)
             {
                 this.endpoint = endpoint;
             }
