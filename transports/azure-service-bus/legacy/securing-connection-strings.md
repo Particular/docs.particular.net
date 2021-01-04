@@ -2,7 +2,7 @@
 title: Securing Connection Strings To Namespaces
 component: ASB
 versions: '[7,)'
-reviewed: 2019-02-19
+reviewed: 2021-01-04
 related:
  - nservicebus/operations
  - transports/upgrades/asb-6to7
@@ -25,11 +25,11 @@ Versions 6 and below allow the routing of messages across different namespaces b
 
 This carries a risk of exposing sensitive connection strings with unwanted 3rd parties, for example when messages are exchanged with untrusted parties (native outgoing integration, messages export, etc) or when body content is added to [log files](/nservicebus/logging/) which are then shared.
 
-To reduce the risk, Versions 7 and above can map an alias to a namespace connection string. For backwards compatibility this new behavior is disabled by default. To enable namespace aliases use the `UseNamespaceNamesInsteadOfConnectionStrings()` configuration API setting.
+To reduce this risk, Versions 7 and above can map an alias to a namespace connection string. For backwards compatibility this new behavior is disabled by default. To enable namespace aliases use the `UseNamespaceNamesInsteadOfConnectionStrings()` configuration API setting.
 
 snippet: enable_use_namespace_alias_instead_of_connection_string
 
-When this setting is enabled, `ReplyTo` header will no longer contain raw connection string and will be structured as following
+When this setting is enabled, the `ReplyTo` header will no longer contain the full connection string and will be structured as following:
 
 ```
 [queue name]@[alias]
@@ -39,7 +39,7 @@ NOTE: Using namespace aliases is currently NOT compatible with ServiceControl. A
 
 ## Configuration
 
-To perform a cross-namespace routing, connection string has to be mapped to a corresponding alias. For example:
+To perform cross-namespace routing, a connection string has to be mapped to a corresponding alias. For example:
 
 snippet: namespace_routing_registration
 

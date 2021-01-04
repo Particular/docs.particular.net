@@ -2,7 +2,7 @@
 title: Troubleshooting
 summary: Tips on what to do when the SQS transport is not behaving as expected
 component: SQS
-reviewed: 2019-02-22
+reviewed: 2021-01-04
 related:
  - transports/sqs
  - samples/sqs/simple
@@ -54,7 +54,7 @@ When throttling occurs with no custom error logic implemented, one or more messa
 
 ## Deduplication and outbox
 
-Because the throttling errors are common when using SQS it is very important to make sure that the whole message processing logic is idempotent (including both updating the business state and generating outgoing messages). The simplest way to achieve this is to use the [Outbox](/nservicebus/outbox/) feature.
+Because the throttling errors are common when using SQS, it is very important to make sure that the whole message processing logic is idempotent (including both updating the business state and generating outgoing messages). The simplest way to achieve this is to use the [Outbox](/nservicebus/outbox/) feature.
 
 ## On endpoint shutdown messages might be only visible after the visibility timeout has expired
 

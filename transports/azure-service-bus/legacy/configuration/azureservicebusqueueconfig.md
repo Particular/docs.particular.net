@@ -3,7 +3,7 @@ title: Queue Configuration Section
 summary: Configuring Azure Service Bus as transport
 component: ASB
 versions: '[5,7)'
-reviewed: 2019-02-19
+reviewed: 2021-01-04
 redirects:
  - transports/azure-service-bus/configuration/azureservicebusqueueconfig
 ---
@@ -20,10 +20,10 @@ The following values can be modified using this configuration setting:
 
 NOTE: Most of these values are applied when a queue or topic is created and cannot be changed afterwards.
 
- * `ConnectionString`: Overrides the default "NServiceBus/Transport" connectionstring value.
- * `ConnectivityMode`: Allows to switch between HTTP and TCP based communication. Defaults to TCP. Very useful behind a firewall.
- * `ServerWaitTime`: The transport uses longpolling to communicate with the Azure Service Bus entities. This value specifies the amount of time, in seconds, the longpoll can take. Defaults to 300 seconds.
- * `BackoffTimeInSeconds`: The transport will back off linearly when no messages can be found on the queue to save some money on the transaction operations. This value specifies how fast it will back off. Defaults to 10 seconds.
+ * `ConnectionString`: Overrides the default "NServiceBus/Transport" connection string value.
+ * `ConnectivityMode`: Allows to switch between HTTP and TCP based communication. Defaults to TCP. Useful behind a firewall.
+ * `ServerWaitTime`: The transport uses long polling to communicate with the Azure Service Bus entities. This value specifies the amount of time, in seconds, the longpoll can take. Defaults to 300 seconds.
+ * `BackoffTimeInSeconds`: The transport will back off linearly when no messages can be found on the queue to save money on the transaction operations. This value specifies how fast it will back off. Defaults to 10 seconds.
  * `LockDuration`: The Peek-Lock system supported by Azure Service Bus relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message in the specified time, it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds).
  * `EnableBatchedOperations`: Specifies whether batching is enabled. Defaults to true.
  * `BatchSize`: The number of messages that the transport tries to pull at once from the queue. Defaults to 1000.

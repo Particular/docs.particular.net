@@ -2,7 +2,7 @@
 title: Configuration
 component: ASB
 versions: '[7,)'
-reviewed: 2019-02-19
+reviewed: 2021-01-04
 redirects:
  - nservicebus/azure-service-bus/configuration
  - transports/azure-service-bus/configuration
@@ -12,12 +12,12 @@ include: legacy-asb-warning
 
 ## Common settings
 
-In order to setup a basic endpoint using the Azure Service Bus transport the following configuration settings need to be provided.
+In order to setup a basic endpoint using the Azure Service Bus transport the following configuration settings need to be provided:
 
 snippet: AzureServiceBusTransportGettingStarted
 
  * `UseTransport<AzureServiceBusTransport>()`: Enables the Azure Service Bus transport.
- * `UseForwardingTopology()`: Defines what the underlying layout of Azure Service Bus messaging entities looks like.
+ * `UseForwardingTopology()`: Defines the underlying layout of Azure Service Bus messaging entities.
  * `ConnectionString()`: Specifies the connection string of the Azure Service Bus namespace to be used by the transport.
  * `UsePersistence<InMemoryPersistence>()`: The Azure Service Bus transport has no dependency on persistence, so the in memory one will be sufficient. If there is a need to use sagas, one of the other persister implementations needs to be provided.
 
