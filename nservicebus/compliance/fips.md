@@ -1,7 +1,7 @@
 ---
 title: FIPS Compliance
 summary: Describes NServiceBus compliance with FIPS
-reviewed: 2019-02-28
+reviewed: 2021-01-04
 isLearningPath: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Persistence
 summary: Features of NServiceBus requiring persistence include timeouts, sagas, and subscription storage.
-reviewed: 2019-02-27
+reviewed: 2021-01-04
 redirects:
 - nservicebus/persistence-in-nservicebus
 - nservicebus/persistence

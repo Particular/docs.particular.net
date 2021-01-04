@@ -2,7 +2,7 @@
 title: Creating queues
 summary: Explains how queues are created
 component: Core
-reviewed: 2019-02-27
+reviewed: 2021-01-04
 versions: '[4,]'
 redirects:
 - nservicebus/queuecreation

@@ -4,10 +4,10 @@ summary: Things to consider when installing and deploying endpoints that use SQL
 component: SqlPersistence
 related:
  - persistence/sql/installer-workflow
-reviewed: 2019-03-01
+reviewed: 2021-01-04
 ---
 
-SQL persistence outputs scripts to create necessary database assets. It's recommended to run those scripts as part of the deployment process. See [Installer Workflow](installer-workflow.md) for more information.
+The SQL persistence package generates scripts to create necessary database assets. It's recommended to run those scripts as part of the deployment process. See [Installer Workflow](installer-workflow.md) for more information.
 
 
 ## Script execution during development
@@ -36,9 +36,9 @@ The default table prefix is [Endpoint Name](/nservicebus/endpoints/specify-endpo
 
 A table prefix is used at runtime and install time. 
 
-NOTE: While the default table prefix can be inferred by code at runtime, it cannot be inferred when [running deployment scripts manually](#manual-installation) and as such much be passed in as a parameter.
+NOTE: While the default table prefix can be inferred by code at runtime, it cannot be inferred when [running deployment scripts manually](#manual-installation) and as such must be passed in as a parameter.
 
-When using the default (execute at startup) approach to installation, the value configured in code will be used.
+When using the default approach to installation (execute at startup), the value configured in code will be used.
 
 snippet: TablePrefix
 
