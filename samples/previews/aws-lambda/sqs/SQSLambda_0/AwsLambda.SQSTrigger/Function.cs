@@ -28,7 +28,7 @@ public class Function
 
     #region EndpointSetup
 
-    private static readonly AwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
+    private static readonly IAwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
     {
         var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("AwsLambdaSQSTrigger");
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();

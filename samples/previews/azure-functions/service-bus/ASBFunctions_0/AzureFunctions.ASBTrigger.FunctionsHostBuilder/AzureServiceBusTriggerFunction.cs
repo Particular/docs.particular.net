@@ -7,11 +7,11 @@ using NServiceBus;
 public class AzureServiceBusTriggerFunction
 {
     internal const string EndpointName = "ASBTriggerQueue";
-    readonly FunctionEndpoint endpoint;
+    readonly IFunctionEndpoint endpoint;
 
     #region endpoint-injection
 
-    public AzureServiceBusTriggerFunction(FunctionEndpoint endpoint)
+    public AzureServiceBusTriggerFunction(IFunctionEndpoint endpoint)
     {
         this.endpoint = endpoint;
     }

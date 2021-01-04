@@ -25,7 +25,7 @@ public class AzureServiceBusTriggerFunction
 
     #region EndpointSetup
 
-    private static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
+    private static readonly IFunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
         // endpoint name, and connection strings are automatically derived from FunctionName and ServiceBusTrigger attributes
         var configuration = ServiceBusTriggeredEndpointConfiguration.FromAttributes();
