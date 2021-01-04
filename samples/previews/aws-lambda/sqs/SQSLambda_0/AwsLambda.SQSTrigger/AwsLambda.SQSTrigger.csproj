@@ -12,6 +12,7 @@
     <PackageReference Include="Amazon.Lambda.SQSEvents" Version="1.2.0" />
     <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="0.3.1" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.2.0" />
+    <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="0.4.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AwsLambda.Messages\AwsLambda.Messages.csproj" />
