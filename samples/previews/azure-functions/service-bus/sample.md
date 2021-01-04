@@ -61,7 +61,7 @@ The NServiceBus endpoint configured using `IFunctionHostBuilder` is using the co
 
 snippet: configuration-with-function-host-builder
 
-`FunctionEndpoint` is then injected into the function class:
+`IFunctionEndpoint` is then injected into the function class:
 
 snippet: endpoint-injection
 

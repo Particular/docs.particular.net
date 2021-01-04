@@ -26,7 +26,7 @@ class StaticUsage
 
     #region asb-endpoint-configuration
 
-    static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
+    static readonly IFunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
         var serviceBusTriggeredEndpointConfiguration = ServiceBusTriggeredEndpointConfiguration.FromAttributes();
         // customize configuration here
@@ -53,7 +53,7 @@ class StaticUsage
     {
         #region asb-alternative-endpoint-setup
 
-        static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
+        static readonly IFunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
         {
             var serviceBusTriggeredEndpointConfiguration = new ServiceBusTriggeredEndpointConfiguration("ASBTriggerQueue");
 

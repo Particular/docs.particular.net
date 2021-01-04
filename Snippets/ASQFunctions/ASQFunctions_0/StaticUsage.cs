@@ -19,7 +19,7 @@ class StaticUsage
 
     #region asq-endpoint-configuration
 
-    static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
+    static readonly IFunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
         var storageQueueTriggeredEndpointConfiguration = StorageQueueTriggeredEndpointConfiguration.FromAttributes();
 
@@ -87,7 +87,7 @@ class StaticUsage
     {
         #region asq-alternative-endpoint-setup
 
-        static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
+        static readonly IFunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
         {
             var storageQueueTriggeredEndpointConfiguration = new StorageQueueTriggeredEndpointConfiguration("ASQTriggerQueue");
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Queue;
 using NServiceBus;
@@ -8,10 +8,10 @@ public class AzureStorageQueueTriggerFunction
 {
     internal const string EndpointName = "ASQTriggerQueue";
 
-    readonly FunctionEndpoint endpoint;
+    readonly IFunctionEndpoint endpoint;
 
     #region endpoint-injection
-    public AzureStorageQueueTriggerFunction(FunctionEndpoint endpoint)
+    public AzureStorageQueueTriggerFunction(IFunctionEndpoint endpoint)
     {
         this.endpoint = endpoint;
     }

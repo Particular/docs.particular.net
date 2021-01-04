@@ -31,7 +31,7 @@ NServiceBus interacts directly with the Azure Functions logging infrastructure b
 
 ## IFunctionsHostBuilder usage
 
-As an alternative to the configuration approach described in the previous section, an endpoint can also be configured with a static `FunctionEndpoint` field using the `IFunctionsHostBuilder` API as described in [Use dependency injection in .NET Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection). 
+As an alternative to the configuration approach described in the previous section, an endpoint can also be configured with a static `IFunctionEndpoint` field using the `IFunctionsHostBuilder` API as described in [Use dependency injection in .NET Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection). 
 
 ### Endpoint configuration
 
@@ -43,7 +43,7 @@ Any services registered via the `IFunctionsHostBuilder` will be available to mes
 
 ### Azure Function definition
 
-To access `FunctionEndpoint` from the Azure Function trigger, inject the `FunctionEndpoint` via constructor-injection into the containing class:
+To access `IFunctionEndpoint` from the Azure Function trigger, inject the `IFunctionEndpoint` via constructor-injection into the containing class:
 
 snippet: asb-function-hostbuilder-trigger
 

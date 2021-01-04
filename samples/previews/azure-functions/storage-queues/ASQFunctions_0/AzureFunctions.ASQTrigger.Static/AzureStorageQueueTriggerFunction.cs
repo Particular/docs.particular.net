@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Microsoft.WindowsAzure.Storage.Queue;
@@ -25,7 +25,7 @@ public class AzureStorageQueueTriggerFunction
 
     #region EndpointSetup
 
-    private static readonly FunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
+    private static readonly IFunctionEndpoint endpoint = new FunctionEndpoint(executionContext =>
     {
         // endpoint name, logger, and connection strings are automatically derived from FunctionName and QueueTrigger attributes
         var configuration = StorageQueueTriggeredEndpointConfiguration.FromAttributes();
