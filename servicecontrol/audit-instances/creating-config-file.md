@@ -30,6 +30,7 @@ The port to bind the embedded HTTP server.
 
 Type: int
 
+Default: `44444`
 
 #### ServiceControl.Audit/DatabaseMaintenancePort
 
