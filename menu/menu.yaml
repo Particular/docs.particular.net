@@ -895,6 +895,8 @@
       Title: Topology
     - Url: transports/sqs/transaction-support
       Title: Transaction
+    - Url: transports/sqs/native-integration
+      Title: Native Integration
     - Url: transports/sqs/operations-scripting
       Title: Scripting
     - Url: transports/sqs/troubleshooting
@@ -1116,7 +1118,7 @@
     - Url: serviceinsight/sequence-diagram
       Title: Sequence Diagram
     - Url: serviceinsight/custom-message-viewers
-      Title: Custom Message Viewers    
+      Title: Custom Message Viewers
     - Url: serviceinsight/no-data-available
       Title: Data not available
     - Url: serviceinsight/logging
