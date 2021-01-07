@@ -16,8 +16,8 @@ snippet: sqs-access-to-native-message
 
 ### Message type detection
 
-The main requirement NServiceBus has to process a message, is [the message type](/nservicebus/messaging/message-type-detection.md).
-When the SQS transport detects that the incoming message is not originating from an NServiceBus endpoint, it will inspect the native message's attributes for an attribute with name `MessageTypeFullName`.
-If that attribute is available, the SQS transport can try to deserialize the message into that type and process it.
+NServiceBus requires the [the message type](/nservicebus/messaging/message-type-detection.md) to be available as part of the message metadata to process a message successfully. 
 
-The transport will also verify if there's an attribute available with key `S3BodyKey`, when available, it can use its value to retrieve the body of the message from an SQS S3 bucket.
+During message processing, the SQS transport inspects the native message attributes for an attribute with the name `MessageTypeFullName` and a value representing a full type name (i.ex `Sales.OrderAccepted`). If the attribute is present, the message is treated as a native message, and the body is deserialized into the target type represented by `MessageTypeFullName`. 
+
+The native message body is loaded from the configured [S3 bucket](transports/sqs/configuration-options.md#s3bucketforlargemessages) when the message attribute contains an attribute with the key `S3BodyKey` and the value representing an S3 object key, including the [necessary prefix](/transports/sqs/configuration-options.md#s3bucketforlargemessages-s3keyprefix) as configured by the receiving endpoint.
