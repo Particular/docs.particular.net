@@ -38,7 +38,9 @@ Each supported transport and topology for ServiceControl has further been broken
 
 All parameters that the ServiceControl instance supports can be provided by passing the parameter as an environment variable. E.g.
 
-`-e "ServiceControl/Port=12345"`
+```cmd
+-e "ServiceControl/Port=12345"
+```
 
 The most common parameters used are likely to be:
 
@@ -55,11 +57,13 @@ NOTE: For hosting in Azure Container Instances parameter names are supported tha
 
 These parameters can also be added by using a standard Docker environment file. Every parameter has its own line and does not need to be enclosed by quotes. It can then be used by Docker as follows:
 
-`docker run --env-file servicecontrol.env [dockerimage]`
+```cmd
+docker run --env-file servicecontrol.env [dockerimage]
+```
 
 An example of the `servicecontrol.env` file:
 
-```
+```env
 # License text
 ServiceControl/LicenseText=<?xml version="1.0" encoding="utf-8"?><license id="..."></license>
 
@@ -84,7 +88,9 @@ Each instance type of ServiceControl has a distinct init and runtime container.
 
 The first step is to create the required infrastructure using the `init` container:
 
-`docker run -e "ServiceControl/ConnectionString=[connectionstring]" -e 'ServiceControl/LicenseText=[licensecontents]' -v c:/data/:c:/data/ -v c:/logs/:c:/logs/ -d particular/servicecontrol.sqlserver.init-windows:4`
+```cmd
+docker run -e "ServiceControl/ConnectionString=[connectionstring]" -e 'ServiceControl/LicenseText=[licensecontents]' -v c:/data/:c:/data/ -v c:/logs/:c:/logs/ -d particular/servicecontrol.sqlserver.init-windows:4
+```
 
 The license contents parameter is the contents of the license file with any `"` characters encoded as `\"`.
 
@@ -92,7 +98,9 @@ The init container will run and shut down once the required queues and database 
 
 The runtime instance of ServiceControl can now be run:
 
-`docker run -e "ServiceControl/ConnectionString=[connectionstring]" -e 'ServiceControl/LicenseText=[licensecontents]' -v c:/data/:c:/data/ -v c:/logs/:c:/logs/ -p 33333:33333 -d particular/servicecontrol.sqlserver-windows:4`
+```cmd
+docker run -e "ServiceControl/ConnectionString=[connectionstring]" -e 'ServiceControl/LicenseText=[licensecontents]' -v c:/data/:c:/data/ -v c:/logs/:c:/logs/ -p 33333:33333 -d particular/servicecontrol.sqlserver-windows:4
+```
 
 ServiceControl can now be accessed over port `33333`.
 
@@ -104,7 +112,9 @@ A ServiceControl audit instance can be configured Once a ServiceControl error in
 
 The first step is to create the required infrastructure by executing the `audit.init` container:
 
-`docker run -e "ServiceControl.Audit/ConnectionString=[connectionstring]" -e 'ServiceControl.Audit/LicenseText=[licensecontents]' -v c:/auditdata/:c:/data/ -v c:/auditlogs/:c:/logs/ -d particular/servicecontrol.sqlserver.audit.init-windows:4`
+```cmd
+docker run -e "ServiceControl.Audit/ConnectionString=[connectionstring]" -e 'ServiceControl.Audit/LicenseText=[licensecontents]' -v c:/auditdata/:c:/data/ -v c:/auditlogs/:c:/logs/ -d particular/servicecontrol.sqlserver.audit.init-windows:4
+```
 
 The license contents parameter is the contents of the license file with any `"` characters encoded as `\"`.
 
@@ -112,7 +122,9 @@ The init container will run and shut down once the required queues and database 
 
 The runtime instance of ServiceControl Audit can now be run:
 
-`docker run -e "ServiceControl.Audit/ConnectionString=[connectionstring]" -e 'ServiceControl.Audit/LicenseText=[licensecontents]' -e 'ServiceControl.Audit/ServiceControlQueueAddress=Particular.ServiceControl' -v c:/auditdata/:c:/data/ -v c:/auditlogs/:c:/logs/ -p 44444:44444 -d particular/servicecontrol.audit.sqlserver-windows:4`
+```cmd
+docker run -e "ServiceControl.Audit/ConnectionString=[connectionstring]" -e 'ServiceControl.Audit/LicenseText=[licensecontents]' -e 'ServiceControl.Audit/ServiceControlQueueAddress=Particular.ServiceControl' -v c:/auditdata/:c:/data/ -v c:/auditlogs/:c:/logs/ -p 44444:44444 -d particular/servicecontrol.audit.sqlserver-windows:4
+```
 
 The `ServiceControl.Audit/ServiceControlQueueAddress` environment variable must point to the queue of the error instance of ServiceControl.
 
@@ -126,13 +138,17 @@ All [supported parameters](/servicecontrol/audit-instances/creating-config-file.
 
 Monitoring instances can be run standalone and therefore only need the init container to be run and then the runtime container.
 
-`docker run -e "Monitoring/ConnectionString=[connectionstring]" -e 'Monitoring/LicenseText=[licensecontents]' -v c:/monitoringlogs/:c:/logs/ -d particular/servicecontrol.sqlserver.monitoring.init-windows:4`
+```cmd
+docker run -e "Monitoring/ConnectionString=[connectionstring]" -e 'Monitoring/LicenseText=[licensecontents]' -v c:/monitoringlogs/:c:/logs/ -d particular/servicecontrol.sqlserver.monitoring.init-windows:4
+```
 
 The init container will run and shut down once the required queues and database has been created.
 
 The runtime instance of ServiceControl Monitoring can now be run:
 
-`docker run -e "Monitoring/ConnectionString=[connectionstring]" -e 'Monitoring/LicenseText=[licensecontents]' -v c:/data/:c:/data/ -v c:/logs/:c:/logs/ -p 33633:33633 -d particular/servicecontrol.sqlserver.monitoring-windows:4`
+```cmd
+docker run -e "Monitoring/ConnectionString=[connectionstring]" -e 'Monitoring/LicenseText=[licensecontents]' -v c:/data/:c:/data/ -v c:/logs/:c:/logs/ -p 33633:33633 -d particular/servicecontrol.sqlserver.monitoring-windows:4
+```
 
 All [supported parameters](/servicecontrol/monitoring-instances/installation/creating-config-file.md) for ServiceControl Monitoring can be specified via environment variables.
 
@@ -146,17 +162,23 @@ Volume mappings can be used with ServiceControl for configuration files, storing
 
 Every image has a folder in `c:\data\` that can be mapped to a folder outside of the container. 
 
-`docker run -v c:\servicecontrol\:c:\data\ [imagename]`
+```cmd
+docker run -v c:\servicecontrol\:c:\data\ [imagename]
+```
 
 As a result, that container will write both logfiles and its database into that folder in respectively the `Logs` and `DB` folders. Another option is to map each folder specifically, for more control over their locations and divide them over separate drives, for example:
 
-`docker run -v c:\servicecontroldatabase\:c:\data\DB\ -v d:\servicecontrollogfiles\:c:\data\logs\ [imagename]`
+```cmd
+docker run -v c:\servicecontroldatabase\:c:\data\DB\ -v d:\servicecontrollogfiles\:c:\data\logs\ [imagename]
+```
 
 ### License file
 
 The license file can be provided via an environment variable on the command-line or via an environment file. Another options is to map the folder where ServiceControl will look for the license file.
 
-`docker run -v c:\servicecontrol\license\:c:\ProgramData\ParticularSoftware\ [imagename]`
+```cmd
+docker run -v c:\servicecontrol\license\:c:\ProgramData\ParticularSoftware\ [imagename]
+```
 
 As the above command shows, ServiceControl will look for the license file in OS specific folders as can be found [in the license documentation](/nservicebus/licensing/#license-management-machine-wide-license-location).
 
@@ -167,4 +189,6 @@ If maintenance is required on the embedded RavenDb database of ServiceControl, t
 1. Stopping the ServiceControl container
 2. Starting a new container by adding the `--maintenance --portable` parameters and adding an additional port mapping for port 33334.
 
-`docker run --interactive --tty --detach particular/servicecontrol.sqlserver.init-windows:4 --maintenance --portable`
+```cmd
+docker run --interactive --tty --detach particular/servicecontrol.sqlserver.init-windows:4 --maintenance --portable
+```
