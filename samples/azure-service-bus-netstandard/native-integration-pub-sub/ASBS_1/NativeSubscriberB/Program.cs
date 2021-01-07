@@ -24,15 +24,15 @@ class Program
 
     static async Task Main()
     {
-        var inputQueuePath = "Samples.ASB.NativeIntegration.NativeSubscriberB";
+        var subscriptionName = "Samples.ASB.NativeIntegration.NativeSubscriberB";
 
-        Console.Title = inputQueuePath;
+        Console.Title = subscriptionName;
 
-        await TopologyManager.CreateQueue(ConnectionString, inputQueuePath);
+        await TopologyManager.CreateSubscription(ConnectionString, subscriptionName, new TrueFilter());
 
-        var inputQueue = new QueueClient(ConnectionString, inputQueuePath);
+        var subscription = new SubscriptionClient(ConnectionString, "bundle-1", subscriptionName);
 
-        inputQueue.RegisterMessageHandler((m, _) =>
+        subscription.RegisterMessageHandler((m, _) =>
         {
             var messageType = (string) m.UserProperties[EnclosedMessageTypesHeader];
             var bodyJson = Encoding.UTF8.GetString(m.Body);
@@ -42,8 +42,6 @@ class Program
 
             return Task.CompletedTask;
         }, e => Task.CompletedTask);
-
-        await TopologyManager.SubscribeToAll(ConnectionString, inputQueuePath);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();

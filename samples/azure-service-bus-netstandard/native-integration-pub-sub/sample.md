@@ -14,7 +14,6 @@ This sample shows how to subscribe to events published by NServiceBus endpoint u
 
 include: asb-connectionstring-xplat
 
-
 ## Code walk-through
 
 The sample contains three executable projects:
@@ -25,19 +24,15 @@ The sample contains three executable projects:
  
 ## Setting up namespace entities
 
-Both native subscribers require a dedicated input queue to receive any event. 
-
-snippet: QueueCreation
-
-A topic subscription is needed for the events published by the `Publisher` to reach the input queues of the native subscribers. [By default](/transports/azure-service-bus/configuration.md#entity-creation) an NServiceBus endpoint publishes all the events to the `bundle-1` topic. 
+Each of the subscribers require a topic subscription to receive the events published by the `Publisher`. The subscriptions are created on the `bundle-1` topic which is [the default](/transports/azure-service-bus/configuration.md#entity-creation) name used by NServiceBus endpoints. 
 
 snippet: SubscriptionCreation
 
 ### Subscriptions filters
 
-Subscriptions created by `NativeSubscriberA` and `NativeSubscriberB` differ by the mesage filter. The first subscribes to the `EventOne` events only by specifying sql subscripiton rule. The rule matches the event type name stored in the event properites collection:
+Subscriptions created by `NativeSubscriberA` and `NativeSubscriberB` differ by the mesage filter. The first subscribes to the `EventOne` events only. It is done by specifying sql subscripiton rule that matches the event type name stored in the event properites collection:
 
-snippet: EventOneFilteringRule
+snippet: SubscriberAFilter
 
 The other subscriber uses [`TrueFilter`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.truefilter?view=azure-dotnet) ensuring that both `EventOne` and `EventTwo` events are routed to it's input queue.
 

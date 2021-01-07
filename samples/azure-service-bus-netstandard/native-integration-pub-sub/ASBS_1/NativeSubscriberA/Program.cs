@@ -23,15 +23,23 @@ class Program
 
     static async Task Main()
     {
-        var inputQueuePath = "Samples.ASB.NativeIntegration.NativeSubscriberA";
+        var subscriptionName = "Samples.ASB.NativeIntegration.NativeSubscriberA";
         
-        Console.Title = inputQueuePath;
+        Console.Title = subscriptionName;
 
-        await TopologyManager.CreateQueue(ConnectionString, inputQueuePath);
 
-        var inputQueue = new QueueClient(ConnectionString, inputQueuePath);
+        await TopologyManager.CreateSubscription(
+            ConnectionString,
+            subscriptionName,
+        #region SubscriberAFilter
+            new SqlFilter($"[NServiceBus.EnclosedMessageTypes] LIKE '%{typeof(EventOne).FullName}%'")
+        #endregion
+            );
 
-        inputQueue.RegisterMessageHandler((m, _) =>
+
+        var subscription = new SubscriptionClient(ConnectionString, "bundle-1", subscriptionName);
+
+        subscription.RegisterMessageHandler((m, _) =>
         {
             var messageType = (string) m.UserProperties[EnclosedMessageTypesHeader];
             var bodyJson = Encoding.UTF8.GetString(m.Body);
@@ -42,7 +50,6 @@ class Program
             return Task.CompletedTask;
         }, e => Task.CompletedTask);
 
-        await TopologyManager.Subscribe(ConnectionString, typeof(EventOne), inputQueuePath);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
