@@ -8,11 +8,7 @@ class Program
     {
         Console.Title = "Samples.ASB.Publisher";
 
-        #region EndpointName
-
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Publisher");
-
-        #endregion
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
