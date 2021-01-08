@@ -1154,8 +1154,6 @@
       Title: Install in IIS
     - Url: servicepulse/troubleshooting
       Title: Troubleshooting
-  - Title: Containerization
-    Url: servicepulse/containerization
 
 - Name: ServiceControl
   Topics:
@@ -1251,8 +1249,6 @@
             Url: servicecontrol/monitoring-instances/installation/creating-config-file
           - Title: Configure the URI
             Url: servicecontrol/monitoring-instances/installation/configure-the-uri
-  - Title: Containerization
-    Url: servicecontrol/containerization
   - Title: Integration
     Url: servicecontrol/integration
     Articles:
