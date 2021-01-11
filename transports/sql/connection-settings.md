@@ -33,7 +33,7 @@ The SQL Server transport uses `dbo` as a default schema. It is used for every qu
 
 partial: custom-schema
 
-NOTE: When subscribing to events between endpoints in different database schemas, a [shared subscription table needs to be configured](/transports/sql/native-publish-subscribe#configure-subscription-table).
+NOTE: When subscribing to events between endpoints in different database schemas, a [shared subscription table needs to be configured](/transports/sql/native-publish-subscribe.md#configure-subscription-table).
 
 ## Custom SQL Server transport connection factory
 
