@@ -33,6 +33,8 @@ The SQL Server transport uses `dbo` as a default schema. It is used for every qu
 
 partial: custom-schema
 
+NOTE: When subscribing to events between endpoints in different database schemas, a [shared subscription table needs to be configured](/transports/sql/native-publish-subscribe.md#configure-subscription-table).
+
 ## Custom SQL Server transport connection factory
 
 In some environments it might be necessary to adapt to the database server settings, or to perform additional operations. For example, if the `NOCOUNT` setting is enabled on the server, then it is necessary to send the `SET NOCOUNT OFF` command right after opening the connection.
