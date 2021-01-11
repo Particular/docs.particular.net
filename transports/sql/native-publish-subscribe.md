@@ -28,7 +28,7 @@ snippet: disable-subscription-cache
 
 ## Configure subscription table
 
-A single subscription table is used by all endpoints. By default this table will be named `[SubscriptionRouting]` and be created in the `[dbo]` schema of the catalog specified in the connection string. To change where this table is created and how it is named, use the following API:
+A single subscription table is used by all endpoints. By default this table will be named `[SubscriptionRouting]` and be created in the default schema of the catalog specified in the connection string. To change where this table is created and how it is named, use the following API:
 
 snippet: configure-subscription-table
 
