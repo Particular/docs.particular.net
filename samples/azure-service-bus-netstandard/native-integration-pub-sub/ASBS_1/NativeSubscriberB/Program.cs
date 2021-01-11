@@ -28,7 +28,7 @@ class Program
 
         Console.Title = subscriptionName;
 
-        await TopologyManager.CreateSubscription(ConnectionString, subscriptionName, new TrueFilter());
+        await TopologyManager.CreateSubscription(ConnectionString, subscriptionName, "all-events", new TrueFilter());
 
         var subscription = new SubscriptionClient(ConnectionString, "bundle-1", subscriptionName);
 

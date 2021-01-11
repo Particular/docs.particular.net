@@ -27,15 +27,14 @@ class Program
         
         Console.Title = subscriptionName;
 
-
+        #region EventOneSubscription
         await TopologyManager.CreateSubscription(
             ConnectionString,
             subscriptionName,
-        #region SubscriberAFilter
-            new SqlFilter($"[NServiceBus.EnclosedMessageTypes] LIKE '%{typeof(EventOne).FullName}%'")
-        #endregion
+            ruleName:"event-one", 
+            sqlFilter: new SqlFilter($"[NServiceBus.EnclosedMessageTypes] LIKE '%{typeof(EventOne).FullName}%'")
             );
-
+        #endregion
 
         var subscription = new SubscriptionClient(ConnectionString, "bundle-1", subscriptionName);
 

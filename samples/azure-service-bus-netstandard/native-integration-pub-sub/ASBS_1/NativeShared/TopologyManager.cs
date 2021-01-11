@@ -7,7 +7,7 @@
 
     public static class TopologyManager
     {
-        public static async Task CreateSubscription(string connectionString, string name, SqlFilter sqlFilter, string topicPath = "bundle-1", string ruleName = "rule")
+        public static async Task CreateSubscription(string connectionString, string subscriptionName, string ruleName, SqlFilter sqlFilter, string topicPath = "bundle-1")
         {
             var client = new ManagementClient(connectionString);
 
@@ -15,7 +15,7 @@
             {
                 #region SubscriptionCreation
 
-                await client.CreateSubscriptionAsync(new SubscriptionDescription(topicPath, name)
+                await client.CreateSubscriptionAsync(new SubscriptionDescription(topicPath, subscriptionName)
                 {
                     LockDuration = TimeSpan.FromMinutes(5),
                     EnableDeadLetteringOnFilterEvaluationExceptions = false,

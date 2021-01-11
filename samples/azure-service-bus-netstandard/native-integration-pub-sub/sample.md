@@ -30,11 +30,11 @@ snippet: SubscriptionCreation
 
 ### Subscriptions filters
 
-Subscriptions created by `NativeSubscriberA` and `NativeSubscriberB` differ by the mesage filter. The first subscribes to the `EventOne` events only. It is done by specifying sql subscripiton rule that matches the event type name stored in the event properites collection:
+Subscriptions created by `NativeSubscriberA` and `NativeSubscriberB` both contain a single filtering rule. `NativeSubscriberA` subscribes to the `EventOne` events only by specifying sql subscripiton rule (`event-one`) that matches the event type name stored in the event properites collection:
 
-snippet: SubscriberAFilter
+snippet: EventOneSubscription
 
-The other subscriber uses [`TrueFilter`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.truefilter?view=azure-dotnet) ensuring that both `EventOne` and `EventTwo` events are routed to it's input queue.
+The other subscriber uses [`TrueFilter`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.truefilter?view=azure-dotnet) in the `all-events` rule which ensures that both `EventOne` and `EventTwo` events are routed to it's subscription.
 
 ## Things to note
 
