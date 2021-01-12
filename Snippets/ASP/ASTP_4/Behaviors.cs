@@ -83,12 +83,8 @@ class ContainerInfoLogicalReceiveContextBehavior
 
 #region BehaviorUsingIProvidePartitionKeyFromSagaId
 
-internal class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
+class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
 {
-    private static readonly ILog Log = LogManager.GetLogger<OrderIdAsPartitionKeyBehavior>();
-    
-    private readonly IProvidePartitionKeyFromSagaId partitionKeyFromSagaId;
-
     public OrderIdAsPartitionKeyBehavior(IProvidePartitionKeyFromSagaId partitionKeyFromSagaId) =>
         this.partitionKeyFromSagaId = partitionKeyFromSagaId;
 
@@ -130,6 +126,9 @@ internal class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageC
                 provider => new OrderIdAsPartitionKeyBehavior(provider.GetRequiredService<IProvidePartitionKeyFromSagaId>())) =>
             InsertBefore(nameof(LogicalOutboxBehavior));
     }
+
+    readonly IProvidePartitionKeyFromSagaId partitionKeyFromSagaId;
+    static readonly ILog Log = LogManager.GetLogger<OrderIdAsPartitionKeyBehavior>();
 }
 #endregion
 
