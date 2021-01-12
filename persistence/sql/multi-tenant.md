@@ -1,7 +1,7 @@
 ---
 title: Multi-tenant support
 summary: SQL Persistence support for multi-tenant systems using database per customer
-reviewed: 2019-03-06
+reviewed: 2021-01-11
 component: SqlPersistence
 versions: '[4.5,)'
 related:
@@ -26,7 +26,7 @@ In this example, the header `NewTenantHeaderName` is consulted first, with `OldT
 
 snippet: MultiTenantWithFunc
 
-NOTE: A null tenant id indicates a failure to propagate the tenant id from a previous message, rendering the message invalid. However, it is safe to return null in this callback because SQL Persistence will throw an exception if a null tenant id is encountered, rather than trying to process a message without a tenant id.
+NOTE: A null tenant id indicates a failure to propagate the tenant id from a previous message, rendering the message invalid. The recommended practice is to return null from the callback, rather than processing a message without proper tenant id. In such a case, SQL Persistence will throw an exception, and the message will be moved to the error queue.
 
 ## Disabling Outbox cleanup
 
@@ -40,21 +40,21 @@ To disable the Outbox cleanup so that multi-tenant mode can be used with the Out
 
 snippet: DisableOutboxForMultiTenant
 
-In order to perform the cleanup on each database, a script similar to the following Microsoft SQL Server example should be run:
+The following snippet shows a script written in T-SQL (Microsoft SQL Server) that cleans the Outbox table for a single endpoint:
 
 snippet: MultiTenantOutboxCleanup
 
-Since each endpoint uses its own Outbox table on the database, a database cursor over Outbox table names can be used to clean all endpoints' outbox tables at once:
+Since each endpoint uses a separate Outbox table, a database cursor over Outbox table names can be used to clean all endpoints' outbox tables at once:
 
 snippet: MultiTenantMultiEndpointOutboxCleanup
 
-The cleanup script would be similar on other database engines. Refer to the default Outbox cleanup scripts for [MySQL](mysql-scripts.md#run-time-outbox), [PostgreSQL](postgresql-scripts.md#run-time-outbox), and [Oracle](oracle-scripts.md#run-time-outbox) to get an idea of the operation that needs to be scripted.
+The cleanup script would be similar for other database engines. Refer to the default Outbox cleanup scripts for [MySQL](mysql-scripts.md#run-time-outbox), [PostgreSQL](postgresql-scripts.md#run-time-outbox), and [Oracle](oracle-scripts.md#run-time-outbox) to get an idea of the operation that needs to be scripted.
 
 ## Propagating tenant id headers
 
-In order for a system to be multi-tenant, every endpoint must use an [NServiceBus pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) so that every message handler will copy the tenant id header(s) from each incoming message to any outgoing message that message handler creates.
+For a system to be multi-tenant, every endpoint must use an [NServiceBus pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) so that the tenant id header(s) is copied from the incoming message to every outgoing message.
 
-If such a behavior does not exist, it will result in the endpoint being unable to determine the tenant id from an incoming message, and this exception will be thrown:
+If such a behavior does not exist, it will result in the endpoint being unable to determine the tenant id from an incoming message, causing following exceptionto be thrown:
 
 > This endpoint attempted to process a message in multi-tenant mode and was unable to determine the tenant id from the incoming message. As a result SQL Persistence cannot determine which tenant database to use. Either: 1) The message lacks a tenant id and is invalid. 2) The lambda provided to determine the tenant id from an incoming message contains a bug. 3) Either this endpoint or another upstream endpoint is not configured to use a custom behavior for relaying tenant information from incoming to outgoing messages, or that behavior contains a bug.
 
@@ -62,7 +62,7 @@ Refer to the [Propagating Tenant Information to Downstream Endpoints](/samples/m
 
 ## Connections for timeouts and subscriptions
 
-When using multi-tenant mode, storage for [timeouts](timeouts.md) and [subscriptions](subscriptions.md) are still stored in a single database if the message transport does not provide those features (delayed delivery and publish/subscribe) natively.
+When using multi-tenant mode, [timeouts](timeouts.md) and [subscriptions](subscriptions.md) are stored in a single database if the message transport does not provide those features (delayed delivery and publish/subscribe) natively.
 
 If these persistence features are used, but a connection builder is not specified, the following exception will be thrown:
 

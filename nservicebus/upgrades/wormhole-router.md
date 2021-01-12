@@ -2,7 +2,7 @@
 title: Upgrade Wormhole 2 to Router 3
 summary: Instructions on how to upgrade NServiceBus.Wormhole Version 2 to NServiceBus.Router Version 3.
 component: Wormhole
-reviewed: 2019-03-12
+reviewed: 2021-01-12
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
@@ -13,7 +13,7 @@ The NServiceBus.Wormhole package has been deprecated and replaced by the more po
 
 ## Endpoint-side
 
-The following code snippets ware used to set up the Wormhole connector and sent messages
+The following code snippets were used to set up the Wormhole connector and send messages
 
 snippet: upgrade-wormhole-connector
 

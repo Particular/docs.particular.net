@@ -1,6 +1,6 @@
 ---
 title: Message replay tutorial
-reviewed: 2019-03-07
+reviewed: 2021-01-12
 summary: In this tutorial, you'll learn how to replay a failed message using the Particular Service Platform tools.
 previewImage: failed-message-groups.png
 ---
@@ -22,11 +22,11 @@ The solution contains six projects. Similar to the one built in the [NServiceBus
 
 The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales**, **Billing**, and **Shipping** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as [POCO classes](https://en.wikipedia.org/wiki/Plain_old_CLR_object).
 
-As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an `OrderPlaced` event using the publish/subscribe pattern, which will be received by the **Billing** and **Shipping** endpoints. Additionally, the **Billing** endpoint endpoint will publish an `OrderBilled` endpoint that will also be received by the **Shipping** endpoint.
+As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an `OrderPlaced` event using the publish/subscribe pattern, which will be received by the **Billing** and **Shipping** endpoints. Additionally, the **Billing** endpoint will publish an `OrderBilled` event that will also be received by the **Shipping** endpoint.
 
 ![Project Diagram](/tutorials/nservicebus-step-by-step/4-publishing-events/diagram.svg)
 
-INFO: In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a use case for a [Saga](/nservicebus/sagas/) and is outside of the scope of this tutorial.
+INFO: In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a good use case for a [Saga](/nservicebus/sagas/) and is outside of the scope of this tutorial.
 
 ## Running the solution
 

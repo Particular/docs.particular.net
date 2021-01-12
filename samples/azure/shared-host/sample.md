@@ -2,7 +2,7 @@
 title: Shared Hosting in Azure Cloud Services
 summary: Uses the NServiceBus Hosting Azure HostProcess to achieve shared hosting of multiple NServiceBus endpoints in an Azure instance.
 component: CloudServicesHost
-reviewed: 2019-03-05
+reviewed: 2021-01-11
 related:
 - nservicebus/hosting/cloud-services-host/shared-hosting
 ---
@@ -12,7 +12,7 @@ related:
 
  1. Start [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator)
  1. Run the solution
- 1. Inspect Azure Storage Emulator Tables for `MultiHostedEndpointsOutput` table and its content for something like the following:
+ 1. Inspect Azure Storage Emulator `MultiHostedEndpointsOutput` table for content similar to:
 
 | PartitionKey | RowKey | Timestamp | Message |
 |:--|:--|:--|:--|
@@ -37,9 +37,9 @@ Results sorted by Timestamp
 
 NOTE: To inspect multi-host role emulated file system navigate to `C:\Users\%USERNAME%\AppData\Local\dftmp\Resources`
 
-Azure Compute Emulator leaves any processes spawned at run time in memory. Kill those once done with emulated Cloud Service execution by locating `WaWorkerHost.exe` process and killing all child processes named `NServiceBus.Hosting.Azure.HostProcess.exe`. Number of those processes will be as number of endpoints (2) X number of times Cloud Service was executed.
+Azure Compute Emulator leaves any processes spawned at run time in memory. Kill those once done with emulated Cloud Service execution by locating `WaWorkerHost.exe` process and killing all child processes named `NServiceBus.Hosting.Azure.HostProcess.exe`. Number of those processes will equal the number of endpoints (which in this case eqals 2) multiplied by the number of times Cloud Service was executed.
 
-Cloud Service emulator can also be stopped from Compute Emulator UI. Compute Emulator UI can be accessed via try icon on the taskbar. Within Compute Emulator UI, under `Service Deployments` tree select a deployment, right click and select `Remove` option. This will cleanly stop Cloud Service without leaving any processes in memory.
+Cloud Service emulator can also be stopped from Compute Emulator UI. Compute Emulator UI can be accessed via try icon on the taskbar. Within Compute Emulator UI, under `Service Deployments` tree select a deployment, right click and select `Remove` option. This will stop Cloud Service without leaving any processes in memory.
 
 
 ## Code walk-through
@@ -47,7 +47,7 @@ Cloud Service emulator can also be stopped from Compute Emulator UI. Compute Emu
 This sample contains five projects:
 
  * Shared - A class library containing shared code including the message definitions.
- * Sender - An NServiceBus endpoint responsible for sending `Ping` command designated for `Receiver` endpoint processing.
+ * Sender - An NServiceBus endpoint responsible for sending `Ping` command to the `Receiver` endpoint processing.
  * Receiver - An NServiceBus endpoint that receives `Ping` command and responds back to originator with `Pong` message.
  * HostWorker - Multi-host endpoint deployed as worker role.
  * HostCloudService - Azure Cloud Service project to define and execute cloud service.
@@ -55,22 +55,22 @@ This sample contains five projects:
 
 ### Sender project
 
-Sender project defines message mapping to instruct NServiceBus to send `Ping` commands to `Receiver` endpoint.
+Sender project defines message mapping instructing NServiceBus to send `Ping` commands to the `Receiver` endpoint.
 
 snippet: AzureMultiHost_MessageMapping
 
-When Bus is started, ping command is sent and a custom verification log is written to Azure Storage Tables (see Shared project for details about verification log table).
+When endpoint is started, `Ping` command is sent and a log entry is written to Azure Storage Tables (see Shared project for details on the log generation).
 
 snippet: AzureMultiHost_SendPingCommand
 
-Sender also defines a handler for messages of type `Pong` and writes into verification log when such arrives.
+Sender defines a handler for messages of type `Pong` and writes into the log when such a message arrives.
 
 snippet: AzureMultiHost_PongHandler
 
 
 ### Receiver project
 
-Receiver project has a handler for `Ping` commands and it writes into verification log when such arrives and replies back to originator with `Pong` message.
+Receiver project has a handler for `Ping` commands and it writes into the  log when such a message arrives. It also replies to the originator with the `Pong` message.
 
 snippet: AzureMultiHost_PingHandler
 
@@ -89,7 +89,7 @@ HostWorker project is the multi-host project. To enable multi-hosting, endpoint 
 
 snippet: AzureSharedHosting_HostConfiguration
 
-NOTE: Multi-host project is used solely as a host for other endpoints
+NOTE: Multi-host project is used only as a host for other endpoints and contains no NServiceBus related logic
 
 
 ### HostCloudService project

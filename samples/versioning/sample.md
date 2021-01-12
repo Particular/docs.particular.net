@@ -1,21 +1,23 @@
 ---
 title: Versioning
 summary: Message evolution over time using interfaces.
-reviewed: 2019-03-05
+reviewed: 2021-01-01
 component: Core
 redirects:
  - nservicebus/versioning-sample
 ---
 
+This sample shows how to handle message schema evolution in a backward-compatible manner. The project consists of a publishing endpoint that has evolved from one version of the schema to the next. The newer subscriber has access to the additional information in the newest version of the scheam while the older keeps operating without interruptions.
+
 In this sample there are two message projects: `V1.Messages` and `V2.Messages`:
 
 snippet: V1Message
 
-The Version 2 message schema inherits from the version 1 schema as shown below, adding another property on top of the properties in the version 1 schema.
+The Version 2 message schema inherits from the Version 1 schema as shown below, adding another property on top of the properties in the Version 1 schema.
 
 snippet: V2Message
 
-There are two subscribers as before, but now one subscriber is subscribed to the version 1 message schema, `V1Subscriber`; and the other subscriber is subscribed to the Version 2 message schema, `V2Subscriber`.
+There are two subscribers, one subscribed to the version 1 message schema, `V1Subscriber`; and the other subscribed to the Version 2 message schema, `V2Subscriber`.
 
 NOTE: Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their subscriptions configuration; `V1Subscriber` has:
 
@@ -25,9 +27,9 @@ While `V2Subscriber` has:
 
 snippet: V2SubscriberMapping
 
-The only difference is that each subscriber maps the version of the schema on which it is dependent.
+The only difference is that each subscriber declares the version of the schema on which it dependents.
 
-Look at `V2Publisher`, which is very similar to the publisher from the PubSub sample. The only thing that `V2Publisher` is doing is publishing a message from the Version 2 schema. However, the sample is run, `V1Subscriber` receives these messages as well:
+`V2Publisher` is publishing a message from the Version 2 schema only. However, when the project is run, `V1Subscriber` receives these messages as well:
 
 
 ## Publisher output
@@ -52,5 +54,3 @@ Something happened with some data 1 and no more info
 Press any key to stop program
 Something happened with some data 1 and more information It's a secret.
 ```
-
-NOTE: When each subscriber processes the event, each sees it as the schema version it is compiled against. In this manner, publishers can be extended from one version to the next without breaking existing subscribers, allowing new subscribers to be created to handle the additional information in the new version of the events.
