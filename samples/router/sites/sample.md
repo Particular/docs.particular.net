@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus.Router to send messages between distributed sites
 component: Router
-reviewed: 2019-03-12
+reviewed: 2021-01-12
 related:
  - nservicebus/router
 ---
@@ -10,7 +10,7 @@ related:
 ## Running the project
 
  1. Start the projects in debug mode.
- 1. Press `enter` a couple of times.
+ 1. Press <kbr>Enter</kbr> a couple of times.
  1. Observe the `PingHandler` logging processed message IDs in the Server window.
  1. Observe the `PongHandler` logging processed message IDs in the Client window.
 
@@ -61,4 +61,4 @@ When the router in the origin site (RouterA) picks up the message it looks at th
 
 When the router in the destination site (RouterB) receives the message it looks at the type of the message and calculates the receiving endpoint name based on the forwarding rules configured. 
 
-When the Server receives the `Ping` message it replies with a `Pong` message. The reply does not require any routing because the the routers along the path of the the original `Ping` message leave breadcrumbs that can be used to router the reply along the same path in the opposite direction. 
+When the Server receives the `Ping` message it replies with a `Pong` message. The reply does not require any routing because the routers along the path of the the original `Ping` message leave breadcrumbs that can be used to route the reply along the same path in the opposite direction. 
