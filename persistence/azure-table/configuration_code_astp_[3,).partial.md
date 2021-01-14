@@ -80,8 +80,10 @@ To support the above scenarios, `IProvidePartitionKeyFromSagaId` may be injected
 
 snippet: BehaviorUsingIProvidePartitionKeyFromSagaId
 
-`IProvidePartitionKeyFromSagaId` enables users to set the partition key based on one of the following:
+`IProvidePartitionKeyFromSagaId` does the folllowing:
 
-* The `SagaId` header if present
-* The `SagaId` on the secondary index derived from the correlation property information when migration mode is enabled
-* The deterministic `SagaId` precalculated by using the correlation property information
+* Sets the partition key on the `IIncomingLogicalMessageContext` based on the following algorithm:
+  * Use the saga ID header value if present. Otherwise:
+  * When compatibility mode is enabled, and the correlation property is not `SagaCorrelationProperty.None`, look up the saga ID either using the secondary index if present, or by table scanning the saga data if that is [enabled](/persistence/azure-table/configuration#saga-configuration). Otherwise:
+  * Calculate the saga ID based on the specified correlation property.
+* If the table in which all data, including saga data, will be stored is not [already set](persistence/azure-table/configuration#table-name-configuration-and-creation), set it using the saga data name as the table name.
