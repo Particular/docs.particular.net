@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 public class AzureServiceBusTriggerFunction
 {
-    private const string EndpointName = "ASBTriggerQueue";
+    internal const string EndpointName = "ASBTriggerQueue";
 
     #region Function
 
