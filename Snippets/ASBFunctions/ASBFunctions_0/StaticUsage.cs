@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
@@ -62,4 +63,38 @@ class StaticUsage
 
         #endregion
     }
+
+    public static class HttpSender
+    {
+        #region asb-static-dispatching-outside-message-handler
+
+        [FunctionName("HttpSender")]
+        public static async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest request, ExecutionContext executionContext, ILogger logger)
+        {
+            logger.LogInformation("C# HTTP trigger function received a request.");
+
+            var sendOptions = new SendOptions();
+            sendOptions.SetDestination("DestinationEndpointName");
+
+            await functionEndpoint.Send(new TriggerMessage(), sendOptions, executionContext, logger);
+
+            return new OkObjectResult($"{nameof(TriggerMessage)} sent.");
+        }
+
+        #endregion
+    }
+
+    #region asb-static-trigger-endpoint
+
+    private static readonly IFunctionEndpoint functionEndpoint = new FunctionEndpoint(executionContext =>
+    {
+        var configuration = new ServiceBusTriggeredEndpointConfiguration("HttpSender");
+
+        configuration.AdvancedConfiguration.SendOnly();
+
+        return configuration;
+    });
+
+    #endregion
 }

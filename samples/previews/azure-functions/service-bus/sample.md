@@ -33,7 +33,6 @@ To use the sample, a valid Service Bus connection string must be provided in the
 ## Sample structure
 
 The sample contains the following projects:
-- `AzureFunctions.Sender` - console application to generate a trigger message
 - `AzureFunctions.ASBTrigger.FunctionsHostBuilder` - Using `IFunctionHostBuilder` approach to host the NServiceBus endpoint
 - `AzureFunctions.ASBTrigger.Static` - Using static approach to host the NServiceBus endpoint
 
@@ -41,17 +40,18 @@ NOTE: `AzureFunctions.ASBTrigger.FunctionsHostBuilder` and `AzureFunctions.ASBTr
 
 ## Running the sample
 
-Running the sample will launch two console windows:
+Each functions project contains two functions:
+1. Service Bus triggered function.
+1. HTTP triggered function.
 
-* **AzureFunctions.Sender** is a console application that will send a `TriggerMessage` to the `ASBTriggerQueue` queue, which is monitored by the Azure Function.
-* The **Azure Functions runtime** window will receive messages from the `ASBTriggerQueue` queue and process them using the Azure Functions runtime.
+Running the sample will launch the **Azure Functions runtime** window.
 
 To try the Azure Function:
 
-1. From the **AzureFunctions.Sender** window, press <kbd>Enter</kbd> to send a `TriggerMessage` to the trigger queue.
-1. The Azure Function will receive the `TriggerMessage` and process it with NServiceBus.
+1. Open a browser and navigate to `http://localhost:7071/api/HttpSender`. The port number might be different and will be indicated when the function project is started.
+1. The queue triggered function will receive the `TriggerMessage` and process it with NServiceBus.
 1. The NServiceBus message handler for `TriggerMessage` sends a `FollowUpMessage`.
-1. The Azure Function will receive the `FollowUpMessage` and process it with NServiceBus.
+1. The queue triggered function will receive the `FollowUpMessage` and process it with NServiceBus.
 
 ## Code walk-through
 
