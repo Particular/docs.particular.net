@@ -145,7 +145,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.7.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | 2020-11-24     | -                 | -                                 |
+| [1.8.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.8.0) | 2020-12-24     | -                 | -                                 |
+| [1.7.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | 2020-11-24     | 2021-03-24        | Superseded by 1.8.x               |
 | [1.6.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.6.0) | 2020-11-02     | 2021-02-24        | Superseded by 1.7.x               |
 | [1.5.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.1) | 2020-04-16     | 2021-02-02        | Superseded by 1.6.x               |
 | [~~1.4.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.4.0) | ~~2019-12-05~~ | ~~2020-07-16~~    | ~~Superseded by 1.5.x~~           |
@@ -234,7 +235,7 @@ No versions released.
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.4.0) | 2020-10-08     | -                 | -                                 |
-| [2.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.3.0) | 2020-06-30     | 2021-01-08        | Superseded by 2.4.x               |
+| [~~2.3.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.3.0) | ~~2020-06-30~~ | ~~2021-01-08~~    | ~~Superseded by 2.4.x~~           |
 | [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.2.0) | ~~2020-01-15~~ | ~~2020-09-30~~    | ~~Superseded by 2.3.x~~           |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.1.2) | ~~2018-12-12~~ | ~~2020-04-15~~    | ~~Superseded by 2.2.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.0.0) | ~~2018-05-29~~ | ~~2019-03-12~~    | ~~Superseded by 2.1.x~~           |
@@ -710,7 +711,7 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/3.0.4) | 2018-06-07     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/3.0.6) | 2018-06-07     | -                 | -                                 |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/2.1.3) | 2018-05-23     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/2.0.1) | ~~2017-12-12~~ | ~~2018-08-23~~    | ~~Superseded by 2.1.x~~           |
 | [~~1.3.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/1.3.1) | ~~2018-05-23~~ | ~~2018-10-11~~    | ~~Bounded by NServiceBus 5.2.x~~  |
@@ -779,9 +780,10 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.21.x](https://www.nuget.org/packages/Particular.PlatformSample/1.21.0) | 2020-10-20     | -                 | -                                 |
+| [1.23.x](https://www.nuget.org/packages/Particular.PlatformSample/1.23.0) | 2020-12-18     | -                 | -                                 |
+| [1.21.x](https://www.nuget.org/packages/Particular.PlatformSample/1.21.0) | 2020-10-20     | 2021-03-18        | Superseded by 1.23.x              |
 | [1.20.x](https://www.nuget.org/packages/Particular.PlatformSample/1.20.0) | 2020-09-28     | 2021-01-20        | Superseded by 1.21.x              |
-| [1.19.x](https://www.nuget.org/packages/Particular.PlatformSample/1.19.0) | 2020-08-17     | 2020-12-28        | Superseded by 1.20.x              |
+| [~~1.19.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.19.0) | ~~2020-08-17~~ | ~~2020-12-28~~    | ~~Superseded by 1.20.x~~          |
 | [~~1.18.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.18.0) | ~~2020-07-06~~ | ~~2020-11-17~~    | ~~Superseded by 1.19.x~~          |
 | [~~1.17.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.17.0) | ~~2020-06-08~~ | ~~2020-10-06~~    | ~~Superseded by 1.18.x~~          |
 | [~~1.16.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.16.0) | ~~2020-06-01~~ | ~~2020-09-08~~    | ~~Superseded by 1.17.x~~          |
