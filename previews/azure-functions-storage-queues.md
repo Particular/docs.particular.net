@@ -4,7 +4,7 @@ component: ASQFunctions
 summary: Hosting NServiceBus endpoints with Azure Functions triggered by Azure Storage Queus
 related:
  - samples/previews/azure-functions/storage-queues
-reviewed: 2020-11-09
+reviewed: 2021-01-13
 ---
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/).
@@ -25,6 +25,16 @@ snippet: asq-alternative-endpoint-setup
 
 snippet: asq-function-definition
 
+### Dispatching outside a message handler
+
+Messages can be dispatched outside a message handler in functions activated by queue and non-queue based triggers.
+
+snippet: asq-static-dispatching-outside-message-handler
+
+Note: For statically defined endpoints, dispatching outside a message handler within a non-queue triggered function will require a separate send-only endpoint.
+
+snippet: asq-static-trigger-endpoint
+
 ## IFunctionsHostBuilder usage
 
 As an alternative to the configuration approach described in the previous section, an endpoint can also be configured with a static `IFunctionEndpoint` field using the `IFunctionsHostBuilder` API as described in [Use dependency injection in .NET Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection). 
@@ -42,6 +52,12 @@ Any services registered via the `IFunctionsHostBuilder` will be available to mes
 To access `IFunctionEndpoint` from the Azure Function trigger, inject the `IFunctionEndpoint` via constructor-injection into the containing class:
 
 snippet: asq-function-hostbuilder-trigger
+
+### Dispatching outside a message handler
+
+Triggering a message using HTTP function:
+
+snippet: asq-dispatching-outside-message-handler
 
 ## Configuration
 

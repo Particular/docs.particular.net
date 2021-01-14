@@ -96,6 +96,40 @@ class StaticUsage
 
         #endregion
     }
+
+    public static class HttpSender
+    {
+        #region asq-static-dispatching-outside-message-handler
+
+        [FunctionName("HttpSender")]
+        public static async Task<IActionResult> Run(
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest request, ExecutionContext executionContext, ILogger logger)
+        {
+            logger.LogInformation("C# HTTP trigger function received a request.");
+
+            var sendOptions = new SendOptions();
+            sendOptions.SetDestination("DestinationEndpointName");
+
+            await functionEndpoint.Send(new TriggerMessage(), sendOptions, executionContext, logger);
+
+            return new OkObjectResult($"{nameof(TriggerMessage)} sent.");
+        }
+
+        #endregion
+    }
+
+    #region asq-static-trigger-endpoint
+
+    private static readonly IFunctionEndpoint functionEndpoint = new FunctionEndpoint(executionContext =>
+    {
+        var configuration = new StorageQueueTriggeredEndpointConfiguration("HttpSender");
+
+        configuration.AdvancedConfiguration.SendOnly();
+
+        return configuration;
+    });
+
+    #endregion
 }
 
 internal class AzureStoragePersistence : PersistenceDefinition { }
