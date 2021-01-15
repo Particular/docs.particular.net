@@ -213,10 +213,10 @@ List the existing IAM policy on the input queue of an endpoint using:
 
 ```
 sqs-transport endpoint subscribe [name] list-policy
-                              [--access-key-id]
-                              [--secret]
-                              [--region]
-                              [--prefix]
+                                        [--access-key-id]
+                                        [--secret]
+                                        [--region]
+                                        [--prefix]
 ```
 
 #### arguments
