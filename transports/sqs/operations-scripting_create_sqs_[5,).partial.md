@@ -197,7 +197,7 @@ sqs-transport endpoint set-policy [name] wildcard
 
 `-nc` | `--namespace-condition` : Allow all messages from any message in the specified namespaces to pass.
 
-`-revt` | `--remove-event-type` : Existing event type conditions on the policy will not be removed by default. Specify this option to remove an existing event type conditions, can be repeated multiple times to remove multiple event types.
+`-revt` | `--remove-event-type` : Existing event type conditions on the policy will not be removed by default. Specify this option to remove an existing event type conditions in case they are covered by the wildcard policy implicitely. Can be repeated multiple times to remove multiple event types.
  
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
