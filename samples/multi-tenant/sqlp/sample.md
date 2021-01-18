@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence in multi-tenant system
 summary: Configure SQL Persistence to support multi-tenant scenarios.
-reviewed: 2019-03-18
+reviewed: 2021-01-18
 component: SqlPersistence
 related:
 - persistence/sql
