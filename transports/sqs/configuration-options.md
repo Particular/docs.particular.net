@@ -83,4 +83,6 @@ partial: delayeddelivery
 
 partial: topics
 
+partial: policy
+
 partial: message-driven-pubsub-compatibility-mode
