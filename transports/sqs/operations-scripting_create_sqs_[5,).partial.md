@@ -201,9 +201,9 @@ sqs-transport endpoint set-policy [name] wildcard
  
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
-`-s` | `--secret` : Overrides the environment variable 'AWS_REGION'
+`-s` | `--secret` : Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'
 
-`-r` | `--region`: Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'
+`-r` | `--region`: Overrides the environment variable 'AWS_REGION'
 
 `-p` | `--prefix`: Prefix to prepend to the topic provisioned for the event type and the subscribing queue
 
