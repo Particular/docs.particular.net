@@ -159,7 +159,7 @@ sqs-transport endpoint set-policy [name] events
 
 #### options
 
-`-evt` | `--event-type` : Full name of the event allow through the IAM policy (e.g. MyNamespace.MyMessage), can be repeated multiple times to allow multiple event types to pass.
+`-evt` | `--event-type` : Full name of the event allowed through the IAM policy (e.g. MyNamespace.MyMessage), can be repeated multiple times to allow multiple event types to pass.
  
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
