@@ -1,6 +1,6 @@
 ---
 title: ServicePulse
-reviewed: 2019-03-19
+reviewed: 2021-01-19
 component: ServicePulse
 isLearningPath: true
 related:
@@ -65,7 +65,13 @@ The monitoring view shows an overview of all logical endpoints in a system showi
 
 Failed messages are indicated in the ServicePulse dashboard by a red icon showing the number of failing messages.
 
-The Failed Messages tab allows inspection of failed messages in more detail and to react to failures (by manually retrying or deleting messages). The messages are grouped by the exception type and the exception message to simplify group actions.
+The Failed Messages tab allows inspection of failed messages in more detail and to react to failures (by manually retrying or deleting messages). The messages are grouped by:
+
+* The exception type
+* The exception message
+* The endpoint name
+* The endpoint instance ID
+* The queue address
 
 **Learn more:**
 
