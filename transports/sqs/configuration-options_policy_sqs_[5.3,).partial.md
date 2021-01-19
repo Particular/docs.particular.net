@@ -25,6 +25,8 @@ The transport creates one policy statement with a combined condition for all eve
 }
 ```
 
+The combined condition is extended when an endpoint manually subscribes to an event type by calling [`session.Subscribe<CustomEvent>()`](nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md). Unsubscribing does not modify the policy on the endpoint's input queue.
+
 ### Wildcards
 
 #### Acount condition
