@@ -1,7 +1,7 @@
 ---
 title: Native integration
 summary: Considerations when integrating NServiceBus endpoints with native RabbitMQ publishers and consumers.
-reviewed: 2019-03-19
+reviewed: 2021-01-19
 component: rabbit
 versions: '[2,]'
 related:
