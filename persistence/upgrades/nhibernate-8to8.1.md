@@ -6,7 +6,6 @@ component: NHibernate
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
- - 7
 ---
 
 
