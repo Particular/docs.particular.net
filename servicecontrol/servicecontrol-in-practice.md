@@ -13,7 +13,6 @@ Each capability and plugin should be considered carefully for each environment t
 
 Here are some considerations when installing and deploying ServiceControl for better performance.
 
-
 ## Hardware & installation considerations:
 
 Read the [general hardware recommendations](/servicecontrol/servicecontrol-instances/hardware.md) for more details.
@@ -32,11 +31,9 @@ NOTE: If message auditing is required without the use of ServiceInsight, configu
 
 Turn off [audit forwarding](/servicecontrol/errorlog-auditlog-behavior.md) if it is not needed. ServiceControl sends a copy of each audited message to a configured audit forwarding queue. If these messages are not being used, turn this feature off.
 
-
 ## Plugin considerations
 
 [Plugins](/servicecontrol/plugins/) are installed in an endpoint and send data to ServiceControl. This communication uses messaging over the configured transport of the endpoint. Each instance of a plugin adds more messages to the ServiceControl queue which can delay the processing of each message and make ServiceControl less responsive.
-
 
 ### Heartbeats
 
@@ -44,11 +41,9 @@ Not all endpoints are mission critical and need to be monitored with [heartbeats
 
 Heartbeat messages tend to be frequent, and a large backlog can occur if ServiceControl is offline for an extended period. When this happens, it can take ServiceControl some time to process old heartbeats when it restarts.
 
-
 ### Saga audit
 
 The [Saga Audit](/servicecontrol/plugins/saga-audit.md) can add significant load on ServiceControl due to volume of messages it sends but is invaluable when diagnosing issues with Saga behavior. In order to use it in the production environment make sure to use ServiceControl 4.13.0 or later and configure the Saga Audit plugin to send messages to the `audit` queue. If necessary consider [scaling out the audit processing](/servicecontrol/servicecontrol-instances/distributed-instances.md).
-
 
 ## Performance considerations
 
@@ -56,18 +51,28 @@ Run a performance test using the expected peak and average message throughput fo
 
 Once this baseline has been established, follow these steps:
 
- * Install and configure the Heartbeat plugin in each endpoint where it is needed. Re-run the performance test suite and monitor ServiceControl to ensure that it can effectively monitor the system under load. This may require adjustments to the Heartbeat interval. Re-run the performance tests after each adjustment.
- * Turn on auditing for each endpoint that needs it and re-run the performance tests to assess impact.
- * For each endpoint, turn on any required custom checks and re-run the performance tests to assess impact.
+* Install and configure the Heartbeat plugin in each endpoint where it is needed. Re-run the performance test suite and monitor ServiceControl to ensure that it can effectively monitor the system under load. This may require adjustments to the Heartbeat interval. Re-run the performance tests after each adjustment.
+* Turn on auditing for each endpoint that needs it and re-run the performance tests to assess impact.
+* For each endpoint, turn on any required custom checks and re-run the performance tests to assess impact.
 
 When an infrastructure outage occurs in a production environment it's possible that every message processed on every endpoint may end up in the error queue. It can take ServiceControl some time to ingest all of these messages. Once ingested, a bulk retry operation will consume additional network and disk I/O above the usual requirements. It is important to simulate these conditions as a part of performance testing to ensure that these times and resources are accounted for in recovery plans.
-
 
 ## Anti-virus checks
 
 Exclude the ServiceControl [database directory](/servicecontrol/configure-ravendb-location.md) from anti-virus checks. ServiceControl uses an embedded database and produces a high level of I/O traffic. Some anti-virus software can add overhead to I/O operations causing a significant performance impact.
 
-
 ## Version downgrades
 
 Do not downgrade releases of ServiceControl. ServiceControl uses an embedded database and changes to the internal data structures can occur between releases. Rolling back may cause index corruption or data loss. Perform testing in a lower environment before upgrading in production environments.
+
+## Server monitoring
+
+It is recommended to monitor the following metrics on the server hosting ServiceControl instance:
+
+* CPU usage
+* Memory available
+* Diskspace free
+* Disk queue length
+* Disk read/write/total IO
+
+These metrics can be viewed using *Resource Monitor* but it is advised to use server monitoring that durably stores historic data.
