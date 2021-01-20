@@ -3,6 +3,7 @@ using Amazon.SQS.Model;
 using NServiceBus;
 using NServiceBus.Logging;
 
+#region HandlerAccessingNativeMessage
 public class SomeNativeMessageHandler : IHandleMessages<SomeNativeMessage>
 {
     static ILog log = LogManager.GetLogger<SomeNativeMessageHandler>();
@@ -16,9 +17,10 @@ public class SomeNativeMessageHandler : IHandleMessages<SomeNativeMessage>
 
         if (nativeAttributeFound)
         {
-            log.Info($"Found attribute 'SomeRandomKey' with value '{randomAttributeKey}'");
+            log.Info($"Found attribute 'SomeRandomKey' with value '{randomAttributeKey.StringValue}'");
         }
 
         return Task.CompletedTask;
     }
 }
+#endregion

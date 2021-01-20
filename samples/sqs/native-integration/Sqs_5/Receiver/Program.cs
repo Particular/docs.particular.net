@@ -7,12 +7,14 @@ class Program
     static async Task Main()
     {
         Console.Title = "Samples.Sqs.SimpleReceiver";
+        Console.Write(typeof(SomeNativeMessage).FullName);
         var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.SimpleReceiver");
         endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        transport.S3("bucketname", "my/key/prefix");
 
-
+        #region RegisterBehaviorInPipeline
+        endpointConfiguration.Pipeline.Register(new AccessToAmazonSqsNativeMessageBehavior(), "access-to-native-msg");
+        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press any key to exit");

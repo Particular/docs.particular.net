@@ -13,12 +13,28 @@ class Program
     {
         Console.Title = "Samples.Sqs.NativeIntegration";
 
-        await SendTo(new Dictionary<string, MessageAttributeValue>
-        {
-            {"MessageTypeFullName", new MessageAttributeValue {DataType = "String", StringValue = "NativeIntegration.Receiver.SomeNativeMessage"}}, // required for native integration
-            //{"S3BodyKey", new MessageAttributeValue {DataType = "String", StringValue = "s3bodykey"}}, // optional for native integration
-            {"SomeRandomKey", new MessageAttributeValue {DataType = "String", StringValue = "something-random"}},
-        }, MessageToSend);
+        while (true) {
+            Console.WriteLine("Enter 'S' to send a message, enter 'exit' to stop");
+            var line = Console.ReadLine(); // Get string from user
+            if (line == "exit") // Check string
+            {
+                break;
+            }
+
+            if (line == "S")
+            {
+                #region SendingANativeMessage
+                await SendTo(new Dictionary<string, MessageAttributeValue>
+                {
+                    {"MessageTypeFullName", new MessageAttributeValue {DataType = "String", StringValue = "SomeNativeMessage"}}, // required for native integration
+                    //{"S3BodyKey", new MessageAttributeValue {DataType = "String", StringValue = "s3bodykey"}}, // optional for native integration
+                    {"SomeRandomKey", new MessageAttributeValue {DataType = "String", StringValue = "something-random"}},
+                    {"AnotherRandomKey", new MessageAttributeValue {DataType = "String", StringValue = "something-else-thats-random"}},
+                }, MessageToSend);
+                #endregion
+                Console.WriteLine("Message was sent.");
+            }
+        }
     }
 
     public static async Task SendTo(Dictionary<string, MessageAttributeValue> messageAttributeValues, string message)
