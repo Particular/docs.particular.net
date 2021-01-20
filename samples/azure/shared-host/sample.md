@@ -37,7 +37,7 @@ Results sorted by Timestamp
 
 NOTE: To inspect multi-host role emulated file system navigate to `C:\Users\%USERNAME%\AppData\Local\dftmp\Resources`
 
-Azure Compute Emulator leaves any processes spawned at run time in memory. Kill those once done with emulated Cloud Service execution by locating `WaWorkerHost.exe` process and killing all child processes named `NServiceBus.Hosting.Azure.HostProcess.exe`. Number of those processes will equal the number of endpoints (which in this case eqals 2) multiplied by the number of times Cloud Service was executed.
+Azure Compute Emulator leaves any processes spawned at run time in memory. Kill those once done with emulated Cloud Service execution by locating `WaWorkerHost.exe` process and killing all child processes named `NServiceBus.Hosting.Azure.HostProcess.exe`. Number of those processes will equal the number of endpoints (which in this case equals 2) multiplied by the number of times Cloud Service was executed.
 
 Cloud Service emulator can also be stopped from Compute Emulator UI. Compute Emulator UI can be accessed via try icon on the taskbar. Within Compute Emulator UI, under `Service Deployments` tree select a deployment, right click and select `Remove` option. This will stop Cloud Service without leaving any processes in memory.
 
@@ -59,18 +59,18 @@ Sender project defines message mapping instructing NServiceBus to send `Ping` co
 
 snippet: AzureMultiHost_MessageMapping
 
-When endpoint is started, `Ping` command is sent and a log entry is written to Azure Storage Tables (see Shared project for details on the log generation).
+When the endpoint is started, a `Ping` command is sent and a log entry is written to Azure Storage Tables (see the Shared project for details on the log generation).
 
 snippet: AzureMultiHost_SendPingCommand
 
-Sender defines a handler for messages of type `Pong` and writes into the log when such a message arrives.
+Sender defines a handler for messages of type `Pong` and writes to the log when a message of this type arrives.
 
 snippet: AzureMultiHost_PongHandler
 
 
 ### Receiver project
 
-Receiver project has a handler for `Ping` commands and it writes into the  log when such a message arrives. It also replies to the originator with the `Pong` message.
+Receiver project has a handler for `Ping` commands and it writes to the log when such a message arrives. It also replies to the originator with the `Pong` message.
 
 snippet: AzureMultiHost_PingHandler
 

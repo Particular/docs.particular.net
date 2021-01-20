@@ -40,18 +40,18 @@ NOTE: `AzureFunctions.ASBTrigger.FunctionsHostBuilder` and `AzureFunctions.ASBTr
 
 ## Running the sample
 
-Each functions project contains two functions:
-1. Service Bus triggered function.
-1. HTTP triggered function.
+Each Functions project contains two functions:
+1. Service Bus-triggered function.
+1. HTTP-triggered function.
 
 Running the sample will launch the **Azure Functions runtime** window.
 
 To try the Azure Function:
 
 1. Open a browser and navigate to `http://localhost:7071/api/HttpSender`. The port number might be different and will be indicated when the function project is started.
-1. The queue triggered function will receive the `TriggerMessage` and process it with NServiceBus.
+1. The queue-triggered function will receive the `TriggerMessage` and process it with NServiceBus.
 1. The NServiceBus message handler for `TriggerMessage` sends a `FollowUpMessage`.
-1. The queue triggered function will receive the `FollowUpMessage` and process it with NServiceBus.
+1. The queue-triggered function will receive the `FollowUpMessage` and process it with NServiceBus.
 
 ## Code walk-through
 

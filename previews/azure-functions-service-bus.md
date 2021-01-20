@@ -31,11 +31,11 @@ NServiceBus interacts directly with the Azure Functions logging infrastructure b
 
 ### Dispatching outside a message handler
 
-Messages can be dispatched outside a message handler in functions activated by queue and non-queue based triggers.
+Messages can be dispatched outside a message handler in functions activated by queue- and non-queue-based triggers.
 
 snippet: asb-static-dispatching-outside-message-handler
 
-Note: For statically defined endpoints, dispatching outside a message handler within a non-queue triggered function will require a separate send-only endpoint.
+Note: For statically-defined endpoints, dispatching outside a message handler within a non-queue-triggered function will require a separate send-only endpoint.
 
 snippet: asb-static-trigger-endpoint
 
