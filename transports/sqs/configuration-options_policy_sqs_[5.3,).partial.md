@@ -2,7 +2,7 @@
 
 include: configuration-options-policy-intro
 
-The transport creates one policy statement with a combined condition for all events it subscribes to. An example policy for the above two subscribed events would look like the following:
+The transport creates one policy statement with a combined condition for all events it subscribes to. An example policy for the events described above would look as follows:
 
 ```json
 {
@@ -37,13 +37,13 @@ snippet: wildcard-account-condition
 
 #### Prefix condition
 
-Allow all messages from any topic with prefix to pass. No value needs to be provided, prefix from the [topic name prefix option](#topicnameprefix) will be used.
+Allow all messages from any topic with the prefix to pass. No value needs to be provided, the prefix from the [topic name prefix option](#topicnameprefix) will be used.
 
 snippet: wildcard-prefix-condition
 
 #### Namespace condition
 
-Allow all messages from any message in the specified namespaces to pass.
+Allow all messages in the specified namespaces to pass.
 
 snippet: wildcard-namespace-condition
 

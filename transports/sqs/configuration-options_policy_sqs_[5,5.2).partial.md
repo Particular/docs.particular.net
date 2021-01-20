@@ -2,7 +2,7 @@
 
 include: configuration-options-policy-intro
 
-The transport creates a policy statement with per events it subscribes to. An example policy for the above two subscribed events would look like the following:
+The transport creates a policy statement per event it subscribes to. An example policy for the event subscriptions described here above would look as follows:
 
 ```json
 {
