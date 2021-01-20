@@ -20,7 +20,7 @@ First, it will be intercepted in the incoming logical message context as there i
 
 snippet: BehaviorAccessingNativeMessage
 
-To register this behavior:
+The code to register the above behavior:
 
 snippet: RegisterBehaviorInPipeline
 
@@ -29,4 +29,3 @@ Then the handler is invoked. The handler code can also access the native message
 Note: The message attribute `MessageTypeFullName` will not be available anymore in the MessageAttributes collection. Instead it is now part of the Headers collection.
 
 snippet: HandlerAccessingNativeMessage
-
