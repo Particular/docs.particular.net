@@ -63,6 +63,9 @@ class Usage
         var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Sagas>();
         persistence.ConnectionString("connectionString");
 
+        // Disable secondary index
+        persistence.Compatibility().DisableSecondaryKeyLookupForSagasCorrelatedByProperties();
+
         endpointConfiguration.EnableInstallers();
 
         #endregion
