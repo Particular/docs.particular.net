@@ -1,5 +1,5 @@
 ---
-title: Upgrade from Azure Storage persistence Version 1 to Version 2
+title: Azure Table Storage Upgrade Version 1 to 2
 summary: Instructions on how to migrate from Azure Storage Persistence version 1 to version 2
 reviewed: 2020-08-17
 component: ASP

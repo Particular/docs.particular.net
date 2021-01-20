@@ -917,18 +917,16 @@
     Articles:
     - Title: Azure Table
       Articles:
-      - Url: persistence/upgrades/asp-3to4
-        Title: Version 3 to 4
       - Url: persistence/upgrades/asp-2to3
         Title: Version 2 to 3
       - Url: persistence/upgrades/asp-1to2
         Title: Version 1 to 2
       - Url: persistence/upgrades/asp-6to1
-        Title: NServiceBus.Azure Version 6 to Version 1
+        Title: Legacy Version 6 to Version 1
       - Url: persistence/upgrades/asp-saga-pruning
-        Title: Version 6.2.4 to 6.2.5
+        Title: Legacy Version 6.2.4 to 6.2.5
       - Url: persistence/upgrades/asp-saga-deduplication
-        Title: Version 6.2.3 to 6.2.4
+        Title: Legacy Version 6.2.3 to 6.2.4
     - Title: NHibernate
       Articles:
       - Url: persistence/upgrades/nhibernate-8to9
