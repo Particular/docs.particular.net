@@ -6,6 +6,7 @@ component: rabbit
 versions: '[2,]'
 related:
  - nservicebus/messaging/message-identity
+ - samples/rabbitmq/native-integration
 redirects:
  - nservicebus/rabbitmq/message-id-strategy
  - transports/rabbitmq/message-id-strategy
