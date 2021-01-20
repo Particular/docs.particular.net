@@ -8,8 +8,8 @@ versions: '[5.3,]'
 
 This document describes how to consume messages from and send messages to non-NServiceBus endpoints via Amazon SQS in integration scenarios.
 
-### Access to the native Amazon SQS message details
+### Accessing the native Amazon SQS message
 
-It can sometimes be useful to access the native Amazon SQS message from behaviors and handlers. When a message is received, the transport adds the native message [`Amazon.SQS.Model.Message`](https://docs.aws.amazon.com/sdkfornet/v3/apidocs/items/SQS/TMessage.html) to the message processing context. Use the code below to access the message details from a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md):
+It is sometimes useful to access the native Amazon SQS message from behaviors and handlers. When a message is received, the transport adds the native message, an instance of [`Amazon.SQS.Model.Message`](https://docs.aws.amazon.com/sdkfornet/v3/apidocs/items/SQS/TMessage.html), to the message processing context. For example, the native message may be accessed from a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md):
 
 snippet: sqs-access-to-native-message
