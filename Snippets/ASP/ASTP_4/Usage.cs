@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Azure.Cosmos.Table;
 using NServiceBus;
 
 class Usage
@@ -58,15 +59,27 @@ class Usage
 
     void CustomizingAzurePersistenceSagas(EndpointConfiguration endpointConfiguration)
     {
+        CloudTableClient cloudTableClient = null;
+
         #region AzurePersistenceSagasCustomization
 
         var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Sagas>();
         persistence.ConnectionString("connectionString");
+        // or
+        persistence.UseCloudTableClient(cloudTableClient);
 
-        // Disable secondary index
-        persistence.Compatibility().DisableSecondaryKeyLookupForSagasCorrelatedByProperties();
+        #endregion
+    }
 
-        endpointConfiguration.EnableInstallers();
+    void CustomizingAzurePersistenceSagasCompatibility(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzurePersistenceSagasCompatibility
+
+        var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Sagas>();
+
+        var compatibility = persistence.Compatibility();
+        // e.g. Disable secondary index
+        compatibility.DisableSecondaryKeyLookupForSagasCorrelatedByProperties();
 
         #endregion
     }
