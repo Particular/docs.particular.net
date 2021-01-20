@@ -26,6 +26,6 @@ snippet: RegisterBehaviorInPipeline
 
 Then the handler is invoked. The handler code can also access the native message and its attributes.
 
-Note: The message attribute `MessageTypeFullName` will not be available anymore in the MessageAttributes collection. Instead it is now part of the Headers collection.
+Note: The message attribute `MessageTypeFullName` might not be available anymore in the MessageAttributes collection in recoverability scenarios. Instead, it will be part of the Headers collection.
 
 snippet: HandlerAccessingNativeMessage
