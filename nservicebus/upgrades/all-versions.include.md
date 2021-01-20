@@ -37,8 +37,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.2.0) | 2020-10-20     | -                 | -                                 |
-| [5.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.1) | 2020-08-24     | 2021-01-20        | Superseded by 5.2.x               |
+| [5.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.3.0) | 2021-01-20     | -                 | -                                 |
+| [5.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.2.1) | 2020-10-20     | 2021-04-20        | Superseded by 5.3.x               |
+| [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.2) | ~~2020-08-24~~ | ~~2021-01-20~~    | ~~Superseded by 5.2.x~~           |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | ~~2020-04-27~~ | ~~2020-11-24~~    | ~~Superseded by 5.1.x~~           |
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.1) | 2019-11-27     | 2021-04-27        | Superseded by 5.0.x               |
 | [~~4.3.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.3.5) | ~~2019-02-22~~ | ~~2020-02-27~~    | ~~Superseded by 4.4.x~~           |
@@ -782,7 +783,7 @@ No versions released.
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.23.x](https://www.nuget.org/packages/Particular.PlatformSample/1.23.0) | 2020-12-18     | -                 | -                                 |
 | [1.21.x](https://www.nuget.org/packages/Particular.PlatformSample/1.21.0) | 2020-10-20     | 2021-03-18        | Superseded by 1.23.x              |
-| [1.20.x](https://www.nuget.org/packages/Particular.PlatformSample/1.20.0) | 2020-09-28     | 2021-01-20        | Superseded by 1.21.x              |
+| [~~1.20.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.20.0) | ~~2020-09-28~~ | ~~2021-01-20~~    | ~~Superseded by 1.21.x~~          |
 | [~~1.19.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.19.0) | ~~2020-08-17~~ | ~~2020-12-28~~    | ~~Superseded by 1.20.x~~          |
 | [~~1.18.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.18.0) | ~~2020-07-06~~ | ~~2020-11-17~~    | ~~Superseded by 1.19.x~~          |
 | [~~1.17.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.17.0) | ~~2020-06-08~~ | ~~2020-10-06~~    | ~~Superseded by 1.18.x~~          |
