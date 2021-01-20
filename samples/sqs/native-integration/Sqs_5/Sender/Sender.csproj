@@ -5,8 +5,8 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK.S3" Version="3.5.7.6" />
-    <PackageReference Include="AWSSDK.SQS" Version="3.5.1.8" />
+    <PackageReference Include="AWSSDK.S3" Version="3.5.*" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.5.*" />
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
   </ItemGroup>
 </Project>

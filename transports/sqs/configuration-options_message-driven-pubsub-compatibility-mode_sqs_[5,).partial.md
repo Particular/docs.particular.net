@@ -1,4 +1,4 @@
-### Message driven pub/sub compatibility mode
+## Message driven pub/sub compatibility mode
 
 To gradually move an existing system from message driven pub/sub to native pub/sub using SNS, it's possible to enable message-driven pub/sub compatibility mode.
 
