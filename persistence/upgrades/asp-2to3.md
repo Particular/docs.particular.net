@@ -1,5 +1,5 @@
 ---
-title: Azure Table Storage Upgrade Version 2 to 3
+title: Azure Storage Persistence Upgrade Version 2 to 3
 summary: Instructions on how to migrate from Azure Storage Persistence v2 to Azure Table Persistence version 3
 reviewed: 2020-11-06
 component: ASP
