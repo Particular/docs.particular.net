@@ -1,7 +1,7 @@
 ---
 title: Near Real-Time Transient Clients
 summary: How to relay NServiceBus events to occasionally-connected clients via SignalR.
-reviewed: 2019-03-22
+reviewed: 2021-01-21
 component: Core
 related: 
  - nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
@@ -9,7 +9,7 @@ related:
  - samples/showcase
 ---
 
-NOTE: SignalR can be used in a variety of ways. Browse the official [SignalR tutorials](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?tabs=visual-studio&view=aspnetcore-2.2) and [SignalR samples](https://github.com/aspnet/SignalR-samples) for information on how to use SignalR. This document focusses on how to relay NServiceBus events to SignalR clients.
+NOTE: SignalR can be used in a variety of ways. Browse the official [SignalR tutorials](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?tabs=visual-studio&view=aspnetcore-2.2) and [SignalR samples](https://github.com/aspnet/SignalR-samples) for information on how to use SignalR. This document focuses on how to relay NServiceBus events to SignalR clients.
 
 For near real-time, occasionally connected clients, messages are only relevant for a short period of time. Clients that received near real-time stock ticker updates are a common example of these types of clients.
 
@@ -23,19 +23,15 @@ This sample demonstrates how to use a SignalR server, which also acts as an NSer
 
 ## Project structure
 
-Before running the sample, review the solution structure, the projects, and the classes. The projects `Publisher` and `ClientHub` are command-line applications that host an instance of NServiceBus.
+Before running the sample, review the solution structure, the projects, and the classes. The `Publisher` and `ClientHub` projects are command-line applications that host an instance of NServiceBus.
 
 The `ClientHub` project also hosts a SignalR server. The `Client` project is a command-line application that hosts a SignalR client.
 
-
-
 ## Sharing message types with SignalR
 
-The `StockEvents` project contains the definition a message class that is shared with both NServiceBus endpoints, the SignalR hub, and the SignalR client. Open "StockTick" to see the message that will be published by this sample. Note that this event is defined using [unobtrusive mode message conventions](/nservicebus/messaging/unobtrusive-mode.md), allowing the `Client` project, which only uses SignalR, to reference the message type without requiring a reference to NServiceBus.
+The `StockEvents` project contains the definition of a message class that is shared with both NServiceBus endpoints, the SignalR hub, and the SignalR client. Open "StockTick" to see the message that will be published by this sample. Note that this event is defined using [unobtrusive mode message conventions](/nservicebus/messaging/unobtrusive-mode.md), allowing the `Client` project, which only uses SignalR, to reference the message type without requiring a reference to NServiceBus.
 
 snippet: MessageConventionsForNonNSB
-
-
 
 ## Hosting SignalR with NServiceBus
 
@@ -47,11 +43,11 @@ The sample shows how to host a self-hosted SignalR 2 server side-by-side with an
 
 The `ClientHub` project subscribes to the `StockTick` event published by `Publisher`. 
 
-`StockTickHub` defines an `async` method, `ForwardStockTick` that sends the `StockTick` message to the connected SignalR clients.
+`StockTickHub` defines an `async` method - `PushStockTick` - that sends the `StockTick` message to the connected SignalR clients.
 
 snippet: StockTickHub
 
-When the `StockTick` event is handled, it invokes the `ForwardStockTick` method on the `StockTickHub`.
+When the `StockTick` event is handled, it invokes the `PushStockTick` method on the `StockTickHub`.
 
 snippet: StockTickHandler
 
