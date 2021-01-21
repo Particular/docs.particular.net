@@ -1,7 +1,7 @@
 ---
 title: Msmq-to-SQL Relay
 summary: How to set up a SQL relay to receive events from an MSMQ publisher.
-reviewed: 2019-03-22
+reviewed: 2021-01-21
 component: MsmqTransport
 related:
 - transports
@@ -21,7 +21,7 @@ The solution consists of an endpoint that publishes MSMQ messages, an endpoint t
 
 ## Shared
 
-This project contains the schema for the events that will be published by `MsmqPublisher` endpoint. It contains an event called `SomethingHappened`:
+This project contains the schema for the events that will be published by the `MsmqPublisher` endpoint. It contains an event called `SomethingHappened`:
 
 snippet: event
 
@@ -29,7 +29,7 @@ snippet: event
 ## MsmqPublisher
 
  * This endpoint uses MSMQ as the transport. It publishes events every time <kbd>enter</kbd> is pressed.
- * This endpoint uses the NHibernate persister. It uses a database called `PersistenceForMsmqTransport` for the persistence. Use the script `CreateDatabase.sql` contained in this project to create the `PersistenceForMsmqTransport` database and the tables required for NHibernatePersistence. Alternatively, running the MsmqPublisher within Visual Studio in debug mode will also create the necessary tables for subscription and timeout storage.
+ * This endpoint uses the NHibernate persister. It uses a database called `PersistenceForMsmqTransport` for the persistence. Use the script `CreateDatabase.sql` contained in this project to create the `PersistenceForMsmqTransport` database as well as the tables required for NHibernatePersistence. Alternatively, running the MsmqPublisher within Visual Studio in debug mode will also create the necessary tables for subscription and timeout storage.
 
 snippet: CreateDatabase
 
@@ -55,9 +55,9 @@ snippet: AddSubscriber
 
 ## NativeMsmqToSql
 
-`NativeMsmqToSql` is a program that reads messages from a queue using native Messaging MSMQ API and uses SqlClient API to write information in the corresponding SQL table for the `SqlRelay` endpoint.
+`NativeMsmqToSql` is a program that reads messages from a queue using native Messaging MSMQ API and uses the SqlClient API to write information in the corresponding SQL table for the `SqlRelay` endpoint.
 
-Since this is not an NServiceBus endpoint, create the required transactional queue named `MsmqToSqlRelay`.
+Since this is not an NServiceBus endpoint, the required transactional queue named `MsmqToSqlRelay` must be created manually.
 
 
 ### How does it work
@@ -66,20 +66,20 @@ When messages arrive in the `MsmqToSqlRelay` queue, they are read using the .NET
 
 snippet: receive-from-msmq-using-native-messaging
 
-When a message arrives at the queue, the body and the header of the message is extracted and [using the SQL Client API](/transports/sql/operations-scripting.md), the information is stored in the SQL table, `SqlRelay`. 
+When a message arrives at the queue, the body and the header of the message is extracted and the information is stored in the SQL table, `SqlRelay` [using the SQL Client API](/transports/sql/operations-scripting.md).
 
 snippet: read-message-and-push-to-sql
 
 
 ## SqlRelay
 
- * This endpoint uses the SQL transport with a database called `PersistenceForSqlTransport`. Use the script `CreateDatabase.sql` contained in this project to create the `PersistenceForSqlTransport` database.
+This endpoint uses the SQL transport with a database called `PersistenceForSqlTransport`. Use the script `CreateDatabase.sql` contained in this project to create the `PersistenceForSqlTransport` database.
 
 snippet: CreateDatabaseForSqlPersistence
 
- * References the `Shared` message schema.
- * Messages to this endpoint are written natively by the `NativeMsmqToSql` program. Since no SQL endpoint is publishing the events, this endpoint is configured to have its automatic subscription for events turned off.
- * Has a handler for the event that does a publish in the handler, so that downstream SQL subscribers can receive the event.
+ * This endpoint references the `Shared` message schema.
+ * Messages to this endpoint are written natively by the `NativeMsmqToSql` program. Since no SQL endpoint is publishing the events, this endpoint is configured to have automatic subscription for events turned off.
+ * This endpoint has a handler for the `SomethingHappened` event, which in turn does a publish within that handler so that downstream SQL subscribers can receive the event.
 
 
 ### The SqlRelay configuration
