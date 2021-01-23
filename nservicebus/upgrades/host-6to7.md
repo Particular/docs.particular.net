@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Host Upgrade Version 6 to 7
 summary: Instructions on how to upgrade NServiceBus host from version 6 to version 7
-reviewed: 2019-03-18
+reviewed: 2021-01-23
 component: Host
 related:
  - nservicebus/upgrades/5to6
@@ -24,7 +24,7 @@ These interfaces will be removed in version 8 of NServiceBus.Host. The logging c
 
 snippet: CustomHostLogging
 
-The way the runtime profile is detected will need to be re-created but the simple approach could be like this:
+The way the runtime profile is detected will need to be re-created but a simple approach could be like this:
 
 snippet: 6to7-ProfileForLogging
 
