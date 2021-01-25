@@ -136,8 +136,8 @@ NOTE: The listed endpoints will be in the escaped form that is used to prefix th
 
 For NHibernate (`nhb`) persistence:
 
-- `--nhbSource`: The connection string to the database
-- `--nhbDialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlDatabaseDialect` and `OracleDatabaseDialect`
+- `--source`: The connection string to the database
+- `--dialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlServer` and `Oracle`
 
 NOTE: The listed endpoints will be in the escaped form that is used to prefix the endpoints timeout table
 
