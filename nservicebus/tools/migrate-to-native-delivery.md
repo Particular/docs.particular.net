@@ -37,9 +37,10 @@ There are two reasons to use the `--cutoffTime` parameter:
 The current version of the tool supports the following persisters:
 
 - [SQL persistence](/persistence/sql/) using the SQL Server implementation
+- [NHibernate persistence](/persistence/nhibernate/) using the Sql Server and Oracle implementation
 - [RavenDB](/persistence/ravendb) versions 3.5.x and 4.x of the RavenDB database server
 
-NOTE: Additional persisters and targets will be added before NServiceBus version 8 is released. Namely Azure Storage and NHibernate Persistenc as sources and SQL Server, Azure Storage Queues and Amazon SQS transports as targets.
+NOTE: Additional persisters and targets will be added before NServiceBus version 8 is released. Namely Azure Storage as sources and SQL Server, Azure Storage Queues and Amazon SQS transports as targets.
 
 ## Supported transports
 
@@ -77,10 +78,15 @@ For RavenDB:
 - `--ravenVersion`: Allowed values are "3.5" and "4"
 - `--prefix`(optional): The prefix used for storage of timeouts. The default value is "TimeoutDatas"
 
-For SQL:
+For SQL persistence:
 
 - `--source`: The connection string to the database
 - `--dialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlServer`
+
+For NHibernate persistence:
+
+- `--nhbSource`: The connection string to the database
+- `--nhbDialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlDatabaseDialect` and `OracleDatabaseDialect`
 
 ### Transport options
 
@@ -120,6 +126,16 @@ migrate-timeouts preview sqlp
                         --source <source>
                         --dialect <sqlDialect>
 ```
+
+**NHibernate persistence**
+
+```
+migrate-timeouts preview nhb 
+                        -t|--target <targetConnectionString>
+                        --nhbSource <source>
+                        --nhbDialect <nhbDialect>
+```
+
 
 NOTE: The listed endpoints will be in the escaped form that is used to prefix the endpoints timeout table
 
@@ -163,6 +179,18 @@ migrate-timeouts migrate sqlp
                         [--allendpoints]
 ```
 
+**NHibernate persistence**
+
+```
+migrate-timeouts migrate nhb 
+                        -t|--target <targetConnectionString>
+                        --nhbSource <source>
+                        --nhbDialect <nhbDialect>
+                        [-c|--cutofTime <cutoffTime>]
+                        [--endpoint] <endpointName>
+                        [--allendpoints]
+```
+
 NOTE: The listed endpoints will be in the escaped form that is used to prefix the endpoints timeout table
 
 ### Aborting a migration
@@ -185,6 +213,14 @@ migrate-timeouts abort ravendb
 migrate-timeouts abort sqlp
                         --source <source>
                         --dialect <sqlDialect>
+```
+
+**NHibernate persistence**
+
+```
+migrate-timeouts abort nhb
+                        --nhbSource <source>
+                        --nhbDialect <nhbDialect>
 ```
 
 ## How the tool works
