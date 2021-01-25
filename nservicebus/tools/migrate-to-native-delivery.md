@@ -104,7 +104,7 @@ To get a preview of endpoints and their status use the `preview` command with th
 **RavenDB**
 
 ```
-migrate-timeouts ravendb preview
+migrate-timeouts preview ravendb
                         -t|--target <targetConnectionString>
                         --serverUrl <serverUrl>
                         --databaseName <databaseName>
@@ -115,7 +115,7 @@ migrate-timeouts ravendb preview
 **Sql persistence**
 
 ```
-migrate-timeouts sqlp preview
+migrate-timeouts preview sqlp
                         -t|--target <targetConnectionString>
                         --source <source>
                         --dialect <sqlDialect>
@@ -139,7 +139,7 @@ NOTE: `--endpoint` and `--allEndpoints` arguments are mutually exclusive. One of
 - `forceUseIndex`(Optional): Required when migrating large amounts or timeouts. Requires all endpoints using the database to be turned off so as not to modify the timeout data.
 
 ```
-migrate-timeouts ravendb migrate
+migrate-timeouts migrate ravendb
                         -t|--target <targetConnectionString>
                         --serverUrl <serverUrl>
                         --databaseName <databaseName>
@@ -154,7 +154,7 @@ migrate-timeouts ravendb migrate
 **Sql persistence**
 
 ```
-migrate-timeouts sqlp migrate
+migrate-timeouts migrate sqlp 
                         -t|--target <targetConnectionString>
                         --source <source>
                         --dialect <sqlDialect>
@@ -167,12 +167,12 @@ NOTE: The listed endpoints will be in the escaped form that is used to prefix th
 
 ### Aborting a migration
 
-To abort an ongoing migration use the `abort` command.
+To abort an ongoing migration use the `abort` command. Abort must also specify the previously selected target including the target specific arguments.
 
 **RavenDB**
 
 ```
-migrate-timeouts ravendb abort
+migrate-timeouts abort ravendb
                         --serverUrl <serverUrl>
                         --databaseName <databaseName>
                         --ravenVersion <ravenVersion>
@@ -182,7 +182,7 @@ migrate-timeouts ravendb abort
 **Sql persistence**
 
 ```
-migrate-timeouts sqlp abort
+migrate-timeouts abort sqlp
                         --source <source>
                         --dialect <sqlDialect>
 ```
