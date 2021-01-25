@@ -46,6 +46,7 @@ NOTE: Additional persisters and targets will be added before NServiceBus version
 The tool supports the following transports:
 
 - [RabbitMQ](/transports/rabbitmq/)
+- [SQL Transport](/transports/sql)
 
 ## Before using the tool
 
@@ -61,9 +62,11 @@ To verify if the tool was installed correctly:
 
 Verify the tool is listed among the available installed tools.
 
-## Using the tool
+## Tool options
 
 The migration tool provides a `preview`, `migrate` and `abort` command.
+
+### Persistence options
 
 Depending on the persister, there are additional parameters required in order to run the tool:
 
@@ -78,6 +81,19 @@ For SQL:
 
 - `--source`: The connection string to the database
 - `--dialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlServer`
+
+### Transport options
+
+For RabbitMQ:
+
+- `--target`: The RabbitMQ connection string
+
+For Sql-T:
+
+- `--target`: The SQL Server connection string, including the catalog
+- `--schema`: The schema in which to the timeout tables are stored, defaults to `dbo`
+
+## Tool commands
 
 ### Preview
 
@@ -189,7 +205,7 @@ Even though the tool supports migrating all endpoints connected to the persister
 
 The tool will not delete any timeouts or storage artifacts in order to prevent data loss. This section describes how to clean up archived timeouts and remove storage artifacts that are no longer used.
 
-WARN: This is a destructive operation and should only be performed once a successful migration has been verified. 
+WARN: This is a destructive operation and should only be performed once a successful migration has been verified.
 
 ### RavenDB
 
