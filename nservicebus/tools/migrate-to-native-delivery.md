@@ -67,79 +67,18 @@ Verify the tool is listed among the available installed tools.
 
 The migration tool provides a `preview`, `migrate` and `abort` command.
 
-### Persistence options
-
-Depending on the persister, there are additional parameters required in order to run the tool:
-
-For RavenDB:
-
-- `--serverUrl`: The RavenDB server URL
-- `--databaseName`: The database name where timeouts to migrate are stored
-- `--ravenVersion`: Allowed values are "3.5" and "4"
-- `--prefix`(optional): The prefix used for storage of timeouts. The default value is "TimeoutDatas"
-
-For SQL persistence:
-
-- `--source`: The connection string to the database
-- `--dialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlServer`
-
-For NHibernate persistence:
-
-- `--nhbSource`: The connection string to the database
-- `--nhbDialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlDatabaseDialect` and `OracleDatabaseDialect`
-
-### Transport options
-
-For RabbitMQ:
-
-- `--target`: The RabbitMQ connection string
-
-For Sql-T:
-
-- `--target`: The SQL Server connection string, including the catalog
-- `--schema`: The schema in which to the timeout tables are stored, defaults to `dbo`
-
-## Tool commands
-
 ### Preview
 
-To get a preview of endpoints and their status use the `preview` command with the following extra parameters.
-
-- `--target`: The connection string of the target transport used to validate destinations
-
-**RavenDB**
+To get a preview of endpoints and their status use the `preview` command and specify the required source and target with the corresponding options.
 
 ```
-migrate-timeouts preview ravendb
-                        -t|--target <targetConnectionString>
-                        --serverUrl <serverUrl>
-                        --databaseName <databaseName>
-                        --ravenVersion <ravenVersion>
-                        [--prefix] <prefix>
+migrate-timeouts preview source 
+                        <source-specific-options>
+                        target 
+                        <target-specific-options>
 ```
 
-**Sql persistence**
-
-```
-migrate-timeouts preview sqlp
-                        -t|--target <targetConnectionString>
-                        --source <source>
-                        --dialect <sqlDialect>
-```
-
-**NHibernate persistence**
-
-```
-migrate-timeouts preview nhb 
-                        -t|--target <targetConnectionString>
-                        --nhbSource <source>
-                        --nhbDialect <nhbDialect>
-```
-
-
-NOTE: The listed endpoints will be in the escaped form that is used to prefix the endpoints timeout table
-
-### Running a migration
+### Migrate
 
 To run a migration for selected endpoint(s) use the `migrate` command with the following parameters.
 
@@ -150,77 +89,88 @@ To run a migration for selected endpoint(s) use the `migrate` command with the f
 
 NOTE: `--endpoint` and `--allEndpoints` arguments are mutually exclusive. One of them must be provided.
 
-**RavenDB**
-
-- `forceUseIndex`(Optional): Required when migrating large amounts or timeouts. Requires all endpoints using the database to be turned off so as not to modify the timeout data.
-
 ```
-migrate-timeouts migrate ravendb
-                        -t|--target <targetConnectionString>
-                        --serverUrl <serverUrl>
-                        --databaseName <databaseName>
-                        --ravenVersion <ravenVersion>
-                        [--prefix] <prefix>
+migrate-timeouts migrate source 
+                        <source-specific-options>
+                        target 
+                        <target-specific-options>
                         [-c|--cutoffTime <cutoffTime>]
                         [--endpoint] <endpointName>
                         [--allendpoints]
-                        [--forceUseIndex]
 ```
 
-**Sql persistence**
-
-```
-migrate-timeouts migrate sqlp 
-                        -t|--target <targetConnectionString>
-                        --source <source>
-                        --dialect <sqlDialect>
-                        [-c|--cutofTime <cutoffTime>]
-                        [--endpoint] <endpointName>
-                        [--allendpoints]
-```
-
-**NHibernate persistence**
-
-```
-migrate-timeouts migrate nhb 
-                        -t|--target <targetConnectionString>
-                        --nhbSource <source>
-                        --nhbDialect <nhbDialect>
-                        [-c|--cutofTime <cutoffTime>]
-                        [--endpoint] <endpointName>
-                        [--allendpoints]
-```
-
-NOTE: The listed endpoints will be in the escaped form that is used to prefix the endpoints timeout table
-
-### Aborting a migration
+### Abort
 
 To abort an ongoing migration use the `abort` command. Abort must also specify the previously selected target including the target specific arguments.
 
-**RavenDB**
-
 ```
-migrate-timeouts abort ravendb
-                        --serverUrl <serverUrl>
-                        --databaseName <databaseName>
-                        --ravenVersion <ravenVersion>
-                        [--prefix] <prefix>
+migrate-timeouts abort source 
+                        <source-specific-options>
+                        target 
+                        <target-specific-options>
 ```
 
-**Sql persistence**
+### Source options
 
 ```
-migrate-timeouts abort sqlp
-                        --source <source>
-                        --dialect <sqlDialect>
+migrate-timeouts command ravendb|sqlp|nhb 
+                        <source-specific-options>
+                        target 
+                        <target-specific-options>
 ```
 
-**NHibernate persistence**
+For RavenDB (`ravendb`) persistence:
+
+- `--serverUrl`: The RavenDB server URL
+- `--databaseName`: The database name where timeouts to migrate are stored
+- `--ravenVersion`: Allowed values are "3.5" and "4"
+- `--prefix`(optional): The prefix used for storage of timeouts. The default value is "TimeoutDatas"
+- `forceUseIndex`(Optional): Required when migrating large amounts or timeouts. Requires all endpoints using the database to be turned off so as not to modify the timeout data. This option will only be used during migration.
+
+For SQL (`sqlp`) persistence:
+
+- `--source`: The connection string to the database
+- `--dialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlServer`
+
+NOTE: The listed endpoints will be in the escaped form that is used to prefix the endpoints timeout table
+
+For NHibernate (`nhb`) persistence:
+
+- `--nhbSource`: The connection string to the database
+- `--nhbDialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlDatabaseDialect` and `OracleDatabaseDialect`
+
+NOTE: The listed endpoints will be in the escaped form that is used to prefix the endpoints timeout table
+
+### Target options
 
 ```
-migrate-timeouts abort nhb
-                        --nhbSource <source>
-                        --nhbDialect <nhbDialect>
+migrate-timeouts command source
+                        <source-specific-options>
+                        rabbitmq|sqlt 
+                        <target-specific-options>
+```
+
+For RabbitMQ (`rabbitmq`) transport:
+
+- `--target`: The RabbitMQ connection string
+
+For SqlServer (`sqlt`) transport:
+
+- `--target`: The SQL Server connection string, including the catalog
+- `--schema`: The schema in which to the timeout tables are stored, defaults to `dbo`
+
+### Example
+
+For example in order to migrate timeouts from SQL Persistence to SqlServer transport the following command could be used:
+
+```
+ migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING --dialect MsSqlServer sqlt --target "TARGETCONNECTIONSTRING"
+```
+
+to migrate from SQL Persistence to RabbitMQ transport the following command could be issued:
+
+```
+ migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING --dialect MsSqlServer rabbitmq --target "amqp://username:password@host:port"
 ```
 
 ## How the tool works
