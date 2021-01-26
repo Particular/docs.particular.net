@@ -42,7 +42,7 @@ snippet: MessageDisplay
 
 ### Endpoint
 
-The endpoint sends a message to a handler, and since the message has sensitive information, it encrypts the message on the way out, and decrypt it on the way back in. The related classes are in the Shared project so they are shared with the plugin.
+The endpoint sends a message to a handler, and since the message has sensitive information, it encrypts the message before sending it, and then it is decrypted by the receiver. The related classes are in the Shared project so they are shared with the plugin.
 
 The encryption and decryption objects are registered as message mutator at startup.
  
