@@ -10,21 +10,20 @@ reviewed: 2020-12-17
 This sample shows how to a plugin for ServiceInsight can be created. The plugin model currently is designed to work as a custom message viewer, so a new tab will be displayed as part of the existing Body tab. This plugin is typically useful when:
 
 - A custom serializer is used and existing Xml/Json viewers fail to deserialize and show it properly.
-- Encryption on the message body (or certain properties) are used
+- Encryption on the message body (or certain properties) are used.
 
 downloadbutton
-
 
 ## Running the project
 
 Running the project will result in 2 console windows. Wait a moment until the ServicePulse window opens in the browser. In the console output of the Endpoint2, make a note of the ServiceControl connection URL. Finally, perform the following steps:
 
- 1. Copy over the output of the plugin project (ServiceInsight.Plugin) to the paths specified in the [documentation](/serviceinsight/custom-message-viewers.md#plugin-installation).
- 2. Run ServiceInsight and connect to the noted ServiceControl connection URL from above.
- 3. On the Messages window click on a message row.
- 4. Click on the Body tab and note that there is a new viewer tab called "Decryption Viewer".
- 5. Click on the Xml tab and notice how the message is in reverse (the demo 'encryption' function just reverses the body string).
- 6. Click on the new viewer tab and notice how the message is correctly displayed.
+1. Copy over the output of the plugin project (ServiceInsight.Plugin) to the paths specified in the [documentation](/serviceinsight/custom-message-viewers.md#plugin-installation).
+2. Run ServiceInsight and connect to the noted ServiceControl connection URL from above.
+3. On the Messages window click on a message row.
+4. Click on the Body tab and note that there is a new viewer tab called "Decryption Viewer".
+5. Click on the Xml tab and notice how the message is in reverse (the demo 'encryption' function just reverses the body string).
+6. Click on the new viewer tab and notice how the message is correctly displayed.
 
 ## Code walk-through 
 
@@ -37,13 +36,13 @@ All the components require, including the views and view models are registered i
 	
 snippet: IoCModule
 
-The plugin must implement the `ICustomMessageBodyViewer` interface that gets invoked when a message is selected. The `Display` method has an argument that is the message object being displayed. Here the message body is decrypted an
+The plugin must implement the `ICustomMessageBodyViewer` interface that gets invoked when a message is selected. The `Display` method has an argument that is the message object being displayed.
 
 snippet: MessageDisplay
 
 ### Endpoint
 
-The endpoint sends a message to a handler, and since the message has sensitive information, it uses a `` object to encrypt the message on the way out, and decrypt it on the way back in. The related classes are in the Shared project so they are shared with the plugin.
+The endpoint sends a message to a handler, and since the message has sensitive information, it encrypts the message on the way out, and decrypt it on the way back in. The related classes are in the Shared project so they are shared with the plugin.
 
 The encryption and decryption objects are registered as message mutator at startup.
  
