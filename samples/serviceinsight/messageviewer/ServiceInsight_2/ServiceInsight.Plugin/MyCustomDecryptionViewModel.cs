@@ -21,7 +21,7 @@ namespace ServiceInsight.CustomViewer.Plugin
         protected override void OnViewAttached(object view, object context)
         {
             base.OnViewAttached(view, context);
-            this.view = (MyCustomDecryptionView)view;           
+            this.view = (MyCustomDecryptionView)view;
         }
 
         #region MessageDisplay
@@ -36,7 +36,7 @@ namespace ServiceInsight.CustomViewer.Plugin
                 view?.Show(clearText);
             }
         }
-		#endregion
+        #endregion
 
         public void Clear()
         {
