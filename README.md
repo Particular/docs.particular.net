@@ -1,5 +1,7 @@
 ![VerifyMaster](https://github.com/Particular/docs.particular.net/workflows/VerifyMaster/badge.svg?branch=master) ![BuildProjects](https://github.com/Particular/docs.particular.net/workflows/BuildProjects/badge.svg)
 
+Just a test
+
 # How to Contribute
 
 Before you start, ensure you have created a [GitHub account](https://github.com/join).
