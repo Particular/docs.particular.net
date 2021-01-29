@@ -2,7 +2,7 @@
 
 include: configuration-options-policy-intro
 
-The transport creates a policy statement per event it subscribes to. An example policy for the event subscriptions described here above would look as follows:
+The transport creates a policy statement for each event type it subscribes to:
 
 ```json
 {
@@ -11,20 +11,20 @@ The transport creates a policy statement per event it subscribes to. An example 
     {
       ...
       "Action": "sqs:SendMessage",
-      "Resource": "arn:aws:sqs:some-region:someaccount:endpoint",
+      "Resource": "arn:aws:sqs:some-region:some-account:endpoint",
       "Condition": {
         "ArnLike": {
-          "aws:SourceArn": "arn:aws:sns:some-region:someaccount:Sales-OrderAccepted"
+          "aws:SourceArn": "arn:aws:sns:some-region:some-account:Sales-OrderAccepted"
         }
       }
     },
     {
-...
-      "Action": "SQS:SendMessage",
-      "Resource": "arn:aws:sqs:some-region:someaccount:endpoint",
+      ...
+      "Action": "sqs:SendMessage",
+      "Resource": "arn:aws:sqs:some-region:some-account:endpoint",
       "Condition": {
         "ArnLike": {
-          "aws:SourceArn": "arn:aws:sns:some-region:someaccount:Sales-OrderPaid"
+          "aws:SourceArn": "arn:aws:sns:some-region:some-account:Sales-OrderPaid"
         }
       }
     }
@@ -32,4 +32,4 @@ The transport creates a policy statement per event it subscribes to. An example 
 }
 ```
 
-Policy statements are also added when an endpoint manually subscribes to an event type by calling [`session.Subscribe<CustomEvent>()`](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md). Unsubscribing does not modify the policy on the endpoint's input queue.
+A policy statement is also created when an endpoint explicitly subscribes to an event type using [`session.Subscribe<CustomEvent>()`](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md). Unsubscribing does not modify the policy.

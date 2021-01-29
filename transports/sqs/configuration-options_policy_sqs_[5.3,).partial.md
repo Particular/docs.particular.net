@@ -2,53 +2,53 @@
 
 include: configuration-options-policy-intro
 
-The transport creates one policy statement with a combined condition for all events it subscribes to. An example policy for the events described above would look as follows:
+The transport creates a policy statement for the event types it subscribes to:
 
 ```json
 {
-    "Version" : "2012-10-17",
-    "Statement" : [
-        {
-            ...
-            "Action"    : "sqs:SendMessage",
-            "Resource"  : "arn:aws:sqs:some-region:someaccount:endpoint",
-            "Condition" : {
-                "ArnLike" : {
-                    "aws:SourceArn" : [
-                        "arn:aws:sns:some-region:someaccount:Sales-OrderAccepted",
-                        "arn:aws:sns:some-region:someaccount:Sales-OrderPaid"
-                    ]
-                }
-            }
-        },
-    ]
+  ...
+  "Statement": [
+    {
+      ...
+      "Action": "sqs:SendMessage",
+      "Resource": "arn:aws:sqs:some-region:some-account:endpoint",
+      "Condition": {
+        "ArnLike": {
+          "aws:SourceArn": [
+            "arn:aws:sns:some-region:some-account:Sales-OrderAccepted",
+            "arn:aws:sns:some-region:some-account:Sales-OrderPaid"
+          ]
+        }
+      }
+    }
+  ]
 }
 ```
 
-The combined condition is extended when an endpoint manually subscribes to an event type by calling [`session.Subscribe<CustomEvent>()`](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md). Unsubscribing does not modify the policy on the endpoint's input queue.
+The policy statement is updated when an endpoint explicitly subscribes to an event type using [`session.Subscribe<CustomEvent>()`](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md). Unsubscribing does not modify the policy.
 
 ### Wildcards
 
-#### Acount condition
+#### Account condition
 
-Allow all messages from any topic in the account to pass. No value needs to be provided, the account name will be derived from the subscribed topic ARN.
+Allow all messages from any topic in the account. The account name is derived from the subscribed topic ARN.
 
 snippet: wildcard-account-condition
 
 #### Prefix condition
 
-Allow all messages from any topic with the prefix to pass. No value needs to be provided, the prefix from the [topic name prefix option](#topicnameprefix) will be used.
+Allow all messages from any topic with the specified [topic name prefix](#topicnameprefix).
 
 snippet: wildcard-prefix-condition
 
 #### Namespace condition
 
-Allow all messages in the specified namespaces to pass.
+Allow all messages in specific namespaces.
 
 snippet: wildcard-namespace-condition
 
-### Disable policy modifications
+### Disabling runtime policy modification
 
-In cases where the policy on the endpoint queue is managed via deployment it might be desirable to opt-out from the policy modification.
+If the policy is modified during deployment it may be better to disable runtime policy modification.
 
 snippet: assume-permissions
