@@ -149,7 +149,7 @@
 | [1.8.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.8.0) | 2020-12-24     | -                 | -                                 |
 | [1.7.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | 2020-11-24     | 2021-03-24        | Superseded by 1.8.x               |
 | [1.6.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.6.0) | 2020-11-02     | 2021-02-24        | Superseded by 1.7.x               |
-| [1.5.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.1) | 2020-04-16     | 2021-02-02        | Superseded by 1.6.x               |
+| [~~1.5.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.1) | ~~2020-04-16~~ | ~~2021-02-02~~    | ~~Superseded by 1.6.x~~           |
 | [~~1.4.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.4.0) | ~~2019-12-05~~ | ~~2020-07-16~~    | ~~Superseded by 1.5.x~~           |
 | [~~1.3.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.3.1) | ~~2019-12-03~~ | ~~2020-03-05~~    | ~~Superseded by 1.4.x~~           |
 | [~~1.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.2.1) | ~~2019-07-31~~ | ~~2020-03-03~~    | ~~Superseded by 1.3.x~~           |
@@ -303,7 +303,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | 2020-06-24     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.1.0) | 2021-01-27     | -                 | -                                 |
+| [1.0.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | 2020-06-24     | 2021-04-27        | Superseded by 1.1.x               |
 
 ### Serializer packages
 

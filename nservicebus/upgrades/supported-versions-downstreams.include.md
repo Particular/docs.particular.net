@@ -16,7 +16,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/10.1.0) | 2020-04-30     | -                 | Deprecated as of 2021-05-01.      |
-| [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/10.0.0) | ~~2020-03-05~~ | ~~2020-07-30~~    | ~~Superseded by 10.1.x~~          |
 | [9.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/9.1.3) | 2018-12-12     | 2021-03-05        | Superseded by 10.0.x              |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/7.2.18) | 2017-03-21     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
@@ -53,7 +52,7 @@
 | [1.8.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.8.0) | 2020-12-24     | -                 | -                                 |
 | [1.7.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | 2020-11-24     | 2021-03-24        | Superseded by 1.8.x               |
 | [1.6.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.6.0) | 2020-11-02     | 2021-02-24        | Superseded by 1.7.x               |
-| [1.5.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.1) | 2020-04-16     | 2021-02-02        | Superseded by 1.6.x               |
+| [~~1.5.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.1) | ~~2020-04-16~~ | ~~2021-02-02~~    | ~~Superseded by 1.6.x~~           |
 
 #### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
 
@@ -143,7 +142,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | 2020-06-24     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.1.0) | 2021-01-27     | -                 | -                                 |
+| [1.0.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | 2020-06-24     | 2021-04-27        | Superseded by 1.1.x               |
 
 ### Serializer packages
 
@@ -355,7 +355,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/4.0.0) | 2019-07-23     | -                 | -                                 |
-| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/3.0.0) | ~~2018-05-29~~ | ~~2020-07-23~~    | ~~Superseded by 4.0.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/2.0.0) | 2017-11-15     | 2019-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2021-05-29 |
 
 #### [NServiceBus.Metrics.ServiceControl](/nuget/NServiceBus.Metrics.ServiceControl)
