@@ -8,6 +8,12 @@ redirects:
  - nservicebus/nservicebus-net-framework-version-requirements
 ---
 
+### NServiceBus Version 8.x
+
+NOTE: NServiceBus Version 8.x is a pre-release version and is subject to change prior to the final release.
+
+Requires [.NET Core 2.1](https://www.microsoft.com/net/core/) (or higher) **or** [.NET Framework Version 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472) (or higher)
+
 ### NServiceBus Version 7.x
 
 Requires [.NET Core 2.0](https://www.microsoft.com/net/core/) (or higher) **or** [.NET Framework Version 4.5.2](https://www.microsoft.com/en-au/download/details.aspx?id=42642) (or higher)
