@@ -73,9 +73,9 @@ The migration tool provides a `preview`, `migrate` and `abort` command.
 To get a preview of endpoints and their status use the `preview` command and specify the required source and target with the corresponding options.
 
 ```
-migrate-timeouts preview source 
+migrate-timeouts preview source
                         <source-specific-options>
-                        target 
+                        target
                         <target-specific-options>
 ```
 
@@ -91,9 +91,9 @@ To run a migration for selected endpoint(s) use the `migrate` command with the f
 NOTE: `--endpoint` and `--allEndpoints` arguments are mutually exclusive. One of them must be provided.
 
 ```
-migrate-timeouts migrate source 
+migrate-timeouts migrate source
                         <source-specific-options>
-                        target 
+                        target
                         <target-specific-options>
                         [-c|--cutoffTime <cutoffTime>]
                         [--endpoint] <endpointName>
@@ -105,18 +105,18 @@ migrate-timeouts migrate source
 To abort an ongoing migration use the `abort` command. Abort must also specify the previously selected target including the target specific arguments.
 
 ```
-migrate-timeouts abort source 
+migrate-timeouts abort source
                         <source-specific-options>
-                        target 
+                        target
                         <target-specific-options>
 ```
 
 ### Source options
 
 ```
-migrate-timeouts command ravendb|sqlp|nhb 
+migrate-timeouts command ravendb|sqlp|nhb
                         <source-specific-options>
-                        target 
+                        target
                         <target-specific-options>
 ```
 
@@ -231,6 +231,13 @@ If the tool presents endpoints that are not part of the system when running the 
 The tool requires that timeout documents be discoverable with a known prefix. The prefix is passed to the tool using the `--prefix` parameter. The default is `TimeoutDatas` if a value is not provided. If the system being migrated is using custom ID generation strategies when persisting timeout documents, a prefix may not be applicable.
 
 Scanning timeouts without a well-known prefix is currently not supported.
+
+### ASQ
+
+When migrating timeouts to the [ASQ transport](/transports/azure-storage-queues/), the table in which delayed messages are stored is determined by convention. The same convention is applied in the tool.
+However, it's possible to [override delayed messages table name in the endpoint configuration](/transports/azure-storage-queues/delayed-delivery.md).
+If that option is used, the tool is unable to migrate all endpoints as the convention can't be applied to derive the table name for the delayed messages.
+Therefore, the tool will guard against that and require the `--endpoint` option when the `--delayedtablename`-option is specified.
 
 ## Troubleshooting
 
