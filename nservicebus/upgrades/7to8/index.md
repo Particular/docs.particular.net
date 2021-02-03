@@ -26,6 +26,76 @@ The following provider packages will no longer be provided:
 * [Log4net](/nservicebus/logging/log4net.md)
 * [NLog](/nservicebus/logging/nlog.md)
 
+## CancellationToken support
+
+NServiceBus version 8 supports cooperative cancellation using `CancellationToken`.
+
+### Non-message-handling contexts
+
+Methods on extension points are updated to include a mandatory `CancellationToken` parameter. This includes abstract classes and interfaces needed to implement a message transport or persistence libary, as well as other extension points like `IDataBus`, `FeatureStartupTask`, `INeedToInstallSomething`. Implementors can be updated by adding the `CancellationToken` parameter to the end of the method signature.
+
+Methods used outside the message processing pipeline now include an optional `CancellationToken` parameter, including methods for starting and stopping endpoints, and methods to Send/Publish messages from outside a message processing pipeline, such as from within a web application.
+
+It is recommended to forward a `CancellationToken` within a method to any method that accepts one. For example, within a web application controller:
+
+```csharp
+public class TestController
+{
+    private IMessageSession session;
+
+    public TestController(IMessageSession session)
+    {
+        this.session = session;
+    }
+
+    [HttpGet("/test")]
+    public async Task<string> Get(CancellationToken cancellationToken)
+    {
+        // Forward the cancellation token to methods that accept one
+        await Task.Delay(10_000, cancellationToken);
+
+        return "Finished 10s delay";
+    }
+}
+```
+
+[Enabling .NET source code analysis](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview) (enabled by default in projects targeting .NET 5 or above) is also recommended so that [CA2016: Forward the CancellationToken parameter to methods that take one](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2016) can identify locations where the cancellation token should be forwarded. This rule is presesented as an informational message only, but the [analyzer severity](https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers#configure-severity-levels) can be upgraded to a warning using an [.editorconfig file](https://editorconfig.org/):
+
+```ini
+[*.cs]
+dotnet_diagnostic.CA2016.severity = warning
+```
+
+### Message handlers and pipeline
+
+Inside a message handler, a cancellation token from the incoming message processing pipeline is available on the `IMessageHandlerContext` as the property `context.CancellationToken`. The cancellation token was added to the context parameter to avoid making a breaking change to `IHandleMessages` affecting all message handlers and sagas.
+
+Similarly, [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) also contain a `CancellationToken` property on their respective `context` parameters.
+
+Methods on `IMessageHandlerContext` such as `Send()` and `Publish()` do not accept a cancellation token, as the token from the incoming message pipeline will be routed to the outgoing operations transparently.
+
+It is recommended to forward the `context.CancellationToken` to any other method that accepts one. A new analyzer identifies locations where the token with a build warning, for example:
+
+```csharp
+public class SampleHandler : IHandleMessages<TestMessage>
+{
+    public async Task Handle(TestMessage message, IMessageHandlerContext context)
+    {
+        // Analyzer Warning NSB0002: Forward `context.CancellationToken` to the `Delay` method.
+        await Task.Delay(10_000);
+    }
+}
+```
+
+The analyzer also offers a code fix that will update the code to forward the token using the "light bulb" menu. ( <kbd>Ctrl</kbd> + <kbd>.</kbd> )
+
+If cancellation is not a major concern, the [analyzer severity](https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers#configure-severity-levels) can be downgraded using an [.editorconfig file](https://editorconfig.org/):
+
+```ini
+[*.cs]
+dotnet_diagnostic.NSB0002.severity = suggestion
+```
+
 ## New gateway persistence API
 
 The NServiceBus gateway has been moved to a separate `NServiceBus.Gateway` package and all gateway public APIs in NServiceBus are obsolete and will produce the following warning:
