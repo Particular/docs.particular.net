@@ -40,7 +40,7 @@ The current version of the tool supports the following persisters:
 - [NHibernate persistence](/persistence/nhibernate/) using the Sql Server and Oracle implementation
 - [RavenDB](/persistence/ravendb) versions 3.5.x and 4.x of the RavenDB database server
 
-NOTE: Additional persisters and targets will be added before NServiceBus version 8 is released. Namely Azure Storage as sources and SQL Server, Azure Storage Queues and Amazon SQS transports as targets.
+NOTE: Additional persisters and targets will be added before NServiceBus version 8 is released. Namely Azure Storage as a source, and Amazon SQS transport as a target.
 
 ## Supported transports
 
@@ -48,6 +48,7 @@ The tool supports the following transports:
 
 - [RabbitMQ](/transports/rabbitmq/)
 - [SQL Transport](/transports/sql)
+- [Azure Storage Queues](/transports/azure-storage-queues/)
 
 ## Before using the tool
 
@@ -72,9 +73,9 @@ The migration tool provides a `preview`, `migrate` and `abort` command.
 To get a preview of endpoints and their status use the `preview` command and specify the required source and target with the corresponding options.
 
 ```
-migrate-timeouts preview source 
+migrate-timeouts preview source
                         <source-specific-options>
-                        target 
+                        target
                         <target-specific-options>
 ```
 
@@ -90,9 +91,9 @@ To run a migration for selected endpoint(s) use the `migrate` command with the f
 NOTE: `--endpoint` and `--allEndpoints` arguments are mutually exclusive. One of them must be provided.
 
 ```
-migrate-timeouts migrate source 
+migrate-timeouts migrate source
                         <source-specific-options>
-                        target 
+                        target
                         <target-specific-options>
                         [-c|--cutoffTime <cutoffTime>]
                         [--endpoint] <endpointName>
@@ -104,18 +105,18 @@ migrate-timeouts migrate source
 To abort an ongoing migration use the `abort` command. Abort must also specify the previously selected target including the target specific arguments.
 
 ```
-migrate-timeouts abort source 
+migrate-timeouts abort source
                         <source-specific-options>
-                        target 
+                        target
                         <target-specific-options>
 ```
 
 ### Source options
 
 ```
-migrate-timeouts command ravendb|sqlp|nhb 
+migrate-timeouts command ravendb|sqlp|nhb
                         <source-specific-options>
-                        target 
+                        target
                         <target-specific-options>
 ```
 
@@ -146,7 +147,7 @@ NOTE: The listed endpoints will be in the escaped form that is used to prefix th
 ```
 migrate-timeouts command source
                         <source-specific-options>
-                        rabbitmq|sqlt 
+                        rabbitmq|sqlt|asq
                         <target-specific-options>
 ```
 
@@ -158,6 +159,11 @@ For SqlServer (`sqlt`) transport:
 
 - `--target`: The SQL Server connection string, including the catalog
 - `--schema`: The schema in which to the timeout tables are stored, defaults to `dbo`
+
+For Azure Storage Queues (`asq`) transport:
+
+- `--target`: The Azure Storage connection string to be used
+- `--delayedtablename`: The delayed delivery table name to use. This is only required when the name of the delayed delivery table has been overridden from the default. It is not possible to migrate all endpoints when specifying this option
 
 ### Example
 
@@ -171,6 +177,12 @@ to migrate from SQL Persistence to RabbitMQ transport the following command coul
 
 ```
  migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING --dialect MsSqlServer rabbitmq --target "amqp://username:password@host:port"
+```
+
+to migrate from SQL Persistence to ASQ transport the following command could be issued:
+
+```
+ migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING --dialect MsSqlServer asq --target "UseDevelopmentStorage=true"
 ```
 
 ## How the tool works
@@ -219,6 +231,13 @@ If the tool presents endpoints that are not part of the system when running the 
 The tool requires that timeout documents be discoverable with a known prefix. The prefix is passed to the tool using the `--prefix` parameter. The default is `TimeoutDatas` if a value is not provided. If the system being migrated is using custom ID generation strategies when persisting timeout documents, a prefix may not be applicable.
 
 Scanning timeouts without a well-known prefix is currently not supported.
+
+### ASQ
+
+When migrating timeouts to the [ASQ transport](/transports/azure-storage-queues/), the table in which delayed messages are stored is determined by convention. The same convention is applied in the tool.
+However, it's possible to [override delayed messages table name in the endpoint configuration](/transports/azure-storage-queues/delayed-delivery.md).
+If that option is used, the tool is unable to migrate all endpoints as the convention can't be applied to derive the table name for the delayed messages.
+Therefore, the tool will guard against that and require the `--endpoint` option when the `--delayedtablename`-option is specified.
 
 ## Troubleshooting
 
