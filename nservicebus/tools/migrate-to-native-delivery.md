@@ -40,7 +40,7 @@ The current version of the tool supports the following persisters:
 - [NHibernate persistence](/persistence/nhibernate/) using the Sql Server and Oracle implementation
 - [RavenDB](/persistence/ravendb) versions 3.5.x and 4.x of the RavenDB database server
 
-NOTE: Additional persisters and targets will be added before NServiceBus version 8 is released. Namely Azure Storage as sources and SQL Server, Azure Storage Queues and Amazon SQS transports as targets.
+NOTE: Additional persisters and targets will be added before NServiceBus version 8 is released. Namely Azure Storage as a source, and Amazon SQS transport as a target.
 
 ## Supported transports
 
@@ -48,6 +48,7 @@ The tool supports the following transports:
 
 - [RabbitMQ](/transports/rabbitmq/)
 - [SQL Transport](/transports/sql)
+- [Azure Storage Queues](/transports/azure-storage-queues/)
 
 ## Before using the tool
 
@@ -146,7 +147,7 @@ NOTE: The listed endpoints will be in the escaped form that is used to prefix th
 ```
 migrate-timeouts command source
                         <source-specific-options>
-                        rabbitmq|sqlt 
+                        rabbitmq|sqlt|asq
                         <target-specific-options>
 ```
 
@@ -158,6 +159,11 @@ For SqlServer (`sqlt`) transport:
 
 - `--target`: The SQL Server connection string, including the catalog
 - `--schema`: The schema in which to the timeout tables are stored, defaults to `dbo`
+
+For ASQ (`asq`) transport:
+
+- `--target`: The Azure Storage connection string to be used
+- `--delayedtablename`: The delayed delivery table name to use. This is only required when the name of the delayed delivery table has been overridden from the default. It is not possible to migrate all endpoints when specifying this option
 
 ### Example
 
@@ -171,6 +177,12 @@ to migrate from SQL Persistence to RabbitMQ transport the following command coul
 
 ```
  migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING --dialect MsSqlServer rabbitmq --target "amqp://username:password@host:port"
+```
+
+to migrate from SQL Persistence to ASQ transport the following command could be issued:
+
+```
+ migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING --dialect MsSqlServer asq --target "UseDevelopmentStorage=true"
 ```
 
 ## How the tool works
