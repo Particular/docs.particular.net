@@ -2,7 +2,6 @@
 
 The RavenDB persistence allows for both optimistic and pessimistic concurrency options. The default, starting from v7, is pessimistic concurrency.
 
-TODO: do we want to add any guidance on when to opt for optimistic locking?
 
 RavenDB does not provide pessimistic locking natively. The behavior is based a spin lock that tries to acquire a lease on a resource.
 
