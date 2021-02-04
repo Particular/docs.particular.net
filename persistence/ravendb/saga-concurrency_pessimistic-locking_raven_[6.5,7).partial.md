@@ -1,6 +1,7 @@
-## Sagas pessimistic locking
+## Sagas concurrency control
 
-Starting with NServiceBus.RavenDB version 6.4, it's possible to configure saga persistence to use pessimistic locking instead of the default optimistic concurrency control.
+Currently, the default for concurrency control is optimistic concurrency. However, in the next major version, pessimistic locking will become the new default.
+To anticipate on that change, starting with NServiceBus.RavenDB version 6.5, the transport introduces an extension method to enable optimistic locking.
 
 RavenDB does not provide pessimistic locking natively. The behavior is based a spin lock that tries to acquire a lease on a resource.
 
@@ -10,7 +11,7 @@ Choose pessimistic locking over optimistic locking if the system is experiencing
 
 snippet: ravendb-sagas-pessimistic-lock
 
-The pessimistick locking behavior can be customized using the following options:
+The pessimistic locking behavior can be customized using the following options:
 
 ### Pessimistic Lease Lock Time:
 

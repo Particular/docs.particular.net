@@ -1,1 +1,0 @@
-By default, RavenDB persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data, though starting with NServiceBus.RavenDB version 6.4, it's possible to consider the persister to use pessmimistic locking. See [later in this document](#sagas-pessimistic-locking) for how to do this.
