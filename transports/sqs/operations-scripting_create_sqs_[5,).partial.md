@@ -121,8 +121,7 @@ sqs-transport endpoint subscribe [name] [event-type]
                                         [--prefix]
 ```
 
-NOTE: This command will only set up the subscription from the topic representing the event-type to the input queue of the endpoint. 
-It will **not** set up the IAM policy which allows messages to flow from the topic to the input queue. To set up the IAM policy refer to the `sqs-transport endpoint set-policy events` or `sqs-transport endpoint set-policy wildcard` command.
+NOTE: This command will only set up the subscription from the topic representing the event-type to the input queue of the endpoint. It will **not** set up the IAM policy which allows messages to flow from the topic to the input queue. To set up the IAM policy refer to the `sqs-transport endpoint set-policy events` or `sqs-transport endpoint set-policy wildcard` command.
 
 #### arguments
 
@@ -142,7 +141,7 @@ It will **not** set up the IAM policy which allows messages to flow from the top
 
 ### sqs-transport endpoint set-policy events
 
-Set the IAM policy on the input queue of an endpoint, based on the event types the endpoint subscribed to, using:
+Set the IAM policy on the input queue of an endpoint based on the event types the endpoint subscribed to using:
 
 ```
 sqs-transport endpoint set-policy [name] events 
@@ -159,7 +158,7 @@ sqs-transport endpoint set-policy [name] events
 
 #### options
 
-`-evt` | `--event-type` : Full name of the event allowed through the IAM policy (e.g. MyNamespace.MyMessage), can be repeated multiple times to allow multiple event types to pass.
+`-evt` | `--event-type` : Full name of the event allowed through the IAM policy (e.g. MyNamespace.MyMessage); can be repeated multiple times to allow multiple event types to pass.
  
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
@@ -171,7 +170,7 @@ sqs-transport endpoint set-policy [name] events
 
 ### sqs-transport endpoint set-policy wildcard
 
-Set the IAM policy on the input queue of an endpoint, based on wildcard conditions, using:
+Set the IAM policy on the input queue of an endpoint based on wildcard conditions using:
 
 ```
 sqs-transport endpoint set-policy [name] wildcard
@@ -191,13 +190,13 @@ sqs-transport endpoint set-policy [name] wildcard
 
 #### options
 
-`-ac` | `--account-condition` : Allow all messages from any topic in the account to pass. No value needs to be provided, the account name will be derived from the endpoint input queue.
+`-ac` | `--account-condition` : Allow all messages from any topic in the account to pass. If no value is provided, the account name will be derived from the endpoint input queue.
 
-`-pc` | `--prefix-condition` : Allow all messages from any topic with prefix to pass. No value needs to be provided, prefix from the `-p | --prefix` option will be used.
+`-pc` | `--prefix-condition` : Allow all messages from any topic with prefix to pass. If no value is provided, the prefix from the `-p | --prefix` option will be used.
 
-`-nc` | `--namespace-condition` : Allow all messages from any message in the specified namespaces to pass.
+`-nc` | `--namespace-condition` : Allow all messages from any message in the specified namespaces to pass
 
-`-revt` | `--remove-event-type` : Existing event type conditions on the policy will not be removed by default. Specify this option to remove an existing event type conditions in case they are covered by the wildcard policy implicitely. Can be repeated multiple times to remove multiple event types.
+`-revt` | `--remove-event-type` : Since existing event type conditions on the policy will not be removed by default, specify a value for this option to remove an existing event type condition in case they are covered by the wildcard policy implicitly. Can be repeated multiple times to remove multiple event types.
  
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
