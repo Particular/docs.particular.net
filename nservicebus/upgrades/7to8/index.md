@@ -34,9 +34,9 @@ NServiceBus version 8 supports cooperative cancellation using `CancellationToken
 
 Methods on extension points are updated to include a mandatory `CancellationToken` parameter. This includes abstract classes and interfaces needed to implement a message transport or persistence libary, as well as other extension points like `IDataBus`, `FeatureStartupTask`, `INeedToInstallSomething`. Implementors can be updated by adding the `CancellationToken` parameter to the end of the method signature.
 
-Methods used outside the message processing pipeline now include an optional `CancellationToken` parameter, including methods for starting and stopping endpoints, and methods to Send/Publish messages from outside a message processing pipeline, such as from within a web application.
+Methods used outside the message processing pipeline now include an optional `CancellationToken` parameter, including methods for starting and stopping endpoints, and methods to send or publish messages from outside a message processing pipeline, such as from within a web application.
 
-It is recommended to forward a `CancellationToken` within a method to any method that accepts one. For example, within a web application controller:
+It is recommended to forward a `CancellationToken` to any method that accepts one. For example, within a web application controller:
 
 ```csharp
 public class TestController
@@ -59,7 +59,7 @@ public class TestController
 }
 ```
 
-[Enabling .NET source code analysis](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview) (enabled by default in projects targeting .NET 5 or above) is also recommended so that [CA2016: Forward the CancellationToken parameter to methods that take one](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2016) can identify locations where the cancellation token should be forwarded. This rule is presesented as an informational message only, but the [analyzer severity](https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers#configure-severity-levels) can be upgraded to a warning using an [.editorconfig file](https://editorconfig.org/):
+[Enabling .NET source code analysis](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview) (enabled by default in projects targeting .NET 5 or above) is also recommended so that [CA2016: Forward the CancellationToken parameter to methods that take one](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2016) can identify locations where the `CancellationToken` should be forwarded. This rule is presented as an informational message only, but the [analyzer severity](https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers#configure-severity-levels) can be upgraded to a warning using an [.editorconfig file](https://editorconfig.org/):
 
 ```ini
 [*.cs]
@@ -74,7 +74,7 @@ Similarly, [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.
 
 Methods on `IMessageHandlerContext` such as `Send()` and `Publish()` do not accept a cancellation token, as the token from the incoming message pipeline will be routed to the outgoing operations transparently.
 
-It is recommended to forward the `context.CancellationToken` to any other method that accepts one. A new analyzer identifies locations where the token with a build warning, for example:
+It is recommended to forward the `context.CancellationToken` to any other method that accepts one. A new analyzer identifies locations where the token should be forwarded with a build warning, for example:
 
 ```csharp
 public class SampleHandler : IHandleMessages<TestMessage>
