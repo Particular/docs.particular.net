@@ -133,14 +133,14 @@ For SQL (`sqlp`) persistence:
 - `--source`: The connection string to the database
 - `--dialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlServer`
 
-NOTE: The listed endpoints will be in the escaped form that is used to prefix the endpoints timeout table
+NOTE: The listed endpoints will be in the escaped format that is used to prefix the endpoints timeout table.
 
 For NHibernate (`nhb`) persistence:
 
 - `--source`: The connection string to the database
 - `--dialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlServer` and `Oracle`
 
-NOTE: The listed endpoints will be in the escaped form that is used to prefix the endpoints timeout table
+NOTE: The listed endpoints will be in the escaped format that is used to prefix the endpoints timeout table.
 
 ### Target options
 
@@ -163,7 +163,7 @@ For SqlServer (`sqlt`) transport:
 For Azure Storage Queues (`asq`) transport:
 
 - `--target`: The Azure Storage connection string to be used
-- `--delayedtablename`: The delayed delivery table name to use. This is only required when the name of the delayed delivery table has been overridden from the default. It is not possible to migrate all endpoints when specifying this option
+- `--delayedtablename`: The delayed delivery table name to use. This is only required when the name of the delayed delivery table has been overridden from the default. It is not possible to migrate all endpoints when specifying this option.
 
 ### Example
 
