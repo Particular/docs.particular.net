@@ -28,6 +28,8 @@ snippet: delayed-delivery-override-name
 
 partial: disabling
 
+NOTE: When making use of the table name override, make sure the table is unique per endpoint and not shared across multiple endpoints.
+
 ## Backwards compatibility
 
 When upgrading to a version of the transport that supports delayed delivery natively, it is safe to run with both native-delay and non-native-delay endpoints at the same time. Endpoints supporting native delayed delivery can send delayed messages to endpoints that are not yet aware of the native delay infrastructure. These endpoints can continue to receive delayed messages from non-native endpoints as well.
