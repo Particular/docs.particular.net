@@ -67,12 +67,12 @@ Do not downgrade releases of ServiceControl. ServiceControl uses an embedded dat
 
 ## Server monitoring
 
-It is recommended to monitor the following metrics on the server hosting ServiceControl instance:
+It is recommended to monitor the following metrics on the server hosting the ServiceControl instance:
 
 * CPU usage
 * Memory available
-* Diskspace free
+* Disk space free
 * Disk queue length
 * Disk read/write/total IO
 
-These metrics can be viewed using *Resource Monitor* but it is advised to use server monitoring that durably stores historic data.
+These metrics can be viewed using *Resource Monitor* but it is advised to use server monitoring since it stores historic data in a durable format.
