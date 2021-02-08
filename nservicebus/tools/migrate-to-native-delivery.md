@@ -145,9 +145,9 @@ NOTE: The listed endpoints will be in the escaped format that is used to prefix 
 For Azure Storage Persistence (`asp`) persistence:
 
 - `--source`: The connection string to the Azure Storage Account
-- `--endpoint`(Mandatory): The endpoint to migrate.
+- `--endpoint`(Mandatory): The endpoint to migrate
 - `--timeoutTableName`: The timeout table name to migrate timeouts from
-- `--partitionKeyScope`: The partition key scope format to be used. Must follow the pattern of starting with year, month and day.
+- `--partitionKeyScope`: The partition key scope format to be used. Must follow the pattern of starting with year, month and day
 - `--containerName`: The container name to be used to download timeout data from
 
 ### Target options
@@ -193,7 +193,7 @@ to migrate from SQL Persistence to Azure Storage Queues transport the following 
  migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING" --dialect MsSqlServer asq --target "UseDevelopmentStorage=true"
 ```
 
-For example in order to migrate timeouts from Azure Storage Persistence to SqlServer transport the following command could be used:
+For example, in order to migrate timeouts from Azure Storage Persistence to SqlServer transport the following command could be used:
 
 ```
  migrate-timeouts --endpoint EndpointA asp --source "UseDevelopmentStorage=true" sqlt --target "TARGETCONNECTIONSTRING"
