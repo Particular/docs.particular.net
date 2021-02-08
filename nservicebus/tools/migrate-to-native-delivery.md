@@ -279,7 +279,7 @@ To list the history and status of migrations execute:
 
 `SELECT * FROM MigrationsEntity`
 
-To list all of the timeouts that were supposed to be migrated please run the following query
+To list all of the timeouts that were supposed to be migrated run the following query
 
 `SELECT * FROM StagedTimeoutEntity` 
 
