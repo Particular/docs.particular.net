@@ -11,6 +11,69 @@ upgradeGuideCoreVersions:
 
 NOTE: This is a working document; there is currently no timeline for the release of NServiceBus version 8.0.
 
+## Transport configuration
+
+The transport configuration API has been changed. Instead of the generic based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to `UseTransport`, e.g.
+
+```csharp
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+
+transport.Transactions(TransportTransactionMode.ReceiveOnly);
+var routing = t.Routing();
+routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
+```
+
+becomes:
+
+```csharp
+var transport = new MyTransport{
+    TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+};
+
+var routing = endpointConfiguration.UseTransport(transport);
+routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
+```
+
+The transport can be configured via the transport's configuration type which derives from `TransportDefinition`. See the transport specific upgrade guides for further details on the configuration options:
+
+* [Azure Service Bus transport upgrade guide](TODO)
+* [Azure Storage Queues transport upgrade guide](TODO)
+* [RabbitMQ transport upgrade guide](TODO)
+* [MSMQ transport upgrade guide](TODO)
+* [SQL Server transport upgrade guide](TODO)
+* [Amazon SQS transport upgrade guide](TODO)
+
+### Transaction Configuration
+
+Instead of the `Transactions` method, use the `TransportTransactionMode` property on the transport configuration instance to configure the desired transaction mode.
+
+### Routing Configuration
+
+Routing can be configured on the `RoutingSettings` returned from the `UseTransport` method.
+
+### Obsoleted Configuration Options
+
+The following configuration operations have been obsoleted. See the transport specific upgrade guides for further information about the availablity of these configuration options.
+
+* `EndpointConfiguration.DoNotCreateQueues`
+* `TransportExtensions.ConnectionString`
+
+### Transport APIs
+
+The following low-level transport APIs have been renamed:
+
+* `IDispatchMessages` has been renamed to `IMEssageDispatcher`
+* `IReceiveMessages` has been renamed to `IMessageReceiver`
+* `IManageSubscriptions` has been renamed to `ISubscriptionManager`
+
+
+## Connection strings
+
+Configuring a transport's connection using `.ConnectionStringName(name)`, which was removed for .NET Core in NServiceBus version 7, has been removed all platforms in NServiceBus version 8. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the `.ConnectionString(value)` configuration.
+
+A connection string named `NServiceBus/Transport` will also **no longer be detected automatically** on any platform. The connection string value must be configured explicitly using `.ConnectionString(value)`.
+
+
 ## Dependency injection
 
 Support for external dependency injection containers is no longer provided by NServiceBus adapters for each container library. Instead, NServiceBus version 8 directly provides the ability to use any container that conforms to the `Microsoft.Extensions.DependencyInjection.Abstractions` container abstraction. Visit the dedicated [dependency injection changes](/nservicebus/upgrades/7to8/dependency-injection.md) section of the upgrade guide for further information.
@@ -60,13 +123,6 @@ While NServiceBus still supports message-driven subscriptions for transports tha
 To disable publishing on an endpoint, the declarative API should be used instead:
 
 snippet: DisablePublishing-UpgradeGuide
-
-
-## Connection strings
-
-Configuring a transport's connection using `.ConnectionStringName(name)`, which was removed for .NET Core in NServiceBus version 7, has been removed all platforms in NServiceBus version 8. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the `.ConnectionString(value)` configuration.
-
-A connection string named `NServiceBus/Transport` will also **no longer be detected automatically** on any platform. The connection string value must be configured explicitly using `.ConnectionString(value)`.
 
 
 ## Change to license file locations
