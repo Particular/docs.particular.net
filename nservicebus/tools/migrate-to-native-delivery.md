@@ -38,9 +38,10 @@ The current version of the tool supports the following persisters:
 
 - [SQL persistence](/persistence/sql/) using the SQL Server implementation
 - [NHibernate persistence](/persistence/nhibernate/) using the Sql Server and Oracle implementation
-- [RavenDB](/persistence/ravendb) versions 3.5.x and 4.x of the RavenDB database server
+- [RavenDB persistence](/persistence/ravendb) versions 3.5.x and 4.x of the RavenDB database server
+- [Azure Storage persistence](/persistence/azure-table) version 2.4.x compatible timeouts stored in Azure Storage tables
 
-NOTE: Additional persisters and targets will be added before NServiceBus version 8 is released. Namely Azure Storage as a source, and Amazon SQS transport as a target.
+NOTE: Additional targets will be added before NServiceBus version 8 is released. Namely Amazon SQS transport as a target.
 
 ## Supported transports
 
@@ -142,7 +143,7 @@ For NHibernate (`nhb`) persistence:
 
 NOTE: The listed endpoints will be in the escaped format that is used to prefix the endpoints timeout table.
 
-For Azure Storage Persistence (`asp`) persistence:
+For Azure Storage (`asp`) persistence:
 
 - `--source`: The connection string to the Azure Storage Account
 - `--endpoint`(Mandatory): The endpoint to migrate
@@ -231,7 +232,7 @@ The tool will not delete any timeouts or storage artifacts in order to prevent d
 
 WARN: This is a destructive operation and should only be performed once a successful migration has been verified.
 
-### RavenDB
+### RavenDB persistence
 
 - Ensure that [RabbitMQ compatibility mode](/transports/rabbitmq/delayed-delivery.md#backwards-compatibility) is turned off
 - Delete all documents in the `TimeoutDatas` documents that have an `OwningTimeoutManager` starting with `__migrated__`
@@ -249,7 +250,7 @@ Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. Fo
  - Delete all the entries from `StagedTimeoutEntity`, that contains the copy of migrated timeouts
  - Delete the table from `MigrationsEntity` that contains a row for every performed migration
 
-### Azure Storage Persistence
+### Azure Storage persistence
 
 In case all the timeouts in a given timeout table have been migrated the timeout table can be deleted. It is also possible to delete migrated entities in the table only, by deleting all entitites that have an `OwningTimeoutManager` starting with `__hidden__`.
 
@@ -262,23 +263,23 @@ to reduce storage costs.
 
 ## Limitations
 
-### RabbitMQ
+### RabbitMQ transport
 
 As documented in the [RabbitMQ transport](/transports/rabbitmq/delayed-delivery.md), the maximum delay value of a timeout is 8.5 years. If the migration tool encounters any timeouts that have delivery time set beyond that, it will not migrate that endpoint's timeouts.
 
 If the tool presents endpoints that are not part of the system when running the `preview` command, it's possible that an endpoint was renamed at some point. Any timeouts that were stored for that endpoint, might already be late in delivery and should be handled separately from the migration tool since the tool has no way to detect where to migrate them to.
 
-### RavenDB
+### RavenDB persistence
 
 The tool requires that timeout documents be discoverable with a known prefix. The prefix is passed to the tool using the `--prefix` parameter. The default is `TimeoutDatas` if a value is not provided. If the system being migrated is using custom ID generation strategies when persisting timeout documents, a prefix may not be applicable.
 
 Scanning timeouts without a well-known prefix is currently not supported.
 
-### Azure Storage Persistence
+### Azure Storage persistence
 
 Due to restrictions of Azure Storage Tables it is not possible to list all endpoints or migrate multiple endpoints. Therefore the `--endpoint` option has to be specified for all the commands.
 
-### ASQ
+### Azure Storage Queues transport
 
 When migrating timeouts to the [ASQ transport](/transports/azure-storage-queues/), the table in which delayed messages are stored is determined by convention. The same convention is applied in the tool.
 However, it's possible to [override delayed messages table name in the endpoint configuration](/transports/azure-storage-queues/delayed-delivery.md).
@@ -295,7 +296,7 @@ To run the tool with different arguments, any in-progress migrations first need 
 
 Turn on verbose logging using the `--verbose` option.
 
-### RavenDB
+### RavenDB persistence
 
 Use Raven Studio to check the state of ongoing and previous migrations by filtering documents using the prefix `TimeoutMigrationTool`. Completed migrations are named `TimeoutMigrationTool/MigrationRun-{endpoint}-{completed-time}` while any ongoing migration are present as `TimeoutMigrationTool/State`. The contents of the documents contains metadata about the migration such as the time started, time completed, used cutoff time etc.
 
@@ -326,4 +327,6 @@ To list all the timeouts that were staged for migration, run the following query
 
 This will return all of the timeouts including batch number and status of that batch, `0=Pending`, `1=Staged` and `2=Completed`.
 
+### Azure Storage persistence
 
+TBD
