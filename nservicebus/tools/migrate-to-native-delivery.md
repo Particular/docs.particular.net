@@ -218,6 +218,11 @@ Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. Fo
 - Delete the empty `{EndpointName}_TimeoutData` table
 - Delete the migration table named `TimeoutData_migration_{MigrationRunId}`, where `MigrationRunId` is taken from the output of the `TimeoutsMigration_State` query (this will free up the disk space used by the timeouts)
 
+### NHibernate persistence
+
+ - Delete all the entries from `StagedTimeoutEntity`, that contains the copy of migrated timeouts
+ - Delete the table from `MigrationsEntity` that contains a row for every performed migration
+
 ## Limitations
 
 ### RabbitMQ
@@ -266,3 +271,19 @@ To list the status of timeouts for an a previous/in-progress run take the `Migra
 `SELECT * FROM TimeoutData_migration_{MigrationRunId}`
 
 This will show all the timeouts and to which batch they belong and also that status of that batch, `0=Pending`, `1=Staged` and `2=Completed`.
+
+### NHibernate 
+The history and migrated data is always kept in the database.
+
+To list the history and status of migrations execute:
+
+`SELECT * FROM MigrationsEntity`
+
+To list all of the timeouts that were supposed to be migrated please run the following query
+
+`SELECT * FROM StagedTimeoutEntity` 
+
+This will return all of the timeouts including batch number and status of that batch, `0=Pending`, `1=Staged` and `2=Completed`.
+
+
+
