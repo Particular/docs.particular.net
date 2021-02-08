@@ -142,6 +142,14 @@ For NHibernate (`nhb`) persistence:
 
 NOTE: The listed endpoints will be in the escaped format that is used to prefix the endpoints timeout table.
 
+For Azure Storage Persistence (`asp`) persistence:
+
+- `--source`: The connection string to the Azure Storage Account
+- `--endpoint`(Mandatory): The endpoint to migrate.
+- `--timeoutTableName`: The timeout table name to migrate timeouts from
+- `--partitionKeyScope`: The partition key scope format to be used. Must follow the pattern of starting with year, month and day.
+- `--containerName`: The container name to be used to download timeout data from
+
 ### Target options
 
 ```
@@ -170,19 +178,37 @@ For Azure Storage Queues (`asq`) transport:
 For example in order to migrate timeouts from SQL Persistence to SqlServer transport the following command could be used:
 
 ```
- migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING --dialect MsSqlServer sqlt --target "TARGETCONNECTIONSTRING"
+ migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING" --dialect MsSqlServer sqlt --target "TARGETCONNECTIONSTRING"
 ```
 
 to migrate from SQL Persistence to RabbitMQ transport the following command could be issued:
 
 ```
- migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING --dialect MsSqlServer rabbitmq --target "amqp://username:password@host:port"
+ migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING" --dialect MsSqlServer rabbitmq --target "amqp://username:password@host:port"
 ```
 
-to migrate from SQL Persistence to ASQ transport the following command could be issued:
+to migrate from SQL Persistence to Azure Storage Queues transport the following command could be issued:
 
 ```
- migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING --dialect MsSqlServer asq --target "UseDevelopmentStorage=true"
+ migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING" --dialect MsSqlServer asq --target "UseDevelopmentStorage=true"
+```
+
+For example in order to migrate timeouts from Azure Storage Persistence to SqlServer transport the following command could be used:
+
+```
+ migrate-timeouts --endpoint EndpointA asp --source "UseDevelopmentStorage=true" sqlt --target "TARGETCONNECTIONSTRING"
+```
+
+to migrate from Azure Storage Persistence to RabbitMQ transport the following command could be issued:
+
+```
+ migrate-timeouts --endpoint EndpointA asp --source "UseDevelopmentStorage=true" rabbitmq --target "amqp://username:password@host:port"
+```
+
+to migrate from Azure Storage Persistence to Azure Storage Queues transport the following command could be issued:
+
+```
+ migrate-timeouts --endpoint EndpointA asp --source "UseDevelopmentStorage=true" asq --target "UseDevelopmentStorage=true"
 ```
 
 ## How the tool works
@@ -223,6 +249,10 @@ Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. Fo
  - Delete all the entries from `StagedTimeoutEntity`, that contains the copy of migrated timeouts
  - Delete the table from `MigrationsEntity` that contains a row for every performed migration
 
+### Azure Storage Persistence
+
+In case all the timeouts in a given timeout table have been migrated the timeout table can be deleted. It is also possible to delete migrated entities in the table only, by deleting all entitites that have an `OwningTimeoutManager` starting with `__hidden__`.
+
 ## Limitations
 
 ### RabbitMQ
@@ -236,6 +266,10 @@ If the tool presents endpoints that are not part of the system when running the 
 The tool requires that timeout documents be discoverable with a known prefix. The prefix is passed to the tool using the `--prefix` parameter. The default is `TimeoutDatas` if a value is not provided. If the system being migrated is using custom ID generation strategies when persisting timeout documents, a prefix may not be applicable.
 
 Scanning timeouts without a well-known prefix is currently not supported.
+
+### Azure Storage Persistence
+
+Due to restrictions of Azure Storage Tables it is not possible to list all endpoints or migrate multiple endpoints. Therefore the `--endpoint` option has to be specified for all the commands.
 
 ### ASQ
 
