@@ -332,9 +332,9 @@ This will return all of the timeouts including batch number and status of that b
 
 To list the history and status of migrations open up the `timeoutsmigrationtoolstate` Azure Table inside the Storage Explorer.
 
-The migrated timeouts as well as their status can be inspected in the `timeoutsmigration` Azure Table. This will show all the timeouts and to which batch they belong and also that status of that batch, `0=Pending`, `1=Staged` and `2=Completed`.
+The migrated timeouts as well as their status can be inspected in the `timeoutsmigration` Azure Table. This will show all the timeouts, to which batch they belong, and its status: `0=Pending`, `1=Staged` and `2=Completed`.
 
-To list all timeouts that have been transferred from the endpoints timeout table into the `timeoutsmigration` table execute the following query and adjust the partition key cut off time accordingly. In order to avoid querying the additional timeout data inside the table scope the partition key to cutoff time plus a hundred years.
+To list all timeouts that have been transferred from the endpoints timeout table into the `timeoutsmigration` table, execute the following query and adjust the partition key cut-off time accordingly. In order to avoid querying the additional timeout data inside the table, scope the partition key to cutoff time plus a hundred years.
 
 ```
 PartitionKey ge '2021-02-09' and PartitionKey le '2121-02-09' and OwningTimeoutManager ge '__hidden__' and PartitionKey le '__hidden_`'
@@ -346,4 +346,4 @@ To list all not yet migrated timeouts for a given endpoint use the following que
 PartitionKey ge '2021-02-09' and PartitionKey le '2121-02-09' and OwningTimeoutManager eq 'endpointname'
 ```
 
-adjust the partition key cut off time and the endpoint name accordingly. In order to avoid querying the additional timeout data inside the table scope the partition key to cutoff time plus a hundred years.
+Adjust the partition key cut-off time and the endpoint name accordingly. In order to avoid querying the additional timeout data inside the table, scope the partition key to cut-off time plus a hundred years.
