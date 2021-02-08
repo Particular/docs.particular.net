@@ -279,11 +279,10 @@ To list the history and status of migrations execute:
 
 `SELECT * FROM MigrationsEntity`
 
-To list all of the timeouts that were supposed to be migrated run the following query
+To list all the timeouts that were staged for migration, run the following query
 
 `SELECT * FROM StagedTimeoutEntity` 
 
 This will return all of the timeouts including batch number and status of that batch, `0=Pending`, `1=Staged` and `2=Completed`.
-
 
 
