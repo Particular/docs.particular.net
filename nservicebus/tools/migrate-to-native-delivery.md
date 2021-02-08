@@ -253,6 +253,13 @@ Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. Fo
 
 In case all the timeouts in a given timeout table have been migrated the timeout table can be deleted. It is also possible to delete migrated entities in the table only, by deleting all entitites that have an `OwningTimeoutManager` starting with `__hidden__`.
 
+For safety reasons the migration table `timeoutsmigration` is left in the state of the last migration that was run. The table is cleaned automatically for every migration run. Once all migrations are done and the data is no longer used it is advisable to delete
+
+- The migration table `timeoutsmigration` 
+- The timeout tool state table `timeoutsmigrationtoolstate`
+
+to reduce storage costs.
+
 ## Limitations
 
 ### RabbitMQ
