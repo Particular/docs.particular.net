@@ -312,7 +312,7 @@ To list the status of timeouts for an a previous/in-progress run take the `Migra
 
 `SELECT * FROM TimeoutData_migration_{MigrationRunId}`
 
-This will show all the timeouts and to which batch they belong and also that status of that batch, `0=Pending`, `1=Staged` and `2=Completed`.
+This will show all the timeouts, to which batch they belong, and its status: `0=Pending`, `1=Staged` and `2=Completed`.
 
 ### NHibernate persistence
 
