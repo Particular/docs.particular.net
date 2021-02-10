@@ -1,0 +1,1 @@
+snippet: access-native-outgoing-message

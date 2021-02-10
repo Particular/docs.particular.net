@@ -22,18 +22,4 @@ The behavior above uses the native message's `LockedUntilUtc` system property to
 
 It can also be useful to access the native Service Bus outgoing message from behaviors and handlers for customizations. 
 
-Customizing an outgoing message from a message handler:
-
-snippet: access-native-outgoing-message-from-handler
-
-Customizing an outgoing message using `IMessageSession`:
-
-snippet: access-native-outgoing-message-with-messagesession
-
-Customizing an outgoing message from a physical behavior:
-
-snippet: access-native-outgoing-message-from-physical-behavior
-
-Customizing an outgoing message from a logical behavior:
-
-snippet: access-native-outgoing-message-from-logical-behavior
+partial: snippets
