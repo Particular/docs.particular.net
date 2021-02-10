@@ -9,9 +9,27 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-## Configuration API changes
+## Configuring Azure Service Bus Transport
 
-Due to changes to the transport configuration, the Azure Service Bus Transport configuration options have been moved to the `AzureServiceBusTransport` class. See the following table for further information:
+To use Azure Service Bus Transport for NServiceBus, create a new instance `AzureServiceBusTransport` and pass it to `EndpointConfiguration.UseTransport`.
+
+Instead of
+
+```csharp
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+transport.ConnectionString(connectionString);
+```
+
+Use:
+
+```csharp
+var transport = new AzureServiceBusTransport(connectionString);
+endpointConfiguration.UseTransport(transport);
+```
+
+## Configuration Options
+
+The Azure Service Bus Transport configuration options have been moved to the `AzureServiceBusTransport` class. See the following table for further information:
 
 | Version 1 configuration option | Version 2 configuration option |
 | --- | --- |
