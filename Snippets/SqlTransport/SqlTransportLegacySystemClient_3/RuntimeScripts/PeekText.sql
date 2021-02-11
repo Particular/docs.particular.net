@@ -1,7 +1,9 @@
 startcode PeekTextSql
 
 SELECT count(*) Id
-FROM {0} WITH (READPAST)
-WHERE Expires IS NULL
-    OR Expires > GETUTCDATE();
+FROM (
+    SELECT TOP {1} * 
+    FROM {0} WITH (READPAST) 
+    WHERE Expires IS NULL OR Expires > GETUTCDATE()
+) as count_table;
 endcode

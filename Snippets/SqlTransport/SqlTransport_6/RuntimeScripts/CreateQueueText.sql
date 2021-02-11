@@ -32,7 +32,7 @@ CREATE TABLE {0} (
 
 CREATE NONCLUSTERED INDEX Index_RowVersion ON {0}
 (
-    RowVersion
+	[RowVersion] ASC
 )
 
 CREATE NONCLUSTERED INDEX Index_Expires ON {0}

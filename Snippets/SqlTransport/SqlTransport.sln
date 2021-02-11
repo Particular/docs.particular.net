@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_6.1", "SqlTran
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_6.2", "SqlTransport_6.2\SqlTransport_6.2.csproj", "{9AC949BF-3F44-4B5B-B2B9-EAECFBC17BA8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_7", "SqlTransport_7\SqlTransport_7.csproj", "{D1B3BD78-279B-4178-9678-9ED48B83460F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{9AC949BF-3F44-4B5B-B2B9-EAECFBC17BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AC949BF-3F44-4B5B-B2B9-EAECFBC17BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AC949BF-3F44-4B5B-B2B9-EAECFBC17BA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1B3BD78-279B-4178-9678-9ED48B83460F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1B3BD78-279B-4178-9678-9ED48B83460F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1B3BD78-279B-4178-9678-9ED48B83460F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1B3BD78-279B-4178-9678-9ED48B83460F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
