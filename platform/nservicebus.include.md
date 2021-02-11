@@ -59,7 +59,7 @@ Message handlers and sagas can be [tested in isolation](/nservicebus/testing/). 
 
 ## Flexible
 
-NServiceBus endpoints can be hosted anywhere code can be executed, such as in a Windows Service, a Docker container, or in the cloud with Azure or AWS. NServiceBus is compiled against .NET Standard 2.0 and endpoints can be run on [a variety of platforms](/nservicebus/upgrades/supported-platforms.md).  
+NServiceBus endpoints can be hosted anywhere code can be executed, such as in a Windows Service, a Docker container, or in the cloud with Azure or AWS. Endpoints can be run on [a variety of platforms](/nservicebus/upgrades/supported-platforms.md).  
 
 NServiceBus works with many different technology stacks, offering choices for [transport](/transports/) and [persistence](/persistence/). Out of the box, defaults are provided for [serialization](/nservicebus/serialization/), [dependency injection](/nservicebus/dependency-injection/), and [logging](/nservicebus/logging/). These defaults can be overridden if a specific technology is required. 
 
