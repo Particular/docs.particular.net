@@ -34,38 +34,7 @@ var routing = endpointConfiguration.UseTransport(transport);
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
 
-The transport can be configured via the transport's configuration type which derives from `TransportDefinition`. See the transport specific upgrade guides for further details on the configuration options:
-
-* [Azure Service Bus transport upgrade guide](TODO)
-* [Azure Storage Queues transport upgrade guide](TODO)
-* [RabbitMQ transport upgrade guide](TODO)
-* [MSMQ transport upgrade guide](TODO)
-* [SQL Server transport upgrade guide](TODO)
-* [Amazon SQS transport upgrade guide](TODO)
-
-### Transaction Configuration
-
-Instead of the `Transactions` method, use the `TransportTransactionMode` property on the transport configuration instance to configure the desired transaction mode.
-
-### Routing Configuration
-
-Routing can be configured on the `RoutingSettings` returned from the `UseTransport` method.
-
-### Obsoleted Configuration Options
-
-The following configuration operations have been obsoleted. See the transport specific upgrade guides for further information about the availablity of these configuration options.
-
-* `EndpointConfiguration.DoNotCreateQueues`
-* `TransportExtensions.ConnectionString`
-
-### Transport APIs
-
-The following low-level transport APIs have been renamed:
-
-* `IDispatchMessages` has been renamed to `IMEssageDispatcher`
-* `IReceiveMessages` has been renamed to `IMessageReceiver`
-* `IManageSubscriptions` has been renamed to `ISubscriptionManager`
-
+The transport can be configured via the transport's configuration type which derives from `TransportDefinition`. See the [transport upgrade guide](/nservicebus/upgrades/7to8/transport.md) for further details.
 
 ## Connection strings
 
