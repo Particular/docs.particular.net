@@ -12,9 +12,9 @@ class CustomEnvelopeUnwrapper
     {
         #region CustomEnvelopeUnwrapper
 
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        var transport = new AzureStorageQueueTransport("connection string");
 
-        transport.UnwrapMessagesWith(queueMessage =>
+        transport.MessageUnwrapper = queueMessage =>
         {
             using (var stream = new MemoryStream(Convert.FromBase64String(queueMessage.MessageText)))
             using (var streamReader = new StreamReader(stream))
@@ -37,7 +37,9 @@ class CustomEnvelopeUnwrapper
                     Body = Convert.FromBase64String(queueMessage.MessageText)
                 };
             }
-        });
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
