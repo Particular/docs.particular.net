@@ -4,6 +4,10 @@ reviewed: 2019-12-16
 isLearningPath: true
 summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
 previewImage: add-shipping-endpoint.png
+extensions:
+- !!tutorial
+  nextText: "Next: NServiceBus from the ground up"
+  nextUrl: tutorials/nservicebus-step-by-step/1-getting-started
 ---
 
 include: quickstart-tutorial-intro-paragraph
@@ -332,17 +336,7 @@ We also implemented an additional event subscriber, showing how to decouple inde
 
 SUCCESS: Now that you've seen what NServiceBus can do, take the next step and learn how to build a system like this one from the ground up. In the next tutorial, find out how to build the same solution starting from **File** > **New Project**.
 
-<div class="tutorial-actions text-center">
-  <a href="#" class="btn btn-outline btn-info btn-lg" onclick="return fireGAEvent('TutorialCTAClick', '/tutorials/quickstart/')">
-    Share your accomplishment
-  </a>
-  <a href="/tutorials/nservicebus-step-by-step/1-getting-started/" class="btn btn-success btn-lg" id="tweet" onclick="return fireGAEvent('TutorialTweetClick', '/tutorials/quickstart/')">
-    Next: NServiceBus from the ground up <em class="glyphicon glyphicon-chevron-right"></em>
-  </a>
-</div>
-
-<style>
-
+<style type="text/css">
   .btn-outline {
     border: 1px solid #00A3C4;
     background-color: #fff;
@@ -355,7 +349,6 @@ SUCCESS: Now that you've seen what NServiceBus can do, take the next step and le
   .btn-outline:hover {
     background: url('tweet-hover.svg') no-repeat left 15px top 11px / 22px 22px, #00A3C4;
   }
-
 </style>
 
 <script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
@@ -370,7 +363,7 @@ SUCCESS: Now that you've seen what NServiceBus can do, take the next step and le
   // Google view
   gtag('event', 'conversion', {'send_to': 'AW-691241604/vSZvCJ-K78kBEISFzskC'});
   (function () {
-    var track = function () {
+    var onJQuery = function () {
       $('.inline-download .dropdown-menu a:first').click(function(e) {
         // Twitter download
         twttr.conversion.trackPid('o3ay4', { tw_sale_amount: 0, tw_order_quantity: 0 });
@@ -380,20 +373,21 @@ SUCCESS: Now that you've seen what NServiceBus can do, take the next step and le
           'transaction_id': ''
         });
       });
+      $(function () {
+        $('.tutorial-actions').prepend('<a href="#" id="tweet-completion" class="btn btn-outline btn-info btn-lg">Share your accomplishment</a>');
+        $('#tweet-completion').on('click', function (e) {
+          e.preventDefault();
+          window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent('I just completed the #NServiceBus Quick Start tutorial at docs.particular.net/tutorials/quickstart'));
+        });
+      });
     };
     var init = function () {
       if(window.$) {
-        track();
+        onJQuery();
       } else {
-        setTimeout(function() { init(); }, 500);
+        setTimeout(function () { init(); }, 500);
       }
     };
     init();
   }());
-  $(function () {
-      $('#tweet').on('click', function (e) {
-          e.preventDefault();
-          window.open('https://twitter.com/intent/tweet?text=I just completed the #NServiceBus Quick Start tutorial at docs.particular.net/tutorials/quickstart ');
-      });
-  });
 </script>
