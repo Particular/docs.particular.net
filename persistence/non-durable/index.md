@@ -17,7 +17,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 |Feature                    |   |
 |:---                       |---
-|Storage Types              |Sagas, Outbox, Subscriptions, Timeouts
+|Storage Types              |Sagas, Outbox, Subscriptions
 |Transactions               |None
 |Concurrency control        |Optimistic concurrency
 |Scripted deployment        |Does not apply
