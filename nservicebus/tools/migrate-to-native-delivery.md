@@ -174,44 +174,6 @@ For Azure Storage Queues (`asq`) transport:
 - `--target`: The Azure Storage connection string to be used
 - `--delayedtablename`: The delayed delivery table name to use. This is only required when the name of the delayed delivery table has been overridden from the default. It is not possible to migrate all endpoints when specifying this option.
 
-### Example
-
-For example in order to migrate timeouts from SQL Persistence to SqlServer transport the following command could be used:
-
-```
- migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING" --dialect MsSqlServer sqlt --target "TARGETCONNECTIONSTRING"
-```
-
-to migrate from SQL Persistence to RabbitMQ transport the following command could be issued:
-
-```
- migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING" --dialect MsSqlServer rabbitmq --target "amqp://username:password@host:port"
-```
-
-to migrate from SQL Persistence to Azure Storage Queues transport the following command could be issued:
-
-```
- migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING" --dialect MsSqlServer asq --target "UseDevelopmentStorage=true"
-```
-
-For example, in order to migrate timeouts from Azure Storage Persistence to SqlServer transport the following command could be used:
-
-```
- migrate-timeouts --endpoint EndpointA asp --source "UseDevelopmentStorage=true" sqlt --target "TARGETCONNECTIONSTRING"
-```
-
-to migrate from Azure Storage Persistence to RabbitMQ transport the following command could be issued:
-
-```
- migrate-timeouts --endpoint EndpointA asp --source "UseDevelopmentStorage=true" rabbitmq --target "amqp://username:password@host:port"
-```
-
-to migrate from Azure Storage Persistence to Azure Storage Queues transport the following command could be issued:
-
-```
- migrate-timeouts --endpoint EndpointA asp --source "UseDevelopmentStorage=true" asq --target "UseDevelopmentStorage=true"
-```
-
 ## How the tool works
 
 The migration tool will first perform a few health checks:
