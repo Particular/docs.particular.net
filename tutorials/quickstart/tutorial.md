@@ -377,6 +377,7 @@ SUCCESS: Now that you've seen what NServiceBus can do, take the next step and le
         $('.tutorial-actions').prepend('<a href="#" id="tweet-completion" class="btn btn-outline btn-info btn-lg">Share your accomplishment</a>');
         $('#tweet-completion').on('click', function (e) {
           e.preventDefault();
+          window.ga && window.ga('send', 'event', 'QuickStart', 'TweetCompletionClick');
           window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent('I just completed the #NServiceBus Quick Start tutorial at docs.particular.net/tutorials/quickstart'));
         });
       });
