@@ -17,11 +17,14 @@ class Program
 
         #region config
 
-        var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true") 
-        { 
-            QueueNameSanitizer = BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener
-        };
+        var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true");
         var routingSettings = endpointConfiguration.UseTransport(transport);
+
+        #endregion
+
+        #region sanitization
+
+        transport.QueueNameSanitizer = BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener;
 
         #endregion
 
