@@ -3,11 +3,11 @@ title: "NServiceBus Quick Start"
 reviewed: 2019-12-16
 isLearningPath: true
 summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
-previewImage: add-shipping-endpoint.png
 extensions:
 - !!tutorial
   nextText: "Next: NServiceBus from the ground up"
   nextUrl: tutorials/nservicebus-step-by-step/1-getting-started
+previewImage: add-shipping-endpoint.png
 ---
 
 include: quickstart-tutorial-intro-paragraph
@@ -385,7 +385,7 @@ SUCCESS: Now that you've seen what NServiceBus can do, take the next step and le
       if(window.$) {
         onJQuery();
       } else {
-        setTimeout(function () { init(); }, 500);
+        setTimeout(function() { init(); }, 500);
       }
     };
     init();
