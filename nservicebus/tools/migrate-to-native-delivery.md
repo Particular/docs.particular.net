@@ -182,31 +182,31 @@ For example in order to migrate timeouts from SQL Persistence to SqlServer trans
  migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING" --dialect MsSqlServer sqlt --target "TARGETCONNECTIONSTRING"
 ```
 
-to migrate from SQL Persistence to RabbitMQ transport the following command could be issued:
+To migrate from SQL persistence to the RabbitMQ transport, use the following command:
 
 ```
  migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING" --dialect MsSqlServer rabbitmq --target "amqp://username:password@host:port"
 ```
 
-to migrate from SQL Persistence to Azure Storage Queues transport the following command could be issued:
+To migrate from SQL persistence to the Azure Storage Queues transport, use the following command:
 
 ```
  migrate-timeouts --endpoint EndpointA sqlp --source "SOURCECONNECTIONSTRING" --dialect MsSqlServer asq --target "UseDevelopmentStorage=true"
 ```
 
-For example, in order to migrate timeouts from Azure Storage Persistence to SqlServer transport the following command could be used:
+For example, in order to migrate timeouts from Azure Storage persistence to the SQL Server transport, use the following command:
 
 ```
  migrate-timeouts --endpoint EndpointA asp --source "UseDevelopmentStorage=true" sqlt --target "TARGETCONNECTIONSTRING"
 ```
 
-to migrate from Azure Storage Persistence to RabbitMQ transport the following command could be issued:
+To migrate from Azure Storage persistence to the RabbitMQ transport, use the following command:
 
 ```
  migrate-timeouts --endpoint EndpointA asp --source "UseDevelopmentStorage=true" rabbitmq --target "amqp://username:password@host:port"
 ```
 
-to migrate from Azure Storage Persistence to Azure Storage Queues transport the following command could be issued:
+To migrate from Azure Storage Persistence to the Azure Storage Queues transport, use the following command:
 
 ```
  migrate-timeouts --endpoint EndpointA asp --source "UseDevelopmentStorage=true" asq --target "UseDevelopmentStorage=true"
@@ -281,10 +281,7 @@ Due to restrictions of Azure Storage Tables it is not possible to list all endpo
 
 ### Azure Storage Queues transport
 
-When migrating timeouts to the [ASQ transport](/transports/azure-storage-queues/), the table in which delayed messages are stored is determined by convention. The same convention is applied in the tool.
-However, it's possible to [override delayed messages table name in the endpoint configuration](/transports/azure-storage-queues/delayed-delivery.md).
-If that option is used, the tool is unable to migrate all endpoints as the convention can't be applied to derive the table name for the delayed messages.
-Therefore, the tool will guard against that and require the `--endpoint` option when the `--delayedtablename`-option is specified.
+When migrating timeouts to the [ASQ transport](/transports/azure-storage-queues/), the table in which delayed messages are stored is determined by convention. The same convention is applied in the tool. However, it's possible to [override delayed messages table name in the endpoint configuration](/transports/azure-storage-queues/delayed-delivery.md). If this option is used, the tool is unable to migrate all endpoints as the convention can't be applied to derive the table name for the delayed messages. Therefore, the tool will guard against this scenario and require that the `--endpoint` option be used when the `--delayedtablename` option is specified.
 
 ## Troubleshooting
 
