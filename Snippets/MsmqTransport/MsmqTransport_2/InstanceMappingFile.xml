@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <!-- startcode InstanceMappingFile -->
+  <endpoints>
+    <endpoint name="Sales">
+      <instance machine="VM-1"/>
+    </endpoint>
+    <endpoint name="Shipping">
+      <instance machine="VM-2"/>
+    </endpoint>
+    <endpoint name="Billing">
+      <instance machine="VM-3"/>
+    </endpoint>
+  </endpoints>
+  <!-- endcode -->
+</root>
