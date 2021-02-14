@@ -31,7 +31,7 @@ The policy statement is updated when an endpoint explicitly subscribes to an eve
 
 #### Account condition
 
-Allow all messages from any topic in the account. The account name is derived from the subscribed topic ARN.
+Allow all messages from any topic in the account. The account name is extracted from the subscribed topic ARN.
 
 snippet: wildcard-account-condition
 
