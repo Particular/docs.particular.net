@@ -45,7 +45,7 @@ Since a saga manages the state of a long-running process, under which conditions
 
 NOTE: `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that.
 
-This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it, if there isn't already an existing saga that correlates to the message. In essence the semantics of `IAmStartedByMessages` is:
+This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it, if there isn't already an existing saga that correlates to the message. As a convenience, in NServiceBus version 6 and above, the message will set it's mapped correlation property on the created saga data. In essence the semantics of `IAmStartedByMessages` is:
 
 > Create a new instance if an existing one can't be found
 
