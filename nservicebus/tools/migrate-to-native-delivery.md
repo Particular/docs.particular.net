@@ -243,10 +243,7 @@ Due to restrictions of Azure Storage Tables it is not possible to list all endpo
 
 ### Azure Storage Queues transport
 
-When migrating timeouts to the [ASQ transport](/transports/azure-storage-queues/), the table in which delayed messages are stored is determined by convention. The same convention is applied in the tool.
-However, it's possible to [override delayed messages table name in the endpoint configuration](/transports/azure-storage-queues/delayed-delivery.md).
-If that option is used, the tool is unable to migrate all endpoints as the convention can't be applied to derive the table name for the delayed messages.
-Therefore, the tool will guard against that and require the `--endpoint` option when the `--delayedtablename`-option is specified.
+When migrating timeouts to the [ASQ transport](/transports/azure-storage-queues/), the table in which delayed messages are stored is determined by convention. The same convention is applied in the tool. However, it's possible to [override delayed messages table name in the endpoint configuration](/transports/azure-storage-queues/delayed-delivery.md). If this option is used, the tool is unable to migrate all endpoints as the convention can't be applied to derive the table name for the delayed messages. Therefore, the tool will guard against this scenario and require that the `--endpoint` option be used when the `--delayedtablename` option is specified.
 
 ## Troubleshooting
 
