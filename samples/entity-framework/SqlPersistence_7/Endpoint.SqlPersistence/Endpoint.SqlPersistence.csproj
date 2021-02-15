@@ -8,7 +8,7 @@
     <ProjectReference Include="..\Messages\Messages.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus" Version="[8.0.0-alpha.819, 9.0.0)" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="[7.0.0-new-seam-core.1, 8.0.0)" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="[7.0.0-alpha.181, 8.0.0)" />
     <PackageReference Include="NServiceBus.Autofac" Version="[8.0.0-alpha.123, 9.0.0)" />
     <PackageReference Include="NServiceBus.SqlServer" Version="[7.0.0-alpha.284, 8.0.0)" />
     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
