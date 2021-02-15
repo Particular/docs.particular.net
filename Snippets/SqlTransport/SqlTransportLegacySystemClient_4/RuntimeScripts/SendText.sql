@@ -16,7 +16,7 @@ VALUES (
     @Id,
     @CorrelationId,
     @ReplyToAddress,
-    1,
+    @Recoverable,
     CASE WHEN @TimeToBeReceivedMs IS NOT NULL
         THEN DATEADD(ms, @TimeToBeReceivedMs, GETUTCDATE()) END,
     @Headers,

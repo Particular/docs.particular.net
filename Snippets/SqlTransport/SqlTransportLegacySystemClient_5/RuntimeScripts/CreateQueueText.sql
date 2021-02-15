@@ -30,9 +30,9 @@ CREATE TABLE {0} (
     RowVersion bigint IDENTITY(1,1) NOT NULL
 );
 
-CREATE NONCLUSTERED INDEX Index_RowVersion ON {0}
+CREATE CLUSTERED INDEX Index_RowVersion ON {0}
 (
-	[RowVersion] ASC
+    RowVersion
 )
 
 CREATE NONCLUSTERED INDEX Index_Expires ON {0}

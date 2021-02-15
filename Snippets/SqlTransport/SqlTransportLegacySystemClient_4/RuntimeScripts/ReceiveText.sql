@@ -13,6 +13,7 @@ OUTPUT
     deleted.Id,
     deleted.CorrelationId,
     deleted.ReplyToAddress,
+    deleted.Recoverable,
     CASE WHEN deleted.Expires IS NULL
         THEN 0
         ELSE CASE WHEN deleted.Expires > GETUTCDATE()
