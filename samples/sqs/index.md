@@ -1,5 +1,5 @@
 ---
 title: SQS Transport Samples
-reviewed: 2019-03-22
+reviewed: 2021-02-16
 component: Sqs
 ---
