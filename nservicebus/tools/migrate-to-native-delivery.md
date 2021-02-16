@@ -41,15 +41,15 @@ The current version of the tool supports the following persisters:
 - [RavenDB persistence](/persistence/ravendb) versions 3.5.x and 4.x of the RavenDB database server
 - [Azure Storage persistence](/persistence/azure-table) version 2.4.x compatible timeouts stored in Azure Storage tables
 
-NOTE: Additional targets will be added before NServiceBus version 8 is released. Namely Amazon SQS transport as a target.
-
 ## Supported transports
 
 The tool supports the following transports:
 
-- [RabbitMQ](/transports/rabbitmq/)
-- [SQL Transport](/transports/sql)
-- [Azure Storage Queues](/transports/azure-storage-queues/)
+- [RabbitMQ transport](/transports/rabbitmq/)
+- [SQL transport](/transports/sql)
+- [Azure Storage Queues transport](/transports/azure-storage-queues/)
+
+NOTE: Support for the [Amazon SQS transport](/transports/sqs/) will be added before NServiceBus version 8 is released.
 
 ## Before using the tool
 
@@ -127,7 +127,7 @@ For RavenDB (`ravendb`) persistence:
 - `--databaseName`: The database name where timeouts to migrate are stored
 - `--ravenVersion`: Allowed values are "3.5" and "4"
 - `--prefix`(optional): The prefix used for storage of timeouts. The default value is "TimeoutDatas"
-- `forceUseIndex`(Optional): Required when migrating large amounts or timeouts. Requires all endpoints using the database to be turned off so as not to modify the timeout data. This option will only be used during migration.
+- `--forceUseIndex`(Optional): Required when migrating large amounts or timeouts. Requires all endpoints using the database to be turned off so as not to modify the timeout data. This option will only be used during migration.
 
 For SQL (`sqlp`) persistence:
 
@@ -148,7 +148,7 @@ For Azure Storage (`asp`) persistence:
 - `--source`: The connection string to the Azure Storage Account
 - `--endpoint`(Mandatory): The endpoint to migrate
 - `--timeoutTableName`: The timeout table name to migrate timeouts from
-- `--partitionKeyScope`: The partition key scope format to be used. Must follow the pattern of starting with year, month and day
+- `--partitionKeyScope`: The partition key scope format to be used (must follow the pattern of starting with year, month, and day)
 - `--containerName`: The container name to be used to download timeout data from
 
 ### Target options
@@ -209,19 +209,17 @@ Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. Fo
 
 ### NHibernate persistence
 
- - Delete all the entries from `StagedTimeoutEntity`, that contains the copy of migrated timeouts
- - Delete the table from `MigrationsEntity` that contains a row for every performed migration
+ - Delete all rows from the `StagedTimeoutEntity` table. These are copies of migrated timeouts.
+ - Delete the `MigrationsEntity` table. Each row in this table represents a previously performed migration.
 
 ### Azure Storage persistence
 
-In case all the timeouts in a given timeout table have been migrated the timeout table can be deleted. It is also possible to delete migrated entities in the table only, by deleting all entitites that have an `OwningTimeoutManager` starting with `__hidden__`.
+When all the timeouts in a given timeout table have been migrated, the timeout table may be deleted. It is also possible to delete only migrated entities from a timeout table by deleting all rows with `OwningTimeoutManager` starting with `__hidden__`.
 
-For safety reasons the migration table `timeoutsmigration` is left in the state of the last migration that was run. The table is cleaned automatically for every migration run. Once all migrations are done and the data is no longer used it is advisable to delete
+For safety reasons, the migration table `timeoutsmigration` is left in the state of the last migration that was run. The table is cleaned automatically during every migration run. To reduce storage costs, after all migrations are done it is advisable to delete:
 
-- The migration table `timeoutsmigration` 
-- The timeout tool state table `timeoutsmigrationtoolstate`
-
-to reduce storage costs.
+- The migration table: `timeoutsmigration` 
+- The timeout tool state table: `timeoutsmigrationtoolstate`
 
 ## Limitations
 
@@ -239,7 +237,7 @@ Scanning timeouts without a well-known prefix is currently not supported.
 
 ### Azure Storage persistence
 
-Due to restrictions of Azure Storage Tables it is not possible to list all endpoints or migrate multiple endpoints. Therefore the `--endpoint` option has to be specified for all the commands.
+Due to restrictions of Azure Storage Tables it is not possible to list all endpoints or migrate multiple endpoints. Therefore the `--endpoint` option must be specified for all commands.
 
 ### Azure Storage Queues transport
 
@@ -267,33 +265,33 @@ To list the history and status of migrations execute:
 
 `SELECT * FROM TimeoutsMigration_State`
 
-To list the status of timeouts for an a previous/in-progress run take the `MigrationRunId` from the query about and execute:
+To list the status of timeouts for a previous/in-progress run, take the `MigrationRunId` from the results of the previous query and execute:
 
 `SELECT * FROM TimeoutData_migration_{MigrationRunId}`
 
-This will show all the timeouts, to which batch they belong, and its status: `0=Pending`, `1=Staged` and `2=Completed`.
+The results include the batch number and its status: `0=Pending`, `1=Staged`, or `2=Completed`.
 
 ### NHibernate persistence
 
 The history and migrated data is always kept in the database.
 
-To list the history and status of migrations execute:
+To list the history and status of migrations:
 
 `SELECT * FROM MigrationsEntity`
 
-To list all the timeouts that were staged for migration, run the following query
+To list all the timeouts that were staged for migration:
 
 `SELECT * FROM StagedTimeoutEntity` 
 
-This will return all of the timeouts including batch number and status of that batch, `0=Pending`, `1=Staged` and `2=Completed`.
+The results include the batch number and its status: `0=Pending`, `1=Staged`, or `2=Completed`.
 
 ### Azure Storage persistence
 
-To list the history and status of migrations open up the `timeoutsmigrationtoolstate` Azure Table inside the Storage Explorer.
+To list the history and status of migrations open the `timeoutsmigrationtoolstate` Azure Table inside the Storage Explorer.
 
-The migrated timeouts as well as their status can be inspected in the `timeoutsmigration` Azure Table. This will show all the timeouts, to which batch they belong, and its status: `0=Pending`, `1=Staged` and `2=Completed`.
+The migrated timeouts and their status are contained in the `timeoutsmigration` Azure Table. This includes the batch number its status: `0=Pending`, `1=Staged`, or `2=Completed`.
 
-To list all timeouts that have been transferred from the endpoints timeout table into the `timeoutsmigration` table, execute the following query and adjust the partition key cut-off time accordingly. In order to avoid querying the additional timeout data inside the table, scope the partition key to cutoff time plus a hundred years.
+To list all timeouts that were transferred from the endpoints timeout table to the `timeoutsmigration` table, execute the following query and adjust the partition key cut-off time accordingly. To avoid returning additional timeout data, scope the partition key to the cutoff time plus one hundred years.
 
 ```
 PartitionKey ge '2021-02-09' and PartitionKey le '2121-02-09' and OwningTimeoutManager ge '__hidden__' and PartitionKey le '__hidden_`'
@@ -305,4 +303,4 @@ To list all not yet migrated timeouts for a given endpoint use the following que
 PartitionKey ge '2021-02-09' and PartitionKey le '2121-02-09' and OwningTimeoutManager eq 'endpointname'
 ```
 
-Adjust the partition key cut-off time and the endpoint name accordingly. In order to avoid querying the additional timeout data inside the table, scope the partition key to cut-off time plus a hundred years.
+Adjust the partition key cut-off time and the endpoint name accordingly. To avoid returning additional timeout data, scope the partition key to the cutoff time plus one hundred years.
