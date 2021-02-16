@@ -1,6 +1,6 @@
 ---
 title: Moving away from IBus in Version 6
-reviewed: 2019-03-25
+reviewed: 2021-02-16
 component: Core
 summary: Describes how to send messages without the IBus interface
 redirects:
