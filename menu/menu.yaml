@@ -622,7 +622,7 @@
       Articles:
       - Url: transports/upgrades/asbs-1.7to1.8
         Title: Verson 1.7 to 1.8
-      - Url: transports/upgrades/asbs-1to
+      - Url: transports/upgrades/asbs-1to2
         Title: Version 1 to 2
     - Title: Azure Service Bus (Legacy)
       Articles:
