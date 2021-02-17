@@ -125,7 +125,7 @@ For RavenDB (`ravendb`) persistence:
 - `--databaseName`: The database name where timeouts to migrate are stored
 - `--ravenVersion`: Allowed values are "3.5" and "4"
 - `--prefix`(optional): The prefix used for storage of timeouts. The default value is "TimeoutDatas"
-- `--forceUseIndex`(Optional): Required when migrating large amounts or timeouts. Requires all endpoints using the database to be turned off so as not to modify the timeout data. This option will only be used during migration.
+- `--forceUseIndex`(Optional): Required when migrating large amounts of timeouts. Requires all endpoints using the database to be turned off so as not to modify the timeout data. This option will only be used during migration.
 
 For SQL (`sqlp`) persistence:
 
