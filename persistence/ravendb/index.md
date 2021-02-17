@@ -55,7 +55,7 @@ partial: clusters
 
 ## Shared session
 
-NServiceBus supports sharing the same RavenDB document session between Saga persistence, Outbox persistence, and business data, so that a single persistence transaction can be used to persist the data for all three concerns atomically. Shared sessions are automatically configured when an endpoint has enabled the [Outbox feature](/nservicebus/outbox/) or contains [sagas](/nservicebus/sagas/).
+NServiceBus supports sharing the same RavenDB document session between saga persistence, outbox persistence, and business data, so that a single persistence transaction can be used to persist the data for all three concerns atomically. Shared sessions are automatically configured when an endpoint has enabled the [outbox feature](/nservicebus/outbox/) or contains [sagas](/nservicebus/sagas/).
 
 To use the shared session in a message handler:
 

@@ -1,3 +1,3 @@
 ## Supported clustering configurations
 
-NServiceBus does not support multi-master RavenDB cluster configurations. Only fail-over clustering modes are supported. Consistency cannot be guaranteed in multi-master configurations and NServiceBus cannot do automated conflict resolution for conflicts in multi-master configurations.
+NServiceBus.RavenDB versions 6.4 and below do not support RavenDB clusters. Consistency cannot be guaranteed in clusters of three nodes or larger and NServiceBus cannot do automated conflict resolution for conflicts in these configurations.
