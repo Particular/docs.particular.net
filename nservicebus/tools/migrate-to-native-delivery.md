@@ -49,8 +49,6 @@ The tool supports the following transports:
 - [SQL transport](/transports/sql)
 - [Azure Storage Queues transport](/transports/azure-storage-queues/)
 
-NOTE: Support for the [Amazon SQS transport](/transports/sqs/) will be added before NServiceBus version 8 is released.
-
 ## Before using the tool
 
 Even though the tool doesn't delete any timeout information when doing the migration, it is recomended to follow industry standards related to modifying the database. Create a backup of the production database and run the migration on a test environment before running it in production.
