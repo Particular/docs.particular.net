@@ -336,11 +336,26 @@ We also implemented an additional event subscriber, showing how to decouple inde
 
 SUCCESS: Now that you've seen what NServiceBus can do, take the next step and learn how to build a system like this one from the ground up. In the next tutorial, find out how to build the same solution starting from **File** > **New Project**.
 
+<style type="text/css">
+  .btn-outline {
+    border: 1px solid #00A3C4;
+    background-color: #fff;
+    color: #00A3C4;
+    margin-right: 15px;
+    padding-left: 45px;
+    background: url('tweet.svg') no-repeat left 15px top 11px / 22px 22px;
+  }
+
+  .btn-outline:hover {
+    background: url('tweet-hover.svg') no-repeat left 15px top 11px / 22px 22px, #00A3C4;
+  }
+</style>
+
 <script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-691241604"></script>
 <script type="text/javascript">
   // Twitter view
-  twttr.conversion.trackPid('o3bkg', { tw_sale_amount: 0, tw_order_quantity: 0 });
+  window.twttr && twttr.conversion.trackPid('o3bkg', { tw_sale_amount: 0, tw_order_quantity: 0 });
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -348,7 +363,7 @@ SUCCESS: Now that you've seen what NServiceBus can do, take the next step and le
   // Google view
   gtag('event', 'conversion', {'send_to': 'AW-691241604/vSZvCJ-K78kBEISFzskC'});
   (function () {
-    var track = function () {
+    var onJQuery = function () {
       $('.inline-download .dropdown-menu a:first').click(function(e) {
         // Twitter download
         twttr.conversion.trackPid('o3ay4', { tw_sale_amount: 0, tw_order_quantity: 0 });
@@ -358,10 +373,18 @@ SUCCESS: Now that you've seen what NServiceBus can do, take the next step and le
           'transaction_id': ''
         });
       });
+      $(function () {
+        $('.tutorial-actions').prepend('<a href="#" id="tweet-completion" class="btn btn-outline btn-info btn-lg">Share your accomplishment</a>');
+        $('#tweet-completion').on('click', function (e) {
+          e.preventDefault();
+          window.ga && window.ga('send', 'event', 'QuickStart', 'TweetCompletionClick');
+          window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent('I just completed the #NServiceBus Quick Start tutorial at docs.particular.net/tutorials/quickstart'));
+        });
+      });
     };
     var init = function () {
       if(window.$) {
-        track();
+        onJQuery();
       } else {
         setTimeout(function() { init(); }, 500);
       }
