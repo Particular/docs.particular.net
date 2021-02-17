@@ -1058,6 +1058,8 @@
       Title: Configure DTC
     - Url: persistence/ravendb/outbox
       Title: Outbox
+    - Url: persistence/ravendb/clusters
+      Title: RavenDB clusters
     - Url: persistence/ravendb/version-compatibility
       Title: RavenDB client versions
     - Url: persistence/ravendb/reroute-existing-timeouts
