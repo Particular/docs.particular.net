@@ -214,7 +214,7 @@ Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. Fo
 
 When all the timeouts in a given timeout table have been migrated, the timeout table may be deleted. It is also possible to delete only migrated entities from a timeout table by deleting all rows with `OwningTimeoutManager` starting with `__hidden__`.
 
-For safety reasons, the migration table `timeoutsmigration` is left in the state of the last migration that was run. The table is cleaned automatically during every migration run. To reduce storage costs, after all migrations are done it is advisable to delete:
+The `timeoutsmigration` table is left in the state of the last migration that was run in case it is required for troubleshooting. The table is cleaned automatically during every migration run. To reduce storage costs, after all migrations are done it is advisable to delete:
 
 - The migration table: `timeoutsmigration` 
 - The timeout tool state table: `timeoutsmigrationtoolstate`
