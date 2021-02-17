@@ -20,7 +20,7 @@
                 // messageIntentEnum will be either MessageIntentEnum.Unsubscribe or MessageIntentEnum.Subscribe
                 var endpointName = headers[Headers.SubscriberEndpoint]
                     .ToLowerInvariant();
-                // true to allow false to decline
+                // true to allow, false to decline
                 return true;
             });
 
