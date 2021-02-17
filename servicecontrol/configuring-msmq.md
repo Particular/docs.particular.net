@@ -2,7 +2,7 @@
 title: Configuring MSMQ for use with ServiceControl
 summary: How to configure MSMQ to feed data into ServiceControl
 component: MSMQTransport
-reviewed: 2019-03-25
+reviewed: 2021-02-17
 versions: '[5,)'
 related:
  - nservicebus/recoverability/configure-error-handling
