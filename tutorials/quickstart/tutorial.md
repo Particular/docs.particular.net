@@ -355,7 +355,7 @@ SUCCESS: Now that you've seen what NServiceBus can do, take the next step and le
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-691241604"></script>
 <script type="text/javascript">
   // Twitter view
-  twttr.conversion.trackPid('o3bkg', { tw_sale_amount: 0, tw_order_quantity: 0 });
+  window.twttr && twttr.conversion.trackPid('o3bkg', { tw_sale_amount: 0, tw_order_quantity: 0 });
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
