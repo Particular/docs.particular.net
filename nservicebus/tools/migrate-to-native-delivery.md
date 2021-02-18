@@ -207,7 +207,7 @@ Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. Fo
 
 ### NHibernate persistence
 
- - Delete all rows from the `StagedTimeoutEntity` table. These are copies of migrated timeouts.
+ - Delete the `StagedTimeoutEntity` table. This table contains copies of migrated timeouts.
  - Delete the `MigrationsEntity` table. Each row in this table represents a previously performed migration.
 
 ### Azure Storage persistence
