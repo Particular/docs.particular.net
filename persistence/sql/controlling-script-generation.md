@@ -2,6 +2,8 @@
 title: Controlling script generation
 summary: Control how SQL scripts are generated for the SQL persister
 component: SqlPersistence
+related:
+ - persistence/sql/operational-scripting
 reviewed: 2019-10-04
 ---
 

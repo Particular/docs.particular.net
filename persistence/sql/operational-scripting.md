@@ -1,0 +1,50 @@
+---
+title: Operational Scripting
+summary: Explains how to generate scripts for SQL Persistence
+component: SqlPersistence
+reviewed: 2021-02-19
+---
+
+## Operational Scripting
+
+In order to generate database scripts outside of a build process, the command prompt tool developed for this purpose can be used.
+
+The tool can be obtained from NuGet and installed using the following command:
+
+```
+dotnet tool install -g NServiceBus.Persistence.Sql.CommandLine
+```
+
+Once installed, the `sql-persistence` command line tool will be available for use.
+
+`sql-persistence <command> [options]`
+
+### Available commands
+
+- `script`
+
+### sql-persistence script
+
+Generates scripts required to setup database for an NServiceBus endpoint:
+
+```
+sql-persistence script <assembly>
+                              [--output-dir]
+                              [--clean]
+                              [--overwrite]
+                              [--dialect]
+                              [--verbose]
+```
+
+#### Options
+ 
+`-o` | `--output-dir` : Path to the output directory
+
+`--clean` : Removes existing files in the output directory
+
+`--overwrite`: Overwrites existing files in the output if they match the files to be generated
+
+`--dialect`: Specifies a dialect to generate. Allowed values are: SqlServer, MySql, Oracle, PostgreSql
+
+`--verbose`: Verbose logging
+

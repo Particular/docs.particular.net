@@ -4,6 +4,7 @@ component: SqlPersistence
 reviewed: 2020-07-16
 related:
  - nservicebus/operations
+ - persistence/sql/operational-scripting
 redirects:
  - nservicebus/sql-persistence/sqlserver-scripts
 ---

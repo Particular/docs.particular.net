@@ -1003,6 +1003,9 @@
         Title: Scripts
     - Url: persistence/sql/controlling-script-generation
       Title: Script generation
+      Articles:
+      - Url: persistence/sql/operational-scripting
+        Title: Operational Scripting
     - Url: persistence/sql/accessing-data
       Title: Business data
     - Url: persistence/sql/saga
