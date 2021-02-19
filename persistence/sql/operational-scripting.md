@@ -25,7 +25,7 @@ Once installed, the `sql-persistence` command line tool will be available for us
 
 ### sql-persistence script
 
-Generates scripts required to setup database for an NServiceBus endpoint:
+Generates scripts required to setup a database for an NServiceBus endpoint:
 
 ```
 sql-persistence script <assembly>
@@ -38,7 +38,7 @@ sql-persistence script <assembly>
 
 #### Options
  
-`-o` | `--output-dir` : Path to the output directory
+`-o` | `--output-dir` : Path to the output directory. If not specified, the current directory will be used.
 
 `--clean` : Removes existing files in the output directory
 
@@ -47,4 +47,3 @@ sql-persistence script <assembly>
 `--dialect`: Specifies a dialect to generate. Allowed values are: SqlServer, MySql, Oracle, PostgreSql
 
 `--verbose`: Verbose logging
-
