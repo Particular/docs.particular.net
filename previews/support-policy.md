@@ -12,12 +12,12 @@ Product previews are released with a major version of 0. When a product is relea
 
 For example:
 
-| Version | Covered by this policy |
-| --- | --- |
-| 0.1.0 | Yes |
-| 0.2.0 | Yes |
-| 0.2.1 | Yes |
-| 1.0.0 | No |
+| Version | Covered by this policy | Covered by regular support policy
+| --- | --- | --- |
+| 0.1.0 | Yes | No |
+| 0.2.0 | Yes | No |
+| 0.2.1 | Yes | No |
+| 1.0.0 | No | Yes |
 
 Note: Only the highest minor version is supported i.e. when `0.2.0` is released, `0.1.0` ceases to be supported.
 
