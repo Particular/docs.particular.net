@@ -20,7 +20,7 @@ Once installed, the `sql-persistence` command line tool will be available for us
 `sql-persistence <command> [options]`
 
 ### Available commands
-
+This tool currently has one command.
 - `script`
 
 ### sql-persistence script
