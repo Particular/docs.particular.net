@@ -1,14 +1,14 @@
 ---
 title: SQL Server Transport and SQL Persistence
 summary: Integrating the SQL Server transport with SQL persistence
-reviewed: 2019-03-29
+reviewed: 2021-02-22
 component: Core
 related:
 - persistence/sql
 - transports/sql
 ---
 
-In this sample, the [SQL Server transport](/transports/sql/) is used in conjunction with the [SQL persister](/persistence/sql/). The sample shows how to use the same database connection for both transport and persistence operations, and how to access (using multiple [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping)) the current SQL connection and transaction from within a message handler to persist business objects to the database.
+In this sample, the [SQL Server transport](/transports/sql/) is used in conjunction with the [SQL persister](/persistence/sql/). The sample shows how to use the same database connection for both transport and persistence operations and how to access (using multiple [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping)) the current SQL connection and transaction from within a message handler to persist business objects to the database.
 
 include: persistence-session-note
 
@@ -24,9 +24,9 @@ The database created by this sample is `NsbSamplesSql`.
 
  1. Start the Sender and Receiver projects.
  1. In the Sender's console, press <kbd>enter</kbd>> to send a message when the app is ready.
- 1. On the Receiver console notice that order was submitted.
- 1. On the Sender console notice that the order was accepted.
- 1. Finally, after a couple of seconds, on the Receiver console notice that the timeout message has been received.
+ 1. On the Receiver console, notice that order was submitted.
+ 1. On the Sender console, notice that the order was accepted.
+ 1. Finally, after a couple of seconds, on the Receiver console, notice that the timeout message has been received.
  1. Open SQL Server Management Studio and go to the `NsbSamplesSql` database. Verify that there is a row in the saga state table (`receiver.OrderLifecycleSaga`) and in the orders table (`receiver.SubmittedOrder`)
 
 
@@ -34,7 +34,7 @@ The database created by this sample is `NsbSamplesSql`.
 
 This sample contains three projects:
 
- * Shared - A class library containing common code including the message definitions.
+ * Shared - A class library containing common code, including the message definitions.
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
  * Receiver - A console application responsible for processing the order message.
 
@@ -108,7 +108,7 @@ snippet: StoreDataDapper
 
 ##### Model
 
-The schema is defined using an attribute. The table name is redefined as the class name as it is a required parameter.
+The schema is defined using an attribute. The table name is redefined to be the class name as it is a required parameter.
 
 snippet: SubmittedOrderEF
 

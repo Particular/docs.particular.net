@@ -1,7 +1,7 @@
 ---
-title: Client side Callbacks Testing
+title: Client-side Callbacks Testing
 summary: Shows how to unit test code that uses Callbacks.
-reviewed: 2019-04-01
+reviewed: 2021-02-22
 component: CallbacksTesting
 related:
 - samples/callbacks
@@ -13,7 +13,7 @@ Shows the usage of the `NServiceBus.Callbacks.Testing` package.
 
 ## Prerequisites for callback testing functionality
 
-The approach shown here works with the `NServiceBus.Callbacks` NuGet package version 1.1 or greater. Install the `NServiceBus.Callbacks.Testing` NuGet package.
+The approach shown here works with the `NServiceBus.Callbacks` NuGet package version 1.1.0 or above. Install the `NServiceBus.Callbacks.Testing` NuGet package.
 
 
 ### Int
@@ -42,7 +42,7 @@ snippet: EnumCallbackTesting
 
 ### Object
 
-The Object response scenario allows an object instance to be returned.
+The object response scenario allows an object instance to be returned.
 
 
 #### Testing

@@ -2,7 +2,7 @@
 title: SQLServer Transport Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against the SQLServer Transport.
 component: SqlTransport
-reviewed: 2019-03-29
+reviewed: 2021-02-22
 related:
  - nservicebus/operations
 redirects:
@@ -14,7 +14,7 @@ The following are example code and scripts to facilitate deployment and operatio
 
 ## Inspecting messages in the queue
 
-The following script returns messages waiting in a given queue
+The following script returns messages waiting in a given queue:
 
 snippet: inspect-queue
 
@@ -120,7 +120,7 @@ A retry involves the following actions:
  * Read a message from the error queue table.
  * Forward that message to another queue table to be retried.
 
-NOTE: Since the connection information for the endpoint that failed is not contained in the error queue table that information is explicitly passed in.
+NOTE: Since the connection information for the endpoint that failed is not contained in the error queue table, that information is explicitly passed in.
 
 snippet: sqlserver-return-to-source-queue
 
@@ -128,9 +128,9 @@ snippet: sqlserver-return-to-source-queue
 
 snippet: sqlserver-return-to-source-queue-usage
 
-### Archiving SqlTransport audit log to long term storage
+### Archiving SqlTransport audit log to long-term storage
 
-There are several ways to achieve archiving of the audit log including using techniques like [Table Partitioning](https://docs.microsoft.com/en-us/sql/relational-databases/partitions/create-partitioned-tables-and-indexes) and [Snapshot Replication](https://docs.microsoft.com/en-us/sql/relational-databases/replication/snapshot-replication). In this example [BCP utility](https://docs.microsoft.com/en-us/sql/tools/bcp-utility) will be used.
+There are several ways to achieve archiving of the audit log, including using techniques like [Table Partitioning](https://docs.microsoft.com/en-us/sql/relational-databases/partitions/create-partitioned-tables-and-indexes) and [Snapshot Replication](https://docs.microsoft.com/en-us/sql/relational-databases/replication/snapshot-replication). In this example, [BCP utility](https://docs.microsoft.com/en-us/sql/tools/bcp-utility) will be used.
 
 #### Create helper "archive" table
 
@@ -148,7 +148,7 @@ This can be run with a scheduled job to clear the archive regularly.
 
 #### Execute BCP
 
-Once that query completes the records can be archived to disk. In a command prompt use the BCP to create an archive on disk.
+Once that query completes, the records can be archived to disk. In a command prompt, use the BCP to create an archive on disk.
 
 ```dos
 bcp samples.dbo.audit_archive out archive.csv -c -q -T -S .\SQLExpress
@@ -156,6 +156,6 @@ bcp samples.dbo.audit_archive out archive.csv -c -q -T -S .\SQLExpress
 
 #### Truncate the archive table
 
-The audit records will still have to clear using the following script.
+The audit records will still have to clear using the following script:
 
 snippet: truncate-audit

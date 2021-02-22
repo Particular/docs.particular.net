@@ -1,6 +1,6 @@
 ---
 title: Externalize Message Property Encryption
-reviewed: 2019-04-01
+reviewed: 2021-02-22
 component: PropertyEncryption
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -16,12 +16,12 @@ The API was also modified.
 
 ## Removed APIs
 
-Configuring encryption [via app.config](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-app-config) and [via IProvideConfiguration](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-iprovideconfiguration) have been removed. Instead use [configuration via code](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-code).
+Configuring encryption [via app.config](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-app-config) and [via IProvideConfiguration](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-iprovideconfiguration) have been removed. Instead, use [configuration via code](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-code).
 
 
 ## Compatibility
 
-The NServiceBus.Encryption.MessageProperty package is not fully compatible with endpoints that use NServiceBus package's encryption functionality. Because the core implementation is not aware of the existence of the external package, it is unable to decrypt message that use the NServiceBus.Encryption.MessageProperty.EncryptedString. Here are details of the specific cases.
+The NServiceBus.Encryption.MessageProperty package is not fully compatible with endpoints that use the NServiceBus package's encryption functionality. The core implementation is not aware of the existence of the external package, so it is unable to decrypt message that use `NServiceBus.Encryption.MessageProperty.EncryptedString`. Here are details of the specific cases.
 
 
 ### Encrypting and decrypting using NServiceBus.Encryption.MessageProperty
