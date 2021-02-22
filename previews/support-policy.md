@@ -23,7 +23,7 @@ Note: Only the highest minor version is supported i.e. when `0.2.0` is released,
 
 ## Bugfixes
 
-The support policy for preview pacakges guarantees that fixes for critical bugs are released immediately after being fixed. These fixes are available only for the supported version and released as a patch to the latest minor version.
+The support policy for preview pacakges guarantees that fixes for critical bugs are released immediately after being fixed. These fixes are available only for the supported version and as such are released as a patch to the latest minor version.
 
 ## Compatibility guarantees
 
