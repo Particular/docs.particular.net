@@ -2,7 +2,7 @@
 title: ServiceControl Transport Adapter
 summary: How to decouple ServiceControl from an endpoint's transport
 component: SCTransportAdapter
-reviewed: 2019-03-29
+reviewed: 2021-02-22
 related:
  - nservicebus/dotnet-templates
  - samples/servicecontrol/adapter-mixed-transports
@@ -33,7 +33,7 @@ NOTE: If the adapter is run in conjunction with the NServiceBus endpoint, even t
 
 Some transports offer advanced features which are not supported by ServiceControl.
 
-In this case a transport adapter can be used to translate between the customized transport on one side and ServiceControl using the default transport settings on the other side.
+In this case, a transport adapter can be used to translate between the customized transport on one side and ServiceControl using the default transport settings on the other side.
 
 The following code shows the configuration of the transport adapter in the advanced features scenario:
 
@@ -44,7 +44,7 @@ In the snippet above, `UseSpecificRouting` represents any advanced routing confi
 
 ### Multiple instances of a message broker
 
-In some very large systems a single instance of a message broker can't cope with the traffic. Endpoints can be grouped around broker instances. However, ServiceControl is limited to a single connection.
+In some very large systems, a single instance of a message broker can't cope with the traffic. Endpoints can be grouped around broker instances. However, ServiceControl is limited to a single connection.
 
 In this case, a separate transport adapter is deployed for each instance of a broker (e.g. SQL Server instance, Azure ServiceBus namespace, etc) while ServiceControl connects to its own instance. The adapters forward messages between instances.
 
@@ -138,7 +138,7 @@ These messages cannot be forwarded to the error queue because ServiceControl won
 
 ## Life cycle and hosting
 
-Transport Adapter is a library package that is hosting-agnostic. In a production scenario the adapter should be hosted either as a Windows Service or via a cloud-specific hosting mechanism (e.g. Azure Worker Role).
+Transport Adapter is a library package that is hosting-agnostic. In a production scenario, the adapter should be hosted either as a Windows Service or via a cloud-specific hosting mechanism (e.g. Azure Worker Role).
 
 The [Transport Adapter `dotnet new` template](/nservicebus/dotnet-templates.md) makes it easier to create a Windows Service host for the transport adapter. Details on how to install the adapter as a service are outlined in [Windows Service Installation](/nservicebus/hosting/windows-service.md).
 
@@ -151,8 +151,8 @@ snippet: Lifecycle
 
 ServiceControl Transport Adapter can operate in different consistency modes depending on the transport configuration on both sides. By default, the highest supported mode for the transport is used.
 
-If both transports support the [`TransactionScope` transaction mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) the transport adapter guarantees not to introduce any duplicates while forwarding messages between the queues. This is very important for the endpoints that can't cope with duplicates and rely on the DTC to ensure *exactly-once* message delivery.
+If both transports support the [`TransactionScope` transaction mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) the transport adapter guarantees not to introduce any duplicates while forwarding messages between the queues. This is very important for endpoints that can't cope with duplicates and rely on the DTC to ensure *exactly-once* message delivery.
 
-In case at least one of the transports does not support the `TransactionScope` mode or is explicitly configured to a lower mode, the transport adapter guarantees *at-least-once* message delivery. This means that messages won't be lost during forwarding (with the exception of control messages, as described above) but duplicates may be introduced on any side.
+If at least one of the transports does not support the `TransactionScope` mode, or is explicitly configured to a lower mode, the transport adapter guarantees *at-least-once* message delivery. This means that messages won't be lost during forwarding (with the exception of control messages, as described above), but duplicates may be introduced on any side.
 
-Duplicates are not an issue ServiceControl because its business logic is idempotent. But other business endpoints must either explicitly deal with duplicates or enable the [outbox](/nservicebus/outbox/) feature.
+Duplicates are not an issue for ServiceControl because its business logic is idempotent. However, other business endpoints must either explicitly deal with duplicates or enable the [outbox](/nservicebus/outbox/) feature.
