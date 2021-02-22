@@ -1,7 +1,7 @@
 ---
 title: NHibernate Persistence - Missing unique constraints
 summary: Instructions on how to add missing unique constraints on saga correlation property columns for affected versions.
-reviewed: 2019-04-01
+reviewed: 2021-02-22
 component: NHibernate
 isUpgradeGuide: true
 redirects:
@@ -13,9 +13,9 @@ upgradeGuideCoreVersions:
 
 ## Summary
 
-This guidance explains how add missing unique constraints on saga correlation property columns. This is described in the issue "[Unique constraints are not generated for saga correlation properties](https://github.com/Particular/NServiceBus.NHibernate/issues/280)".
+This guidance explains how add missing unique constraints on saga correlation property columns. This is described in the issue [Unique constraints are not generated for saga correlation properties](https://github.com/Particular/NServiceBus.NHibernate/issues/280).
 
-This issue may cause multiple rows in saga data table that represent the same logical saga instance. The duplicated rows are inserted as a result of race condition during saga creation and missing unique constraint on correlation property column.
+This issue may cause multiple rows in saga data tables that represent the same logical saga instance. The duplicated rows are inserted as a result of a race condition during saga creation and missing unique constraints on correlation property columns.
 
 
 ## Compatibility
@@ -42,9 +42,11 @@ Steps:
 
 ### Checking for duplicate correlation property values
 
-The following query detects duplicate rows in the saga data table - it requires providing values for `sagaDataTableName` and `correlationPropertyColumnName` variables.
+The following query detects duplicate rows in the saga data table.
 
-Each row in the result set represents a single logical saga instance that was duplicated. The first column of the result will show the correlation property value for logical saga instance.
+NOTE: It requires providing values for `sagaDataTableName` and `correlationPropertyColumnName` variables.
+
+Each row in the result set represents a single logical saga instance that was duplicated. The first column of the result will show the correlation property value for the logical saga instance.
 
 
 #### Microsoft SQL Server
@@ -59,12 +61,14 @@ snippet:  DetectSagaDataDuplicates_Oracle
 
 ### Add unique constraint on correlation property column
 
-The unique constraint on correlation property column can be added with following query - it requires providing values for `sagaDataTableName` and `correlationPropertyColumnName` variables.
+The unique constraint on the correlation property column can be added with following query.
+
+NOTE: It requires providing values for `sagaDataTableName` and `correlationPropertyColumnName` variables.
 
 
 #### Microsoft SQL Server
 
-NOTE: If adding a unique constraint fails with the error `The CREATE UNIQUE INDEX statement terminated because a duplicate key was found for the object name ...` ensure that all duplicated rows detected have been merged.
+NOTE: If adding a unique constraint fails with the error `The CREATE UNIQUE INDEX statement terminated because a duplicate key was found for the object name ...`, ensure that all duplicated rows detected have been merged.
 
 snippet: AddUniqueConstraintOnSagaDataTable_MsSqlServer
 
