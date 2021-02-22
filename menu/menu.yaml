@@ -680,6 +680,10 @@
         Title: Version 2 to 3
       - Url: transports/upgrades/amazonsqs-1to3
         Title: Version 1 to 3
+    - Title: MSMQ
+      Articles:
+      - Url: transports/upgrades/msmq-1to2
+        Title: Version 1 to 2
   - Url: transports/learning
     Title: Learning Transport
     Articles:
