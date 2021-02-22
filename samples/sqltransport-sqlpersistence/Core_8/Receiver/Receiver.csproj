@@ -9,7 +9,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus" Version="8.0.0-alpha.819" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.0.0-alpha.181" />
-    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="7.0.0-alpha.284" />
+    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="7.0.0-alpha.290" />
     <PackageReference Include="ServiceStack.OrmLite.SqlServer.Data.Core" Version="5.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />

@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="0.2.0-alpha.60" />
-    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="[7.0.0-alpha.284, 8.0.0)" />
+    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="[7.0.0-alpha.290, 8.0.0)" />
     <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>
