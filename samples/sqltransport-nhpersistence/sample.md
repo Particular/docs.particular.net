@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport and NHibernate Persistence
 summary: Integrating SQL Server transport with NHibernate persistence.
-reviewed: 2019-03-29
+reviewed: 2021-02-22
 component: Core
 related:
 - persistence/nhibernate
@@ -25,9 +25,9 @@ The database created by this sample is `NsbSamplesSqlNHibernate`.
 
  1. Start the Sender and Receiver projects.
  1. In the Sender's console, press <kbd>enter</kbd>> to send a message when the app is ready.
- 1. On the Receiver console notice that order was submitted.
- 1. On the Sender console notice that the order was accepted.
- 1. After a few seconds, on the Receiver console notice that the timeout message has been received.
+ 1. On the Receiver console, notice that order was submitted.
+ 1. On the Sender console, notice that the order was accepted.
+ 1. After a few seconds, on the Receiver console, notice that the timeout message has been received.
  1. Open SQL Server Management Studio and go to the `Samples.SqlNHibernate` database. Verify that there is a row in the saga state table (`receiver.OrderLifecycleSagaData`) and in the orders table (`receiver.Orders`)
 
 
@@ -35,7 +35,7 @@ The database created by this sample is `NsbSamplesSqlNHibernate`.
 
 This sample contains three projects:
 
- * Shared - A class library containing common code including the message definitions.
+ * Shared - A class library containing common code, including the message definitions.
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
  * Receiver - A console application responsible for processing the order message.
 
@@ -53,7 +53,7 @@ The connection strings for both persistence and transport must be exactly the sa
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use the SQL Server transport with NHibernate persistence but instead of hard-coding the other endpoint's schema, it uses a convention based on the endpoint's queue name.
+The Receiver mimics a back-end system. It is also configured to use the SQL Server transport with NHibernate persistence, but instead of hard-coding the other endpoint's schema, it uses a convention based on the endpoint's queue name.
 
 snippet: ReceiverConfiguration
 
@@ -61,16 +61,16 @@ snippet: NHibernate
 
 When the message arrives at the Receiver, a `TransactionScope` is created that:
 
- * dequeues the message
- * persists business data using the shared session,
- * persists saga data for `OrderLifecycleSaga` ,
- * sends the reply message and the timeout request.
+ * Dequeues the message.
+ * Persists business data using the shared session.
+ * Persists saga data for `OrderLifecycleSaga`.
+ * Sends the reply message and the timeout request.
 
 snippet: Reply
 
 snippet: Timeout
 
-The shared session is managed by NServiceBus so there's no need to explicitly begin a transaction or `Flush()` the session.
+The shared session is managed by NServiceBus, so there is no need to explicitly begin a transaction or `Flush()` the session.
 
 snippet: StoreUserData
 
