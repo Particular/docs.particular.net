@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Transport.SqlServer;
 
 public static class Program
 {
@@ -19,15 +20,16 @@ public static class Program
         var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSql;Integrated Security=True;Max Pool Size=100";
 
 
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(connection);
-        transport.DefaultSchema("receiver");
-        transport.UseSchemaForQueue("error", "dbo");
-        transport.UseSchemaForQueue("audit", "dbo");
-        transport.UseSchemaForQueue("Samples.Sql.Sender", "sender");
-        transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+        var transport = new SqlServerTransport(connection)
+        {
+            DefaultSchema = "receiver"
+        };
+        transport.SchemaAndCatalog.UseSchemaForQueue("error", "dbo");
+        transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
+        transport.SchemaAndCatalog.UseSchemaForQueue("Samples.Sql.Sender", "sender");
+        transport.TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive;
 
-        var routing = transport.Routing();
+        var routing = endpointConfiguration.UseTransport(transport);
         routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.Sql.Sender");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
@@ -40,12 +42,12 @@ public static class Program
             });
         persistence.TablePrefix("");
 
-        var subscriptions = transport.SubscriptionSettings();
-        subscriptions.CacheSubscriptionInformationFor(TimeSpan.FromMinutes(1));
+        var subscriptions = transport.Subscriptions;
+        subscriptions.CacheInvalidationPeriod = TimeSpan.FromMinutes(1);
 
-        subscriptions.SubscriptionTableName(
-            tableName: "Subscriptions", 
-            schemaName: "dbo");
+        subscriptions.SubscriptionTableName = new SubscriptionTableName(
+            table: "Subscriptions", 
+            schema: "dbo");
 
         #endregion
 

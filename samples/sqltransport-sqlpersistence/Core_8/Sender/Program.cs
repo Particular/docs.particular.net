@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Transport.SqlServer;
 
 public static class Program
 {
@@ -18,18 +19,20 @@ public static class Program
         #region SenderConfiguration
 
         var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSql;Integrated Security=True;Max Pool Size=100";
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(connection);
-        transport.DefaultSchema("sender");
-        transport.UseSchemaForQueue("error", "dbo");
-        transport.UseSchemaForQueue("audit", "dbo");
+        var transport = new SqlServerTransport(connection)
+        {
+            DefaultSchema = "sender"
+        };
+        transport.SchemaAndCatalog.UseSchemaForQueue("error", "dbo");
+        transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
 
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
-        var subscriptions = transport.SubscriptionSettings();
-        subscriptions.SubscriptionTableName(
-            tableName: "Subscriptions", 
-            schemaName: "dbo");
+        transport.Subscriptions.SubscriptionTableName = new SubscriptionTableName(
+            table: "Subscriptions", 
+            schema: "dbo");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
 
