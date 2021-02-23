@@ -11,9 +11,12 @@ public class LockRenewalFeature : Feature
 
         Defaults(settings =>
         {
-            // NServiceBus.Transport.AzureServiceBus sets LockDuration to 5 minutes by default
-            settings.SetDefault("LockDurationAsTimeSpan", TimeSpan.FromMinutes(5));
-            settings.SetDefault("RenewBeforeAsTimeSpan", TimeSpan.FromSeconds(10));
+            settings.SetDefault<LockRenewalOptions>(new LockRenewalOptions
+            {
+                // NServiceBus.Transport.AzureServiceBus sets LockDuration to 5 minutes by default
+                LockDuration = TimeSpan.FromMinutes(5),
+                ExecuteRenewalBefore = TimeSpan.FromSeconds(10)
+            });
         });
 
         #endregion
@@ -21,9 +24,8 @@ public class LockRenewalFeature : Feature
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        var maxLockDuration = context.Settings.Get<TimeSpan>("LockDurationAsTimeSpan");
-        var renewBefore = context.Settings.Get<TimeSpan>("RenewBeforeAsTimeSpan");
-        var renewLockTokenIn = maxLockDuration - renewBefore;
+        var lockRenewalOptions = context.Settings.Get<LockRenewalOptions>();
+        var renewLockTokenIn = lockRenewalOptions.LockDuration - lockRenewalOptions.ExecuteRenewalBefore;
 
         context.Pipeline.Register(
             stepId: "LockRenewal",

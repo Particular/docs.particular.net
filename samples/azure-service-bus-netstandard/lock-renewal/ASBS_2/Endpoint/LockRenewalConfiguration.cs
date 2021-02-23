@@ -12,7 +12,6 @@ public static class LockRenewalConfiguration
 
         var settings = endpointConfiguration.GetSettings();
 
-        settings.Set("LockDurationAsTimeSpan", options.LockDuration);
-        settings.Set("RenewBeforeAsTimeSpan", options.ExecuteRenewalBefore);
+        settings.Set<LockRenewalOptions>(options);
     }
 }
