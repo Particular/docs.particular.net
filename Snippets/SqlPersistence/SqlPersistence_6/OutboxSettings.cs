@@ -45,6 +45,7 @@ class OutboxSettings
         var outboxSettings = endpointConfiguration.EnableOutbox();
 
         outboxSettings.UseTransactionScope();
+        // OR
         outboxSettings.UseTransactionScope(IsolationLevel.RepeatableRead);
 
 

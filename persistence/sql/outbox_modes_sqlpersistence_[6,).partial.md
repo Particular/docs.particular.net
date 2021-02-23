@@ -42,4 +42,4 @@ When necessary, the transaction isolation level can also be adjusted. This shoul
 
 snippet: SqlPersistenceOutboxIsolationLevel
 
-Note: Adjusting the isolation level requires version 6.1 of SQL Persistence.
+Note: Adjusting the isolation level requires version 6.1 of SQL Persistence or higher.
