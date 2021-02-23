@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Transactions;
 using NServiceBus;
 
 class OutboxSettings
@@ -44,6 +45,19 @@ class OutboxSettings
         var outboxSettings = endpointConfiguration.EnableOutbox();
 
         outboxSettings.UseTransactionScope();
+        outboxSettings.UseTransactionScope(IsolationLevel.RepeatableRead);
+
+
+        #endregion
+    }
+
+    void OutboxSettingsEx5(EndpointConfiguration endpointConfiguration)
+    {
+        #region SqlPersistenceOutboxIsolationLevel
+
+        var outboxSettings = endpointConfiguration.EnableOutbox();
+
+        outboxSettings.TransactionIsolationLevel(System.Data.IsolationLevel.RepeatableRead);
 
         #endregion
     }
