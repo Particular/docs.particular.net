@@ -7,7 +7,7 @@ related:
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
- ---
+---
 
 ## Replacing shorteners with naming conventions
 
