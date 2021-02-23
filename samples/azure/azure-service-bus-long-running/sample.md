@@ -5,6 +5,7 @@ component: ASB
 reviewed: 2020-01-20
 related:
 - transports/azure-service-bus
+- samples/azure-service-bus-netstandard/lock-renewal
 ---
 
 include: legacy-asb-warning
