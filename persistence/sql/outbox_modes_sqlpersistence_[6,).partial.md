@@ -38,7 +38,7 @@ In addition to that connection managed by NServiceBus, users can open their own 
 
 The `TransactionScope` mode is most useful in legacy scenarios e.g. when migrating from MSMQ transport to a messaging infrastructure that does not support MS DTC. In order to maintain consistency the outbox has to be used in place of distributed transport-database transactions. If the legacy database cannot be modified to add the outbox table, the only option is to place the outbox table in a separate database and use distributed transactions between the databases.
 
-When necessary, the transaction isolation level can also be adjusted. This should be only done if the business logic that is executed by the handler within the outbox transaction requires higher isolation level to guarantee correctness (e.g. `RepeatableRead` or `Serializable`). Adjusting the isolation level is also possible when not using `TransactionScope` mode:
+When necessary, the outbox transaction isolation level can also be adjusted. The change affects all data access done within this transaction. This should be only done if the business logic that is executed by the handler within the outbox transaction requires higher than default (`Read Committed`) isolation level to guarantee correctness (e.g. `Repeatable Read` or `Serializable`). Adjusting the isolation level is also possible when not using `TransactionScope` mode:
 
 snippet: SqlPersistenceOutboxIsolationLevel
 
