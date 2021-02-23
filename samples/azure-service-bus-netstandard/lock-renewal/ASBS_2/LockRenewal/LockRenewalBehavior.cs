@@ -37,6 +37,23 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
         Log.Info($"Incoming message ID: {message.MessageId}");
 
+        _ = RenewLockToken(token);
+
+        #region processing-and-cancellation
+
+        try
+        {
+            await next().ConfigureAwait(false);
+        }
+        finally
+        {
+            Log.Info($"Cancelling renewal task for incoming message ID: {message.MessageId}");
+            cts.Cancel();
+            cts.Dispose();
+        }
+
+        #endregion
+
         #region renewal-background-task
 
         async Task RenewLockToken(CancellationToken cancellationToken)
@@ -62,23 +79,6 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
             {
                 Log.Error($"Failed to renew lock for incoming message ID: {message.MessageId}", exception);
             }
-        }
-
-        _ = RenewLockToken(token);
-
-        #endregion
-
-        #region processing-and-cancellation
-
-        try
-        {
-            await next().ConfigureAwait(false);
-        }
-        finally
-        {
-            Log.Info($"Cancelling renewal task for incoming message ID: {message.MessageId}");
-            cts.Cancel();
-            cts.Dispose();
         }
 
         #endregion
