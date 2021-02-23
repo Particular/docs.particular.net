@@ -17,12 +17,12 @@ include: asb-connectionstring-xplat
 
 ## Important information about lock renewal
 
-1. Message lock renewal operation is initiated by the client code, not the broker. If the request to renew the lock fails after all the built into the SDK retries, the lock won't be re-acquired, and the message will become unlocked and available for re-processing by compteting consumers. Lock renewal should be treated as best-effort and not as a guaranteed operation.
-1. Message lock renewal applies to the currently processed message **only**. Prefetched messages that are not handled within the `LockDuration` time will lose their lock, indicated with a `LockLostException` in the log when they are attempted to be completed by the transport. To prevent the exception with lock renewal, prefetching should be adjusted to reduce number of prefetched files. Alternatively, endpoint's concurrency can be inclreased.
+1. Message lock renewal operation is initiated by the client code, not the broker. If the request to renew the lock fails after all the SDK built-in retries, the lock won't be re-acquired, and the message will become unlocked and available for re-processing by competing consumers. Lock renewal should be treated as best-effort and not as a guaranteed operation.
+1. Message lock renewal applies to the currently processed message **only**. Prefetched messages that are not handled within the `LockDuration` time will lose their lock, indicated with a `LockLostException` in the log when they are attempted to be completed by the transport. Prefetching can be adjusted to reduce the number of prefetched messages, which can help to prevent exceptions with lock renewal. Alternatively, the endpoint's concurrency can be increased to speed up the processing of messages due to the increased concurrency.
 
 ## Code walk-through
 
-This contains a single executable project, `Endpoint` that sends a `LongProcessingMessage` message to itself for processing that exceeds the maximum lock duration time allowed on the endpoint's input queue.
+This contains a single executable project, `LockRenewal` that sends a `LongProcessingMessage` message to itself for processing that exceeds the maximum lock duration allowed on the endpoint's input queue.
 
 ### Lock renewal feature
 
@@ -30,29 +30,29 @@ Lock renewal is enabled by the `LockRenewalFeature` that is configured to be ena
 
 snippet: LockRenewalFeature
 
-The Azure Service Bus transports sets the `LockDuration` to 5 minutes by default and that's the value provided to the feture as the default `LockDuration` to use. In addition to that, a `TimeSpan` indicating at what point in time before the lock expires to attempt lock renewal. The default value for the feature is set to 10 seconds. Both values can be overriden and configured using `EndpointConfiguration` API.
+The Azure Service Bus transport sets the `LockDuration` to 5 minutes by default, and that's the value provided to the feature as the default `LockDuration`. In addition to that, a `TimeSpan` indicating at what point in time before the lock expires to attempt lock renewal. The default value for the feature is set to 10 seconds. Both values can be overridden and configured using the `EndpointConfiguration` API.
 
 snippet: override-lock-renewal-configuration
 
-In this sample, the `LockDuration` of the queue is modified to be 30 seconds and lock renewal will take place 5 seconds before lock expires.
+In this sample, the `LockDuration` of the queue is modified to be 30 seconds, and lock renewal will take place 5 seconds before the lock expires.
 
 ### Lock renewal behavior
 
-The `LockRenewalFeature` uses the two settings and registers the pipeline behavior `LockRenewalBehavior`, providing it with the `TimeSpan` to use for lock renewal. With the endpoint configured for `LockDuration` of 30 seconds and renwal 5 seconds before lock expires, the lock tocket will be renewed every (`LockDuration` - `ExecuteRenewalBefore`) or 25 seconds.
+The `LockRenewalFeature` uses the two settings and registers the pipeline behavior `LockRenewalBehavior`, providing it with the `TimeSpan` to use for the lock renewal. With the endpoint configured for `LockDuration` of 30 seconds and renewal of 5 seconds before the lock expires, the lock token will be renewed every (`LockDuration` - `ExecuteRenewalBefore`) or 25 seconds.
 
-Every incoming message going through the pipeline will be processed by this behavior. Using [native message access](/transports/azure-service-bus/native-message-access.md), the behavior can get access to the message's lock token, required for lock renewal.
+This behavior will process every incoming message going through the pipeline. Using [native message access](/transports/azure-service-bus/native-message-access.md), the behavior can get access to the message's lock token, required for lock renewal.
 
 snippet: native-message-access
 
-To extend the lock, the call has to be using the same Azure Service Bus connection object and the queue path used to receive the incoming message. The transport exposes this information via `TransportTransaction` and can be accessed in the following manner:
+The call to extend the lock must be using the same Azure Service Bus connection object and the queue path used to receive the incoming message. The transport exposes this information via `TransportTransaction` and can be accessed in the following manner:
 
 snippet: get-connection-and-path
 
-With connection object and queue path, an Azure ServiceBus can be created to renew lock using the message's lock token obtained earlier. This is done in a background task, running in an infinite loop until the cancellation token passed in is signaled as cancelled.
+With connection object and queue path, an Azure ServiceBus can be created to renew the lock using the message's lock token obtained earlier. This is done in a background task, running in an infinite loop until the cancellation token passed in is signaled as canceled.
 
 snippet: renewal-background-task
 
-The behavior executes the rest of the pipeline and when execution is completed, cancels the background task.
+The behavior executes the rest of the pipeline and cancels the background task when execution is completed.
 
 snippet: processing-and-cancellation
 
