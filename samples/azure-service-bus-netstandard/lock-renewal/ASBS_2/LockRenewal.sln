@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Endpoint", "Endpoint\Endpoint.csproj", "{11641841-C7E9-4B49-9688-99E54187A7E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockRenewal", "LockRenewal\LockRenewal.csproj", "{11641841-C7E9-4B49-9688-99E54187A7E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

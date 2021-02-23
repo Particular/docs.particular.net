@@ -1,7 +1,7 @@
 ﻿using System;
 using NServiceBus;
 
-namespace Endpoint
+namespace LockRenewal
 {
     public class LongProcessingMessage : IMessage
     {

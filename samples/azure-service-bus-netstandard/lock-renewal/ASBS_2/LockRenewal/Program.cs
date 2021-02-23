@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Endpoint;
+using LockRenewal;
 using Microsoft.Azure.ServiceBus.Management;
 using NServiceBus;
 
@@ -33,7 +33,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await NServiceBus.Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
         await OverrideQueueLockDuration("Samples.ASB.SendReply.LockRenewal", connectionString).ConfigureAwait(false);
 

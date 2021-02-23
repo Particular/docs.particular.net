@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Endpoint;
+using LockRenewal;
 using NServiceBus;
 using NServiceBus.Logging;
 
