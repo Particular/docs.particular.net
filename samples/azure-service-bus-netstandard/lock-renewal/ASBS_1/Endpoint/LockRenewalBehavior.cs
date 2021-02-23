@@ -35,34 +35,36 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
         var cts = new CancellationTokenSource();
         var token = cts.Token;
 
-        log.Info($"Incoming message ID: {message.MessageId}");
+        Log.Info($"Incoming message ID: {message.MessageId}");
 
         #region renewal-background-task
 
-        _ = Task.Run(async () =>
+        async Task RenewLockToken(CancellationToken cancellationToken)
         {
             try
             {
-                while (!token.IsCancellationRequested)
+                while (!cancellationToken.IsCancellationRequested)
                 {
-                    log.Info($"Lock will be renewed in {renewLockTokenIn}");
+                    Log.Info($"Lock will be renewed in {renewLockTokenIn}");
 
-                    await Task.Delay(renewLockTokenIn, token).ConfigureAwait(false);
+                    await Task.Delay(renewLockTokenIn, cancellationToken).ConfigureAwait(false);
 
                     var time = await messageReceiver.RenewLockAsync(lockToken).ConfigureAwait(false);
 
-                    log.Info($"Lock renewed till {time} UTC / {time.ToLocalTime()} local");
+                    Log.Info($"Lock renewed till {time} UTC / {time.ToLocalTime()} local");
                 }
             }
-            catch (TaskCanceledException)
+            catch (OperationCanceledException)
             {
-                log.Info($"Lock renewal task for incoming message ID: {message.MessageId} was cancelled.");
+                Log.Info($"Lock renewal task for incoming message ID: {message.MessageId} was cancelled.");
             }
             catch (Exception exception)
             {
-                log.Error($"Failed to renew lock for incoming message ID: {message.MessageId}", exception);
+                Log.Error($"Failed to renew lock for incoming message ID: {message.MessageId}", exception);
             }
-        }, token);
+        }
+
+        _ = RenewLockToken(token);
 
         #endregion
 
@@ -74,13 +76,14 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
         }
         finally
         {
-            log.Info($"Cancelling renewal task for incoming message ID: {message.MessageId}");
+            Log.Info($"Cancelling renewal task for incoming message ID: {message.MessageId}");
             cts.Cancel();
+            cts.Dispose();
         }
 
         #endregion
     }
 
     readonly TimeSpan renewLockTokenIn;
-    static ILog log = LogManager.GetLogger<LockRenewalBehavior>();
+    static readonly ILog Log = LogManager.GetLogger<LockRenewalBehavior>();
 }
