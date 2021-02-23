@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NServiceBus.Transport;
 using NServiceBus.Transport.RabbitMQ;
+using NServiceBus.Unicast.Messages;
 using RabbitMQ.Client;
 
 class MyRoutingTopology :
@@ -11,11 +12,11 @@ class MyRoutingTopology :
     {
     }
 
-    public void SetupSubscription(IModel channel, Type type, string subscriberName)
+    public void SetupSubscription(IModel channel, MessageMetadata type, string subscriberName)
     {
     }
 
-    public void TeardownSubscription(IModel channel, Type type, string subscriberName)
+    public void TeardownSubscription(IModel channel, MessageMetadata type, string subscriberName)
     {
     }
 
