@@ -4,6 +4,7 @@ component: SqlPersistence
 reviewed: 2019-08-21
 related:
  - nservicebus/operations
+ - persistence/sql/operational-scripting
 versions: '[3,)'
 ---
 

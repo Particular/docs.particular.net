@@ -4,6 +4,7 @@ component: SqlPersistence
 reviewed: 2020-11-26
 related:
  - nservicebus/operations
+ - persistence/sql/operational-scripting
 redirects:
  - nservicebus/sql-persistence/oracle-scripts
 versions: '[2,)'
