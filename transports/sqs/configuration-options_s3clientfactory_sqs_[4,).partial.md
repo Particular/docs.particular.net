@@ -1,12 +1,12 @@
-## S3 Client Factory
+## S3 Client
 
 **Optional**
 
-**Default**: `() => new AmazonS3Client()`
+**Default**: `new AmazonS3Client()`
 
-This overloads the default S3 client factory with a custom factory creation delegate.
+By default the transport uses a parameterless constructor to build the S3 client. This overrides the default S3 client with a custom one.
 
-**Example**: To use a custom factory, specify:
+**Example**: To use a custom client, specify:
 
 snippet: S3ClientFactory
 

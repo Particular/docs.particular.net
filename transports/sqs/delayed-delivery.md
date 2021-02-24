@@ -10,9 +10,7 @@ The SQS transport supports [delayed delivery](/nservicebus/messaging/delayed-del
 
 ## Enable unrestricted delayed delivery
 
-The unrestricted delayed delivery feature must be enabled on the transport configuration:
-
-snippet: DelayedDelivery
+partial: enable
 
 Unrestricted delayed delivery must be enabled on the sender and receiver to be able to delay messages longer than 900 seconds.
 
