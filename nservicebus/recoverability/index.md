@@ -53,7 +53,7 @@ For more information about how to configure delayed retries, refer to [configure
 
 For more information how delayed retries work internally, refer to the [Delayed delivery - how it works](/nservicebus/messaging/delayed-delivery.md#how-it-works) section.
 
-NOTE: Retrying messages for extended periods of time would hide failures from operators, thus preventing them from taking manual action to honor their Service Level Agreements. To avoid this, NServiceBus will make sure that time between two consecutive delayed retries is no more than 24 hours before being sent the error queue.
+NOTE: Retrying messages for extended periods of time would hide failures from operators, thus preventing them from taking manual action to honor their Service Level Agreements. To avoid this, NServiceBus will make sure that the time between two consecutive delayed retries is no more than 24 hours before being sent the error queue.
 
 
 ### Transport transaction requirements
