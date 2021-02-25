@@ -13,10 +13,10 @@ upgradeGuideCoreVersions:
 
 See the transport specific upgrade guides for further details on the configuration options:
 
-* [Azure Service Bus transport upgrade guide](TODO)
+* [Azure Service Bus transport upgrade guide](/transports/upgrades/asbs-1to2.md)
 * [Azure Storage Queues transport upgrade guide](TODO)
 * [RabbitMQ transport upgrade guide](TODO)
-* [MSMQ transport upgrade guide](TODO)
+* [MSMQ transport upgrade guide](/transports/upgrades/msmq-1to2.md)
 * [SQL Server transport upgrade guide](TODO)
 * [Amazon SQS transport upgrade guide](TODO)
 
