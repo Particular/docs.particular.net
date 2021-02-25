@@ -159,3 +159,15 @@ The following transports might need migration:
 * Azure Storage Queues
 * SQL Transport
 * SQS
+
+## Outbox configuration
+
+NServiceBus version 8 requires explicit configuration of the transport transaction mode when using [Outbox](/nservicebus/outbox/):
+
+```csharp
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+
+transport.TransportTransactionMode = TransportTransactionMode.ReceiveOnly;
+
+endpointConfiguration.EnableOutbox();
+```
