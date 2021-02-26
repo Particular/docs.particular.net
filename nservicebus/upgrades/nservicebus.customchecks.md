@@ -2,7 +2,7 @@
 title: Upgrade from ServiceControl.Plugin.NsbX.CustomChecks to NServiceBus.CustomChecks
 summary: Instructions on how to upgrade CustomChecks Plugins to the new NServiceBus.CustomChecks package
 reviewed: 2019-09-03
-component: ServiceControl
+component: CustomChecks
 related:
  - servicecontrol/plugins
  - monitoring/custom-checks/legacy

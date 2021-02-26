@@ -2,7 +2,7 @@
 title: Upgrade from ServiceControl.Plugin.NsbX.Heartbeat to NServiceBus.Heartbeat
 summary: Instructions on how to upgrade Heartbeat Plugins to the new NServiceBus.Heartbeat package
 reviewed: 2019-09-03
-component: ServiceControl
+component: Heartbeats
 related:
  - servicecontrol/plugins
  - monitoring/heartbeats/legacy

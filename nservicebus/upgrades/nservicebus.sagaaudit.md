@@ -2,7 +2,7 @@
 title: Upgrade from ServiceControl.Plugin.NsbX.SagaAudit to NServiceBus.SagaAudit
 summary: Instructions on how to upgrade SagaAudit Plugins to the new NServiceBus.SagaAudit package
 reviewed: 2019-09-03
-component: ServiceControl
+component: SagaAudit
 related:
  - servicecontrol/plugins
  - servicecontrol/plugins/saga-audit

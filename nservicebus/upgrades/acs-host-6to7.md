@@ -64,7 +64,21 @@ A new interface `IWantToRunWhenEndpointStartsAndStops` has been added. This inte
 
 ### Interface in NServiceBus version 5 
 
-snippet: 5to6-EndpointStartAndStopCore
+```csharp
+public class Bootstrapper :
+    IWantToRunWhenBusStartsAndStops
+{
+    public void Start()
+    {
+        // Do startup actions here.
+    }
+
+    public void Stop()
+    {
+        // Do cleanup actions here.
+    }
+}
+```
 
 
 ### Interface in NServiceBus.Hosting.Azure version 7
