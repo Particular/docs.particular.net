@@ -12,38 +12,40 @@ class CustomEnvelopeUnwrapper
     {
         #region CustomEnvelopeUnwrapper
 
-        var transport = new AzureStorageQueueTransport("connection string");
-
-        transport.MessageUnwrapper = queueMessage =>
+        var transport = new AzureStorageQueueTransport("connection string")
         {
-            using (var stream = new MemoryStream(Convert.FromBase64String(queueMessage.MessageText)))
-            using (var streamReader = new StreamReader(stream))
-            using (var textReader = new JsonTextReader(streamReader))
+            MessageUnwrapper = queueMessage =>
             {
-                //try deserialize to a NServiceBus envelope first
-                var wrapper = jsonSerializer.Deserialize<MessageWrapper>(textReader);
-
-                if (wrapper.Id != null)
+                using (var stream = new MemoryStream(Convert.FromBase64String(queueMessage.MessageText)))
+                using (var streamReader = new StreamReader(stream))
+                using (var textReader = new JsonTextReader(streamReader))
                 {
-                    //this was a envelope message
-                    return wrapper;
+                    //try deserialize to a NServiceBus envelope first
+                    var wrapper = jsonSerializer.Deserialize<MessageWrapper>(textReader);
+
+                    if (wrapper.Id != null)
+                    {
+                        //this was a envelope message
+                        return wrapper;
+                    }
+
+                    //this was a native message just return the body as is with no headers
+                    return new MessageWrapper
+                    {
+                        Id = queueMessage.MessageId,
+                        Headers = new Dictionary<string, string>(),
+                        Body = Convert.FromBase64String(queueMessage.MessageText)
+                    };
                 }
-
-                //this was a native message just return the body as is with no headers
-                return new MessageWrapper
-                {
-                    Id = queueMessage.MessageId,
-                    Headers = new Dictionary<string, string>(),
-                    Body = Convert.FromBase64String(queueMessage.MessageText)
-                };
             }
         };
+
 
         endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
 
-    Newtonsoft.Json.JsonSerializer jsonSerializer = Newtonsoft.Json.JsonSerializer.Create();
+    JsonSerializer jsonSerializer = JsonSerializer.Create();
 
 }

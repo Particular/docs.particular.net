@@ -10,11 +10,12 @@ class MessageWrapperSerializer
         // serialize the messages using the XML serializer:
         endpointConfiguration.UseSerialization<XmlSerializer>();
 
-        var transport = new AzureStorageQueueTransport("connection string");
-        
-        // wrap messages in JSON
-        transport.MessageWrapperSerializationDefinition = new NewtonsoftSerializer();
-        
+        var transport = new AzureStorageQueueTransport("connection string")
+        {
+            // wrap messages in JSON
+            MessageWrapperSerializationDefinition = new NewtonsoftSerializer()
+        };
+
         endpointConfiguration.UseTransport(transport);
 
         #endregion
