@@ -67,10 +67,21 @@ snippet: 5to6-IConfigureComponentsNotInjected
 
 ## Instances passed to the configuration API are no longer disposed
 
-snippet: 5-to-6-autofac-existing
+```csharp
+var builder = new ContainerBuilder();
+builder.RegisterInstance(new MyService());
+var container = builder.Build();
+endpointConfiguration.UseContainer<AutofacBuilder>(
+    customizations: customizations =>
+    {
+        customizations.ExistingLifetimeScope(container);
+    });
+```
 
 While the above example shows how an existing DI instance can be passed into the configuration API using Autofac, the same behavior can be applied to all of the [currently supported dependency injection](/nservicebus/dependency-injection/). Previous versions of DI treated the externally passed-in DI instance as if it were owned by the DI adapter and disposed the DI when the bus was disposed. This behavior changed in NServiceBus version 6. When a DI customization is passed in (as in the above example), then the DI instance is no longer disposed. It is the responsibility of the DI owner to dispose the DI instance. 
 
-snippet: 5-to-6-autofac
+```csharp
+endpointConfiguration.UseContainer<AutofacBuilder>();
+```
 
 The above example shows how a new DI instance can be assigned using the configuration API. While the DI instance used in this example is Autofac, the same behavior can be applied to all of the [currently supported dependency injection](/nservicebus/dependency-injection/). When passing a new DI instance, the endpoint owns that instance and will also be responsible for disposing it when endpoint stopped.
