@@ -33,14 +33,26 @@ The location of the ServiceControl queue can be specified via plugin-specific ex
 
 #### Heartbeats
 
-snippet: Heartbeats_Configure_ServiceControl
+```csharp
+var endpointConfiguration = new EndpointConfiguration("myendpoint");
+endpointConfiguration.HeartbeatPlugin(
+    serviceControlQueue: "ServiceControl_Queue");
+```
 
 
 #### CustomChecks
 
-snippet: CustomCheck_Configure_ServiceControl
+```csharp
+var endpointConfiguration = new EndpointConfiguration("myendpoint");
+endpointConfiguration.CustomCheckPlugin(
+    serviceControlQueue: "ServiceControl_Queue");
+```
 
 
 #### SagaAudit
 
-snippet: SagaAudit_Configure_ServiceControl
+```csharp
+var endpointConfiguration = new EndpointConfiguration("myendpoint");
+endpointConfiguration.SagaPlugin(
+    serviceControlQueue: "particular.servicecontrol@machine");
+```
