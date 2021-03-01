@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Threading.Tasks;
 using Azure.Storage.Queues;
 using Newtonsoft.Json;
@@ -32,9 +31,8 @@ class Program
             };
 
             var serializedMessage = JsonConvert.SerializeObject(nativeMessage);
-            var bytes = Encoding.UTF8.GetBytes(serializedMessage);
 
-            await queueClient.SendMessageAsync(new BinaryData(bytes)).ConfigureAwait(false);
+            await queueClient.SendMessageAsync(serializedMessage).ConfigureAwait(false);
 
             #endregion
 
