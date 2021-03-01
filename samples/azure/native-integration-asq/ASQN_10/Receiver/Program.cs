@@ -27,7 +27,7 @@ class Program
             Body = message.Body.ToArray(),
             Headers = new Dictionary<string, string>
             {
-                {"NServiceBus.EnclosedMessageTypes", typeof(NativeMessage).FullName}
+                { Headers.EnclosedMessageTypes, typeof(NativeMessage).FullName }
             }
         };
 
