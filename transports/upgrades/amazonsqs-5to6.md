@@ -16,7 +16,7 @@ The unrestricted delayed delivery is now always enabled so the `UnrestrictedDura
 
 ## Configuring the SQS transport
 
-To use the SQS transport for NServiceBus, create a new instance `SqsTransport` and pass it to `EndpointConfiguration.UseTransport`.
+To use the SQS transport for NServiceBus, create a new `SqsTransport` instance and pass it to `EndpointConfiguration.UseTransport`.
 
 Instead of
 
@@ -33,19 +33,19 @@ endpointConfiguration.UseTransport(transport);
 
 ## SDK clients
 
-In order to pass customized instances of the SQS and SNS SDK clients to the transport use the `SqsTransport` constructor overload.
+In order to pass customized instances of the SQS and SNS SDK clients to the transport use the corresponding `SqsTransport` constructor overload.
 
 snippet: 5to6-clients
 
 ## S3 configuration
 
-The S3 usage for large messages is configured via `S3` property of the transport. By default the value is `null` which means S3 usage for sending large messages is disabled.
+The S3 usage for large messages is configured via the `S3` property of the transport. By default, the value is `null` which means S3 usage for sending large messages is disabled.
 
 snippet: 5to6-S3
 
 ### Encryption
 
-The encryption is configured via `Encryption` property of the S3 settings object. By default the value is `null` which means the messages are not encrypted.
+Message payload encryption is configured via the `Encryption` property of the S3 settings object. By default, the value is `null` which means the messages are not encrypted.
 
 snippet: 5to6-encryption
 
