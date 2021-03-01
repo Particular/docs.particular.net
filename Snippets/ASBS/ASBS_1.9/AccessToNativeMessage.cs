@@ -1,10 +1,13 @@
-﻿namespace ASBS_1
+namespace ASBS_1
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.Azure.ServiceBus;
     using NServiceBus;
     using NServiceBus.Pipeline;
+    using NServiceBus.Testing;
+    using IMessageSession = NServiceBus.IMessageSession;
 
     public class AccessToNativeMessage
     {
@@ -93,6 +96,87 @@
 
             class MyCommand { }
             class MyEvent { }
+        }
+
+        class TestAccessNativeMessage
+        {
+            #region test-native-outgoing-message-customization-session 1.9
+
+            [Test]
+            public async Task CustomizationSession()
+            {
+                var testableMessageSession = new TestableMessageSession();
+                var someCodeUsingTheSession = new SomeCodeUsingTheSession(testableMessageSession);
+
+                await someCodeUsingTheSession.Execute();
+
+                var publishedMessage = testableMessageSession.PublishedMessages.Single();
+                var customization = publishedMessage.Options.GetNativeMessageCustomization();
+
+                var nativeMessage = new Message();
+                customization(nativeMessage);
+
+                Assert.AreEqual("abc", nativeMessage.Label);
+            }
+
+            class SomeCodeUsingTheSession
+            {
+                readonly IMessageSession session;
+
+                public SomeCodeUsingTheSession(IMessageSession session)
+                {
+                    this.session = session;
+                }
+
+                public async Task Execute()
+                {
+                    var options = new PublishOptions();
+                    options.CustomizeNativeMessage(m => m.Label = "abc");
+                    await session.Publish(new MyEvent(), options);
+                }
+            }
+
+            #endregion
+
+            #region test-native-outgoing-message-customization-handler 1.9
+
+            [Test]
+            public async Task CustomizationHandler()
+            {
+                var testableContext = new TestableMessageHandlerContext();
+
+                var handler = new MyHandlerUsingCustomizations();
+
+                await handler.Handle(new MyEvent(), testableContext);
+
+                var publishedMessage = testableContext.PublishedMessages.Single();
+                var customization = publishedMessage.Options.GetNativeMessageCustomization(testableContext);
+
+                var nativeMessage = new Message();
+                customization(nativeMessage);
+
+                Assert.AreEqual("abc", nativeMessage.Label);
+            }
+
+            class MyHandlerUsingCustomizations : IHandleMessages<MyEvent>
+            {
+                public async Task Handle(MyEvent message, IMessageHandlerContext context)
+                {
+                    var options = new PublishOptions();
+                    options.CustomizeNativeMessage(context, m => m.Label = "abc");
+                    await context.Publish(message, options);
+                }
+            }
+
+            #endregion
+
+            class MyEvent { }
+            class TestAttribute : Attribute { }
+
+            static class Assert
+            {
+                public static void AreEqual(string expected, string result) { }
+            }
         }
     }
 }
