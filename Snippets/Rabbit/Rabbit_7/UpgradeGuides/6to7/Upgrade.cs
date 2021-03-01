@@ -7,9 +7,10 @@ partial class Upgrade
     {
         #region 6to7certificatepath7
 
-        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost");
-
-        transport.ClientCertificate = new X509Certificate2("path", "password");
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            ClientCertificate = new X509Certificate2("path", "password")
+        };
 
         endpointConfiguration.UseTransport(transport);
 
@@ -20,11 +21,17 @@ partial class Upgrade
     {
         #region 6to7prefetchcount7
 
-        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost");
+        var transportWithFixedPrefetchCount = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            PrefetchCountCalculation = _ => 100
+        };
 
-        transport.PrefetchCountCalculation = _ => 100;
         //or
-        transport.PrefetchCountCalculation = concurrency => concurrency * 7;
+
+        var transportWithConcurrencyBasedPrefetchCount = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            PrefetchCountCalculation = concurrency => concurrency * 7
+        };
 
         endpointConfiguration.UseTransport(transport);
 
