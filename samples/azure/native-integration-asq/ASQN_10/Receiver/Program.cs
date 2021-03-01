@@ -15,10 +15,9 @@ class Program
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
 
-        var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true");
+        var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true", useNativeDelayedDeliveries: false);
         // TODO: ASQ transport is not yet ready, Core v8 work is still in progress
         // transport.DisablePublishing();
-        // transport.DelayedDelivery().DisableDelayedDelivery();
 
         #region Native-message-mapping
 
