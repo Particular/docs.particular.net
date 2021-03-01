@@ -64,7 +64,7 @@ Disabling the durable exchanges and queues has been moved to the constructor of 
 
 ## Configuration Options
 
-The RabbitMQ Transport configuration options that have not been changed have been moved to the `RabbitMQTransport` class. See the following table for further information:
+The RabbitMQ transport configuration options that have not been changed have been moved to the `RabbitMQTransport` class. See the following table for further information:
 
 | Version 6 configuration option | Version 7 configuration option |
 | --- | --- |
