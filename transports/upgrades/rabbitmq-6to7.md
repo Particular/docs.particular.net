@@ -18,7 +18,7 @@ The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-m
 
 ## Configuring RabbitMQ Transport
 
-To use Azure Service Bus Transport for NServiceBus, create a new instance `AzureServiceBusTransport` and pass it to `EndpointConfiguration.UseTransport`.
+To use the RabbitMQ transport for NServiceBus, create a new instance of the `RabbitMQTransport` and pass it to `EndpointConfiguration.UseTransport`.
 
 Instead of
 
