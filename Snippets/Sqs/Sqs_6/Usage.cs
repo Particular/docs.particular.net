@@ -72,20 +72,13 @@ class Usage
     {
         #region SqsTransport
 
-        var transport = new SqsTransport();
         // S3 bucket only required for messages larger than 256KB
-        transport.S3 = new S3Settings("myBucketName", "my/key/prefix");
+        var transport = new SqsTransport
+        {
+            S3 = new S3Settings("myBucketName", "my/key/prefix")
+        };
 
         endpointConfiguration.UseTransport(transport);
-
-        #endregion
-    }
-
-    void DelayedDelivery(EndpointConfiguration endpointConfiguration)
-    {
-        #region DelayedDelivery
-
-        
 
         #endregion
     }
@@ -107,10 +100,11 @@ class Usage
     {
         #region S3CredentialSource
 
-        var transport = new SqsTransport();
-
-        transport.S3 = new S3Settings(bucketName, keyPrefix, 
-            new AmazonS3Client(new InstanceProfileAWSCredentials()));
+        var transport = new SqsTransport
+        {
+            S3 = new S3Settings(bucketName, keyPrefix,
+                new AmazonS3Client(new InstanceProfileAWSCredentials()))
+        };
 
         endpointConfiguration.UseTransport(transport);
 
@@ -121,9 +115,10 @@ class Usage
     {
         #region MaxTTL
 
-        var transport = new SqsTransport();
-
-        transport.MaxTimeToLive = TimeSpan.FromDays(10);
+        var transport = new SqsTransport
+        {
+            MaxTimeToLive = TimeSpan.FromDays(10)
+        };
 
         endpointConfiguration.UseTransport(transport);
 
@@ -134,9 +129,10 @@ class Usage
     {
         #region QueueNamePrefix
 
-        var transport = new SqsTransport();
-
-        transport.QueueNamePrefix = "DEV-";
+        var transport = new SqsTransport
+        {
+            QueueNamePrefix = "DEV-"
+        };
 
         endpointConfiguration.UseTransport(transport);
 
@@ -163,13 +159,14 @@ class Usage
     {
         #region S3Region
 
-        var transport = new SqsTransport();
-
-        transport.S3 = new S3Settings(bucketName, keyPrefix,
-            new AmazonS3Client(new AmazonS3Config
-            {
-                RegionEndpoint = RegionEndpoint.APSoutheast2
-            }));
+        var transport = new SqsTransport
+        {
+            S3 = new S3Settings(bucketName, keyPrefix,
+                new AmazonS3Client(new AmazonS3Config
+                {
+                    RegionEndpoint = RegionEndpoint.APSoutheast2
+                }))
+        };
 
         endpointConfiguration.UseTransport(transport);
 
@@ -193,11 +190,12 @@ class Usage
     {
         #region S3BucketForLargeMessages
 
-        var transport = new SqsTransport();
-
-        transport.S3 = new S3Settings(
-            bucketForLargeMessages: "nsb-sqs-messages", 
-            keyPrefix: "my/sample/path");
+        var transport = new SqsTransport
+        {
+            S3 = new S3Settings(
+                bucketForLargeMessages: "nsb-sqs-messages",
+                keyPrefix: "my/sample/path")
+        };
 
         endpointConfiguration.UseTransport(transport);
 
@@ -208,10 +206,11 @@ class Usage
     {
         #region S3ClientFactory
 
-        var transport = new SqsTransport();
-
-        transport.S3 = new S3Settings(bucketName, keyPrefix,
-            new AmazonS3Client(new AmazonS3Config()));
+        var transport = new SqsTransport
+        {
+            S3 = new S3Settings(bucketName, keyPrefix,
+                new AmazonS3Client(new AmazonS3Config()))
+        };
 
         endpointConfiguration.UseTransport(transport);
 
@@ -222,11 +221,12 @@ class Usage
     {
         #region S3ServerSideEncryption
 
-        var transport = new SqsTransport();
-
-        transport.S3 = new S3Settings(bucketName, keyPrefix)
+        var transport = new SqsTransport
         {
-            Encryption = new S3EncryptionWithManagedKey(ServerSideEncryptionMethod.AES256, "keyId")
+            S3 = new S3Settings(bucketName, keyPrefix)
+            {
+                Encryption = new S3EncryptionWithManagedKey(ServerSideEncryptionMethod.AES256, "keyId")
+            }
         };
 
         endpointConfiguration.UseTransport(transport);
@@ -238,11 +238,12 @@ class Usage
     {
         #region S3ServerSideCustomerEncryption
 
-        var transport = new SqsTransport();
-
-        transport.S3 = new S3Settings(bucketName, keyPrefix)
+        var transport = new SqsTransport
         {
-            Encryption = new S3EncryptionWithCustomerProvidedKey(ServerSideEncryptionCustomerMethod.AES256, "key", "keyMD5")
+            S3 = new S3Settings(bucketName, keyPrefix)
+            {
+                Encryption = new S3EncryptionWithCustomerProvidedKey(ServerSideEncryptionCustomerMethod.AES256, "key", "keyMD5")
+            }
         };
 
         endpointConfiguration.UseTransport(transport);
@@ -272,15 +273,16 @@ class Usage
     {
         #region S3Proxy
 
-        var transport = new SqsTransport();
-
-        transport.S3 = new S3Settings(bucketName, keyPrefix,
-            new AmazonS3Client(new AmazonS3Config
-            {
-                ProxyCredentials = new NetworkCredential(userName, password),
-                ProxyHost = "127.0.0.1",
-                ProxyPort = 8888
-            }));
+        var transport = new SqsTransport
+        {
+            S3 = new S3Settings(bucketName, keyPrefix,
+                new AmazonS3Client(new AmazonS3Config
+                {
+                    ProxyCredentials = new NetworkCredential(userName, password),
+                    ProxyHost = "127.0.0.1",
+                    ProxyPort = 8888
+                }))
+        };
 
         endpointConfiguration.UseTransport(transport);
 
@@ -291,9 +293,10 @@ class Usage
     {
         #region V1BackwardsCompatibility
 
-        var transport = new SqsTransport();
-
-        transport.EnableV1CompatibilityMode = true;
+        var transport = new SqsTransport
+        {
+            EnableV1CompatibilityMode = true
+        };
 
         endpointConfiguration.UseTransport(transport);
 
@@ -344,9 +347,10 @@ class Usage
     {
         #region TopicNamePrefix
 
-        var transport = new SqsTransport();
-
-        transport.TopicNamePrefix = "DEV-";
+        var transport = new SqsTransport
+        {
+            TopicNamePrefix = "DEV-"
+        };
 
         endpointConfiguration.UseTransport(transport);
 
@@ -357,9 +361,10 @@ class Usage
     {
         #region TopicNameGenerator
 
-        var transport = new SqsTransport();
-
-        transport.TopicNameGenerator = (eventType, topicNamePrefix) => $"{topicNamePrefix}{eventType.Name}";
+        var transport = new SqsTransport
+        {
+            TopicNameGenerator = (eventType, topicNamePrefix) => $"{topicNamePrefix}{eventType.Name}"
+        };
 
         endpointConfiguration.UseTransport(transport);
 
