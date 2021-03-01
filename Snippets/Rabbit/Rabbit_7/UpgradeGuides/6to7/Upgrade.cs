@@ -25,6 +25,7 @@ partial class Upgrade
         {
             PrefetchCountCalculation = _ => 100
         };
+        endpointConfiguration.UseTransport(transportWithFixedPrefetchCount);
 
         //or
 
@@ -32,8 +33,7 @@ partial class Upgrade
         {
             PrefetchCountCalculation = concurrency => concurrency * 7
         };
-
-        endpointConfiguration.UseTransport(transport);
+        endpointConfiguration.UseTransport(transportWithConcurrencyBasedPrefetchCount);
 
         #endregion
     }
