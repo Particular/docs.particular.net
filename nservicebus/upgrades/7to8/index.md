@@ -13,7 +13,7 @@ NOTE: This is a working document; there is currently no timeline for the release
 
 ## Transport configuration
 
-The transport configuration API has been changed. Instead of the generic based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to `UseTransport`, e.g.
+NServiceBus V8 comes with a new transport configuration API. Instead of the generic based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to `UseTransport`, e.g.
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<MyTransport>();
@@ -38,7 +38,7 @@ The transport can be configured via the transport's configuration type which der
 
 ## Connection strings
 
-Configuring a transport's connection using `.ConnectionStringName(name)`, which was removed for .NET Core in NServiceBus version 7, has been removed all platforms in NServiceBus version 8. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the `.ConnectionString(value)` configuration.
+Configuring a transport's connection using `.ConnectionStringName(name)`, which was removed for .NET Core in NServiceBus version 7, has been removed from all platforms in NServiceBus version 8. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the `.ConnectionString(value)` configuration.
 
 A connection string named `NServiceBus/Transport` will also **no longer be detected automatically** on any platform. The connection string value must be configured explicitly using `.ConnectionString(value)`.
 
