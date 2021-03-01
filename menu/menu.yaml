@@ -672,6 +672,8 @@
         Title: Version 1.x to 1.2.5
     - Title: Amazon SQS
       Articles:
+      - Url: transports/upgrades/amazonsqs-5to6
+        Title: Version 5 to 6
       - Url: transports/upgrades/amazonsqs-4to5
         Title: Version 4 to 5
       - Url: transports/upgrades/amazonsqs-3to4
