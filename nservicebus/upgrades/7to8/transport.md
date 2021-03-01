@@ -14,7 +14,7 @@ upgradeGuideCoreVersions:
 See the transport specific upgrade guides for further details on the configuration options:
 
 * [Azure Service Bus transport upgrade guide](/transports/upgrades/asbs-1to2.md)
-* [Azure Storage Queues transport upgrade guide](TODO)
+* [Azure Storage Queues transport upgrade guide](/transports/upgrades/asq-9to10.md)
 * [RabbitMQ transport upgrade guide](TODO)
 * [MSMQ transport upgrade guide](/transports/upgrades/msmq-1to2.md)
 * [SQL Server transport upgrade guide](TODO)
