@@ -11,10 +11,12 @@ class Program
         var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("UseDevelopmentStorage=true");
-        transport.DisablePublishing();
-        transport.DelayedDelivery().DisableDelayedDelivery();
+        var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true", useNativeDelayedDeliveries: false)
+        {
+            QueueNameSanitizer = BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener
+        };
+        var routingSettings = endpointConfiguration.UseTransport(transport);
+        routingSettings.DisablePublishing();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 

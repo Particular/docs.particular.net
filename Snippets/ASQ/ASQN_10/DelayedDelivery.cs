@@ -8,9 +8,10 @@ class DelayedDelivery
     {
         #region delayed-delivery-override-name
 
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        var delayedDelivery = transport.DelayedDelivery();
-        delayedDelivery.UseTableName("myendpoint");
+        var transport = new AzureStorageQueueTransport("connection string");
+        transport.DelayedDelivery.DelayedDeliveryTableName = "myendpoint";
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -25,9 +26,8 @@ class DelayedDelivery
     {
         #region delayed-delivery-disabled
 
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        var delayedDelivery = transport.DelayedDelivery();
-        delayedDelivery.DisableDelayedDelivery();
+        var transport = new AzureStorageQueueTransport("connection string", useNativeDelayedDeliveries: false);
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }

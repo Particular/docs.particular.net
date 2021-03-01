@@ -17,22 +17,22 @@ class Program
 
         #region config
 
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("UseDevelopmentStorage=true");
+        var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true");
+        var routingSettings = endpointConfiguration.UseTransport(transport);
 
         #endregion
 
-        transport.DisablePublishing();
+        #region sanitization
+
+        transport.QueueNameSanitizer = BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener;
+
+        #endregion
+
+        routingSettings.DisablePublishing();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-
-        #region sanitization
-
-        transport.SanitizeQueueNamesWith(BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener);
-
-        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
