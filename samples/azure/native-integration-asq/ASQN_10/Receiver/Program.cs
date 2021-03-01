@@ -16,8 +16,8 @@ class Program
         endpointConfiguration.EnableInstallers();
 
         var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true", useNativeDelayedDeliveries: false);
-        // TODO: ASQ transport is not yet ready, Core v8 work is still in progress
-        // transport.DisablePublishing();
+        var routingSettings = endpointConfiguration.UseTransport(transport);
+        routingSettings.DisablePublishing();
 
         #region Native-message-mapping
 
@@ -33,7 +33,8 @@ class Program
 
         #endregion
 
-        endpointConfiguration.UseTransport(transport);
+        endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
+
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
