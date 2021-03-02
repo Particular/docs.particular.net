@@ -1,7 +1,7 @@
 ---
 title: Distributor and Publish-Subscribe
 summary: Distributor behavior in a publish-subscribe scenario
-reviewed: 2019-04-09
+reviewed: 2021-03-02
 related:
  - nservicebus/messaging/publish-subscribe
 redirects:
