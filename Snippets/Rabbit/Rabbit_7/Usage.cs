@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
 using NServiceBus;
+using NServiceBus.Transport.RabbitMQ;
 
 class Usage
 {
-    Usage(EndpointConfiguration endpointConfiguration)
+    void Basic(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-basic
 
-        endpointConfiguration.UseTransport<RabbitMQTransport>();
+        endpointConfiguration.UseTransport(
+            new RabbitMQTransport(Topology.Conventional, "host=localhost"));
 
         #endregion
     }
@@ -17,8 +19,8 @@ class Usage
     {
         #region rabbitmq-config-connectionstring-in-code
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.ConnectionString("My custom connection string");
+        endpointConfiguration.UseTransport(
+            new RabbitMQTransport(Topology.Conventional, "My custom connection string"));
 
         #endregion
     }
@@ -27,13 +29,16 @@ class Usage
     {
         #region rabbitmq-config-custom-id-strategy
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.CustomMessageIdStrategy(
-            customIdStrategy: deliveryArgs =>
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            MessageIdStrategy = deliveryArgs =>
             {
                 var headers = deliveryArgs.BasicProperties.Headers;
                 return headers["MyCustomId"].ToString();
-            });
+            }
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -42,8 +47,9 @@ class Usage
     {
         #region rabbitmq-config-useconventionalroutingtopology
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseConventionalRoutingTopology();
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -52,8 +58,9 @@ class Usage
     {
         #region rabbitmq-config-usedirectroutingtopology
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseDirectRoutingTopology();
+        var transport = new RabbitMQTransport(Topology.Direct, "host=localhost");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -62,10 +69,14 @@ class Usage
     {
         #region rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseDirectRoutingTopology(
-            routingKeyConvention: MyRoutingKeyConvention,
-            exchangeNameConvention: () => "MyTopic");
+        var topology = new DirectRoutingTopology(
+            useDurableExchanges: true,
+            exchangeNameConvention: () => "MyTopic",
+            routingKeyConvention: MyRoutingKeyConvention);
+
+        var transport = new RabbitMQTransport(topology, "host=localhost");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -79,12 +90,11 @@ class Usage
     {
         #region rabbitmq-config-useroutingtopologyDelegate
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseCustomRoutingTopology(
-            topologyFactory: createDurableExchangesAndQueues =>
-            {
-                return new MyRoutingTopology(createDurableExchangesAndQueues);
-            });
+        var topology = new MyRoutingTopology(createDurableExchangesAndQueues: true);
+
+        var transport = new RabbitMQTransport(topology, "host=localhost");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -93,8 +103,12 @@ class Usage
     {
         #region rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-code
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            TimeToWaitBeforeTriggeringCircuitBreaker = TimeSpan.FromMinutes(2)
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -103,8 +117,12 @@ class Usage
     {
         #region rabbitmq-config-prefetch-multiplier
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.PrefetchMultiplier(4);
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            PrefetchCountCalculation = concurrency => concurrency * 4
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -113,18 +131,12 @@ class Usage
     {
         #region rabbitmq-config-prefetch-count
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.PrefetchCount(100);
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            PrefetchCountCalculation = _ => 100
+        };
 
-        #endregion
-    }
-
-    void SetClientCertificateFile(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-client-certificate-file
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetClientCertificate("path", "password");
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -133,19 +145,12 @@ class Usage
     {
         #region rabbitmq-client-certificate
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetClientCertificate(new X509Certificate2());
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            ClientCertificate = new X509Certificate2()
+        };
 
-        #endregion
-    }
-
-    void EnableTimeoutManager(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-delay-enable-timeout-manager
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        var delayedDelivery = transport.DelayedDelivery();
-        delayedDelivery.EnableTimeoutManager();
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -154,8 +159,12 @@ class Usage
     {
         #region rabbitmq-disable-remote-certificate-validation
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.DisableRemoteCertificateValidation();
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            ValidateRemoteCertificate = false
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -164,8 +173,12 @@ class Usage
     {
         #region rabbitmq-external-auth-mechanism
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseExternalAuthMechanism();
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            UseExternalAuthMechanism = true
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -174,8 +187,12 @@ class Usage
     {
         #region rabbitmq-connectionstring-debug
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.ConnectionString("host=broker1;RequestedHeartbeat=600");
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=broker1;RequestedHeartbeat=600")
+        {
+            ClientCertificate = new X509Certificate2()
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -184,8 +201,12 @@ class Usage
     {
         #region rabbitmq-debug-api
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetHeartbeatInterval(TimeSpan.FromMinutes(10));
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            HeartbeatInterval = TimeSpan.FromMinutes(10)
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -194,8 +215,12 @@ class Usage
     {
         #region change-heartbeat-interval
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetHeartbeatInterval(TimeSpan.FromSeconds(30));
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            HeartbeatInterval = TimeSpan.FromSeconds(30)
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -204,8 +229,12 @@ class Usage
     {
         #region change-network-recovery-interval
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetNetworkRecoveryInterval(TimeSpan.FromSeconds(30));
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
+        {
+            NetworkRecoveryInterval = TimeSpan.FromSeconds(30)
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -215,8 +244,12 @@ class Usage
     {
         #region rabbitmq-disable-durable-exchanges
 
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.DisableDurableExchangesAndQueues();
+        var topology = new ConventionalRoutingTopology(
+            useDurableExchanges:  false);
+
+        var transport = new RabbitMQTransport(topology, "host=localhost");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
