@@ -1,7 +1,7 @@
 ---
 title: Disconnect Workers
 summary: How a worker can be disconnected from its distributor using PowerShell cmdlets
-reviewed: 2019-04-02
+reviewed: 2021-03-02
 redirects:
  - nservicebus/disconnect-workers-from-running-distributor
  - nservicebus/scalability-and-ha/disconnect-workers
