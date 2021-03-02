@@ -1,5 +1,9 @@
-﻿using System;
+using System;
+using System.Globalization;
+using System.IO;
 using Microsoft.Azure.Cosmos.Table;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using NServiceBus;
 
 class Usage
@@ -80,6 +84,56 @@ class Usage
         var compatibility = persistence.Compatibility();
         // e.g. Disable secondary index
         compatibility.DisableSecondaryKeyLookupForSagasCorrelatedByProperties();
+
+        #endregion
+    }
+
+    public void ConfigureCustomJsonSerializerSettings(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzurePersistenceSagasJsonSerializerSettings
+        var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Sagas>();
+
+        persistence.JsonSettings(new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto,
+            Converters =
+                {
+                    new IsoDateTimeConverter
+                    {
+                        DateTimeStyles = DateTimeStyles.RoundtripKind
+                    }
+                }
+        });
+        #endregion
+    }
+
+    public void ConfigureCustomJsonReader(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzurePersistenceSagasReaderCreator
+        var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Sagas>();
+
+        persistence.ReaderCreator(
+            readerCreator: textReader =>
+            {
+                return new JsonTextReader(textReader);
+            });
+        #endregion
+    }
+
+    public void ConfigureCustomJsonWriter(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzurePersistenceSagasWriterCreator
+
+        var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Sagas>();
+
+        persistence.WriterCreator(
+            writerCreator: writer =>
+            {
+                return new JsonTextWriter(writer)
+                {
+                    Formatting = Formatting.None
+                };
+            });
 
         #endregion
     }
