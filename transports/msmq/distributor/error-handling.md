@@ -2,7 +2,7 @@
 title: Distributor error handling
 summary: Error handling with and configuration with the distributor
 component: Distributor
-reviewed: 2019-04-15
+reviewed: 2021-03-02
 redirects:
  - nservicebus/errors/distributor-errorhandling
  - nservicebus/scalability-and-ha/error-handling
