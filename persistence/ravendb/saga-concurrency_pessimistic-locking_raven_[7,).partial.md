@@ -1,9 +1,9 @@
 ## Sagas concurrency control
 
-The RavenDB persistence allows for both optimistic and pessimistic concurrency options. The default, starting from v7, is pessimistic concurrency.
+The RavenDB persister allows for both optimistic and pessimistic concurrency options. As of NServiceBus.RavenDB version 7, he default is pessimistic concurrency.
 
 
-RavenDB does not provide pessimistic locking natively. The behavior is based a spin lock that tries to acquire a lease on a resource.
+RavenDB does not provide pessimistic locking natively. The behavior is based on a spin lock that tries to acquire a lease on a resource.
 
 Applying a spin lock over a remote resource is not as expensive as it may sound. When using optimistic concurrency control the recovery mechanism will result in all message processing being performed again for each retry including the retrieval of the message from the queue.
 
@@ -21,7 +21,7 @@ snippet: ravendb-sagas-pessimisticLeaseLockAcquisitionMaximumRefreshDelay
 
 By default the persister waits 60 seconds to obtain a lease lock. If the lock acquisition fails, the message goes through the endpoint configured [retry logic](/nservicebus/recoverability/).
 
-The behavior of obtaining a lease lock is based on competing on the document for update. This can result in a large increase in IO roundtrips, especially if many instances are competing for this resource.
+The behavior of obtaining a lease lock is based on competing on the document for update. This can result in a large increase in I/O roundtrips, especially if many instances are competing for this resource.
 
 The pessimistic lease lock acquisition timeout duration can be adjusted with the following API:
 
