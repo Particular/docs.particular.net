@@ -1,7 +1,7 @@
 ---
 title: NHibernate Persistence Upgrade Version 8.0 to 8.1
 summary: Instructions on how to upgrade NHibernate Persistence Version 8.0 to 8.1 to resolve StaleObjectStateException errors.
-reviewed: 2019-04-05
+reviewed: 2021-03-02
 component: NHibernate
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
