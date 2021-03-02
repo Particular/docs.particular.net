@@ -1,11 +1,11 @@
-## Client Factory
+## Client
 
 **Optional**
 
-**Default**: `() => new AmazonSQSClient()`
+**Default**: `new AmazonSQSClient()`
 
-This overloads the default SQS client factory with a custom factory creation delegate.
+By default the transport uses a parameterless constructor to build the SQS client. This overrides the default SQS client with a custom one.
 
-**Example**: To use a custom factory, specify:
+**Example**: To use a custom client, specify:
 
 snippet: ClientFactory
