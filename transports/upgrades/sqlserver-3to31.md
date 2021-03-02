@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport Upgrade Version 3 to 3.1
 summary: Instructions on how to migrate the delayed messages from persistence-based mechanism (Timeout Manager) to native transport handling.
-reviewed: 2019-04-09
+reviewed: 2021-03-02
 component: SqlTransport
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
