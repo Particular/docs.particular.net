@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -80,12 +79,8 @@ class Program
 
     static void ConfigureTransactionTimeoutNetFramework(TimeSpan value)
     {
-        var assembly = Assembly.GetAssembly(typeof(TransactionManager));
-        var instance = assembly?.CreateInstance("System.Transactions.Configuration.MachineSettingsSection");
-        var instanceType = instance?.GetType();
-        var sMaxTimeout = instanceType?.GetFields(BindingFlags.Static | BindingFlags.NonPublic)
-            .SingleOrDefault(f => f.Name.Contains("maxTimeout"));
-        sMaxTimeout?.SetValue(null, value);
+        SetTransactionManagerField("_cachedMaxTimeout", true);
+        SetTransactionManagerField("_maximumTimeout", value);
     }
 
     #endregion
