@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using System.Transactions;
 using LockRenewal;
 using Microsoft.Azure.ServiceBus.Management;
 using NServiceBus;
@@ -38,7 +41,7 @@ class Program
 
         await OverrideQueueLockDuration("Samples.ASB.SendReply.LockRenewal", connectionString).ConfigureAwait(false);
 
-        await endpointInstance.SendLocal(new LongProcessingMessage { ProcessingDuration = TimeSpan.FromSeconds(45)});
+        await endpointInstance.SendLocal(new LongProcessingMessage { ProcessingDuration = TimeSpan.FromSeconds(45) });
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
@@ -56,4 +59,34 @@ class Program
 
         await managementClient.UpdateQueueAsync(queueDescription).ConfigureAwait(false);
     }
+
+    #region override-transaction-manager-timeout-net-core
+
+    static void ConfigureTransactionTimeoutCore(TimeSpan value)
+    {
+        SetTransactionManagerField("s_cachedMaxTimeout", true);
+        SetTransactionManagerField("s_maximumTimeout", value);
+    }
+
+    static void SetTransactionManagerField(string fieldName, object value)
+    {
+        var cacheField = typeof(TransactionManager).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Static);
+        cacheField.SetValue(null, value);
+    }
+
+    #endregion
+
+    #region override-transaction-manager-timeout-net-framework
+
+    static void ConfigureTransactionTimeoutNetFramework(TimeSpan value)
+    {
+        var assembly = Assembly.GetAssembly(typeof(TransactionManager));
+        var instance = assembly?.CreateInstance("System.Transactions.Configuration.MachineSettingsSection");
+        var instanceType = instance?.GetType();
+        var sMaxTimeout = instanceType?.GetFields(BindingFlags.Static | BindingFlags.NonPublic)
+            .SingleOrDefault(f => f.Name.Contains("maxTimeout"));
+        sMaxTimeout?.SetValue(null, value);
+    }
+
+    #endregion
 }
