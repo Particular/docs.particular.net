@@ -17,6 +17,8 @@ include: asb-connectionstring-xplat
 
 ## Important information about lock renewal
 
+1. The transport must use the default [`SendsAtomitWithReceive`](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive) transport transaction mode for the sample to work.
+1. For a lock to be extended for longer than 10 minutes, the value of [`TransactionManager.MaxTimeout`](https://docs.microsoft.com/en-us/dotnet/api/system.transactions.transactionmanager.maximumtimeout) must be changed to the maximum time a message will be processed. This is a machine wide setting and should be treated carefuly.
 1. Message lock renewal operation is initiated by the client code, not the broker. If the request to renew the lock fails after all the SDK built-in retries, the lock won't be re-acquired, and the message will become unlocked and available for re-processing by competing consumers. Lock renewal should be treated as best-effort and not as a guaranteed operation.
 1. Message lock renewal applies to the currently processed message **only**. Prefetched messages that are not handled within the `LockDuration` time will lose their lock, indicated with a `LockLostException` in the log when they are attempted to be completed by the transport. Prefetching can be adjusted to reduce the number of prefetched messages, which can help to prevent exceptions with lock renewal. Alternatively, the endpoint's concurrency can be increased to speed up the processing of messages due to the increased concurrency.
 
@@ -81,3 +83,25 @@ INFO  LockRenewalBehavior Lock renewal task for incoming message ID: 940e9a1f-fd
 ```
 
 A message processed for 45 seconds will have its lock renewed once, successfully finishing the processing exceeding `LockDuration` of 30 seconds.
+
+## Overriding the value of TransactionManager.MaxTimeout
+
+### .NET Framework
+
+The setting can be modified using machine level configuration file:
+
+```
+<system.transactions>
+  <machineSettings maxTimeout="01:00:00" />
+</system.transactions>
+```
+
+or via reflection:
+
+snippet: override-transaction-manager-timeout-net-framework
+
+### .NET Core
+
+The setting can be modified using reflection:
+
+snippet: override-transaction-manager-timeout-net-core
