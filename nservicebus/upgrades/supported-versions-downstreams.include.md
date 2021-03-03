@@ -49,7 +49,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.8.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.8.0) | 2020-12-24     | -                 | -                                 |
+| [1.9.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.9.0) | 2021-03-01     | -                 | -                                 |
+| [1.8.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.8.0) | 2020-12-24     | 2021-06-01        | Superseded by 1.9.x               |
 | [1.7.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | 2020-11-24     | 2021-03-24        | Superseded by 1.8.x               |
 | [~~1.6.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.6.0) | ~~2020-11-02~~ | ~~2021-02-24~~    | ~~Superseded by 1.7.x~~           |
 | [~~1.5.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.1) | ~~2020-04-16~~ | ~~2021-02-02~~    | ~~Superseded by 1.6.x~~           |
@@ -96,7 +97,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.0.0) | 2020-11-23     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.1.0) | 2021-03-01     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.0.0) | 2020-11-23     | 2021-06-01        | Superseded by 3.1.x               |
 
 #### [NServiceBus.Persistence.ServiceFabric](/nuget/NServiceBus.Persistence.ServiceFabric)
 
@@ -123,7 +125,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.4.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.4.1) | 2020-07-29     | -                 | -                                 |
 | [~~6.3.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.3.2) | ~~2020-05-28~~ | ~~2020-10-29~~    | ~~Superseded by 6.4.x~~           |
-| [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.2.0) | ~~2020-02-12~~ | ~~2020-08-28~~    | ~~Superseded by 6.3.x~~           |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/4.2.6) | 2017-06-28     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Storage.MongoDB](/nuget/NServiceBus.Storage.MongoDB)
@@ -412,7 +413,6 @@
 | [~~1.18.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.18.0) | ~~2020-07-06~~ | ~~2020-11-17~~    | ~~Superseded by 1.19.x~~          |
 | [~~1.17.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.17.0) | ~~2020-06-08~~ | ~~2020-10-06~~    | ~~Superseded by 1.18.x~~          |
 | [~~1.16.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.16.0) | ~~2020-06-01~~ | ~~2020-09-08~~    | ~~Superseded by 1.17.x~~          |
-| [~~1.15.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.15.0) | ~~2020-05-06~~ | ~~2020-09-01~~    | ~~Superseded by 1.16.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
