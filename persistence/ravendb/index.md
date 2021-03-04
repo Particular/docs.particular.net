@@ -27,7 +27,7 @@ Specific versions of RavenDB Persistence are tied to a major version of NService
 
 | NServiceBus | RavenDB Persistence | RavenDB Client | Platform    |
 |:-----------:|:-------------------:|:--------------:|:-----------:|
-|     7.x     |        6.0.x        |       4.2      | .NET 4.7.2 / .NET Core 2.1  |
+|     7.x     |        6.x          |       4.2      | .NET 4.7.2 / .NET Core 2.1  |
 |     7.x     |        5.0.x        |       3.5      | .NET 4.5.2 / .NET Core 2.0  |
 |     6.x     |        4.2.x        |       3.5      | .NET 4.5.2  |
 |     6.x     |        4.0.x        |       3.0      | .NET 4.5.2  |
