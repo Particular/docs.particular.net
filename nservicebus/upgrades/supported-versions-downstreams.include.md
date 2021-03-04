@@ -16,7 +16,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/10.1.0) | 2020-04-30     | -                 | Deprecated as of 2021-05-01.      |
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/9.1.3) | 2018-12-12     | 2021-03-05        | Superseded by 10.0.x              |
+| [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/9.1.3) | ~~2018-12-12~~ | ~~2021-03-05~~    | ~~Superseded by 10.0.x~~          |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/7.2.18) | 2017-03-21     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](/nuget/NServiceBus.Azure.Transports.WindowsAzureStorageQueues)
@@ -123,7 +123,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.4.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.4.1) | 2020-07-29     | -                 | -                                 |
+| [6.5.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.0) | 2021-03-04     | -                 | -                                 |
+| [6.4.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.4.1) | 2020-07-29     | 2021-06-04        | Superseded by 6.5.x               |
 | [~~6.3.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.3.2) | ~~2020-05-28~~ | ~~2020-10-29~~    | ~~Superseded by 6.4.x~~           |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/4.2.6) | 2017-06-28     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
@@ -281,7 +282,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | -                 | -                                 |
 | [~~4.0.x~~](https://www.nuget.org/packages/ParticularTemplates/4.0.0) | ~~2020-03-05~~ | ~~2020-11-14~~    | ~~Superseded by 4.1.x~~           |
-| [3.0.x](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | 2018-11-29     | 2021-03-05        | Superseded by 4.0.x               |
+| [~~3.0.x~~](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | ~~2018-11-29~~ | ~~2021-03-05~~    | ~~Superseded by 4.0.x~~           |
 
 ### Other packages
 

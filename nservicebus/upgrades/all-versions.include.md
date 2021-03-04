@@ -62,7 +62,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/10.1.0) | 2020-04-30     | -                 | Deprecated as of 2021-05-01.      |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/10.0.0) | ~~2020-03-05~~ | ~~2020-07-30~~    | ~~Superseded by 10.1.x~~          |
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/9.1.3) | 2018-12-12     | 2021-03-05        | Superseded by 10.0.x              |
+| [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/9.1.3) | ~~2018-12-12~~ | ~~2021-03-05~~    | ~~Superseded by 10.0.x~~          |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/9.0.5) | ~~2018-09-27~~ | ~~2019-03-12~~    | ~~Superseded by 9.1.x~~           |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/8.0.8) | ~~2018-05-29~~ | ~~2019-09-27~~    | ~~Superseded by 9.0.x~~           |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/7.2.18) | 2017-03-21     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
@@ -271,7 +271,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.4.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.4.1) | 2020-07-29     | -                 | -                                 |
+| [6.5.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.0) | 2021-03-04     | -                 | -                                 |
+| [6.4.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.4.1) | 2020-07-29     | 2021-06-04        | Superseded by 6.5.x               |
 | [~~6.3.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.3.2) | ~~2020-05-28~~ | ~~2020-10-29~~    | ~~Superseded by 6.4.x~~           |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.2.0) | ~~2020-02-12~~ | ~~2020-08-28~~    | ~~Superseded by 6.3.x~~           |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.1.0) | ~~2020-02-06~~ | ~~2020-05-12~~    | ~~Superseded by 6.2.x~~           |
@@ -596,7 +597,7 @@ No versions released.
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | -                 | -                                 |
 | [~~4.0.x~~](https://www.nuget.org/packages/ParticularTemplates/4.0.0) | ~~2020-03-05~~ | ~~2020-11-14~~    | ~~Superseded by 4.1.x~~           |
-| [3.0.x](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | 2018-11-29     | 2021-03-05        | Superseded by 4.0.x               |
+| [~~3.0.x~~](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | ~~2018-11-29~~ | ~~2021-03-05~~    | ~~Superseded by 4.0.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/ParticularTemplates/2.0.0) | ~~2018-05-29~~ | ~~2019-11-29~~    | ~~Superseded by 3.0.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/ParticularTemplates/1.0.0) | ~~2017-10-05~~ | ~~2019-05-29~~    | ~~Superseded by 2.0.x~~           |
 
