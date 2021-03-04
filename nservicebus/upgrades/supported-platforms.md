@@ -8,7 +8,7 @@ related:
  - nservicebus/upgrades/supported-versions
 ---
 
-| Target Framework | Version | Platform | Support | Notes |
+| Framework | Version | Platform | Support | Notes |
 |------------------|:-------:|:--------:|:-------:|:------|
 | .NET Framework | 4.5.2 or later | [Windows](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies) | Supported | Some packages may require a later version. |
 | .NET Core | 2.1 (LTS) | [Windows / Linux](https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1-supported-os.md) | Supported | macOS is supported only for development purposes. |
