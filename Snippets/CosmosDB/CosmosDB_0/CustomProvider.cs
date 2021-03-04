@@ -1,5 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos;
 using NServiceBus;
+using NServiceBus.Persistence.CosmosDB;
 
 #region CosmosDBCustomClientProvider
 
