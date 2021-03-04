@@ -1,7 +1,7 @@
 ---
-title: Supported platforms
-summary: Platforms that are supported by NServiceBus
-reviewed: 2019-07-19
+title: Supported platforms and frameworks
+summary: Platforms and frameworks supported by NServiceBus
+reviewed: 2021-02-04
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
