@@ -6,6 +6,7 @@ versions: '[7,)'
 reviewed: 2021-02-16
 related:
  - samples/azure/azure-service-bus-long-running
+ - samples/azure-service-bus-netstandard/lock-renewal
 redirects:
  - nservicebus/azure-service-bus/message-lock-renewal
  - transports/azure-service-bus/message-lock-renewal
