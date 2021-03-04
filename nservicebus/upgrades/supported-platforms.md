@@ -8,14 +8,12 @@ related:
  - nservicebus/upgrades/supported-versions
 ---
 
-NServiceBus is supported on the .NET Framework and .NET Core.
-
-| Target Framework | Version | Platform | Notes |
-|------------------|:-------:|:--------:|:-----|
-| .NET Framework | 4.5.2 or later | [Windows](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies) | Some packages may require a later version. |
-| .NET Core | 2.1 (LTS) | [Windows / Linux](https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1-supported-os.md) | macOS is supported only for development purposes. |
-| .NET Core | 3.1 (LTS) | [Windows / Linux](https://github.com/dotnet/core/blob/master/release-notes/3.1/3.1-supported-os.md) | macOS is supported only for development purposes. |
-
+| Target Framework | Version | Platform | Support | Notes |
+|------------------|:-------:|:--------:|:-------:|:------|
+| .NET Framework | 4.5.2 or later | [Windows](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies) | Supported | Some packages may require a later version. |
+| .NET Core | 2.1 (LTS) | [Windows / Linux](https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1-supported-os.md) | Supported | macOS is supported only for development purposes. |
+| .NET Core | 3.1 (LTS) | [Windows / Linux](https://github.com/dotnet/core/blob/master/release-notes/3.1/3.1-supported-os.md) | Supported | macOS is supported only for development purposes. |
+| .NET | 5.0 | [Windows / Linux](https://github.com/dotnet/core/blob/main/release-notes/5.0/5.0-supported-os.md) | Under review |  |
 
 ### Packages not supporting .NET Core
 
