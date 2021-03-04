@@ -1,0 +1,1 @@
+By default, RavenDB persistence uses [pessimistic concurrency control](https://en.wikipedia.org/wiki/Pessimistic_concurrency_control) when updating or deleting saga data.
