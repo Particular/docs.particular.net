@@ -1,14 +1,14 @@
 ---
-title: Supported platforms
-summary: Platforms that are supported by NServiceBus
-reviewed: 2019-07-19
+title: Supported frameworks and platforms
+summary: Frameworks and platforms supported by NServiceBus
+reviewed: 2021-02-04
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
  - nservicebus/upgrades/supported-versions
 ---
 
-| Target Framework | Version | Platform | Support | Notes |
+| Framework | Version | Platform | Support | Notes |
 |------------------|:-------:|:--------:|:-------:|:------|
 | .NET Framework | 4.5.2 or later | [Windows](https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies) | Supported | Some packages may require a later version. |
 | .NET Core | 2.1 (LTS) | [Windows / Linux](https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1-supported-os.md) | Supported | macOS is supported only for development purposes. |

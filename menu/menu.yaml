@@ -93,7 +93,7 @@
       - Url: nservicebus/upgrades/all-versions
         Title: All versions
       - Url: nservicebus/upgrades/supported-platforms
-        Title: Supported platforms
+        Title: Supported frameworks and platforms
     - Url: nservicebus/upgrades/release-policy
       Title: Release Policy
     - Url: nservicebus/upgrades/third-party-licenses
