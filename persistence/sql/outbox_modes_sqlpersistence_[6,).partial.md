@@ -34,12 +34,14 @@ In this mode the SQL persistence creates a `TransactionScope` that wraps the who
  - storing the outbox record
  - persisting the application state change applied via `SynchronizedStorageSession`
 
-In addition to that connection managed by NServiceBus, users can open their own database connections in the message handlers. If the underlying database technology supports distributed transactions managed by Microsoft Distributed Transaction Coordinator -- MS DTC (e.g. SQL Server, Oracle or PostgreSQL), the transaction gets escalated to a distributed transaction.
+In addition to that connection managed by NServiceBus, users can open their own database connections in the message handlers. If the underlying database technology supports distributed transactions managed by the Microsoft Distributed Transaction Coordinator (MSDTC) (e.g. SQL Server, Oracle or PostgreSQL), the transaction is escalated to a distributed transaction.
 
-The `TransactionScope` mode is most useful in legacy scenarios such as when migrating from MSMQ transport to a messaging infrastructure that does not support MSDTC. In order to maintain consistency, the outbox has to be used in place of distributed transport-database transactions. If the legacy database cannot be modified to add the outbox table, the only option is to place the outbox table in a separate database and use distributed transactions between the databases.
+The `TransactionScope` mode is most useful in legacy scenarios such as when migrating from the MSMQ transport to a messaging infrastructure that does not support MSDTC. To maintain consistency, the outbox must be used instead of the distributed transactions which previously included the transport and the database. If the outbox table cannot be added to the legacy database, it may be placed in a separate database, but access to both databases must be included in distributed transactions.
 
-When necessary, the outbox transaction isolation level can also be adjusted. The change in the isolation level affects all data access operations done within the transaction. This should be only done if the business logic that is executed by the handler within the outbox transaction requires higher than default (`Read Committed`) isolation level to guarantee correctness (e.g. `Repeatable Read` or `Serializable`). Adjusting the isolation level is also possible when not using `TransactionScope` mode:
+If required, the outbox transaction isolation level may be adjusted:
 
 snippet: SqlPersistenceOutboxIsolationLevel
 
-Note: Adjusting the isolation level requires version 6.1 of SQL Persistence or higher.
+A change in the isolation level affects all data access included in transactions. This should be done only if the business logic executed by message handlers within outbox transactions requires higher than the default isolation level (`Read Committed`) to guarantee correctness (e.g. `Repeatable Read` or `Serializable`). The isolation level may also be adjusted when not using `TransactionScope` mode.
+
+Note: Adjusting the isolation level requires SQL Persistence version 6.1 or higher.
