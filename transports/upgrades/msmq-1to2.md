@@ -1,6 +1,6 @@
 ---
 title: MSMQ Transport Upgrade Version 1 to 2
-summary: Migration instructions on how to upgrade MSMQ Transport from Version 1 to 2.
+summary: Migration instructions on how to upgrade the MSMQ transport from version 1 to 2.
 reviewed: 2021-02-11
 component: MsmqTransport
 related:
@@ -12,9 +12,9 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-## Configuring MSMQ Transport
+## Configuring the MSMQ transport
 
-To use the MSMQ Transport for NServiceBus, create a new instance `MsmqTransport` and pass it to `EndpointConfiguration.UseTransport`.
+To use the MSMQ transport for NServiceBus, create a new instance of `MsmqTransport` and pass it to `EndpointConfiguration.UseTransport`.
 
 Instead of
 
@@ -30,9 +30,9 @@ var transport = new MsmqTransport();
 endpointConfiguration.UseTransport(transport);
 ```
 
-## Configuration Options
+## Configuration options
 
-The MSMQ Transport configuration options have been moved to the `MsmqTransport` class. See the following table for further information:
+The MSMQ transport configuration options have been moved to the `MsmqTransport` class. See the following table for further information:
 
 | Version 1 configuration option | Version 2 configuration option |
 | --- | --- |

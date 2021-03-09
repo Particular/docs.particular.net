@@ -1,6 +1,6 @@
 ---
 title: Support policy for previews
-summary: Describes the details for the support policy for previews
+summary: What is supported for components in the Particular Preview Program
 reviewed: 2020-07-09
 related:
  - nservicebus/upgrades/support-policy
@@ -8,7 +8,7 @@ related:
 
 ## Supported versions
 
-Product previews are released with a major version of 0. When a product is released with a major version of 1 or greater, it is no longer part of the preview program and is subject to [regular support policy](/nservicebus/upgrades/support-policy.md).
+Product previews are released with a major version of 0. When a product is released with a major version of 1 or greater, it is no longer part of the preview program and is subject to the [regular support policy](/nservicebus/upgrades/support-policy.md).
 
 For example:
 
@@ -19,7 +19,7 @@ For example:
 | 0.2.1 | Yes | No |
 | 1.0.0 | No | Yes |
 
-Note: Only the highest minor version is supported i.e. when `0.2.0` is released, `0.1.0` ceases to be supported.
+Note: Only the highest minor version is supported i.e. when `0.2.0` is released, `0.1.0` is no longer supported.
 
 ## Bugfixes
 

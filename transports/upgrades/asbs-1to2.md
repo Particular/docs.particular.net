@@ -1,5 +1,6 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 1 to 2
+summary: Migration instructions on how to upgrade the Azure Service Bus transport from version 1 to 2.
 reviewed: 2021-02-10
 component: ASBS
 related:
@@ -9,9 +10,9 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-## Configuring Azure Service Bus Transport
+## Configuring the Azure Service Bus transport
 
-To use Azure Service Bus Transport for NServiceBus, create a new instance `AzureServiceBusTransport` and pass it to `EndpointConfiguration.UseTransport`.
+To use the Azure Service Bus transport for NServiceBus, create a new instance of `AzureServiceBusTransport` and pass it to `EndpointConfiguration.UseTransport`.
 
 Instead of
 
@@ -27,7 +28,7 @@ var transport = new AzureServiceBusTransport(connectionString);
 endpointConfiguration.UseTransport(transport);
 ```
 
-## Configuration Options
+## Configuration options
 
 The Azure Service Bus Transport configuration options have been moved to the `AzureServiceBusTransport` class. See the following table for further information:
 
@@ -47,6 +48,6 @@ The Azure Service Bus Transport configuration options have been moved to the `Az
 | CustomTokenProvider | TokenProvider |
 | CustomRetryPolicy | RetryPolicy |
 
-## Native Message Customization
+## Native message customization
 
-`IMessageHandlerContext` and `IPipelineContext` do no longer need to be passed to the `CustomizeNativeMessage` method. See the [native message customization documentation](/transports/azure-service-bus/native-message-access.md) for further detail.
+`IMessageHandlerContext` and `IPipelineContext` no longer need to be passed to the `CustomizeNativeMessage` method. See the [native message customization documentation](/transports/azure-service-bus/native-message-access.md) for further details.
