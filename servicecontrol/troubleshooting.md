@@ -113,3 +113,33 @@ The installer is [code signed](https://en.wikipedia.org/wiki/Code_signing), but 
 Although the installer is code signed correctly with a certificate owned by "NServiceBus Ltd", SmartScreen will block it from running until Microsoft has built enough "trust" in the certificate. One of the main inputs to building that trust is when users grant permission to run the installer. To grant permission to run the installer, click "Run Anyway". This will no longer be required when Microsoft decides to trust the certificate.
 
 When building ServiceControl, all build artifacts are virus scanned to ensure no viruses or malware are shipped with the installer packages.
+
+## Indexes get corrupted
+
+Sometimes the following error can be observed:
+
+    Raven.Abstractions.Exceptions.IndexDisabledException: The index has been disabled due to errors
+
+Ensure that:
+
+- [The database storage folder is excluded from virus scanning](servicecontrol-in-practice.md#anti-virus-checks)
+- [Ensure enough storage space by applying capacity planning](capacity-and-planning.md#storage-size)
+- [Setup server monitoring and proactively monitor free storage space](servicecontrol-in-practice.md#server-monitoring)
+
+To resolve this error the indexes need to be partially rebuild.
+
+Quick:
+
+NOTE: The easiest way is to rebuild all indexes but this might take a very long time if the database is large and will use a lot of CPU and storage IO.
+
+- Stop the ServiceControl (audit or error) instance
+- Delete the `Indexes`
+- Start the ServiceControl instance
+
+Advanced:
+
+- Start  the [ServiceControl (audit or error) in maintenance mode](maintenance-mode.md)
+- Open exposed the RavenDB Management Studio
+- Navigate to the Indexes view
+- [Reset the relevant index(es)](https://ravendb.net/docs/article-page/3.5/csharp/server/administration/index-administration)
+
