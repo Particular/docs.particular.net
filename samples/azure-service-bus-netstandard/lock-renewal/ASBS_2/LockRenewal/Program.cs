@@ -61,26 +61,30 @@ class Program
 
     #region override-transaction-manager-timeout-net-core
 
-    static void ConfigureTransactionTimeoutCore(TimeSpan value)
+    static void ConfigureTransactionTimeoutCore(TimeSpan timeout)
     {
         SetTransactionManagerField("s_cachedMaxTimeout", true);
-        SetTransactionManagerField("s_maximumTimeout", value);
-    }
+        SetTransactionManagerField("s_maximumTimeout", timeout);
 
-    static void SetTransactionManagerField(string fieldName, object value)
-    {
-        var cacheField = typeof(TransactionManager).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Static);
-        cacheField.SetValue(null, value);
+        void SetTransactionManagerField(string fieldName, object value) =>
+            typeof(TransactionManager)
+                .GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Static)
+                .SetValue(null, value);
     }
 
     #endregion
 
     #region override-transaction-manager-timeout-net-framework
 
-    static void ConfigureTransactionTimeoutNetFramework(TimeSpan value)
+    static void ConfigureTransactionTimeoutNetFramework(TimeSpan timeout)
     {
         SetTransactionManagerField("_cachedMaxTimeout", true);
-        SetTransactionManagerField("_maximumTimeout", value);
+        SetTransactionManagerField("_maximumTimeout", timeout);
+
+        void SetTransactionManagerField(string fieldName, object value) =>
+            typeof(TransactionManager)
+                .GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Static)
+                .SetValue(null, value);
     }
 
     #endregion
