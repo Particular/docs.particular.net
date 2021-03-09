@@ -93,8 +93,10 @@ It may be required to first remove all `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Inst
 
 If certain messages are not scheduled for retry and the logs show the following message then the database could be in an inconsistent state:
 
+```txt
     2020-10-16 13:31:58.9863|190|Info|ServiceControl.Recoverability.RetryProcessor|Retry batch RetryBatches/1c33af76-8177-494d-ae9a-af060cefae02 cancelled as all matching unresolved messages are already marked for retry as part of another batch.
     2020-10-16 13:31:59.2826|173|Info|ServiceControl.Recoverability.InMemoryRetry|Retry operation bf05499a-9261-41ec-9b49-da40e22a6f20 completed. 1 messages skipped, 0 forwarded. Total 1.
+```
 
 The internal *FailedMessageRetries* collection must be purged in order to restore retries for such messages.
 
@@ -118,7 +120,9 @@ When building ServiceControl, all build artifacts are virus scanned to ensure no
 
 Sometimes the following error can be observed:
 
+```txt
     Raven.Abstractions.Exceptions.IndexDisabledException: The index has been disabled due to errors
+```
 
 Ensure that:
 
