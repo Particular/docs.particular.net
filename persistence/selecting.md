@@ -80,7 +80,7 @@ Alternatively, some organizations are more comfortable managing SQL Server and m
 
 **Azure CosmosDB (preview)**
 
-- Supports local transactions
+- Supports transactions on the same partition
 - Supports outbox
 - Geo redundancy
 - Lower latency
