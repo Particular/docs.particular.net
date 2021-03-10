@@ -14,9 +14,9 @@ upgradeGuideCoreVersions:
 
 ## Timeout manager
 
-The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backwards compatibility mode obsolete. If backwards compatibility mode was enabled these APIs must be removed.
+The [timeout manager has been removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backward compatibility mode obsolete. If backward compatibility mode was enabled these APIs must be removed.
 
-## Configuring RabbitMQ Transport
+## Configuring the RabbitMQ transport
 
 To use the RabbitMQ transport for NServiceBus, create a new instance of the `RabbitMQTransport` and pass it to `EndpointConfiguration.UseTransport`.
 
@@ -38,7 +38,7 @@ The mandatory configuration settings, the topology and the connection string, ar
 
 ## Certificate path and passphrase
 
-Certificate file path and passphrase can now be only passed via the connection string. When configuring secure connection via API the only option is to pass an instance of the `X505Certificate2` class. This instance can be constructed using path and passphrase.
+The certificate file path and passphrase can now be passed only via the connection string. When configuring a secure connection via the API, the only option is to pass an instance of the `X505Certificate2` class. This instance can be constructed using a path and passphrase.
 
 Instead of this code:
 
@@ -50,7 +50,7 @@ snippet: 6to7certificatepath7
 
 ## Prefetch count
 
-The two prefetch count settings have been replaced with a single one that uses a callback. Instead of either of these APIs:
+The two prefetch count settings have been replaced with a single setting that uses a callback. Instead of either of these APIs:
 
 snippet: 6to7prefetchcount6
 
@@ -62,9 +62,9 @@ snippet: 6to7prefetchcount7
 
 Disabling the durable exchanges and queues has been moved to the constructor of the topology classes, `ConventionalRoutingTopology` and `DirectRoutingTopology`. In order to set the value of that parameter use the variant of the `RabbitMQTransport` constructor that accepts an instance of the topology.
 
-## Configuration Options
+## Configuration options
 
-The RabbitMQ transport configuration options that have not been changed have been moved to the `RabbitMQTransport` class. See the following table for further information:
+The RabbitMQ transport configuration options that have not changed have been moved to the `RabbitMQTransport` class. See the following table for further information:
 
 | Version 6 configuration option | Version 7 configuration option |
 | --- | --- |

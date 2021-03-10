@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Queues Transport Upgrade Version 9 to 10
-summary: Migration instructions on how to upgrade Azure Storage Queues Transport from Version 9 to 10.
+summary: Instructions on how to upgrade the Azure Storage Queues transport from version 9 to 10.
 reviewed: 2021-02-11
 component: ASQ
 related:
@@ -13,9 +13,9 @@ upgradeGuideCoreVersions:
 
 ## Configuring the transport
 
-Upgrading from NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 9 to 10 requires code changes to use the new transport API.
+Upgrading NServiceBus.Azure.Transports.WindowsAzureStorageQueues from version 9 to 10 requires code changes to use the new transport API.
 
-The transport configuration API has been changed. Instead of the generic based `UseTransport<AzureStorageQueueTransport>` method, create an instance of the transport's configuration class and pass it to `UseTransport`, e.g.
+The transport configuration API has been changed. Instead of the generics-based `UseTransport<AzureStorageQueueTransport>` method, create an instance of the transport's configuration class and pass it to `UseTransport`. E.g.
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
@@ -35,7 +35,7 @@ var routing = endpointConfiguration.UseTransport(transport);
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
 
-## Configuration Options
+## Configuration options
 
 The Azure Queue Storage transport configuration options have been moved to the `AzureStorageQueueTransport` class properties and constructor(s). See the following table for further information:
 

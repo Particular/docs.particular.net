@@ -1,6 +1,6 @@
 ---
 title: Native Integration with Azure Storage Queues Transport
-summary: Consuming messages sent by non NServiceBus endpoints.
+summary: Consuming messages sent by non-NServiceBus endpoints with the Azure Storage Queues transport
 reviewed: 2021-02-25
 component: ASQ
 related:
@@ -13,14 +13,14 @@ related:
 Ensure an instance of the [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator) or [Azurite](https://github.com/Azure/Azurite) is running.
 
 
-## Azure Storage Queues Transport
+## Azure Storage Queues transport
 
-This sample uses the [Azure Storage Queues Transport](/transports/azure-storage-queues).
+This sample uses the [Azure Storage Queues transport](/transports/azure-storage-queues).
 
 
 ## Code walk-through
 
-This sample shows a simple two endpoint scenario.
+This sample shows a simple two-endpoint scenario.
 
  * `NativeSender` sends a `NativeMessage` message to `Receiver`
  * `Receiver` receiving and printing out the contents of the received message.
@@ -35,7 +35,7 @@ snippet: send-a-native-message
 
 ## Receiving a native message
 
-To process a native message, the native `QueueMessage` has to be adopted to the NServiceBus `MessageWrapper` first. To accomplish that, a [custom envelope unwrapper](/transports/azure-storage-queues/configuration.md#custom-envelope-unwrapper) needs to be registered to provide the following:
+To process a native message, the native `QueueMessage` has to be adapted to the NServiceBus `MessageWrapper` first. To accomplish this, a [custom envelope unwrapper](/transports/azure-storage-queues/configuration.md#custom-envelope-unwrapper) must be registered to provide the following:
 1. Message ID to associate with the incoming message
 1. Serialized message payload as a byte array
 1. Determine the native message type and assign it as an NServiceBus header

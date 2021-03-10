@@ -49,9 +49,9 @@ Message payload encryption is configured via the `Encryption` property of the S3
 
 snippet: 5to6-encryption
 
-## Configuration Options
+## Configuration options
 
-The SQS transport configuration options that have not been changed have been moved to the `SqsTransport` class. See the following table for further information:
+The SQS transport configuration options that have not changed have been moved to the `SqsTransport` class. See the following table for further information:
 
 | Version 6 configuration option | Version 7 configuration option |
 | --- | --- |

@@ -24,7 +24,7 @@ NOTE: If a certificate is specified via either code API, the `CertPath` and `Cer
 
 ### Remote certificate validation 
 
-By default, the RabbitMQ client will refuse to connect to the broker if the remote server certificate is invalid. In versions 4.4 and above of the transport, this validation can be disabled by using the following setting:
+By default, the RabbitMQ client will refuse to connect to the broker if the remote server certificate is invalid. In NServiceBus.RabbitMQ versions 4.4 and above, this validation can be disabled with the following setting:
 
 snippet: rabbitmq-disable-remote-certificate-validation
 
