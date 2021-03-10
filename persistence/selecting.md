@@ -37,8 +37,10 @@ B --> |RavenDB|E[RavenDB]
 B --> |MongoDB|M[MongoDB]
 B --> |Azure|Q{IAAS/PAAS ?}
 B --> |No|L
-Q --> |PAAS|S[ASP]
-Q --> |IAAS|L
+Q --> |PAAS|G
+Q --> |IAAS|L{Optimize for<br /> cost vs features?}
+G --> |Features|N[CosmosDB]
+G --> |Cost|S[ASP]
 ```
 ## Making the decision
 
