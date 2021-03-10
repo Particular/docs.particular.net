@@ -64,7 +64,7 @@ There are several options available when endpoints are hosted in Microsoft Azure
 
 One factor in the decision is whether the system is fully platform-as-a-service-enabled and whether it is designed to run fully on Azure in which case, the Azure Storage Table or Azure CosmosDB persistence may be appropriate. The choice between Azure Storage Table and Azure CosmosDB boils down to a difference in cost vs capabilities.
 
-Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL persister with Azure SQL).
+Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL persister with SQL Server on a Virtual Machine).
 
 **Azure SQL**
 
