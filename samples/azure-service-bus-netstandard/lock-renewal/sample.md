@@ -88,7 +88,7 @@ A message processed for 45 seconds will have its lock renewed once, successfully
 
 ### .NET Framework
 
-The setting can be modified using machine level configuration file:
+The setting can be modified in a machine-level configuration file:
 
 ```
 <system.transactions>
