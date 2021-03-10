@@ -50,7 +50,7 @@ The request to renew the lock must use the same Azure Service Bus connection obj
 
 snippet: get-connection-and-path
 
-With the lock token, connection object, and queue path, an Azure ServiceBus may be created to renew the lock. This is done in a background task, running in an infinite loop until the specified cancellation token is signaled as canceled.
+With the lock token, connection object, and queue path, an Azure Service Bus `MessageReceiver` object may be created to renew the lock. This is done in a background task, running in an infinite loop until the specified cancellation token is signaled as canceled.
 
 snippet: renewal-background-task
 
