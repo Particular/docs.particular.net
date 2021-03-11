@@ -36,7 +36,7 @@ In this mode the SQL persistence creates a `TransactionScope` that wraps the who
 
 In addition to that connection managed by NServiceBus, users can open their own database connections in the message handlers. If the underlying database technology supports distributed transactions managed by the Microsoft Distributed Transaction Coordinator (MSDTC) (e.g. SQL Server, Oracle or PostgreSQL), the transaction is escalated to a distributed transaction.
 
-The `TransactionScope` mode is most useful in legacy scenarios such as when migrating from the MSMQ transport to a messaging infrastructure that does not support MSDTC. To maintain consistency, the outbox must be used instead of the distributed transactions which previously included the transport and the database. If the outbox table cannot be added to the legacy database, it may be placed in a separate database, but access to both databases must be included in distributed transactions.
+The `TransactionScope` mode is most useful in legacy scenarios such as when migrating from the MSMQ transport to a messaging infrastructure that does not support MSDTC. In this scenario, it is no longer possible to use a distributed transaction which includes the transport and the database. To maintain consistency, the outbox must be used instead. If the outbox table cannot be added to the legacy database, it may be placed in a separate database, but access to both databases must be included in distributed transactions.
 
 If required, the outbox transaction isolation level may be adjusted:
 
