@@ -37,8 +37,10 @@ B --> |RavenDB|E[RavenDB]
 B --> |MongoDB|M[MongoDB]
 B --> |Azure|Q{IAAS/PAAS ?}
 B --> |No|L
-Q --> |PAAS|S[ASP]
+Q --> |PAAS|G{Optimize for}
 Q --> |IAAS|L
+G --> |Features|N[CosmosDB]
+G --> |Cost|S[ASP]
 ```
 ## Making the decision
 
@@ -58,9 +60,11 @@ The non-durable persister is not mentioned in the decision chart, as it is appro
 
 ### Azure
 
-There are several options available when endpoints are hosted in Windows Azure. The most commonly used persisters are Azure Storage and Azure SQL, the fully managed SQL Server solution in Azure.
+There are several options available when endpoints are hosted in Microsoft Azure. The most commonly used persisters are Azure Storage, Azure CosmosDB and Azure SQL, the fully managed SQL Server solution in Azure.
 
-One factor in the decision is whether the system is fully platform-as-a-service-enabled and whether it is designed to run fully on Azure (in which case, the Azure Table persistence may be appropriate). Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL persister with Azure SQL).
+One factor in the decision is whether the system is fully platform-as-a-service-enabled and whether it is designed to run fully on Azure in which case, the Azure Storage Table or Azure CosmosDB persistence may be appropriate. The choice between Azure Storage Table and Azure CosmosDB boils down to a difference in cost vs capabilities.
+
+Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL persister with SQL Server on a Virtual Machine).
 
 **Azure SQL**
 
@@ -71,6 +75,15 @@ One factor in the decision is whether the system is fully platform-as-a-service-
 **Azure Storage**
 
 - Usually cheaper
+- Automatically scales
+- A turn-key solution, meaning no maintenance
+
+**Azure CosmosDB (preview)**
+
+- Supports transactions on the same partition
+- Supports outbox
+- Geo redundancy
+- Lower latency
 - Automatically scales
 - A turn-key solution, meaning no maintenance
 
