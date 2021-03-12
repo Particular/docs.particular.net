@@ -28,29 +28,6 @@ It is recommended to:
 - Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easy and ensures different applications are not competing for storage IOPS.
 - Disable disk write caching to prevent data corruption if the (virtual) server or disk controler fails. This is a general best practice for databases.
 
-## Benchmark data
-
-ServiceControl version 3.0.0 was tested to validate performance improvements made between version 2 and version 3. 
-
-NOTE: The test harness used is a simplified test. It is strongly recommended to run performance tests with realistic message loads to validate baseline hardware requirements. This benchmark data is meant only as a point of reference to assist with determining dedicated ServiceControl server requirements.
-
-### Hardware used
-
-* 16 vCPU
-* 64 GB RAM
-* 2x7500 IOPS striped disk dedicated for the database
-
-### Audit message processing throughput
-
-Message Size | Messages Per Second
----- | ----
-13 KB | 140 msgs/s
-66 KB | 80 msgs/s
-
-### Disk usage
-
-While disk usage was not captured across all tests, for a scenario using a 66 KB message size and storing 450,000 messages the total database size was 4 GB.
-
 ## Suggestions to improve performance
 
 ### More RAM
