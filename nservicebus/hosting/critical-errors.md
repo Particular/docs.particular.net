@@ -33,7 +33,23 @@ Define a custom handler using the following code.
 
 snippet: DefiningCustomHostErrorHandlingAction
 
+### Terminating the process
+
+It is often unknown when a critical error occurs if the issue is recoverable. A sound strategy is to terminate the process when a critical error occurs and rely on the process hosting environment to restart the process as a recovery mechanism, resulting in a resilient way to deal with critical errors.
+
+However, this strategy only works when the endpoint instance is hosted in isolation and that it does not have any other component. For example if co-hosting NServiceBus with a web-service or website as this would result in these components to shortly be unavailable to users or other systems.
+
+### Host OS recoverability
+
+Whenever possible rely on the environment hosting the endpoint process to automatically restart it:
+
+* IIS: The IIS host will automatically spawn a new instance.
+* Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
+# Docker: Ensure that containers are configured with `restart=always`. See [Start containers automatically (Docker.com)](https://docs.docker.com/config/containers/start-containers-automatically/)
+
 ### A possible custom implementation
+
+NOTE: The following implementation assumes that the endpoint instance is hosted in isolation and that the hosting environment of the process will restart the process after is has been killed.
 
 snippet: CustomHostErrorHandlingAction
 
@@ -43,20 +59,9 @@ partial: override
 
 When implementing a custom critical error callback:
 
-* To exit the process use the [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) method. In case the environment has threads running that should be completed before shutdown (e.g. non transactional operations), the [Environment.Exit](https://msdn.microsoft.com/en-us/library/system.environment.exit.aspx) method can also be used.
+* Decide if the process can be exited/terminated and use the [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) method to exit the process. In case the environment has threads running that should be completed before shutdown (e.g. non transactional operations), the [Environment.Exit](https://msdn.microsoft.com/en-us/library/system.environment.exit.aspx) method can also be used.
 * The code should be wrapped in a `try...finally` clause. In the `try` block perform any custom operations; in the `finally` block call the method that exits the process.
-* The custom operations should include flushing any in-memory state and cached data, if normally it is persisted at a certain interval or during graceful shutdown. For example, flush appenders when using buffering or asynchronous appenders for [NLog](https://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) or [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) state by calling `LogManager.Shutdown();`.
-
-Whenever possible rely on the environment hosting the endpoint process to automatically restart it:
-
-* IIS: The IIS host will automatically spawn a new instance.
-* Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
-
-## Terminating the process
-
-It is often unknown when a critical error occurs if the issue is recoverable. A sound strategy is to terminate the process when a critical error occurs and rely on the process hosting environment to restart the process as a recovery mechanism, resulting in a resilient way to deal with critical errors.
-
-However, this strategy only works when the endpoint instance is hosted in isolation and that it does not have any other component. For example if co-hosting NServiceBus with a web-service or website as this would result in these components to shortly be unavailable to users or other systems.
+* The custom operations should include flushing any in-memory state and cached data, if normally it is persisted at a certain interval or during graceful shutdown. For example, flush appenders when using buffering or asynchronous logging for [Serilog](https://github.com/serilog/serilog/wiki/Lifecycle-of-Loggers) via `Log.CloseAndFlush();`, or [NLog](https://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) and [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) by calling `LogManager.Shutdown();`.
 
 ## Raising a critical error
 
