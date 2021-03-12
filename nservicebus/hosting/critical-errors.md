@@ -54,7 +54,7 @@ Whenever possible rely on the environment hosting the endpoint process to automa
 
 ## Terminating the process
 
-In general the best strategy is to terminate the process when a critical error occurs and rely on the process hosting environment to restart the process as a recovery mechanism. Reason this is the best strategy is that it is unknown when a critical error occurs if the issues is recoverable. By assuming it is not and terminating the process results in the more resilient way on dealing with critical errors.
+It is often unknown when a critical error occurs if the issue is recoverable. A sound strategy is to terminate the process when a critical error occurs and rely on the process hosting environment to restart the process as a recovery mechanism, resulting in a resilient way to deal with critical errors.
 
 However, this strategy only works when the endpoint instance is hosted in isolation and that it does not have any other component. For example if co-hosting NServiceBus with a web-service or website as this would result in these components to shortly be unavailable to users or other systems.
 
