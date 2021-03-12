@@ -93,8 +93,10 @@ It may be required to first remove all `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Inst
 
 If certain messages are not scheduled for retry and the logs show the following message then the database could be in an inconsistent state:
 
-    2020-10-16 13:31:58.9863|190|Info|ServiceControl.Recoverability.RetryProcessor|Retry batch RetryBatches/1c33af76-8177-494d-ae9a-af060cefae02 cancelled as all matching unresolved messages are already marked for retry as part of another batch.
-    2020-10-16 13:31:59.2826|173|Info|ServiceControl.Recoverability.InMemoryRetry|Retry operation bf05499a-9261-41ec-9b49-da40e22a6f20 completed. 1 messages skipped, 0 forwarded. Total 1.
+```txt
+2020-10-16 13:31:58.9863|190|Info|ServiceControl.Recoverability.RetryProcessor|Retry batch RetryBatches/1c33af76-8177-494d-ae9a-af060cefae02 cancelled as all matching unresolved messages are already marked for retry as part of another batch.
+2020-10-16 13:31:59.2826|173|Info|ServiceControl.Recoverability.InMemoryRetry|Retry operation bf05499a-9261-41ec-9b49-da40e22a6f20 completed. 1 messages skipped, 0 forwarded. Total 1.
+```
 
 The internal *FailedMessageRetries* collection must be purged in order to restore retries for such messages.
 
@@ -113,3 +115,31 @@ The installer is [code signed](https://en.wikipedia.org/wiki/Code_signing), but 
 Although the installer is code signed correctly with a certificate owned by "NServiceBus Ltd", SmartScreen will block it from running until Microsoft has built enough "trust" in the certificate. One of the main inputs to building that trust is when users grant permission to run the installer. To grant permission to run the installer, click "Run Anyway". This will no longer be required when Microsoft decides to trust the certificate.
 
 When building ServiceControl, all build artifacts are virus scanned to ensure no viruses or malware are shipped with the installer packages.
+
+## Indexes get corrupted
+
+Sometimes the following error can be observed:
+
+```txt
+Raven.Abstractions.Exceptions.IndexDisabledException: The index has been disabled due to errors
+```
+
+Ensure that:
+
+- [The database storage folder is excluded from virus scanning](servicecontrol-in-practice.md#anti-virus-checks)
+- [Ensure enough storage space by applying capacity planning](capacity-and-planning.md#storage-size)
+- [Setup server monitoring and proactively monitor free storage space](servicecontrol-in-practice.md#server-monitoring)
+
+To resolve this error the indexes need to be partially rebuilt. To rebuild just the affected index execute the following steps:
+
+- Start the [ServiceControl (audit or error) in maintenance mode](maintenance-mode.md)
+- Open the exposed RavenDB Management Studio
+- Navigate to the Indexes view
+- [Reset the relevant index(es)](https://ravendb.net/docs/article-page/3.5/csharp/server/administration/index-administration)
+
+If multiple indexes are affected it might be simpler to rebuild all indexes. Be aware though that this can take a very long time if the database is large and will use a lot of CPU and storage IO.
+
+- Stop the ServiceControl (audit or error) instance
+- Navigate to the [database folder](configure-ravendb-location.md) on disk
+- Delete the `Indexes` folder
+- Start the ServiceControl instance
