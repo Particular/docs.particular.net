@@ -23,6 +23,8 @@ Sequential processing:
 
 Set the concurrently limit value to `1` to process messages sequentially.
 
+NOTE: Sequential processing is not a guarantee for ordered processing. Processing failures can result in out-of-order processing.
+
 Examples where concurrency tuning might be relevant are:
 
  * Non thread safe code that needs to run sequentially
