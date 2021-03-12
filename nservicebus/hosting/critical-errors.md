@@ -45,7 +45,7 @@ Whenever possible rely on the environment hosting the endpoint process to automa
 
 * IIS: The IIS host will automatically spawn a new instance.
 * Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
-# Docker: Ensure that containers are configured with `restart=always`. See [Start containers automatically (Docker.com)](https://docs.docker.com/config/containers/start-containers-automatically/)
+* Docker: Ensure that containers are configured with `restart=always`. See [Start containers automatically (Docker.com)](https://docs.docker.com/config/containers/start-containers-automatically/)
 
 ### A possible custom implementation
 
