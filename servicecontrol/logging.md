@@ -11,7 +11,6 @@ The location of the ServiceControl logs are specified at install time or can als
 
 The default logging location for instances created with ServiceControl Management is `%ProgramData%\Particular\ServiceControl\<Instance Name>\logs`.
 
-
 #### Changing logging location via ServiceControl Management
 
 To change the location ServiceControl stores logs:
