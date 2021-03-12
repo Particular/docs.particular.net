@@ -26,7 +26,7 @@ When Save is clicked the service will be restarted to apply the change.
 
 ## Monitoring
 
-It is recommended to actively monitor the ServiceControl log file for any log entries with log level `ERROR` or `FATAL`.
+It is recommended to actively monitor the ServiceControl `logfile.${shortdate}.txt` log file for any log entries with log level `ERROR` or `FATAL`.
 
 ## Customize logging
 
