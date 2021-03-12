@@ -11,9 +11,8 @@ namespace Receiver
         {
             Console.Title = "Samples.RabbitMQ.SimpleReceiver";
             var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleReceiver");
-            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-            transport.UseConventionalRoutingTopology();
-            transport.ConnectionString("host=localhost");
+            var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost");
+            endpointConfiguration.UseTransport(transport);
             endpointConfiguration.EnableInstallers();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)

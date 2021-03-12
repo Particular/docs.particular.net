@@ -11,13 +11,12 @@ class Program
         #region ConfigureRabbit
 
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleSender");
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseConventionalRoutingTopology();
-        transport.ConnectionString("host=localhost");
+        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost");
+        var routing = endpointConfiguration.UseTransport(transport);
 
         #endregion
 
-        transport.Routing().RouteToEndpoint(typeof(MyCommand), "Samples.RabbitMQ.SimpleReceiver");
+        routing.RouteToEndpoint(typeof(MyCommand), "Samples.RabbitMQ.SimpleReceiver");
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
