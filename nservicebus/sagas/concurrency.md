@@ -153,7 +153,7 @@ A simpler approach is to split the request just once and have a single level of 
 
 #### Sequential scatter/gather
 
-Instead of sending out a large number of requests where simultanious processing of all responses is causing data contention consider sending the requests sequentially. Meaning, send the next request only after the response of the previous request has been processed. This will remove data contention in the procesing of responses but will increase the total duration the gathering of data will take and increase the saga state to store the data for all requests.
+When using a [scatter-gather](https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html) pattern or similar, simultaneously sending a large number of requests may result in simultaneous processing of a large number of responses, which may lead to data contention. Instead, consider sending requests sequentially. In each iteration, send the next request only after the response from the previous request was processed. This approach removes data contention when processing responses but may increase both the overall duration and the size of saga state required to store data while waiting for responses.
 
 #### Create an append-only saga data model
 
