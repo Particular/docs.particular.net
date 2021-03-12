@@ -19,7 +19,7 @@ To change the location ServiceControl stores logs:
  * Open ServiceControl Management
  * Click the Configuration icon for the instance to modify.
 
-![](managementutil-configuration.png)
+![ServiceControl Management utility configuration screen](managementutil-configuration.png)
 
  * Change the Log Path and click Save
 
