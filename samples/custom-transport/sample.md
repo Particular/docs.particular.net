@@ -3,6 +3,7 @@ title: Building a transport
 summary: Building a Transport using the file system as a store.
 reviewed: 2021-03-12
 component: Core
+versions: '[1,)'
 related:
 - transports
 ---
