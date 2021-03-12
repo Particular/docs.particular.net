@@ -8,4 +8,4 @@ related:
 - transports
 ---
 
-DANGER: Anyone planning to build their custom transport is highly encouraged to talk to Particular engineering team first. Send an email to support@particular.net or start a thread at https://discuss.particular.net/ and the team at Particular will be happy to take it from there. 
+DANGER: Anyone planning to build a custom transport is highly encouraged to talk to the Particular engineering team first. Send an email to <support@particular.net> or start a thread at https://discuss.particular.net/ and the team at Particular will be happy to take it from there. 
