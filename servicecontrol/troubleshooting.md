@@ -94,8 +94,8 @@ It may be required to first remove all `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Inst
 If certain messages are not scheduled for retry and the logs show the following message then the database could be in an inconsistent state:
 
 ```txt
-    2020-10-16 13:31:58.9863|190|Info|ServiceControl.Recoverability.RetryProcessor|Retry batch RetryBatches/1c33af76-8177-494d-ae9a-af060cefae02 cancelled as all matching unresolved messages are already marked for retry as part of another batch.
-    2020-10-16 13:31:59.2826|173|Info|ServiceControl.Recoverability.InMemoryRetry|Retry operation bf05499a-9261-41ec-9b49-da40e22a6f20 completed. 1 messages skipped, 0 forwarded. Total 1.
+2020-10-16 13:31:58.9863|190|Info|ServiceControl.Recoverability.RetryProcessor|Retry batch RetryBatches/1c33af76-8177-494d-ae9a-af060cefae02 cancelled as all matching unresolved messages are already marked for retry as part of another batch.
+2020-10-16 13:31:59.2826|173|Info|ServiceControl.Recoverability.InMemoryRetry|Retry operation bf05499a-9261-41ec-9b49-da40e22a6f20 completed. 1 messages skipped, 0 forwarded. Total 1.
 ```
 
 The internal *FailedMessageRetries* collection must be purged in order to restore retries for such messages.
@@ -121,7 +121,7 @@ When building ServiceControl, all build artifacts are virus scanned to ensure no
 Sometimes the following error can be observed:
 
 ```txt
-    Raven.Abstractions.Exceptions.IndexDisabledException: The index has been disabled due to errors
+Raven.Abstractions.Exceptions.IndexDisabledException: The index has been disabled due to errors
 ```
 
 Ensure that:
@@ -130,20 +130,16 @@ Ensure that:
 - [Ensure enough storage space by applying capacity planning](capacity-and-planning.md#storage-size)
 - [Setup server monitoring and proactively monitor free storage space](servicecontrol-in-practice.md#server-monitoring)
 
-To resolve this error the indexes need to be partially rebuild.
+To resolve this error the indexes need to be partially rebuilt. To rebuild just the affected index execute the following steps:
 
-Quick:
-
-NOTE: The easiest way is to rebuild all indexes but this might take a very long time if the database is large and will use a lot of CPU and storage IO.
-
-- Stop the ServiceControl (audit or error) instance
-- Delete the `Indexes`
-- Start the ServiceControl instance
-
-Advanced:
-
-- Start  the [ServiceControl (audit or error) in maintenance mode](maintenance-mode.md)
-- Open exposed the RavenDB Management Studio
+- Start the [ServiceControl (audit or error) in maintenance mode](maintenance-mode.md)
+- Open the exposed RavenDB Management Studio
 - Navigate to the Indexes view
 - [Reset the relevant index(es)](https://ravendb.net/docs/article-page/3.5/csharp/server/administration/index-administration)
 
+If multiple indexes are affected it might be simpler to rebuild all indexes. Be aware though that this can take a very long time if the database is large and will use a lot of CPU and storage IO.
+
+- Stop the ServiceControl (audit or error) instance
+- Navigate to the [database folder](configure-ravendb-location.md) on disk
+- Delete the `Indexes` folder
+- Start the ServiceControl instance
