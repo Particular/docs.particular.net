@@ -5,9 +5,11 @@ reviewed: 2019-04-17
 component: Core
 ---
 
-NServiceBus has built-in [recoverability](/nservicebus/recoverability/) but in certain scenarios, it is not possible to handle errors in a graceful way. The reason for this is that NServiceBus does not have enough context to make a sensible decision on how to proceed after these errors have occurred. Examples of these **critical errors** include:
+NServiceBus has built-in [recoverability](/nservicebus/recoverability/) but in certain scenarios, it is not possible to handle errors in a graceful way. The reason for this is that NServiceBus does not have enough context to make a sensible decision on how to proceed after these errors have occurred.
 
- * An exception occurs when NServiceBus is attempting to execute the recoverability policy, including moving a message to the error queue. The context will contain a specific error "Failed to execute recoverability policy for message with native ID: \`{message.MessageId}\`"
+Examples of **critical errors** include:
+
+ * An exception occurs when NServiceBus is attempting to execute the recoverability policy, including moving a message to the error queue. The context will contain a specific error  `Failed to execute recoverability policy for message with native ID: \`{message.MessageId}\``
  * There are repeated failures in reading information from a required storage.
  * An exception occurs reading from the input queue.
 
@@ -19,23 +21,37 @@ partial: default
 
 ## Custom handling
 
-It is possible to providing a delegate that overrides the above action. When a critical error occurs the new action will be called instead of the default.
+A custom critical error handler can be provided to override the default behavior.
 
 Examples of reasons to consider implementating a custom critical error action include:
 
- * The endpoint contains a handler which must not be executed beyond the configured recoverability policy.
- * Restarting the endpoint and resetting the transport connection may resolve underlying issues in receiving or dispatching messages.
- * To notify support personnel when the endpoint has raised a critical error.
+* Restarting the endpoint and resetting the transport connection may resolve underlying issues in receiving or dispatching messages.
+* To notify support personnel when the endpoint has raised a critical error.
+* The endpoint contains a handler which must not be executed beyond the configured recoverability policy.
 
 Define a custom handler using the following code.
 
 snippet: DefiningCustomHostErrorHandlingAction
 
+### Terminating the process
+
+It is often unknown when a critical error occurs if the issue is recoverable. A sound strategy is to terminate the process when a critical error occurs and rely on the process hosting environment to restart the process as a recovery mechanism, resulting in a resilient way to deal with critical errors.
+
+However, this strategy only works when the endpoint instance is hosted in isolation and that it does not have any other component. For example if co-hosting NServiceBus with a web-service or website as this would result in these components to shortly be unavailable to users or other systems.
+
+### Host OS recoverability
+
+Whenever possible rely on the environment hosting the endpoint process to automatically restart it:
+
+* IIS: The IIS host will automatically spawn a new instance.
+* Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
+* Docker: Ensure that containers are configured with `restart=always`. See [Start containers automatically (Docker.com)](https://docs.docker.com/config/containers/start-containers-automatically/)
 
 ### A possible custom implementation
 
-snippet: CustomHostErrorHandlingAction
+NOTE: The following implementation assumes that the endpoint instance is hosted in isolation and that the hosting environment of the process will restart the process after is has been killed.
 
+snippet: CustomHostErrorHandlingAction
 
 ### Implementation Concerns
 
@@ -43,24 +59,15 @@ partial: override
 
 When implementing a custom critical error callback:
 
- * To exit the process use the [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) method. In case the environment has threads running that should be completed before shutdown (e.g. non transactional operations), the [Environment.Exit](https://msdn.microsoft.com/en-us/library/system.environment.exit.aspx) method can also be used.
- * The code should be wrapped in a `try...finally` clause. In the `try` block perform any custom operations; in the `finally` block call the method that exits the process.
- * The custom operations should include flushing any in-memory state and cached data, if normally it is persisted at a certain interval or during graceful shutdown. For example, flush appenders when using buffering or asynchronous appenders for [NLog](https://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) or [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) state by calling `LogManager.Shutdown();`.
-
-Whenever possible rely on the environment hosting the endpoint process to automatically restart it:
-
- * IIS: The IIS host will automatically spawn a new instance.
- * Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
-
-WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if co-hosting NServiceBus with a web-service or website.
-
+* Decide if the process can be exited/terminated and use the [Environment.FailFast](https://msdn.microsoft.com/en-us/library/dd289240.aspx) method to exit the process. In case the environment has threads running that should be completed before shutdown (e.g. non transactional operations), the [Environment.Exit](https://msdn.microsoft.com/en-us/library/system.environment.exit.aspx) method can also be used.
+* The code should be wrapped in a `try...finally` clause. In the `try` block perform any custom operations; in the `finally` block call the method that exits the process.
+* The custom operations should include flushing any in-memory state and cached data, if normally it is persisted at a certain interval or during graceful shutdown. For example, flush appenders when using buffering or asynchronous logging for [Serilog](https://github.com/serilog/serilog/wiki/Lifecycle-of-Loggers) via `Log.CloseAndFlush();`, or [NLog](https://nlog-project.org/documentation/v4.3.0/html/M_NLog_LogManager_Shutdown.htm) and [log4net](https://logging.apache.org/log4net/log4net-1.2.11/release/sdk/log4net.LogManager.Shutdown.html) by calling `LogManager.Shutdown();`.
 
 ## Raising a critical error
 
 Any code in the endpoint can invoke the Critical Error action.
 
 snippet: InvokeCriticalError
-
 
 ## Heartbeat functionality
 
