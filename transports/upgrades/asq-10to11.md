@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
 
 ## Configuring the transport
 
-Upgrading NServiceBus.Azure.Transports.WindowsAzureStorageQueues from version 9 to 10 requires code changes to use the new transport API.
+Upgrading NServiceBus.Azure.Transports.WindowsAzureStorageQueues from version 10 to 11 requires code changes to use the new transport API.
 
 The transport configuration API has been changed. Instead of the generics-based `UseTransport<AzureStorageQueueTransport>` method, create an instance of the transport's configuration class and pass it to `UseTransport`. E.g.
 
