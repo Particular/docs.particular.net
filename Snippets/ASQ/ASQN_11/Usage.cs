@@ -15,8 +15,9 @@ class Usage
     {
         #region AzureStorageQueueTransportWithAzure
 
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
+        var transport = new AzureStorageQueueTransport("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -30,16 +31,16 @@ class Usage
 
         #region AzureStorageQueueConfigCodeOnly
 
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
-        transport.BatchSize(20);
-        transport.MaximumWaitTimeWhenIdle(TimeSpan.FromSeconds(1));
-        transport.DegreeOfReceiveParallelism(16);
-        transport.PeekInterval(TimeSpan.FromMilliseconds(100));
-        transport.MessageInvisibleTime(TimeSpan.FromSeconds(30));
-        transport.UseQueueServiceClient(queueServiceClient);
-        transport.UseBlobServiceClient(blobServiceClient);
-        transport.UseCloudTableClient(cloudTableClient);
+        var transport = new AzureStorageQueueTransport(queueServiceClient, blobServiceClient, cloudTableClient)
+        {
+            ReceiverBatchSize = 20,
+            MaximumWaitTimeWhenIdle = TimeSpan.FromSeconds(1),
+            DegreeOfReceiveParallelism = 16,
+            PeekInterval = TimeSpan.FromMilliseconds(100),
+            MessageInvisibleTime = TimeSpan.FromSeconds(30)
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -68,19 +69,19 @@ class Usage
 
     void RegisterEndpoint(EndpointConfiguration configuration)
     {
+#pragma warning disable CS0618
         #region storage_account_routing_registered_endpoint
 
-        var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
+        var transport = new AzureStorageQueueTransport("connectionString");
 
-        var routing = transportConfig
-                            .ConnectionString("connectionString")
-                            .AccountRouting();
-        var anotherAccount = routing.AddAccount("AnotherAccountName","anotherConnectionString");
+        var anotherAccount = transport.AccountRouting.AddAccount("AnotherAccountName", "anotherConnectionString");
         anotherAccount.AddEndpoint("Receiver");
 
-        transportConfig.Routing().RouteToEndpoint(typeof(MyMessage), "Receiver");
+        var routingConfig = configuration.UseTransport(transport);
+        routingConfig.RouteToEndpoint(typeof(MyMessage), "Receiver");
 
         #endregion
+#pragma warning restore CS0618
     }
 
     async Task SendToMulitpleAccountUsingRegisterdEndpoint(IEndpointInstance endpointInstance)
@@ -94,29 +95,34 @@ class Usage
 
     void RegisterPublisher(EndpointConfiguration configuration)
     {
+#pragma warning disable CS0618
         #region storage_account_routing_registered_publisher
 
-        var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
-        var routing = transportConfig
-                            .ConnectionString("anotherConnectionString")
-                            .AccountRouting();
-        var anotherAccount = routing.AddAccount("PublisherAccountName", "connectionString");
-        anotherAccount.AddEndpoint("Publisher", new[] { typeof(MyEvent) });
+        var transport = new AzureStorageQueueTransport("connectionString");
+        var anotherAccount = transport.AccountRouting.AddAccount("PublisherAccountName", "anotherConnectionString");
+        anotherAccount.AddEndpoint("Publisher", new[] { typeof(MyEvent)  });
+
+        configuration.UseTransport(transport);
 
         #endregion
+#pragma warning restore CS0618
     }
 
     void MultipleAccountAliasesInsteadOfConnectionStrings1(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable CS0618
         #region AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
 
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.ConnectionString("account_A_connection_string");
-        transport.DefaultAccountAlias("account_A");
-        var accountRouting = transport.AccountRouting();
+        var transport = new AzureStorageQueueTransport("account_A_connection_string");
+
+        var accountRouting = transport.AccountRouting;
+        accountRouting.DefaultAccountAlias = "account_A";
         accountRouting.AddAccount("account_B", "account_B_connection_string");
 
+        endpointConfiguration.UseTransport(transport);
+
         #endregion
+#pragma warning restore CS0618
     }
 
     void SetSerialization(EndpointConfiguration endpointConfiguration)
@@ -138,8 +144,8 @@ class Usage
     {
         public void Customize(EndpointConfiguration endpointConfiguration)
         {
-            var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-            transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
+            var transport = new AzureStorageQueueTransport("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
+            endpointConfiguration.UseTransport(transport);
         }
     }
 

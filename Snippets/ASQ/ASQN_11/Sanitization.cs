@@ -14,8 +14,12 @@ public class Sanitization
     {
         #region azure-storage-queue-sanitization
 
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.SanitizeQueueNamesWith(queueName => queueName.Replace('.', '-'));
+        var transport = new AzureStorageQueueTransport("connection string")
+        {
+            QueueNameSanitizer = queueName => queueName.Replace('.', '-')
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
@@ -24,8 +28,12 @@ public class Sanitization
     {
         #region azure-storage-queue-backwards-compatible-sanitization-with-md5
 
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.SanitizeQueueNamesWith(BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener);
+        var transport = new AzureStorageQueueTransport("connection string")
+        {
+            QueueNameSanitizer = BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener
+        };
+
+        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }
