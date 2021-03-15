@@ -1,0 +1,1 @@
+SQL Server Always Encrypted feature is not supported by this version of the persister when using SQL Server dialect.
