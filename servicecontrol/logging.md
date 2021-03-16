@@ -24,6 +24,10 @@ To change the location ServiceControl stores logs:
 
 When Save is clicked the service will be restarted to apply the change.
 
+## Monitoring
+
+It is recommended to actively monitor the ServiceControl `logfile.${shortdate}.txt` log file for any log entries with log level `ERROR` or `FATAL`.
+
 ## Customize logging
 
 By default, ServiceControl logs to the filesystem and generates files named `logfile.${shortdate}.txt` and `ravenlog.${shortdate}.txt`. ServiceControl uses [NLog](https://nlog-project.org/) for logging and the configuration can be overridden by supplying a custom `nlog.config` configuration file in the ServiceControl, ServiceControl.Audit, and ServiceControl.Monitoring application folders. A variety of [NLog logging targets](https://nlog-project.org/config/?tab=targets) can be used to log to almost any possible destination.
