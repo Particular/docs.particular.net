@@ -49,11 +49,11 @@ The Azure Queue Storage transport configuration options have been moved to the `
 | DegreeOfReceiveParallelism                            | DegreeOfReceiveParallelism               |
 | SerializeMessageWrapperWith<TSerializationDefinition> | MessageWrapperSerializationDefinition    |
 | UnwrapMessagesWith                                    | MessageUnwrapper                         |
+| AccountRouting                                        | AccountRouting                           |
+| DefaultAccountAlias                                   | AccountRouting.DefaultAccountAlias       |
+| DelayedDelivery                                       | DelayedDelivery                          |
+| DelayedDelivery.UseTableName                          | DelayedDelivery.DelayedDeliveryTableName |
+| DisableDelayedDelivery                                | use the transport constructor overload   |
 | UseQueueServiceClient                                 | use the transport constructor overload   |
 | UseBlobServiceClient                                  | use the transport constructor overload   |
 | UseCloudTableClient                                   | use the transport constructor overload   |
-| DelayedDelivery                                       | DelayedDelivery                          |
-| AccountRouting                                        | AccountRouting                           |
-| DefaultAccountAlias                                   | AccountRouting.DefaultAccountAlias       |
-| UseTableName                                          | DelayedDelivery.DelayedDeliveryTableName |
-| DisableDelayedDelivery                                | use the transport constructor overload   |
