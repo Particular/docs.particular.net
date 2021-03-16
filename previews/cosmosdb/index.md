@@ -85,7 +85,7 @@ When the outbox is enabled, the deduplication data is kept for seven days by def
 
 snippet: CosmosDBOutboxCleanup
 
-Outbox cleanup depends on the Cosmos DB time-to-live feature. Failure to remove the expired outbox records would be caused by a misconfigured collection that has time-to-live disabled. Refer to [Cosmos DB documentation](https://docs.microsoft.com/en-us/azure/cosmos-db/time-to-live) to configure collection correctly.
+Outbox cleanup depends on the Cosmos DB time-to-live feature. Failure to remove the expired outbox records would be caused by a misconfigured collection that has time-to-live disabled. Refer to [Cosmos DB documentation](https://docs.microsoft.com/en-us/azure/cosmos-db/time-to-live) to configure the collection correctly.
 
 ## Saga concurrency
 
