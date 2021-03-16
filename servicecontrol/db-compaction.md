@@ -4,12 +4,9 @@ summary: How to compact the RavenDB database backing ServiceControl
 reviewed: 2020-06-23
 ---
 
-
 ServiceControl's embedded RavenDB database can be compacted in one of two ways: with the  [Extensible Storage Engine Utility (esentutl)](https://technet.microsoft.com/en-us/library/hh875546.aspx), or by using the RavenDB management portal.
 
-
 ## Using EsentUtl (Preferred approach)
-
 
 ### Step 1: Stop ServiceControl
 
@@ -19,19 +16,17 @@ ServiceControl's embedded RavenDB database can be compacted in one of two ways: 
 
 WARNING: For the `esentutl` command line utility to work, the ServiceControl service must stop without any errors.
 
-
 ### Step 2: Back up the ServiceControl instance
 
 * Follow the [backup instructions](backup-sc-database.md#backup) to back up the embedded RavenDB database.
 
-
 ### Step 3: Administrator command prompt
 
- * Open an elevated command prompt and navigate to the ServiceControl "DATA PATH" directory
- * Run **`esentutl /r RVN /l logs /s system`** and wait for it to finish. This will ensure that the database is in a consistent state and is ready for defragmentation.
- * Here is the result of running it:  
+* Open an elevated command prompt and navigate to the ServiceControl "DATA PATH" directory
+* Run **`esentutl /r RVN /l logs /s system`** and wait for it to finish. This will ensure that the database is in a consistent state and is ready for defragmentation.
+* Here is the result of running it:  
 
-```
+```txt
 Extensible Storage Engine Utilities for Microsoft(R) Windows(R)
 Version 10.0
 Copyright (C) Microsoft Corporation. All Rights Reserved.
@@ -48,7 +43,7 @@ Operation completed successfully in 0.78 seconds.
 
 * Now run **`esentutl /d Data`** and wait for it to finish. Here is the result of running it:  
 
-```
+```txt
 Extensible Storage Engine Utilities for Microsoft(R) Windows(R)
 Version 10.0
 Copyright (C) Microsoft Corporation. All Rights Reserved.
@@ -63,11 +58,9 @@ Initiating DEFRAGMENTATION mode...
          ..................................................
 ```
 
-
 ### Step 4: Restart ServiceControl
 
- * Start the ServiceControl Windows Service.
-
+* Start the ServiceControl Windows Service.
 
 ## Using the RavenDB management portal
 
@@ -77,16 +70,9 @@ ServiceControl version 1.4 introduced a database maintenance feature which allow
 
 Once ServiceControl is running in this mode, the following procedure can be used to compact the embedded RavenDB database.
 
-
 ### Step 1: Start ServiceControl in maintenance mode
 
-* Open ServiceControl Management.
-* Click on the "ADVANCED OPTIONS" icon of the instance to be run in maintenance mode.
-  ![](managementutil-advancedoptions.png)
-* Click on the "Start Maintenance Mode" button.
-  ![](managementutil-maintenancemode.png)
-* ServiceControl will restart in maintenance mode with RavenDB studio exposed on `http://localhost:{selected port}/storage`.
-
+* Open the ServiceControl instance in [maintenance mode](maintenance-mode.md).
 
 ### Step 2: Export the current database
 
@@ -106,9 +92,8 @@ Once ServiceControl is running in this mode, the following procedure can be used
 
 NOTE: At this point, it is advisable to take a backup copy of the existing database directory as re-importing can sometimes fail. To do this, ensure that ServiceControl is not running, then copy the contents of the database directory.
 
- * Delete the database directory contents.
- * Start ServiceControl, again in the maintenance mode. This will populate the database directory with a blank database.
-
+* Delete the database directory contents.
+* Start ServiceControl, again in the maintenance mode. This will populate the database directory with a blank database.
 
 ### Step 4: Import the exported data
 
@@ -124,4 +109,4 @@ NOTE: At this point, it is advisable to take a backup copy of the existing datab
 
 ### Step 5: Restart ServiceControl
 
- * Start the ServiceControl Windows Service.
+* Start the ServiceControl Windows Service.
