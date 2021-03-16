@@ -22,7 +22,7 @@ All multi-cast operations are transformed into unicast operations to make sure m
 
 When the transport supported message-driven pub-sub, the multi-storage account support relied on the publisher information and the fact that the subscription messages were sent to the publisher queue. With the native pub-sub implementation, this approach no longer works. 
 
-Multi-storage account support relies on an agreement of connectionstring information between publisher and subscriber. To keep this connection information secure we have chosen for a design that leverages the account alias metadata.
+Multi-storage account support relies on an agreement of connectionstring information between publisher and subscriber. To keep this connection information secure the transport leverages the account alias metadata.
 
 Using this alias metadata both subscriber and publisher can derive the connectionstring instead of storing it. This allows the subscriber to insert a subscription record into the subscription table on the publishers storage account with a queue address using only the subscriber alias.
 
