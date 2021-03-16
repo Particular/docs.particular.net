@@ -13,3 +13,5 @@ This page lists both currently and recently supported versions of all NServiceBu
 
 include: supported-versions-nservicebus
 include: supported-versions-downstreams
+
+<script type="text/javascript" src="supported-versions.js"></script>

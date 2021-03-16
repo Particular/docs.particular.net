@@ -12,3 +12,5 @@ related:
 This page lists all versions of all currently and previously supported NServiceBus packages.
 
 include: all-versions
+
+<script type="text/javascript" src="supported-versions.js"></script>
