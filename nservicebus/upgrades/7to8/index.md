@@ -34,7 +34,9 @@ var routing = endpointConfiguration.UseTransport(transport);
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
 
-The transport can be configured via the transport's configuration type which derives from `TransportDefinition`. See the [transport upgrade guide](/nservicebus/upgrades/7to8/transport.md) for further details.
+See the [transport upgrade guide](/nservicebus/upgrades/7to8/transport.md) for further details.
+
+Note: The existing API surface will continue to be supported for NServiceBus version 8 via a [shim API](https://en.wikipedia.org/wiki/Shim_(computing)) to easen migration to the new version. However, it is recommended to switch to the new transport configuration API.
 
 ## Connection strings
 
