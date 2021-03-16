@@ -151,6 +151,10 @@ In the above example, the requests are split into two groups each time. Dependin
 
 A simpler approach is to split the request just once and have a single level of sub-sagas sending the requests and aggregating the responses. This will not reduce data contention to the same degree, since the originating saga will be aggregating more multiple responses.
 
+#### Sequential scatter/gather
+
+When using a [scatter-gather](https://www.enterpriseintegrationpatterns.com/patterns/messaging/BroadcastAggregate.html) pattern or similar, simultaneously sending a large number of requests may result in simultaneous processing of a large number of responses, which may lead to data contention. Instead, consider sending requests sequentially. In each iteration, send the next request only after the response from the previous request was processed. This approach removes data contention when processing responses but may increase the overall duration. Also, the size of the saga state may increase, because it may need to contain some of the data from the message which initiated the scatter-gather so that that data can be included in each request.
+
 #### Create an append-only saga data model
 
 Currently, this is only possible with the NHibernate persister and a custom mapping. It requires advanced knowledge of NHibernate. Data added to a collection must be mapped to another entity so that the the master/parent row does not need to be updated. This way there is no data contention on the table row representing the saga instance data root.
