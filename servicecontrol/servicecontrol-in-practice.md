@@ -76,3 +76,7 @@ It is recommended to monitor the following metrics on the server hosting the Ser
 * Disk read/write/total IO
 
 These metrics can be viewed using *Resource Monitor* but it is advised to use server monitoring since it stores historic data in a durable format.
+
+## Automated OS patching
+
+ServiceControl instances are resilient to any forced reboots as part of automated patching or hardware failures (i.e. windows updates, security patches, failovers) that can result in ungraceful termination and won’t result in a loss of messages or unrecoverable data corruption.
