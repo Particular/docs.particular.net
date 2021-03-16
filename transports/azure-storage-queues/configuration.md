@@ -64,7 +64,7 @@ partial: config
 
 ## Connection strings
 
-partial: using-client
+partial: using-clients
 
 Note that multiple connection string formats apply when working with Azure storage services. When running against the emulated environment the format is `UseDevelopmentStorage=true`, but when running against a cloud hosted storage account the format is `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;`
 
