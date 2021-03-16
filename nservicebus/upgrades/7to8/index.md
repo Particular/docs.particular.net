@@ -162,7 +162,7 @@ The following transports might need migration:
 
 ## Outbox configuration
 
-NServiceBus version 8 requires explicit configuration of the transport transaction mode when using [Outbox](/nservicebus/outbox/):
+NServiceBus version 8 requires the transport transaction mode to be explicitly set to `ReceiveOnly` when using [Outbox](/nservicebus/outbox/):
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<MyTransport>();
