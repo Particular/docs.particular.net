@@ -61,6 +61,7 @@ partial: serialization
 
 partial: config
 
+partial: nativepubsub
 
 ## Connection strings
 

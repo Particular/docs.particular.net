@@ -108,6 +108,15 @@ class Usage
 #pragma warning restore CS0618
     }
 
+    void SetSubscriptionTableName(EndpointConfiguration configuration)
+    {
+        #region storage_account_subscription_table_name
+
+        var transport = new AzureStorageQueueTransport("connectionString");
+        transport.Subscriptions.SubscriptionTableName = "NewName";
+
+        #endregion
+    }
     void MultipleAccountAliasesInsteadOfConnectionStrings1(EndpointConfiguration endpointConfiguration)
     {
 #pragma warning disable CS0618

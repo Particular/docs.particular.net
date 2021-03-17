@@ -106,6 +106,16 @@ class Usage
         #endregion
     }
 
+    void SetSubscriptionTableName(EndpointConfiguration configuration)
+    {
+        #region storage_account_subscription_table_name
+
+        var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
+        transportConfig.SubscriptionTableName("NewName");
+
+        #endregion
+    }
+
     void MultipleAccountAliasesInsteadOfConnectionStrings1(EndpointConfiguration endpointConfiguration)
     {
         #region AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
