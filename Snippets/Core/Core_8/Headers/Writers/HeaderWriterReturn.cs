@@ -22,7 +22,7 @@
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableCallbacks();
             endpointConfiguration.MakeInstanceUniquelyAddressable("A");
-            endpointConfiguration.UseTransport<LearningTransport>();
+            endpointConfiguration.UseTransport(new LearningTransport());
             endpointConfiguration.RegisterMessageMutator(new Mutator());
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)

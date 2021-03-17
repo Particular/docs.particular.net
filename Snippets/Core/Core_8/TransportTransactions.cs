@@ -1,10 +1,12 @@
 ﻿namespace Core8
 {
     using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
     using System.Transactions;
     using NServiceBus;
     using NServiceBus.Routing;
-    using NServiceBus.Settings;
     using NServiceBus.Transport;
 
     class TransportTransactions
@@ -13,8 +15,10 @@
         {
             #region TransactionsDisable
 
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
-            transport.Transactions(TransportTransactionMode.None);
+            var transport = endpointConfiguration.UseTransport(new MyTransport()
+            {
+                TransportTransactionMode = TransportTransactionMode.None
+            });
 
             #endregion
         }
@@ -23,8 +27,10 @@
         {
             #region TransportTransactionReceiveOnly
 
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
-            transport.Transactions(TransportTransactionMode.ReceiveOnly);
+            var transport = endpointConfiguration.UseTransport(new MyTransport
+            {
+                TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+            });
 
             #endregion
         }
@@ -33,8 +39,10 @@
         {
             #region TransportTransactionAtomicSendsWithReceive
 
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
-            transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+            var transport = endpointConfiguration.UseTransport(new MyTransport
+            {
+                TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
+            });
 
             #endregion
         }
@@ -43,8 +51,10 @@
         {
             #region TransportTransactionScope
 
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
-            transport.Transactions(TransportTransactionMode.TransactionScope);
+            var transport = endpointConfiguration.UseTransport(new MyTransport
+            {
+                TransportTransactionMode = TransportTransactionMode.TransactionScope
+            });
 
             #endregion
         }
@@ -58,47 +68,29 @@
 
             #endregion
         }
-
-        void CustomTransactionIsolationLevel(EndpointConfiguration endpointConfiguration)
-        {
-            #region CustomTransactionIsolationLevel
-
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
-            transport.Transactions(TransportTransactionMode.TransactionScope);
-            transport.TransactionScopeOptions(
-                isolationLevel: IsolationLevel.RepeatableRead);
-
-            #endregion
-        }
-
-        void CustomTransactionTimeout(EndpointConfiguration endpointConfiguration)
-        {
-            #region CustomTransactionTimeout
-
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
-            transport.Transactions(TransportTransactionMode.TransactionScope);
-            transport.TransactionScopeOptions(
-                timeout: TimeSpan.FromSeconds(30));
-
-            #endregion
-        }
     }
 
     public class MyTransport :
         TransportDefinition, IMessageDrivenSubscriptionTransport
     {
-        public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+        public MyTransport()
+            : base(TransportTransactionMode.None, true, true, true)
+        {
+        }
+
+        public override Task<TransportInfrastructure> Initialize(HostSettings hostSettings, ReceiveSettings[] receivers, string[] sendingAddresses, CancellationToken cancellationToken = new CancellationToken())
         {
             throw new NotImplementedException();
         }
 
-        public override string ExampleConnectionStringForErrorMessage { get; }
-    }
-
-    static class MyTransportConfigurationExtensions
-    {
-        public static void TransactionScopeOptions(this TransportExtensions<MyTransport> transportExtensions, TimeSpan? timeout = null, IsolationLevel? isolationLevel = null)
+        public override string ToTransportAddress(QueueAddress address)
         {
+            throw new NotImplementedException();
+        }
+
+        public override IReadOnlyCollection<TransportTransactionMode> GetSupportedTransactionModes()
+        {
+            throw new NotImplementedException();
         }
     }
 }

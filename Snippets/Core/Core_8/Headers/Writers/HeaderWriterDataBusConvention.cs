@@ -23,7 +23,7 @@
             dataBus.BasePath(@"..\..\..\storage");
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
             endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.UseTransport<LearningTransport>();
+            endpointConfiguration.UseTransport(new LearningTransport());
             var conventions = endpointConfiguration.Conventions();
             conventions.DefiningDataBusPropertiesAs(property =>
             {

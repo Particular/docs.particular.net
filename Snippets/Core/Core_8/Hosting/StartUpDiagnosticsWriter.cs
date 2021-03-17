@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Common;
 using Core8.Headers.Writers;
@@ -16,7 +16,7 @@ public class StartUpDiagnosticsWriter
         var endpointConfiguration = new EndpointConfiguration("StartUpDiagnosticsWriter");
         var typesToScan = TypeScanner.NestedTypes<HeaderWriterSend>();
         endpointConfiguration.SetTypesToScan(typesToScan);
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
         string diagnostics = null;
         endpointConfiguration.CustomDiagnosticsWriter((x, ct) =>
         {

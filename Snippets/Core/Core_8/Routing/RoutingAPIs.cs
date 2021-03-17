@@ -10,9 +10,8 @@ namespace Core8.Routing
         {
             #region Routing-Logical
 
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            var routing = endpointConfiguration.UseTransport(new MyTransport());
 
-            var routing = transport.Routing();
             routing.RouteToEndpoint(
                 assembly: typeof(AcceptOrder).Assembly,
                 destination: "Sales");
@@ -33,9 +32,8 @@ namespace Core8.Routing
         {
             #region Routing-RegisterPublisher
 
-            var transport = endpointConfiguration.UseTransport<MyTransport>();
+            var routing = endpointConfiguration.UseTransport(new MyTransport());
 
-            var routing = transport.Routing();
             routing.RegisterPublisher(
                 assembly: typeof(OrderAccepted).Assembly,
                 publisherEndpoint: "Sales");

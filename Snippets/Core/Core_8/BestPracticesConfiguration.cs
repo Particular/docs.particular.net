@@ -1,8 +1,9 @@
 ﻿namespace Core8
 {
+    using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Settings;
     using NServiceBus.Transport;
 
     class BestPracticesConfiguration
@@ -11,8 +12,7 @@
         {
             #region DisableBestPracticeEnforcementPerEndpoint
 
-            var transport = endpointConfiguration.UseTransport<TransportName>();
-            var routing = transport.Routing();
+            var routing = endpointConfiguration.UseTransport(new TransportName());
             routing.DoNotEnforceBestPractices();
 
             #endregion
@@ -39,12 +39,25 @@
         class TransportName :
             TransportDefinition
         {
-            public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+            public TransportName()
+                : base(TransportTransactionMode.None, true, true, true)
+            {
+            }
+
+            public override Task<TransportInfrastructure> Initialize(HostSettings hostSettings, ReceiveSettings[] receivers, string[] sendingAddresses, CancellationToken cancellationToken = new CancellationToken())
             {
                 throw new System.NotImplementedException();
             }
 
-            public override string ExampleConnectionStringForErrorMessage { get; }
+            public override string ToTransportAddress(QueueAddress address)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public override IReadOnlyCollection<TransportTransactionMode> GetSupportedTransactionModes()
+            {
+                throw new System.NotImplementedException();
+            }
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿namespace Core8.EndpointName
 {
     using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Settings;
     using NServiceBus.Transport;
 
     class Usage
@@ -27,12 +29,24 @@
         class MyTransport :
             TransportDefinition
         {
-            public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
+            public MyTransport(TransportTransactionMode defaultTransactionMode, bool supportsDelayedDelivery, bool supportsPublishSubscribe, bool supportsTTBR) : base(defaultTransactionMode, supportsDelayedDelivery, supportsPublishSubscribe, supportsTTBR)
+            {
+            }
+
+            public override Task<TransportInfrastructure> Initialize(HostSettings hostSettings, ReceiveSettings[] receivers, string[] sendingAddresses, CancellationToken cancellationToken = new CancellationToken())
             {
                 throw new NotImplementedException();
             }
 
-            public override string ExampleConnectionStringForErrorMessage { get; }
+            public override string ToTransportAddress(QueueAddress address)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override IReadOnlyCollection<TransportTransactionMode> GetSupportedTransactionModes()
+            {
+                throw new NotImplementedException();
+            }
         }
 
         class MyMessage
