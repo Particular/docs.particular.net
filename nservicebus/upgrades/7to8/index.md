@@ -174,3 +174,7 @@ transport.TransportTransactionMode = TransportTransactionMode.ReceiveOnly;
 
 endpointConfiguration.EnableOutbox();
 ```
+
+### AbortReceiveOperation
+
+`ITransportReceiveContext.AbortReceiveOperation` operation is no longer supported
