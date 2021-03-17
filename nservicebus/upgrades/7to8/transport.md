@@ -72,7 +72,7 @@ var routing = endpointConfiguration.UseTransport(transportConfiguration);
 routing.SubscriptionAuthorizer(context => <...>);
 ```
 
-Note: Subscription Authorization is only available for transports using [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe.md#mechanics-message-driven-persistence-based)
+Note: Subscription Authorization is only available for transports using [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based)
 
 ## Renamed APIs
 
