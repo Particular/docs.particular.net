@@ -5,3 +5,13 @@
 To control the subscription table name, use
 
 snippet: storage_account_subscription_table_name
+
+#### Caching
+
+Configure the duration of subscription caching using
+
+snippet: storage_account_configure_subscription_caching
+
+Or disable caching entirely
+
+snippet: storage_account_disable_subscription_caching

@@ -117,6 +117,27 @@ class Usage
 
         #endregion
     }
+
+    void DisableCaching(EndpointConfiguration configuration)
+    {
+        #region storage_account_disable_subscription_caching
+
+        var transport = new AzureStorageQueueTransport("connectionString");
+        transport.Subscriptions.DisableCaching = true;
+
+        #endregion
+    }
+
+    void ConfigureCaching(EndpointConfiguration configuration)
+    {
+        #region storage_account_configure_subscription_caching
+
+        var transport = new AzureStorageQueueTransport("connectionString");
+        transport.Subscriptions.CacheInvalidationPeriod = TimeSpan.FromSeconds(10);
+
+        #endregion
+    }
+
     void MultipleAccountAliasesInsteadOfConnectionStrings1(EndpointConfiguration endpointConfiguration)
     {
 #pragma warning disable CS0618
