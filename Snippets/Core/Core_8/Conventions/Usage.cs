@@ -15,7 +15,6 @@ namespace Core8.Conventions
             conventions.DefiningEventsAs(type => type.Namespace == "MyNamespace.Messages.Events");
             conventions.DefiningMessagesAs(type => type.Namespace == "MyNamespace.Messages");
             conventions.DefiningDataBusPropertiesAs(property => property.Name.EndsWith("DataBus"));
-            conventions.DefiningExpressMessagesAs(type => type.Name.EndsWith("Express"));
             conventions.DefiningTimeToBeReceivedAs(type => type.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
 
             #endregion
