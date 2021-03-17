@@ -10,7 +10,10 @@ class DelayConfig
 
         var transport = new SqlServerTransport("connectionString")
         {
-            QueuePeeker.Delay = TimeSpan.FromSeconds(5)
+            QueuePeeker = 
+            {
+                Delay = TimeSpan.FromSeconds(5)
+            }
         };
 
         #endregion
@@ -24,7 +27,10 @@ class DelayConfig
 
         var transport = new SqlServerTransport("connectionString")
         {
-            QueuePeeker.MaxRecordsToPeek = 50
+            QueuePeeker = 
+            {
+                MaxRecordsToPeek = 50
+            }
         };
 
         #endregion

@@ -10,7 +10,10 @@ class Subscriptions
 
         var transport = new SqlServerTransport("connectionString")
         {
-            Subscriptions.DisableCaching = true
+            Subscriptions =
+            {
+                DisableCaching = true
+            }
         };
 
         #endregion
@@ -22,7 +25,10 @@ class Subscriptions
 
         var transport = new SqlServerTransport("connectionString")
         {
-            Subscriptions.CacheInvalidationPeriod = TimeSpan.FromMinutes(1)
+            Subscriptions =
+            {
+                CacheInvalidationPeriod = TimeSpan.FromMinutes(1)
+            }
         };
 
         #endregion
