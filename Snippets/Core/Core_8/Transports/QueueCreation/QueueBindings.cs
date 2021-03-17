@@ -11,7 +11,7 @@
         protected override void Setup(FeatureConfigurationContext context)
         {
             var queueBindings = context.Settings.Get<QueueBindings>();
-            queueBindings.BindReceiving("someQueue");
+            queueBindings.BindSending("someQueue");
         }
     }
 
