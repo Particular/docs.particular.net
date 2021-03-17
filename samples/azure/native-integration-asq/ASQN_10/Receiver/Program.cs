@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Azure.Transports.WindowsAzureStorageQueues;
+using NServiceBus.Features;
 
 class Program
 {
@@ -15,13 +16,14 @@ class Program
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
 
-        var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true", useNativeDelayedDeliveries: false);
-        var routingSettings = endpointConfiguration.UseTransport(transport);
-        routingSettings.DisablePublishing();
+        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport.ConnectionString("UseDevelopmentStorage=true");
+        transport.DisablePublishing();
+        transport.DelayedDelivery().DisableDelayedDelivery();
 
         #region Native-message-mapping
 
-        transport.MessageUnwrapper = message => new MessageWrapper
+        transport.UnwrapMessagesWith(message => new MessageWrapper
         {
             Id = message.MessageId,
             Body = message.Body.ToArray(),
@@ -29,12 +31,11 @@ class Program
             {
                 { Headers.EnclosedMessageTypes, typeof(NativeMessage).FullName }
             }
-        };
+        });
 
         #endregion
 
-        endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
-
+        endpointConfiguration.DisableFeature<TimeoutManager>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 

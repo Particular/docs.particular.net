@@ -608,6 +608,8 @@
     Articles:
     - Title: Azure Storage Queues
       Articles:
+      - Url: transports/upgrades/asq-10to11
+        Title: Version 10 to 11
       - Url: transports/upgrades/asq-9to10
         Title: Version 9 to 10
       - Url: transports/upgrades/asq-8to9
@@ -784,6 +786,8 @@
       Title: Configuration
     - Url: transports/azure-storage-queues/delayed-delivery
       Title: Delayed Delivery
+    - Url: transports/azure-storage-queues/native-publish-subscribe
+      Title: Native Publish Subscribe
     - Url: transports/azure-storage-queues/sanitization
       Title: Sanitization
     - Url: transports/azure-storage-queues/performance-tuning

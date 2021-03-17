@@ -291,8 +291,8 @@ public static class TextWriterExtensions
 
 public static class PackageMetadataResourceExtensions
 {
-	public static async Task<List<Version>> GetVersions(
-		this NuGetSearcher searcher, string packageId, ILogger logger, int majorOverlapYears, int minorOverlapMonths, List<Version> upstreamVersions, Dictionary<string, string> endOfLifePackages, int[] extendedSupportVersions)
+	public static async Task<List<UserQuery.Version>> GetVersions(
+		this NuGetSearcher searcher, string packageId, ILogger logger, int majorOverlapYears, int minorOverlapMonths, List<UserQuery.Version> upstreamVersions, Dictionary<string, string> endOfLifePackages, int[] extendedSupportVersions)
 	{
 		var minors = (await searcher.GetPackageAsync(packageId))
 			.OrderBy(package => package.Identity.Version)
@@ -377,7 +377,7 @@ public static class PackageMetadataResourceExtensions
 					patchingEndReason = $"End of life";
 				}
 
-				return new Version
+				return new UserQuery.Version
 				{
 					First = minor.First,
 					Last = minor.Last,
