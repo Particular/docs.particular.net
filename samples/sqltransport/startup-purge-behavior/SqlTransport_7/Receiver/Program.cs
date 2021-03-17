@@ -12,9 +12,8 @@ class Program
 
         endpointConfiguration.UseTransport(new SqlServerTransport(connection)
         {
-            
+            TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
         });
-        //transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
 
         endpointConfiguration.EnableInstallers();
 
