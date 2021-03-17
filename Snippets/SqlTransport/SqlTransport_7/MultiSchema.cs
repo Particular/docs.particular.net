@@ -44,11 +44,9 @@ class MultiSchema
     {
         #region sqlserver-multischema-config-for-endpoint
 
-        var transport = new SqlServerTransport("connectionString");
+        var routing = endpointConfiguration.UseTransport(new SqlServerTransport("connectionString"));
 
-        var routing = endpointConfiguration.UseTransport(transport);
         routing.RouteToEndpoint(typeof(MyMessage), "MyEndpoint");
-
         routing.UseSchemaForEndpoint(endpointName: "MyEndpoint", schema: "my_schema");
 
         #endregion

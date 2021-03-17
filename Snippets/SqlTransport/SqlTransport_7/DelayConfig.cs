@@ -8,8 +8,10 @@ class DelayConfig
         // ReSharper disable UseObjectOrCollectionInitializer
         #region sqlserver-queue-peeker-config-delay
 
-        var transport = new SqlServerTransport("connectionString");
-        transport.QueuePeeker.Delay = TimeSpan.FromSeconds(5);
+        var transport = new SqlServerTransport("connectionString")
+        {
+            QueuePeeker.Delay = TimeSpan.FromSeconds(5)
+        };
 
         #endregion
         // ReSharper restore UseObjectOrCollectionInitializer
@@ -20,8 +22,10 @@ class DelayConfig
         // ReSharper disable UseObjectOrCollectionInitializer
         #region sqlserver-queue-peeker-config-batch-size
 
-        var transport = new SqlServerTransport("connectionString");
-        transport.QueuePeeker.MaxRecordsToPeek = 50;
+        var transport = new SqlServerTransport("connectionString")
+        {
+            QueuePeeker.MaxRecordsToPeek = 50
+        };
 
         #endregion
         // ReSharper restore UseObjectOrCollectionInitializer

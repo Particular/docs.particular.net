@@ -21,16 +21,18 @@ public static class Program
         var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSql;Integrated Security=True;Max Pool Size=100";
         var transport = new SqlServerTransport(connection)
         {
-            DefaultSchema = "sender"
+            DefaultSchema = "sender",
+            Subscriptions = 
+            {
+                SubscriptionTableName = new SubscriptionTableName(
+                        table: "Subscriptions", 
+                        schema: "dbo")
+            }
         };
         transport.SchemaAndCatalog.UseSchemaForQueue("error", "dbo");
         transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
 
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
-
-        transport.Subscriptions.SubscriptionTableName = new SubscriptionTableName(
-            table: "Subscriptions", 
-            schema: "dbo");
 
         endpointConfiguration.UseTransport(transport);
 

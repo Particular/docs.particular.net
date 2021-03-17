@@ -19,15 +19,21 @@ public static class Program
         endpointConfiguration.EnableInstallers();
         var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSql;Integrated Security=True;Max Pool Size=100";
 
-
         var transport = new SqlServerTransport(connection)
         {
-            DefaultSchema = "receiver"
+            DefaultSchema = "receiver",
+            TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive,
+            Subscriptions = 
+            {
+                CacheInvalidationPeriod = TimeSpan.FromMinutes(1),
+                SubscriptionTableName = new SubscriptionTableName(
+                    table: "Subscriptions", schema: "dbo")
+            }
         };
+
         transport.SchemaAndCatalog.UseSchemaForQueue("error", "dbo");
         transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
         transport.SchemaAndCatalog.UseSchemaForQueue("Samples.Sql.Sender", "sender");
-        transport.TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive;
 
         var routing = endpointConfiguration.UseTransport(transport);
         routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.Sql.Sender");
@@ -41,13 +47,6 @@ public static class Program
                 return new SqlConnection(connection);
             });
         persistence.TablePrefix("");
-
-        var subscriptions = transport.Subscriptions;
-        subscriptions.CacheInvalidationPeriod = TimeSpan.FromMinutes(1);
-
-        subscriptions.SubscriptionTableName = new SubscriptionTableName(
-            table: "Subscriptions", 
-            schema: "dbo");
 
         #endregion
 

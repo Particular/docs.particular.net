@@ -6,8 +6,7 @@ class Usage
     {
         #region Usage
 
-        var transport = new SqlServerTransport("connectionString");
-        endpointConfiguration.UseTransport(transport);
+        endpointConfiguration.UseTransport(new SqlServerTransport("connectionString"));
 
         #endregion
     }

@@ -8,8 +8,10 @@ class Subscriptions
     {
         #region disable-subscription-cache
 
-        var transport = new SqlServerTransport("connectionString");
-        transport.Subscriptions.DisableCaching = true;
+        var transport = new SqlServerTransport("connectionString")
+        {
+            Subscriptions.DisableCaching = true
+        };
 
         #endregion
     }
@@ -18,8 +20,10 @@ class Subscriptions
     {
         #region configure-subscription-cache
 
-        var transport = new SqlServerTransport("connectionString");
-        transport.Subscriptions.CacheInvalidationPeriod = TimeSpan.FromMinutes(1);
+        var transport = new SqlServerTransport("connectionString")
+        {
+            Subscriptions.CacheInvalidationPeriod = TimeSpan.FromMinutes(1)
+        };
 
         #endregion
     }
@@ -28,11 +32,16 @@ class Subscriptions
     {
         #region configure-subscription-table
 
-        var transport = new SqlServerTransport("connectionString");
-        transport.Subscriptions.SubscriptionTableName = new SubscriptionTableName(
-            table: "Subscriptions", 
-            schema: "OptionalSchema",
-            catalog: "OptionalCatalog");
+        var transport = new SqlServerTransport("connectionString")
+        {
+            Subscriptions = 
+            {
+                SubscriptionTableName = new SubscriptionTableName(
+                    table: "Subscriptions", 
+                    schema: "OptionalSchema",
+                    catalog: "OptionalCatalog")
+            }
+        };
 
         #endregion
     }

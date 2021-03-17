@@ -6,9 +6,14 @@ class DiscardMessages
     {
         #region purge-expired-on-startup
 
-        var transport = new SqlServerTransport("connectionString");
-        transport.ExpiredMessagesPurger.PurgeOnStartup = true;
-        transport.ExpiredMessagesPurger.PurgeBatchSize = 5000;
+        var transport = new SqlServerTransport("connectionString")
+        {
+            ExpiredMessagesPurger = 
+            {
+                PurgeOnStartup = true,
+                PurgeBatchSize = 5000
+            }
+        };
 
         #endregion
     }
