@@ -8,7 +8,7 @@ snippet: storage_account_subscription_table_name
 
 #### Caching
 
-Configure the duration of subscription caching using
+Configure the duration of subscription caching using, defaults to 5 seconds.
 
 snippet: storage_account_configure_subscription_caching
 
