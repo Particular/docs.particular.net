@@ -14,57 +14,20 @@ upgradeGuideCoreVersions:
 
 ### Sending a message
 
-To send a message to a receiver on another storage account, the configuration
+To send a message to a receiver on another storage account, the configuration changed as follows
 
-```csharp
-var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
-var routing = transportConfig
-                    .ConnectionString("connectionString")
-                    .AccountRouting();
-var anotherAccount = routing.AddAccount("AnotherAccountName","anotherConnectionString");
-anotherAccount.RegisteredEndpoints.Add("Receiver");
+snippet: storage_account_routing_registered_endpoint
 
-transportConfig.Routing().RouteToEndpoint(typeof(MyMessage), "Receiver");
-
-```
-
-becomes:
-
-```csharp
-var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
-
-var routing = transportConfig
-                    .ConnectionString("connectionString")
-                    .AccountRouting();
-var anotherAccount = routing.AddAccount("AnotherAccountName","anotherConnectionString");
-anotherAccount.AddEndpoint("Receiver");
-
-transportConfig.Routing().RouteToEndpoint(typeof(MyMessage), "Receiver");
-```
 
 ### Subscribing on an event
 
-To subscribe to an event, coming from a publisher on another storage account, the configuration
+To subscribe to an event, coming from a publisher on another storage account, the configuration changed as follows
 
-```csharp
-var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
-var routing = transportConfig
-                    .ConnectionString("anotherConnectionString")
-                    .AccountRouting();
-var anotherAccount = routing.AddAccount("PublisherAccountName", "connectionString");
-anotherAccount.AddEndpoint("Publisher", new[] { typeof(MyEvent) });
-anotherAccount.RegisteredEndpoints.Add("Publisher");
+snippet: storage_account_routing_registered_publisher
 
-transportConfig.Routing().RegisterPublisher(typeof(MyEvent), "Publisher");
-```
 
-becomes:
+### Publishing an event
 
-```csharp
- var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
-var routing = transportConfig
-                    .ConnectionString("anotherConnectionString")
-                    .AccountRouting();
-var anotherAccount = routing.AddAccount("PublisherAccountName", "connectionString");
-anotherAccount.AddEndpoint("Publisher", new[] { typeof(MyEvent) });
-```
+To publish an event to a subscriber in another storage account, the configuration as follows
+
+snippet: storage_account_routing_registered_subscriber
