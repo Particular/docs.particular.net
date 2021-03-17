@@ -36,7 +36,7 @@ See the transport specific upgrade guides for further details on the configurati
 * [Azure Storage Queues transport upgrade guide](/transports/upgrades/asq-9to10.md)
 * [RabbitMQ transport upgrade guide](/transports/upgrades/rabbitmq-6to7.md)
 * [MSMQ transport upgrade guide](/transports/upgrades/msmq-1to2.md)
-* [SQL Server transport upgrade guide](TODO)
+* [SQL Server transport upgrade guide]()
 * [Amazon SQS transport upgrade guide](/transports/upgrades/amazonsqs-5to6.md)
 
 ## Backwards-compatible API
