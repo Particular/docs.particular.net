@@ -12,7 +12,7 @@ namespace Core8.Pipeline
             #region ReceivePipelineCompletedSubscriptionFromEndpointConfig
 
             endpointConfiguration.Pipeline.OnReceivePipelineCompleted(
-                subscription: completed =>
+                subscription: (completed, ct) =>
                 {
                     var duration = completed.CompletedAt - completed.StartedAt;
                     log.Info($"Receive completed. Message: {completed.ProcessedMessage.MessageId}, duration: {duration}");
@@ -32,7 +32,7 @@ namespace Core8.Pipeline
 
                 var pipeline = context.Pipeline;
                 pipeline.OnReceivePipelineCompleted(
-                    subscription: completed =>
+                    subscription: (completed, ct) =>
                     {
                         var duration = completed.CompletedAt - completed.StartedAt;
                         log.Info($"Receive completed: Message: {completed.ProcessedMessage.MessageId}, duration: {duration}");

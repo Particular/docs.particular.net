@@ -3,6 +3,7 @@
 namespace Core8
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
 
@@ -19,13 +20,13 @@ namespace Core8
 
         #region CustomHostErrorHandlingAction
 
-        async Task OnCriticalError(ICriticalErrorContext context)
+        async Task OnCriticalError(ICriticalErrorContext context, CancellationToken cancellationToken)
         {
             try
             {
                 // To leave the process active, stop the endpoint.
                 // When it is stopped, attempts to send messages will cause an ObjectDisposedException.
-                await context.Stop().ConfigureAwait(false);
+                await context.Stop(cancellationToken).ConfigureAwait(false);
                 // Perform custom actions here, e.g.
                 // NLog.LogManager.Shutdown();
             }

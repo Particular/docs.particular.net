@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 using Common;
 using Core8.Headers.Writers;
@@ -18,7 +18,7 @@ public class StartUpDiagnosticsWriter
         endpointConfiguration.SetTypesToScan(typesToScan);
         endpointConfiguration.UseTransport<LearningTransport>();
         string diagnostics = null;
-        endpointConfiguration.CustomDiagnosticsWriter(x =>
+        endpointConfiguration.CustomDiagnosticsWriter((x, ct) =>
         {
             diagnostics = x;
             return Task.CompletedTask;

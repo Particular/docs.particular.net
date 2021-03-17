@@ -55,7 +55,7 @@
                     this.routeTable = routeTable;
                 }
 
-                protected override Task OnStart(IMessageSession session)
+                protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
                 {
                     timer = new Timer(
                         callback: _ =>
@@ -72,7 +72,7 @@
 
                 IList<RouteTableEntry> LoadRoutes() => null;
 
-                protected override Task OnStop(IMessageSession session) => Task.CompletedTask;
+                protected override Task OnStop(IMessageSession session, CancellationToken cancellationToken = default) => Task.CompletedTask;
             }
 
             class RobustRefresher :
@@ -90,7 +90,7 @@
                     this.criticalError = criticalError;
                 }
 
-                protected override Task OnStart(IMessageSession session)
+                protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
                 {
                     timer = new Timer(
                         callback: _ =>
@@ -101,7 +101,7 @@
                             }
                             catch (Exception exception)
                             {
-                                criticalError.Raise("Ambiguous route detected", exception);
+                                criticalError.Raise("Ambiguous route detected", exception, cancellationToken);
                             }
                         },
                         state: null,
@@ -114,7 +114,7 @@
 
                 IList<RouteTableEntry> LoadRoutes() => null;
 
-                protected override Task OnStop(IMessageSession session) => Task.CompletedTask;
+                protected override Task OnStop(IMessageSession session, CancellationToken cancellationToken = default) => Task.CompletedTask;
             }
         }
 
