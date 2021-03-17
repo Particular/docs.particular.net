@@ -22,7 +22,7 @@ include: azure-transports
 |Feature                    |   |  
 |:---                       |---
 |Transactions |None, ReceiveOnly (Message visibility timeout)
-|Pub/Sub                    |Message driven
+|Pub/Sub                    |Native (Requires Storage Table)
 |Timeouts                   |Native (Requires Storage Table)
 |Large message bodies       |Data bus
 |Scale-out             |Competing consumer
