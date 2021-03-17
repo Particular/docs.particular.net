@@ -99,8 +99,29 @@ class Usage
         #region storage_account_routing_registered_publisher
 
         var transport = new AzureStorageQueueTransport("connectionString");
-        var anotherAccount = transport.AccountRouting.AddAccount("PublisherAccountName", "anotherConnectionString");
-        anotherAccount.AddEndpoint("Publisher", new[] { typeof(MyEvent)  });
+        
+        transport.AccountRouting.DefaultAccountAlias = "subscriber";
+
+        var anotherAccount = transport.AccountRouting.AddAccount("publisher", "anotherConnectionString");
+        anotherAccount.AddEndpoint("Publisher1", new[] { typeof(MyEvent)  }, "optionalSubscriptionTableName");
+
+        configuration.UseTransport(transport);
+
+        #endregion
+#pragma warning restore CS0618
+    }
+
+    void RegisterSubscriber(EndpointConfiguration configuration)
+    {
+#pragma warning disable CS0618
+        #region storage_account_routing_registered_subscriber
+
+        var transport = new AzureStorageQueueTransport("anotherConnectionString");
+
+        transport.AccountRouting.DefaultAccountAlias = "publisher";
+
+        var anotherAccount = transport.AccountRouting.AddAccount("subscriber", "connectionString");
+        anotherAccount.AddEndpoint("Subscriber1");
 
         configuration.UseTransport(transport);
 

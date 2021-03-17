@@ -35,18 +35,8 @@ When the publisher dispatches the unicast operations, it queries for the interes
 
 The following endpoint configuration is required to make sure `Subscriber1` can subscribe to `OrderAccepted` and `Publisher1` can send the message. The publisher configuration
 
-```csharp
-transport.AccountRouting.DefaultAccountAlias = "publisher";
-
-var anotherAccount = transport.AccountRouting.AddAccount("subscriber", ...);
-anotherAccount.AddEndpoint("Subscriber1");
-```
+snippet: storage_account_routing_registered_subscriber
 
 the subscriber configuration
 
-```csharp
-transport.AccountRouting.DefaultAccountAlias = "subscriber";
-
-var anotherAccount = transport.AccountRouting.AddAccount("publisher", ...);
-anotherAccount.AddEndpoint("Publisher1", new[] { typeof(OrderAccepted) }, "optionalSubscriptionTableName");
-```
+snippet: storage_account_routing_registered_publisher
