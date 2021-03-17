@@ -110,7 +110,7 @@ class Usage
 
     void RegisterSubscriber(EndpointConfiguration configuration)
     {
-        #region storage_account_routing_registered_publisher
+        #region storage_account_routing_registered_subscriber
 
         var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
         transportConfig.DefaultAccountAlias("publisher");
