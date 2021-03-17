@@ -14,20 +14,30 @@ upgradeGuideCoreVersions:
 
 ### Sending a message
 
-To send a message to a receiver on another storage account, the configuration changed as follows
+To send a message to a receiver on another storage account, the configuration
 
-snippet: storage_account_routing_registered_endpoint
+snippet: 8to9-storage_account_routing_registered_endpoint
 
+becomes:
+
+snippet: 9to10-storage_account_routing_registered_endpoint
 
 ### Subscribing on an event
 
-To subscribe to an event, coming from a publisher on another storage account, the configuration changed as follows
+To subscribe to an event, coming from a publisher on another storage account, the configuration
 
-snippet: storage_account_routing_registered_publisher
+snippet: 8to9-storage_account_routing_registered_publisher
 
+becomes:
+
+snippet: 9to10-storage_account_routing_registered_publisher
 
 ### Publishing an event
 
-To publish an event to a subscriber in another storage account, the configuration as follows
+To publish an event to a subscriber in another storage account, the configuration
 
-snippet: storage_account_routing_registered_subscriber
+snippet: 8to9-storage_account_routing_registered_subscriber
+
+becomes:
+
+snippet: 9to10-storage_account_routing_registered_subscriber
