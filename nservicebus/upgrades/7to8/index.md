@@ -156,6 +156,13 @@ The following transports might need migration:
 * SQL Transport
 * SQS
 
+### IManageUnitOfWork 
+
+`IManageUnitOfWork` interface is no longer recommended. The unit of work pattern is more straightforward to implement in a pipeline behavior, where the using keyword and try/catch blocks can be used. 
+
+[Custom unit of work sample](/samples/pipeline/unit-of-work/) is an example of the the recommended approach. 
+
+
 ## Outbox configuration
 
 NServiceBus version 8 requires the transport transaction mode to be explicitly set to `ReceiveOnly` when using [Outbox](/nservicebus/outbox/):
