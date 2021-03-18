@@ -27,21 +27,22 @@ As guidance, this decision chart can be used to select an appropriate persister.
 ```mermaid
 graph TD
 start((start)) --> A{Using sagas<br /> or outbox?}
-A -->  |Yes|B{Additional<br />requirements?}
+A --> |Yes|B{Additional<br />requirements?}
 A --> |No| I{Which transport?}
-I --> |Other|L[SQL Persistence]
-I --> |RabbitMQ/ASB|J[No persistence]
-I --> |ASQ|K[ASP]
-B --> |ServiceFabric|C[ServiceFabric]
+I --> |Other|L[SQL]
+I --> |RabbitMQ/Azure Service Bus|J[No persistence]
+I --> |Azure Storage Queues|K[Azure Table]
+B --> |Service Fabric|C[Service Fabric]
 B --> |RavenDB|E[RavenDB]
 B --> |MongoDB|M[MongoDB]
-B --> |Azure|Q{IAAS/PAAS ?}
+B --> |Azure|Q{IaaS/PaaS ?}
 B --> |No|L
-Q --> |PAAS|G{Optimize for}
-Q --> |IAAS|L
-G --> |Features|N[CosmosDB]
-G --> |Cost|S[ASP]
+Q --> |PaaS|G{Optimize for}
+Q --> |IaaS|L
+G --> |Features|N["Cosmos DB (preview)"]
+G --> |Cost|S[Azure Table]
 ```
+
 ## Making the decision
 
 This section provides considerations that aren’t included or immediately visible in the decision chart. The selected transport might influence the decision for a persister. See [Selecting a Transport](/transports/selecting.md) for more information.
@@ -60,9 +61,9 @@ The non-durable persister is not mentioned in the decision chart, as it is appro
 
 ### Azure
 
-There are several options available when endpoints are hosted in Microsoft Azure. The most commonly used persisters are Azure Storage, Azure CosmosDB and Azure SQL, the fully managed SQL Server solution in Azure.
+There are several options available when endpoints are hosted in Microsoft Azure. The most commonly used persisters are Azure Storage, Azure Cosmos DB and Azure SQL, the fully managed SQL Server solution in Azure.
 
-One factor in the decision is whether the system is fully platform-as-a-service-enabled and whether it is designed to run fully on Azure in which case, the Azure Storage Table or Azure CosmosDB persistence may be appropriate. The choice between Azure Storage Table and Azure CosmosDB boils down to a difference in cost vs capabilities.
+One factor in the decision is whether the system is fully platform-as-a-service-enabled and whether it is designed to run fully on Azure in which case, the Azure Storage Table or Azure Cosmos DB persistence may be appropriate. The choice between Azure Storage Table and Azure Cosmos DB boils down to a difference in cost vs capabilities.
 
 Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL persister with SQL Server on a Virtual Machine).
 
@@ -78,7 +79,7 @@ Alternatively, some organizations are more comfortable managing SQL Server and m
 - Automatically scales
 - A turn-key solution, meaning no maintenance
 
-**Azure CosmosDB (preview)**
+**Azure Cosmos DB (preview)**
 
 - Supports transactions on the same partition
 - Supports outbox
