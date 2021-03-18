@@ -54,6 +54,12 @@ var transportConfiguration = new MyTransport{
 endpointConfiguration.UseTransport(transportConfiguration);
 ```
 
+## Connection strings
+
+Configuring a transport's connection using `.ConnectionStringName(name)`, which was removed for .NET Core in NServiceBus version 7, has been removed from all platforms in NServiceBus version 8. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the transport configuration API.
+
+A connection string named `NServiceBus/Transport` will also **no longer be detected automatically** on any platform. The connection string value must be configured explicitly using `.ConnectionString(value)`.
+
 ## Routing Configuration
 
 Routing can be configured on the `RoutingSettings` returned from the `UseTransport` method.

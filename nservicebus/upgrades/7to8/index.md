@@ -38,12 +38,6 @@ See the [transport upgrade guide](/nservicebus/upgrades/7to8/transport.md) for f
 
 Note: The existing API surface will continue to be supported for NServiceBus version 8 via a [shim API](https://en.wikipedia.org/wiki/Shim_(computing)) to easen migration to the new version. However, it is recommended to switch to the new transport configuration API.
 
-## Connection strings
-
-Configuring a transport's connection using `.ConnectionStringName(name)`, which was removed for .NET Core in NServiceBus version 7, has been removed from all platforms in NServiceBus version 8. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the configuration API.
-
-A connection string named `NServiceBus/Transport` will also **no longer be detected automatically** on any platform. The connection string value must be configured explicitly using `.ConnectionString(value)`.
-
 
 ## Dependency injection
 
