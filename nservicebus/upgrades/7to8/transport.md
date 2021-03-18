@@ -33,7 +33,7 @@ routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 See the transport specific upgrade guides for further details on the configuration options:
 
 * [Azure Service Bus transport upgrade guide](/transports/upgrades/asbs-1to2.md)
-* [Azure Storage Queues transport upgrade guide](/transports/upgrades/asq-9to10.md)
+* [Azure Storage Queues transport upgrade guide](/transports/upgrades/asq-10to11.md)
 * [RabbitMQ transport upgrade guide](/transports/upgrades/rabbitmq-6to7.md)
 * [MSMQ transport upgrade guide](/transports/upgrades/msmq-1to2.md)
 * [SQL Server transport upgrade guide]()
@@ -88,4 +88,3 @@ The following configuration operations have been obsoleted. See the transport sp
 
 * `EndpointConfiguration.DoNotCreateQueues`
 * `TransportExtensions.ConnectionString`
-
