@@ -75,7 +75,7 @@ class Usage
         var routing = transportConfig
                             .ConnectionString("connectionString")
                             .AccountRouting();
-        var anotherAccount = routing.AddAccount("AnotherAccountName","anotherConnectionString");
+        var anotherAccount = routing.AddAccount("AnotherAccountName", "anotherConnectionString");
         anotherAccount.AddEndpoint("Receiver");
 
         transportConfig.Routing().RouteToEndpoint(typeof(MyMessage), "Receiver");
@@ -101,8 +101,8 @@ class Usage
         var routing = transportConfig
                             .ConnectionString("connectionString")
                             .AccountRouting();
-        var anotherAccount = routing.AddAccount("publisher", "anotherConnectionString");
-        anotherAccount.AddEndpoint("Publisher1", new[] { typeof(MyEvent) }, "optionalSubscriptionTableName");
+        var anotherAccount = routing.AddAccount(alias: "publisher", connectionString: "anotherConnectionString");
+        anotherAccount.AddEndpoint(endpointName: "Publisher1", publishedEvents: new[] { typeof(OrderAccepted) }, subscriptionTableName: "overrideForSubscriptionTableName");
 
         #endregion
     }
@@ -116,8 +116,8 @@ class Usage
         var routing = transportConfig
                             .ConnectionString("anotherConnectionString")
                             .AccountRouting();
-        var anotherAccount = routing.AddAccount("subscriber", "connectionString");
-        anotherAccount.AddEndpoint("Subscriber1");
+        var anotherAccount = routing.AddAccount(alias: "subscriber", connectionString: "connectionString");
+        anotherAccount.AddEndpoint(endpointName: "Subscriber1");
 
         #endregion
     }
@@ -199,7 +199,7 @@ class Usage
         ICommand
     { }
 
-    public class MyEvent :
+    public class OrderAccepted :
         IEvent
     { }
 
