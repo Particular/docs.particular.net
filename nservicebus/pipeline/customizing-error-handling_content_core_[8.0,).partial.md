@@ -1,14 +1,10 @@
 Custom exception handling can be implemented using pipeline behaviors. To learn more about pipeline and behaviors refer to the documentation on [how to manipulate the pipeline with behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
 
-NOTE: Behaviors are meant to customize recoverability i.e. how many times and under which conditions a message should be re-tried. To read more about customizing recoverability refer to the [recoverability documentation](/nservicebus/recoverability/).
-
-
 ### Create a new behavior
 
 Implement a new behavior, which extends the `ITransportReceiveContext` context interface. This context provides details about the message at the transport level. Calling `next()` in the pipeline will invoke the subsequent pipeline processing steps.
 
 snippet: ErrorHandlingBehavior
-
 
 #### Handling Deserialization Errors
 
