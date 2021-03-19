@@ -1,7 +1,7 @@
 ---
 title: Critical Errors
 summary: How to handle critical errors which adversely affect messaging in an endpoint.
-reviewed: 2019-04-17
+reviewed: 2021-03-19
 component: Core
 ---
 
@@ -9,15 +9,13 @@ NServiceBus has built-in [recoverability](/nservicebus/recoverability/) but in c
 
 Examples of **critical errors** include:
 
- * An exception occurs when NServiceBus is attempting to execute the recoverability policy, including moving a message to the error queue. The context will contain a specific error  `Failed to execute recoverability policy for message with native ID: \`{message.MessageId}\``
- * There are repeated failures in reading information from a required storage.
- * An exception occurs reading from the input queue.
-
+* An exception occurs when NServiceBus is attempting to execute the recoverability policy, including moving a message to the error queue. The context will contain a specific error  `Failed to execute recoverability policy for message with native ID: \`{message.MessageId}\``
+* There are repeated failures in reading information from a required storage.
+* An exception occurs reading from the input queue.
 
 ### Default behavior
 
 partial: default
-
 
 ## Custom handling
 
