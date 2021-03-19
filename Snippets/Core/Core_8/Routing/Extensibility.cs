@@ -55,7 +55,7 @@
                     this.routeTable = routeTable;
                 }
 
-                protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
+                protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken)
                 {
                     timer = new Timer(
                         callback: _ =>
@@ -72,7 +72,7 @@
 
                 IList<RouteTableEntry> LoadRoutes() => null;
 
-                protected override Task OnStop(IMessageSession session, CancellationToken cancellationToken = default) => Task.CompletedTask;
+                protected override Task OnStop(IMessageSession session, CancellationToken cancellationToken) => Task.CompletedTask;
             }
 
             class RobustRefresher :
@@ -90,7 +90,7 @@
                     this.criticalError = criticalError;
                 }
 
-                protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
+                protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken)
                 {
                     timer = new Timer(
                         callback: _ =>
@@ -114,7 +114,7 @@
 
                 IList<RouteTableEntry> LoadRoutes() => null;
 
-                protected override Task OnStop(IMessageSession session, CancellationToken cancellationToken = default) => Task.CompletedTask;
+                protected override Task OnStop(IMessageSession session, CancellationToken cancellationToken) => Task.CompletedTask;
             }
         }
 
