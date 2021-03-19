@@ -1,13 +1,6 @@
 ﻿namespace Core8
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Transactions;
     using NServiceBus;
-    using NServiceBus.Routing;
-    using NServiceBus.Transport;
 
     class TransportTransactions
     {
@@ -15,7 +8,7 @@
         {
             #region TransactionsDisable
 
-            var transport = endpointConfiguration.UseTransport(new MyTransport()
+            var transport = endpointConfiguration.UseTransport(new TransportDefinition
             {
                 TransportTransactionMode = TransportTransactionMode.None
             });
@@ -27,7 +20,7 @@
         {
             #region TransportTransactionReceiveOnly
 
-            var transport = endpointConfiguration.UseTransport(new MyTransport
+            var transport = endpointConfiguration.UseTransport(new TransportDefinition
             {
                 TransportTransactionMode = TransportTransactionMode.ReceiveOnly
             });
@@ -39,7 +32,7 @@
         {
             #region TransportTransactionAtomicSendsWithReceive
 
-            var transport = endpointConfiguration.UseTransport(new MyTransport
+            var transport = endpointConfiguration.UseTransport(new TransportDefinition
             {
                 TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
             });
@@ -51,7 +44,7 @@
         {
             #region TransportTransactionScope
 
-            var transport = endpointConfiguration.UseTransport(new MyTransport
+            var transport = endpointConfiguration.UseTransport(new TransportDefinition
             {
                 TransportTransactionMode = TransportTransactionMode.TransactionScope
             });
@@ -67,30 +60,6 @@
             unitOfWorkSettings.WrapHandlersInATransactionScope();
 
             #endregion
-        }
-    }
-
-    public class MyTransport :
-        TransportDefinition, IMessageDrivenSubscriptionTransport
-    {
-        public MyTransport()
-            : base(TransportTransactionMode.None, true, true, true)
-        {
-        }
-
-        public override Task<TransportInfrastructure> Initialize(HostSettings hostSettings, ReceiveSettings[] receivers, string[] sendingAddresses, CancellationToken cancellationToken = new CancellationToken())
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string ToTransportAddress(QueueAddress address)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override IReadOnlyCollection<TransportTransactionMode> GetSupportedTransactionModes()
-        {
-            throw new NotImplementedException();
         }
     }
 }
