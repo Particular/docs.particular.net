@@ -11,6 +11,34 @@ upgradeGuideCoreVersions:
 
 NOTE: This is a working document; there is currently no timeline for the release of NServiceBus version 8.0.
 
+## Transport configuration
+
+NServiceBus V8 comes with a new transport configuration API. Instead of the generic based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to `UseTransport`, e.g.
+
+```csharp
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+
+transport.Transactions(TransportTransactionMode.ReceiveOnly);
+var routing = t.Routing();
+routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
+```
+
+becomes:
+
+```csharp
+var transport = new MyTransport{
+    TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+};
+
+var routing = endpointConfiguration.UseTransport(transport);
+routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
+```
+
+See the [transport upgrade guide](/nservicebus/upgrades/7to8/transport.md) for further details.
+
+Note: The existing API surface will continue to be supported for NServiceBus version 8 via a [shim API](https://en.wikipedia.org/wiki/Shim_(computing)) to easen migration to the new version. However, it is recommended to switch to the new transport configuration API.
+
+
 ## Dependency injection
 
 Support for external dependency injection containers is no longer provided by NServiceBus adapters for each container library. Instead, NServiceBus version 8 directly provides the ability to use any container that conforms to the `Microsoft.Extensions.DependencyInjection.Abstractions` container abstraction. Visit the dedicated [dependency injection changes](/nservicebus/upgrades/7to8/dependency-injection.md) section of the upgrade guide for further information.
@@ -60,13 +88,6 @@ While NServiceBus still supports message-driven subscriptions for transports tha
 To disable publishing on an endpoint, the declarative API should be used instead:
 
 snippet: DisablePublishing-UpgradeGuide
-
-
-## Connection strings
-
-Configuring a transport's connection using `.ConnectionStringName(name)`, which was removed for .NET Core in NServiceBus version 7, has been removed all platforms in NServiceBus version 8. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the `.ConnectionString(value)` configuration.
-
-A connection string named `NServiceBus/Transport` will also **no longer be detected automatically** on any platform. The connection string value must be configured explicitly using `.ConnectionString(value)`.
 
 
 ## Change to license file locations
@@ -134,3 +155,15 @@ The following transports might need migration:
 * Azure Storage Queues
 * SQL Transport
 * SQS
+
+## Outbox configuration
+
+NServiceBus version 8 requires the transport transaction mode to be explicitly set to `ReceiveOnly` when using [Outbox](/nservicebus/outbox/):
+
+```csharp
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+
+transport.TransportTransactionMode = TransportTransactionMode.ReceiveOnly;
+
+endpointConfiguration.EnableOutbox();
+```
