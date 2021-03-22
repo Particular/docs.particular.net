@@ -69,29 +69,6 @@
         }
     }
 
-    class CustomErrorHandlingBehaviorRollbackOnFailures :
-        Behavior<ITransportReceiveContext>
-    {
-        public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
-        {
-            #region RollbackMessage
-
-            try
-            {
-                await next()
-                    .ConfigureAwait(false);
-            }
-            catch (Exception)
-            {
-                // Custom processing that need to occur when a message always fails.
-                // To rollback the receive operation instead of mark as processed:
-                context.AbortReceiveOperation();
-            }
-
-            #endregion
-        }
-    }
-
     #region RegisterCustomErrorHandlingBehavior
 
     class NewMessageProcessingPipelineStep :

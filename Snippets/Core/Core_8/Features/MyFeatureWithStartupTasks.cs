@@ -28,13 +28,13 @@
     {
         ManualResetEventSlim resetEvent = new ManualResetEventSlim();
 
-        protected override Task OnStart(IMessageSession session)
+        protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken)
         {
             resetEvent.Set();
             return Task.CompletedTask;
         }
 
-        protected override Task OnStop(IMessageSession session)
+        protected override Task OnStop(IMessageSession session, CancellationToken cnCancellationToken)
         {
             resetEvent.Reset();
             return Task.CompletedTask;

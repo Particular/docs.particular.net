@@ -1,6 +1,7 @@
 ﻿namespace Core8.Features
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Extensions.DependencyInjection;
     using NServiceBus;
@@ -30,13 +31,13 @@
                 onMessage: OnMessage);
         }
 
-        Task OnMessage(IServiceProvider serviceProvider, MessageContext context)
+        Task OnMessage(IServiceProvider serviceProvider, MessageContext context, CancellationToken cancellationToken)
         {
             // To raise a critical error
             var exception = new Exception("CriticalError occurred");
 
-            var criticalError = serviceProvider.GetService<CriticalError>();
-            criticalError.Raise("Something bad happened - trigger critical error", exception);
+            var criticalError = serviceProvider.GetRequiredService<CriticalError>();
+            criticalError.Raise("Something bad happened - trigger critical error", exception, cancellationToken);
 
             return Task.CompletedTask;
         }

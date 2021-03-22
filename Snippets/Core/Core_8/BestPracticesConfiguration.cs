@@ -2,8 +2,6 @@
 {
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Settings;
-    using NServiceBus.Transport;
 
     class BestPracticesConfiguration
     {
@@ -11,8 +9,7 @@
         {
             #region DisableBestPracticeEnforcementPerEndpoint
 
-            var transport = endpointConfiguration.UseTransport<TransportName>();
-            var routing = transport.Routing();
+            var routing = endpointConfiguration.UseTransport(new TransportDefinition());
             routing.DoNotEnforceBestPractices();
 
             #endregion
@@ -34,17 +31,6 @@
 
         class MyEvent
         {
-        }
-
-        class TransportName :
-            TransportDefinition
-        {
-            public override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public override string ExampleConnectionStringForErrorMessage { get; }
         }
     }
 }

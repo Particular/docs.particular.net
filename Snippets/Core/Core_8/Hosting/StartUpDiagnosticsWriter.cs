@@ -16,9 +16,9 @@ public class StartUpDiagnosticsWriter
         var endpointConfiguration = new EndpointConfiguration("StartUpDiagnosticsWriter");
         var typesToScan = TypeScanner.NestedTypes<HeaderWriterSend>();
         endpointConfiguration.SetTypesToScan(typesToScan);
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
         string diagnostics = null;
-        endpointConfiguration.CustomDiagnosticsWriter(x =>
+        endpointConfiguration.CustomDiagnosticsWriter((x, ct) =>
         {
             diagnostics = x;
             return Task.CompletedTask;

@@ -14,16 +14,16 @@
     {
         ManualResetEventSlim resetEvent = new ManualResetEventSlim();
 
-        protected override async Task OnStart(IMessageSession session)
+        protected override async Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
         {
-            await session.Publish(new MyEvent())
+            await session.Publish(new MyEvent(), cancellationToken)
                 .ConfigureAwait(false);
             resetEvent.Set();
         }
 
-        protected override async Task OnStop(IMessageSession session)
+        protected override async Task OnStop(IMessageSession session, CancellationToken cancellationToken = default)
         {
-            await session.Publish(new MyEvent())
+            await session.Publish(new MyEvent(), cancellationToken)
                 .ConfigureAwait(false);
             resetEvent.Reset();
         }

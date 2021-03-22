@@ -20,7 +20,7 @@
             var errorIngestion = new EndpointConfiguration("error");
             errorIngestion.SetTypesToScan(TypeScanner.NestedTypes<ErrorMutator>());
             errorIngestion.EnableInstallers();
-            errorIngestion.UseTransport<LearningTransport>();
+            errorIngestion.UseTransport(new LearningTransport());
             errorIngestion.Pipeline.Register(typeof(ErrorMutator),"Capture headers on failed messages");
             await Endpoint.Start(errorIngestion);
 
@@ -29,7 +29,7 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UseTransport<LearningTransport>();
+            endpointConfiguration.UseTransport(new LearningTransport());
             endpointConfiguration.Pipeline.Register(typeof(Mutator),"Capture headers on sent messages");
 
             var recoverability = endpointConfiguration.Recoverability();

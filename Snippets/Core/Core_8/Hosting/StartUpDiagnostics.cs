@@ -18,7 +18,7 @@ public class StartUpDiagnostics
         #region CustomDiagnosticsWriter
 
         endpointConfiguration.CustomDiagnosticsWriter(
-            diagnostics =>
+            (diagnostics, ct) =>
             {
                 //custom logic to write data
                 return Task.CompletedTask;

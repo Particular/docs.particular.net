@@ -1,6 +1,7 @@
 ﻿namespace Core8.Features
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Features;
@@ -27,10 +28,10 @@
                 onMessage: OnMessage);
         }
 
-        Task OnMessage(IServiceProvider serviceProvider, MessageContext context)
+        Task OnMessage(IServiceProvider serviceProvider, MessageContext context, CancellationToken cancellationToken)
         {
             // Implement what this satellite needs to do once it receives a message
-            var messageId = context.MessageId;
+            var messageId = context.NativeMessageId;
             return Task.CompletedTask;
         }
     }

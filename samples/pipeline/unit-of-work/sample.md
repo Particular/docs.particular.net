@@ -11,7 +11,7 @@ related:
 
 ## Introduction
 
-This sample leverages the pipeline provided unit of work management for message handlers. Using the pipeline instead of the [`IManageUnitsOfWork`](/nservicebus/pipeline/unit-of-work.md#implementing-custom-unit-of-work-imanageunitsofwork) abstraction is necessary when access to the incoming message and/or headers is required.
+This sample leverages the pipeline provided unit of work management for message handlers. Using the pipeline abstraction is necessary when access to the incoming message and/or headers is required.
 
 
 ## Code walk-through

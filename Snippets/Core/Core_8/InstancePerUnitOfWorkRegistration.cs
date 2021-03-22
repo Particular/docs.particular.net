@@ -1,10 +1,7 @@
 ﻿namespace Core8
 {
-    using System;
-    using System.Threading.Tasks;
     using Microsoft.Extensions.DependencyInjection;
     using NServiceBus;
-    using NServiceBus.UnitOfWork;
 
     class InstancePerUnitOfWorkRegistration
     {
@@ -15,31 +12,13 @@
             endpointConfiguration.RegisterComponents(
                 registration: components =>
                 {
-                    components.AddScoped<IManageUnitsOfWork, MyUnitOfWork>();
+                    components.AddScoped<InstancePerUnitOfWork>();
                 });
 
             #endregion
         }
 
-        #region UnitOfWorkImplementation
-
-        public class MyUnitOfWork :
-            IManageUnitsOfWork
-        {
-            public Task Begin()
-            {
-                // Do custom work here
-                return Task.CompletedTask;
-            }
-
-            public Task End(Exception ex = null)
-            {
-                // Do custom work here
-                return Task.CompletedTask;
-            }
-        }
-
-        #endregion
+        class InstancePerUnitOfWork { }
     }
 
 }
