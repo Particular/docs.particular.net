@@ -151,34 +151,43 @@ public static class PackageMetadataResourceExtensions
 
     public static async Task<List<DependencyInfo>> GetDependencies(this NuGetSearcher searcher, string packageId, ILogger logger)
     {
+        Console.WriteLine("Getting dependencies for " + packageId);
+
+        var result = new List<DependencyInfo>();
+
         var latestPackage = (await searcher.GetPackageAsync(packageId))
             .OrderByDescending(pkg => pkg.Identity.Version)
             .FirstOrDefault();
+            
+        if (latestPackage == null)
+        {
+            // Package is not yet on NuGet
+            return result;
+        }
 
         var dependencies = latestPackage.DependencySets.SelectMany(set => set.Packages).Distinct().ToArray();
-        var result = new List<DependencyInfo>();
 
-        foreach(var dependency in dependencies)
+        foreach (var dependency in dependencies)
         {
-            if(dependency.Id == "NServiceBus") // Just an optimization
+            if (dependency.Id == "NServiceBus") // Just an optimization
             {
                 continue;
             }
-            
+
             var dependencyPackage = (await searcher.GetPackageAsync(dependency.Id))
                 .OrderByDescending(pkg => pkg.Identity.Version)
                 .FirstOrDefault(pkg => dependency.VersionRange.Satisfies(pkg.Identity.Version));
 
-            if(dependencyPackage.Authors == "Particular Software" || dependencyPackage.Authors == "NServiceBus Ltd")
+            if (dependencyPackage.Authors == "Particular Software" || dependencyPackage.Authors == "NServiceBus Ltd")
             {
                 continue;
             }
-                
+
             result.Add(new DependencyInfo
             {
                 Id = dependency.Id,
                 License = dependencyPackage.LicenseMetadata,
-				LicenseUrl = dependencyPackage.LicenseUrl?.ToString(),
+                LicenseUrl = dependencyPackage.LicenseUrl?.ToString(),
                 ProjectUrl = dependencyPackage.ProjectUrl?.ToString()
             });
         }
