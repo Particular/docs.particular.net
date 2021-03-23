@@ -458,6 +458,8 @@
       Title: Fluent style tests
     - Url: nservicebus/messaging/callbacks-testing
       Title: Callbacks
+    - Url: nservicebus/messaging/uniformsession-testing
+      Title: Uniform session
   - Url: nservicebus/recoverability
     Title: Recoverability
     Articles:
