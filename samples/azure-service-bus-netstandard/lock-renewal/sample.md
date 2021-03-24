@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus lock renewal
 summary: Long message processing with Azure Service Bus
-reviewed: 2021-03-09
+reviewed: 2021-03-24
 component: ASBS
 related:
 - transports/azure-service-bus
@@ -18,6 +18,7 @@ include: asb-connectionstring-xplat
 ## Important information about lock renewal
 
 1. The transport must use the default [`SendsAtomicWithReceive`](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive) transaction mode for the sample to work.
+1. When using lock renewal with the [outbox feature](/nservicebus/outbox/), the transport transaction mode has to be **explicitly** set to [`SendsAtomicWithReceive`](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive) in the endpoint configuration code.
 1. For a lock to be extended for longer than 10 minutes, the value of [`TransactionManager.MaxTimeout`](https://docs.microsoft.com/en-us/dotnet/api/system.transactions.transactionmanager.maximumtimeout) must be changed to the maximum time allowed to process a message. This is a machine wide setting and should be treated carefully.
 1. Message lock renewal is initiated by client code, not the broker. If the request to renew the lock fails after all the SDK built-in retries, the lock won't be renewed, and the message will become unlocked and available for processing by competing consumers. Lock renewal should be treated as best-effort and not as a guaranteed operation.
 1. Message lock renewal applies to **only** the message currently being processed. Prefetched messages that are not handled within the `LockDuration` time will lose their lock, indicated by a `LockLostException` in the log when the transport attempts to complete them. The number of prefetched messages may be adjusted, which may help to prevent exceptions with lock renewal. Alternatively, the endpoint's concurrency limit may be raised to increase the rate of message processing, but this may also increase resource contention.
