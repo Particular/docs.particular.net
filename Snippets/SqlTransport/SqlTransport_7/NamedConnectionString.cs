@@ -18,7 +18,7 @@ class NamedConnectionString
         #region sqlserver-custom-connection-factory
 
         var transport = new SqlServerTransport(
-            async () =>
+            async cancellationToken =>
             {
                 var connection = new SqlConnection("SomeConnectionString");
                 try
