@@ -1,10 +1,10 @@
 ﻿namespace ASBS_1
 {
-    using System;
-    using System.Threading.Tasks;
     using Microsoft.Azure.ServiceBus;
     using NServiceBus;
     using NServiceBus.Pipeline;
+    using System;
+    using System.Threading.Tasks;
 
     public class AccessToNativeMessage
     {
@@ -21,9 +21,7 @@
                     return next();
                 }
 
-                context.AbortReceiveOperation();
-
-                return Task.CompletedTask;
+                throw new Exception($"Message lock lost for MessageId {context.Message.MessageId} and it cannot be processed.");
             }
         }
 

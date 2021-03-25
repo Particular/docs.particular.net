@@ -15,10 +15,10 @@ It can sometimes be useful to access the native Service Bus incoming message fro
 
 snippet: access-native-incoming-message
 
-The behavior above uses the native message's `LockedUntilUtc` system property to determine where the message lost its lock as a result of aggressive prefetching and slow processing. The message with the lost lock will not go through [the recoverability process](/nservicebus/recoverability/), skipping attempted processing that otherwise would be guaranteed to fail due to the message's lost lock.
+The behavior above uses the native message's `LockedUntilUtc` system property to determine where the message lost its lock as a result of aggressive prefetching and slow processing. If desired, a [custom recoverability policy]() can be used so that the message will skip attempted retry processing that otherwise would be guaranteed to fail due to the message's lost lock.
 
 ## Access to the native Azure Service Bus outgoing message
 
-It can also be useful to access the native Service Bus outgoing message from behaviors and handlers for customizations. 
+It can also be useful to access the native Service Bus outgoing message from behaviors and handlers for customizations.
 
 partial: snippets
