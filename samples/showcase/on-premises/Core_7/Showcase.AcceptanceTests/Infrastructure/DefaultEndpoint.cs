@@ -19,6 +19,7 @@
             configuration.TypesToIncludeInScan(endpointConfiguration.TypesToInclude
                 .Union(typeof(SubmitOrder).Assembly.GetTypes()));
 
+            // NOTE: The transport is not cleaning up in between tests. That means pub-sub infra and queues are not removed.
             configuration.EnableInstallers();
 
             var recoverability = configuration.Recoverability();

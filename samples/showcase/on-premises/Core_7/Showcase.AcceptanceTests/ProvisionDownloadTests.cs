@@ -6,7 +6,7 @@
     using NServiceBus.AcceptanceTesting;
     using NServiceBus.AcceptanceTesting.Customization;
     using NUnit.Framework;
-    using Store.Messages.RequestResponse;
+    using Store.Messages.Events;
 
     [TestFixture]
     public class ProvisionDownloadTests
@@ -14,30 +14,32 @@
         [Test]
         public async Task ProvisionDownloadTest()
         {
-            var request = new ProvisionDownloadRequest
+            var orderAccepted = new OrderAccepted
             {
-                ClientId = "ClientId",
+                ClientId = Guid.NewGuid().ToString(),
                 OrderNumber = 5,
                 ProductIds = new[]
                 {
-                    "Meow",
-                    "Foo",
-                    "Bar"
+                    "videos",
+                    "platform",
+                    "documentation"
                 }
             };
 
-            var context = await Scenario.Define<SomeScenario>(scenario => scenario.Request = request)
+            var context = await Scenario.Define<SomeScenario>(
+                    scenario => scenario.InitiatingEvent = orderAccepted)
                 .WithEndpoint<OperationsEndpoint>()
+                .WithEndpoint<ContentManagementEndpoint>()
                 // NOTE: Some kind of "Spy" fake endpoint is required in order to send and receive messages outside of the existing endpoints
                 .WithEndpoint<OperationsSpy>(
                     behavior => behavior.When(
-                        (session, scenario) => session.Send(scenario.Request)
+                        (session, scenario) => session.Publish(scenario.InitiatingEvent)
                     )
                 )
-                .Done(scenario => scenario.Response != null)
+                .Done(scenario => scenario.ResultingEvent != null)
                 .Run(TimeSpan.FromSeconds(20));
 
-            Assert.AreEqual(context.Request.ClientId, context.Response.ClientId);
+            Assert.AreEqual(context.InitiatingEvent.ClientId, context.ResultingEvent.ClientId);
             // And so on
         }
 
@@ -47,31 +49,27 @@
             {
                 EndpointSetup<DefaultEndpoint>(config =>
                 {
-                    // NOTE: No way to ensure that routing rules are consistent between test and prod
-                    config.ConfigureRouting()
-                        .RouteToEndpoint(typeof(ProvisionDownloadRequest),
-                            typeof(OperationsEndpoint));
                     // NOTE: Manual inclusion of handler types for spies is tedious
                     config.TypesToIncludeInScan(new[]
                     {
-                        typeof(ProvisionDownloadResponseHandler)
+                        typeof(DownloadIsReadyHandler)
                     });
                 });
             }
 
             // NOTE: This is a lot of infrastructure just to assert that a message was published
-            class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloadResponse>
+            class DownloadIsReadyHandler : IHandleMessages<DownloadIsReady>
             {
                 SomeScenario scenario;
 
-                public ProvisionDownloadResponseHandler(SomeScenario scenario)
+                public DownloadIsReadyHandler(SomeScenario scenario)
                 {
                     this.scenario = scenario;
                 }
 
-                public Task Handle(ProvisionDownloadResponse message, IMessageHandlerContext context)
+                public Task Handle(DownloadIsReady message, IMessageHandlerContext context)
                 {
-                    scenario.Response = message;
+                    scenario.ResultingEvent = message;
                     return Task.CompletedTask;
                 }
             }
@@ -79,8 +77,8 @@
 
         class SomeScenario : ScenarioContext
         {
-            public ProvisionDownloadRequest Request { get; set; }
-            public ProvisionDownloadResponse Response { get; set; }
+            public OrderAccepted InitiatingEvent { get; set; }
+            public DownloadIsReady ResultingEvent { get; set; }
         }
     }
 }
