@@ -10,7 +10,7 @@
     <Compile Include="..\AzureFunctions.ASBTrigger.Static\TriggerMessageHandler.cs" Link="TriggerMessageHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.AzureFunctions.ServiceBus" Version="0.5.*" />
+    <PackageReference Include="NServiceBus.AzureFunctions.ServiceBus" Version="0.6.*" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.*" />
   </ItemGroup>
   <ItemGroup>
