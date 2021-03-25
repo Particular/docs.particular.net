@@ -100,7 +100,7 @@ The saga data can be queried by taking advantage of the [JSON querying capababil
 
 ### Custom settings
 
-Customizes the instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
+Customizes the instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization. In this snippet, a custom DateTime converter is included and the `DefaultValueHandling` setting is changed to `Include` (by default, the `DefaultValueHandling` setting is set to `Ignore` to minimize the amount of data stored in the database).
 
 snippet: SqlPersistenceCustomSettings
 
