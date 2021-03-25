@@ -10,7 +10,7 @@
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>
   <ItemGroup Label="Force a later version of a transitive dependency">
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
   </ItemGroup>
 </Project>

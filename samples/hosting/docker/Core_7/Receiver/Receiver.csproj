@@ -14,7 +14,7 @@
   </ItemGroup>
   <ItemGroup Label="Transitive references">
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="RabbitMQ.Client" Version="5.*" />
   </ItemGroup>
   <ItemGroup>

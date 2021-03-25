@@ -5,7 +5,7 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="10.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />

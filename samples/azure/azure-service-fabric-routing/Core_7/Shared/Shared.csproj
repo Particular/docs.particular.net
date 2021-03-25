@@ -12,6 +12,6 @@
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Persistence.ServiceFabric" Version="2.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@
   <ItemGroup>
     <Compile Include="..\Consumer1\Contracts\Consumer1Contract.cs" />
     <Compile Include="..\Consumer2\Contracts\Consumer2Contract.cs" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>
