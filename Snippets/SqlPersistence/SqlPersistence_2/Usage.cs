@@ -100,7 +100,7 @@ class Usage
 
         var settings = new JsonSerializerSettings
         {
-            TypeNameHandling = TypeNameHandling.Auto,
+            DefaultValueHandling = DefaultValueHandling.Include,
             Converters =
             {
                 new IsoDateTimeConverter
