@@ -51,7 +51,7 @@ During the extended support period:
 
 The following table describes the extended support status for all major versions:
 
-|Version|Released|Current Support|Extended Support Expires|
+|Version|Released|Mainstream Support Expires|Extended Support Expires|
 |:-:|:-:|:-:|:-:|
 |NServiceBus 7|2018-03-30|Current Version|Current Version|
 |NServiceBus 6|2016-10-11|2020-05-29|2022-05-29|
