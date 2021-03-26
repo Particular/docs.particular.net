@@ -98,6 +98,7 @@ foreach($sample in $samples) {
         $msBuildMarkerFile = CombinePaths $sample.Directory "msbuild"
         if(Test-Path $msBuildMarkerFile)
         {
+            Write-Output ("::warning::Using msbuild for sample using legacy csproj format: {0}" -f $sample.FullName)
             msbuild $sample.Name -nodeReuse:true -verbosity:minimal -restore -property:RestorePackagesConfig=true
         }
         else 
