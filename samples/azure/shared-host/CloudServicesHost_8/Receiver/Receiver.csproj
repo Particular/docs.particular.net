@@ -31,7 +31,7 @@
     <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="CommonServiceLocator" Version="1.*" />
     <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.*" />
