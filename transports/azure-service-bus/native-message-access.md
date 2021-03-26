@@ -22,3 +22,5 @@ The behavior above uses the native message's `LockedUntilUtc` system property to
 It can also be useful to access the native Service Bus outgoing message from behaviors and handlers for customizations.
 
 partial: snippets
+
+Note: Native outgoing messages cannot be customized when using the [Outbox](/nservicebus/outbox/) as customizations are not persistent.
