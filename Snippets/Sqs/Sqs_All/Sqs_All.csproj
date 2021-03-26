@@ -7,7 +7,7 @@
     <ProjectReference Include="..\..\Common\Common.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CloudFormation" Version="3.*" />
+    <PackageReference Include="AWSSDK.CloudFormation" Version="3.5.*" />
     <PackageReference Include="NServiceBus.AmazonSQS" Version="5.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <PackageReference Include="NUnit" Version="3.*" />
