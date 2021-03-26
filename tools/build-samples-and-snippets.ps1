@@ -120,12 +120,15 @@ foreach($sample in $samples) {
 }
 
 If ( $failedProjects.Count -ne 0 ) {
-    Write-Output ("::group::Failed Projects Summary")	
+    Write-Output ("::group::Failed Projects Summary")
+    
+    $failedProjects | ForEach-Object { 
+        Write-Output (" * {0}" -f $_)
+    }
 
 	New-Item -ItemType "file" -Path $failedProjectsOutput -Force
 	$failedProjects | ForEach-Object { 
-        Add-Content $failedProjectsOutput $_ 
-        Write-Output (" * {0}" -f $_.FullName)
+        Add-Content $failedProjectsOutput $_
     }
 
     Write-Output "::endgroup::"
