@@ -93,7 +93,7 @@ foreach($sample in $samples) {
     Set-Location -Path $sample.Directory.FullName
     Get-ChildItem -inc bin,obj -rec | Remove-Item -rec -force
     
-    msbuild $sample.Name -nodeReuse:true -verbosity:minimal -restore -property:RestorePackagesConfig=true
+    dotnet build $sample.Name -nodeReuse:true -verbosity:minimal -property:RestorePackagesConfig=true
 	
 	if( -not $? ) {
 		$exitCode = 1
