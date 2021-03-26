@@ -17,9 +17,10 @@ Note: If there are multiple saga types that handle a given message type and one 
 
 | Saga A found | Saga B found | Not found handler invoked |
 |--------|--------|---------|
-| ✔️    | ✔️     | ✔️     |
-| ✔️    | ❌     | ✔️     |
-| ❌    | ❌     | ❌     |
+| ✔️    | ✔️     | ❌     |
+| ✔️    | ❌     | ❌     |
+| ❌    | ✔️     | ❌     |
+| ❌    | ❌     | ✔️     |
 
 include: non-null-task
 
