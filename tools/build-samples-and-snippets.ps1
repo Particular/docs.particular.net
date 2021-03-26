@@ -20,7 +20,7 @@ function Get-BuildSolutions
     if($branch -eq "refs/heads/master")
     {
         # For master branch, build every solution file in repo
-        $result = Get-ChildItem -Filter *.sln -Recurse | sort LastWriteTime -Descending
+        $result = Get-ChildItem -Filter *.sln -Recurse | Sort-Object LastWriteTime -Descending
         return $result
     }
 
@@ -83,12 +83,12 @@ $failedProjectsOutput = CombinePaths $pwd.Path "failed-projects.log"
 
 $samples = Get-BuildSolutions
 
-echo "::group::Projects to build"
-$samples | ForEach-Object { echo (" * {0}" -f $_.FullName) }
-echo "::endgroup::"
+Write-Output "::group::Projects to build"
+$samples | ForEach-Object { Write-Output (" * {0}" -f $_.FullName) }
+Write-Output "::endgroup::"
 
 foreach($sample in $samples) {
-    echo ("::group::Build Project {0}" -f $sample.FullName)	
+    Write-Output ("::group::Build Project {0}" -f $sample.FullName)	
     
     Set-Location -Path $sample.Directory.FullName
     Get-ChildItem -inc bin,obj -rec | Remove-Item -rec -force
@@ -97,17 +97,22 @@ foreach($sample in $samples) {
 	
 	if( -not $? ) {
 		$exitCode = 1
-		echo ("::error::Build failed: {0}" -f $sample.FullName)
+		Write-Output ("::error::Build failed: {0}" -f $sample.FullName)
 		$failedProjects.Add($sample.FullName)
 	}
-    echo "::endgroup::"
+    Write-Output "::endgroup::"
 }
 
 If ( $failedProjects.Count -ne 0 ) {
+    Write-Output ("::group::Failed Projects Summary")	
+
 	New-Item -ItemType "file" -Path $failedProjectsOutput
 	$failedProjects | ForEach-Object { 
         Add-Content $failedProjectsOutput $_ 
+        Write-Output (" * {0}" -f $_.FullName)
     }
+
+    Write-Output "::endgroup::"
 }
 
 exit $exitCode
