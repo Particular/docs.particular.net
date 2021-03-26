@@ -95,7 +95,8 @@ foreach($sample in $samples) {
     
     try 
     {
-        if(Test-Path msbuild)
+        $msBuildMarkerFile = CombinePaths $sample.Directory "msbuild"
+        if(Test-Path $msBuildMarkerFile)
         {
             msbuild $sample.Name -nodeReuse:true -verbosity:minimal -restore -property:RestorePackagesConfig=true
         }
