@@ -102,6 +102,7 @@ src/scaffolding.config
 
 # JetBrains Rider
 .idea/
+.ionide
 *.sln.iml
 PromotedSqlScripts/
 /samples/servicecontrol/adapter-mixed-transports/SCTransportAdapter_2/.audit-db
