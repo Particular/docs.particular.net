@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Queues" Version="12.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />

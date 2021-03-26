@@ -6,9 +6,9 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="4.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="5.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="6.*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="6.*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Startup.sql" CopyToOutputDirectory="PreserveNewest" />

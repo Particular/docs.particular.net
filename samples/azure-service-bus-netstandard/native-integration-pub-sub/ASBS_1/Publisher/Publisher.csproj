@@ -12,7 +12,7 @@
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.*" />
   </ItemGroup>
   <ItemGroup Label="Transitive dependencies">
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
 </Project>

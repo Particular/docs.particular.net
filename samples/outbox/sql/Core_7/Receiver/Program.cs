@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
-using NServiceBus.Transport.SQLServer;
+using NServiceBus.Transport.SqlServer;
 
 class Program
 {
@@ -26,7 +26,6 @@ class Program
         transport.UseSchemaForEndpoint("Samples.SqlOutbox.Sender", "sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
-        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(
@@ -42,7 +41,7 @@ class Program
         subscriptions.DisableSubscriptionCache();
 
         subscriptions.SubscriptionTableName(
-            tableName: "Subscriptions", 
+            tableName: "Subscriptions",
             schemaName: "dbo");
 
         endpointConfiguration.EnableOutbox();

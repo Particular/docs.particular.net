@@ -7,11 +7,10 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.*" />
-    <PackageReference Include="WindowsAzure.ServiceBus" Version="6.*" />
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="4.*" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Persistence.ServiceFabric" Version="2.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
   </ItemGroup>
 </Project>

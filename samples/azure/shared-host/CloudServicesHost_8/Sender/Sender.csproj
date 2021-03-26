@@ -32,7 +32,7 @@
     <PackageReference Include="CommonServiceLocator" Version="1.*" />
     <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.*" />
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="8.*" />
@@ -48,7 +48,6 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="PongHandler.cs" />
     <Compile Include="SendPing.cs" />

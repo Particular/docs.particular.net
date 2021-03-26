@@ -34,7 +34,7 @@
     <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="Microsoft.Azure.KeyVault.Core" Version="2.*" />
     <PackageReference Include="Microsoft.WindowsAzure.ConfigurationManager" Version="3.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Hosting.Azure" Version="8.*" />
     <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.*" />
@@ -51,9 +51,6 @@
   <ItemGroup>
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="WorkerRole.cs" />
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
