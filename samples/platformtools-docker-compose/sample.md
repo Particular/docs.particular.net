@@ -15,7 +15,7 @@ This sample shows how to host the [ServicePulse](/servicepulse/) and [ServiceCon
 
 - Ensure that Docker has been installed either for [Windows 10](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-10-Client) or [Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/set-up-environment?tabs=Windows-Server).
 - A valid license file must be available at `C:\ProgramData\ParticularSoftware\license.xml`.
-- An Azure Service Bus connection string must be set in an environment variable `AZURESERVICEBUS_CONNECTIONSTRING`
+- An Azure Service Bus connection string must be set in an environment variables `SERVICECONTROL_CONNECTIONSTRING`, `SERVICECONTROL_AUDIT_CONNECTIONSTRING`, and `MONITORING_CONNECTIONSTRING`
 
 ## Windows vs Linux
 
@@ -23,9 +23,13 @@ Currently Linux is unsupported as ServiceControl has a technical dependency on E
 
 A compose file cannot setup both Windows and Linux containers. [ServicePulse supports both Windows and Linux containerization](/servicepulse/containerization/).
 
+## Memory
+
+For this sample the containers will use the default1GB limit for containers used by Docker for Windows. This is sufficient for demo purposes but not when ServiceControl is under load or when the database grows in size. This limit can be easily be adjusted by uncommenting the text `#mem_limit: 8192m` in the docker compose files.
+
 ## License
 
-As the platform tools are licensed software, a license file is required to run the tools in containers. The license file in the sample assumes the default path: `C:\ProgramData\ParticularSoftware\license.xml`.
+As the platform tools are licensed software, a license file is required to run the tools in containers. The license file in the sample assumes the default path: `C:\ProgramData\ParticularSoftware\license.xml`.  Alternatively, set in the `.env` environment variables file with values for `SERVICECONTROL_LICENSETEXT`, `SERVICECONTROL_AUDIT_LICENSETEXT`, and `MONITORING_LICENSETEXT`.
 
 ## Storage
 
@@ -35,7 +39,7 @@ ServiceControl requires storage for its database. Data stored by ServiceControl 
 
 The [Azure Service Bus Transport](/transports/azure-service-bus/) is used but Docker works with all supported [broker-based transports](/transports/selecting.md#broker-versus-federated).
 
-Set the Azure Service Bus connection string in the `environment.env` file (value `Endpoint=sb://xxx.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xxx`).
+Set the Azure Service Bus connection string in the `.env` file (value `Endpoint=sb://xxx.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xxx`).
 
 ## Init and runtime containers
 
@@ -66,6 +70,14 @@ Runs Docker Compose and launch ServicePulse via the configured default browser. 
 ```cmd
 docker-compose up --detach
 start http://localhost:9090
+```
+
+### Maintenance mode
+
+ServiceControl maintenance mode is demonstrated via the Docker Compose file `docker-compose.maintenance.yml`.
+
+```cmd
+docker-compose --file docker-compose.maintenance.yml up
 ```
 
 ### Teardown
