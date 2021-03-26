@@ -79,7 +79,7 @@ function Get-BuildSolutions
 $exitCode = 0
 $failedProjects = New-Object Collections.Generic.List[String]
 $failedProjectsOutput = CombinePaths $pwd.Path "failed-projects.log"
- 
+$executionDirectory = Get-Location 
 
 $samples = Get-BuildSolutions
 
@@ -93,13 +93,27 @@ foreach($sample in $samples) {
     Set-Location -Path $sample.Directory.FullName
     Get-ChildItem -inc bin,obj -rec | Remove-Item -rec -force
     
-    msbuild $sample.Name -nodeReuse:true -verbosity:minimal -restore -property:RestorePackagesConfig=true
-	
-	if( -not $? ) {
-		$exitCode = 1
-		Write-Output ("::error::Build failed: {0}" -f $sample.FullName)
-		$failedProjects.Add($sample.FullName)
-	}
+    try 
+    {
+        if(Test-Path msbuild)
+        {
+            msbuild $sample.Name -nodeReuse:true -verbosity:minimal -restore -property:RestorePackagesConfig=true
+        }
+        else 
+        {
+            dotnet build $sample.Name -nodeReuse:true -verbosity:minimal -restore -property:RestorePackagesConfig=true
+        }
+        
+        if( -not $? ) {
+            $exitCode = 1
+            Write-Output ("::error::Build failed: {0}" -f $sample.FullName)
+            $failedProjects.Add($sample.FullName)
+        }
+    } finally 
+    {
+        Set-Location $executionDirectory
+    }
+
     Write-Output "::endgroup::"
 }
 
