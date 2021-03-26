@@ -124,6 +124,13 @@ Sometimes the following error can be observed:
 Raven.Abstractions.Exceptions.IndexDisabledException: The index has been disabled due to errors
 ```
 
+or
+
+```txt
+2021-03-23 09:27:50.0593|14|Warn|Raven.Database.DocumentDatabase|Could not create index batch
+System.InvalidOperationException: Cannot modify indexes while indexing is in progress (already waited full minute). Try again later
+```
+
 Ensure that:
 
 - [The database storage folder is excluded from virus scanning](servicecontrol-in-practice.md#anti-virus-checks)
