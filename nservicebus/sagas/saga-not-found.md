@@ -13,7 +13,7 @@ snippet: saga-not-found
 
 Note that in the example above the message will be considered successfully processed and sent to the audit queue even if no saga was found. Throw an exception from the `IHandleSagaNotFound` implementation to cause the message to end up in the error queue.
 
-Note: If there are multiple saga types configured to handle a given message type and one of them is found while others are not, the `IHandleSagaNotFound` handlers **will not be executed**. The `IHandleSagaNotFound` handlers are only executed if none of the mapped sagas is found.
+Note: If there are multiple saga types that handle a given message type and one of them is found while others are not, the `IHandleSagaNotFound` handlers **will not be executed**. The `IHandleSagaNotFound` handlers are only executed if no saga instances are invoked.
 
 include: non-null-task
 
