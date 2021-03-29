@@ -99,11 +99,11 @@ foreach($sample in $samples) {
         if(Test-Path $msBuildMarkerFile)
         {
             Write-Output ("::warning::Using msbuild for sample using legacy csproj format: {0}" -f $sample.FullName)
-            msbuild $sample.Name -nodeReuse:true -verbosity:minimal -restore -property:RestorePackagesConfig=true
+            msbuild $sample.Name -verbosity:minimal -restore -property:RestorePackagesConfig=true
         }
         else 
         {
-            dotnet build $sample.Name -nodeReuse:true -verbosity:minimal -restore -property:RestorePackagesConfig=true
+            dotnet build $sample.Name --verbosity minimal
         }
         
         if( -not $? ) {
