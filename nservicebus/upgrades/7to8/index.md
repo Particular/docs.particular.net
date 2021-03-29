@@ -175,7 +175,7 @@ endpointConfiguration.EnableOutbox();
 
 ### AbortReceiveOperation
 
-`ITransportReceiveContext.AbortReceiveOperation` operation is no longer supported
+`ITransportReceiveContext.AbortReceiveOperation` has been deprecated. To abort the current receive operation just throw any exception instead.
 
 ### Renamed extension method types
 
