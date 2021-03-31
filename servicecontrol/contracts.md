@@ -76,6 +76,14 @@ ServiceControl will also publish events based on collected monitoring data.
 
 See [Heartbeat Notification Events](/monitoring/heartbeats/notification-events.md) and [Custom Check Notification Events](/monitoring/custom-checks/notification-events.md) for a description of these events.
 
+## Other events
+
+ServiceControl will also publish events related to archiving and retrying messages
+- `FailedMessagesArchived`: Event emitted for failed messages that were archived
+- `FailedMessagesUnArchived`: Event emitted for failed messages that were un-archived
+- `MessageFailureResolvedByRetry`: Event emitted by ServiceControl for each failed message that was resolved by retry
+- `MessageFailureResolvedManually`: Event emitted by ServiceControl for each failed message that was resolved manually
+
 
 ## Decommissioning subscribers to ServiceControl events
 
