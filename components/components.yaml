@@ -642,6 +642,15 @@
   NugetOrder:
     - NServiceBus.UniformSession
 
+- Key: UniformSessionTesting
+  Name: UniformSession.Testing
+  DocsUrl: /nservicebus/messaging/uniformsession-testing
+  GitHubOwner: Particular
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.UniformSession
+  NugetOrder:
+    - NServiceBus.UniformSession.Testing
+
 - Key: ASBFunctions
   Name: NServiceBus.AzureFunctions.ServiceBus
   DocsUrl: /previews/azure-functions-service-bus
