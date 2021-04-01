@@ -33,6 +33,10 @@ Depending on the features provided by a given transport there are two possible i
 
 Note: For simplicity these explanations refer to specific endpoints as "Subscribers" and "Publishers". However in reality any endpoint can be both a publisher and/or and a subscriber.
 
+### All subscribers gets a copy of the event
+
+To make sure that each subscriber can process, and potentially retry, the event independent from other subscribers NServiceBus makes sure that each subscriber gets a copy of the published event delivered to their input queue.
+
 
 ### Message-driven (persistence-based)
 
@@ -78,7 +82,7 @@ The publish workflow for [unicast transports](/transports/types.md#unicast-only-
 
  1. Some code (e.g. a saga or a handler) requests that a message be published.
  1. Publisher queries the storage for a list of subscribers.
- 1. Publisher loops through the list and sends a copy of that message to each subscriber.
+ 1. Publisher loops through the list and sends a **copy of that message** to each subscriber.
 
 ```mermaid
 sequenceDiagram
@@ -127,7 +131,7 @@ The publish workflow for multicast transports is as follows
 
  1. Some code (e.g. a saga or a handler) request that a message be published.
  1. Publisher sends the message to the Broker.
- 1. Broker sends a copy of that message to each subscriber.
+ 1. Broker sends a **copy of that message** to each subscriber.
 
 ```mermaid
 sequenceDiagram
