@@ -33,7 +33,7 @@ Depending on the features provided by a given transport there are two possible i
 
 Note: For simplicity these explanations refer to specific endpoints as "Subscribers" and "Publishers". However in reality any endpoint can be both a publisher and/or and a subscriber.
 
-### All subscribers gets a copy of the event
+### All subscribers gets their own copy of the event
 
 To make sure that each subscriber can process, and potentially retry, the event independent of other subscribers, NServiceBus makes sure that each subscriber gets a copy of the published event delivered to their input queue.
 
