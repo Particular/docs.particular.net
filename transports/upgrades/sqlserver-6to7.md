@@ -1,20 +1,20 @@
 ---
 title: SQL Server Transport Upgrade Version 6 to 7
-summary: Migration instructions on how to upgrade SQL Server Transport from Version 8 to 9.
-reviewed: 2020-11-09
+summary: Migration instructions on how to migrate the SQL Server transport from version 6 to version 7
+reviewed: 2021-04-01
 component: SqlTransport
 related:
 - transports/sql
 - nservicebus/upgrades/7to8
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
+ - 6
  - 7
- - 8
 ---
 
-## Configuring SQL Server Transport
+## Configuring SQL Server transport
 
-To use SQL Server Transport for NServiceBus, create a new instance `SqlServerTransport` and pass it to `EndpointConfiguration.UseTransport`.
+To use the SQL Server transport for NServiceBus, create a new instance `SqlServerTransport` and pass it to the `EndpointConfiguration.UseTransport` method.
 
 Instead of
 
@@ -23,16 +23,16 @@ var transport = endpointConfiguration.UseTransport<SqlServerTransprot>();
 transport.ConnectionString(connectionString);
 ```
 
-Use:
+use:
 
 ```csharp
 var transport = new SqlServerTransport(connectionString);
 endpointConfiguration.UseTransport(transport);
 ```
 
-## Configuration Options
+## Configuration options
 
-The SQL Server Transport configuration options have been moved to the `SqlServerTransport` class. See the following table for further information:
+The SQL Server transport configuration options have moved to the `SqlServerTransport` class. See the following table for further information:
 
 | Version 6 configuration option | Version 7 configuration option |
 | --- | --- |
@@ -52,11 +52,11 @@ The SQL Server Transport configuration options have been moved to the `SqlServer
 
 ## Timeout manager
 
-The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backwards compatibility mode obsolete. If backwards compatibility mode was enabled these APIs must be removed.
+The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backward-compatibility mode obsolete. If backward-compatibility mode is enabled, these APIs must be removed.
 
 ## WithPeekDelay replaced by QueuePeeker
 
-In version 6 of the transport, the message peek delay can be defined using the `WithPeekDelay` configuration option. The configuration setting has been moved to a more generic `QueuePeeker` transport property that allows configuration of other parameters related to message peeking.
+In version 6 of the transport, the message peek delay can be defined using the `WithPeekDelay` configuration option. The configuration setting has moved to a more generic `QueuePeeker` transport property that allows configuration of other parameters related to message peeking.
 
 ## UseScheamForEndpoint and UseCatalogForEndpoint do not affect the local endpoint
 

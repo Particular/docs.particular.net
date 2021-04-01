@@ -13,7 +13,7 @@ NOTE: This is a working document; there is currently no timeline for the release
 
 ## Transport configuration
 
-NServiceBus V8 comes with a new transport configuration API. Instead of the generic based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to `UseTransport`, e.g.
+NServiceBus version 8 comes with a new transport configuration API. Instead of the generic-based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to the the `UseTransport` method. For example, instead of:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<MyTransport>();
@@ -23,7 +23,7 @@ var routing = t.Routing();
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
 
-becomes:
+use:
 
 ```csharp
 var transport = new MyTransport{
@@ -36,8 +36,7 @@ routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 
 See the [transport upgrade guide](/nservicebus/upgrades/7to8/transport.md) for further details.
 
-Note: The existing API surface will continue to be supported for NServiceBus version 8 via a [shim API](https://en.wikipedia.org/wiki/Shim_(computing)) to easen migration to the new version. However, it is recommended to switch to the new transport configuration API.
-
+Note: The existing API surface is supported for NServiceBus version 8 via a [shim API](https://en.wikipedia.org/wiki/Shim_(computing)) to ease migration to the new version. However, it is recommended to switch to the new transport configuration API to prepare for future upgrades of NServiceBus.
 
 ## Dependency injection
 
@@ -160,12 +159,11 @@ The following transports might need migration:
 
 `IManageUnitOfWork` interface is no longer recommended. The unit of work pattern is more straightforward to implement in a pipeline behavior, where the using keyword and try/catch blocks can be used. 
 
-[Custom unit of work sample](/samples/pipeline/unit-of-work/) is an example of the the recommended approach. 
-
+[Custom unit of work sample](/samples/pipeline/unit-of-work/) is an example of the the recommended approach.
 
 ## Outbox configuration
 
-NServiceBus version 8 requires the transport transaction mode to be explicitly set to `ReceiveOnly` when using [Outbox](/nservicebus/outbox/):
+NServiceBus version 8 requires the transport transaction mode to be set explicitly to `ReceiveOnly` when using the [outbox](/nservicebus/outbox/) feature:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<MyTransport>();

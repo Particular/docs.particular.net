@@ -9,7 +9,7 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-NServiceBus V8 comes with a new transport configuration API. Instead of the generic based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to `UseTransport`, e.g.
+NServiceBus V8 comes with a new transport configuration API. Instead of the generic-based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to the `UseTransport` method. For example, instead of:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<MyTransport>();
@@ -18,7 +18,7 @@ var routing = t.Routing();
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
 
-becomes:
+use:
 
 ```csharp
 var transport = new MyTransport{
@@ -28,9 +28,9 @@ var routing = endpointConfiguration.UseTransport(transport);
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
 
-## Transport Specific Configuration
+## Transport specific configuration
 
-See the transport specific upgrade guides for further details on the configuration options:
+See the transport-specific upgrade guides for further details on the configuration options:
 
 * [Azure Service Bus transport upgrade guide](/transports/upgrades/asbs-1to2.md)
 * [Azure Storage Queues transport upgrade guide](/transports/upgrades/asq-10to11.md)
@@ -41,9 +41,9 @@ See the transport specific upgrade guides for further details on the configurati
 
 ## Backwards-compatible API
 
-The existing API transport configuration API will continue to be supported for this major version via a shim API. This shim API emulates the replaced configuration API surface but uses different types. Therefore, custom code that refers to the configuration API types might have to be updated to use the shim API types instead.
+The existing API transport configuration API is supported for this major version via a shim API. This shim API emulates the replaced configuration API surface but uses different types. Therefore, custom code that refers to the configuration API types might need to be updated to use the shim API types instead.
 
-## Transaction Configuration
+## Transaction configuration
 
 Instead of the `Transactions` method, use the `TransportTransactionMode` property on the transport configuration instance to configure the desired transaction mode.
 
@@ -56,20 +56,20 @@ endpointConfiguration.UseTransport(transportConfiguration);
 
 ## Connection strings
 
-Configuring a transport's connection using `.ConnectionStringName(name)`, which was removed for .NET Core in NServiceBus version 7, has been removed from all platforms in NServiceBus version 8. To continue to retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the transport configuration API.
+Configuring a transport's connection using `.ConnectionStringName(name)`, which was removed for .NET Core in NServiceBus version 7, has been removed from all platforms in NServiceBus version 8. To retrieve the connection string by the named value in the configuration, first retrieve the connection string and then pass it to the transport configuration API.
 
-A connection string named `NServiceBus/Transport` will also **no longer be detected automatically** on any platform. The connection string value must be configured explicitly using `.ConnectionString(value)`.
+A connection string named `NServiceBus/Transport` will **no longer be detected automatically** on any platform. The connection string value must be configured explicitly using `.ConnectionString(value)`.
 
-## Routing Configuration
+## Routing configuration
 
-Routing can be configured on the `RoutingSettings` returned from the `UseTransport` method.
+Routing can be configured on the `RoutingSettings` object returned from the `UseTransport` method.
 
 ```
 var routing = endpointConfiguration.UseTransport(transportConfiguration);
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
 
-## Subscription Authorization
+## Subscription authorization
 
 The `SubscriptionAuthorizer` method is now available on the `RoutingSettings`:
 
@@ -88,9 +88,9 @@ The following low-level transport APIs have been renamed:
 * `IReceiveMessages` has been renamed to `IMessageReceiver`
 * `IManageSubscriptions` has been renamed to `ISubscriptionManager`
 
-## Obsoleted Configuration Options
+## Obsolete configuration options
 
-The following configuration operations have been obsoleted. See the transport specific upgrade guides for further information about the availablity of these configuration options.
+The following configuration operations are obsolete in NServiceBus version 8. See the transport-specific upgrade guides for further information about the availablity of these configuration options.
 
 * `EndpointConfiguration.DoNotCreateQueues`
 * `TransportExtensions.ConnectionString`

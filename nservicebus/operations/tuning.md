@@ -17,13 +17,13 @@ NServiceBus uses defaults that ensure good performance in common cases. While th
 
 partial: defaults
 
-Limit maximum concurrency so that no more messages than the specified value are ever being processed at the same time. If not specified the transport will choose an optimal value that is a balance between throughput and effective resource usage.
+Limit maximum concurrency so that no more messages than the specified value are ever processed at the same time. If a maximum concurrency is not specified, the transport will choose an optimal value that is a balance between throughput and effective resource usage.
 
 Sequential processing:
 
 Set the concurrently limit value to `1` to process messages sequentially.
 
-NOTE: Sequential processing is not a guarantee for ordered processing. Processing failures can result in out-of-order processing.
+NOTE: Sequential processing is not a guarantee for ordered processing. For example, processing failures and [/nservicebus/recoverability] can result in out-of-order processing.
 
 Examples where concurrency tuning might be relevant are:
 
