@@ -14,17 +14,17 @@ class Worker : BackgroundService
         this.messageSession = messageSession;
     }
 
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
         try
         {
             var number = 0;
-            while (!stoppingToken.IsCancellationRequested)
+            while (!cancellationToken.IsCancellationRequested)
             {
-                await messageSession.SendLocal(new MyMessage {Number = number++})
+                await messageSession.SendLocal(new MyMessage { Number = number++ }, cancellationToken)
                     .ConfigureAwait(false);
 
-                await Task.Delay(1000, stoppingToken).ConfigureAwait(false);
+                await Task.Delay(1000, cancellationToken).ConfigureAwait(false);
             }
         }
         catch (OperationCanceledException)
