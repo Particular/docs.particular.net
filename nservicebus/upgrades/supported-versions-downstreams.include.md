@@ -40,7 +40,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.2.0) | 2020-11-19     | -                 | -                                 |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/6.1.2) | ~~2020-06-24~~ | ~~2021-02-19~~    | ~~Superseded by 6.2.x~~           |
-| [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/6.0.1) | ~~2020-02-07~~ | ~~2020-09-24~~    | ~~Superseded by 6.1.x~~           |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/5.0.3) | ~~2019-11-19~~ | ~~2021-02-07~~    | ~~Superseded by 6.0.x~~           |
 | [~~4.3.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/4.3.2) | ~~2019-07-26~~ | ~~2020-11-19~~    | ~~Superseded by 5.0.x~~           |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.SqlServer/3.1.6) | 2017-07-14     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
@@ -51,7 +50,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.9.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.9.0) | 2021-03-01     | -                 | -                                 |
 | [1.8.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.8.0) | 2020-12-24     | 2021-06-01        | Superseded by 1.9.x               |
-| [1.7.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | 2020-11-24     | 2021-03-24        | Superseded by 1.8.x               |
+| [~~1.7.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | ~~2020-11-24~~ | ~~2021-03-24~~    | ~~Superseded by 1.8.x~~           |
 | [~~1.6.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.6.0) | ~~2020-11-02~~ | ~~2021-02-24~~    | ~~Superseded by 1.7.x~~           |
 | [~~1.5.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.1) | ~~2020-04-16~~ | ~~2021-02-02~~    | ~~Superseded by 1.6.x~~           |
 
@@ -67,7 +66,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.0) | 2020-06-24     | -                 | -                                 |
-| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.0.2) | ~~2018-05-29~~ | ~~2020-09-24~~    | ~~Superseded by 1.1.x~~           |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
@@ -75,7 +73,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.2.0) | 2020-11-19     | -                 | -                                 |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.1.2) | ~~2020-06-24~~ | ~~2021-02-19~~    | ~~Superseded by 6.2.x~~           |
-| [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.0.1) | ~~2020-02-07~~ | ~~2020-09-24~~    | ~~Superseded by 6.1.x~~           |
 
 ### Persistence packages
 
@@ -83,8 +80,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.4.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.4.3) | 2020-06-24     | -                 | -                                 |
-| [~~8.3.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/8.3.0) | ~~2020-02-12~~ | ~~2020-09-24~~    | ~~Superseded by 8.4.x~~           |
+| [8.4.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.4.4) | 2020-06-24     | -                 | -                                 |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.NHibernate/7.2.5) | 2017-04-19     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Persistence.AzureStorage](/nuget/NServiceBus.Persistence.AzureStorage)
@@ -105,16 +101,17 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.4.0) | 2020-10-08     | -                 | -                                 |
+| [2.5.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.5.0) | 2021-03-25     | -                 | -                                 |
+| [2.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.4.0) | 2020-10-08     | 2021-06-25        | Superseded by 2.5.x               |
 | [~~2.3.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.3.0) | ~~2020-06-30~~ | ~~2021-01-08~~    | ~~Superseded by 2.4.x~~           |
-| [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.2.0) | ~~2020-01-15~~ | ~~2020-09-30~~    | ~~Superseded by 2.3.x~~           |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/1.1.1) | 2018-03-15     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Persistence.Sql](/nuget/NServiceBus.Persistence.Sql)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.1.1) | 2021-02-26     | -                 | -                                 |
+| [6.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.2.0) | 2021-03-25     | -                 | -                                 |
+| [6.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.1.1) | 2021-02-26     | 2021-06-25        | Superseded by 6.2.x               |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.0.4) | 2020-06-24     | 2021-05-26        | Superseded by 6.1.x               |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/5.0.1) | 2020-02-07     | 2021-06-24        | Superseded by 6.0.x               |
 | [~~4.6.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/4.6.2) | ~~2019-07-26~~ | ~~2021-02-07~~    | ~~Superseded by 5.0.x~~           |
@@ -140,7 +137,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.0) | 2020-06-24     | -                 | -                                 |
-| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.0.2) | ~~2018-05-29~~ | ~~2020-09-24~~    | ~~Superseded by 1.1.x~~           |
 
 #### [Particular.TimeoutMigration](/nuget/Particular.TimeoutMigration)
 
@@ -156,7 +152,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.2.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.2.0) | 2018-12-10     | -                 | -                                 |
+| [2.3.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.3.0) | 2021-03-25     | -                 | -                                 |
+| [2.2.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.2.0) | 2018-12-10     | 2021-06-25        | Superseded by 2.3.x               |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/1.2.0) | 2018-02-23     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 ### DependencyInjection packages
@@ -394,8 +391,15 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.1.x](https://www.nuget.org/packages/NServiceBus.UniformSession/2.1.0) | 2018-08-10     | -                 | -                                 |
+| [2.2.x](https://www.nuget.org/packages/NServiceBus.UniformSession/2.2.0) | 2021-03-31     | -                 | -                                 |
+| [2.1.x](https://www.nuget.org/packages/NServiceBus.UniformSession/2.1.0) | 2018-08-10     | 2021-06-30        | Superseded by 2.2.x               |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.UniformSession/1.0.0) | 2017-11-10     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
+
+#### [NServiceBus.UniformSession.Testing](/nuget/NServiceBus.UniformSession.Testing)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [2.2.x](https://www.nuget.org/packages/NServiceBus.UniformSession.Testing/2.2.0) | 2021-03-31     | -                 | -                                 |
 
 #### [NServiceBus.Wcf](/nuget/NServiceBus.Wcf)
 
@@ -414,13 +418,13 @@
 | [~~1.20.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.20.0) | ~~2020-09-28~~ | ~~2021-01-20~~    | ~~Superseded by 1.21.x~~          |
 | [~~1.19.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.19.0) | ~~2020-08-17~~ | ~~2020-12-28~~    | ~~Superseded by 1.20.x~~          |
 | [~~1.18.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.18.0) | ~~2020-07-06~~ | ~~2020-11-17~~    | ~~Superseded by 1.19.x~~          |
-| [~~1.17.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.17.0) | ~~2020-06-08~~ | ~~2020-10-06~~    | ~~Superseded by 1.18.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.2.x](https://www.nuget.org/packages/ServiceControl.Contracts/1.2.0) | 2018-11-01     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/2.0.0) | 2021-03-23     | -                 | -                                 |
+| [1.2.x](https://www.nuget.org/packages/ServiceControl.Contracts/1.2.0) | 2018-11-01     | 2022-03-23        | Superseded by 2.0.x               |
 
 #### [ServiceControl.Plugin.Nsb6.CustomChecks](/nuget/ServiceControl.Plugin.Nsb6.CustomChecks)
 
