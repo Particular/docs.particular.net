@@ -1,6 +1,6 @@
 ---
 title: Understanding internal transactions and delivery guarantees
-reviewed: 2019-04-18
+reviewed: 2021-04-06
 component: ASB
 redirects:
  - nservicebus/azure-service-bus/understanding-transactions-and-delivery-guarantees

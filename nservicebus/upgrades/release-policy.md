@@ -1,7 +1,7 @@
 ---
 title: Release Policy
 summary: What version numbers mean to Particular.
-reviewed: 2019-04-18
+reviewed: 2021-04-06
 redirects:
  - nservicebus/release-policy
 related:

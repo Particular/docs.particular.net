@@ -1,6 +1,6 @@
 ---
 title: ServiceControl Integration
-reviewed: 2019-04-17
+reviewed: 2021-04-06
 component: ServiceControl
 ---
 
