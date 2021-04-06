@@ -179,4 +179,4 @@ endpointConfiguration.EnableOutbox();
 
 ### Graceful shutdown
 
-In Version 7 MSMQ, RabbitMQ and SqlServer allowed handlers to take up to 30 seconds to complete before completing the shutdown. In Version 8 transports will wait as long as it takes for handlers to complete. The cancellation token available on the message context in Version 8 will be triggered when the host aborts the shutdown and it's recommended that all handlers observes this token to enable graceful shutdown.
+In Version 7 MSMQ, RabbitMQ and SqlServer allowed handlers to take up to 30 seconds to finish before completing the shutdown. In Version 8 transports will block shutdown until all in-flights handlers complete. The cancellation token available on the message context in Version 8 will be triggered when the host aborts the shutdown and it's recommended that all handlers observes this token to enable graceful shutdown.
