@@ -9,7 +9,8 @@ ServiceControl as an application can be used to process the entire message load 
 ## General recommendations
 
 * Install ServiceControl on a dedicated server in production.
-* 6 GB of RAM minimum
+* Do not host ServiceControl and ServiceControl.Audit instance on the same server, host in isolation
+* 12 GB of dedicated RAM minimum per instance (16GB machine if only hosting ServiceControl).
 * 2 GHz quad core CPU or better
 * [Database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) located on disks suitable for low latency write operations (fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
 
@@ -26,7 +27,8 @@ Real disk, CPU, RAM, and network performance can be monitored with the Windows R
 It is recommended to:
 
 - Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easy and ensures different applications are not competing for storage IOPS.
-- Disable disk write caching to prevent data corruption if the (virtual) server or disk controler fails. This is a general best practice for databases.
+- Do not store multiple ServiceControl databases or different instances on the same physical disk.
+- Disable disk write caching (read caching is fine) to prevent data corruption if the (virtual) server or disk controler fails. This is a general best practice for databases.
 
 Note: Never use ephemeral AWS disk for ServiceControl data because these disks will be erased after the virtual machine reboot.
 
@@ -34,7 +36,7 @@ Note: Never use ephemeral AWS disk for ServiceControl data because these disks w
 
 ### More RAM
 
-The embedded RavenDB will utilize additional RAM to improve indexing performance.
+The embedded RavenDB will utilize additional RAM to improve indexing performance. During load ServiceControl can easily peak to 12GB
 
 ### Message size / MaxBodySizeToStore
 
