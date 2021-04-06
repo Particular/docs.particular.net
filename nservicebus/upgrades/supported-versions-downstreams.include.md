@@ -65,7 +65,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.0) | 2020-06-24     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | 2020-06-24     | -                 | -                                 |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
@@ -136,7 +136,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.0) | 2020-06-24     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | 2020-06-24     | -                 | -                                 |
 
 #### [Particular.TimeoutMigration](/nuget/Particular.TimeoutMigration)
 
