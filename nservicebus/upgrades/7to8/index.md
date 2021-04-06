@@ -96,6 +96,10 @@ If cancellation is not a major concern, the [analyzer severity](https://docs.mic
 dotnet_diagnostic.NSB0002.severity = suggestion
 ```
 
+### Shutdown behavior
+
+In Version 7 MSMQ, RabbitMQ and SqlServer allowed handlers to take up to 30 seconds to finish before completing the shutdown. In Version 8 transports will block shutdown until all in-flights handlers complete. The cancellation token available on the message context in Version 8 will be triggered when the host aborts the shutdown and it's recommended that all handlers observes this token to enable graceful shutdown.
+
 ## New gateway persistence API
 
 The NServiceBus gateway has been moved to a separate `NServiceBus.Gateway` package and all gateway public APIs in NServiceBus are obsolete and will produce the following warning:
