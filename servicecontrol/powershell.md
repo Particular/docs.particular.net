@@ -20,7 +20,7 @@ NOTE: In order to run PowerShell cmdlets, the PowerShell execution policy needs 
 The majority of the ServiceControlMgmt PowerShell module cmdlets will only work if the PowerShell session is running with administrator privileges. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module automatically loaded. Alternatively, the module can be loaded directly into an an existing PowerShell session by loading `ServiceControlMgmt.psd1` using the `Import-Module` cmdlet as show below:
 
 ```ps
-Import-Module "C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt.psd1"
+Import-Module "C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt\ServiceControlMgmt.psd1"
 ```
 
 
