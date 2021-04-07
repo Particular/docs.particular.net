@@ -16,7 +16,10 @@ class Program
         var endpointOneBuilder = ConfigureEndpointOne(Host.CreateDefaultBuilder(args)).Build();
         var endpointTwoBuilder = ConfigureEndpointTwo(Host.CreateDefaultBuilder(args)).Build();
 
-        await Task.WhenAll(endpointOneBuilder.RunAsync(), endpointTwoBuilder.RunAsync());
+        await Task.WhenAll(endpointOneBuilder.StartAsync(), endpointTwoBuilder.StartAsync());
+        await Task.WhenAll(endpointOneBuilder.WaitForShutdownAsync(), endpointTwoBuilder.WaitForShutdownAsync());
+        endpointOneBuilder.Dispose();
+        endpointTwoBuilder.Dispose();
 
         #endregion
     }
