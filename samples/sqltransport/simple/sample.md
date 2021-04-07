@@ -1,7 +1,7 @@
 ---
 title: Simple SQL Server Transport Usage
 summary: A simple send and receive scenario with the SQL Server Transport.
-reviewed: 2019-05-03
+reviewed: 2021-04-07
 component: SqlTransport
 related:
 - transports/sql
