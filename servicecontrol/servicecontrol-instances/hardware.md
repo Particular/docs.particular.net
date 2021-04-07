@@ -27,7 +27,7 @@ Real disk, CPU, RAM, and network performance can be monitored with the Windows R
 It is recommended to:
 
 - Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easy and ensures different applications are not competing for storage IOPS.
-- Do not store multiple ServiceControl databases or different instances on the same physical disk.
+- Store multiple ServiceControl databases on seperate physical disks to prevent multiple instances to compete for the same disk resources.
 - Disable disk write caching (read caching is fine) to prevent data corruption if the (virtual) server or disk controler fails. This is a general best practice for databases.
 
 Note: Never use ephemeral AWS disk for ServiceControl data because these disks will be erased after the virtual machine reboot.
