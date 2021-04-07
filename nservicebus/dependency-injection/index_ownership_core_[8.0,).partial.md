@@ -6,7 +6,7 @@ In *internally managed* mode, NServiceBus manages the entire lifecycle of the co
 
 ### Built-in default container
 
-NServiceBus has a built-in default container that supports the `Microsoft.Extensions.DependencyInjection.Abstractions` model. Custom services may be registered using the `IServiceCollection` API.
+NServiceBus uses the `Microsoft.Extensions.DependencyInjection.` container by default. Custom services may be registered using the `IServiceCollection` API.
 
 #### Instance per call
 
@@ -48,12 +48,11 @@ snippet: DelegateSingleInstance
 
 ### Using a third party containers
 
-third party or custom dependency injection containers can be used via the [externally managed mode](#externally-managed-mode).
-
+Third party or custom dependency injection containers can be used via the [externally managed mode](#externally-managed-mode).
 
 ## Externally managed mode
 
-In *externally managed* mode, NServiceBus registers its components in the container but does not own the container's lifecycle. NServiceBus uses the `Microsoft.Extensions.DependencyInjection.Abstractions` API to integrate with third party containers.
+In *externally managed* mode, NServiceBus registers its components in the container but does not own the container's lifecycle. NServiceBus uses the `Microsoft.Extensions.DependencyInjection` API to integrate with third party containers.
 
 WARN: Every NServiceBus endpoint requires its own dependency injection container. Sharing containers across multiple endpoints results in conflicting registrations and might cause incorrect behavior or runtime errors.
 
@@ -65,7 +64,7 @@ Later, during the resolution phase, the `Start` method requires an instance of `
 
 snippet: ExternalStart
 
-NOTE: Refer to the container's documentation on how to use the container with the `Microsoft.Extensions.DependencyInjection.Abstractions` API.
+NOTE: Refer to the container's documentation on how to use the container with the `Microsoft.Extensions.DependencyInjection` API.
 
 ### Injecting the message session
 

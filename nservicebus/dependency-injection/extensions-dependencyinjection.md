@@ -12,7 +12,7 @@ redirects:
  - nservicebus/property-injection-in-handlers
 ---
 
-WARN: Starting with NServiceBus version 8, the `NServiceBus.Extensions.DependencyInjection` package is no longer required. NServiceBus directly supports the `Microsoft.Extensions.DependencyInjection.Abstractions` model via the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode). Visit the [dependency injection upgrade guide](/nservicebus/upgrades/7to8/dependency-injection.md) for further information.
+WARN: Starting with NServiceBus version 8, the `NServiceBus.Extensions.DependencyInjection` package is no longer required. NServiceBus directly supports the `Microsoft.Extensions.DependencyInjection` model via the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode). Visit the [dependency injection upgrade guide](/nservicebus/upgrades/7to8/dependency-injection.md) for further information.
 
 The `NServiceBus.Extensions.DependencyInjection` package provides integration with the `Microsoft.Extensions.DependencyInjection` dependency injection abstraction.
 

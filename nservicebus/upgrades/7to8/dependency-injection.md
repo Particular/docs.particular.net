@@ -9,7 +9,7 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-Support for external dependency injection containers is no longer provided by NServiceBus adapters for each container library. Instead, NServiceBus version 8 directly provides the ability to use any container that conforms to the `Microsoft.Extensions.DependencyInjection.Abstractions` container abstraction.
+NServiceBus no longer provides adapters for external dependency injection containers. Instead, NServiceBus version 8 directly provides the ability to use any container that conforms to the `Microsoft.Extensions.DependencyInjection` container abstraction.
 
 The following adapter packages will no longer be provided:
 
@@ -30,11 +30,11 @@ The behavior has been aligned with the expectations of the `Microsoft.Extensions
 
 ## Property injection
 
-Property injection is not covered by `Microsoft.Extensions.DependencyInjection.Abstractions`. Therefore, the NServiceBus default dependency injection container no longer supports property injection. Property injection might still be supported by third party containers.
+Property injection is not covered by `Microsoft.Extensions.DependencyInjection`. Therefore, the NServiceBus default dependency injection container no longer supports property injection. Property injection might still be supported by third party containers.
 
 ## UseContainer is deprecated
 
-The `UseContainer` API to integrate third party containers with NServiceBus has been removed as it does not align with the `Microsoft.Extensions.DependencyInjection.Abstractions` model. To use a custom dependency injection container with NServiceBus, use the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode).
+The `UseContainer` API to integrate third party containers with NServiceBus has been removed as it does not align with the `Microsoft.Extensions.DependencyInjection` model. To use a custom dependency injection container with NServiceBus, use the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode).
 
 ## RegisterComponents changes
 
@@ -125,13 +125,13 @@ Host.CreateDefaultBuilder(args)
 
 ## Externally managed container mode
 
-The externally managed container mode allows integrating third-party dependency injection containers, that conform to the `Microsoft.Extensions.DependencyInjection.Abstractions` model, with NServiceBus via the `EndpointWithExternallyManagedContainer.Create` API. See the following sections for examples of using common DI containers.
+The externally managed container mode allows integrating third-party dependency injection containers, that conform to the `Microsoft.Extensions.DependencyInjection` model, with NServiceBus via the `EndpointWithExternallyManagedContainer.Create` API. See the following sections for examples of using common DI containers.
 
 ### Migrating to externally managed mode
 
 #### Microsoft.Extensions.DependencyInjection
 
-The following snippet configures NServiceBus to use the Microsoft's default container implementation. This requires the `Microsoft.Extensions.DependencyInjection` NuGet package.
+The following snippet configures NServiceBus to use the Microsoft's default container implementation.
 
 ```csharp
 var serviceCollection = new ServiceCollection();
