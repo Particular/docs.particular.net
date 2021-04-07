@@ -98,7 +98,15 @@ dotnet_diagnostic.NSB0002.severity = suggestion
 
 ### Shutdown behavior
 
-In Version 7 MSMQ, RabbitMQ and SqlServer allowed handlers to take up to 30 seconds to finish before completing the shutdown. In Version 8 transports will block shutdown until all in-flights handlers complete. The cancellation token available on the message context in Version 8 will be triggered when the host aborts the shutdown and it's recommended that all handlers observes this token to enable graceful shutdown.
+In all versions of NServiceBus, there is a period after calling `endpoint.Stop()` when NServiceBus will stop receiving new messages but give any currently running message handlers an opportunity to complete naturally.
+
+In NServiceBus version 7 and below, the transports for MSMQ, RabbitMQ and SqlServer allowed handlers to take up to 30 seconds to finish before forcing an endpoint shutdown. In NServiceBus version 8, all transports will block shutdown until all in-flight handlers complete.
+
+The cancellation token available on the `IMessageHandlerContext` in NServiceBus version 8 will be triggered when the host aborts the shutdown. For example, the .NET Generic Host signals the cancellation token after 5 seconds.
+
+However, if handlers do not observe the cancellation token, for example if a handler called `Task.Delay(TimeSpan.Infinite)`, the endpoint will never be able to shut down.
+
+Therefore, it is recommended that all message handlers observe the cancellation token to enable graceful shutdown.
 
 ## New gateway persistence API
 
