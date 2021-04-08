@@ -144,6 +144,18 @@ Valid range for this setting is from 1 hour to 364 days.
 ## Performance tuning
 
 
+#### ServiceControl.Audit/MaximumConcurrencyLevel
+
+This setting controls how many message can be processed concurrently (in parallel).
+
+Version | Default
+--------|--------
+4.16.0  | 32
+
+This value should be lowered if this causes the ingestion rate to be too high that updating storage indexes cannot keep out and get too stale.
+
+Warning: Must only be incremented if verified CPU, RAM, network IO, and storage IO, and storage index lag indicate no bottlenecks.
+
 #### ServiceControl.Audit/MaxBodySizeToStore
 
 This setting specifies the upper limit on body size to be configured.
