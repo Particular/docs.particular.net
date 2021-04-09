@@ -10,7 +10,7 @@ static class Program
         Console.Title = "Samples.NServiceBus.ExternallyManagedContainer";
 
         var endpointConfiguration = new EndpointConfiguration("Sample");
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         #region ContainerConfiguration
 
