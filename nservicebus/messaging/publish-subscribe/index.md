@@ -35,7 +35,7 @@ Note: For simplicity these explanations refer to specific endpoints as "Subscrib
 
 ### All subscribers gets their own copy of the event
 
-To make sure that each subscriber can process, and potentially retry, the event independent of other subscribers, NServiceBus makes sure that each subscriber gets a copy of the published event delivered to their input queue.
+To ensure that each subscriber can process, and potentially retry, the event independent of other subscribers, NServiceBus makes sure that each subscriber gets a copy of the published event delivered to their input queue.
 
 
 ### Message-driven (persistence-based)
