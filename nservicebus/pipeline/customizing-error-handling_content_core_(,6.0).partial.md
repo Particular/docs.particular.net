@@ -4,6 +4,6 @@ WARNING: When enabling this extension, second-level retries will not be invoked.
 
 snippet: CustomFaultManager
 
-This extension needs to be registered in dependency injection so that it can be invoked when failures occur. Registration of this component can be done using the `INeedInitialization` interface. See also [dependency-injection child lifetime](/nservicebus/dependency-injection/child-lifetime.md).
+This extension must be registered in dependency injection so that it can be invoked when failures occur. Registration of this component can be done using the `INeedInitialization` interface. See also [dependency-injection child lifetime](/nservicebus/dependency-injection/child-lifetime.md).
 
 snippet: RegisterFaultManager

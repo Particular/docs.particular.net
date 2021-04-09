@@ -28,7 +28,7 @@ It is recommended to:
 - Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easy and ensures different applications are not competing for storage IOPS.
 - Disable disk write caching to prevent data corruption if the (virtual) server or disk controler fails. This is a general best practice for databases.
 
-Note: Never use ephemeral AWS disk for ServiceControl data because these disks will be erased after the virtual machine reboot.
+Note: Do not use an ephemeral AWS or Azure disk for ServiceControl data because these disks will be erased when the virtual machine reboots.
 
 ## Suggestions to improve performance
 

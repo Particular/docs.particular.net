@@ -15,7 +15,7 @@ It can sometimes be useful to access the native Service Bus incoming message fro
 
 snippet: access-native-incoming-message
 
-The behavior above uses the native message's `LockedUntilUtc` system property to determine where the message lost its lock as a result of aggressive prefetching and slow processing. If desired, a [custom recoverability policy]() can be used so that the message will skip attempted retry processing that otherwise would be guaranteed to fail due to the message's lost lock.
+The behavior above uses the native message's `LockedUntilUtc` system property to determine where the message lost its lock as a result of aggressive prefetching and slow processing. If desired, a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) can be used so that the message will skip attempted retry processing that otherwise would be guaranteed to fail due to the message's lost lock.
 
 ## Access to the native Azure Service Bus outgoing message
 
@@ -23,4 +23,4 @@ It can also be useful to access the native Service Bus outgoing message from beh
 
 partial: snippets
 
-Note: Native outgoing messages cannot be customized when using the [Outbox](/nservicebus/outbox/) as customizations are not persistent.
+Note: Native outgoing messages cannot be customized when using the [outbox](/nservicebus/outbox/) as customizations are not persistent.

@@ -6,7 +6,7 @@ Implement a new behavior, which extends the `ITransportReceiveContext` context i
 
 snippet: ErrorHandlingBehavior
 
-#### Handling Deserialization Errors
+#### Handling deserialization errors
 
 To handle any deserialization errors, wrap the `next()` operation in a try-catch block and handle the `MessageDeserializationException` as shown:
 
@@ -14,16 +14,16 @@ snippet: DeserializationCustomization
 
 WARNING: Throwing the exception in the catch block will immediately forward the message to the error queue. If a message fails due to a `MessageDeserializationException` the message won't be retried. If that's not desired, remove the `throw` from the catch block to indicate that the message has been successfully processed.
 
-#### Handling Other Errors
+#### Handling other errors
 
-To handle any other errors, wrap the `next()` operation in a try-catch block and handle the `Exception` as shown:
+To handle other errors, wrap the `next()` operation in a try-catch block and handle the `Exception` as shown:
 
 snippet: AllErrorsCustomization
 
 WARNING: Throwing the exception in the catch block will forward the message to the error queue after all the configured retry attempts. If that's not desired, remove the `throw` from the catch block to indicate that the message has been successfully processed.
 
-### Registering the Behavior
+### Registering the behavior
 
-In the example below, the new behavior `CustomErrorHandlingBehavior` is registered to be part of the message handling pipeline. This new behavior is placed at the very beginning of the pipeline. Such placement allows to insert code right after a message has been received from the transport and right before the [recoverability](/nservicebus/recoverability/) policy is invoked.
+In the example below, the behavior `CustomErrorHandlingBehavior` is registered to be part of the message handling pipeline. This new behavior is placed at the very beginning of the pipeline. This placement allows inserting code right after a message has been received from the transport and right before the [recoverability](/nservicebus/recoverability/) policy is invoked.
 
 snippet: RegisterCustomErrorHandlingBehavior
