@@ -6,7 +6,7 @@ In *internally managed* mode, NServiceBus manages the entire lifecycle of the co
 
 ### Built-in default container
 
-NServiceBus uses the `Microsoft.Extensions.DependencyInjection.` container by default. Custom services may be registered using the `IServiceCollection` API.
+NServiceBus uses the `Microsoft.Extensions.DependencyInjection` container by default. Custom services may be registered using the `IServiceCollection` API.
 
 #### Instance per call
 
