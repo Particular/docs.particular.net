@@ -32,13 +32,13 @@ Linux:
 Host ServicePulse on Ubuntu Linux via Nginx run:
 
 ```cmd
-docker run -p 80:80 --detach particular/servicepulse.sqlserver:1
+docker run -p 80:80 --detach particular/servicepulse:1
 ```
 
 Windows:
 
-Host ServicePulse on WIndows 2016 via IIS run:
+Host ServicePulse on Windows 2016 or later (Windows 10, Windows 2019) via IIS run:
 
 ```cmd
-docker run -p 80:80 --detach particular/servicepulse.sqlserver-windows:1
+docker run -p 80:80 --detach particular/servicepulse-windows:1
 ```
