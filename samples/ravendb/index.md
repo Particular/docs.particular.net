@@ -5,3 +5,5 @@ component: Raven
 ---
 
 include: dtc-warning
+
+include: clusterconfiguration-warning

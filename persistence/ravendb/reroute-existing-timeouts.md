@@ -12,6 +12,8 @@ redirects:
 
 include: dtc-warning
 
+include: clusterconfiguration-warning
+
 After moving an endpoint from one machine to another or changing an endpoint's name, existing timeouts must be manually modified to end up in the new endpoint. To do that, follow these steps:
 
 partial: fields

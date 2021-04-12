@@ -9,6 +9,8 @@ redirects:
 
 include: dtc-warning
 
+include: clusterconfiguration-warning
+
 As of 2014-10-15, the Platform Installer no longer installs RavenDB Version 2.0 in a directory called "NServiceBus.Persistence.v4" under `Program Files` as a prerequisite since NServiceBus Version 5 no longer uses it as the default persistence - [see RavenDB installation](installation.md). If it was previously installed and needs to be removed, it is necessary to remove it manually.
 
 
