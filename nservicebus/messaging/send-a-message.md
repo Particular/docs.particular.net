@@ -23,8 +23,6 @@ To send a message directly from the endpoint:
 
 snippet: BasicSend
 
-partial: batch-sends-performance
-
 Unit testing the process of sending a message is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-message-session-operations).
 
 ## Inside the incoming message processing pipeline
@@ -35,7 +33,10 @@ To send a message from inside a message handler:
 
 snippet: SendFromHandler
 
-partial: imessagessession-warning
+partial: batch-sends-performance
+
+
+partial: batch-sends-performance
 
 
 partial: override-default-routing
