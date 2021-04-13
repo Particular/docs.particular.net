@@ -10,7 +10,7 @@ reviewed: 2019-06-04
 
 include: dtc-warning
 
-include: clusterconfiguration-warning
+include: cluster-configuration-warning
 
 
 ## Code walk-through

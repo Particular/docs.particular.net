@@ -10,7 +10,7 @@ related:
 
 include: dtc-warning
 
-include: clusterconfiguration-warning
+include: cluster-configuration-warning
 
 This sample demonstrates how to configure RavenDB Persistence to store tenant-specific data in separate databases. The tenant-specific information includes the saga state, the business documents that are accessed using [RavenDB-managed session](/persistence/ravendb/#shared-session), and the outbox records.
 

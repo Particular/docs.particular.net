@@ -11,7 +11,7 @@ redirects:
 
 include: dtc-warning
 
-include: clusterconfiguration-warning
+include: cluster-configuration-warning
 
 ## Default behavior
 

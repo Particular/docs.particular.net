@@ -10,7 +10,7 @@ redirects:
 
 include: dtc-warning
 
-include: clusterconfiguration-warning
+include: cluster-configuration-warning
 
 Example code and scripts to facilitate deployment and operational actions against RavenDB.
 
