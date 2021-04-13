@@ -13,11 +13,11 @@ To be explicit, this is what is required to use cluster-wide transactions correc
 - Modify all existing documents to store a synchronization identifier. This can be part of the document, or can be stored inside the document’s metadata.
 - Create a corresponding compare-exchange value for every document. The value of the compare-exchange value needs to be set to the synchronization identifier’s value.
 - When updating any document, the code must:
-- Load the document (and its meta data if needed)
-- Load the corresponding compare-exchange value
-- Compare the document’s synchronization identifier with the one stored in the compare-exchange value that corresponds to the document. If they are not the same, it means that the document has already been changed and both documents need to be reloaded.
-- Update the document as well as the synchronization identifier
-- Update the compare-exchange value’s document value with the new synchronization identifier
+  - Load the document and its metadata
+  - Load the corresponding compare-exchange value
+  - Compare the document’s synchronization identifier with the one stored in the compare-exchange value that corresponds to the document. If they are not the same, it means that the document has already been changed and both documents need to be reloaded.
+  - Update the document as well as the synchronization identifier
+  - Update the compare-exchange value’s document value with the new synchronization identifier
 
 Given the complexity involved in implementing cluster-wide transactions properly across the business data and the NServiceBus data, Particular was forced to stop supporting clusters in RavenDB for now. NServiceBus.RavenDB can use cluster-wide transactions and compare-exchange values to correctly and safely store NServiceBus data, but cannot make sure any business data modified in an NServiceBus handler is safe. Each handler would need to be reassessed using the steps listed above to ensure correct usage of cluster-wide transactions.
 
