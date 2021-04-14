@@ -98,15 +98,15 @@ dotnet_diagnostic.NSB0002.severity = suggestion
 
 ### Shutdown behavior
 
-In all versions of NServiceBus, there is a period after calling `endpoint.Stop()` when NServiceBus will stop receiving new messages but give any currently running message handlers an opportunity to complete naturally.
+In all versions of NServiceBus, `endpoint.Stop()` immediately stops receiving new messages but waits for a period of time for currently running message handlers to complete.
 
-In NServiceBus version 7 and below, the transports for MSMQ, RabbitMQ and SqlServer allowed handlers to take up to 30 seconds to finish before forcing an endpoint shutdown. In NServiceBus version 8, all transports will block shutdown until all in-flight handlers complete.
+In NServiceBus version 7 and below, the MSMQ, RabbitMQ, and SqlServer transports allow handlers up to 30 seconds to complete before forcing an endpoint shutdown. In NServiceBus version 8, all transports block shutdown until all handlers complete.
 
-The cancellation token available on the `IMessageHandlerContext` in NServiceBus version 8 will be triggered when the host aborts the shutdown. For example, the .NET Generic Host signals the cancellation token after 5 seconds.
+The cancellation token available on the `IMessageHandlerContext` in NServiceBus version 8 is triggered when the host forces shutdown. For example, the .NET Generic Host signals the cancellation token after 5 seconds.
 
-However, if handlers do not observe the cancellation token, for example if a handler called `Task.Delay(TimeSpan.Infinite)`, the endpoint will never be able to shut down.
+However, if handlers do not observe the cancellation token, they will complete before the endpoints shuts down. This means that if, for example, a handler calls `Task.Delay(TimeSpan.Infinite)`, the endpoint will never shut down.
 
-Therefore, it is recommended that all message handlers observe the cancellation token to enable graceful shutdown.
+Therefore, it is recommended that all message handlers observe the cancellation token to enable forced shutdown when required.
 
 ## New gateway persistence API
 
