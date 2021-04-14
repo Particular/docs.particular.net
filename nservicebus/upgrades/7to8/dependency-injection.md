@@ -185,13 +185,13 @@ var endpointInstance = await startableEndpoint.Start(serviceProvider);
 
 #### Unity
 
-The following snippet configures NServiceBus to use Unity as its dependency injection container. This requires the `Castle.Windsor.MsDependencyInjection` NuGet package.
+The following snippet configures NServiceBus to use Unity as its dependency injection container. This requires the `Unity.Microsoft.DependencyInjection` NuGet package.
 
 ```csharp
 var serviceCollection = new ServiceCollection();
 var startableEndpoint = EndpointWithExternallyManagedContainer.Create(endpointConfiguration, serviceCollection);
 
-var container = new WindsorContainer();
-var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(container, serviceCollection);
+var container = new UnityContainer();
+var serviceProvider = container.BuildServiceProvider(serviceCollection);
 var endpointInstance = await startableEndpoint.Start(serviceProvider);
 ```
