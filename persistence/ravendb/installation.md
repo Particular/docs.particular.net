@@ -13,6 +13,8 @@ redirects:
 
 include: dtc-warning
 
+include: cluster-configuration-warning
+
 
 To install RavenDB, [download the server](https://ravendb.net/download) and install as described in the [RavenDB documentation](https://ravendb.net/docs/) or use a hosted RavenDB provider such as [RavenHQ](https://www.ravenhq.com/).
 

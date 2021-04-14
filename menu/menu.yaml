@@ -1081,6 +1081,8 @@
       Title: Subscription versioning
     - Url: persistence/ravendb/dtc
       Title: DTC not supported
+    - Url: persistence/ravendb/cluster-configuration
+      Title: Cluster configuration with multiple nodes not supported
   - Url: persistence/service-fabric
     Title: Service Fabric
     Articles:

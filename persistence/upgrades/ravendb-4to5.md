@@ -13,6 +13,8 @@ upgradeGuideCoreVersions:
 
 include: dtc-warning
 
+include: cluster-configuration-warning
+
 As part of this update [NServiceBus Version 7](/nservicebus/upgrades/6to7/) will be required.
 
 

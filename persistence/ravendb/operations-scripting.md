@@ -10,6 +10,8 @@ redirects:
 
 include: dtc-warning
 
+include: cluster-configuration-warning
+
 Example code and scripts to facilitate deployment and operational actions against RavenDB.
 
 These examples use the [RavenDB.Client](https://www.nuget.org/packages/RavenDB.Client/) NuGet.

@@ -14,6 +14,8 @@ redirects:
 
 include: dtc-warning
 
+include: cluster-configuration-warning
+
 Uses the [RavenDB document database](https://ravendb.net/) for storage.
 
 

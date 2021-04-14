@@ -9,6 +9,8 @@ redirects:
 
 include: dtc-warning
 
+include: cluster-configuration-warning
+
 The default behavior of the RavenDB subscription persistence differs from other persisters in the way it handles versioning of message assemblies. It's important to understand this difference, especially when using a deployment solution that automatically increments assembly version numbers with each build.
 
 
