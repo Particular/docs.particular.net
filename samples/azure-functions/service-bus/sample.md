@@ -1,6 +1,6 @@
 ---
 title: Using NServiceBus in Azure Functions with Service Bus triggers
-reviewed: 2020-11-10
+reviewed: 2021-04-14
 component: ASBFunctions
 related:
  - nservicebus/hosting/azure-functions/service-bus

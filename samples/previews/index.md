@@ -1,6 +1,6 @@
 ---
 title: Preview Samples
-reviewed: 2020-06-12
+reviewed: 2021-04-14
 related:
  - samples/previews/azure-functions/storage-queues
 ---
