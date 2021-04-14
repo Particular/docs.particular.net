@@ -118,7 +118,7 @@ When building ServiceControl, all build artifacts are virus scanned to ensure no
 
 ## Indexes get corrupted
 
-Sometimes the following error can be observed:
+Sometimes the following error may be observed:
 
 ```txt
 Raven.Abstractions.Exceptions.IndexDisabledException: The index has been disabled due to errors
@@ -131,20 +131,19 @@ or
 System.InvalidOperationException: Cannot modify indexes while indexing is in progress (already waited full minute). Try again later
 ```
 
-Ensure that:
+This risk of these error occurring is mitigated by:
 
-- [The database storage folder is excluded from virus scanning](servicecontrol-in-practice.md#anti-virus-checks)
-- [Ensure enough storage space by applying capacity planning](capacity-and-planning.md#storage-size)
-- [Setup server monitoring and proactively monitor free storage space](servicecontrol-in-practice.md#server-monitoring)
+- [Excluding the database storage folder from virus scanning](servicecontrol-in-practice.md#anti-virus-checks)
+- [Ensuring enough storage space is available](capacity-and-planning.md#storage-size)
+- [Setting up server monitoring and proactively monitoring free storage space](servicecontrol-in-practice.md#server-monitoring)
 
-To resolve this error the indexes need to be partially rebuilt. To rebuild just the affected index execute the following steps:
+To resolve these errors, the affected indexes must be rebuilt:
 
 - Start the [ServiceControl (audit or error) in maintenance mode](maintenance-mode.md)
-- Open the exposed RavenDB Management Studio
-- Navigate to the Indexes view
+- In RavenDB Management Studio, navigate to the Indexes view
 - [Reset the relevant index(es)](https://ravendb.net/docs/article-page/3.5/csharp/server/administration/index-administration)
 
-If multiple indexes are affected it might be simpler to rebuild all indexes. Be aware though that this can take a very long time if the database is large and will use a lot of CPU and storage IO.
+If many indexes are affected it may be easier to rebuild all indexes, although this can take a very long time if the database is large, and it will use a lot of CPU and storage IO capacity:
 
 - Stop the ServiceControl (audit or error) instance
 - Navigate to the [database folder](configure-ravendb-location.md) on disk
