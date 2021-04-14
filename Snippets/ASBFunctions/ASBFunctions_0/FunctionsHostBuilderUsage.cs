@@ -1,6 +1,5 @@
 ﻿namespace ASBFunctions_0
 {
-    using System;
     using System.Threading.Tasks;
     using Microsoft.Azure.Functions.Extensions.DependencyInjection;
     using Microsoft.Azure.ServiceBus;
