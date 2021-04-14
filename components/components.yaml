@@ -653,7 +653,7 @@
 
 - Key: ASBFunctions
   Name: NServiceBus.AzureFunctions.ServiceBus
-  DocsUrl: /previews/azure-functions-service-bus
+  DocsUrl: /nservicebus/hosting/azure-functions/service-bus
   GitHubOwner: Particular
   Category: Host
   SupportLevel: Preview
