@@ -32,9 +32,9 @@ To use the sample, a valid Service Bus connection string must be provided in the
 
 ## Sample structure
 
-The sample contains the following projects:
-- `AzureFunctions.ASBTrigger.FunctionsHostBuilder` - Using `IFunctionHostBuilder` approach to host the NServiceBus endpoint
-- `AzureFunctions.ASBTrigger.Static` - Using static approach to host the NServiceBus endpoint
+The sample contains the following project:
+- `AzureFunctions.ASBTrigger.FunctionsHostBuilder` - NServiceBus endpoint
+- `AzureFunctions.Messages` - message definitions
 
 NOTE: `AzureFunctions.ASBTrigger.FunctionsHostBuilder` and `AzureFunctions.ASBTrigger.Static`are both using the same trigger queue and should not be executed simultaneously. 
 
@@ -55,8 +55,6 @@ To try the Azure Function:
 
 ## Code walk-through
 
-### `IFunctionHostBuilder` approach
-
 The NServiceBus endpoint configured using `IFunctionHostBuilder` is using the convention and is wired using `Startup` class like this:
 
 snippet: configuration-with-function-host-builder
@@ -68,18 +66,6 @@ snippet: endpoint-injection
 And is invoked in the following manner:
 
 snippet: injected-function
-
-### Static approach
-
-The static NServiceBus endpoint must be configured using details that come from the Azure Functions `ExecutionContext`. Since that is not available until a message is handled by the function, the NServiceBus endpoint instance is deferred until the first message is processed, using a lambda expression like this:
-
-snippet: EndpointSetup
-
-The same class defines the Azure Function which makes up the hosting for the NServiceBus endpoint. The Function hands off processing of the message to NServiceBus:
-
-snippet: Function
-
-Meanwhile, the message handlers for `TriggerMessage` and `FollowUpMessage`, also hosted within the Azure Functions project, are normal NServiceBus message handlers, which are also capable of sending messages themselves.
 
 ### Handlers
 
