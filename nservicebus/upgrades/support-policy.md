@@ -69,7 +69,7 @@ NServiceBus versions are wire-compatible; endpoints using different versions of 
 
 However, some features might require data migration (e.g. converting from an old to a new format). The migration might be performed as a one-off automated action done through [installers](/nservicebus/operations/installers.md) or in the background by a running endpoint. If the conversion cannot be automated, the applicable upgrade guide will contain a description of the manual process (e.g. what script to run).
 
-Therefore the recommended approach is to upgrade *one* major version at a time, including a full regression test of the system and deployment to production after each major version upgrade.
+Therefore the recommended approach is to upgrade *one* major version at a time, including a full regression test of the system and deployment to production after each major version upgrade. For example, if a system is using a 4.x.x version and the intention is to upgrade to the latest 6.x.x version, it is recommended to first upgrade to the latest 5.x.x version, following the relevant upgrade guides and deprecation messages. After the system is confirmed to work with the latest 5.x.x version, it may be upgraded to the latest 6.x.x version using the same process.
 
 ## FAQ
 
