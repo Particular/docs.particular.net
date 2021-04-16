@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.DataContracts;
@@ -27,7 +28,11 @@ public class CustomEventsHandler :
 
     public Task Handle(MessageFailed message, IMessageHandlerContext context)
     {
-        telemetryClient.TrackMetric(new MetricTelemetry("FailedMessages", 1));
+        telemetryClient.TrackEvent("Message Failed", new Dictionary<string, string>
+        {
+            {"MessageId", message.FailedMessageId},
+            {"DetailsUrl", $"http://localhost:49205/#/failed-messages/message/{message.FailedMessageId}"}
+        });
 
         log.Error($"Received ServiceControl 'MessageFailed' event for a {message.MessageType} with ID {message.FailedMessageId}.");
         return Task.CompletedTask;
