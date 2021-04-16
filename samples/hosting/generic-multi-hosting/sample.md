@@ -19,7 +19,7 @@ An important thing to keep in mind is that [dependency injection](/nservicebus/d
 
 To ensure that each endpoint instance registers only its own components like message handlers, it is important to specify an assembly scan policy using [one of the supported approaches](/nservicebus/hosting/assembly-scanning.md).
 
-WARN: A single endpoint failure to start will cause the host to shutdown, terminating the other endpoint.
+WARN: If a single endpoint fails to start, the host will shut down, terminating the other endpoint.
 
 In this example, complete isolation is required between the two endpoints so that the types from Instance2 are excluded from Instance1 and vice versa.
 
