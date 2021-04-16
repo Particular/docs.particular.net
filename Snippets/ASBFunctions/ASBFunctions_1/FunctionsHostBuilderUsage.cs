@@ -33,7 +33,7 @@
         }
         #endregion
 
-        #region sb-configure-error-queue
+        #region asb-configure-error-queue
         class configureErrorQueueuOnStartup : FunctionsStartup
         {
             public override void Configure(IFunctionsHostBuilder builder)
