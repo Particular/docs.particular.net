@@ -176,3 +176,16 @@ endpointConfiguration.EnableOutbox();
 ### AbortReceiveOperation
 
 `ITransportReceiveContext.AbortReceiveOperation` operation is no longer supported
+
+### Renamed extension method types
+
+The following static extension method types were renamed:
+
+| Old name                       | New name                      |
+|--------------------------------|-------------------------------|
+| `IEndpointInstanceExtensions`  | `EndpointInstanceExtensions`  |
+| `IMessageProcessingExtensions` | `MessageProcessingExtensions` |
+| `IMessageSessionExtensions`    | `MessageSessionExtensions`    |
+| `IPipelineContextExtensions`   | `PipelineContextExtensions`   |
+
+All references to the old types must be changed to the new types, although usually these types are not referenced, since they only contain extension methods.
