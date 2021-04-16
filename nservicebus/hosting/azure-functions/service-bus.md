@@ -13,38 +13,6 @@ Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-
 
 ### Endpoint configuration
 
-snippet: asb-endpoint-configuration
-
-The endpoint is automatically configured with the endpoint name and the transport connection string based on the values defined in the `[ServiceBusTrigger]` attribute using the `ServiceBusTriggeredEndpointConfiguration.FromAttributes` method.
-
-Alternatively, the endpoint name can be passed in manually:
-
-snippet: asb-alternative-endpoint-setup
-
-### Azure Function definition
-
-Pass the incoming message to the NServiceBus endpoint:
-
-snippet: asb-function-definition
-
-NServiceBus interacts directly with the Azure Functions logging infrastructure by passing the `ILogger` instance from the function parameters to the endpoint's `Process` method.
-
-### Dispatching outside a message handler
-
-Messages can be dispatched outside a message handler in functions activated by queue- and non-queue-based triggers.
-
-snippet: asb-static-dispatching-outside-message-handler
-
-Note: For statically-defined endpoints, dispatching outside a message handler within a non-queue-triggered function will require a separate send-only endpoint.
-
-snippet: asb-static-trigger-endpoint
-
-## IFunctionsHostBuilder usage
-
-As an alternative to the configuration approach described in the previous section, an endpoint can also be configured with a static `IFunctionEndpoint` field using the `IFunctionsHostBuilder` API as described in [Use dependency injection in .NET Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection). 
-
-### Endpoint configuration
-
 NServiceBus can be registered and configured on the host builder using the `UseNServiceBus` extension method in the startup class:
 
 snippet: asb-function-hostbuilder
