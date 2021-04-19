@@ -13,7 +13,7 @@ Since NServiceBus are in control of the invocation of message handlers it's the 
 
 This token is exposed to the message handlers via `IMessageHandlerContext.CancellationToken` and must be observed by all potential long running calls made by the message handler as show below:
 
-snippet: TBD
+TBD: add snippet
 
 NServiceBus ships with an analyzer that will make users aware when the token isn't passed to methods that does accept a cancellation token.
 
