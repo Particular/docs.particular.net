@@ -21,6 +21,6 @@ TBD: flesh out
 
 ## Outside message handlers
 
-Performing messaging operations [outside of message handlers](/nservicebus/messaging/send-a-message#outside-a-message-handler) via the `IMessageSession` now all accepts an optional cancellation token.
+Performing messaging operations [outside of message handlers](/nservicebus/messaging/send-a-message.md#outside-a-message-handler) via the `IMessageSession` now all accepts an optional cancellation token.
 
 Examples here could be a Asp.net web request handler sending a message.
