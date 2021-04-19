@@ -83,10 +83,18 @@ In order to get notifications when the exposed ServiceControl events occur, crea
 
 snippet: AzureMonitorConnectorEventsHandlers
 
-TDO: more about how the Applications Insights was configured
+
+## Connect to Azure Application Insights
+
+To connect the sample code to App Insights, the instrumentation key must be provided.
+
+By default the sample code loads this key from an environment variable called ApplicationInsightKey. Either set this environment variable or paste the instrumentation key in the following section.
+
+The instrumentation key can be retrieved from the Azure Portal by locating the App Insights instance, and then navigating to the Properties view.
 
 snippet: AppInsightsSdkSetup
 
+Now you can leverage Azure Application Insights abilities to send alerts...
 
 ## Notes on other transports
 
