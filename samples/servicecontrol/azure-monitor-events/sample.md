@@ -94,7 +94,7 @@ The instrumentation key can be retrieved from the Azure Portal by locating the A
 
 snippet: AppInsightsSdkSetup
 
-Now you can leverage Azure Application Insights abilities to send alerts...
+Now it is possible to leverage Azure Application Insights features to send alerts...
 
 ## Notes on other transports
 
