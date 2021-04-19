@@ -5,7 +5,7 @@ reviewed: 2021-05-19
 component: core
 ---
 
-As of Version 8 NServiceBus supports [cooperative cancellation](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-cancellation). This enables NServiceBus to participate in graceful shutdown of the host by allowing the use of [cancellation tokens](https://docs.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken) to abort potentially long-running operations.
+As of Version 8 NServiceBus supports [cooperative cancellation](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-cancellation). This enables NServiceBus to participate in graceful shutdown of its host by exposing a [cancellation token](https://docs.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken) to abort potentially long-running operations both inside and outside of message handlers.
 
 ### Non-message-handling contexts
 
