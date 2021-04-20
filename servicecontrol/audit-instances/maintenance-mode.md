@@ -4,10 +4,11 @@ summary: How to get direct access to the embedded RavenDB instance.
 reviewed: 2021-03-16
 ---
 
-NOTE: Requires a currently-supported version of Edge, Chrome, Firefox, or Safari. **Internet Explorer is unsupported!**
+NOTE: Internet Explorer is not supported by RavenDB Management Studio.
 
-ServiceControl Audit stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl Audit service. If direct access to the RavenDB instance is required for troubleshooting, launch ServiceControl Management and follow these steps:
+ServiceControl Audit stores its data in a RavenDB embedded instance. Under normal operation, the RavenDB instance is accessible only by the ServiceControl Audit service. The RavenDB instance may be accessed for troubleshooting by following these steps:
 
+1. Launch ServiceControl Management
 1. Open Advanced Options
 1. Start Maintenance Mode
 1. Launch RavenDB Management Studio in a supported browser

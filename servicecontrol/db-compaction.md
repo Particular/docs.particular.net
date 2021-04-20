@@ -72,7 +72,7 @@ Once ServiceControl is running in this mode, the following procedure can be used
 
 ### Step 1: Start ServiceControl in maintenance mode
 
-* Open the ServiceControl instance in [maintenance mode](maintenance-mode.md).
+* Start the ServiceControl instance in [maintenance mode](maintenance-mode.md).
 
 ### Step 2: Export the current database
 
@@ -93,7 +93,7 @@ Once ServiceControl is running in this mode, the following procedure can be used
 NOTE: At this point, it is advisable to take a backup copy of the existing database directory as re-importing can sometimes fail. To do this, ensure that ServiceControl is not running, then copy the contents of the database directory.
 
 * Delete the database directory contents.
-* Start ServiceControl, again in the maintenance mode. This will populate the database directory with a blank database.
+* Start ServiceControl, again in maintenance mode. This will populate the database directory with a blank database.
 
 ### Step 4: Import the exported data
 
