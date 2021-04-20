@@ -7,21 +7,15 @@ using NServiceBus;
 using NServiceBus.Logging;
 using ServiceControl.Contracts;
 
-#region ServiceControlEventsHandlers
+#region AzureMonitorConnectorEventsHandler
 
-public class CustomEventsHandler :
-    IHandleMessages<MessageFailed>,
-    IHandleMessages<HeartbeatStopped>,
-    IHandleMessages<HeartbeatRestored>,
-    IHandleMessages<FailedMessagesArchived>,
-    IHandleMessages<FailedMessagesUnArchived>,
-    IHandleMessages<MessageFailureResolvedByRetry>,
-    IHandleMessages<MessageFailureResolvedManually>
+public class MessageFailedHandler :
+    IHandleMessages<MessageFailed>
 {
     readonly TelemetryClient telemetryClient;
     static ILog log = LogManager.GetLogger<CustomEventsHandler>();
 
-    public CustomEventsHandler(TelemetryClient telemetryClient)
+    public MessageFailedHandler(TelemetryClient telemetryClient)
     {
         this.telemetryClient = telemetryClient;
     }
@@ -36,6 +30,25 @@ public class CustomEventsHandler :
 
         log.Error($"Received ServiceControl 'MessageFailed' event for a {message.MessageType} with ID {message.FailedMessageId}.");
         return Task.CompletedTask;
+    }
+}
+
+#endregion
+
+public class CustomEventsHandler :
+    IHandleMessages<HeartbeatStopped>,
+    IHandleMessages<HeartbeatRestored>,
+    IHandleMessages<FailedMessagesArchived>,
+    IHandleMessages<FailedMessagesUnArchived>,
+    IHandleMessages<MessageFailureResolvedByRetry>,
+    IHandleMessages<MessageFailureResolvedManually>
+{
+    readonly TelemetryClient telemetryClient;
+    static ILog log = LogManager.GetLogger<CustomEventsHandler>();
+
+    public CustomEventsHandler(TelemetryClient telemetryClient)
+    {
+        this.telemetryClient = telemetryClient;
     }
 
     public Task Handle(HeartbeatStopped message, IMessageHandlerContext context)
@@ -104,5 +117,3 @@ public class CustomEventsHandler :
         return Task.CompletedTask;
     }
 }
-
-#endregion

@@ -79,12 +79,12 @@ NOTE: Heartbeat control messages are sent [every 30 seconds by default](/monitor
 
 ### AzureMonitorConnector
 
-In order to get notifications when the exposed ServiceControl events occur, create an NServiceBus endpoint. Next, reference the `ServiceControl.Contracts` NuGet package and implement a handler which handles ServiceControl events:
+In order to get notifications when the exposed ServiceControl events occur, create an NServiceBus endpoint. Next, reference the `ServiceControl.Contracts` NuGet package and implement a handler which handles specific ServiceControl events:
 
-snippet: AzureMonitorConnectorEventsHandlers
+snippet: AzureMonitorConnectorEventsHandler
 
 
-## Connect to Azure Application Insights
+## Connect to Application Insights Azure Monitor
 
 To connect the sample code to App Insights, the instrumentation key must be provided.
 
@@ -94,7 +94,7 @@ The instrumentation key can be retrieved from the Azure Portal by locating the A
 
 snippet: AppInsightsSdkSetup
 
-Now it is possible to leverage Azure Application Insights features to send alerts...
+Now it is possible to leverage Azure Application Insights features to send alerts.
 
 ## Notes on other transports
 
