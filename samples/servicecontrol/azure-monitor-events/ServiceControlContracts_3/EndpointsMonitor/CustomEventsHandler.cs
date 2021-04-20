@@ -2,11 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.DataContracts;
 using NServiceBus;
 using NServiceBus.Logging;
 using ServiceControl.Contracts;
 
-#region AzureMonitorConnectorEventsHandlers
+#region ServiceControlEventsHandlers
 
 public class CustomEventsHandler :
     IHandleMessages<MessageFailed>,
@@ -27,10 +28,10 @@ public class CustomEventsHandler :
 
     public Task Handle(MessageFailed message, IMessageHandlerContext context)
     {
+        
         telemetryClient.TrackEvent("Message Failed", new Dictionary<string, string>
         {
             {"MessageId", message.FailedMessageId},
-            {"DetailsUrl", $"http://localhost:49205/#/failed-messages/message/{message.FailedMessageId}"}
         });
 
         log.Error($"Received ServiceControl 'MessageFailed' event for a {message.MessageType} with ID {message.FailedMessageId}.");
@@ -41,8 +42,7 @@ public class CustomEventsHandler :
     {
         telemetryClient.TrackEvent("Heartbeat Stopped", new Dictionary<string, string>
         {
-            {"MessageId", message.EndpointName},
-            {"DetailsUrl", $"http://localhost:49205/#/endpoints/"}
+            {"EndpointName", message.EndpointName},
         });
 
         log.Warn($"Heartbeats from {message.EndpointName} have stopped.");
@@ -51,30 +51,55 @@ public class CustomEventsHandler :
 
     public Task Handle(HeartbeatRestored message, IMessageHandlerContext context)
     {
+        telemetryClient.TrackEvent("Heartbeat Restored", new Dictionary<string, string>
+        {
+            {"EndpointName", message.EndpointName},
+        });
+
         log.Info($"Heartbeats from {message.EndpointName} have been restored.");
         return Task.CompletedTask;
     }
 
     public Task Handle(FailedMessagesArchived message, IMessageHandlerContext context)
     {
+        telemetryClient.TrackEvent("Failed Messages Archived", new Dictionary<string, string>
+        {
+            {"MessagesIds", string.Join(",", message.FailedMessagesIds)},
+        });
+
         log.Error($"Received ServiceControl 'FailedMessageArchived' with ID {message.FailedMessagesIds.FirstOrDefault()}.");
         return Task.CompletedTask;
     }
     
     public Task Handle(FailedMessagesUnArchived message, IMessageHandlerContext context)
     {
+        telemetryClient.TrackEvent("Failed Messages Unarchived", new Dictionary<string, string>
+        {
+            {"MessagesIds", string.Join(",", message.FailedMessagesIds)},
+        });
+
         log.Error($"Received ServiceControl 'FailedMessagesUnArchived' MessagesCount: {message.FailedMessagesIds.Length}.");
         return Task.CompletedTask;
     }   
     
     public Task Handle(MessageFailureResolvedByRetry message, IMessageHandlerContext context)
     {
+        telemetryClient.TrackEvent("Message Failure Resolved By Retry", new Dictionary<string, string>
+        {
+            {"MessageId", message.FailedMessageId},
+        });
+
         log.Error($"Received ServiceControl 'MessageFailureResolvedByRetry' with ID {message.FailedMessageId}.");
         return Task.CompletedTask;
     }
 
     public Task Handle(MessageFailureResolvedManually message, IMessageHandlerContext context)
     {
+        telemetryClient.TrackEvent("Message Failure Resolved Manually", new Dictionary<string, string>
+        {
+            {"MessageId", message.FailedMessageId},
+        });
+
         log.Error($"Received ServiceControl 'MessageFailureResolvedManually'  with ID {message.FailedMessageId}.");
         return Task.CompletedTask;
     }
