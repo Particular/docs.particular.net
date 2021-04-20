@@ -10,7 +10,7 @@ related:
  - samples/servicecontrol/monitoring3rdparty
 ---
 
-This sample shows how to monitor heartbeat and failed message events in ServiceControl, as well as observing the same activity in ServicePulse. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
+This sample shows how to monitor activities performed in ServiceControl and ServicePulse using the integration events. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
 
 include: platformlauncher-windows-required
 
@@ -22,26 +22,24 @@ downloadbutton
 Running the project will result in 3 console windows:
 
 1. **NServiceBusEndpoint**: The endpoint that represents the system being monitored.
-1. **AzureMonitorConnector**: The endpoint that subscribes to ServiceControl heartbeat and failed message events and registers the event on Azure Application Insights.
+1. **AzureMonitorConnector**: The endpoint that subscribes to ServiceControl notification events and pushes them on App Insights Azure Monitor as custom telemetry events.
 1. **PlatformLauncher**: Runs an in-process version of ServiceControl and ServicePulse. When the ServiceControl instance is ready, a browser window will be launched displaying the ServicePulse Dashboard.
 
-The project handles two kinds of events:
+The samples enables triggering two types of events:
 
 ### MessageFailed event
 
 A `MessageFailed` event is emitted when processing a message fails and the message is moved to the error queue.
 
-To observe this in action, press <kbd>Enter</kbd> in the `NServiceBusEndpoint` console window to send a new `SimpleMessage` event. Processing of the message fails every time.
+To observe this in action, press <kbd>Enter</kbd> in the `NServiceBusEndpoint`console window. It will cause generate new `SimpleMessage` event that causes failure when processed.
 
 NOTE: The exception will cause the debugger to enter a breakpoint. It may be preferable to detach the debugger in order to better observe what's going on.
 
-When a `MessageFailed` event is received, the `EndpointsMonitor` prints the following message in its console window: 
+When a `MessageFailed` event is received, the `AzureMonitorConnector` prints the following message in its console window: 
 
 ```
 > Received ServiceControl 'MessageFailed' event for a SimpleMessage with ID 42f25e40-a673-61f3-a505-c8dee6d16f8a
 ```
-
-Using the details in the `MessageFailed` message, handler code can be written to notify operations or development staff by email or other method.
 
 The failed message can also be viewed in the ServicePulse browser window. Navigating to the failed message allows viewing more details about the message failure.
 
@@ -52,11 +50,11 @@ The `HeartbeatStopped` event is emitted whenever an endpoint fails to send a con
 
 Note: The monitor must receive at least one control message before it can observe that the endpoint stopped responding.
 
-To observe this in action, stop the `NServiceBusEndpoint` application and wait up to 30 seconds. When a `HeartbeatStopped` event is received, the `EndpointsMonitor` prints the following message in its console window:
+To observe this in action, stop the `NServiceBusEndpoint` process and wait up to 30 seconds. When a `HeartbeatStopped` event is received, the `AzureMonitorConnector` prints the following message to the console window:
 
 > `Heartbeat from NServiceBusEndpoint stopped.`
 
-Next, restart the `NServiceBusEndpoint` application and wait up to 30 seconds. When a `HeartbeatRestored` event is received, the `EndpointsMonitor` prints the following message in its console window:
+Next, restart the `NServiceBusEndpoint` application and wait up to 30 seconds. When a `HeartbeatRestored` event is received, the `AzureMonitorConnector` prints the following message in its console window:
 
 > `Heartbeat from EndpointsMonitoring.NServiceBusEndpoint restored.`
 
@@ -76,6 +74,13 @@ In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpo
 
 NOTE: Heartbeat control messages are sent [every 30 seconds by default](/monitoring/heartbeats/legacy#configuration-time-to-live-ttl) so there will be up to a 30 second delay before ServiceControl realizes that it lost or restored connection with the endpoint.
 
+## Connect to Application Insights Azure Monitor
+
+To connect the sample code to App Insights, the instrumentation key must be provided. The key gets loaded from `ApplicationInsightKey` environment variable. 
+
+The instrumentation key can be retrieved from the Azure Portal by locating the App Insights instance, and then navigating to the Properties view.
+
+snippet: AppInsightsSdkSetup
 
 ### AzureMonitorConnector
 
@@ -83,18 +88,7 @@ In order to get notifications when the exposed ServiceControl events occur, crea
 
 snippet: AzureMonitorConnectorEventsHandler
 
-
-## Connect to Application Insights Azure Monitor
-
-To connect the sample code to App Insights, the instrumentation key must be provided.
-
-By default the sample code loads this key from an environment variable called ApplicationInsightKey. Either set this environment variable or paste the instrumentation key in the following section.
-
-The instrumentation key can be retrieved from the Azure Portal by locating the App Insights instance, and then navigating to the Properties view.
-
-snippet: AppInsightsSdkSetup
-
-Now it is possible to leverage Azure Application Insights features to send alerts.
+The handler creats a custom telemetry event and pushes it to Application Insights.
 
 ## Notes on other transports
 
