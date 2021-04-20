@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericHost", "GenericHost\GenericHost.csproj", "{374C998C-DE36-4F61-89AB-C11BF65633A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{374C998C-DE36-4F61-89AB-C11BF65633A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{374C998C-DE36-4F61-89AB-C11BF65633A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{374C998C-DE36-4F61-89AB-C11BF65633A2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{374C998C-DE36-4F61-89AB-C11BF65633A2}.Debug|x64.Build.0 = Debug|Any CPU
+		{374C998C-DE36-4F61-89AB-C11BF65633A2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{374C998C-DE36-4F61-89AB-C11BF65633A2}.Debug|x86.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal
