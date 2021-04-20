@@ -15,26 +15,7 @@ Methods used outside the message processing pipeline now include an optional `Ca
 
 It is recommended to forward a `CancellationToken` to any method that accepts one. For example, within a web application controller:
 
-```csharp
-public class TestController
-{
-    private IMessageSession session;
-
-    public TestController(IMessageSession session)
-    {
-        this.session = session;
-    }
-
-    [HttpGet("/test")]
-    public async Task<string> Get(CancellationToken cancellationToken)
-    {
-        // Forward the cancellation token to methods that accept one
-        await Task.Delay(10_000, cancellationToken);
-
-        return "Finished 10s delay";
-    }
-}
-```
+snippet: cancellation-token-in-asp-controller
 
 [Enabling .NET source code analysis](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview) (enabled by default in projects targeting .NET 5 or above) is also recommended so that [CA2016: Forward the CancellationToken parameter to methods that take one](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2016) can identify locations where the `CancellationToken` should be forwarded. This rule is presented as an informational message only, but the [analyzer severity](https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers#configure-severity-levels) can be upgraded to a warning using an [.editorconfig file](https://editorconfig.org/):
 
