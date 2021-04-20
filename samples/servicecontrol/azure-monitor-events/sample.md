@@ -22,7 +22,7 @@ downloadbutton
 Running the project will result in 3 console windows:
 
 1. **NServiceBusEndpoint**: The endpoint that represents the system being monitored.
-1. **AzureMonitorConnector**: The endpoint that subscribes to ServiceControl notification events and pushes them on App Insights Azure Monitor as custom telemetry events.
+1. **AzureMonitorConnector**: The endpoint that subscribes to ServiceControl notification events and pushes them to Application Insights as custom telemetry events.
 1. **PlatformLauncher**: Runs an in-process version of ServiceControl and ServicePulse. When the ServiceControl instance is ready, a browser window will be launched displaying the ServicePulse Dashboard.
 
 The samples enables triggering two types of events:
@@ -76,9 +76,9 @@ NOTE: Heartbeat control messages are sent [every 30 seconds by default](/monitor
 
 ## Connect to Application Insights Azure Monitor
 
-To connect the sample code to App Insights, the instrumentation key must be provided. The key gets loaded from `ApplicationInsightKey` environment variable. 
+To connect the sample code to Application Insights, the instrumentation key must be provided. The key gets loaded from `ApplicationInsightKey` environment variable. 
 
-The instrumentation key can be retrieved from the Azure Portal by locating the App Insights instance, and then navigating to the Properties view.
+The instrumentation key can be retrieved from the Azure Portal by locating the Application Insights instance, and then navigating to the Properties view.
 
 snippet: AppInsightsSdkSetup
 
