@@ -47,7 +47,7 @@ All ServiceControl instances publish [external integration events](/servicecontr
 
 All ServiceControl instances store data in an embedded database. Audit data is retained for 30 days. Failed message data is retained until the message is retried or manually deleted. [These retention periods may be changed](/servicecontrol/creating-config-file.md#data-retention).
 
-Each environment should have a single audit queue and a single error queue that all endpoints are configured to use. Each environment should have at least one ServiceControl instance that is connected to its audit and error queues. The [planning](/servicecontrol/servicecontrol-in-practice.md) documentation should be consulted before creating a new ServiceControl instance.
+Each environment should have a single audit queue and a single error queue that all endpoints are configured to use. Each environment should have at least one ServiceControl instance that is connected to its audit and error queues. The [planning documentation](/servicecontrol/servicecontrol-in-practice.md) should be consulted before creating a new ServiceControl instance.
 
 ### Self-monitoring via custom checks
 
