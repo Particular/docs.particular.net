@@ -88,7 +88,7 @@ In order to get notifications when the exposed ServiceControl events occur, crea
 
 snippet: AzureMonitorConnectorEventsHandler
 
-The handler creats a custom telemetry event and pushes it to Application Insights.
+The handler creates a custom telemetry event and pushes it to Application Insights.
 
 ## Notes on other transports
 
