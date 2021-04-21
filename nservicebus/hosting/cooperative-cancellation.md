@@ -9,8 +9,6 @@ As of Version 8 NServiceBus supports [cooperative cancellation](https://docs.mic
 
 ### Non-message-handling contexts
 
-Methods on extension points are updated to include a mandatory `CancellationToken` parameter. This includes abstract classes and interfaces needed to implement a message transport or persistence libary, as well as other extension points like `IDataBus`, `FeatureStartupTask`, `INeedToInstallSomething`. Implementors can be updated by adding the `CancellationToken` parameter to the end of the method signature.
-
 Methods used outside the message processing pipeline now include an optional `CancellationToken` parameter, including methods for starting and stopping endpoints, and methods to send or publish messages from outside a message processing pipeline, such as from within a web application.
 
 It is recommended to forward a `CancellationToken` to any method that accepts one. For example, within a web application controller:

@@ -55,11 +55,7 @@ The following provider packages will no longer be provided:
 
 ## CancellationToken support
 
-NServiceBus version 8 supports [cooperative cancellation](/nservicebus/hosting/cooperative-cancellation.md) using `CancellationToken`. While the token is optional in message handlers and on `IMessageSession` it's mandatory on:
-
-* Pipeline behaviors
-* Message mutator
-* Extension points like serializer, persisters, transports and the Databus.
+NServiceBus version 8 supports [cooperative cancellation](/nservicebus/hosting/cooperative-cancellation.md) using `CancellationToken`. While the token is optional in message handlers and on `IMessageSession` methods on extension points are updated to include a mandatory `CancellationToken` parameter. This includes abstract classes and interfaces needed to implement a message transport or persistence libary, as well as other extension points like `IDataBus`, `FeatureStartupTask`, `INeedToInstallSomething`. Implementors can be updated by adding the `CancellationToken` parameter to the end of the method signature.
 
 ## Shutdown behavior
 
