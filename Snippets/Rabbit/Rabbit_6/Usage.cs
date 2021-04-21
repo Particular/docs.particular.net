@@ -210,13 +210,22 @@ class Usage
         #endregion
     }
 
-
     void DisableDurableExchangesAndQueues(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-disable-durable-exchanges
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.DisableDurableExchangesAndQueues();
+
+        #endregion
+    }
+
+    void PrefixDelayedDeliveryInfrastructure(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-delay-specify-prefix
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.DelayDeliveryPrefix = "systemA";
 
         #endregion
     }

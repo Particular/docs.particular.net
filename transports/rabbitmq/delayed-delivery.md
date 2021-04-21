@@ -166,6 +166,7 @@ class q1,q3 usedQueue
 end
 ```
 
+partial: delayed-delivery-prefix
 
 ## Backwards compatibility
 
