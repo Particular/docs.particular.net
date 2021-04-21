@@ -9,7 +9,7 @@ As of Version 8 NServiceBus supports [cooperative cancellation](https://docs.mic
 
 ### Non-message-handling contexts
 
-Methods used outside the message processing pipeline now include an optional `CancellationToken` parameter, including methods for starting and stopping endpoints, and methods to send or publish messages from outside a message processing pipeline, such as from within a web application.
+Methods used outside the message processing pipeline include an optional `CancellationToken` parameter, including methods for starting and stopping endpoints, and methods to send or publish messages from outside a message processing pipeline, such as from within a web application.
 
 It is recommended to forward a `CancellationToken` to any method that accepts one. For example, within a web application controller:
 
@@ -32,16 +32,7 @@ Methods on `IMessageHandlerContext` such as `Send()` and `Publish()` do not acce
 
 It is recommended to forward the `context.CancellationToken` to any other method that accepts one. A new analyzer identifies locations where the token should be forwarded with a build warning, for example:
 
-```csharp
-public class SampleHandler : IHandleMessages<TestMessage>
-{
-    public async Task Handle(TestMessage message, IMessageHandlerContext context)
-    {
-        // Analyzer Warning NSB0002: Forward `context.CancellationToken` to the `Delay` method.
-        await Task.Delay(10_000);
-    }
-}
-```
+snippet: cancellation-token-in-message-handler
 
 The analyzer also offers a code fix that will update the code to forward the token using the "light bulb" menu. ( <kbd>Ctrl</kbd> + <kbd>.</kbd> )
 
