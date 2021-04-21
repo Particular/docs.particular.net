@@ -1,6 +1,6 @@
 ---
 title: Monitor with ServiceControl events with Azure Application Insights
-summary: A sample showing how to monitor events admitted by ServiceControl with Azure Application Insights
+summary: A sample showing how to monitor events published by ServiceControl with Azure Application Insights
 component: ServiceControlContracts
 reviewed: 2021-04-16
 related:
@@ -46,7 +46,7 @@ The failed message can also be viewed in the ServicePulse browser window. Naviga
 
 ### HeartbeatStopped and HeartbeatRestored events
 
-The `HeartbeatStopped` event is emitted whenever an endpoint fails to send a control message within the expected interval. The `HeartbeatRestored` event is emitted whenever the endpoint successfully sends a control message again. 
+The `HeartbeatStopped` event is published whenever an endpoint fails to send a control message within the expected interval. The `HeartbeatRestored` event is published whenever the endpoint successfully sends a control message again. 
 
 Note: The monitor must receive at least one control message before it can observe that the endpoint stopped responding.
 
