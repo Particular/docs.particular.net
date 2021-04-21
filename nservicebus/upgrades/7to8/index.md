@@ -175,9 +175,9 @@ endpointConfiguration.EnableOutbox();
 
 ### AbortReceiveOperation
 
-`ITransportReceiveContext.AbortReceiveOperation` has been deprecated in favor of throwing an [`OperationCancelledException`](https://docs.microsoft.com/en-us/dotnet/api/system.operationcanceledexception).
+`ITransportReceiveContext.AbortReceiveOperation` has been deprecated in favor of throwing an exception.
 
-Throwing `OperationCancelledException` will still result in recoverability policies being executed, eventually resulting in the message being sent to the error queue if the message is retried enough times, which is safer than allowing a message to get stuck in an infinite retry loop. This can be overridden using a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) if necessary.
+This will result in recoverability policies being executed, eventually resulting in the message being sent to the error queue if the message is retried enough times, which is safer than allowing a message to get stuck in an infinite retry loop. To replicate the previous behavior, use a custom exception type in combination with a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) that always requests an immediate retry.
 
 ### Renamed extension method types
 
