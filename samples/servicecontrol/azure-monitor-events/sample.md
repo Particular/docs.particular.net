@@ -10,7 +10,7 @@ related:
  - samples/servicecontrol/monitoring3rdparty
 ---
 
-This sample shows how to monitor activities performed in ServiceControl and ServicePulse using the integration events. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
+This sample shows how to monitor a running NServiceBus system with ServiceControl and ServicePulse, as well as how to integrate with existing monitoring solutions. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
 
 include: platformlauncher-windows-required
 
