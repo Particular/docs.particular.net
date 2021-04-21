@@ -27,7 +27,7 @@ Running the project will result in 3 console windows:
 
 The samples enables triggering two types of events:
 
-### MessageFailed event
+### Message Failures
 
 A `MessageFailed` event is emitted when processing a message fails and the message is moved to the error queue.
 
@@ -44,7 +44,7 @@ When a `MessageFailed` event is received, the `AzureMonitorConnector` prints the
 The failed message can also be viewed in the ServicePulse browser window. Navigating to the failed message allows viewing more details about the message failure.
 
 
-### HeartbeatStopped and HeartbeatRestored events
+### Heartbeat statuses
 
 The `HeartbeatStopped` event is published whenever an endpoint fails to send a control message within the expected interval. The `HeartbeatRestored` event is published whenever the endpoint successfully sends a control message again. 
 
