@@ -19,12 +19,16 @@ The images for each of these containers are further split into an init container
 
 ## Containerization support 
 
-| Environment | Support | Note |
-|-------------|---------|------|
-| Docker for Windows | Supported |  |
-| Docker for Linux | Unsupported | ServiceControl can not currently run in Linux.  |
-| Azure Container Services (ACS) | Unsupported | Does not support persistent volums |
-| Azure Kubernetes Services (AKS) | Under Review | Supports minimum of Windows Server 2019 based images |
+The following table mentions with containerization technology is currently supported for running a production system.
+
+| Environment                             | Supported | Note                                                               |
+|-----------------------------------------|-----------|--------------------------------------------------------------------|
+| Docker for Windows                      | Yes       |                                                                    |
+| Docker (for Linux)                      | No        | ServiceControl can not yet run in Linux.                           |
+| Azure Container Services (ACS)          | No        | Works, but does not support persistent volumes for durable storage |
+| Azure Kubernetes Services (AKS)         | No        | Supports minimum of Windows Server 2019 based images               |
+| Amazon Elastic Container Services (ECS) | No        | Untested, guidance mentions AMIs available for Windows 2016        |
+| Amazon Elastic Kubernetes Service (EKS) | No        | EKS only supports Windows 2019                                     |
 
 ## Init containers
 
