@@ -54,7 +54,7 @@ Deprecations in minor versions will always generate a compiler warning and not a
 
 ## Summary
 
-The following table summarize the risk, urgency, and effort associated with each version type:
+The following table summarizes the risk, urgency, and effort associated with each version type:
 
 |  | Patch | Minor | Major |
 |---------|----------------|--------|-------|
