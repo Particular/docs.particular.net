@@ -1,24 +1,20 @@
 ---
-title: Connect to Application Insights Azure Monitor
-summary: How to use Application Insights From A Handler
+title: Integrating with Azure Application Insights
+summary: How to monitor NServiceBus systems using Azure Application Insights
 component: ServiceControl
 reviewed: 2021-04-21
-related:
- - samples/servicecontrol/azure-monitor-events
- - samples/logging/application-insights
- - samples/tracing
 ---
 
-## Connect to Application Insights Azure Monitor
+## Endpoint-level performance and health metrics
 
-To use Application Insights, the instrumentation key must be provided. 
+Azure Application Insights (App Insights) provides monitoring and alerting capabilities that can be leveraged to monitor the health of individual NServiceBus endpoints. It is possible to gather performance metrics like [Processing Time](/monitoring/metrics/definitions.md#metrics-captured-processing-time) and [Critial Time](/monitoring/metrics/definitions.md#metrics-captured-critical-time) as well as data on number of immediate and delayed [retries](/nservicebus/recoverability).
 
-By default the sample code loads this key from an environment variable called ApplicationInsightKey. Either set this environment variable or paste the instrumentation key in the following section.
+For more details, see [this sample](/samples/logging/application-insights).
 
-The instrumentation key can be retrieved from the Azure Portal by locating the Application Insights instance, and then navigating to the Properties view.
+## Distributed tracing
 
-snippet: AppInsightsSdkSetup
+It's possible to send tracing data to Application Insights for analysis and visualization. [This sample](/samples/tracing) shows how to extend the NServiceBus pipeline with custom behaviors that publish trace data which later gets sent to Azure Monitor Application Insights.
 
-The handler below creates a custom telemetry event and pushes it to Application Insights.
+## System-level health events
 
-snippet: AzureMonitorConnectorEventsHandler
+Integration events published by ServiceControl enable pushing system-level health events to 3rd party systems like Application Insights. [This sample](/samples/servicecontrol/azure-monitor-events) shows how to capture integration events triggered by ServiceControl and push them to Application Insights in form of custom events.
