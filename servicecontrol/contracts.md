@@ -78,6 +78,8 @@ See [Heartbeat Notification Events](/monitoring/heartbeats/notification-events.m
 
 ## Other events
 
+NOTE: Events described in this section are published by ServiceControl starting with version 4.17.
+
 ServiceControl will also publish events related to archiving and retrying messages
 - `FailedMessagesArchived`: Event emitted for failed messages that were archived
 - `FailedMessagesUnArchived`: Event emitted for failed messages that were un-archived
