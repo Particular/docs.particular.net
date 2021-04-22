@@ -1,6 +1,6 @@
 ---
 title: Message Throughput Throttling
-reviewed: 2019-05-06
+reviewed: 2021-04-17
 component: Core
 related:
 - nservicebus/pipeline/manipulate-with-behaviors
@@ -61,3 +61,5 @@ snippet: RegisterBehavior
 Handles the detection of `Octokit.RateLimitExceededException` and defers the message.
 
 snippet: ThrottlingBehavior
+
+NOTE: The above example creates a copy of the message and does not copy headers of the original message. Should headers be required they need to be copied from the `context.Headers` into the  `SendOptions`.
