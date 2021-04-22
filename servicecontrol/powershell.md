@@ -1,6 +1,6 @@
 ---
 title: Managing ServiceControl via PowerShell
-reviewed: 2021-05-17
+reviewed: 2021-04-17
 ---
 
 
