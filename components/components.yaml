@@ -652,15 +652,15 @@
     - NServiceBus.UniformSession.Testing
 
 - Key: ASBFunctions
-  Name: NServiceBus.AzureFunctions.ServiceBus
-  DocsUrl: /previews/azure-functions-service-bus
+  Name: NServiceBus.AzureFunctions.InProcess.ServiceBus
+  DocsUrl: /nservicebus/hosting/azure-functions/service-bus
   GitHubOwner: Particular
   Category: Host
   SupportLevel: Preview
-  LicenseUrl: https://github.com/Particular/NServiceBus.AzureFunctions.ServiceBus/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.ServiceBus
+  LicenseUrl: https://github.com/Particular/NServiceBus.AzureFunctions.InProcess.ServiceBus/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.InProcess.ServiceBus
   NugetOrder:
-    - NServiceBus.AzureFunctions.ServiceBus
+    - NServiceBus.AzureFunctions.InProcess.ServiceBus
 
 - Key: ASQFunctions
   Name: NServiceBus.AzureFunctions.StorageQueues
