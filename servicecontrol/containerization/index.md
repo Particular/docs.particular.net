@@ -17,6 +17,19 @@ ServiceControl is split into multiple docker images for each instance type. Thes
 
 The images for each of these containers are further split into an init container and a runtime container per transport.
 
+## Containerization support 
+
+The following table mentions with containerization technology is currently supported for running a production system.
+
+| Environment                             | Supported | Note                                                               |
+|-----------------------------------------|-----------|--------------------------------------------------------------------|
+| Docker for Windows                      | Yes       |                                                                    |
+| Docker (for Linux)                      | No        | ServiceControl can not yet run in Linux.                           |
+| Azure Container Services (ACS)          | No        | Works, but does not support persistent volumes for durable storage |
+| Azure Kubernetes Services (AKS)         | No        | Supports minimum of Windows Server 2019 based images               |
+| Amazon Elastic Container Services (ECS) | No        | Untested, guidance mentions AMIs available for Windows 2016        |
+| Amazon Elastic Kubernetes Service (EKS) | No        | EKS only supports Windows 2019                                     |
+
 ## Init containers
 
 The init containers are used to create or upgrade the infrastructure required for ServiceControl and are based on the [Kubernetes init containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/). Once the init container has been run, it will shut down and the runtime container can be run. The runtime container will use the infrastructure that has been created and if the init container was not run the runtime container will fail.
