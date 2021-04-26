@@ -656,8 +656,6 @@
   DocsUrl: /nservicebus/hosting/azure-functions/service-bus
   GitHubOwner: Particular
   Category: Host
-  SupportLevel: Preview
-  LicenseUrl: https://github.com/Particular/NServiceBus.AzureFunctions.InProcess.ServiceBus/blob/master/LICENSE.md
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.InProcess.ServiceBus
   NugetOrder:
     - NServiceBus.AzureFunctions.InProcess.ServiceBus
