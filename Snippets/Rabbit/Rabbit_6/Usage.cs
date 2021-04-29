@@ -219,14 +219,4 @@ class Usage
 
         #endregion
     }
-
-    void PrefixDelayedDeliveryInfrastructure(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-delay-specify-prefix
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.DelayDeliveryPrefix = "systemA";
-
-        #endregion
-    }
 }
