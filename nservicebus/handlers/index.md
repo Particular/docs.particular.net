@@ -2,12 +2,12 @@
 title: Handlers
 summary: Write a class to handle messages in NServiceBus.
 component: Core
-reviewed: 2019-05-06
+reviewed: 2021-04-29
 redirects:
 - nservicebus/how-do-i-handle-a-message
 ---
 
-To handle a message, write a class that implements `IHandleMessages<T>` where `T` is the message type:
+NServiceBus will take a message from the queue and hand it over to one or more message handlers. To create a message handler, write a class that implements `IHandleMessages<T>` where `T` is the message type:
 
 snippet: CreatingMessageHandler
 
@@ -18,7 +18,7 @@ To handle messages of all types:
  1. Set up the [message convention](/nservicebus/messaging/conventions.md) to designate which classes are messages. This example uses a namespace match.
  1. Create a handler of type `Object`. This handler will be executed for all messages that are delivered to the queue for this endpoint.
 
-Since this class is setup to handle type `Object`, every message arriving in the queue will trigger it.
+Since this class is setup to handle type `Object`, every message arriving in the queue will trigger it. Note that this might not be a recommended approach as [writing a behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) is often a better solution.
 
 snippet: GenericMessageHandler
 
