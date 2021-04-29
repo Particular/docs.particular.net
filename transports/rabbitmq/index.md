@@ -65,5 +65,3 @@ In AMQP [the `delivery_mode`](https://www.rabbitmq.com/amqp-0-9-1-reference.html
 DANGER: Any failure in transmission or issues in the broker will result in the message being lost
 
 partial: nonpersistent
-
-partial: quorumqueues
