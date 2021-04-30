@@ -24,9 +24,9 @@ The following table mentions with containerization technology is currently suppo
 | Environment                             | Supported | Note                                                               |
 |-----------------------------------------|-----------|--------------------------------------------------------------------|
 | Docker for Windows                      | Yes       |                                                                    |
-| Docker (for Linux)                      | No        | ServiceControl can not yet run in Linux.                           |
+| Docker (for Linux)                      | No        | ServiceControl can not run in Linux.                           |
 | Azure Container Services (ACS)          | No        | Works, but does not support persistent volumes for durable storage |
-| Azure Kubernetes Services (AKS)         | No        | Supports minimum of Windows Server 2019 based images               |
+| Azure Kubernetes Services (AKS)         | No        | Supports minimum of Windows Server 2019-based images               |
 | Amazon Elastic Container Services (ECS) | No        | Untested, guidance mentions AMIs available for Windows 2016        |
 | Amazon Elastic Kubernetes Service (EKS) | No        | EKS only supports Windows 2019                                     |
 

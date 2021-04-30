@@ -25,7 +25,7 @@ A compose file cannot setup both Windows and Linux containers. [ServicePulse sup
 
 ## Memory
 
-For this sample the containers will use the default1GB limit for containers used by Docker for Windows. This is sufficient for demo purposes but not when ServiceControl is under load or when the database grows in size. This limit can be easily be adjusted by uncommenting the text `#mem_limit: 8192m` in the docker compose files.
+For this sample the containers will use the default limit of 1GB for containers used by Docker for Windows. This is sufficient for demo purposes but not when ServiceControl is under load or when the database grows in size. This limit can be adjusted by uncommenting the text `#mem_limit: 8192m` in the Docker Compose files.
 
 ## License
 

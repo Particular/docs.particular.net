@@ -6,7 +6,7 @@ reviewed: 2021-03-16
 
 NOTE: Internet Explorer is not supported by RavenDB Management Studio.
 
-ServiceControl Audit stores its data in a RavenDB embedded instance. Under normal operation, the RavenDB instance is accessible only by the ServiceControl Audit service. The RavenDB instance may be accessed for troubleshooting by following these steps:
+ServiceControl audit instances store their data in an embedded RavenDB database. Under normal operation, the RavenDB instance is accessible only by the ServiceControl audit service. The RavenDB instance may be accessed for troubleshooting by following these steps:
 
 1. Launch ServiceControl Management
 1. Open Advanced Options
