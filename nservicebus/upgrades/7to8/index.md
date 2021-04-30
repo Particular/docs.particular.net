@@ -97,11 +97,9 @@ In NServiceBus version 7 and below, the license path could be loaded from the `N
 
 Starting in NServiceBus version 8, one of the [other methods of providing a license](/nservicebus/licensing/?version=core_8) must be used.
 
-
 ## Support for message forwarding
 
 NServiceBus no longer natively supports forwarding a copy of every message processed by an endpoint. Instead, create a custom behavior to forward a copy of every procesed message as described in [this sample](/samples/routing/message-forwarding).
-
 
 ## NServiceBus Host
 

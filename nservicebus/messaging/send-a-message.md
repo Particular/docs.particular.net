@@ -35,18 +35,11 @@ snippet: SendFromHandler
 
 partial: batch-sends-performance
 
-
-partial: batch-sends-performance
-
-
 partial: override-default-routing
-
 
 partial: sending-to-self
 
-
 partial: influence-reply
-
 
 ## Dispatching a message immediately
 
