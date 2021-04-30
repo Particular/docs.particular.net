@@ -1,6 +1,6 @@
 ---
 title: Managing Monitoring instances via PowerShell
-reviewed: 2019-05-08
+reviewed: 2021-04-30
 ---
 
 NOTE: For general information about ServiceControl PowerShell, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
