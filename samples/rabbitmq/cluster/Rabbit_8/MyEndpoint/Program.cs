@@ -11,9 +11,12 @@ namespace Receiver
         {
             Console.Title = "Samples.RabbitMQ.Cluster.MyEndpoint";
             var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Cluster.MyEndpoint");
-            var transport = new RabbitMQClusterTransport(Topology.Conventional, "host=localhost", QueueMode.Quorum, DelayedDeliverySupport.UnsafeEnabled);
+            var transport = new RabbitMQClusterTransport(Topology.Conventional, "host=localhost", QueueMode.Quorum, DelayedDeliverySupport.Disabled);
             endpointConfiguration.UseTransport(transport);
             endpointConfiguration.EnableInstallers();
+
+            // Delayed retries needs to be disabled since we can't safely use the timeout capabilities of the transport
+            endpointConfiguration.Recoverability().Delayed(dc => dc.NumberOfRetries(0));
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
