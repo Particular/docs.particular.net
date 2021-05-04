@@ -21,10 +21,13 @@ namespace Receiver
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
-            await endpointInstance.SendLocal(new MyCommand());
+            Console.WriteLine("Press S to send a message, any other key to exit");
 
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
+            while (Console.ReadKey().KeyChar == 's')
+            {
+                await endpointInstance.SendLocal(new MyCommand());
+            }
+
             await endpointInstance.Stop()
                 .ConfigureAwait(false);
         }
