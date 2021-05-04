@@ -11,7 +11,7 @@ namespace Receiver
         {
             Console.Title = "Samples.RabbitMQ.Cluster.MyEndpoint";
             var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Cluster.MyEndpoint");
-            var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost");
+            var transport = new RabbitMQClusterTransport(Topology.Conventional, "host=localhost", QueueMode.Quorum, DelayedDeliverySupport.UnsafeEnabled);
             endpointConfiguration.UseTransport(transport);
             endpointConfiguration.EnableInstallers();
 
