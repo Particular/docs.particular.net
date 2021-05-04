@@ -35,6 +35,26 @@ This sample shows how to use a clustered RabbitMQ as a transport for NServiceBus
 
 ### Configuration
 
-snippet: ConfigureClusteredRabbit
+snippet: cluster-configuration
 
 The username and password can be configured via the connection string. If these are not present, the connection string defaults to `host=localhost;username=guest;password=guest`.
+
+Note that [delayed delivery](/nservicebus/messaging/delayed-delivery.md) isn't supported for clusters and the sample therefor disables them. This means that [saga timeouts](/nservicebus/sagas/timeouts) can't be used and [delayed retries](https://docs.particular.net/nservicebus/recoverability.md#delayed-retries) must be disabled as shown below:
+
+snippet: cluster-disable-retries
+
+### Adding nodes
+
+RabbitMQ allows additional nodes to be added to avoid having to use a load balancer in front of the cluster. Adding those nodes will make the connection manager use them in a round robin fashion and automatically re-connect to healthy nodes should the connection be lost.
+
+Since RabbitMQ will default to port `5672` we only have to add nodes `rabbit2` and `rabbit3` as shown below:
+
+snippet: cluster-add-nodes
+
+With this setup the connection manager will initially connect to `rabbit1` but try `rabbit2` or `rabbit3` should `rabbit1` become unavailable.
+
+To try this out shutdown node `rabbit2` by executing:
+
+`docker exec rabbit1 rabbitmqctl stop_app`
+
+Notice how a `WARN` is logged and that the endpoint is reconnected to the cluster.
