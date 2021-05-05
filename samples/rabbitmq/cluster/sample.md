@@ -39,7 +39,7 @@ snippet: cluster-configuration
 
 The username and password can be configured via the connection string. If these are not present, the connection string defaults to `host=localhost;username=guest;password=guest`.
 
-Note that [delayed delivery](/nservicebus/messaging/delayed-delivery.md) isn't supported for clusters and the sample therefor disables them. This means that [saga timeouts](/nservicebus/sagas/timeouts) can't be used and [delayed retries](https://docs.particular.net/nservicebus/recoverability.md#delayed-retries) must be disabled as shown below:
+Note that [delayed delivery](/nservicebus/messaging/delayed-delivery.md) isn't supported for clusters and the sample therefor disables them. This means that [saga timeouts](/nservicebus/sagas/timeouts) can't be used and [delayed retries](/nservicebus/recoverability.md#delayed-retries) must be disabled as shown below:
 
 snippet: cluster-disable-retries
 
