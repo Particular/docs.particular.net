@@ -70,7 +70,7 @@ class Usage
         #region rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
         var topology = new DirectRoutingTopology(
-            useDurableExchanges: true,
+            useDurableEntities: true,
             exchangeNameConvention: () => "MyTopic",
             routingKeyConvention: MyRoutingKeyConvention);
 
@@ -245,7 +245,7 @@ class Usage
         #region rabbitmq-disable-durable-exchanges
 
         var topology = new ConventionalRoutingTopology(
-            useDurableExchanges:  false);
+            useDurableEntities:  false);
 
         var transport = new RabbitMQTransport(topology, "host=localhost");
 
