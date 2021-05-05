@@ -30,13 +30,12 @@ namespace Receiver
             endpointConfiguration.Recoverability().Delayed(dc => dc.NumberOfRetries(0));
             #endregion
 
-
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
 
-            Console.WriteLine("Press S to send a message, any other key to exit");
+            Console.WriteLine("Press [s] to send a message, any other key to exit");
 
-            while (Console.ReadKey().KeyChar == 's')
+            while (Console.ReadKey().Key == ConsoleKey.S)
             {
                 await endpointInstance.SendLocal(new MyCommand());
             }

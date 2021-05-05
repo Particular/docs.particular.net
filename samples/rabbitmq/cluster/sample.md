@@ -47,7 +47,7 @@ snippet: cluster-disable-retries
 
 RabbitMQ allows additional nodes to be added to avoid having to use a load balancer in front of the cluster. Adding those nodes will make the connection manager use them in a round robin fashion and automatically re-connect to healthy nodes should the connection be lost.
 
-Since RabbitMQ will default to port `5672` we only have to add nodes `rabbit2` and `rabbit3` as shown below:
+RabbitMQ will default to port `5672` therefore the extra nodes (`rabbit2` and `rabbit3`) are added as shown below:
 
 snippet: cluster-add-nodes
 
