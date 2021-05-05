@@ -29,7 +29,7 @@
 
         public void EnableDelayedDelivery(EndpointConfiguration endpointConfiguration)
         {
-            #region disable-delayed-delivery
+            #region enable-delayed-delivery
 
             var rabbitMqTransport = new RabbitMQClusterTransport(Topology.Conventional, "host=localhost", QueueMode.Classic, DelayedDeliverySupport.UnsafeEnabled);
             endpointConfiguration.UseTransport(rabbitMqTransport);
