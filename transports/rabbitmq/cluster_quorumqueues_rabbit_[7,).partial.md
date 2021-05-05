@@ -8,7 +8,7 @@ snippet: quorum-queue-config
 
 WARN: An existing queue cannot be automatically converted to a quorum queue. Endpoints are not able to detect a queue-mode configuration mismatch on existing queues and will ignore the configured queue mode when the queue already exists.
 
-WARN: Quorum queues do not support [time-to-be-received](nservicebus/messaging/discard-old-messages.md). Messages with a time-to-be-receid configured won't be discarded if the destination is a quorum queue.
+WARN: Quorum queues do not support [time-to-be-received](/nservicebus/messaging/discard-old-messages.md). Messages with a time-to-be-receid configured won't be discarded if the destination is a quorum queue.
 
 NOTE: For endpoints need to be updated to at least version 6.1 of the `NServiceBus.Transport.RabbitMQ` package in order to be able to send messages to endpoints using quorum queues or to shared error and audit queues that are configured as quorum queues.
 
