@@ -360,6 +360,8 @@
       Title: Windows Service Installation
     - Url: nservicebus/hosting/override-hostid
       Title: Overriding the host identifier
+    - Url: nservicebus/hosting/override-machine-name
+      Title: Overriding the machine name
     - Url: nservicebus/hosting/custom-configuration-providers
       Title: Overriding app.config settings
     - Url: nservicebus/hosting/assembly-scanning
