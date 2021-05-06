@@ -1,5 +1,5 @@
 ---
-title: Monitor with ServiceControl events with Azure Application Insights
+title: Monitor ServiceControl events with Azure Application Insights
 summary: A sample showing how to monitor events published by ServiceControl with Azure Application Insights
 component: ServiceControlContracts
 reviewed: 2021-04-16
