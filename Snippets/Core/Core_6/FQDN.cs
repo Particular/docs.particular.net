@@ -8,12 +8,9 @@
     {
         void FQDN()
         {
-            #region MsmqMachineNameFQDN
+            #region MachineNameActionOverride
 
-            RuntimeEnvironment.MachineNameAction = () =>
-            {
-                return Dns.GetHostEntry(Environment.MachineName).HostName;
-            };
+            RuntimeEnvironment.MachineNameAction = () => Dns.GetHostEntry(Environment.MachineName).HostName;
 
             #endregion
         }
