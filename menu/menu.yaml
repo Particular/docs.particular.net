@@ -1164,6 +1164,8 @@
       Title: Redirects
     - Url: servicepulse/event-types
       Title: Events
+    - Url: servicepulse/health-check-notifications
+      Title: Health check notifications
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config
