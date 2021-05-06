@@ -13,7 +13,7 @@ The machine name is used by various components.
 
 To override the machine name resolution, provide a factory method to `NServiceBus.Support.RuntimeEnvironment.MachineNameAction` when an endpoint is configured.
 
-INFO: Override the `MachineNameAction` **before** creating any endpoint configuration. Not doing this can cause messages to be send that will not contain the right machine name values.
+INFO: Override the `MachineNameAction` **before** creating any NServiceBus endpoint configuration object. Not doing this can cause messages to be send that will not contain the right machine name values.
 
 snippet: MachineNameActionOverride
 
