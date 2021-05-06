@@ -1,12 +1,12 @@
-﻿namespace Snippets6.Transports.MSMQ
+﻿namespace Core8
 {
     using System;
     using System.Net;
     using NServiceBus.Support;
 
-    public class FQDMTest
+    public class FQDNTest
     {
-        void FQDM()
+        void FQDN()
         {
             #region MsmqMachineNameFQDN
 
