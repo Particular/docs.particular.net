@@ -1274,6 +1274,8 @@
   - Title: Integration
     Url: servicecontrol/integration
     Articles:
+    - Title: Azure Application Insights
+      Url: servicecontrol/app-insights-integration
     - Title: Plugins
       Url: servicecontrol/plugins
       Articles:
