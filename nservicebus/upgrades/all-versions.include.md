@@ -38,10 +38,10 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.3.1) | 2021-01-20     | -                 | -                                 |
-| [5.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.2.1) | 2020-10-20     | 2021-04-20        | Superseded by 5.3.x               |
+| [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.2.1) | ~~2020-10-20~~ | ~~2021-04-20~~    | ~~Superseded by 5.3.x~~           |
 | [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.2) | ~~2020-08-24~~ | ~~2021-01-20~~    | ~~Superseded by 5.2.x~~           |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | ~~2020-04-27~~ | ~~2020-11-24~~    | ~~Superseded by 5.1.x~~           |
-| [4.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.1) | 2019-11-27     | 2021-04-27        | Superseded by 5.0.x               |
+| [~~4.4.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.2) | ~~2019-11-27~~ | ~~2021-04-27~~    | ~~Superseded by 5.0.x~~           |
 | [~~4.3.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.3.5) | ~~2019-02-22~~ | ~~2020-02-27~~    | ~~Superseded by 4.4.x~~           |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.2.3) | ~~2018-12-12~~ | ~~2019-05-22~~    | ~~Superseded by 4.3.x~~           |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.1.3) | ~~2018-06-01~~ | ~~2019-03-12~~    | ~~Superseded by 4.2.x~~           |
@@ -102,7 +102,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | 2020-07-13     | -                 | -                                 |
+| [6.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.0) | 2021-05-07     | -                 | -                                 |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | 2020-07-13     | 2021-08-07        | Superseded by 6.1.x               |
 | [5.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.2.0) | 2020-04-17     | 2021-07-13        | Superseded by 6.0.x               |
 | [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.1.2) | ~~2019-03-27~~ | ~~2020-07-17~~    | ~~Superseded by 5.2.x~~           |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.0.5) | ~~2018-05-29~~ | ~~2019-06-27~~    | ~~Superseded by 5.1.x~~           |
@@ -274,7 +275,7 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.5.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.0) | 2021-03-04     | -                 | -                                 |
+| [6.5.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.1) | 2021-03-04     | -                 | -                                 |
 | [6.4.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.4.1) | 2020-07-29     | 2021-06-04        | Superseded by 6.5.x               |
 | [~~6.3.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.3.2) | ~~2020-05-28~~ | ~~2020-10-29~~    | ~~Superseded by 6.4.x~~           |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.2.0) | ~~2020-02-12~~ | ~~2020-08-28~~    | ~~Superseded by 6.3.x~~           |
@@ -312,7 +313,7 @@ No versions released.
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.2.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.2.0) | 2021-02-11     | -                 | -                                 |
 | [1.1.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.1.0) | 2021-01-27     | 2021-05-11        | Superseded by 1.2.x               |
-| [1.0.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | 2020-06-24     | 2021-04-27        | Superseded by 1.1.x               |
+| [~~1.0.x~~](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | ~~2020-06-24~~ | ~~2021-04-27~~    | ~~Superseded by 1.1.x~~           |
 
 ### Serializer packages
 
@@ -533,6 +534,12 @@ No versions released.
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/1.0.1) | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 1.1.x~~           |
 
 ### Host packages
+
+#### [NServiceBus.AzureFunctions.InProcess.ServiceBus](/nuget/NServiceBus.AzureFunctions.InProcess.ServiceBus)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.0.0) | 2021-04-23     | -                 | -                                 |
 
 #### [NServiceBus.Bootstrap.WindowsService](/nuget/NServiceBus.Bootstrap.WindowsService)
 
@@ -827,7 +834,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/2.0.0) | 2021-03-23     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/3.0.0) | 2021-04-16     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/2.0.0) | 2021-03-23     | 2022-04-16        | Superseded by 3.0.x               |
 | [1.2.x](https://www.nuget.org/packages/ServiceControl.Contracts/1.2.0) | 2018-11-01     | 2022-03-23        | Superseded by 2.0.x               |
 | [~~1.1.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/1.1.1) | ~~2015-02-05~~ | ~~2019-02-01~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/1.0.0) | ~~2014-10-13~~ | ~~2015-05-05~~    | ~~Superseded by 1.1.x~~           |
