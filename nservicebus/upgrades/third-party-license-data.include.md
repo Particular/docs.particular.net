@@ -212,7 +212,7 @@
 | <a href="https://www.nuget.org/packages/Amazon.Lambda.Core/" target="_blank">Amazon.Lambda.Core</a> | <a href="http://aws.amazon.com/apache2.0/" target="_blank">View License</a> | <a href="https://aws.amazon.com/lambda/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents/" target="_blank">Amazon.Lambda.SQSEvents</a> | <a href="http://aws.amazon.com/apache2.0/" target="_blank">View License</a> | <a href="https://aws.amazon.com/lambda/" target="_blank">Project Site</a> |
 
-### [NServiceBus.AzureFunctions.ServiceBus](/nuget/NServiceBus.AzureFunctions.ServiceBus)
+### [NServiceBus.AzureFunctions.InProcess.ServiceBus](/nuget/NServiceBus.AzureFunctions.InProcess.ServiceBus)
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|

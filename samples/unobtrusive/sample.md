@@ -1,7 +1,7 @@
 ---
 title: Unobtrusive
 summary: Demonstrates NServiceBus operating in unobtrusive mode.
-reviewed: 2019-05-06
+reviewed: 2021-04-29
 component: Core
 redirects:
 - nservicebus/unobtrusive-sample

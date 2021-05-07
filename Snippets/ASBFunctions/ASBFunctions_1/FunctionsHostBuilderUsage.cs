@@ -1,6 +1,5 @@
 ﻿namespace ASBFunctions_0
 {
-    using System;
     using System.Threading.Tasks;
     using Microsoft.Azure.Functions.Extensions.DependencyInjection;
     using Microsoft.Azure.ServiceBus;
@@ -16,6 +15,34 @@
             public override void Configure(IFunctionsHostBuilder builder)
             {
                 builder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint"));
+            }
+        }
+        #endregion
+
+        #region asb-enable-diagnostics
+        class EnableDiagnosticsOnStartup : FunctionsStartup
+        {
+            public override void Configure(IFunctionsHostBuilder builder)
+            {
+                builder.UseNServiceBus(() => {
+                    var configuration = new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint");
+                    configuration.AdvancedConfiguration.SendFailedMessagesTo("error");
+                    return configuration;
+               });
+            }
+        }
+        #endregion
+
+        #region asb-configure-error-queue
+        class configureErrorQueueuOnStartup : FunctionsStartup
+        {
+            public override void Configure(IFunctionsHostBuilder builder)
+            {
+                builder.UseNServiceBus(() => {
+                    var configuration = new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint");
+                    configuration.LogDiagnostics();
+                    return configuration;
+                });
             }
         }
         #endregion

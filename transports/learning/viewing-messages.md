@@ -1,7 +1,7 @@
 ---
 title: Viewing Learning Transport content
 summary: See queues and message contents.
-reviewed: 2019-05-06
+reviewed: 2021-04-30
 ---
 The Learning Transport stores all messages on disk as individual files. By default, the storage location is a `.learningtransport` folder that exists at the solution root. All files are textual and can be opened with any text editor to inspect their contents.
 

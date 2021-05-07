@@ -370,6 +370,11 @@
       Title: Microsoft Generic Host
     - Url: nservicebus/hosting/web-application
       Title: Web Application
+    - Url: nservicebus/hosting/azure-functions
+      Title: Azure Functions
+      Articles:
+      - Url: nservicebus/hosting/azure-functions/service-bus
+        Title: Service Bus
     - Url: nservicebus/hosting/service-fabric-hosting
       Title: Service Fabric
       Articles:
@@ -1159,6 +1164,8 @@
       Title: Redirects
     - Url: servicepulse/event-types
       Title: Events
+    - Url: servicepulse/health-check-notifications
+      Title: Health check notifications
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config
@@ -1331,9 +1338,7 @@
     - Title: Support Policy
       Url: previews/support-policy
   - Title: Azure Functions
-    Articles:
-    - Title: NServiceBus.AzureFunctions.ServiceBus
-      Url: previews/azure-functions-service-bus
+    Articles:   
     - Title: NServiceBus.AzureFunctions.StorageQueues
       Url: previews/azure-functions-storage-queues
   - Title: AWS Lambda

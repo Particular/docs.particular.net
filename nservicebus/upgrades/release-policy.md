@@ -1,48 +1,42 @@
 ---
-title: Release Policy
-summary: What version numbers mean to Particular.
-reviewed: 2021-04-06
+title: Release policy
+summary: The meaning of version numbers in the Particular Software Platform
+reviewed: 2021-04-16
 redirects:
  - nservicebus/release-policy
 related:
  - nservicebus/licensing
 ---
 
-NServiceBus and the entire Service Platform are designed as a collection of small components, each of which are then released on a regular cadence. All important bugfixes are backported to all [supported versions](/nservicebus/upgrades/support-policy.md) which enables users to stay up to date while keeping the risk of upgrading to a minimum.
+NServiceBus and the entire Particular Service Platform are designed as a collection of components, each released with regular cadence. Important bug fixes are backported to all [supported versions](/nservicebus/upgrades/support-policy.md), enabling users to upgrade with minimal risk.
 
-While this may seem to result in a large number of releases, only a small fraction of these will actually affect any given system.
+While this may result in a large number of releases, only a small fraction usually affect any given system.
 
+## Semantic versioning
 
-## Semantic Versioning
+All components follow [SemVer 2.0.0](https://semver.org/spec/v2.0.0.html). This helps determine the urgency, risk, and effort of an upgrade.
 
-[SemVer](https://semver.org/) is a simple set of rules and requirements that dictate how version numbers are assigned and incremented.
+SemVer is a simple set of rules and requirements that dictate how version numbers are assigned and incremented.
 
-For those not familiar with SemVer here is a short primer:
+For those not familiar with SemVer, here is a short primer:
 
 Given a version number `{major}.{minor}.{patch}`, increment the:
 
- * `{major}` version when making incompatible API changes,
- * `{minor}` version when adding functionality in a backwards-compatible manner, and
- * `{patch}` version when making backwards-compatible bug fixes.
+* `{major}` version when making incompatible API changes,
+* `{minor}` version when adding functionality in a backwards compatible manner, and
+* `{patch}` version when making backwards compatible bug fixes.
 
-Following SemVer 2.0 enables quickly determining the urgency, risk and effort of the upgrade.
+### Interpretations/deviations from SemVer
 
-### Interpretations / Deviations from SemVer
+* Text in log and exception messages is not considered part of the public API.
 
- * Text in log and exception messages are not considered part of the public API.
+## Backporting important bug fixes
 
-## Backport important bugfixes
+Although not stipulated by SemVer, important bug fixes are backported to all [supported versions](/nservicebus/upgrades/support-policy.md).
 
-While not stipulated by SemVer, all important fixes to all supported versions are backported.
+A system using a supported version may receive important bug fixes by upgrading to new patch versions, without the increased risk and effort of upgrading to a new minor or major version. It is strongly recommended to [upgrade](support-policy.md#upgrading) frequently enough to stay on a supported version.
 
-See [the support policy](/nservicebus/upgrades/support-policy.md) for more details on supported versions.
-
-By using a supported version, critical bugfixes are received without the associated risk and effort of upgrading to a higher `{major}.{minor}` version.
-
-It is strongly recommended to upgrade frequently enough to stay on a supported version. For the best upgrade experience, upgrade from one major version to the next major version without skipping to the one after that. For example, when using NServiceBus Version 4.7.2 and intending to upgrade to NServiceBus Version 6.0.0, first upgrade to the latest NServiceBus Version 5.x release (e.g. Version 5.2.19) and follow the suggested API upgrade guides and deprecation messages. Then repeat the exercise to upgrade from Version 5.x to Version 6.0.0.
-
-[Contact support](https://particular.net/support) if there are any bugfixes that need to be back-ported to a specific version.
-
+Particular Software [support](https://particular.net/support) should be contacted if a bug fix backport is missing.
 
 ## Deprecation
 
@@ -54,78 +48,75 @@ A warning message indicates the version in which the deprecation will start to g
 
 An error message indicates in which version the API will be removed. For example:
 
-> error CS0619: 'Configure' is obsolete: 'This is no longer a public API. Will be removed in version 7.0.0.'
+> error CS0619: 'CorrelationContextExtensions.SetCorrelationId(SendOptions, string)' is obsolete: 'This is no longer a public API. Will be removed in version 8.0.0.'
 
-Deprecations in minor releases will always generate a compiler warning and not an error.
-
+Deprecations in minor versions will always generate a compiler warning and not an error.
 
 ## Summary
 
-The following table summarize the risk effort and urgency for the different types of releases
+The following table summarizes the risk, urgency, and effort associated with each version type:
 
 |  | Patch | Minor | Major |
 |---------|----------------|--------|-------|
-| Risk | Extremely low | Medium | High |
-| Urgency | Medium to High | Low | Low |
-| Effort | Minimal | Low | High |
-
+| **Risk** | Extremely low | Medium | High |
+| **Urgency** | Medium to High | Low | Low |
+| **Effort** | Extremely low | Low | High |
 
 ### Patch
 
-Patches are released as soon as an important issue is found. Read the release notes to determine if affected.
+Patch versions are released as soon as an important bug is found. The release notes contain details of symptoms and instructions for how to determine if a system is affected.
 
-Patch releases are 100% backwards-compatible so it is safe to upgrade with low risk and effort. In rare cases a code change might be required in relation to the patch. Minimal testing may be required, but where possible verify that it fixes the issue in question.
+Patch versions are backwards compatible, as stipulated by SemVer, and contain minimal code changes, so upgrading has extremely low risk and effort. In rare cases, a code change may be required as part of the upgrade.
 
+Minimal testing may also be required, including verification that the patch fixes the bug.
 
 ### Minor
 
-Minor versions contain bugfixes not critical enough to warrant a `patch` as well as some feature enhancements.
+Minor versions contain feature enhancements and may also contain bug fixes which are not important enough to warrant a patch version.
 
-Note that these releases are 100% backwards-compatible (as stipulated by SemVer). Since adding new features requires more code to be added/changed, the risk of upgrading to a `minor` is slightly higher compared to a `patch` release and it's likely that some code changes may be needed to take advantage of them.
+Minor versions are backwards compatible, as stipulated by SemVer. They contain more code changes than patch versions so the risk of upgrading is slightly higher. It is also likely that code changes are required as part of the upgrade, to take advantage of the feature enhancements.
 
-Since all critical issues will be back-ported, choose to upgrade when convenient, for example as part of releasing non-trivial updates to the system.
-
+Since all important bug fixes are back-ported, upgrades may be done at convenient times. For example, when releasing non-trivial updates to a system.
 
 ### Major
 
-Since a new `major` version will contain breaking changes, upgrading will likely require modifications to the consuming code. Because of the extent of code changes in a major version, it is recommendation that a full regression test of a system is done.
+Major versions contain breaking changes and may also contain feature enhancements. They may also contain bug fixes which are not important enough to warrant a patch.
 
+Major versions are not backwards compatible. They contain more code changes than minor versions so the risk of upgrading is higher. While the breaking changes may not affect all systems, upgrading is likely to require code changes.
+
+It is recommended to fully regression test a system after upgrading.
 
 ## Release quality
 
 The release cycle consists of the following quality stages:
 
-
 ### Alpha
 
- * Binaries are considered unstable.
- * APIs might change without notice.
- * Packages are used for internal development, updating docs, etc.
-
+* The component may be not feature complete.
+* Binaries are considered unstable.
+* APIs may change without notice.
+* Packages are used for internal development, updating documentation, etc.
 
 ### Beta
 
- * The component is feature complete.
- * Likely to contain a number of known or unknown bugs.
- * Performance and stability testing has not been fully completed.
- * This version does not come with a "go live" license and will **not be supported** in Production.
- * All public APIs should be stable but may change based on feedback from consumers.
-
+* The component is feature complete.
+* Likely to contain a number of known or unknown bugs.
+* Performance and stability testing has not been fully completed.
+* This version does not come with a "go live" license and **is not supported** in production.
+* All public APIs should be stable but may change based on feedback from consumers.
 
 #### Open and closed beta
 
- * Closed beta versions are released to a restricted group customers by invitation.
- * Open beta versions are public and target the entire user base.
- * [Contact Particular](https://particular.net/contactus) to join the closed beta customer group and to be included for evaluating future beta versions.
-
+* Closed beta versions are released to a restricted group of Particular Software customers, by invitation.
+* Open beta versions are public and available to all users.
+* Particular Software may be [contacted](https://particular.net/contactus) for requests to be included in current and future closed beta groups.
 
 ### Release Candidate (RC)
 
- * A Release Candidate is a version intended to be a final product, which is ready to release unless significant bugs emerge. 
- * In this stage of stabilization, all features have been designed, coded, and tested through one or more beta cycles and has no known critical bugs. 
- * There could still be source code changes to fix defects, changes to documentation and data files, and peripheral code for test cases or utilities.
- * This version comes with a "go live" license and will **be supported** in Production.
-
+* Intended to be a equivalent to a final version, which is ready to release unless significant bugs are discovered.
+* In this stage of stabilization, all features have been designed, coded, and tested through one or more beta cycles and the version has no known important bugs.
+* There may still be changes to fix discovered bugs, changes to documentation and data files, and peripheral code for test cases or utilities.
+* This version comes with a "go live" license and **is supported** in production.
 
 ### Release To Market (RTM)
 

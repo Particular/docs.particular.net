@@ -87,7 +87,7 @@ NServiceBus can be hosted in a WebJob. See [Self-Hosting in Azure WebJobs](/samp
 
 ### Serverless hosting
 
-NServiceBus can be hosted in several serverless environments such as [Azure Functions](/previews/azure-functions-service-bus.md) and [AWS Lambda](/previews/aws-lambda-simple-queue-service.md).
+NServiceBus can be hosted in several serverless environments such as [Azure Functions](/nservicebus/hosting/azure-functions/service-bus.md) and [AWS Lambda](/previews/aws-lambda-simple-queue-service.md).
 
 ### Multi-hosting
 

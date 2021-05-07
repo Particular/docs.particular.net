@@ -1,9 +1,11 @@
 ---
 title: Using NServiceBus in Azure Functions with Service Bus triggers
-reviewed: 2020-11-10
 component: ASBFunctions
 related:
- - previews/azure-functions-service-bus
+ - nservicebus/hosting/azure-functions/service-bus
+redirects:
+ - samples/previews/azure-functions/service-bus
+reviewed: 2021-04-19
 ---
 
 This sample shows how to host NServiceBus within an Azure Function, in this case, a function triggered by an incoming Service Bus message. This enables hosting message handlers in Azure Functions, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message processing pipeline.
@@ -14,7 +16,7 @@ The sample demonstrates two configuration approaches that achieve the same outco
 
 When hosting NServiceBus within Azure Functions, each Function (as identified by the `[FunctionName]` attribute) hosts an NServiceBus endpoint that is capable of processing different message types.
 
-The Azure Functions SDK enforces certain constraints that are also applied to NServiceBus endpoints. Review these [constraints](/previews/azure-functions-service-bus.md) before running the sample.
+The Azure Functions SDK enforces certain constraints that are also applied to NServiceBus endpoints. Review these [constraints](/nservicebus/hosting/azure-functions/service-bus.md) before running the sample.
 
 downloadbutton
 
@@ -32,9 +34,9 @@ To use the sample, a valid Service Bus connection string must be provided in the
 
 ## Sample structure
 
-The sample contains the following projects:
-- `AzureFunctions.ASBTrigger.FunctionsHostBuilder` - Using `IFunctionHostBuilder` approach to host the NServiceBus endpoint
-- `AzureFunctions.ASBTrigger.Static` - Using static approach to host the NServiceBus endpoint
+The sample contains the following project:
+- `AzureFunctions.ASBTrigger.FunctionsHostBuilder` - NServiceBus endpoint
+- `AzureFunctions.Messages` - message definitions
 
 NOTE: `AzureFunctions.ASBTrigger.FunctionsHostBuilder` and `AzureFunctions.ASBTrigger.Static`are both using the same trigger queue and should not be executed simultaneously. 
 
@@ -55,8 +57,6 @@ To try the Azure Function:
 
 ## Code walk-through
 
-### `IFunctionHostBuilder` approach
-
 The NServiceBus endpoint configured using `IFunctionHostBuilder` is using the convention and is wired using `Startup` class like this:
 
 snippet: configuration-with-function-host-builder
@@ -68,18 +68,6 @@ snippet: endpoint-injection
 And is invoked in the following manner:
 
 snippet: injected-function
-
-### Static approach
-
-The static NServiceBus endpoint must be configured using details that come from the Azure Functions `ExecutionContext`. Since that is not available until a message is handled by the function, the NServiceBus endpoint instance is deferred until the first message is processed, using a lambda expression like this:
-
-snippet: EndpointSetup
-
-The same class defines the Azure Function which makes up the hosting for the NServiceBus endpoint. The Function hands off processing of the message to NServiceBus:
-
-snippet: Function
-
-Meanwhile, the message handlers for `TriggerMessage` and `FollowUpMessage`, also hosted within the Azure Functions project, are normal NServiceBus message handlers, which are also capable of sending messages themselves.
 
 ### Handlers
 
