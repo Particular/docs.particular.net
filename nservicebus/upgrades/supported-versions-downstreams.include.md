@@ -5,10 +5,10 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.3.1) | 2021-01-20     | -                 | -                                 |
-| [5.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.2.1) | 2020-10-20     | 2021-04-20        | Superseded by 5.3.x               |
+| [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.2.1) | ~~2020-10-20~~ | ~~2021-04-20~~    | ~~Superseded by 5.3.x~~           |
 | [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.2) | ~~2020-08-24~~ | ~~2021-01-20~~    | ~~Superseded by 5.2.x~~           |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.0.1) | ~~2020-04-27~~ | ~~2020-11-24~~    | ~~Superseded by 5.1.x~~           |
-| [4.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.1) | 2019-11-27     | 2021-04-27        | Superseded by 5.0.x               |
+| [~~4.4.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.2) | ~~2019-11-27~~ | ~~2021-04-27~~    | ~~Superseded by 5.0.x~~           |
 | [3.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/3.3.5) | 2018-05-14     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Azure.Transports.WindowsAzureServiceBus](/nuget/NServiceBus.Azure.Transports.WindowsAzureServiceBus)
@@ -30,7 +30,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | 2020-07-13     | -                 | -                                 |
+| [6.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.0) | 2021-05-07     | -                 | -                                 |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | 2020-07-13     | 2021-08-07        | Superseded by 6.1.x               |
 | [5.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.2.0) | 2020-04-17     | 2021-07-13        | Superseded by 6.0.x               |
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/4.4.5) | 2017-09-18     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
@@ -121,9 +122,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.5.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.0) | 2021-03-04     | -                 | -                                 |
+| [6.5.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.1) | 2021-03-04     | -                 | -                                 |
 | [6.4.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.4.1) | 2020-07-29     | 2021-06-04        | Superseded by 6.5.x               |
-| [~~6.3.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.3.2) | ~~2020-05-28~~ | ~~2020-10-29~~    | ~~Superseded by 6.4.x~~           |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/4.2.6) | 2017-06-28     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Storage.MongoDB](/nuget/NServiceBus.Storage.MongoDB)
@@ -144,7 +144,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.2.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.2.0) | 2021-02-11     | -                 | -                                 |
 | [1.1.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.1.0) | 2021-01-27     | 2021-05-11        | Superseded by 1.2.x               |
-| [1.0.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | 2020-06-24     | 2021-04-27        | Superseded by 1.1.x               |
+| [~~1.0.x~~](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | ~~2020-06-24~~ | ~~2021-04-27~~    | ~~Superseded by 1.1.x~~           |
 
 ### Serializer packages
 
@@ -246,6 +246,12 @@
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/1.1.2) | 2017-03-24     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 ### Host packages
+
+#### [NServiceBus.AzureFunctions.InProcess.ServiceBus](/nuget/NServiceBus.AzureFunctions.InProcess.ServiceBus)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.0.0) | 2021-04-23     | -                 | -                                 |
 
 #### [NServiceBus.Bootstrap.WindowsService](/nuget/NServiceBus.Bootstrap.WindowsService)
 
@@ -423,7 +429,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/2.0.0) | 2021-03-23     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/3.0.0) | 2021-04-16     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/2.0.0) | 2021-03-23     | 2022-04-16        | Superseded by 3.0.x               |
 | [1.2.x](https://www.nuget.org/packages/ServiceControl.Contracts/1.2.0) | 2018-11-01     | 2022-03-23        | Superseded by 2.0.x               |
 
 #### [ServiceControl.Plugin.Nsb6.CustomChecks](/nuget/ServiceControl.Plugin.Nsb6.CustomChecks)
