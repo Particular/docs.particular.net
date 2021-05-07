@@ -116,6 +116,30 @@ Although the installer is code signed correctly with a certificate owned by "NSe
 
 When building ServiceControl, all build artifacts are virus scanned to ensure no viruses or malware are shipped with the installer packages.
 
+## Stale indexes 
+
+The database technology used for ServiceControl is based on asynchonous index updates. Indexes are not updated immediately but very soon after data updates. When a system is healhty indexes are updated in milliseconds or several seconds under load. When indexes get very stale this means that indexes lag behind for a certain duration. 
+
+Systems are affected by severe index lag when the following custom check message is presented:
+
+> At least one index significantly stale. Please run maintenance mode if this custom check persists to ensure index(es) can recover. See log file in `{LogPath}` for more details. Visit https://docs.particular.net/search?q=servicecontrol+troubleshooting for more information.
+
+By launching an instance in maintenance mode the message ingestion halts but the database . This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful when the storage isn't fast enough to do both message ingestion and index operations.
+
+Consider upgrading the storage if this errors persists.
+
+Contact [support](https://particular.net/support) for assistance
+
+## Index errors
+
+Index issues usually are automatically corrected at start but sometimes index issues require manual intervention. When unrecoverable index issues occur the following custom check message is visible:
+
+> Detected RavenDB index errors, please start maintenance mode and resolve the following issues:
+
+Most often issue is that [indexes get corrupted](#indexes-get-corrupted). Resolve these errors by inspecting these errors via [ServiceControl (audit or error) maintenance mode](maintenance-mode.md).
+
+Contact [support](https://particular.net/support) for assistance
+
 ## Indexes get corrupted
 
 Sometimes the following error may be observed:
