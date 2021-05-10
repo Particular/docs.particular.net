@@ -166,7 +166,6 @@ class q1,q3 usedQueue
 end
 ```
 
-
 ## Backwards compatibility
 
 It is safe to operate a combination of native-delay and non-native-delay endpoints at the same time. Native endpoints can send delayed messages to endpoints that are not yet aware of the native delay infrastructure. Native endpoints can continue to receive delayed messages from non-native endpoints as well.

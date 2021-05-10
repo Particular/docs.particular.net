@@ -210,7 +210,6 @@ class Usage
         #endregion
     }
 
-
     void DisableDurableExchangesAndQueues(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-disable-durable-exchanges

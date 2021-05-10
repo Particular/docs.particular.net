@@ -32,7 +32,7 @@ class MyRoutingTopology :
     {
     }
 
-    public void Initialize(IModel channel, IEnumerable<string> receivingAddresses, IEnumerable<string> sendingAddresses)
+    public void Initialize(IConnection channel, IEnumerable<string> receivingAddresses, IEnumerable<string> sendingAddresses, bool useQuorumQueues, bool allowInputQueueConfigurationMismatch)
     {
     }
 
