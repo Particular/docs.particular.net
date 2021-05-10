@@ -87,7 +87,7 @@ Subscriptions are recreated by restarting the subscribing endpoints. Alternative
 
 ### Migrating subscriptions
 
-In the tekmaven implementation there is a single document per event type containing a collection of subscribers. In NServiceBus.Storage.MongoDB, subscriptions are individual documents. Each subscription needs to be converted into an `eventsubscription` document.
+In the [Ryan Hoffman](https://github.com/tekmaven) implementation there is a single document per event type containing a collection of subscribers. In NServiceBus.Storage.MongoDB, subscriptions are individual documents. Each subscription needs to be converted into an `eventsubscription` document.
 
 ```javascript
 db.subscriptions.find().forEach(type => {
