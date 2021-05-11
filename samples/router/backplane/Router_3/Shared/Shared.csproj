@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Router" Version="3.*" />
-    <PackageReference Include="NServiceBus.Raw" Version="3.*" />
+    <PackageReference Include="NServiceBus.Raw" Version="3.2.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
     <PackageReference Include="System.Reflection.Emit " Version="4.*" />
   </ItemGroup>
