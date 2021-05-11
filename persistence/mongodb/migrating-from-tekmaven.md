@@ -4,7 +4,7 @@ component: mongodb
 versions: '[1,)'
 related:
  - persistence/mongodb/migrating-from-sbmako
-reviewed: 2019-05-29
+reviewed: 2021-05-11
 ---
 
 The `NServiceBus.Storage.MongoDB` package was designed to be fully compatible with the community [`NServiceBus.Persistence.MongoDB`](https://github.com/tekmaven/NServiceBus.Persistence.MongoDb) package with some minor configuration.
