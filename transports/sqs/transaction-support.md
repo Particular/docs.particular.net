@@ -2,7 +2,7 @@
 title: Transaction Support
 summary: Explore the transaction modes the transport supports.
 component: SQS
-reviewed: 2019-05-27
+reviewed: 2021-05-11
 ---
 
 The Amazon SQS transport supports the following [Transport Transaction Modes](/transports/transactions.md):
