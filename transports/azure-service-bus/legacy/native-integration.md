@@ -2,7 +2,7 @@
 title: Native Integration with Azure Service Bus
 summary: How to integrate NServiceBus endpoints with non-NServiceBus endpoints on Azure Service Bus.
 component: ASB
-reviewed: 2020-12-24
+reviewed: 2021-05-12
 related:
  - nservicebus/operations
 redirects:
@@ -26,8 +26,3 @@ The following points need to be taken into account when integrating
 1. By default, the transport creates its own entities when they don't exist in the namespace. But non-NServiceBus endpoints may require manual creation of entities. Refer to the [Azure Service Bus documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/) for more information on available ASB SDKs and tools to perform these tasks.
 
 1. The native message must allow NServiceBus to [detect the message type either via the headers or the message payload](/nservicebus/messaging/message-type-detection.md).
-
-
-### See it in action
-
-[The following sample](/samples/azure/native-integration-asb/) shows how to use the native integration capabilities of the Azure Service Bus transport between an NServiceBus endpoint and a regular .NET application.

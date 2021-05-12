@@ -107,10 +107,6 @@ In order to allow configuration of the custom namespace partitioning strategy, c
 snippet: custom-namespace-partitioning-strategy-extension
 
 
-### Example custom partitioning strategy
-
-The [custom partitioning sample](/samples/azure/custom-partitioning-asb/) shows an implementation of a partitioning strategy. It replicates messages across multiple namespaces.
-
 ## Composition
 
 The composition aspect is represented by an implementation of `ICompositionStrategy`.
