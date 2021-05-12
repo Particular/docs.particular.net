@@ -1,1 +1,0 @@
- * The use of `UseSingleBrokerQueue` prevents the Azure transport individualizing queue names by appending the machine name.
