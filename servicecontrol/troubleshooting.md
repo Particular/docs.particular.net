@@ -122,7 +122,7 @@ The database technology used for ServiceControl is based on asynchronous index u
 
 Systems are affected by severe index lag when the following custom check message is presented:
 
-> At least one index significantly stale. Please run maintenance mode if this custom check persists to ensure index(es) can recover. See log file in `{LogPath}` for more details. Visit https://docs.particular.net/search?q=servicecontrol+troubleshooting for more information.
+> At least one index significantly stale. Please run maintenance mode if this custom check persists to ensure index(es) can recover. See log file in `{LogPath}` for more details.
 
 By launching an instance in maintenance mode the message ingestion stops but database engine still runs. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful when the storage isn't fast enough to do both message ingestion and index operations.
 
