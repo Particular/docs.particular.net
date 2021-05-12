@@ -40,12 +40,6 @@ In order to allow configuration of the custom sanitization strategy, create an e
 
 snippet: custom-sanitization-strategy-extension
 
-
-### Example custom sanitization strategy
-
-The [custom sanitization sample](/samples/azure/custom-sanitization-asb/) demonstrates a sanitization strategy. It removes invalid characters and uses SHA1 hashing to reduce the length of an entity name if the maximum length is exceeded.
-
-
 ## Individualization
 
 The individualization aspect is represented by an implementation of `IIndividualizationStrategy`.
@@ -116,7 +110,6 @@ snippet: custom-namespace-partitioning-strategy-extension
 ### Example custom partitioning strategy
 
 The [custom partitioning sample](/samples/azure/custom-partitioning-asb/) shows an implementation of a partitioning strategy. It replicates messages across multiple namespaces.
-
 
 ## Composition
 
