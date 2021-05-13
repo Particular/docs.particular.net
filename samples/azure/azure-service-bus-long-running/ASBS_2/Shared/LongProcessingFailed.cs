@@ -1,5 +1,6 @@
 ﻿using System;
 using NServiceBus;
+
 public class LongProcessingFailed :
     IEvent
 {

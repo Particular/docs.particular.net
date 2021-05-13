@@ -1,7 +1,5 @@
 ﻿using System;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.RetryPolicies;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.Azure.Cosmos.Table;
 
 public class StorageHelper
 {
@@ -10,7 +8,7 @@ public class StorageHelper
         var connectionString = Environment.GetEnvironmentVariable("AzureStoragePersistence_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureStoragePersistence.ConnectionString' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read the 'AzureStoragePersistence_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
         var storageaccount = CloudStorageAccount.Parse(connectionString);

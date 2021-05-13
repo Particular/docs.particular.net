@@ -11,16 +11,13 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
-#pragma warning disable 618
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-#pragma warning restore 618
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
-        transport.ConnectionString(connectionString);
-        transport.UseForwardingTopology();
+        endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
+
         endpointConfiguration.UsePersistence<LearningPersistence>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

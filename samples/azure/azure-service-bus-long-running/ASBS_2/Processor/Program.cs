@@ -9,16 +9,12 @@ class Program
         Console.Title = "Samples.Azure.ServiceBus.Processor";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Processor");
         endpointConfiguration.SendOnly();
-#pragma warning disable 618
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-#pragma warning restore 618
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
-        transport.ConnectionString(connectionString);
-        transport.UseForwardingTopology();
+        endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
