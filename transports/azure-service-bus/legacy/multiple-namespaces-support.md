@@ -4,8 +4,6 @@ summary: Configuring Azure Service Bus transport to support different partitioni
 reviewed: 2019-10-06
 component: ASB
 versions: '[7,)'
-related:
-- samples/azure/custom-partitioning-asb
 redirects:
  - nservicebus/azure-service-bus/multiple-namespaces-support
  - transports/azure-service-bus/multiple-namespaces-support
@@ -56,11 +54,9 @@ Exactly two namespaces have to be configured when using `FailOverNamespacePartit
 
 ### Combining High Availability and failover options 
 
-To achieve high availability and failover, a custom strategy can be used. For example, a combination of round robin and failover strategies would ensure that messages are not throttled by the broker and sent when one of the namespaces is experiencing an outage. See [custom namespace partitioning sample](/samples/azure/custom-partitioning-asb) for details.
-
+To achieve high availability and failover, a custom strategy can be used. For example, a combination of round robin and failover strategies would ensure that messages are not throttled by the broker and sent when one of the namespaces is experiencing an outage.
 
 partial: caching
-
 
 ## Cross namespace routing
 

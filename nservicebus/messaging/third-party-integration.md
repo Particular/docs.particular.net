@@ -4,7 +4,7 @@ summary: Receiving messages from external systems
 component: Core
 related:
 - nservicebus/messaging/headers
-reviewed: 2020-08-19
+reviewed: 2021-05-12
 ---
 
 Endpoints can receive messages from external systems (such as BizTalk, TIBCO, etc). To ensure those messages can be handled correctly by NServiceBus, additional information might be required which are otherwise provided by NServiceBus automatically.
@@ -22,7 +22,7 @@ Some serializers can infer the message type from information embedded in the mes
  * [JSON](/nservicebus/serialization/json.md)
  * [Newtonsoft](/nservicebus/serialization/newtonsoft.md)
 
-The [RabbitMQ](/samples/rabbitmq/native-integration/), [SQL](/samples/sqltransport/native-integration/), and [Azure Service Bus](/samples/azure/native-integration-asb/) native integration samples demonstrate inferring message type from the message body.
+The [RabbitMQ](/samples/rabbitmq/native-integration/), [SQL](/samples/sqltransport/native-integration/), and [Azure Service Bus](/samples/azure-service-bus-netstandard/native-integration/) native integration samples demonstrate inferring message type from the message body.
 
 
 ## Visualization

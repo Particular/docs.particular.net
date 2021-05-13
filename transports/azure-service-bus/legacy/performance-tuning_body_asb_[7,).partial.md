@@ -68,8 +68,3 @@ If throughput is less then ~500 msg/s, even after optimizations described in thi
 If the latency is very high or the bandwidth is too low, then try to move Azure Service Bus namespace to another data center. Another solution might be updating the internet uplink, which also might be a bottleneck.
 
 Note that standard namespaces don't offer any guarantees when it comes to throughput performance. Any numbers measured are true at the specific moment and may vary over time depending on the activity of others on the same infrastructure. If throughput guarantees are required, then it is highly advised to consider using Premium tier namespaces.
-
-
-## Performance Tuning Samples
-
-Refer to the [performance tuning samples](/samples/azure/performance-tuning-asb/) to experiment with settings for the scenarios described in this article.

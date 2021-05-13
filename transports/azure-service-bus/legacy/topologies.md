@@ -1,11 +1,10 @@
 ---
 title: Topologies
-reviewed: 2020-09-03
+reviewed: 2021-05-12
 component: ASB
 versions: '[7,)'
 related:
  - nservicebus/operations
- - samples/azure/azure-service-bus
 redirects:
  - nservicebus/azure-service-bus/topologies
  - transports/azure-service-bus/topologies
