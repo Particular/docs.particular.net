@@ -63,6 +63,7 @@ In addition to the [connection string options of the transport](/transports/azur
 In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 4.4 and above:
 
 * `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
+* `SubscriptionRouting=<subscription_table_name>` - Specifies SQL subscription table name.  
 
 #### Amazon SQS
 
@@ -72,6 +73,7 @@ The following ServiceControl connection string options are available in versions
 * `SecretAccessKey=<value>` - SecretAccessKey value,
 * `Region=<value>` - Region transport [option](/transports/sqs/configuration-options.md#region),
 * `QueueNamePrefix=<value>` - Queue name prefix transport [option](/transports/sqs/configuration-options.md#queuenameprefix),
+* `TopicNamePrefix=<value>` - Topic name prefix transport [option](/transports/sqs/configuration-options.md#topicnameprefix)
 * `S3BucketForLargeMessages=<value>` - S3 bucket for large messages [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages),
 * `S3KeyPrefix=<value>` - S3 key prefic [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages-s3keyprefix).
 
