@@ -8,7 +8,7 @@ public class StorageHelper
         var connectionString = Environment.GetEnvironmentVariable("AzureStoragePersistence_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureStoragePersistence.ConnectionString' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read the 'AzureStoragePersistence_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
         var storageAccount = CloudStorageAccount.Parse(connectionString);

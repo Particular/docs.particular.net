@@ -1,7 +1,7 @@
 ---
 title: Long-running operations with Azure Service Bus Transport
 summary: How to use the Azure Service Bus transport for a long-running process
-component: ASBs
+component: ASBS
 reviewed: 2021-05-13
 related:
 - transports/azure-service-bus
@@ -43,7 +43,7 @@ Server ->> Storage Table: Store RequestRecord
 Server ->> Server: Set timeout
 Processor ->> Processor: process request
 Processor ->> Storage Table: Update RequestRecord
-Note over Server: If processing takes longer than anticipated
+Note over Server: If the processing takes longer than anticipated
 Server ->> Server: Timeout raised
 Server ->> Client: LongProcessingWarning
 Note over Server: Otherwise
@@ -62,7 +62,7 @@ An alternative approach is to perform a long-running operation in an external se
 
 This sample is using a standalone process `Processor` to run an emulated long running work and raises events for successful or failed outcomes. `Server` and `Processor` use Azure Storage table to communicate `RequestRecord`s in the `Requests` table.
 
-For simplicity, `Processor` is not scaled out. If scaling out is required, work on an individual request must be locked to a single instance of a processor. A common way to achieve this is to create a blob with request ID as a name on the storage account and get a lease to that file.
+For simplicity, `Processor` is not scaled out. If scaling out is required, work on an individual request must be locked to a single instance of a processor. A common way to achieve this is to create a blob with a request ID as a name on the storage account and get a lease to that file.
 
 Also, note that the sample processes files in a serial manner, one at a time. For concurrent processing, `Processor` could spin a task per request. That would require an additional throttling mechanism to be implemented to ensure `Processor` is not overwhelmed.
 
@@ -94,7 +94,7 @@ NOTE: Normally, work would not be done by a saga, but would be delegated to a de
 
 ## Processor logic
 
-`Processor` performs two never ending tasks - polling every 5 seconds for pending requests, and processing those requests.
+`Processor` performs two never-ending tasks - polling every 5 seconds for pending requests, and processing those requests.
 
 snippet: tasks
 

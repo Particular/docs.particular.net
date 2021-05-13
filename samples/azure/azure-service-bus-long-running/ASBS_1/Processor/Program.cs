@@ -10,10 +10,10 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Processor");
         endpointConfiguration.SendOnly();
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
         transport.ConnectionString(connectionString);
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
