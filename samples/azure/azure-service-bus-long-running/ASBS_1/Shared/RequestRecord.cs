@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.Azure.Cosmos.Table;
 
 [DebuggerDisplay("RequestId: {RequestId}, Status: {Status}")]
 public class RequestRecord :
     TableEntity
 {
-    public RequestRecord() {}
+    public RequestRecord() { }
 
     public RequestRecord(Guid requestId, Status status, TimeSpan estimatedProcessingTime) : base(Constants.PartitionKey, requestId.ToString())
     {

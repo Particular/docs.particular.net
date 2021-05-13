@@ -1,8 +1,8 @@
 ---
 title: Long-running operations with Azure Service Bus Transport
 summary: How to use the Azure Service Bus transport for a long-running process
-component: ASB
-reviewed: 2020-01-20
+component: ASBs
+reviewed: 2021-05-13
 related:
 - transports/azure-service-bus
 - samples/azure-service-bus-netstandard/lock-renewal

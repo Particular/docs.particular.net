@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.Azure.Cosmos.Table;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -71,7 +71,7 @@ public class Processor
                     #region failed-scenario
 
                     // emulate failure
-                    if (DateTime.UtcNow.Ticks%2 == 0)
+                    if (DateTime.UtcNow.Ticks % 2 == 0)
                     {
                         throw new Exception("Some exception during processing.");
                     }

@@ -12,13 +12,12 @@ class Program
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
         transport.ConnectionString(connectionString);
-        transport.UseForwardingTopology();
         endpointConfiguration.UsePersistence<LearningPersistence>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

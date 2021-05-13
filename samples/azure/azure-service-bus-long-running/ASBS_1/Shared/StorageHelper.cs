@@ -1,7 +1,5 @@
 ﻿using System;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.RetryPolicies;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.Azure.Cosmos.Table;
 
 public class StorageHelper
 {
@@ -13,8 +11,8 @@ public class StorageHelper
             throw new Exception("Could not read the 'AzureStoragePersistence.ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
-        var storageaccount = CloudStorageAccount.Parse(connectionString);
-        var client = storageaccount.CreateCloudTableClient();
+        var storageAccount = CloudStorageAccount.Parse(connectionString);
+        var client = storageAccount.CreateCloudTableClient();
         client.DefaultRequestOptions.RetryPolicy = new ExponentialRetry();
         return client;
     }
