@@ -3,7 +3,7 @@ title: Namespace hierarchy support
 summary: Configuring Azure Service Bus transport to support namespace hierarchies.
 component: ASB
 versions: "[7,)"
-reviewed: 2019-05-12
+reviewed: 2021-05-11
 redirects:
  - nservicebus/azure-service-bus/namespace-hierarchy
  - transports/azure-service-bus/namespace-hierarchy

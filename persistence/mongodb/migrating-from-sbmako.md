@@ -4,7 +4,7 @@ component: mongodb
 versions: '[1,)'
 related:
  - persistence/mongodb/migrating-from-tekmaven
-reviewed: 2019-05-29
+reviewed: 2021-05-11
 ---
 
 This package was designed to be fully compatible with the community [`NServiceBus.MongoDB`](https://github.com/sbmako/NServiceBus.MongoDB) package with some minor configuration.
