@@ -1,6 +1,6 @@
 ---
 title: ServiceControl remote instances
-reviewed: 2021-04-06
+reviewed: 2021-05-06
 component: ServiceControl
 ---
 
