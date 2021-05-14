@@ -1,14 +1,11 @@
 ---
-title: MSMQ to legacy Azure Service Bus Transport Bridge
+title: MSMQ to Azure Service Bus Transport Bridge
 reviewed: 2019-09-02
 component: ASB
 related:
 - transports/azure-service-bus
 - nservicebus/router
 ---
-
-include: legacy-asb-warning
-
 
 Endpoints running on different transports cannot exchange messages and require additional integration work.
 
@@ -43,10 +40,6 @@ Endpoints are bridged using [NServiceBus.Router](/nservicebus/router/). `Bridge`
 
 
 #### Azure Service Bus endpoint configuration
-
-In this example Azure Service Bus transport is configured to use the `EndpointOrientedTopology` (to learn more check the [topologies](/transports/azure-service-bus/legacy/topologies.md) documentation). This topology requires some additional steps to be properly bridged.
-
-snippet: topology-setup-subscriber
 
 Azure Service Bus endpoint is bridged via `Bridge` queue:
 
