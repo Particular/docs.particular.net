@@ -6,7 +6,7 @@ reviewed: 2021-05-05
 related:
 ---
 
-Every ServiceControl instance performs periodic health checks and raises notifications in case any of them fail. By default, notifications get published as [integration events](/servicecontrol/contracts.md) but it's also possible to get them delivered as email messages.
+Every ServiceControl instance performs periodic health checks and raises notifications when they fail. By default, notifications are published as [integration events](/servicecontrol/contracts.md) but it's also possible to deliver them as email messages.
 
 NOTE: Email notifications require ServicePulse version 1.29 or later, and ServiceControl version 4.17 or later.
 
