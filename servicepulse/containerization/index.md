@@ -32,7 +32,7 @@ Linux:
 Host ServicePulse on Ubuntu Linux via Nginx run:
 
 ```cmd
-docker run -p 80:80 --detach particular/servicepulse:1
+docker run -p 80:90 --detach particular/servicepulse:1
 ```
 
 Windows:
