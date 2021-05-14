@@ -1,7 +1,7 @@
 ---
 title: MSMQ to Azure Service Bus Transport Bridge
 reviewed: 2019-09-02
-component: ASB
+component: ASBS
 related:
 - transports/azure-service-bus
 - nservicebus/router
