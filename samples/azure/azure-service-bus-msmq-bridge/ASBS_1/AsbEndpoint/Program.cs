@@ -17,18 +17,20 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.AddDeserializer<XmlSerializer>();
+#pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+#pragma warning restore 618
+        var connectionString = "Endpoint=sb://bridgetest.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=P98AEX1RTBATVfBpICZlho8do0cPKhSVM1YgrNEf+z8=";
+        //Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
         transport.ConnectionString(connectionString);
-        var topology = transport.UseEndpointOrientedTopology();
 
         #region topology-setup-subscriber
 
-        topology.RegisterPublisher(typeof(MyEvent), "Bridge");
+        // topology.RegisterPublisher(typeof(MyEvent), "Bridge");
 
         #endregion
 
