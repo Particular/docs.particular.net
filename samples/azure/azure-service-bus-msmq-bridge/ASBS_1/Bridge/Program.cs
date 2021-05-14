@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
-// using NServiceBus.Configuration.AdvancedExtensibility;
 using NServiceBus.Router;
 using NServiceBus.Routing;
-// using NServiceBus.Serialization;
-// using SettingsHolder = NServiceBus.Settings.SettingsHolder;
 
 class Program
 {
@@ -14,8 +11,7 @@ class Program
     {
         Console.Title = "Samples.Azure.ServiceBus.Bridge";
 
-        var connectionString = "Endpoint=sb://bridgetest.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=P98AEX1RTBATVfBpICZlho8do0cPKhSVM1YgrNEf+z8=";
-        //"uid=sa;pwd=GQI1qNeq0oEHlL;server=192.168.0.114;database=NSB"; //Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
@@ -24,23 +20,11 @@ class Program
         #region bridge-general-configuration
 
         var bridgeConfiguration = new RouterConfiguration("Bridge");
-#pragma warning disable 618
         var azureInterface = bridgeConfiguration.AddInterface<AzureServiceBusTransport>("ASB", transport =>
-#pragma warning restore 618
         {
             //Prevents ASB from using TransactionScope
             transport.Transactions(TransportTransactionMode.ReceiveOnly);
             transport.ConnectionString(connectionString);
-
-            // TODO: ASB requires serializer to be registered.
-            // Currently, there's no way to specify serialization for the bridged endpoints
-            // endpointConfiguration.UseSerialization<T>();
-            //var settings = transport.GetSettings();
-            //var serializer = Tuple.Create(new NewtonsoftSerializer() as SerializationDefinition, new SettingsHolder());
-            //settings.Set("MainSerializer", serializer);
-
-            //transport.Routing().
-            //topology.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
         });
         var msmqInterface = bridgeConfiguration.AddInterface<MsmqTransport>("MSMQ", transport =>
         {
@@ -53,7 +37,6 @@ class Program
         {
             new EndpointInstance("Samples.Azure.ServiceBus.MsmqEndpoint").AtMachine(Environment.MachineName)
         });
-
 
         bridgeConfiguration.AutoCreateQueues();
 
