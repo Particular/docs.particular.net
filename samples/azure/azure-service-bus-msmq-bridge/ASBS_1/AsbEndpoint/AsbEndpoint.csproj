@@ -8,7 +8,6 @@
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.*" />
     <PackageReference Include="NServiceBus.Bridge.Connector" Version="2.*" />
-    <PackageReference Include="WindowsAzure.ServiceBus" Version="6.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>
