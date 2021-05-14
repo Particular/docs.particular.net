@@ -1,5 +1,6 @@
 ---
-title: Clustered RabbitMQ Transport Usage
+title: Clustered RabbitMQ transport usage
+summary: A sample showing how to use the RabbitMQ transport in a RabbitMQ cluster
 reviewed: 2021-06-04
 component: Rabbit
 related:
@@ -10,7 +11,7 @@ related:
 
 ## Prerequisites
 
-Ensure a RabbitMQ cluster is running is running and accessible. Use the following docker commands to set one up if needed:
+Ensure a RabbitMQ cluster is running is running and accessible. The following docker commands will set one up if needed:
 
 ```
 docker network create --driver bridge network1
@@ -39,7 +40,7 @@ snippet: cluster-configuration
 
 The username and password can be configured via the connection string. If these are not present, the connection string defaults to `host=localhost;username=guest;password=guest`.
 
-Note that [delayed delivery](/nservicebus/messaging/delayed-delivery.md) isn't supported for clusters and the sample therefor disables them. This means that [saga timeouts](/nservicebus/sagas/timeouts.md) can't be used and [delayed retries](/nservicebus/recoverability#delayed-retries) must be disabled as shown below:
+Note that [delayed delivery](/nservicebus/messaging/delayed-delivery.md) isn't supported for clusters and the sample therefore disables them. This means that [saga timeouts](/nservicebus/sagas/timeouts.md) can't be used and [delayed retries](/nservicebus/recoverability#delayed-retries) must be disabled as shown below:
 
 snippet: cluster-disable-retries
 
@@ -47,14 +48,14 @@ snippet: cluster-disable-retries
 
 RabbitMQ allows additional nodes to be added to avoid having to use a load balancer in front of the cluster. Adding those nodes will make the connection manager use them in a round robin fashion and automatically re-connect to healthy nodes should the connection be lost.
 
-RabbitMQ will default to port `5672` therefore the extra nodes (`rabbit2` and `rabbit3`) are added as shown below:
+RabbitMQ defaults to port `5672`; the extra nodes (`rabbit2` and `rabbit3`) are added as shown below:
 
 snippet: cluster-add-nodes
 
 With this setup the connection manager will initially connect to `rabbit1` but try `rabbit2` or `rabbit3` should `rabbit1` become unavailable.
 
-To try this out shutdown node `rabbit2` by executing:
+To test this, shutdown node `rabbit2`:
 
 `docker exec rabbit1 rabbitmqctl stop_app`
 
-Notice how a `WARN` is logged and that the endpoint is reconnected to the cluster.
+Notice that a `WARN` message is logged and that the endpoint is reconnected to the cluster.
