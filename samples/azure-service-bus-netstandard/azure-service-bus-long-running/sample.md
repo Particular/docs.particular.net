@@ -2,10 +2,12 @@
 title: Long-running operations with Azure Service Bus Transport
 summary: How to use the Azure Service Bus transport for a long-running process
 component: ASBS
-reviewed: 2021-05-13
+reviewed: 2021-05-18
 related:
 - transports/azure-service-bus
 - samples/azure-service-bus-netstandard/lock-renewal
+redirects:
+- samples/azure/azure-service-bus-long-running
 ---
 
 include: legacy-asb-warning
@@ -13,7 +15,7 @@ include: legacy-asb-warning
 
 ## Prerequisites
 
-include: asb-connectionstring
+include: asb-connectionstring-xplat
 
 include: asp-connectionstring
 

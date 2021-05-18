@@ -1,10 +1,12 @@
 ---
-title: MSMQ to Azure Service Bus Transport Bridge
-reviewed: 2019-09-02
+title: MSMQ to Azure Service Bus Transport Bridging
+reviewed: 2021-05-18
 component: ASBS
 related:
 - transports/azure-service-bus
 - nservicebus/router
+redirects:
+- samples/azure/azure-service-bus-msmq-bridge
 ---
 
 Endpoints running on different transports cannot exchange messages and require additional integration work.
@@ -19,7 +21,7 @@ Traditionally, such integrations would require native messaging or relaying. Bri
 
 ## Prerequisites
 
-include: asb-connectionstring
+include: asb-connectionstring-xplat
 
 include: asb-transport
 
