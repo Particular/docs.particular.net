@@ -8,15 +8,16 @@ using StatsdClient;
 class DatadogFeature : Feature
 {
     MetricsOptions _metricsOptions;
+    string _endpointName;
 
-    Dictionary<string, string> _nameMapping = new Dictionary<string, string>
+    readonly Dictionary<string, string> _nameMapping = new Dictionary<string, string>
     {
-        {"# of msgs successfully processed / sec", "Success"},
-        {"# of msgs pulled from the input queue /sec", "Fetched"},
-        {"# of msgs failures / sec", "Failures"},
-        {"Critical Time", "Critical Time"},
-        {"Processing Time", "Processing Time"},
-        {"Retries", "Retries"},
+        {"# of msgs successfully processed / sec", "nservicebus.processed"},
+        {"# of msgs pulled from the input queue /sec", "nservicebus.fetched"},
+        {"# of msgs failures / sec", "nservicebus.failed"},
+        {"Critical Time", "nservicebus.critical_time"},
+        {"Processing Time", "nservicebus.processing_time"},
+        {"Retries", "nservicebus.retries"},
     };
 
     public DatadogFeature()
@@ -24,6 +25,7 @@ class DatadogFeature : Feature
         Defaults(settings =>
         {
             _metricsOptions = settings.EnableMetrics();
+            _endpointName = settings.EndpointName();
         });
         EnableByDefault();
     }
@@ -54,8 +56,9 @@ class DatadogFeature : Feature
                     }
                     duration.Register((ref DurationEvent @event) =>
                     {
-                        var statName = ComposeStatName(duration.Name, @event.MessageType);
-                        DogStatsd.Timer(statName, @event.Duration.TotalMilliseconds);
+                        var statName = ComposeStatName(duration.Name);
+                        var tags = ComposeTags(@event.MessageType);
+                        DogStatsd.Timer(statName, @event.Duration.TotalMilliseconds, tags: tags);
                     });
                 }
 
@@ -67,8 +70,9 @@ class DatadogFeature : Feature
                     }
                     signal.Register((ref SignalEvent @event) =>
                     {
-                        var statName = ComposeStatName(signal.Name, @event.MessageType);
-                        DogStatsd.Increment(statName);
+                        var statName = ComposeStatName(signal.Name);
+                        var tags = ComposeTags(@event.MessageType);
+                        DogStatsd.Increment(statName, tags: tags);
                     });
                 }
             });
@@ -76,9 +80,28 @@ class DatadogFeature : Feature
         #endregion
     }
 
-    private string ComposeStatName(string eventName, string messageType)
+    private string ComposeStatName(string eventName)
     {
         _nameMapping.TryGetValue(eventName, out var mappedName);
-        return $"{messageType.Split(',')[0]}-{mappedName}";
+        return mappedName;
+    }
+    
+    private string[] ComposeTags(string messageType)
+    {
+        var tags = new List<string> 
+        { 
+            "endpoint:" + _endpointName 
+        };
+
+        if (!string.IsNullOrEmpty(messageType))
+        {                    
+            var fullMessageName = messageType.Split(',')[0];
+            tags.Add("messagetype_fullname:" + fullMessageName);
+
+            var shortMessageName = fullMessageName.Split('.').Last();
+            tags.Add("messagetype_name:" + shortMessageName);
+        }
+
+        return tags.ToArray();
     }
 }
