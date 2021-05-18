@@ -1,6 +1,0 @@
-startcode SubscriberOutput-from-sample
-
-2015-11-02 13:22:31.165 INFO  DerivedEventHandler Received DerivedEvent. EventId: c23951b0-0864-4c35-8314-25f354d07d7d Data: more data
-2015-11-02 13:22:31.175 INFO  BaseEventHandler Received BaseEvent. EventId: c23951b0-0864-4c35-8314-25f354d07d7d
-
-endcode

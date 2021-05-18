@@ -1,5 +1,0 @@
-startcode PublisherOutput-from-sample
-
-DerivedEvent sent. EventId: c23951b0-0864-4c35-8314-25f354d07d7d
-
-endcode

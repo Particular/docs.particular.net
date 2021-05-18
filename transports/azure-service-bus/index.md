@@ -6,7 +6,7 @@ related:
  - samples/azure-service-bus-netstandard/native-integration
  - samples/azure-service-bus-netstandard/lock-renewal
  - samples/azure-service-bus-netstandard/native-integration-pub-sub
-reviewed: 2021-05-05
+reviewed: 2021-05-18
 ---
 
 The Azure Service Bus transport leverages the .NET Standard [Microsoft.Azure.ServiceBus](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus/) client SDK.
