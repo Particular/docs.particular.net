@@ -45,6 +45,8 @@ snippet: datadog-enable-nsb-metrics
 ## Dashboard
 ![metrics summary](metrics-summary.png)
 ![dashboard](dashboard.png)
+![throughput by endpoint](throughput-by-endpoint.png)
+![timeseries configuration](timeseries-configuration.png)
 
 ### Create
 
