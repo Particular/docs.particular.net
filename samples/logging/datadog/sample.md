@@ -48,7 +48,7 @@ snippet: datadog-enable-nsb-metrics
 
 The following metrics are available across all endpoints. Use the tagged values `endpoint`, `messagetype_name`, and `messagetype_fullname` to aggregate and filter a metric.
 
-![metrics summary](metrics-summary.png)
+![metrics list](metrics-list.png)
 
 ### Sample Dashboard
 
