@@ -52,14 +52,14 @@ The following metrics are available across all endpoints. Use the tagged values 
 
 ### Sample Dashboard
 
-This dashboard replicates a lot of the data displayed by Service Pulse. But DataDog affords you a much longer history to draw from.
+This dashboard replicates a lot of the data displayed by Service Pulse. But DataDog affords a much longer history to draw from.
 
 ![dashboard](dashboard.png)
 
 ### Detailed Timeseries Example
 
 This is a zoomed in example of a single Timeseries component. It displays the message throughput for the entire system, with each bar colour-coded by endpoint name.
-Hovering over a section shows you details of the related endpoint.
+Hovering over a section shows the details of the related endpoint.
 
 e.g. `sum:nservicebus.processed{$dashboard_environment} by {endpoint}.as_rate().rollup(sum, 1)`
 
@@ -67,7 +67,7 @@ e.g. `sum:nservicebus.processed{$dashboard_environment} by {endpoint}.as_rate().
 
 ### Timeseries configuration
 
-You can pinpoint a specific endpoint or message type for the metric in the `from` setting, and then optionally breakdown the metric by another facet. 
-In this example we display the `nservicebus.processed` metric for just the specified endpoint, and can then use the `sum by` to show individual sums by message type.
+A specific endpoint or message type for the metric can be pinpointed in the `from` setting, and then optionally break down the metric by another facet. 
+In this example, the displayed `nservicebus.processed` metric for just the specified endpoint and can then use the `sum by` to show individual sums by message type.
 
 ![timeseries configuration](timeseries-configuration.png)
