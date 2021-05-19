@@ -43,9 +43,31 @@ Custom observers need to be registered for the metric probes provided via `NServ
 snippet: datadog-enable-nsb-metrics
 
 ## Dashboard
-![metrics summary](metrics-summary.png)
+
+### Available Metrics
+
+The following metrics are available across all endpoints. Use the tagged values `endpoint`, `messagetype_name`, and `messagetype_fullname` to aggregate and filter a metric.
+
+![metrics list](metrics-list.png)
+
+### Sample Dashboard
+
+This dashboard replicates a lot of the data displayed by Service Pulse. But DataDog affords a much longer history to draw from.
+
 ![dashboard](dashboard.png)
 
-### Create
+### Detailed Timeseries Example
 
-Dashboards can be created by using Datadog.
+This is a zoomed in example of a single Timeseries component. It displays the message throughput for the entire system, with each bar colour-coded by endpoint name.
+Hovering over a section shows the details of the related endpoint.
+
+e.g. `sum:nservicebus.processed{$dashboard_environment} by {endpoint}.as_rate().rollup(sum, 1)`
+
+![throughput by endpoint](throughput-by-endpoint.png)
+
+### Timeseries configuration
+
+A specific endpoint or message type for the metric can be pinpointed in the `from` setting, and then optionally break down the metric by another facet. 
+In this example, the displayed `nservicebus.processed` metric for just the specified endpoint and can then use the `sum by` to show individual sums by message type.
+
+![timeseries configuration](timeseries-configuration.png)
