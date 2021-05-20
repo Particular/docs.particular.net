@@ -7,7 +7,10 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ServiceControl.ASQAdapter.Sales";
+        var endpointName = "Samples.ServiceControl.ASQAdapter.Sales";
+
+        Console.Title = endpointName;
+
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
         var endpointConfiguration = new EndpointConfiguration("Samples-ServiceControl-ASQAdapter-Sales");
@@ -95,7 +98,7 @@ class Program
             {
                 chaos.IsFailing = !chaos.IsFailing;
                 Console.WriteLine($"Failure simulation is now turned {(chaos.IsFailing ? "on" : "off")}");
-                ConsoleHelper.ToggleTitle();
+                ConsoleHelper.ToggleTitle(endpointName);
             }
         }
         await endpointInstance.Stop()
