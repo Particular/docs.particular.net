@@ -6,10 +6,13 @@ class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.RabbitMQ.NativeIntegration.Sender";
+        var endpointName = "Samples.RabbitMQ.NativeIntegration.Sender";
+
+        Console.Title = endpointName;
+        
         var connectionFactory = new ConnectionFactory();
 
-        using (var connection = connectionFactory.CreateConnection(Console.Title))
+        using (var connection = connectionFactory.CreateConnection(endpointName))
         {
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
