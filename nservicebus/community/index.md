@@ -24,7 +24,6 @@ redirects:
  - nservicebus/serialization/protobufgoogle
  - nservicebus/serialization/protobufnet
  - nservicebus/serialization/utf8json
- - nservicebus/serialization/wire
  - nservicebus/serialization/zeroformatter
  - samples/attachments-fileshare
  - samples/attachments-sql
@@ -41,7 +40,6 @@ redirects:
  - samples/serializers/protobufgoogle
  - samples/serializers/protobufnet
  - samples/serializers/utf8json
- - samples/serializers/wire
  - samples/serializers/zeroformatter
  - samples/sqltransport/sql-native
  - samples/web/sql-http-passthrough
@@ -159,5 +157,4 @@ These serializer packages are part of the [NServiceBusExtensions](https://github
 * [ProtoBuf-Google](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufGoogle)
 * [ProtoBuf-Net](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet)
 * [Utf8Json](https://github.com/NServiceBusExtensions/NServiceBus.Utf8Json)
-* [Wire](https://github.com/NServiceBusExtensions/NServiceBus.Wire)
 * [ZeroFormatter](https://github.com/NServiceBusExtensions/NServiceBus.ZeroFormatter)
