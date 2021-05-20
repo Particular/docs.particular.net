@@ -12,7 +12,7 @@ public static class Resolver
 
     static Resolver()
     {
-        var codebase = typeof(Resolver).Assembly.CodeBase.Remove(0, 8);
+        var codebase = typeof(Resolver).Assembly.Location.Remove(0, 8);
         var currentDirectory = Path.GetDirectoryName(codebase);
         assemblies = Directory.GetFiles(currentDirectory, "*.dll")
             .Select(Assembly.LoadFrom)
