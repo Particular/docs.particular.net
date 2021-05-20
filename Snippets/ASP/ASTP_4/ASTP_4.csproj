@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFrameworks>net5.0;net48</TargetFrameworks>
     <LangVersion>7.3</LangVersion>
     <RootNamespace>ASTP_4</RootNamespace>
   </PropertyGroup>
