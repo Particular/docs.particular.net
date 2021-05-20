@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <PlatformTarget>x64</PlatformTarget>
@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="4.*" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1891" />
-    <PackageReference Include="NServiceBus.Persistence.ServiceFabric" Version="2.*" />
+    <PackageReference Include="NServiceBus.Persistence.ServiceFabric" Version="3.0.0-alpha.183" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
   </ItemGroup>
 </Project>
