@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Sales
+namespace Billing
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0008:Use explicit type")]
     class Program
