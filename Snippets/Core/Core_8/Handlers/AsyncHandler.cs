@@ -23,8 +23,8 @@
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            var longRunning1 = Task.Run(() => ComputeBoundComponent.BlocksForALongTime());
-            var longRunning2 = Task.Run(() => ComputeBoundComponent.BlocksForALongTime());
+            var longRunning1 = Task.Run(() => ComputeBoundComponent.BlocksForALongTime(), context.CancellationToken);
+            var longRunning2 = Task.Run(() => ComputeBoundComponent.BlocksForALongTime(), context.CancellationToken);
             return Task.WhenAll(longRunning1, longRunning2);
         }
     }
@@ -154,7 +154,7 @@
             var tasks = new Task[10000];
             for (var i = 0; i < 10000; i++)
             {
-                await semaphore.WaitAsync()
+                await semaphore.WaitAsync(context.CancellationToken)
                     .ConfigureAwait(false);
 
                 tasks[i] = Send(context, semaphore);
