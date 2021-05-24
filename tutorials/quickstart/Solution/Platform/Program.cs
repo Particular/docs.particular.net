@@ -1,5 +1,4 @@
 ﻿using System;
-using Particular;
 
 namespace Platform
 {
@@ -8,7 +7,7 @@ namespace Platform
         static void Main()
         {
             Console.Title = "Particular Service Platform Launcher";
-            PlatformLauncher.Launch();
+            // Particular.PlatformLauncher.Launch();
         }
     }
 }
