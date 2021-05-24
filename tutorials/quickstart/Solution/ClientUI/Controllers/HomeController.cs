@@ -16,9 +16,9 @@ namespace ClientUI.Controllers
         private readonly ILogger<HomeController> _log;
         private readonly IMessageSession _messageSession;
 
-        public HomeController(IMessageSession endpointInstance, ILogger<HomeController> logger)
+        public HomeController(IMessageSession messageSession, ILogger<HomeController> logger)
         {
-            _messageSession = endpointInstance;
+            _messageSession = messageSession;
             _log = logger;
         }
 
