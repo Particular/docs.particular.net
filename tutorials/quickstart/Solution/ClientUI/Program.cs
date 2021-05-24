@@ -15,15 +15,14 @@ namespace ClientUI
             CreateHostBuilder(args).Build().Run();
         }
 
-        
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
                         .UseNServiceBus(context =>
                         {
                             var endpointConfiguration = new EndpointConfiguration("ClientUI");
-                            var transport = endpointConfiguration.UseTransport<LearningTransport>();                            
-                            
+                            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+
                             var routing = transport.Routing();
                             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 

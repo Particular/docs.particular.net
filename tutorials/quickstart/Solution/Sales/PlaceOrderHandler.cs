@@ -11,7 +11,7 @@ namespace Sales
         IHandleMessages<PlaceOrder>
     {
         static readonly ILog log = LogManager.GetLogger<PlaceOrderHandler>();
-        static readonly Random random = new Random();
+        static readonly Random random = new();
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
