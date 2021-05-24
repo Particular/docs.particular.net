@@ -20,28 +20,32 @@
             }
 
             [HttpPost]
-            public Task Post(CancellationToken cancellationToken)
+            public async Task Post(CancellationToken cancellationToken)
             {
-                // Forward the cancellation token to methods that accept one
-                return session.Send(new MyMessage());
+                // CA2016: Forward the 'CancellationToken' parameter to methods
+                await session.Send(new MyMessage());
+
+                // No diagnostic
+                await session.Send(new MyMessage(), cancellationToken);
             }
         }
         #endregion
 
+#pragma warning disable NSB0002 // Forward the `CancellationToken` property of the context parameter to methods
         #region cancellation-token-in-message-handler
         public class SampleHandler : IHandleMessages<MyMessage>
         {
             public async Task Handle(MyMessage message, IMessageHandlerContext context)
             {
-                // Analyzer Warning NSB0002: Forward `context.CancellationToken` to the `Store` method.
+                // NSB0002: Forward the 'CancellationToken' property of the context parameter to methods
                 await MyDatabase.Store(new MyEntity());
 
-                // No analyzer warning
+                // No diagnostic
                 await MyDatabase.Store(new MyEntity(), context.CancellationToken);
-
             }
         }
         #endregion
+#pragma warning restore NSB0002 // Forward the `CancellationToken` property of the context parameter to methods
 
         class MyDatabase
         {
