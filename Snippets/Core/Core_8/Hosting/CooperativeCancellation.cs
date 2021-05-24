@@ -36,7 +36,7 @@
                 // Analyzer Warning NSB0002: Forward `context.CancellationToken` to the `Store` method.
                 await MyDatabase.Store(new MyEntity());
 
-                // No analyzer warnibg
+                // No analyzer warning
                 await MyDatabase.Store(new MyEntity(), context.CancellationToken);
 
             }
