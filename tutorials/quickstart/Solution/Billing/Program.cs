@@ -7,16 +7,13 @@ namespace Sales
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0008:Use explicit type")]
     class Program
-    {
-        
+    {        
         static async Task Main(string[] args)
         {
             Console.Title = "Billing";
-
             await CreateHostBuilder(args).RunConsoleAsync();
         }
-
-        
+                
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)

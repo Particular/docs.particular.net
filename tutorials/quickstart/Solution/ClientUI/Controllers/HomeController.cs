@@ -13,13 +13,13 @@ namespace ClientUI.Controllers
     public class HomeController : Controller
     {
         static int messagesSent;
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> _log;
         private readonly IMessageSession _messageSession;
 
         public HomeController(IMessageSession endpointInstance, ILogger<HomeController> logger)
         {
             _messageSession = endpointInstance;
-            _logger = logger;
+            _log = logger;
         }
 
         [HttpGet]
@@ -39,7 +39,7 @@ namespace ClientUI.Controllers
             await _messageSession.Send(command)
                 .ConfigureAwait(false);
 
-            _logger.LogInformation($"Publishing PlaceOrder, OrderId = {orderId}");
+            _log.LogInformation($"Publishing PlaceOrder, OrderId = {orderId}");
 
             dynamic model = new ExpandoObject();
             model.OrderId = orderId;

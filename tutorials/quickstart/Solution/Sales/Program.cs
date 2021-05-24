@@ -11,10 +11,9 @@ namespace Sales
         static async Task Main(string[] args)
         {
             Console.Title = "Sales";
-
             await CreateHostBuilder(args).RunConsoleAsync();
         }
-                
+
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
