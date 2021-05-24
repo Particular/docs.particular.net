@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Messages;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 
 namespace ClientUI.Controllers
@@ -12,11 +13,13 @@ namespace ClientUI.Controllers
     public class HomeController : Controller
     {
         static int messagesSent;
+        private readonly ILogger<HomeController> _logger;
         private readonly IMessageSession _messageSession;
 
-        public HomeController(IMessageSession endpointInstance)
+        public HomeController(IMessageSession endpointInstance, ILogger<HomeController> logger)
         {
             _messageSession = endpointInstance;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -33,10 +36,10 @@ namespace ClientUI.Controllers
             var command = new PlaceOrder { OrderId = orderId };
 
             // Send the command
-           await _messageSession.Send(command)
-               .ConfigureAwait(false);
+            await _messageSession.Send(command)
+                .ConfigureAwait(false);
 
-            await Task.CompletedTask;
+            _logger.LogInformation($"Publishing PlaceOrder, OrderId = {orderId}");
 
             dynamic model = new ExpandoObject();
             model.OrderId = orderId;

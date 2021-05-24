@@ -11,6 +11,7 @@ namespace ClientUI
     {
         public static void Main(string[] args)
         {
+            Console.Title = "ClientUI";
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -22,8 +23,8 @@ namespace ClientUI
                         {
                             var endpointConfiguration = new EndpointConfiguration("ClientUI");
                             var transport = endpointConfiguration.UseTransport<LearningTransport>();                            
+                            
                             var routing = transport.Routing();
-
                             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
                             endpointConfiguration.SendFailedMessagesTo("error");
