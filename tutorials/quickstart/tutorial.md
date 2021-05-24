@@ -41,14 +41,14 @@ The solution mimics a real-life retail system, where [the command](/nservicebus/
 
 ## Running the solution
 
-The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>) it should open the web application in your browser, and two console applications, one window for each messaging endpoint. (The Particular Service Platform Launcher console app will also open. Depending on your version of Visual Studio, it may persist or immediately close.)
+The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>) it should open three console applications, one for each messaging endpoint. One of these will open the web application in your browser. (The Particular Service Platform Launcher console app will also open but not do anything. Depending on your version of Visual Studio, it may persist or immediately close.)
 
 ![ClientUI Web Application](webapp-start.png)
 ![2 console applications, one for endpoint implemented as a console app](2-console-windows.png)
 
-WARNING: Did all three windows appear? In versions prior to Visual Studio 2019 16.1, there is a bug ([Link 1](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html), [Link 2](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221)) that will sometimes prevent one or more projects from launching with an error message "Unable to launch the previously selected debugger. Please choose another." If this is the case, stop debugging and try again. The problem usually happens only on the first attempt. 
+WARNING: Did all three windows appear? In versions prior to Visual Studio 2019 16.1, there is a bug ([Link 1](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html), [Link 2](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221)) that will sometimes prevent one or more projects from launching with an error message "Unable to launch the previously selected debugger. Please choose another." If this is the case, stop debugging and try again. The problem usually happens only on the first attempt.
 
-In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens in other windows. 
+In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens in other windows.
 
 It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint. In the **Sales** endpoint window we see:
 
@@ -148,7 +148,7 @@ snippet: ThrowFatalException
 Next, let's enable the Particular Service Platform tools and see what they do.
 
 1. In the **Platform** project, locate and open the **Program.cs** file.
-2. Uncomment the code inside the **PlatformMain** region shown here. This will cause the platform to launch when we start our project.
+2. Uncomment the code inside the **Main** method shown here. This will cause the platform to launch when we start our project.
 
 snippet: PlatformMain
 
@@ -237,43 +237,44 @@ As shown in the diagram, we'll be adding a new messaging endpoint called **Shipp
 
 ### Create a new endpoint
 
-First we'll create the **Shipping** project and set up its dependencies.
-
-To start, in the **Solution Explorer** window, right-click the **RetailDemo** solution and select **Add** > **New Project**.
-
-![New Project Dialog](new-project.png "width=680")
-
-1. In the **Add New Project** dialog, be sure to select at least **.NET Framework 4.6.1** in the dropdown menu at the top of the window for access to the `Task.CompletedTask` API.
-2. Select a new **Console App (.NET Framework)** project (or just **Console Application**).
-3. Name the project **Shipping**.
-4. Click **OK** to create the project and add it to the solution.
-
 {{NOTE:
-**Tip:** The existing projects in this solution are using the simpler .NET Core-style project file syntax, but the current Visual Studio tooling makes it difficult to do the same for the **Shipping** project. If you'd like to use the newer format, create a project of type **Console App (.NET Core)** and then manually edit the **Shipping.csproj** file and change the `TargetFramework` value from `netcoreapp2.0` to `net461`.
 
-Creating a **Console App (.NET Framework)** project which uses the older `*.csproj` file syntax will work just fine, but will look slightly different in Visual Studio, with nested **Properties**, **References**, and **packages.config** items instead of **Dependencies**.
+```shell
+dotnet new console --name Shipping --framework netcoreapp3.1
+
+
+```
+
 }}
 
-Depending on your environment, Visual Studio may create the project using C# 7.0. Let's change it to at least C# 7.1 so that we can use nice features like [an async Main method](https://blogs.msdn.microsoft.com/mazhou/2017/05/30/c-7-series-part-2-async-main/):
+First we'll create the **Shipping** project and set up its dependencies.
 
-1. In the **Solution Explorer**, right-click on the **Shipping** project and choose **Properties**.
-1. Switch to the **Build** tab.
-1. Under the **Output** heading, click the **Advanced…** button in the far lower-right corner.
-1. Change **Language version** to **C# latest minor version (latest)**.
-1. Click **OK**.
-1. Save and close the **Shipping** properties page.
+NOTE: In this tutorial, we'll use terminal commands like [`dotnet new`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new), [`dotnet add package`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-package), and [`dotnet add reference`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference), but you can do the same things using the graphical tools in Visual Studio if you prefer.
 
-![Change Language Version](change-language-version.png "width=680")
+First let's make sure we're in the root of the project, where the **RetailDemo.sln** file is located:
 
-Now, we need to add references to the Messages project, as well as the NServiceBus, NServiceBus.Heartbeat, and NServiceBus.Metrics.ServiceControl packages
+```shell
+> cd tutorials-quickstart
+```
 
-1. In the newly-created **Shipping** project, add the `NServiceBus`, `NServiceBus.Heartbeat`, and `NServiceBus.Metrics.ServiceControl` NuGet packages, which are already present in other projects in the solution. In the Package Manager Console window, enter the following commands:
-    ```
-    Install-Package NServiceBus -ProjectName Shipping
-    Install-Package NServiceBus.Heartbeat -ProjectName Shipping
-    Install-Package NServiceBus.Metrics.ServiceControl -ProjectName Shipping
-    ```
-1. In the **Shipping** project, add a reference to the **Messages** project, so that we have access to the `OrderPlaced` event.
+Next, we'll create a new Console Application project named **Shipping**:
+
+```shell
+> dotnet new console --name Shipping --framework netcoreapp3.1
+```
+
+Now, we need to add references to the **Messages** project, as well as the NuGet packages we will need.
+
+```shell
+dotnet add Shipping reference Messages
+
+dotnet add Shipping package NServiceBus
+dotnet add Shipping package NServiceBus.Extensions.Hosting
+dotnet add Shipping package NServiceBus.Heartbeat
+dotnet add Shipping package NServiceBus.Metrics.ServiceControl
+```
+
+<!-- TODO: David left off here -->
 
 Now that we have a project for the Shipping endpoint, we need to add some code to configure and start an `NServiceBus` endpoint. In the **Shipping** project, find the auto-generated **Program.cs** file and replace its contents with:
 
