@@ -5,8 +5,7 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 namespace Sales
-{
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
+{    
     public class PlaceOrderHandler :
         IHandleMessages<PlaceOrder>
     {

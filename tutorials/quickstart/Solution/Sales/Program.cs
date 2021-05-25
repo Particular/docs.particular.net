@@ -4,8 +4,7 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 namespace Sales
-{
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0008:Use explicit type")]
+{    
     class Program
     {
         static async Task Main(string[] args)

@@ -5,8 +5,7 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 namespace ClientUI
-{
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0008:Use explicit type")]
+{   
     public class Program
     {
         public static void Main(string[] args)
