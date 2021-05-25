@@ -8,12 +8,10 @@
 	
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
     <PackageReference Include="NServiceBus" Version="7.4.6" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.1.0" />
     <PackageReference Include="NServiceBus.Heartbeat" Version="3.0.1" />
     <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="3.0.6" />
-    <PackageReference Include="NServiceBus.MicrosoftLogging" Version="1.3.1" />
   </ItemGroup>
 
   <ItemGroup>

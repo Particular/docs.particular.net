@@ -9,7 +9,7 @@ namespace Platform
         static void Main()
         {
             Console.Title = "Particular Service Platform Launcher";
-            // Particular.PlatformLauncher.Launch();
+            Particular.PlatformLauncher.Launch();
         }
 
         #endregion
