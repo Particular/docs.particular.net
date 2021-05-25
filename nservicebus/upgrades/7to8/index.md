@@ -55,7 +55,7 @@ The following provider packages will no longer be provided:
 
 ## CancellationToken support
 
-NServiceBus version 8 supports [cooperative cancellation](/nservicebus/hosting/cooperative-cancellation.md) using `CancellationToken`. While the token is optional in message handlers and on `IMessageSession` methods on extension points are updated to include a mandatory `CancellationToken` parameter. This includes abstract classes and interfaces needed to implement a message transport or persistence libary, as well as other extension points like `IDataBus`, `FeatureStartupTask`, `INeedToInstallSomething`. Implementors can be updated by adding the `CancellationToken` parameter to the end of the method signature.
+NServiceBus version 8 supports [cooperative cancellation](/nservicebus/hosting/cooperative-cancellation.md) using `CancellationToken` parameters. Where appropriate, optional `CancellationToken` parameters have been added to public methods. This includes the abstract classes and interfaces required to implement a message transport or persistence library, and other extension points like `IDataBus`, `FeatureStartupTask`, and `INeedToInstallSomething`. Implementers can be updated by adding an optional `CancellationToken` parameter to the end of method signatures.
 
 ## Shutdown behavior
 
@@ -63,9 +63,9 @@ In all versions of NServiceBus, `endpoint.Stop()` immediately stops receiving ne
 
 In NServiceBus version 7 and below, the MSMQ, RabbitMQ, and SqlServer transports allow handlers up to 30 seconds to complete before forcing an endpoint shutdown. In NServiceBus version 8, all transports block shutdown until all handlers complete.
 
-The cancellation token available on the `IMessageHandlerContext` in NServiceBus version 8 is triggered when the host forces shutdown. For example, the .NET Generic Host signals the cancellation token after 5 seconds.
+The cancellation token available on the `IMessageHandlerContext` in NServiceBus version 8 is triggered when the host forces shutdown. For example, by default, the .NET Generic Host signals the cancellation token after 5 seconds.
 
-However, if handlers do not observe the cancellation token, they will complete before the endpoints shuts down. This means that if, for example, a handler calls `Task.Delay(TimeSpan.Infinite)`, the endpoint will never shut down.
+However, if handlers do not observe the cancellation token, they will be allowed to complete before the endpoints shuts down. This means that if, for example, a handler calls `Task.Delay(TimeSpan.Infinite)`, the endpoint will never shut down.
 
 Therefore, it is recommended that all message handlers observe the cancellation token to enable forced shutdown when required.
 
