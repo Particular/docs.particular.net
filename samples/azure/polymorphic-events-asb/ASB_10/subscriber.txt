@@ -1,8 +1,0 @@
-startcode SubscriberOutput
-
-2015-11-02 13:00:37.655 INFO  DerivedEventHandler Received DerivedEvent. EventId: c3c07de2-433f-4b31-8f76-1b9826409471 Data: more data
-2015-11-02 13:00:39.415 INFO  BaseEventHandler Received BaseEvent. EventId: c3c07de2-433f-4b31-8f76-1b9826409471
-2015-11-02 13:00:39.500 INFO  DerivedEventHandler Received DerivedEvent. EventId: c3c07de2-433f-4b31-8f76-1b9826409471 Data: more data
-2015-11-02 13:00:39.505 INFO  BaseEventHandler Received BaseEvent. EventId: c3c07de2-433f-4b31-8f76-1b9826409471
-
-endcode

@@ -1,11 +1,11 @@
 ---
 title: Azure Service Bus lock renewal
 summary: Long message processing with Azure Service Bus
-reviewed: 2021-03-24
+reviewed: 2021-05-18
 component: ASBS
 related:
 - transports/azure-service-bus
-- samples/azure/azure-service-bus-long-running
+- samples/azure-service-bus-netstandard/azure-service-bus-long-running
 ---
 
 
