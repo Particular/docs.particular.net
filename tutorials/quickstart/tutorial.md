@@ -234,22 +234,11 @@ As shown in the diagram, we'll be adding a new messaging endpoint called **Shipp
 
 ![Completed Solution](after.svg "width=680")
 
+NOTE: In this tutorial, we'll use terminal commands like [`dotnet new`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new), [`dotnet add package`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-package), and [`dotnet add reference`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference), but you can do the same things using the graphical tools in Visual Studio if you prefer.
 
 ### Create a new endpoint
 
-{{NOTE:
-
-```shell
-dotnet new console --name Shipping --framework netcoreapp3.1
-
-
-```
-
-}}
-
 First we'll create the **Shipping** project and set up its dependencies.
-
-NOTE: In this tutorial, we'll use terminal commands like [`dotnet new`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new), [`dotnet add package`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-package), and [`dotnet add reference`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference), but you can do the same things using the graphical tools in Visual Studio if you prefer.
 
 First let's make sure we're in the root of the project, where the **RetailDemo.sln** file is located:
 
@@ -266,19 +255,19 @@ Next, we'll create a new Console Application project named **Shipping**:
 Now, we need to add references to the **Messages** project, as well as the NuGet packages we will need.
 
 ```shell
-dotnet add Shipping reference Messages
+> dotnet add Shipping reference Messages
 
-dotnet add Shipping package NServiceBus
-dotnet add Shipping package NServiceBus.Extensions.Hosting
-dotnet add Shipping package NServiceBus.Heartbeat
-dotnet add Shipping package NServiceBus.Metrics.ServiceControl
+> dotnet add Shipping package NServiceBus
+> dotnet add Shipping package NServiceBus.Extensions.Hosting
+> dotnet add Shipping package NServiceBus.Heartbeat
+> dotnet add Shipping package NServiceBus.Metrics.ServiceControl
 ```
 
-<!-- TODO: David left off here -->
-
-Now that we have a project for the Shipping endpoint, we need to add some code to configure and start an `NServiceBus` endpoint. In the **Shipping** project, find the auto-generated **Program.cs** file and replace its contents with:
+Now that we have a project for the Shipping endpoint, we need to add some code to configure and start an `NServiceBus` endpoint. In the **Shipping** project, find the auto-generated **Program.cs** file and replace its contents with the following.
 
 snippet: ShippingProgram
+
+Take special note of the comments in this code, which annotate the various parts of the NServiceBus configuration we're using.
 
 We want the **Shipping** endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects) feature to configure the **Shipping** endpoint to start along with **ClientUI**, **Sales**, and **Billing**.
 
