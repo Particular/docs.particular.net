@@ -63,7 +63,7 @@ In all versions of NServiceBus, `endpoint.Stop()` immediately stops receiving ne
 
 In NServiceBus version 7 and below, the MSMQ, RabbitMQ, and SqlServer transports allow handlers up to 30 seconds to complete before forcing an endpoint shutdown. In NServiceBus version 8, all transports block shutdown until all handlers complete.
 
-The cancellation token available on the `IMessageHandlerContext` in NServiceBus version 8 is triggered when the host forces shutdown. For example, by default, the .NET Generic Host signals the cancellation token after 5 seconds.
+The`CancellationToken` available on the `IMessageHandlerContext` in NServiceBus version 8 is triggered when the host forces shutdown. For example, by default, the .NET Generic Host signals the cancellation token after 5 seconds.
 
 However, if handlers do not observe the cancellation token, they will be allowed to complete before the endpoints shuts down. This means that if, for example, a handler calls `Task.Delay(TimeSpan.Infinite)`, the endpoint will never shut down.
 
