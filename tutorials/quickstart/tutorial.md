@@ -83,7 +83,7 @@ See how that is achieved by following these steps:
 
 5. Restart the **Billing** application by right-clicking the **Billing** project in Visual Studio's Solution Explorer, then selecting **Debug** > **Start new instance**.
 
-NOTE: For Visual Studio Code users, the **Billing** endpoint can be started by navigating to the _Run and Debug_ tab and running the _Billing_ debug configuration from the dropdown list. Be sure to re-select the _Debug All With Platform Tools_ configuration again after _Billing_ is running.  
+NOTE: For [Visual Studio Code](https://code.visualstudio.com/) users, the **Billing** endpoint can be started by navigating to the _Run and Debug_ tab and running the _Billing_ debug configuration from the dropdown list. Be sure to re-select the _Debug All With Platform Tools_ configuration again after _Billing_ is running.  
 
 When the **Billing** endpoint starts, it will pick up messages published earlier by **Sales** and will complete the process for orders that were waiting to be billed.
 
