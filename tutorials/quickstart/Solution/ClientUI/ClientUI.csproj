@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\app.js" />
+    <None Include="wwwroot\Content\app.js" />
   </ItemGroup>
 
   <ItemGroup>

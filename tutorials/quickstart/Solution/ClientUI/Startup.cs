@@ -36,7 +36,7 @@ namespace ClientUI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles("/Content");
+            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseAuthorization();
