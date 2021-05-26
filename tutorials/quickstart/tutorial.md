@@ -179,12 +179,12 @@ For now, let's focus on the **Failed Messages** view. It's not much to look at r
 Immediately, we see an exception flash past, followed by an orange WARN message:
 
 ```
-WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message 'ea962f05-7d82-4be1-926a-a9de01749767' after a delay of 00:00:10 because of an exception:
+WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message 'ea962f05-7d82-4be1-926a-a9de01749767' after a delay of 00:00:02 because of an exception:
 System.Exception: BOOM
    at <long stack trace>
 ```
 
-Ten seconds later, text will flash past again, warning of a 20-second delay. Twenty seconds later, the text will flash again, warning of a 30-second delay. And finally, 30 seconds after that, text will flash by again, ending with a red ERROR message:
+Two seconds later, text will flash past again, warning of a 4-second delay. Four seconds later, the text will flash again, warning of a 6-second delay. And finally, six seconds after that, text will flash by again, ending with a red ERROR message:
 
 ```
 ERROR NServiceBus.RecoverabilityExecutor Moving message 'ea962f05-7d82-4be1-926a-a9de01749767' to the error queue 'error' because processing failed due to an exception:
