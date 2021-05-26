@@ -35,7 +35,7 @@
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "env": {
-                "ASPNETCORE_URLS":"http://localhost:5001" 
+                "ASPNETCORE_URLS":"http://localhost:5000" 
             },
             "serverReadyAction": {
                 "action": "openExternally",
