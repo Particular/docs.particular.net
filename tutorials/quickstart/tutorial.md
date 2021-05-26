@@ -198,7 +198,7 @@ Once the red stack trace appears, check out the **Failed Messages** view in the 
 
 So what happened here? Due to the hard-coded exception, the message couldn't be successfully processed. And just like before in the [Transient failures](#transient-failures) section, NServiceBus immediately attempted a round of retries. When every retry attempt failed, before giving up all hope, the system attempted another round of retires after a delay. Failing that, NServiceBus repeated this cycle 2 more times, increasing the delay each time. After all of the retries and delays were exhausted, the message still couldn't be processed successfully and the system transferred the message to an **error queue**, a holding location for poison messages, so that other messages behind it can be processed.
 
-INFO: By default, NServiceBus will perform rounds of [immediate retries](/nservicebus/recoverability/#immediate-retries) separated by a series of [increasing delays](/nservicebus/recoverability/#delayed-retries). The endpoints in this have been [configured for shorter delays](/nservicebus/recoverability/configure-delayed-retries.md) so that we can quickly see the endpoint arrive in the error queue.
+INFO: By default, NServiceBus will perform rounds of [immediate retries](/nservicebus/recoverability/#immediate-retries) separated by a series of [increasing delays](/nservicebus/recoverability/#delayed-retries). The endpoints here have been [configured for shorter delays](/nservicebus/recoverability/configure-delayed-retries.md) so that we can quickly see the endpoint arrive in the error queue.
 
 Once the message entered the error queue, ServicePulse took over, displaying all failed messages grouped by exception type and the location it was thrown from.
 
