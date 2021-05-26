@@ -34,15 +34,29 @@
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_URLS":"http://localhost:5001" 
+            },
             "serverReadyAction": {
                 "action": "openExternally",
                 "uriFormat": "%s/home",
                 "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
             },
             "launchBrowser": {
-                "enabled": true
-            },
-            "console": "externalTerminal"
+                "enabled": true,
+                "args": "${auto-detect-url}",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start ${auto-detect-url}/home"
+                },
+                "osx": {
+                    "command": "open"
+                },
+                "linux": {
+                    "command": "xdg-open",
+                    "args": "${auto-detect-url}/home"
+                }
+            }            
         },
         {
             "name": "Sales",

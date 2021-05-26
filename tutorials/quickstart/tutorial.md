@@ -28,7 +28,7 @@ downloadbutton
 
 ## Project structure
 
-The solution contains five projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is an entry point in our system. The **Sales** and **Billing** endpoints, implemented as console applications, contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as simple class files. A little further into the tutorial, the **Platform** project will provide a demonstration of the Particular Service Platform, but at the beginning of the tutorial we'll leave its code commented out, and return to it later.
+The solution contains five projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is the entry point to our system. The **Sales** and **Billing** endpoints, implemented as console applications, contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as simple class files. The **Platform** project will provide a demonstration of the Particular Service Platform, but initially, its code is commented out.
 
 ![Solution Explorer view](solution-explorer.png "width=240")
 
@@ -36,7 +36,7 @@ As shown in the diagram below, the **ClientUI** endpoint sends a **PlaceOrder** 
 
 ![Initial Solution](before.svg "width=680")
 
-The solution mimics a real-life retail system, where [the command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of a customer interaction, and the processing occurs in the background. Publishing [an event](/nservicebus/messaging/messages-events-commands.md) allows us to isolate the code to bill the credit card from the code to place the order, reducing coupling and making the system easier to maintain over the long term. Later in this tutorial, we'll see how to add a second subscriber in a new **Shipping** endpoint which would begin the process of shipping the order.
+The solution mimics a real-life retail system where [the command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction, and the processing occurs in the background. Publishing [an event](/nservicebus/messaging/messages-events-commands.md) allows us to isolate the code to bill the credit card from the code to place the order, reducing coupling and making the system easier to maintain over the long term. Later in this tutorial, we'll see how to add a second subscriber in a new **Shipping** endpoint which will begin the process of shipping the order.
 
 
 ## Running the solution
@@ -70,7 +70,7 @@ In the **ClientUI** web application, go back and send more messages, watching th
 
 ## Reliability
 
-One of the most powerful advantages of asynchronous messaging is reliability. Failures in one part of a system aren't propagated and don't bring the whole system down. 
+One of the most powerful advantages of asynchronous messaging is reliability. Failures in one part of a system aren't propagated and won't bring the whole system down. 
 
 See how that is achieved by following these steps:
 
@@ -83,23 +83,25 @@ See how that is achieved by following these steps:
 
 5. Restart the **Billing** application by right-clicking the **Billing** project in Visual Studio's Solution Explorer, then selecting **Debug** > **Start new instance**.
 
+NOTE: For Visual Studio Code users, the **Billing** endpoint can be started by navigating to the _Run and Debug_ tab and running the _Billing_ debug configuration from the dropdown list. Be sure to re-select the _Debug All With Platform Tools_ configuration again after _Billing_ is running.  
+
 When the **Billing** endpoint starts, it will pick up messages published earlier by **Sales** and will complete the process for orders that were waiting to be billed.
 
 ![Billing endpoint processing through backlog](billing-processing-backlog.png)
 
-Let's consider more carefully what happened. First, we had two processes communicating with each other with very little ceremony. The communication didn't break down even when the **Billing** service was unavailable. If we had implemented **Billing** as a REST endpoint, the **Sales** service would have thrown an HTTP exception when it was unable to communicate with it and *that request would have been lost*. By using NServiceBus we get a guarantee that even if message processing endpoints are temporarily unavailable, every message will eventually get delivered and processed.
+Let's consider more carefully what happened. First, we had two processes communicating with each other with very little ceremony. The communication didn't break down even when the **Billing** service was unavailable. Had we implemented **Billing** as a REST service, for example, the **Sales** service would have thrown an HTTP exception when it was unable to communicate, *resulting in a lost request*. By using NServiceBus we get a guarantee that even if message processing endpoints are temporarily unavailable, every message will eventually get delivered and processed.
 
 
 ## Transient failures
 
-Have you ever had business processes get interrupted by transient errors like database deadlocks? Transient errors often leave a system in an inconsistent state. For example, the order could be persisted in the database but not yet submitted to the payment processor. In such a situation you might have to investigate the database like a forensic analyst, trying to figure out where the process went wrong, and how to manually jump-start it so that the process can complete.
+Have you ever had business processes get interrupted by transient errors like database deadlocks? Transient errors often leave a system in an inconsistent state. For example, an order could be persisted in the database but not yet submitted to the payment processor. In such a situation you may have to investigate the database like a forensic analyst, trying to figure out where the process went wrong, and how to manually jump-start it so the process can complete.
 
-With NServiceBus we don't need manual intervention. If an exception is thrown, then the message handler will automatically retry processing it. That addresses transient failures like database deadlocks, connection issues across machines, file write access conflicts, etc.
+With NServiceBus we don't need manual intervention. If an exception is thrown, the message handler will automatically attempt a retry. The automatic retry process addresses transient failures like database deadlocks, connection issues, file write access conflicts, etc.
 
-Let's simulate a transient failure in the **Sales** endpoint and see retries in action:
+Let's simulate a transient failure in the **Sales** endpoint and see the retry process in action:
 
-1. Stop the solution (if you haven't already) and in the **Sales** endpoint, locate and open the **PlaceOrderHandler.cs** file.
-1. Uncomment the code inside the **ThrowTransientException** region shown here. This will cause an exception to be thrown 20% of the time a message is processed:
+1. Stop the solution if you haven't already. Locate and open the **PlaceOrderHandler.cs** file in the **Sales** endpoint.
+1. Uncomment the code inside the **ThrowTransientException** region shown below. This will cause an exception to be thrown 20% of the time a message is processed:
 
 snippet: ThrowTransientException
 
@@ -124,7 +126,6 @@ NOTE: If you didn't detach the debugger, you must click the **Continue** button 
 Automatic retries allow us to avoid losing data or having our system left in an inconsistent state because of a random transient exception. We won't need to manually dig through the database to fix things anymore!
 
 Of course, there are other exceptions that may be harder to recover from than simple database deadlocks. Let's see what happens when a systemic failure occurs.
-
 
 ## Systemic failures
 
@@ -183,7 +184,7 @@ System.Exception: BOOM
    at <long stack trace>
 ```
 
-Ten seconds later, text will flash past again, warning of a 20-second delay. Twenty seconds later, the text will flash again, warning of a 30-second delay. And finally, 30 seconds after that, text will flash by again, ending in red ERROR message:
+Ten seconds later, text will flash past again, warning of a 20-second delay. Twenty seconds later, the text will flash again, warning of a 30-second delay. And finally, 30 seconds after that, text will flash by again, ending with a red ERROR message:
 
 ```
 ERROR NServiceBus.RecoverabilityExecutor Moving message 'ea962f05-7d82-4be1-926a-a9de01749767' to the error queue 'error' because processing failed due to an exception:
@@ -195,11 +196,13 @@ Once the red stack trace appears, check out the **Failed Messages** view in the 
 
 ![ServicePulse: Failed Messages View](pulse-failed-messages.png)
 
-So what happened here? The message couldn't be successfully processed during an immediate round of retries, so it delayed the message for 10 seconds to try again. After that, it could still not be processed successfully, so it delayed the message for an additional 20 seconds, and then 30 seconds, before giving up all hope and transferring the message to an **error queue**, a holding location for poison messages so that other messages behind it can still get processed successfully.
+So what happened here? Due to the hard coded exception, the message couldn't be successfully processed. And just like before in the [Transient failures](#transient-failures) section, NServiceBus immediately attempted a round of retries. When every retry attempt failed, before giving up all hope, the system attempted another round of retires after a delay. Failing that, NServiceBus repeated this cycle 2 more times, increasing the delay each time. After all of retries and delays were exhausted, the message still couldn't be processed successfully and the system transferred the message to an **error queue**, a holding location for poison messages, so that other messages behind it can be processed.
 
-Once the message enters the error queue, ServicePulse takes over, displaying all failed messages grouped by exception type and the location it's thrown from.
+INFO: By default, NServiceBus will perform rounds of [immediate retries](/nservicebus/recoverability/#immediate-retries) separated by a series of [increasing delays](/nservicebus/recoverability/#delayed-retries). The endpoints in this have been [configured for shorter delays](/nservicebus/recoverability/configure-delayed-retries.md) so that we can quickly see the endpoint arrive in the error queue.
 
-If you click on the exception group, it will take you to the list of exceptions within that group. This is not too interesting, since we currently only have one, but if you click again on the individual exception, you will get a rich exception detail view:
+Once the message entered the error queue, ServicePulse took over, displaying all failed messages grouped by exception type and the location it was thrown from.
+
+If you click on the exception group, it will take you to the list of exceptions within that group. This is not very interesting since we currently only have one, but if you click again on the individual exception, you will get a rich exception detail view:
 
 ![ServicePulse: Exception Details](pulse-exception-details.png)
 
@@ -230,7 +233,7 @@ The visual tools in ServicePulse provide a quick way to get to the root cause of
 
 As mentioned previously, publishing events using the [Publish-Subscribe pattern](/nservicebus/messaging/publish-subscribe/) reduces coupling and makes maintaining a system easier in the long run. Let's look at how we can add an additional subscriber without needing to modify any existing code.
 
-As shown in the diagram, we'll be adding a new messaging endpoint called **Shipping** that will also subscribe to the `OrderPlaced` event.
+As shown in the diagram, we'll be adding a new messaging endpoint called **Shipping** that will subscribe to the `OrderPlaced` event.
 
 ![Completed Solution](after.svg "width=680")
 
@@ -240,16 +243,17 @@ NOTE: In this tutorial, we'll use terminal commands like [`dotnet new`](https://
 
 First we'll create the **Shipping** project and set up its dependencies.
 
-First let's make sure we're in the root of the project, where the **RetailDemo.sln** file is located:
+First let's make sure both browser windows and all console appliations are closed, and in the terminal,  we're in the root of the project where the **RetailDemo.sln** file is located:
 
 ```shell
 > cd tutorials-quickstart
 ```
 
-Next, we'll create a new Console Application project named **Shipping**:
+Next, we'll create a new Console Application project named **Shipping** and add it to the solution:
 
 ```shell
 > dotnet new console --name Shipping --framework netcoreapp3.1
+> dotnet sln add Shipping
 ```
 
 Now, we need to add references to the **Messages** project, as well as the NuGet packages we will need.
@@ -271,6 +275,7 @@ Take special note of the comments in this code, which annotate the various parts
 
 We want the **Shipping** endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects) feature to configure the **Shipping** endpoint to start along with **ClientUI**, **Sales**, and **Billing**.
 
+NOTE:  To launch the Shipping endpoint with the rest of the solution when using Visual Studio Code, navigate to the _Run and Debug_ tab and select the _Debug All With Platform Tools And Shipping_ debug configuration from the dropdown list.
 
 ### Create a new message handler
 
@@ -316,11 +321,11 @@ NOTE: You may also want to take a look at the ServicePulse window, where you sho
 
 In this tutorial, we explored the basics of how a messaging system using NServiceBus works.
 
-We learned that asynchronous messaging failures in one part of a system can be isolated and prevent the entire system failure. That level of resilience and reliability is not easy to achieve with traditional REST-based web services.
+We learned that asynchronous messaging failures in one part of a system can be isolated and prevent complete system failure. This level of resilience and reliability is not easy to achieve with traditional REST-based web services.
 
 We saw how automatic retries provide protection from transient failures like database deadlocks. If we implement a multi-step process as a series of message handlers, then each step will be executed independently and can be automatically retried in case of failures. This means that a stray exception won't abort an entire process, leaving the system in an inconsistent state.
 
-We saw how the tooling in the Particular Service Platform makes running a distributed system much easier. ServicePulse gives us critical insights into the health of a system, and allows us to diagnose and fix systemic failures. We don't have to worry about data loss–once we redeploy our system, we can replay failed messages in batches as if the error had never occurred.
+We saw how the tooling in the Particular Service Platform makes running a distributed system much easier. ServicePulse gives us critical insights into the health of a system, and allows us to diagnose and fix systemic failures. We don't have to worry about data loss once we redeploy our system, we can replay failed messages in batches as if the error had never occurred.
 
 We also implemented an additional event subscriber, showing how to decouple independent bits of business logic from each other. The ability to publish one event and then implement resulting steps in separate message handlers makes the system much easier to maintain and evolve.
 

@@ -21,7 +21,7 @@ namespace Shipping
                        .UseNServiceBus(context =>
                        {
                            // Define the endpoint name
-                           var endpointConfiguration = new EndpointConfiguration("Billing");
+                           var endpointConfiguration = new EndpointConfiguration("Shipping");
 
                            // Select the learning (filesystem-based) transport to communicate
                            // with other endpoints

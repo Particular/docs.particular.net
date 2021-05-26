@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 namespace Sales
-{    
+{
     class Program
     {
         static async Task Main(string[] args)
@@ -25,6 +25,14 @@ namespace Sales
                            endpointConfiguration.SendFailedMessagesTo("error");
                            endpointConfiguration.AuditProcessedMessagesTo("audit");
                            endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
+
+                           var recoverablility = endpointConfiguration.Recoverability();
+                           recoverablility.Delayed(
+                               delayed =>
+                               {
+                                   delayed.TimeIncrease(TimeSpan.FromSeconds(2));
+                               }
+                           );
 
                            var metrics = endpointConfiguration.EnableMetrics();
                            metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromMilliseconds(500));
