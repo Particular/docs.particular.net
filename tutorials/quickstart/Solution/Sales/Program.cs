@@ -26,6 +26,8 @@ namespace Sales
                            endpointConfiguration.AuditProcessedMessagesTo("audit");
                            endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
 
+                           // So that when we test recoverability, we don't have to wait so long
+                           // for the failed message to be sent to the error queue
                            var recoverablility = endpointConfiguration.Recoverability();
                            recoverablility.Delayed(
                                delayed =>
