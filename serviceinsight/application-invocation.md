@@ -5,7 +5,7 @@ component: ServiceInsight
 summary: How the integration between ServicePulse and ServiceInsight works and how to use the parameterized invocation of ServiceInsight.
 ---
 
-It is possible to load any given message in ServiceInsight from ServicePulse by clicking the "Open in ServiceInsight" link.
+It is possible to load any given message in ServiceInsight from ServicePulse by clicking the "View in ServiceInsight" link.
 
 ![ServicePulse Error Messages](images/007-servicepulse-error-messages.png 'width=500')
 
