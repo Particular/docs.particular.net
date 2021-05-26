@@ -342,6 +342,8 @@
         Title: Azure Blob Storage
       - Url: nservicebus/messaging/databus/custom
         Title: Custom
+    - Url: nservicebus/cancellation-and-exception-handling
+      Title: Cancellation and exception handling
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
