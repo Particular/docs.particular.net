@@ -6,6 +6,7 @@
     "compounds": [
         {
             "name": "Debug All",
+            "preLaunchTask": "build",
             "configurations": [
                 "ClientUI",
                 "Sales",
@@ -15,6 +16,7 @@
         },
         {
             "name": "Debug All + Shipping",
+            "preLaunchTask": "build",
             "configurations": [
                 "ClientUI",
                 "Sales",
@@ -29,7 +31,6 @@
             "name": "ClientUI",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
             "program": "${workspaceFolder}/ClientUI/bin/Debug/netcoreapp3.1/ClientUI.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
@@ -43,7 +44,7 @@
                 "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
             },
             "launchBrowser": {
-                "enabled": true,
+                "enabled": false,
                 "args": "${auto-detect-url}/home",
                 "windows": {
                     "command": "cmd.exe",
@@ -62,7 +63,6 @@
             "name": "Sales",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
             "program": "${workspaceFolder}/Sales/bin/Debug/netcoreapp3.1/Sales.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
@@ -73,7 +73,6 @@
             "name": "Billing",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
             "program": "${workspaceFolder}/Billing/bin/Debug/netcoreapp3.1/Billing.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
@@ -84,7 +83,6 @@
             "name": "Platform",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
             "program": "${workspaceFolder}/Platform/bin/Debug/netcoreapp3.1/Platform.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
@@ -95,7 +93,6 @@
             "name": "Shipping",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
             "program": "${workspaceFolder}/Shipping/bin/Debug/netcoreapp3.1/Shipping.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
