@@ -65,6 +65,7 @@ snippet: MessageWithLargePayloadUsingConvention
 
 By default NServiceBus uses a `BinaryFormatter` to serialize and deserialize data bus properties.
 
+WARN: When targeting `.net5.0` a customer serializer must be used (see below) since `BinaryFormatter` [no longer is supported](https://docs.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/5.0/binaryformatter-serialization-obsolete).
 
 ### Using a custom serializer
 
