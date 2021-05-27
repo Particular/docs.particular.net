@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "compounds": [
         {
-            "name": "Debug All With Platform Tools",
+            "name": "Debug All",
             "configurations": [
                 "ClientUI",
                 "Sales",
@@ -14,7 +14,7 @@
             ]
         },
         {
-            "name": "Debug All With Platform Tools And Shipping",
+            "name": "Debug All + Shipping",
             "configurations": [
                 "ClientUI",
                 "Sales",
@@ -35,7 +35,7 @@
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "env": {
-                "ASPNETCORE_URLS":"http://localhost:5000" 
+                "ASPNETCORE_URLS":"http://localhost:5000"
             },
             "serverReadyAction": {
                 "action": "openExternally",
@@ -44,7 +44,7 @@
             },
             "launchBrowser": {
                 "enabled": true,
-                "args": "${auto-detect-url}",
+                "args": "${auto-detect-url}/home",
                 "windows": {
                     "command": "cmd.exe",
                     "args": "/C start ${auto-detect-url}/home"
@@ -56,7 +56,7 @@
                     "command": "xdg-open",
                     "args": "${auto-detect-url}/home"
                 }
-            }            
+            }
         },
         {
             "name": "Sales",
