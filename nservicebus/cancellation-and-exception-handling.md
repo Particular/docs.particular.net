@@ -57,11 +57,13 @@ try
 {
     await SomeOperation(cancellationToken);
 }
-catch (Exception ex) when (ex is not OperationCanceledException)
+catch (Exception ex) when (ex is not OperationCanceledException || !cancellationToken.IsCancellationRequested)
 {
     log.Warn("Something bad happened.", ex);
 }
 ```
+
+It's important to catch `OperationCanceledException` when the cancellation token is not flagged because that scenario means that the endpoint is not shutting down, because cancellation has not been requested. This should be treated as a normal exception, because the cause is unknown.
 
 ## Helper methods
 
