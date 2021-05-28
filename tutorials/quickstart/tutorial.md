@@ -30,7 +30,7 @@ downloadbutton
 
 The solution contains five projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is the entry point to our system. The **Sales** and **Billing** endpoints, implemented as console applications, contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as simple class files. The **Platform** project will provide a demonstration of the Particular Service Platform, but initially, its code is commented out.
 
-![Solution Explorer view](solution-explorer.png "width=240")
+![Solution Explorer view](solution-explorer-2.png "width=300")
 
 As shown in the diagram below, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an **OrderPlaced** event using the publish/subscribe pattern, which will be received by the **Billing** endpoint.
 
@@ -43,8 +43,8 @@ The solution mimics a real-life retail system where [the command](/nservicebus/m
 
 The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>) it should open three console applications, one for each messaging endpoint. One of these will open the web application in your browser. (The Particular Service Platform Launcher console app will also open but not do anything. Depending on your version of Visual Studio, it may persist or immediately close.)
 
-![ClientUI Web Application](webapp-start.png)
-![2 console applications, one for endpoint implemented as a console app](2-console-windows.png)
+![3 console applications, one for endpoint implemented as a console app](3-console-windows.png)
+![ClientUI Web Application](webapp-start-2.png)
 
 WARNING: Did all three windows appear? In versions prior to Visual Studio 2019 16.1, there is a bug ([Link 1](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html), [Link 2](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221)) that will sometimes prevent one or more projects from launching with an error message "Unable to launch the previously selected debugger. Please choose another." If this is the case, stop debugging and try again. The problem usually happens only on the first attempt.
 
@@ -53,19 +53,19 @@ In the **ClientUI** web application, click the **Place order** button to place a
 It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint. In the **Sales** endpoint window we see:
 
 ```
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = 9b16a5ce
-INFO  Sales.PlaceOrderHandler Publishing OrderPlaced, OrderId = 9b16a5ce
+INFO Received PlaceOrder, OrderId = 9b16a5ce
+INFO Publishing OrderPlaced, OrderId = 9b16a5ce
 ```
 
 As shown in the log, the **Sales** endpoint then publishes an **OrderPlaced** event, which will be received by the **Billing** endpoint. In the **Billing** endpoint window we see:
 
 ```
-INFO  Billing.OrderPlacedHandler Billing has received OrderPlaced, OrderId = 9b16a5ce
+INFO Billing has received OrderPlaced, OrderId = 9b16a5ce
 ```
 
 In the **ClientUI** web application, go back and send more messages, watching the messages flow between endpoints.
 
-![Messages flowing between endpoints](messages-flowing.png)
+![Messages flowing between endpoints](messages-flowing-2.png)
 
 
 ## Reliability
@@ -79,7 +79,7 @@ See how that is achieved by following these steps:
 3. Send several messages using the button in the **ClientUI** window.
 4. Notice how messages are flowing from **ClientUI** to **Sales**. **Sales** is still publishing messages, even though **Billing** can't process them at the moment.
 
-![ClientUI and Sales processing messages while Billing is shut down](billing-shut-down.png)
+![ClientUI and Sales processing messages while Billing is shut down](billing-shut-down-2.png "width=700")
 
 5. Restart the **Billing** application by right-clicking the **Billing** project in Visual Studio's Solution Explorer, then selecting **Debug** > **Start new instance**.
 
@@ -87,7 +87,7 @@ NOTE: For [Visual Studio Code](https://code.visualstudio.com/) users, the **Bill
 
 When the **Billing** endpoint starts, it will pick up messages published earlier by **Sales** and will complete the process for orders that were waiting to be billed.
 
-![Billing endpoint processing through backlog](billing-processing-backlog.png)
+![Billing endpoint processing through backlog](billing-processing-backlog-2.png "width=600")
 
 Let's consider more carefully what happened. First, we had two processes communicating with each other with very little ceremony. The communication didn't break down even when the **Billing** service was unavailable. Had we implemented **Billing** as a REST service, for example, the **Sales** service would have thrown an HTTP exception when it was unable to communicate, *resulting in a lost request*. By using NServiceBus we get a guarantee that even if message processing endpoints are temporarily unavailable, every message will eventually get delivered and processed.
 
@@ -108,15 +108,15 @@ snippet: ThrowTransientException
 3. Start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>). This will make it easier to observe exceptions occurring without being interrupted by Visual Studio's Exception Assistant dialog.
 4. In the **ClientUI** window, send one message at a time, and watch the **Sales** window.
 
-![Transient exceptions](transient-exceptions.png)
+![Transient exceptions](transient-exceptions-2.png)
 
 As we can see in the **Sales** window, 80% of the messages will go through as normal, but when an exception occurs, the output will be different. The first attempt of `PlaceOrderHandler` will throw and log an exception, but then in the very next log entry, processing will be retried and likely succeed.
 
 ```
-INFO  NServiceBus.RecoverabilityExecutor Immediate Retry is going to retry message '5154b012-4180-4b56-9952-a90a01325bfc' because of an exception:
+INFO Immediate Retry is going to retry message '5154b012-4180-4b56-9952-a90a01325bfc' because of an exception:
 System.Exception: Oops
     at <long stack trace>
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e1d86cb9
+INFO Received PlaceOrder, OrderId = e1d86cb9
 ```
 
 NOTE: If you didn't detach the debugger, you must click the **Continue** button in the Exception Assistant dialog before the message will be printed in the **Sales** window.
@@ -157,7 +157,7 @@ With those two changes made, start the solution without debugging (<kbd>Ctrl</kb
 
 Along with the windows from before, two new windows will now launch. The first is the **Particular Service Platform Launcher** window, which looks like this:
 
-![Particular Service Platform Launcher console app](platform-launcher-console.png)
+![Particular Service Platform Launcher console app](platform-launcher-console-2.png "width=600")
 
 The purpose of this app is to host different tools within a sandbox environment, just for this solution. After a few seconds, the application launches ServicePulse in a new browser window:
 
@@ -302,14 +302,14 @@ snippet: OrderPlacedHandler
 
 ### Run the updated solution
 
-Now run the solution, and assuming you remembered to [update the startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), a window for the **Shipping** endpoint will open in addition to the other two.
+Now run the solution, and assuming you remembered to [update the startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), a window for the **Shipping** endpoint will open in addition to the other three.
 
-![Addition of Shipping endpoint](add-shipping-endpoint.png)
+![Addition of Shipping endpoint](add-shipping-endpoint-2.png)
 
-As you place orders by clicking the button in the **ClientUI** window, you will see the **Shipping** endpoint reacting to `OrderPlaced` events:
+As you place orders by clicking the button in the **ClientUI** web view, you will see the **Shipping** endpoint reacting to `OrderPlaced` events:
 
 ```
-INFO Shipping.OrderPlacedHandler Shipping has received OrderPlaced, OrderId = 25c5ba63
+INFO Shipping has received OrderPlaced, OrderId = 25c5ba63
 ```
 
 **Shipping** is now receiving events published by **Sales** without having to change the code in the **Sales** endpoint. Additional subscribers could be added, for example, to email a receipt to the customer, notify a fulfillment agency via a web service, update a wish list or gift registry, or update data on items that are frequently bought together. Each business activity would occur in its own isolated message handler and doesn't depend on what happens in other parts of the system.
