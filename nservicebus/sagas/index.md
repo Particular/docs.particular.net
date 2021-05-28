@@ -35,6 +35,8 @@ Using NServiceBus, it is possible to explicitly define the data used for this st
 
 snippet: simple-saga-data
 
+NOTE: With .NET 5 the immutable type `record` was introduced. The type can be used, except for properties that need to be immutable. Serializers will not be able to deserialize data into the object.
+
 ## Adding behavior
 
 The important part of a long-running process is its behavior. Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled.
