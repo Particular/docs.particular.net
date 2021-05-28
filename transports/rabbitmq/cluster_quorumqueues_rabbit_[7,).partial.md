@@ -14,7 +14,7 @@ NOTE: Endpoints must be updated to NServiceBus.Transport.RabbitMQ version 6.1 or
 
 ### Delayed delivery
 
-The [delayed delivery infrastructure](/transports/rabbitmq/delayed-delivery.md) provided by the RabbitMQ transport is not supported by quorum queues. The delayed delivery infrastructure continues to use classic queues and [dead letter exchanges](https://www.rabbitmq.com/dlx.html) which can be exposed to message loss in a RabbitMQ cluster. Therefore, it is recommended to disable delayed delivery features (like saga timeouts, delayed retries, and delayed messages) by using the `DelayedDeliverySupport.Disabled` option when configuring the transport:
+The [delayed delivery infrastructure](/transports/rabbitmq/delayed-delivery.md) provided by the RabbitMQ transport is not supported by quorum queues. The delayed delivery infrastructure continues to use classic queues and [dead letter exchanges](https://www.rabbitmq.com/dlx.html) which can be exposed to message loss in a RabbitMQ cluster. Therefore, it is recommended to disable delayed delivery features (e.g. saga timeouts, delayed retries, and delayed messages) by using the `DelayedDeliverySupport.Disabled` option when configuring the transport:
 
 snippet: disable-delayed-delivery
 

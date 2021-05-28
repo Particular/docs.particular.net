@@ -116,31 +116,31 @@ Although the installer is code signed correctly with a certificate owned by "NSe
 
 When building ServiceControl, all build artifacts are virus scanned to ensure no viruses or malware are shipped with the installer packages.
 
-## Stale indexes 
+## Stale indexes
 
-The database technology used for ServiceControl is based on asynchronous index updates. Indexes are not updated immediately, but very soon after data updates. A healthy system has indexes updated in milliseconds or several seconds under load. When indexes get very stale this means that indexes lag behind for a long duration and can affect data presented and started tasks.
+The database technology used for ServiceControl is based on asynchronous index updates. Indexes are not updated immediately, but very soon after data updates. A healthy system has indexes updated in milliseconds or up to several seconds under load. When indexes get very stale, this means that indexes lag behind for a long duration and can affect data presented and started tasks.
 
 Systems are affected by severe index lag when the following custom check message is presented:
 
 > At least one index significantly stale. Please run maintenance mode if this custom check persists to ensure index(es) can recover. See log file in `{LogPath}` for more details.
 
-By launching an instance in maintenance mode the message ingestion stops but database engine still runs. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful when the storage isn't fast enough to do both message ingestion and index operations.
+After launching a ServiceControl instance in maintenance mode, message ingestion stops but the database engine still runs and messages will continue to queue. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful when the storage isn't fast enough to do both message ingestion and index operations.
 
 Consider upgrading the storage if these errors persists.
 
-Contact [support](https://particular.net/support) for assistance.
+Contact [Particular support](https://particular.net/support) for assistance.
 
 ## Index errors
 
-Index issues usually are automatically corrected at start but sometimes index issues require manual intervention. When unrecoverable index issues occur the following custom check message is visible:
+Index issues are usually automatically corrected at start-up time but sometimes index issues require manual intervention. When unrecoverable index issues occur the following custom check message is visible:
 
 > Detected RavenDB index errors, please start maintenance mode and resolve the following issues:
 
-Most often issue is that [indexes get corrupted](#indexes-get-corrupted). Resolve these errors by inspecting these errors via [ServiceControl (audit or error) maintenance mode](maintenance-mode.md).
+Often [indexes get corrupted](#corrupted-indexes). Resolve these errors by inspecting the errors in [ServiceControl (audit or error) maintenance mode](maintenance-mode.md).
 
-Contact [support](https://particular.net/support) for assistance.
+Contact [Particular support](https://particular.net/support) for assistance.
 
-## Indexes get corrupted
+## Corrupted indexes
 
 Sometimes the following error may be observed:
 

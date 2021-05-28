@@ -104,21 +104,21 @@ For more information, see [MSMQ dead-letter queues](dead-letter-queues.md).
 
 ## Monitoring MSMQ
 
-The following precautions can be taken in order to monitor MSMQ in a production environment:
+The following precautions can be taken to monitor the health of MSMQ in a production environment:
 
 * Monitor all (transactional) dead letter queues.
-* Monitor the diskspace available to MSMQ.
+* Monitor the disk space available to MSMQ.
 * Monitor MSMQ performance counters:
- - MSMQ Service / Total bytes in all queues
- - MSMQ Service / Total messages in all queues
+  * MSMQ Service / Total bytes in all queues
+  * MSMQ Service / Total messages in all queues
 
-Define thresholds for the performance counters. Then create alerts informing when the thresholds are exceeded. The alerts can be integrated with monitoring suites like Solarwinds, New Relic, SCOMM or similar tools.
+Define thresholds for the performance counters. Then create alerts that are triggered when the thresholds are exceeded. The alerts can be integrated with monitoring suites like Solarwinds, New Relic, SCOMM, or similar tools.
 
-In order to determine useful thresholds, one needs to know what values are typical for the specific environment. That helps in detecting and addressing potential issues early, e.g. before MSMQ reaches its limits with regards to disk and memory usage.
+To determine useful thresholds, determine what values are typical for the specific environment to act as a baseline. This helps detect and address potential issues early, e.g. before MSMQ reaches its limits with regards to disk and memory usage.
 
-## Virusscanners
+## Virus scanners
 
-Make sure that the relevant MSMQ folders are excluded from scanning. Virusscanners can prevent certain file actions from happening.
+Ensure that the relevant MSMQ folders are excluded from virus scanning. Virus scanners can prevent certain file actions from happening.
 
 ## Useful links
 
