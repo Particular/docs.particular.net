@@ -2,6 +2,8 @@
 title: Cancellation and exception handling
 summary: Using Azure for endpoint hosting and to provide Transports and Persistence
 reviewed: 2021-05-26
+related:
+  - nservicebus/hosting/cooperative-cancellation
 ---
 
 In most cases, code in NServiceBus handlers and sagas should not catch exceptions, and prefer instead allowing [recoverability](/nservicebus/recoverability/) to deal with exceptions using retries.
@@ -17,9 +19,12 @@ One common pattern is to catch and swallow the general `Exception` type in some 
 ```csharp
 try
 {
+    // If cancellationToken.IsCancellationRequested, that means
+    // the endpoint is shutting down
     await SomeOperation(cancellationToken);
 }
-catch (Exception ex) // BAD
+// BAD - Will catch OperationCanceledException for endpoint shutdown as well!
+catch (Exception ex)
 {
     log.Warn("Something bad happened.", ex);
 }
