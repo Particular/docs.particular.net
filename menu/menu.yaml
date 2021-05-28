@@ -366,6 +366,8 @@
       Title: Overriding app.config settings
     - Url: nservicebus/hosting/assembly-scanning
       Title: Assembly scanning
+    - Url: nservicebus/hosting/cooperative-cancellation
+      Title: Cooperative cancellation
     - Url: nservicebus/hosting/critical-errors
       Title: Critical Errors
     - Url: nservicebus/hosting/extensions-hosting
