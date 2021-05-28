@@ -1,0 +1,1 @@
+Switch to the [NServiceBus 8 version of this page](cooperative-cancellation.md?version=core_8) to see content about this feature.

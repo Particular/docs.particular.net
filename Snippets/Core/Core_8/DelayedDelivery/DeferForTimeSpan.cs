@@ -23,7 +23,7 @@
             await handlerContext.Send(new MessageToBeSentLater(), sendOptions)
                 .ConfigureAwait(false);
             // OR
-            await endpoint.Send(new MessageToBeSentLater(), sendOptions)
+            await endpoint.Send(new MessageToBeSentLater(), sendOptions, handlerContext.CancellationToken)
                 .ConfigureAwait(false);
 
             #endregion

@@ -53,6 +53,22 @@ The following provider packages will no longer be provided:
 * [Log4net](/nservicebus/logging/log4net.md)
 * [NLog](/nservicebus/logging/nlog.md)
 
+## CancellationToken support
+
+NServiceBus version 8 supports [cooperative cancellation](/nservicebus/hosting/cooperative-cancellation.md) using `CancellationToken` parameters. Where appropriate, optional `CancellationToken` parameters have been added to public methods. This includes the abstract classes and interfaces required to implement a message transport or persistence library, and other extension points like `IDataBus`, `FeatureStartupTask`, and `INeedToInstallSomething`. Implementers can be updated by adding an optional `CancellationToken` parameter to the end of method signatures.
+
+## Shutdown behavior
+
+In all versions of NServiceBus, `endpoint.Stop()` immediately stops receiving new messages but waits for a period of time for currently running message handlers to complete.
+
+In NServiceBus version 7 and below, the MSMQ, Azure Service Bus, RabbitMQ, Azure Storage Queues, and SQL transports allow handlers up to 30 seconds to complete before forcing an endpoint shutdown. In NServiceBus version 8, all transports block shutdown until all handlers complete or the [transport transaction](/transports/transactions.md) times out.
+
+The `CancellationToken` available on the `IMessageHandlerContext` in NServiceBus version 8 is triggered when the host forces shutdown. For example, by default, the .NET Generic Host signals the cancellation token after 5 seconds.
+
+However, if handlers do not observe the cancellation token, they will be allowed to complete before the endpoints shuts down. This means that if, for example, a handler calls `Task.Delay(TimeSpan.Infinite)`, the endpoint will never shut down.
+
+Therefore, it is recommended that all message handlers observe the cancellation token to enable forced shutdown when required.
+
 ## New gateway persistence API
 
 The NServiceBus gateway has been moved to a separate `NServiceBus.Gateway` package and all gateway public APIs in NServiceBus are obsolete and will produce the following warning:

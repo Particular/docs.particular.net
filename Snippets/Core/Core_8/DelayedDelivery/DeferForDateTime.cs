@@ -15,7 +15,7 @@ namespace Core8.DelayedDelivery
             await handlerContext.Send(new MessageToBeSentLater(), options)
                 .ConfigureAwait(false);
             // OR
-            await endpoint.Send(new MessageToBeSentLater(), options)
+            await endpoint.Send(new MessageToBeSentLater(), options, handlerContext.CancellationToken)
                 .ConfigureAwait(false);
             #endregion
         }
