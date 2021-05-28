@@ -40,24 +40,9 @@
             },
             "serverReadyAction": {
                 "action": "openExternally",
-                "uriFormat": "%s/home",
+                "uriFormat": "%s",
                 "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-            },
-            "launchBrowser": {
-                "enabled": false,
-                "args": "${auto-detect-url}/home",
-                "windows": {
-                    "command": "cmd.exe",
-                    "args": "/C start ${auto-detect-url}/home"
-                },
-                "osx": {
-                    "command": "open"
-                },
-                "linux": {
-                    "command": "xdg-open",
-                    "args": "${auto-detect-url}/home"
-                }
-            }
+            }           
         },
         {
             "name": "Sales",

@@ -9,7 +9,7 @@ using NServiceBus;
 
 namespace ClientUI.Controllers
 {
-    [Route("[controller]")]
+    [Route("/")]
     public class HomeController : Controller
     {
         static int messagesSent;
