@@ -4,13 +4,13 @@ summary: Instructions on how to upgrade NServiceBus.RavenDB 5 to 6
 component: Raven
 related:
  - nservicebus/upgrades/6to7
-reviewed: 2019-05-30
+reviewed: 2021-05-31
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
 ---
 
-This update supports upgrading to RavenDB 4.2 while using NServiceBus 7.x. The upgrade to RavenDB 4 is a **major** upgrade. It's not backward compatible, primarily because the [RavenDB API has a lot of breaking changes](https://ravendb.net/docs/article-page/4.2/csharp/migration/client-api/introduction). Additionally, the data storage format has changed, so databases need to have their [data migrated to a new RavenDB 4 database](https://ravendb.net/docs/article-page/4.2/csharp/migration/server/data-migration).
+This update supports upgrading to RavenDB 4.2 while using NServiceBus 7.x. The upgrade to RavenDB 4 is a **major** upgrade. It's not backwards compatible, primarily because the [RavenDB API has a lot of breaking changes](https://ravendb.net/docs/article-page/4.2/csharp/migration/client-api/introduction). Additionally, the data storage format has changed, so databases need to have their [data migrated to a new RavenDB 4 database](https://ravendb.net/docs/article-page/4.2/csharp/migration/server/data-migration).
 
 ## Required RavenDB client
 
@@ -23,7 +23,7 @@ include: cluster-configuration-warning
 
 ## Storage format for sagas
 
-RavenDB 4 only allows a string to be used as a document id. However, saga data (inheriting `ContainSagaData` or implementing `IContainSagaData`) has an `Id` property of type `Guid` which is not compatible. To account for this, sagas stored by NServiceBus.RavenDB version 6 and above will be wrapped by a `SagaDataContainer`:
+RavenDB 4 only allows a string to be used as a document id. However, saga data (inheriting `ContainSagaData` or implementing `IContainSagaData`) has an `Id` property of type `Guid`, which is not compatible. To account for this, sagas stored by NServiceBus.RavenDB version 6 and above will be wrapped by a `SagaDataContainer`:
 
 ```cs
 class SagaDataContainer
@@ -104,7 +104,7 @@ As an example, consider a collection names document like the following. The comm
 }
 ```
 
-In this case, `TimeoutDatas` and `OrderSagaDatas` match the pluralization rule, and don't need a rule to fix them. However `ShippingSaga` and `ShippingPolicy` do not fit the standard pluralization of their class names `ShippingSagaData` and `ShippingPolicy`, respectively, and need a mapping to continue to function.
+In this case, `TimeoutDatas` and `OrderSagaDatas` match the pluralization rule and don't need the rule to fix them. However, `ShippingSaga` and `ShippingPolicy` do not fit the standard pluralization of their class names `ShippingSagaData` and `ShippingPolicy`, respectively, and need a mapping to continue to function.
 
 The following snippet will create a document id convention that will allow the older documents to be loaded by RavenDB Persistence:
 
@@ -140,19 +140,19 @@ static string LegacyFindTypeTagName(Type type)
 
 This introduced a bug, which was fixed in NServiceBus.RavenDB version 2.2.0 by introducing a system document with id `NServiceBus/DocumentCollectionNames/{SHA1HashOfEndpointName}` containing the collection names in use in the current database by inspecting the built-in `Raven/DocumentsByEntityName` index.
 
-In RavenDB 4 and above, there is no default `Raven/DocumentsByEntityName` index, and creating a new one would create an unnecessary indexing burden on the system, so the conventions must be specified manually if necessary as shown above.
+In RavenDB 4 and above, there is no default `Raven/DocumentsByEntityName` index, and creating a new one would create an unnecessary indexing burden on the system, so the conventions must be specified manually if necessary, as shown above.
 
 
 ## Legacy Outbox document id format no longer used
 
-In versions as far back as 2.2.3, the document id format for Outbox records was changed to include the endpoint name, so that multiple endpoints wouldn't conflict with each other when cleaning up their outbox data. New outbox records were always stored with the updated naming convention.
+In versions as far back as 2.2.3, the document id format for Outbox records was changed to include the endpoint name so that multiple endpoints wouldn't conflict with each other when cleaning up their outbox data. New outbox records were always stored with the updated naming convention.
 
 Since outbox data is only persisted for a period of days, and the conversion has been contained in multiple versions over the course of years, the conversion is no longer necessary and has been removed in 6.0.
 
 
 ## No longer converting legacy timeouts
 
-In NServiceBus versions 3 and 4, RavenDB persistence was part of the main NServiceBus library, and `TimeoutData` had a different class and namespace name. All versions of the NServiceBus.RavenDB package include a converter that changes the class name on deserialization, causing automatic conversions of timeouts as they expire. Timeouts that have been generated with NServiceBus versions 3 and 4 that are still present at the time of the upgrade with a lapse date in the future must be converted to the new format manually. 
+In NServiceBus versions 3 and 4, RavenDB persistence was part of the main NServiceBus library, and `TimeoutData` had a different class and namespace name. All versions of the NServiceBus.RavenDB package includes a converter that changes the class name on deserialization, causing automatic conversions of timeouts as they expire. Timeouts that have been generated with NServiceBus versions 3 and 4 that are still present at the time of the upgrade with a lapse date in the future must be converted to the new format manually. 
 
 ### Patching legacy timeouts
 
@@ -199,7 +199,7 @@ will be patched to
 The patch can be either applied in RavenDB management studio under Documents\Patch as shown in [Documents and Collections](https://ravendb.net/docs/article-page/4.2/csharp/studio/database/documents/documents-and-collections)
  or by using the [client patch API.](https://ravendb.net/docs/article-page/4.2/csharp/client-api/operations/patching/set-based). Endpoints can continue to run while applying the patch.
 
-When the endpoint tries to process a timeout which is stored with the old timeout format the following exception is thrown.
+When the endpoint tries to process a timeout that is stored with the old timeout format, the following exception is thrown.
 
 ```
 System.InvalidOperationException: Could not convert document TimeoutDatas/Number to entity of type NServiceBus.TimeoutPersisters.RavenDB.TimeoutData ---> Newtonsoft.Json.JsonSerializationException: Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.String' because the type requires a JSON primitive value (e.g. string, number, boolean, null) to deserialize correctly.
