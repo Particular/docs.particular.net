@@ -35,6 +35,8 @@ Using NServiceBus, it is possible to explicitly define the data used for this st
 
 snippet: simple-saga-data
 
+NOTE: If a saga property is a [record type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record), that record type must be mutable so it can be deserialized.
+
 ## Adding behavior
 
 The important part of a long-running process is its behavior. Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled.
