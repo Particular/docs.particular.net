@@ -35,7 +35,7 @@ Using NServiceBus, it is possible to explicitly define the data used for this st
 
 snippet: simple-saga-data
 
-NOTE: With .NET 5 the immutable type `record` was introduced. The type can be used, except for properties that need to be immutable. Serializers will not be able to deserialize data into the object.
+NOTE: If a saga property is a [record type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record), that record type must be mutable so it can be deserialized.
 
 ## Adding behavior
 
