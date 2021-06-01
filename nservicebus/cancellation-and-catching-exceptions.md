@@ -10,7 +10,7 @@ When catching exceptions from cancellable operations, a distinction should be ma
 
 A cancellable operation is one that is passed a [`CancellationToken`](https://docs.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken) as an argument. For example:
 
-```c#
+```csharp
 await foo.Bar(cancellationToken).ConfigureAwait(false);
 ```
 
@@ -80,7 +80,7 @@ catch (Exception ex) when (!ex.IsCausedBy(cancellationToken))
 }
 ```
 
-```c#
+```csharp
 try
 {
     await foo.Bar(cancellationToken).ConfigureAwait(false);
