@@ -107,7 +107,7 @@ Let's simulate a transient failure in the **Sales** endpoint and see the retry p
 
 snippet: ThrowTransientException
 
-3. Start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>). This will make it easier to observe exceptions occurring without being interrupted by Visual Studio's Exception Assistant dialog.
+3. Start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>). This will make it easier to observe exceptions occurring without being interrupted by Visual Studio's Exception Assistant dialog. If you are using Visual Studio Code, the browser window may not reopen. If this is the case, open [http://localhost:5000](http://localhost:5000) in a new tab.
 4. In the **ClientUI** window, send one message at a time, and watch the **Sales** window.
 
 ![Transient exceptions](transient-exceptions-2.png)
