@@ -42,7 +42,8 @@
                 "action": "openExternally",
                 "uriFormat": "%s",
                 "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-            }           
+            },
+            "console": "externalTerminal"
         },
         {
             "name": "Sales",
