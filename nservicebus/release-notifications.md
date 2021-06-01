@@ -5,16 +5,16 @@ component: Core
 reviewed: 2021-06-01
 ---
 
-All releases are [announced on our discussion forum](https://discuss.particular.net/c/announcements).
+All releases are [announced on the discussion forum](https://discuss.particular.net/c/announcements).
 
 ## Notifications
 
-Register on the [Particular forum](https://discuss.particular.net) and ensure that notifications are set to "Watching" on the announcement channel to receive announcements for all our platform components or register at [GitHub](https://github.com/) and browse to specific repositories and expand the repository watch options (upper right) and ensure that atleast notifications are enabled for releases to receive notifications for specific packages.
+Register on the [Particular forum](https://discuss.particular.net) and ensure that notifications are set to "Watching" on the announcement channel to receive announcements for all platform components or register at [GitHub](https://github.com/) and browse to specific repositories and expand the repository watch options (upper right) and ensure that atleast notifications are enabled for releases to receive notifications for specific packages.
 
 ## Atom Feeds
 
 Feeds are useful to receive updates on releases via other channels and useful to integration with platforms like [IFTTT](https://ifttt.com/) and [Zapier](https://zapier.com/).
 
-- Forum: All announcements on forum: <https://discuss.particular.net/c/announcements.rss>
+- Forum: All announcements on the forum: <https://discuss.particular.net/c/announcements.rss>
 - GitHub: All repositories on Github have an Atom feed on the release pages for each package: <https://github.com/Particular/NServiceBus/releases.atom>
-- Nuget: Nuget packages have an Atom feed: <https://www.nuget.org/packages/NServiceBus/atom.xml>
+- NuGet: NuGet packages have an Atom feed: <https://www.nuget.org/packages/NServiceBus/atom.xml>
