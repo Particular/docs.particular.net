@@ -37,7 +37,7 @@ Note that, in the above example, exceptions that represent cancellation are _not
 
 ## Catching `System.OperationCanceledException`
 
-In some cases, it may be necessary to catch exceptions which represent cancellation in order to take compensating action for operations which preceded the cancelled operation. The correct way to catch these exceptions is to add a filter which includes only exceptions which represent cancellation:
+In most cases, exceptions which represent cancellation should not be caught, and should be allowed to propagate to the caller of the current method. In some cases, it may be necessary to catch these exceptions to take specific actions. The correct way to catch these exceptions is to add a filter which includes only exceptions which represent cancellation:
 
 ```c#
 try
@@ -94,36 +94,45 @@ catch (Exception ex) when (ex.IsCausedBy(cancellationToken))
 }
 ```
 
+Note that the second example is catching `Exception` rather than `OperationCanceledException` and the `IsCausedBy` method is filtering on the exception type instead of the `catch` clause itself. This results in one extra type comparison (`isinst`) in the resulting IL code, but the performance cost is negligible and the code is simpler to read.
+
 ## Inside the message processing pipeline
 
-For code inside the message processing pipeline, such as a message handler or saga, the above considerations are the same. The only difference is that the `context.CancellationToken` is used. For example:
+For code inside the message processing pipeline, such as a message handler or saga, the above considerations are the same. The only difference is that the `CancellationToken` is provided by the `context.CancellationToken` property. For example:
 
 ```c#
-try
+public Task Handle(MyMessage, IMessageHandlerContext context)
 {
-    await foo.Bar(context.CancellationToken).ConfigureAwait(false);
-}
-catch (Exception ex) when (!ex.IsCausedBy(context.CancellationToken))
-{
-    // foo.Bar failed — take appropriate action
+    try
+    {
+        await foo.Bar(context.CancellationToken).ConfigureAwait(false);
+    }
+    catch (Exception ex) when (!ex.IsCausedBy(context.CancellationToken))
+    {
+        // foo.Bar failed — take appropriate action
 
-    // most of the time, the exception should be re-thrown,
-    // or a new exception should be thrown with the original exception as an inner exception
-    // so that the message enters recoverability
-    throw;
+        // most of the time, the exception should be re-thrown,
+        // or a new exception should be thrown with the original exception as an inner exception:
+        //   throw new Exception("My message", ex);
+        // so that the message enters recoverability
+        throw;
+    }
 }
 ```
 
 ```c#
-try
+public Task Handle(MyMessage, IMessageHandlerContext context)
 {
-    await foo.Bar(context.CancellationToken).ConfigureAwait(false);
-}
-catch (Exception ex) when (ex.IsCausedBy(context.CancellationToken))
-{
-    // foo.Bar was cancelled — take appropriate action
+    try
+    {
+        await foo.Bar(context.CancellationToken).ConfigureAwait(false);
+    }
+    catch (Exception ex) when (ex.IsCausedBy(context.CancellationToken))
+    {
+        // foo.Bar was cancelled — take appropriate action
 
-    // re-throw the exception to propagate the cancellation to the caller of the current method
-    throw;
+        // re-throw the exception to propagate the cancellation to the caller of the current method
+        throw;
+    }
 }
 ```
