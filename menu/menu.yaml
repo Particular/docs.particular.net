@@ -74,6 +74,8 @@
       Title: License
     - Url: nservicebus/community
       Title: Community extensions and integrations
+    - Url: nservicebus/release-notifications.md
+      Title: Release notifications
     - Url: platform/contributing
       Title: Contributing
     - Url: nservicebus/architecture/principles
