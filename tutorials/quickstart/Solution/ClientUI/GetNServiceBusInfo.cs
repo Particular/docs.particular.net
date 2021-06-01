@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NServiceBus;
 
 public static class GetNServiceBusInfo
 {
-    public static MvcHtmlString OutputNServiceBusInfo(this HtmlHelper _)
+    public static IHtmlContent OutputNServiceBusInfo(this IHtmlHelper<dynamic> _)
     {
-        var nsbAssembly = typeof(IEndpointInstance).Assembly;
-        var att = nsbAssembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute)).OfType<AssemblyFileVersionAttribute>().First();
+        Assembly nsbAssembly = typeof(IEndpointInstance).Assembly;
+        AssemblyFileVersionAttribute att = nsbAssembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute)).OfType<AssemblyFileVersionAttribute>().First();
         var v = new Version(att.Version);
-        var script = $"<script>window.NSB_VERSION = '{v.Major}.{v.Minor}.{v.Build}';</script>";
-        return new MvcHtmlString(script);
+        string script = $"<script>window.NSB_VERSION = '{v.Major}.{v.Minor}.{v.Build}';</script>";
+        return new HtmlString(script);
     }
 }

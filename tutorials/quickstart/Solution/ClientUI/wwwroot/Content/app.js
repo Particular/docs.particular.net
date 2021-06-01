@@ -8,7 +8,7 @@ ga('set', 'transport', 'beacon');
 
 (function ($, window) {
     'use strict';
-    window.SOLUTION_VERSION = 'VS2017';
+    window.SOLUTION_VERSION = 'VS2019';
 
     $(function () {
 

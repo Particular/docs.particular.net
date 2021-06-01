@@ -5,12 +5,12 @@ using NServiceBus;
 using NServiceBus.Logging;
 
 namespace Sales
-{
+{    
     public class PlaceOrderHandler :
         IHandleMessages<PlaceOrder>
     {
-        static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
-        static Random random = new Random();
+        static readonly ILog log = LogManager.GetLogger<PlaceOrderHandler>();
+        static readonly Random random = new Random();
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {

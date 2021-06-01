@@ -1,1 +1,0 @@
-This file just ensures that the App_Data folder is created.

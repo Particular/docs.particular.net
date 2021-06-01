@@ -1,26 +1,29 @@
-﻿using System.Dynamic;
+﻿using System;
+using System.Dynamic;
 using System.Threading;
-using System.Web.Mvc;
+using System.Threading.Tasks;
+using Messages;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using NServiceBus;
 
 namespace ClientUI.Controllers
 {
-    using System;
-    using System.Threading.Tasks;
-    using Messages;
-    using NServiceBus;
-
+    [Route("/")]
     public class HomeController : Controller
     {
-        IEndpointInstance _endpointInstance;
         static int messagesSent;
+        private readonly ILogger<HomeController> _log;
+        private readonly IMessageSession _messageSession;
 
-        public HomeController(IEndpointInstance endpointInstance)
+        public HomeController(IMessageSession messageSession, ILogger<HomeController> logger)
         {
-            _endpointInstance = endpointInstance;
+            _messageSession = messageSession;
+            _log = logger;
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }
@@ -28,13 +31,15 @@ namespace ClientUI.Controllers
         [HttpPost]
         public async Task<ActionResult> PlaceOrder()
         {
-            var orderId = Guid.NewGuid().ToString().Substring(0, 8);
+            string orderId = Guid.NewGuid().ToString().Substring(0, 8);
 
             var command = new PlaceOrder { OrderId = orderId };
 
             // Send the command
-            await _endpointInstance.Send(command)
+            await _messageSession.Send(command)
                 .ConfigureAwait(false);
+
+            _log.LogInformation($"Sending PlaceOrder, OrderId = {orderId}");
 
             dynamic model = new ExpandoObject();
             model.OrderId = orderId;

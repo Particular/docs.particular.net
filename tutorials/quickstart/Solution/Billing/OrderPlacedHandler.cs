@@ -5,10 +5,11 @@ using NServiceBus.Logging;
 
 namespace Billing
 {
+
     public class OrderPlacedHandler :
         IHandleMessages<OrderPlaced>
     {
-        static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
+        static readonly ILog log = LogManager.GetLogger<OrderPlacedHandler>();
 
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
