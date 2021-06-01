@@ -46,7 +46,10 @@ The solution is configured to have [multiple startup projects](https://docs.micr
 ![3 console applications, one for endpoint implemented as a console app](3-console-windows.png)
 ![ClientUI Web Application](webapp-start-2.png)
 
-WARNING: Did all three windows appear? In versions prior to Visual Studio 2019 16.1, there is a bug ([Link 1](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html), [Link 2](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221)) that will sometimes prevent one or more projects from launching with an error message "Unable to launch the previously selected debugger. Please choose another." If this is the case, stop debugging and try again. The problem usually happens only on the first attempt.
+{{WARNING: Did all three windows appear?
+  - For Visual Studio Code users, ensure the _Debug All_ launch configuration is selected from the dropdown list under the _Run and Debug_ tab.
+  - In versions prior to Visual Studio 2019 16.1, there is a bug ([Link 1](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html), [Link 2](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221)) that will sometimes prevent one or more projects from launching with an error message. If this is the case, stop debugging and try again. The problem usually happens only on the first attempt.}}
+
 
 In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens in other windows.
 
@@ -83,7 +86,7 @@ See how that is achieved by following these steps:
 
 5. Restart the **Billing** application by right-clicking the **Billing** project in Visual Studio's Solution Explorer, then selecting **Debug** > **Start new instance**.
 
-NOTE: For [Visual Studio Code](https://code.visualstudio.com/) users, the **Billing** endpoint can be started by navigating to the _Run and Debug_ tab and running the _Billing_ debug configuration from the dropdown list. Be sure to re-select the _Debug All With Platform Tools_ configuration again after _Billing_ is running.  
+NOTE: For [Visual Studio Code](https://code.visualstudio.com/) users, the **Billing** endpoint can be started by navigating to the _Run and Debug_ tab and selecting the _Billing_ launch configuration from the dropdown list. Be sure to re-select the _Debug All_ configuration again after _Billing_ is running.  
 
 When the **Billing** endpoint starts, it will pick up messages published earlier by **Sales** and will complete the process for orders that were waiting to be billed.
 
@@ -275,7 +278,7 @@ Take special note of the comments in this code, which annotate the various parts
 
 We want the **Shipping** endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects) feature to configure the **Shipping** endpoint to start along with **ClientUI**, **Sales**, and **Billing**.
 
-NOTE:  To launch the Shipping endpoint with the rest of the solution when using Visual Studio Code, navigate to the _Run and Debug_ tab and select the _Debug All With Platform Tools And Shipping_ debug configuration from the dropdown list.
+NOTE:  To launch the Shipping endpoint with the rest of the solution when using Visual Studio Code, navigate to the _Run and Debug_ tab and select the _Debug All + Shipping_ launch configuration from the dropdown list.
 
 ### Create a new message handler
 
