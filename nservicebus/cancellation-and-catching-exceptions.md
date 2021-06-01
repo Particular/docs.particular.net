@@ -22,7 +22,7 @@ Note that an `OperationCanceledException` thrown when `CancellationToken.IsCance
 
 Most of the time, when `System.Exception` is caught, the assumption is that the operation has failed, not that it has been canceled. In these cases, the correct way to catch the `Exception` is add a filter which excludes exceptions which represent cancellation:
 
-```c#
+```csharp
 try
 {
     await foo.Bar(cancellationToken).ConfigureAwait(false);
@@ -39,7 +39,7 @@ Note that, in the above example, exceptions that represent cancellation are _not
 
 In most cases, exceptions which represent cancellation should not be caught, and should be allowed to propagate to the caller of the current method. In some cases, it may be necessary to catch these exceptions to take specific actions. The correct way to catch these exceptions is to add a filter which includes only exceptions which represent cancellation:
 
-```c#
+```csharp
 try
 {
     await foo.Bar(cancellationToken).ConfigureAwait(false);
@@ -53,8 +53,8 @@ catch (OperationCanceledException ex) when (cancellationToken.IsCancellationRequ
 }
 catch (Exception ex)
 {
-    // this catch (if it is required) will now catch only exceptions which do NOT represent cancellation,
-    // so it does not require a filter
+    // this catch (if it is required) will now catch only exceptions which do NOT 
+    // represent cancellation, so it does not require a filter
 }
 ```
 
@@ -69,7 +69,7 @@ public static bool IsCausedBy(this Exception ex, CancellationToken cancellationT
 
 Using this method, the `catch` filters are much simpler in both cases:
 
-```c#
+```csharp
 try
 {
     await foo.Bar(cancellationToken).ConfigureAwait(false);
@@ -98,41 +98,6 @@ Note that the second example is catching `Exception` rather than `OperationCance
 
 ## Inside the message processing pipeline
 
-For code inside the message processing pipeline, such as a message handler or saga, the above considerations are the same. The only difference is that the `CancellationToken` is provided by the `context.CancellationToken` property. For example:
+For code inside the message processing pipeline, such as a message handler, saga, or pipeline behavior, the above considerations are the same. The only difference is that the `CancellationToken` is provided by the `context.CancellationToken` property.
 
-```c#
-public Task Handle(MyMessage, IMessageHandlerContext context)
-{
-    try
-    {
-        await foo.Bar(context.CancellationToken).ConfigureAwait(false);
-    }
-    catch (Exception ex) when (!ex.IsCausedBy(context.CancellationToken))
-    {
-        // foo.Bar failed — take appropriate action
-
-        // most of the time, the exception should be re-thrown,
-        // or a new exception should be thrown with the original exception as an inner exception:
-        //   throw new Exception("My message", ex);
-        // so that the message enters recoverability
-        throw;
-    }
-}
-```
-
-```c#
-public Task Handle(MyMessage, IMessageHandlerContext context)
-{
-    try
-    {
-        await foo.Bar(context.CancellationToken).ConfigureAwait(false);
-    }
-    catch (Exception ex) when (ex.IsCausedBy(context.CancellationToken))
-    {
-        // foo.Bar was cancelled — take appropriate action
-
-        // re-throw the exception to propagate the cancellation to the caller of the current method
-        throw;
-    }
-}
-```
+However, it is generally preferred to not catch exceptions within message handlers and sagas, and instead let exceptions be handled by [recoverability](/nservicebus/recoverability/).
