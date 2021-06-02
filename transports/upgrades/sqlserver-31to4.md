@@ -1,6 +1,6 @@
 ---
 title: SQL Server Transport Upgrade Version 3 to 4
-reviewed: 2019-05-30
+reviewed: 2021-06-02
 component: SqlTransport
 related:
  - nservicebus/upgrades/6to7
