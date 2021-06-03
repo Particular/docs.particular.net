@@ -16,8 +16,6 @@ DANGER: Not using cluster-wide transactions in the correct form for the business
 - If the RavenDB server is configured in a cluster, move back to using a single node. This may not be ideal, as it introduces a single point of failure in the system.
 - Move to another persistence. This would require migrating data away from RavenDB to [another persistence](/persistence).
 
-All customers currently using cluster-wide transactions are encouraged to [contact support](https://particular.net/support) to discuss options for transitioning into a safe configuration that causes no data loss.
-
 ## ServiceControl
 
 ServiceControl uses an embedded RavenDB database and is not affected.
