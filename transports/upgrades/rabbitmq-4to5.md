@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport Upgrade Version 4 to 5
 summary: Instructions on how to upgrade RabbitMQ Transport Version 4 to 5.
-reviewed: 2019-06-03
+reviewed: 2021-06-05
 component: Rabbit
 related:
  - nservicebus/upgrades/6to7
