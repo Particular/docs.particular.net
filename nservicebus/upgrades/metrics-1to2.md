@@ -1,6 +1,6 @@
 ---
 title: Metrics Upgrade Version 1 to 2
-reviewed: 2019-06-03
+reviewed: 2021-06-05
 component: metrics
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
