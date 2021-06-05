@@ -1,7 +1,7 @@
 ---
 title: Message type detection
 summary: Describes the rules for mapping a transport message to a message type
-reviewed: 2019-05-31
+reviewed: 2021-06-05
 component: Core
 ---
 
