@@ -7,7 +7,7 @@ related:
 - samples/msmq/msmqtosqlrelay
 redirects:
 - nservicebus/bridge
-reviewed: 2021-05-18
+reviewed: 2021-06-05
 ---
 
 `NServiceBus.Router` is a universal component that connects parts of an NServiceBus-based solution that otherwise could not talk to each other (e.g. because they use different transports or transport settings).
