@@ -35,6 +35,8 @@ There are several options available for installing the license file.
 
 partial: license-management
 
+When the license content is embedded (for example for Docker deployments of endpoints) the content could be _minified_. This can be done by removing the spaces and line-breaks within the file. When downloading the license file from Particular website, a 'minify=true' parameter can be added to the download URL to achieve the same.
+
 ## Troubleshooting
 
 Diagnose license scanning issues by [enabling Debug logging](/nservicebus/logging/#default-logging-changing-the-defaults-changing-the-logging-level) as all traversed locations and the scan result are logged. 
