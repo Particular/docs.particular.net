@@ -23,11 +23,10 @@ public static class Program
         {
             DefaultSchema = "receiver",
             TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive,
-            Subscriptions = 
+            Subscriptions =
             {
                 CacheInvalidationPeriod = TimeSpan.FromMinutes(1),
-                SubscriptionTableName = new SubscriptionTableName(
-                    table: "Subscriptions", schema: "dbo")
+                SubscriptionTableName = new SubscriptionTableName(table: "Subscriptions", schema: "dbo")
             }
         };
 
@@ -41,11 +40,7 @@ public static class Program
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
         dialect.Schema("receiver");
-        persistence.ConnectionBuilder(
-            connectionBuilder: () =>
-            {
-                return new SqlConnection(connection);
-            });
+        persistence.ConnectionBuilder(() => new SqlConnection(connection));
         persistence.TablePrefix("");
 
         #endregion
@@ -53,11 +48,9 @@ public static class Program
         SqlHelper.CreateSchema(connection, "receiver");
         var allText = File.ReadAllText("Startup.sql");
         SqlHelper.ExecuteSql(connection, allText);
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop().ConfigureAwait(false);
     }
 }
