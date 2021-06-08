@@ -38,7 +38,7 @@ The default serializer used in NServiceBus projects is the custom [XmlSerializer
 
 ## Using a custom serializer
 
-Besides the officially supported and community maintained serializers, it is also possible to [implement and register a custom serializer](/nservicebus/serialization/custom-serializer.md#register-the-serializer).
+Besides the officially supported and community maintained serializers, it is also possible to [implement and register a custom serializer](/nservicebus/serialization/custom-serializer.md).
 
 
 partial: additionaldeserializers
