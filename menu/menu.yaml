@@ -809,6 +809,8 @@
       Title: Performance Tuning
     - Url: transports/azure-storage-queues/multi-storageaccount-support
       Title: Multiple storage accounts
+    - Url: transports/azure-storage-queues/troubleshooting
+      Title: Troubleshooting
   - Url: transports/sql
     Title: SQL Server
     Articles:
