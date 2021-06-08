@@ -6,7 +6,7 @@ reviewed: 2021-06-08
 
 ## Message size too large
 
-When you experience the following exception the cause might be that the message that is sent is too large.
+When experiencing the following exception the cause might be that the message that is sent is too large.
 
 ```txt
 Microsoft.WindowsAzure.Storage.StorageException: Element 0 in the batch returned an unexpected response code.
