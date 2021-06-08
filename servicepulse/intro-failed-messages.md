@@ -62,6 +62,9 @@ The following actions can be performed on a failed message group:
 ![Failed message groups retry in progress](images/failed-group-retry-in-progress.png 'width=500')
 
  * **Delete group** - Deletes all messages contained in the group. [Learn more about deleting messages](/servicepulse/intro-archived-messages.md).
+ * **Add note** - Allows adding a note with freetext for the group. Notes are automatically removed after the group is retried.
+
+ ![Failed message groups note](images/notes.png 'width=500')
 
 ### Listing messages
 
@@ -80,6 +83,7 @@ The following actions can also be taken on each message or a selection of messag
 
 * **Retry** - Sends the message(s) to be reprocessed by the corresponding endpoint.
 * **Delete** - Deletes message(s).
+* **Export** - Export message(s) to a downloadble CSV file.
 
 ### Message details page
 

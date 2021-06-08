@@ -54,8 +54,14 @@ Note: the number of listed groups may differ depending on the selected classific
 
 Clicking on a group of messages will navigate to the Deleted Messages page containing all the messages from that group.
 
-## Restoring failed messages
+## Restoring deleted failed messages
 
 If there are failed messages that were deleted by mistake, they can be restored via the Deleted Messages tab. Once restored, they will be displayed in the [Failed Message Groups and Failed Messages screen](intro-failed-messages.md), where they can be retried or deleted again.
 
 ![Restore Select](images/archive-unarchive-select.png)
+
+### Restoring deleted groups of failed messages
+
+Deleted groups of failed messages can also be restored with a single click on the respective "Restore group" button in the Deleted Message Groups tab.
+
+![Restore group](images/deleted-group-restore.png)
