@@ -35,6 +35,8 @@ There are several options available for installing the license file.
 
 partial: license-management
 
+Sometimes the license needs to be embedded in a single line of text. For example, in a command line when deploying an endpoint with Docker. For these purposes, the license can be _minified_, removing all spaces and line-breaks, by adding `minify=true` to the query string of the URL used to download a license file from the Particular Software website.
+
 ## Troubleshooting
 
 Diagnose license scanning issues by [enabling Debug logging](/nservicebus/logging/#default-logging-changing-the-defaults-changing-the-logging-level) as all traversed locations and the scan result are logged. 
