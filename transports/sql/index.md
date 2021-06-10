@@ -1,5 +1,5 @@
 ---
-title: SQL Server Transport
+title: SQL Server transport
 summary: An overview of the NServiceBus SQL Server transport.
 reviewed: 2020-01-31
 component: SqlTransport
