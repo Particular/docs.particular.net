@@ -30,7 +30,7 @@ For more information on monitoring the critical time, see the [NServiceBus monit
 
 :x: **DO NOT abstract away NServiceBus**
 
-NServiceBus is itself an abstraction over different message queue technologies, allowing message handlers to concern themselves with business code and not worry about the speific implementation of the underlying queue.
+NServiceBus is itself an abstraction over different message queue technologies, allowing message handlers to concern themselves with business code and not worry about the specific implementation of the underlying queue.
 
 As a dependency, conventional wisdom holds that the NServiceBus API should itself be abstracted behind another abstraction, perhaps as a hedge against a possible future where the system will have to switch to a different service bus library.
 
