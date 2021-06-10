@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Logging;
 
 class Upgrade1to2

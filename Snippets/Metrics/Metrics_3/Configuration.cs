@@ -1,5 +1,5 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
 
 public class Configuration
 {
@@ -13,6 +13,9 @@ public class Configuration
 
         #region Metrics-Observers
 
+        var durationsLog = LogManager.GetLogger("Durations");
+        var signalsLog = LogManager.GetLogger("Signals");
+
         metrics.RegisterObservers(
             register: context =>
             {
@@ -21,7 +24,7 @@ public class Configuration
                     duration.Register(
                         observer: (ref DurationEvent @event) =>
                         {
-                            Console.WriteLine($"Duration: '{duration.Name}'. Value: '{@event.Duration}'");
+                            durationsLog.DebugFormat("{0} = {1}", duration.Name, @event.Duration);
                         });
                 }
                 foreach (var signal in context.Signals)
@@ -29,7 +32,7 @@ public class Configuration
                     signal.Register(
                         observer: (ref SignalEvent @event) =>
                         {
-                            Console.WriteLine($"Signal: '{signal.Name}'. Type: '{@event.MessageType}'");
+                            signalsLog.DebugFormat("{0} = {1}", signal.Name, @event.MessageType);
                         });
                 }
             });

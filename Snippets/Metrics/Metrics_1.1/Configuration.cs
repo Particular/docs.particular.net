@@ -1,5 +1,5 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
 
 #pragma warning disable 618
 public class Configuration
@@ -10,6 +10,9 @@ public class Configuration
 
         #region Metrics-Observers
 
+        var durationsLog = LogManager.GetLogger("Durations");
+        var signalsLog = LogManager.GetLogger("Signals");
+
         metrics.RegisterObservers(
             register: context =>
             {
@@ -18,7 +21,7 @@ public class Configuration
                     duration.Register(
                         observer: length =>
                         {
-                            Console.WriteLine($"Duration: '{duration.Name}'. Value: '{length}'");
+                            durationsLog.DebugFormat("{0} = {1}", duration.Name, length);
                         });
                 }
                 foreach (var signal in context.Signals)
@@ -26,7 +29,7 @@ public class Configuration
                     signal.Register(
                         observer: () =>
                         {
-                            Console.WriteLine($"Signal: '{signal.Name}'");
+                            signalsLog.DebugFormat("{0}", signal.Name);
                         });
                 }
             });
