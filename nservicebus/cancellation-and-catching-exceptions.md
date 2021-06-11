@@ -1,12 +1,12 @@
 ---
 title: Cancellation and catching exceptions
 summary: How to correctly catch exceptions from cancellable operations
-reviewed: 2021-05-26
+reviewed: 2021-06-11
 related:
   - nservicebus/hosting/cooperative-cancellation
 ---
 
-When catching exceptions from cancellable operations, a distinction should be made between exceptions thrown due to cancellation, and exceptions thrown for other reasons.
+When catching exceptions from cancellable operations, a distinction should be made between exceptions thrown due to cancellation of the operation, and exceptions thrown for other reasons.
 
 A cancellable operation is one that is passed a [`CancellationToken`](https://docs.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken) as an argument. For example:
 
@@ -14,13 +14,13 @@ A cancellable operation is one that is passed a [`CancellationToken`](https://do
 await foo.Bar(cancellationToken).ConfigureAwait(false);
 ```
 
-An exception thrown by this operation only represents _cancellation_ when its type inherits from [`OperationCanceledException`](https://docs.microsoft.com/en-us/dotnet/api/system.operationcanceledexception) and when the [`CancellationToken.IsCancellationRequested`](https://docs.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.iscancellationrequested) property is `true`.  Conversely, the exception does _not_ represent cancellation when its type does not inherit from `OperationCanceledException` or when the `CancellationToken.IsCancellationRequested` property is `false`.
+An exception thrown by this operation represents _cancellation_ only when its type inherits from [`OperationCanceledException`](https://docs.microsoft.com/en-us/dotnet/api/system.operationcanceledexception) and when the [`CancellationToken.IsCancellationRequested`](https://docs.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.iscancellationrequested) property is `true`.  Conversely, the exception does _not_ represent cancellation when its type does not inherit from `OperationCanceledException` or when the `CancellationToken.IsCancellationRequested` property is `false`.
 
 Note that an `OperationCanceledException` thrown when `CancellationToken.IsCancellationRequested` is `false`, does _not_ represent cancellation. All this means is that `foo.Bar` threw an `OperationCanceledException` for some reason other than cancellation, and the operation should be treated as a failure.
 
 ## Catching `System.Exception`
 
-Most of the time, when `System.Exception` is caught, the assumption is that the operation has failed, not that it has been canceled. In these cases, the correct way to catch the `Exception` is add a filter which excludes exceptions which represent cancellation:
+Most of the time, when `System.Exception` is caught, the assumption is that the operation has failed, not that it has been canceled. In these cases, the correct way to catch the `Exception` is to add a filter which excludes exceptions that represent cancellation:
 
 ```csharp
 try
@@ -33,7 +33,7 @@ catch (Exception ex) when (ex is not OperationCanceledException || !cancellation
 }
 ```
 
-Note that, in the above example, exceptions that represent cancellation are _not_ caught. This is desirable because cancellation should be propagated to the caller of the current method.
+Note that, in the above example, exceptions that represent cancellation are _not_ caught. This is desirable behavior because cancellation should be propagated to the caller of the current method.
 
 ## Catching `System.OperationCanceledException`
 
@@ -53,7 +53,7 @@ catch (OperationCanceledException ex) when (cancellationToken.IsCancellationRequ
 }
 catch (Exception ex)
 {
-    // this catch (if it is required) will now catch only exceptions which do NOT 
+    // this catch (if it is required) will now catch only exceptions which do NOT
     // represent cancellation, so it does not require a filter
 }
 ```
@@ -98,6 +98,6 @@ Note that the second example is catching `Exception` rather than `OperationCance
 
 ## Inside the message processing pipeline
 
-For code inside the message processing pipeline, such as a message handler, saga, or pipeline behavior, the above considerations are the same. The only difference is that the `CancellationToken` is provided by the `context.CancellationToken` property.
+For code inside the message processing pipeline, such as a message handler, saga, or pipeline behavior, the above considerations are still valid. The only difference is that the `CancellationToken` is provided by the `context.CancellationToken` property.
 
-However, it is generally preferred to not catch exceptions within message handlers and sagas, and instead let exceptions be handled by [recoverability](/nservicebus/recoverability/).
+However, it is generally preferred to not catch exceptions within message handlers and sagas, and instead let exceptions be handled by [the recoverability process](/nservicebus/recoverability/).
