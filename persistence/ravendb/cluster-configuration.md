@@ -5,11 +5,11 @@ reviewed: 2021-04-12
 versions: '[6.0,)'
 ---
 
-DANGER: Not using cluster-wide transactions in the current form for business data could result in data loss that is impossible to detect. Due to the risk data loss, RavenDB clusters are currently not supported.
+DANGER: Running in cluster-configurations without the use of cluster-wide transactions for business data could result in data loss that is impossible to detect. Due to the risk data loss, RavenDB clusters are currently not supported.
 
 RavenDB version 4 and higher supports configurations with multiple nodes. Support for configurations with a single leader and multiple watchers was originally introduced under the assumption that it’s safe to run without cluster-wide transactions. However, it was discovered that all databases on RavenDB nodes within a cluster behave as primary nodes. That means that any database in a cluster can accept writes. Committing any data safely requires that the data be successfully persisted across a majority of the nodes within the cluster. Optimistic concurrency control cannot be used in cluster scenarios and the only way to enforce this is by using cluster-wide transactions.
 
-Using cluster-wide transactions correctly is complex. Cluster-wide transactions make use of compare-exchange values in order to guarantee consistent writes across the majority of nodes in the cluster. With the current RavenDB api, it’s up to the user to properly implement that across the business data and the NServiceBus data.
+Using cluster-wide transactions correctly is complex. Cluster-wide transactions make use of compare-exchange values in order to guarantee consistent writes across the majority of nodes in the cluster. With the current RavenDB api, it’s up to the user to properly implement that on their business data.
 
 ## How to move forward
 
