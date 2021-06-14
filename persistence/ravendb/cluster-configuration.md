@@ -11,12 +11,6 @@ RavenDB version 4 and higher supports multi-node cluster configurations. The Rav
 
 Database nodes in a database group, distributed across multiple cluster nodes are all operating in master mode, which means that any database node in the cluster can accept writes. Due to missing optimistic concurrency control for cluster-wide transactions, data loss may happen on concurrent writes to different database nodes. 
 
+If the database is configured as a multi-node cluster, remove all nodes but one. 
 
-## How to move forward
-
-- If the database is configured as a multi-node database group, move back to using a single database node by removing additional nodes.
-- Move to another persistence. This would require migrating data away from RavenDB to [another persistence](/persistence).
-
-## ServiceControl
-
-ServiceControl uses an embedded RavenDB database and is not affected.
+DANGER: Make sure the node is empty before doing so, removing a node that contains a database will remove the database.
