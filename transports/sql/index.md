@@ -21,7 +21,7 @@ WARNING: Although this transport will run on the free version of the engine, i.e
 
 |Feature                    |   |
 |:---                       |---
-|Transactions |None, ReceiveOnly, SendWithAtomicReceive, TransactionScope
+|Transactions |None, ReceiveOnly, SendsAtomicWithReceive, TransactionScope
 |Pub/Sub                    |Native
 |Timeouts                   |Native
 |Large message bodies       |SqlServer can handle arbitrary message size within available resources, very large messages via data bus
@@ -49,7 +49,7 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
  * Mature tooling, such as [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms).
  * Free to start with the [SQL Server Express edition](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express).
  * Queues support competing consumers (multiple instances of the same endpoint feeding off the same queue) so scale-out doesn't require a [distributor](/transports/msmq/distributor/).
- * Supports [Microsoft Distributed Transaction Coordinator (MSDTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx).
+ * Supports [Microsoft Distributed Transaction Coordinator (MSDTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx), but can also use only single shared database transaction. Can also be paired with [SQL Persistence](/persistence/sql/) using a single local database transaction. ([Sample](/samples/sqltransport-sqlpersistence/))
 
 
 ## Disadvantages
@@ -80,6 +80,12 @@ Each endpoint should use a dedicated SQL Server principal with `SELECT` and `DEL
 [Multi-schema](/transports/sql/deployment-options.md#multi-schema) configuration can be used to manage fine-grained access control to various database objects used by the endpoint, including its queue tables.
 
 partial: alwaysencrypted
+
+### Retries
+
+When an exception occurs during message handling, the transaction is already in doubt and must be rolled back. Failure info is stored in memory, and can't influence the next step for that message (immediate retry, delayed retry, or forward to the error queue) until the next time it is processed on that node.
+
+When an endpoint is scaled out to multiple endpoint instances, this means that more retries may be observed than configured, as each instance accumulates failures until a single node has observed enough retries to escalate to delayed retries. It's also possible for immediate retries to be observed on a different instance even when [Recoverability](/nservicebus/recoverability/) is configured for zero immediate retries.
 
 ### ServiceControl
 
