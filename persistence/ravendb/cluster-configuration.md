@@ -11,4 +11,4 @@ RavenDB version 4 and higher supports multi-node cluster configurations. The Rav
 
 Database nodes in a database group, distributed across multiple cluster nodes are all operating in master mode, which means that any database node in the cluster can accept writes. Due to missing optimistic concurrency control for cluster-wide transactions, data loss may happen on concurrent writes to different database nodes. 
 
-include: config
+partial: config
