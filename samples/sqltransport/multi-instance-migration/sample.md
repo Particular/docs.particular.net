@@ -1,7 +1,7 @@
 ---
 title: Multi-Instance Mode to bridge migration
 summary: Migration of SQL Server transport Multi-Instance Mode topology to bridge
-reviewed: 2019-06-04
+reviewed: 2021-06-14
 component: SqlTransport
 related:
  - transports/sql/deployment-options
