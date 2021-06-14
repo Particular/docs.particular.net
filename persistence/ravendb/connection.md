@@ -14,7 +14,7 @@ include: dtc-warning
 
 include: cluster-configuration-warning
 
-The following sections outlines various ways to connect to the RavenDB server. Specifying an external shared store (providing a fully configured RavenDB `DocumentStore` instance) is preferred so that the configuration of the DocumentStore is not obscured.
+The following sections outline various ways to connect to the RavenDB server. Specifying an external shared store (providing a fully configured RavenDB `DocumentStore` instance) is preferred so that the configuration of the DocumentStore is not obscured.
 
 include: raven-dispose-warning
 
