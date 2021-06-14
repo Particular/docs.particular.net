@@ -5,11 +5,12 @@ reviewed: 2021-04-12
 versions: '[6.0,)'
 ---
 
-DANGER: Running in cluster-configurations without the use of cluster-wide transactions for business data could result in data loss that is impossible to detect. Due to the risk data loss, RavenDB clusters are currently not supported.
+DANGER: Cluster configurations and cluster-wide transactions are currently not supported in the RavenDB persistence. 
 
-RavenDB version 4 and higher supports multi-node cluster configurations. Database nodes in a database group, distributed across multiple cluster nodes are all operating in master mode, that means that any database node in the cluster can accept writes. Due to missing optimistic concurrency control for cluster-wide transactions, data loss may happen on concurrent writes to different database nodes. Due to this problem, NServiceBus.RavenDB does not currently support cluster configurations.
+RavenDB version 4 and higher supports multi-node cluster configurations. The RavenDB persistence will guard against cluster configurations, as they can lead to data loss if not used correctly (with cluster-wide transactions).
 
-Using cluster-wide transactions correctly is complex. Cluster-wide transactions make use of compare-exchange values in order to guarantee consistent writes across the majority of nodes in the cluster. With the current RavenDB api, it’s up to the user to properly implement that on their business data.
+Database nodes in a database group, distributed across multiple cluster nodes are all operating in master mode, which means that any database node in the cluster can accept writes. Due to missing optimistic concurrency control for cluster-wide transactions, data loss may happen on concurrent writes to different database nodes. 
+
 
 ## How to move forward
 
