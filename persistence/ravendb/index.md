@@ -44,10 +44,6 @@ See the [NServiceBus Packages Supported Versions](/nservicebus/upgrades/supporte
 
 There are a variety of options for configuring the connection to a RavenDB Server. See [RavenDB Connection Options](connection.md) for more details.
 
-## Supported clustering configurations
-
-NServiceBus does not support multi-master RavenDB cluster configurations. Only fail-over clustering modes are supported. Consistency cannot be guaranteed in multi-master configurations and NServiceBus cannot do automated conflict resolution for conflicts in multi-master configurations.
-
 ## Shared session
 
 NServiceBus supports sharing the same RavenDB document session between Saga persistence, Outbox persistence, and business data, so that a single persistence transaction can be used to persist the data for all three concerns atomically. Shared sessions are automatically configured when an endpoint has enabled the [Outbox feature](/nservicebus/outbox/) or contains [sagas](/nservicebus/sagas/).
