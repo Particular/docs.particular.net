@@ -203,3 +203,6 @@ The following static extension method types were renamed:
 | `IPipelineContextExtensions`   | `PipelineContextExtensions`   |
 
 All references to the old types must be changed to the new types, although usually these types are not referenced, since they only contain extension methods.
+
+
+TODO: https://github.com/Particular/NServiceBus/pull/6057
