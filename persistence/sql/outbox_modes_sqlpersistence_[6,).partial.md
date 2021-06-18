@@ -2,7 +2,7 @@
 
 By default the outbox uses optimistic concurrency control. That means that when two copies of the same message arrive at the endpoint, both messages are picked up (if concurrency settings of the endpoint allow for it) and processing begins on both of them. When the message handlers are completed, both processing threads attempt to insert the outbox record as part of the transaction that includes the application state change. 
 
-At this point of of the transactions succeeds and the other fails due to unique index constraint violation. When the copy of the message that failed is picked up again, it is discarded as a duplicate.
+At this point, one of the transactions succeeds and the other fails due to a unique index constraint violation. When the copy of the message that failed is picked up again, it is discarded as a duplicate.
 
 The outcome is that the application state change is applied only once (the other attempt has been rolled back) but the message handlers have been executed twice. If the message handler contains logic that has non-transactional side effects (e.g. sending an e-mail), that logic may be executed multiple times.
 
