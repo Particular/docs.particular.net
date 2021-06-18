@@ -1095,7 +1095,7 @@
     - Url: persistence/ravendb/dtc
       Title: DTC not supported
     - Url: persistence/ravendb/cluster-configuration
-      Title: Cluster configuration with multiple nodes not supported
+      Title: Cluster configurations
   - Url: persistence/service-fabric
     Title: Service Fabric
     Articles:
@@ -1348,7 +1348,7 @@
     - Title: Support Policy
       Url: previews/support-policy
   - Title: Azure Functions
-    Articles:   
+    Articles:
     - Title: NServiceBus.AzureFunctions.StorageQueues
       Url: previews/azure-functions-storage-queues
   - Title: AWS Lambda
