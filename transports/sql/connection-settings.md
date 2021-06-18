@@ -10,12 +10,11 @@ redirects:
 
 ## Using connection pooling
 
-The SQL Server transport is built on top of [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/index) and will use connection pooling. This may result in the connection pool being shared by the transport, as well as other parts of the endpoint process and the business logic. 
+The SQL Server transport is built on top of [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/index) and will use connection pooling. This may result in the connection pool being shared by the transport, as well as other parts of the endpoint process and the business logic.
 
 In scenarios where the concurrent message processing limit is changed, or the database connection is used for other purposes mentioned above, it is recommended to change the connection pool size to ensure it will not be exhausted. See also [SQL Server Connection Pooling and Configuration](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling).
 
-partial: pool-size  
-
+partial: pool-size
 
 ## Connection configuration
 
@@ -23,9 +22,7 @@ The connection string can be configured in several ways:
 
 partial: connection-string
 
-
 partial: multi-instance
-
 
 ## Custom database schemas
 
@@ -34,6 +31,8 @@ The SQL Server transport uses `dbo` as a default schema. It is used for every qu
 partial: custom-schema
 
 NOTE: When subscribing to events between endpoints in different database schemas, a [shared subscription table needs to be configured](/transports/sql/native-publish-subscribe.md#configure-subscription-table).
+
+partial: custom-catalog
 
 ## Custom SQL Server transport connection factory
 
