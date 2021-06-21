@@ -44,12 +44,12 @@ This list shows all groups of currently failed messages.
 
 The display of failed message groups can be changed via the "Group by" drop-down menu, according to the following classification types:
 
- * **Exception Type and Stack Trace** - groups messages both by exception type and stack trace. It is the default way of categorizing failed messages.   
- * **Message Type** - groups messages by message type. 
+ * **Exception Type and Stack Trace** - groups messages both by exception type and stack trace. It is the default way of categorizing failed messages.
+ * **Message Type** - groups messages by message type.
  * **Endpoint Address** - groups messages by endpoint address where the failure occurred.
  * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
  * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
- 
+
 Note: the number of listed groups may differ depending on the selected classifications type view.
 
 ##### Managing failed message groups
@@ -62,7 +62,7 @@ The following actions can be performed on a failed message group:
 ![Failed message groups retry in progress](images/failed-group-retry-in-progress.png 'width=500')
 
  * **Delete group** - Deletes all messages contained in the group. [Learn more about deleting messages](/servicepulse/intro-archived-messages.md).
- * **Add note** - Allows adding a note with freetext for the group. Notes are automatically removed after the group is retried.
+ * **Add note** - Allows adding a freetext note for the group. Notes are automatically removed after the group is retried.
 
  ![Failed message groups note](images/notes.png 'width=500')
 
@@ -83,7 +83,7 @@ The following actions can also be taken on each message or a selection of messag
 
 * **Retry** - Sends the message(s) to be reprocessed by the corresponding endpoint.
 * **Delete** - Deletes message(s).
-* **Export** - Export message(s) to a downloadble CSV file.
+* **Export** - Export message(s) to a downloadable CSV file.
 
 ### Message details page
 
@@ -120,12 +120,12 @@ This list shows all groups of deleted messages.
 
 The display of deleted message groups can be changed via the "Group by" drop-down menu, according to the following classification types:
 
- * **Exception Type and Stack Trace** - groups messages both by exception type and stack trace. It is the default way of categorizing failed messages.   
- * **Message Type** - groups messages by message type. 
+ * **Exception Type and Stack Trace** - groups messages both by exception type and stack trace. It is the default way of categorizing failed messages.
+ * **Message Type** - groups messages by message type.
  * **Endpoint Address** - groups messages by endpoint address where the failure occurred.
  * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
  * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
- 
+
 Note: the number of listed groups may differ depending on the selected classifications type view.
 
 ### Deleted Messages

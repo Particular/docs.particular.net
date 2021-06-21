@@ -44,12 +44,12 @@ See [Service Control Error Retention Period](/servicecontrol/creating-config-fil
 
 The Deleted Message Groups tab shows the deleted messages grouped by the following options:
 
- * **Exception Type and Stack Trace** - groups messages both by exception type and stack trace. It is the default way of categorizing failed messages.   
- * **Message Type** - groups messages by message type. 
+ * **Exception Type and Stack Trace** - groups messages both by exception type and stack trace. It is the default way of categorizing failed messages.
+ * **Message Type** - groups messages by message type.
  * **Endpoint Address** - groups messages by endpoint address where the failure occurred.
  * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
  * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
- 
+
 Note: the number of listed groups may differ depending on the selected classifications type view.
 
 Clicking on a group of messages will navigate to the Deleted Messages page containing all the messages from that group.
@@ -62,6 +62,6 @@ If there are failed messages that were deleted by mistake, they can be restored 
 
 ### Restoring deleted groups of failed messages
 
-Deleted groups of failed messages can also be restored with a single click on the respective "Restore group" button in the Deleted Message Groups tab.
+Deleted groups of failed messages can also be restored by clicking on the respective "Restore group" button in the Deleted Message Groups tab.
 
 ![Restore group](images/deleted-group-restore.png)
