@@ -6,7 +6,7 @@ related:
  - samples/azure-functions/service-bus
 redirects:
  - previews/azure-functions-service-bus
-reviewed: 2021-04-19
+reviewed: 2021-04-21
 ---
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
@@ -21,11 +21,9 @@ snippet: asb-function-hostbuilder
 
 Any services registered via the `IFunctionsHostBuilder` will be available to message handlers via dependency injection. The startup class must be declared via the `FunctionStartup` attribute: `[assembly: FunctionsStartup(typeof(Startup))]`.
 
-### Azure Function definition
+### Azure Function queue trigger for NServiceBus
 
-To access `IFunctionEndpoint` from the Azure Function trigger, inject the `IFunctionEndpoint` via constructor-injection into the containing class:
-
-snippet: asb-function-hostbuilder-trigger
+partial: queue-trigger-wiring
 
 ### Dispatching outside a message handler
 
