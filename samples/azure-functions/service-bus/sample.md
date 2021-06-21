@@ -5,7 +5,7 @@ related:
  - nservicebus/hosting/azure-functions/service-bus
 redirects:
  - samples/previews/azure-functions/service-bus
-reviewed: 2021-04-19
+reviewed: 2021-06-21
 ---
 
 This sample shows how to host NServiceBus within an Azure Function, in this case, a function triggered by an incoming Service Bus message. This enables hosting message handlers in Azure Functions, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message processing pipeline.
@@ -61,13 +61,7 @@ The NServiceBus endpoint configured using `IFunctionHostBuilder` is using the co
 
 snippet: configuration-with-function-host-builder
 
-`IFunctionEndpoint` is then injected into the function class:
-
-snippet: endpoint-injection
-
-And is invoked in the following manner:
-
-snippet: injected-function
+partial: trigger-function
 
 ### Handlers
 
