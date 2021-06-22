@@ -10,7 +10,7 @@ The SQL Server transport can take advantage of native [delayed delivery](/nservi
 
 When a message delay time lapses, SQL Server transport moves a batch of messages to the destination queue. Note that this means the exact time of delivering a delayed message is always an approximation.
 
-NOTE: The native delayed delivery of SQL Server transport is available only in endpoints that are not configured as [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting).
+NOTE: The native delayed delivery feature of the SQL Server transport is not available to [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoints.
 
 partial: enable
 
@@ -22,21 +22,11 @@ NOTE: Native delayed delivery mechanism has been introduced in version 3 of the 
 
 ### Table suffix
 
-Delayed messages are stored in a dedicated table named _`endpoint-name.suffix`_. The value of the suffix can be specified in the configuration:
+Delayed messages are stored in a dedicated table named _`endpoint-name.suffix`_. The suffix is set to _`Delayed`_ by default, but can be overwritten using:
 
 snippet: DelayedDeliveryTableSuffix
 
-### Polling Interval
-
-Messages are checked for expiration every second. The polling interval can be configured using:
-
-snippet: DelayedDeliveryProcessingInterval
-
-### Polling Batch Size
-
-On each query, a batch of messages is picked and dispatched. The maximal size of the batch can be specified with:
-
-snippet: DelayedDeliveryBatchSize
+partial: batchprocessing
 
 ## Backwards compatibility
 
