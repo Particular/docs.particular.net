@@ -5,20 +5,14 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-      <PackageReference Include="NServiceBus.AzureFunctions.InProcess.ServiceBus" Version="1.1.0-alpha.54" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.*" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AzureFunctions.Messages\AzureFunctions.Messages.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\local.settings.json" Link="local.settings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <PackageReference Include="NServiceBus.AzureFunctions.InProcess.ServiceBus" Version="1.1.0-alpha.54" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.*" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="host.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <Content Include="..\local.settings.json" CopyToOutputDirectory="Always" />
+    <None Update="host.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
