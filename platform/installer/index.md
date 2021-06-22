@@ -11,10 +11,6 @@ The Platform Installer is recommended for use on development machines only. This
  * The Platform Installer requires internet access which may not be available in a production environment.
  * The Platform Installer `setup.exe` will fail on Windows servers that have IE Enhanced Security Configuration enabled.
 
-<div class="text-center inline-download hidden-xs"><a id='download-demo' href='https://particular.net/start-platform-download' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download the Platform Installer</a>
-</div>
-
-
 For testing and production environments it is recommended to:
 
  * Use the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md) to install any required prerequisites.
