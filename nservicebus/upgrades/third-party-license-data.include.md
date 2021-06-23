@@ -33,7 +33,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/RabbitMQ.Client/" target="_blank">RabbitMQ.Client</a> | <a href="https://www.nuget.org/packages/RabbitMQ.Client/6.2.1/license" target="_blank">View License</a> | <a href="https://www.rabbitmq.com/dotnet.html" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/RabbitMQ.Client/" target="_blank">RabbitMQ.Client</a> | <a href="https://www.nuget.org/packages/RabbitMQ.Client/6.2.2/license" target="_blank">View License</a> | <a href="https://www.rabbitmq.com/dotnet.html" target="_blank">Project Site</a> |
 
 ### [NServiceBus.SqlServer](/nuget/NServiceBus.SqlServer)
 
@@ -45,15 +45,15 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Azure.ServiceBus/" target="_blank">Microsoft.Azure.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Microsoft.Azure.ServiceBus_5.1.2/sdk/servicebus/Microsoft.Azure.ServiceBus/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.ServiceBus/" target="_blank">Microsoft.Azure.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Microsoft.Azure.ServiceBus_5.1.3/sdk/servicebus/Microsoft.Azure.ServiceBus/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.ValueTuple/" target="_blank">System.ValueTuple</a> | <a href="https://github.com/dotnet/corefx/blob/master/LICENSE.TXT" target="_blank">View License</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/" target="_blank">Azure.Storage.Blobs</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.8.0/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Azure.Storage.Queues/" target="_blank">Azure.Storage.Queues</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Queues_12.6.0/sdk/storage/Azure.Storage.Queues/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/" target="_blank">Azure.Storage.Blobs</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.9.1/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Storage.Queues/" target="_blank">Azure.Storage.Queues</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Queues_12.7.0/sdk/storage/Azure.Storage.Queues/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos.Table/" target="_blank">Microsoft.Azure.Cosmos.Table</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos.Table/1.0.8/license" target="_blank">View License</a> | <a href="http://go.microsoft.com/fwlink/?LinkId=848761" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
@@ -112,7 +112,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/MongoDB.Driver/" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/2.12.0/license" target="_blank">View License</a> | <a href="https://docs.mongodb.com/drivers/csharp/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/MongoDB.Driver/" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/2.12.4/license" target="_blank">View License</a> | <a href="https://docs.mongodb.com/drivers/csharp/" target="_blank">Project Site</a> |
 
 ## Serializer packages
 
@@ -199,7 +199,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/" target="_blank">Azure.Storage.Blobs</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.8.0/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/" target="_blank">Azure.Storage.Blobs</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.9.1/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/" target="_blank">Microsoft.Azure.Services.AppAuthentication</a> | <a href="https://raw.githubusercontent.com/Microsoft/dotnet/master/LICENSE" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-sdk-for-net" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.IO.RecyclableMemoryStream/" target="_blank">Microsoft.IO.RecyclableMemoryStream</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Microsoft/Microsoft.IO.RecyclableMemoryStream" target="_blank">Project Site</a> |
 
