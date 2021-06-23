@@ -13,12 +13,6 @@ class DelayedDelivery
 
         #endregion
 
-        #region DelayedDeliveryProcessingInterval
-
-        transport.DelayedDelivery.ProcessingInterval = TimeSpan.FromSeconds(5);
-
-        #endregion
-
         #region DelayedDeliveryBatchSize
 
         transport.DelayedDelivery.BatchSize = 100;
