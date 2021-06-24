@@ -168,6 +168,7 @@ The following transports might need migration:
 * Azure Storage Queues
 * SQL Transport
 * SQS
+* MSMQ
 
 ### IManageUnitOfWork 
 
