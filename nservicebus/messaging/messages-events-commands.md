@@ -50,6 +50,8 @@ Messages should:
 
 Note: Prior to version 7.2, messages had to be defined as a `class`. Defing them as a `struct` would result in a runtime exception.
 
+Generic message definitions (e.g. `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message or to use inheritance to reuse shared message characteristics.
+
 ## Identifying messages
 
 Endpoints will process any message that can be deserialized into a .NET type but requires message contracts to be identified up front to support:
