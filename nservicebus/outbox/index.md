@@ -95,14 +95,11 @@ More detail on each stage of the process:
 
 To understanding the Outbox Pattern better it's worth noting that it doesn't rely on a single parent transaction that spans all the operations but rather on two separate processing phases.  
 
-In the first phase (steps 2 to 6), handler logic, and all outgoing messages are captured in a single business store transaction. Messages are not immediately sent but serialized and persisted in the Outbox store together with the business data. This ensures that the business data changes and all outgoing messages are either successfully saved or rolled back.  
+In the first phase (steps 2 to 6), the handler logic, and all outgoing messages are captured in a single transaction. Messages are not immediately sent but serialized and persisted in the Outbox store together with the business data. This ensures that the business data changes and all outgoing messages are either successfully saved or rolled back.  
 
 NOTE: Atomicity guarantee does not apply to actions within handlers that do not enlist in [an Outbox transaction](https://docs.particular.net/nservicebus/handlers/accessing-data#synchronized-storage-session), such as e.g. sending emails, changing file system, etc.   
 
-Outgoing messages get sent as part of the second phase (steps 7 to 9) in which the messages are handed to the messaging infrastructure. When done the Outbox store is updated to indicate that the send operation was successful. It's worth noting, that due to possible failures any message can be sent multiple times. For example, if an exception is thrown in step 9 (failure when updating Outbox store) the processing of the Outbox record will be retried and the message will be re-sent. As long as the downstream endpoints use the Outbox, such duplicates will be handled by the deduplication step (3).
-,,
-
-This is what makes the Outbox Design Pattern so eloquent and a more scalable architecture in many scenarios.  For more information on the Outbox Design Pattern see: https://microservices.io/patterns/data/transactional-outbox.html
+Outgoing messages are handed to the messaging infrastructure in the second phase (steps 7 to 9). When done the Outbox store is updated to indicate that the send operation was successful. Due to possible failures, any message can be sent multiple times. For example, if an exception is thrown in step 9 (failure when updating Outbox store) the processing of the Outbox record will be retried and the message will be re-sent. As long as the downstream endpoints use the Outbox, such duplicates will be handled by the deduplication step (3).
 
 ## Important design considerations
 
