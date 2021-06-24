@@ -97,7 +97,7 @@ To understanding the Outbox Pattern better it's worth noting that it doesn't rel
 
 In the first phase (steps 2 to 6), the handler logic, and all outgoing messages are captured in a single transaction. Messages are not immediately sent but serialized and persisted in the Outbox store together with the business data. This ensures that the business data changes and all outgoing messages are either successfully saved or rolled back.  
 
-NOTE: Atomicity guarantee does not apply to actions within handlers that do not enlist in [an Outbox transaction](https://docs.particular.net/nservicebus/handlers/accessing-data#synchronized-storage-session), such as e.g. sending emails, changing file system, etc.   
+NOTE: Atomicity guarantee does not apply to actions within handlers that do not enlist in [an Outbox transaction](/nservicebus/handlers/accessing-data#synchronized-storage-session), such as e.g. sending emails, changing file system, etc.   
 
 Outgoing messages are handed to the messaging infrastructure in the second phase (steps 7 to 9). When done the Outbox store is updated to indicate that the send operation was successful. Due to possible failures, any message can be sent multiple times. For example, if an exception is thrown in step 9 (failure when updating Outbox store) the processing of the Outbox record will be retried and the message will be re-sent. As long as the downstream endpoints use the Outbox, such duplicates will be handled by the deduplication step (3).
 
