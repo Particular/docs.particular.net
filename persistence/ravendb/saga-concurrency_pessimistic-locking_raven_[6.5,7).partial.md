@@ -1,39 +1,35 @@
 ## Sagas concurrency control
 
-Currently, the default for concurrency control is optimistic concurrency. In the next major version of NServiceBus.RavenDB, pessimistic locking will be the default. In anticipation of this change, starting with NServiceBus.RavenDB version 6.5, the transport introduces an extension method to enable optimistic locking.
-
-RavenDB does not provide pessimistic locking natively. The behavior is based on a spin lock that tries to acquire a lease on a resource.
-
-Applying a spin lock over a remote resource is not as expensive as it may sound. When using optimistic concurrency control the recovery mechanism will result in all message processing being performed again for each retry including the retrieval of the message from the queue.
-
-Choose pessimistic locking over optimistic locking if the system is experiencing optimistic concurrency control errors when saga instances are updated. Optimistic concurrency control is the most efficient form of processing if the system is occasionally experiencing an optimistic concurrency control error.
+By default NServiceBus.RavenDB uses optimistic concurrency control. Pessimistic locking can be enabled using: 
 
 snippet: ravendb-sagas-pessimistic-lock
 
-The pessimistic locking behavior can be customized using the following options:
+NOTE: Pessimistic locking will become the default option starting with NServiceBus.RavenDB version 6.5
 
-### Pessimistic Lease Lock Time:
+### Pessimistic locking internals
 
-By default, the persister locks a saga data document for 60 seconds. It is not recommended to have long-running handlers in sagas but it might sometimes be required to increase the lease duration.
+RavenDB does not support pessimistic locking natively and the persister uses a dedicated RavenDB document to enforce exclusive saga updates. In some scenarios, this can lead to an increase in I/O roundtrips, especially if many instances are competing for the same saga. However, in the high concurrency scenarios, the overhead is still smaller than the cost of message retry that would be caused by optimistic concurrency failures.   
 
-The lease duration can be adjusted using the following API:
+NOTE: As a result, it is recommended to choose the pessimistic over the optimistic concurrency control whenever a saga is experiencing a significant number of optimistic concurrency control errors. 
 
-snippet: ravendb-sagas-pessimisticLeaseLockAcquisitionMaximumRefreshDelay
+### Pessimistic concurrency control settings
+
+The pessimistic concurrency control can be customized using the options mentioned in the sections below.
+
+### Pessimistic Lease Lock Time
+
+By default, the persister locks a saga data document for 60 seconds. Although, it is not recommended to have sagas execute long-running logic, in some scenarios it might be required to increase the lease duration. The lease duration can be adjusted using the following API:
+
+snippet: ravendb-sagas-setPessimisticLeaseLockTime
 
 ### Pessimistic Lease Lock Acquisition Timeout
 
-By default the persister waits 60 seconds to obtain a lease lock. If the lock acquisition fails, the message goes through the endpoint configured [retry logic](/nservicebus/recoverability/).
-
-The behavior of obtaining a lease lock is based on competing on the document for update. This can result in a large increase in I/O roundtrips, especially if many instances are competing for this resource.
-
-The pessimistic lease lock acquisition timeout duration can be adjusted with the following API:
+By default, the persister waits 60 seconds to acquire the lock. The value can be adjusted using:
 
 snippet: ravendb-sagas-setPessimisticLeaseLockAcquisitionTimeout
 
 ### Pessimistic Lease Lock Acquisition Maximum Refresh Delay
 
-To prevent jittering, the saga persister waits a random number of milliseconds between lease lock acquisition attempts. By default, the random waiting time is between zero and 20 milliseconds. The upper bound can be configured: the supplied value must be greater than zero and less than or equal to 1 second.
+To prevent request synchronization, the persister randomizes the interval between lock acquisition requests. By default, the interval can have a value between 0 and 20 milliseconds. The default, 20 ms upper limit can be changed to any value between 0 and 1000 milliseconds using:
 
-The pessimistic lease lock acquisition maximum refresh delay can be adjusted via the following API:
-
-snippet: ravendb-sagas-setPessimisticLeaseLockTime
+snippet: ravendb-sagas-pessimisticLeaseLockAcquisitionMaximumRefreshDelay
