@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 
 // needs to be top level first defined for C# to compile
 #region endpoint-trigger-function-wireup
@@ -59,7 +59,7 @@ namespace ASBFunctions_1_1
         }
         #endregion
 
-        #region asb-enable-diagnostics
+        #region asb-configure-error-queue
         class EnableDiagnosticsOnStartup : FunctionsStartup
         {
             public override void Configure(IFunctionsHostBuilder builder)
@@ -74,7 +74,7 @@ namespace ASBFunctions_1_1
         }
         #endregion
 
-        #region asb-configure-error-queue
+        #region asb-enable-diagnostics
         class configureErrorQueueuOnStartup : FunctionsStartup
         {
             public override void Configure(IFunctionsHostBuilder builder)

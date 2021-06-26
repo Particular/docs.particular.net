@@ -1,4 +1,4 @@
-﻿namespace ASBFunctions_1
+namespace ASBFunctions_1
 {
     using System.Threading.Tasks;
     using Microsoft.Azure.Functions.Extensions.DependencyInjection;
@@ -19,7 +19,7 @@
         }
         #endregion
 
-        #region asb-enable-diagnostics
+        #region asb-configure-error-queue
         class EnableDiagnosticsOnStartup : FunctionsStartup
         {
             public override void Configure(IFunctionsHostBuilder builder)
@@ -34,7 +34,7 @@
         }
         #endregion
 
-        #region asb-configure-error-queue
+        #region asb-enable-diagnostics
         class configureErrorQueueuOnStartup : FunctionsStartup
         {
             public override void Configure(IFunctionsHostBuilder builder)
