@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <LangVersion>7.3</LangVersion>
@@ -6,7 +6,7 @@
     <Platforms>x64</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Gateway" Version="4.0.0-alpha.173" />
+    <PackageReference Include="NServiceBus.Gateway" Version="4.0.0-alpha.242" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.*" />
     <Reference Include="System.Configuration" />
   </ItemGroup>

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Gateway;
+using System;
+using System.Threading.Tasks;
 
 class Usage
 {
@@ -18,7 +18,7 @@ class Usage
 
         #endregion
     }
-    
+
     void GatewayConfiguration(EndpointConfiguration endpointConfiguration)
     {
         #region GatewayConfiguration
@@ -53,13 +53,13 @@ class Usage
                 {
                     return TimeSpan.MinValue;
                 }
-                return TimeSpan.FromSeconds(currentRetry*60);
+                return TimeSpan.FromSeconds(currentRetry * 60);
             });
 
         #endregion
     }
-    
-    
+
+
     void GatewayDisableRetriesConfiguration(EndpointConfiguration endpointConfiguration)
     {
         #region GatewayDisableRetriesConfiguration
@@ -70,7 +70,7 @@ class Usage
 
         #endregion
     }
-    
+
     async Task SendToSites(IEndpointInstance endpoint)
     {
         #region SendToSites
@@ -84,7 +84,7 @@ class Usage
 
         #endregion
     }
-    
+
     void TransactionTimeout(EndpointConfiguration endpointConfiguration)
     {
         #region GatewayCustomTransactionTimeout
@@ -92,6 +92,21 @@ class Usage
         var config = new NonDurableDeduplicationConfiguration();
         var gateway = endpointConfiguration.Gateway(config);
         gateway.TransactionTimeout(TimeSpan.FromSeconds(40));
+
+        #endregion
+    }
+    void ReplyUri(EndpointConfiguration endpointConfiguration)
+    {
+        #region SetReplyToUri
+
+        var config = new NonDurableDeduplicationConfiguration();
+        var gatewaySettings = endpointConfiguration.Gateway(config);
+
+        // Local HTTP binding address uses wilcard domain
+        gatewaySettings.AddReceiveChannel("http://+:12345/MyEndpoint/");
+
+        // Set the reply-to URI as the public address of a load balancer or proxy
+        gatewaySettings.SetReplyToUri("http://my-public-domain.com:54321/MyEndpoint/");
 
         #endregion
     }
