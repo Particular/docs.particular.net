@@ -1,7 +1,7 @@
 ---
-title: Endpoints
-summary: Describe the concepts of Endpoint and Endpoint Instance.
-reviewed: 2019-07-18
+title: Endpoints and endpoint instances
+summary: Defines the concepts of endpoint and endpoint instance.
+reviewed: 2021-06-29
 component: Core
 related:
  - samples/endpoint-configuration
@@ -9,6 +9,10 @@ redirects:
 - nservicebus/endpoint
 ---
 
-An _endpoint_ is a logical entity that communicates with other endpoints via [_messaging_](/nservicebus/messaging). Each endpoint has an identifying name and contains a collection of [_message handlers_](/nservicebus/handlers/) and [_sagas_](/nservicebus/sagas/). An endpoint can be deployed to a number of machines and environments. Each deployment of an endpoint is an instance. Each endpoint instance processes messages from an input queue which contains messages for the endpoint to process.
+An _endpoint_ is a logical component that communicates with other components using [_messages_](/nservicebus/messaging). Each endpoint has an identifying name, contains a collection of [_message handlers_](/nservicebus/handlers/) and/or [_sagas_](/nservicebus/sagas/), and is deployed to a given _environment_ (e.g. development, testing, production). 
 
-It is common for each endpoint to have a single endpoint instance. As endpoints need to [scale-out](/nservicebus/architecture/scaling.md), additional endpoint instances can be added. This collection of endpoint instances still represents a single logical endpoint.
+An _endpoint instance_ is a physical deployment of an endpoint. Each endpoint instance processes messages from an input queue which contains messages for the endpoint to process. Each endpoint has at least one endpoint instance. Additional endpoint instances may be added to [scale-out](/nservicebus/architecture/scaling.md) the endpoint. A collection of endpoint instances represents a single endpoint if and only if:
+
+- The endpoint instances have the same name.
+- The endpoint instances contain the same collection of handlers and/or sagas.
+- The endpoint instances are deployed to the same environment.
