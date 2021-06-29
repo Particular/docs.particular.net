@@ -24,7 +24,7 @@ graph LR
   SCA -- Notifications --> SC
 ```
 
-Each endpoint in the system should be [configured to send audit copies of every message that is processed into a central audit queue](/nservicebus/operations/auditing.md). A ServiceControl Audit instance reads the messages in the audit queue and makes them available for visualization in ServiceInsight. ServiceControl Audit can optionally forward these messages into an Audit Log queue for further processing if required. In some cases, it might be useful to exclude certain message types from being forwarded to the audit queue. This can be accomplished by making use of a [custom behavior in the pipeline](/samples/pipeline/audit-filtering).
+Each endpoint in the system should be [configured to send audit copies of every message that is processed into a central audit queue](/nservicebus/operations/auditing.md). A ServiceControl Audit instance reads the messages in the audit queue and makes them available for visualization in ServiceInsight. ServiceControl Audit can optionally forward these messages into an Audit Log queue for further processing if required. In some cases, it might be useful to exclude certain message types from being forwarded to the audit queue. This can be accomplished with a [custom behavior in the pipeline](/samples/pipeline/audit-filtering).
 
 Each ServiceControl Audit instance stores data in an embedded database. Audit data is retained for 30 days. [This retention period can be customized](/servicecontrol/audit-instances/creating-config-file.md#data-retention).
 
