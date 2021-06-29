@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Hardware Considerations
 summary: Hardware recommendations for running ServiceControl
-reviewed: 2020-07-07
+reviewed: 2021-06-23
 ---
 
 ServiceControl as an application can be used to process the entire message load of a system. This article provides general guidelines, recommendations, and performance benchmarks to help determine the resources to provide for a production environment. To identify the hardware specifications for any system environment, a combination of testing with the system and the information provided below will need to be used.
@@ -15,6 +15,10 @@ ServiceControl as an application can be used to process the entire message load 
 * [Database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) located on disks suitable for low latency write operations (fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
 
 NOTE: Use a storage benchmark tool to measure disk performance, such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
+
+### Hosting in the cloud
+
+The only option to host ServiceControl in the cloud is by using a Virtual Machine.
 
 ### Server performance monitoring
 
