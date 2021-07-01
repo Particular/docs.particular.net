@@ -7,4 +7,18 @@ suppressRelated: true
 isLearningPath: true
 ---
 
+This always shows up.
+
+#variant control
+This is the control
+#end-variant
+
+This is always in the middle.
+
+#variant different
+This is the variant
+#end-variant
+
+And this always shows up, as does the actual NServiceBus article below.
+
 include: nservicebus
