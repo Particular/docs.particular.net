@@ -93,6 +93,14 @@ More detail on each stage of the process:
 9. Update outbox storage to show that the outgoing messages have been sent.
 10. Acknowledge (ACK) receipt of the incoming message so that it is removed from the queue and will not be delivered again.
 
+To understanding the Outbox Pattern better it's worth noting that it doesn't rely on a single parent transaction that spans all the operations but rather on two separate processing phases.  
+
+In the first phase (steps 2 to 6), the handler logic, and all outgoing messages are captured in a single transaction. Messages are not immediately sent but serialized and persisted in the Outbox store together with the business data. This ensures that the business data changes and all outgoing messages are either successfully saved or rolled back.  
+
+NOTE: Atomicity guarantee does not apply to actions within handlers that do not enlist in [an Outbox transaction](/nservicebus/handlers/accessing-data.md#synchronized-storage-session), such as e.g. sending emails, changing file system, etc.   
+
+Outgoing messages are handed to the messaging infrastructure in the second phase (steps 7 to 9). When done the Outbox store is updated to indicate that the send operation was successful. Due to possible failures, any message can be sent multiple times. For example, if an exception is thrown in step 9 (failure when updating Outbox store) the processing of the Outbox record will be retried and the message will be re-sent. As long as the downstream endpoints use the Outbox, such duplicates will be handled by the deduplication step (3).
+
 ## Important design considerations
 
 * For best performance, outbox data should be stored in the same database as business data. For more information, see [_Transaction scope_](#important-design-considerations-transaction-scope) below.
