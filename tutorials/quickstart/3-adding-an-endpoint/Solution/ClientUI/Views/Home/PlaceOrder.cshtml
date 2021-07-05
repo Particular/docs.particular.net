@@ -1,0 +1,43 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Order placed";
+    // Want to keep this info out of the controller to make controller more understandable
+    if (Model.MessagesSent < 5)
+    {
+        Model.ShowForm = false;
+        Model.LeftWidth = 12;
+    }
+    else
+    {
+        Model.ShowForm = true;
+        Model.LeftWidth = 7;
+        Model.RightWidth = 5;
+    }
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-@Model.LeftWidth">
+            <div class="card my-4">
+                <form action="/" method="POST">
+                    <div class="card-body">
+                        <h2 class="card-title">OrderId <code>@Model.OrderId</code> sent</h2>
+                        <p>Your order has been placed successfully. You have sent <b>@Model.MessagesSent total messages</b>.</p>
+                        <p>As a result of the button click:</p>
+                        <ul>
+                            <li>The <b>ClientUI</b> website sent a <code>PlaceOrder</code> command to the <b>Sales</b> service.</li>
+                            <li>The <b>Sales</b> service will publish an <code>OrderPlaced</code> event.</li>
+                            <li>The <b>Billing</b> service, which subscribes to <code>OrderPlaced</code>, will receive and process <code>OrderPlaced</code>.</li>
+                        </ul>
+                        <p>Go look in the <b>Sales</b> and <b>Billing</b> console windows to see the <code>PlaceOrder</code> command and <code>OrderPlaced</code> event getting processed.</p>
+                        <input type="submit" class="btn btn-lg btn-success" onclick="sentMessage()" value="Place another order &raquo;" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        @if (Model.ShowForm)
+        {
+            await Html.RenderPartialAsync("_LicenseForm");
+        }
+    </div>
+</div>

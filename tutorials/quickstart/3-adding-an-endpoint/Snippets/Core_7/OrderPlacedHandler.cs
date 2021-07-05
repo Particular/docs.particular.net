@@ -24,7 +24,7 @@ namespace Shipping
 
 namespace Messages
 {
-    public class OrderPlaced 
+    public class OrderPlaced
         : IEvent
     {
         public string OrderId { get; set; }

@@ -1,0 +1,95 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "Debug All",
+            "preLaunchTask": "build",
+            "configurations": [
+                "ClientUI",
+                "Sales",
+                "Billing",
+                "Platform"
+            ]
+        },
+        {
+            "name": "Debug All + Shipping",
+            "preLaunchTask": "build",
+            "configurations": [
+                "ClientUI",
+                "Sales",
+                "Billing",
+                "Platform",
+                "Shipping"
+            ]
+        }
+    ],
+    "configurations": [
+        {
+            "name": "ClientUI",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/ClientUI/bin/Debug/netcoreapp3.1/ClientUI.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_URLS":"http://localhost:5000"
+            },
+            "serverReadyAction": {
+                "action": "openExternally",
+                "uriFormat": "%s",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "console": "externalTerminal"
+        },
+        {
+            "name": "Sales",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/Sales/bin/Debug/netcoreapp3.1/Sales.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "externalTerminal"
+        },
+        {
+            "name": "Billing",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/Billing/bin/Debug/netcoreapp3.1/Billing.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "externalTerminal"
+        },
+        {
+            "name": "Platform",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/Platform/bin/Debug/netcoreapp3.1/Platform.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "externalTerminal"
+        },
+        {
+            "name": "Shipping",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "${workspaceFolder}/Shipping/bin/Debug/netcoreapp3.1/Shipping.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "externalTerminal",
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}

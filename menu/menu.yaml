@@ -4,7 +4,7 @@
   - Url: get-started
     Title: Getting Started
     Articles:
-    - Url: tutorials/quickstart
+    - Url: tutorials/quickstart/1-getting-started
       Title: Quick Start Tutorial
     - Url: tutorials/nservicebus-step-by-step
       Title: Introduction to NServiceBus
