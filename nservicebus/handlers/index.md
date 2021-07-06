@@ -45,19 +45,19 @@ partial: behaviorcaveat
 
 ## Multiple handlers
 
-When an endpoint hosts multiple handlers for a single incoming message and one of the handlers fails then the incoming message gets retried. When this happens all matching handlers get invoked again. Also, the handlers that might have been succesfully invoked already.
+When an endpoint hosts multiple matching handlers for a single incoming message and one of the handlers fails then the incoming message gets retried. When the incoming message is retried all matching handlers get invoked again. Invoked handlers include the handlers that might had already been succesfully invoked in previous attempts.
 
-The incoming message represents a unit of work. If the handlers s
+In general, an incoming message represents a single unit of work. If multiple handlers get invoked it is best that either all succeed or all fail in a single transactional boundary. It is not recommended to run multiple atomic or isolated transactional operations for a single incoming message.
 
-If you have multiple handlers for the same message hosted in the same endpoint then both get invoked as part of the same unit of work which is defined by single incoming message.
+Ensure correct invocation of isolated or shared state by applying one of more of the strategies:
 
-This can be resolved by:
+- Ensuring all handlers share the same transactional context to ensure any the shared transaction can rollback any operations (connection sharing, MSDTC, etc.).
+- Ensuring handlers are idempotent and correctly deal with At-least-once Delivery.
+- Hosting each handler in its own endpoint (hosting in isolation) so each subscribers receive its own own copy to process in isolation (multiple subscibers).
+- When receiving the message do a `SendLocal` with a new message but same payload so that each task gets represented by its own message and can be executed in isolation. (single subscriber, split at the target).
+- Send individual commands from the endpoint that publishes the event, instead of a single event (split at the source).
 
-- Hosting each handler in its own endpoint (hosting in isolation).
-- When receiving the message do a `SendLocal` so that each task gets represented by its own message and is executed in isolation. (divide and conquer)
-- Send 2 individual commands from endpoint that publishes the event, instead of a single event
-
-Splitting in multiple message also has the benefit that each task can run in parallel where otherwise execution is sequential.
+In general a generic message gets converted into several commands where each command represents a specific isolated task. Splitting in multiple message also has the benefit that each task can run in parallel where otherwise execution is sequential. 
 
 ## Unit testing
 
