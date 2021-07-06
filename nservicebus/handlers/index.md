@@ -43,6 +43,22 @@ Receiving a message for which there are no message handlers is considered an err
 
 partial: behaviorcaveat
 
+## Multiple handlers
+
+When an endpoint hosts multiple handlers for a single incoming message and one of the handlers fails then the incoming message gets retried. When this happens all matching handlers get invoked again. Also, the handlers that might have been succesfully invoked already.
+
+The incoming message represents a unit of work. If the handlers s
+
+If you have multiple handlers for the same message hosted in the same endpoint then both get invoked as part of the same unit of work which is defined by single incoming message.
+
+This can be resolved by:
+
+- Hosting each handler in its own endpoint (hosting in isolation).
+- When receiving the message do a `SendLocal` so that each task gets represented by its own message and is executed in isolation. (divide and conquer)
+- Send 2 individual commands from endpoint that publishes the event, instead of a single event
+
+Splitting in multiple message also has the benefit that each task can run in parallel where otherwise execution is sequential.
+
 ## Unit testing
 
 Unit testing handlers is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-a-handler).
