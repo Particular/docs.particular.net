@@ -43,7 +43,7 @@ Receiving a message for which there are no message handlers is considered an err
 
 partial: behaviorcaveat
 
-## Multiple handlers
+## Invocation of multiple matching handlers
 
 When an endpoint hosts multiple matching handlers for a single incoming message and one of the handlers fails then the incoming message gets retried. When the incoming message is retried all matching handlers get invoked again. Invoked handlers include the handlers that might had already been succesfully invoked in previous attempts.
 
