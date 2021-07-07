@@ -20,6 +20,10 @@ This is always in the middle.
 This is the variant
 #end-variant
 
+#variant different
+This is different too, but we need to dedupe variant names
+#end-variant
+
 And this always shows up, as does the actual NServiceBus article below.
 
 include: nservicebus
