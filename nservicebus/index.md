@@ -21,7 +21,7 @@ This is the variant
 #end-variant
 
 #variant different
-This is different too, but we need to dedupe variant names
+This is different too, but a person referring to themselves in the 3rd person would need to dedupe variant names
 #end-variant
 
 And this always shows up, as does the actual NServiceBus article below.
