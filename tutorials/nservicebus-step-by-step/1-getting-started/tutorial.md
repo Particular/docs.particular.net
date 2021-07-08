@@ -16,6 +16,7 @@ include: nsb101-intro-paragraph
 
 In this first lesson, which should take 10-15 minutes, you will create your first messaging endpoint.
 
+#variant Exercise
 
 ## Exercise
 
@@ -25,6 +26,15 @@ Although [NServiceBus only requires .NET Framework 4.5.2](/nservicebus/operation
 
 NOTE: You can also build the solution in .NET Core by selecting the **Console App (.NET Core)** project type when you create a new project.
 
+#end-variant
+
+#variant No Exercise
+
+## No exercise for a person
+
+Ye scallywags aren't good enough for an exercise.
+
+#end-variant
 
 ### Create a solution
 
