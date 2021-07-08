@@ -13,7 +13,7 @@ A custom delayed message store can be provided by implementing the `IDelayedMess
 
 This interface  The delayed delivery handling mechanism has two parts. First, a delayed message is stored using the `Store` method. 
 
-The second part is polling the store for due delayed messages. This is accomplished by periodically calling `FetchNextDueTimeout`. As long as this method returns a message, the mechanism continues to pull more messages. If there are no more due messages, `Next` is invoked to determine how much time is left until the next due timeout. The polling mechanism pauses until that time. If another delayed message is persisted in the meantime, the `Store` method wakes up the polling thread.
+The second part is polling the message store for due delayed messages. Polling is accomplished by periodically calling `FetchNextDueTimeout`. As long due messages are returned, the polling mechanism continues to pull more messages. If there are no more due messages, `Next` is invoked to determine how much time is left until the next due timeout. The polling mechanism pauses until that time. If another delayed message is persisted in the meantime, the `Store` method wakes up the polling thread.
 
 When a due delayed message is returned by `FetchNextDueTimeout`, the message is forwarded to the destination and then removed from the store using the `Remove` method. In case of an unexpected exception during forwarding the failure is registered using `IncrementFailureCount`. If the configured number of retries is exhausted the message is forwarded to the configured `error` queue.
 
