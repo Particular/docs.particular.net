@@ -4,7 +4,7 @@ This is a test for only for V4-5.
 
 #variant 45-control
 This is the control for V4-5
-#endvariant
+#end-variant
 #variant 45-alternate
 This is the alternate for V4-5
-#endvariant
+#end-variant
