@@ -7,9 +7,17 @@ isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
  - 8
+abTestName: docs-ab-framework-test-upgradeguide
 ---
 
 NOTE: This is a working document; there is currently no timeline for the release of NServiceBus version 8.0.
+
+#variant Test
+This is variant Test
+#end-variant
+#variant NotTest
+This is variant NotTest
+#end-variant
 
 ## Transport configuration
 
