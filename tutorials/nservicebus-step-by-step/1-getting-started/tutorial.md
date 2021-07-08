@@ -10,6 +10,7 @@ extensions:
 - !!tutorial
   nextText: "Next Lesson: Sending a command"
   nextUrl: tutorials/nservicebus-step-by-step/2-sending-a-command
+abTestName: docs-ab-framework-test-tutorial
 ---
 
 include: nsb101-intro-paragraph
