@@ -32,11 +32,11 @@ endpointConfiguration.UseTransport(transport);
 
 ## Delayed delivery
 
-Starting from version 2, MSMQ transport supports delayed delivery of messages by persisting them in a dedicated storage. There is built-in SQL Server based store and an extension point that allows implementing custom stores. To configure delayed delivery use the following API:
+Starting from version 2, MSMQ transport supports delayed delivery of messages by persisting them in a dedicated storage. There is a built-in SQL Server based store and an extension point that allows implementing custom stores. To configure delayed delivery use the following API:
 
 snippet: delayed-delivery
 
-To migrate existing delayed messages managed by the Timeout Manager to the new storage use the dedicated [migration tool](/nservicebus/tools/migrate-to-native-delivery.md).
+To migrate existing delayed messages managed by the obsolete Timeout Manager to the new storage use the dedicated [migration tool](/nservicebus/tools/migrate-to-native-delivery.md).
 
 ## Configuration options
 

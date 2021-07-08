@@ -1,10 +1,10 @@
-Because the MSMQ lacks a mechanism for sending delayed messages, the MSMQ transport uses an external store for delayed messages. Messages that are meant to be delivered later (e.g. [saga timeouts](/nservicebus/sagas/timeouts.md) or [delayed retries](/nservicebus/recoverability/configure-delayed-retries.md)) are persisted in this store until there are due. At that point they are fetched from the store and forwarded to their ultimate destinations.
+Because MSMQ lacks a mechanism for sending delayed messages, the MSMQ transport uses an external store for delayed messages. Messages that are meant to be delivered later (e.g. [saga timeouts](/nservicebus/sagas/timeouts.md) or [delayed retries](/nservicebus/recoverability/configure-delayed-retries.md)) are persisted in the delayed message store until these are due. At that point the due messages are fetched from the store and dispatched to their ultimate destinations.
 
-To configure MSMQ to enable delayed message delivery use the following API:
+To configure the MSMQ transport to enable delayed message delivery use the following API:
 
 snippet: delayed-delivery
 
-The code above sets up a SQL Server delayed delivery store. It is the only store that ships with the transport. By default it uses a table named after then endpoint with `.delayed` suffix but that name can be customized. 
+The code above sets up a SQL Server delayed message store. The SQL Server store is the only store that ships with the MSMQ transport. By default the SQL Server store uses a table named after then endpoint with `.delayed` suffix but that table name can be customized. 
 
 
 ## How to provide a custom delayed message store
