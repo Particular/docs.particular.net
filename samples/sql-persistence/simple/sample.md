@@ -5,6 +5,7 @@ reviewed: 2020-03-26
 component: SqlPersistence
 related:
  - nservicebus/sagas
+abTestName: docs-ab-framework-test-sample
 ---
 
 This sample shows a client/server scenario.
