@@ -100,6 +100,10 @@ When using Azure Functions with Azure Storage Queues, the following points must 
 - The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` method to allow customization; however, not all of the options will be applicable to execution within Azure Functions.
 - When using the default recoverability or specifying custom number of immediate retries, the number of delivery attempts specified on the underlying queue or Azure Functions host must be greater than the number of the immediate retries. The Azure Functions default is 5 (`DequeueCount`) for the Azure Storage Queues trigger.
 
+### Message polling
+
+Polling for new messages is handled by the Azure Storage Queues trigger. Using the default configuration, the latency for new messages to be processed by the function might take up to 1 second (see the [polling algorithm documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-trigger?tabs=csharp#polling-algorithm) for further details). The maximum polling interval can be adjusted via the `maxPollingIntervall` setting in the `hosts.json` file, see the [official documentation](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue#hostjson-settings) for further details.
+
 ### Features dependent upon delayed delivery
 
 The delayed delivery feature of the Azure Storage Queues transport polls for the delayed messages information and must run continuously in the background. With the Azure Functions Consumption plan, this time is limited to the function [execution duration](https://docs.microsoft.com/en-us/azure/azure-functions/functions-scale#timeout) with some additional non-deterministic cool off time. Past that time, delayed delivery will not work as expected until another message to process or the Function is kept "warm".
