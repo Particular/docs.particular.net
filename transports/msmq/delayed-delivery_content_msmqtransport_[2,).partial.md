@@ -19,7 +19,7 @@ When a due delayed message is returned by `FetchNextDueTimeout`, the message is 
 
 ### Consistency
 
-In the `TransactionScope` [transaction mode](/transports/transactions.md) the delayed message store is expected to enlist in the `TransactionScope` to ensure exact-once semantics. The `FetchNextDueTimeout` and `Remove` storage operations and the dispatch to the destination queue transport operation are executed in a single distributed transaction. The built-in SQL Server store supports this mode of operation.```
+In the `TransactionScope` [transaction mode](/transports/transactions.md) the delayed message store is expected to enlist in the `TransactionScope` to ensure exact-once semantics. The `FetchNextDueTimeout` and `Remove` storage operations and the dispatch to the destination queue transport operation are executed in a single distributed transaction. The built-in SQL Server store supports this mode of operation.
 
 In lower transaction modes the dispatch behavior is **At-least-once**. The `FetchNextDueTimeout` and `Remove` storage operations are executed in the same storage `TransactionScope` but the dispatching is executed in a separate (inner) transport scope. In case of failure in `Remove`, the message will be sent to the destination multiple times. The destination endpoint has to handle the duplicates, either via the [Outbox](/nservicebus/outbox/) or custom deduplication mechanism.
 
