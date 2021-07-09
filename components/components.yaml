@@ -431,8 +431,8 @@
   LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.Raw/blob/master/LICENSE.md
   ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Raw
   NugetOrder:
+    - NServiceBus
     - NServiceBus.Raw
-    - NServiceBus.Raw.DelayedRetries
 
 - Key: SqlPersistence
   Name: Sql Persistence
