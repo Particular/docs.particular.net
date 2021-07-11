@@ -45,18 +45,18 @@ partial: behaviorcaveat
 
 ## Invocation of multiple matching handlers
 
-When an endpoint hosts multiple message handlers which all "match" a single incoming message and one of the handlers fails then the incoming message gets retried. When the incoming message is retried all matching handlers get invoked again. Invoked handlers include the handlers that might have already been successfully invoked in previous attempts.
+It is important to keep in mind that, by default, a single incoming message will be processed as a single unit of work, regardless of the number of handlers which are hosted in that endpoint. If one of the handlers fails, the incoming message will be retried according to the [recoverability policy of the endpoint](/nservicebus/recoverability). When the incoming message is retried, _all_ matching handlers get invoked again, including the handlers that had successfully processed the message in previous attempts.
 
-It is recommended for an incoming message to represent a single unit of work. If multiple handlers get invoked they should be expected to succeed or fail as a single transactional operation. This can be ensured by applying one or more of the following strategies:
+For these reasons, handlers should be designed in such a way that all their operations either rollback if any of them fail, or are idempotent such that they correctly deal with multiple invocations without any side-effects.
 
+If this is not possible, the overall design should be changed such that instead of there being just one message, multiple messages are created. Note that so long as all the handlers continue to be hosted in the same endpoint, these different message will need to be of different types such that each message only matches with one handler. This can be done using one or more of the following techniques:
 
-- All handlers sharing the same transactional context to ensure that all participating operations rollback if any of them fail.
-- Making handlers idempotent and correctly dealing with at-least-once delivery.
-- Hosting isolation - host each handler in its own endpoint so each subscriber receives its own copy of the event message and processes it in isolation.
-- Split the message at the target - do `SendLocal` with a new message but the same payload so that each task gets represented by its own message and gets executed in isolation. 
-- Split the message at the source - send individual commands from the endpoint that publishes the event, instead of a single event.
+- Split the message at the target - intercept the original message with a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors) in which multiple `SendLocal` calls are issued, resulting in multiple messages being processed by the same endpoint. 
+- Split the message at the source - instead of emitting a single message, send out multiple messages directly.
 
-In general, a generic message gets converted into several commands where each command represents a single isolated task executed by a single handler. This approach has the additional benefit that each task can run in parallel where otherwise execution is sequential. 
+An additional benefit of having multiple messages rather than just one is that the messages can be processed in parallel where otherwise, the execution of the handlers for the single message would have been sequential. 
+
+Another option that can be considered after creating the multiple messages is to host each handler in its own endpoint. This will provide the greatest degree of isolation allowing independent customization of retry policies, greater visibility, better monitoring, and separate scaling, among other benefits.
 
 ## Unit testing
 
