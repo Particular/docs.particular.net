@@ -45,7 +45,7 @@ partial: behaviorcaveat
 
 ## Invocation of multiple matching handlers
 
-When an endpoint hosts multiple matching handlers for a single incoming message and one of the handlers fails then the incoming message gets retried. When the incoming message is retried all matching handlers get invoked again. Invoked handlers include the handlers that might have already been successfully invoked in previous attempts.
+When an endpoint hosts multiple message handlers which all "match" a single incoming message and one of the handlers fails then the incoming message gets retried. When the incoming message is retried all matching handlers get invoked again. Invoked handlers include the handlers that might have already been successfully invoked in previous attempts.
 
 It is recommended for an incoming message to represent a single unit of work. If multiple handlers get invoked they should be expected to succeed or fail as a single transactional operation. This can be ensured by applying one or more of the following strategies:
 
