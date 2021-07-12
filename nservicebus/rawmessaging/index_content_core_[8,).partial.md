@@ -1,4 +1,4 @@
-Since version 8 of NServiceBus the transport infrastructure can be used directly without the need to spin up full NServiceBus endpoint. This is especially useful when dealing with integrations with 3rd party systems and building message gateways or bridges.
+Since version 8 of NServiceBus, the transport infrastructure can be used directly without the need to spin up a full NServiceBus endpoint. This is especially useful when dealing with integrations with 3rd party systems and building message gateways or bridges.
 
 
 ## Configuration
