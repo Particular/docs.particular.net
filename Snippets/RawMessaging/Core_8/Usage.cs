@@ -26,7 +26,7 @@ public class Usage
         var infrastructure = await transport.Initialize(hostSettings, new[]
             {
                 new ReceiveSettings(
-                    id: "1",
+                    id: "Primary",
                     receiveAddress: "MyQueue",
                     usePublishSubscribe: false,
                     purgeOnStartup: false,
@@ -63,13 +63,12 @@ public class Usage
 
         #region Receiving
 
-        var receiver = infrastructure.Receivers["1"];
+        var receiver = infrastructure.Receivers["Primary"];
         await receiver.Initialize(new PushRuntimeSettings(8),
             onMessage: (context, token) =>
             {
                 var message = Deserialize(context.Body);
-                Console.WriteLine(message);
-                return Task.CompletedTask;
+                return Console.Out.WriteLineAsync(message);
             },
             onError: (context, token) => Task.FromResult(ErrorHandleResult.RetryRequired));
 
@@ -84,8 +83,6 @@ public class Usage
 
         #endregion
     }
-
-
     static byte[] Serialize()
     {
         throw new NotImplementedException();
