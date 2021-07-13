@@ -49,14 +49,18 @@ It is important to keep in mind that, by default, a single incoming message will
 
 For these reasons, handlers should be designed in such a way that all their operations either rollback if any of them fail, or are idempotent such that they correctly deal with multiple invocations without any side-effects.
 
-If this is not possible, the overall design should be changed such that instead of there being just one message, multiple messages are created. Note that so long as all the handlers continue to be hosted in the same endpoint, these different message will need to be of different types such that each message only matches with one handler. This can be done using one or more of the following techniques:
+If this is not possible, the overall design should be changed such that instead of there being just one message, multiple messages are created. This would have the additional benefit that these multiple messages would be processed in parallel where otherwise, the execution of the handlers for the single message would have been sequential. There are a number of techniques that can be applied to achieve this (listed from simpler to more complicated):
+
+1. If the original message is being [published as an event](/nservicebus/messaging/publish-subscribe/) and the handlers are hosted in an endpoint that is subscribed to it, then  separating the various handlers to be hosted in multiple different endpoints would result in each endpoint getting its own copy of the original message, isolating the failure of one handler from the other seperately-hosted handlers.
+
+2. If the original message is not an event, meaning that it is being [sent](/nservicebus/messaging/send-a-message) to a specific endpoint, then additional changes are needed:
+
+Note that so long as all the handlers continue to be hosted in the same endpoint, these different message will need to be of different types such that each message only matches with one handler. This can be done using one or more of the following techniques:
 
 - Split the message at the target - intercept the original message with a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors) in which multiple `SendLocal` calls are issued, resulting in multiple messages being processed by the same endpoint. 
 - Split the message at the source - instead of emitting a single message, send out multiple messages directly.
 
-An additional benefit of having multiple messages rather than just one is that the messages can be processed in parallel where otherwise, the execution of the handlers for the single message would have been sequential. 
-
-Another option that can be considered after creating the multiple messages is to host each handler in its own endpoint. This will provide the greatest degree of isolation allowing independent customization of retry policies, greater visibility, better monitoring, and separate scaling, among other benefits.
+As mentioned earlier, there is also the option of hosting each handler in its own endpoint. This will provide the greatest degree of isolation allowing independent customization of retry policies, greater visibility, better monitoring, and separate scaling, among other benefits.
 
 ## Unit testing
 
