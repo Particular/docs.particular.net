@@ -10,7 +10,7 @@ Note: An invalid endpoint name will generate an `NSBFUNC001` error with the mess
 
 An overload of the attribute allows to override the generated trigger function _name_.
 
-```c#
+```csharp
 [assembly: NServiceBusEndpointName(name: "MyFunctionsEndpoint", triggerFunctionName: "MyTriggerFunction")]
 ```
 
