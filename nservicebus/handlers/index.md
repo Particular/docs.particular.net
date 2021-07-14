@@ -53,7 +53,7 @@ If this is not possible, the overall design should be changed such that instead 
 
 1. If the original message is being [published as an event](/nservicebus/messaging/publish-subscribe/) and the handlers are hosted in an endpoint that is subscribed to it, then  separating the various handlers to be hosted in multiple different endpoints would result in each endpoint getting its own copy of the original message, isolating the failure of one handler from the other seperately-hosted handlers.
 
-2. If the original message is not an event, meaning that it is being [sent](/nservicebus/messaging/send-a-message) to a specific endpoint, then additional changes are needed:
+2. If the original message is not an event, meaning that it is being [sent](/nservicebus/messaging/send-a-message.md) to a specific endpoint, then additional changes are needed:
 
 Note that so long as all the handlers continue to be hosted in the same endpoint, these different messages will need to be of different types such that each message only matches with one handler. After updating the handlers to the new message types, one of the following techniques can be applied:
 
