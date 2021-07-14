@@ -55,10 +55,10 @@ If this is not possible, the overall design should be changed such that instead 
 
 2. If the original message is not an event, meaning that it is being [sent](/nservicebus/messaging/send-a-message) to a specific endpoint, then additional changes are needed:
 
-Note that so long as all the handlers continue to be hosted in the same endpoint, these different message will need to be of different types such that each message only matches with one handler. This can be done using one or more of the following techniques:
+Note that so long as all the handlers continue to be hosted in the same endpoint, these different messages will need to be of different types such that each message only matches with one handler. After updating the handlers to the new message types, one of the following techniques can be applied:
 
-- Split the message at the target - intercept the original message with a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors) in which multiple `SendLocal` calls are issued, resulting in multiple messages being processed by the same endpoint. 
-- Split the message at the source - instead of emitting a single message, send out multiple messages directly.
+- Split the message at the target - create a new handler for the original message type that does multiple `SendLocal` calls for the new message types, which will then be handled by the updated handlers in the same endpoint. 
+- Split the message at the source - instead of emitting a single message, send out multiple messages of the different types directly.
 
 As mentioned earlier, there is also the option of hosting each handler in its own endpoint. This will provide the greatest degree of isolation allowing independent customization of retry policies, greater visibility, better monitoring, and separate scaling, among other benefits.
 
