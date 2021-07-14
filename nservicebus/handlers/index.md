@@ -45,7 +45,7 @@ partial: behaviorcaveat
 
 ## Invocation of multiple matching handlers
 
-It is important to keep in mind that, by default, a single incoming message will be processed as a single unit of work, regardless of the number of handlers which are hosted in that endpoint. If one of the handlers fails, the incoming message will be retried according to the [recoverability policy of the endpoint](/nservicebus/recoverability). When the incoming message is retried, _all_ matching handlers get invoked again, including the handlers that had successfully processed the message in previous attempts.
+It is important to keep in mind that a single incoming message should be processed as a single unit of work, regardless of the number of handlers which are hosted in that endpoint. If one of the handlers fails, the incoming message will be retried according to the [recoverability policy of the endpoint](/nservicebus/recoverability). When the incoming message is retried, _all_ matching handlers get invoked again, including the handlers that had successfully processed the message in previous attempts.
 
 For these reasons, handlers should be designed in such a way that all their operations either rollback if any of them fail, or are idempotent such that they correctly deal with multiple invocations without any side-effects.
 
