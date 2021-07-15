@@ -1,40 +1,37 @@
-﻿namespace NHibernate_7
-{
-    using NServiceBus;
+﻿using NServiceBus;
     using NServiceBus.NHibernate.Outbox;
 
-    public class Outbox
+public class Outbox
+{
+    public void CustomTableName(EndpointConfiguration endpointConfiguration)
     {
-        public void CustomTableName(EndpointConfiguration endpointConfiguration)
-        {
-            #region OutboxNHibernateCustomTableNameConfig
+        #region OutboxNHibernateCustomTableNameConfig
 
-            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-            persistence.CustomizeOutboxTableName(
-                outboxTableName: "MyEndpointOutbox", 
-                outboxSchemaName: "MySchema");
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        persistence.CustomizeOutboxTableName(
+            outboxTableName: "MyEndpointOutbox",
+            outboxSchemaName: "MySchema");
 
-            #endregion
-        }
+        #endregion
+    }
 
-        public void PessimisticMode(EndpointConfiguration endpointConfiguration)
-        {
-            #region OutboxPessimisticMode
+    public void PessimisticMode(EndpointConfiguration endpointConfiguration)
+    {
+        #region OutboxPessimisticMode
 
-            var outboxSettings = endpointConfiguration.EnableOutbox();
-            outboxSettings.UsePessimisticConcurrencyControl();
+        var outboxSettings = endpointConfiguration.EnableOutbox();
+        outboxSettings.UsePessimisticConcurrencyControl();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        public void TransactionScopeMode(EndpointConfiguration endpointConfiguration)
-        {
-            #region OutboxTransactionScopeMode
+    public void TransactionScopeMode(EndpointConfiguration endpointConfiguration)
+    {
+        #region OutboxTransactionScopeMode
 
-            var outboxSettings = endpointConfiguration.EnableOutbox();
-            outboxSettings.UseTransactionScope();
+        var outboxSettings = endpointConfiguration.EnableOutbox();
+        outboxSettings.UseTransactionScope();
 
-            #endregion
-        }
+        #endregion
     }
 }
