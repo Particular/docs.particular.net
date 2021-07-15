@@ -20,7 +20,7 @@ NOTE: The pessimistic mode depends on the locking behavior of the database when 
 
 WARN: Even the pessimistic mode does not ensure that the message handling logic is always executed exactly once. Non-transactional side effects, such as sending e-mail, can still be duplicated in case of errors that cause handling logic to be retried.
 
-## Transaction type
+## Transactions
 
 By default the outbox uses the ADO.NET transactions abstracted via `ITransaction`. This is appropriate for most situations.
 

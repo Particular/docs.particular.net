@@ -21,6 +21,8 @@ partial: table-name
 
 partial: modes
 
+partial: transactionisolation
+
 partial: customizing
 
 ## Deduplication record lifespan
