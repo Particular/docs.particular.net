@@ -8,4 +8,4 @@ snippet: asb-function-hostbuilder-trigger
 
 Note: An invalid endpoint name will generate an `NSBFUNC001` error with the message `Endpoint name is invalid and cannot be used to generate trigger function`.
 
-If the trigger function needs to be customized, the auto-generated trigger function generation can be disabled by removing the `NServiceBusEndpointName` attribute. A customized trigger function can then be manually added to the project.
+If the trigger function needs to be customized, the trigger function generation can be disabled by removing the `NServiceBusEndpointName` attribute. A customized trigger function can then be manually added to the project.

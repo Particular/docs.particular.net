@@ -6,7 +6,7 @@ related:
  - samples/azure-functions/service-bus
 redirects:
  - previews/azure-functions-service-bus
-reviewed: 2021-04-21
+reviewed: 2021-07-14
 ---
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
