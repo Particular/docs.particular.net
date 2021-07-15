@@ -1,59 +1,54 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
+using NHibernate;
 
-namespace NHibernate_8.Session
+#region NHibernateAccessingDataViaDI
+
+public class OrderHandler :
+    IHandleMessages<OrderMessage>
 {
-    using NHibernate;
+    INHibernateStorageSession synchronizedStorageSession;
 
-    #region NHibernateAccessingDataViaDI
-
-    public class OrderHandler :
-        IHandleMessages<OrderMessage>
+    public OrderHandler(INHibernateStorageSession synchronizedStorageSession)
     {
-        INHibernateStorageSession synchronizedStorageSession;
-
-        public OrderHandler(INHibernateStorageSession synchronizedStorageSession)
-        {
-            this.synchronizedStorageSession = synchronizedStorageSession;
-        }
-
-        public Task Handle(OrderMessage message, IMessageHandlerContext context)
-        {
-            var nhibernateSession = context.SynchronizedStorageSession.Session();
-            nhibernateSession.Save(new Order());
-            return Task.CompletedTask;
-        }
+        this.synchronizedStorageSession = synchronizedStorageSession;
     }
 
-    #endregion
-
-
-    public class EndpointWithSessionRegistered
+    public Task Handle(OrderMessage message, IMessageHandlerContext context)
     {
-        public void Configure(EndpointConfiguration config)
+        var nhibernateSession = context.SynchronizedStorageSession.Session();
+        nhibernateSession.Save(new Order());
+        return Task.CompletedTask;
+    }
+}
+
+#endregion
+
+
+public class EndpointWithSessionRegistered
+{
+    public void Configure(EndpointConfiguration config)
+    {
+        #region AccessingDataConfigureISessionDI
+
+        config.RegisterComponents(c =>
         {
-            #region AccessingDataConfigureISessionDI
-
-            config.RegisterComponents(c =>
+            c.ConfigureComponent(b =>
             {
-                c.ConfigureComponent(b =>
-                {
-                    var session = b.Build<INHibernateStorageSession>();
-                    var repository = new MyRepository(session.Session);
-                    return repository;
-                }, DependencyLifecycle.InstancePerUnitOfWork);
-            });
+                var session = b.Build<INHibernateStorageSession>();
+                var repository = new MyRepository(session.Session);
+                return repository;
+            }, DependencyLifecycle.InstancePerUnitOfWork);
+        });
 
-            #endregion
-        }
-
-        public class MyRepository
-        {
-            public MyRepository(ISession session)
-            {
-                throw new System.NotImplementedException();
-            }
-        }
+        #endregion
     }
 
+    public class MyRepository
+    {
+        public MyRepository(ISession session)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }
