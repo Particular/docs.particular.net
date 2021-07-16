@@ -5,7 +5,7 @@ isLearningPath: true
 summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
 extensions:
 - !!tutorial
-  nextText: "Next: Reliability"
+  nextText: "Next: Recovering from failure"
   nextUrl: tutorials/quickstart/tutorial-reliability
 previewImage: add-shipping-endpoint.png
 ---
