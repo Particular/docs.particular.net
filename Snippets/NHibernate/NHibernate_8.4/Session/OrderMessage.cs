@@ -1,9 +1,6 @@
-namespace NHibernate_8.Session
-{
-    using NServiceBus;
+using NServiceBus;
 
-    public class OrderMessage :
-        IMessage
-    {
-    }
+public class OrderMessage :
+    IMessage
+{
 }

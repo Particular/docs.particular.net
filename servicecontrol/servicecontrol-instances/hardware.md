@@ -18,7 +18,7 @@ NOTE: Use a storage benchmark tool to measure disk performance, such as Windows 
 
 ### Hosting in the cloud
 
-The only option to host ServiceControl in the cloud is by using a Virtual Machine.
+The only way to host ServiceControl in the cloud is to use a virtual machine.
 
 ### Server performance monitoring
 
