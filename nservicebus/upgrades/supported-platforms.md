@@ -15,6 +15,8 @@ related:
 | .NET Core | 3.1 (LTS) | [Windows / Linux](https://github.com/dotnet/core/blob/master/release-notes/3.1/3.1-supported-os.md) | Supported | macOS is supported only for development purposes. |
 | .NET | 5.0 | [Windows / Linux](https://github.com/dotnet/core/blob/main/release-notes/5.0/5.0-supported-os.md) | Supported | macOS is supported only for development purposes. |
 
+**Supported:** It means that our automated tests are passing and that customer support is available. Not necessarily all new types and language features added in the new version of .NET are supported. Please contact us if you have any suggestions of feature requests.
+
 ### Packages not supporting .NET Core/ .NET 5
 
 Some packages do not currently support .NET Core or running on non-Windows platforms:
