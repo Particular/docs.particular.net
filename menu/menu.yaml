@@ -6,6 +6,11 @@
     Articles:
     - Url: tutorials/quickstart
       Title: Quick Start Tutorial
+      Articles:
+      - Url: tutorials/quickstart/tutorial-reliability
+        Title: "Quick Start: Recovering from failure"
+      - Url: tutorials/quickstart/tutorial-extending-the-system
+        Title: "Quick Start: Extending the system"
     - Url: tutorials/nservicebus-step-by-step
       Title: Introduction to NServiceBus
       Articles:
