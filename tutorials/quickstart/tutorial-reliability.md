@@ -2,7 +2,7 @@
 title: "NServiceBus Quick Start: Recovering from failure"
 reviewed: 2019-12-16
 isLearningPath: true
-summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
+summary: "Part 2: Learn how to handle exceptions and automatically retry them so they don't bring the whole system down."
 extensions:
 - !!tutorial
   nextText: "Next: Extending the system"
@@ -174,5 +174,7 @@ This is a powerful feature. Many systemic failures are the result of bad deploym
 With a message-based system, no data is ever lost, because those failures result in messages being sent to an error queue, not lost to the ether. After a deployment, you can watch ServicePulse, and if messages start to pile up in the error queue, you can revert to the previous known good configuration while you diagnose the problem.
 
 The visual tools in ServicePulse provide a quick way to get to the root cause of a problem and develop a fix. Once deployed, all affected messages (even into the thousands) can be replayed with just a few mouse clicks.
+
+## Up next
 
 In the last step of the tutorial, we'll extend the system by adding a new subscriber that needs to take action when an order is placed.

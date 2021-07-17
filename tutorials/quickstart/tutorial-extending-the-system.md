@@ -2,7 +2,7 @@
 title: "NServiceBus Quick Start: Extending the system"
 reviewed: 2019-12-16
 isLearningPath: true
-summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
+summary: "Part 3: Learn how easy it is to extend a distributed system by adding new functionality without affecting the other components of the system"
 extensions:
 - !!tutorial
   nextText: "Next: NServiceBus from the ground up"

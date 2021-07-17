@@ -69,4 +69,6 @@ In the **ClientUI** web application, go back and send more messages, watching th
 
 ![Messages flowing between endpoints](messages-flowing-2.png)
 
+## Up next
+
 Now that the project is up and running, let's break it!
