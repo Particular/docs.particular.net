@@ -10,8 +10,6 @@ extensions:
 previewImage: add-shipping-endpoint.png
 ---
 
-## Extending the system
-
 Now that we've seen [how to react to failures](/tutorials/quickstart/tutorial-reliability.md) gracefully, let's add new functionality to our system.
 
 In the [first part of the tutorial](/tutorials/quickstart), we saw that publishing events using the [Publish-Subscribe pattern](/nservicebus/messaging/publish-subscribe/) reduces coupling and makes maintaining a system easier in the long run. Let's look at how we can add an additional subscriber without needing to modify any existing code.
