@@ -1,8 +1,12 @@
+using NServiceBus;
 using System;
 using System.IO;
+#if NETFRAMEWORK
 using System.Net;
+#else
+using System.Net.Http;
+#endif
 using System.Threading.Tasks;
-using NServiceBus;
 
 class Program
 {
@@ -80,8 +84,7 @@ class Program
 
     static async Task SendMessageWithHttpStream(IEndpointInstance endpointInstance)
     {
-        #region send-message-with-http-stream
-
+#if NETFRAMEWORK
         using (var webClient = new WebClient())
         {
             var message = new MessageWithStream
@@ -92,8 +95,24 @@ class Program
             await endpointInstance.Send("Samples.PipelineStream.Receiver", message)
                 .ConfigureAwait(false);
         }
+#else
+        #region send-message-with-http-stream
+
+        using (var httpClient = new HttpClient())
+        {
+            var message = new MessageWithStream
+            {
+                SomeProperty = "This message contains a stream",
+                StreamProperty = await httpClient.GetStreamAsync("http://www.particular.net")
+            };
+            await endpointInstance.Send("Samples.PipelineStream.Receiver", message)
+                .ConfigureAwait(false);
+        }
 
         #endregion
+
+#endif
+
 
         Console.WriteLine();
         Console.WriteLine("Message with http stream sent");
