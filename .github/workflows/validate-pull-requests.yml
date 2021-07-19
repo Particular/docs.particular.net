@@ -1,7 +1,7 @@
 name: PullRequest
 on: pull_request
 env:
-  DOTNET_NOLOGO: true # Won't work until dotnet 3.1.300, then --nologo not needed
+  DOTNET_NOLOGO: true
 jobs:
   content-verification:
     name: Content verification
@@ -10,9 +10,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1.7.2
+        uses: actions/setup-dotnet@v1.8.1
         with:
-          dotnet-version: 5.0.100
+          dotnet-version: 5.0.x
       - name: Install docstool
         run: dotnet tool install -g Particular.DocsTool --add-source=https://www.myget.org/F/particular/api/v3/index.json
       - name: Run docstool
@@ -24,17 +24,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1.7.2
+        uses: actions/setup-dotnet@v1.8.1
         with:
-          dotnet-version: 3.1.201
+          dotnet-version: 3.1.x
       - name: Run integrity tests
-        run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --nologo
+        run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release
   build-projects:
     name: Build samples & snippets
     runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Setup .NET 5 SDK
+        uses: actions/setup-dotnet@v1.8.1
+        with:
+          dotnet-version: 5.0.x
+      - name: Setup .NET Core 3.1 SDK
+        uses: actions/setup-dotnet@v1.8.1
+        with:
+          dotnet-version: 3.1.x
+      - name: Setup .NET Core 2.1 SDK
+        uses: actions/setup-dotnet@v1.8.1
+        with:
+          dotnet-version: 2.1.x
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
       - name: Build affected samples & snippets
