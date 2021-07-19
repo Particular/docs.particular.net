@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1.7.2
+        uses: actions/setup-dotnet@v1.8.1
         with:
           dotnet-version: 5.0.x
       - name: Install docstool
@@ -24,9 +24,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1.7.2
+        uses: actions/setup-dotnet@v1.8.1
         with:
-          dotnet-version: 3.1.201
+          dotnet-version: 3.1.x
       - name: Run integrity tests
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --nologo
   build-projects:
@@ -36,7 +36,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1.7.2
+        uses: actions/setup-dotnet@v1.8.1
         with:
           dotnet-version: 5.0.x
       - name: Add MSBuild to PATH
