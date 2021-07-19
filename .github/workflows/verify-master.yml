@@ -4,7 +4,7 @@ on:
     branches:
       - master
 env:
-  DOTNET_NOLOGO: true # Won't work until dotnet 3.1.300, then --nologo not needed
+  DOTNET_NOLOGO: true
 jobs:
   content-verification:
     name: Content verification
@@ -44,7 +44,7 @@ jobs:
         with:
           dotnet-version: 3.1.x
       - name: Run integrity tests
-        run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --nologo
+        run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release
       - name: Notify Slack on failure
         if: ${{ failure() }}
         uses: 8398a7/action-slack@v3
