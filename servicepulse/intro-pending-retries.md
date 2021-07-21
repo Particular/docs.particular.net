@@ -72,7 +72,8 @@ Message retry will use [message redirects](redirect.md) if the original endpoint
 
 WARNING: A pending retry message that is sent for retry will remain in the pending retry list until it is resolved or fails again.
 
+### Mark as complete 
 
-### Mark as complete
+NOTE: Systems running NServiceBus version 7.4 (or earlier) and ServiceControl version 4.19 (or earlier) require the audit feature to be enabled both at the endpoint and in ServiceControl. Otherwise, the failed message will be shown as *retry pending* indefinitely even after the message has been successfully reprocessed by that endpoint. In this scenario, use the `Mark as complete` feature to manually mark the failed message as resolved. Once the message is marked as resolved, it will no longer appear in the pending retries message list.
 
-When the audit feature is disabled in the endpoint that processes the failed message, the entry will remain in the pending state indefinitely even after the message has been successfully reprocessed by that endpoint. In this scenario, use the `Mark as complete` feature to manually mark the failed message as resolved. Once the message is marked as resolved, it will no longer appear in the pending retries message list.
+Retried messages are moved to the `Processed` state as soon as ServiceControl receives and processes the retry confirmation from the endpoint.
