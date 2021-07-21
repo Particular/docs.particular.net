@@ -14,7 +14,7 @@ related:
 | .NET Core | 2.1 (LTS) | [Windows / Linux](https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1-supported-os.md) | Supported | macOS is supported only for development purposes. |
 | .NET Core | 3.1 (LTS) | [Windows / Linux](https://github.com/dotnet/core/blob/master/release-notes/3.1/3.1-supported-os.md) | Supported | macOS is supported only for development purposes. |
 | .NET | 5.0 | [Windows / Linux](https://github.com/dotnet/core/blob/main/release-notes/5.0/5.0-supported-os.md) | Supported | macOS is supported only for development purposes. |
-| .NET | 6.0 Preview | [Windows / Linux](https://github.com/dotnet/core/blob/main/release-notes/6.0/supported-os.md) | [Current Status](Link to discourse announcement goes here)  |  |
+| .NET | 6.0 Preview | [Windows / Linux](https://github.com/dotnet/core/blob/main/release-notes/6.0/supported-os.md) | [Current Status](https://discuss.particular.net/t/nservicebus-support-for-net-6/2525)  |  |
 
 Supported frameworks can be used for production workloads with technical support available from Particular Software.
 
