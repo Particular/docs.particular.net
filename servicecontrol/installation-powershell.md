@@ -36,8 +36,6 @@ The following cmdlets are available in ServiceControl version 4 and above, for t
 | sc-deleteremote        | Remove-ServiceControlRemote                   |
 | sc-remotes             | Get-ServiceControlRemotes                     |
 
-
-
 ### Help
 
 All of the cmdlets have local help which can be accessed via the standard PowerShell help command
@@ -139,6 +137,8 @@ NOTE: All connected ServiceControl Audit instances should be removed before remo
 ### Upgrading an instance
 
 The cmdlets in this section are used to upgrade the binaries of an existing instance. If the instance is running when the upgrade starts, it will be shut down during the upgrade and restarted once the upgrade is complete.
+
+WARN: The upgrade commands such as `sc-upgrade` and `audit-upgrade` do not pull the latest updates. The packages should have been downloaded and have been placed locally before running the upgrade command. The update files are typically zip files that need to be placed in ServiceControl Management installation location.
 
 Before the upgrade begins the configuration file of the existing version is examined to determine if all of the required settings are present. If a configuration setting is missing then the cmdlet will throw an error indicating the required additional parameter for the cmdlet.
 
