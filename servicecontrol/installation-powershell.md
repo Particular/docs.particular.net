@@ -36,7 +36,7 @@ The following cmdlets are available in ServiceControl version 4 and above, for t
 | sc-deleteremote        | Remove-ServiceControlRemote                   |
 | sc-remotes             | Get-ServiceControlRemotes                     |
 
-
+> Note: The upgrade commands such as `sc-upgrade` and `audit-upgrade` do not pull the latest updates. The packages should have been downloaded and have been placed locally before performing the upgrade. The update files are typically zip files that need to be placed in ServiceControl Management installation location.
 
 ### Help
 
