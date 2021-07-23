@@ -3,7 +3,7 @@ title: Scaling with NServiceBus
 summary: NServiceBus provides several options to scale out a system
 redirects:
  - transports/scale-out
-reviewed: 2019-06-13
+reviewed: 2021-07-23
 ---
 
 This page describes how to scale out endpoints using NServiceBus. There are several reasons to scale out, such as to achieve higher message throughput, or to provide high availability.
