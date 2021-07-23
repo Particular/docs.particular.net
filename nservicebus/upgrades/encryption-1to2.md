@@ -1,6 +1,6 @@
 ---
 title:  Upgrade Version 1 to 2
-reviewed: 2019-06-19
+reviewed: 2021-07-23
 component: PropertyEncryption
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
