@@ -43,7 +43,7 @@ snippet: CosmosDBDatabaseName
 
 ### Customizing the container used
 
-Setting the default container used using the following configuration API
+Set the default container using the following configuration API:
 
 snippet: CosmosDBDefaultContainer
 
