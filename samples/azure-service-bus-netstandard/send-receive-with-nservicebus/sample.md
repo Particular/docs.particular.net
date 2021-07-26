@@ -1,7 +1,7 @@
 ---
 title: Build message-driven business applications with NServiceBus
 summary: Build message-driven business applications with NServiceBus and Azure Service Bus
-reviewed: 2021-07-23
+reviewed: 2021-07-26
 component: ASBS
 related:
 - transports/azure-service-bus
@@ -10,12 +10,12 @@ related:
 
 ## Prerequisites
 
-include: asb-connectionstring-xplat
-
+* An existing Azure Service Bus namespace
+* A connection string for the Azure Service Bus namespace defined in `appsettings.json` for both the Sender and the Receiver projects
 
 ## Code walk-through
 
-This sample shows an end-to-end implementation of NServiceBus with Azure Service Bus for Microsoft documentation article available at [TBD](https://azure.microsoft.com/???/articles/service-bus-messaging/solve-complex-problems-with-nservicebus.md).
+This sample shows an end-to-end implementation of NServiceBus with [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/). It depicts a sender that sends a command to a receiver which then replies back to the sender.
 
  * `Sender` sends a `Ping` message to `Receiver`.
  * `Receiver` replies to `Sender` with a `Ping` message.
