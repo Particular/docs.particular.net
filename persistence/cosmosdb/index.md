@@ -4,9 +4,9 @@ summary: How to use NServiceBus with Azure Cosmos DB
 component: CosmosDB
 reviewed: 2020-09-11
 related:
-- samples/previews/cosmosdb/transactions
-- samples/previews/cosmosdb/container
-- samples/previews/cosmosdb/simple
+- samples/cosmosdb/transactions
+- samples/cosmosdb/container
+- samples/cosmosdb/simple
 redirects:
 - previews/cosmosdb
 ---

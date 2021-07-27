@@ -5,6 +5,8 @@ reviewed: 2020-09-22
 component: CosmosDB
 related:
  - nservicebus/sagas
+redirects:
+ - samples/previews/cosmosdb/container
 ---
 
 This sample shows a client/server scenario using a dynamic container configuration for certain saga types with a fallback to the default container.
@@ -21,7 +23,7 @@ The shared message contracts used by all endpoints.
  * Receives and handles the `OrderCompleted` event.
 
 ### Server projects
- 
+
  * Receive the `StartOrder` message and initiate an `OrderSaga`.
  * `OrderSaga` sends a `ShipOrder` command to `ShipOrderSaga`
  * `ShipOrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.

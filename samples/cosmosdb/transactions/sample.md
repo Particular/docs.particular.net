@@ -5,6 +5,8 @@ reviewed: 2020-09-22
 component: CosmosDB
 related:
  - nservicebus/sagas
+redirects:
+ - samples/previews/cosmosdb/transactions
 ---
 
 This sample shows a client/server scenario using saga and outbox persistences to store records atomically by leveraging transactions.
@@ -21,7 +23,7 @@ The shared message contracts used by all endpoints.
  * Receives and handles the `OrderCompleted` event.
 
 ### Server projects
- 
+
  * Receive the `StartOrder` message and initiate an `OrderSaga`.
  * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
  * Receive the `OrderShipped` message with a custom header.
