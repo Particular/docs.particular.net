@@ -712,7 +712,7 @@
 
 - Key: CosmosDB
   Name: NServiceBus.Persistence.CosmosDB
-  DocsUrl: previews/cosmosdb
+  DocsUrl: persistence/cosmosdb
   GitHubOwner: Particular
   Category: Persistence
   SupportLevel: Preview

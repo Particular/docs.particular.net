@@ -7,6 +7,8 @@ related:
 - samples/previews/cosmosdb/transactions
 - samples/previews/cosmosdb/container
 - samples/previews/cosmosdb/simple
+redirects:
+- previews/cosmosdb
 ---
 
 Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) NoSQL database service for storage.
@@ -79,7 +81,7 @@ The Cosmos DB persister supports using the [Cosmos DB transactional batch API](h
 
 The [transactions](transactions.md) documentation provides additional details on how to configure NServiceBus to resolve the incoming message to a specific partition key to take advantage of this Cosmos DB feature.
 
-## Outbox cleanup 
+## Outbox cleanup
 
 When the outbox is enabled, the deduplication data is kept for seven days by default. To customize this time frame, use the following API:
 

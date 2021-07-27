@@ -1063,6 +1063,13 @@
       Title: Installer Workflow
     - Url: persistence/sql/migrating-from-nhibernate
       Title: Migrating from NHibernate
+  - Title: Cosmos DB
+    Url: persistence/cosmosdb
+    Articles:
+    - Title: Transactions
+      Url: persistence/cosmosdb/transactions
+    - Title: Migration from Azure Table Persistence
+      Url: persistence/cosmosdb/migration-from-azure-table
   - Url: persistence/azure-table
     Title: Azure Table
     Articles:
@@ -1360,10 +1367,3 @@
     Articles:
     - Title: NServiceBus.AwsLambda.Sqs
       Url: previews/aws-lambda-simple-queue-service
-  - Title: Cosmos DB
-    Url: previews/cosmosdb
-    Articles:
-    - Title: Transactions
-      Url: previews/cosmosdb/transactions
-    - Title: Migration from Azure Table Persistence
-      Url: previews/cosmosdb/migration-from-azure-table
