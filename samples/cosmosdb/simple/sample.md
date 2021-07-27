@@ -1,6 +1,6 @@
 ---
-title: Simple CosmosDB Persistence Usage
-summary: Using CosmosDB Persistence to store sagas
+title: Simple Cosmos DB Persistence Usage
+summary: Using Cosmos DB Persistence to store sagas
 reviewed: 2020-09-22
 component: CosmosDB
 related:
@@ -31,7 +31,7 @@ The shared message contracts used by all endpoints.
 
 ### Persistence config
 
-Configure the endpoint to use CosmosDB Persistence.
+Configure the endpoint to use Cosmos DB Persistence.
 
 snippet: CosmosDBConfig
 

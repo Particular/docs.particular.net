@@ -1,6 +1,6 @@
 ---
-title: CosmosDB Persistence Usage with transactions
-summary: Using CosmosDB Persistence to store sagas and outbox records atomically
+title: Cosmos DB Persistence Usage with transactions
+summary: Using Cosmos DB Persistence to store sagas and outbox records atomically
 reviewed: 2020-09-22
 component: CosmosDB
 related:
@@ -32,7 +32,7 @@ The shared message contracts used by all endpoints.
 
 ### Persistence config
 
-Configure the endpoint to use CosmosDB Persistence.
+Configure the endpoint to use Cosmos DB Persistence.
 
 snippet: CosmosDBConfig
 
