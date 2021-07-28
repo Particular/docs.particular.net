@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Testing Upgrade Version 6 to 7
 summary: Instructions on how to upgrade NServiceBus.Testing Version 6 to 7.
-reviewed: 2019-07-01
+reviewed: 2021-07-28
 component: Testing
 related:
  - nservicebus/testing
@@ -16,7 +16,7 @@ upgradeGuideCoreVersions:
 
 NServiceBus.Testing requires NServiceBus Version 7.
 
-When upgrading to NServiceBus.Testing Version 7 projects will also require an upgrade to [NServiceBus Version 7](/nservicebus/upgrades/6to7/).
+When upgrading to NServiceBus.Testing Version 7, projects will also require an upgrade to [NServiceBus Version 7](/nservicebus/upgrades/6to7/).
 
 ## AssertSagaCompletionIs
 
@@ -28,7 +28,7 @@ Note the `ExpectSagaCompleted` and `ExpectSagaNotCompleted` expectations must be
 
 ## ExpectHandleCurrentMessageLater
 
-The `ExpectHandleCurrentMessageLater` has been obsoleted as `IMessageHandlerContext.HandleCurrentMessageLater()` has been deprecated in NServiceBus Version 7.
+The `ExpectHandleCurrentMessageLater` method has been obsoleted as `IMessageHandlerContext.HandleCurrentMessageLater()` has been deprecated in NServiceBus Version 7.
 
 ## WhenHandling
 

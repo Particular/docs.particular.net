@@ -1,7 +1,7 @@
 ---
 title: FluentScheduler Usage
 summary: Using FluentScheduler to send messages from within an NServiceBus endpoint.
-reviewed: 2019-06-20
+reviewed: 2021-07-28
 component: Core
 related:
 - nservicebus/messaging/timeout-manager
@@ -17,7 +17,7 @@ include: scheduler-drawbacks
 ## Running the project
 
  1. Start both the Scheduler and Receiver projects.
- 1. At startup Scheduler will schedule sending a message to Receiver every 3 seconds.
+ 1. At startup, Scheduler will schedule sending a message to Receiver every 3 seconds.
  1. Receiver will handle the message.
 
 
@@ -35,9 +35,9 @@ snippet: Configuration
 
 snippet: SendMessageJob
 
-FluentScheduler does not currently have native support for async. As such the job execution is blocked with `.GetAwaiter().GetResult()`.
+FluentScheduler does not currently have native support for async. As such, the job execution is blocked with `.GetAwaiter().GetResult()`.
 
-[Dependency Injection is supported](https://github.com/fluentscheduler/FluentScheduler#dependency-injection) for more advanced scenarios. For example injecting `IEndpointInstance` into the `IJob` constructor.
+[Dependency Injection is supported](https://github.com/fluentscheduler/FluentScheduler#dependency-injection) for more advanced scenarios. For example, injecting `IEndpointInstance` into the `IJob` constructor.
 
 
 ### Cleanup
@@ -56,7 +56,7 @@ snippet: logging
 
 ## Scale Out
 
-Note that in this sample an instance of the FluentScheduler is configured to run in every endpoint's instance. If an endpoint is [scaled out](/nservicebus/architecture/scaling.md) then the configured jobs will be executed by each of the running instances. This behavior needs to be considered when architecting a solution that requires scale out. For example message de-duplication may be required, or only running the scheduler on a single endpoint instance.
+Note that in this sample, an instance of the FluentScheduler is configured to run in every endpoint's instance. If an endpoint is [scaled out](/nservicebus/architecture/scaling.md), then the configured jobs will be executed by each of the running instances. This behavior needs to be considered when designing a solution that requires scale out. For example, message de-duplication may be required, or the scheduler might need to be run on a single endpoint instance.
 
 
 ## Further information on FluentScheduler

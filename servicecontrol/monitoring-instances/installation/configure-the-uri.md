@@ -1,7 +1,7 @@
 ---
 title: Configure Monitoring instance URI
 summary: How to configure a Monitoring instance to be exposed through a custom hostname and IP port
-reviewed: 2019-06-19
+reviewed: 2021-07-28
 redirects:
 - servicecontrol/monitoring-instances/installation/setting-custom-hostname
 ---

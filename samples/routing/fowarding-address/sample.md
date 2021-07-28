@@ -2,7 +2,7 @@
 title: Forwarding address
 summary: Implementing forwarding address for in-flight messages during handler migration
 component: Core
-reviewed: 2019-06-25
+reviewed: 2021-07-28
 ---
 
 When a handler is moved to a new endpoint, there may still be "in-flight" messages, bound for the original endpoint. When those messages arrive at the original endpoint, they need to be re-routed to the new endpoint.
@@ -17,13 +17,13 @@ An endpoint may be configured to [forward a copy of every successfully processed
 
 1. Open the solution in Visual Studio.
 1. Press F5.
-1. Follow the instructions in sender's console window to send a message to the OriginalDestination endpoint.
+1. Follow the instructions in Sender's console window to send a message to the OriginalDestination endpoint.
 1. The message will be processed by the OriginalDestination endpoint.
 1. The message will also be processed by the NewDestination endpoint.
 
-The sender is configured to send messages to OriginalDestination, and OriginalDestination is configured to forward a copy to NewDestination.
+The Sender is configured to send messages to OriginalDestination, and OriginalDestination is configured to forward a copy to NewDestination.
 
-Remove the handler code from OriginalDestination and run the sample again. Note that the sender is still configured to send the message to OriginalDestination, which will forward a copy to NewDestination even though it no longer contains a handler for the message.
+Remove the handler code from OriginalDestination, and run the sample again. Note that the sender is still configured to send the message to OriginalDestination, which will forward a copy to NewDestination even though it no longer contains a handler for the message.
 
 
 ## Code walk-through

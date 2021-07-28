@@ -6,7 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="Serilog" Version="2.*" />
   </ItemGroup>
 </Project>
