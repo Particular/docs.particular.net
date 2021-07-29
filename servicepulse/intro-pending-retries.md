@@ -56,7 +56,7 @@ Results can also be filtered by queue name using the search functionality:
 ![Queue Filter](images/pending-retries-filter-queues.png 'width=500')
 
 The information about the message such as Failure timestamp, endpoint, stack trace of the error, etc.,  is displayed in the same manner as it on the [Failed Messages](intro-failed-messages.md) page providing additional information as follows:
- 
+
  * **Redirect** Information if redirect is created for this queue.
 
 
@@ -72,7 +72,7 @@ Message retry will use [message redirects](redirect.md) if the original endpoint
 
 WARNING: A pending retry message that is sent for retry will remain in the pending retry list until it is resolved or fails again.
 
-### Mark as complete 
+### Mark as complete
 
 NOTE: Systems running NServiceBus version 7.4 (or earlier) and ServiceControl version 4.19 (or earlier) require the audit feature to be enabled both at the endpoint and in ServiceControl. Otherwise, the failed message will be shown as *retry pending* indefinitely even after the message has been successfully reprocessed by that endpoint. In this scenario, use the `Mark as complete` feature to manually mark the failed message as resolved. Once the message is marked as resolved, it will no longer appear in the pending retries message list.
 

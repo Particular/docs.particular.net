@@ -53,7 +53,7 @@ There are additional parameters available to set additional configuration option
 
 #### Version 3
 
-Create a ServiceControl instance: 
+Create a ServiceControl instance:
 
 ```ps
 New-ServiceControlInstance `
@@ -113,7 +113,7 @@ NOTE: The ServiceControl Audit instance must be configured with the transport ad
 
 ### Removing an instance
 
-Use the `Remove-ServiceControlInstance` cmdlet to remove a ServiceControl instance. 
+Use the `Remove-ServiceControlInstance` cmdlet to remove a ServiceControl instance.
 
 ```ps
 Remove-ServiceControlInstance -Name Test.ServiceControl -RemoveDB -RemoveLogs
@@ -138,7 +138,7 @@ NOTE: All connected ServiceControl Audit instances should be removed before remo
 
 The cmdlets in this section are used to upgrade the binaries of an existing instance. If the instance is running when the upgrade starts, it will be shut down during the upgrade and restarted once the upgrade is complete.
 
-WARN: The upgrade commands such as `sc-upgrade` and `audit-upgrade` do not pull the latest updates. The packages should have been downloaded and have been placed locally before running the upgrade command. The update files are typically zip files that need to be placed in ServiceControl Management installation location.
+WARN: The `sc-upgrade` and `audit-upgrade` commands do not download the latest updates. The required packages must be downloaded to a local folder before running the upgrade command. The update files are typically zip files that must be placed in the ServiceControl Management installation location.
 
 Before the upgrade begins the configuration file of the existing version is examined to determine if all of the required settings are present. If a configuration setting is missing then the cmdlet will throw an error indicating the required additional parameter for the cmdlet.
 
