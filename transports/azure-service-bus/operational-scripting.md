@@ -98,8 +98,9 @@ asb-transport endpoint unsubscribe name event-type
 Create a queue using:
 
 ```
-asb-transport queue create [--size]
-                           [--partitioned]
+asb-transport queue create name
+                              [--size]
+                              [--partitioned]
 ```
 
 #### options
@@ -116,7 +117,7 @@ asb-transport queue create [--size]
 Delete a queue using:
 
 ```
-asb-transport queue delete
+asb-transport queue delete name
 ```
 
 #### options
@@ -140,7 +141,7 @@ Create the topology for `MyEndpoint` endpoint using the default settings:
 asb-transport endpoint create MyEndpoint -c "<connection-string>"
 ```
 
-Create the topology for `MyEndpoint` endpoint and override the topic and the subscription to be `custom-topic` and `my-endpoint`:
+Create the topology for `MyEndpoint` endpoint and override the topic name to be `custom-topic` and the subscription name to be `my-endpoint`:
 
 ```
 asb-transport endpoint create MyEndpoint -t custom-topic -s my-endpoint -c "<connection-string>"
@@ -148,13 +149,13 @@ asb-transport endpoint create MyEndpoint -t custom-topic -s my-endpoint -c "<con
 
 #### Subscribing to events
 
-Subscribe `MyOtherEndpoint` to the event `Contracts.Events.SomeEvent` use the default settings:
+Subscribe `MyOtherEndpoint` to the event `Contracts.Events.SomeEvent` using the default settings:
 
 ```
 asb-transport endpoint subscribe MyOtherEndpoint Contracts.Events.SomeEvent -c "<connection-string>"
 ```
 
-Subscribe `MyOtherEndpoint` to the event `Contracts.Events.SomeEvent` and override the topic to be `custom-topic`:
+Subscribe `MyOtherEndpoint` to the event `Contracts.Events.SomeEvent` and override the topic name to be `custom-topic`:
 
 ```
 asb-transport endpoint subscribe MyOtherEndpoint Contracts.Events.SomeEvent -t custom-topic -c "<connection-string>"
