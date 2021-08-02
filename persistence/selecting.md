@@ -29,18 +29,15 @@ graph TD
 start((start)) --> A{Using sagas<br /> or outbox?}
 A --> |Yes|B{Additional<br />requirements?}
 A --> |No| I{Which transport?}
-I --> |Other|L[SQL]
-I --> |RabbitMQ/Azure Service Bus|J[No persistence]
-I --> |Azure Storage Queues|K[Azure Table]
+I --> |MSMQ|L[SQL]
+I --> |All other transports|J[None required]
+B --> |MongoDB|M[MongoDB]
 B --> |Service Fabric|C[Service Fabric]
 B --> |RavenDB|E[RavenDB]
-B --> |MongoDB|M[MongoDB]
 B --> |Azure|Q{IaaS/PaaS ?}
 B --> |No|L
-Q --> |PaaS|G{Optimize for}
+Q --> |PaaS|G[Cosmos DB]
 Q --> |IaaS|L
-G --> |Features|N["Cosmos DB (preview)"]
-G --> |Cost|S[Azure Table]
 ```
 
 ## Making the decision
@@ -73,18 +70,18 @@ Alternatively, some organizations are more comfortable managing SQL Server and m
 - Supports outbox
 - Better tooling support with SQL Server Management Studio
 
-**Azure Storage**
-
-- Usually cheaper
-- Automatically scales
-- A turn-key solution, meaning no maintenance
-
-**Azure Cosmos DB (preview)**
+**Azure Cosmos DB**
 
 - Supports transactions on the same partition
 - Supports outbox
 - Geo redundancy
 - Lower latency
+- Automatically scales
+- A turn-key solution, meaning no maintenance
+
+**Azure Storage**
+
+- Usually cheaper
 - Automatically scales
 - A turn-key solution, meaning no maintenance
 
