@@ -34,7 +34,7 @@ I --> |All other transports|J[None required]
 B --> |MongoDB|M[MongoDB]
 B --> |Service Fabric|C[Service Fabric]
 B --> |RavenDB|E[RavenDB]
-B --> |Azure|Q{IaaS/PaaS ?}
+B --> |Azure|Q{PaaS/IaaS ?}
 B --> |No|L
 Q --> |PaaS|G[Cosmos DB]
 Q --> |IaaS|L
