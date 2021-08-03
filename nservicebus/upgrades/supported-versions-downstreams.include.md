@@ -6,7 +6,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.3.1) | 2021-01-20     | -                 | -                                 |
 | [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.2.1) | ~~2020-10-20~~ | ~~2021-04-20~~    | ~~Superseded by 5.3.x~~           |
-| [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.2) | ~~2020-08-24~~ | ~~2021-01-20~~    | ~~Superseded by 5.2.x~~           |
 | [~~4.4.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.2) | ~~2019-11-27~~ | ~~2021-04-27~~    | ~~Superseded by 5.0.x~~           |
 | [3.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/3.3.5) | 2018-05-14     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
@@ -52,7 +51,6 @@
 | [~~1.8.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.8.0) | ~~2020-12-24~~ | ~~2021-06-01~~    | ~~Superseded by 1.9.x~~           |
 | [~~1.7.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | ~~2020-11-24~~ | ~~2021-03-24~~    | ~~Superseded by 1.8.x~~           |
 | [~~1.6.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.6.0) | ~~2020-11-02~~ | ~~2021-02-24~~    | ~~Superseded by 1.7.x~~           |
-| [~~1.5.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.5.1) | ~~2020-04-16~~ | ~~2021-02-02~~    | ~~Superseded by 1.6.x~~           |
 
 #### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
 
@@ -251,7 +249,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.1.0) | 2021-06-22     | -                 | -                                 |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.2.0) | 2021-07-15     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.1.0) | 2021-06-22     | 2021-10-15        | Superseded by 1.2.x               |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.0.0) | 2021-04-23     | 2021-09-22        | Superseded by 1.1.x               |
 
 #### [NServiceBus.Bootstrap.WindowsService](/nuget/NServiceBus.Bootstrap.WindowsService)
@@ -418,13 +417,14 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.27.x](https://www.nuget.org/packages/Particular.PlatformSample/1.27.0) | 2021-06-22     | -                 | -                                 |
+| [1.29.x](https://www.nuget.org/packages/Particular.PlatformSample/1.29.0) | 2021-08-03     | -                 | -                                 |
+| [1.28.x](https://www.nuget.org/packages/Particular.PlatformSample/1.28.0) | 2021-07-16     | 2021-11-03        | Superseded by 1.29.x              |
+| [1.27.x](https://www.nuget.org/packages/Particular.PlatformSample/1.27.0) | 2021-06-22     | 2021-10-16        | Superseded by 1.28.x              |
 | [1.26.x](https://www.nuget.org/packages/Particular.PlatformSample/1.26.0) | 2021-06-03     | 2021-09-22        | Superseded by 1.27.x              |
 | [1.25.x](https://www.nuget.org/packages/Particular.PlatformSample/1.25.0) | 2021-05-07     | 2021-09-03        | Superseded by 1.26.x              |
 | [1.24.x](https://www.nuget.org/packages/Particular.PlatformSample/1.24.0) | 2021-03-18     | 2021-08-07        | Superseded by 1.25.x              |
 | [~~1.23.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.23.0) | ~~2020-12-18~~ | ~~2021-06-18~~    | ~~Superseded by 1.24.x~~          |
 | [~~1.21.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.21.0) | ~~2020-10-20~~ | ~~2021-03-18~~    | ~~Superseded by 1.23.x~~          |
-| [~~1.20.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.20.0) | ~~2020-09-28~~ | ~~2021-01-20~~    | ~~Superseded by 1.21.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 

@@ -543,7 +543,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.1.0) | 2021-06-22     | -                 | -                                 |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.2.0) | 2021-07-15     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.1.0) | 2021-06-22     | 2021-10-15        | Superseded by 1.2.x               |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.0.0) | 2021-04-23     | 2021-09-22        | Superseded by 1.1.x               |
 
 #### [NServiceBus.Bootstrap.WindowsService](/nuget/NServiceBus.Bootstrap.WindowsService)
@@ -811,7 +812,9 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.27.x](https://www.nuget.org/packages/Particular.PlatformSample/1.27.0) | 2021-06-22     | -                 | -                                 |
+| [1.29.x](https://www.nuget.org/packages/Particular.PlatformSample/1.29.0) | 2021-08-03     | -                 | -                                 |
+| [1.28.x](https://www.nuget.org/packages/Particular.PlatformSample/1.28.0) | 2021-07-16     | 2021-11-03        | Superseded by 1.29.x              |
+| [1.27.x](https://www.nuget.org/packages/Particular.PlatformSample/1.27.0) | 2021-06-22     | 2021-10-16        | Superseded by 1.28.x              |
 | [1.26.x](https://www.nuget.org/packages/Particular.PlatformSample/1.26.0) | 2021-06-03     | 2021-09-22        | Superseded by 1.27.x              |
 | [1.25.x](https://www.nuget.org/packages/Particular.PlatformSample/1.25.0) | 2021-05-07     | 2021-09-03        | Superseded by 1.26.x              |
 | [1.24.x](https://www.nuget.org/packages/Particular.PlatformSample/1.24.0) | 2021-03-18     | 2021-08-07        | Superseded by 1.25.x              |
