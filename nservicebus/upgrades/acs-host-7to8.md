@@ -5,23 +5,13 @@ reviewed: 2021-07-23
 component: CloudServicesHost
 related:
  - nservicebus/upgrades/6to7
- - samples/azure/self-host
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
  - 7
 ---
 
-The NServiceBus Azure Host will be deprecated as of Version 9 and users are recommended to switch to self-hosting for new endpoints. Upgrading existing endpoints is still supported for Version 8.
-
-include: host-deprecate
-
-
-## Migrating procedure
-
-See the [self-hosting sample](/samples/azure/self-host/) for details. For multi-hosting it is recommended to apply self-hosting with multiple endpoints similar to the [multi-hosting sample](/samples/hosting/generic-multi-hosting).
-
-If process isolation is required between the endpoints it is advised to stay with the latest version of the cloud host. Process isolation will be addressed in the upgrade guides when the host is fully deprecated.
+The NServiceBus Azure Host package is deprecated as of Version 9 as Microft has deprecated the Cloud Service hosting model. Users are recommended to switch to a different cloud hosting model.
 
 
 ### Configuration

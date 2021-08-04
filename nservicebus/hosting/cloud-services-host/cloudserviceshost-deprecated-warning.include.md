@@ -1,1 +1,1 @@
-WARNING: The NServiceBus Azure Host package is deprecated as of version 9. Instead use [self-hosting in Azure Cloud Services](/samples/azure/self-host). Refer to the [upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for further details.
+WARNING: The NServiceBus Azure Host package is deprecated as of Version 9 as Microft has deprecated the Cloud Service hosting model. Users are recommended to switch to a different cloud hosting model.

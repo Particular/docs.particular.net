@@ -8,18 +8,15 @@ NServiceBus helps create distributed .NET systems not only on premises but also 
 
 ## Hosting
 
- * [Hosting in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/)
- * [Shared Hosting in Azure Cloud Services](/samples/azure/shared-host/)
+ * [Hosting in Azure WebJobs](/samples/azure/webjob-host/)
+ * [Azure Cloud Showcase](/samples/showcase/cloud-azure/) using WebApps and WebJobs
+ * [Hosting in Service Fabric](/nservicebus/hosting/service-fabric-hosting/)
+ * [Hosting in Azure Cloud Services](/nservicebus/hosting/cloud-services-host/) (deprecated)
 
 ## Serverless
 
 * [Azure Functions with Azure Service Bus](/nservicebus/hosting/azure-functions/service-bus.md)
 * [Azure Functions with Azure Storage Queues](/previews/azure-functions-storage-queues.md)
-
-### Self-hosting
-
- * [Azure App Service](/samples/showcase/cloud-azure/) using WebApps and WebJobs
- * [Service Fabric](/nservicebus/hosting/service-fabric-hosting/)
 
 ## Transports
 

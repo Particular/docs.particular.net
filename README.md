@@ -227,7 +227,7 @@ redirects:
 - servicecontrol/sc-si
 - servicecontrol/debugging-servicecontrol
 related:
-- samples/azure/shared-host
+- servicecontrol/installation
 ---
 ```
 
