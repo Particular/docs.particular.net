@@ -145,8 +145,8 @@ Causes two things:
 
  * Stops search engines from finding the page using a `<meta name="robots" content="noindex" />`.
  * Prevents the page from being found in the docs search.
- 
- 
+
+
 ### Preview Image
 
 ```
@@ -403,7 +403,7 @@ Don't render YAML front-matter by going to
 And checking `Ignore YAML Front-matter`
 
 
-## EIP references 
+## EIP references
 
 [Enterprise Integration Patterns (EIP)](https://www.enterpriseintegrationpatterns.com/) is a bible of messaging. We sometimes use the same or similar patterns, but name them differently. When describing such a pattern, it's useful to reference the related EIP pattern, to make it easier to understand.
 
@@ -492,7 +492,7 @@ See the [NuGet package reference guidelines](#nuget-package-references) for more
 
 ### Startup projects
 
-When a sample is zipped the [VS startup projects](https://msdn.microsoft.com/en-us/library/a1awth7y.aspx) are also configured. This is done by using https://github.com/SimonCropp/SetStartupProjects. By default startable projects are [detected though interrogating the project settings](https://github.com/SimonCropp/SetStartupProjects/blob/master/src/SetStartupProjects/StartProjectFinder.cs). To override this convention and hard-code the list of startup projects add a file named `{SolutionName}.StartupProjects.txt` in the same directory as the solution file. It should contain the relative paths to the project files you would like to use for startup projects. 
+When a sample is zipped the [VS startup projects](https://msdn.microsoft.com/en-us/library/a1awth7y.aspx) are also configured. This is done by using https://github.com/SimonCropp/SetStartupProjects. By default startable projects are [detected though interrogating the project settings](https://github.com/SimonCropp/SetStartupProjects/blob/master/src/SetStartupProjects/StartProjectFinder.cs). To override this convention and hard-code the list of startup projects add a file named `{SolutionName}.StartupProjects.txt` in the same directory as the solution file. It should contain the relative paths to the project files you would like to use for startup projects.
 
 For example if the solution "TheSolution.sln" contains two endpoints and you only want to start `Endpoint1` the content of `TheSolution.StartupProjects.txt` would be:
 
@@ -574,7 +574,7 @@ They are only rendered in the target page when the version filter matches the co
 
 Partial Convention: `filePrefix_key_nugetAlias_version.partial.md`
 
-Make sure to use component alias (as defined in components.yaml file) in the partial name. For most components component alias will be identical to NuGet alias, however it's not always the case, e.g. the Callbacks feature has been moved out of core package to the dedicated NServiceBus.Callbacks package, so the there are two NuGet aliases that are related to this feature, but it's still the same component and has a single component alias. 
+Make sure to use component alias (as defined in components.yaml file) in the partial name. For most components component alias will be identical to NuGet alias, however it's not always the case, e.g. the Callbacks feature has been moved out of core package to the dedicated NServiceBus.Callbacks package, so the there are two NuGet aliases that are related to this feature, but it's still the same component and has a single component alias.
 
 The NuGet alias in samples should match the prefix as defined by the samples solution directories.
 
@@ -889,7 +889,7 @@ In some cases it may be necessary to have merged documentation for unreleased fe
 
 ### Temporary unstables
 
-When documenting an unstable feature, those unstable packages must be explicitly included using the exact prerelease package version using `-`. 
+When documenting an unstable feature, those unstable packages must be explicitly included using the exact prerelease package version using `-`.
 
 ```
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.3.1-alpha.XYZ" />
