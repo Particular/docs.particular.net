@@ -2,7 +2,7 @@
 title: Gateway Upgrade Version 2 to 3
 summary: How to upgrade the Gateway from version 2 to 3.
 component: Gateway
-reviewed: 2019-07-02
+reviewed: 2021-08-04
 related:
  - nservicebus/upgrades/6to7
 isUpgradeGuide: true
