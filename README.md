@@ -452,6 +452,7 @@ And checking `Ignore YAML Front-matter`
 
 ## Samples
 
+Our main goal is to provide the user with a smooth F5 experience when using the platform, and that includes samples, as it might be the user's first introduction to the platform.
 
 ### When to write a sample
 
@@ -520,6 +521,17 @@ Avoid using screenshots in samples unless it adds significant value over what ca
  * Add significantly to the page load time.
 
 The most common misuse of screenshots is when capturing console output. **DO NOT DO THIS**. Put the text inside a formatted code section instead.
+
+
+## Guidance content
+
+Some of our documentation provides guidance for customers and prospects to make informed decisions when faced with multiple options.
+
+For example, when a customer decides to host an endpoint in Azure, there are multiple options, each with their pros and cons. Vendor documentation on its own is often not enough in the context of creating and running a distributed system with NServiceBus.
+
+Guidance for these decisions is valuable to our customers and is included in our public documentation.
+
+This is not to be confused with comparisons between various vendors or technologies from various vendors. Such comparisons are contentious and are not part of our public documentation.
 
 
 ## Tutorials
