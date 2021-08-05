@@ -14,7 +14,7 @@ class MessageSigningBehavior :
         {
             hmac.Key = SharedKeys.SigningKey;
 
-            var hashBytes = hmac.ComputeHash(context.Body.ToArray());
+            var hashBytes = hmac.ComputeHash(new ReadOnlyStream(context.Body));
             var hashBase64String = Convert.ToBase64String(hashBytes);
 
             context.Headers.Add("X-Message-Signature", hashBase64String);
