@@ -6,7 +6,9 @@ reviewed: 2020-02-26
 isLearningPath: true
 related:
 - samples/dependency-injection/aspnetcore
-
+redirects:
+- samples/azure/self-host
+- samples/azure/shared-host
 ---
 
 This sample is compatible with Azure WebJobs SDK 3.0.

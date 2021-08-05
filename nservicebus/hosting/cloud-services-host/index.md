@@ -7,7 +7,6 @@ redirects:
  - nservicebus/azure/hosting-nservicebus-in-windows-azure-cloud-services
  - nservicebus/windows-azure-transport
 related:
- - samples/azure/shared-host
  - nservicebus/lifecycle
 reviewed: 2020-04-26
 ---
@@ -32,7 +31,7 @@ snippet: AzureServiceBusTransportWithAzureHost
 
 Partial: Worker
 
-When self-hosting, everything can be configured using the API and extension methods available in the NServiceBus Azure-related packages; it's not required to reference the hosting package. To self-host an endpoint, add the required configuration to the role entry point. For more information on how to self-host in Cloud Services, refer to the Cloud Services [self-hosting sample](/samples/azure/self-host/).
+When self-hosting, everything can be configured using the API and extension methods available in the NServiceBus Azure-related packages; it's not required to reference the hosting package. To self-host an endpoint, add the required configuration to the role entry point.
 
 
 ## Cloud Services - Web Roles
