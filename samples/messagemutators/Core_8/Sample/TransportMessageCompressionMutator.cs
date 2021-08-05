@@ -31,7 +31,6 @@ public class TransportMessageCompressionMutator :
         return Task.CompletedTask;
     }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("NServiceBus.Code", "NSB0002:Forward the 'CancellationToken' property of the context parameter to methods", Justification = "<Pending>")]
     public async Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
         if (!context.Headers.ContainsKey("IWasCompressed"))
@@ -42,7 +41,11 @@ public class TransportMessageCompressionMutator :
         using (var bigStream = new GZipStream(memoryStream, CompressionMode.Decompress))
         {
             var bigStreamOut = new MemoryStream();
+#if NETFRAMEWORK
             await bigStream.CopyToAsync(bigStreamOut)
+#else
+            await bigStream.CopyToAsync(bigStreamOut, context.CancellationToken)
+#endif
                 .ConfigureAwait(false);
             context.Body = bigStreamOut.ToArray();
         }

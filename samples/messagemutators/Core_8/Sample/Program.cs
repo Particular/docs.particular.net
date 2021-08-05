@@ -11,8 +11,6 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageMutators");
         endpointConfiguration.UsePersistence<LearningPersistence>();
 
-        endpointConfiguration.UseTransport(new LearningTransport());
-
         #region ComponentRegistration
 
         endpointConfiguration.RegisterMessageMutator(new ValidationMessageMutator());
