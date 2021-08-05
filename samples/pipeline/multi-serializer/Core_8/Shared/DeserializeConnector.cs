@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -87,17 +87,14 @@ class DeserializeConnector :
             }
         }
 
-        using (var stream = new MemoryStream(physicalMessage.Body.ToArray()))
-        {
-            var messageSerializer = serializationMapper.GetSerializer(headers);
-            var typesToDeserialize = messageMetadata
-                .Select(metadata => metadata.MessageType)
-                .ToList();
+        var messageSerializer = serializationMapper.GetSerializer(headers);
+        var typesToDeserialize = messageMetadata
+            .Select(metadata => metadata.MessageType)
+            .ToList();
 
-            return messageSerializer.Deserialize(new ReadOnlyMemory<byte>(stream.ToArray()), typesToDeserialize)
-                .Select(x => logicalMessageFactory.Create(x.GetType(), x))
-                .ToList();
-        }
+        return messageSerializer.Deserialize(physicalMessage.Body, typesToDeserialize)
+            .Select(x => logicalMessageFactory.Create(x.GetType(), x))
+            .ToList();
     }
 }
 
