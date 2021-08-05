@@ -2,7 +2,7 @@
 title:  Fixing malformed messages
 summary: Describes the concept of fixing and retrying malformed messages in ServicePulse
 component: ServicePulse
-reviewed: 2019-07-04
+reviewed: 2021-08-05
 ---
 
 If a message cannot be successfully retried it is possible to fix the malformed message prior to retrying it. Both the headers and the body of a message can be edited. This capability can be accessed when looking at an individual message. 
@@ -16,7 +16,7 @@ Editing malformed messages is a potentially destructive operation, which if used
 
 System designers may prefer to disallow message editing in order to guarantee the correctness of the system. As a result, the message editing feature is currently considered experimental and is **disabled by default**.
 
-It is recommended to carefully evauate possible use cases for editing malformed messages and consider alternative solutions for those use cases such as [ServiceControl retry redirects](/samples/servicecontrol/fix-messages/), especially for use cases that are common and recurring. For help with alternatives for specific situations, contact [Particular Support](https://particular.net/support) for assistance.
+Before enabling the feature, carefully evaluate possible use cases for editing malformed messages and consider alternative solutions for those use cases such as [ServiceControl retry redirects](/samples/servicecontrol/fix-messages/), especially for use cases that are common and recurring. For help with alternatives for specific situations, contact [Particular Support](https://particular.net/support) for assistance.
 }}
 
 NOTE: Editing malformed messages requires both ServiceControl 4.1.0+ and ServicePulse 1.21.0+.
