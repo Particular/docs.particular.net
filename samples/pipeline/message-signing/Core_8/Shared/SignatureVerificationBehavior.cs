@@ -26,7 +26,7 @@ class SignatureVerificationBehavior :
                 {
                     return next();
                 }
-            }            
+            }
         }
 
         log.Error($"Message signature for message id {context.MessageId} is invalid. The message will be discarded.");
