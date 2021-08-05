@@ -16,7 +16,7 @@ public class TransportMessageCompressionMutator :
     {
         log.Info($"transportMessage.Body size before compression: {context.OutgoingBody.Length}");
 
-        var mStream = new MemoryStream(context.OutgoingBody.ToArray());
+        var mStream = new MemoryStream(context.OutgoingBody.ToArray(), false);
         var outStream = new MemoryStream();
 
         using (var tinyStream = new GZipStream(outStream, CompressionMode.Compress))
@@ -41,11 +41,7 @@ public class TransportMessageCompressionMutator :
         using (var bigStream = new GZipStream(memoryStream, CompressionMode.Decompress))
         {
             var bigStreamOut = new MemoryStream();
-#if NETFRAMEWORK
-            await bigStream.CopyToAsync(bigStreamOut)
-#else
-            await bigStream.CopyToAsync(bigStreamOut, context.CancellationToken)
-#endif
+            await bigStream.CopyToAsync(bigStreamOut, 81920, context.CancellationToken)
                 .ConfigureAwait(false);
             context.Body = bigStreamOut.ToArray();
         }
