@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Audit instances
 summary: Information about ServiceControl Audit instances
-reviewed: 2019-07-09
+reviewed: 2021-08-06
 component: ServiceControl
 ---
 
