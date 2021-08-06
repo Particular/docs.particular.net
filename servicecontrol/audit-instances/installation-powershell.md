@@ -1,6 +1,6 @@
 ---
 title: Managing ServiceControl Audit instances via PowerShell
-reviewed: 2019-07-09
+reviewed: 2021-08-06
 ---
 
 NOTE: For general information about ServiceControl PowerShell, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
@@ -22,7 +22,7 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 
 ### Help
 
-All of the cmdlets have local help which can be accessed via the standard PowerShell help command
+All of the cmdlets have local help which can be accessed via the standard PowerShell help command.
 
 ```ps
 Get-Help Get-ServiceControlAuditInstances
