@@ -56,10 +56,10 @@ The following provider packages will no longer be provided:
 
 NServiceBus version 8 supports [cooperative cancellation](/nservicebus/hosting/cooperative-cancellation.md) using `CancellationToken` parameters. Where appropriate, optional `CancellationToken` parameters have been added to public methods. This includes the abstract classes and interfaces required to implement a message transport or persistence library, and other extension points like `IDataBus`, `FeatureStartupTask`, and `INeedToInstallSomething`. Implementers can be updated by adding an optional `CancellationToken` parameter to the end of method signatures. The change also includes callbacks that customize the behavior of NServiceBus:
 
-- when a [critical error](/nservicebus/hosting/critical-errors.md) is encountered
-- when a message is retried
-- when a message is moved to the error queue
-- when a message is processed
+ when a [critical error](/nservicebus/hosting/critical-errors.md) is encountered
+ when a message is retried
+ when a message is moved to the error queue
+ when a message is processed
 
 ## Shutdown behavior
 
@@ -206,7 +206,7 @@ transport.TransportTransactionMode = TransportTransactionMode.ReceiveOnly;
 endpointConfiguration.EnableOutbox();
 ```
 
-## Message mutators
+## Message mutators with Dependancy Injection (DI)
 
 Message mutators that operate on serialized messages (`IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`) in NServiceBus version 8 represent the message payload as `ReadOnlyMemory<byte>` instead of `byte[]`. Therefore, it is no longer possible to change individual bytes. Instead, a modified copy of the payload must be provided.
 
@@ -248,3 +248,68 @@ if (extensions.TryGet(out DiscardIfNotReceivedBefore constraint))
     timeToBeReceived = constraint.MaxTime;
 }
 ```
+
+## Dependency on System.Memory package for .NET Framework
+
+Memory allocations for incoming and outgoing messages bodies are reduced by using the low allocation memory types via the System.Memory namespace. These type are available on .NET Framework via the **System.Memory** package. The NServiceBus build that targets .NET Framework has this dependency added.
+
+### Pipeline context types changes
+
+Throughput the pipeline all contexts have been updated to use `ReadonlyMemory<byte>` (e.g. context for behaviors, stage connectors, and message mutators) and affects the following types:
+
+* MutateIncomingTransportMessageContext
+* MutateOutgoingTransportMessageContext
+* ConnectorContextExtensions
+* IIncomingPhysicalMessageContext
+* IncomingPhysicalMessageContext
+* IOutgoingPhysicalMessageContext
+* OutgoingPhysicalMessageContext
+* SerializeMessageConnector
+
+## Message bodies only available in scope of incoming or outgoing messages
+
+Messages bodies available via `ReadonlyMemory<byte>` are only valid while in scope of incoming or outgoing message processing. Once out of scope the data referenced is no longer valid.
+
+If access is still required outside the processing scope it is required to copy the message body while in scope.
+
+### Message Mutators: Updating of message bodies
+
+The message mutator API for changing the message body has changed. Instead, of `UpdateMessage(byte[] body)` method `MutateIncomingTransportMessageContext` and `MutateOutgoingTransportMessageContext` expose `Body` property of type `ReadonlyMemory<T>`.
+
+Message mutators that replace the whole message body might be better of to be converted to a behavior. Via a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md). Via behavior it is possible to reduce allocations via [`ArrayPool<byte>`](https://docs.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1) or packages like [RecyclableMemoryStream](https://github.com/Microsoft/Microsoft.IO.RecyclableMemoryStream).
+
+### Serializers: Deserialization using ReadOnlyMemory of byte
+
+Deserialization updated to use `ReadOnlyMemory<byte>` instead of `Stream` with  on `Deserialize` API method on `IMessageSerializer`.
+
+```csharp
+object[] Deserialize(ReadOnlyMemory<byte> body, IList<Type> messageTypes = null);
+```
+
+If serializers do not support `ReadOnlyMemory<byte>` usage of `.ToArray` must be avoided as this will copy the data and increases memory allocations. Instead include a shim that provides read-only access to the underlying data or use the `ReadOnlyMemoryExtensions.AsStream` from the [Microsoft.Toolkit.HighPerformance](https://docs.microsoft.com/en-us/dotnet/api/microsoft.toolkit.highperformance.extensions.readonlymemoryextensions.asstream).
+
+## Transports
+
+### Transports: Outgoing message TransportOperation API
+
+The outgoing message body passed to the transport via `TransportOperation` has a new constructor:
+
+```csharp
+public TransportOperation(string messageId, DispatchProperties properties, ReadOnlyMemory<byte> body, Dictionary<string, string> headers)
+```
+
+### Transports: Incoming message MessageContext API
+
+A message body passed by the transport to the core using `ReadonlyMemory<byte>` instead of `byte[]`. The `MessageContext` becomes:
+
+```csharp
+public MessageContext(string nativeMessageId, Dictionary<string, string> headers, ReadonlyMemory<byte> body, TransportTransaction transportTransaction, ContextBag context)
+```
+
+For transports that use low allocation types, this allows passing message body to the Core without additional memory allocations. Secondly, this ensures that the body passed by the transport cannot be changed by code executing in the pipeline (immutable message body). This will not affect transports that represent message body as `byte[]` - `byte[]` and be cast to `ReadonlyMemory<byte>` without additional memory allocations.
+
+## Persisters
+
+### Persister Outbox API: TransportOperation based on `ReadonlyMemory<byte>`
+
+The outbox `TransportOperation` is using `ReadonlyMemory<byte>` instead of `byte[]`.
