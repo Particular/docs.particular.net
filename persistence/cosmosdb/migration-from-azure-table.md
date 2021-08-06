@@ -26,16 +26,16 @@ Prior to starting the endpoint, configure the endpoint to [use migration mode](#
 To export data from Table Storage, a .NET tool provided by Particular is required. Install the tool from MyGet using the following command:
 
 ```
-dotnet tool install Particular.Asp.Export --tool-path <installation-path> --version 0.*
+dotnet tool install Particular.AzureTable.Export --tool-path <installation-path> --version 1.*
 ```
 
-Once installed, the `export-aspsagas` command line tool will be available for use at the installation path used earlier. For example:
+Once installed, the `particular-azuretable-export` command line tool will be available for use at the installation path used earlier. For example:
 
 ```
-export-aspsagas -c "UseDevelopmentStorage=true" -s OrderSagaData
+particular-azuretable-export -c "UseDevelopmentStorage=true" -s OrderSagaData
 ```
 
-`<exported-path>` is the destination path where the `export-aspsagas.exe` will be found.
+`<exported-path>` is the destination path where the `particular-azuretable-export.exe` will be found.
 
 Once the tool is executed, saga data for the selected saga data table will be stored in the current working directory as a sub-folder named after the saga data class with each saga data record as individual JSON files. These files can be inspected and imported into Cosmos DB using the [instructions below](#import-data).
 
@@ -52,7 +52,7 @@ Once the tool is executed, saga data for the selected saga data table will be st
 The tool can be updated with the following command:
 
 ```
-dotnet tool update --tool-path <installation-path> Particular.Asp.Export --version 0.*
+dotnet tool update --tool-path <installation-path> Particular.AzureTable.Export --version 1.*
 ```
 
 ### Exported saga ID
@@ -61,7 +61,7 @@ As part of the export process a new saga ID is generated for each saga that is c
 
 ### Export tool customizations
 
-For customers that require a certain degree of customization, the .NET tool code is publicly available at https://github.com/Particular/NServiceBus.Persistence.CosmosDB and can be forked.
+For customers that require a certain degree of customization, the .NET tool code is publicly available at https://github.com/Particular/Particular.AzureTable.Export and can be forked.
 
 ## Import data
 
@@ -74,9 +74,9 @@ dt.exe /s:JsonFile /s.Files:C:\\path\\to\\OrderSagaData\\*.* /t:DocumentDB /t.Id
 ```
 where the following parameters must be adjusted:
 
-`s.Files`: file path to the folder containing a specific saga data JSON files exported from Table Storage.<br/>
-`t.Collection`: Cosmos DB collection to be used for the imported data.<br/>
-`t.ConnectionString`: Cosmos DB connection string including Cosmos SB database name (e.g`;database=MyCosmosDb`).<br/>
+`s.Files`: The file path to the folder containing specific saga data JSON files exported from Table Storage.<br/>
+`t.Collection`: The Cosmos DB collection to be used for the imported data.<br/>
+`t.ConnectionString`: The Cosmos DB connection string including Cosmos DB database name (e.g`;database=MyCosmosDb`).<br/>
 
 ## Data inspection
 
