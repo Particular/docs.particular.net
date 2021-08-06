@@ -32,7 +32,7 @@ Each ServiceControl Audit instance stores data in an embedded database. Audit da
 
 When using ServiceControl Management to create a new ServiceControl instance, a connected ServiceControl Audit instance is automatically created. Using PowerShell, create the ServiceControl instance first, then the ServiceControl Audit instance.
 
-A single ServiceControl instance can have zero or more ServiceControl Audit secondary instances attached to it. ServiceInsight connects directly to the primary ServiceControl instance which will aggregate the data stored in all connected ServiceControl Audit instances.
+A single ServiceControl instance can have zero or more ServiceControl Audit secondary instances attached to it. ServiceInsight connects directly to the primary ServiceControl instance, which will aggregate the data stored in all connected ServiceControl Audit instances.
 
 Connecting ServiceInsight directly to a ServiceControl Audit instance is not supported.
 
@@ -42,7 +42,7 @@ Each ServiceControl Audit instance sends notification messages to a primary Serv
 
 ### Endpoint detection
 
-When a ServiceControl Audit instance detects a new endpoint it sends a notification to the primary ServiceControl instance. The primary instance keeps track of all of the endpoints in the system and can monitor them with heartbeats and custom checks.
+When a ServiceControl Audit instance detects a new endpoint, it sends a notification to the primary ServiceControl instance. The primary instance keeps track of all of the endpoints in the system and can monitor them with heartbeats and custom checks.
 
 ### Successful retry detection
 
