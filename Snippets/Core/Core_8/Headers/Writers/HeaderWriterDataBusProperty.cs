@@ -65,7 +65,7 @@
             {
                 var headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusProperty>(context.Headers);
                 SnippetLogger.Write(headerText);
-                SnippetLogger.Write(Encoding.Default.GetString(context.Body), suffix: "Body");
+                SnippetLogger.Write(Encoding.Default.GetString(context.Body.ToArray()), suffix: "Body");
                 ManualResetEvent.Set();
                 return Task.CompletedTask;
             }
