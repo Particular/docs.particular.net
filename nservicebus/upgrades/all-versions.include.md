@@ -104,7 +104,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.0) | 2021-05-07     | -                 | -                                 |
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | 2020-07-13     | 2021-08-07        | Superseded by 6.1.x               |
+| [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | ~~2020-07-13~~ | ~~2021-08-07~~    | ~~Superseded by 6.1.x~~           |
 | [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.2.0) | ~~2020-04-17~~ | ~~2021-07-13~~    | ~~Superseded by 6.0.x~~           |
 | [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.1.2) | ~~2019-03-27~~ | ~~2020-07-17~~    | ~~Superseded by 5.2.x~~           |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.0.5) | ~~2018-05-29~~ | ~~2019-06-27~~    | ~~Superseded by 5.1.x~~           |
@@ -315,7 +315,7 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.2.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.2.0) | 2021-02-11     | -                 | -                                 |
+| [1.2.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.2.1) | 2021-02-11     | -                 | -                                 |
 | [~~1.1.x~~](https://www.nuget.org/packages/Particular.TimeoutMigration/1.1.0) | ~~2021-01-27~~ | ~~2021-05-11~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | ~~2020-06-24~~ | ~~2021-04-27~~    | ~~Superseded by 1.1.x~~           |
 
@@ -817,7 +817,7 @@ No versions released.
 | [1.27.x](https://www.nuget.org/packages/Particular.PlatformSample/1.27.0) | 2021-06-22     | 2021-10-16        | Superseded by 1.28.x              |
 | [1.26.x](https://www.nuget.org/packages/Particular.PlatformSample/1.26.0) | 2021-06-03     | 2021-09-22        | Superseded by 1.27.x              |
 | [1.25.x](https://www.nuget.org/packages/Particular.PlatformSample/1.25.0) | 2021-05-07     | 2021-09-03        | Superseded by 1.26.x              |
-| [1.24.x](https://www.nuget.org/packages/Particular.PlatformSample/1.24.0) | 2021-03-18     | 2021-08-07        | Superseded by 1.25.x              |
+| [~~1.24.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.24.0) | ~~2021-03-18~~ | ~~2021-08-07~~    | ~~Superseded by 1.25.x~~          |
 | [~~1.23.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.23.0) | ~~2020-12-18~~ | ~~2021-06-18~~    | ~~Superseded by 1.24.x~~          |
 | [~~1.21.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.21.0) | ~~2020-10-20~~ | ~~2021-03-18~~    | ~~Superseded by 1.23.x~~          |
 | [~~1.20.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.20.0) | ~~2020-09-28~~ | ~~2021-01-20~~    | ~~Superseded by 1.21.x~~          |

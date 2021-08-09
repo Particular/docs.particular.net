@@ -29,7 +29,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.0) | 2021-05-07     | -                 | -                                 |
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | 2020-07-13     | 2021-08-07        | Superseded by 6.1.x               |
+| [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | ~~2020-07-13~~ | ~~2021-08-07~~    | ~~Superseded by 6.1.x~~           |
 | [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.2.0) | ~~2020-04-17~~ | ~~2021-07-13~~    | ~~Superseded by 6.0.x~~           |
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/4.4.5) | 2017-09-18     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
@@ -40,7 +40,6 @@
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.3.1) | 2021-06-23     | -                 | -                                 |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.2.0) | 2020-11-19     | 2021-09-23        | Superseded by 6.3.x               |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/6.1.2) | ~~2020-06-24~~ | ~~2021-02-19~~    | ~~Superseded by 6.2.x~~           |
-| [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/5.0.3) | ~~2019-11-19~~ | ~~2021-02-07~~    | ~~Superseded by 6.0.x~~           |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.SqlServer/3.1.6) | 2017-07-14     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Transport.AzureServiceBus](/nuget/NServiceBus.Transport.AzureServiceBus)
@@ -113,7 +112,6 @@
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.1.1) | ~~2021-02-26~~ | ~~2021-06-25~~    | ~~Superseded by 6.2.x~~           |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.0.4) | ~~2020-06-24~~ | ~~2021-05-26~~    | ~~Superseded by 6.1.x~~           |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/5.0.1) | ~~2020-02-07~~ | ~~2021-06-24~~    | ~~Superseded by 6.0.x~~           |
-| [~~4.6.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/4.6.2) | ~~2019-07-26~~ | ~~2021-02-07~~    | ~~Superseded by 5.0.x~~           |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/3.2.0) | 2018-07-09     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
@@ -140,7 +138,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.2.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.2.0) | 2021-02-11     | -                 | -                                 |
+| [1.2.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.2.1) | 2021-02-11     | -                 | -                                 |
 | [~~1.1.x~~](https://www.nuget.org/packages/Particular.TimeoutMigration/1.1.0) | ~~2021-01-27~~ | ~~2021-05-11~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | ~~2020-06-24~~ | ~~2021-04-27~~    | ~~Superseded by 1.1.x~~           |
 
@@ -422,7 +420,7 @@
 | [1.27.x](https://www.nuget.org/packages/Particular.PlatformSample/1.27.0) | 2021-06-22     | 2021-10-16        | Superseded by 1.28.x              |
 | [1.26.x](https://www.nuget.org/packages/Particular.PlatformSample/1.26.0) | 2021-06-03     | 2021-09-22        | Superseded by 1.27.x              |
 | [1.25.x](https://www.nuget.org/packages/Particular.PlatformSample/1.25.0) | 2021-05-07     | 2021-09-03        | Superseded by 1.26.x              |
-| [1.24.x](https://www.nuget.org/packages/Particular.PlatformSample/1.24.0) | 2021-03-18     | 2021-08-07        | Superseded by 1.25.x              |
+| [~~1.24.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.24.0) | ~~2021-03-18~~ | ~~2021-08-07~~    | ~~Superseded by 1.25.x~~          |
 | [~~1.23.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.23.0) | ~~2020-12-18~~ | ~~2021-06-18~~    | ~~Superseded by 1.24.x~~          |
 | [~~1.21.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.21.0) | ~~2020-10-20~~ | ~~2021-03-18~~    | ~~Superseded by 1.23.x~~          |
 
