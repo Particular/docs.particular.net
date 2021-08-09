@@ -1,10 +1,12 @@
 ---
-title: Simple CosmosDB Persistence Usage
-summary: Using CosmosDB Persistence to store sagas
+title: Simple Cosmos DB Persistence Usage
+summary: Using Cosmos DB Persistence to store sagas
 reviewed: 2020-09-22
 component: CosmosDB
 related:
  - nservicebus/sagas
+redirects:
+ - samples/previews/cosmosdb/simple
 ---
 
 This sample shows a client/server scenario using non-transactional saga persistence.
@@ -21,7 +23,7 @@ The shared message contracts used by all endpoints.
  * Receives and handles the `OrderCompleted` event.
 
 ### Server projects
- 
+
  * Receive the `StartOrder` message and initiate an `OrderSaga`.
  * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
  * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
@@ -29,7 +31,7 @@ The shared message contracts used by all endpoints.
 
 ### Persistence config
 
-Configure the endpoint to use CosmosDB Persistence.
+Configure the endpoint to use Cosmos DB Persistence.
 
 snippet: CosmosDBConfig
 

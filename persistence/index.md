@@ -29,7 +29,7 @@ It can be a challenge to decide whether or not a persister is needed and which o
 
 - [SQL](/persistence/sql/)
 - [NHibernate](/persistence/nhibernate/)
-- [Cosmos DB (preview)](/previews/cosmosdb/)
+- [Cosmos DB](/persistence/cosmosdb/)
 - [MongoDB](/persistence/mongodb/)
 - [Azure Table](/persistence/azure-table/)
 - [RavenDB](/persistence/ravendb/)

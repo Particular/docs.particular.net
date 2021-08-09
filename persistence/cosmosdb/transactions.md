@@ -4,6 +4,8 @@ component: CosmosDB
 related:
 - nservicebus/outbox
 reviewed: 2020-09-11
+redirects:
+- previews/cosmosdb/transactions
 ---
 
 By default, the persister does not attempt to atomically commit saga data and/or business data and uses the saga id as partition key to store sagas. Through the use of the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
@@ -16,7 +18,7 @@ The custom behavior can be introduced in one of the two stages:
 
 ## `ITransportReceiveContext` stage
 
-This is the earliest stage in the message processing pipeline. At this stage only the message ID, the headers and a byte array representation of the message body are available. 
+This is the earliest stage in the message processing pipeline. At this stage only the message ID, the headers and a byte array representation of the message body are available.
 
 snippet: ITransportReceiveContextBehavior
 
@@ -32,7 +34,7 @@ snippet: IIncomingLogicalMessageContextBehavior
 
 ### Interaction with outbox
 
-[Outbox](/nservicebus/outbox) message guarantees work by bypassing the remaining message processing pipeline when an outbox record is located. Since this stage occurs after the normal bypass logic is executed, no [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) is available to locate an existing outbox record. 
+[Outbox](/nservicebus/outbox) message guarantees work by bypassing the remaining message processing pipeline when an outbox record is located. Since this stage occurs after the normal bypass logic is executed, no [`PartitionKey`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.documents.partitionkey?view=azure-dotnet) is available to locate an existing outbox record.
 
 Cosmos DB persistence introduces a new `LogicalOutboxBehavior` to locate the outbox record and bypass the remaining message processing pipeline in the same `IIncomingLogicalMessageContext` stage as the custom `PartitionKey` behavior. As a result, the custom behavior must be inserted into the pipeline _before_ the `LogicalOutboxBehavior`.
 
