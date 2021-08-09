@@ -6,6 +6,7 @@ related:
 reviewed: 2020-11-17
 redirects:
 - previews/cosmosdb/migration-from-azure-storage
+- previews/cosmosdb/migration-from-azure-table
 ---
 
 For existing system running in Azure and using [Azure Table Persistence](/persistence/azure-table) where a migration to Azure Cosmos DB SQL API is desired, a multi-step migration process is recommended, using Particular and Azure Cosmos DB tools.
