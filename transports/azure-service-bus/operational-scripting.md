@@ -40,7 +40,7 @@ asb-transport endpoint create name
 ```
 
 #### options
- 
+
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
 `-s` | `--size` : Queue size in GB (defaults to 5)
@@ -58,7 +58,7 @@ Create a new subscription for an endpoint using:
 ```
 asb-transport endpoint subscribe name event-type
                               [--topic]
-                              [--subscription]                                                       
+                              [--subscription]
                               [--rule-name]
 ```
 
@@ -79,7 +79,7 @@ Delete a subscription for an endpoint using:
 ```
 asb-transport endpoint unsubscribe name event-type
                               [--topic]
-                              [--subscription]                                                       
+                              [--subscription]
                               [--rule-name]
 ```
 
@@ -94,7 +94,7 @@ asb-transport endpoint unsubscribe name event-type
 `-r` | `--rule-name`: Rule name (defaults to event type)
 
 ### asb-transport queue create
- 
+
 Create a queue using:
 
 ```
@@ -113,7 +113,7 @@ asb-transport queue create name
 
 
 ### asb-transport queue delete
- 
+
 Delete a queue using:
 
 ```
@@ -123,7 +123,7 @@ asb-transport queue delete name
 #### options
 
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
- 
+
 ### Examples
 
 #### Provisioning the audit and the error queues
@@ -135,13 +135,13 @@ asb-transport queue create error -c "<connection-string>"
 
 #### Provisioning endpoints
 
-Create the topology for `MyEndpoint` endpoint using the default settings:
+Create the topology for an endpoint named `MyEndpoint` using the default settings:
 
 ```
 asb-transport endpoint create MyEndpoint -c "<connection-string>"
 ```
 
-Create the topology for `MyEndpoint` endpoint and override the topic name to be `custom-topic` and the subscription name to be `my-endpoint`:
+Create the topology for an endpoint named `MyEndpoint` and override the topic name to be `custom-topic` and the subscription name to be `my-endpoint`:
 
 ```
 asb-transport endpoint create MyEndpoint -t custom-topic -s my-endpoint -c "<connection-string>"
@@ -167,7 +167,7 @@ Subscribe `MyOtherEndpoint` to the event `Contracts.Events.SomeEvent` and overri
 asb-transport endpoint subscribe MyOtherEndpoint Contracts.Events.SomeEvent -s my-other-endpoint -c "<connection-string>"
 ```
 
-Subscribe `MyOtherEndpoint` to the event `Contracts.Events.SomeEvent` and override subscription rule name to be `SomeEvent`:
+Subscribe `MyOtherEndpoint` to the event `Contracts.Events.SomeEvent` and override the subscription rule name to be `SomeEvent`:
 
 ```
 asb-transport endpoint subscribe MyOtherEndpoint Contracts.Events.SomeEvent -r SomeEvent -c "<connection-string>"
