@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <OutputType>Exe</OutputType>
@@ -7,10 +7,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.0.0-*" />
-    <PackageReference Include="NServiceBus.Autofac" Version="8.0.0-*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1895" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.0.0-alpha.219" />
+    <PackageReference Include="NServiceBus.Autofac" Version="8.0.0-alpha.123" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="7.0.0-alpha.376" />
     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
     <PackageReference Include="EntityFramework" Version="6.*" />
   </ItemGroup>
