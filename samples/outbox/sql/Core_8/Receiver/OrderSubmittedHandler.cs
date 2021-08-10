@@ -1,6 +1,6 @@
 using System.Data.SqlClient;
-using NServiceBus;
 using System.Threading.Tasks;
+using NServiceBus;
 using NServiceBus.Logging;
 
 public class OrderSubmittedHandler :
@@ -27,7 +27,7 @@ public class OrderSubmittedHandler :
             var parameters = command.Parameters;
             parameters.AddWithValue("Id", message.OrderId);
             parameters.AddWithValue("Value", message.Value);
-            await command.ExecuteNonQueryAsync()
+            await command.ExecuteNonQueryAsync(context.CancellationToken)
                 .ConfigureAwait(false);
         }
 

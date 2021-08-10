@@ -1,5 +1,5 @@
-using NServiceBus;
 using System.Threading.Tasks;
+using NServiceBus;
 using NServiceBus.Logging;
 
 public class CreateOrderHandler :
@@ -23,7 +23,7 @@ public class CreateOrderHandler :
             Value = message.Value
         };
         dataContext.Orders.Add(order);
-        await dataContext.SaveChangesAsync().ConfigureAwait(false);
+        await dataContext.SaveChangesAsync(context.CancellationToken).ConfigureAwait(false);
 
         #endregion
 

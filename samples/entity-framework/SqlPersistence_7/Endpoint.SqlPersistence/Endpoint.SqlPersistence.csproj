@@ -7,10 +7,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus" Version="[8.0.0-alpha.842, 9.0.0)" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="[7.0.0-alpha.219, 8.0.0)" />
-    <PackageReference Include="NServiceBus.Autofac" Version="[8.0.0-alpha.123, 9.0.0)" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="[7.0.0-alpha.290, 8.0.0)" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.Autofac" Version="8.0.0-*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="7.0.0-*" />
     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
     <PackageReference Include="EntityFramework" Version="6.*" />
   </ItemGroup>

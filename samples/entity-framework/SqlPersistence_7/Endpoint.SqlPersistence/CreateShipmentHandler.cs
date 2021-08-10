@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using NServiceBus;
 using System.Threading.Tasks;
+using NServiceBus;
 using NServiceBus.Logging;
 
 public class CreateShipmentHandler :
@@ -28,7 +28,7 @@ public class CreateShipmentHandler :
             Location = message.ShipTo
         };
         dataContext.Shipments.Add(shipment);
-        await dataContext.SaveChangesAsync().ConfigureAwait(false);
+        await dataContext.SaveChangesAsync(context.CancellationToken).ConfigureAwait(false);
 
         #endregion
 
