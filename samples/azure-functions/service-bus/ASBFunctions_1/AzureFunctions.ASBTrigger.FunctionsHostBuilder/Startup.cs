@@ -6,9 +6,12 @@ using NServiceBus;
 #region configuration-with-function-host-builder
 
 [assembly: FunctionsStartup(typeof(Startup))]
+[assembly: NServiceBusTriggerFunction(Startup.EndpointName)]
 
 public class Startup : FunctionsStartup
 {
+    public const string EndpointName = "ASBTriggerQueue";
+
     public override void Configure(IFunctionsHostBuilder builder)
     {
         var services = builder.Services;
@@ -22,15 +25,7 @@ public class Startup : FunctionsStartup
             return new CustomComponent(customComponentInitializationValue);
         });
 
-        builder.UseNServiceBus(() =>
-        {
-            var configuration = new ServiceBusTriggeredEndpointConfiguration(AzureServiceBusTriggerFunction.EndpointName);
-
-            // optional: log startup diagnostics using Functions provided logger
-            configuration.LogDiagnostics();
-
-            return configuration;
-        });
+        builder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration(EndpointName));
     }
 }
 
