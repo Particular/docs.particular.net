@@ -1,1 +1,1 @@
-snippet: asb-function-hostbuilder
+snippet: asb-function-default
