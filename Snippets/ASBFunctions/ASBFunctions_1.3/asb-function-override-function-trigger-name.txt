@@ -1,3 +1,0 @@
-﻿startcode asb-function-override-trigger-function-name
-[assembly: NServiceBusEndpointName(name: "MyFunctionsEndpoint", triggerFunctionName: "MyTriggerFunction")]
-endcode
