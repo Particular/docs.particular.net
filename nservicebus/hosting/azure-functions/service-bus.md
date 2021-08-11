@@ -15,6 +15,8 @@ Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-
 
 ### Endpoint configuration
 
+NServiceBus can be registered and configured on the host builder using the `UseNServiceBus` extension method in the startup class:
+
 partial: configuration
 
 Any services registered via the `IFunctionsHostBuilder` will be available to message handlers via dependency injection. The startup class must be declared via the `FunctionStartup` attribute: `[assembly: FunctionsStartup(typeof(Startup))]`.
