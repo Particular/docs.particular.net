@@ -9,7 +9,7 @@ class Program
         Console.Title = "Samples.MongoDB.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.MongoDB.Client");
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

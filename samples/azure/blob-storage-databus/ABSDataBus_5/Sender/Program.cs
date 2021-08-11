@@ -16,10 +16,10 @@ class Program
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>()
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
-        
+
         #endregion
 
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -62,7 +62,7 @@ class Program
         var message = new MessageWithLargePayload
         {
             Description = "This message contains a large payload that will be sent on the Azure data bus",
-            LargePayload = new DataBusProperty<byte[]>(new byte[1024*1024*5]) // 5MB
+            LargePayload = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]) // 5MB
         };
         await messageSession.Send("Samples.AzureBlobStorageDataBus.Receiver", message)
             .ConfigureAwait(false);

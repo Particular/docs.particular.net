@@ -11,7 +11,7 @@
         {
             var session = context.SynchronizedStorageSession.GetClientSession();
             var collection = session.Client.GetDatabase("mydatabase").GetCollection<MyBusinessObject>("mycollection");
-            return collection.InsertOneAsync(session, new MyBusinessObject());
+            return collection.InsertOneAsync(session, new MyBusinessObject(), null, context.CancellationToken);
         }
 
         #endregion

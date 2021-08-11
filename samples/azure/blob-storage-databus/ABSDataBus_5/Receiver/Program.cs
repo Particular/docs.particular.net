@@ -9,13 +9,13 @@ class Program
     {
         Console.Title = "Samples.AzureBlobStorageDataBus.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Receiver");
-        
+
         var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>()
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
-        
-        endpointConfiguration.UseTransport<LearningTransport>();
+
+        endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

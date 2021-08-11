@@ -28,7 +28,7 @@ class Program
 
         persistence.Compatibility().DisableSecondaryKeyLookupForSagasCorrelatedByProperties();
 
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 
         #region BehaviorRegistration

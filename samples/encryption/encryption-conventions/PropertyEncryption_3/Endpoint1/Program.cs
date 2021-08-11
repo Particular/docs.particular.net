@@ -14,7 +14,7 @@ class Program
         endpointConfiguration.ConfigurationEncryption();
         #endregion
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         var message = new MessageWithSecretData

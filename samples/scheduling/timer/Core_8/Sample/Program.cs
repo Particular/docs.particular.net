@@ -13,7 +13,7 @@ partial class Program
         Console.Title = "Samples.Scheduling.Timer";
         var endpointConfiguration = new EndpointConfiguration("Samples.Scheduling.Timer");
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

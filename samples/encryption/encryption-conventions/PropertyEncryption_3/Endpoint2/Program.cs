@@ -11,7 +11,7 @@ class Program
         endpointConfiguration.Conventions().DefiningMessagesAs(type => type.Name.Contains("Message"));
         endpointConfiguration.ConfigurationEncryption();
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
