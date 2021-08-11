@@ -57,7 +57,7 @@ The NServiceBus endpoint configured using `IFunctionHostBuilder` is using the co
 
 snippet: configuration-with-function-host-builder
 
-partial: trigger-function
+Note the `NServiceBusTriggerFunction` used to automatically generate the Azure Functions trigger code to invoke the NServiceBus.
 
 ### Handlers
 
