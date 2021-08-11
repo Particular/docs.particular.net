@@ -100,9 +100,9 @@ namespace ASBFunctions_1_3
         }
         #endregion
 
-        #region asb-enable-diagnostics
-        class configureErrorQueueuOnStartup : FunctionsStartup
+        class ConfigureErrorQueueOnStartup : FunctionsStartup
         {
+            #region asb-enable-diagnostics
             public override void Configure(IFunctionsHostBuilder builder)
             {
                 builder.UseNServiceBus(() =>
@@ -112,8 +112,8 @@ namespace ASBFunctions_1_3
                     return configuration;
                 });
             }
+            #endregion
         }
-        #endregion
 
         #region asb-dispatching-outside-message-handler
         public class HttpSender
