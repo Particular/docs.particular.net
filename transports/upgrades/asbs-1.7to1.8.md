@@ -14,6 +14,6 @@ upgradeGuideCoreVersions:
 For existing shoteners, the logic has to be moved into appropriate naming conventions.
 To retain the same behavior, a length check needs to be added to the naming conventions logic.
 
-### SubscriptionNameShortener
+### RuleNameShortener
 
-To shorten subscription names without changing the naming convention, apply the shortening logic to `Type.FullName` of the passed event name.
+To shorten subscription rules without changing the naming convention, apply the shortening logic to `Type.FullName` of the passed event type.
