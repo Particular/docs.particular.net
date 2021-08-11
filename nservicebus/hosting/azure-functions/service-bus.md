@@ -31,6 +31,10 @@ Triggering a message using HTTP function:
 
 snippet: asb-dispatching-outside-message-handler
 
+## Message consistency
+
+partial: message-consistency
+
 ## Configuration
 
 ### License
@@ -52,12 +56,9 @@ For recoverability to move the continuously failing messages to the error queue 
 
 snippet: asb-configure-error-queue
 
-## Known constraints and limitations
+### Known constraints and limitations
 
-When using Azure Functions with Azure Service Bus (ASB) the following points must be taken into consideration:
-
-- There is no support for the `SendsAtomicWithReceive` [transport transaction mode](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive).
-- The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` method to allow customization; however, not all of the options will be applicable to execution within Azure Functions. 
+The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` method to allow customization; however, not all of the options will be applicable to execution within Azure Functions. 
 
 ## Preparing the Azure Service Bus namespace
 
