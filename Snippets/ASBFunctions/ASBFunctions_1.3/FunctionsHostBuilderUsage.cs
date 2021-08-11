@@ -71,7 +71,12 @@ namespace ASBFunctions_1_3
             {
                 public override void Configure(IFunctionsHostBuilder builder)
                 {
-                    builder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint"));
+                    builder.UseNServiceBus(() =>
+                    {
+                        var configuration = new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint");
+                        configuration.Transport.ConnectionString("functionConnectionString");
+                        return configuration;
+                    });
                 }
             }
         }
