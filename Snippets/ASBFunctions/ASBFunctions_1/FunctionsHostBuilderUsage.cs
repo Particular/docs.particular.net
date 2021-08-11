@@ -35,7 +35,7 @@ namespace ASBFunctions_1
         #endregion
 
         #region asb-enable-diagnostics
-        class configureErrorQueueuOnStartup : FunctionsStartup
+        class ConfigureErrorQueueOnStartup : FunctionsStartup
         {
             public override void Configure(IFunctionsHostBuilder builder)
             {
