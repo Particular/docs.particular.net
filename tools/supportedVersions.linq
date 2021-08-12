@@ -14,8 +14,11 @@
 
 async Task Main()
 {
-	var endOfLifePackages = new Dictionary<string, string>
-	{
+    var endOfLifePackages = new Dictionary<string, string>
+    {
+        // Package name => Reason for end-of-life
+        { "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", "Replaced by NServiceBus.Transport.AzureStorageQueues" },
+        { "NServiceBus.Persistence.AzureStorage", "Replaced by NServiceBus.Persistence.AzureTable" }
 	};
 
 	var source = "https://api.nuget.org/v3/index.json";
