@@ -6,7 +6,5 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.644" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="3.0.0-alpha.104" />
   </ItemGroup>
 </Project>

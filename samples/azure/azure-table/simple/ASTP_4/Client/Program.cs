@@ -9,7 +9,7 @@ class Program
         Console.Title = "Samples.AzureTable.Simple.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureTable.Simple.Client");
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

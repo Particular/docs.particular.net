@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp2.1;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.644" />
     <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="5.0.0-alpha.119" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1896" /> <!-- Remove when AzureBlobStorage package is updated -->
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ class Program
         Console.Title = "Samples.Metrics.Tracing.Endpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         #region EnableMetricTracing
 

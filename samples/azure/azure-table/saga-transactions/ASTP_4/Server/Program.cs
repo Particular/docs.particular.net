@@ -37,7 +37,7 @@ class Program
         var sagaPersistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Sagas>();
         sagaPersistence.Compatibility().DisableSecondaryKeyLookupForSagasCorrelatedByProperties();
 
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
