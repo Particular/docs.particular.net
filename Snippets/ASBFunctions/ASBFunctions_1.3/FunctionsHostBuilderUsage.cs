@@ -1,3 +1,4 @@
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using NServiceBus;
 
 // needs to be top level first defined for C# to compile
@@ -5,6 +6,18 @@ using NServiceBus;
 
 [assembly: NServiceBusTriggerFunction("MyFunctionsEndpoint")]
 
+#endregion
+
+#region asb-function-default
+[assembly: FunctionsStartup(typeof(Startup))]
+
+class Startup : FunctionsStartup
+{
+    public override void Configure(IFunctionsHostBuilder builder)
+    {
+        builder.UseNServiceBus();
+    }
+}
 #endregion
 
 namespace ASBFunctions_1_3
@@ -20,19 +33,6 @@ namespace ASBFunctions_1_3
 
     public class FunctionsHostBuilderUsage
     {
-        class IConfigurationUsage
-        {
-            #region asb-function-default
-            class Startup : FunctionsStartup
-            {
-                public override void Configure(IFunctionsHostBuilder builder)
-                {
-                    builder.UseNServiceBus();
-                }
-            }
-            #endregion
-        }
-
         #region asb-function-hostbuilder
         class HostBuilderStartup
         {
