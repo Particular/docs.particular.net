@@ -1,20 +1,52 @@
-namespace ASBFunctions_1
+using NServiceBus;
+
+// needs to be top level first defined for C# to compile
+#region endpoint-trigger-function-wireup
+
+[assembly: NServiceBusTriggerFunction("MyFunctionsEndpoint")]
+
+#endregion
+
+namespace ASBFunctions_1_3
 {
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Azure.Functions.Extensions.DependencyInjection;
-    using Microsoft.Azure.ServiceBus;
     using Microsoft.Azure.WebJobs;
+    using Microsoft.Azure.WebJobs.Extensions.Http;
     using Microsoft.Extensions.Logging;
     using NServiceBus;
 
     public class FunctionsHostBuilderUsage
     {
-        #region asb-function-hostbuilder
-        class Startup : FunctionsStartup
+        class IConfigurationUsage
         {
-            public override void Configure(IFunctionsHostBuilder builder)
+            #region asb-function-default
+            class Startup : FunctionsStartup
             {
-                builder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint"));
+                public override void Configure(IFunctionsHostBuilder builder)
+                {
+                    builder.UseNServiceBus();
+                }
+            }
+            #endregion
+        }
+
+        #region asb-function-hostbuilder
+        class HostBuilderStartup
+        {
+            class Startup : FunctionsStartup
+            {
+                public override void Configure(IFunctionsHostBuilder builder)
+                {
+                    builder.UseNServiceBus(() =>
+                    {
+                        var configuration = new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint");
+                        configuration.Transport.ConnectionString("functionConnectionString");
+                        return configuration;
+                    });
+                }
             }
         }
         #endregion
@@ -34,9 +66,9 @@ namespace ASBFunctions_1
         }
         #endregion
 
-        #region asb-enable-diagnostics
         class ConfigureErrorQueueOnStartup : FunctionsStartup
         {
+            #region asb-enable-diagnostics
             public override void Configure(IFunctionsHostBuilder builder)
             {
                 builder.UseNServiceBus(() =>
@@ -46,31 +78,8 @@ namespace ASBFunctions_1
                     return configuration;
                 });
             }
+            #endregion
         }
-        #endregion
-
-        #region asb-function-hostbuilder-trigger
-        class MyFunction
-        {
-            readonly IFunctionEndpoint endpoint;
-
-            // inject the FunctionEndpoint via dependency injection:
-            public MyFunction(IFunctionEndpoint endpoint)
-            {
-                this.endpoint = endpoint;
-            }
-
-            [FunctionName("MyFunctionsEndpoint")]
-            public async Task Run(
-                [ServiceBusTrigger(queueName: "MyFunctionsEndpoint")]
-                Message message,
-                ILogger logger,
-                ExecutionContext executionContext)
-            {
-                await endpoint.Process(message, executionContext, logger);
-            }
-        }
-        #endregion
 
         #region asb-dispatching-outside-message-handler
         public class HttpSender
