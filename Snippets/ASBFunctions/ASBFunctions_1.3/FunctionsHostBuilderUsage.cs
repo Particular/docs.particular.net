@@ -1,10 +1,19 @@
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using NServiceBus;
 
-// needs to be top level first defined for C# to compile
-#region endpoint-trigger-function-wireup
+#region asb-function-default
+[assembly: FunctionsStartup(typeof(Startup))]
+[assembly: NServiceBusTriggerFunction(Startup.EndpointName)]
 
-[assembly: NServiceBusTriggerFunction("MyFunctionsEndpoint")]
+class Startup : FunctionsStartup
+{
+    public const string EndpointName = "MyFunctionsEndpoint";
 
+    public override void Configure(IFunctionsHostBuilder builder)
+    {
+        builder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration(EndpointName));
+    }
+}
 #endregion
 
 namespace ASBFunctions_1_3
@@ -18,39 +27,23 @@ namespace ASBFunctions_1_3
     using Microsoft.Extensions.Logging;
     using NServiceBus;
 
+    #region asb-function-hostbuilder
+    class Startup : FunctionsStartup
+    {
+        public override void Configure(IFunctionsHostBuilder builder)
+        {
+            builder.UseNServiceBus(() =>
+            {
+                var configuration = new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint");
+                configuration.Transport.ConnectionString("functionConnectionString");
+                return configuration;
+            });
+        }
+    }
+    #endregion
+
     public class FunctionsHostBuilderUsage
     {
-        class IConfigurationUsage
-        {
-            #region asb-function-default
-            class Startup : FunctionsStartup
-            {
-                public override void Configure(IFunctionsHostBuilder builder)
-                {
-                    builder.UseNServiceBus();
-                }
-            }
-            #endregion
-        }
-
-        #region asb-function-hostbuilder
-        class HostBuilderStartup
-        {
-            class Startup : FunctionsStartup
-            {
-                public override void Configure(IFunctionsHostBuilder builder)
-                {
-                    builder.UseNServiceBus(() =>
-                    {
-                        var configuration = new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint");
-                        configuration.Transport.ConnectionString("functionConnectionString");
-                        return configuration;
-                    });
-                }
-            }
-        }
-        #endregion
-
         #region asb-configure-error-queue
         class EnableDiagnosticsOnStartup : FunctionsStartup
         {
