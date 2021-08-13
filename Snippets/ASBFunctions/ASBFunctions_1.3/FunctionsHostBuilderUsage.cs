@@ -27,26 +27,23 @@ namespace ASBFunctions_1_3
     using Microsoft.Extensions.Logging;
     using NServiceBus;
 
+    #region asb-function-hostbuilder
+    class Startup : FunctionsStartup
+    {
+        public override void Configure(IFunctionsHostBuilder builder)
+        {
+            builder.UseNServiceBus(() =>
+            {
+                var configuration = new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint");
+                configuration.Transport.ConnectionString("functionConnectionString");
+                return configuration;
+            });
+        }
+    }
+    #endregion
+
     public class FunctionsHostBuilderUsage
     {
-        #region asb-function-hostbuilder
-        class HostBuilderStartup
-        {
-            class Startup : FunctionsStartup
-            {
-                public override void Configure(IFunctionsHostBuilder builder)
-                {
-                    builder.UseNServiceBus(() =>
-                    {
-                        var configuration = new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint");
-                        configuration.Transport.ConnectionString("functionConnectionString");
-                        return configuration;
-                    });
-                }
-            }
-        }
-        #endregion
-
         #region asb-configure-error-queue
         class EnableDiagnosticsOnStartup : FunctionsStartup
         {
