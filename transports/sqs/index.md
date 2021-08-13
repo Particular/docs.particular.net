@@ -7,6 +7,7 @@ related:
  - samples/sqs/simple
 redirects:
 - nservicebus/sqs/index
+- transports/sqs/why-use-sqs
 ---
 
 [Simple Queue Service (SQS)](https://aws.amazon.com/sqs/) is a message queue service provided by [Amazon Web Services](https://aws.amazon.com/).
