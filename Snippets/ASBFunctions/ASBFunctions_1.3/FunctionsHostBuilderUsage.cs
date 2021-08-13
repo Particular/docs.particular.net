@@ -1,21 +1,17 @@
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using NServiceBus;
 
-// needs to be top level first defined for C# to compile
-#region endpoint-trigger-function-wireup
-
-[assembly: NServiceBusTriggerFunction("MyFunctionsEndpoint")]
-
-#endregion
-
 #region asb-function-default
 [assembly: FunctionsStartup(typeof(Startup))]
+[assembly: NServiceBusTriggerFunction(Startup.EndpointName)]
 
 class Startup : FunctionsStartup
 {
+    public const string EndpointName = "MyFunctionsEndpoint";
+
     public override void Configure(IFunctionsHostBuilder builder)
     {
-        builder.UseNServiceBus();
+        builder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration(EndpointName));
     }
 }
 #endregion
