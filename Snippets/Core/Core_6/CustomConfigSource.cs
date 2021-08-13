@@ -35,7 +35,7 @@ namespace Core6
                 };
                 return config as T;
             }
-            // leaving the rest of the configuration as is:
+            // leave the rest of the configuration as is:
             return ConfigurationManager.GetSection(typeof(T).Name) as T;
         }
     }

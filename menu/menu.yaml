@@ -921,8 +921,6 @@
       Title: Configuration Options
     - Url: transports/sqs/delayed-delivery
       Title: Delayed Delivery
-    - Url: transports/sqs/why-use-sqs
-      Title: Why use SQS?
     - Url: transports/sqs/topology
       Title: Topology
     - Url: transports/sqs/transaction-support
