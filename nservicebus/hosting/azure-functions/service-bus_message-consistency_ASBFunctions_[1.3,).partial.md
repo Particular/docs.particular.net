@@ -2,17 +2,17 @@ NServiceBus can provide transactional consistency between incoming and outgoing 
 
 snippet: asb-function-enable-sends-atomic-with-receive-with-attribute
 
-This is the equivalent to the [sends atomic with receive](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive) transport transaction mode.
+This is the equivalent to the [`SendsAtomicWithReceive`](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive) transport transaction mode. By default, transactional consistency is disabled, providing the same transport guarantees as the [`ReceiveOnly`](/transports/transactions.md#transactions-transport-transaction-receive-only) transport transaction mode.
 
-### Without trigger function attribute
+### Controlling consistency with custom trigger defintion
 
-If the Azure Function queue trigger attribute is not being used, then NServiceBus will process messages transactionally if it can control the receive transaction. This is done by looking for `ServiceBusTriggerAttribute` in the call stack and checking the `AutoComplete` property.
+If the `NServiceBusTriggerFunction` attribute is not being used, `IFunctionEndpoint.Process` will determine the transaction mode based on the `ServiceBusTrigger`'s `AutoComplete` property:
 
-If auto-complete is enabled, which is the default, then NServiceBus cannot control the receive transaction and the message is processed non-transactionally.
+If auto-complete is **enabled**, which is the default, then NServiceBus cannot control the receive transaction and the message is processed in `TransportTransactionMode.ReceiveOnly` mode.
 
 snippet: asb-function-message-consistency-process-non-transactionally
 
-If auto-complete is not enabled then NServiceBus can control the receive transaction and the message is processed transactionally.
+If auto-complete is **disabled**, then NServiceBus can fully control incoming and outgoing messages and the message is processed in `TransportTransactionMode.SendsAtomicWithReceive` mode.
 
 snippet: asb-function-message-consistency-process-transactionally
 
