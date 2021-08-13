@@ -146,7 +146,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.2.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.2.1) | 2021-02-11     | -                 | -                                 |
+| [1.2.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.2.2) | 2021-02-11     | -                 | -                                 |
 | [~~1.1.x~~](https://www.nuget.org/packages/Particular.TimeoutMigration/1.1.0) | ~~2021-01-27~~ | ~~2021-05-11~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | ~~2020-06-24~~ | ~~2021-04-27~~    | ~~Superseded by 1.1.x~~           |
 
