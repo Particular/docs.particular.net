@@ -7,7 +7,7 @@ related:
  - samples/dependency-injection/extensions-dependency-injection
  - samples/hosting/generic-host
  - samples/netcore-reference
-redirects:	
+redirects:
  - nservicebus/dependency-injection/property-injection
  - nservicebus/property-injection-in-handlers
 ---
@@ -28,9 +28,23 @@ snippet: usecontainer-servicecollection
 
 ## Usage with third party containers
 
-NServiceBus can be configured to work with any third party dependency injection container which implements the `Microsoft.Extensions.DependencyInjection` abstraction. To use a third-party dependency injection container, pass the specific container's `IServiceProviderFactory` to the `UseContainer` configuration method. The following snippet shows this approach, using Autofac (`Autofac.Extensions.DependencyInjection`) as an example:
+NServiceBus can be configured to work with any third party dependency injection container which implements the `Microsoft.Extensions.DependencyInjection` abstraction. To use a third-party dependency injection container, pass the specific container's `IServiceProviderFactory` to the `UseContainer` configuration method.
 
-snippet: usecontainer-thirdparty
+### Autofac
+
+snippet: AutofacUsage
+
+### Castle Windsor
+
+snippet: CastleUsage
+
+### StructureMap
+
+snippet: StructureMapUsage
+
+### Unity
+
+snippet: UnityUsage
 
 
 ## Configuring the container

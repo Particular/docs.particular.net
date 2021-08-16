@@ -16,15 +16,6 @@ namespace Extensions.DependencyInjection_1
             #endregion
         }
 
-        void ConfigureThirdPartyContainer(EndpointConfiguration endpointConfiguration)
-        {
-            #region usecontainer-thirdparty
-
-            endpointConfiguration.UseContainer(new AutofacServiceProviderFactory());
-
-            #endregion
-        }
-
         async Task ExternallyManagedMode(EndpointConfiguration endpointConfiguration)
         {
             #region externally-managed-mode
