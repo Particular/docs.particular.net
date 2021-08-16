@@ -1,11 +1,11 @@
 ﻿using NServiceBus;
 using StructureMap;
 
-class Usage
+class StructureMapUsage
 {
-    Usage(EndpointConfiguration endpointConfiguration)
+    StructureMapUsage(EndpointConfiguration endpointConfiguration)
     {
-        #region StructureMap
+        #region StructureMapUsage
 
         var registry = new Registry();
         registry.For<MyService>().Use(new MyService());

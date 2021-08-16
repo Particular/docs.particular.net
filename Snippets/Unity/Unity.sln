@@ -12,8 +12,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unity_9", "Unity_9\Unity_9.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unity_10", "Unity_10\Unity_10.csproj", "{50F1B8FD-320D-4815-A1D8-C78373D55C9B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions.DependencyInjection_1", "Extensions.DependencyInjection_1\Extensions.DependencyInjection_1.csproj", "{C3FCEE97-0200-4807-A56B-CCD33C679D41}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,8 +27,6 @@ Global
 		{55A8073E-0B37-46F7-A7B6-82AFF4BCEFD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50F1B8FD-320D-4815-A1D8-C78373D55C9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{50F1B8FD-320D-4815-A1D8-C78373D55C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3FCEE97-0200-4807-A56B-CCD33C679D41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3FCEE97-0200-4807-A56B-CCD33C679D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
