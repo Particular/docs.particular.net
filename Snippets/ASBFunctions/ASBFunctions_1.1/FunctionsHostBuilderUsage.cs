@@ -11,6 +11,7 @@ namespace ASBFunctions_1_1
 {
     using System.Threading.Tasks;
     using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+    using Microsoft.Azure.ServiceBus;
     using Microsoft.Azure.WebJobs;
     using Microsoft.Extensions.Logging;
     using NServiceBus;
@@ -79,6 +80,28 @@ namespace ASBFunctions_1_1
                 await functionEndpoint.Send(new TriggerMessage(), sendOptions, executionContext, logger);
 
                 return new OkObjectResult($"{nameof(TriggerMessage)} sent.");
+            }
+        }
+        #endregion
+
+        #region custom-trigger-definition
+        class CustomTriggerDefinition
+        {
+            readonly IFunctionEndpoint endpoint;
+
+            public CustomTriggerDefinition(IFunctionEndpoint endpoint)
+            {
+                this.endpoint = endpoint;
+            }
+
+            [FunctionName("MyCustomTrigger")]
+            public async Task Run(
+                [ServiceBusTrigger(queueName: "MyFunctionsEndpoint")]
+                Message message,
+                ILogger logger,
+                ExecutionContext executionContext)
+            {
+                await endpoint.Process(message, executionContext, logger);
             }
         }
         #endregion
