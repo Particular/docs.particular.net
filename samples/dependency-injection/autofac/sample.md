@@ -1,6 +1,6 @@
 ---
 title: Autofac Dependency Injection Usage
-component: Autofac
+component: Extensions.DependencyInjection
 reviewed: 2019-09-10
 related:
  - nservicebus/dependency-injection
