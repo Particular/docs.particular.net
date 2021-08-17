@@ -1,6 +1,6 @@
 ---
 title: StructureMap Dependency Injection Usage
-component: StructureMap
+component: Extensions.DependencyInjection
 reviewed: 2019-09-11
 related:
  - nservicebus/dependency-injection

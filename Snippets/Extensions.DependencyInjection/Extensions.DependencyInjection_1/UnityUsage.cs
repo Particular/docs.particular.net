@@ -2,11 +2,11 @@
 using Unity;
 using Unity.Microsoft.DependencyInjection;
 
-class Usage
+class UnityUsage
 {
-    Usage(EndpointConfiguration endpointConfiguration)
+    UnityUsage(EndpointConfiguration endpointConfiguration)
     {
-        #region Unity
+        #region UnityUsage
 
         var container = new UnityContainer();
         container.RegisterInstance(new MyService());

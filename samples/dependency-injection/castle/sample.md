@@ -1,6 +1,6 @@
 ---
 title: Windsor Dependency Injection Usage
-component: Castle
+component: Extensions.DependencyInjection
 reviewed: 2019-09-11
 related:
  - nservicebus/dependency-injection

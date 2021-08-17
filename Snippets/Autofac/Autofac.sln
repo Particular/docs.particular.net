@@ -8,8 +8,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autofac_6", "Autofac_6\Auto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Autofac_7", "Autofac_7\Autofac_7.csproj", "{FA86B912-B21B-4EE0-8638-45C92F63C48D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Extensions.DependencyInjection_1", "Extensions.DependencyInjection_1\Extensions.DependencyInjection_1.csproj", "{61B7F346-85DE-4FE7-A101-B081616BE3A8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +19,6 @@ Global
 		{9B0894E7-B49F-4FAD-9C1F-EB81A4087B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA86B912-B21B-4EE0-8638-45C92F63C48D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FA86B912-B21B-4EE0-8638-45C92F63C48D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{61B7F346-85DE-4FE7-A101-B081616BE3A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{61B7F346-85DE-4FE7-A101-B081616BE3A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

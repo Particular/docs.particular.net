@@ -2,11 +2,11 @@
 using Autofac.Extensions.DependencyInjection;
 using NServiceBus;
 
-class Usage
+class AutofacUsage
 {
-    Usage(EndpointConfiguration endpointConfiguration)
+    AutofacUsage(EndpointConfiguration endpointConfiguration)
     {
-        #region Autofac
+        #region AutofacUsage
 
         endpointConfiguration.UseContainer(new AutofacServiceProviderFactory(containerBuilder =>
         {

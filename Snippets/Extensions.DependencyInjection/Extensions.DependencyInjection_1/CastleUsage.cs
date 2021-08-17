@@ -2,11 +2,11 @@
 using Castle.Windsor.MsDependencyInjection;
 using NServiceBus;
 
-class Usage
+class CastleUsage
 {
-    Usage(EndpointConfiguration endpointConfiguration)
+    CastleUsage(EndpointConfiguration endpointConfiguration)
     {
-        #region CastleWindsor
+        #region CastleUsage
 
         var containerSettings = endpointConfiguration.UseContainer(new WindsorServiceProviderFactory());
 
