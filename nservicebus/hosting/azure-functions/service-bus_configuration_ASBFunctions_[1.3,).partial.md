@@ -1,5 +1,5 @@
 snippet: asb-function-default
 
-The default builder method will look up values such as function name, connection string and license information directly from from the `IConfiguration`. Fine-grained configuration is also possible:
+Additional configuration settings are retrieved from environment variables, see the [Configuration section](#configuration) for further details. All configuration settings can also be configured directly via code:
 
 snippet: asb-function-hostbuilder
