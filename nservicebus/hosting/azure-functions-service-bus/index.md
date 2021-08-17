@@ -65,6 +65,8 @@ For recoverability to move the continuously failing messages to the error queue 
 
 snippet: asb-configure-error-queue
 
+partial: assembly-scanner
+
 ### Known constraints and limitations
 
 The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport()` method to allow customization; however, not all of the options will be applicable to execution within Azure Functions.
