@@ -1,7 +1,7 @@
 ---
 title: Selecting a host
 summary: A guide for selecting an NServiceBus transport.
-reviewed: 2019-07-15
+reviewed: 2021-08-18
 isLearningPath: true
 ---
 This document provides guidance for deciding how to [host](/nservicebus/hosting) [NServiceBus endpoints](/nservicebus/endpoints/).
@@ -21,7 +21,7 @@ For on-premises hosting, endpoints are typically hosted in background processes 
 
 ### Windows Services
 
-In Windows, a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host an NServiceBus endpoint.
+In Windows, a Windows Service is the most common way to host an NServiceBus endpoint.
 
 Windows Services run in the background, can immediately start when Windows is started, can be paused and restarted, and support [recoverability options](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options-configuring-service-recovery-via-windows-service-properties).
 
