@@ -63,7 +63,7 @@ Within AppServices, [WebJobs](https://docs.microsoft.com/en-us/azure/app-service
 
 Azure Functions can be used to run short-lived NServiceBus endpoints triggered by Azure Service Bus messages. When a message triggers a function, an NServiceBus endpoint can be started to handle the message.
 
-See [Azure Functions with Azure Service Bus](/nservicebus/hosting/azure-functions/service-bus.md) for more details.
+See [Azure Functions with Azure Service Bus](/nservicebus/hosting/azure-functions-service-bus/) for more details.
 
 ### Service Fabric
 

@@ -18,4 +18,4 @@ Note: An invalid trigger function name will generate an `NSBFUNC004` error with 
 
 #### Customizing Triggers
 
-The Azure Service Bus trigger can be manually declared instead of relying on the auto-generated trigger. See the [custom Azure Functions triggers](/nservicebus/hosting/azure-functions/custom-triggers.md) page for more information.
+The Azure Service Bus trigger can be manually declared instead of relying on the auto-generated trigger. See the [custom Azure Functions triggers](/nservicebus/hosting/azure-functions-service-bus/custom-triggers.md) page for more information.
