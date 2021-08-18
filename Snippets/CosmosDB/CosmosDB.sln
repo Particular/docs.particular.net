@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30330.147
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmosDB_0", "CosmosDB_0\CosmosDB_0.csproj", "{2083A4A0-AAFF-4BCD-89E1-1AB96E9C7099}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmosDB_1", "CosmosDB_1\CosmosDB_1.csproj", "{2083A4A0-AAFF-4BCD-89E1-1AB96E9C7099}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
