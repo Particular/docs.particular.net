@@ -16,8 +16,6 @@ snippet: asb-function-override-trigger-function-name
 
 Note: An invalid trigger function name will generate an `NSBFUNC004` error with the message `Trigger function name is invalid and cannot be used to generate trigger function`.
 
-#### Custom trigger definition
+#### Customizing Triggers
 
-If the trigger function needs to be customized, the trigger function generation can be disabled by removing the `NServiceBusTriggerFunction` attribute. A customized trigger function can then be manually added to the project:
-
-snippet: custom-trigger-definition
+The Azure Service Bus trigger can be manually declared instead of relying on the auto-generated trigger. See the [custom Azure Functions triggers](/nservicebus/hosting/azure-functions/custom-triggers.md) page for more information.
