@@ -16,7 +16,7 @@ Leading up to the launch of a new preview component, in order to help ensure ado
 
 User feedback is central to the Preview Program, so the more feedback is received, the better the end result will be.
 
-## Previews
+## Active Previews
 
 | Name                       | Private | Public | Notes  |
 |----------------------------|:-------:|:------:|--------|
@@ -24,8 +24,8 @@ User feedback is central to the Preview Program, so the more feedback is receive
 | [NServiceBus.AwsLambda.Sqs](/previews/aws-lambda-simple-queue-service.md)| :white_check_mark: | :white_check_mark: | [Forum discussion](https://discuss.particular.net/t/nservicebus-awslambda-sqs-public-preview-release-available/2158) |
 
 :white_large_square: - not started<br>
-:green_square: - in progress<br>
-:white_check_mark: - completed<br>
+:green_square: - in development<br>
+:white_check_mark: - available<br>
 
 ## Completed Previews
 
