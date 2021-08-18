@@ -20,7 +20,7 @@ The custom behavior can be introduced in one of the two stages:
 
 This is the earliest stage in the message processing pipeline. At this stage only the message ID, the headers and a byte array representation of the message body are available.
 
-snippet: ITransportReceiveContextBehavior
+snippet: CosmosDB-ITransportReceiveContextBehavior
 
 ### Interaction with outbox
 
@@ -30,7 +30,7 @@ This stage occurs before the [outbox](/nservicebus/outbox) logic is executed. Id
 
 This is the first stage in the pipeline that allows access to the deserialized message body. At this stage both the message headers and deserialized message object are available.
 
-snippet: IIncomingLogicalMessageContextBehavior
+snippet: CosmosDB-IIncomingLogicalMessageContextBehavior
 
 ### Interaction with outbox
 
@@ -40,7 +40,7 @@ Cosmos DB persistence introduces a new `LogicalOutboxBehavior` to locate the out
 
 To specify the ordering for the custom `PartitionKey` behavior:
 
-snippet: InsertBeforeLogicalOutbox
+snippet: CosmosDB-InsertBeforeLogicalOutbox
 
 To register the custom `PartitionKey` behavior:
 
@@ -68,8 +68,8 @@ The `TestableCosmosSynchronizedStorageSession` class in the `NServiceBus.Testing
 
 For custom types that require access to the shared `TransactionalBatch`:
 
-snippet: TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
+snippet: CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
 
 And alternatively to using the the extension method `IMessageHandlerContext.SynchronizedStorageSession.GetSharedTransactionalBatch()`:
 
-snippet: TransactionalBatchRegisteredWithDependencyInjectionResolvedInHandler
+snippet: CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInHandler

@@ -5,7 +5,7 @@ using NServiceBus;
 using NServiceBus.Persistence.CosmosDB;
 using NServiceBus.Pipeline;
 
-#region ITransportReceiveContextBehavior
+#region CosmosDB-ITransportReceiveContextBehavior
 class PartitionKeyTransportReceiveContextBehavior
     : Behavior<ITransportReceiveContext>
 {
@@ -18,7 +18,7 @@ class PartitionKeyTransportReceiveContextBehavior
 }
 #endregion
 
-#region IIncomingLogicalMessageContextBehavior
+#region CosmosDB-IIncomingLogicalMessageContextBehavior
 class PartitionKeyIncomingLogicalMessageContextBehavior
     : Behavior<IIncomingLogicalMessageContext>
 {
@@ -31,7 +31,7 @@ class PartitionKeyIncomingLogicalMessageContextBehavior
 }
 #endregion
 
-#region InsertBeforeLogicalOutbox
+#region CosmosDB-InsertBeforeLogicalOutbox
 public class RegisterMyBehavior : RegisterStep
 {
     public RegisterMyBehavior() :

@@ -36,7 +36,7 @@ class UsageHandler : IHandleMessages<MyMessage>
     #endregion
 }
 
-#region TransactionalBatchRegisteredWithDependencyInjectionResolvedInHandler
+#region CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInHandler
 
 class MyHandler : IHandleMessages<MyMessage>
 {
@@ -57,7 +57,7 @@ class MyHandler : IHandleMessages<MyMessage>
 
 #endregion
 
-#region TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
+#region CosmosDB-TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
 
 class MyCustomDependency
 {
