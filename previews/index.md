@@ -26,3 +26,10 @@ User feedback is central to the Preview Program, so the more feedback is receive
 :white_large_square: - not started<br>
 :green_square: - in progress<br>
 :white_check_mark: - completed<br>
+
+## Completed Previews
+
+| Name | Notes |
+|------|-------|
+| [NServiceBus.AzureFunctions.ServiceBus](/nservicebus/hosting/azure-functions/service-bus.md) | General Availability |
+| [NServiceBus.Persistence.CosmosDB](/persistence/cosmosdb) | General Availability |
