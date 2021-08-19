@@ -382,7 +382,7 @@
     - Url: nservicebus/hosting/web-application
       Title: Web Application
     - Url: nservicebus/hosting/azure-functions-service-bus
-      Title: Azure Functions for Service Bus
+      Title: Azure Functions with Service Bus
       Articles:
       - Url: nservicebus/hosting/azure-functions-service-bus/custom-triggers
         Title: Custom triggers
