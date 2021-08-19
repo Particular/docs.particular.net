@@ -39,7 +39,7 @@ Using private setters is not supported by all serializers. An alternative is to 
 Note: Not all transport configurations support polymorphic dispatch.
 
 ```c#
-public class CancelOrder : ICreateOrder
+public class CancelOrder : ICancelOrder
 {
     public CancelOrder(int orderId)
     {
