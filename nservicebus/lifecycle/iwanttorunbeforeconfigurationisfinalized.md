@@ -1,13 +1,13 @@
 ---
 title: Before Configuration Finalized
-summary: An interface that allows hooking into the configuration sequence of NServiceBus.
+summary: An interface that allows hooking into the configuration sequence of NServiceBus
 component: Core
-reviewed: 2019-07-22
+reviewed: 2021-08-19
 related:
  - samples/startup-shutdown-sequence
 ---
 
-During bus creation the configuration object used to construct the bus becomes frozen and locked. Classes that implement `IWantToRunBeforeConfigurationIsFinalized` are created and called just before this happens. Use `IWantToRunBeforeConfigurationIsFinalized` for any last minute alterations to the configuration that may rely on other configuration settings.
+During endpoint creation the configuration object used to construct the endpoint becomes frozen and locked. Classes that implement `IWantToRunBeforeConfigurationIsFinalized` are instantiated and called just before this happens. Use `IWantToRunBeforeConfigurationIsFinalized` for any last minute alterations to the configuration that may rely on other configuration settings.
 
 Instances are:
 
@@ -19,8 +19,8 @@ Instances are:
     * Will not have any dependencies injected.
     * Must have a default constructor.
 
-Once created `Run(...)` is called on each instance. These calls are made sequentially on the thread that is creating the bus. The order of these calls is determined by the order of the scanned types list as a result of the assembly scan.
+Once instantiated, `Run(...)` is called on each instance. These calls are made on the same thread that is creating the endpoint.  The order in which instances are instantiated and run is non-deterministic and should not be relied upon.
 
-Exceptions thrown by instances of `IWantToRunBeforeConfigurationIsFinalized` are unhandled by NServiceBus. These will bubble up to the caller creating the bus.
+Exceptions thrown by instances of `IWantToRunBeforeConfigurationIsFinalized` are unhandled by NServiceBus and will bubble up to the caller.
 
 snippet: lifecycle-iwanttorunbeforeconfigurationisfinalized
