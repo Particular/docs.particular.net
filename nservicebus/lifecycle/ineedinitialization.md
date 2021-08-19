@@ -1,13 +1,13 @@
 ---
-title: Initialization
-summary: An interface that supports hooking into the very beginning of the bus creation sequence of NServiceBus.
+title: Custom Endpoint Initialization
+summary: Implement INeedInitialization to hook into the very beginning of the endpoint creation sequence of NServiceBus.
 component: Core
 reviewed: 2019-07-18
 related:
  - samples/startup-shutdown-sequence
 ---
 
-Classes that implement `NServiceBus.INeedInitialization` are created and called as one of the first steps in the bus creation lifecycle. Use `INeedInitialization` to register components that will be used later in the bus creation lifecycle.
+Classes that implement `NServiceBus.INeedInitialization` are created and called as one of the first steps performed during endpoint creation. Use `INeedInitialization` to register components that will be used later in the endpoint creation sequence.
 
 partial: namespace
 
@@ -21,9 +21,9 @@ Instances are:
     * Will not have any dependencies injected.
     * Must have a default constructor.
 
-All calls are made in sequence on the thread that is creating the bus. The order of these calls is determined by the order of the scanned types list as a result of the assembly scan.
+Once instantiated, `Customize(...)` is called on each instance. These calls are made on the same thread that is creating the endpoint.  The order in which instances are instantiated and run is non-deterministic and should not be relied upon.
 
-Exceptions thrown by instances of `INeedInitialization` are not handled by NServiceBus. These will bubble up to the caller creating the endpoint.
+Exceptions thrown by instances of `INeedInitialization` are not handled by NServiceBus and will bubble up to the caller creating the endpoint.
 
 NOTE: Instances of `INeedInitialization` are created after type-scanning has occurred. Do not attempt to alter the types to be scanned from an instance of `INeedInitialization`.
 
