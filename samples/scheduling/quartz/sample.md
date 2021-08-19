@@ -1,6 +1,6 @@
 ---
 title: Quartz.NET Usage
-summary: Using of Quartz.NET to send messages from within an NServiceBus endpoint.
+summary: Using Quartz.NET to send messages from within an NServiceBus endpoint.
 reviewed: 2021-07-28
 component: Core
 related:

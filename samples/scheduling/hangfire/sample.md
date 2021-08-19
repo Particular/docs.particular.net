@@ -1,6 +1,6 @@
 ---
 title: Hangfire Usage
-summary: Using of Hangfire to send messages from within an NServiceBus endpoint.
+summary: Using Hangfire to send messages from within an NServiceBus endpoint.
 reviewed: 2021-07-28
 component: Core
 related:
@@ -56,7 +56,7 @@ Note that the `EndpointHelper` is used by the job to get access to the `IEndpoin
 
 ### Schedule a job
 
-Hangfire will accept any lambda expression as a job definition. 
+Hangfire will accept any lambda expression as a job definition.
 
 The expression is serialized, stored, and scheduled for execution by the `BackgroundJobServer` in Hangfire.
 
