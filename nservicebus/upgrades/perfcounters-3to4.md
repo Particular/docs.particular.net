@@ -2,7 +2,7 @@
 title: Upgrade PerformanceCounters Version 3 to 4
 summary: Instructions on how to upgrade PerformanceCounters Version 3 to 4.
 component: PerfCounters
-reviewed: 2019-07-19
+reviewed: 2021-08-19
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
