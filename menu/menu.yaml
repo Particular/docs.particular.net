@@ -385,7 +385,7 @@
       Title: Azure Functions ServiceBus
       Articles:
       - Url: nservicebus/hosting/azure-functions-service-bus/custom-triggers
-        Title: Custom Azure Function triggers
+        Title: Custom triggers
     - Url: nservicebus/hosting/service-fabric-hosting
       Title: Service Fabric
       Articles:
