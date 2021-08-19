@@ -649,7 +649,7 @@
 
 - Key: ASBFunctions
   Name: NServiceBus.AzureFunctions.InProcess.ServiceBus
-  DocsUrl: /nservicebus/hosting/azure-functions/service-bus
+  DocsUrl: /nservicebus/hosting/azure-functions-service-bus
   GitHubOwner: Particular
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.InProcess.ServiceBus

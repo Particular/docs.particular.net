@@ -2,10 +2,10 @@
 title: Azure Functions with Azure Service Bus
 component: ASBFunctions
 summary: Hosting NServiceBus endpoints with Azure Functions triggered by Azure Service Bus
-related:
- - samples/azure-functions/service-bus
 redirects:
  - previews/azure-functions-service-bus
+ - nservicebus/hosting/azure-functions
+ - nservicebus/hosting/azure-functions/service-bus
 reviewed: 2021-07-14
 ---
 
