@@ -1,7 +1,7 @@
 ---
 title: Logging message contents
 summary: How to output message contents to the log
-reviewed: 2019-07-22
+reviewed: 2021-08-19
 component: Core
 redirects:
 - nservicebus/logging-message-contents
