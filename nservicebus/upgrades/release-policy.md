@@ -29,6 +29,7 @@ Given a version number `{major}.{minor}.{patch}`, increment the:
 ### Interpretations/deviations from SemVer
 
 * Text in log and exception messages is not considered part of the public API.
+* Specific instances where following SemVer could hide potential message loss between versions.
 
 ## Backporting important bug fixes
 
