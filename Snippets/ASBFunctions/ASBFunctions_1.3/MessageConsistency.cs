@@ -26,7 +26,7 @@ namespace ASBFunctions_1_3
             [ServiceBusTrigger("ProcessMessage", AutoComplete = true)]
             Message message,
             ILogger logger,
-            IMessageReceiver messageReceiver,
+            MessageReceiver messageReceiver,
             ExecutionContext executionContext)
         {
             await endpoint.Process(message, executionContext, messageReceiver, logger);
@@ -40,7 +40,7 @@ namespace ASBFunctions_1_3
             [ServiceBusTrigger("ProcessMessageTx", AutoComplete = false)]
             Message message,
             ILogger logger,
-            IMessageReceiver messageReceiver,
+            MessageReceiver messageReceiver,
             ExecutionContext executionContext)
         {
             await endpoint.Process(message, executionContext, messageReceiver, logger);
@@ -66,7 +66,7 @@ namespace ASBFunctions_1_3
             [ServiceBusTrigger("ProcessMessages", AutoComplete = !EnableTransactions)]
             Message message,
             ILogger logger,
-            IMessageReceiver messageReceiver,
+            MessageReceiver messageReceiver,
             ExecutionContext executionContext)
         {
             if(EnableTransactions)
