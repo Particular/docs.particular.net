@@ -20,7 +20,7 @@ class CustomTriggerDefinition
         [ServiceBusTrigger("MyFunctionsEndpoint")]
         Message message,
         ILogger logger,
-        IMessageReceiver messageReceiver,
+        MessageReceiver messageReceiver,
         ExecutionContext executionContext)
     {
         await functionEndpoint.Process(message, executionContext, messageReceiver, logger);
