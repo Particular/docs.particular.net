@@ -319,6 +319,14 @@ No versions released.
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | 2020-06-24     | -                 | -                                 |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.0.2) | ~~2018-05-29~~ | ~~2020-09-24~~    | ~~Superseded by 1.1.x~~           |
 
+#### [Particular.TimeoutMigration](/nuget/Particular.TimeoutMigration)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.2.x](https://www.nuget.org/packages/Particular.TimeoutMigration/1.2.2) | 2021-02-11     | -                 | -                                 |
+| [~~1.1.x~~](https://www.nuget.org/packages/Particular.TimeoutMigration/1.1.0) | ~~2021-01-27~~ | ~~2021-05-11~~    | ~~Superseded by 1.2.x~~           |
+| [~~1.0.x~~](https://www.nuget.org/packages/Particular.TimeoutMigration/1.0.3) | ~~2020-06-24~~ | ~~2021-04-27~~    | ~~Superseded by 1.1.x~~           |
+
 ### Serializer packages
 
 #### [NServiceBus.Newtonsoft.Json](/nuget/NServiceBus.Newtonsoft.Json)
@@ -941,4 +949,3 @@ No versions released.
 | [~~1.0.x~~](https://www.nuget.org/packages/ServiceControl.TransportAdapter/1.0.2) | ~~2017-05-22~~ | ~~2017-10-20~~    | ~~Superseded by 1.2.x~~           |
 | [~~0.2.x~~](https://www.nuget.org/packages/ServiceControl.TransportAdapter/0.2.0) | ~~2017-01-25~~ | ~~2018-05-22~~    | ~~Superseded by 1.0.x~~           |
 | [~~0.1.x~~](https://www.nuget.org/packages/ServiceControl.TransportAdapter/0.1.1) | ~~2017-01-23~~ | ~~2017-04-25~~    | ~~Superseded by 0.2.x~~           |
-
