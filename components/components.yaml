@@ -701,6 +701,7 @@
   DocsUrl: nservicebus/tools
   GitHubOwner: Particular
   Category: Persistence
+  SupportLevel: Tool
   LicenseUrl: https://github.com/Particular/TimeoutMigrationTool/blob/master/LICENSE.md
   ProjectUrl: https://github.com/Particular/TimeoutMigrationTool
   NugetOrder:
