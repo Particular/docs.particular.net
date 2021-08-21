@@ -1,6 +1,6 @@
 ---
 title: Azure Blob Storage Databus Upgrade Version 1 to 2
-reviewed: 2019-07-22
+reviewed: 2021-08-20
 component: ABSDataBus
 related:
  - nservicebus/upgrades/6to7
