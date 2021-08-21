@@ -2,7 +2,7 @@
 title: Auditing Messages
 summary: Configure where to send messages and it provides built-in message auditing for every endpoint.
 component: Core
-reviewed: 2019-07-22
+reviewed: 2021-08-20
 related:
  - nservicebus/operations
  - nservicebus/messaging/headers
@@ -69,7 +69,7 @@ There two settings that control auditing:
 
 ### Queue Name
 
-The queue name to forward audit messages to
+The queue name to forward audit messages.
 
 
 ### OverrideTimeToBeReceived
