@@ -1,6 +1,6 @@
 ---
 title: Logging and Metrics Samples
-reviewed: 2019-07-22
+reviewed: 2021-08-20
 related: 
  - nservicebus/logging
  - monitoring/metrics
