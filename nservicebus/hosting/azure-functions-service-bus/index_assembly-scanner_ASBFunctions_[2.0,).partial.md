@@ -1,4 +1,4 @@
-### Assembly scanning
+## Assembly scanning
 
 The assembly scanner loads assemblies from two locations:
 
