@@ -28,6 +28,14 @@ Ensure that messages can be evolved by following general [messages design guidel
 
 When a message is extended with additional properties, it's necessary to carefully examine what will be the default values for those properties, especially if endpoints running in other versions don't recognize them. In particular, it's important to consider how clients might interpret the default value and provide appropriate guidelines for them.
 
+In some cases, a default value might be insufficient, and in order to accurately process the message, the value must be up to date. If the actual value of the added property is stored in a storage already accessible to the handler, the handler may retrieve that data as part of the message processing. However, in most cases, the actual value is stored by another service and it's not desirable to access the data directly from the handler.
+
+In such a case, the following steps can help:
+
+* Convert the original message handler to be part of a (new) saga
+* When the message is received, and the handler identifies that a part of the data is missing, send a dedicated message to the relevant endpoint to retrieve the missing information. 
+* When the data is retrieved, another dedicated message handler can handle the complete message
+
 
 ### Handling breaking changes in contracts
 
