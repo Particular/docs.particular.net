@@ -16,7 +16,7 @@ A delayed message is stored using the `Store` method.
 
 ### Polling and dispatching of delayed messages
 
-The message store is polled for due delayed messages in a background task which periodically calls `FetchNextDueTimeout`. If the method returns a message, the message is sent (see next paragraph), and the method is immediately called again. If the method returns `null`, `Next` is called, which returns either a `DateTimeOffset` indicating when next message will be due, or `null` if there are no delayed messages. `FetchNextDueTimeout` will be called. If another delayed message is persisted in the meantime, using the `Store` method.
+The message store is polled for due delayed messages in a background task which periodically calls `FetchNextDueTimeout`. If the method returns a message, the message is sent (see next paragraph), and the method is immediately called again. If the method returns `null`, `Next` is called, which returns either a `DateTimeOffset` indicating when the next message will be due, or `null` if there are no delayed messages. If another delayed message is persisted in the meantime, using the `Store` method.
 
 When a due delayed message is returned by `FetchNextDueTimeout`, the message is sent to the destination queue and then removed from the store using the `Remove` method. In case of an unexpected exception during forwarding the failure is registered using `IncrementFailureCount`. If the configured number of retries is exhausted the message is forwarded to the configured `error` queue.
 
