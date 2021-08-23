@@ -52,6 +52,14 @@ Note: Prior to version 7.2, messages had to be defined as a `class`. Defing them
 
 Generic message definitions (e.g. `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message or to use inheritance to reuse shared message characteristics.
 
+### Solution structure
+
+Messages define the data contract between two endpoints.
+
+It's recommended to use a dedicated assembly for message definitions. By keeping messages in a separate assembly, the amount of information and dependencies shared between services is minimized. Message definitions can be divided between multiple assemblies, which can be useful in more complex systems, for example, to narrow down the number of contracts exposed to different services.
+
+It's also possible to share messages as C# source files without packaging them into an assembly. One advantage of this approach is that messages don't need to be compiled against specific NServiceBus versions, so assembly redirects are not necessary. This can be accomplished by using [unobstrusive mode messages](/nservicebus/messaging/unobtrusive-mode.md) as well.
+
 ## Identifying messages
 
 Endpoints will process any message that can be deserialized into a .NET type but requires message contracts to be identified up front to support:
