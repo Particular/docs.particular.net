@@ -1,6 +1,6 @@
 ---
 title: Manage ServiceControl instances via PowerShell
-reviewed: 2021-08-04
+reviewed: 2021-08-23
 ---
 
 NOTE: For general information about using PowerShell with ServiceControl, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
@@ -43,7 +43,6 @@ All of the cmdlets have local help which can be accessed via the standard PowerS
 ```ps
 Get-Help Get-ServiceControlInstances
 ```
-
 
 ### Adding an instance
 
@@ -133,7 +132,6 @@ Remove-AuditInstance `
 
 NOTE: All connected ServiceControl Audit instances should be removed before removing the main ServiceControl instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance.
 
-
 ### Upgrading an instance
 
 The cmdlets in this section are used to upgrade the binaries of an existing instance. If the instance is running when the upgrade starts, it will be shut down during the upgrade and restarted once the upgrade is complete.
@@ -178,4 +176,12 @@ Use the following command to find a list of all of the ServiceControl Audit inst
 
 ```ps
 Get-ServiceControlAuditInstances | Select Name, Version
+```
+
+### Licensing
+
+Copies the license file to the correct location on the file system (`%PROGRAMDATA%/ParticularSoftware/license.xml`) so it is available to all instances of ServiceControl installed on the machine.
+
+```ps
+Import-ServiceControlLicense <License-File>
 ```
