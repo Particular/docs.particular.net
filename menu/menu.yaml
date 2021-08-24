@@ -207,6 +207,10 @@
         Title: Version 7 to 8
       - Url: nservicebus/upgrades/acs-host-6to7
         Title: Version 6 to 7
+    - Title: Azure Functions with Service Bus
+      Articles:
+      - Url: nservicebus/upgrades/azure-functions-service-bus-1to2
+        Title: Version 1 to 2
     - Title: Gateway
       Articles:
       - Url: nservicebus/upgrades/gateway-1to2
