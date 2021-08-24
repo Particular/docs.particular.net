@@ -56,7 +56,7 @@ Generic message definitions (e.g. `MyMessage<T>`) are not supported. It is recom
 
 Messages define the data contract between two endpoints.
 
-It's recommended to use a dedicated assembly for message definitions. By keeping messages in a separate assembly, the amount of information and dependencies shared between services is minimized. It is recomended to have a separate message assembly for every service. Due to that, service can [evolve its contracts](/nservicebus/messaging/evolving-contracts.md) without impacting other services in the system.
+It's recommended to use a dedicated assembly for message definitions. By keeping messages in a separate assembly, the amount of information and dependencies shared between services is minimized. It is recomended to have a separate message assembly for every service. Due to that, service can [evolve its contracts](/nservicebus/messaging/evolving-contracts.md) without impacting other services in the system. Every message should be declared in the message assembly of the service owning that message. 
 
 It's also possible to share messages as C# source files without packaging them into an assembly. One advantage of this approach is that messages don't need to be compiled against specific NServiceBus versions, so assembly redirects are not necessary. This can be accomplished by using [unobstrusive mode messages](/nservicebus/messaging/unobtrusive-mode.md) as well.
 
