@@ -43,7 +43,7 @@ For more complex systems, especially when receivers need to be gradually upgrade
 
 * Create a new contract that inherits the previous version instead of adjusting the same type
 * Release vX.1 of the contract's assembly
-* Update senders to use the new contract version, this may be done gradually.
+* Update senders to use the new contract version, this may be done gradually, deploying endpoint by endpoint as suited.
 * Update receivers to handle the new contract version by adding an additonal handler that can handle the new contract type
 * Update receivers that handle the old contract version by:
   * Processing the message assigning a default value to the missing properties.  It's necessary to carefully examine what the default values for the added properties will be, especially if endpoints running in other versions don't recognize them. In particular, it's important to consider how clients might interpret the default value and provide appropriate guidelines for them.
@@ -53,7 +53,7 @@ For more complex systems, especially when receivers need to be gradually upgrade
     * When the message is received, and the handler identifies that a part of the data is missing, send a dedicated message to the relevant endpoint to retrieve the missing information. If needed, keep track of the data from the original message by storing all relevant information in the saga
     * When the data is retrieved, a new message containing all required information can be sent. This message will be handled by the same handler that processes the new message contract type, deferring the actual processing to a single handler.
 
-When all senders and receivers are updated and in-flight messages in the old format have been handled, obsolete the previous contract type. By decorating the previous contract type with the `Obsolete` attribute, the changes become visible for receivers when they upgrade to the new version.
+When all senders and receivers are updated and in-flight messages in the old format have been handled, the previous contract type can be obsoleted. By decorating the previous contract type with the `Obsolete` attribute, the changes become visible for receivers when they upgrade to the new version.
 In a next major version, the obsoloted types may be removed.
 
 #### Removing data from a contract
