@@ -13,6 +13,6 @@
   </ItemGroup>
   <ItemGroup Label="Transitive dependencies">
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.842" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1896" />
   </ItemGroup>
 </Project>

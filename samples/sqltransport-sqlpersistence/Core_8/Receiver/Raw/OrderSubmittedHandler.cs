@@ -1,5 +1,5 @@
-using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -9,7 +9,7 @@ namespace Raw
     public class OrderSubmittedHandler :
         IHandleMessages<OrderSubmitted>
     {
-        static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
+        static readonly ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
 
         public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
         {
@@ -24,13 +24,15 @@ namespace Raw
                         values      (@Id, @Value)";
             using (var command = new SqlCommand(
                 cmdText: sql,
-                connection: (SqlConnection) session.Connection,
-                transaction: (SqlTransaction) session.Transaction))
+                connection: (SqlConnection)session.Connection,
+                transaction: (SqlTransaction)session.Transaction))
             {
                 var parameters = command.Parameters;
+
                 parameters.AddWithValue("Id", $"Raw-{message.OrderId}");
                 parameters.AddWithValue("Value", message.Value);
-                await command.ExecuteNonQueryAsync()
+
+                await command.ExecuteNonQueryAsync(context.CancellationToken)
                     .ConfigureAwait(false);
             }
 

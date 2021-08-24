@@ -19,8 +19,8 @@ class DistributeMessagesBasedOnHeader :
     public Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingPhysicalMessageContext, Task> next)
     {
         var intent = context.Message.GetMessageIntent();
-        var isSubscriptionMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
-        var isReply = intent == MessageIntentEnum.Reply;
+        var isSubscriptionMessage = intent == MessageIntent.Subscribe || intent == MessageIntent.Unsubscribe;
+        var isReply = intent == MessageIntent.Reply;
 
         if (isSubscriptionMessage || isReply)
         {

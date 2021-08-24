@@ -4,7 +4,7 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Storage.MongoDB" Version="3.0.0-alpha.122" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1895" /> <!--Remove when the MongoDB package is updated -->
+    <PackageReference Include="NServiceBus.Storage.MongoDB" Version="3.0.0-alpha.225" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1896" /> <!--Remove when the MongoDB package is updated -->
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@ namespace OrmLite
     public class OrderSubmittedHandler :
         IHandleMessages<OrderSubmitted>
     {
-        static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
+        static readonly ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
 
         static OrderSubmittedHandler()
         {
@@ -29,11 +29,11 @@ namespace OrmLite
                 Id = $"OrmLite-{message.OrderId}",
                 Value = message.Value,
             };
-            return session.Connection.UpdateAsync(obj: order,
-                commandFilter: command =>
-                {
-                    command.Transaction = session.Transaction;
-                });
+
+            return session.Connection.UpdateAsync(
+                obj: order,
+                commandFilter: command => command.Transaction = session.Transaction,
+                context.CancellationToken);
 
             #endregion
         }

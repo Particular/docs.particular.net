@@ -14,13 +14,15 @@
             routing.SubscriptionAuthorizer(context =>
             {
                 var headers = context.MessageHeaders;
+
                 var subscriptionMessageType = headers[Headers.SubscriptionMessageType];
-                var messageIntent = headers[Headers.MessageIntent];
-                var messageIntentEnum = (MessageIntentEnum) Enum.Parse(typeof(MessageIntentEnum), messageIntent, true);
-                // messageIntentEnum will be either MessageIntentEnum.Unsubscribe or MessageIntentEnum.Subscribe
-                var endpointName = headers[Headers.SubscriberEndpoint]
-                    .ToLowerInvariant();
-                // true to allow, false to decline
+
+                // messageIntent will be either MessageIntent.Unsubscribe or MessageIntent.Subscribe
+                var messageIntent = (MessageIntent)Enum.Parse(typeof(MessageIntent), headers[Headers.MessageIntent], true);
+
+                var endpointName = headers[Headers.SubscriberEndpoint].ToLowerInvariant();
+
+                // true to allow, false to disallow
                 return true;
             });
 
