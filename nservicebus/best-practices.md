@@ -2,6 +2,7 @@
 title: Best practices
 summary: An assortment of best practices presented as DO, DO NOT, and CONSIDER.
 reviewed: 2020-10-01
+isLearningPath: true
 ---
 
 This article presents recommendations to keep in mind when designing a system using NServiceBus.
