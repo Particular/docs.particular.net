@@ -121,10 +121,18 @@ NServiceBus no longer natively supports forwarding a copy of every message proce
 
 The `NServiceBus.Host` package is deprecated. See the [NServiceBus Host upgrade guide](/nservicebus/upgrades/host-7to8.md) for details and alternatives.
 
-
 ## NServiceBus Azure Host
 
 The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are deprecated.See the [NServiceBus Azure Host upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for details and alternatives.
+
+## Overriding the host machine name
+
+The `RuntimeEnvironment.MachineNameAction` method has been deprecated. To override the machine name of the endpoint instance use:
+
+```csharp
+endpointConfiguration.UniquelyIdentifyRunningInstance()
+    .UsingHostName("NewMachineName");`
+```
 
 ## DateTimeOffset instead of DateTime
 
