@@ -2,15 +2,16 @@
 {
     using System;
     using System.Net;
-    using NServiceBus.Support;
+    using NServiceBus;
 
     public class FQDNTest
     {
-        void FQDN()
+        void FQDN(EndpointConfiguration endpointConfiguration)
         {
             #region MachineNameActionOverride
 
-            RuntimeEnvironment.MachineNameAction = () => Dns.GetHostEntry(Environment.MachineName).HostName;
+            endpointConfiguration.UniquelyIdentifyRunningInstance()
+                .UsingHostName(Dns.GetHostEntry(Environment.MachineName).HostName);
 
             #endregion
         }

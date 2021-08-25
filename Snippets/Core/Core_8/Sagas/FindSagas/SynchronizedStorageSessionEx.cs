@@ -6,7 +6,7 @@
 
     public static class SynchronizedStorageSessionEx
     {
-        public static DbSession GetDbSession(this SynchronizedStorageSession session)
+        public static DbSession GetDbSession(this ISynchronizedStorageSession session)
         {
             throw new NotImplementedException();
         }

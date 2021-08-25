@@ -25,7 +25,7 @@ namespace Core8.Handlers.DataAccess
 
     public static class MyOrmExtensions
     {
-        public static object MyPersistenceSession(this SynchronizedStorageSession s)
+        public static object MyPersistenceSession(this ISynchronizedStorageSession s)
         {
             throw new NotImplementedException();
         }

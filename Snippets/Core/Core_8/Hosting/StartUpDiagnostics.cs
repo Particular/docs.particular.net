@@ -27,7 +27,7 @@ public class StartUpDiagnostics
         #endregion
     }
 
-    void CustomDiagnosticsSection(ReadOnlySettings settings)
+    void CustomDiagnosticsSection(IReadOnlySettings settings)
     {
         #region CustomDiagnosticsSection
 

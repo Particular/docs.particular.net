@@ -5,7 +5,7 @@ using NServiceBus.Logging;
 
 public class LongProcessingMessageHandler : IHandleMessages<LongProcessingMessage>
 {
-    static ILog log = LogManager.GetLogger<LongProcessingMessageHandler>();
+    static readonly ILog log = LogManager.GetLogger<LongProcessingMessageHandler>();
 
     #region handler-processing
 
@@ -13,7 +13,7 @@ public class LongProcessingMessageHandler : IHandleMessages<LongProcessingMessag
     {
         log.Info($"--- Received a message with processing duration of {message.ProcessingDuration}");
 
-        await Task.Delay(message.ProcessingDuration).ConfigureAwait(false);
+        await Task.Delay(message.ProcessingDuration, context.CancellationToken).ConfigureAwait(false);
 
         log.Info("--- Processing completed");
     }

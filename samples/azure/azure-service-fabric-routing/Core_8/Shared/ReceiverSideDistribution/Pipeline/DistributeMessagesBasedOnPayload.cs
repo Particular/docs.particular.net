@@ -20,8 +20,8 @@ class DistributeMessagesBasedOnPayload :
     public Task Invoke(IIncomingLogicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> next)
     {
         var intent = GetMessageIntent(context);
-        var isSubscriptionMessage = intent == MessageIntentEnum.Subscribe || intent == MessageIntentEnum.Unsubscribe;
-        var isReply = intent == MessageIntentEnum.Reply;
+        var isSubscriptionMessage = intent == MessageIntent.Subscribe || intent == MessageIntent.Unsubscribe;
+        var isReply = intent == MessageIntent.Reply;
 
         if (isSubscriptionMessage || isReply)
         {
@@ -55,11 +55,11 @@ class DistributeMessagesBasedOnPayload :
         return forwarder.Forward(context, messagePartitionKey);
     }
 
-    static MessageIntentEnum? GetMessageIntent(IMessageProcessingContext context)
+    static MessageIntent? GetMessageIntent(IMessageProcessingContext context)
     {
         if (context.MessageHeaders.TryGetValue(Headers.MessageIntent, out var intentStr))
         {
-            return (MessageIntentEnum)Enum.Parse(typeof(MessageIntentEnum), intentStr);
+            return (MessageIntent)Enum.Parse(typeof(MessageIntent), intentStr);
         }
 
         return null;

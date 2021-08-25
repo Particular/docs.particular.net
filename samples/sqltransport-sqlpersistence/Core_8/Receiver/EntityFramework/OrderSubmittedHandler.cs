@@ -8,7 +8,7 @@ namespace EntityFramework
     public class OrderSubmittedHandler :
         IHandleMessages<OrderSubmitted>
     {
-        static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
+        static readonly ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
 
         public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
         {
@@ -27,9 +27,11 @@ namespace EntityFramework
             using (var dbContext = new SubmittedOrderDbContext(session.Connection))
             {
                 dbContext.Database.UseTransaction(session.Transaction);
-                await dbContext.SubmittedOrder.AddAsync(order)
+
+                await dbContext.SubmittedOrder.AddAsync(order, context.CancellationToken)
                     .ConfigureAwait(false);
-                await dbContext.SaveChangesAsync()
+
+                await dbContext.SaveChangesAsync(context.CancellationToken)
                     .ConfigureAwait(false);
             }
 

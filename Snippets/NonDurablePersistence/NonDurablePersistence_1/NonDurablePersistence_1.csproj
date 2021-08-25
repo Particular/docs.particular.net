@@ -5,7 +5,7 @@
     <RootNamespace>Core_8</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1895" /> <!--Remove when NonDurable package is updated -->
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1896" /> <!--Remove when NonDurable package is updated -->
     <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="0.2.0-alpha.23" />
   </ItemGroup>
 </Project>

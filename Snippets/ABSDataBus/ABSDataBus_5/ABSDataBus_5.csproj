@@ -5,6 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="5.0.0-alpha.119" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1895" /> <!-- Remove when AzureBlobStorage package is updated -->
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1896" /> <!-- Remove when AzureBlobStorage package is updated -->
   </ItemGroup>
 </Project>

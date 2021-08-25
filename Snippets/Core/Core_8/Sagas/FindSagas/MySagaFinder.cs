@@ -9,9 +9,9 @@
     #region saga-finder
 
     public class MySagaFinder :
-        IFindSagas<MySagaData>.Using<MyMessage>
+        ISagaFinder<MySagaData, MyMessage>
     {
-        public Task<MySagaData> FindBy(MyMessage message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context, CancellationToken cancellationToken)
+        public Task<MySagaData> FindBy(MyMessage message, ISynchronizedStorageSession storageSession, IReadOnlyContextBag context, CancellationToken cancellationToken)
         {
             // SynchronizedStorageSession will have a persistence specific extension method
             // For example GetDbSession is a stub extension method

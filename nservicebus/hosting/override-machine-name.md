@@ -11,11 +11,7 @@ The machine name is used by various components. For example:
 - NServiceBus adds diagnostics headers to every message that is dispatched.
 - The MSMQ transport uses the machine name for routing.
 
-To override the machine name resolution, provide a factory method to `NServiceBus.Support.RuntimeEnvironment.MachineNameAction` when an endpoint is configured.
-
-INFO: Override the `MachineNameAction` **before** creating an NServiceBus endpoint configuration object. If this is not done, messages could be sent that will not contain the right machine name values.
-
-snippet: MachineNameActionOverride
+partial: specifyingmachinename
 
 ## Fully qualified domain names
 
