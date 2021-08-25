@@ -72,7 +72,7 @@ functionsHostBuilder.UseNServiceBus(() =>
     var routing = serviceBusTriggeredEndpointConfiguration.Transport.Routing();
     routing.RouteToEndpoint(typeof(SomeMessage), "AnotherEndpoint");
 
-    return serviceBusTriiggeredEndpointConfiguration;
+    return serviceBusTriggeredEndpointConfiguration;
 });
 ```
 
@@ -104,7 +104,7 @@ Use:
 ```csharp
 functionsHostBuilder.UseNServiceBus(endpointName, nsb => 
 {
-    nsb.ConfigureTransport(transport => transport.TopicName("nsb-subs"));
+    nsb.ConfigureTransport(transport => transport.TopicName = "nsb-subs");
 });
 ```
 
