@@ -1,3 +1,3 @@
-To override the machine name of the endpoint, the endpoint has to be marked as uniquely idenfiable. Once that is done, the hostname for that instance can be specified.
+The host machine name of an endpoint instance may be overridden if the endpoint instance is uniquely identifiable:
 
 snippet: MachineNameActionOverride

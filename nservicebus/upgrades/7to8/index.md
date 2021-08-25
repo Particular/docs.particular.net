@@ -127,7 +127,7 @@ The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are 
 
 ## Overriding the host machine name
 
-The `RuntimeEnvironment.MachineNameAction` method has been deprecated. To override the machine name of the endpoint instance use:
+`RuntimeEnvironment.MachineNameAction` is deprecated. The host machine name of an endpoint instance may be overridden using:
 
 ```csharp
 endpointConfiguration.UniquelyIdentifyRunningInstance()
