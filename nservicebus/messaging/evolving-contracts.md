@@ -46,14 +46,14 @@ For the contracts assembly:
 * Create a new contract that inherits the previous version instead of adjusting the same type
 * Release a new version of the contract's assembly
 
-For the senders and publishers:
+For senders and publishers:
 
 * Update senders and publishers to target the new contracts assembly
 * Update senders and publishers use the new message contract
 
 This may be done gradually, deploying endpoint by endpoint as suited.
 
-For the receivers:
+For receivers and subscribers:
 
 * Update receivers to target the new contracts assembly
 * Add an additonal handler that can handle new message contract
