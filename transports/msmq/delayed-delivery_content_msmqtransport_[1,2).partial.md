@@ -1,1 +1,1 @@
-MSMQ transport depends on the [timeout manager](/nservicebus/messaging/timeout-manager.md) for delayed delivery of messages (e.g. [saga timeouts](/nservicebus/sagas/timeouts.md) or [delayed retries](/nservicebus/recoverability/configure-delayed-retries.md)).
+The MSMQ transport depends on the [timeout manager](/nservicebus/messaging/timeout-manager.md) for delayed delivery of messages (e.g. [saga timeouts](/nservicebus/sagas/timeouts.md) or [delayed retries](/nservicebus/recoverability/configure-delayed-retries.md)).
