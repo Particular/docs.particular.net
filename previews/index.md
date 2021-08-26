@@ -31,5 +31,5 @@ User feedback is central to the Preview Program, so the more feedback is receive
 
 | Name | Notes |
 |------|-------|
-| [NServiceBus.AzureFunctions.ServiceBus](/nservicebus/hosting/azure-functions/service-bus.md) | General Availability |
+| [NServiceBus.AzureFunctions.ServiceBus](/nservicebus/hosting/azure-functions-service-bus) | General Availability |
 | [NServiceBus.Persistence.CosmosDB](/persistence/cosmosdb) | General Availability |
