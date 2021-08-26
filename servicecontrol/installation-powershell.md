@@ -36,6 +36,19 @@ The following cmdlets are available in ServiceControl version 4 and above, for t
 | sc-deleteremote        | Remove-ServiceControlRemote                   |
 | sc-remotes             | Get-ServiceControlRemotes                     |
 
+The following general cmdlets and aliases are provided by the ServiceControl Management PowerShell module.
+
+| Alias                  | Cmdlet                                        |
+| ---------------------- | --------------------------------------------- |
+| sc-addlicense          | Import-ServiceControlLicense                  |
+| sc-findlicense         | Get-ServiceControlLicense                     |
+| sc-help                | Get-ServiceControlMgmtCommands                |
+| urlacl-add             | Add-UrlAcl                                    |
+| urlacl-delete          | Remove-UrlAcl                                 |
+| urlacl-list            | Get-UrlAcls                                   |
+| port-check             | Test-IfPortIsAvailable                        |
+| user-sid               | Get-SecurityIdentifier                        |
+
 ### Help
 
 All of the cmdlets have local help which can be accessed via the standard PowerShell help command
