@@ -75,3 +75,19 @@ In a next major version, the obsoloted types may be removed.
 #### Modifying serialization formats
 
 Another approach for handling breaking changes is to modify serialization formats. The step-by-step guidance is provided in the [transition serialization formats](/samples/serializers/transitioning-formats/) formats.
+
+### Breaking down large contract assemblies
+
+In the early days of a system, combining all events, commands and messages into a single contracts assembly might make a lot of sense. However, as the system grows, breaking down the contracts into smaller parts makes more sense. An obvious reason is a rise in the number of subscribers for events published by a specific endpoint. It's not desirable to expose commands that are meant to be consumed by a single receiver to all the subscribers interested in that same endpoint's events.
+
+At that point it makes more sense to break down the contracts into multiple assemblies. A possible structure solution is to have multiple assemblies per endpoint with a naming convention similar to:
+
+* ServiceName.Commands
+* ServiceName.Events
+
+Or even more strict:
+
+* ServiceName.AutonomousComponent.Commands
+* ServiceName.AutonomousComponent.Events
+
+While it might make sense to directly reference the \*.Commands assemblies from the sender and receiver endpoints, it might not for the \*.Events assemblies as they are used by many subscribing endpoints. In those cases, it could make sense to share the assembly through NuGet packages as opposed to using a direct reference.
