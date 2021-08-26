@@ -78,7 +78,7 @@ Another approach for handling breaking changes is to modify serialization format
 
 ### Breaking down large contract assemblies
 
-In the early days of a system, combining all events, commands and messages into a single contracts assembly might make a lot of sense. However, as the system grows, breaking down the contracts into smaller parts makes more sense. An obvious reason is a rise in the number of subscribers for events published by a specific endpoint. It's not desirable to expose commands that are meant to be consumed by a single receiver to all the subscribers interested in that same endpoint's events.
+In the early days of a system, combining all events, commands and messages into a single contracts assembly might be a good place to start. However, as the system grows, breaking down the contracts into smaller parts makes more sense. An obvious reason is a rise in the number of subscribers for events published by a specific endpoint. It's not desirable to expose commands that are meant to be consumed by a single receiver to all the subscribers interested in that same endpoint's events.
 
 At that point it makes more sense to break down the contracts into multiple assemblies. A possible structure solution is to have multiple assemblies per endpoint with a naming convention similar to:
 
