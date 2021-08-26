@@ -39,14 +39,26 @@ Depending on the complexity of the system, multiple options are possible. The si
   * It's necessary to carefully examine what the default values for the added properties will be, especially if endpoints running in other versions don't recognize them. In particular, it's important to consider how clients might interpret the default value and provide appropriate guidelines for them.
   * Instead of relying on .NET to set the default value for int Age = 1, it's better to use nullable types and represent missing values as null.
 
-For more complex systems, especially when receivers need to be gradually upgraded, a more gradual upgrade is recommended:
+For more complex systems, especially when receivers need to be gradually upgraded, a more gradual upgrade is recommended.
+
+For the contracts assembly:
 
 * Create a new contract that inherits the previous version instead of adjusting the same type
-* Release vX.1 of the contract's assembly
-* Update senders to use the new contract version, this may be done gradually, deploying endpoint by endpoint as suited.
-* Update receivers to handle the new contract version by adding an additonal handler that can handle the new contract type
-* Update receivers that handle the old contract version by:
-  * Processing the message assigning a default value to the missing properties.  It's necessary to carefully examine what the default values for the added properties will be, especially if endpoints running in other versions don't recognize them. In particular, it's important to consider how clients might interpret the default value and provide appropriate guidelines for them.
+* Release a new version of the contract's assembly
+
+For the senders and publishers:
+
+* Update senders and publishers to target the new contracts assembly
+* Update senders and publishers use the new message contract
+
+This may be done gradually, deploying endpoint by endpoint as suited.
+
+For the receivers:
+
+* Update receivers to target the new contracts assembly
+* Add an additonal handler that can handle new message contract
+* Adjust the handler that handled the previous contract version by:
+  * Adjust message processing by assigning a default value to the missing properties.  It's necessary to carefully examine what the default values for the added properties will be, especially if endpoints running in other versions don't recognize them. In particular, it's important to consider how clients might interpret the default value and provide appropriate guidelines for them.
   * When the actual values for the new properties are required and the data is available in the storage, it can be retrieved as part of the message processing
   * When the new properties are required to correctly process the message and are stored by another service:
     * Convert the original message handler to initiate a saga
