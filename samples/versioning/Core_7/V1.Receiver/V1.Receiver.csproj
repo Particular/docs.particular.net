@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net48</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="NServiceBus" Version="7.5.0" />
+      <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\V1.Contracts\Versioning.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>

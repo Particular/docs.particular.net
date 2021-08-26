@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 #region V1Message
-namespace V1.Messages
+namespace Versioning.Contracts
 {
     public interface ISomethingHappened :
         IEvent

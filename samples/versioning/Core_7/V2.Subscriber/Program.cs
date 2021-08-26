@@ -6,8 +6,8 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Versioning.V2Subscriber";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V2Subscriber");
+        Console.Title = "Samples.Versioning.V2.Subscriber";
+        var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V2.Subscriber");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<MsmqTransport>();
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -19,8 +19,11 @@ class Program
 
         var routing = transport.Routing();
         routing.RegisterPublisher(
-            assembly: typeof(V2.Messages.ISomethingHappened).Assembly,
-            publisherEndpoint: "Samples.Versioning.V2Publisher");
+            assembly: typeof(ISomethingHappened).Assembly,
+            publisherEndpoint: "Samples.Versioning.V2.Publisher");
+        routing.RegisterPublisher(
+            assembly: typeof(ISomethingMoreHappened).Assembly,
+            publisherEndpoint: "Samples.Versioning.V2.Publisher");
 
         #endregion
 
