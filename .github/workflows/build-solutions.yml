@@ -1,9 +1,9 @@
-name: BuildProjects
+name: BuildSolutions
 on:
   schedule:
     - cron: '0 */4 * * 1-5' # Every 4 hours, Monday-Friday
 jobs:
-  build-projects:
+  build-solutions:
     name: Build samples & snippets
     runs-on: windows-latest
     steps:
@@ -38,6 +38,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
-      - name: Output failed projects
+      - name: Output failed solutions
         if: ${{ failure() }}
-        run: cat .\failed-projects.log
+        run: cat .\failed-solutions.log
