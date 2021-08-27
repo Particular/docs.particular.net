@@ -58,6 +58,8 @@ Messages define the data contract between two endpoints.
 
 It's recommended to use a dedicated assembly for message definitions. By keeping messages in a separate assembly, the amount of information and dependencies shared between services is minimized. It is recomended to have a separate message assembly for every service. Due to that, service can [evolve its contracts](/nservicebus/messaging/evolving-contracts.md) without impacting other services in the system. Every message should be declared in the message assembly of the service owning that message. 
 
+Consideration should be given to thinking about how the contract assembly will be used by services. When certain events are subscribed by multiple endpoints managed by other teams, it might make sense to publish those contracts as a separate NuGet package. Depending on the use and frequency of changes it could make sense to seprate contracts into multiple assemblies. 
+
 It's also possible to share messages as C# source files without packaging them into an assembly. One advantage of this approach is that messages don't need to be compiled against specific NServiceBus versions, so assembly redirects are not necessary. This can be accomplished by using [unobstrusive mode messages](/nservicebus/messaging/unobtrusive-mode.md) as well.
 
 ## Identifying messages
