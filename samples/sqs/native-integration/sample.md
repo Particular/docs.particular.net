@@ -30,8 +30,8 @@ snippet: HandlerAccessingNativeMessage
 
 ## Replies
 
-To enable the NServiceBus endpoint to [reply](/nservicebus/messaging/reply-to-a-message.md) back to the native endpoint a reply to address must be provided. The sample demonstrates how the native endpoint uses the attribute `ReplyToAddress` to provide the address where replies should be routed to. The receiver then uses a behavior to transfer that value to the [`NServiceBus.ReplyToAddress` header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-replytoaddress) that NServiceBus is using for routing replies:
+To enable the NServiceBus endpoint to [reply](/nservicebus/messaging/reply-to-a-message.md) back to the native endpoint a reply to address must be provided. The see this in action manually create a queue called `my-native-endpoint` in AWS and uncomment the line in the sender that adds the `ReplyToAddress` message attribute. The receiver then uses a behavior to transfer the reply to address in the native attribute to the [`NServiceBus.ReplyToAddress` header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-replytoaddress) that NServiceBus uses to route replies:
 
 snippet: BehaviorPopulatingNativeReplyToAddress
 
-After running the sample use the AWS management console to view the replies sent back to the queue `my-native-endpoint`.
+After running the sample use the AWS management console to view the replies sent back to the native queue.

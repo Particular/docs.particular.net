@@ -9,7 +9,7 @@ public class SomeNativeMessageHandler : IHandleMessages<SomeNativeMessage>
 {
     static ILog log = LogManager.GetLogger<SomeNativeMessageHandler>();
 
-    public Task Handle(SomeNativeMessage eventMessage, IMessageHandlerContext context)
+    public async Task Handle(SomeNativeMessage eventMessage, IMessageHandlerContext context)
     {
         var nativeMessage = context.Extensions.Get<Message>();
         var nativeAttributeFound = nativeMessage.MessageAttributes.TryGetValue("SomeRandomKey", out var randomAttributeKey);
@@ -21,9 +21,12 @@ public class SomeNativeMessageHandler : IHandleMessages<SomeNativeMessage>
             log.Info($"Found attribute 'SomeRandomKey' with value '{randomAttributeKey.StringValue}'");
         }
 
-        log.Info($"Sending reply to '{context.ReplyToAddress}'");
+        if (context.ReplyToAddress != null)
+        {
+            log.Info($"Sending reply to '{context.ReplyToAddress}'");
 
-        return context.Reply(new SomeReply());
+            await context.Reply(new SomeReply());
+        }
     }
 }
 #endregion
