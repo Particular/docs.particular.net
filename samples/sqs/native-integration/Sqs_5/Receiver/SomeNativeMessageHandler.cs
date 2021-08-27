@@ -21,7 +21,9 @@ public class SomeNativeMessageHandler : IHandleMessages<SomeNativeMessage>
             log.Info($"Found attribute 'SomeRandomKey' with value '{randomAttributeKey.StringValue}'");
         }
 
-        return Task.CompletedTask;
+        log.Info($"Sending reply to '{context.ReplyToAddress}'");
+
+        return context.Reply(new SomeReply());
     }
 }
 #endregion

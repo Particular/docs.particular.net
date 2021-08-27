@@ -27,3 +27,11 @@ Next, the handler is invoked. The handler code can also access the native messag
 Note: The message attribute `MessageTypeFullName` might not be available anymore in the `MessageAttributes` collection in recoverability scenarios. Instead, it will be part of the `Headers` collection.
 
 snippet: HandlerAccessingNativeMessage
+
+## Replies
+
+To enable the NServiceBus endpoint to [reply](/nservicebus/messaging/reply-to-a-message.md) back to the native endpoint a reply to address must be provided. The sample demonstrates how the native endpoint uses the attribute `ReplyToAddress` to provide the address where replies should be routed to. The receiver then uses a behavior to transfer that value to the [`NServiceBus.ReplyToAddress` header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-replytoaddress) that NServiceBus is using for routing replies:
+
+snippet: BehaviorPopulatingNativeReplyToAddress
+
+After running the sample use the AWS management console to view the replies sent back to the queue `my-native-endpoint`.
