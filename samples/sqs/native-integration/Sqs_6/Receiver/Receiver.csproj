@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1896" />
-    <PackageReference Include="NServiceBus.AmazonSQS" Version="6.0.0-alpha.127" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="6.0.0-alpha.134" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sender\Sender.csproj" />
