@@ -70,7 +70,22 @@ In a next major version, the obsoloted types may be removed.
 
 #### Removing data from a contract
 
+When the need rises to remove data from a contract, the easiest way to implement this change is to start at the consumers' side.
 
+Adjust all receivers and subscribers to not rely on the data that needs to be removed by:
+
+  * Retrieving the data from somewhere else
+  * Removing the data completely
+
+In the first case, the same way of working can be applied as when adding data to a contract:
+
+* Convert the original message handler to initiate a saga
+* When the message is received, and the handler identifies that the required data is not part of the contract, send a dedicated message to the relevant endpoint to retrieve the missing information. If needed, keep track of the data from the original message by storing all relevant information in the saga
+* When the data is retrieved, the original message handler logic may be invoked to process the data
+
+When all receivers and subscibers have been updated to allow for processing with less data, the contracts can be adjusted. By decorating the previous contract type with the `Obsolete` attribute, the changes become visible for receivers when they upgrade to the new version.
+
+The main difference to keep in mind when removing data from a contract, is to start at the receiving end of the messages.
 
 #### Modifying serialization formats
 
