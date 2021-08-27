@@ -15,10 +15,10 @@ class PopulateReplyToAddressBehavior : Behavior<ITransportReceiveContext>
         var nativeMessage = context.Extensions.Get<Message>();
         var nativeReplyToAddressFound = nativeMessage.MessageAttributes.TryGetValue("ReplyToAddress", out var nativeReplyToAddressKey);
 
-        //do something useful with the native message
+        // populate the `NServiceBus.ReplyToAddress` header to enable replies from message handlers to be routed back to the native endpoint
         if (nativeReplyToAddressFound)
         {
-            log.Info($"Intercepted the native message and found native attribute 'ReplyToAddress' with value '{nativeReplyToAddressKey.StringValue}' that will be used for replies");
+            log.Info($"Found native attribute 'ReplyToAddress' with value '{nativeReplyToAddressKey.StringValue}' that will be used to route replies");
 
             context.Message.Headers[Headers.ReplyToAddress] = nativeReplyToAddressKey.StringValue;
         }
