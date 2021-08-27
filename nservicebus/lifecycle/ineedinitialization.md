@@ -2,7 +2,7 @@
 title: Custom Endpoint Initialization
 summary: Implement INeedInitialization to hook into the very beginning of the endpoint creation sequence of NServiceBus.
 component: Core
-reviewed: 2019-07-18
+reviewed: 2021-08-26
 related:
  - samples/startup-shutdown-sequence
 ---
