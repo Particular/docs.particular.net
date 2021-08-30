@@ -55,7 +55,11 @@ The following provider packages will no longer be provided:
 
 ## CancellationToken support
 
-NServiceBus version 8 supports [cooperative cancellation](/nservicebus/hosting/cooperative-cancellation.md) using `CancellationToken` parameters. Where appropriate, optional `CancellationToken` parameters have been added to public methods. This includes the abstract classes and interfaces required to implement a message transport or persistence library, and other extension points like `IDataBus`, `FeatureStartupTask`, and `INeedToInstallSomething`. Implementers can be updated by adding an optional `CancellationToken` parameter to the end of method signatures.
+NServiceBus version 8 supports [cooperative cancellation](/nservicebus/hosting/cooperative-cancellation.md) using `CancellationToken` parameters. Where appropriate, optional `CancellationToken` parameters have been added to public methods. This includes the abstract classes and interfaces required to implement a message transport or persistence library, and other extension points like `IDataBus`, `FeatureStartupTask`, and `INeedToInstallSomething`. Implementers can be updated by adding an optional `CancellationToken` parameter to the end of method signatures. The change also includes callbacks that customize the behavior of NServiceBus:
+ - when a [critical error](/nservicebus/hosting/critical-errors.md) is encountered
+ - when a message is retried
+ - when a message is moved to the error queue
+ - when a message is processed
 
 ## Shutdown behavior
 
