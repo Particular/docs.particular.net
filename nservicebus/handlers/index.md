@@ -43,24 +43,35 @@ Receiving a message for which there are no message handlers is considered an err
 
 partial: behaviorcaveat
 
-## Invocation of multiple matching handlers
+## Multiple handlers for a single message
 
-It is important to keep in mind that a single incoming message should be processed as a single unit of work, regardless of the number of handlers which are hosted in that endpoint. If one of the handlers fails, the incoming message will be retried according to the [recoverability policy of the endpoint](/nservicebus/recoverability). When the incoming message is retried, _all_ matching handlers get invoked again, including the handlers that had successfully processed the message in previous attempts.
+Handling a single message in a given endpoint is treated as a single unit of work, regardless of how many handlers handle that message. If one handler fails, the message is retried according to the [recoverability policy](/nservicebus/recoverability) of the endpoint. When the message is retried, _all_ matching handlers are invoked again, including any that successfully handled the message during previous attempts.
 
-For these reasons, handlers should be designed in such a way that all their operations either rollback if any of them fail, or are idempotent such that they correctly deal with multiple invocations without any side-effects.
+For this reason, multiple handlers for the same message must either roll back their operations if any of them fail, or they must be idempotent and handle multiple invocations without any side-effects.
 
-If this is not possible, the overall design should be changed such that instead of there being just one message, multiple messages are created. This would have the additional benefit that these multiple messages would be processed in parallel where otherwise, the execution of the handlers for the single message would have been sequential. There are a number of techniques that can be applied to achieve this (listed from simpler to more complicated):
+### Alternatives
 
-1. If the original message is being [published as an event](/nservicebus/messaging/publish-subscribe/) and the handlers are hosted in an endpoint that is subscribed to it, then  separating the various handlers to be hosted in multiple different endpoints would result in each endpoint getting its own copy of the original message, isolating the failure of one handler from the other seperately-hosted handlers.
+If it is not possible to design multiple handlers in one of the ways described above, a separate message must be used for each handler. This has the additional benefit of the handlers being invoked in parallel. When a single message is used, the handlers are invoked sequentially.
 
-2. If the original message is not an event, meaning that it is being [sent](/nservicebus/messaging/send-a-message.md) to a specific endpoint, then additional changes are needed:
+There are a number of techniques for making this change, depending on the type of message:
 
-Note that so long as all the handlers continue to be hosted in the same endpoint, these different messages will need to be of different types such that each message only matches with one handler. After updating the handlers to the new message types, one of the following techniques can be applied:
+#### Events
 
-- Split the message at the target - create a new handler for the original message type that does multiple `SendLocal` calls for the new message types, which will then be handled by the updated handlers in the same endpoint. 
-- Split the message at the source - instead of emitting a single message, send out multiple messages of the different types directly.
+If the original message is [published as an event](/nservicebus/messaging/publish-subscribe/), the handlers must be hosted in separate endpoints. Each endpoint receives its own copy of the original message, isolating the failure of one handler from the others.
 
-As mentioned earlier, there is also the option of hosting each handler in its own endpoint. This will provide the greatest degree of isolation allowing independent customization of retry policies, greater visibility, better monitoring, and separate scaling, among other benefits.
+#### Other messages
+
+If the original message is not published as an event, but rather [sent](/nservicebus/messaging/send-a-message.md) to a specific endpoint, the following techniques may be used (listed from simplest to most complex):
+
+- Continue hosting the handlers in one endpoint, but create a new message type for each one and change each handler to handle one of those new messages instead of the original message. Then, either:
+  - Create the new messages at the destination:
+    - Create a new handler in the same endpoint as the others which handles the original message type.
+    - In the new handler, invoke `SendLocal` for each new message type.
+  - Or, create the new messages at the source:
+    - Instead of sending a single message, send an instance of each new message.
+- Host each handler in a separate endpoint:
+  - Send a copy of the original message to each endpoint.
+  - This provides the greatest degree of isolation and provides more granularity for retry policy customization and scaling, greater visibility, better monitoring, and other benefits.
 
 ## Unit testing
 
