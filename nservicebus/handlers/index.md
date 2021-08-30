@@ -63,7 +63,6 @@ If the original message is [published as an event](/nservicebus/messaging/publis
 
 If the original message is not published as an event, but rather [sent](/nservicebus/messaging/send-a-message.md) to a specific endpoint, the following techniques may be used (listed from simplest to most complex):
 
-
 - Continue hosting the handlers in one endpoint, but create a new message type for each one and change each handler to handle one of those new messages instead of the original message. Then, either:
   - Create the new messages at the destination:
     - Create a new handler in the same endpoint as the others which handles the original message type.
