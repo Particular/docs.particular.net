@@ -34,7 +34,7 @@ public class CancelOrder : ICommand
 
 ## Classes with public setters, interfaces with only getters
 
-Using private setters is not supported by all serializers. An alternative is to make use of NServiceBus' support for [multiple inheritance and polymorphic dispatch](/nservicebus/messaging/messages-as-interfaces.md). In this case, a message contract is defined through an interface, which is used by the message handler. An implementation of the message contract, which exposes public setters/getters is used to create the message and pass it to `Send` or `Publish`.
+Using private setters is not supported by all serializers. An alternative is to make use of NServiceBus' support for [multiple inheritance and polymorphic dispatch](/nservicebus/messaging/messages-as-interfaces.md). In this case, a message contract is defined through an interface containing getters only, which is used by the message handler. An implementation of the message contract, which exposes public setters is used to create the message and pass it to `Send` or `Publish`.
 
 Note: Not all transport configurations support polymorphic dispatch.
 
