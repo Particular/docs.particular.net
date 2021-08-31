@@ -1,5 +1,6 @@
 ---
-title: Using NServiceBus in Azure Functions with Service Bus triggers
+title: Using NServiceBus in Azure Functions (in-process)
+summary: Using NServiceBus with Azure Service Bus triggers and Azure Functions in-process worker hosting model.
 component: ASBFunctions
 related:
  - nservicebus/hosting/azure-functions-service-bus
