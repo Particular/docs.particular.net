@@ -1,20 +1,19 @@
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
+#region configuration-with-function-host-builder
 [assembly:NServiceBusTriggerFunction("ASBWorkerEndpoint")]
 
-namespace AzureFunctions.ASBTrigger.Worker
+public class Program
 {
-    public class Program
+    public static void Main()
     {
-        public static void Main()
-        {
-            var host = new HostBuilder()
-                .ConfigureFunctionsWorkerDefaults()
-                .UseNServiceBus()
-                .Build();
+        var host = new HostBuilder()
+            .ConfigureFunctionsWorkerDefaults()
+            .UseNServiceBus()
+            .Build();
 
-            host.Run();
-        }
+        host.Run();
     }
 }
+#endregion
