@@ -656,6 +656,15 @@
   NugetOrder:
     - NServiceBus.AzureFunctions.InProcess.ServiceBus
 
+- Key: ASBFunctionsWorker
+  Name: NServiceBus.AzureFunctions.Worker.ServiceBus
+  DocsUrl: /nservicebus/hosting/azure-functions-service-bus/isolated-worker
+  GitHubOwner: Particular
+  Category: Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.Worker.ServiceBus
+  NugetOrder:
+    - NServiceBus.AzureFunctions.Worker.ServiceBus
+
 - Key: ASQFunctions
   Name: NServiceBus.AzureFunctions.StorageQueues
   DocsUrl: /previews/azure-functions-storage-queues
