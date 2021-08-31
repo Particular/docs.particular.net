@@ -32,7 +32,7 @@ namespace ASBFunctions_2_0
         {
             builder.UseNServiceBus(configuration =>
             {
-                configuration.ServiceBusConnectionString("functionConnectionString");
+                configuration.ServiceBusConnectionString = "functionConnectionString";
             });
         }
     }
@@ -47,10 +47,7 @@ namespace ASBFunctions_2_0
             {
                 builder.UseNServiceBus(configuration =>
                 {
-                    configuration.Advanced(endpointConfig =>
-                    {
-                        endpointConfig.SendFailedMessagesTo("error");
-                    });
+                    configuration.AdvancedConfiguration.SendFailedMessagesTo("error");
                 });
             }
         }
