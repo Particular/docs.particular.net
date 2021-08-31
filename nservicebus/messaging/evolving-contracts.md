@@ -12,9 +12,7 @@ Evolving contracts over time is not an easy task and the appropriate strategy sh
 
 This article presents basic guidelines for choosing contracts evolution strategy, avoiding common mistakes, and ensuring that contracts will be easy to evolve over time.
 
-
 ## Designing contracts
-
 
 ### Messages
 
@@ -31,16 +29,15 @@ For complex systems, especially when there are significant changes in a message 
 
 #### Adding data to a contract
 
-Depending on the complexity of the change, the number of receivers for the contract and how the change might propagate through the system, a different approach may be desirable.
-It's important to consider where the added data is required for a message to be successfully processed.
+Depending on the complexity of the change, the number of senders and receivers for the contract as well as how the change might propagate through the system, a different approach may be desirable. It's important to consider where the added data is required for a message to be successfully processed.
 
 Considering a scenario in which the data that is added to the contract is not required to succesfully process a message:
 
 * Update the contract and release a new version.
   * Instead of relying on .NET to set the default value for int Age = 1, it's better to use nullable types and represent missing values as null. This allows for message handlers to reliably verify if the data is available using the ´HasValue´-property.
 * Update senders to use the new contract version.
-* Update receivers to handle the new contract version. 
-  * This can be done gradually, endpoint by endpoint. 
+* Update receivers to handle the new contract version.
+  * This can be done gradually, endpoint by endpoint.
 
 For a more complex change in which receivers require the data in order to successfully process a message, a more gradual upgrade is recommended.
 
@@ -75,9 +72,9 @@ In a next major version, the obsoleted types may be removed.
 
 #### Removing data from a contract
 
-When the need rises to remove data from a contract, the easiest way to implement this change is to start at the consumers' side.
+When the need rises to remove data from a contract, the easiest way to implement this change is to start at the receivers' side.
 
-Adjust all receivers and subscribers to not rely on the data that needs to be removed by:
+Adjust all receivers to not rely on the data that needs to be removed by:
 
   * Retrieving the data from somewhere else
   * Removing the data completely
@@ -85,12 +82,12 @@ Adjust all receivers and subscribers to not rely on the data that needs to be re
 In the first case, the same way of working can be applied as when adding data to a contract:
 
 * Convert the original message handler to initiate a saga
-* When the message is received, and the handler identifies that the required data is not part of the contract, send a dedicated message to the relevant endpoint to retrieve the missing information. If needed, keep track of the data from the original message by storing all relevant information in the saga
+* When the message is received, and the handler identifies that the required data is not part of the incoming message, send a dedicated message to the relevant endpoint to retrieve the missing information. If needed, keep track of the data from the original message by storing all relevant information in the saga
 * When the data is retrieved, the original message handler logic may be invoked to process the data
 
-When all receivers and subscibers have been updated to allow for processing with less data, the contracts can be adjusted. By decorating the previous contract type with the `Obsolete` attribute, the changes become visible for receivers when they upgrade to the new version.
+When all receivershave been updated to allow for processing with less data, the contracts can be adjusted.
 
-The main difference to keep in mind when removing data from a contract, is to start at the receiving side of the messages.
+If the data that needs to be removed wasn't crucial to start with, it could simply be obsoleted or removed from the message contract. When choosing this option, ensure that receivers can succesfully process the message without the removed properties.
 
 #### Modifying serialization formats
 
