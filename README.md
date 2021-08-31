@@ -237,7 +237,7 @@ related:
 Two things are generally referred to as "components", which can be confusing:
 
 * [Components](#componentsyaml), as defined in [components.yaml](components/components.yaml), is the true definition of components, and defines the topic for a page, as well as the collection of snippets that it will pull in. In the case of a component like MSMQ, the functionality started in Core but was moved out to the MSMQ transport, but all of these together use the component `MsmqTransport`.
-* [NuGet Aliases](#nugetaliastxt) are frequently misidentified as components because they look the same. NuGet aliases are used to translate the name of a versioned directory like `MsmqTransport_1` into the NuGet package `NServiceBus.Transport.Msmq`. Multiple NuGet aliases can exist within a component, i.e. MSMQ will have versioned snippet directories `Core_6` and `MsmqTransport_1`, which are different NuGet Aliases, but both belong to the same copmonent.
+* [NuGet Aliases](#nugetaliastxt) are frequently misidentified as components because they look the same. NuGet aliases are used to translate the name of a versioned directory like `MsmqTransport_1` into the NuGet package `NServiceBus.Transport.Msmq`. Multiple NuGet aliases can exist within a component, i.e. MSMQ will have versioned snippet directories `Core_6` and `MsmqTransport_1`, which are different NuGet Aliases, but both belong to the same component.
 
 **When you are adding a new package,** you therefore need to add new entries to both components.yaml and nugetAlias.txt, which can be a source of confusion.
 
