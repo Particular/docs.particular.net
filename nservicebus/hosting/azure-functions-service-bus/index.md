@@ -67,7 +67,7 @@ snippet: asb-configure-error-queue
 
 ### Known constraints and limitations
 
-The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport()` method to allow customization; however, not all of the options will be applicable to execution within Azure Functions.
+The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization; however, not all of the options will be applicable to execution within Azure Functions.
 
 ## Preparing the Azure Service Bus namespace
 

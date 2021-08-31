@@ -57,7 +57,7 @@ Use:
 functionsHostBuilder.UseNServiceBus(endpointName, nsb => 
 {
     var connectionString = Environment.GetEnvironmentVariable(connectionStringName);
-    nsb.ServiceBusConnectionString(connectionString);
+    nsb.ServiceBusConnectionString = connectionString;
 });
 ```
 
@@ -81,52 +81,6 @@ Use:
 ```csharp
 functionsHostBuilder.UseNServiceBus(endpointName, nsb => 
 {
-    nsb.Routing(routing => routing.RouteToEndpoint(typeof(SomeMessage), "AnotherEndpoint"));
-});
-```
-
-### Transport configuration
-
-Instead of
-
-```csharp
-functionsHostBuilder.UseNServiceBus(() =>
-{
-    var serviceBusTriggeredEndpointConfiguration = new ServiceBusTriggeredEndpointConfiguration(endpointName);
-    var transport = serviceBusTriggeredEndpointConfiguration.Transport;
-    transport.TopicName("nsb-subs");
-    return serviceBusTriggeredEndpointConfiguration;
-});
-```
-
-Use:
-
-```csharp
-functionsHostBuilder.UseNServiceBus(endpointName, nsb => 
-{
-    nsb.ConfigureTransport(transport => transport.TopicName = "nsb-subs");
-});
-```
-
-### Advanced configuration
-
-Instead of
-
-```csharp
-functionsHostBuilder.UseNServiceBus(() =>
-{
-    var serviceBusTriggeredEndpointConfiguration = new ServiceBusTriggeredEndpointConfiguration(endpointName);
-    var endpointConfiguration = serviceBusTriggeredEndpointConfiguration.AdvancedConfiguration;
-    endpointConfiguration.SendFailedMessagesTo("custom-error-queue");
-    return serviceBusTriggeredEndpointConfiguration;
-});
-```
-
-Use:
-
-```csharp
-functionsHostBuilder.UseNServiceBus(endpointName, nsb => 
-{
-    nsb.Advanced(endpointConfiguration => endpointConfiguration.SendFailedMessagesTo("custom-error-queue"));
+    nsb.Routing.RouteToEndpoint(typeof(SomeMessage), "AnotherEndpoint");
 });
 ```
