@@ -2,6 +2,8 @@
 title: Isolated Worker
 component: ASBFunctionsWorker
 summary: Using NServiceBus with the Azure Functions isolated worker hosting model.
+related:
+  - samples/azure-functions/service-bus-worker
 reviewed: 2021-08-30
 ---
 
