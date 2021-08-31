@@ -1,5 +1,6 @@
 ﻿namespace Core8.Headers
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using NServiceBus;
 
@@ -25,6 +26,9 @@
             publishOptions.SetHeader("MyCustomHeader", "My custom value");
             await context.Publish(new SomeOtherMessage(), publishOptions)
                 .ConfigureAwait(false);
+
+            var headers = new Dictionary<string, string> { { "MyCustomHeader", "My custom value" } };
+            await ReplyToOriginator(context, new SomeOtherMessage(), headers);
         }
         #endregion
 

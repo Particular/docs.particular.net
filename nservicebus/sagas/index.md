@@ -7,6 +7,7 @@ redirects:
 - nservicebus/sagas-in-nservicebus
 related:
 - samples/saga
+- nservicebus/messaging/header-manipulation
 ---
 
 NOTE: Want to learn how to build sagas step-by-step? Check out the [NServiceBus saga tutorials](/tutorials/nservicebus-sagas/).
