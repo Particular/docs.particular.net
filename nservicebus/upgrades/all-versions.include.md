@@ -548,6 +548,10 @@ No versions released.
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.1.0) | 2021-06-22     | 2021-10-15        | Superseded by 1.2.x               |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.0.0) | 2021-04-23     | 2021-09-22        | Superseded by 1.1.x               |
 
+#### [NServiceBus.AzureFunctions.Worker.ServiceBus](/nuget/NServiceBus.AzureFunctions.Worker.ServiceBus)
+
+No versions released.
+
 #### [NServiceBus.Bootstrap.WindowsService](/nuget/NServiceBus.Bootstrap.WindowsService)
 
 | Version   | Released       | Supported until   | Notes                             |
