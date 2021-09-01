@@ -30,6 +30,7 @@ class Program
                         //{"S3BodyKey", new MessageAttributeValue {DataType = "String", StringValue = "s3bodykey"}}, // optional for native integration
                         {"SomeRandomKey", new MessageAttributeValue {DataType = "String", StringValue = "something-random"}},
                         {"AnotherRandomKey", new MessageAttributeValue {DataType = "String", StringValue = "something-else-thats-random"}},
+                        //{"ReplyToAddress", new MessageAttributeValue {DataType = "String", StringValue = "my-native-endpoint"}}, //optional, used to demo replying back to the native endpoint, make sure to create the queue manually in AWS
                     }, MessageToSend);
                     #endregion
                     Console.WriteLine("Message was sent.");
