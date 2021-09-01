@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-#region configuration
+#region asb-function-isolated-configuration
 [assembly: NServiceBusTriggerFunction("WorkerDemoEndpoint")]
 
 public class Program
@@ -16,11 +16,11 @@ public class Program
         host.Run();
     }
 }
-#endregion configuration
+#endregion asb-function-isolated-configuration
 
 class EnableDiagnostics
 {
-    #region enable-diagnostics
+    #region asb-function-isolated-enable-diagnostics
     public static void Main()
     {
         var host = new HostBuilder()
@@ -38,7 +38,7 @@ class EnableDiagnostics
 
 class ConfigureErrorQueue
 {
-    #region configure-error-queue
+    #region asb-function-isolated-configure-error-queue
     public static void Main()
     {
         var host = new HostBuilder()
