@@ -1200,6 +1200,12 @@
   - Title: Introduction
     Url: servicecontrol
     Articles:
+    - Title: Installation
+      Url: servicecontrol/installation
+    - Title: How does it work
+      Url: servicecontrol/how
+    - Title: Transport support
+      Url: servicecontrol/transports
     - Title: PowerShell
       Url: servicecontrol/powershell
       Articles:
@@ -1237,7 +1243,7 @@
       - Title: Business Continuity / Disaster Recovery
         Url: servicecontrol/bcdr
     - Title: Installation
-      Url: servicecontrol/installation
+      Url: servicecontrol/installation-details
       Articles:
       - Title: Cluster Deployment
         Url: servicecontrol/deploying-servicecontrol-in-a-cluster
