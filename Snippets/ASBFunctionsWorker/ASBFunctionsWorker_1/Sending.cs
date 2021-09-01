@@ -6,7 +6,7 @@
     using Microsoft.Azure.Functions.Worker.Http;
     using NServiceBus;
 
-    #region dispatching-outside-message-handler
+    #region asb-function-isolated-dispatching-outside-message-handler
     public class HttpTrigger
     {
         readonly IFunctionEndpoint functionEndpoint;
