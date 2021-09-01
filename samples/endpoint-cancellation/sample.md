@@ -1,6 +1,6 @@
 ---
-title: Endpoint cancellation
-summary: Stopping an endpoint with a cancellation token
+title: Cooperative cancellation
+summary: Stopping both the endpoint and a long running handler with a cancellation token
 reviewed: 2021-08-31
 component: Core
 ---

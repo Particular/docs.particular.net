@@ -8,10 +8,10 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.FullDuplex.Server";
+        Console.Title = "Samples.Cooperative.Cancellation";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
-        var endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Server");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Cooperative.Cancellation");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
