@@ -6,7 +6,7 @@ component: Core
 ---
 
 
-Run the solution. One console application starts up, `Server`.
+Run the solution. A single console application starts up: `Server`.
 
 
 ## Code walk-through
