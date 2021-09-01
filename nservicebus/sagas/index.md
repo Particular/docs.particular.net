@@ -36,6 +36,10 @@ Using NServiceBus, it is possible to explicitly define the data used for this st
 
 snippet: simple-saga-data
 
+Saga data types should not be shared across different sagas as this can result in persisters physically sharing the same storage structure.
+
+partial: disable-shared-state-check
+
 NOTE: If a saga property is a [record type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record), that record type must be mutable so it can be deserialized.
 
 ## Adding behavior
