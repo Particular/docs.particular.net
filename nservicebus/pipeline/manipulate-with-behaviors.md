@@ -47,6 +47,18 @@ partial: pipelinecheck
 
 partial: registerorreplace
 
+
+## Disable an existing step
+
+To disable the implementation of an existing step, substitute it with a no action behavior:
+
+snippet: NoActionPipelineBehavior
+
+The behaviour does nothing and calls the next step in the pipeline chain by invoking `next()`.
+
+snippet: NoActionPipelineStep
+
+
 ## Exception handling
 
 Exceptions thrown from a behavior's `Invoke` method bubble up the chain. If the exception is not handled by a behavior, the message is considered as faulted which results in putting the message back in the queue (and rolling back the transaction) or moving it to the error queue (depending on the endpoint configuration).

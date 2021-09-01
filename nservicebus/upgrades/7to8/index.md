@@ -170,6 +170,10 @@ RabbitMQ user should use the new [`options.UseNonPersistentDeliveryMode()` API p
 
 With all currently-supported transports now supporting native delayed delivery, the [timeout manager](/nservicebus/messaging/timeout-manager.md) is no longer needed. Any calls to `EndpointConfiguration.TimeoutManager()` and `EndpointConfiguration.UseExternalTimeoutManager()` can safely be removed.
 
+## Removing a behaviour from the pipeline is obsolete
+
+The `Remove` command is no longer available in `PipelineSettings`. In order to disable a behavior, [replace the behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#disable-an-existing-step) with an empty one.
+
 ### Data migration
 
 Using a transport that previously relied on the timeout manager may require a migration of existing timeouts. Use the [timeouts migration tool](/nservicebus/tools/migrate-to-native-delivery.md) to detect and migrate timeouts as needed.
