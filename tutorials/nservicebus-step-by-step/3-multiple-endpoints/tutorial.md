@@ -75,7 +75,7 @@ For now we will use the first overload, specifying individual message types.
 
 ## Exercise
 
-Let's split apart the endpoint we created in the previous lesson. We'll reconfigure our solution so that the **ClientUI** endpoint sends the `PlaceOrder` command to a new endpoint that we'll call **Sales**. Sales will become the true logical owner of the `PlaceOrder` command, and we'll get to see NServiceBus send a message from one endpoint to another.
+Let's split apart the endpoint we created in the previous lesson. We'll reconfigure our solution so that the **ClientUI** endpoint sends the `PlaceOrder` command to a new endpoint that we'll call **Sales**. Sales will become the true logical owner of the `PlaceOrder` command, and we'll get to see NServiceBus send a message from one endpoint to another. For that reason, we will also rename the **Messages** project to **Sales.Messages** allowing us in future steps to add messages belonging to other services into their own dedicated projects.
 
 ![Exercise 3 Diagram](diagram.svg)
 
@@ -89,7 +89,8 @@ First, let's create a project for our new endpoint.
       ```
       Install-Package NServiceBus -ProjectName Sales
       ```
- 1. In the **Sales** project, add a reference to the **Messages** project, so that we have access to the `PlaceOrder` message.
+ 1. Rename **Messages** project to **Sales.Messages**
+ 1. In the **Sales** project, add a reference to the **Sales.Messages** project, so that we have access to the `PlaceOrder` message.
 
 NOTE: To take advantage of the `Async Main` feature and avoid boilerplate code, [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/3-ways-to-enable-c-7-1-features).
 

@@ -99,7 +99,7 @@ When the Shipping endpoint receives both the OrderPlaced and OrderBilled events,
 
 Let's create our first event, `OrderPlaced`:
 
- 1. In the **Messages** project, create a new class called `OrderPlaced`.
+ 1. In the **Sales.Messages** project, create a new class called `OrderPlaced`.
  1. Mark `OrderPlaced` as `public` and implement `IEvent`.
  1. Add a public property of type `string` named `OrderId`.
 
@@ -130,7 +130,7 @@ When an order is placed, we want to charge the credit card for that order. So we
 NOTE: Since this is the third endpoint we've created, the instructions will be a little more abbreviated. Refer back to [Lesson 2](../2-sending-a-command/) where we created the Sales endpoint for more detailed instructions.
 
  1. Create a new **Console Application** named **Billing**.
- 1. Add references for the **NServiceBus NuGet package** and the **Messages** assembly.
+ 1. Add references for the **NServiceBus NuGet package** and the **Sales.Messages** assembly.
  1. Copy the configuration from the **Program.cs** file in **Sales**, and paste it into the same file in **Billing**.
  1. In the **Billing** endpoint's **Program.cs**, change the value of `Console.Title` and the endpoint name argument of the `EndpointConfiguration` constructor to `"Billing"`.
  1. In the **Billing** endpoint, add a class named `OrderPlacedHandler`, mark it as `public`, and implement `IHandleMessages<OrderPlaced>`.
@@ -155,7 +155,8 @@ In a real system, after an order is placed and billed, we need to ship the produ
 
 This is also a good opportunity to check your understanding. If you can complete these steps without looking back at previous steps or previous lessons, you can be sure you have a good understanding of everything we've covered so far. (Don't worry, you can always check your work against the solution.)
 
- 1. In **Messages**, create a new event called `OrderBilled`, implementing `IEvent` and containing a property for the `OrderId`.
+ 1. Create a new **Class Library** named **Billing.Messages**
+ 1. In **Billing.Messages**, create a new event called `OrderBilled`, implementing `IEvent` and containing a property for the `OrderId`.
  1. In **Billing**, publish the `OrderBilled` event at the end of the `OrderPlacedHandler`.
  1. Create a new endpoint named **Shipping** with the necessary dependencies. Be sure to set the console title and endpoint name to `"Shipping"`, and configure it to start when debugging.
  1. In **Shipping**, create a message handler for `OrderPlaced`.
