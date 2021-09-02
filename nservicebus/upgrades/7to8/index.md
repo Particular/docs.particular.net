@@ -172,7 +172,7 @@ With all currently-supported transports now supporting native delayed delivery, 
 
 ## Removing a behaviour from the pipeline is obsolete
 
-The `Remove` command is no longer available in `PipelineSettings`. In order to disable a behavior, [replace the behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#disable-an-existing-step) with an empty one.
+The `Remove` command is no longer available in `PipelineSettings`. In order to disable a behavior, [replace the behavior](/nservicebus/pipeline/manipulate-with-behaviors.md?version=core_8#disable-an-existing-step) with an empty one.
 
 ### Data migration
 
