@@ -168,7 +168,7 @@ RabbitMQ user should use the new [`options.UseNonPersistentDeliveryMode()` API p
 
 ## Non-durable persistence
 
-Support for non-durable persistence (also known as `InMemoryPersistence`) has been moved out from the main `NServiceBus` package to a separate `NServiceBus.Persistence.NonDurable` package. To continue using it add reference to the new package and update the configuration code.
+Support for non-durable persistence (previously known as `InMemoryPersistence`) has been moved out from the main `NServiceBus` package to a separate `NServiceBus.Persistence.NonDurable` package. To continue using it add reference to the new package and update the configuration code.
 
 ```csharp
 endpointConfiguration.UsePersistence<NonDurablePersistence>();
