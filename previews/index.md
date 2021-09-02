@@ -33,3 +33,9 @@ User feedback is central to the Preview Program, so the more feedback is receive
 |------|-------|
 | [NServiceBus.AzureFunctions.ServiceBus](/nservicebus/hosting/azure-functions-service-bus) | General Availability |
 | [NServiceBus.Persistence.CosmosDB](/persistence/cosmosdb) | General Availability |
+
+## Retired Previews
+
+| Name | Notes |
+|------|-------|
+| [NServiceBus.FileBasedRouting](https://github.com/ParticularLabs/NServiceBus.FileBasedRouting) | Replaced by OSS equivalent |
