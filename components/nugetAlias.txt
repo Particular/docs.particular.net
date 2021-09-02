@@ -21,7 +21,6 @@ CustomChecks6: ServiceControl.Plugin.Nsb6.CustomChecks
 CustomChecks: NServiceBus.CustomChecks
 CloudServicesHost: NServiceBus.Hosting.Azure
 Distributor: NServiceBus.Distributor.MSMQ
-FileBasedRouting: NServiceBus.FileBasedRouting
 Gateway: NServiceBus.Gateway
 GatewayRavenDB: NServiceBus.Gateway.RavenDB
 GatewaySql: NServiceBus.Gateway.Sql
