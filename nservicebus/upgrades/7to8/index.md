@@ -166,6 +166,14 @@ Support for non-durable messaging has been moved to the transports that can supp
 
 RabbitMQ user should use the new [`options.UseNonPersistentDeliveryMode()` API provided by `NServiceBus.RabbitMQ` Version 7](/transports/rabbitmq/#controlling-delivery-mode)
 
+## Non-durable persistence
+
+Support for non-durable persistence (previously known as `InMemoryPersistence`) has been moved out from the main `NServiceBus` package to a separate `NServiceBus.Persistence.NonDurable` package. To continue using it add reference to the new package and update the configuration code.
+
+```csharp
+endpointConfiguration.UsePersistence<NonDurablePersistence>();
+```
+
 ## Timeout manager removed
 
 With all currently-supported transports now supporting native delayed delivery, the [timeout manager](/nservicebus/messaging/timeout-manager.md) is no longer needed. Any calls to `EndpointConfiguration.TimeoutManager()` and `EndpointConfiguration.UseExternalTimeoutManager()` can safely be removed.
