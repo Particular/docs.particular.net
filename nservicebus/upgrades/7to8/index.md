@@ -200,11 +200,15 @@ transport.TransportTransactionMode = TransportTransactionMode.ReceiveOnly;
 endpointConfiguration.EnableOutbox();
 ```
 
-### AbortReceiveOperation
+## Message mutators
+
+The message mutators that operate on serialized messages (`IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`) in version 8 represent the message payload as `ReadOnlyMemory<byte>` instead of `byte[]`. This means that it is no longer possible to change individual bytes. Instead, a modified copy of the payload need to be provided.
+
+## AbortReceiveOperation
 
 `ITransportReceiveContext.AbortReceiveOperation` has been deprecated in favor of throwing an [`OperationCanceledException`](https://docs.microsoft.com/en-us/dotnet/api/system.operationcanceledexception). This will preserve the NServiceBus version 7 behavior of immediately retrying the message without invoking [recoverability](/nservicebus/recoverability).
 
-### Renamed extension method types
+## Renamed extension method types
 
 The following static extension method types were renamed:
 
