@@ -38,4 +38,4 @@ User feedback is central to the Preview Program, so the more feedback is receive
 
 | Name | Notes |
 |------|-------|
-| [NServiceBus.FileBasedRouting](https://github.com/ParticularLabs/NServiceBus.FileBasedRouting) | Replaced by OSS equivalent |
+| [NServiceBus.FileBasedRouting](https://github.com/ParticularLabs/NServiceBus.FileBasedRouting) | Replaced by an [OSS equivalent](https://github.com/timbussmann/NServiceBus.FileBasedRouting) |
