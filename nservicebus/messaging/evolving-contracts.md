@@ -37,7 +37,7 @@ Considering a scenario in which the data that is added to the contract is not re
   * Instead of relying on .NET to set the default value for int Age = 1, it's better to use nullable types and represent missing values as null. This allows for message handlers to reliably verify if the data is available using the ´HasValue´-property.
 * Update senders to use the new contract version.
 * Update receivers to handle the new contract version.
-  * This can be done gradually, endpoint by endpoint.
+  * This can be done gradually, endpoint by endpoint. Endpoints that are not upgraded and reference the previous contracts assembly, will be unaware of the newly added data as it will be ignored during deserialization.
 
 For a more complex change in which receivers require the data in order to successfully process a message, a more gradual upgrade is recommended.
 
@@ -53,7 +53,7 @@ For senders and publishers:
 * Update senders and publishers to target the new contracts assembly
 * Update senders and publishers use the new message contract when sending/publishing messages
 
-This may be done gradually, deploying endpoint by endpoint as suited.
+This may be done gradually, deploying endpoint by endpoint as suited. Endpoints that are not upgraded and reference the previous contracts assembly, will be unaware of the newly added data as it will be ignored during deserialization.
 
 For receivers:
 
