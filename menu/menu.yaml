@@ -1242,8 +1242,7 @@
         Url: servicecontrol/configure-non-privileged-service-account
       - Title: Business Continuity / Disaster Recovery
         Url: servicecontrol/bcdr
-    - Title: Installation
-      Url: servicecontrol/installation-details
+    - Title: Advanced installations
       Articles:
       - Title: Cluster Deployment
         Url: servicecontrol/deploying-servicecontrol-in-a-cluster

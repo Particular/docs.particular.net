@@ -33,13 +33,14 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
 1. Click the `New` button at the top-right and a popup window appears.
 1. Select either `Add ServiceControl and Audit instances` or `Add monitoring instance`.
 1. Provide a name and transport.
-   1. The default name commonly used is `Particular.ServiceControl`.
-   1. The name can be adjusted further down in this screen as well per instance type.
+   1. The default name commonly used is `Particular.ServiceControl`.  
+      It has no real use except for the fact that it is being used to finalize the name for the error and audit instances. The name of each instance can be adjusted from its default if required.
    1. The transport should be the same as the transport the endpoints are using.  
       If a transport is not available, a [transport adapter](/servicecontrol/transport-adapter/incompatible-features.md) can be used.
-1. For additional error instance settings, open the `ServiceControl` and `ServiceControl Audit` sections.
-   1. Here the name of the instance can be altered, for example to `Particular.ServiceControl.Errors` and `Particular.ServiceControl.Audit`.  
-      If multiple instances for different systems are installed on the same server, a name like `Particular.SystemName.Errors` could be an option as well.
+1. For additional instance settings, open the `ServiceControl` and `ServiceControl Audit` sections.
+   1. Here the name of the instance can be altered, the defaults for error and audit are `Particular.ServiceControl` and `Particular.ServiceControl.Audit`.
+      1. The name for the error instance is particularly important to [enable plugins to send information](/servicecontrol/installation.md#servicecontrol-plugins) to ServiceControl.
+      1. If multiple instances for different systems are installed on the same server, a name like `Particular.SystemName` could be an option as well.
    1. Select the appropriate user account.  
       Be aware that ServiceControl instances will run as Windows Services in the background.
    1. Be aware of the port numbers as these are used by ServicePulse and ServiceInsight to connect to ServiceControl.
@@ -80,7 +81,9 @@ Clicking the upgrade link will:
 
 ## ServiceControl plugins
 
-The ServiceControl queue name is required for configuring the endpoint plugins. See [Install Heartbeats Plugin](/monitoring/heartbeats/install-plugin.md) and [Install Custom Checks Plugin](/monitoring/custom-checks/install-plugin.md) for more information.
+Endpoint plugins like heartbeat and custom checks require sending information to ServiceControl. The name of the queue is the exact name of the error instance.
+
+See [Install Heartbeats Plugin](/monitoring/heartbeats/install-plugin.md) and [Install Custom Checks Plugin](/monitoring/custom-checks/install-plugin.md) for more information.
 
 ## Migrating to a new host
 

@@ -16,7 +16,7 @@ NOTE: Each environment should contain a single [ServiceControl instance](/servic
 
 ## Transport support
 
-Monitoring supports the same transports as [Service Control](/servicecontrol/installation.md#transport-support).
+Monitoring supports the same transports as [Service Control](/servicecontrol/transports.md).
 
 ## Using ServiceControl Management to upgrade monitoring instances
 
