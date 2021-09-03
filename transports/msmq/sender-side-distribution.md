@@ -4,8 +4,6 @@ summary: How to scale out with sender-side distribution when using the MSMQ tran
 component: MsmqTransport
 reviewed: 2020-08-24
 versions: '[6,)'
-redirects:
- - nservicebus/messaging/file-based-routing
 related:
  - transports/msmq/routing
  - nservicebus/messaging/routing

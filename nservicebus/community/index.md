@@ -6,7 +6,7 @@ redirects:
  - nservicebus/mailer
  - samples/mailer
  - nservicebus/dependency-injection/simpleinjector
- - samlpes/dependency-injection/simpleinjector
+ - samples/dependency-injection/simpleinjector
  - transports/eventstore
  - nservicebus/gateway/httpvnext-channel
  - nservicebus/audit-filter
@@ -45,6 +45,8 @@ redirects:
  - samples/web/sql-http-passthrough
  - transports/sql/sql-http-passthrough
  - transports/sql/sql-native
+ - samples/routing/file-based-routing
+ - nservicebus/messaging/file-based-routing
 ---
 
 This is a curated list of community-developed extensions and integrations for the NServiceBus ecosystem.
@@ -60,6 +62,12 @@ A framework to help developers integrate NServiceBus with [EventStore](https://g
 ## [Community.NServiceBus.LambdaHandlers](https://github.com/timbussmann/Community.NServiceBus.LambdaHandlers)
 
 Supports declarative delegate-based message handlers for NServiceBus.
+
+Created by [Tim Bussmann](https://github.com/timbussmann).
+
+## [NServiceBus.FileBasedRouting](https://github.com/timbussmann/NServiceBus.FileBasedRouting)
+
+Supports routing based on routes stored in files.
 
 Created by [Tim Bussmann](https://github.com/timbussmann).
 

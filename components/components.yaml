@@ -142,15 +142,6 @@
   NugetOrder:
     - NServiceBus
 
-- Key: FileBasedRouting
-  Name: FileBasedRouting
-  DocsUrl: /nservicebus/messaging/file-based-routing
-  Category: Other
-  SupportLevel: Labs
-  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.FileBasedRouting
-  NugetOrder:
-    - NServiceBus.FileBasedRouting
-
 - Key: Distributor
   Name: Distributor
   DocsUrl: /transports/msmq/distributor
