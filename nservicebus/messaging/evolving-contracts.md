@@ -85,7 +85,7 @@ In the first case, the same way of working can be applied as when adding data to
 * When the message is received, and the handler identifies that the required data is not part of the incoming message, send a dedicated message to the relevant endpoint to retrieve the missing information. If needed, keep track of the data from the original message by storing all relevant information in the saga
 * When the data is retrieved, the original message handler logic may be invoked to process the data
 
-When all receivershave been updated to allow for processing with less data, the contracts can be adjusted.
+When all receivers have been updated to allow for processing with less data, the contracts can be adjusted.
 
 If the data that needs to be removed wasn't crucial to start with, it could simply be obsoleted or removed from the message contract. When choosing this option, ensure that receivers can succesfully process the message without the removed properties.
 
