@@ -24,7 +24,7 @@ An example of the same test written in Arrange-Act-Assert style and Fluent style
 
 snippet: 7to8-testhandler
 
-See [the handler unit testing documentation](/nservicebus/testing#testing-a-handler) for more information.
+See [the handler unit testing documentation](/nservicebus/testing/#testing-a-handler) for more information.
 
 ### Testing a saga
 
@@ -36,6 +36,6 @@ This is an example showing two state changes. One to start the saga that trigger
 
 snippet: 7to8-testsaga
 
-See [the saga unit testing documentation](/nservicebus/testing#testing-a-saga) for more information.
+See [the saga unit testing documentation](/nservicebus/testing/#testing-a-saga) for more information.
 
 
