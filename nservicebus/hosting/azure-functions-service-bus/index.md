@@ -6,6 +6,7 @@ redirects:
  - previews/azure-functions-service-bus
  - nservicebus/hosting/azure-functions
  - nservicebus/hosting/azure-functions/service-bus
+ - samples/azure-functions/service-bus
 reviewed: 2021-07-14
 ---
 
