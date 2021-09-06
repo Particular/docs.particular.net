@@ -6,12 +6,12 @@
     using NUnit.Framework;
 
     [Explicit]
+    #region 7to8-testhandler
     [TestFixture]
     class FluentHandlerTesting
     {
-        #region 7to8-testhandler
         [Test]
-        public async Task TestHandlerFluent()
+        public async Task TestHandler()
         {
             await Test.Handler<RequestMessageHandler>() // Arrange
                 .ExpectReply<ResponseMessage>( // Assert
@@ -25,8 +25,8 @@
                         message.String = "hello";
                     });
         }
-        #endregion
     }
+    #endregion
 
     class RequestMessageHandler : IHandleMessages<RequestMessage>
     {

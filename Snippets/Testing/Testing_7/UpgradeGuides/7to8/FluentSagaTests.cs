@@ -7,10 +7,10 @@
     using NUnit.Framework;
 
     [Explicit]
+    #region 7to8-testsaga
     [TestFixture]
     class FluentSagaTests
     {
-        #region 7to8-testsaga
         [Test]
         public void TestSagaFluent()
         {
@@ -32,8 +32,8 @@
                 .WhenSagaTimesOut()
                 .ExpectSagaCompleted();
         }
-        #endregion
     }
+    #endregion
 
     class StartsSaga : IMessage {}
     class MyResponse : IMessage {}

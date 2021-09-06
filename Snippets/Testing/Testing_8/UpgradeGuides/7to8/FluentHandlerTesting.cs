@@ -7,12 +7,12 @@
     using NUnit.Framework;
 
     [Explicit]
+    #region 7to8-testhandler
     [TestFixture]
-    class FluentHandlerTesting
+    class ArrangeActAssertHandlerTesting
     {
-        #region 7to8-testhandler
         [Test]
-        public async Task TestHandlerFluent()
+        public async Task TestHandler()
         {
             // Arrange
             var handler = new RequestMessageHandler();
@@ -27,8 +27,8 @@
                 x.Message<ResponseMessage>()?.String == "hello"),
                 "Should send a ResponseMessage reply that echoes the provided string");
         }
-        #endregion
     }
+    #endregion
 
     class RequestMessageHandler : IHandleMessages<RequestMessage>
     {

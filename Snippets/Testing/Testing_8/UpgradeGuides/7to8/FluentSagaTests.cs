@@ -8,10 +8,10 @@
     using NUnit.Framework;
 
     [Explicit]
+    #region 7to8-testsaga
     [TestFixture]
-    class FluentSagaTests
+    class ArrangeActAssertSagaTests
     {
-        #region 7to8-testsaga
         [Test]
         public async Task When_Saga_is_started_by_StartsSaga()
         {
@@ -76,8 +76,8 @@
 
             Assert.IsTrue(saga.Completed, "Saga should be completed");
         }
-        #endregion
     }
+    #endregion
 
     class StartsSaga : IMessage {}
     class MyResponse : IMessage {}
