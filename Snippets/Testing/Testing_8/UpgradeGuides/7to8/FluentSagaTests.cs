@@ -13,63 +13,68 @@
     {
         #region 7to8-testsaga
         [Test]
-        public async Task TestSagaFluent()
+        public async Task When_Saga_is_started_by_StartsSaga()
         {
-            //Test.Saga<MySaga>()
-            var sagaData = new MySaga.SagaData
-            {
-                Originator = "Originator"
-            };
+            // Arrange
             var saga = new MySaga
             {
-                Data = sagaData
+                Data = new MySaga.SagaData
+                {
+                    Originator = "Originator"
+                }
             };
 
-            // .When(
-            //   sagaIsInvoked: (saga, context) =>
-            //   {
-            //     return saga.Handle(new StartsSaga(), context);
-            //   })
+            // Act
             var message = new StartsSaga();
             var messageHandlerContext = new TestableMessageHandlerContext();
 
             await saga.Handle(message, messageHandlerContext);
 
-            // .ExpectReplyToOriginator<MyResponse>()
-            var repliedMessage = messageHandlerContext.RepliedMessages.SingleOrDefault();
-            Assert.IsNotNull(repliedMessage);
-            Assert.AreEqual("Originator", repliedMessage.Options.GetDestination());
-            Assert.IsNotNull(repliedMessage.Message<MyResponse>());
+            // Assert
+            Assert.IsTrue(messageHandlerContext.RepliedMessages.Any(x =>
+                x.Message is MyResponse &&
+                x.Options.GetDestination() == "Originator"),
+                "A MyResponse reply should be sent to the originator"
+            );
 
-            //    .ExpectTimeoutToBeSetIn<StartsSaga>(
-            //        check: (state, span) =>
-            //        {
-            //            return span == TimeSpan.FromDays(7);
-            //        })
-            var timeout = messageHandlerContext.TimeoutMessages.SingleOrDefault();
-            Assert.IsNotNull(timeout);
-            Assert.AreEqual(TimeSpan.FromDays(7), timeout.Within);
-            var timeoutMessage = timeout.Message as StartsSaga;
-            Assert.IsNotNull(timeoutMessage);
+            Assert.IsTrue(messageHandlerContext.TimeoutMessages.Any(x =>
+                x.Message is StartsSaga &&
+                x.Within == TimeSpan.FromDays(7)), 
+                "The StartsSaga message should be deferred for 7 days"
+            );
 
-            //    .ExpectPublish<MyEvent>()
-            Assert.IsTrue(messageHandlerContext.PublishedMessages
-                .Any(x => x.Message is MyEvent));
+            Assert.IsTrue(messageHandlerContext.PublishedMessages.Any(x =>
+                x.Message is MyEvent), 
+                "MyEvent should be published"
+            );
 
-            //    .ExpectSend<MyCommand>()
-            Assert.IsNotNull(messageHandlerContext.SentMessages
-                .SingleOrDefault(x => x.Message is MyCommand));
+            Assert.IsTrue(messageHandlerContext.SentMessages.Any(x =>
+                x.Message is MyCommand),
+                "MyCommand should be sent"
+            );
+        }
 
-            //    .WhenSagaTimesOut()
-            var timeoutMessageHandlerContext = new TestableMessageHandlerContext();
-            await saga.Timeout(timeoutMessage, timeoutMessageHandlerContext);
+        [Test]
+        public async Task When_StartsSaga_Timeout_completes()
+        {
+            // Arrange
+            var saga = new MySaga
+            {
+                Data = new MySaga.SagaData()
+            };
+
+            // Act
+            var timeoutMessage = new StartsSaga();
+            var timeoutHandlerContext = new TestableMessageHandlerContext();
+            await saga.Timeout(timeoutMessage, timeoutHandlerContext);
             
-            //    .ExpectPublish<MyOtherEvent>()
-            var timeoutPublish = timeoutMessageHandlerContext.PublishedMessages.SingleOrDefault();
-            Assert.IsNotNull(timeoutPublish?.Message<MyOtherEvent>());
-            
-            //    .ExpectSagaCompleted();
-            Assert.IsTrue(saga.Completed);
+            // Assert
+            Assert.IsTrue(timeoutHandlerContext.PublishedMessages.Any(x =>
+                x.Message is MyOtherEvent),
+                "MyOtherEvent should be published"
+            );
+
+            Assert.IsTrue(saga.Completed, "Saga should be completed");
         }
         #endregion
     }
