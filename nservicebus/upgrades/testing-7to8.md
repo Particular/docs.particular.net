@@ -28,7 +28,7 @@ See [the handler unit testing documentation](/nservicebus/testing/#testing-a-han
 
 ### Testing a saga
 
-To test a saga, create it with any necessary dependencies (including setting the data property), then call the `Handle` method directly. Pass in an instance of `TestableMessageHandlerContext` which will collect all outgoing operations. This context allows customization of metadata about the incoming message, including headers.
+To test a saga, create it with any necessary dependencies (including setting the `Data` property), then call the `Handle` method directly. Pass in an instance of `TestableMessageHandlerContext` which will collect all outgoing operations. This context allows customization of metadata about the incoming message, including headers.
 
 Fluent-saga tests frequently will include multiple state changes. Arrange Act Assert (AAA) tests should test a single state change in isolation. The state of the saga can be manually configured before each test as part of the Arrange step.
 
