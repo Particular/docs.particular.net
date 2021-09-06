@@ -23,9 +23,9 @@
             await handler.Handle(requestMessage, messageContext);
 
             // Assert
-            var reply = messageContext.RepliedMessages.SingleOrDefault()?.Message<ResponseMessage>();
-            Assert.IsNotNull(reply);
-            Assert.AreEqual("hello", reply.String);
+            Assert.IsTrue(messageContext.RepliedMessages.Any(x =>
+                x.Message<ResponseMessage>()?.String == "hello"),
+                "Should send a ResponseMessage reply that echoes the provided string");
         }
         #endregion
     }
