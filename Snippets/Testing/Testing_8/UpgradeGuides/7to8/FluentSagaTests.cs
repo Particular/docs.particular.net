@@ -7,11 +7,14 @@
     using NServiceBus.Testing;
     using NUnit.Framework;
 
+    [Explicit]
+    [TestFixture]
     class FluentSagaTests
     {
-        async Task TestSagaFluent()
+        #region 7to8-testsaga
+        [Test]
+        public async Task TestSagaFluent()
         {
-            #region 7to8-testsaga
             //Test.Saga<MySaga>()
             var sagaData = new MySaga.SagaData
             {
@@ -67,8 +70,8 @@
             
             //    .ExpectSagaCompleted();
             Assert.IsTrue(saga.Completed);
-            #endregion
         }
+        #endregion
     }
 
     class StartsSaga : IMessage {}

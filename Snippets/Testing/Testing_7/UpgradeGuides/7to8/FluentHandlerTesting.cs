@@ -3,12 +3,16 @@
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Testing;
+    using NUnit.Framework;
 
+    [Explicit]
+    [TestFixture]
     class FluentHandlerTesting
     {
-        async Task TestHandlerFluent()
+        #region 7to8-testhandler
+        [Test]
+        public async Task TestHandlerFluent()
         {
-            #region 7to8-testhandler
             await Test.Handler<RequestMessageHandler>() // Arrange
                 .ExpectReply<ResponseMessage>( // Assert
                     check: message =>
@@ -20,8 +24,8 @@
                     {
                         message.String = "hello";
                     });
-            #endregion
         }
+        #endregion
     }
 
     class RequestMessageHandler : IHandleMessages<RequestMessage>

@@ -6,11 +6,14 @@
     using NServiceBus.Testing;
     using NUnit.Framework;
 
+    [Explicit]
+    [TestFixture]
     class FluentHandlerTesting
     {
-        async Task TestHandlerFluent()
+        #region 7to8-testhandler
+        [Test]
+        public async Task TestHandlerFluent()
         {
-            #region 7to8-testhandler
             // Arrange
             var handler = new RequestMessageHandler();
             
@@ -23,8 +26,8 @@
             var reply = messageContext.RepliedMessages.SingleOrDefault()?.Message<ResponseMessage>();
             Assert.IsNotNull(reply);
             Assert.AreEqual("hello", reply.String);
-            #endregion
         }
+        #endregion
     }
 
     class RequestMessageHandler : IHandleMessages<RequestMessage>

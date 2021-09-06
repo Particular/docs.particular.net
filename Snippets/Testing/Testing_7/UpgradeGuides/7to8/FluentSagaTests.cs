@@ -4,12 +4,16 @@
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Testing;
+    using NUnit.Framework;
 
+    [Explicit]
+    [TestFixture]
     class FluentSagaTests
     {
-        void TestSagaFluent()
+        #region 7to8-testsaga
+        [Test]
+        public void TestSagaFluent()
         {
-            #region 7to8-testsaga
             Test.Saga<MySaga>()
                 .ExpectReplyToOriginator<MyResponse>()
                 .ExpectTimeoutToBeSetIn<StartsSaga>(
@@ -27,8 +31,8 @@
                 .ExpectPublish<MyOtherEvent>()
                 .WhenSagaTimesOut()
                 .ExpectSagaCompleted();
-            #endregion
         }
+        #endregion
     }
 
     class StartsSaga : IMessage {}
