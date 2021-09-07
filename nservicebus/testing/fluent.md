@@ -16,9 +16,9 @@ WARN: If Xunit test parallization feature is used it is possible that the synchr
 
 ## Structure
 
+Tests may be written using the fluent API or the traditional Arrange-Act-Assert (AAA) approach.
 
-partial: teststructure
-
+This article describes the fluent API. To learn how to test NServiceBus using the Arrange-Act-Assert approach, refer to the [sample](/samples/unit-testing/).
 
 ## Handlers
 
@@ -27,8 +27,6 @@ Handlers should be tested with a focus on their externally visible behavior: the
 snippet: TestingServiceLayer
 
 This test verifies that, when a message of type `RequestMessage` is processed by `MyHandler`, it responds with a message of type `ResponseMessage`. The test also checks that, if the incoming message has a `String` property of `"hello"`, then the outgoing message also has a `String` property of `"hello"`.
-
-partial: asynclayer
 
 ## Sagas
 
@@ -39,8 +37,6 @@ snippet: TestingSaga
 This test verifies that, when a message of type `StartsSaga` is processed by `MySaga`, the saga replies to the sender with a message of type `MyResponse`, publishes a message of type `MyEvent`, sends a message of type `MyCommand`, and requests a timeout for message of type `StartsSaga`. The test also checks if the saga publishes a message of type `MyOtherEvent`, and that the saga is completed after the timeout expires.
 
 Note that the expectation for the message of type `MyOtherEvent` is set only after the message is sent.
-
-partial: asyncsagas
 
 ## Interface messages
 
@@ -55,16 +51,8 @@ snippet: TestingHeaderManipulation
 
 This test asserts that the outgoing message contains header named `"MyHeaderKey"` set to `"myHeaderValue"`.
 
-partial: asyncheader
-
 ## Injecting additional dependencies
 
 Some handlers require other objects to perform their work. When testing those handlers, replace the objects with "stubs" so that the class under test is isolated.
 
 snippet: TestingAdditionalDependencies
-
-
-partial: nsbinjection
-
-
-partial: init

@@ -13,15 +13,15 @@
     public class Tests
     {
         [Test]
-        public void TestHandler()
+        public async Task TestHandler()
         {
-            Test.Handler<MyHandler>()
+            await Test.Handler<MyHandler>()
                 .ExpectReply<ResponseMessage>(
                     check: message =>
                     {
                         return message.String == "hello";
                     })
-                .OnMessage<RequestMessage>(
+                .OnMessageAsync<RequestMessage>(
                     initializeMessage: message =>
                     {
                         message.String = "hello";

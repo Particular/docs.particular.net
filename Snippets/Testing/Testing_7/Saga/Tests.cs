@@ -1,6 +1,7 @@
 ﻿namespace Testing_7.Saga
 {
     using System;
+    using System.Threading.Tasks;
     using NServiceBus.Testing;
     using NUnit.Framework;
 
@@ -11,9 +12,9 @@
         #region TestingSaga
 
         [Test]
-        public void TestSaga()
+        public async Task TestSagaAsync()
         {
-            Test.Saga<MySaga>()
+            var sagaExpectations = await Test.Saga<MySaga>()
                 .ExpectReplyToOriginator<MyResponse>()
                 .ExpectTimeoutToBeSetIn<StartsSaga>(
                     check: (state, span) =>
@@ -22,14 +23,16 @@
                     })
                 .ExpectPublish<MyEvent>()
                 .ExpectSend<MyCommand>()
-                .When(
+                .WhenAsync(
                     sagaIsInvoked: (saga, context) =>
                     {
                         return saga.Handle(new StartsSaga(), context);
-                    })
+                    });
+
+            await sagaExpectations
                 .ExpectPublish<MyOtherEvent>()
-                .WhenSagaTimesOut()
-                .ExpectSagaCompleted();
+                .ExpectSagaCompleted()
+                .WhenSagaTimesOutAsync();
         }
 
         #endregion
