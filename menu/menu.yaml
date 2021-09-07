@@ -219,6 +219,8 @@
         Title: Version 2 to 3
     - Title: NServiceBus Testing
       Articles:
+      - Url: nservicebus/upgrades/testing-7to8
+        Title: Version 7 to 8
       - Url: nservicebus/upgrades/testing-6to7
         Title: Version 6 to 7
       - Url: nservicebus/upgrades/testing-5to6
