@@ -1,4 +1,4 @@
-﻿namespace Testing_7.ServiceLayer
+﻿namespace Testing_7.UpgradeGuides._7to8
 {
     using System.Threading.Tasks;
     using NServiceBus;
@@ -6,41 +6,46 @@
     using NUnit.Framework;
 
     [Explicit]
-
-    #region TestingServiceLayer
-
+    #region 7to8-testhandler
     [TestFixture]
-    public class Tests
+    class FluentHandlerTesting
     {
         [Test]
         public async Task TestHandler()
         {
-            await Test.Handler<MyHandler>()
-                .ExpectReply<ResponseMessage>(
+            await Test.Handler<RequestMessageHandler>() // Arrange
+                .ExpectReply<ResponseMessage>( // Assert
                     check: message =>
                     {
                         return message.String == "hello";
                     })
-                .OnMessageAsync<RequestMessage>(
+                .OnMessageAsync<RequestMessage>( // Act 
                     initializeMessage: message =>
                     {
                         message.String = "hello";
                     });
         }
     }
+    #endregion
 
-    public class MyHandler :
-        IHandleMessages<RequestMessage>
+    class RequestMessageHandler : IHandleMessages<RequestMessage>
     {
         public Task Handle(RequestMessage message, IMessageHandlerContext context)
         {
-            var reply = new ResponseMessage
+            return context.Reply(new ResponseMessage
             {
                 String = message.String
-            };
-            return context.Reply(reply);
+            });
         }
     }
 
-    #endregion
+    class RequestMessage : IMessage
+    {
+        public string String { get; set; }
+    }
+
+    class ResponseMessage : IMessage
+    {
+        public string String { get; set; }
+    }
 }

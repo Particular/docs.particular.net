@@ -35,3 +35,7 @@ The `ExpectHandleCurrentMessageLater` method has been obsoleted as `IMessageHand
 An overload of the `WhenHandling` method has been added, which accepts a preconstructed message.
 
 snippet: 6to7-WhenHandling
+
+## Fluent-style tests deprecated
+
+The fluent-style testing API has been deprecated. See [upgrade guide](/nservicebus/upgrades/testing-7to8.md) for help migrating to Arrange-Act-Assert (AAA) test API.
