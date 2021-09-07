@@ -1228,8 +1228,6 @@
       Url: servicecontrol/upgrades/2to3
     - Title: Version 1 to 2
       Url: servicecontrol/upgrades/1to2
-  - Title: PowerShell
-    Url: servicecontrol/powershell
   - Title: Error instances
     Url: servicecontrol/servicecontrol-instances
     Articles:
