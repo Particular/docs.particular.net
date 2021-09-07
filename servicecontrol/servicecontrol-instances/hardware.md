@@ -63,3 +63,7 @@ Using multiple 7500 IOPS disks in striped mode in Azure may not improve performa
 ### Scale out
 
 If it is not possible to scale up ServiceControl to handle system volume, partition audit processing between multiple instances of ServiceControl. See [Multiple ServiceControl Instances](distributed-instances.md) for more details.
+
+### Turn off full-text search
+
+Even though it can be extremely valuable to search for specific messages based on their content, updating the full-text index requires a considerable amount of CPU as well as disk space. The ability to turn off the full-text search is available in the ServiceControl Management Utility.

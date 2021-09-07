@@ -5,7 +5,9 @@ redirects:
  - servicecontrol/multi-transport-support
 ---
 
-The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI. The installation package includes a utility to install, upgrade, and remove ServiceControl services. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
+Every component in the Particular Service Platform, including ServiceControl, needs to be [downloaded](https://particular.net/downloads) and installed.
+
+After installation, there is no ServiceControl instance running yet. These instances can be installed, upgraded, and removed by making use of the ServiceControl Management Utility. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
 
 NOTE: A [community managed puppet module](https://forge.puppet.com/tragiccode/nservicebusservicecontrol) is available to install ServiceControl.
 
@@ -15,85 +17,54 @@ The ServiceControl installation has the following prerequisites:
 
 * [Microsoft .NET 4.7.2 Runtime](https://dotnet.microsoft.com/download/dotnet-framework/net472)
 
+## Planning
+
+WARNING: In production environments, make sure to review the [environment considerations](/servicecontrol/servicecontrol-instances/hardware.md) when setting up a machine with ServiceControl.
+
+ServiceControl Management provides a simple way to set up one or more ServiceControl instances (error, audit, and monitoring). For production systems, it is recommended to limit the number of instances per machine to one of each type. The ability to add multiple instances *of the same type on a single machine* is primarily intended to assist development and test environments.
+
 See [ServiceControl Capacity Planning](capacity-and-planning.md) and [Hardware Considerations](/servicecontrol/servicecontrol-instances/hardware.md) for more guidance.
 
-## Transport support
+## Installing ServiceControl instances
 
-In ServiceControl version 1.7 and above, the transport packages are managed by the installation and do not need to be downloaded from NuGet. ServiceControl can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
+There are [three types](/servicecontrol/#servicecontrol-instance-types) of ServiceControl instances that can be installed using the ServiceControl Management utility. As the error and audit instance usually go side-by-side, they are installed and configured at the same time.
 
-* [Azure Service Bus](/transports/azure-service-bus)
-* [Azure Service Bus - Endpoint-oriented topology](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-endpoint-oriented-topology)
-* [Azure Service Bus - Forwarding topology](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-forwarding-topology)
-* [Azure Storage Queues](/transports/azure-storage-queues/)
-* [Amazon Simple Queue Service (SQS)](/transports/sqs/)
-* [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
-* [RabbitMQ - Conventional routing topology](/transports/rabbitmq/routing-topology.md#conventional-routing-topology)
-* [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
-* [SQL Server](/transports/sql/)
+1. Open the ServiceControl Management Utility in the Windows start menu.
+1. Click the `New` button at the top-right and a popup window appears.
+1. Select either `Add ServiceControl and Audit instances` or `Add monitoring instance`.
+1. Provide a name and transport.
+   1. The default name commonly used is `Particular.ServiceControl`.  
+      The name is used to derive names for the error and audit instances. The name of each instance can be adjusted from its default if required.
+   1. The transport should match the endpoint's transport.
+      If a transport is not available, a [transport adapter](/servicecontrol/transport-adapter/incompatible-features.md) can be used.
+1. For additional instance settings, open the `ServiceControl` and `ServiceControl Audit` sections.
+   1. The name of the instance can be altered, the defaults for error and audit are `Particular.ServiceControl` and `Particular.ServiceControl.Audit`.
+      1. The name for the error instance is particularly important to [enable plugins to send information](/servicecontrol/installation.md#servicecontrol-plugins) to ServiceControl.
+      1. If multiple instances for different systems are installed on the same server, a name like `Particular.SystemName` could be an option as well.
+   1. Select the appropriate user account.  
+      Be aware that ServiceControl instances will run as Windows Services in the background.
+   1. Be aware of the port numbers as these are used by ServicePulse and ServiceInsight to connect to ServiceControl.
+   1. Configure the [retention period](/servicecontrol/how-purge-expired-data.md) for each instance.
+   1. Configure the name of the queue that messages should arrive in.  
+      This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/installation.md#servicecontrol-plugins).
+   1. If needed, configure [forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md).
+   1. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance).
 
-### Transport-specific features
+A monitoring instance differs from error and audit instances in its configuration:
 
-#### Transport adapters
+1. There is no configuration for storage as it only stores data in memory.
+1. There is no forwarding queue as the messages are specific to ServiceControl monitoring.
+1. The queue to forward messages to that can't be processed, as described in [monitoring setup](/tutorials/monitoring-setup/#component-overview).
 
-Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact support@particular.net for further guidance.
+After configuring an error, audit and monitoring instance for the SQL Server transport, the ServiceControl Management Utility should look similar to this:
 
-Adding third-party transports via the ServiceControl Management application is not supported.
+![ServiceControl Management interface that shows the link for upgrading](managementutil.png 'width=500')
 
-#### MSMQ
+## Upgrading ServiceControl instances
 
-If MSMQ is the selected transport, ensure the MSMQ service has been installed and configured as outlined in [Installing The Platform Components](/platform/installer/offline.md#msmq-prerequisites).
+Whether a new version of ServiceControl is available can be verified in the ServicePulse user interface. A new version can then be [downloaded](https://particular.net/downloads) and installed.
 
-#### RabbitMQ
-
-In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md) the following ServiceControl specific options are available in versions 4.4 and above:
-
-* `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
-* `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
-
-#### Azure Service Bus
-
-In addition to the [connection string options of the transport](/transports/azure-service-bus/#configuring-an-endpoint) the following ServiceControl specific options are available in versions 4.4 and above:
-
-* `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - Specifies delay between queue length refresh queries. The default value is 500 ms.
-
-* `TopicName=<topic-bundle-name>` - Specifies [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
-
-#### SQL
-
-In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 4.4 and above:
-
-* `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
-* `SubscriptionRouting=<subscription_table_name>` - Specifies SQL subscription table name.  
-
-#### Amazon SQS
-
-The following ServiceControl connection string options are available in versions 4.4 and above:
-
-* `AccessKeyId=<value>` - AssessKeyId value,
-* `SecretAccessKey=<value>` - SecretAccessKey value,
-* `Region=<value>` - Region transport [option](/transports/sqs/configuration-options.md#region),
-* `QueueNamePrefix=<value>` - Queue name prefix transport [option](/transports/sqs/configuration-options.md#queuenameprefix),
-* `TopicNamePrefix=<value>` - Topic name prefix transport [option](/transports/sqs/configuration-options.md#topicnameprefix)
-* `S3BucketForLargeMessages=<value>` - S3 bucket for large messages [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages),
-* `S3KeyPrefix=<value>` - S3 key prefic [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages-s3keyprefix).
-
-## Performance counter
-
-Metrics are reported via the [performance counters](/monitoring/metrics/performance-counters.md) if the counters are installed.
-
-For instructions on how to install the performance counters, refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
-
-The installation of the NServiceBus performance counters is optional for ServiceControl version 1.7 and above.
-
-## Using ServiceControl Management to upgrade ServiceControl instances
-
-ServiceControl Management provides a simple means of setting up one or more instances of ServiceControl service types (error, audit, and monitoring). For production systems, it is recommended to limit the number of instances per machine to one.
-
-WARNING: The ability to add multiple instances *of the same type on a single machine* is primarily intended to assist development and test environments.
-
-ServiceControl Management can be launched automatically at the end of the installation process to enable adding or upgrading ServiceControl instances.
-
-ServiceControl Management will display the instances of the ServiceControl service installed. If the version of the binaries used by an instance are older than those shipped with ServiceControl Management, an upgrade link will be shown next to the version label.
+ServiceControl Management will display the instances of the ServiceControl service installed. If any ServiceControl instance is running on an outdated version, an upgrade link will be shown next to the version label.
 
 ![ServiceControl Management interface that shows the link for upgrading](managementutil-upgradelink.png 'width=500')
 
@@ -107,15 +78,11 @@ Clicking the upgrade link will:
 * Run the new binaries to create required queues
 * Start the service
 
-## Using ServiceControl Management to add ServiceControl instances
+## ServiceControl plugins
 
-If this is a new installation of ServiceControl, click on the `Add New Instance` button in the center of the screen or the "New Instance" link at the top of the screen; both options launch the "New instance form". Complete the form to register a new ServiceControl service.
+Endpoint plugins like heartbeats and custom checks require sending information to ServiceControl. The name of the queue is the exact name of the error instance.
 
-## Service name and plugins
-
-When adding the first instance of the ServiceControl service, the default service name is "Particular.ServiceControl". This can be changed to a custom service name. This will also change the queue name associated with this instance of ServiceControl.
-
-The ServiceControl queue name is required for configuring the endpoint plugins. See [Install Heartbeats Plugin](/monitoring/heartbeats/install-plugin.md) and [Install Custom Checks Plugin](/monitoring/custom-checks/install-plugin.md) for more information.
+See [Install Heartbeats Plugin](/monitoring/heartbeats/install-plugin.md) and [Install Custom Checks Plugin](/monitoring/custom-checks/install-plugin.md) for more information.
 
 ## Migrating to a new host
 

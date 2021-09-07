@@ -1201,6 +1201,22 @@
 
 - Name: ServiceControl
   Topics:
+  - Title: Introduction
+    Url: servicecontrol
+    Articles:
+    - Title: Installation
+      Url: servicecontrol/installation
+    - Title: How does it work
+      Url: servicecontrol/how
+    - Title: Transport support
+      Url: servicecontrol/transports
+    - Title: PowerShell
+      Url: servicecontrol/powershell
+      Articles:
+      - Title: Installation via PowerShell
+        Url: servicecontrol/installation-powershell
+    - Title: Licensing
+      Url: servicecontrol/license
   - Title: Upgrade Guides
     Url: servicecontrol/upgrades
     Articles:
@@ -1212,11 +1228,9 @@
       Url: servicecontrol/upgrades/2to3
     - Title: Version 1 to 2
       Url: servicecontrol/upgrades/1to2
-  - Title: Licensing
-    Url: servicecontrol/license
   - Title: PowerShell
     Url: servicecontrol/powershell
-  - Title: ServiceControl instances
+  - Title: Error instances
     Url: servicecontrol/servicecontrol-instances
     Articles:
     - Title: Planning
@@ -1232,11 +1246,8 @@
         Url: servicecontrol/configure-non-privileged-service-account
       - Title: Business Continuity / Disaster Recovery
         Url: servicecontrol/bcdr
-    - Title: Installation
-      Url: servicecontrol/installation
+    - Title: Advanced installations
       Articles:
-      - Title: Managing via PowerShell
-        Url: servicecontrol/installation-powershell
       - Title: Cluster Deployment
         Url: servicecontrol/deploying-servicecontrol-in-a-cluster
       - Title: Remote Instances

@@ -55,7 +55,7 @@ scmonitoring --> pulse[ServicePulse]
 scinstance --> pulse
 
 ```
-A running NServiceBus system can be configured to send data about its operation to three main queues:
+A running NServiceBus system can be configured to send data about its operations to three main queues:
 
 - `Monitoring`: Each endpoint will gather and send metric data to this queue. This data holds information about the health and performance of an endpoint.
 - `Audit`: When an endpoint successfully processes a message, a copy of the message will be forwarded to this queue. The audited message will have additional headers which contain data about the processing of the message.
