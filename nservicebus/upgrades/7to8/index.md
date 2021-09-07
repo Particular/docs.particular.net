@@ -228,3 +228,7 @@ The following static extension method types were renamed:
 | `IPipelineContextExtensions`   | `PipelineContextExtensions`   |
 
 All references to the old types must be changed to the new types, although usually these types are not referenced, since they only contain extension methods.
+
+## Removing a behaviour from the pipeline is obsolete
+
+The `Remove` command is no longer available in `PipelineSettings`. In order to disable a behavior, [replace the behavior](/nservicebus/pipeline/manipulate-with-behaviors.md?version=core_8#disable-an-existing-step) with an empty one.

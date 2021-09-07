@@ -51,6 +51,23 @@
 
     #endregion
 
+    #region NoActionPipelineStep
+
+    public class NoActionExistingStep :
+        INeedInitialization
+    {
+        public void Customize(EndpointConfiguration endpointConfiguration)
+        {
+            var pipeline = endpointConfiguration.Pipeline;
+            pipeline.Replace(
+                stepId: "Id of the step to replace",
+                newBehavior: typeof(NoActionBehavior),
+                description: "Description");
+        }
+    }
+
+    #endregion
+
     #region RegisterOrReplaceStep
 
     public class RegisterOrReplaceStep :
