@@ -1,7 +1,3 @@
-## Native integration
-
-This document describes how to consume messages from and send messages to non-NServiceBus endpoints via Azure Storage Queues in integration scenarios.
-
 ### Sending messages to non-NServiceBus endpoints
 
 Azure Storage Queues lacks native header support. NServiceBus solves this by wrapping headers and the message body in a custom envelope structure. This envelope is serialized using the configured [serializer](/nservicebus/serialization) for the endpoint before being sent.

@@ -876,6 +876,8 @@
       Title: Troubleshooting
     - Url: transports/msmq/subscription-authorisation
       Title: Subscription Authorization
+    - Url: transports/msmq/native-integration
+      Title: Native integration
     - Url: transports/msmq/operations-scripting
       Title: Scripting
     - Url: transports/msmq/uninstalling-msmq
