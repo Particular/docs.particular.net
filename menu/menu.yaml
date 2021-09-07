@@ -812,8 +812,6 @@
       Title: Configuration
     - Url: transports/azure-storage-queues/delayed-delivery
       Title: Delayed Delivery
-    - Url: transports/azure-storage-queues/native-integration
-      Title: Native Integration
     - Url: transports/azure-storage-queues/native-publish-subscribe
       Title: Native Publish Subscribe
     - Url: transports/azure-storage-queues/sanitization
