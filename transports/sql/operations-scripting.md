@@ -24,29 +24,6 @@ The `BodyString` column is a computed value that allows inspecting of the messag
 
 partial: sqlstring-column
 
-## Native Send
-
-### The native send helper methods
-
-A send involves the following actions:
-
- * Create and serialize headers.
- * Write a message body directly to SQL Server Transport.
-
-#### In C&#35;
-
-snippet: sqlserver-nativesend
-
-In this example, the value `MyNamespace.MyMessage` represents the .NET type of the message. See the [headers documentation](/nservicebus/messaging/headers.md) for more information on the `EnclosedMessageTypes` header.
-
-#### In PowerShell
-
-snippet: sqlserver-powershell-nativesend
-
-### Using the native send helper methods
-
-snippet: sqlserver-nativesend-usage
-
 ## Create queues
 
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.

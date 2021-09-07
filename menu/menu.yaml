@@ -841,6 +841,8 @@
       Title: Transaction support
     - Url: transports/sql/discard-expired-messages
       Title: Discarding expired messages
+    - Url: transports/sql/native-integration
+      Title: Native integration
     - Url: transports/sql/deployment-options
       Title: Deployment options
     - Url: transports/sql/operations-scripting
