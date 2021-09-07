@@ -4,6 +4,8 @@ namespace V2.Receiver
     using NServiceBus.Logging;
     using System.Threading.Tasks;
 
+    #region ReceivingV1
+
     public class DoSomethingHandler : IHandleMessages<DoSomething>
     {
         static ILog log = LogManager.GetLogger<DoSomethingMoreHandler>();
@@ -21,4 +23,6 @@ namespace V2.Receiver
             return Task.CompletedTask;
         }
     }
+
+    #endregion
 }

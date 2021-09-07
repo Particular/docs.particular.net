@@ -1,5 +1,5 @@
 ﻿using NServiceBus;
-#region V1Message
+
 namespace Versioning.Contracts
 {
     public interface ISomethingHappened :
@@ -8,4 +8,3 @@ namespace Versioning.Contracts
         int SomeData { get; set; }
     }
 }
-#endregion
