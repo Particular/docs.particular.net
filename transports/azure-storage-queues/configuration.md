@@ -79,6 +79,3 @@ partial: sanitization
 ## Serialization
 
 Azure Storage Queues Transport changes the default serializer to JSON. The serializer can be changed using the [serialization API](/nservicebus/serialization).
-
-
-partial: envelope
