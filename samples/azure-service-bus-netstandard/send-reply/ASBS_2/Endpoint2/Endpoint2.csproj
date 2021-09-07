@@ -8,6 +8,6 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="2.0.0-alpha.237" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="2.0.0-alpha.*" />
   </ItemGroup>
 </Project>
