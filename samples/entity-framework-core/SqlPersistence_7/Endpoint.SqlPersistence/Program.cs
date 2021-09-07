@@ -1,10 +1,10 @@
-﻿using System;
-using System.Data.SqlClient;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
+using System;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 class Program
 {
@@ -27,7 +27,7 @@ class Program
 
         endpointConfiguration.UseTransport(new SqlServerTransport(connection)
         {
-            Subscriptions = { DisableCaching = true}
+            Subscriptions = { DisableCaching = true }
         });
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
@@ -50,7 +50,7 @@ class Program
                 context.Database.UseTransaction(session.Transaction);
 
                 //Ensure context is flushed before the transaction is committed
-                session.OnSaveChanges(s => context.SaveChangesAsync());
+                session.OnSaveChanges((s, token) => context.SaveChangesAsync(token));
 
                 return context;
             });
