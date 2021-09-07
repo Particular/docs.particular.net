@@ -7,30 +7,30 @@ isLearningPath: true
 
 include: servicecontrol
 
-How ServiceControl, ServicePulse and ServiceInsight work together can be found with [the Particular Service Platform](/platform/).
+For more information on how ServiceControl, ServicePulse, and ServiceInsight work together, refer to [the Particular Service Platform](/platform/).
 
 ### ServiceControl instance types
 
 After [installation](/servicecontrol/installation.md), the ServiceControl Management Utility provides the ability to add, upgrade and delete ServiceControl instances. There are three different instances that can be created:
 
 - [Error instances](/servicecontrol/servicecontrol-instances/)  
-  This is the most commonly used ServiceControl instance and indispensable for the correct working of any NServiceBus system. Together with SerivcePulse it provides the ability to show and retry failed messages.
+  This is the most commonly used ServiceControl instance and indispensable to ensure the correct working of an NServiceBus system. Together with SerivcePulse, it provides the ability to visualize and retry failed messages.
 - [Audit instances](/servicecontrol/audit-instances/)  
-  This ServiceControl instance provides valuable information about the message flow through a system.
+  This ServiceControl Audit instance provides valuable information about the message flow through a system.
 - [Monitoring instances](/servicecontrol/monitoring-instances/)  
   For performance monitoring and analyzing additional metrics, especially in production.
 
 ## Installation of ServiceControl instances
 
-After downloading ServiceControl the ServiceControl Management utility is available in the Windows Start menu. The actual ServiceControl instances mentioned above need to be installed and configured via this management utility.
+After downloading ServiceControl, the ServiceControl Management utility is available in the Windows Start menu. The ServiceControl instances mentioned above need to be installed and configured via the Management utility.
 
-Read more about how to [install and configure](/servicecontrol/installation.md) these instances.
+Read more about how to [install and configure](/servicecontrol/installation.md) ServiceControl instances.
 
 ## Connect endpoints to ServiceControl
 
-NServiceBus endpoints need to be configured to send data about their operations to a set of centralized queues that are unique to the system. ServiceControl monitors these queues, and collects and processes this data.
+NServiceBus endpoints need to be configured to send data about their operations to a set of centralized queues that are unique to the system. ServiceControl monitors these queues, collects and processes this data.
 
-Note that this data is still send to queues, even if ServiceControl is down. When ServiceControl starts working again, it will process the information that was saved while it was offline.
+Note that the data is sent to queues, even when ServiceControl is down. When ServiceControl becomes available, it will process the messages that were stored in the queue while it was offline.
 
 To enable [ServiceControl](/servicecontrol) to gather this information, configure the endpoints appropriately:
 

@@ -20,11 +20,11 @@ ServiceControl can be configured to use one of the supported [transports](/trans
 
 Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact support@particular.net for further guidance.
 
-Adding third-party transports via the ServiceControl Management application is not supported.
+Configuring third-party transports through the ServiceControl Management application is not supported.
 
 #### MSMQ
 
-If MSMQ is the selected transport, ensure the MSMQ service has been installed and configured as outlined in [Installing The Platform Components](/platform/installer/offline.md#msmq-prerequisites).
+To configure MSMQ as the transport, ensure the MSMQ service has been installed and configured as outlined in [Installing The Platform Components](/platform/installer/offline.md#msmq-prerequisites).
 
 #### RabbitMQ
 

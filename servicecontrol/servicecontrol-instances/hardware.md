@@ -66,4 +66,4 @@ If it is not possible to scale up ServiceControl to handle system volume, partit
 
 ### Turn off full-text search
 
-Even though it can be extremely valuable to be able to search for specific messages based on their content, updating the full-text index requires a considerable amount of CPU as well as disk-space. The ability to turn off full-text search is done in the ServiceControl Management Utility.
+Even though it can be extremely valuable to search for specific messages based on their content, updating the full-text index requires a considerable amount of CPU as well as disk space. The ability to turn off the full-text search is available in the ServiceControl Management Utility.
