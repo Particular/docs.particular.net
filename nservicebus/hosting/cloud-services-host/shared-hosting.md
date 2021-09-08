@@ -1,6 +1,8 @@
 ---
 title: Shared Hosting in Azure
 summary: Using Azure cloud services to host multiple NServiceBus endpoints on a shared pool of machines.
+component: CloudServicesHost
+versions: '[,8)'
 redirects:
  - nservicebus/shared-hosting-nservicebus-in-windows-azure-cloud-services
  - nservicebus/azure/shared-hosting-nservicebus-in-windows-azure-cloud-services
@@ -54,11 +56,7 @@ snippet: AsAHost
 
 The host entry point does require some configuration; it is necessary to tell it in what storage account to look for endpoints and how often it should do so. Furthermore Azure must be configured to provision some space on the local disk where the host can put the downloaded and extracted endpoints.
 
-For version 7 and above, return this information from the `Configure` method in the class implementing the `IConfigureThisHost` interface.
-
-For version 6 and below, add the following configuration settings entries to the `.csdef` file
-
-snippet: DynamicHostControllerConfig
+partial: dynamic-host
 
 For all versions a local storage resource must be configured, usually with the name `endpoints`. This will be the location to which the role entry point downloads the zip files of the endpoint packages.
 
