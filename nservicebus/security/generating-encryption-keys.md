@@ -1,6 +1,7 @@
 ---
 title: Generating secure random strong encryption keys
 summary: Options for generating secure random strong encryption keys
+component: PropertyEncryption
 reviewed: 2020-06-29
 related:
  - nservicebus/security
