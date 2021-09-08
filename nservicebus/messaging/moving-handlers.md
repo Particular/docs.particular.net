@@ -6,14 +6,14 @@ component: Core
 isLearningPath: true
 ---
 
-As the distributed systems evolve sometimes there is a need to change which Endpoint handle wchih message type. When that change happens during development phase the situation si relativelly straightforward, but when the system is in production additional consideration need to be given to the messages that are in-flight. 
+As the distributed systems evolve, sometimes there is a need to change which Endpoint handle which message type. During development phase such changes are relativelly straightforward, but when the system is in production additional consideration need to be given to the messages that are in-flight. 
 
 # How to move Handlers in between Endpoints
 
 To move a handler from SourceEndpoint to a DestinationEndpoint the following steps needs to be taken
 
- - Copy the handler into DestinationEndpoint and deploy that endpoints
- - Make sure that new Endpoint recieves the messages that it should be handling
+ - Copy the handler into DestinationEndpoint and deploy that endpoints. Now both endpoints are handling the same message type.
+ - Make sure that new Endpoint recieves the messages that it should be handling. From now on all newly send messages would only go to the DestinationEndpoint.
  - After ensuring that the SourceEndpoint does not have any remaining messages of the type that should be processed by DestinationEndpoint, delete the handler from SourceEndpoint and deploy it.
 
 ## How to ensure that the messages get to the DestinationEndpoint
@@ -26,7 +26,7 @@ When the handler process commands, then every piece of code that sends that comm
 
 ## How to handle error messages that were discovered after removing the handler
 
-When a set of messages are found that were send to a SourceEndpoint and a handler was already removed, a [retry redirect](servicepulse/redirect) could be set up to redirect every failed message to a queue of a DestinationEndpoint. After retrieing those messages, the redirect retry should be removed. 
+When a set of messages are found that were send to a SourceEndpoint and a handler was already removed, a [retry redirect](servicepulse/redirect) could be set up to redirect every failed message to a queue of a DestinationEndpoint. After retrieving those messages, the redirect retry should be removed. 
 
 # Why to move handlers between endpoints
 
