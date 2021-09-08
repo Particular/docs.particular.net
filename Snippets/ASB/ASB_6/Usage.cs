@@ -12,24 +12,4 @@ class Usage
 
         #endregion
     }
-
-    #region AzureServiceBusQueueConfigSection
-
-    public class AzureServiceBusQueueConfig :
-        ConfigurationSection
-    {
-        [ConfigurationProperty("ConnectionString", IsRequired = true)]
-        public string ConnectionString
-        {
-            get { return this["ConnectionString"] as string; }
-            set { this["ConnectionString"] = value; }
-        }
-    }
-
-    #endregion
-
-    public class MyMessage :
-        ICommand
-    {
-    }
 }

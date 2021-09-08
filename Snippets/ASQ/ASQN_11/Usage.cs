@@ -99,7 +99,7 @@ class Usage
         #region storage_account_routing_registered_publisher
 
         var transport = new AzureStorageQueueTransport("connectionString");
-        
+
         transport.AccountRouting.DefaultAccountAlias = "subscriber";
 
         var anotherAccount = transport.AccountRouting.AddAccount("publisher", "anotherConnectionString");
@@ -183,27 +183,6 @@ class Usage
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
         #endregion
-    }
-
-    // Reference NServiceBus.Host instead of NServiceBus.Hosting.Azure as the usage is the same
-    // This prevents Azure storage library conflicts as the libraries are being updated
-
-    #region AzureStorageQueueTransportWithAzureHost
-
-    public class EndpointConfig :
-        IConfigureThisEndpoint
-    {
-        public void Customize(EndpointConfiguration endpointConfiguration)
-        {
-            var transport = new AzureStorageQueueTransport("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
-            endpointConfiguration.UseTransport(transport);
-        }
-    }
-
-    #endregion
-    // to avoid host ref
-    internal interface IConfigureThisEndpoint
-    {
     }
 
     public class MyMessage :
