@@ -3,7 +3,7 @@ title: Report metrics to Azure Monitor Application Insights
 summary: How to report NServiceBus metrics data to Azure Monitor Application Insights
 component: Metrics
 isLearningPath: true
-reviewed: 2019-07-23
+reviewed: 2021-09-08
 related:
  - monitoring/metrics
  - samples/azure
