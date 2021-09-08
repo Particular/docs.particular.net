@@ -25,7 +25,7 @@ public class WorkerRole :
 
 #endregion
 
-#region AzureServiceBusTransportWithAzureHost
+#region ConfigureEndpointWithAzureHost
 
 public class EndpointConfig :
     IConfigureThisEndpoint,
@@ -33,9 +33,7 @@ public class EndpointConfig :
 {
     public void Customize(BusConfiguration busConfiguration)
     {
-        var transport = busConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
-        busConfiguration.UsePersistence<AzureStoragePersistence>();
+        // Configure transport, persistence, etc.
     }
 }
 

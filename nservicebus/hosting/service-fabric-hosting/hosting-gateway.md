@@ -1,5 +1,7 @@
 ---
 title: Hosting Gateway with Service Fabric
+component: Gateway
+versions: '[2,)'
 related:
  - persistence/service-fabric
 reviewed: 2020-11-26

@@ -4,6 +4,8 @@ related:
  - persistence/service-fabric
  - samples/azure/azure-service-fabric-routing
 reviewed: 2019-11-11
+component: Core
+versions: '[6,)'
 isLearningPath: true
 ---
 

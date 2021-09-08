@@ -27,7 +27,7 @@ snippet: HostingInWorkerRole
 
 Next, define the endpoint behavior. The role has been named `AsA_Worker`. Specify the transport and persistence using the `UseTransport<T>` and `UsePersistence<T>` methods.
 
-snippet: AzureServiceBusTransportWithAzureHost
+snippet: ConfigureEndpointWithAzureHost
 
 Partial: Worker
 

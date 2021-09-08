@@ -1,6 +1,7 @@
 ---
 title: FIPS Compliance
 summary: Describes NServiceBus compliance with FIPS
+component: Core
 reviewed: 2021-01-04
 isLearningPath: true
 ---

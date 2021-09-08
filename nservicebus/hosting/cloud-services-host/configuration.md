@@ -1,6 +1,7 @@
 ---
 title: Configuration
 summary: Configuring the endpoint when hosting in Azure cloud services
+component: CloudServicesHost
 reviewed: 2020-02-27
 ---
 
@@ -17,27 +18,7 @@ When NServiceBus is hosted in cloud services, it needs to connect to a specific 
 
 When an endpoint is hosted in a cloud service, it should be configured by implementing the `IConfigureThisEndpoint` interface.
 
-
-### Enabling the transport
-
-To enable a given transport, `UseTransport<T>` should be called on the endpoint configuration and a connection string must be provided.
-
-For example, using the Azure Service Bus transport:
-
-snippet: AzureServiceBusTransportWithAzureHost
-
-or using the Azure Storage Queues transport:
-
-snippet: AzureStorageQueueTransportWithAzureHost
-
-
-### Enabling the persistence
-
-The Azure Table persistence can be enabled by calling `UsePersistence<AzureTablePersistence>` on the endpoint config as well.
-
-snippet: PersistenceWithAzureHost
-
-NOTE: In Azure Table Persistence version 4, when hosting in the Azure RoleEntryPoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
+snippet: ConfigureEndpointWithAzureHost
 
 
 ## Convention to override configuration
@@ -49,24 +30,6 @@ NOTE: In NServiceBus version 6, configuration via code is the recommended model.
 The configuration source can be turned on like this:
 
 snippet: AzureConfigurationSource
-
-The convention-based override model works for all configuration sections used by NServiceBus. For example, it's possible to override the `AzureServiceBusQueueConfig` section which is available in Azure Service Bus Transport version 6 and below:
-
-snippet: AzureServiceBusQueueConfigSection
-
-It is configured in the `app.config` file by specifying a dedicated config section:
-
-snippet: AzureServiceBusQueueConfig
-
-That setting can then be overridden in the service configuration file (`.cscfg`) when hosting in a Azure cloud service.
-
-First, define the setting in the service definition file (`.csdef`).
-
-snippet: AzureServiceBusQueueConfigCsDef
-
-Then, specify the value for every cloud service deployment in the cloud service project.
-
-snippet: AzureServiceBusQueueConfigCsCfg
 
 Names used for property overrides always have the following structure:  `TagName.PropertyName`. Tags can be nested: `ParentTagName.ChildTagName.PropertyName`. It's currently not possible to override parent tags that contain multiple child tags with the same name, therefore `MessageEndpointMappings` can't be overridden using this approach.
 

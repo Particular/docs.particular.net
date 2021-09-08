@@ -21,7 +21,7 @@ All types specified in this document are now in the `NServiceBus` namespace.
 
 `IConfigureThisEndpoint.Customize` is passed an instance of `EndpointConfiguration` instead of `BusConfiguration`.
 
-snippet: AzureServiceBusTransportWithAzureHost
+snippet: ConfigureEndpointWithAzureHost
 
 
 ## AsA_Host role changes into IConfigureThisHost
@@ -62,7 +62,7 @@ Any code in custom profile handlers should be moved into the `IConfigureThisEndp
 A new interface `IWantToRunWhenEndpointStartsAndStops` has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in the NServiceBus core.
 
 
-### Interface in NServiceBus version 5 
+### Interface in NServiceBus version 5
 
 ```csharp
 public class Bootstrapper :

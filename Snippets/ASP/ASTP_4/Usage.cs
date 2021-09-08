@@ -24,19 +24,6 @@ class Usage
         #endregion
     }
 
-    #region PersistenceWithAzureHost
-
-    public class EndpointConfig : IConfigureThisEndpoint
-    {
-        public void Customize(EndpointConfiguration endpointConfiguration)
-        {
-            var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence>();
-            persistence.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
-        }
-    }
-
-    #endregion
-
     void CustomizingAzurePersistenceAllConnections(EndpointConfiguration endpointConfiguration)
     {
         #region AzurePersistenceAllConnectionsCustomization
