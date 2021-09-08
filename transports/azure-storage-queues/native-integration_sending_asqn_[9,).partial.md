@@ -1,4 +1,4 @@
-### Sending messages to non-NServiceBus endpoints
+### Custom envelope wrapper
 
 Azure Storage Queues lacks native header support. NServiceBus solves this by wrapping headers and message body in a custom envelope structure. This envelope is serialized using the configured [serializer](/nservicebus/serialization) for the endpoint before being sent.
 
