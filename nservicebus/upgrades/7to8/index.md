@@ -212,6 +212,8 @@ endpointConfiguration.EnableOutbox();
 
 The message mutators that operate on serialized messages (`IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`) in version 8 represent the message payload as `ReadOnlyMemory<byte>` instead of `byte[]`. This means that it is no longer possible to change individual bytes. Instead, a modified copy of the payload need to be provided.
 
+In previous versions message mutators could be registered in two ways: using a dedicated `endpointConfiguration.RegisterMessageMutator` API and via a Dependency Injection container. In version 8 only the dedicated API is supported. Mutators registered in the container are ignored.
+
 ## AbortReceiveOperation
 
 `ITransportReceiveContext.AbortReceiveOperation` has been deprecated in favor of throwing an [`OperationCanceledException`](https://docs.microsoft.com/en-us/dotnet/api/system.operationcanceledexception). This will preserve the NServiceBus version 7 behavior of immediately retrying the message without invoking [recoverability](/nservicebus/recoverability).
