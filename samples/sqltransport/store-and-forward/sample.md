@@ -44,7 +44,7 @@ The databases created by this sample are `NsbSamplesStoreAndForwardReceiver` and
 
 When the SQL Server transport is used in [*multi-instance* mode](/transports/sql/deployment-options.md?version=SqlTransportLegacySystemClient_3#multi-instance.md), the messages are inserted directly into the remote destination database's table. If the receiving endpoint's database is down or inaccessible (for example, because of network failures), the sending endpoint can't send messages to it. In this situation, the exception is thrown from the `Send()` or the `Publish()` methods, resulting in a potential message loss.
 
-The message loss problem can be prevented by adding [store-and-forward functionality](/nservicebus/architecture/principles.md#messaging-versus-rpc-store-and-forward-messaging) to the SQL Server transport, as explained in this sample.
+The message loss problem can be prevented by adding [store-and-forward functionality](/nservicebus/architecture/principles.md#messaging-versus-rpc-message-system-store-and-forward) to the SQL Server transport, as explained in this sample.
 
 NOTE: The [Outbox](/nservicebus/outbox/) would not solve the issue presented in this example because it is bypassed when sending messages from outside a message handler, e.g. from an ASP.NET MVC controller.
 
