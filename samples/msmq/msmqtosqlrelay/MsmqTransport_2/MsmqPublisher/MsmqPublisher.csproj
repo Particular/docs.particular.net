@@ -8,6 +8,7 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="Iesi.Collections" Version="4.*" />
     <PackageReference Include="NHibernate" Version="5.*" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1898" />
     <PackageReference Include="NServiceBus.NHibernate" Version="9.0.0-alpha.215" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-alpha.357" />
   </ItemGroup>
