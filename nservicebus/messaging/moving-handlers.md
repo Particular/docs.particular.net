@@ -6,7 +6,7 @@ component: Core
 isLearningPath: true
 ---
 
-As distributed systems evolve, the need to change which endpoint handles a message may rise. During the development phase, such changes are relatively straightforward, but when the system is in production additional considerations need to be given to messages that are in-flight. 
+As distributed systems evolve, the need may arise to change which endpoint handles a message. During the development phase, such changes are relatively straightforward, but when the system is in production additional considerations need to be given to messages that are in-flight. 
 
 ## How to move Handlers in between Endpoints
 
@@ -34,7 +34,7 @@ When a set of messages are found that were sent to a `SourceEndpoint` and a hand
 
 It may happen that an endpoint that handles multiple message types, can't keep up with the volume of messages that it receives. One of the solutions would be to separate high throughput handlers into separate endpoints, to divide the load into more endpoints. 
 
-### Different SLA'a
+### Different SLA's
 
 When an endpoint processes multiple message types, sometimes some of the messages should be processed faster than others, or service level agreements for a given message type could differ from others. In those cases, the easiest solution is to move the processing of that message to a separate endpoint so that those message types don't have to compete with other message types in the queue. 
 
