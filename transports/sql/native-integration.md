@@ -3,6 +3,8 @@ title: SQL Transport Native Integration
 summary: Sample code and scripts to facilitate native integration scenario's with SQL Server Transport.
 reviewed: 2021-09-07
 component: SqlTransport
+related:
+- samples/sqltransport/native-integration
 ---
 
 ## Native integration
