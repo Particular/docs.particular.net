@@ -1,0 +1,30 @@
+﻿@model FrontEnd.Models.ViewModel
+
+<div class="row">
+    <form asp-controller="Home">
+        <div class="form-group">
+            <div class="card w-75">
+                <div class="card-body">
+                    <h5 class="card-title">Send a message</h5>
+                    <p class="card-text">The following action will send a message through NServiceBus session.</p>
+            
+                    <label asp-for="Number" class="control-label"></label>
+                    <input asp-for="Number" class="form-control"/><br/>
+                    <span asp-validation-for="Number" class="text-danger"></span><br/>
+            
+                    <input type="submit" value="Send" class="btn btn-primary mt-2"/>
+                </div>
+            </div>
+        </div>
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @ViewBag.Message
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+    </form>
+</div>
