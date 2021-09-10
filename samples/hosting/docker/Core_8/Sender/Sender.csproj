@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-alpha.144" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-alpha.155" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="7.0.0-alpha.202" />
+  </ItemGroup>
+  <ItemGroup Label="Transitive references">
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="license.xml" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
