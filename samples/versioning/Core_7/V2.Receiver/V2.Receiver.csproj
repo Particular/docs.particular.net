@@ -13,7 +13,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\V2.Contracts\Versioning.Contracts.csproj" />
-      <ProjectReference Include="..\V2.Messages\V2.Messages.csproj" />
     </ItemGroup>
 
 </Project>
