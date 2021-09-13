@@ -234,3 +234,7 @@ All references to the old types must be changed to the new types, although usual
 ## Removing a behaviour from the pipeline is obsolete
 
 The `Remove` command is no longer available in `PipelineSettings`. In order to disable a behavior, [replace the behavior](/nservicebus/pipeline/manipulate-with-behaviors.md?version=core_8#disable-an-existing-step) with an empty one.
+
+## Gateway in-memory deduplication
+
+The `InMemoryDeduplicationConfiguration` type within the NServiceBus.Gateway package has been renamed to `NonDurableDeduplicationConfiguration`.
