@@ -269,8 +269,12 @@
         Title: Immutable messages
       - Url: nservicebus/messaging/best-practice-enforcement
         Title: Best practice enforcement
-    - Url: nservicebus/messaging/evolving-contracts
-      Title: Evolving contracts
+    - Title: Evolving systems
+      Articles:
+      - Url: nservicebus/messaging/moving-handlers
+        Title: Moving Handlers
+      - Url: nservicebus/messaging/evolving-contracts
+        Title: Evolving contracts      
     - Url: nservicebus/messaging/send-a-message
       Title: Sending messages
       Articles:
