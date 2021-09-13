@@ -111,8 +111,11 @@ foreach($sample in $samples) {
             Write-Output ("::error::Build failed: {0}" -f $sample.FullName)
             $failedProjects.Add($sample.FullName)
         }
-    } finally 
+    }
+    finally 
     {
+    	# Clean up previous build, GitHub Actions runners only have 14GB SSD
+    	git clean -xfdq
         Set-Location $executionDirectory
     }
 
