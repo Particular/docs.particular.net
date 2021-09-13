@@ -812,6 +812,8 @@
       Title: Configuration
     - Url: transports/azure-storage-queues/delayed-delivery
       Title: Delayed Delivery
+    - Url: transports/azure-storage-queues/native-integration
+      Title: Native Integration
     - Url: transports/azure-storage-queues/native-publish-subscribe
       Title: Native Publish Subscribe
     - Url: transports/azure-storage-queues/sanitization
@@ -839,6 +841,8 @@
       Title: Transaction support
     - Url: transports/sql/discard-expired-messages
       Title: Discarding expired messages
+    - Url: transports/sql/native-integration
+      Title: Native integration
     - Url: transports/sql/deployment-options
       Title: Deployment options
     - Url: transports/sql/operations-scripting
@@ -874,6 +878,8 @@
       Title: Troubleshooting
     - Url: transports/msmq/subscription-authorisation
       Title: Subscription Authorization
+    - Url: transports/msmq/native-integration
+      Title: Native integration
     - Url: transports/msmq/operations-scripting
       Title: Scripting
     - Url: transports/msmq/uninstalling-msmq

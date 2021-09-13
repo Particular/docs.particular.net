@@ -35,7 +35,7 @@ snippet: send-a-native-message
 
 ## Receiving a native message
 
-To process a native message, the native `QueueMessage` has to be adapted to the NServiceBus `MessageWrapper` first. To accomplish this, a [custom envelope unwrapper](/transports/azure-storage-queues/configuration.md#custom-envelope-unwrapper) must be registered to provide the following:
+To process a native message, the native `QueueMessage` has to be adapted to the NServiceBus `MessageWrapper` first. To accomplish this, a [custom envelope unwrapper](/transports/azure-storage-queues/native-integration.md) must be registered to provide the following:
 1. Message ID to associate with the incoming message
 1. Serialized message payload as a byte array
 1. Determine the native message type and assign it as an NServiceBus header
