@@ -37,11 +37,9 @@ snippet: usage
 
 See also: [connection settings](/transports/sql/connection-settings.md).
 
-
 ## How it works
 
-SQL Server transport uses SQL Server to store queues and messages. It doesn't use the queuing services provided by SQL Server; the queuing logic is implemented within the transport. The SQL Server transport is best considered as a brokered transport, like RabbitMQ, rather than [store-and-forward](/nservicebus/architecture/principles.md#messaging-versus-rpc-store-and-forward-messaging) transport, such as MSMQ.
-
+SQL Server transport uses SQL Server to store queues and messages. It doesn't use the queuing services provided by SQL Server; the queuing logic is implemented within the transport. The SQL Server transport is best considered as a brokered transport, like RabbitMQ, rather than a [store-and-forward](/nservicebus/architecture/principles.md#messaging-versus-rpc-message-system-store-and-forward) transport, such as MSMQ.
 
 ## Advantages
 
