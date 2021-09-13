@@ -7,7 +7,6 @@ related:
 - samples/sqltransport/native-integration
 ---
 
-## Native integration
 
 This document describes how to consume messages from and send messages to non-NServiceBus endpoints via SQL Server in integration scenarios.
 
