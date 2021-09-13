@@ -12,4 +12,9 @@
             #endregion
         }
     }
+
+    internal class MyTransport : TransportDefinition
+    {
+
+    }
 }
