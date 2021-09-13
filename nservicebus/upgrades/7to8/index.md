@@ -238,3 +238,15 @@ The `Remove` command is no longer available in `PipelineSettings`. In order to d
 ## Gateway in-memory deduplication
 
 The `InMemoryDeduplicationConfiguration` type within the NServiceBus.Gateway package has been renamed to `NonDurableDeduplicationConfiguration`.
+
+## Pipeline delivery constraints
+
+The `TryGetDeliveryConstraint` method on the `NServiceBus.Extensibility.ContextBag` property has been removed. In order to access delivery constraints from within the pipeline, use `NServiceBus.Extensibility.ContextBag.TryGet` instead.
+
+```csharp
+var extensions = context.Extensions;
+if (extensions.TryGet(out DiscardIfNotReceivedBefore constraint))
+{
+    timeToBeReceived = constraint.MaxTime;
+}
+```
