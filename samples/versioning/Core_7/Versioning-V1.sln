@@ -1,0 +1,31 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V1.Subscriber", "V1.Subscriber\V1.Subscriber.csproj", "{FBA8997D-01C8-458D-ACE6-28DC7BC32711}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V1.Receiver", "V1.Receiver\V1.Receiver.csproj", "{07CD622D-BC7F-4951-ADBC-F77BEA2D2AC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V1.Publisher", "V1.Publisher\V1.Publisher.csproj", "{D1333F3B-F3B3-4D77-ACA9-7C7E82B42E38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Versioning.Contracts", "V1.Contracts\Versioning.Contracts.csproj", "{96FDF015-7D81-49E3-8CAE-BC4D54C14FA3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBA8997D-01C8-458D-ACE6-28DC7BC32711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBA8997D-01C8-458D-ACE6-28DC7BC32711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07CD622D-BC7F-4951-ADBC-F77BEA2D2AC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07CD622D-BC7F-4951-ADBC-F77BEA2D2AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1333F3B-F3B3-4D77-ACA9-7C7E82B42E38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1333F3B-F3B3-4D77-ACA9-7C7E82B42E38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96FDF015-7D81-49E3-8CAE-BC4D54C14FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96FDF015-7D81-49E3-8CAE-BC4D54C14FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

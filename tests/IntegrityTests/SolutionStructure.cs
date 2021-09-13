@@ -11,6 +11,7 @@ namespace IntegrityTests
     public class SolutionStructure
     {
         [Test]
+        [Ignore("Ignored in favor of sample versioning which ships 2 solutions to showcase how contracts may evolve")]
         public void OneSolutionPerDirectory()
         {
             var directoriesWithMoreThanOneSolution = Directory.GetFiles(TestSetup.DocsRootPath, "*.sln", SearchOption.AllDirectories)
