@@ -1,0 +1,31 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Versioning.Contracts", "V2.Contracts\Versioning.Contracts.csproj", "{10FAA0DF-3266-4670-B7E4-6D57D377B0D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V2.Publisher", "V2.Publisher\V2.Publisher.csproj", "{7C331460-5E12-4E64-B71C-8C608D2279DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V2.Receiver", "V2.Receiver\V2.Receiver.csproj", "{87240078-3020-41A8-876F-1AE4205FB798}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V2.Subscriber", "V2.Subscriber\V2.Subscriber.csproj", "{BD68E573-6E04-4332-8CAD-28F70138147B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10FAA0DF-3266-4670-B7E4-6D57D377B0D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10FAA0DF-3266-4670-B7E4-6D57D377B0D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C331460-5E12-4E64-B71C-8C608D2279DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C331460-5E12-4E64-B71C-8C608D2279DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87240078-3020-41A8-876F-1AE4205FB798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87240078-3020-41A8-876F-1AE4205FB798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD68E573-6E04-4332-8CAD-28F70138147B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD68E573-6E04-4332-8CAD-28F70138147B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

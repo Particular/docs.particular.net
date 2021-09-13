@@ -7,9 +7,14 @@
         void DisablePublishingConfiguration(EndpointConfiguration endpointConfiguration)
         {
             #region DisablePublishing-UpgradeGuide
-            var transportConfiguration = endpointConfiguration.UseTransport(new TransportDefinition());
+            var transportConfiguration = endpointConfiguration.UseTransport(new MyTransport());
             transportConfiguration.DisablePublishing();
             #endregion
         }
+    }
+
+    internal class MyTransport : TransportDefinition
+    {
+
     }
 }
