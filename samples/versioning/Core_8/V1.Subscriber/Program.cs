@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using Versioning.Contracts;
 
 class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Versioning.V1Subscriber";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V1Subscriber");
+        Console.Title = "Samples.Versioning.V1.Subscriber";
+        var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V1.Subscriber");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
-        var transport = endpointConfiguration.UseTransport(new MsmqTransport());
+        var routing = endpointConfiguration.UseTransport(new MsmqTransport());
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
         #region V1SubscriberMapping
 
-        transport.RegisterPublisher(
-            assembly: typeof(V1.Messages.ISomethingHappened).Assembly,
-            publisherEndpoint: "Samples.Versioning.V2Publisher");
+        routing.RegisterPublisher(
+            assembly: typeof(ISomethingHappened).Assembly,
+            publisherEndpoint: "Samples.Versioning.V1Publisher");
 
         #endregion
 

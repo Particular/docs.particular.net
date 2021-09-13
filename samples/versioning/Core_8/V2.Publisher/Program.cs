@@ -6,8 +6,8 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Versioning.V2Publisher";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V2Publisher");
+        Console.Title = "Samples.Versioning.V2.Publisher";
+        var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V2.Publisher");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.UseTransport(new MsmqTransport());
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -26,7 +26,8 @@ class Program
             {
                 break;
             }
-            await endpointInstance.Publish<V2.Messages.ISomethingHappened>(sh =>
+
+            await endpointInstance.Publish<ISomethingMoreHappened>(sh =>
             {
                 sh.SomeData = 1;
                 sh.MoreInfo = "It's a secret.";

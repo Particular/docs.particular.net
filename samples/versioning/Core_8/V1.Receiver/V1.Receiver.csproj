@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net48</TargetFramework>
+        <LangVersion>7.3</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1898" />
+      <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-alpha.1" />
+      <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-alpha.357" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\V1.Contracts\Versioning.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -5,10 +5,9 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\V1.Messages\V1.Messages.csproj" />
-    <ProjectReference Include="..\V2.Messages\V2.Messages.csproj" />
+    <ProjectReference Include="..\V2.Contracts\Versioning.Contracts.csproj" />
     <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1898" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-alpha.357" />
     <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-alpha.357" />
   </ItemGroup>
 </Project>

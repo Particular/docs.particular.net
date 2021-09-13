@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
-using V1.Messages;
+using Versioning.Contracts;
 
-public class SomethingHappenedHandler :
-    IHandleMessages<ISomethingHappened>
+public class SomethingHappenedHandler : IHandleMessages<ISomethingHappened>
 {
     static ILog log = LogManager.GetLogger<SomethingHappenedHandler>();
 
