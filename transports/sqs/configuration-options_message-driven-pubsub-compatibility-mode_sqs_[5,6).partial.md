@@ -7,3 +7,21 @@ Message-driven pub/sub compatibility mode must be enabled on publisher endpoints
 To enable message-driven Pub/Sub compatibility mode, configure the endpoint as follows:
 
 snippet: EnableMessageDrivenPubSubCompatibilityMode
+
+### Subscription cache configuration
+
+The default (5 seconds) value of SNS topic subscription cache invalidation can be changed using:
+
+snippet: SubscriptionsCacheTTL
+
+### Topic cache configuration
+
+The default (5 seconds) value of SNS topic cache invalidation can be changed using:
+
+snippet: TopicCacheTTL
+
+### Message visibility timeout
+
+The default (30 seconds) message visibility timeout can be changed using:
+
+snippet: MessageVisibilityTimemout
