@@ -5,7 +5,6 @@ reviewed: 2021-09-07
 component: MsmqTransport
 ---
 
-## Native integration
 
 This document describes how to consume messages from and send messages to non-NServiceBus endpoints via MSMQ in integration scenarios.
 
