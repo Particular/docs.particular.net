@@ -20,7 +20,7 @@ To move a handler from `SourceEndpoint` to a `DestinationEndpoint`, the followin
 
 This depends on whether the message is a command or an event. 
 
-When the handler process events, it is important for the `DestinationEndpoint` to subscribe to that event. That will ensure that this event is delivered to `DestinationEndpoint`. Followed by that, `SourceEndpoint` should unsubscribe from that event to ensure that no new events are delivered to the `SourceEndpoint` queue.
+When the handler processes events, it is important for the `DestinationEndpoint` to subscribe to that event. That will ensure that this event is delivered to `DestinationEndpoint`. Followed by that, `SourceEndpoint` should unsubscribe from that event to ensure that no new events are delivered to the `SourceEndpoint` queue.
 
 When the handler processes commands, every piece of code that sends that command needs to be updated to send them to a queue of `DestinationEndpoint`. In the meantime, the `SourceEndpoint`-handler may be changed to [forward the messages to the new destination](/nservicebus/messaging/forwarding.md). 
 
