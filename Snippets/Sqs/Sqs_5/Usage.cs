@@ -260,7 +260,7 @@ class Usage
         #region TopicCacheTtl
 
         var migrationSettings = transport.EnableMessageDrivenPubSubCompatibilityMode();
-        migrationSettings.TopicCacheTtl(TimeSpan.FromSeconds(30));
+        migrationSettings.TopicCacheTTL(TimeSpan.FromSeconds(30));
 
         #endregion
 #pragma warning restore 618
