@@ -181,7 +181,7 @@ In the **ShipOrderWorkflow**, modify the handler for `ShipmentAcceptedByMaple` l
 
 snippet: ShipWithMaple-ShipmentAcceptedRevision
 
-With this chane, if the `ShipmentAcceptedByMaple` message arrives after we've already set `Data.ShipmentOrderSentToAlpine` to `true`, the message handler will be a no-op and the message will essentially be ignored. It's possible in real life that we would want to send additional messages to cancel the shipment via Maple. This will be discussed in more detail in [Edge cases](#exercise-edge-cases).
+With this change, if the `ShipmentAcceptedByMaple` message arrives after we've already set `Data.ShipmentOrderSentToAlpine` to `true`, the message handler will be a no-op and the message will essentially be ignored. It's possible in real life that we would want to send additional messages to cancel the shipment via Maple. This will be discussed in more detail in [Edge cases](#exercise-edge-cases).
 
 Now let's move on to handling the response from Alpine.
 
