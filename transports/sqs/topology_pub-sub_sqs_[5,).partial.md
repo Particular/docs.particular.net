@@ -4,6 +4,12 @@ The transport is a [multicast-enabled transport](/transports/types.md#multicast-
 
 The topology (topics and subscriptions) is created automatically by the subscribing endpoints. Topology deployment can be automated, or manually created, using the transport CLI tool. Refer to the [transport operations section](/transports/sqs/operations-scripting.md) for more information.
 
+#### Backwards compatibility
+
+Native support for SNS was [introduced in version 5](/transports/upgrades/amazonsqs-4to5.md#native-publish-subscribe) of the Amazon SQS transport. In able to upgrade from message-driven publish-subscribe to SNS a backwards compatibility mode was introduced. This compatibility mode requires usage of the Amazon SQS client SDK which can be throttled by AWS in specific scenarios; mostly high-throughput scenarios with many different types of events that are being published at the same time. Since version 5.4 of the NServiceBus SQS Transport, it is by default able to deal with most of these scenarios. In the case NServiceBus reports warnings about excessive rate limiting, there is the option to modify [the default settings](/transports/sqs/configuration-options.md#message-driven-pubsub-compatibility-mode).
+
+The topic cache and subscription cache can be extended to prevent additional rate limiting. The message visibility timeout can be extended if messages are returned to the queue before NServiceBus had the change to process the message and publish new messages.
+
 #### Message inheritance support
 
 By default topic names are generated using the message full type name and replacing characters that are not allowed in SNS. This has an impact on the way inheritance is supported by the transport. By default a subscriber will subscribe only to the most concrete type it knows about and a publisher will always publish the most concrete type it knows about. Inheritance at the subscriber level is not supported when using the automatically created topology.
