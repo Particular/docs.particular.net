@@ -1,13 +1,14 @@
-﻿using System;
-using System.Net;
-using System.Threading.Tasks;
 using Amazon;
 using Amazon.Runtime;
 using Amazon.S3;
+using Amazon.SimpleNotificationService;
 using Amazon.SQS;
-using NServiceBus;
 using Amazon.SQS.Model;
+using NServiceBus;
 using NServiceBus.Pipeline;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 class Usage
 {
@@ -107,6 +108,16 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         transport.ClientFactory(() => new AmazonSQSClient(new AmazonSQSConfig()));
+
+        #endregion
+    }
+
+    void SnsClientFactory(EndpointConfiguration endpointConfiguration)
+    {
+        #region SnsClientFactory
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        transport.ClientFactory(() => new AmazonSimpleNotificationServiceClient(new AmazonSimpleNotificationServiceConfig()));
 
         #endregion
     }
