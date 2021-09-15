@@ -9,8 +9,8 @@ class Program
         Console.Title = "Samples.PerfCounters";
         var endpointConfiguration = new EndpointConfiguration("Samples.PerfCounters");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region enable-counters
