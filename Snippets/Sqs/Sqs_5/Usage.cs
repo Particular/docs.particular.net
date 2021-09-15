@@ -1,12 +1,8 @@
-using System;
-using System.Net;
-using System.Threading.Tasks;
 using Amazon;
 using Amazon.Runtime;
 using Amazon.S3;
 using Amazon.SimpleNotificationService;
 using Amazon.SQS;
-using NServiceBus;
 using Amazon.SQS.Model;
 using NServiceBus;
 using NServiceBus.Pipeline;
