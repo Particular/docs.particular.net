@@ -29,8 +29,5 @@
     <None Update="run.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" Version="9.0.0-beta.1" />
-  </ItemGroup>
+  </ItemGroup> 
 </Project>
