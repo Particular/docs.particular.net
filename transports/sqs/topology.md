@@ -21,6 +21,8 @@ SQS queues support [competing consumers](https://www.enterpriseintegrationpatter
 
 partial: pub-sub
 
+partial: pub-sub-hybrid
+
 ## S3
 
 SQS supports a maximum message size of 256kb. The transport works around this size limit by using [Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html) to store message payloads for messages that are larger than 256kb in size. This allows the transport to send and receive messages of practically any size. Note that messages that fit in the 256kb size limit only use SQS and do not use S3.

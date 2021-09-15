@@ -18,6 +18,8 @@ Before they are upgraded, endpoints running on older versions of the transport a
 
 The transport provides a compatibility mode that allows the endpoint to use both forms of publish-subscribe at the same time. When it is enabled and the endpoint publishes an event, the native susbcription leveraging SNS and the message-driven subscription persistence are checked for subscriber information. This subscriber information is deduplicated before the event is published, so even if a subscriber appears in both places it will only receive a single copy of each event.
 
+NOTE: In version 5.4 a [solution was introduced](/transports/sqs/topology.md?version=sqs_5.2#sqs-publishsubscribe-backwards-compatibility) where the NServiceBus SQS transport could be throttled by AWS.
+
 ### Required [SNS permissions](https://docs.aws.amazon.com/sns/latest/dg/sns-access-policy-language-api-permissions-reference.html)
 
  * ListTopics
