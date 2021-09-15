@@ -45,7 +45,7 @@ NOTE: Changing the maximum concurrency will influence the total number of operat
 
 A single endpoint requires multiple connections. Connections might be established or reused due to the connection pooling of the HTTP client infrastructure. By default, a single SQS client has a connection limit of 50 connections. When more than 50 connections are used, the endpoint connections will get queued up, and performance might decrease. 
 
-It is possible to set the `ConnectionLimit` property on the client programmatically by overriding the [client](/transports/sqs/configuration-options.md#client) or set the `ServicePointManager.DefaultConnectionLimit` (recommended).
+It is possible to set the `ConnectionLimit` property on the client programmatically by overriding the [SQS client](/transports/sqs/configuration-options.md#sqs-client) or the [SNS client](/transports/sqs/configuration-options.md#sns-client) as needed, or by setting the `ServicePointManager.DefaultConnectionLimit` (recommended).
 
 include: servicepoint-manager-connection-limit
 
