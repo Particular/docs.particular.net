@@ -5,6 +5,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1898" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="3.0.0-alpha.105" />
   </ItemGroup>
 </Project>
