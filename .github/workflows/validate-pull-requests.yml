@@ -2,6 +2,7 @@ name: PullRequest
 on: pull_request
 env:
   DOTNET_NOLOGO: true
+  DOTNET_ROLL_FORWARD: Major
 jobs:
   content-verification:
     name: Content verification
@@ -9,7 +10,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup .NET Core SDK
+      - name: Setup .NET 5 SDK
         uses: actions/setup-dotnet@v1.8.1
         with:
           dotnet-version: 5.0.x
@@ -23,10 +24,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup .NET Core SDK
+      - name: Setup .NET 5 SDK
         uses: actions/setup-dotnet@v1.8.1
         with:
-          dotnet-version: 3.1.x
+          dotnet-version: 5.0.x
       - name: Run integrity tests
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release
   build-projects:
@@ -39,14 +40,6 @@ jobs:
         uses: actions/setup-dotnet@v1.8.1
         with:
           dotnet-version: 5.0.x
-      - name: Setup .NET Core 3.1 SDK
-        uses: actions/setup-dotnet@v1.8.1
-        with:
-          dotnet-version: 3.1.x
-      - name: Setup .NET Core 2.1 SDK
-        uses: actions/setup-dotnet@v1.8.1
-        with:
-          dotnet-version: 2.1.x
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
       - name: Build affected samples & snippets

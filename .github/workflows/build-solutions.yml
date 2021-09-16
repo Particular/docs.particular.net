@@ -2,6 +2,9 @@ name: BuildSolutions
 on:
   schedule:
     - cron: '0 */4 * * 1-5' # Every 4 hours, Monday-Friday
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_ROLL_FORWARD: Major
 jobs:
   build-solutions:
     name: Build samples & snippets
@@ -13,14 +16,6 @@ jobs:
         uses: actions/setup-dotnet@v1.8.1
         with:
           dotnet-version: 5.0.x
-      - name: Setup .NET Core 3.1 SDK
-        uses: actions/setup-dotnet@v1.8.1
-        with:
-          dotnet-version: 3.1.x
-      - name: Setup .NET Core 2.1 SDK
-        uses: actions/setup-dotnet@v1.8.1
-        with:
-          dotnet-version: 2.1.x
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1
       - name: Build affected samples & snippets

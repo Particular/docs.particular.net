@@ -294,7 +294,7 @@ Samples can be targeted to multiple [target frameworks](https://docs.microsoft.c
 The currently recommended set of frameworks is:
 
 ```
-<TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp2.1;net48</TargetFrameworks>
+<TargetFrameworks>net5.0;netcoreapp3.1;net48</TargetFrameworks>
 ```
 
 Shared/messages projects should not be multi-targeted but use a standard framework that works with all targets:
