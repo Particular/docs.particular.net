@@ -24,4 +24,4 @@ snippet: TopicCacheTTL
 
 The default (30 seconds) message visibility timeout can be changed using:
 
-snippet: MessageVisibilityTimemout
+snippet: MessageVisibilityTimeout

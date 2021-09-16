@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using Amazon;
@@ -266,14 +266,14 @@ class Usage
 #pragma warning restore 618
     }
 
-     void MessageVisibilityTimemout(EndpointConfiguration endpointConfiguration)
+    void MessageVisibilityTimeout(EndpointConfiguration endpointConfiguration)
     {
 #pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
-        #region MessageVisibilityTimemout
+        #region MessageVisibilityTimeout
 
         var migrationSettings = transport.EnableMessageDrivenPubSubCompatibilityMode();
-        migrationSettings.MessageVisibilityTimemout(timeoutInSeconds: 10);
+        migrationSettings.MessageVisibilityTimeout(timeoutInSeconds: 10);
 
         #endregion
 #pragma warning restore 618
