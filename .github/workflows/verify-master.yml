@@ -5,6 +5,7 @@ on:
       - master
 env:
   DOTNET_NOLOGO: true
+  DOTNET_ROLL_FORWARD: Major
 jobs:
   content-verification:
     name: Content verification

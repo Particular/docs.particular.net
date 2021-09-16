@@ -2,6 +2,9 @@ name: BuildSolutions
 on:
   schedule:
     - cron: '0 */4 * * 1-5' # Every 4 hours, Monday-Friday
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_ROLL_FORWARD: Major
 jobs:
   build-solutions:
     name: Build samples & snippets
