@@ -16,7 +16,9 @@ AmazonSQS transport version 5 introduces [native support for the publish subscri
 
 Before they are upgraded, endpoints running on older versions of the transport are not able to access the subscription data provided by native publish-subscribe. They will continue to send subscribe and unsubscribe control messages and will manage their own subscription storage, as described in [Message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based).
 
-The transport provides a compatibility mode that allows the endpoint to use both forms of publish-subscribe at the same time. When it is enabled and the endpoint publishes an event, the native susbcription leveraging SNS and the message-driven subscription persistence are checked for subscriber information. This subscriber information is deduplicated before the event is published, so even if a subscriber appears in both places it will only receive a single copy of each event.
+The transport provides a compatibility mode that allows the endpoint to use both forms of publish-subscribe at the same time. When it is enabled and the endpoint publishes an event, the native subscription leveraging SNS and the message-driven subscription persistence are checked for subscriber information. This subscriber information is deduplicated before the event is published, so even if a subscriber appears in both places it will only receive a single copy of each event.
+
+NOTE: In version 5.4 a [solution was introduced](/transports/sqs/topology.md?version=sqs_5.4) where the NServiceBus SQS transport could be throttled by AWS.
 
 ### Required [SNS permissions](https://docs.aws.amazon.com/sns/latest/dg/sns-access-policy-language-api-permissions-reference.html)
 

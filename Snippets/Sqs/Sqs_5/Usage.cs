@@ -251,6 +251,45 @@ class Usage
 #pragma warning restore 618
     }
 
+    void SubscriptionCacheTtl(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable 618
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        #region SubscriptionsCacheTTL
+
+        var migrationSettings = transport.EnableMessageDrivenPubSubCompatibilityMode();
+        migrationSettings.SubscriptionsCacheTTL(TimeSpan.FromSeconds(30));
+
+        #endregion
+#pragma warning restore 618
+    }
+
+    void TopicCacheTtl(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable 618
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        #region TopicCacheTtl
+
+        var migrationSettings = transport.EnableMessageDrivenPubSubCompatibilityMode();
+        migrationSettings.TopicCacheTTL(TimeSpan.FromSeconds(30));
+
+        #endregion
+#pragma warning restore 618
+    }
+
+    void MessageVisibilityTimeout(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable 618
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        #region MessageVisibilityTimeout
+
+        var migrationSettings = transport.EnableMessageDrivenPubSubCompatibilityMode();
+        migrationSettings.MessageVisibilityTimeout(timeoutInSeconds: 10);
+
+        #endregion
+#pragma warning restore 618
+    }
+
     void TopicNamePrefix(EndpointConfiguration endpointConfiguration)
     {
         #region TopicNamePrefix
