@@ -12,7 +12,7 @@ namespace IntegrityTests
             // Also reflected in https://docs.particular.net/samples/#technology-choices-c-language-level
             // And in /tools/projectStandards.linq
 
-            new TestRunner("*.csproj", "SDK-style project files (VS2017+) must specify LangVersion=7.3 - Provides the best balance between users between samples for netcoreapp2.1/netcoreapp3.1 and samples built by the user likely without LangVersion element.")
+            new TestRunner("*.csproj", "SDK-style project files (VS2017+) must specify LangVersion=7.3 - Provides the best balance between users between samples for netcoreapp3.1 and samples built by the user likely without LangVersion element.")
                 .IgnoreSnippets()
                 .Run(projectFilePath =>
                 {
