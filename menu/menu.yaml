@@ -274,7 +274,7 @@
       - Url: nservicebus/messaging/moving-handlers
         Title: Moving Handlers
       - Url: nservicebus/messaging/evolving-contracts
-        Title: Evolving contracts      
+        Title: Evolving contracts
     - Url: nservicebus/messaging/send-a-message
       Title: Sending messages
       Articles:
@@ -609,7 +609,7 @@
     - Url: nservicebus/compliance/fips
       Title: FIPS
   - Url: nservicebus/tools
-    Title: Supported Tools
+    Title: Tools
     Articles:
     - Url: nservicebus/tools/migrate-to-native-delivery
       Title: Migrating timeouts

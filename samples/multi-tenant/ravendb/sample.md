@@ -48,7 +48,7 @@ To make sure the expiration bundle removes old Outbox documents they need to be 
 
 snippet: DocumentStoreListener
 
-This component is executed each time the RavenDB session is about to send data modifications to the server. It checks if the updated document is an Outbox record and if it has been marked as dispatched. In that case it marks it for expiry after 10 days.
+This code is executed each time the RavenDB session is about to send data modifications to the server. It checks if the updated document is an Outbox record and if it has been marked as dispatched. In that case it marks it for expiry after 10 days.
 
 
 #### Connecting to the tenant database

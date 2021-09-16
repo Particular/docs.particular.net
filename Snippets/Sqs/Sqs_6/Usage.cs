@@ -186,6 +186,19 @@ class Usage
         #endregion
     }
 
+    void SnsClientFactory(EndpointConfiguration endpointConfiguration)
+    {
+        #region SnsClientFactory
+
+        var transport = new SqsTransport(
+            new AmazonSQSClient(new AmazonSQSConfig()),
+            new AmazonSimpleNotificationServiceClient());
+
+        endpointConfiguration.UseTransport(transport);
+
+        #endregion
+    }
+
     void S3BucketForLargeMessages(EndpointConfiguration endpointConfiguration)
     {
         #region S3BucketForLargeMessages

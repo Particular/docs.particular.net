@@ -6,7 +6,8 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="4.*" />
-    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="5.0.0-alpha.89" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1898" />
+    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-alpha.1" />
   </ItemGroup>
 </Project>
