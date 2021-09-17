@@ -17,8 +17,8 @@ See how to use the monitoring features in the Particular Service Platform by try
 
 In order to run the demo your system needs to meet the following requirements:
 
-- Windows 8 or higher
-- .NET Framework 4.6.1 and higher
+- Windows 10 or higher
+- .NET Framework 4.7.2 and higher
 
 ## Running the sample
 
