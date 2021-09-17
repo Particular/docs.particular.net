@@ -1,7 +1,7 @@
 ---
 title: NLog
 summary: Logging to NLog
-reviewed: 2019-07-29
+reviewed: 2021-09-17
 component: NLog
 related:
 - samples/logging/nlog-custom
