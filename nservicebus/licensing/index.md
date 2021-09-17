@@ -43,7 +43,7 @@ Diagnose license scanning issues by [enabling Debug logging](/nservicebus/loggin
 
 ```txt
 2020-04-17 12:11:31.979 DEBUG Looking for license in the following locations:
-License not found in S:\docs.particular.net\samples\pubsub\Core_7\Publisher\bin\Debug\netcoreapp2.1\license.xml
+License not found in S:\docs.particular.net\samples\pubsub\Core_7\Publisher\bin\Debug\net5.0\license.xml
 License found in C:\Users\XXX\AppData\Local\ParticularSoftware\license.xml
 License not found in C:\ProgramData\ParticularSoftware\license.xml
 Selected active license from C:\Users\XXX\AppData\Local\ParticularSoftware\license.xml

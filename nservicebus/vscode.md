@@ -39,7 +39,7 @@ To create the initial file:
  2. Click **Configure Task** in the error dialog that appears.
  3. Select **Create tasks.json from template**.
  4. Select **.NET Core**.
- 
+
 The file created by VS Code may work as-is if the project contains only one solution file in the project's root directory.
 
 The following **tasks.json** describes how to build the solution using `dotnet build`, only revealing the terminal if a problem is detected:
@@ -98,7 +98,7 @@ Here is an example configuration for an NServiceBus endpoint hosted as a console
     "type": "coreclr",
     "request": "launch",
     "preLaunchTask": "build",
-    "program": "${workspaceFolder}/path/to/Sales/bin/Debug/netcoreapp2.1/Sales.dll",
+    "program": "${workspaceFolder}/path/to/Sales/bin/Debug/net5.0/Sales.dll",
     "args": [],
     "cwd": "${workspaceFolder}/path/to/Sales",
     "stopAtEntry": false,
@@ -128,7 +128,7 @@ For web application projects that need to launch a browser window, the configura
     "type": "coreclr",
     "request": "launch",
     "preLaunchTask": "build",
-    "program": "${workspaceFolder}/path/to/Website/bin/Debug/netcoreapp2.1/Website.dll",
+    "program": "${workspaceFolder}/path/to/Website/bin/Debug/net5.0/Website.dll",
     "args": [],
     "cwd": "${workspaceFolder}/path/to/Website",
     "stopAtEntry": false,
@@ -206,7 +206,7 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Billing/bin/Debug/netcoreapp2.1/Billing.dll",
+            "program": "${workspaceFolder}/src/Billing/bin/Debug/net5.0/Billing.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Billing",
             "stopAtEntry": true,
@@ -217,7 +217,7 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Sales/bin/Debug/netcoreapp2.1/Sales.dll",
+            "program": "${workspaceFolder}/src/Sales/bin/Debug/net5.0/Sales.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Sales",
             "stopAtEntry": false,
@@ -228,7 +228,7 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Website/bin/Debug/netcoreapp2.1/Website.dll",
+            "program": "${workspaceFolder}/src/Website/bin/Debug/net5.0/Website.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Website",
             "stopAtEntry": false,
