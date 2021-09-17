@@ -7,10 +7,10 @@ related:
 reviewed: 2020-12-17
 ---
 
-This sample shows how to a plugin for ServiceInsight can be created. The plugin model currently is designed to work as a custom message viewer, so a new tab will be displayed as part of the existing Body tab. This plugin is typically useful when:
+This sample shows how to create a plugin for ServiceInsight. The plugin is designed to work as a custom message viewer, and provides a new tab inside the existing Body tab. The plugin is useful when:
 
 - A custom serializer is used and existing Xml/Json viewers fail to deserialize and show it properly.
-- Encryption on the message body (or certain properties) are used.
+- Message body or some properties of the message are encrypted.
 
 downloadbutton
 
@@ -22,17 +22,17 @@ Running the project will result in 2 console windows. Wait a moment until the Se
 2. Run ServiceInsight and connect to the noted ServiceControl connection URL from above.
 3. On the Messages window click on a message row.
 4. Click on the Body tab and note that there is a new viewer tab called "Decryption Viewer".
-5. Click on the Xml tab and notice how the message is in reverse (the demo 'encryption' function just reverses the body string).
-6. Click on the new viewer tab and notice how the message is correctly displayed.
+5. Click on the Xml tab and notice that the message body has been reversed (the demo "encryption" function just reverses the body string).
+6. Click on the new tab and notice that the message is dispalyed correctly.
 
 ## Code walk-through 
 
 
 ### Plugin
 
-The plugin is a project using 'WindowsDesktop' SDK. The views are WPF usercontrols and it is based on the same MVVM pattern ServiceInsight is using. There is a naming convention at play when it comes to names of views and the respective view model classes.
+The plugin project uses "WindowsDesktop" SDK. The views are WPF usercontrols and are based on the MVVM pattern used by ServiceInsight. There is a naming convention at play when it comes to names of views and the respective view model classes.
 
-All the components require, including the views and view models are registered in the container by an Autofac module class.
+All the components, including the views and view models, need to be registered in the container by an Autofac module class.
 	
 snippet: IoCModule
 
@@ -42,7 +42,7 @@ snippet: MessageDisplay
 
 ### Endpoint
 
-The endpoint sends a message to a handler, and since the message has sensitive information, it encrypts the message before sending it, and then it is decrypted by the receiver. The related classes are in the Shared project so they are shared with the plugin.
+The endpoint sends a message to a handler, and since the message has sensitive information, it encrypts the message body. The body is decrypted by the receiver. The related classes are shared with the pluging via the Shared project.
 
 The encryption and decryption objects are registered as message mutator at startup.
  
