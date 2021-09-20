@@ -28,9 +28,10 @@ WARNING: External notification events are sent in batches. If a problem is encou
 
 Once a message ends up in the error queue, ServiceControl will publish a `MessageFailed` event. The message contains:
 
- * The processing of the message (i.e. the endpoint that sent and received the message).
- * The failure cause (i.e. the exception type and message).
- * The message itself (i.e. the headers and, if using non-binary serialization, the body).
+ * the processing of the message (i.e. the endpoint that sent and received the message)
+ * the failure cause (i.e. the exception type and message)
+ * the message headers
+ * the message body (if it is non-binary, smaller than 85 KB and the full-text body indexing is enabled)
 
 
 ### Subscribing to ServiceControl events
