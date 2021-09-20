@@ -1,7 +1,7 @@
 ---
 title: Immutable Messages samples
 summary: Demonstrate how to use immutable messages when exchanging messages between endpoints.
-reviewed: 2019-07-30
+reviewed: 2021-09-20
 component: Core
 related:
 - nservicebus/messaging/immutable-messages
