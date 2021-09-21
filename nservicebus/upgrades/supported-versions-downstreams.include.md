@@ -247,7 +247,7 @@
 | [1.3.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.3.1) | 2021-08-16     | -                 | -                                 |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.2.1) | 2021-07-15     | 2021-11-16        | Superseded by 1.3.x               |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.1.1) | 2021-06-22     | 2021-10-15        | Superseded by 1.2.x               |
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.0.1) | 2021-04-23     | 2021-09-22        | Superseded by 1.1.x               |
+| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.0.1) | ~~2021-04-23~~ | ~~2021-09-22~~    | ~~Superseded by 1.1.x~~           |
 
 #### [NServiceBus.AzureFunctions.Worker.ServiceBus](/nuget/NServiceBus.AzureFunctions.Worker.ServiceBus)
 
@@ -424,7 +424,7 @@
 | [1.29.x](https://www.nuget.org/packages/Particular.PlatformSample/1.29.0) | 2021-08-03     | 2021-12-16        | Superseded by 1.31.x              |
 | [1.28.x](https://www.nuget.org/packages/Particular.PlatformSample/1.28.0) | 2021-07-16     | 2021-11-03        | Superseded by 1.29.x              |
 | [1.27.x](https://www.nuget.org/packages/Particular.PlatformSample/1.27.0) | 2021-06-22     | 2021-10-16        | Superseded by 1.28.x              |
-| [1.26.x](https://www.nuget.org/packages/Particular.PlatformSample/1.26.0) | 2021-06-03     | 2021-09-22        | Superseded by 1.27.x              |
+| [~~1.26.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.26.0) | ~~2021-06-03~~ | ~~2021-09-22~~    | ~~Superseded by 1.27.x~~          |
 | [~~1.25.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.25.0) | ~~2021-05-07~~ | ~~2021-09-03~~    | ~~Superseded by 1.26.x~~          |
 | [~~1.24.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.24.0) | ~~2021-03-18~~ | ~~2021-08-07~~    | ~~Superseded by 1.25.x~~          |
 | [~~1.23.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.23.0) | ~~2020-12-18~~ | ~~2021-06-18~~    | ~~Superseded by 1.24.x~~          |
