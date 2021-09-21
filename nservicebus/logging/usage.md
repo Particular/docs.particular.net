@@ -6,7 +6,7 @@ redirects:
 - nservicebus/logging-writing
 ---
 
-While we recommend the use of [`Microsoft.Extensions.Logging`](/nservicebus/logging/extensions-logging.md) for new endpoints the NServiceBus logging abstraction can also be used for writing log messages from the user code.
+While the use of [`Microsoft.Extensions.Logging`](/nservicebus/logging/extensions-logging.md) is recommended for new endpoints the NServiceBus logging abstraction can also be used for writing log messages from user code.
 
 Set up a single static field to an `ILog` in the classes, and then use it in all methods:
 
