@@ -1,6 +1,6 @@
 ---
 title: Logging from the user code
-reviewed: 2019-07-29
+reviewed: 2021-09-21
 component: Core
 redirects:
 - nservicebus/logging-writing
