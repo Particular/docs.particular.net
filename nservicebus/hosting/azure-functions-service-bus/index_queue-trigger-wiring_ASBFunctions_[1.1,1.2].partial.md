@@ -6,4 +6,4 @@ The attribute will generate the trigger function required for NServiceBus.
 
 Note: An invalid endpoint name will generate an `NSBFUNC001` error with the message `Endpoint name is invalid and cannot be used to generate trigger function`.
 
-The Azure Service Bus trigger can be manually declared instead of relying on the auto-generated trigger. See the [custom Azure Functions triggers](/nservicebus/hosting/azure-functions-service-bus/custom-triggers.md) page for more information.
+The Azure Service Bus trigger can be manually declared instead of relying on the auto-generated trigger. See the article on [custom Azure Functions triggers](/nservicebus/hosting/azure-functions-service-bus/custom-triggers.md) for more information.
