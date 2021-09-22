@@ -140,7 +140,7 @@ endpointConfiguration.UniquelyIdentifyRunningInstance()
 
 ## DateTimeOffset instead of DateTime
 
-Usage of `DateTime` can result in numerous issues caused by misalignment of timezone offsets, which can lead to time calculation errors. Although a `DateTime.Kind` property exists, it is often ignored during DateTime math and it is up to the user to ensure values are aligned in their offset. The `DateTimeOffset` type fixes this. It does not contain any timezone information, only an offset, which is sufficient to get the time calculations right. 
+Usage of `DateTime` can result in numerous issues caused by misalignment of timezone offsets, which can lead to time calculation errors. Although a `DateTime.Kind` property exists, it is often ignored during DateTime math and it is up to the user to ensure values are aligned in their offset. The `DateTimeOffset` type fixes this. It does not contain any timezone information, only an offset, which is sufficient to get the time calculations right.
 
 [> These uses for DateTimeOffset values are much more common than those for DateTime values. As a result, DateTimeOffset should be considered the default date and time type for application development."](https://docs.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime)
 
@@ -168,7 +168,7 @@ RabbitMQ user should use the new [`options.UseNonPersistentDeliveryMode()` API p
 
 ## Non-durable persistence
 
-Support for non-durable persistence (previously known as `InMemoryPersistence`) has been moved out from the main `NServiceBus` package to a separate `NServiceBus.Persistence.NonDurable` package. To continue using it add reference to the new package and update the configuration code.
+Support for non-durable persistence (previously known as `InMemoryPersistence`) has been removed from the `NServiceBus` package to a separate `NServiceBus.Persistence.NonDurable` package. To continue using it, add a reference to the new package and update the configuration code.
 
 ```csharp
 endpointConfiguration.UsePersistence<NonDurablePersistence>();
@@ -190,9 +190,9 @@ The following transports might need migration:
 * SQS
 * MSMQ
 
-### IManageUnitOfWork 
+### IManageUnitOfWork
 
-`IManageUnitOfWork` interface is no longer recommended. The unit of work pattern is more straightforward to implement in a pipeline behavior, where the using keyword and try/catch blocks can be used. 
+`IManageUnitOfWork` interface is no longer recommended. The unit of work pattern is more straightforward to implement in a pipeline behavior, where the using keyword and try/catch blocks can be used.
 
 [Custom unit of work sample](/samples/pipeline/unit-of-work/) is an example of the the recommended approach.
 
@@ -210,9 +210,9 @@ endpointConfiguration.EnableOutbox();
 
 ## Message mutators
 
-The message mutators that operate on serialized messages (`IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`) in version 8 represent the message payload as `ReadOnlyMemory<byte>` instead of `byte[]`. This means that it is no longer possible to change individual bytes. Instead, a modified copy of the payload need to be provided.
+Message mutators that operate on serialized messages (`IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`) in NServiceBus version 8 represent the message payload as `ReadOnlyMemory<byte>` instead of `byte[]`. Therefore, it is no longer possible to change individual bytes. Instead, a modified copy of the payload must be provided.
 
-In NServiceBus version 7 and below message mutators could be registered in two ways: using a dedicated `endpointConfiguration.RegisterMessageMutator` API and via a Dependency Injection container. In version 8 only the dedicated API is supported. Mutators registered in the container are ignored.
+In NServiceBus version 7 and below message mutators could be registered in two ways: using a dedicated `endpointConfiguration.RegisterMessageMutator` API and via a dependency injection container. In version 8 only the dedicated API is supported. Mutators registered in the container are ignored.
 
 ## AbortReceiveOperation
 
