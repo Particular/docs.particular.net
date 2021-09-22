@@ -47,7 +47,7 @@ Custom trigger definitions for Azure Service Bus triggers using NServiceBus mess
 
 ### Transactions
 
-Unlike the [in-process hosting model](/nservicebus/hosting/azure-functions-service-bus), the isolated worker model currently does not support using [`TransportTransactionMode.SendsAtomicWithReceive`](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive). [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transactions-transport-transaction-receive-only) is the default option.
+Unlike the [in-process hosting model](/nservicebus/hosting/azure-functions-service-bus), the isolated worker model does not support using [`TransportTransactionMode.SendsAtomicWithReceive`](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive). [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transactions-transport-transaction-receive-only) is the default option.
 
 ### Custom diagnostics
 
@@ -63,7 +63,7 @@ snippet: asb-function-isolated-configure-error-queue
 
 ### Known constraints and limitations
 
-The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization; however, not all of the options will be applicable to execution within Azure Functions.
+The configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization. However, not all of the options will be applicable to execution within Azure Functions.
 
 ## Preparing the Azure Service Bus namespace
 
@@ -77,7 +77,7 @@ Use the [`asb-transport` command line (CLI) tool](/transports/azure-service-bus/
 asb-transport endpoint create <queue name>
 ```
 
-See the [full documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-create) for the `asb-transport endpoint create` command for more details.
+See the [operation scripting documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-create) for the `asb-transport endpoint create` command for more details.
 
 WARN: If the `asb-tranport` command-line tool is not used to create the queue, it is recommended to set the `MaxDeliveryCount` setting to the maximum value.
 
@@ -87,13 +87,13 @@ WARN: If the `asb-tranport` command-line tool is not used to create the queue, i
 asb-transport endpoint subscribe <queue name> <eventtype>
 ```
 
-See the [full documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-subscribe) for the `asb-transport endpoint subscribe` command for more details.
+See the [operational scripting documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-subscribe) for the `asb-transport endpoint subscribe` command for more details.
 
 partial: assembly-scanner
 
 ## Package requirements
 
-`NServiceBus.AzureFunctions.Worker.ServiceBus` requires Visual Studio 2019 and .NET SDK version `5.0.300` or higher. Older versions of the .NET SDK might cause the following warning which prevents the trigger definition from being auto-generated:
+`NServiceBus.AzureFunctions.Worker.ServiceBus` requires Visual Studio 2019 and .NET SDK version `5.0.300` or higher. Older versions of the .NET SDK might display the following warning which prevents the trigger definition from being auto-generated:
 
 ```
 CSC : warning CS8032: An instance of analyzer NServiceBus.AzureFunctions.SourceGenerator.TriggerFunctionGenerator cannot be created from ServiceBus.AzureFunctions.Worker.SourceGenerator.dll : Could not load file or assembly 'Microsoft.CodeAnalysis, Version=3.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'. The system cannot find the file specified..
