@@ -6,7 +6,7 @@ redirects:
 - nservicebus/logging-writing
 ---
 
-Logging is done via the [`Microsoft.Extensions.Logging` abstraction](https://docs.microsoft.com/en-us/dotnet/core/extensions/logging) either by using the [NServiceBus extension for the`Generic Host`](/nservicebus/hosting/#microsoft-generic-host) or the [NServiceBus extensions for Microsoft logging](/nservicebus/logging/extensions-logging.md) when self hosting.
+Logging is done via the [`Microsoft.Extensions.Logging` abstraction](https://docs.microsoft.com/en-us/dotnet/core/extensions/logging) either by hositing using the [NServiceBus extension for the Microsoft Generic Host](/nservicebus/hosting/#microsoft-generic-host), or by using the [NServiceBus extensions for Microsoft logging](/nservicebus/logging/extensions-logging.md) when self-hosting.
 
 ## Using the NServiceBus logging abstraction
 
