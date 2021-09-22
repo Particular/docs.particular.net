@@ -1,12 +1,16 @@
 ---
 title: Logging from the user code
-reviewed: 2019-07-29
+reviewed: 2021-09-17
 component: Core
 redirects:
 - nservicebus/logging-writing
 ---
 
-The NServiceBus logging abstractions can be used for writing log messages from the user code. This approach ensures that both NServiceBus and user code log messages are written to the same destinations.
+Logging is done via the [`Microsoft.Extensions.Logging` abstraction](https://docs.microsoft.com/en-us/dotnet/core/extensions/logging) either by hositing using the [NServiceBus extension for the Microsoft Generic Host](/nservicebus/hosting/#microsoft-generic-host), or by using the [NServiceBus extensions for Microsoft logging](/nservicebus/logging/extensions-logging.md) when self-hosting.
+
+## Using the NServiceBus logging abstraction
+
+In legacy endpoints the NServiceBus logging abstraction is used for writing log messages from user code.
 
 Set up a single static field to an `ILog` in the classes, and then use it in all methods:
 
