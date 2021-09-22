@@ -6,7 +6,11 @@ redirects:
 - nservicebus/logging-writing
 ---
 
-While the use of [`Microsoft.Extensions.Logging`](/nservicebus/logging/extensions-logging.md) is recommended for new endpoints the NServiceBus logging abstraction can also be used for writing log messages from user code.
+Logging is done via the [`Microsoft.Extensions.Logging` abstraction](https://docs.microsoft.com/en-us/dotnet/core/extensions/logging) either by using the [NServiceBus extension for the`Generic Host`](/nservicebus/hosting.md#microsoft-generic-host) or the [NServiceBus extensions for Microsoft logging](/nservicebus/logging/extensions-logging.md) when self hosting.
+
+## Using the NServiceBus logging abstraction
+
+In legacy endpoints the NServiceBus logging abstraction is used for writing log messages from user code.
 
 Set up a single static field to an `ILog` in the classes, and then use it in all methods:
 
