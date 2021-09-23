@@ -56,10 +56,10 @@ The following provider packages will no longer be provided:
 
 NServiceBus version 8 supports [cooperative cancellation](/nservicebus/hosting/cooperative-cancellation.md) using `CancellationToken` parameters. Where appropriate, optional `CancellationToken` parameters have been added to public methods. This includes the abstract classes and interfaces required to implement a message transport or persistence library, and other extension points like `IDataBus`, `FeatureStartupTask`, and `INeedToInstallSomething`. Implementers can be updated by adding an optional `CancellationToken` parameter to the end of method signatures. The change also includes callbacks that customize the behavior of NServiceBus:
 
- when a [critical error](/nservicebus/hosting/critical-errors.md) is encountered
- when a message is retried
- when a message is moved to the error queue
- when a message is processed
+* when a [critical error](/nservicebus/hosting/critical-errors.md) is encountered
+* when a message is retried
+* when a message is moved to the error queue
+* when a message is processed
 
 ## Shutdown behavior
 
@@ -81,13 +81,12 @@ The NServiceBus gateway has been moved to a separate `NServiceBus.Gateway` packa
 
 ### How to upgrade
 
-- Install the desired gateway persistence package. Supported packages are:
-  - [NServiceBus.Gateway.Sql](https://www.nuget.org/packages/NServiceBus.Gateway.Sql)
-  - [NServiceBus.Gateway.RavenDB](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB)
-- Configure the gateway API by invoking the `endpointConfiguration.Gateway(...)` method, passing as an argument the selected storage configuration instance:
-  - [Documentation for NServiceBus.Gateway.Sql](/nservicebus/gateway/sql/)
-  - [Documentation for NServiceBus.Gateway.RavenDB](/nservicebus/gateway/ravendb/)
-
+* Install the desired gateway persistence package. Supported packages are:
+  * [NServiceBus.Gateway.Sql](https://www.nuget.org/packages/NServiceBus.Gateway.Sql)
+  * [NServiceBus.Gateway.RavenDB](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB)
+* Configure the gateway API by invoking the `endpointConfiguration.Gateway(...)` method, passing as an argument the selected storage configuration instance:
+  * [Documentation for NServiceBus.Gateway.Sql](/nservicebus/gateway/sql/)
+  * [Documentation for NServiceBus.Gateway.RavenDB](/nservicebus/gateway/ravendb/)
 
 ## Error notification events
 
@@ -117,7 +116,7 @@ Starting in NServiceBus version 8, one of the [other methods of providing a lice
 
 ## Support for message forwarding
 
-NServiceBus no longer natively supports forwarding a copy of every message processed by an endpoint. Instead, create a custom behavior to forward a copy of every processed message as described in [this sample](/samples/routing/message-forwarding).
+NServiceBus no longer natively supports forwarding a copy of every message processed by an endpoint. Instead, create a custom behavior to forward a copy of every processed message as described in [message forwarding sample](/samples/routing/message-forwarding).
 
 ## NServiceBus Host
 
@@ -229,7 +228,7 @@ The following static extension method types were renamed:
 
 All references to the old types must be changed to the new types, although usually these types are not referenced, since they only contain extension methods.
 
-## Removing a behaviour from the pipeline is obsolete
+## Removing a behavior from the pipeline is obsolete
 
 The `Remove` command is no longer available in `PipelineSettings`. In order to disable a behavior, [replace the behavior](/nservicebus/pipeline/manipulate-with-behaviors.md?version=core_8#disable-an-existing-step) with an empty one.
 
