@@ -1,7 +1,7 @@
 ---
 title: Using Outbox with RabbitMQ
 summary: Demonstrates how the Outbox handles duplicate messages using RabbitMQ and SQL Server hosted in Docker containers.
-reviewed: 2019-08-01
+reviewed: 2021-09-21
 component: Core
 related:
 - transports/rabbitmq
@@ -133,7 +133,7 @@ values
 The statement has been terminated.
 ```
 
-After hitting one of these errors, the message is retried, and as the Outbox lookup in the `Samples_RabbitMQ_Outbox_OutboxData` reveals that the message was already processedm successfully, it will skip executing the message handler again.
+After hitting one of these errors, the message is retried, and as the Outbox lookup in the `Samples_RabbitMQ_Outbox_OutboxData` reveals that the message was already processed successfully, it will skip executing the message handler again.
 
 The database output in the `BusinessObject` table will be the same.
 
