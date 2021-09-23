@@ -10,7 +10,7 @@ class Program
         Console.Title = "Samples.MessageMutators";
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageMutators");
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         #region ComponentRegistration
 
