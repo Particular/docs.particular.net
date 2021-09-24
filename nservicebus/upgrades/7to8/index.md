@@ -254,7 +254,7 @@ Memory allocations for incoming and outgoing messages bodies are reduced by usin
 
 ### Pipeline context types changes
 
-Throughput the pipeline all contexts have been updated to use `ReadonlyMemory<byte>` (e.g. context for behaviors, stage connectors, and message mutators) and affects the following types:
+Throughput the pipeline all contexts have been updated to use `ReadOnlyMemory<byte>` (e.g. context for behaviors, stage connectors, and message mutators) and affects the following types:
 
 * MutateIncomingTransportMessageContext
 * MutateOutgoingTransportMessageContext
@@ -267,15 +267,15 @@ Throughput the pipeline all contexts have been updated to use `ReadonlyMemory<by
 
 ## Message bodies only available in scope of incoming or outgoing messages
 
-Messages bodies available via `ReadonlyMemory<byte>` are only valid while in scope of incoming or outgoing message processing. Once out of scope the data referenced is no longer valid.
+Messages bodies available via `ReadOnlyMemory<byte>` are only valid while in scope of incoming or outgoing message processing. Once out of scope the data referenced is no longer valid.
 
 If access is still required outside the processing scope it is required to copy the message body while in scope.
 
 ### Message Mutators: Updating of message bodies
 
-The message mutator API for changing the message body has changed. Instead, of `UpdateMessage(byte[] body)` method `MutateIncomingTransportMessageContext` and `MutateOutgoingTransportMessageContext` expose `Body` property of type `ReadonlyMemory<T>`.
+The message mutator API for changing the message body has changed. Instead, of `UpdateMessage(byte[] body)` method `MutateIncomingTransportMessageContext` and `MutateOutgoingTransportMessageContext` expose `Body` property of type `ReadOnlyMemory<byte>`.
 
-Message mutators that replace the whole message body might be better of to be converted to a behavior. Via a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md). Via behavior it is possible to reduce allocations via [`ArrayPool<byte>`](https://docs.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1) or packages like [RecyclableMemoryStream](https://github.com/Microsoft/Microsoft.IO.RecyclableMemoryStream).
+Message mutators that replace the whole message body might be better of to be converted to a behavior. With a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) it is possible to reduce allocations via [`ArrayPool<byte>`](https://docs.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1) or packages like [RecyclableMemoryStream](https://github.com/Microsoft/Microsoft.IO.RecyclableMemoryStream).
 
 ### Serializers: Deserialization using ReadOnlyMemory of byte
 
@@ -299,16 +299,16 @@ public TransportOperation(string messageId, DispatchProperties properties, ReadO
 
 ### Transports: Incoming message MessageContext API
 
-A message body passed by the transport to the core using `ReadonlyMemory<byte>` instead of `byte[]`. The `MessageContext` becomes:
+A message body passed by the transport to the core using `ReadOnlyMemory<byte>` instead of `byte[]`. The `MessageContext` becomes:
 
 ```csharp
-public MessageContext(string nativeMessageId, Dictionary<string, string> headers, ReadonlyMemory<byte> body, TransportTransaction transportTransaction, ContextBag context)
+public MessageContext(string nativeMessageId, Dictionary<string, string> headers, ReadOnlyMemory<byte> body, TransportTransaction transportTransaction, ContextBag context)
 ```
 
-For transports that use low allocation types, this allows passing message body to the Core without additional memory allocations. Secondly, this ensures that the body passed by the transport cannot be changed by code executing in the pipeline (immutable message body). This will not affect transports that represent message body as `byte[]` - `byte[]` and be cast to `ReadonlyMemory<byte>` without additional memory allocations.
+For transports that use low allocation types, this allows passing message body without additional memory allocations. Secondly, this ensures that the body passed by the transport cannot be changed by code executing in the pipeline (immutable message body). 
 
 ## Persisters
 
-### Persister Outbox API: TransportOperation based on `ReadonlyMemory<byte>`
+### Persister Outbox API: TransportOperation based on `ReadOnlyMemory<byte>`
 
-The outbox `TransportOperation` is using `ReadonlyMemory<byte>` instead of `byte[]`.
+The outbox `TransportOperation` is using `ReadOnlyMemory<byte>` instead of `byte[]`.
