@@ -19,7 +19,7 @@ Deserialization updated to use `ReadOnlyMemory<byte>` instead of `Stream` with  
 object[] Deserialize(ReadOnlyMemory<byte> body, IList<Type> messageTypes = null);
 ```
 
-If serializers do not support `ReadOnlyMemory<byte>` usage of `.ToArray` must be avoided as this will copy the data and increases memory allocations. Instead include a shim that provides read-only access to the underlying data or use the `ReadOnlyMemoryExtensions.AsStream` from the [Microsoft.Toolkit.HighPerformance](https://docs.microsoft.com/en-us/dotnet/api/microsoft.toolkit.highperformance.extensions.readonlymemoryextensions.asstream).
+Serializers that do not support `ReadOnlyMemory<byte>` as deserialization input should avoid `.ToArray` calls to prevent unnecessary memory allocations. Instead, it's recommended to implement a shim exposing read-only data as types supported by the serializer APIs or use existing implementations like `ReadOnlyMemoryExtensions.AsStream` from the [Microsoft.Toolkit.HighPerformance](https://docs.microsoft.com/en-us/dotnet/api/microsoft.toolkit.highperformance.extensions.readonlymemoryextensions.asstream).
 
 ## Transports
 

@@ -41,7 +41,7 @@ if (extensions.TryGet(out DiscardIfNotReceivedBefore constraint))
 
 ### Pipeline context types changes
 
-Throughput the pipeline all contexts have been updated to use `ReadOnlyMemory<byte>` (e.g. context for behaviors, stage connectors, and message mutators) and affects the following types:
+Throughout the pipeline, all context types (e.g. context for behaviors, stage connectors, and message mutators) have been updated to use `ReadOnlyMemory<byte>` instead of `byte[]`. These are:
 
 * MutateIncomingTransportMessageContext
 * MutateOutgoingTransportMessageContext
@@ -52,14 +52,14 @@ Throughput the pipeline all contexts have been updated to use `ReadOnlyMemory<by
 * OutgoingPhysicalMessageContext
 * SerializeMessageConnector
 
-## Message bodies only available in scope of incoming or outgoing messages
+## Message body reference valid only in scope of message processing
 
-Messages bodies available via `ReadOnlyMemory<byte>` are only valid while in scope of incoming or outgoing message processing. Once out of scope the data referenced is no longer valid.
+References to message bodies exposed through context types as `ReadOnlyMemory<byte>` are valid only for the time of message processing. After the processing finishes, the data may not be assumed valid.
 
-If access is still required outside the processing scope it is required to copy the message body while in scope.
+If message body value is required after processing finishes it is required to copy it while still in scope.
 
 ### Message Mutators: Updating of message bodies
 
 The message mutator API for changing the message body has changed. Instead, of `UpdateMessage(byte[] body)` method `MutateIncomingTransportMessageContext` and `MutateOutgoingTransportMessageContext` expose `Body` property of type `ReadOnlyMemory<byte>`.
 
-Message mutators that replace the whole message body might be better of to be converted to a behavior. With a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) it is possible to reduce allocations via [`ArrayPool<byte>`](https://docs.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1) or packages like [RecyclableMemoryStream](https://github.com/Microsoft/Microsoft.IO.RecyclableMemoryStream).
+In scenarios, where mutators replace the whole message body switching to pipeline behavior might bring significant performance benefits. With a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) it is possible to reduce allocations via [`ArrayPool<byte>`](https://docs.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1) or packages like [RecyclableMemoryStream](https://github.com/Microsoft/Microsoft.IO.RecyclableMemoryStream).
