@@ -70,7 +70,7 @@
                 var headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusConvention>(context.Headers)
                     .Replace(typeof(MessageToSend).FullName, "MessageToSend");
                 SnippetLogger.Write(headerText);
-                SnippetLogger.Write(Encoding.Default.GetString(context.Body),
+                SnippetLogger.Write(Encoding.Default.GetString(context.Body.ToArray()),
                     suffix: "Body");
                 ManualResetEvent.Set();
                 return Task.CompletedTask;

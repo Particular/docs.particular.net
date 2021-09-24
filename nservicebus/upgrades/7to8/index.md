@@ -11,6 +11,11 @@ upgradeGuideCoreVersions:
 
 NOTE: This is a working document; there is currently no timeline for the release of NServiceBus version 8.0.
 
+* [Changes for downstream implementations like custom/community transports, persistence, message serializers](implementations.md)
+* [Changes related to the pipeline](pipeline.md)
+
+This document focusses on changes that is affecting general endpoint configuration and message handlers.
+
 ## Transport configuration
 
 NServiceBus version 8 comes with a new transport configuration API. Instead of the generic-based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to the the `UseTransport` method. For example, instead of:
@@ -42,7 +47,6 @@ Note: The existing API surface is supported for NServiceBus version 8 via a [shi
 
 NServiceBus no longer provides adapters for external dependency injection containers. Instead, NServiceBus version 8 directly provides the ability to use any container that conforms to the `Microsoft.Extensions.DependencyInjection` container abstraction. Visit the dedicated [dependency injection changes](/nservicebus/upgrades/7to8/dependency-injection.md) section of the upgrade guide for further information.
 
-
 ## Support for external logging providers
 
 Support for external logging providers is no longer provided by NServiceBus adapters for each logging framework. Instead, the [`NServiceBus.Extensions.Logging` package](/nservicebus/logging/extensions-logging.md) provides the ability to use any logging provider that conforms to the `Microsoft.Extensions.Logging` abstraction.
@@ -56,10 +60,11 @@ The following provider packages will no longer be provided:
 ## CancellationToken support
 
 NServiceBus version 8 supports [cooperative cancellation](/nservicebus/hosting/cooperative-cancellation.md) using `CancellationToken` parameters. Where appropriate, optional `CancellationToken` parameters have been added to public methods. This includes the abstract classes and interfaces required to implement a message transport or persistence library, and other extension points like `IDataBus`, `FeatureStartupTask`, and `INeedToInstallSomething`. Implementers can be updated by adding an optional `CancellationToken` parameter to the end of method signatures. The change also includes callbacks that customize the behavior of NServiceBus:
- - when a [critical error](/nservicebus/hosting/critical-errors.md) is encountered
- - when a message is retried
- - when a message is moved to the error queue
- - when a message is processed
+
+* when a [critical error](/nservicebus/hosting/critical-errors.md) is encountered
+* when a message is retried
+* when a message is moved to the error queue
+* when a message is processed
 
 ## Shutdown behavior
 
@@ -81,13 +86,12 @@ The NServiceBus gateway has been moved to a separate `NServiceBus.Gateway` packa
 
 ### How to upgrade
 
-- Install the desired gateway persistence package. Supported packages are:
-  - [NServiceBus.Gateway.Sql](https://www.nuget.org/packages/NServiceBus.Gateway.Sql)
-  - [NServiceBus.Gateway.RavenDB](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB)
-- Configure the gateway API by invoking the `endpointConfiguration.Gateway(...)` method, passing as an argument the selected storage configuration instance:
-  - [Documentation for NServiceBus.Gateway.Sql](/nservicebus/gateway/sql/)
-  - [Documentation for NServiceBus.Gateway.RavenDB](/nservicebus/gateway/ravendb/)
-
+* Install the desired gateway persistence package. Supported packages are:
+  * [NServiceBus.Gateway.Sql](https://www.nuget.org/packages/NServiceBus.Gateway.Sql)
+  * [NServiceBus.Gateway.RavenDB](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB)
+* Configure the gateway API by invoking the `endpointConfiguration.Gateway(...)` method, passing as an argument the selected storage configuration instance:
+  * [Documentation for NServiceBus.Gateway.Sql](/nservicebus/gateway/sql/)
+  * [Documentation for NServiceBus.Gateway.RavenDB](/nservicebus/gateway/ravendb/)
 
 ## Error notification events
 
@@ -96,7 +100,6 @@ In NServiceBus version 7.2, error notification events for `MessageSentToErrorQue
 Error notifications can be set with the `Task`-based callbacks through the recoverability settings:
 
 snippet: SubscribeToErrorsNotifications-UpgradeGuide
-
 
 ## Disabling subscriptions
 
@@ -108,7 +111,6 @@ To disable publishing on an endpoint, the declarative API should be used instead
 
 snippet: DisablePublishing-UpgradeGuide
 
-
 ## Change to license file locations
 
  NServiceBus version 8 will no longer attempt to load the license file from the `appSettings` section of an app.config or web.config file, in order to create better alignment between .NET Framework 4.x and .NET Core.
@@ -119,7 +121,7 @@ Starting in NServiceBus version 8, one of the [other methods of providing a lice
 
 ## Support for message forwarding
 
-NServiceBus no longer natively supports forwarding a copy of every message processed by an endpoint. Instead, create a custom behavior to forward a copy of every procesed message as described in [this sample](/samples/routing/message-forwarding).
+NServiceBus no longer natively supports forwarding a copy of every message processed by an endpoint. Instead, create a custom behavior to forward a copy of every processed message as described in [message forwarding sample](/samples/routing/message-forwarding).
 
 ## NServiceBus Host
 
@@ -140,7 +142,7 @@ endpointConfiguration.UniquelyIdentifyRunningInstance()
 
 ## DateTimeOffset instead of DateTime
 
-Usage of `DateTime` can result in numerous issues caused by misalignment of timezone offsets, which can lead to time calculation errors. Although a `DateTime.Kind` property exists, it is often ignored during DateTime math and it is up to the user to ensure values are aligned in their offset. The `DateTimeOffset` type fixes this. It does not contain any timezone information, only an offset, which is sufficient to get the time calculations right.
+Usage of `DateTime` can result in numerous issues caused by misalignment of time zone offsets, which can lead to time calculation errors. Although a `DateTime.Kind` property exists, it is often ignored during DateTime math and it is up to the user to ensure values are aligned in their offset. The `DateTimeOffset` type fixes this. It does not contain any time zone information, only an offset, which is sufficient to get the time calculations right.
 
 [> These uses for DateTimeOffset values are much more common than those for DateTime values. As a result, DateTimeOffset should be considered the default date and time type for application development."](https://docs.microsoft.com/en-us/dotnet/standard/datetime/choosing-between-datetime)
 
@@ -152,13 +154,13 @@ In NServiceBus version 8, the Scheduler API has been deprecated in favor of opti
 
 It is recommended to create a .NET Timer with the same interval as the scheduled task and use `IMessageSession.SendLocal` to send a message to process. Using message processing has the benefit of using recoverability and uses a transactional context. If these benefits are not needed then do not send a message at all and directly invoke logic from the timer.
 
-INFO: The behavior in NServiceBus version 7 is to **not** retry the task on failures, so be sure to wrap the business logic in a `try-catch` statement to get the same behavior in NServicebus version 8.
+INFO: The behavior in NServiceBus version 7 is to **not** retry the task on failures, so be sure to wrap the business logic in a `try-catch` statement to get the same behavior in NServiceBus version 8.
 
 See the [scheduling with .NET Timers sample](/samples/scheduling/timer) for more details.
 
 ## Meaningful exceptions when stopped
 
-NServiceBus version 8 throws an `InvalidOperationException` when invoking message opererations on `IMessageSession` when the endpoint instance is stopping or stopped to indicate that the instance can no longer be used.
+NServiceBus version 8 throws an `InvalidOperationException` when invoking message operations on `IMessageSession` when the endpoint instance is stopping or stopped to indicate that the instance can no longer be used.
 
 ## Non-durable messaging
 
@@ -190,12 +192,6 @@ The following transports might need migration:
 * SQS
 * MSMQ
 
-### IManageUnitOfWork
-
-`IManageUnitOfWork` interface is no longer recommended. The unit of work pattern is more straightforward to implement in a pipeline behavior, where the using keyword and try/catch blocks can be used.
-
-[Custom unit of work sample](/samples/pipeline/unit-of-work/) is an example of the the recommended approach.
-
 ## Outbox configuration
 
 NServiceBus version 8 requires the transport transaction mode to be set explicitly to `ReceiveOnly` when using the [outbox](/nservicebus/outbox/) feature:
@@ -207,12 +203,6 @@ transport.TransportTransactionMode = TransportTransactionMode.ReceiveOnly;
 
 endpointConfiguration.EnableOutbox();
 ```
-
-## Message mutators
-
-Message mutators that operate on serialized messages (`IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`) in NServiceBus version 8 represent the message payload as `ReadOnlyMemory<byte>` instead of `byte[]`. Therefore, it is no longer possible to change individual bytes. Instead, a modified copy of the payload must be provided.
-
-In NServiceBus version 7 and below message mutators could be registered in two ways: using a dedicated `endpointConfiguration.RegisterMessageMutator` API and via a dependency injection container. In version 8 only the dedicated API is supported. Mutators registered in the container are ignored.
 
 ## AbortReceiveOperation
 
@@ -231,22 +221,10 @@ The following static extension method types were renamed:
 
 All references to the old types must be changed to the new types, although usually these types are not referenced, since they only contain extension methods.
 
-## Removing a behaviour from the pipeline is obsolete
-
-The `Remove` command is no longer available in `PipelineSettings`. In order to disable a behavior, [replace the behavior](/nservicebus/pipeline/manipulate-with-behaviors.md?version=core_8#disable-an-existing-step) with an empty one.
-
 ## Gateway in-memory deduplication
 
 The `InMemoryDeduplicationConfiguration` type within the NServiceBus.Gateway package has been renamed to `NonDurableDeduplicationConfiguration`.
 
-## Pipeline delivery constraints
+## Dependency on System.Memory package for .NET Framework
 
-The `TryGetDeliveryConstraint` method on the `NServiceBus.Extensibility.ContextBag` property has been removed. In order to access delivery constraints from within the pipeline, use `NServiceBus.Extensibility.ContextBag.TryGet` instead.
-
-```csharp
-var extensions = context.Extensions;
-if (extensions.TryGet(out DiscardIfNotReceivedBefore constraint))
-{
-    timeToBeReceived = constraint.MaxTime;
-}
-```
+Memory allocations for incoming and outgoing messages bodies are reduced by using the low allocation memory types via the System.Memory namespace. These type are available on .NET Framework via the **System.Memory** package. The NServiceBus build that targets .NET Framework has this dependency added.
