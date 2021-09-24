@@ -11,6 +11,11 @@ upgradeGuideCoreVersions:
 
 NOTE: This is a working document; there is currently no timeline for the release of NServiceBus version 8.0.
 
+* [Changes for downstream implementations like custom/community transports, persistence, message serializers](implementations.md)
+* [Changes related to the pipeline](pipeline.md)
+
+This document focusses on changes that is affecting general endpoint configuration and message handlers.
+
 ## Transport configuration
 
 NServiceBus version 8 comes with a new transport configuration API. Instead of the generic-based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to the the `UseTransport` method. For example, instead of:
@@ -187,12 +192,6 @@ The following transports might need migration:
 * SQS
 * MSMQ
 
-### IManageUnitOfWork
-
-`IManageUnitOfWork` interface is no longer recommended. The unit of work pattern is more straightforward to implement in a pipeline behavior, where the using keyword and try/catch blocks can be used.
-
-[Custom unit of work sample](/samples/pipeline/unit-of-work/) is an example of the the recommended approach.
-
 ## Outbox configuration
 
 NServiceBus version 8 requires the transport transaction mode to be set explicitly to `ReceiveOnly` when using the [outbox](/nservicebus/outbox/) feature:
@@ -204,12 +203,6 @@ transport.TransportTransactionMode = TransportTransactionMode.ReceiveOnly;
 
 endpointConfiguration.EnableOutbox();
 ```
-
-## Message mutators with Dependancy Injection (DI)
-
-Message mutators that operate on serialized messages (`IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`) in NServiceBus version 8 represent the message payload as `ReadOnlyMemory<byte>` instead of `byte[]`. Therefore, it is no longer possible to change individual bytes. Instead, a modified copy of the payload must be provided.
-
-In NServiceBus version 7 and below message mutators could be registered in two ways: using a dedicated `endpointConfiguration.RegisterMessageMutator` API and via a dependency injection container. In version 8 only the dedicated API is supported. Mutators registered in the container are ignored.
 
 ## AbortReceiveOperation
 
@@ -228,87 +221,10 @@ The following static extension method types were renamed:
 
 All references to the old types must be changed to the new types, although usually these types are not referenced, since they only contain extension methods.
 
-## Removing a behavior from the pipeline is obsolete
-
-The `Remove` command is no longer available in `PipelineSettings`. In order to disable a behavior, [replace the behavior](/nservicebus/pipeline/manipulate-with-behaviors.md?version=core_8#disable-an-existing-step) with an empty one.
-
 ## Gateway in-memory deduplication
 
 The `InMemoryDeduplicationConfiguration` type within the NServiceBus.Gateway package has been renamed to `NonDurableDeduplicationConfiguration`.
 
-## Pipeline delivery constraints
-
-The `TryGetDeliveryConstraint` method on the `NServiceBus.Extensibility.ContextBag` property has been removed. In order to access delivery constraints from within the pipeline, use `NServiceBus.Extensibility.ContextBag.TryGet` instead.
-
-```csharp
-var extensions = context.Extensions;
-if (extensions.TryGet(out DiscardIfNotReceivedBefore constraint))
-{
-    timeToBeReceived = constraint.MaxTime;
-}
-```
-
 ## Dependency on System.Memory package for .NET Framework
 
 Memory allocations for incoming and outgoing messages bodies are reduced by using the low allocation memory types via the System.Memory namespace. These type are available on .NET Framework via the **System.Memory** package. The NServiceBus build that targets .NET Framework has this dependency added.
-
-### Pipeline context types changes
-
-Throughput the pipeline all contexts have been updated to use `ReadOnlyMemory<byte>` (e.g. context for behaviors, stage connectors, and message mutators) and affects the following types:
-
-* MutateIncomingTransportMessageContext
-* MutateOutgoingTransportMessageContext
-* ConnectorContextExtensions
-* IIncomingPhysicalMessageContext
-* IncomingPhysicalMessageContext
-* IOutgoingPhysicalMessageContext
-* OutgoingPhysicalMessageContext
-* SerializeMessageConnector
-
-## Message bodies only available in scope of incoming or outgoing messages
-
-Messages bodies available via `ReadOnlyMemory<byte>` are only valid while in scope of incoming or outgoing message processing. Once out of scope the data referenced is no longer valid.
-
-If access is still required outside the processing scope it is required to copy the message body while in scope.
-
-### Message Mutators: Updating of message bodies
-
-The message mutator API for changing the message body has changed. Instead, of `UpdateMessage(byte[] body)` method `MutateIncomingTransportMessageContext` and `MutateOutgoingTransportMessageContext` expose `Body` property of type `ReadOnlyMemory<byte>`.
-
-Message mutators that replace the whole message body might be better of to be converted to a behavior. With a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) it is possible to reduce allocations via [`ArrayPool<byte>`](https://docs.microsoft.com/en-us/dotnet/api/system.buffers.arraypool-1) or packages like [RecyclableMemoryStream](https://github.com/Microsoft/Microsoft.IO.RecyclableMemoryStream).
-
-### Serializers: Deserialization using ReadOnlyMemory of byte
-
-Deserialization updated to use `ReadOnlyMemory<byte>` instead of `Stream` with  on `Deserialize` API method on `IMessageSerializer`.
-
-```csharp
-object[] Deserialize(ReadOnlyMemory<byte> body, IList<Type> messageTypes = null);
-```
-
-If serializers do not support `ReadOnlyMemory<byte>` usage of `.ToArray` must be avoided as this will copy the data and increases memory allocations. Instead include a shim that provides read-only access to the underlying data or use the `ReadOnlyMemoryExtensions.AsStream` from the [Microsoft.Toolkit.HighPerformance](https://docs.microsoft.com/en-us/dotnet/api/microsoft.toolkit.highperformance.extensions.readonlymemoryextensions.asstream).
-
-## Transports
-
-### Transports: Outgoing message TransportOperation API
-
-The outgoing message body passed to the transport via `TransportOperation` has a new constructor:
-
-```csharp
-public TransportOperation(string messageId, DispatchProperties properties, ReadOnlyMemory<byte> body, Dictionary<string, string> headers)
-```
-
-### Transports: Incoming message MessageContext API
-
-A message body passed by the transport to the core using `ReadOnlyMemory<byte>` instead of `byte[]`. The `MessageContext` becomes:
-
-```csharp
-public MessageContext(string nativeMessageId, Dictionary<string, string> headers, ReadOnlyMemory<byte> body, TransportTransaction transportTransaction, ContextBag context)
-```
-
-For transports that use low allocation types, this allows passing message body without additional memory allocations. Secondly, this ensures that the body passed by the transport cannot be changed by code executing in the pipeline (immutable message body). 
-
-## Persisters
-
-### Persister Outbox API: TransportOperation based on `ReadOnlyMemory<byte>`
-
-The outbox `TransportOperation` is using `ReadOnlyMemory<byte>` instead of `byte[]`.
