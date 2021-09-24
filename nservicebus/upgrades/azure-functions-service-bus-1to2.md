@@ -1,6 +1,6 @@
 ---
 title: Azure Functions with Azure Service Bus Upgrade Version 1 to 2
-summary: Instructions on how to upgrade Azure Functions with Azure Service Bus from version 1 to 2
+summary: How to upgrade Azure Functions with Azure Service Bus from version 1 to 2
 component: ASBFunctions
 reviewed: 2021-08-30
 related:
@@ -21,13 +21,13 @@ Instead of
 functionsHostBuilder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration(endpointName));
 ```
 
-Use:
+use:
 
 ```csharp
 functionsHostBuilder.UseNServiceBus(endpointName);
 ```
 
-Endpoint name can be inferred from `NServiceBusTriggerFunctionAttribute` if present.
+The endpoint name can be inferred from `NServiceBusTriggerFunctionAttribute` if present.
 
 ```csharp
 [assembly: NServiceBusTriggerFunction("MyEndpoint")]
@@ -37,13 +37,13 @@ Endpoint name can be inferred from `NServiceBusTriggerFunctionAttribute` if pres
 functionsHostBuilder.UseNServiceBus(); // Will use the name MyEndpoint
 ```
 
-NOTE: The constructed instance of `NServiceBusTriggeredEndpointConfiguration` already contains a reference to the `IConfiguration` from the host environment. It is not required to pass one in.
+NOTE: The constructed instance of `NServiceBusTriggeredEndpointConfiguration` already contains a reference to an `IConfiguration` instance from the host environment. It is not required to pass one in.
 
 ### Connection strings
 
-Specifying a connection string by name has been deprecated. 
+Specifying a connection string by name has been deprecated.
 
-Instead of 
+Instead of
 
 ```csharp
 functionsHostBuilder.UseNServiceBus(
@@ -51,10 +51,10 @@ functionsHostBuilder.UseNServiceBus(
 );
 ```
 
-Use:
+use:
 
 ```csharp
-functionsHostBuilder.UseNServiceBus(endpointName, nsb => 
+functionsHostBuilder.UseNServiceBus(endpointName, nsb =>
 {
     var connectionString = Environment.GetEnvironmentVariable(connectionStringName);
     nsb.ServiceBusConnectionString = connectionString;
@@ -63,10 +63,10 @@ functionsHostBuilder.UseNServiceBus(endpointName, nsb =>
 
 ### Routing
 
-Instead of 
+Instead of
 
 ```csharp
-functionsHostBuilder.UseNServiceBus(() => 
+functionsHostBuilder.UseNServiceBus(() =>
 {
     var serviceBusTriggeredEndpointConfiguration = new ServiceBusTriggeredEndpointConfiguration(endpointName);
     var routing = serviceBusTriggeredEndpointConfiguration.Transport.Routing();
@@ -76,10 +76,10 @@ functionsHostBuilder.UseNServiceBus(() =>
 });
 ```
 
-Use:
+use:
 
 ```csharp
-functionsHostBuilder.UseNServiceBus(endpointName, nsb => 
+functionsHostBuilder.UseNServiceBus(endpointName, nsb =>
 {
     nsb.Routing.RouteToEndpoint(typeof(SomeMessage), "AnotherEndpoint");
 });

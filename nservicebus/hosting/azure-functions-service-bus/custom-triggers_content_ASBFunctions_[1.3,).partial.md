@@ -1,4 +1,4 @@
-If the trigger function must be customized, the trigger function generation can be disabled by removing the `NServiceBusTriggerFunction` attribute. A customized trigger function can then be added manually to the project:
+If the trigger function must be customized, disable generation of the trigger function by removing the `NServiceBusTriggerFunction` attribute. A custom trigger function can then be added manually to the project:
 
 snippet: custom-trigger-definition
 

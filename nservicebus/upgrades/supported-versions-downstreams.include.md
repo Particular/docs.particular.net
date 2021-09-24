@@ -38,7 +38,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.3.1) | 2021-06-23     | -                 | -                                 |
-| [6.2.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.2.0) | 2020-11-19     | 2021-09-23        | Superseded by 6.3.x               |
+| [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/6.2.0) | ~~2020-11-19~~ | ~~2021-09-23~~    | ~~Superseded by 6.3.x~~           |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.SqlServer/3.1.6) | 2017-07-14     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Transport.AzureServiceBus](/nuget/NServiceBus.Transport.AzureServiceBus)
@@ -47,7 +47,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.9.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.9.0) | 2021-03-01     | -                 | -                                 |
 | [~~1.8.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.8.0) | ~~2020-12-24~~ | ~~2021-06-01~~    | ~~Superseded by 1.9.x~~           |
-| [~~1.7.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | ~~2020-11-24~~ | ~~2021-03-24~~    | ~~Superseded by 1.8.x~~           |
 
 #### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
 
@@ -67,7 +66,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.1) | 2021-06-23     | -                 | -                                 |
-| [6.2.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.2.0) | 2020-11-19     | 2021-09-23        | Superseded by 6.3.x               |
+| [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.2.0) | ~~2020-11-19~~ | ~~2021-09-23~~    | ~~Superseded by 6.3.x~~           |
 
 ### Persistence packages
 

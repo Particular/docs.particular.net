@@ -54,7 +54,7 @@
             throw new NotImplementedException();
         }
 
-        public object[] Deserialize(Stream stream, IList<Type> messageTypes = null)
+        public object[] Deserialize(ReadOnlyMemory<byte> body, IList<Type> messageTypes = null)
         {
             // Add code to deserialize message
             throw new NotImplementedException();
