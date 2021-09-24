@@ -8,7 +8,7 @@ related:
 
 ## Introduction
 
-This sample shows how to use the recoverability [error notifications](/nservicebus/recoverability/subscribing-to-error-notifications) to capture the following:
+This sample shows how to use the recoverability [error notifications](/nservicebus/recoverability/subscribing-to-error-notifications.md) to capture the following:
 
  * When a [Immediate Retry](/nservicebus/recoverability/#immediate-retries) occurs.
  * When a [Delayed Retry](/nservicebus/recoverability/#delayed-retries) occurs.
