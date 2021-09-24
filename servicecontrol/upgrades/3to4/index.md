@@ -1,7 +1,7 @@
 ---
 title: Upgrade ServiceControl from Version 3 to Version 4
 summary: Instructions on how to upgrade ServiceControl from version 3 to 4
-reviewed: 2019-08-06
+reviewed: 2021-09-24
 isUpgradeGuide: true
 ---
 
