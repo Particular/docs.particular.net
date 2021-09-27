@@ -673,7 +673,7 @@ No versions released.
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Gateway/3.2.0) | 2021-06-28     | -                 | -                                 |
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Gateway/3.1.0) | 2019-12-23     | 2021-09-28        | Superseded by 3.2.x               |
+| [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Gateway/3.1.0) | ~~2019-12-23~~ | ~~2021-09-28~~    | ~~Superseded by 3.2.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Gateway/3.0.2) | ~~2018-05-29~~ | ~~2020-03-23~~    | ~~Superseded by 3.1.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Gateway/2.0.3) | 2016-10-11     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Gateway/1.0.1) | ~~2014-09-29~~ | ~~2018-10-11~~    | ~~Extended by NServiceBus 5.2.x~~ |
