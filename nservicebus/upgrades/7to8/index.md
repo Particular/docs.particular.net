@@ -13,7 +13,7 @@ NOTE: This is a working document; there is currently no timeline for the release
 
 * [Changes for downstream implementations like custom/community transports, persistence, message serializers](implementations.md)
 * [Changes related to the pipeline](pipeline.md)
-* [Changes on .NET Framework requirements](/nservicebus/operations/dotnet-framework-version-requirements.md)
+* [Changes to framework requirements](/nservicebus/operations/dotnet-framework-version-requirements.md)
 
 This document focusses on changes that is affecting general endpoint configuration and message handlers.
 
