@@ -12,7 +12,7 @@ redirects:
 
 NOTE: NServiceBus version 8.x is a pre-release version and is subject to change prior to the final release.
 
-Requires [.NET Core 2.1](https://www.microsoft.com/net/core/) (or higher) **or** [.NET Framework Version 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472) (or higher)
+Requires [.NET Core 3.1](https://www.microsoft.com/net/core/) (or higher) **or** [.NET Framework Version 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472) (or higher)
 
 ### NServiceBus version 7.x
 
