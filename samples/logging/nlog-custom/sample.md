@@ -1,7 +1,7 @@
 ---
 title: Custom NLog configuration
 summary: Customizing NLog usage by configuring NLog targets and rules.
-reviewed: 2019-08-09
+reviewed: 2021-09-28
 component: NLog
 related:
 - nservicebus/logging
