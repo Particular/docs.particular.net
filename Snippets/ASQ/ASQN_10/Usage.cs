@@ -15,7 +15,19 @@ class Usage
     {
         #region AzureStorageQueueTransportWithAzure
 
+        var connectionString = "DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];";
+
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+        transport.UseQueueServiceClient(new QueueServiceClient(connectionString));
+
+        //Table and Blob clients don't need to be specified if native delayed delivery is disabled
+        //transport.DelayedDelivery().DisableDelayedDelivery();
+
+        var account = CloudStorageAccount.Parse(connectionString);
+        transport.UseCloudTableClient(new CloudTableClient(account.TableStorageUri, account.Credentials));
+        transport.UseBlobServiceClient(new BlobServiceClient(connectionString));
+
+        //Or alternatively
         transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
 
         #endregion
