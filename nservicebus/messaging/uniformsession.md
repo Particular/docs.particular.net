@@ -1,7 +1,7 @@
 ---
 title: Uniform Session
 summary: Uniform Session introduces a uniform message session across the endpoint.
-reviewed: 2019-08-19
+reviewed: 2021-09-29
 component: UniformSession
 ---
 
