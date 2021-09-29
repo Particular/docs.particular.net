@@ -1,7 +1,7 @@
 ---
 title: Selecting a persister
 summary: A guide for selecting an NServicebus persister.
-reviewed: 2019-08-13
+reviewed: 2021-09-29
 isLearningPath: true
 ---
 
@@ -32,7 +32,7 @@ A --> |No| I{Which transport?}
 I --> |MSMQ|L[SQL]
 I --> |All other transports|J[None required]
 B --> |MongoDB|M[MongoDB]
-B --> |Service Fabric|C[Service Fabric]
+B --> |Service Fabric (stateful service)|C[Service Fabric]
 B --> |RavenDB|E[RavenDB]
 B --> |Azure|Q{PaaS/IaaS ?}
 B --> |No|L
@@ -105,7 +105,7 @@ For new development, this persister is not recommended. Instead, use the SQL per
 
 ### Service Fabric
 
-This option is relevant only if endpoints are hosted in Service Fabric.
+This option is relevant only if endpoints are hosted using [stateful services](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-introduction#stateful-reliable-services) in Service Fabric.
 
 ### RavenDB
 
