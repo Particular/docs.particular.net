@@ -32,7 +32,7 @@ A --> |No| I{Which transport?}
 I --> |MSMQ|L[SQL]
 I --> |All other transports|J[None required]
 B --> |MongoDB|M[MongoDB]
-B --> |Service Fabric (stateful service)|C[Service Fabric]
+B --> |"Service Fabric<br/>(stateful services)"|C[Service Fabric]
 B --> |RavenDB|E[RavenDB]
 B --> |Azure|Q{PaaS/IaaS ?}
 B --> |No|L
