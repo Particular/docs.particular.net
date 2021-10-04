@@ -1,7 +1,7 @@
 ---
 title: Delayed Delivery
 summary: A simple ordering system that defers handling or delivery of a message
-reviewed: 2019-08-20
+reviewed: 2021-10-04
 component: Core
 related:
 - nservicebus/messaging/delayed-delivery
