@@ -28,4 +28,4 @@ NOTE: The `Adapt` methods are implemented by the user and are container-specific
 
 Note: The session is only valid for use after the endpoint have been started, so it is provided as `Lazy<IMessageSession>`.
 
-[This sample](/samples/dependency-injection/extensions-dependency-injection/) demonstrates how to register the message session.
+The [NServiceBus.Extensions.DependencyInjection Usage sample](/samples/dependency-injection/extensions-dependency-injection/) demonstrates how to register the message session.
