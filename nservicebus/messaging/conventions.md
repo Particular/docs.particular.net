@@ -2,7 +2,7 @@
 title: Conventions
 summary: Custom conventions for defining how certain things are detected
 component: Core
-reviewed: 2019-09-03
+reviewed: 2021-10-04
 related:
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/unobtrusive-mode
