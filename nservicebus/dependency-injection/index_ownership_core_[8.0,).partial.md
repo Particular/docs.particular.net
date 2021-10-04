@@ -72,7 +72,7 @@ NOTE: Refer to the container's documentation on how to use the container with th
 
 Note: The session is only valid for use after the endpoint have been started, so it is provided as `Lazy<IMessageSession>`.
 
-[This sample](/samples/dependency-injection/extensions-dependency-injection/) demonstrates how to register the message session.
+The [NServiceBus.Extensions.DependencyInjection Usage sample](/samples/dependency-injection/extensions-dependency-injection/) demonstrates how to register the message session.
 
 ## Microsoft Generic Host
 
