@@ -193,9 +193,9 @@ Info: It is adviced to host ServiceControl instances on isolated (virtual) machi
 
 Resolution:
 
-- Ensure you are running the latest version of ServiceControl to ensure you have all latest performance enhancements. The most recent version is available at <https://particular.net/downloads>
-- Ensure your disks are **at least** capable of 7,500 IOPS as stated in the [hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware). If the system is continually producing messages or generate lots or very large messages (several kilobytes or larges) that ServiceControl requires even faster disks and the **minimum** requirements.
+- Ensure the latest version of ServiceControl is installed to ensure it has all latest performance enhancements. The most recent version is available at <https://particular.net/downloads>
+- Ensure storage disks are **at least** capable of 7,500 IOPS as stated in the [hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware). If the system is continually producing messages or generate lots or very large messages (several kilobytes or larges) that ServiceControl requires even faster disks and the **minimum** requirements.
 - Ensure no custom checks are shown in ServicePulse that are indicating Index issues. The log file could indicate the type of index issues (See [stale indexes](#stale-indexes), [index errors](#index-errors), and [corrupted indexes](#corrupted-indexes))
-- Consider disabling *Full Text Search* os message bodies and headers as this causes most resource utilization for CPU and disk IO. This can be disabled if you are running the latest version of ServiceControl by going to each ServiceControl instance type, opening the configuration (gear icon), scrolling down to Advanced Configuration and change Full Text Search On Message Bodies to Off and select Save and then restart the instance.
+- Consider disabling *Full Text Search* os message bodies and headers as this causes most resource utilization for CPU and disk IO. This can be disabled inrunning the latest version of ServiceControl by going to each ServiceControl instance type, opening the configuration (gear icon), scrolling down to Advanced Configuration and change Full Text Search On Message Bodies to Off and select Save and then restart the instance.
 
 Warning: Disabling *Full Text Search* makes text search unavailable in ServiceInsight.
