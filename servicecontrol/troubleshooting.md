@@ -179,23 +179,23 @@ If many indexes are affected it may be easier to rebuild all indexes, although t
 
 ## High CPU utilization
 
-Warn:  Do not terminate the process as  this can cause index corruption and cause the indexes to be verified of rebuils which causes long and exessive resource utilization for large datababases.
+Warn: Do not terminate the process as this can cause index corruption and can cause indexes to be rebuilt which causes long and excessive resource utilization for large databases.
 
-If a ServiceControl instance shows high CPU utilization than this usually is caused due to:
+If a ServiceControl instance shows high CPU utilization, then it's usually due to:
 
-- Termination of the process and ServiceControl its internal database validating the indexes at the next startup.
+- Unclean process termination forcing ServiceControl internal database to validate indexes consistency at the next startup.
 - Rebuilding of indexes which require all database context to be read and indexed.
-- Large ingestion of messages due to a huge backlog of messages in the queue.
+- Large messages ingestion due to a massive backlog of messages in the queue.
 
 Usually this fixes itself over time as long as the process is not terminated. Do not terminate the process!
 
-Info: It is adviced to host ServiceControl instances on isolated (virtual) machine with dedicated (non shared) resources for it to not affect any other processes when utilization a lot of system resources.
+Info: It is advised to host ServiceControl instances on isolated (virtual) machines with dedicated (non shared) resources not to affect any other process when ServiceControl requires a lot of system resources.
 
 Resolution:
 
 - Ensure the latest version of ServiceControl is installed to ensure it has all latest performance enhancements. The most recent version is available at <https://particular.net/downloads>
-- Ensure storage disks are **at least** capable of 7,500 IOPS as stated in the [hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md). If the system is continually producing messages or generate lots or very large messages (several kilobytes or larges) that ServiceControl requires even faster disks and the **minimum** requirements.
-- Ensure no custom checks are shown in ServicePulse that are indicating Index issues. The log file could indicate the type of index issues (See [stale indexes](#stale-indexes), [index errors](#index-errors), and [corrupted indexes](#corrupted-indexes))
-- Consider disabling *Full Text Search* os message bodies and headers as this causes most resource utilization for CPU and disk IO. This can be disabled inrunning the latest version of ServiceControl by going to each ServiceControl instance type, opening the configuration (gear icon), scrolling down to Advanced Configuration and change Full Text Search On Message Bodies to Off and select Save and then restart the instance.
+- Ensure storage disks are **at least** capable of 7,500 IOPS as stated in the [hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md). If the system continuously produces messages or generates many or substantial messages (several kilobytes or larger), ServiceControl requires even faster disks than specified by the **minimum** requirements.
+- Ensure no custom checks are shown in ServicePulse that are indicating index issues. The log file could indicate the type of index issues (See [stale indexes](#stale-indexes), [index errors](#index-errors), and [corrupted indexes](#corrupted-indexes))
+- Consider disabling message bodies and headers *Full-Text search* as this causes most resource utilization for CPU and disk IO. This can be disabled in the latest version of ServiceControl by configuring each ServiceControl instance: open configuration (gear icon), scroll down to Advanced Configuration and set "Full-Text Search On Message Bodies" to Off, finally select Save, and then restart the instance.
 
-Warning: Disabling *Full Text Search* makes text search unavailable in ServiceInsight.
+Warning: Disabling *Full-Text Search* causes text search to be unavailable in ServiceInsight.
