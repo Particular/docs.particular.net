@@ -184,7 +184,7 @@ Warn: Do not terminate the process as this can cause index corruption and can ca
 If a ServiceControl instance shows high CPU utilization, then it's usually due to:
 
 - Unclean process termination forcing ServiceControl internal database to validate indexes consistency at the next startup.
-- Rebuilding of indexes which require all database context to be read and indexed.
+- Rebuilding of indexes which requires all database records to be read and indexed.
 - Large messages ingestion due to a massive backlog of messages in the queue.
 
 Usually this fixes itself over time as long as the process is not terminated. Do not terminate the process!
