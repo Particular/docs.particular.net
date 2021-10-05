@@ -4,7 +4,7 @@ summary: Troubleshooting ServiceControl installation and common issues
 reviewed: 2020-06-26
 ---
 
-INFO: Most issues can be resolved by upgrading to the latest version. Download the latest version at https://particular.net/downloads and the host meets at minimum the [general hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware#general-recommendations).
+INFO: Most issues can be resolved by upgrading to the latest version. Download the latest version at https://particular.net/downloads and the host meets at minimum the [general hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations).
 
 ### Check the configuration via ServiceControl Management
 
@@ -194,7 +194,7 @@ Info: It is adviced to host ServiceControl instances on isolated (virtual) machi
 Resolution:
 
 - Ensure the latest version of ServiceControl is installed to ensure it has all latest performance enhancements. The most recent version is available at <https://particular.net/downloads>
-- Ensure storage disks are **at least** capable of 7,500 IOPS as stated in the [hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware). If the system is continually producing messages or generate lots or very large messages (several kilobytes or larges) that ServiceControl requires even faster disks and the **minimum** requirements.
+- Ensure storage disks are **at least** capable of 7,500 IOPS as stated in the [hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md). If the system is continually producing messages or generate lots or very large messages (several kilobytes or larges) that ServiceControl requires even faster disks and the **minimum** requirements.
 - Ensure no custom checks are shown in ServicePulse that are indicating Index issues. The log file could indicate the type of index issues (See [stale indexes](#stale-indexes), [index errors](#index-errors), and [corrupted indexes](#corrupted-indexes))
 - Consider disabling *Full Text Search* os message bodies and headers as this causes most resource utilization for CPU and disk IO. This can be disabled inrunning the latest version of ServiceControl by going to each ServiceControl instance type, opening the configuration (gear icon), scrolling down to Advanced Configuration and change Full Text Search On Message Bodies to Off and select Save and then restart the instance.
 
