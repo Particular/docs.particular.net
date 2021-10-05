@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Troubleshooting
 summary: Troubleshooting ServiceControl installation and common issues
-reviewed: 2020-06-26
+reviewed: 2021-10-05
 ---
 
 INFO: Most issues can be resolved by upgrading to the latest version. Download the latest version at https://particular.net/downloads and the host meets at minimum the [general hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations).
