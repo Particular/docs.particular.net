@@ -1,8 +1,10 @@
 ---
-title: Troubleshooting
+title: ServiceControl Troubleshooting
 summary: Troubleshooting ServiceControl installation and common issues
 reviewed: 2020-06-26
 ---
+
+INFO: Most issues can be resolved by upgrading to the latest version. Download the latest version at https://particular.net/downloads and the host meets at minimum the [general hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware#general-recommendations).
 
 ### Check the configuration via ServiceControl Management
 
@@ -173,3 +175,27 @@ If many indexes are affected it may be easier to rebuild all indexes, although t
 - Navigate to the [database folder](configure-ravendb-location.md) on disk
 - Delete the `Indexes` folder
 - Start the ServiceControl instance
+
+
+## High CPU utilization
+
+Warn:  Do not terminate the process as  this can cause index corruption and cause the indexes to be verified of rebuils which causes long and exessive resource utilization for large datababases.
+
+If a ServiceControl instance shows high CPU utilization than this usually is caused due to:
+
+- Termination of the process and ServiceControl its internal database validating the indexes at the next startup.
+- Rebuilding of indexes which require all database context to be read and indexed.
+- Large ingestion of messages due to a huge backlog of messages in the queue.
+
+Usually this fixes itself over time as long as the process is not terminated. Do not terminate the process!
+
+Info: It is adviced to host ServiceControl instances on isolated (virtual) machine with dedicated (non shared) resources for it to not affect any other processes when utilization a lot of system resources.
+
+Resolution:
+
+- Ensure you are running the latest version of ServiceControl to ensure you have all latest performance enhancements. The most recent version is available at <https://particular.net/downloads>
+- Ensure your disks are **at least** capable of 7,500 IOPS as stated in the [hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware). If the system is continually producing messages or generate lots or very large messages (several kilobytes or larges) that ServiceControl requires even faster disks and the **minimum** requirements.
+- Ensure no custom checks are shown in ServicePulse that are indicating Index issues. The log file could indicate the type of index issues (See [stale indexes](#stale-indexes), [index errors](#index-errors), and [corrupted indexes](#corrupted-indexes))
+- Consider disabling *Full Text Search* os message bodies and headers as this causes most resource utilization for CPU and disk IO. This can be disabled if you are running the latest version of ServiceControl by going to each ServiceControl instance type, opening the configuration (gear icon), scrolling down to Advanced Configuration and change Full Text Search On Message Bodies to Off and select Save and then restart the instance.
+
+Warning: Disabling *Full Text Search* makes text search unavailable in ServiceInsight.
