@@ -193,7 +193,7 @@ Info: It is advised to host ServiceControl instances on isolated (virtual) machi
 
 Resolution:
 
-- Ensure the latest version of ServiceControl is installed to ensure it has all latest performance enhancements. The most recent version is available at <https://particular.net/downloads>
+- Ensure all the latest performance enhancements are available by having the latest version of ServiceControl installed. The most recent version is available at <https://particular.net/downloads>
 - Ensure storage disks are **at least** capable of 7,500 IOPS as stated in the [hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md). If the system continuously produces messages or generates many or substantial messages (several kilobytes or larger), ServiceControl requires even faster disks than specified by the **minimum** requirements.
 - Ensure no custom checks are shown in ServicePulse that are indicating index issues. The log file could indicate the type of index issues (See [stale indexes](#stale-indexes), [index errors](#index-errors), and [corrupted indexes](#corrupted-indexes))
 - Consider disabling message bodies and headers *Full-Text search* as this causes most resource utilization for CPU and disk IO. This can be disabled in the latest version of ServiceControl by configuring each ServiceControl instance: open configuration (gear icon), scroll down to Advanced Configuration and set "Full-Text Search On Message Bodies" to Off, finally select Save, and then restart the instance.
