@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting
+title: Gateway Troubleshooting
 summary: How to solve common issues that arise with the gateway
 reviewed: 2020-03-17
 redirects:
