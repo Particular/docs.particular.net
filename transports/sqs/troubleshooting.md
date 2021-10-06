@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting
+title: AmazonSQS Troubleshooting
 summary: Tips on what to do when the SQS transport is not behaving as expected
 component: SQS
 reviewed: 2021-01-04
