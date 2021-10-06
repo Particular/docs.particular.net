@@ -1,6 +1,6 @@
 ---
 title: Discarding expired messages
-reviewed: 2019-08-21
+reviewed: 2021-10-06
 component: SqlTransport
 ---
 
