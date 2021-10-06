@@ -3,7 +3,7 @@ title: Saga Finder
 component: SqlPersistence
 related:
  - samples/saga/sql-sagafinder
-reviewed: 2019-08-20
+reviewed: 2021-10-06
 versions: '[2,)'
 ---
 
