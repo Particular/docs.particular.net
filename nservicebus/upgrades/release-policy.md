@@ -33,11 +33,17 @@ Given a version number `{major}.{minor}.{patch}`, increment the:
 
 ## Backporting important bug fixes
 
-Although not stipulated by SemVer, important bug fixes are backported to all [supported versions](/nservicebus/upgrades/support-policy.md).
+Although not stipulated by SemVer, important bug fixes are backported to all [supported versions](/nservicebus/upgrades/support-policy.md). New features that are added are not backported to previous versions.
 
 A system using a supported version may receive important bug fixes by upgrading to new patch versions, without the increased risk and effort of upgrading to a new minor or major version. It is strongly recommended to [upgrade](support-policy.md#upgrading) frequently enough to stay on a supported version.
 
 Particular Software [support](https://particular.net/support) should be contacted if a bug fix backport is missing.
+
+## Backporting feature enhancements
+
+Feature enhancements added in a major or a minor are not back-ported to previous versions.
+
+Particular Software [support](https://particular.net/support) should be contacted if a feature addition is required in a previous version.
 
 ## Deprecation
 
