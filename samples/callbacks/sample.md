@@ -2,7 +2,7 @@
 title: Callback Usage
 summary: Demonstrates the use of callbacks
 component: Callbacks
-reviewed: 2019-08-22
+reviewed: 2021-10-06
 ---
 
 ## Running the sample
