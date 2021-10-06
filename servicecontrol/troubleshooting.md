@@ -187,7 +187,7 @@ If a ServiceControl instance shows high CPU utilization, it's usually due to:
 - Rebuilding of indexes which requires all database records to be read and indexed.
 - Large messages ingestion due to a massive backlog of messages in the queue.
 
-Usually this fixes itself over time as long as the process is not terminated. Again, do not forcibly terminate the process! Always use Windows Services, Powershell, or the ServiceControl Management Utility to stop and start the service.
+Usually this fixes itself over time as long as the process is not terminated. Again, do not forcibly terminate the process. Always use Windows Services, Powershell, or the ServiceControl Management Utility to stop and start the service.
 
 Info: It is recommended to host ServiceControl instances on isolated (virtual) machines with dedicated (non-shared) resources not to affect any other process when ServiceControl requires a lot of system resources.
 
