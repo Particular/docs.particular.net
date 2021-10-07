@@ -48,6 +48,10 @@ The Azure Service Bus Transport configuration options have been moved to the `Az
 | CustomTokenProvider | TokenProvider |
 | CustomRetryPolicy | RetryPolicy |
 
+## Accessing the native incoming message
+
+The new Azure.Messaging.ServiceBus client SDK introduces a set of new classes to represent messages. Previously there was only the `Message` class to represent either an incoming message or an outgoing message. With the new client SDK the incoming message type is `ServiceBusReceivedMessage`. In case access to the native incoming message is required, make sure the correct type is used. See the [native message customization documentation](/transports/azure-service-bus/native-message-access.md) for further details.
+
 ## Native message customization
 
 `IMessageHandlerContext` and `IPipelineContext` no longer need to be passed to the `CustomizeNativeMessage` method. See the [native message customization documentation](/transports/azure-service-bus/native-message-access.md) for further details.
