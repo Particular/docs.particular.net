@@ -1,4 +1,4 @@
-﻿namespace ASBS_1
+﻿namespace ASBS_3
 {
     using Azure.Messaging.ServiceBus;
     using NServiceBus;
