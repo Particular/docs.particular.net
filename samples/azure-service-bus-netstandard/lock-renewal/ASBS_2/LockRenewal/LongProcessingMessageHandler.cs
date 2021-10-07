@@ -13,7 +13,7 @@ public class LongProcessingMessageHandler : IHandleMessages<LongProcessingMessag
     {
         log.Info($"--- Received a message with processing duration of {message.ProcessingDuration}");
 
-        await Task.Delay(message.ProcessingDuration, context.CancellationToken).ConfigureAwait(false);
+        await Task.Delay(message.ProcessingDuration).ConfigureAwait(false);
 
         log.Info("--- Processing completed");
     }
