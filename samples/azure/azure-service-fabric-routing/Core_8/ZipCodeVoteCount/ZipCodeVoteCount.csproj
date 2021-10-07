@@ -9,8 +9,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="4.*" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="4.*" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="2.0.0-alpha.285" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1896" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-alpha.1900" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1897" />
     <PackageReference Include="NServiceBus.Persistence.ServiceFabric" Version="3.0.0-alpha.297" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <ProjectReference Include="..\Contracts\Contracts.csproj" />
