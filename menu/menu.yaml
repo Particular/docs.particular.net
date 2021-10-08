@@ -608,6 +608,8 @@
       Title: GDPR
     - Url: nservicebus/compliance/fips
       Title: FIPS
+    - Url: nservicebus/compliance/software-supply-chain
+      Title: Software supply chain
   - Url: nservicebus/tools
     Title: Tools
     Articles:
