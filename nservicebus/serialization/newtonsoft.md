@@ -30,7 +30,7 @@ NOTE: By default, the Json.NET serializer adds a Byte Order Mark (BOM). To disab
 
 ### Custom settings
 
-Customizes the instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
+Customize the instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
 
 snippet: NewtonsoftCustomSettings
 
