@@ -16,7 +16,7 @@ class Program
         }
 
         var serviceBusClient = new ServiceBusClient(connectionString);
-        var serviceBusSender = serviceBusClient.CreateSender("Samples.ASB.NativeIntegration2");
+        var serviceBusSender = serviceBusClient.CreateSender("Samples.ASB.NativeIntegration");
 
         #region SerializedMessage
 

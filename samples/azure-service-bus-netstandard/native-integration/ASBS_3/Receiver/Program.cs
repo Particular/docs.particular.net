@@ -10,7 +10,7 @@ class Program
 
         #region EndpointName
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.ASB.NativeIntegration2");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ASB.NativeIntegration");
 
         #endregion
 
@@ -26,7 +26,8 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
-        endpointConfiguration.UseTransport<AzureServiceBusTransport>().ConnectionString(connectionString);
+        var transport = new AzureServiceBusTransport(connectionString);
+        endpointConfiguration.UseTransport(transport);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
