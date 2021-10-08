@@ -8,8 +8,8 @@ This document describes how the integrity of software produced by Particular Sof
 
 ## Systems access
 
-* Multiple systems are used in the development life cycle, including GitHub, NuGet, and Microsoft Azure.
-* Multi-factor authentication is required for all services that support it.
+* Multiple systems are used in the development life cycle, including GitHub, NuGet, and Microsoft Azure Key Vault.
+* Multi-factor authentication is required for all services mentioned above and others.
 * Only a limited subset of Particular Software employees act as administrators for each system.
 
 ## Software development
@@ -27,7 +27,7 @@ This document describes how the integrity of software produced by Particular Sof
 
 ## Deployment
 
-* Merging a pull request does not immediately release new features to users, this requires an additional release step.
+* Merging a pull request does not immediately release new features to users, this requires an additional release step, as described below.
 * All releases are signed with a code signing certificate:
   * The private key (RSA 4096 bits issued by DigiCert) is stored in a virtual hardware security module in [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/). The private key cannot be accessed by Particular Software staff, nor has it ever existed anywhere except in Key Vault.
   * Signing uses [NuGetKeyVaultSignTool](https://github.com/novotnyllc/NuGetKeyVaultSignTool) with a SHA256 hash.
