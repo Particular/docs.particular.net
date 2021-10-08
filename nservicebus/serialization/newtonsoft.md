@@ -2,7 +2,7 @@
 title: Json.NET Serializer
 summary: A JSON serializer that uses Newtonsoft Json.NET.
 component: Newtonsoft
-reviewed: 2019-08-26
+reviewed: 2021-10-08
 related:
  - samples/serializers/newtonsoft
  - samples/serializers/newtonsoft-bson
