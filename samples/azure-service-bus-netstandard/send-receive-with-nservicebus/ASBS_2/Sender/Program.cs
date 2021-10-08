@@ -25,7 +25,7 @@ namespace Sender
                     var endpointConfiguration = new EndpointConfiguration("Sender");
 
                     var connectionString = context.Configuration.GetConnectionString("AzureServiceBusConnectionString");
-                    var routing = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
+                    var routing = endpointConfiguration.UseTransport<AzureServiceBusTransport>().ConnectionString(connectionString).Routing();
 
                     endpointConfiguration.AuditProcessedMessagesTo("audit");
                     endpointConfiguration.SendFailedMessagesTo("error");

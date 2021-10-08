@@ -23,8 +23,8 @@ namespace Receiver
                     var endpointConfiguration = new EndpointConfiguration("Receiver");
 
                     var connectionString = context.Configuration.GetConnectionString("AzureServiceBusConnectionString");
-                    var transport = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
-                    
+                    var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>().ConnectionString(connectionString);
+
                     endpointConfiguration.AuditProcessedMessagesTo("audit");
                     endpointConfiguration.SendFailedMessagesTo("error");
 
