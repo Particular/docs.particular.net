@@ -20,7 +20,7 @@ class Usage
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.UseQueueServiceClient(new QueueServiceClient(connectionString));
 
-        //Table and Blob clients don't need to be specified if native delayed delivery is disabled
+        //Blob client does not need to be specified if native delayed delivery is disabled
         //transport.DelayedDelivery().DisableDelayedDelivery();
 
         var account = CloudStorageAccount.Parse(connectionString);
