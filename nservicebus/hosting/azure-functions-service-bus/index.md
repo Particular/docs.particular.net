@@ -13,6 +13,8 @@ reviewed: 2021-07-14
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
 
+include: scheduled-message-scaling-warning
+
 ## Basic usage
 
 ### Endpoint configuration
