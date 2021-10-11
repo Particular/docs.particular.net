@@ -1,14 +1,16 @@
 ﻿// ReSharper disable ConditionIsAlwaysTrueOrFalse
 // ReSharper disable HeuristicUnreachableCode
 #pragma warning disable 162
-namespace ASBFunctions_2_0
+namespace ASBFunctions_3_0
 {
+    using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Azure.ServiceBus;
     using Microsoft.Azure.ServiceBus.Core;
     using Microsoft.Azure.WebJobs;
     using Microsoft.Extensions.Logging;
     using NServiceBus;
+    using ExecutionContext = Microsoft.Azure.WebJobs.ExecutionContext;
 
     class MessageConsistency
     {
@@ -27,9 +29,10 @@ namespace ASBFunctions_2_0
             Message message,
             ILogger logger,
             MessageReceiver messageReceiver,
-            ExecutionContext executionContext)
+            ExecutionContext executionContext,
+            CancellationToken cancellationToken)
         {
-            await endpoint.Process(message, executionContext, messageReceiver, logger);
+            await endpoint.Process(message, executionContext, messageReceiver, logger, cancellationToken);
         }
         #endregion
 
@@ -41,9 +44,10 @@ namespace ASBFunctions_2_0
             Message message,
             ILogger logger,
             MessageReceiver messageReceiver,
-            ExecutionContext executionContext)
+            ExecutionContext executionContext,
+            CancellationToken cancellationToken)
         {
-            await endpoint.Process(message, executionContext, messageReceiver, logger);
+            await endpoint.Process(message, executionContext, messageReceiver, logger, cancellationToken);
         }
         #endregion
     }
@@ -67,15 +71,16 @@ namespace ASBFunctions_2_0
             Message message,
             ILogger logger,
             MessageReceiver messageReceiver,
-            ExecutionContext executionContext)
+            ExecutionContext executionContext,
+            CancellationToken cancellationToken)
         {
             if(EnableTransactions)
             {
-                await endpoint.ProcessTransactional(message, executionContext, messageReceiver, logger);
+                await endpoint.ProcessTransactional(message, executionContext, messageReceiver, logger, cancellationToken);
             }
             else
             {
-                await endpoint.ProcessNonTransactional(message, executionContext, messageReceiver, logger);
+                await endpoint.ProcessNonTransactional(message, executionContext, messageReceiver, logger, cancellationToken);
             }
         }
     }
