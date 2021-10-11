@@ -9,6 +9,8 @@ reviewed: 2021-08-30
 
 The isolated worker model is a newer hosting option for Azure Functions. Running out-of-process decouples the function code from the Azure Functions runtime. For further information about the isolated worker, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide).
 
+include: scheduled-message-scaling-warning
+
 ## Usage
 
 NServiceBus supports the isolated worker hosting model via the `NServiceBus.AzureFunctions.Worker.ServiceBus` NuGet package. The following configuration enables NServiceBus:
