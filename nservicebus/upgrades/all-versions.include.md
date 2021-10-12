@@ -191,7 +191,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.5.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.5.0) | 2021-07-13     | -                 | -                                 |
-| [8.4.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.4.4) | 2020-06-24     | 2021-10-13        | Superseded by 8.5.x               |
+| [~~8.4.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/8.4.4) | ~~2020-06-24~~ | ~~2021-10-13~~    | ~~Superseded by 8.5.x~~           |
 | [~~8.3.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/8.3.0) | ~~2020-02-12~~ | ~~2020-09-24~~    | ~~Superseded by 8.4.x~~           |
 | [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/8.2.0) | ~~2019-07-26~~ | ~~2020-05-12~~    | ~~Superseded by 8.3.x~~           |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/8.1.1) | ~~2018-07-12~~ | ~~2019-10-26~~    | ~~Superseded by 8.2.x~~           |
