@@ -8,8 +8,8 @@ related:
 - nservicebus/upgrades/7to8
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
- - 6
  - 7
+ - 8
 ---
 
 ## Configuring SQL Server transport
