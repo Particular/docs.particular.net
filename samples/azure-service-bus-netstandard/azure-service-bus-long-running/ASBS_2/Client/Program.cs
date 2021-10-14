@@ -8,7 +8,6 @@ class Program
     {
         Console.Title = "Samples.Azure.ServiceBus.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Client");
-        endpointConfiguration.SendFailedMessagesTo("error");
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {

@@ -9,7 +9,6 @@ class Program
     {
         var endpointConfiguration = new EndpointConfiguration("Voter");
 
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();

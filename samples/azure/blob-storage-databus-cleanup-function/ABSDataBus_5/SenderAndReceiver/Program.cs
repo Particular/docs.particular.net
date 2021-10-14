@@ -15,7 +15,6 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

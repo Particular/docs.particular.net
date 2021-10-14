@@ -28,8 +28,6 @@ namespace Sender
                     var routing = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
 
                     endpointConfiguration.AuditProcessedMessagesTo("audit");
-                    endpointConfiguration.SendFailedMessagesTo("error");
-
                     routing.RouteToEndpoint(typeof(Ping), "Receiver");
 
                     // Operational scripting: https://docs.particular.net/transports/azure-service-bus/operational-scripting

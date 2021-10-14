@@ -9,7 +9,6 @@ class Program
         Console.Title = "Samples.Azure.ServiceBus.MsmqEndpoint";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.MsmqEndpoint");
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<XmlSerializer>();

@@ -14,7 +14,6 @@ class Program
 
         #endregion
 
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.Conventions().DefiningMessagesAs(type => type.Name == "NativeMessage");

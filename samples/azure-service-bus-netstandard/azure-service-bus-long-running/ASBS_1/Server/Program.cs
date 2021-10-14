@@ -8,7 +8,6 @@ class Program
     {
         Console.Title = "Samples.Azure.ServiceBus.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Server");
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();

@@ -14,7 +14,6 @@ class Program
         Console.Title = "Samples.ASB.LockRenewal";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.SendReply.LockRenewal");
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");

@@ -27,7 +27,6 @@ namespace Receiver
                     transport.ConnectionString(connectionString);
 
                     endpointConfiguration.AuditProcessedMessagesTo("audit");
-                    endpointConfiguration.SendFailedMessagesTo("error");
 
                     // Operational scripting: https://docs.particular.net/transports/azure-service-bus/operational-scripting
                     endpointConfiguration.EnableInstallers();

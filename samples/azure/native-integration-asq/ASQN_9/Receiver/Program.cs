@@ -37,7 +37,6 @@ class Program
 
         endpointConfiguration.DisableFeature<TimeoutManager>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

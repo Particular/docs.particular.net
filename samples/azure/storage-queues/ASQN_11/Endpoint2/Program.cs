@@ -18,7 +18,6 @@ class Program
         var routingSettings = endpointConfiguration.UseTransport(transport);
         routingSettings.DisablePublishing();
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

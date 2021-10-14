@@ -31,7 +31,6 @@ public static class HostBuilderExtensions
         hostBuilder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("receiver");
-            endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();

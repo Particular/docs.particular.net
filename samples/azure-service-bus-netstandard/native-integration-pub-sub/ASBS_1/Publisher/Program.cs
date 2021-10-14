@@ -10,7 +10,6 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Publisher");
 
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
