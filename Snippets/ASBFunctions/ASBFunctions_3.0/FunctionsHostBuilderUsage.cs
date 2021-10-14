@@ -32,7 +32,7 @@ namespace ASBFunctions_3_0
         {
             builder.UseNServiceBus(configuration =>
             {
-                configuration.ServiceBusConnectionString = "functionConnectionString";
+                configuration.Transport.SubscriptionNamingConvention = (name) => name.Replace("X","Y");
             });
         }
     }
