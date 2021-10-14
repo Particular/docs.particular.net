@@ -11,6 +11,6 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup Label="Force a later version of a transitive dependency">
-    <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+    <PackageReference Include="System.Net.NameResolution" Version="4.*" />
   </ItemGroup>
 </Project>
