@@ -10,7 +10,7 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-This version relies on [`NServiceBus.Transport.AzureServiceBus` Version 2]/transports/azure-service-bus/) which used the new [`Azure.Messaging.ServiceBus` SDK from Microsoft](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme). See the [transport upgrade guide for more details](/transports/upgrades/asbs-1to2).
+This version relies on [`NServiceBus.Transport.AzureServiceBus` Version 2]/transports/azure-service-bus/) which used the new [`Azure.Messaging.ServiceBus` SDK from Microsoft](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme). See the [transport upgrade guide for more details](/transports/upgrades/asbs-1to2.md).
 
 ## Registering NServiceBus
 
