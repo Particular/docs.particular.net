@@ -29,7 +29,6 @@ namespace Sender
                     transport.ConnectionString(connectionString);
 
                     endpointConfiguration.AuditProcessedMessagesTo("audit");
-                    endpointConfiguration.SendFailedMessagesTo("error");
 
                     transport.Routing().RouteToEndpoint(typeof(Ping), "Receiver");
 

@@ -25,7 +25,7 @@ public class Startup : FunctionsStartup
             return new CustomComponent(customComponentInitializationValue);
         });
 
-        builder.UseNServiceBus();
+        builder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration(EndpointName));
     }
 }
 

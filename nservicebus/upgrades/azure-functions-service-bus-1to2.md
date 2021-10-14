@@ -2,14 +2,15 @@
 title: Azure Functions with Azure Service Bus Upgrade Version 1 to 2
 summary: How to upgrade Azure Functions with Azure Service Bus from version 1 to 2
 component: ASBFunctions
-reviewed: 2021-08-30
+reviewed: 2021-10-09
 related:
  - nservicebus/upgrades/7to8
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
- - 8
 ---
+
+This version relies on [`NServiceBus.Transport.AzureServiceBus` Version 2]/transports/azure-service-bus/) which used the new [`Azure.Messaging.ServiceBus` SDK from Microsoft](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/messaging.servicebus-readme). See the [transport upgrade guide for more details](/transports/upgrades/asbs-1to2.md).
 
 ## Registering NServiceBus
 

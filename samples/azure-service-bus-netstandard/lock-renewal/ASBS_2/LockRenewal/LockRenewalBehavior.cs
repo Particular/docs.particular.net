@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Azure.ServiceBus;
-using Microsoft.Azure.ServiceBus.Core;
+using Azure.Messaging.ServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
 using NServiceBus.Transport;
@@ -18,19 +17,18 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
     {
         #region native-message-access
 
-        var message = context.Extensions.Get<Message>();
-        var lockToken = message.SystemProperties.LockToken;
+        var message = context.Extensions.Get<ServiceBusReceivedMessage>();
 
         #endregion
 
         #region get-connection-and-path
 
         var transportTransaction = context.Extensions.Get<TransportTransaction>();
-        var (serviceBusConnection, path) = transportTransaction.Get<(ServiceBusConnection, string)>();
+        var serviceBusClient = transportTransaction.Get<ServiceBusClient>();
 
         #endregion
 
-        var messageReceiver = new MessageReceiver(serviceBusConnection, path);
+        var messageReceiver = serviceBusClient.CreateReceiver("Samples.ASB.SendReply.LockRenewal");
 
         var cts = new CancellationTokenSource();
         var token = cts.Token;
@@ -66,9 +64,9 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
                     await Task.Delay(renewLockTokenIn, cancellationToken).ConfigureAwait(false);
 
-                    var time = await messageReceiver.RenewLockAsync(lockToken).ConfigureAwait(false);
+                    await messageReceiver.RenewMessageLockAsync(message).ConfigureAwait(false);
 
-                    Log.Info($"Lock renewed till {time} UTC / {time.ToLocalTime()} local");
+                    Log.Info($"Lock renewed till {message.LockedUntil} UTC / {message.LockedUntil.ToLocalTime()} local");
                 }
             }
             catch (OperationCanceledException)

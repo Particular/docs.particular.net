@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Transactions;
+using Azure.Messaging.ServiceBus.Administration;
 using LockRenewal;
-using Microsoft.Azure.ServiceBus.Management;
 using NServiceBus;
 
 class Program
@@ -14,7 +13,6 @@ class Program
         Console.Title = "Samples.ASB.LockRenewal";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.SendReply.LockRenewal");
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
@@ -23,8 +21,7 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
-        var transport = new AzureServiceBusTransport(connectionString);
-        endpointConfiguration.UseTransport(transport);
+        endpointConfiguration.UseTransport<AzureServiceBusTransport>().ConnectionString(connectionString);
 
         #region override-lock-renewal-configuration
 
@@ -50,13 +47,11 @@ class Program
 
     private static async Task OverrideQueueLockDuration(string queuePath, string connectionString)
     {
-        var managementClient = new ManagementClient(connectionString);
-        var queueDescription = new QueueDescription(queuePath)
-        {
-            LockDuration = TimeSpan.FromSeconds(30)
-        };
+        var managementClient = new ServiceBusAdministrationClient(connectionString);
+        var queueDescription = await managementClient.GetQueueAsync(queuePath).ConfigureAwait(false);
+        queueDescription.Value.LockDuration = TimeSpan.FromSeconds(30);
 
-        await managementClient.UpdateQueueAsync(queueDescription).ConfigureAwait(false);
+        await managementClient.UpdateQueueAsync(queueDescription.Value).ConfigureAwait(false);
     }
 
     #region override-transaction-manager-timeout-net-core

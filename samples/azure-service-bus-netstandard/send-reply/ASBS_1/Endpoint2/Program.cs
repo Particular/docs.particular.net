@@ -9,7 +9,6 @@ class Program
         Console.Title = "Samples.ASBS.SendReply.Endpoint2";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.SendReply.Endpoint2");
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();

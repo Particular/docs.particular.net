@@ -9,9 +9,9 @@ class Program
         Console.Title = "Samples.ASBS.SendReply.Endpoint2";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.SendReply.Endpoint2");
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
@@ -19,8 +19,7 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
-        var transport = new AzureServiceBusTransport(connectionString);
-        endpointConfiguration.UseTransport(transport);
+        transport.ConnectionString(connectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -13,7 +13,6 @@ class Program
         Console.Title = "Samples.ASB.LockRenewal";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.SendReply.LockRenewal");
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();

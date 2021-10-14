@@ -1,6 +1,6 @@
-﻿namespace ASBS_1
+﻿namespace ASBS_3
 {
-    using Microsoft.Azure.ServiceBus;
+    using Azure.Messaging.ServiceBus;
     using NServiceBus;
     using NServiceBus.Pipeline;
     using System;
@@ -14,7 +14,7 @@
         {
             public override Task Invoke(ITransportReceiveContext context, Func<Task> next)
             {
-                var lockedUntilUtc = context.Extensions.Get<Message>().SystemProperties.LockedUntilUtc;
+                var lockedUntilUtc = context.Extensions.Get<ServiceBusReceivedMessage>().LockedUntil;
 
                 if (lockedUntilUtc <= DateTime.UtcNow)
                 {
@@ -34,12 +34,12 @@
                 #region access-native-outgoing-message
                 // send a command
                 var sendOptions = new SendOptions();
-                sendOptions.CustomizeNativeMessage(m => m.Label = "custom-label");
+                sendOptions.CustomizeNativeMessage(m => m.Subject = "custom-label");
                 await context.Send(new MyCommand(), sendOptions).ConfigureAwait(false);
 
                 // publish an event
                 var publishOptions = new PublishOptions();
-                publishOptions.CustomizeNativeMessage(m => m.Label = "custom-label");
+                publishOptions.CustomizeNativeMessage(m => m.Subject = "custom-label");
                 await context.Publish(new MyEvent(), publishOptions).ConfigureAwait(false);
                 #endregion
             }

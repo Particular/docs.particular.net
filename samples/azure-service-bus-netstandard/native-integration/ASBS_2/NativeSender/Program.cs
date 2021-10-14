@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Azure.Messaging.ServiceBus;
+using Newtonsoft.Json;
+using System;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Azure.ServiceBus;
-using Newtonsoft.Json;
 
 class Program
 {
@@ -15,7 +15,8 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
-        var queueClient = new QueueClient(connectionString, "Samples.ASB.NativeIntegration");
+        var serviceBusClient = new ServiceBusClient(connectionString);
+        var serviceBusSender = serviceBusClient.CreateSender("Samples.ASB.NativeIntegration");
 
         #region SerializedMessage
 
@@ -31,11 +32,11 @@ class Program
 
         var bytes = Encoding.UTF8.GetBytes(json);
 
-        var message = new Message(bytes)
+        var message = new ServiceBusMessage(bytes)
         {
             MessageId = Guid.NewGuid().ToString(),
 
-            UserProperties =
+            ApplicationProperties =
             {
                 #region NecessaryHeaders
                 ["NServiceBus.EnclosedMessageTypes"] = typeof(NativeMessage).FullName
@@ -43,7 +44,7 @@ class Program
             }
         };
 
-        await queueClient.SendAsync(message)
+        await serviceBusSender.SendMessageAsync(message)
             .ConfigureAwait(false);
 
         Console.WriteLine("Native message sent");

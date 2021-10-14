@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;netcoreapp3.1;net48</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-alpha.155" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-alpha.1900" />
+  </ItemGroup>
+  <ItemGroup Label="Transitive dependencies">
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1899" />
+  </ItemGroup>
+</Project>

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Azure.ServiceBus;
+using Azure.Messaging.ServiceBus;
+using Azure.Messaging.ServiceBus.Administration;
 using NativeSender;
 class Program
 {
@@ -24,33 +25,45 @@ class Program
     static async Task Main()
     {
         var subscriptionName = "Samples.ASB.NativeIntegration.NativeSubscriberA";
-        
+
         Console.Title = subscriptionName;
 
         #region EventOneSubscription
         await TopologyManager.CreateSubscription(
             ConnectionString,
             subscriptionName,
-            ruleName:"event-one", 
-            sqlFilter: new SqlFilter($"[NServiceBus.EnclosedMessageTypes] LIKE '%{typeof(EventOne).FullName}%'")
-            );
+            ruleName:"event-one",
+            sqlFilter: new SqlRuleFilter($"[NServiceBus.EnclosedMessageTypes] LIKE '%{typeof(EventOne).FullName}%'")
+        );
         #endregion
 
-        var subscription = new SubscriptionClient(ConnectionString, "bundle-1", subscriptionName);
+        var serviceBusClient = new ServiceBusClient(ConnectionString);
+        var serviceBusProcessor = serviceBusClient.CreateProcessor("bundle-1", subscriptionName);
 
-        subscription.RegisterMessageHandler((m, _) =>
-        {
-            var messageType = (string) m.UserProperties[EnclosedMessageTypesHeader];
-            var bodyJson = Encoding.UTF8.GetString(m.Body);
+        serviceBusProcessor.ProcessMessageAsync += MessageHandler;
+        serviceBusProcessor.ProcessErrorAsync += ErrorHandler;
 
-            Console.WriteLine($"Received: {messageType}");
-            Console.WriteLine(bodyJson);
-
-            return Task.CompletedTask;
-        }, e => Task.CompletedTask);
-
+        await serviceBusProcessor.StartProcessingAsync();
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
+    }
+
+    static async Task MessageHandler(ProcessMessageEventArgs args)
+    {
+        var messageType = (string) args.Message.ApplicationProperties[EnclosedMessageTypesHeader];
+        var bodyJson = Encoding.UTF8.GetString(args.Message.Body.ToArray());
+
+        Console.WriteLine($"Received: {messageType}");
+        Console.WriteLine(bodyJson);
+
+        // complete the message. messages is deleted from the subscription.
+        await args.CompleteMessageAsync(args.Message);
+    }
+
+    static Task ErrorHandler(ProcessErrorEventArgs args)
+    {
+        Console.WriteLine(args.Exception.ToString());
+        return Task.CompletedTask;
     }
 }

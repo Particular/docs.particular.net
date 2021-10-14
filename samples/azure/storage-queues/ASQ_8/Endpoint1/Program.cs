@@ -29,7 +29,6 @@ class Program
         endpointConfiguration.DisableFeature<TimeoutManager>();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region sanitization
 

@@ -7,46 +7,27 @@ related:
  - transports/azure-service-bus
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
- - 8
+ - 7
 ---
 
-## Configuring the Azure Service Bus transport
+## Support for Azure.Messaging.ServiceBus client SDK
 
-To use the Azure Service Bus transport for NServiceBus, create a new instance of `AzureServiceBusTransport` and pass it to `EndpointConfiguration.UseTransport`.
+This version of Azure Service Bus Transport uses the [Azure.Messaging.ServiceBus client SDK](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/servicebus/Azure.Messaging.ServiceBus). As a result of that the following changes has been made.
 
-Instead of
+### Configuration Options
 
-```csharp
-var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-transport.ConnectionString(connectionString);
-```
+The following calls has been removed from out Public API due to them using classes that were present in the previously used client SDK.
 
-Use:
+CustomRetryPolicy - this method was replaced with property `RetryPolicyOptions` in `AzureServiceBusTransport` class.  
+CustomTokenProvider - this method was removed. In place of that a property `TokenCredential` in `AzureServiceBusTransport` class was introduced. 
 
-```csharp
-var transport = new AzureServiceBusTransport(connectionString);
-endpointConfiguration.UseTransport(transport);
-```
+## Usage of Azure.Identity 
 
-## Configuration options
+Passing of `TokenCredential` allows use of [Azure.Identity](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md) as a authentication mechanisms using Azure Active Directory.  
 
-The Azure Service Bus Transport configuration options have been moved to the `AzureServiceBusTransport` class. See the following table for further information:
+## Accessing the native incoming message
 
-| Version 1 configuration option | Version 2 configuration option |
-| --- | --- |
-| TopicName | TopicName |
-| EntityMaximumSize | EntityMaximumSize |
-| EnablePartitioning | EnablePartitioning |
-| PrefetchMultiplier | PrefetchMultiplier |
-| PrefetchCount | PrefetchCount |
-| TimeToWaitBeforeTriggeringCircuitBreaker | TimeToWaitBeforeTriggeringCircuitBreaker |
-| SubscriptionNameShortener | SubscriptionNamingConvention |
-| SubscriptionNamingConvention | SubscriptionNamingConvention |
-| RuleNameShortener | SubscriptionRuleNamingConvention |
-| SubscriptionRuleNamingConvention | SubscriptionRuleNamingConvention |
-| UseWebSockets | UseWebSockets |
-| CustomTokenProvider | TokenProvider |
-| CustomRetryPolicy | RetryPolicy |
+The new Azure.Messaging.ServiceBus client SDK introduces a set of new classes to represent messages. Previously there was only the `Message` class to represent either an incoming message or an outgoing message. With the new client SDK the incoming message type is `ServiceBusReceivedMessage`. In case access to the native incoming message is required, make sure the correct type is used. See the [native message customization documentation](/transports/azure-service-bus/native-message-access.md) for further details.
 
 ## Native message customization
 

@@ -211,6 +211,8 @@
       Articles:
       - Url: nservicebus/upgrades/azure-functions-service-bus-1to2
         Title: Version 1 to 2
+      - Url: nservicebus/upgrades/azure-functions-service-bus-2to3
+        Title: Version 2 to 3
     - Title: Gateway
       Articles:
       - Url: nservicebus/upgrades/gateway-1to2

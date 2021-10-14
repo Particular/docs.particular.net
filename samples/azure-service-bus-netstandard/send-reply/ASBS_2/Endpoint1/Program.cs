@@ -11,18 +11,16 @@ class Program
         #region config
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.SendReply.Endpoint1");
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
-        // var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
-
-        var transport = new AzureServiceBusTransport(connectionString);
-        endpointConfiguration.UseTransport(transport);
+        transport.ConnectionString(connectionString);
 
         #endregion
 

@@ -3,13 +3,15 @@ using NServiceBus;
 
 #region asb-function-default
 [assembly: FunctionsStartup(typeof(Startup))]
-[assembly: NServiceBusTriggerFunction("MyFunctionsEndpoint")]
+[assembly: NServiceBusTriggerFunction(Startup.EndpointName)]
 
 class Startup : FunctionsStartup
 {
+    public const string EndpointName = "MyFunctionsEndpoint";
+
     public override void Configure(IFunctionsHostBuilder builder)
     {
-        builder.UseNServiceBus();
+        builder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration(EndpointName));
     }
 }
 #endregion
@@ -30,9 +32,11 @@ namespace ASBFunctions_2_0
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            builder.UseNServiceBus(configuration =>
+            builder.UseNServiceBus(() =>
             {
-                configuration.ServiceBusConnectionString = "functionConnectionString";
+                var configuration = new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint");
+                configuration.Transport.ConnectionString("functionConnectionString");
+                return configuration;
             });
         }
     }
@@ -45,9 +49,11 @@ namespace ASBFunctions_2_0
         {
             public override void Configure(IFunctionsHostBuilder builder)
             {
-                builder.UseNServiceBus(configuration =>
+                builder.UseNServiceBus(() =>
                 {
+                    var configuration = new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint");
                     configuration.AdvancedConfiguration.SendFailedMessagesTo("error");
+                    return configuration;
                 });
             }
         }
@@ -58,9 +64,11 @@ namespace ASBFunctions_2_0
             #region asb-enable-diagnostics
             public override void Configure(IFunctionsHostBuilder builder)
             {
-                builder.UseNServiceBus(configuration =>
+                builder.UseNServiceBus(() =>
                 {
+                    var configuration = new ServiceBusTriggeredEndpointConfiguration("MyFunctionsEndpoint");
                     configuration.LogDiagnostics();
+                    return configuration;
                 });
             }
             #endregion

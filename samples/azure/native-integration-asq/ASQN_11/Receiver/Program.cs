@@ -36,7 +36,6 @@ class Program
         endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
