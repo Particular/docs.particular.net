@@ -8,7 +8,7 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.4.0" />
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.*" />
     <PackageReference Include="Newtonsoft.Json" Version="11.*" />
   </ItemGroup>
 </Project>

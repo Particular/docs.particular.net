@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup Label="Transitive dependencies">
-    <PackageReference Include="NServiceBus" Version="7.5.0" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="2.0.0" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="2.*" />
   </ItemGroup>
 
 </Project>

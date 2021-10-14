@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-alpha.1900" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-alpha.155" />
-    <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+    <PackageReference Include="System.Net.NameResolution" Version="4.*" />
     <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="1.*" />
   </ItemGroup>
 </Project>
