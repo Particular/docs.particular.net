@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Azure.Messaging.ServiceBus;
+using Newtonsoft.Json;
+using System;
 using System.Text;
 using System.Threading.Tasks;
-using Azure.Messaging.ServiceBus;
-using Newtonsoft.Json;
 
 class Program
 {
@@ -16,7 +16,7 @@ class Program
         }
 
         var serviceBusClient = new ServiceBusClient(connectionString);
-        var serviceBusSender = serviceBusClient.CreateSender("Samples.ASB.NativeIntegration2");
+        var serviceBusSender = serviceBusClient.CreateSender("Samples.ASB.NativeIntegration");
 
         #region SerializedMessage
 

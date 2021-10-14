@@ -1,6 +1,6 @@
-﻿using System;
+﻿using NServiceBus;
+using System;
 using System.Threading.Tasks;
-using NServiceBus;
 
 class Program
 {
@@ -10,7 +10,7 @@ class Program
 
         #region EndpointName
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.ASB.NativeIntegration2");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ASB.NativeIntegration");
 
         #endregion
 
