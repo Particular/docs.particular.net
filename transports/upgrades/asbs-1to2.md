@@ -12,22 +12,20 @@ upgradeGuideCoreVersions:
 
 ## Support for Azure.Messaging.ServiceBus client SDK
 
-This version of Azure Service Bus Transport uses the [Azure.Messaging.ServiceBus client SDK](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/servicebus/Azure.Messaging.ServiceBus). As a result of that the following changes has been made.
+This version of Azure Service Bus Transport uses the [Azure.Messaging.ServiceBus client SDK](https://www.nuget.org/packages/Azure.Messaging.ServiceBus). As a result the following changes to the configuration API have been made:
 
-### Configuration Options
+- `CustomRetryPolicy(...)` - now accepting the new [`ServiceBusRetryOptions`](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusretryoptions) SDK type
+- `CustomTokenProvider(...)` - renamed to `CustomTokenCredential` and accepting a [`TokenCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.core.tokencredential)
 
-The following calls has been removed from out Public API due to them using classes that were present in the previously used client SDK.
+## Support for Azure.Identity 
 
-CustomRetryPolicy - this method was replaced with property `RetryPolicyOptions` in `AzureServiceBusTransport` class.  
-CustomTokenProvider - this method was removed. In place of that a property `TokenCredential` in `AzureServiceBusTransport` class was introduced. 
-
-## Usage of Azure.Identity 
-
-Passing of `TokenCredential` allows use of [Azure.Identity](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/identity/Azure.Identity/README.md) as a authentication mechanisms using Azure Active Directory.  
+Passing a [Azure.Identity](https://www.nuget.org/packages/Azure.Identity/) `TokenCredential` to `CustomTokenCredential(TOKEN)` enables authentication against [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory).
 
 ## Accessing the native incoming message
 
-The new Azure.Messaging.ServiceBus client SDK introduces a set of new classes to represent messages. Previously there was only the `Message` class to represent either an incoming message or an outgoing message. With the new client SDK the incoming message type is `ServiceBusReceivedMessage`. In case access to the native incoming message is required, make sure the correct type is used. See the [native message customization documentation](/transports/azure-service-bus/native-message-access.md) for further details.
+The new SDK uses specific types for incoming and outgoing messages while the old SDK had a single `Message` to represent both. The incoming message type is [`ServiceBusReceivedMessage`](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusreceivedmessage) and the outgoing type is [`ServiceBusMessage`](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusmessage).
+
+See the [native message customization documentation](/transports/azure-service-bus/native-message-access.md) for further details.
 
 ## Native message customization
 
