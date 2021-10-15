@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
@@ -9,12 +10,10 @@ class Program
     {
         Console.Title = "Samples.SqlPersistence.InjectingServices";
 
-        #region SqlServerConfig
-
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.InjectingServices");
         endpointConfiguration.EnableInstallers();
 
-        var connectionString = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistence;Integrated Security=True";
+        var connectionString = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesInjectedServices;Integrated Security=True";
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connectionString);
@@ -30,8 +29,6 @@ class Program
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
-        #endregion
-
         #region BehaviorConfig
 
         endpointConfiguration.Pipeline.Register(typeof(SqlConnectionBehavior),
@@ -41,20 +38,10 @@ class Program
 
         #region DependencyInjectionConfig
 
-        endpointConfiguration.RegisterComponents(register =>
-        {
-            register.ConfigureComponent<ConnectionHolder>(builder =>
-            {
-                var ch = new ConnectionHolder();
-                return ch;
-            }, DependencyLifecycle.InstancePerUnitOfWork);
-
-            register.ConfigureComponent<IDataService>(builder =>
-            {
-                var connectionHolder = builder.Build<ConnectionHolder>();
-                return new DataService(connectionHolder);
-            }, DependencyLifecycle.InstancePerUnitOfWork);
-        });
+        var containerSettings = endpointConfiguration.UseContainer(new DefaultServiceProviderFactory());
+        var services = containerSettings.ServiceCollection;
+        services.AddScoped<ConnectionHolder>();
+        services.AddScoped<IDataService, DataService>();
 
         #endregion
 
@@ -75,14 +62,14 @@ class Program
     {
         while (true)
         {
-            var key = Console.ReadKey();
+            var key = Console.ReadKey(true);
             switch (key.Key)
             {
                 case ConsoleKey.Enter:
                     return;
 
                 case ConsoleKey.S:
-                    await messageSession.SendLocal(new TestMessage { Id = Guid.NewGuid() });
+                    await messageSession.SendLocal(new TestMsg { Id = Guid.NewGuid() });
                     break;
             }
         }

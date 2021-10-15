@@ -2,11 +2,15 @@
 using System;
 using System.Threading.Tasks;
 
+#region ServiceInterface
 public interface IDataService
 {
     Task SaveBusinessDataAsync(Guid receivedId);
+    bool IsSame(SqlConnection conn, SqlTransaction tx);
 }
+#endregion
 
+#region ServiceImplementation
 public class DataService : IDataService
 {
     SqlConnection connection;
@@ -20,7 +24,8 @@ public class DataService : IDataService
 
     public async Task SaveBusinessDataAsync(Guid receivedId)
     {
-        var cmdText = "insert into ReceivedMessageIds (MessageId) values (@MessageId)";
+        var cmdText =
+            "insert into ReceivedMessageIds (MessageId) values (@MessageId)";
 
         using (var cmd = new SqlCommand(cmdText, connection, transaction))
         {
@@ -28,4 +33,10 @@ public class DataService : IDataService
             await cmd.ExecuteNonQueryAsync();
         }
     }
+
+    public bool IsSame(SqlConnection conn, SqlTransaction tx)
+    {
+        return this.connection == conn && this.transaction == tx;
+    }
 }
+#endregion

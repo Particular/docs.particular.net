@@ -4,21 +4,26 @@ using NServiceBus.Transport;
 using System;
 using System.Threading.Tasks;
 
+#region Behavior
 public class SqlConnectionBehavior : Behavior<IIncomingLogicalMessageContext>
 {
     public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
     {
         // Get the SQL connection/transaction used by SQL Transport
-        var transportTransaction = context.Extensions.Get<TransportTransaction>();
+        var transportTx = context.Extensions.Get<TransportTransaction>();
 
-        // Get the connection holder object for this message from the DI container
+        // Get this message's ConnectionHolder from the DI container
         var connectionHolder = context.Builder.Build<ConnectionHolder>();
 
         // Assign the connection/transaction for the data service to use later
-        connectionHolder.Connection = transportTransaction.Get<SqlConnection>("System.Data.SqlClient.SqlConnection");
-        connectionHolder.Transaction = transportTransaction.Get<SqlTransaction>("System.Data.SqlClient.SqlTransaction");
+        connectionHolder.Connection = transportTx.Get<SqlConnection>(
+            "System.Data.SqlClient.SqlConnection");
+        connectionHolder.Transaction = transportTx.Get<SqlTransaction>(
+            "System.Data.SqlClient.SqlTransaction");
 
-        // Invoke the next stage of the pipeline, which includes the message handler
+        // Invoke the next stage of the pipeline,
+        // which includes the message handler
         return next();
     }
 }
+#endregion
