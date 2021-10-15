@@ -1,6 +1,6 @@
-﻿using System;
+﻿using NServiceBus;
+using System;
 using System.Threading.Tasks;
-using NServiceBus;
 
 class Program
 {
@@ -14,7 +14,10 @@ class Program
         {
             throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
-        endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
+
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString(connectionString);
+
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
