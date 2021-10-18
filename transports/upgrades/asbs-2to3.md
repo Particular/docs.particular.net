@@ -7,6 +7,7 @@ related:
  - transports/azure-service-bus
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
+ - 7
  - 8
 ---
 

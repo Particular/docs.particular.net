@@ -8,6 +8,7 @@ related:
 - nservicebus/upgrades/7to8
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
+ - 7
  - 8
 ---
 
