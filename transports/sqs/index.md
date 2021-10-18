@@ -59,7 +59,9 @@ partial: sns-permissions
  * GetLifecycleConfiguration
  * ListAllMyBuckets
 
-partial: credentials
+## Configuration
+
+partial: basic-config
 
 ## Retries and timeouts
 
