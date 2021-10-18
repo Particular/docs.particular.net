@@ -104,7 +104,7 @@
                 description: "Adds custom error behavior to pipeline")
         {
             // Within a stage it is sometimes necessary to configure a specific
-            // step order. This can be achieved by invoking on of the following methods:
+            // step order. This can be achieved by invoking one of the following methods:
             //  - InsertAfter,
             //  - InsertAfterIfExists,
             //  - InsertBefore,
