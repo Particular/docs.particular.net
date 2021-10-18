@@ -20,7 +20,7 @@ The [timeout manager has been removed from core](/nservicebus/upgrades/7to8/#tim
 
 To use the RabbitMQ transport for NServiceBus, create a new instance of the `RabbitMQTransport` and pass it to `EndpointConfiguration.UseTransport`.
 
-Instead of
+Instead of:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
@@ -35,6 +35,8 @@ endpointConfiguration.UseTransport(transport);
 ```
 
 The mandatory configuration settings, the topology and the connection string, are now required to construct the instance of the transport definition class.
+
+include: v7-usetransport-shim-api
 
 ## Certificate path and passphrase
 

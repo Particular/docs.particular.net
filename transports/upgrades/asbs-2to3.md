@@ -15,7 +15,7 @@ upgradeGuideCoreVersions:
 
 To use the Azure Service Bus transport for NServiceBus, create a new instance of `AzureServiceBusTransport` and pass it to `EndpointConfiguration.UseTransport`.
 
-Instead of
+Instead of:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
@@ -28,6 +28,9 @@ Use:
 var transport = new AzureServiceBusTransport(connectionString);
 endpointConfiguration.UseTransport(transport);
 ```
+
+include: v7-usetransport-shim-api
+
 
 ## Configuration options
 

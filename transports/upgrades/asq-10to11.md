@@ -14,9 +14,9 @@ upgradeGuideCoreVersions:
 
 ## Configuring the transport
 
-Upgrading NServiceBus.Azure.Transports.WindowsAzureStorageQueues from version 10 to 11 requires code changes to use the new transport API.
+To use the Azure Storage Queues transport for NServiceBus, create a new instance of `AzureStorageQueueTransport` and pass it to `EndpointConfiguration.UseTransport`.
 
-The transport configuration API has been changed. Instead of the generics-based `UseTransport<AzureStorageQueueTransport>` method, create an instance of the transport's configuration class and pass it to `UseTransport`. For example, the following code is for the previous version of the transport:
+Instead of:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
@@ -25,7 +25,7 @@ var routing = t.Routing();
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
 
-In version 11, this becomes:
+Use:
 
 ```csharp
 var transport = new AzureStorageQueueTransport("azure-storage-connection-string")
@@ -35,6 +35,8 @@ var transport = new AzureStorageQueueTransport("azure-storage-connection-string"
 var routing = endpointConfiguration.UseTransport(transport);
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
+
+include: v7-usetransport-shim-api
 
 ## Configuration options
 

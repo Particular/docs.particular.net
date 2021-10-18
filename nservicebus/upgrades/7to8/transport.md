@@ -9,7 +9,9 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-NServiceBus V8 comes with a new transport configuration API. Instead of the generic-based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to the `UseTransport` method. For example, instead of:
+NServiceBus V8 comes with a new transport configuration API. Instead of the generic-based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to the `UseTransport` method.
+
+For example, instead of:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<MyTransport>();
@@ -18,7 +20,7 @@ var routing = t.Routing();
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
 
-use:
+Use:
 
 ```csharp
 var transport = new MyTransport{
@@ -27,6 +29,8 @@ var transport = new MyTransport{
 var routing = endpointConfiguration.UseTransport(transport);
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
+
+include: v7-usetransport-shim-api
 
 ## Transport specific configuration
 
