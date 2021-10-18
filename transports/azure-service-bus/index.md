@@ -15,7 +15,7 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 
 ## Transport at a glance
 
-|Feature                    |   |  
+|Feature                    |   |
 |:---                       |---
 |Transactions |None, ReceiveOnly, SendsWithAtomicReceive
 |Pub/Sub                    |Native
@@ -33,4 +33,5 @@ To use Azure Service Bus as the underlying transport:
 
 snippet: azure-service-bus-for-dotnet-standard
 
-NOTE: The Azure Service Bus transport requires a connection string to connect to a namespace.
+partial: requires-connectionstring
+partial: v7-usetransport

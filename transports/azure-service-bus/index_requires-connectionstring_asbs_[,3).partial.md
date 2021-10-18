@@ -1,0 +1,1 @@
+NOTE: The Azure Service Bus transport requires a connection string to connect to a namespace.
