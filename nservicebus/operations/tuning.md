@@ -19,11 +19,15 @@ partial: defaults
 
 Limit maximum concurrency so that no more messages than the specified value are ever processed at the same time. If a maximum concurrency is not specified, the transport will choose an optimal value that is a balance between throughput and effective resource usage.
 
+NOTE: Concurrency is configured per endpoint instance. If the concurrency is set to 4 on each instance and the endpoint is scaled-out to 3 instances the combined concurrency is 12. It is not possible to have sequential processing when scaled-out.
+
 Sequential processing:
 
 Set the concurrently limit value to `1` to process messages sequentially.
 
 NOTE: Sequential processing is not a guarantee for ordered processing. For example, processing failures and [/nservicebus/recoverability] can result in out-of-order processing.
+
+NOTE: Sequential processing on the endpoint (logical) level is not possible when scaled-out.
 
 Examples where concurrency tuning might be relevant are:
 
