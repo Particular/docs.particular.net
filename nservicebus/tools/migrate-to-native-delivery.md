@@ -48,6 +48,7 @@ The tool supports the following transports:
 - [RabbitMQ transport](/transports/rabbitmq/)
 - [SQL transport](/transports/sql)
 - [Azure Storage Queues transport](/transports/azure-storage-queues/)
+- [Msmq](/transports/msmq/)
 
 ## Before using the tool
 
@@ -171,6 +172,11 @@ For Azure Storage Queues (`asq`) transport:
 
 - `--target`: The Azure Storage connection string to be used
 - `--delayedtablename`: The delayed delivery table name to use. This is only required when the name of the delayed delivery table has been overridden from the default. It is not possible to migrate all endpoints when specifying this option.
+
+For Msmq (`msmq`) transport:
+
+- `--target`: The SQL Server connection string, including the catalog
+- `--schema`: The schema in which to the timeout tables are stored, defaults to `dbo`
 
 ## How the tool works
 
