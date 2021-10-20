@@ -1,3 +1,9 @@
 {
-    "FSharp.suggestGitignore": false
+    "FSharp.suggestGitignore": false,
+    "markdownlint.config": {
+        "MD028": false,
+        "MD025": {
+            "front_matter_title": ""
+        }
+    }
 }
