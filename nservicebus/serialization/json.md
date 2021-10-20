@@ -21,7 +21,7 @@ snippet: JsonSerialization
 partial: version
 
 
-NOTE: By default, the Json.NET serializer adds a Byte Order Mark (BOM). To disable this, see the [customizing encoding](/nservicebus/serialization/json.md#customizing-encoding) section.
+NOTE: By default, the Json.NET serializer adds a Byte Order Mark (BOM). To disable this, see the [customizing encoding](/nservicebus/serialization/json.md#customization-customizing-encoding) section.
 
 
 ## Customization
