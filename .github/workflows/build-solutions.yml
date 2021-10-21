@@ -12,10 +12,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup .NET 5 SDK
+      - name: Setup .NET 6 RC 2 SDK
         uses: actions/setup-dotnet@v1.8.1
         with:
-          dotnet-version: 5.0.x
+          dotnet-version: '6.0.100-rc.2.21505.57'
+          include-prerelease: true
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1
       - name: Build affected samples & snippets
