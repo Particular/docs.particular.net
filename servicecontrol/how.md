@@ -1,5 +1,6 @@
 ---
 title: How does ServiceControl work?
+summary: An overview of how ServiceControl collects and processes messages and data from an NServiceBus system
 reviewed: 2021-08-26
 ---
 
@@ -9,7 +10,7 @@ NOTE: The ServiceControl HTTP API may change at any time. It is designed for use
 
 ## How ServiceControl receives data
 
-For each ServiceControl service type (error, audit, and monitoring) there are different data available that needs to be provided by user-built NServiceBus endpoints.
+For each ServiceControl service type (i.e. error, audit, and monitoring) there is different data available that must be provided by user-built NServiceBus endpoints.
 
 ```mermaid
 graph LR
@@ -24,7 +25,7 @@ graph LR
   AuditQ --> ServiceControlAudit[ServiceControl<br>audit instance]
   ServiceControlAudit --> AuditLog(Audit.Log<br>queue)
   ServiceControlAudit -. Integration<br>events .-> Watchers
-   
+
   Plugins -- Plugin data --> SCQ
   Plugins -- SagaAudit<br>data --> AuditQ(Audit queue)
   SCQ(ServiceControl<br>queue) --> ServiceControlError
@@ -53,19 +54,19 @@ graph LR
 
 ### Error instances
 
-In NServiceBus, [recoverability](/nservicebus/recoverability/) is a very important feature. It enables automatic retries and continuity within a system, as failed messages will be moved aside. Those messages contain business data that needs to eventually be processed.
+[Recoverability](/nservicebus/recoverability/) is an important feature in NServiceBus. It enables automatic retries and continuity within a system, as failed messages will be moved aside to allow other messages to be processed while the errors are investigated. Those error messages contain business data that must eventually be processed.
 
-NServiceBus will move messages it cannot process to an [error queue](/nservicebus/recoverability/#fault-handling). This is where ServiceControl comes into play to consume these messages. This means it will pick up the message and store it in an internal database. For the internal database, ServiceControl makes use of RavenDB. After it is stored in the database, the message is made available to ServicePulse and ServiceInsight for visualization and retries.
+NServiceBus will move messages it cannot process to an [error queue](/nservicebus/recoverability/#fault-handling). This is where ServiceControl comes into play to consume these messages. ServiceControl will pick up the message and store it in an internal database. ServiceControl uses an embedded RavenDB instance for the internal database. After it is stored in the database, the message is made available to ServicePulse and ServiceInsight for visualization, retries, and other operations.
 
-NOTE: It is recommended to not provide end-users with the ability to retry messages. The message could fail again and end up in ServiceControl again anyway. It could be even more problematic when many messages are retried during a peak in message processing. This will result in even more messages being processed by an endpoint, causing valid messages to be delayed even longer.
+NOTE: It is recommended not to provide end-users with the ability to retry messages. The message could fail again and end up in ServiceControl once again. It could be even more problematic when many messages are retried during a peak in message processing. This will result in even more messages being processed by an endpoint, causing valid messages to be delayed even longer.
 
 Find out more about [failed messages](/servicepulse/intro-failed-messages.md) in ServicePulse.
 
 ### Audit instances
 
-To enable ServiceInsight to visualize the message flow through the system, it needs to have access to every single message that has been successfully processed by the system. This requires endpoints to [enable auditing](/nservicebus/operations/auditing.md). ServiceControl consumes these messages and stores them in its internal database.
+To enable ServiceInsight to visualize the message flow through the system, it must have access to every message that has been successfully processed by the system. This requires endpoints to [enable auditing](/nservicebus/operations/auditing.md). ServiceControl consumes these messages and stores them in its internal database.
 
-ServiceInsight will retrieve the data from ServiceControl via the HTTP API and use header information (which was added by NServiceBus during message processing) to figure out which message caused other messages to be sent, including which sagas were accessed when the [SagaAudit plugin](/nservicebus/sagas/saga-audit.md) is configured in an endpoint.
+ServiceInsight will retrieve the data from ServiceControl via the HTTP API and use header information (added by NServiceBus during message processing) to figure out which message caused other messages to be sent, including which sagas were accessed when the [SagaAudit plugin](/nservicebus/sagas/saga-audit.md) is configured in an endpoint.
 
 ## Forwarding
 

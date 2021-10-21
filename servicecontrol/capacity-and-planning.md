@@ -40,7 +40,7 @@ See also: [Automatic Expiration of ServiceControl Data](how-purge-expired-data.m
 
 From a performance perspective, ServiceControl is similar to a database installation. It requires a significant amount of disk and network I/O due to process audit, error and monitoring messages. Each of these message-processing operations requires disk I/O. The higher the message throughput of an environment, the higher the required disk I/O.
 
-For this reason, it is best to store ServiceControl data on a disk with low latency for I/O operations. Indexes are continuously updated and keeping them in memory requires significant RAM. Indexes that cannot be stored fully in RAM are more likely to be stale. If enabled, messages are added to full-text search, which requires a CPU to have sufficient capacity for updating indexes. Full-text search for ServiceControl error or audit instances can be configured in the ServiceControl Management Utility.
+For this reason, it is best to store ServiceControl data on a disk with low latency for I/O operations. Indexes are continuously updated and keeping them in memory requires significant RAM. Indexes that cannot be stored fully in RAM are more likely to be stale. If full-text indexing is enabled, messages are added to full-text search, which requires the CPU to have sufficient capacity for updating indexes. Full-text search for ServiceControl error or audit instances can be configured in the ServiceControl Management Utility.
 
 For more details, see [Hardware Considerations](servicecontrol-instances/hardware.md).
 

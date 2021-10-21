@@ -37,7 +37,7 @@ Make sure MSMQ is installed and configured as described in the [MSMQ Transport -
 
 
 ## Code walk-through
- 
+
 This sample contains five NServiceBus console applications
 
  * `Sender.V5` sends commands to the scaled out endpoint via [Distributor](/transports/msmq/distributor/).
@@ -48,7 +48,7 @@ This sample contains five NServiceBus console applications
 
 ## APIs that depend on scaling out approach
 
-The behavior of following APIs depend on the selected scaling out approach. The behaviour is slightly different if a message is sent by the Distributor, or from when it is sent by other endpoints. In case of [delayed retries](/nservicebus/recoverability/#delayed-retries) the behavior doesn't depend on which endpoint sent it, it's based on configuration only.
+The behavior of following APIs depend on the selected scaling out approach. The behavior is slightly different if a message is sent by the Distributor, or from when it is sent by other endpoints. In case of [delayed retries](/nservicebus/recoverability/#delayed-retries) the behavior doesn't depend on which endpoint sent it, it's based on configuration only.
 
 
 ### SendLocal
@@ -69,7 +69,7 @@ snippet: Defer
 
 ### ReplyTo
 
-Sending a message when processing a message sent via a Distributor sets the [reply to](/nservicebus/messaging/routing.md#reply-routing) header to the Distributor's queue. 
+Sending a message when processing a message sent via a Distributor sets the [reply to](/nservicebus/messaging/routing.md#reply-routing) header to the Distributor's queue.
 
 snippet: Reply
 
@@ -80,7 +80,7 @@ When another endpoint replies to such message, the reply is routed to the Distri
 
 snippet: DelayedRetry
 
-Moving a message to delayed retries in MSMQ uses the same mechanism as message deferrals mentioned above. However, the behaviour is identical for messages sent via Distributor and others. The message is always deferred to the Distributor queue if the endpoint is configured to enlist with the Distributor.
+Moving a message to delayed retries in MSMQ uses the same mechanism as message deferrals mentioned above. However, the behavior is identical for messages sent via Distributor and others. The message is always deferred to the Distributor queue if the endpoint is configured to enlist with the Distributor.
 
 snippet: Enlisting
 

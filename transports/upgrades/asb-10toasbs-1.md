@@ -26,9 +26,9 @@ There are differences between the API for the legacy Azure Service Bus and the A
 
 ### Max lock duration
 
-Azure Service Bus sets message lock duration (`MaxLockDuration`) to a maximum of 5 minutes by default. This value has been chosen for enhanced reliability and to support the most common use cases. One reason to set lock duration to the maximum is to avoid the need to reconfigure the setting when the default time of 30 seconds is not sufficient for processing and which would cause `LockLostException` exceptions. 
+Azure Service Bus sets message lock duration (`MaxLockDuration`) to a maximum of 5 minutes by default. This value has been chosen for enhanced reliability and to support the most common use cases. One reason to set lock duration to the maximum is to avoid the need to reconfigure the setting when the default time of 30 seconds is not sufficient for processing and which would cause `LockLostException` exceptions.
 
-The most common use case for NServiceBus endpoints is to process messages without the need to manage for lock expiration. Therefore the default values for `LockDuration` and `Prefetch` in the Azure Service Bus transport have been selected to ensure no messages lose their locks when processing takes longer than 30 seconds. If processing is successful, the message will be acknowledged and completed. If the message fails to process, it will go through [the recoverability mechanism](/nservicebus/recoverability/). Only when there's an abnormal shutdown behaviour (e.g. such as an endpoint crashing) would it take up to 5 minutes for the message to re-appear.
+The most common use case for NServiceBus endpoints is to process messages without the need to manage for lock expiration. Therefore the default values for `LockDuration` and `Prefetch` in the Azure Service Bus transport have been selected to ensure no messages lose their locks when processing takes longer than 30 seconds. If processing is successful, the message will be acknowledged and completed. If the message fails to process, it will go through [the recoverability mechanism](/nservicebus/recoverability/). Only when there's an abnormal shutdown behavior (e.g. such as an endpoint crashing) would it take up to 5 minutes for the message to re-appear.
 
 **Is it possible to change the default message lock duration for an endpoint?**
 
