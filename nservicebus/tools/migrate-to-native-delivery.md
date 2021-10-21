@@ -48,7 +48,7 @@ The tool supports the following transports:
 - [RabbitMQ transport](/transports/rabbitmq/)
 - [SQL transport](/transports/sql)
 - [Azure Storage Queues transport](/transports/azure-storage-queues/)
-- [Msmq](/transports/msmq/)
+- [MSMQ](/transports/msmq/)
 
 ## Before using the tool
 
