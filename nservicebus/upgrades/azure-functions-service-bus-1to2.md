@@ -40,28 +40,6 @@ functionsHostBuilder.UseNServiceBus(); // Will use the name MyEndpoint
 
 NOTE: The constructed instance of `NServiceBusTriggeredEndpointConfiguration` already contains a reference to an `IConfiguration` instance from the host environment. It is not required to pass one in.
 
-### Connection strings
-
-Specifying a connection string by name has been deprecated.
-
-Instead of
-
-```csharp
-functionsHostBuilder.UseNServiceBus(
-    () => new ServiceBusTriggeredEndpointConfiguration(endpointName, connectionStringName)
-);
-```
-
-use:
-
-```csharp
-functionsHostBuilder.UseNServiceBus(endpointName, nsb =>
-{
-    var connectionString = Environment.GetEnvironmentVariable(connectionStringName);
-    nsb.ServiceBusConnectionString = connectionString;
-});
-```
-
 ### Routing
 
 Instead of
