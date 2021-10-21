@@ -18,7 +18,6 @@ This article presents basic guidelines for choosing contracts evolution strategy
 
 Ensure that messages can be evolved by following general [messages design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
 
-
 ## Common challenges
 
 ### Handling breaking changes in contracts
@@ -31,13 +30,13 @@ For complex systems, especially when there are significant changes in a message 
 
 Depending on the complexity of the change, the number of senders and receivers for the contract as well as how the change might propagate through the system, a different approach may be desirable. It's important to consider where the added data is required for a message to be successfully processed.
 
-Considering a scenario in which the data that is added to the contract is not required to succesfully process a message:
+Considering a scenario in which the data that is added to the contract is not required to successfully process a message:
 
 * Update the contract and release a new version.
   * Instead of relying on .NET to set the default value for int Age = 1, it's better to use nullable types and represent missing values as null. This allows for message handlers to reliably verify if the data is available using the ´HasValue´-property.
 * Update senders to use the new contract version.
 * Update receivers to handle the new contract version.
-  * This can be done gradually, endpoint by endpoint. Endpoints that are not upgraded and reference the previous contracts assembly, will be unaware of the newly added data as it will be ignored during deserialization.
+  * This can be done gradually, endpoint by endpoint. Endpoints that are not upgraded and reference the previous contracts assembly will be unaware of the newly added data as it will be ignored during deserialization.
 
 For a more complex change in which receivers require the data in order to successfully process a message, a more gradual upgrade is recommended.
 
@@ -50,34 +49,33 @@ For the contracts assembly:
 
 For senders and publishers:
 
-* Update senders and publishers to target the new contracts assembly
-* Update senders and publishers use the new message contract when sending/publishing messages
+* Update senders and publishers to target the new contract's assembly
+* Update senders and publishers to use the new message contract when sending/publishing messages
 
-This may be done gradually, deploying endpoint by endpoint as suited. Endpoints that are not upgraded and reference the previous contracts assembly, will be unaware of the newly added data as it will be ignored during deserialization.
+This may be done gradually, deploying endpoint by endpoint as needed. Endpoints that are not upgraded and reference the previous contracts assembly will be unaware of the newly added data as it will be ignored during deserialization.
 
 For receivers:
 
 * Update receivers to target the new contracts assembly
-* Add an additonal message handler that can handle new message contract
+* Add an additional message handler that can handle new message contract
 * Adjust the handler that handled the previous contract version:
-  * Adjust message processing by assigning a default value to the missing properties.  It's necessary to carefully examine what the default values for the added properties will be. In particular, it's important to consider how clients might interpret the default value and provide appropriate guidelines for them.
+  * Adjust message processing by assigning a default value to the missing properties. It's necessary to carefully examine what the default values for the added properties will be. In particular, consider how clients might interpret the default value and provide appropriate guidelines for them.
   * When the values for the new properties are required and the data is available in an accessible storage, it can be retrieved as part of the message processing
   * When the new properties are required to correctly process the message and are stored by another service:
     * Convert the original message handler to initiate a saga
     * When the message is received, and the handler identifies that a part of the data is missing, send a dedicated message to the relevant endpoint to retrieve the missing information. If needed, keep track of the data from the original message by storing all relevant information in the saga
     * When the data is retrieved, a new message containing all required information can be sent. This message will be handled by the same handler that processes the new message contract type, deferring the actual processing to a single handler.
 
-When all senders and receivers are updated and in-flight messages in the old format have been handled, the previous message contract can be obsoleted. By decorating the previous contract type with the `Obsolete` attribute, the changes become visible for receivers when they upgrade to the new version.
-In a next major version, the obsoleted types may be removed.
+When all senders and receivers are updated and in-flight messages in the old format have been handled, the previous message contract can be marked as obsolete. By decorating the previous contract type with the `Obsolete` attribute, the changes become visible for receivers when they upgrade to the new version. In the next major version of the assembly, the obsolete types may be removed.
 
 #### Removing data from a contract
 
-When the need rises to remove data from a contract, the easiest way to implement this change is to start at the receivers' side.
+When the need rises to remove data from a contract, the easiest way to implement this change is to start from the receiver side.
 
 Adjust all receivers to not rely on the data that needs to be removed by:
 
-  * Retrieving the data from somewhere else
-  * Removing the data completely
+* Retrieving the data from somewhere else
+* Removing the data completely
 
 In the first case, the same way of working can be applied as when adding data to a contract:
 
@@ -87,15 +85,15 @@ In the first case, the same way of working can be applied as when adding data to
 
 When all receivers have been updated to allow for processing with less data, the contracts can be adjusted.
 
-If the data that needs to be removed wasn't crucial to start with, it could simply be obsoleted or removed from the message contract. When choosing this option, ensure that receivers can succesfully process the message without the removed properties.
+If the data that needs to be removed wasn't crucial to start with, it could be marked as obsolete, or removed from the message contract. When choosing this option, ensure that receivers can successfully process the message without the removed properties.
 
 #### Modifying serialization formats
 
-Another approach for handling breaking changes is to modify serialization formats. The step-by-step guidance is provided in the [transition serialization formats](/samples/serializers/transitioning-formats/) formats.
+Another approach for handling breaking changes is to modify serialization formats. Step-by-step guidance is provided in the [transition serialization formats](/samples/serializers/transitioning-formats/) sample.
 
 ### Breaking down large contract assemblies
 
-In the early days of a system, combining all events, commands and messages into a single contracts assembly might be a good place to start. However, as the system grows, breaking down the contracts into smaller parts makes more sense. An obvious reason is a rise in the number of subscribers for events published by a specific endpoint. It's not desirable to expose commands that are meant to be consumed by a single receiver to all the subscribers interested in that same endpoint's events.
+In the early days of a system, combining all events, commands and messages into a single contracts assembly might be a good place to start. However, as the system grows, breaking down the contracts into smaller parts makes it easier to evolve a system safely. An obvious reason is a rise in the number of subscribers for events published by a specific endpoint. It's not desirable to expose commands that are meant to be consumed by a single receiver to all the subscribers interested in that same endpoint's events.
 
 At that point it makes more sense to break down the contracts into multiple assemblies. A possible structure solution is to have multiple assemblies per endpoint with a naming convention similar to:
 
@@ -107,4 +105,4 @@ Or even more strict:
 * EndpointName.AutonomousComponent.Commands
 * EndpointName.AutonomousComponent.Events
 
-While it might make sense to directly reference the \*.Commands assemblies from the sender and receiver endpoints, it might not for the \*.Events assemblies as they are used by many subscribing endpoints. In those cases, it could make sense to share the assembly through NuGet packages as opposed to using a direct reference.
+While it might make sense to directly reference the \*.Commands assemblies from the sender and receiver endpoints, it might not for the \*.Events assemblies as they are used by many subscribing endpoints. In those cases, considering sharing the assembly through NuGet packages as opposed to using a direct reference.
