@@ -16,6 +16,11 @@ The status of an errant message is illustrated in the message window.
 
 ![An error in the message window](images/overview-messagewindowerror.png 'width=500')
 
+The are the following statuses displayed (described from the top):
+ - Retried message is a failed message, which retry was requested from ServiceInsight. If a message stays in this status it means that there is no further information about that message, neither failure nor audit for a successful processing
+ - Message failed multiple times is a message that was at least once retried using tools like ServiceInsight or ServicePulse and it again returned back as a failure
+ - Message failed one time, is a message that for the first time got to error queue and was processed by ServiceControl
+ - Successful processed message
 
 ## The flow diagram
 
