@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -12,7 +13,11 @@ public class TriggerMessageHandler : IHandleMessages<TriggerMessage>
     {
         Log.Warn($"Handling {nameof(TriggerMessage)} in {nameof(TriggerMessageHandler)}");
 
-        return context.SendLocal(new FollowupMessage());
+        var options = new SendOptions();
+        options.RouteToThisEndpoint();
+        options.DelayDeliveryWith(TimeSpan.FromSeconds(10));
+
+        return context.Send(new FollowupMessage(), options);
     }
 }
 
