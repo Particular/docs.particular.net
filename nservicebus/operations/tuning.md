@@ -19,7 +19,7 @@ partial: defaults
 
 Limit maximum concurrency so that no more messages than the specified value are ever processed at the same time. If a maximum concurrency is not specified, the transport will choose an optimal value that is a balance between throughput and effective resource usage.
 
-NOTE: Concurrency is configured per endpoint instance. If the concurrency is set to 4 on each instance and the endpoint is scaled-out to 3 instances the combined concurrency is 12. It is not possible to have sequential processing when scaled-out.
+NOTE: The concurrency set in the endpoint configuration defines the concurrency of each endpoint instance, and not the aggregate concurrency across all endpoints instance. For example, if the endpoint configuration sets the concurrency to 4 and the endpoint is scaled-out to 3 instances, the combined concurrency will be 12 and not 4. 
 
 Sequential processing:
 
