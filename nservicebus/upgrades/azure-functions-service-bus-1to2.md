@@ -63,3 +63,7 @@ functionsHostBuilder.UseNServiceBus(endpointName, nsb =>
     nsb.Routing.RouteToEndpoint(typeof(SomeMessage), "AnotherEndpoint");
 });
 ```
+
+## Static hosting model have been deprecated
+
+The `ServiceBusTriggeredEndpointConfiguration.FromAttributes()` static factory method that was used in the preview package has been deprecated. Instead, use [the host builder configuration model](/nservicebus/hosting/azure-functions-service-bus/#basic-usage-endpoint-configuration).
