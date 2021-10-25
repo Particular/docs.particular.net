@@ -18,7 +18,7 @@ The unrestricted delayed delivery is now always enabled so the `UnrestrictedDura
 
 To use the SQS transport for NServiceBus, create a new `SqsTransport` instance and pass it to `EndpointConfiguration.UseTransport`.
 
-Instead of
+Instead of:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<SqsTransport>();
@@ -30,6 +30,8 @@ Use:
 var transport = new SqsTransport();
 endpointConfiguration.UseTransport(transport);
 ```
+
+include: v7-usetransport-shim-api
 
 ## SDK clients
 

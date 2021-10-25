@@ -29,7 +29,7 @@ var routing = t.Routing();
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
 
-use:
+Use:
 
 ```csharp
 var transport = new MyTransport{
@@ -42,7 +42,7 @@ routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 
 See the [transport upgrade guide](/nservicebus/upgrades/7to8/transport.md) for further details.
 
-Note: The existing API surface is supported for NServiceBus version 8 via a [shim API](https://en.wikipedia.org/wiki/Shim_(computing)) to ease migration to the new version. However, it is recommended to switch to the new transport configuration API to prepare for future upgrades of NServiceBus.
+include: v7-usetransport-shim-api
 
 ## Dependency injection
 

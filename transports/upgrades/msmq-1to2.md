@@ -16,7 +16,7 @@ upgradeGuideCoreVersions:
 
 To use the MSMQ transport for NServiceBus, create a new instance of `MsmqTransport` and pass it to `EndpointConfiguration.UseTransport`.
 
-Instead of
+Instead of:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<MsmqTransport>();
@@ -29,6 +29,8 @@ Use:
 var transport = new MsmqTransport();
 endpointConfiguration.UseTransport(transport);
 ```
+
+include: v7-usetransport-shim-api
 
 ## Delayed delivery
 

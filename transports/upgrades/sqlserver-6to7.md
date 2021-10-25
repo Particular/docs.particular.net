@@ -16,19 +16,21 @@ upgradeGuideCoreVersions:
 
 To use the SQL Server transport for NServiceBus, create a new instance `SqlServerTransport` and pass it to the `EndpointConfiguration.UseTransport` method.
 
-Instead of
+Instead of:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<SqlServerTransprot>();
 transport.ConnectionString(connectionString);
 ```
 
-use:
+Use:
 
 ```csharp
 var transport = new SqlServerTransport(connectionString);
 endpointConfiguration.UseTransport(transport);
 ```
+
+include: v7-usetransport-shim-api
 
 ## Configuration options
 

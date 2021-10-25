@@ -20,7 +20,7 @@ include: azure-transports
 
 ## Transport at a glance
 
-|Feature                    |   |  
+|Feature                    |   |
 |:---                       |---
 |Transactions |None, ReceiveOnly (Message visibility timeout)
 |Pub/Sub                    |Native (Requires Storage Table)
@@ -34,4 +34,4 @@ include: azure-transports
 
 partial: endpointconfig
 
-Note: When using Azure Storage Queues transport, a serializer must be configured explicitly [by the `UseSerializer` API](/nservicebus/serialization/).
+Note: When using Azure Storage Queues transport, a serializer must be configured explicitly [by the `UseSerialization` API](/nservicebus/serialization/).
