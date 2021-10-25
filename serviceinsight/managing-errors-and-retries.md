@@ -16,6 +16,15 @@ The status of an errant message is illustrated in the message window.
 
 ![An error in the message window](images/overview-messagewindowerror.png 'width=500')
 
+A message can have one of the following status:
+
+![Retry icon](images/status-retry-icon.png 'width=20') **Retried message**: A failed message, which a retry was requested from ServiceInsight or ServicePulse. If a message stays in this status it means that there is no further information about that message, neither failure nor audit for a successful processing
+
+![Multiple errors icon](images/status-multiple-error-icon.png 'width=20') **Message failed multiple times**: A message that was retried at least once using tools like ServiceInsight or ServicePulse but retries weren't able to process the message successfully.
+
+![Single error icon](images/status-error-icon.png 'width=20') **Message failed one time**: A message that was moved to the error queue the first time.
+
+![Success icon](images/status-success-icon.png 'width=20') **Successful processed message**: A message that was successfully processed. Requires [message auditing](/nservicebus/operations/auditing.md) to be enabled.
 
 ## The flow diagram
 
