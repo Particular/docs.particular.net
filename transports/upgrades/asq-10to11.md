@@ -38,6 +38,10 @@ routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 
 include: v7-usetransport-shim-api
 
+## Configure clients
+
+Configuring clients for queue, blob or table is done via the constructor overload. Setting those via properties is no longer possible.
+
 ## Configuration options
 
 The Azure Storage Queues transport configuration options have been moved to the `AzureStorageQueueTransport` class properties and constructors. See the following table for further information:
