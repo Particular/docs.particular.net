@@ -21,3 +21,5 @@ WARNING: Make sure that logging is correctly initialized before resolving the `I
 NOTE: To avoid unnecessary processing, especially when logging more verbose messages, such as `Debug`, make sure to first check if logging at that level is enabled.
 
 NOTE: Since `LogManager.GetLogger(..);` is an expensive call, it is important that the field is `static` so that the call happens only once per class and has the best possible performance.
+
+NOTE: The `*Format` APIs pass their message and format arguments to the corresponding APIs of the underlying logging framework so their behavior varies. Some frameworks, like NLog, use special syntax to create structured log entries. Refer to the documentation of the specific logging framework for details. The built-in logging uses `string.Format` to generate the message that is written.
