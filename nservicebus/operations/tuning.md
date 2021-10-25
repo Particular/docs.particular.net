@@ -1,6 +1,6 @@
 ---
-title: Tuning endpoint message processing
-summary: Optimize message processing by configuring concurrency
+title: Tuning message throughput performance and concurrency
+summary: Optimize message throughput performance by configuring concurrency
 component: Core
 related:
  - nservicebus/operations
@@ -25,7 +25,7 @@ Sequential processing:
 
 Set the concurrently limit value to `1` to process messages sequentially.
 
-NOTE: Sequential processing is not a guarantee for ordered processing. For example, processing failures and [/nservicebus/recoverability] can result in out-of-order processing.
+NOTE: Sequential processing is not a guarantee for ordered processing. For example, processing failures and [/nservicebus/recoverability] will result in out-of-order processing.
 
 NOTE: Sequential processing on the endpoint (logical) level is not possible when scaled-out.
 
