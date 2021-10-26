@@ -2,7 +2,7 @@
 title: Azure Functions with Azure Service Bus Upgrade Version 1 to 2
 summary: How to upgrade Azure Functions with Azure Service Bus from version 1 to 2
 component: ASBFunctions
-reviewed: 2021-10-19
+reviewed: 2021-10-26
 related:
  - nservicebus/upgrades/7to8
 isUpgradeGuide: true
@@ -64,6 +64,6 @@ functionsHostBuilder.UseNServiceBus(endpointName, nsb =>
 });
 ```
 
-## Static hosting model have been deprecated
+## Static hosting model has been deprecated
 
 The `ServiceBusTriggeredEndpointConfiguration.FromAttributes()` static factory method that was used in the preview package has been deprecated. Instead, use [the host builder configuration model](/nservicebus/hosting/azure-functions-service-bus/#basic-usage-endpoint-configuration).
