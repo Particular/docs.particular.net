@@ -6,7 +6,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.4.0) | 2021-09-16     | -                 | -                                 |
 | [5.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.3.1) | 2021-01-20     | 2021-12-16        | Superseded by 5.4.x               |
-| [~~4.4.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/4.4.2) | ~~2019-11-27~~ | ~~2021-04-27~~    | ~~Superseded by 5.0.x~~           |
 | [3.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/3.3.5) | 2018-05-14     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Azure.Transports.WindowsAzureServiceBus](/nuget/NServiceBus.Azure.Transports.WindowsAzureServiceBus)
