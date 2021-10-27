@@ -434,7 +434,7 @@
 
 - Key: SagaAudit
   Name: ServiceControl SagaAudit
-  DocsUrl: /servicecontrol/plugins/saga-audit
+  DocsUrl: /nservicebus/sagas/saga-audit
   GitHubOwner: Particular
   Category: Other
   ProjectUrl: https://github.com/Particular/NServiceBus.SagaAudit
