@@ -282,6 +282,7 @@ public enum SupportLevel
     Labs,
     Community,
     Preview,
+    Tool
 }
 
 public enum ComponentCategory
