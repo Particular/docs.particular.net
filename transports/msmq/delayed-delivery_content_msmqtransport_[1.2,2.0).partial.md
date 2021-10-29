@@ -10,9 +10,8 @@ The SQL Server delayed message store (`SqlServerDelayedMessageStore`) is the onl
 
 A delayed message store implements the `IDelayedMessageStore` interface. Delayed message delivery has two parts:
 
-### Storing of delayed messages
-
-A delayed message is stored using the `Store` method.
+- Storing of delayed messages via the `Store` method
+- Polling and dispatching of the delayed messages
 
 ### Polling and dispatching of delayed messages
 
@@ -22,7 +21,7 @@ When a due delayed message is returned by `FetchNextDueTimeout`, the message is 
 
 ## Using a custom delayed message store
 
-Create a class which implements the `IDelayedMessageStore` interface and pass an instance to the `DelayedDeliverySettings` constructor.
+To create a custom storage implement the `IDelayedMessageStore` interface and pass an instance to the `DelayedDeliverySettings` constructor.
 
 ### Consistency
 
