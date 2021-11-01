@@ -35,7 +35,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.3.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.3.1) | 2021-06-23     | -                 | -                                 |
+| [6.3.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.3.2) | 2021-06-23     | -                 | -                                 |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/6.2.0) | ~~2020-11-19~~ | ~~2021-09-23~~    | ~~Superseded by 6.3.x~~           |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.SqlServer/3.1.6) | 2017-07-14     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
@@ -58,13 +58,14 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | 2020-06-24     | -                 | -                                 |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.0) | 2021-10-29     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | 2020-06-24     | 2022-01-29        | Superseded by 1.2.x               |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.1) | 2021-06-23     | -                 | -                                 |
+| [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.2) | 2021-06-23     | -                 | -                                 |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.2.0) | ~~2020-11-19~~ | ~~2021-09-23~~    | ~~Superseded by 6.3.x~~           |
 
 ### Persistence packages
@@ -135,7 +136,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | 2020-06-24     | -                 | -                                 |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.0) | 2021-10-29     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | 2020-06-24     | 2022-01-29        | Superseded by 1.2.x               |
 
 ### Serializer packages
 
