@@ -8,33 +8,31 @@ redirects:
  - nservicebus/how-to-reduce-throughput-of-an-endpoint
  - nservicebus/operations/reducing-throughput
  - nservicebus/operations/throughput
-reviewed: 2020-06-23
+reviewed: 2021-11-01
 ---
 
 NServiceBus uses defaults that ensure good performance in common cases. While this is usually the preferred mode of operation there are situations where tuning might be desired.
-
-## Tuning concurrency
-
-partial: defaults
-
-Limit maximum concurrency so that no more messages than the specified value are ever processed at the same time. If a maximum concurrency is not specified, the transport will choose an optimal value that is a balance between throughput and effective resource usage.
-
-NOTE: The concurrency set in the endpoint configuration defines the concurrency of each endpoint instance, and not the aggregate concurrency across all endpoint instances. For example, if the endpoint configuration sets the concurrency to 4 and the endpoint is scaled-out to 3 instances, the combined concurrency will be 12 and not 4. 
-
-Sequential processing:
-
-Set the concurrently limit value to `1` to process messages sequentially.
-
-NOTE: Sequential processing is not a guarantee for ordered processing. For example, processing failures and [/nservicebus/recoverability] will result in out-of-order processing.
-
-NOTE: Sequential processing on the endpoint (logical) level is not possible when scaled-out.
 
 Examples where concurrency tuning might be relevant are:
 
  * Non thread safe code that needs to run sequentially
  * Databases that might deadlock when getting too many concurrent requests
  
-NOTE: The endpoint needs to be restarted for concurrency changes to take effect.
+## Configuring concurrency limit
+
+partial: defaults
+
+Limit maximum concurrency so that no more messages than the specified value are ever processed at the same time. If a maximum concurrency is not specified, the transport will choose an optimal value that is a balance between throughput and effective resource usage. The concurrency limit cannot be changed at run-time and can only be applied at endpoint instance creation and requires the instanceto be restarted for concurrency changes to take effect.
+
+It is recommended to have infrastructure monitoring setup for on the environment that hosts the endpoint instance as well as any remote resources like databases and monitor CPU, RAM, network, and storage to validate if a change made do the concurrency is not negavitely affecting the the overal system.
+
+NOTE: The concurrency set in the endpoint configuration defines the concurrency of each endpoint instance, and not the aggregate concurrency across all endpoint instances. For example, if the endpoint configuration sets the concurrency to 4 and the endpoint is scaled-out to 3 instances, the combined concurrency will be 12 and not 4.
+
+## Sequential processing
+
+Set the concurrently limit value to `1` to process messages sequentially. Sequential processing is not a guarantee for ordered processing. For example, processing failures and [recoverability](/nservicebus/recoverability) will result in out-of-order processing.
+
+NOTE: Sequential processing on the endpoint (logical) level is not possible when scaled-out.
 
 ## Throttling
 
