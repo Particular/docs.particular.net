@@ -26,7 +26,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.0) | 2021-05-07     | -                 | -                                 |
+| [6.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.1) | 2021-05-07     | -                 | -                                 |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | ~~2020-07-13~~ | ~~2021-08-07~~    | ~~Superseded by 6.1.x~~           |
 | [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.2.0) | ~~2020-04-17~~ | ~~2021-07-13~~    | ~~Superseded by 6.0.x~~           |
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/4.4.5) | 2017-09-18     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
@@ -424,7 +424,7 @@
 | [2.0.x](https://www.nuget.org/packages/Particular.PlatformSample/2.0.0) | 2021-09-16     | -                 | -                                 |
 | [1.31.x](https://www.nuget.org/packages/Particular.PlatformSample/1.31.0) | 2021-09-16     | 2022-09-16        | Superseded by 2.0.x               |
 | [1.29.x](https://www.nuget.org/packages/Particular.PlatformSample/1.29.0) | 2021-08-03     | 2021-12-16        | Superseded by 1.31.x              |
-| [1.28.x](https://www.nuget.org/packages/Particular.PlatformSample/1.28.0) | 2021-07-16     | 2021-11-03        | Superseded by 1.29.x              |
+| [~~1.28.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.28.0) | ~~2021-07-16~~ | ~~2021-11-03~~    | ~~Superseded by 1.29.x~~          |
 | [~~1.27.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.27.0) | ~~2021-06-22~~ | ~~2021-10-16~~    | ~~Superseded by 1.28.x~~          |
 | [~~1.26.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.26.0) | ~~2021-06-03~~ | ~~2021-09-22~~    | ~~Superseded by 1.27.x~~          |
 | [~~1.25.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.25.0) | ~~2021-05-07~~ | ~~2021-09-03~~    | ~~Superseded by 1.26.x~~          |
