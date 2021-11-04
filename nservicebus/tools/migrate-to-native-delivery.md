@@ -48,6 +48,7 @@ The tool supports the following transports:
 - [RabbitMQ transport](/transports/rabbitmq/)
 - [SQL transport](/transports/sql)
 - [Azure Storage Queues transport](/transports/azure-storage-queues/)
+- [MSMQ](/transports/msmq/)
 
 ## Before using the tool
 
@@ -72,17 +73,16 @@ The migration tool provides a `preview`, `migrate` and `abort` command.
 To get a preview of endpoints and their status use the `preview` command and specify the required source and target with the corresponding options.
 
 ```
-migrate-timeouts preview source
-                        <source-specific-options>
-                        target
-                        <target-specific-options>
+migrate-timeouts preview <source>
+                         <source-specific-options>
+                         <target>
+                         <target-specific-options>
 ```
 
 ### Migrate
 
 To run a migration for selected endpoint(s) use the `migrate` command with the following parameters.
 
-- `--target`: The connection string of the target transport
 - `--endpoint`(Optional): The endpoint to migrate.
 - `--allEndpoints`(Optional): Whether to migrate all endpoints in one run
 - `--cutoffTime`(Optional): The time from which to start migrating timeouts. In general, it makes sense to start migrating timeouts that will expire at least one day in the future. The format in which to specify the `cutoffTime` is `yyyy-MM-dd HH:mm:ss`. The migration tool will convert the specified `cutoffTime` to UTC time.
@@ -90,13 +90,13 @@ To run a migration for selected endpoint(s) use the `migrate` command with the f
 NOTE: `--endpoint` and `--allEndpoints` arguments are mutually exclusive. One of them must be provided.
 
 ```
-migrate-timeouts migrate source
-                        <source-specific-options>
-                        target
-                        <target-specific-options>
-                        [-c|--cutoffTime <cutoffTime>]
-                        [--endpoint] <endpointName>
-                        [--allendpoints]
+migrate-timeouts migrate [-c|--cutoffTime <cutoffTime>]
+                         [--endpoint] <endpointName>
+                         [--allEndpoints]
+                         <source>
+                         <source-specific-options>
+                         <target>
+                         <target-specific-options>
 ```
 
 ### Abort
@@ -104,19 +104,19 @@ migrate-timeouts migrate source
 To abort an ongoing migration use the `abort` command. Abort must also specify the previously selected target including the target specific arguments.
 
 ```
-migrate-timeouts abort source
-                        <source-specific-options>
-                        target
-                        <target-specific-options>
+migrate-timeouts abort <source>
+                       <source-specific-options>
+                       <target>
+                       <target-specific-options>
 ```
 
 ### Source options
 
 ```
-migrate-timeouts command ravendb|sqlp|nhb
-                        <source-specific-options>
-                        target
-                        <target-specific-options>
+migrate-timeouts <command> ravendb|sqlp|nhb
+                           <source-specific-options>
+                           <target>
+                           <target-specific-options>
 ```
 
 For RavenDB (`ravendb`) persistence:
@@ -152,17 +152,17 @@ For Azure Storage (`asp`) persistence:
 ### Target options
 
 ```
-migrate-timeouts command source
-                        <source-specific-options>
-                        rabbitmq|sqlt|asq
-                        <target-specific-options>
+migrate-timeouts <command> <source>
+                           <source-specific-options>
+                           rabbitmq|sqlt|asq|msmq
+                           <target-specific-options>
 ```
 
 For RabbitMQ (`rabbitmq`) transport:
 
 - `--target`: The RabbitMQ connection string
 
-For SqlServer (`sqlt`) transport:
+For SQL Server (`sqlt`) transport:
 
 - `--target`: The SQL Server connection string, including the catalog
 - `--schema`: The schema in which to the timeout tables are stored, defaults to `dbo`
@@ -171,6 +171,11 @@ For Azure Storage Queues (`asq`) transport:
 
 - `--target`: The Azure Storage connection string to be used
 - `--delayedtablename`: The delayed delivery table name to use. This is only required when the name of the delayed delivery table has been overridden from the default. It is not possible to migrate all endpoints when specifying this option.
+
+For MSMQ (`msmq`) transport:
+
+- `--target`: The SQL Server connection string, including the catalog
+- `--schema`: The schema in which to the timeout tables are stored, defaults to `dbo`
 
 ## How the tool works
 
@@ -197,7 +202,7 @@ WARN: This is a destructive operation and should only be performed once a succes
 - Ensure that [RabbitMQ compatibility mode](/transports/rabbitmq/delayed-delivery.md#backwards-compatibility) is turned off
 - Delete all documents in the `TimeoutDatas` documents that have an `OwningTimeoutManager` starting with `__migrated__`
 
-### Sql persistence
+### SQL persistence
 
 Use `SELECT * FROM TimeoutsMigration_State` to list all performed migrations. For all the successful ones do the following:
 
@@ -255,7 +260,7 @@ Turn on verbose logging using the `--verbose` option.
 
 Use Raven Studio to check the state of ongoing and previous migrations by filtering documents using the prefix `TimeoutMigrationTool`. Completed migrations are named `TimeoutMigrationTool/MigrationRun-{endpoint}-{completed-time}` while any ongoing migration are present as `TimeoutMigrationTool/State`. The contents of the documents contains metadata about the migration such as the time started, time completed, used cutoff time etc.
 
-### Sql persistence
+### SQL persistence
 
 The history and migrated data is always kept in the database.
 
