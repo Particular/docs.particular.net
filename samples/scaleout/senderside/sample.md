@@ -1,7 +1,7 @@
 ---
 title: Sender-Side Distribution
 summary: Scale out MSMQ message processing with sender-side distribution
-reviewed: 2019-09-03
+reviewed: 2021-11-03
 component: MsmqTransport
 related:
  - transports/msmq/scaling-out
@@ -9,7 +9,7 @@ related:
  - samples/scaleout/distributor-upgrade
 ---
 
-NOTE: This sample is only relevant for the [MSMQ transport](/transports/msmq/). The other broker-based transports scale out using the [competing consumer pattern](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers). The functionality in this sample is available for NServiceBus version 6 and above. 
+NOTE: This sample is only relevant for the [MSMQ transport](/transports/msmq/). The other transports scale out using the [competing consumer pattern](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers). The functionality in this sample is available for NServiceBus version 6 and above. 
 
 Sometimes a single endpoint for handling messages is not enough, so there is a need to scale out. The following sample demonstrates how to scale out existing MSMQ message processing by distributing messages on the sender side.
 
@@ -62,4 +62,4 @@ snippet: Physical-Routes
 
 Start the solution with all the console applications (`Server1`, `Server2`, `Client`) as startup applications.
 
-In the `Client` console, press enter a few times to generate message load. This results in both the `Server1` and `Server2` consoles processing the generated message load in an alternating fashion. This is because the messages are sent in a round-robin fashion to `Server1` and `Server2` by the client using the [sender-side distribution feature](/transports/msmq/sender-side-distribution.md).
+In the `Client` console, press enter a few times to generate messages. This results in both the `Server1` and `Server2` consoles processing the generated messages in an alternating fashion. This is because the messages are sent in a round-robin way to `Server1` and `Server2` by the client using the [sender-side distribution feature](/transports/msmq/sender-side-distribution.md).
