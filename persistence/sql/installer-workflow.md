@@ -5,7 +5,7 @@ related:
  - nservicebus/operations
  - samples/sql-persistence
  - persistence/sql/install
-reviewed: 2019-09-03
+reviewed: 2021-11-04
 redirects:
  - nservicebus/sql-persistence/installer-workflow
 ---
