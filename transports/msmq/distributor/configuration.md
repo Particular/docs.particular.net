@@ -7,8 +7,8 @@ redirects:
  - nservicebus/msmq/distributor/configuration
 ---
 
+In Version 4.3 the **built-in** distributor has been deprecated. The new dedicated [NServiceBus.Distributor.MSMQ](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) package should be used instead.
 
-partial: versions
 
 Warning: It is not recommended to use Outbox on the workers. Outbox is designed to work with distributed transactions (MSDTC).
 
@@ -29,9 +29,21 @@ NOTE: It is valid for messages to be in the queue when the system is idle. The n
 
 When running with [NServiceBus.Host.exe](/nservicebus/hosting/), the following profiles start the endpoint with the distributor functionality:
 
-partial: distributor
+To start the endpoint as a Distributor, install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and then run the host from the command line as follows:
 
-partial: master
+```dos
+NServiceBus.Host.exe NServiceBus.MSMQDistributor
+```
+
+The NServiceBus.MSMQDistributor profile instructs the NServiceBus framework to start a distributor process on this endpoint, waiting for workers to enlist to it. Unlike the NServiceBus.MSMQMaster profile, the NServiceBus.MSMQDistributor profile does not execute a worker process.
+
+
+It is also possible to use the `NServiceBus.MSMQMaster` profile to start distributor and worker processes on the endpoint. To start the endpoint as a master, install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and run the host from the command line as follows:
+
+```dos
+NServiceBus.Host.exe NServiceBus.MSMQMaster
+```
+
 
 ### When self-hosting
 
@@ -48,7 +60,9 @@ Any NServiceBus endpoint can run as a worker node. To activate it, create a hand
 
 If hosting the endpoint with `NServiceBus.Host.exe`, to run as a worker, use this command line:
 
-partial: worker
+```dos
+NServiceBus.Host.exe NServiceBus.MSMQWorker
+```
 
 Configure the name of the master node server as shown in this `app.config` example. Note the `MasterNodeConfig` section:
 
