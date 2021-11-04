@@ -14,3 +14,7 @@ related:
 This page lists both currently and recently supported versions of all ServiceControl according to the [support policy](support-policy.md).
 
 include: supported-versions-servicecontrol
+
+## NServiceBus compatibility
+
+ServiceControl is compatible with older NServiceBus versions as long as the transport is unchanged. However, some of these versions might no longer be supported.
