@@ -3,7 +3,7 @@ title: SagaAudit Plugin
 summary: For visualizing and debugging sagas with ServiceInsight
 component: SagaAudit
 versions: 'SagaAudit:*'
-reviewed: 2019-09-03
+reviewed: 2021-11-04
 ---
 
 WARN: This plugin will result in an increase in the load placed on ServiceControl and the endpoint it is installed in. Make sure the environment is prepared for the increased load. Consider [scaling out audit processing](/servicecontrol/servicecontrol-instances/distributed-instances.md) if necessary.
