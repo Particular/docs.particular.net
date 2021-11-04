@@ -1,6 +1,6 @@
 ---
 title: Change/Move Message Type
-reviewed: 2019-09-03
+reviewed: 2021-11-03
 component: Core
 related:
 - nservicebus/serialization
