@@ -1,7 +1,7 @@
 ---
 title: Heartbeat Plugin
 summary: Use the Heartbeat plugin to monitor the health of the endpoints
-reviewed: 2019-09-09
+reviewed: 2021-11-09
 component: Heartbeats
 versions: 'Heartbeats3:*;Heartbeats4:*;Heartbeats5:*;Heartbeats6:*'
 related:
