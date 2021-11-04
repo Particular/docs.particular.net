@@ -25,7 +25,7 @@ Some packages do not currently support .NET Core or running on non-Windows platf
 * Transports
   * NServiceBus.Transport.Msmq - `System.Messaging` is not part of .NET Core, so MSMQ can't be supported on .NET Core.
 * Containers
-  * NServiceBus.Spring - Spring.Core does not support .NET Core.
+  * NServiceBus.Spring - Spring.Core version 2.x does not support .NET Core, but Spring.Core version 3.x can be used with NServiceBus through [Spring.Extensions.DependencyInjection](https://www.nuget.org/packages/Spring.Extensions.DependencyInjection/).
 * Hosts
   * These hosts are being deprecated and will not receive .NET Core support. They are replaced by the [ParticularTemplates package](https://www.nuget.org/packages/ParticularTemplates) containing [templates for use with `dotnet new`](/nservicebus/dotnet-templates.md).
     * NServiceBus.Host
