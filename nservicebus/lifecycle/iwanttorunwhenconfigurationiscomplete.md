@@ -22,7 +22,7 @@ Instances are:
   * Will have dependencies injected.
   * Do not require a default constructor.
 
-partial: order
+NOTE: Instances of `IWantToRunWhenConfigurationIsComplete` are registered in [dependency injection](/nservicebus/dependency-injection/) after instances of `INeedInitialization` are created and run.
 
 Once created `Run(...)` is called on each instance. These calls are made sequentially on the thread that is creating the bus. The order of these calls is determined by the order in which dependency injection returns instances.
 
