@@ -1,11 +1,13 @@
 ﻿using System;
 
+#region MassTransitEvent
+
 namespace Messages.Events
 {
-    public class MassTransitEvent : IMTEvent
+    public class MassTransitEvent
     {
         public string Text { get; set; }
     }
-
-    public interface IMTEvent { }
 }
+
+#endregion

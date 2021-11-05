@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 namespace MTEndpoint
 {
+    #region MassTransitConsumer
+
     public class MessageConsumer : IConsumer<MassTransitEvent>
     {
         readonly ILogger<MessageConsumer> logger;
@@ -21,4 +23,6 @@ namespace MTEndpoint
             return Task.CompletedTask;
         }
     }
+
+    #endregion
 }

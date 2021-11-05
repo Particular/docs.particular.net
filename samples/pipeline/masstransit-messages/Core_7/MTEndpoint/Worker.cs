@@ -17,6 +17,8 @@ namespace MTEndpoint
             this.bus = bus;
         }
 
+        #region MassTransitPublish
+
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
@@ -25,5 +27,7 @@ namespace MTEndpoint
                 await Task.Delay(1000, stoppingToken);
             }
         }
+
+        #endregion
     }
 }

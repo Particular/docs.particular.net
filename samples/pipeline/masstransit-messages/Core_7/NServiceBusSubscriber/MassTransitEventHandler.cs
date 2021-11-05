@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace NServiceBusSubscriber
 {
-    public class MassTransitEventHandler : IHandleMessages<MassTransitEvent>,
-        IHandleMessages<IMTEvent>
+    #region NSBMessageHandler
+    public class MassTransitEventHandler : IHandleMessages<MassTransitEvent>
     {
         public Task Handle(MassTransitEvent message, IMessageHandlerContext context)
         {
@@ -15,12 +15,7 @@ namespace NServiceBusSubscriber
             return Task.CompletedTask;
         }
 
-        public Task Handle(IMTEvent message, IMessageHandlerContext context)
-        {
-            logger.Info("IMTEvent received too");
-            return Task.CompletedTask;
-        }
-
         static ILog logger = LogManager.GetLogger<MassTransitEventHandler>();
     }
+    #endregion
 }

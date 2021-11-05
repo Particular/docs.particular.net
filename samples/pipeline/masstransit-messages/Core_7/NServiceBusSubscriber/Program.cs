@@ -27,20 +27,27 @@ namespace NServiceBusSubscriber
 
                     endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
+                    #region Serializer
                     endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+                    #endregion
 
+                    #region Transport
                     var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
                     transport.ConnectionString("host=hostos;username=rabbitmq;password=rabbitmq");
                     transport.UseConventionalRoutingTopology();
+                    #endregion
 
+                    #region Conventions
                     endpointConfiguration.Conventions()
                         .DefiningCommandsAs(type => type.Namespace?.EndsWith(".Commands") ?? false)
                         .DefiningEventsAs(type => type.Namespace?.EndsWith(".Events") ?? false)
                         .DefiningMessagesAs(type => type.Namespace?.EndsWith(".Messages") ?? false);
+                    #endregion
 
+                    #region RegisterBehavior
                     endpointConfiguration.Pipeline.Register(typeof(MassTransitIngestBehavior), "Ingests MassTransit messages.");
+                    #endregion
 
-                    endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
                     endpointConfiguration.EnableInstallers();
 
                     return endpointConfiguration;

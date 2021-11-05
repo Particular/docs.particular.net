@@ -7,4 +7,30 @@ related:
  - nservicebus/pipeline
 ---
 
-Stub
+Intro text
+
+downloadbutton
+
+## Prerequisites
+
+This sample requires a local instance of RabbitMQ.
+
+## MassTransit publisher
+
+snippet: MassTransitPublish
+
+snippet: MassTransitEvent
+
+snippet: MassTransitConsumer
+
+## NServiceBus subscriber
+
+snippet: Serializer
+
+snippet: Transport
+
+snippet: Conventions
+
+snippet: RegisterBehavior
+
+snippet: NSBMessageHandler
