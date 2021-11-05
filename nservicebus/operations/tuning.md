@@ -30,7 +30,7 @@ NOTE: The concurrency set in the endpoint configuration defines the concurrency 
 
 ## Sequential processing
 
-Set the concurrency limit value to `1` to process messages sequentially. Sequential processing is not a guarantee for ordered processing. For example, processing failures and [recoverability](/nservicebus/recoverability.md) will result in out-of-order processing.
+Set the concurrency limit value to `1` to process messages sequentially. Sequential processing is not a guarantee for ordered processing. For example, processing failures and [recoverability](/nservicebus/recoverability/) will result in out-of-order processing.
 
 NOTE: Sequential processing on the endpoint (logical) level is not possible when scaled-out.
 
