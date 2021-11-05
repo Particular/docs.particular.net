@@ -13,6 +13,8 @@ reviewed: 2021-11-01
 
 NServiceBus uses defaults that ensure good performance in common cases. While this is usually the preferred mode of operation there are situations where tuning might be desired.
 
+## Tuning concurrency
+
 Examples where concurrency tuning might be relevant are:
 
  * Non thread safe code that needs to run sequentially
