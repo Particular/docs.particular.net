@@ -43,7 +43,7 @@ NOTE: Changing the maximum concurrency will influence the total number of operat
 
 ## Number of connections
 
-A single endpoint requires multiple connections. Connections might be established or reused due to the connection pooling of the HTTP client infrastructure. By default, a single SQS client has a connection limit of 50 connections. When more than 50 connections are used, the endpoint connections will get queued up, and performance might decrease. 
+A single endpoint requires multiple connections. Connections might be established or reused due to the connection pooling of the HTTP client infrastructure. By default, a single SQS client has a connection limit of 50 connections. When more than 50 connections are used, the endpoint connections will get queued up, and performance might decrease.
 
 It is possible to set the `ConnectionLimit` property on the client programmatically by overriding the [SQS client](/transports/sqs/configuration-options.md#sqs-client) or the [SNS client](/transports/sqs/configuration-options.md#sns-client) as needed, or by setting the `ServicePointManager.DefaultConnectionLimit` (recommended).
 
@@ -51,7 +51,7 @@ include: servicepoint-manager-connection-limit
 
 ## Sending small messages
 
-If the endpoint is sending a lot of small messages (http message size < 1460 bytes) it might be beneficial to turn off the [NagleAlgorithm](https://en.wikipedia.org/wiki/Nagle's_algorithm). 
+If the endpoint is sending a lot of small messages (http message size < 1460 bytes) it might be beneficial to turn off the [NagleAlgorithm](https://en.wikipedia.org/wiki/Nagle's_algorithm).
 
 To disable Nagle for a specific endpoint URI use
 

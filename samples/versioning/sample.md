@@ -19,18 +19,17 @@ snippet: V2Message
 
 Each subscriber may use any of the versions, as the system is upgraded gradually.
 
-Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their subscriptions configuration; `V1Subscriber` has:
+Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their subscriptions configuration. `V1Subscriber` has:
 
 snippet: V1SubscriberMapping
 
-While `V2Subscriber` has:
+while `V2Subscriber` has:
 
 snippet: V2SubscriberMapping
 
-The only difference is that each subscriber declares the version of the schema on which it dependents. In addition, the `V2Subscriber` also subscribes to the new version of the message.
+The only difference is that each subscriber declares the version of the schema on which it depends. In addition, the `V2Subscriber` also subscribes to the new version of the message.
 
-`V2Publisher` is publishing a message from the Version 2 schema only. However, `V1Subscriber` receives these messages as well:
-
+`V2Publisher` is publishing a message from the version 2 schema only. However, `V1Subscriber` receives these messages as well:
 
 ### Publisher output
 
@@ -55,13 +54,12 @@ Something happened with some data 1 and more information It's a secret.
 
 ## When receivers require additional data
 
-In some cases, receivers might require additional data in order to process a message. However, it may occur that the endpoint receives a message of the previous contract.
-In such a scenario, a saga might be used to retrieve the additional data and send a new message that matches the V2 contract.
+In some cases, receivers might require additional data in order to process a message. However, it may occur that the endpoint receives a message of the previous contract. In this scenario, consider using a saga to retrieve the additional data and send a new message that matches the V2 contract.
 
-The handler that accepts the V1 version of the contract, could look something like this:
+The handler that accepts the V1 version of the contract might look like this:
 
 snippet: ReceivingV1
 
-The handler that accepts the V2 version of the contract, will contain the implementation that handles the fully populated message:
+The handler that accepts the V2 version of the contract contains the implementation that handles the fully populated message:
 
 snippet: ReceivingV2

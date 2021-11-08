@@ -10,18 +10,18 @@ snippet: EnableMessageDrivenPubSubCompatibilityMode
 
 ### Subscription cache configuration
 
-The default (5 seconds) value of SNS topic subscription cache invalidation can be changed using:
+The default value for SNS topic subscription cache invalidation (5 seconds) can be changed using:
 
 snippet: SubscriptionsCacheTTL
 
 ### Topic cache configuration
 
-The default (5 seconds) value of SNS topic cache invalidation can be changed using:
+The default value for SNS topic cache invalidation (5 seconds) can be changed using:
 
 snippet: TopicCacheTTL
 
 ### Message visibility timeout
 
-The default (30 seconds) message visibility timeout can be changed using:
+The default value for the message visibility timeout setting (30 seconds) can be changed using:
 
 snippet: MessageVisibilityTimeout

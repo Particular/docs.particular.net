@@ -8,7 +8,7 @@ related:
 ---
 
 
-This document describes how to consume messages from and send messages to non-NServiceBus endpoints via Azure Storage Queues in integration scenarios.
+This document describes how to consume messages from, and send messages to, non-NServiceBus endpoints via Azure Storage Queues in integration scenarios.
 
 partial: receiving
 

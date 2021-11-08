@@ -4,7 +4,7 @@
 
 Azure Storage Queues lacks native header support. NServiceBus solves this by wrapping headers and the message body in a custom envelope structure. This envelope is serialized using the configured [serializer](/nservicebus/serialization) for the endpoint before being sent.
 
-Creating this envelope can cause unneeded complexity should headers not be needed for example in native integration scenarios. For this reason Version 7.1 and above support configuring a custom envelop unwrapper.
+Creating this envelope can cause unnecessary complexity if headers are not be needed, for example, in native integration scenarios. For this reason NServiceBus.Transport.AzureStorageQueues version 7.1 and above support configuring a custom envelop unwrapper.
 
 The snippet below shows custom unwrapping logic that enables both NServiceBus formatted and plain JSON messages to be consumed.
 
