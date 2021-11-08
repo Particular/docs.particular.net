@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace NServiceBusSubscriber
 {
+    #region Behavior
     public class MassTransitIngestBehavior : Behavior<IIncomingPhysicalMessageContext>
     {
         public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
@@ -122,4 +123,5 @@ namespace NServiceBusSubscriber
         static readonly JsonSerializer serializer = new JsonSerializer();
         const string urnTypePrefix = "urn:message:";
     }
+    #endregion
 }
