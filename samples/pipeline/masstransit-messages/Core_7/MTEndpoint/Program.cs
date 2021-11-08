@@ -21,10 +21,10 @@ namespace MTEndpoint
 
                         x.UsingRabbitMq((context, cfg) =>
                         {
-                            cfg.Host("hostos", rabbitConfig =>
+                            cfg.Host("localhost", rabbitConfig =>
                             {
-                                rabbitConfig.Username("rabbitmq");
-                                rabbitConfig.Password("rabbitmq");
+                                rabbitConfig.Username("guest");
+                                rabbitConfig.Password("guest");
                             });
                             cfg.ConfigureEndpoints(context);
                         });

@@ -25,17 +25,17 @@ namespace NServiceBusSubscriber
                 {
                     var endpointConfiguration = new EndpointConfiguration("NServiceBusSubscriber");
 
-                    endpointConfiguration.UsePersistence<InMemoryPersistence>();
+                    #region Transport
+                    var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+                    transport.ConnectionString("host=localhost;username=guest;password=guest");
+                    transport.UseConventionalRoutingTopology();
+                    #endregion
 
                     #region Serializer
                     endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
                     #endregion
 
-                    #region Transport
-                    var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-                    transport.ConnectionString("host=hostos;username=rabbitmq;password=rabbitmq");
-                    transport.UseConventionalRoutingTopology();
-                    #endregion
+                    endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
                     #region Conventions
                     endpointConfiguration.Conventions()
