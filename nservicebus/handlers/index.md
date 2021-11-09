@@ -13,15 +13,6 @@ snippet: CreatingMessageHandler
 
 For scenarios that involve changing the application state via data access code in the handler, see [accessing data](/nservicebus/handlers/accessing-data.md).
 
-To handle messages of all types:
-
- 1. Set up the [message convention](/nservicebus/messaging/conventions.md) to designate which classes are messages. This example uses a namespace match.
- 1. Create a handler of type `Object`. This handler will be executed for all messages that are delivered to the queue for this endpoint.
-
-Since this class is setup to handle type `Object`, every message arriving in the queue will trigger it. Note that this might not be a recommended approach as [writing a behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) is often a better solution.
-
-snippet: GenericMessageHandler
-
 include: non-null-task
 
 If using the Request-Response or Full Duplex pattern, handlers will probably do the work it needs to do, such as updating a database or calling a web service, then creating and sending a response message. See [How to Reply to a Message](/nservicebus/messaging/reply-to-a-message.md).
