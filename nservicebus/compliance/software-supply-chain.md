@@ -1,6 +1,6 @@
 ---
 title: Software supply chain
-summary: How the integrity of software produced by Particular Software is maintained during the software development life cycle.
+summary: How the integrity of software produced by Particular Software is maintained during the software development life cycle
 reviewed: 2021-10-08
 ---
 
@@ -31,8 +31,8 @@ This document describes how the integrity of software produced by Particular Sof
 * All releases are signed with a code signing certificate:
   * The private key (RSA 4096 bits issued by DigiCert) is stored in a virtual hardware security module in [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/). The private key cannot be accessed by Particular Software staff, nor has it ever existed anywhere except in Key Vault.
   * Signing uses [NuGetKeyVaultSignTool](https://github.com/novotnyllc/NuGetKeyVaultSignTool) with a SHA256 hash.
-  * Signing process occurs in Azure over a process protected by an OAuth login workflow.
-  * Once signed, the contents of the package cannot be tampered with. 
+  * The signing process occurs in Azure over a process protected by an OAuth login workflow.
+  * Once signed, the contents of the package cannot be tampered with.
 * All compiled software packages with associated source are available as GitHub releases.
 * All GitHub releases are scanned for viruses.
   * Virus scanning uses the most recent version of ClamAV available from [apt-get](https://help.ubuntu.com/community/AptGet/Howto).

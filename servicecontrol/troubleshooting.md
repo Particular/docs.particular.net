@@ -91,7 +91,7 @@ gacutil /u Newtonsoft.Json
 
 It may be required to first remove all `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Assemblies\Global Newtonsoft.Json` keys from the registry before using `gacutil /u Newtonsoft.Json`.
 
-## Resolve messages that cannot be retried 
+## Resolve messages that cannot be retried
 
 If certain messages are not scheduled for retry and the logs show the following message then the database could be in an inconsistent state:
 
@@ -175,7 +175,6 @@ If many indexes are affected it may be easier to rebuild all indexes, although t
 - Navigate to the [database folder](configure-ravendb-location.md) on disk
 - Delete the `Indexes` folder
 - Start the ServiceControl instance
-
 
 ## High CPU utilization
 
