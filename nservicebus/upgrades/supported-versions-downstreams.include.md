@@ -235,7 +235,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/4.0.0) | 2020-11-10     | -                 | -                                 |
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/3.1.1) | 2020-03-04     | 2021-11-10        | Superseded by 4.0.x               |
+| [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/3.1.1) | ~~2020-03-04~~ | ~~2021-11-10~~    | ~~Superseded by 4.0.x~~           |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/1.1.2) | 2017-03-24     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 ### Host packages
