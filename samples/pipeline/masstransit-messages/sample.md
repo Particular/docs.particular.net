@@ -8,7 +8,7 @@ related:
  - nservicebus/pipeline/manipulate-with-behaviors
 ---
 
-It's possible to migrate from a system built on MassTransit to NServiceBus without having to undergo the Big Rewrite. This sample will show how a messaging system can gradually be transitioned from MassTransit to NServiceBus a bit at a time by using an NServiceBus [message pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) to translate incoming MassTransit messages into a shape that can be understood by NServiceBus.
+It's possible to migrate from a system built on MassTransit to NServiceBus without having to undergo a big rewrite. This sample will show how a messaging system can gradually be transitioned from MassTransit to NServiceBus a bit at a time by using an NServiceBus [message pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) to translate incoming MassTransit messages into a shape that can be understood by NServiceBus.
 
 downloadbutton
 
@@ -22,7 +22,7 @@ When using a message structured like this:
 
 snippet: MassTransitEvent
 
-MassTransit will structure the message in RabbitMQ like this:
+MassTransit translates the message in RabbitMQ as follows:
 
 **Properties**
 
@@ -62,7 +62,7 @@ MassTransit will structure the message in RabbitMQ like this:
 }
 ```
 
-By contrast, NServiceBus structures a message on RabbitMQ quite a bit differently, preferring to reserve the payload entirely for the message body, and putting all of the metadata into RabbitMQ properties. If NServiceBus had published the event, it would look like this:
+By contrast, NServiceBus structures a message on RabbitMQ differently, reserving the payload entirely for the message body, and putting the metadata into RabbitMQ properties. If NServiceBus had published the event, it would look like this:
 
 **Properties**
 
@@ -105,7 +105,7 @@ Because the event is published in RabbitMQ, NServiceBus can also subscribe to it
 
 ### Basic setup
 
-The base configuration for the [RabbitMQ transport](/transports/rabbitmq/) is standard:
+The configuration for the [RabbitMQ transport](/transports/rabbitmq/) is standard:
 
 snippet: Transport
 
@@ -117,13 +117,13 @@ Although NServiceBus by default uses the marker interfaces `ICommand` and `IEven
 
 snippet: MassTransitEvent
 
-It is also not desirable to take a message assembly containing messages published by MassTransit and force it to take a dependency on NServiceBus. Instead, [message conventions](/nservicebus/messaging/conventions.md) can be defined to identify messages by other means, such as by namespace:
+It is also not recommended to take a message assembly containing messages published by MassTransit and force it to take a dependency on NServiceBus. Instead, [message conventions](/nservicebus/messaging/conventions.md) can be defined to identify messages by other means, such as by namespace:
 
 snippet: Conventions
 
 ### MassTransit ingest behavior
 
-With NServiceBus set up to use RabbitMQ, serialize with JSON, and recognize MassTransit message classes as messages, a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) manipulates the RabbitMQ message before it is deserialized, morphing its shape into the shape of an NServiceBus message.
+With NServiceBus set up to use RabbitMQ, serialize with JSON, and recognize MassTransit message classes as messages, a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) manipulates the RabbitMQ message before it is deserialized, transforming it into the shape of an NServiceBus message.
 
 This code snippet is lengthy, and is designed to translate many optional data elements into the NServiceBus message headers by manipulating JSON.NET primitives. Many solutions will not require this level of detail, because NServiceBus only requires the **NServiceBus.MessageId** and **NServiceBus.EnclosedMessageTypes** headers in order to successfully process a message.
 
@@ -133,7 +133,7 @@ Registering the behavior to be run as part of the message processing pipeline re
 
 snippet: RegisterBehavior
 
-For completeness, here is the NServiceBus message handler, which is very basic and does not need to know that the message it is processing originally came from MassTransit.
+For completeness, here is the NServiceBus message handler, which is very simple and does not need to know that the message it is processing originally came from MassTransit.
 
 snippet: NSBMessageHandler
 
