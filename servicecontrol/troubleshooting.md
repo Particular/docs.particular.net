@@ -91,7 +91,7 @@ gacutil /u Newtonsoft.Json
 
 It may be required to first remove all `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Assemblies\Global Newtonsoft.Json` keys from the registry before using `gacutil /u Newtonsoft.Json`.
 
-## Resolve messages that cannot be retried 
+## Resolve messages that cannot be retried
 
 If certain messages are not scheduled for retry and the logs show the following message then the database could be in an inconsistent state:
 
@@ -199,3 +199,15 @@ Resolution:
 - Consider disabling message bodies and headers *Full-Text search* as this causes most resource utilization for CPU and disk IO. This can be disabled in the latest version of ServiceControl by configuring each ServiceControl instance: open configuration (gear icon), scroll down to Advanced Configuration and set "Full-Text Search On Message Bodies" to Off, finally select Save, and then restart the instance.
 
 Warning: Disabling *Full-Text Search* causes text search to be unavailable in ServiceInsight.
+
+## Saga Audit Data Retention Custom Check Failure
+
+Users who have migrated from earlier versions of ServiceControl main have historical saga audit records still in the database. This custom check will fail if there is no audit retention period set on the main instance when saga audit data exists. To resolve this issue a retention period should be configured by adding:
+  ```xml
+  <add key="ServiceControl/AuditRetentionPeriod" value="DD:HH:MM" />
+  ```
+
+For example, a 20 day retention period would be set as follows:
+  ```xml
+  <add key="ServiceControl/AuditRetentionPeriod" value="20:00:00" />
+  ```
