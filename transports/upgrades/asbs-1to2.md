@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 1 to 2
 summary: Migration instructions on how to upgrade the Azure Service Bus transport from version 1 to 2.
-reviewed: 2021-02-10
+reviewed: 2021-11-09
 component: ASBS
 related:
  - transports/azure-service-bus
@@ -14,10 +14,10 @@ upgradeGuideCoreVersions:
 
 This version of Azure Service Bus Transport uses the [Azure.Messaging.ServiceBus client SDK](https://www.nuget.org/packages/Azure.Messaging.ServiceBus). As a result the following changes to the configuration API have been made:
 
-- `CustomRetryPolicy(...)` - now accepting the new [`ServiceBusRetryOptions`](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusretryoptions) SDK type
-- `CustomTokenProvider(...)` - renamed to `CustomTokenCredential` and accepting a [`TokenCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.core.tokencredential)
+- `CustomRetryPolicy(...)` - accepts the new [`ServiceBusRetryOptions`](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusretryoptions) SDK type
+- `CustomTokenProvider(...)` - renamed to `CustomTokenCredential` and accepts a [`TokenCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.core.tokencredential) object
 
-## Support for Azure.Identity 
+## Support for Azure.Identity
 
 Passing a [Azure.Identity](https://www.nuget.org/packages/Azure.Identity/) `TokenCredential` to `CustomTokenCredential(TOKEN)` enables authentication against [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory).
 
