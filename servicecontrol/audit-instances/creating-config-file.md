@@ -183,6 +183,16 @@ Default:
 * In ServiceControl version 4.12 and above: `32`
 * In ServiceControl version 4.11 and below: `10`
 
+#### ServiceControl.Audit/EnableFullTextSearchOnBodies
+
+This setting is only applicable from version 4.17.0 and above.
+
+Use this setting to configure whether the bodies of processed  messages should be full text indexed for searching.
+
+Type: bool `true` or `false`
+
+Default: `true`.
+
 
 ## Transport
 
