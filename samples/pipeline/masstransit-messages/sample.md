@@ -8,7 +8,7 @@ related:
  - nservicebus/pipeline/manipulate-with-behaviors
 ---
 
-It's possible to migrate from a system built on MassTransit to NServiceBus without having to undergo a big rewrite. This sample will show how a messaging system can gradually be transitioned from MassTransit to NServiceBus a bit at a time by using an NServiceBus [message pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) to translate incoming MassTransit messages into a shape that can be understood by NServiceBus.
+This sample shows how existing systems built with MassTransit can be integrated with new NServiceBus systems by using a [message pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) in the NServiceBus endpoints to translate incoming MassTransit messages into a shape that can be successfully processed. This technique could also be used to migrate those systems endpoint-by-endpoint, if that is desired.
 
 downloadbutton
 
