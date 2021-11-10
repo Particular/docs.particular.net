@@ -202,7 +202,7 @@ Warning: Disabling *Full-Text Search* causes text search to be unavailable in Se
 
 ## Saga Audit Data Retention Custom Check Failure
 
-Users who have migrated from earlier versions of ServiceControl main have historical saga audit records still in the database. This custom check will fail if there is no audit retention period set on the main instance when saga audit data exists. To resolve this issue a retention period should be configured by adding:
+Users who have migrated from earlier versions of ServiceControl may have historical saga audit records still in the database. This custom check will fail if there is no audit retention period set on the main instance when saga audit data exists. To resolve this issue a retention period should be configured by adding:
   ```xml
   <add key="ServiceControl/AuditRetentionPeriod" value="DD:HH:MM" />
   ```
