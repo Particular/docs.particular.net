@@ -258,6 +258,16 @@ Type: string
 
 Default: `100`
 
+#### ServiceControl/EnableFullTextSearchOnBodies
+
+This setting is only applicable from version 4.17.0 and above.
+
+Use this setting to configure whether the bodies of processed error messages should be full text indexed for searching.
+
+Type: bool `true` or `false`
+
+Default: `true`.
+
 
 ## Transport
 
