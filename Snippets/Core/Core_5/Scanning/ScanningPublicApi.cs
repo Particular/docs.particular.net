@@ -1,11 +1,11 @@
 ﻿namespace Core5.Scanning
 {
+    using Core5.Handlers;
+    using NServiceBus;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using Core5.Handlers;
-    using NServiceBus;
 
     class ScanningPublicApi
     {
@@ -94,6 +94,8 @@
 
         void ScanningExcludeTypes(BusConfiguration busConfiguration)
         {
+            Type badType = null;
+
             #region ScanningExcludeTypes
 
             var allTypes = from a in AllAssemblies.Except("Dummy")
@@ -101,7 +103,7 @@
                            select t;
 
             var allowedTypesToScan = allTypes
-                .Where(t => t != typeof(GenericHandler))
+                .Where(t => t != badType)
                 .ToList();
 
             busConfiguration.TypesToScan(allowedTypesToScan);
