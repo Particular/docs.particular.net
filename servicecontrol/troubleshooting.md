@@ -198,3 +198,15 @@ Resolution:
 - Consider disabling message bodies and headers *Full-Text search* as this causes most resource utilization for CPU and disk IO. This can be disabled in the latest version of ServiceControl by configuring each ServiceControl instance: open configuration (gear icon), scroll down to Advanced Configuration and set "Full-Text Search On Message Bodies" to Off, finally select Save, and then restart the instance.
 
 Warning: Disabling *Full-Text Search* causes text search to be unavailable in ServiceInsight.
+
+## Saga Audit Data Retention Custom Check Failure
+
+Users who have migrated from earlier versions of ServiceControl may have historical saga audit records still in the database. This custom check will fail if there is no audit retention period set on the main instance when saga audit data exists. To resolve this issue a retention period should be configured by adding:
+  ```xml
+  <add key="ServiceControl/AuditRetentionPeriod" value="DD:HH:MM" />
+  ```
+
+For example, a 20 day retention period would be set as follows:
+  ```xml
+  <add key="ServiceControl/AuditRetentionPeriod" value="20:00:00" />
+  ```
