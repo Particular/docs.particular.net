@@ -34,5 +34,7 @@ These settings control how the transport connects to the broker.
 
  * `UseWebSockets()`: Configures the transport to use AMQP over websockets.
  * `TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan)`: The time to wait before triggering the circuit breaker after a critical error occurred. Defaults to 2 minutes.
- * `CustomTokenCredential(TokenCredential)`: Allows usage of Azure Active Directory (AAD) authentication instead of the shared secret in the connection string. This opens up additional authentication mechanisms such as [managed identities for Azure resources](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-managed-service-identity). When leveraging AAD authentication, it is worth noting that the underlying library expects a fully-qualified namespace (like `<asb-namespace-name>.servicebus.windows.net`) instead of a connection string (like `Endpoint=sb://<asb-namespace-name>.servicebus.windows.net>;[...]`).
+ * `CustomTokenCredential(TokenCredential)`: Enables using Azure Active Directory (AAD) authentication such as [managed identities for Azure resources](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-managed-service-identity) instead of the shared secret in the connection string.
+ 
+Note: AAD authentication requires a fully-qualified namespace usage (e.g. `<asb-namespace-name>.servicebus.windows.net`) instead of a connection string (e.g. `Endpoint=sb://<asb-namespace-name>.servicebus.windows.net>;[...]`).
 partial: custom-retry-policy
