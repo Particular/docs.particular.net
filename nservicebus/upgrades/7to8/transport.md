@@ -9,7 +9,7 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-NServiceBus V8 comes with a new transport configuration API. Instead of the generic-based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to the `UseTransport` method.
+NServiceBus V8 introduces a new transport configuration API. Instead of the generic-based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to the `UseTransport` method.
 
 For example, instead of:
 

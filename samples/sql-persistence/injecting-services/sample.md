@@ -73,7 +73,7 @@ In order for the `ConnectionHolder` to be filled with the details from the curre
 
 snippet: Behavior
 
-The hardest part is retrieving the current connection/transaction information, as this is different based on the transport and/or persistence in use. In this case, SQL Server transport is managing the connection and transaction as part of receiving the message, so the necessary data resides in the `TransportTransaction` that is accessible as an extension point on the behavior's `context` variable.
+The hardest part is retrieving the current connection/transaction information, as this is different based on the transport and persistence in use. In this case, the SQL Server transport is managing the connection and transaction as part of receiving the message, so the necessary data resides in the `TransportTransaction` which is accessible as an extension point on the behavior's `context` variable.
 
 INFO: For help finding the correct ambient connection/transaction information in a specific scenario, [contact support](https://particular.net/support).
 

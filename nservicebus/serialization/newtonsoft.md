@@ -57,13 +57,13 @@ snippet: NewtonsoftContentTypeKey
 
 ## TypeNameHandling
 
-For backwards compatibility, the serializer is using `TypeNameHandling.Auto` by default. This allows Json.NET to include additional type information for serialization and deserialization (see [Inferring message type from $type for more information](#inferring-message-type-from-type)).
+For backward compatibility, the serializer is using `TypeNameHandling.Auto` by default. This allows Json.NET to include additional type information for serialization and deserialization (see [Inferring message type from $type for more information](#inferring-message-type-from-type)).
 
-Warn: `TypeNameHandling.Auto` should be used with caution and it is recommended to use `TypeNameHandling.None` via [custom settings](#usage-custom-settings) instead. When requiring `TypeNameHandling.Auto`, consider a [custom SerializationBinder](https://www.newtonsoft.com/json/help/html/SerializeSerializationBinder.htm) to limit the allowed deserialization types.
+Warn: `TypeNameHandling.Auto` should be used with caution and it is recommended to use `TypeNameHandling.None` via [custom settings](#usage-custom-settings) instead. When using `TypeNameHandling.Auto`, consider a [custom SerializationBinder](https://www.newtonsoft.com/json/help/html/SerializeSerializationBinder.htm) to limit the allowed deserialization types.
 
 ## Inferring message type from $type
 
-For integration scenarios where the sender is unable to add message headers, the serializer is able to infer the message type from the [`$type` property supported by Json.NET](https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm). This feature requres the `TypeNameHandling` setting to be set to `Auto` or `All`.
+For integration scenarios where the sender is unable to add message headers, the serializer is able to infer the message type from the [`$type` property supported by Json.NET](https://www.newtonsoft.com/json/help/html/SerializeTypeNameHandling.htm). This feature requires the `TypeNameHandling` setting to be set to `Auto` or `All`.
 
 See [native integration with SqlTransport sample](/samples/sqltransport/native-integration) for more details.
 
