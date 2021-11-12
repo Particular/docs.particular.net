@@ -20,6 +20,7 @@ The following test verifies that the handler received a `Reply`:
 
 snippet: HandlerTest
 
+Note: When testing [interface messages](/nservicebus/messaging/messages-as-interfaces.md), an implementation of the interface has to be manually defined.
 
 ## Testing a saga
 
