@@ -17,4 +17,4 @@ include: supported-versions-servicecontrol
 
 ## NServiceBus compatibility
 
-ServiceControl is compatible with older NServiceBus versions as long as the transport is unchanged. However, some of these versions might no longer be supported.
+ServiceControl is compatible with older versions of NServiceBus as long as the transport is unchanged. However, note that older versions of NServiceBus and the transports [are not supported](/nservicebus/upgrades/supported-versions.md).

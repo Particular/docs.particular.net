@@ -7,10 +7,9 @@ redirects:
  - nservicebus/msmq/distributor/configuration
 ---
 
-In Version 4.3 the **built-in** distributor has been deprecated. The new dedicated [NServiceBus.Distributor.MSMQ](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) package should be used instead.
+In version 4.3 the **built-in** distributor is deprecated. The new dedicated [NServiceBus.Distributor.MSMQ](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) package should be used instead.
 
-
-Warning: It is not recommended to use Outbox on the workers. Outbox is designed to work with distributed transactions (MSDTC).
+Warning: It is not recommended to use the outbox feature on the workers. Outbox is designed to work with distributed transactions (MSDTC).
 
 ## Distributor configuration
 
@@ -24,12 +23,11 @@ The distributor stores metadata about the worker availability in the the queue w
 
 NOTE: It is valid for messages to be in the queue when the system is idle. The number of the messages should be the sum of the capacity of all workers. If each worker had a maximum concurrency level of 8 and there are 4 workers then there will be 32 message in the queue.
 
-
 ### When hosting endpoints in NServiceBus.Host.exe
 
 When running with [NServiceBus.Host.exe](/nservicebus/hosting/), the following profiles start the endpoint with the distributor functionality:
 
-To start the endpoint as a Distributor, install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and then run the host from the command line as follows:
+To start the endpoint as a Distributor, install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) package and then run the host from the command line as follows:
 
 ```dos
 NServiceBus.Host.exe NServiceBus.MSMQDistributor
@@ -37,13 +35,11 @@ NServiceBus.Host.exe NServiceBus.MSMQDistributor
 
 The NServiceBus.MSMQDistributor profile instructs the NServiceBus framework to start a distributor process on this endpoint, waiting for workers to enlist to it. Unlike the NServiceBus.MSMQMaster profile, the NServiceBus.MSMQDistributor profile does not execute a worker process.
 
-
-It is also possible to use the `NServiceBus.MSMQMaster` profile to start distributor and worker processes on the endpoint. To start the endpoint as a master, install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and run the host from the command line as follows:
+It is also possible to use the `NServiceBus.MSMQMaster` profile to start distributor and worker processes on the endpoint. To start the endpoint as a master, install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) package and run the host from the command line as follows:
 
 ```dos
 NServiceBus.Host.exe NServiceBus.MSMQMaster
 ```
-
 
 ### When self-hosting
 
