@@ -19,7 +19,7 @@ Additional headers are used to determine endpoint names, message intent, and oth
 
 Note: The order of operations is critical to the correctness of the sequence diagram. When endpoints are running on more than one machine, it is crucial that those machines have synchronised clocks. This can be done using an NTP server.
 
-Note: Due to performance reasosn, only the last 200 messages in a conversation is loaded. This limit can be controled from ServiceInsight's application configuration file.
+Note: Due to performance reasons, only the last 200 messages in a conversation are loaded. This limit can be controlled from ServiceInsight's application configuration file.
 
 
 ## What is on the diagram
