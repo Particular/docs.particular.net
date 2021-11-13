@@ -26,7 +26,7 @@ NOTE: In this tutorial, we'll use terminal commands like [`dotnet new`](https://
 
 First we'll create the **Shipping** project and set up its dependencies.
 
-First let's make sure both browser windows and all console appliations are closed, and in the terminal,  we're in the root of the project where the **RetailDemo.sln** file is located:
+First let's make sure both browser windows and all console applications are closed, and in the terminal,  we're in the root of the project where the **RetailDemo.sln** file is located:
 
 ```shell
 > cd tutorials-quickstart
