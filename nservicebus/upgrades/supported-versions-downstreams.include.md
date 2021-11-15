@@ -246,7 +246,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/2.0.2) | 2021-10-19     | -                 | -                                 |
 | [1.3.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.3.1) | 2021-08-16     | 2022-10-19        | Superseded by 2.0.x               |
-| [1.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.2.1) | 2021-07-15     | 2021-11-16        | Superseded by 1.3.x               |
+| [~~1.2.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.2.1) | ~~2021-07-15~~ | ~~2021-11-16~~    | ~~Superseded by 1.3.x~~           |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.1.1) | ~~2021-06-22~~ | ~~2021-10-15~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.0.1) | ~~2021-04-23~~ | ~~2021-09-22~~    | ~~Superseded by 1.1.x~~           |
 
