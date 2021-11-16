@@ -7,14 +7,12 @@ reviewed: 2019-12-20
 
 The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
 
-
 ## Host settings
 
 The following documents should be reviewed prior to modifying configuration settings:
 
- * [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
- * [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
-
+* [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
+* [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
 #### ServiceControl/HostName
 
@@ -260,14 +258,13 @@ Default: `100`
 
 #### ServiceControl/EnableFullTextSearchOnBodies
 
-This setting is only applicable from version 4.17.0 and above.
+This setting is only applicable starting from version 4.17.0.
 
-Use this setting to configure whether the bodies of processed error messages should be full text indexed for searching.
+Use this setting to configure whether the bodies of processed error messages should be full-text indexed for searching.
 
 Type: bool `true` or `false`
 
 Default: `true`.
-
 
 ## Transport
 
@@ -332,7 +329,7 @@ Default: `<AuditQueue>.log`
 Starting in version 1.29, ServiceControl creates the queue specified by this setting only if `ServiceControl/ForwardAuditMessages` is enabled. In previous versions, the queue specified by this setting is created when the service instance is installed regardless of the value of `ServiceControl/ForwardAuditMessages`.
 
 
-NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue. 
+NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
 
 #### ServiceControl/ForwardAuditMessages
 
@@ -385,7 +382,7 @@ Note: When monitoring multiple endpoints, ensure that the heartbeat grace period
 
 #### ServiceControl/ExposeRavenDB
 
-ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio. 
+ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio.
 
 NOTE: [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 

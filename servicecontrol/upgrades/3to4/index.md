@@ -23,7 +23,7 @@ For more information how to upgrade from Version 1.x to 3.8.2 consult the [upgra
 
 ### Editing older instances
 
-ServiceControl Management version 4 cannot be used to edit ServiceControl instances until they have been upgraded to version 4. These instances can still be started, stopped, put into maintenance mode, and removed using ServiceControl Managament. Ensure any planned changes have been made to existing ServiceControl instances before installing ServiceControl version 4.
+ServiceControl Management Utility version 4 cannot be used to edit ServiceControl instances until they have been upgraded to version 4. These instances can still be started, stopped, put into maintenance mode, and removed using ServiceControl Managament. Ensure any planned changes have been made to existing ServiceControl instances before installing ServiceControl version 4.
 
 ### Disk space requirements
 
@@ -34,7 +34,6 @@ After the upgrade is complete, the Audit information contained in the original S
 
 After one retention period after the upgrade has been completed, the original ServiceControl instance's database will be mostly empty. At that point, the original database can be compacted to a very small size. See [Compacting RavenDB](/servicecontrol/db-compaction.md) for instructions on compacting the database of the original ServiceControl instance once old audit messages have been cleaned up by the retention policy.
 }}
-
 
 ## ServiceControl Audit
 

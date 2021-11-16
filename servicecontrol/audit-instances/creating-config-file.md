@@ -185,14 +185,13 @@ Default:
 
 #### ServiceControl.Audit/EnableFullTextSearchOnBodies
 
-This setting is only applicable from version 4.17.0 and above.
+This setting is only applicable starting from version 4.17.0.
 
-Use this setting to configure whether the bodies of processed  messages should be full text indexed for searching.
+Use this setting to configure whether the bodies of processed messages should be full-text indexed for searching.
 
 Type: bool `true` or `false`
 
 Default: `true`.
-
 
 ## Transport
 
@@ -228,7 +227,7 @@ Type: string
 
 Default: `<AuditQueue>.log`
 
-NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue. 
+NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
 
 #### ServiceControl.Audit/ForwardAuditMessages
 
@@ -248,7 +247,7 @@ Type: string
 
 #### ServiceControl.Audit/ExposeRavenDB
 
-ServiceControl Audit stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl Audit service. If, during troubleshooting, direct access to the RavenDB instance is required while ServiceControl Audit is running, ServiceControl Audit can be configured to expose the RavenDB studio. 
+ServiceControl Audit stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl Audit service. If, during troubleshooting, direct access to the RavenDB instance is required while ServiceControl Audit is running, ServiceControl Audit can be configured to expose the RavenDB studio.
 
 NOTE: [Maintenance mode](/servicecontrol/audit-instances/maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
