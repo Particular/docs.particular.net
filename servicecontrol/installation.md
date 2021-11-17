@@ -79,6 +79,20 @@ Clicking the upgrade link will:
 * Run the new binaries to create required queues
 * Start the service
 
+
+To upgrade multiple majors the following approach needs to be taken:
+
+- Upgrade the the latest minor.patch release within a give major
+  - When v1.34.0 is installed, then install v1.48.0 and update all instances
+- Then upgrade the latest minor patch release of the **next** major 
+  - When 1.48.0 is installed, install 2.1.5 and update all instances.
+- Continue with the last step until the system is update till the latest version
+  - When 2.1.5 is installed, install 3.8.4 and update all instances.
+  - Then install 4.20.3 (current lateste version of this writing) and update all instances 
+
+
+NOTE: Upgrages *might* take a while to 
+
 ## ServiceControl plugins
 
 Endpoint plugins like heartbeats and custom checks require sending information to ServiceControl. The name of the queue is the same name as the error instance.
