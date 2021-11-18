@@ -82,16 +82,16 @@ Clicking the upgrade link will:
 
 To upgrade multiple majors the following approach needs to be taken:
 
-- Upgrade the the latest minor.patch release within a give major
+- Upgrade to the latest minor.patch release within a currently installed major
   - When v1.34.0 is installed, then install v1.48.0 and update all instances
-- Then upgrade the latest minor patch release of the **next** major 
+- Then upgrade to the latest minor patch release of the **next** major 
   - When 1.48.0 is installed, install 2.1.5 and update all instances.
-- Continue with the last step until the system is update till the latest version
+- Repeat the previous step until the system is up to date with the latest version
   - When 2.1.5 is installed, install 3.8.4 and update all instances.
-  - Then install 4.20.3 (current lateste version of this writing) and update all instances 
+  - Then install 4.20.3 (current latest version at the time of this writing) and update all instances 
 
 
-NOTE: Upgrages *might* take a while to 
+NOTE: Upgrades *might* take a while to run. Account for unavailability of ServiceControl and plan upgrade off hours.
 
 ## ServiceControl plugins
 
