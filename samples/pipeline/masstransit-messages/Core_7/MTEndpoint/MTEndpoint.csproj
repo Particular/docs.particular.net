@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
+    <UserSecretsId>dotnet-MTEndpoint-0796FBA1-1278-479A-94F8-C8918B42B338</UserSecretsId>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.2.4" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.4" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+  </ItemGroup>
+</Project>
