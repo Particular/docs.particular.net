@@ -9,7 +9,6 @@ related:
 
 This sample shows how to write unit tests for various NServiceBus components with Arrange-Act-Assert (AAA) style tests. This sample is a test project that uses [NUnit](https://nunit.org/) and testable helper implementations from the `NServiceBus.Testing` package.
 
-
 ## Testing a handler
 
 Given the following handler:
@@ -19,8 +18,6 @@ snippet: SimpleHandler
 The following test verifies that the handler received a `Reply`:
 
 snippet: HandlerTest
-
-Note: When testing [interface messages](/nservicebus/messaging/messages-as-interfaces.md), an implementation of the interface has to be manually defined.
 
 ## Testing a saga
 
@@ -32,7 +29,6 @@ The following unit tests checks that the discount was applied to the total amoun
 
 snippet: SagaTest
 
-
 ## Testing a behavior
 
 The following custom behavior adds a header to an outgoing message when the message is of the type `MyResponse`:
@@ -42,7 +38,6 @@ snippet: SampleBehavior
 The behavior can be tested similar to a message handler or a saga by using a testable representation of the context:
 
 snippet: BehaviorTest
-
 
 ## Testing IEndpointInstance usage
 
