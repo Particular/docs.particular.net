@@ -22,6 +22,12 @@ This test verifies that a `Reply` occurred:
 
 snippet: HandlerTest
 
+### Interface messages
+
+When using [interface messages](/nservicebus/messaging/messages-as-interfaces.md), an instance of the message can be created by either defining a custom implementation of the message interface or by using the `MessageMapper` as shown in the following snippet:
+
+snippet: InterfaceMessageCreation
+
 ## Testing message session operations
 
 Use `TestableMessageSession` to test message operations outside of handlers. The following properties are available:
