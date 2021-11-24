@@ -11,7 +11,7 @@ redirects:
 
 include: dtc-warning
 
-include: cluster-configuration-warning
+include: cluster-configuration-info
 
 The [Outbox](/nservicebus/outbox) feature requires persistence in order to store messages and enable deduplication.
 

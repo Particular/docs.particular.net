@@ -14,7 +14,7 @@ reviewed: 2021-06-14
 
 include: dtc-warning
 
-include: cluster-configuration-warning
+include: cluster-configuration-info
 
 DANGER: Since distributed transactions are not supported for RavenDB persistence, this page remains for archival purposes only.
 
