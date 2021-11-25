@@ -4,12 +4,11 @@ summary: Migration instructions on how to upgrade NServiceBus.RavenDB 6 to 7
 component: Raven
 related:
 - persistence/ravendb
-- nservicebus/upgrades/7to8
+- nservicebus/upgrades/6to7
 reviewed: 2020-02-11
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
- - 8
 ---
 
 ## Gateway deduplication storage
@@ -22,12 +21,3 @@ To migrate to the new gateway API:
 
 - Add a reference to the [NServiceBus.Gateway.RavenDB](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB) NuGet package and configure the gateway feature following the instructions available in the [RavenDB Gateway Storage documentation](/nservicebus/gateway/ravendb/).
 - Remove any configuration that uses the legacy gateway API.
-
-## Timeout storage
-
-The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout storage obsolete.
-
-- Any configuration APIs can safely be removed.
-- Database tables must be manually removed from storage.
-
-NOTE: There is no automatic migration of timeout data. See [Timeout manager removed - Data migration](/nservicebus/upgrades/7to8/#timeout-manager-removed-data-migration).
