@@ -82,7 +82,6 @@ class Usage
 
         persistence.JsonSettings(new JsonSerializerSettings
         {
-            TypeNameHandling = TypeNameHandling.Auto,
             Converters =
                 {
                     new IsoDateTimeConverter
