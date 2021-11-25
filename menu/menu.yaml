@@ -71,6 +71,8 @@
         Title: Platform Sample Installation
       - Url: platform/connecting
         Title: Connecting endpoints
+      - Url: platform/json-schema
+        Title: Connection schema
     - Url: samples/endpoint-configuration
       Title: Configuration choices Sample
     - Url: nservicebus/dotnet-templates
