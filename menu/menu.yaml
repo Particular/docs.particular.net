@@ -69,6 +69,8 @@
         Title: Platform Installation
       - Url: platform/platform-sample-package
         Title: Platform Sample Installation
+      - Url: platform/connecting
+        Title: Connecting endpoints
     - Url: samples/endpoint-configuration
       Title: Configuration choices Sample
     - Url: nservicebus/dotnet-templates
