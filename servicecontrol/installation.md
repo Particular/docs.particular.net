@@ -91,7 +91,7 @@ To upgrade multiple majors the following approach needs to be taken:
   - Then install 4.20.3 (current latest version at the time of this writing) and update all instances 
 
 
-NOTE: Upgrades *might* take a while to run. Account for unavailability of ServiceControl and plan upgrade off hours.
+NOTE: Upgrades *might* take a while to run. Account for unavailability of ServiceControl and plan the upgrade off hours.
 
 ## ServiceControl plugins
 
