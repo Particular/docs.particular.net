@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Gateway;
+using Raven.Client.Documents;
 using Shared;
 
 class Program
@@ -14,7 +15,22 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
 
         #region HeadquartersGatewayConfig
-        var gatewayConfig = endpointConfiguration.Gateway(new InMemoryDeduplicationConfiguration());
+        var gatewayConfiguration = new RavenGatewayDeduplicationConfiguration((builder, _) =>
+        {
+            var documentStore = new DocumentStore
+            {
+                Urls = new[] { "http://localhost:8080", "http://localhost:8081", "http://localhost:8083"},
+                Database = "gateway-headquarters"
+            };
+
+            documentStore.Initialize();
+
+            return documentStore;
+        })
+        {
+            //EnableClusterWideTransactions = true
+        };
+        var gatewayConfig = endpointConfiguration.Gateway(gatewayConfiguration);
         gatewayConfig.AddReceiveChannel("http://localhost:25899/Headquarters/");
         gatewayConfig.AddSite("RemoteSite", "http://localhost:25899/RemoteSite/");
         #endregion
