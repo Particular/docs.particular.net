@@ -4,7 +4,7 @@ summary: Migration instructions on how to upgrade NServiceBus.Gateway.RavenDB 1 
 component: GatewayRavenDB
 related:
 - nservicebus/gateway
-- nservicebus/gateway/ravendb/
+- nservicebus/gateway/ravendb
 reviewed: 2021-11-25
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
