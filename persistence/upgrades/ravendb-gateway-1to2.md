@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
 
 ## Cluster-wide transactions support
 
-Starting with NServiceBus.Gateway.RavenDB version 2, the gateway persistence supports RavenDB cluster-wide transactions. RavenDB 5.2 or greater is required for both the RavenDB client and server. Cluster-wide transactions support is disabled by default. To enable it, configure the persister like follows:
+NServiceBus.Gateway.RavenDB version 2 supports cluster-wide transactions. RavenDB 5.2 or greater is required for both the RavenDB client and server. Cluster-wide transactions support is disabled by default. To enable it, configure the persister like the following:
 
 ```
 var ravenGatewayDeduplicationConfiguration = new RavenGatewayDeduplicationConfiguration((builder, _) => 
@@ -25,6 +25,6 @@ var ravenGatewayDeduplicationConfiguration = new RavenGatewayDeduplicationConfig
 };
 ```
 
-If the persister is configured to connect to a database, whose replication factor is greater than one, and cluster-wide transaction are not enabled, the persister will thow the following exception:
+If the persister is configured to connect to a database, whose replication factor is greater than one, and cluster-wide transaction are not enabled, the persister will throw the following exception:
 
 > The configured database is replicated across multiple nodes, in order to continue, use EnableClusterWideTransactions on the gateway configuration.
