@@ -83,13 +83,14 @@ Clicking the upgrade link will:
 To upgrade multiple majors the following approach needs to be taken:
 
 - Upgrade to the latest minor.patch release within a currently installed major
-  - When v1.34.0 is installed, then install v1.48.0 and update all instances
+  - When v1.34.0 is installed, then install [1.48.0](https://github.com/Particular/ServiceControl/releases/tag/1.48.0) and update all instances
 - Then upgrade to the latest minor patch release of the **next** major 
-  - When 1.48.0 is installed, install 2.1.5 and update all instances.
+  - When 1.48.0 is installed, install [2.1.5](https://github.com/Particular/ServiceControl/releases/tag/2.1.5) and update all instances.
 - Repeat the previous step until the system is up to date with the latest version
-  - When 2.1.5 is installed, install 3.8.4 and update all instances.
-  - Then install 4.20.3 (current latest version at the time of this writing) and update all instances 
+  - When 2.1.5 is installed, install [3.8.4](https://github.com/Particular/ServiceControl/releases/tag/3.8.4) and update all instances.
+  - Then install the [latest release](https://particular.net/start-servicecontrol-download) (4.x at the time of this writing) and update all instances 
 
+All versions are available at <https://github.com/Particular/ServiceControl/releases>
 
 NOTE: Upgrades *might* take a while to run. Account for unavailability of ServiceControl and plan the upgrade off hours.
 
