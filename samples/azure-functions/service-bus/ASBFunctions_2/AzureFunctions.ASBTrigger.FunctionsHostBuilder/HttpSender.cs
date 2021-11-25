@@ -12,10 +12,12 @@ namespace AzureFunctions.ASBTrigger.FunctionsHostBuilder
     public class HttpSender
     {
         readonly IFunctionEndpoint functionEndpoint;
+        private readonly IContextPublisher contextPublisher;
 
-        public HttpSender(IFunctionEndpoint functionEndpoint)
+        public HttpSender(IFunctionEndpoint functionEndpoint, IContextPublisher contextPublisher)
         {
             this.functionEndpoint = functionEndpoint;
+            this.contextPublisher = contextPublisher;
         }
 
         [FunctionName("HttpSender")]
@@ -28,6 +30,7 @@ namespace AzureFunctions.ASBTrigger.FunctionsHostBuilder
             sendOptions.RouteToThisEndpoint();
 
             await functionEndpoint.Send(new TriggerMessage(), sendOptions, executionContext, logger);
+            await contextPublisher.Do(executionContext, logger);
 
             return new OkObjectResult($"{nameof(TriggerMessage)} sent.");
         }

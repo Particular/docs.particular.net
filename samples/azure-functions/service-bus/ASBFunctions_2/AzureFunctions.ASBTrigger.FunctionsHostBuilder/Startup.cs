@@ -1,4 +1,5 @@
-﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using AzureFunctions.ASBTrigger.FunctionsHostBuilder;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
@@ -24,6 +25,8 @@ public class Startup : FunctionsStartup
 
             return new CustomComponent(customComponentInitializationValue);
         });
+
+        services.AddSingleton<IContextPublisher, ContextPublisher>();
 
         builder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration(EndpointName));
     }
