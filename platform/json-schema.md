@@ -200,5 +200,5 @@ _Required_: [No](#notes)
 ## Notes
 
 - If a section is omitted or does not contain an `Enabled` property then the feature is not configured
-- timespan properties are encoded as strings in `HH:MM:SS` format
+- Timespan properties are encoded as strings in `HH:MM:SS` format
 - Required properties are only checked if the feature is enabled

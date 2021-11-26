@@ -9,18 +9,18 @@ related:
   - samples/platform-connector
 ---
 
-The ServicePlatform Connector plugin uses a simple API to connect an NServiceBus endpoint to the Particular Service Platform and configure:
+The ServicePlatform Connector plugin provides a unified API to connect an NServiceBus endpoint to the Particular Service Platform by configuring:
 
-- An [error queue](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address-using-code) to send failed mesages to
+- An [error queue](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address-using-code) address
 - [Message auditing](/nservicebus/operations/auditing.md)
 - [Saga auditing](/nservicebus/sagas/saga-audit.md)
-- The collection and aggregation of [performance metrics](/monitoring/metrics/)
+- [Performance metrics](/monitoring/metrics/) collection
 - [Custom checks](/monitoring/custom-checks/install-plugin.md)
 - [Heartbeats](/monitoring/heartbeats/)
 
 ## Json
 
-The connection details can be parsed natively from json with a [specific schema](json-schema.md).
+The connection details can be parsed from json compliant with [the configuration schema](json-schema.md).
 
 snippet: PlatformConnector-FromJson
 
@@ -28,7 +28,7 @@ The json file looks like this:
 
 snippet: PlatformConnector-Json
 
-This configuration can be retrieved from a running ServicePulse instance. 
+A json file specific to a concrete deployment of the ServicePlatform is available via ServicePulse. 
 
 ![Screenshot of ServicePulse showing the configuration endpoint connection json file tab](connecting.servicepulse.png)
 
