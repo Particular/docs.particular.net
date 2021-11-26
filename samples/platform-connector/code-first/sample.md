@@ -1,5 +1,5 @@
 ---
-title: Connect to ServicePlatform with json configuration
+title: Connect to ServicePlatform with code-first configuration
 summary: Shows how to connect an NServiceBus endpoint to the Particular Service Platform
 reviewed: 2021-11-26
 component: PlatformConnector
@@ -24,17 +24,13 @@ This sample connects an NServiceBus endpoint to the Particular Service Platform 
 
 A basic NServiceBus endpoint containing a saga, a handler, and a custom check.
 
-The endpoint loads connection details from a file.
+The endpoint creates connection details in code.
 
-snippet: loadConnectionDetails
+snippet: createConnectionDetails
 
 The connection details are used to configure all of the Particular Service Platform features.
 
 snippet: configureConnection
-
-Features can be turned on and off, and configured, by adjusting the configuration file at deployment.
-
-snippet: json
 
 #### Endpoint features
 
