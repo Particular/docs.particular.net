@@ -229,3 +229,62 @@ The `InMemoryDeduplicationConfiguration` type within the NServiceBus.Gateway pac
 ## Dependency on System.Memory package for .NET Framework
 
 Memory allocations for incoming and outgoing messages bodies are reduced by using the low allocation memory types via the System.Memory namespace. These type are available on .NET Framework via the **System.Memory** package. The NServiceBus build that targets .NET Framework has this dependency added.
+
+## Transport address resolution
+
+In version 8, transport resolution is only available at endpoint runtime. Therefore, access to transport addresses and translations are not directly available during configuration time anymore.
+
+### Endpoint receive addresses
+
+Instead of using the `settings.LocalAddress()` and `settings.InstanceSpecificQueue()` methods to get the endpoint's local receive addresses, inject the `ReceiveAddresses` type to access the endpoint receive addresses.
+
+TODO: fix snippet
+```
+class StartupTask : FeatureStartupTask
+{
+    readonly ReceiveAddresses receiveAddresses;
+    readonly ILogger<StartupTask> logger;
+
+    public StartupTask(ReceiveAddresses receiveAddresses, ILogger<StartupTask> logger)
+    {
+        this.receiveAddresses = receiveAddresses;
+        this.logger = logger;
+    }
+
+    protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
+    {
+        // equivalent to settings.LocalAddress()
+        logger.Log($"Starting endpoint, listening on {receiveAddresses.MainReceiveAddress}.);
+        
+        if(settings.InstanceSpecificQueue != null){
+            // equivalent to settings.InstanceSpecificQueue())
+            logger.Log($"Starting endpoint, listening on {receiveAddresses.InstanceSpecificQueue}.);
+        }
+        return Task.CompletedTask;
+    }
+
+    protected override Task OnStop(IMessageSession session, CancellationToken cancellationToken = default) => Task.CompletedTask;
+}
+```
+
+### Dynamic address translation
+
+Instead of using `settings.Get<TransportDefinition>().ToTransportAddress(myAddress)`, inject the `ITransportAddressResolver` type to access the address translation mechanism at runtime.
+
+TODO: Fix this snippet
+```
+class MyHandler : IHandleMessages<MyMessage>{
+    ITransportAddressResolver addressResolver;
+
+    public MyHandler(ITransportAddressResolver addressResolver){
+        this.addressResolver = addressResolver;
+    }
+
+    public Task Handle(MyMessage message, MessageHandlerContext context){
+        var destination = addressResolver.ToTransportAddress(new QueueAddress("Sales"));
+        var sendOptions = new SendOptions();
+        sendOptions.SendToDestination(destination);
+        return context.Send(new SomeMessage(), sendOptions);
+    }
+}
+```
