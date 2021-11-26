@@ -7,7 +7,6 @@ redirects:
   - nservicebus/operations/custom-checks
 ---
 
-
 The Custom Checks plugin enables endpoint health monitoring by running custom code and reporting status (success or failure) to a ServiceControl instance.
 
 ```mermaid

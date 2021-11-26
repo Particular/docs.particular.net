@@ -6,6 +6,7 @@ component: PlatformConnector
 versions: 'PlatformConnector:*'
 related:
   - platform/json-schema
+  - samples/platform-connector
 ---
 
 The ServicePlatform Connector plugin uses a simple API to connect an NServiceBus endpoint to the Particular Service Platform and configure:
