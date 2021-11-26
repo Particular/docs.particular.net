@@ -19,7 +19,7 @@
         {
             context.AddSatelliteReceiver(
                 name: "MyCustomSatellite",
-                transportAddress: "targetQueue",
+                transportAddress: new QueueAddress("targetQueue"),
                 runtimeSettings: PushRuntimeSettings.Default,
                 recoverabilityPolicy: (config, errorContext) =>
                 {
