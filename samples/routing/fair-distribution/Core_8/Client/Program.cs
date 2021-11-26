@@ -1,8 +1,8 @@
+using NServiceBus;
+using NServiceBus.Configuration.AdvancedExtensibility;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Configuration.AdvancedExtensibility;
 
 class Program
 {
@@ -13,7 +13,7 @@ class Program
         var random = new Random();
 
         var endpointConfiguration = new EndpointConfiguration("Samples.FairDistribution.Client");
-        endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        //dpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
