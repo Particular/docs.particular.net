@@ -1,0 +1,27 @@
+// startcode json
+{
+  "ErrorQueue": "error",
+  "Heartbeats": {
+    "Enabled": true,
+    "HeartbeatsQueue": "Particular.ServiceControl"
+  },
+  "CustomChecks": {
+    "Enabled": true,
+    "CustomChecksQueue": "Particular.ServiceControl"
+  },
+  "MessageAudit": {
+    "Enabled": true,
+    "AuditQueue": "audit"
+  },
+  "SagaAudit": {
+    "Enabled": true,
+    "SagaAuditQueue":  "audit" 
+  },
+  "Metrics": {
+    "Enabled": true,
+    "MetricsQueue": "Particular.Monitoring",
+    "Interval": "00:00:01",
+    "InstanceId": "UniqueInstanceId" 
+  } 
+}
+// endcode
