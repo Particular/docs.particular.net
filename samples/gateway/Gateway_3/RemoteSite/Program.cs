@@ -18,7 +18,7 @@ class Program
         {
             var documentStore = new DocumentStore
             {
-                Urls = new[] { "http://localhost:8080", "http://localhost:8081", "http://localhost:8083"},
+                Urls = new[] { "http://localhost:8081", "http://localhost:8082", "http://localhost:8083"},
                 Database = "gateway-remotesite"
             };
 
