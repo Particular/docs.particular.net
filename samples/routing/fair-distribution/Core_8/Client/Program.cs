@@ -13,7 +13,7 @@ class Program
         var random = new Random();
 
         var endpointConfiguration = new EndpointConfiguration("Samples.FairDistribution.Client");
-        //dpointConfiguration.UsePersistence<NonDurablePersistence>();
+        endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
