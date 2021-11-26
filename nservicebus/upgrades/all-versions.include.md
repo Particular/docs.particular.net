@@ -952,7 +952,7 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/ServiceControl.TransportAdapter/2.0.1) | 2018-05-29     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/ServiceControl.TransportAdapter/2.0.2) | 2018-05-29     | -                 | -                                 |
 | [1.2.x](https://www.nuget.org/packages/ServiceControl.TransportAdapter/1.2.3) | 2017-07-20     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 | [~~1.0.x~~](https://www.nuget.org/packages/ServiceControl.TransportAdapter/1.0.2) | ~~2017-05-22~~ | ~~2017-10-20~~    | ~~Superseded by 1.2.x~~           |
 | [~~0.2.x~~](https://www.nuget.org/packages/ServiceControl.TransportAdapter/0.2.0) | ~~2017-01-25~~ | ~~2018-05-22~~    | ~~Superseded by 1.0.x~~           |
