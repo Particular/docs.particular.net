@@ -5,6 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1898" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-PullRequest0287.289" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-alpha.359" />
   </ItemGroup>
 </Project>
