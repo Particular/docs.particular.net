@@ -28,7 +28,9 @@ class ApplicationInsightsFeature : Feature
         collector = new ProbeCollector(
             telemetryConfiguration,
             endpointName,
-            instance
+            instance,
+            context.LocalQueueAddress(),
+            context.InstanceSpecificQueueAddress()
         );
 
         var metrics = settings.Get<MetricsOptions>();
