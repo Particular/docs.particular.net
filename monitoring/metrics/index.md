@@ -6,6 +6,8 @@ component: Metrics
 versions: 'Metrics:*'
 ---
 
+NOTE: This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
+
 The Metrics plugin collects metric data about the performance of running endpoints. This data can be forwarded to a ServiceControl monitoring instance and then viewed in ServicePulse.
 
 To see performance monitoring in action, try the [standalone demo](/tutorials/monitoring-demo/).

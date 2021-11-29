@@ -6,6 +6,8 @@ component: Heartbeats
 versions: 'Heartbeats:*'
 ---
 
+NOTE: This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
+
 To install the heartbeat plugin in an endpoint, reference the [NServiceBus.Heartbeat NuGet package](https://www.nuget.org/packages/NServiceBus.Heartbeat/) and configure the endpoint to send heartbeats:
 
 snippet: HeartbeatsNew_Enable

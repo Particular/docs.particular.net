@@ -6,6 +6,8 @@ component: CustomChecks
 versions: 'CustomChecks:*'
 ---
 
+NOTE: This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
+
 To install the custom checks plugin into an endpoint, reference the [NServiceBus.CustomChecks NuGet package](https://www.nuget.org/packages/NServiceBus.CustomChecks/) and add the following to the endpoint configuration:
 
 snippet: CustomCheckNew_Enable

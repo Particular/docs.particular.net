@@ -373,6 +373,15 @@
     - NServiceBus.NLog
     - NServiceBus
 
+- Key: PlatformConnector
+  Name: ServicePlatform Connector
+  DocsUrl: /platform/connecting
+  GitHubOwner: Particular
+  Category: Other
+  ProjectUrl: https://github.com/Particular/NServiceBus.ServicePlatform.Connector
+  NugetOrder:
+    - NServiceBus.ServicePlatform.Connector
+
 - Key: PropertyEncryption
   Name: Message Property Encryption
   DocsUrl: /nservicebus/security/property-encryption
