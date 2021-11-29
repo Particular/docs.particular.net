@@ -9,6 +9,7 @@ class Program
         Console.Title = "Samples.Metrics.Tracing.Endpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
         endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.MakeInstanceUniquelyAddressable("1");
 
         #region prometheus-enable-nsb-metrics
 

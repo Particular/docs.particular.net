@@ -8,7 +8,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Windows" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1900" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1901" />
     <PackageReference Include="NServiceBus.Metrics" Version="4.0.0-alpha.153" />
     <PackageReference Include="prometheus-net" Version="3.*" />
   </ItemGroup>

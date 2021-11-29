@@ -38,11 +38,14 @@ class PrometheusFeature : Feature
 
         #region prometheus-register-probe
 
+        var instanceQueueAddress = context.InstanceSpecificQueueAddress();
         var labelValues = new[]
         {
             settings.EndpointName(),
             Environment.MachineName,
             Dns.GetHostName(),
+            context.LocalQueueAddress().ToString(),
+            instanceQueueAddress != null ? instanceQueueAddress.Discriminator : null,
         };
 
         var metricsOptions = settings.Get<MetricsOptions>();
@@ -124,6 +127,8 @@ class PrometheusFeature : Feature
     {
         "endpoint",
         "machinename",
-        "hostname"
+        "hostname",
+        "queue-address",
+        "instance-discriminator"
     };
 }
