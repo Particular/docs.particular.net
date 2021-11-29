@@ -1210,6 +1210,8 @@
       Title: Events
     - Url: servicepulse/health-check-notifications
       Title: Health check notifications
+    - Url: servicepulse/endpoint-connection
+      Title: Endpoint connection settings
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config
