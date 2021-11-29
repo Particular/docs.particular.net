@@ -4,6 +4,6 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.ServicePlatform.Connector" Version="1.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.ServicePlatform.Connector" Version="1.0.0" />
   </ItemGroup>
 </Project>
