@@ -1,1 +1,1 @@
-INFO: Using RavenDB version 4 and higher in a cluster configuration with multiple nodes is only supported from Version 7 or higher. For more information, read [cluster configuration with multiple nodes not supported](/persistence/ravendb/cluster-configuration.md).
+INFO: Using RavenDB version 5 and higher in a cluster configuration with multiple nodes is only supported from Version 7 or higher. For more information, read [cluster configuration with multiple nodes not supported](/persistence/ravendb/cluster-configuration.md).
