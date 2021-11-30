@@ -19,7 +19,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.2.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/8.2.5) | 2020-03-05     | -                 | -                                 |
+| [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/8.2.5) | ~~2020-03-05~~ | ~~2021-11-25~~    | ~~Superseded by 9.0.x of NServiceBus.Transport.AzureStorageQueues~~ |
 | [7.5.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/7.5.9) | 2017-12-04     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.RabbitMQ](/nuget/NServiceBus.RabbitMQ)
@@ -82,7 +82,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/2.4.2) | 2020-03-04     | -                 | -                                 |
+| [~~2.4.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/2.4.2) | ~~2020-03-04~~ | ~~2021-11-23~~    | ~~Superseded by 3.0.x of NServiceBus.Persistence.AzureTable~~ |
 | [1.5.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureStorage/1.5.2) | 2018-05-17     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Persistence.AzureTable](/nuget/NServiceBus.Persistence.AzureTable)
@@ -330,7 +330,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.0.0) | 2020-02-07     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.1.0) | 2021-11-29     | -                 | -                                 |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.0.0) | 2020-02-07     | 2022-02-28        | Superseded by 1.1.x               |
 
 #### [NServiceBus.Gateway.Sql](/nuget/NServiceBus.Gateway.Sql)
 
@@ -387,6 +388,12 @@
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/3.0.1) | 2018-05-29     | -                 | -                                 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/2.0.1) | 2017-11-15     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
+#### [NServiceBus.ServicePlatform.Connector](/nuget/NServiceBus.ServicePlatform.Connector)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/1.0.0) | 2021-11-29     | -                 | -                                 |
+
 #### [NServiceBus.Testing](/nuget/NServiceBus.Testing)
 
 | Version   | Released       | Supported until   | Notes                             |
@@ -420,7 +427,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.1.x](https://www.nuget.org/packages/Particular.PlatformSample/2.1.0) | 2021-11-02     | -                 | -                                 |
+| [2.1.x](https://www.nuget.org/packages/Particular.PlatformSample/2.1.2) | 2021-11-02     | -                 | -                                 |
 | [2.0.x](https://www.nuget.org/packages/Particular.PlatformSample/2.0.0) | 2021-09-16     | 2022-02-02        | Superseded by 2.1.x               |
 | [1.31.x](https://www.nuget.org/packages/Particular.PlatformSample/1.31.0) | 2021-09-16     | 2022-09-16        | Superseded by 2.0.x               |
 | [1.29.x](https://www.nuget.org/packages/Particular.PlatformSample/1.29.0) | 2021-08-03     | 2021-12-16        | Superseded by 1.31.x              |
