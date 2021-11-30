@@ -30,15 +30,6 @@ class Program
             });
 
         var recoverability = endpointConfiguration.Recoverability();
-        recoverability.Failed(
-            customizations: retryFailedSettings =>
-            {
-                retryFailedSettings.HeaderCustomization(
-                    customization: headers =>
-                    {
-                        headers[AdapterSpecificHeaders.OriginalNamespace] = "shipping";
-                    });
-            });
         recoverability.Immediate(
             customizations: immediate =>
             {

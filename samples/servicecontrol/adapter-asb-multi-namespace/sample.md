@@ -87,6 +87,8 @@ The Shipping endpoint has the [Heartbeat plugin](/monitoring/heartbeats/) instal
 
 The Router project hosts the `ServiceControl.TransportAdapter` and `NServiceBus.Router` instances. It uses a helper class `NamespaceRouter` to configure the bridging. The class accepts a list of structures describing namespaces of the system. For each namespace that hosts endpoints it executes three steps.
 
+snippet: setup
+
 First, it creates a `NServiceBus.Router` interface for this namespace
 
 snippet: RouterInterface

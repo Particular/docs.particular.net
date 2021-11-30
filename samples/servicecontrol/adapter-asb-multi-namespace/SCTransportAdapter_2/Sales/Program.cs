@@ -28,20 +28,6 @@ class Program
 
         var recoverability = endpointConfiguration.Recoverability();
 
-        #region NamespaceAlias
-
-        recoverability.Failed(
-            customizations: settings =>
-            {
-                settings.HeaderCustomization(
-                    customization: headers =>
-                    {
-                        headers[AdapterSpecificHeaders.OriginalNamespace] = "sales";
-                    });
-            });
-
-        #endregion
-
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         var chaos = new ChaosGenerator();
