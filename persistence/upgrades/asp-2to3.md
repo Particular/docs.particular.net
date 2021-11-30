@@ -64,7 +64,7 @@ Note that this is not the default. To enable transactionality, a custom behavior
 
 ## Installers
 
-To make sure the persistence complies with the principle of least priviledge, the previous `CreateSchema`-method has been deprecated in favour of integration with the Installers-API available on the endpoint configuration.
+To make sure the persistence complies with the principle of least privilege, the previous `CreateSchema`-method has been deprecated in favour of integration with the Installers-API available on the endpoint configuration.
 
 To enable the persistence to create the needed table(s), the endpoint will need to `EnableInstallers()`, which will result in the tables being created at endpoint startup when a default table was set, or at runtime when the table information is made available.
 
@@ -72,9 +72,9 @@ To opt out of creating tables while still making use of the capabilities provide
 
 ## Timeout storage
 
-The [timeout manager has been removed in `NServiceBus.Core` version 8](/nservicebus/upgrades/7to8/#timeout-manager-removed). Therefore, the timeout manager was removed in this version of the persister.
+Timeout storage support was marked obsolete with a warning in version 2 because both Azure transports natively support delayed delivery. In version 3, timeout storage has been removed entirely.
 
 - Any timeout-related configuration APIs can be safely removed.
 - Database tables must be manually removed from storage.
 
-NOTE: There is no automatic migration of timeout data. See [Timeout manager removed - Data migration](/nservicebus/upgrades/7to8/#timeout-manager-removed-data-migration).
+NOTE: There is no automatic migration of timeout data. See [Migrating from timeout manager to native delivery](/nservicebus/tools/migrate-to-native-delivery).
