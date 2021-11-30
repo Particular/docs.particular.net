@@ -1,8 +1,8 @@
+using NServiceBus;
+using NServiceBus.Configuration.AdvancedExtensibility;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Configuration.AdvancedExtensibility;
 
 class Program
 {

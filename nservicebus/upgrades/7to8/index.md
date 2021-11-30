@@ -229,3 +229,84 @@ The `InMemoryDeduplicationConfiguration` type within the NServiceBus.Gateway pac
 ## Dependency on System.Memory package for .NET Framework
 
 Memory allocations for incoming and outgoing messages bodies are reduced by using the low allocation memory types via the System.Memory namespace. These type are available on .NET Framework via the **System.Memory** package. The NServiceBus build that targets .NET Framework has this dependency added.
+
+## Endpoint addresses
+
+Up to NServiceBus version 8, the local transport-specific queue addresses were accessible via the `settings.LocalAddress()` and `settings.InstaceSpecificQueue()` settings extension methods. In version 8, these extension methods have been obsoleted in favour of the following APIs:
+
+### Logical endpoint address
+
+Since the endpoint addresses are translated to the transport-specific later during endpoint startup, addresses are defined using a transport-agnostic `QueueAddress` type. The addresses can be accessed via the `FeatureConfigurationContext`, e.g.:
+
+```
+class MyFeature : Feature
+{
+    protected override void Setup(FeatureConfigurationContext context)
+    {
+        // instead of context.Settings.LocalAddress();
+        var localAddress = context.LocalQueueAddress();
+
+        // instead of context.Settings.InstanceSpecificQueue();
+        var instanceSpecificAddress = context.InstanceSpecificQueueAddress();
+    }
+}
+```
+
+A `QueueAddress` can be translated to a transport-specific address at runtime using `ITransportAddressResolver` if needed. The transport-specific receiving queue address can be directly accessed via `ReceiveAddresses`. See the next section for more information.
+
+### Endpoint receive addresses
+
+Instead of using the `settings.LocalAddress()` and `settings.InstanceSpecificQueue()` methods to get the endpoint's local receive addresses, inject the `ReceiveAddresses` type to access the endpoint receive addresses.
+
+```
+class StartupTask : FeatureStartupTask
+{
+    static readonly ILog log = LogManager.GetLogger<StartupTask>();
+
+    readonly ReceiveAddresses receiveAddresses;
+
+    public StartupTask(ReceiveAddresses receiveAddresses)
+    {
+        this.receiveAddresses = receiveAddresses;
+    }
+
+    protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
+    {
+        // equivalent to settings.LocalAddress()
+        log.Info($"Starting endpoint, listening on {receiveAddresses.MainReceiveAddress}");
+
+        if (receiveAddresses.InstanceReceiveAddress != null)
+        {
+            // equivalent to settings.InstanceSpecificQueue())
+            log.Info($"Starting endpoint, listening on {receiveAddresses.InstanceReceiveAddress}");
+        }
+        return Task.CompletedTask;
+    }
+
+    protected override Task OnStop(IMessageSession session, CancellationToken cancellationToken = default) => Task.CompletedTask;
+}
+```
+
+### Dynamic address translation
+
+Instead of using `settings.Get<TransportDefinition>().ToTransportAddress(myAddress)` to translate `QueueAddress` to a transport-specific address, inject the `ITransportAddressResolver` type to access the address translation mechanism at runtime.
+
+```
+public class MyHandler : IHandleMessages<MyMessage>
+{
+    ITransportAddressResolver addressResolver;
+
+    public MyHandler(ITransportAddressResolver addressResolver)
+    {
+        this.addressResolver = addressResolver;
+    }
+
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        var destination = addressResolver.ToTransportAddress(new QueueAddress("Sales"));
+        var sendOptions = new SendOptions();
+        sendOptions.SetDestination(destination);
+        return context.Send(new SomeMessage(), sendOptions);
+    }
+}
+```

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.Features;
-using NServiceBus.Transport;
+using System;
 
 public class FairDistribution :
     Feature
@@ -15,7 +15,6 @@ public class FairDistribution :
     {
         var sessionId = Guid.NewGuid().ToString();
         var flowManager = context.Settings.Get<FlowManager>();
-        var controlAddress = context.Settings.InstanceSpecificQueue() ?? context.Settings.LocalAddress();
 
         var pipeline = context.Pipeline;
         pipeline.Register(
@@ -26,17 +25,18 @@ public class FairDistribution :
             stepId: "FlowControl.AcknowledgementProcessor",
             behavior: new AcknowledgementProcessor(flowManager, sessionId),
             description: "Processes incoming acknowledgements.");
-        pipeline.Register(
-            stepId: "FlowControl.MarkerProcessor",
-            behavior: new MarkerProcessor(context.Settings.EndpointName(), context.Settings.LocalAddress(), 1),
-            description: "Processes markers and sends ACKs");
-        pipeline.Register(
-            stepId: "FlowControl.SendMessageMarker",
-            behavior: new SendMessageMarker(controlAddress, sessionId),
-            description: "Marks point-to-point messages");
-        pipeline.Register(
-            stepId: "FlowControl.PublishMessageMarker",
-            behavior: new PublishMessageMarker(controlAddress, sessionId),
-            description: "Marks published messages");
+        pipeline.Register(s => new MarkerProcessor(
+            context.Settings.EndpointName(),
+            s.GetRequiredService<ReceiveAddresses>().MainReceiveAddress, 1), "Processes markers and sends ACKs");
+
+        pipeline.Register(sp => new SendMessageMarker(GetControlAddress(sp), sessionId), "Marks point-to-point messages");
+        pipeline.Register(sp => new PublishMessageMarker(GetControlAddress(sp), sessionId), "Marks published messages");
+    }
+
+    string GetControlAddress(IServiceProvider serviceProvider)
+    {
+        var receiveAddresses = serviceProvider.GetRequiredService<ReceiveAddresses>();
+
+        return receiveAddresses.InstanceReceiveAddress ?? receiveAddresses.MainReceiveAddress;
     }
 }
