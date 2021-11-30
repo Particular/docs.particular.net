@@ -5,10 +5,8 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="2.*" />
-    <PackageReference Include="NServiceBus.Router.Connector" Version="3.*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
+    <PackageReference Include="NServiceBus.Router" Version="3.*" />
+    <PackageReference Include="ServiceControl.TransportAdapter" Version="2.*" />
   </ItemGroup>
 </Project>

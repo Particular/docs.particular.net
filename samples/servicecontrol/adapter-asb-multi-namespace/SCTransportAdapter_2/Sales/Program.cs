@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
 
 class Program
 {
@@ -21,26 +20,11 @@ class Program
         {
             throw new Exception("Could not read 'AzureServiceBus.ConnectionString.1' environment variable. Check sample prerequisites.");
         }
-        var shippingConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2");
-        if (string.IsNullOrWhiteSpace(shippingConnectionString))
-        {
-            throw new Exception("Could not read 'AzureServiceBus.ConnectionString.2' environment variable. Check sample prerequisites.");
-        }
+        
         transport.ConnectionString(connectionString);
 
-        #region FeaturesUnsuportedBySC
-
-        transport.UseNamespaceAliasesInsteadOfConnectionStrings();
-        transport.DefaultNamespaceAlias("sales");
-        var routing = transport.NamespaceRouting();
-        routing.AddNamespace("shipping", shippingConnectionString);
-        transport.UseForwardingTopology();
-        transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
-        var composition = transport.Composition();
-        composition.UseStrategy<HierarchyComposition>()
-            .PathGenerator(path => "scadapter/");
-
-        #endregion
+        var routing = transport.Routing().ConnectToRouter("Router");
+        routing.RouteToEndpoint(typeof(ShipOrder), "Samples.ServiceControl.ASBAdapter.Shipping");
 
         var recoverability = endpointConfiguration.Recoverability();
 
@@ -102,7 +86,6 @@ class Program
                     Value = random.Next(100)
                 };
                 var sendOptions = new SendOptions();
-                sendOptions.SetDestination("Samples.ServiceControl.ASBAdapter.Shipping@shipping");
                 await endpointInstance.Send(shipOrder, sendOptions)
                     .ConfigureAwait(false);
             }

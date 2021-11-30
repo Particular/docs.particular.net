@@ -5,6 +5,7 @@ using NServiceBus.Configuration.AdvancedExtensibility;
 using NServiceBus.MessageInterfaces;
 using NServiceBus.Serialization;
 using NServiceBus.Settings;
+using NServiceBus.Transport.AzureServiceBus;
 using ServiceControl.TransportAdapter;
 
 class Program
@@ -37,16 +38,13 @@ class Program
                 {
                     throw new Exception("Could not read 'AzureServiceBus.ConnectionString.2' environment variable. Check sample prerequisites.");
                 }
-
                 transport.UseNamespaceAliasesInsteadOfConnectionStrings();
                 var namespacePartitioning = transport.NamespacePartitioning();
+                transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
                 namespacePartitioning.AddNamespace("sales", salesConnectionString);
                 namespacePartitioning.AddNamespace("shipping", shippingConnectionString);
                 namespacePartitioning.UseStrategy<RoundRobinNamespacePartitioning>();
                 transport.UseForwardingTopology();
-                var composition = transport.Composition();
-                composition.UseStrategy<HierarchyComposition>()
-                    .PathGenerator(path => "scadapter/");
 
                 WorkaroundForServializerRequiredByASB(transport);
             });
@@ -87,8 +85,7 @@ class Program
         #endregion
 
         #region ControlQueueOverride
-
-        transportAdapterConfig.ServiceControlSideControlQueue = "Particular.ServiceControl.ASB";
+        transportAdapterConfig.ServiceControlSideControlQueue = "Particular.ServiceControl";
 
         #endregion
 

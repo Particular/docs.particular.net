@@ -2,7 +2,7 @@
 title: Monitor Azure Service Bus endpoints with ServiceControl adapter
 summary: Centralized monitoring of Azure Service Bus endpoints with ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2019-10-04
+reviewed: 2021-11-30
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
@@ -40,9 +40,7 @@ graph RL
   sc .-> adapter
 ```
 
-Notice that `Sales` and `Shipping` are in two different namespaces. This is done with [cross-namespace routing](/transports/azure-service-bus/legacy/multiple-namespaces-support.md#cross-namespace-routing). The other important thing to note is that ServiceControl is in a different namespace than the other endpoints, which means that it can't natively communicate with them. This is why the sample shows how to create an adapter to bridge between the components.
-
-The adapter also handles advanced features of the Azure Service Bus transport, such as [secure connection strings](/transports/azure-service-bus/legacy/securing-connection-strings.md) and [customized brokered message creation](/transports/azure-service-bus/legacy/brokered-message-creation.md).
+Notice that `Sales` and `Shipping` are in two different namespaces. Cross-namespace routing is implemented using [NServiceBus.Router](https://github.com/SzymonPobiega/NServiceBus.Router) community project. The other important thing to note is that ServiceControl is in a different namespace than the other endpoints, which means that it can't natively communicate with them. This is why the sample shows how to create multi-directional router to bridge between all the components.
 
 ## Prerequisites
 
@@ -55,7 +53,7 @@ include: asb-connectionstring
  1. Using the [ServiceControl Management tool](/servicecontrol/license.md#servicecontrol-management-tool), set up ServiceControl to monitor endpoints using the Azure Service Bus transport:
 	 
    * Add a new ServiceControl instance: 
-   * Use `Particular.ServiceControl.ASB` as the instance name (ensure there is no other instance of SC running with the same name).
+   * Use `Particular.ServiceControl` as the instance name (ensure there is no other instance of SC running with the same name).
    * Use the connection string supplied with the `AzureServiceBus.ConnectionString.SC` environment variable.
    
 include: configuring-sc-connections
@@ -84,48 +82,31 @@ The Sales and Shipping endpoints include a message processing failure simulation
 
 The Shipping endpoint has the [Heartbeat plugin](/monitoring/heartbeats/) installed to enable uptime monitoring via ServicePulse.
 
-Both endpoints are configured to use:
 
- * [Secure connection strings](/transports/azure-service-bus/legacy/securing-connection-strings.md).
- * [Customized brokered message creation](/transports/azure-service-bus/legacy/brokered-message-creation.md) using `Stream`.
- * Different namespaces with [cross-namespace routing](/transports/azure-service-bus/legacy/multiple-namespaces-support.md#cross-namespace-routing) enabled.
- * [Namespace hierarchy](/transports/azure-service-bus/legacy/namespace-hierarchy.md) to prefix all entities with `scadapter/`.
+### Router
 
-snippet: featuresunsuportedbysc
+The Router project hosts the `ServiceControl.TransportAdapter` and `NServiceBus.Router` instances. It uses a helper class `NamespaceRouter` to configure the bridging. The class accepts a list of structures describing namespaces of the system. For each namespace that hosts endpoints it executes three steps.
 
+First, it creates a `NServiceBus.Router` interface for this namespace
 
-### Adapter
+snippet: RouterInterface
 
-The Adapter project hosts the `ServiceControl.TransportAdapter`. The adapter has two facets:
+Second, it configures a `ServiceControl.TransportAdapter` between that namespace and the ServiceControl namespace
 
- * endpoint-facing
- * ServiceControl-facing
+snippet: AdapterInterface
 
-In this sample both use the Azure Service Bus transport:
+Last but not least, it configures convention-based routing between the endpoints. The convention configures the router to forward messages to the namespace that matches the last part of the endpoint name e.g. a command destined to `MyPaymentGateway.Billing` will be forwarded to the `Billing` namespace.
 
-snippet: AdapterTransport
+snippet: ConventionBasedRouting
 
-The following code configures the adapter to match advanced transport features enabled on the endpoints:
+As a result, apart from the queues associated with the business endpoints, each namespace contains a set of queues used for the cross-namespace routing:
 
- * [Secure connection strings](/transports/azure-service-bus/legacy/securing-connection-strings.md).
- * [Customized brokered message creation](/transports/azure-service-bus/legacy/brokered-message-creation.md) using `Stream`.
- * [Multiple namespaces](/transports/azure-service-bus/legacy/multiple-namespaces-support.md#round-robin-namespace-partitioning).
- * [Namespace hierarchy](/transports/azure-service-bus/legacy/namespace-hierarchy.md)
+- `audit` - forwarded to ServiceControl's `audit` queue
+- `error` - forwarded to ServiceControl's `error` queue
+- `particular.servicecontrol` (or other that matches the name of the ServiceControl instance)
+- `router` - endpoints send messages to this queue when they want these messages to be delivered to an endpoint in another namespace
 
-snippet: EndpointSideConfig
+The ServiceControl namespace, apart from regular set of queues, contains queues used for forwarding retried messages (one for each business namespace):
 
-The following code configures the adapter to communicate with ServiceControl:
-
-snippet: SCSideConfig
-
-Since ServiceControl has been installed with a non-default instance name (`Particular.ServiceControl.ASB`), the control queue name must be overridden in the adapter configuration:
-
-snippet: ControlQueueOverride
-
-Shipping and Sales use different namespaces, therefore the adapter must be configured to properly route retried messages:
-
-snippet: UseNamespaceHeader
-
-The destination address consists of the queue name and the namespace alias which is included in the failed messages:
-
-snippet: NamespaceAlias
+- `billing.adapter.retry`
+- `shipping.adapter.retry`
