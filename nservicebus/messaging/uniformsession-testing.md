@@ -19,14 +19,16 @@ Construct the service under test with an instance of `TestableUniformSession`. C
 
 snippet: UniformSessionServiceTesting
 
+partial: message-session
+
 ### Testing a handler
 
-Construct the handler under test with an instance of `TestableUniformSession` and pass that same instance to the test.
+Construct the handler under test with an instance of `TestableUniformSession`.
 
 snippet: UniformSessionHandlerTesting
 
 ### Testing a saga
 
-Construct the saga under test with an instance of `TestableUniformSession` and pass that same instance to the test.
+Construct the saga under test with an instance of `TestableUniformSession`.
 
 snippet: UniformSessionSagaTesting
