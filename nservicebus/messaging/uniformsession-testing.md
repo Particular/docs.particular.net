@@ -13,6 +13,8 @@ Shows the usage of the `NServiceBus.UniformSession.Testing` package.
 
 The approach shown here works with the `NServiceBus.UniformSession` NuGet package version 2.2.0 or above. Install the `NServiceBus.UniformSession.Testing` NuGet package.
 
+partial: fluent-warning
+
 ### Testing services
 
 Construct the service under test with an instance of `TestableUniformSession`. Call the methods being tested and make assertions about the messages sent and published.
