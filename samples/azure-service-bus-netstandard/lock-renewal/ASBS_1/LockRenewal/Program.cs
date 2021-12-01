@@ -50,10 +50,8 @@ class Program
     private static async Task OverrideQueueLockDuration(string queuePath, string connectionString)
     {
         var managementClient = new ManagementClient(connectionString);
-        var queueDescription = new QueueDescription(queuePath)
-        {
-            LockDuration = TimeSpan.FromSeconds(30)
-        };
+        var queueDescription = await managementClient.GetQueueAsync(queuePath).ConfigureAwait(false);
+        queueDescription.LockDuration = TimeSpan.FromSeconds(30);
 
         await managementClient.UpdateQueueAsync(queueDescription).ConfigureAwait(false);
     }
