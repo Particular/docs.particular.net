@@ -30,7 +30,6 @@ class Configure
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseDocumentStoreForSubscriptions(documentStore);
         persistence.UseDocumentStoreForSagas(documentStore);
-        persistence.UseDocumentStoreForGatewayDeduplication(documentStore);
 
         #endregion
     }
@@ -43,7 +42,6 @@ class Configure
         DocumentStore subscriptionStore;
         DocumentStore sagaStore;
         DocumentStore timeoutStore;
-        DocumentStore gatewayStore;
 
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseDocumentStoreForSubscriptions(
@@ -66,13 +64,6 @@ class Configure
                 timeoutStore = new DocumentStore();
                 // configure documentStore here
                 return timeoutStore;
-            });
-        persistence.UseDocumentStoreForGatewayDeduplication(
-            readOnlySettings =>
-            {
-                gatewayStore = new DocumentStore();
-                // configure documentStore here
-                return gatewayStore;
             });
 
         #endregion
