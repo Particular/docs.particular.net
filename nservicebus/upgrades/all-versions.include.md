@@ -685,7 +685,7 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.1.0) | 2021-11-29     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.1.1) | 2021-11-30     | -                 | -                                 |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.0.0) | 2020-02-07     | 2022-02-28        | Superseded by 1.1.x               |
 
 #### [NServiceBus.Gateway.Sql](/nuget/NServiceBus.Gateway.Sql)
