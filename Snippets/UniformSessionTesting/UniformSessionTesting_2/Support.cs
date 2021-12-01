@@ -3,13 +3,21 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.UniformSession;
 
+class SharedComponent
+{
+    public SharedComponent(IUniformSession uniformSession)
+    {
+    }
+    public Task DoSomething()
+    {
+        throw new System.NotImplementedException();
+    }
+}
+
 class SomeMessageHandler : IHandleMessages<SomeEvent>
 {
-    private IUniformSession session;
-
-    public SomeMessageHandler(IUniformSession session)
+    public SomeMessageHandler(SharedComponent sharedComponent)
     {
-        this.session = session;
     }
 
     public Task Handle(SomeEvent message, IMessageHandlerContext context)
