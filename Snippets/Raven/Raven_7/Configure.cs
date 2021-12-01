@@ -69,11 +69,6 @@ class Configure
         #endregion
     }
 
-    void SpecificDocumentStoreViaConnectionString()
-    {
-        // See the config file
-    }
-
     void ExternalDocumentStore(EndpointConfiguration endpointConfiguration)
     {
         #region ravendb-persistence-external-store
@@ -103,8 +98,13 @@ class Configure
         #endregion
     }
 
-    void SharedDocumentStoreViaConnectionString()
+    void EnableClusterWideTransactions(EndpointConfiguration endpointConfiguration)
     {
-        // See the config file
+        #region ravendb-persistence-cluster-wide-transactions
+
+        var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
+        persistence.EnableClusterWideTransactions();
+
+        #endregion
     }
 }
