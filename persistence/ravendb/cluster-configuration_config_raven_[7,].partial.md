@@ -1,1 +1,1 @@
-TODO
+RavenDB version 5.2 and higher supports cluster-wide transactions. The RavenDB persistence can be [enabled to use cluster-wide transactions](/persistence/ravendb/cluster-configuration.md) and support topologies with database nodes in a database group, distributed across multiple cluster nodes.
