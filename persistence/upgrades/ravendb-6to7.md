@@ -11,6 +11,12 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
+## Cluster-wide transactions
+
+This release comes with [cluster-wide transactions support](https://ravendb.net/docs/article-page/5.2/start/server/clustering/cluster-transactions) enabling the use of RavenDB clusters and database groups replicated across multiple nodes. In case of cluster configurations the cluster-wide transaction support needs to be enabled:
+
+snippet: ravendb-persistence-cluster-wide-transactions
+
 ## Gateway deduplication storage
 
 Starting with NServiceBus.RavenDB version 6.2.0, the built-in gateway API is obsolete and using it will produce the following message:
