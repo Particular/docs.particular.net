@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
 
 ## Support for RavenDB.Client version 5.2 and higher
 
-Starting with NServiceBus.RavenDB version 7.0.0 [RavenDB.Client](https://www.nuget.org/packages/RavenDB.Client/) version 5.2.1 or higher is required.
+Starting with NServiceBus.RavenDB version 7.0.0 [RavenDB.Client](https://www.nuget.org/packages/RavenDB.Client/) version 5.2.1 or higher is required. For more information about the client and server changes visit the [official RavenDB migration guide](https://ravendb.net/docs/article-page/5.0/csharp/migration).
 
 ## Cluster-wide transactions
 
