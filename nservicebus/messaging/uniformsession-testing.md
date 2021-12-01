@@ -13,6 +13,12 @@ Shows the usage of the `NServiceBus.UniformSession.Testing` package.
 
 The approach shown here works with the `NServiceBus.UniformSession` NuGet package version 2.2.0 or above. Install the `NServiceBus.UniformSession.Testing` NuGet package.
 
+### Testing services
+
+Construct the service under test with an instance of `TestableUniformSession`. Call the methods being tested and make assertions about the messages sent and published.
+
+snippet: UniformSessionServiceTesting
+
 ### Testing a handler
 
 Construct the handler under test with an instance of `TestableUniformSession` and pass that same instance to the test.
@@ -24,9 +30,3 @@ snippet: UniformSessionHandlerTesting
 Construct the saga under test with an instance of `TestableUniformSession` and pass that same instance to the test.
 
 snippet: UniformSessionSagaTesting
-
-### Testing another service
-
-Construct the service under test with an instance of `TestableUniformSession`. Call the methods being tested and make assertions about the messages sent and published.
-
-snippet: UniformSessionServiceTesting
