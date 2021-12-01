@@ -11,6 +11,10 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
+## Support for RavenDB.Client version 5.2 and higher
+
+Starting with NServiceBus.RavenDB version 7.0.0 [RavenDB.Client](https://www.nuget.org/packages/RavenDB.Client/) version 5.2.1 or higher is required.
+
 ## Cluster-wide transactions
 
 This release comes with [cluster-wide transactions support](https://ravendb.net/docs/article-page/5.2/start/server/clustering/cluster-transactions) enabling the use of RavenDB clusters and database groups replicated across multiple nodes. In case of cluster configurations the cluster-wide transaction support needs to be enabled:
