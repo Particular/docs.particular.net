@@ -48,14 +48,23 @@ class SomeSaga : Saga<SomeSaga.SagaData>, IHandleMessages<SomeMessage>
 
 class SomeService
 {
-    private IUniformSession session;
-
     public SomeService(IUniformSession session)
     {
-        this.session = session;
     }
 
     public void DoTheThing() { }
+}
+
+class MyService
+{
+    public MyService(SharedComponent sharedComponent)
+    {
+    }
+
+    public Task Start(IMessageSession session)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 static class Assert

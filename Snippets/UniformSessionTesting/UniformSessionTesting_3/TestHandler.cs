@@ -8,6 +8,7 @@ class TestHandler
     {
         #region UniformSessionHandlerTesting
         var handlerContext = new TestableMessageHandlerContext();
+        // pass the handler context to TestableUniformSession:
         var uniformSession = new TestableUniformSession(handlerContext);
         var handler = new SomeMessageHandler(new SharedComponent(uniformSession));
 

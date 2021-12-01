@@ -1,16 +1,17 @@
-﻿using NServiceBus.UniformSession.Testing;
+﻿using NServiceBus.Testing;
+using NServiceBus.UniformSession.Testing;
 
 class TestService
 {
     void TheTest()
     {
         #region UniformSessionServiceTesting
-        var uniformSession = new TestableUniformSession();
-        var someService = new SomeService(uniformSession);
+        var session = new TestableUniformSession();
+        var service = new SomeService(session);
 
-        someService.DoTheThing();
+        service.DoTheThing();
 
-        Assert.AreEqual(1, uniformSession.SentMessages.Length);
+        Assert.AreEqual(1, session.SentMessages.Length);
         #endregion
     }
 }

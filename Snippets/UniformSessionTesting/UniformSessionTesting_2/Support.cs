@@ -48,11 +48,8 @@ class SomeSaga : Saga<SomeSaga.SagaData>
 
 class SomeService
 {
-    private IUniformSession session;
-
     public SomeService(IUniformSession session)
     {
-        this.session = session;
     }
 
     public void DoTheThing() { }

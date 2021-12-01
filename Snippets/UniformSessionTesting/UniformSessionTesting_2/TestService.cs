@@ -6,9 +6,9 @@ class TestService
     {
         #region UniformSessionServiceTesting
         var session = new TestableUniformSession();
-        var someService = new SomeService(session);
+        var service = new SomeService(session);
 
-        someService.DoTheThing();
+        service.DoTheThing();
 
         Assert.AreEqual(1, session.SentMessages.Length);
         #endregion
