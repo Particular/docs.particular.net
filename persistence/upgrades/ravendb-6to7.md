@@ -17,7 +17,7 @@ Starting with NServiceBus.RavenDB version 7.0.0 [RavenDB.Client](https://www.nug
 
 ## Cluster-wide transactions
 
-This release comes with [cluster-wide transactions support](https://ravendb.net/docs/article-page/5.2/start/server/clustering/cluster-transactions) enabling the use of RavenDB clusters and database groups replicated across multiple nodes. In case of cluster configurations the cluster-wide transaction support needs to be enabled:
+[Cluster-wide transactions](https://ravendb.net/docs/article-page/5.2/start/server/clustering/cluster-transactions) are supported, enabling the use of RavenDB clusters and database groups replicated across multiple nodes. In case of cluster configurations the cluster-wide transaction mode needs to be enabled:
 
 snippet: ravendb-persistence-cluster-wide-transactions
 
