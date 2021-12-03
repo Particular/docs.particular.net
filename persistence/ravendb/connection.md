@@ -7,7 +7,7 @@ redirects:
  - nservicebus/using-ravendb-in-nservicebus-connecting
  - nservicebus/ravendb/connecting
  - nservicebus/ravendb/connection
-reviewed: 2021-06-14
+reviewed: 2021-12-03
 ---
 
 include: dtc-warning
