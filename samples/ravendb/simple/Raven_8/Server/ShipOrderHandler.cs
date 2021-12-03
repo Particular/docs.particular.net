@@ -15,7 +15,7 @@ public class ShipOrderHandler :
             OrderId = message.OrderId,
             ShippingDate = DateTime.UtcNow,
         };
-        return session.StoreAsync(orderShipped);
+        return session.StoreAsync(orderShipped, context.CancellationToken);
     }
 }
 
