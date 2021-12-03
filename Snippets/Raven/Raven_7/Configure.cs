@@ -98,6 +98,17 @@ class Configure
         #endregion
     }
 
+    void OptimisticConcurrency(EndpointConfiguration endpointConfiguration)
+    {
+        #region ravendb-persistence-optimistic-concurrency
+
+        var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
+        var sagas = persistence.Sagas();
+        sagas.UseOptimisticLocking();
+
+        #endregion
+    }
+
     void EnableClusterWideTransactions(EndpointConfiguration endpointConfiguration)
     {
         #region ravendb-persistence-cluster-wide-transactions

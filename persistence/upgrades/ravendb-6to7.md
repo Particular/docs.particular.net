@@ -15,6 +15,12 @@ upgradeGuideCoreVersions:
 
 Starting with NServiceBus.RavenDB version 7.0.0 [RavenDB.Client](https://www.nuget.org/packages/RavenDB.Client/) version 5.2.1 or higher is required. For more information about the client and server changes visit the [official RavenDB migration guide](https://ravendb.net/docs/article-page/5.0/csharp/migration).
 
+## Pessimistic concurrency
+
+Up to and including version 6.3, the persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data. In almost all cases pessimistic concurrency control will improve performance, but in some edge cases optimistic concurrency control can actually be much faster. It is recommended to performance test if upgrading might cause issues. To enable optimistic concurrency use:
+
+snippet: ravendb-persistence-optimistic-concurrency
+
 ## Cluster-wide transactions
 
 [Cluster-wide transactions](https://ravendb.net/docs/article-page/5.2/start/server/clustering/cluster-transactions) are supported, enabling the use of RavenDB clusters and database groups replicated across multiple nodes. In case of cluster configurations the cluster-wide transaction mode needs to be enabled:
