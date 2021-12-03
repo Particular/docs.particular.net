@@ -1,7 +1,7 @@
 ---
 title: Outbox with RavenDB persistence
 component: Raven
-reviewed: 2021-06-14
+reviewed: 2021-12-03
 versions: '[2.0,)'
 related:
 - nservicebus/outbox
