@@ -17,7 +17,7 @@ Starting with NServiceBus.RavenDB version 7.0.0 [RavenDB.Client](https://www.nug
 
 ## Pessimistic concurrency
 
-Up to and including version 6.3, the persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data. In almost all cases pessimistic concurrency control will improve performance, but in some edge cases optimistic concurrency control can actually be much faster. It is recommended to performance test if upgrading might cause issues. To enable optimistic concurrency use:
+Up to and including version 6.5, the persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) by default when updating or deleting saga data. In most cases pessimistic concurrency control will improve performance, but in some edge cases optimistic concurrency control can actually be much faster. It is recommended to performance test if upgrading might cause issues. To enable optimistic concurrency use:
 
 snippet: ravendb-persistence-optimistic-concurrency
 

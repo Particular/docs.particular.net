@@ -1,7 +1,8 @@
 ## Sagas concurrency control
 
-The RavenDB persister allows for both optimistic and pessimistic concurrency options. As of NServiceBus.RavenDB version 7, he default is pessimistic concurrency.
+The RavenDB persister allows for both optimistic and pessimistic concurrency options. As of NServiceBus.RavenDB version 7, the default is pessimistic concurrency. To enable optimistic concurrency use:
 
+snippet: ravendb-persistence-optimistic-concurrency
 
 RavenDB does not provide pessimistic locking natively. The behavior is based on a spin lock that tries to acquire a lease on a resource.
 
