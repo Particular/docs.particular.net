@@ -27,16 +27,16 @@ partial: glance
 
 Specific versions of RavenDB Persistence are tied to a major version of NServiceBus and also designed to work with a specific version of the RavenDB client library. When releasing a new major version of NServiceBus, the corresponding RavenDB Persistence release will use the last supported version of RavenDB, so that it is never necessary to upgrade both NServiceBus and RavenDB at the same time.
 
-| NServiceBus | RavenDB Persistence | RavenDB Client |
-|:-----------:|:-------------------:|:--------------:|
-|     7.x     |        7.x          |       5.2      |
-|     7.x     |        6.x          |       4.2      |
-|     7.x     |        5.0.x        |       3.5      |
-|     6.x     |        4.2.x        |       3.5      |
-|     6.x     |        4.0.x        |       3.0      |
-|     5.x     |        3.2.x        |       3.5      |
-|     5.x     |        3.0.x        |       3.0      |
-|     5.x     |         2.x         |       2.5      |
+| RavenDB Persistence | RavenDB Client |
+|:-------------------:|:--------------:|
+|        7.x          |       5.2      |
+|        6.x          |       4.2      |
+|        5.0.x        |       3.5      |
+|        4.2.x        |       3.5      |
+|        4.0.x        |       3.0      |
+|        3.2.x        |       3.5      |
+|        3.0.x        |       3.0      |
+|         2.x         |       2.5      |
 
 See the [NServiceBus Packages Supported Versions](/nservicebus/upgrades/supported-versions.md#persistence-packages-nservicebus-ravendb) to see the support details for each version of RavenDB Persistence.
 
