@@ -1,5 +1,5 @@
 ---
-title: Cluster configurations with multiple nodes not supported
+title: Cluster configurations with multiple nodes
 component: raven
 reviewed: 2021-04-12
 versions: '[6.0,)'
