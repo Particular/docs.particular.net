@@ -831,7 +831,7 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.1.x](https://www.nuget.org/packages/Particular.PlatformSample/2.1.2) | 2021-11-02     | -                 | -                                 |
+| [2.1.x](https://www.nuget.org/packages/Particular.PlatformSample/2.1.3) | 2021-11-02     | -                 | -                                 |
 | [2.0.x](https://www.nuget.org/packages/Particular.PlatformSample/2.0.0) | 2021-09-16     | 2022-02-02        | Superseded by 2.1.x               |
 | [1.31.x](https://www.nuget.org/packages/Particular.PlatformSample/1.31.0) | 2021-09-16     | 2022-09-16        | Superseded by 2.0.x               |
 | [1.29.x](https://www.nuget.org/packages/Particular.PlatformSample/1.29.0) | 2021-08-03     | 2021-12-16        | Superseded by 1.31.x              |
