@@ -5,7 +5,7 @@ versions: '[2,)'
 related:
  - samples/ravendb
  - samples/multi-tenant/ravendb
-reviewed: 2021-06-14
+reviewed: 2021-12-03
 redirects:
  - nservicebus/ravendb
  - persistence/ravendb/licensing
