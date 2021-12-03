@@ -1,7 +1,7 @@
 ---
 title: Cluster configurations with multiple nodes
 component: raven
-reviewed: 2021-04-12
+reviewed: 2021-12-03
 versions: '[6.0,)'
 ---
 
