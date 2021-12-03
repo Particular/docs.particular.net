@@ -13,7 +13,7 @@
         {
             var document = new MyDocument();
             var ravenSession = context.SynchronizedStorageSession.RavenSession();
-            return ravenSession.StoreAsync(document);
+            return ravenSession.StoreAsync(document, context.CancellationToken);
         }
 
         #endregion

@@ -30,7 +30,6 @@ class Configure
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseDocumentStoreForSubscriptions(documentStore);
         persistence.UseDocumentStoreForSagas(documentStore);
-        persistence.UseDocumentStoreForGatewayDeduplication(documentStore);
 
         #endregion
     }
@@ -42,8 +41,6 @@ class Configure
         //TODO: instances of DocumentStore should be disposed of at endpoint cleanup time
         DocumentStore subscriptionStore;
         DocumentStore sagaStore;
-        DocumentStore timeoutStore;
-        DocumentStore gatewayStore;
 
         var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
         persistence.UseDocumentStoreForSubscriptions(
@@ -59,20 +56,6 @@ class Configure
                 sagaStore = new DocumentStore();
                 // configure documentStore here
                 return sagaStore;
-            });
-        persistence.UseDocumentStoreForTimeouts(
-            readOnlySettings =>
-            {
-                timeoutStore = new DocumentStore();
-                // configure documentStore here
-                return timeoutStore;
-            });
-        persistence.UseDocumentStoreForGatewayDeduplication(
-            readOnlySettings =>
-            {
-                gatewayStore = new DocumentStore();
-                // configure documentStore here
-                return gatewayStore;
             });
 
         #endregion
