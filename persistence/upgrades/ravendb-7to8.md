@@ -5,7 +5,7 @@ component: Raven
 related:
 - persistence/ravendb
 - nservicebus/upgrades/7to8
-reviewed: 2020-02-11
+reviewed: 2021-12-03
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
