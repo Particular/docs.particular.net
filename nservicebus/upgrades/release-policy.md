@@ -83,7 +83,7 @@ Since all important bug fixes are back-ported, upgrades may be done at convenien
 
 Major versions contain breaking changes and may also contain feature enhancements. They may also contain bug fixes which are not important enough to warrant a patch.
 
-Major versions are not backwards compatible. They contain more code changes than minor versions so the risk of upgrading is higher. While the breaking changes may not affect all systems, upgrading is likely to require code changes. In some cases major versions might require additional changes like using a new target framework or upgrading an infrastructure to a new version because the minimum required version was been lifted.
+Major versions are not backwards compatible. They contain more code changes than minor versions so the risk of upgrading is higher. While the breaking changes may not affect all systems, upgrading is likely to require code changes. In some cases major versions might require additional changes like using a new target framework or upgrading an infrastructure to a new version because the minimum required version was lifted.
 
 It is recommended to fully carefully read the upgrade guides and regression test a system after upgrading.
 
