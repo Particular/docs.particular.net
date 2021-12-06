@@ -5,12 +5,12 @@ component: Raven
 related:
  - nservicebus/sagas
  - persistence/ravendb
-reviewed: 2021-06-05
+reviewed: 2021-06-12
 ---
 
 include: dtc-warning
 
-include: cluster-configuration-warning
+include: cluster-configuration-info
 
 
 ## Code walk-through
