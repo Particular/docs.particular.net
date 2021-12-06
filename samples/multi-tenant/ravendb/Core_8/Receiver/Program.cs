@@ -74,18 +74,17 @@ class Program
         }
     }
 
-    static async Task CreateDatabase(DocumentStore documentStore)
+    static async Task CreateDatabase(IDocumentStore documentStore)
     {
-        var id = "MultiTenantSamples";
         try
         {
-            await documentStore.Maintenance.ForDatabase(id).SendAsync(new GetStatisticsOperation());
+            await documentStore.Maintenance.ForDatabase(documentStore.Database).SendAsync(new GetStatisticsOperation());
         }
         catch (DatabaseDoesNotExistException)
         {
             try
             {
-                await documentStore.Maintenance.Server.SendAsync(new CreateDatabaseOperation(new DatabaseRecord(id)));
+                await documentStore.Maintenance.Server.SendAsync(new CreateDatabaseOperation(new DatabaseRecord(documentStore.Database)));
             }
             catch (ConcurrencyException)
             {
