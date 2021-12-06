@@ -19,7 +19,7 @@ RavenDB Persistence requires [RavenDB.Client 4.2.0](https://www.nuget.org/packag
 
 ## Supported cluster configurations
 
-include: cluster-configuration-warning
+include: cluster-configuration-info
 
 ## Storage format for sagas
 
