@@ -1,4 +1,4 @@
-﻿namespace Raven_6.Session
+﻿namespace Raven_8.Session
 {
 
     public class MyMessage
