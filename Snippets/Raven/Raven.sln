@@ -2,8 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_3", "Raven_3\Raven_3.csproj", "{BC1360FA-FDDD-4908-AC64-0DDB6E0007EA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_4", "Raven_4\Raven_4.csproj", "{10CE989A-8E4F-400C-8BBD-3935B9FEE695}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_All", "Raven_All\Raven_All.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
@@ -29,8 +27,6 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BC1360FA-FDDD-4908-AC64-0DDB6E0007EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC1360FA-FDDD-4908-AC64-0DDB6E0007EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10CE989A-8E4F-400C-8BBD-3935B9FEE695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10CE989A-8E4F-400C-8BBD-3935B9FEE695}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
