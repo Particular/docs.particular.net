@@ -10,7 +10,7 @@ Applying a spin lock over a remote resource is not as expensive as it may sound.
 
 The pessimistic locking behavior can be customized using the following options:
 
-### Pessimistic Lease Lock Time:
+### Pessimistic Lease Lock Time
 
 By default, the persister locks a saga data document for 60 seconds. It is not recommended to have long-running handlers in sagas but it might sometimes be required to increase the lease duration.
 

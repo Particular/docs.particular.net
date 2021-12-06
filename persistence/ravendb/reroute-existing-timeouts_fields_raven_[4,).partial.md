@@ -4,5 +4,5 @@
   * Headers:
     * NServiceBus.ReplyToAddress
     * NServiceBus.Timeout.RouteExpiredTimeoutTo
-    * NServiceBus.OriginatingEndpoint 
+    * NServiceBus.OriginatingEndpoint
 * After the above changes are made, restart the endpoint to process the timeout.

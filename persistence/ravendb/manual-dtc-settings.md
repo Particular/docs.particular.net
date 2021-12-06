@@ -48,8 +48,8 @@ snippet: RavenDBManualDtcSettingExample
 
 In order to provide transaction safety, the following must be observed:
 
- * `documentStore.ResourceManagerId` must be constant across process restarts, and uniquely identify the process running on the machine. **Do not use `Guid.NewGuid()`. Otherwise, the transaction recovery process will fail when the process restarts.**
- * `documentStore.TransactionRecoveryStorage` must be set to an instance of `LocalDirectoryTransactionRecoveryStorage`, configured to a directory that is constant across process restarts, and writable by the process.
+* `documentStore.ResourceManagerId` must be constant across process restarts, and uniquely identify the process running on the machine. **Do not use `Guid.NewGuid()`. Otherwise, the transaction recovery process will fail when the process restarts.**
+* `documentStore.TransactionRecoveryStorage` must be set to an instance of `LocalDirectoryTransactionRecoveryStorage`, configured to a directory that is constant across process restarts, and writable by the process.
 
 ## Configuration by convention
 

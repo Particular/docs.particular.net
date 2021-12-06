@@ -13,7 +13,6 @@ include: cluster-configuration-info
 
 The default behavior of the RavenDB subscription persistence differs from other persisters in the way it handles versioning of message assemblies. It's important to understand this difference, especially when using a deployment solution that automatically increments assembly version numbers with each build.
 
-
 ## Technical details
 
 Most other persisters store subscriptions by message type alone, but the RavenDB persister additionally takes the message assembly's major version into account as well.
@@ -30,7 +29,6 @@ As a result, if the subscription storage contains 3 subscribers for `MyMessage, 
 This becomes an issue when the version increments as a result of an automated deployment pipeline, such as when a build server uses a `YYYY.MM.DD.BuildNumber` version format for all builds. At the beginning of a new year, message publishers will begin looking for a new major version and, as a result, fail to publish events to the correct subscribers.
 
 Because the version has been baked in to the RavenDB document id since the very first version, any attempt to modify the RavenDB persister to work like other persisters would be very high risk. This issue does not affect the vast majority of customers, and fairly simple workarounds to the problem exist. On the flip side, attempting to convert the storage format for existing subscriptions would run the risk of causing a message loss scenario for all customers.
-
 
 ## Guidelines
 
