@@ -1,7 +1,7 @@
 ---
 title: RavenDB Persistence in multi-tenant systems
 summary: Configure RavenDB Persistence to support multi-tenant scenarios.
-reviewed: 2020-12-22
+reviewed: 2021-12-06
 component: Raven
 related:
 - persistence/ravendb
@@ -10,7 +10,7 @@ related:
 
 include: dtc-warning
 
-include: cluster-configuration-warning
+include: cluster-configuration-info
 
 This sample demonstrates how to configure RavenDB Persistence to store tenant-specific data in separate databases. The tenant-specific information includes the saga state, the business documents that are accessed using [RavenDB-managed session](/persistence/ravendb/#shared-session), and the outbox records.
 
@@ -40,16 +40,9 @@ The built-in Outbox cleanup does not work in a multi-tenant environment because 
 
 snippet: DisableOutboxCleanup
 
-The simplest way to ensure that the dispatched Outbox documents are removed is to use the RavenDB [Document expiration](https://ravendb.net/docs/article-page/3.5/Csharp/server/bundles/expiration) bundle. The following code ensures that tenants’ databases are created with this bundle enabled:
+The simplest way to ensure that the dispatched Outbox documents are removed is to use the RavenDB [Document expiration](https://ravendb.net/docs/article-page/5.3/csharp/server/extensions/expiration) feature. The following code ensures that tenants’ databases are created and the feature is enabled:
 
 snippet: CreateDatabase
-
-To make sure the expiration bundle removes old Outbox documents they need to be marked for expiry. This task is performed by a document store listener.
-
-snippet: DocumentStoreListener
-
-This code is executed each time the RavenDB session is about to send data modifications to the server. It checks if the updated document is an Outbox record and if it has been marked as dispatched. In that case it marks it for expiry after 10 days.
-
 
 #### Connecting to the tenant database
 

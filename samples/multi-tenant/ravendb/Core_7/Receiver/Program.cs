@@ -1,10 +1,14 @@
 ﻿using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
-using Raven.Abstractions.Data;
-using Raven.Client.Document;
+using Raven.Client.Documents;
+using Raven.Client.Documents.Operations;
+using Raven.Client.Documents.Operations.Expiration;
+using Raven.Client.Exceptions;
+using Raven.Client.Exceptions.Database;
+using Raven.Client.ServerWide;
+using Raven.Client.ServerWide.Operations;
 
 class Program
 {
@@ -16,27 +20,20 @@ class Program
 
         using (var documentStore = new DocumentStore
         {
-            Url = "http://localhost:8080",
-            DefaultDatabase = "MultiTenantSamples",
-
-#if NET461
-            EnlistInDistributedTransactions = false
-#endif
+            Urls = new[] { "http://localhost:8080" },
+            Database = "MultiTenantSamples",
         })
         {
-            documentStore.RegisterListener(new MarkForExpiryListener());
             documentStore.Initialize();
-            CreateDatabase(documentStore, "A");
-            CreateDatabase(documentStore, "B");
+            await CreateDatabase(documentStore);
+            await CreateTenantDatabase(documentStore, "A");
+            await CreateTenantDatabase(documentStore, "B");
 
             var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
-            // Only required to simplify the sample setup
-            persistence.DoNotSetupDatabasePermissions();
-            persistence.DisableSubscriptionVersioning();
             persistence.SetDefaultDocumentStore(documentStore);
 
             endpointConfiguration.UseTransport<LearningTransport>();
-            endpointConfiguration.EnableOutbox();
+            var outbox = endpointConfiguration.EnableOutbox();
 
             #region DetermineDatabase
 
@@ -51,7 +48,7 @@ class Program
 
             #region DisableOutboxCleanup
 
-            endpointConfiguration.SetFrequencyToRunDeduplicationDataCleanup(Timeout.InfiniteTimeSpan);
+            outbox.SetFrequencyToRunDeduplicationDataCleanup(Timeout.InfiniteTimeSpan);
 
             #endregion
 
@@ -77,28 +74,50 @@ class Program
         }
     }
 
-    static void CreateDatabase(DocumentStore documentStore, string tenant)
+    static async Task CreateDatabase(DocumentStore documentStore)
     {
-        var globalAdmin = documentStore.DatabaseCommands.GlobalAdmin;
+        var id = "MultiTenantSamples";
+        try
+        {
+            await documentStore.Maintenance.ForDatabase(id).SendAsync(new GetStatisticsOperation());
+        }
+        catch (DatabaseDoesNotExistException)
+        {
+            try
+            {
+                await documentStore.Maintenance.Server.SendAsync(new CreateDatabaseOperation(new DatabaseRecord(id)));
+            }
+            catch (ConcurrencyException)
+            {
+            }
+        }
+    }
 
+    static async Task CreateTenantDatabase(DocumentStore documentStore, string tenant)
+    {
         #region CreateDatabase
 
-        var existingDbs = globalAdmin.GetDatabaseNames(100);
         var id = $"MultiTenantSamples-{tenant}";
-        if (existingDbs.Contains(id))
+        try
         {
-            return;
+            await documentStore.Maintenance.ForDatabase(id).SendAsync(new GetStatisticsOperation());
+        }
+        catch (DatabaseDoesNotExistException)
+        {
+            try
+            {
+                await documentStore.Maintenance.Server.SendAsync(new CreateDatabaseOperation(new DatabaseRecord(id)));
+            }
+            catch (ConcurrencyException)
+            {
+            }
         }
 
-        globalAdmin.CreateDatabase(new DatabaseDocument
+        await documentStore.Maintenance.SendAsync(new ConfigureExpirationOperation(new ExpirationConfiguration
         {
-            Id = id,
-            Settings =
-            {
-                { "Raven/ActiveBundles", "DocumentExpiration" },
-                { "Raven/DataDir", $@"~\Databases\{id}" }
-            }
-        });
+            Disabled = false,
+            DeleteFrequencyInSec = 60
+        }));
 
         #endregion
     }
