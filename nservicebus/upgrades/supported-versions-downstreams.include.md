@@ -96,7 +96,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.0.0) | 2021-08-09     | -                 | -                                 |
 | [0.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/0.2.1) | 2021-03-04     | 2022-08-09        | Superseded by 1.0.x               |
-| [~~0.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/0.1.2) | ~~2020-10-13~~ | ~~2021-06-04~~    | ~~Superseded by 0.2.x~~           |
 
 #### [NServiceBus.Persistence.ServiceFabric](/nuget/NServiceBus.Persistence.ServiceFabric)
 
@@ -120,7 +119,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.5.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.1) | 2021-03-04     | -                 | -                                 |
-| [~~6.4.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.4.1) | ~~2020-07-29~~ | ~~2021-06-04~~    | ~~Superseded by 6.5.x~~           |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/4.2.6) | 2017-06-28     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Storage.MongoDB](/nuget/NServiceBus.Storage.MongoDB)
@@ -397,7 +395,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.3.x](https://www.nuget.org/packages/NServiceBus.Testing/7.3.0) | 2021-09-07     | -                 | -                                 |
-| [7.2.x](https://www.nuget.org/packages/NServiceBus.Testing/7.2.0) | 2019-09-10     | 2021-12-07        | Superseded by 7.3.x               |
+| [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.2.0) | ~~2019-09-10~~ | ~~2021-12-07~~    | ~~Superseded by 7.3.x~~           |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Testing/6.0.4) | 2016-10-11     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.UniformSession](/nuget/NServiceBus.UniformSession)
