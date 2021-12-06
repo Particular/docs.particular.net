@@ -75,7 +75,7 @@ Minimal testing may also be required, including verification that the patch fixe
 
 Minor versions contain feature enhancements and may also contain bug fixes which are not important enough to warrant a patch version.
 
-Minor versions are backwards compatible, as stipulated by SemVer. They contain more code changes than patch versions so the risk of upgrading is slightly higher. It is also likely that code changes are required as part of the upgrade, to take advantage of the feature enhancements.
+Minor versions are backwards compatible, as stipulated by SemVer. They contain more code changes than patch versions so the risk of upgrading is slightly higher. Minor versions may also come with new versions of existing or newly added package dependencies. It is also likely that code changes are required as part of the upgrade, to take advantage of the feature enhancements. 
 
 Since all important bug fixes are back-ported, upgrades may be done at convenient times. For example, when releasing non-trivial updates to a system.
 
@@ -83,9 +83,9 @@ Since all important bug fixes are back-ported, upgrades may be done at convenien
 
 Major versions contain breaking changes and may also contain feature enhancements. They may also contain bug fixes which are not important enough to warrant a patch.
 
-Major versions are not backwards compatible. They contain more code changes than minor versions so the risk of upgrading is higher. While the breaking changes may not affect all systems, upgrading is likely to require code changes.
+Major versions are not backwards compatible. They contain more code changes than minor versions so the risk of upgrading is higher. While the breaking changes may not affect all systems, upgrading is likely to require code changes. In some cases major versions might require additional changes like using a new target framework or upgrading an infrastructure to a new version because the minimum required version was been lifted.
 
-It is recommended to fully regression test a system after upgrading.
+It is recommended to fully carefully read the upgrade guides and regression test a system after upgrading.
 
 ## Release quality
 
