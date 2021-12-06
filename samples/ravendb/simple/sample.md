@@ -1,6 +1,6 @@
 ---
 title: Simple RavenDB Persistence Usage
-summary: Using RavenDB to store Sagas and Timeouts.
+summary: Using RavenDB to store Sagas
 component: Raven
 related:
  - nservicebus/sagas
@@ -64,31 +64,34 @@ WARNING: By default, this sample uses the [Learning Transport](/transports/learn
  * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` map to simple properties.
  * Custom properties on the SagaData, in this case `OrderDescription` and `OrderId`, are also mapped to simple properties.
 
-![](sagadata.png)
-
-
-### The Timeouts
-
- * The subscriber is stored in a `Destination` with the nested properties `Queue` and `Machine`.
- * The endpoint that initiated the timeout is stored in the `OwningTimeoutManager` property.
- * The connected saga ID is stored in a `SagaId` property.
- * The serialized data for the message is stored in a `State` property.
- * The scheduled timestamp for the timeout is stored in a `Time` property.
- * Any headers associated with the timeout are stored in an array of key value pairs.
-
-![](timeouts.png)
-
-
-### The Subscriptions
-
-Note that the message type maps to multiple subscriber endpoints.
-
- * The Subscription message type and version are stored in the `MessageType` property.
- * The list of subscribers is stored in a array of objects each containing `Queue` and `MachineName` properties.
-
-![](subscriptions.png)
-
+```json
+{
+    "IdentityDocId": "OrderSagaData/OrderId/33e54adb-10fe-ac05-abdd-a656e8f995b3",
+    "Data": {
+        "$type": "OrderSagaData, Server",
+        "OrderId": "683e7b20-527a-475d-847c-79ef6b0f40a1",
+        "OrderDescription": "The saga for order 683e7b20-527a-475d-847c-79ef6b0f40a1",
+        "Id": "9bf646a0-25b1-4a79-afe3-adf600965476",
+        "Originator": "Samples.RavenDB.Client",
+        "OriginalMessageId": "06cdd874-de9b-40bb-8b90-adf600965448"
+    },
+    "@metadata": {
+        "@collection": "SagaDataContainers",
+        "Raven-Clr-Type": "NServiceBus.Persistence.RavenDB.SagaDataContainer, NServiceBus.RavenDB",
+        "NServiceBus-Persistence-RavenDB-SagaDataContainer-SchemaVersion": "1.0.0"
+    }
+}
+```
 
 ### The Handler Stored data
 
-![](handlerdoc.png)
+```json
+{
+    "OrderId": "683e7b20-527a-475d-847c-79ef6b0f40a1",
+    "ShippingDate": "2021-12-06T09:07:20.1902988Z",
+    "@metadata": {
+        "@collection": "OrderShippeds",
+        "Raven-Clr-Type": "OrderShipped, Server"
+    }
+}
+```
