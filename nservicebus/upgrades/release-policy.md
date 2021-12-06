@@ -85,7 +85,7 @@ Major versions contain breaking changes and may also contain feature enhancement
 
 Major versions are not backwards compatible. They contain more code changes than minor versions so the risk of upgrading is higher. While the breaking changes may not affect all systems, upgrading is likely to require code changes. In some cases major versions might require additional changes like using a new target framework or upgrading an infrastructure to a new version because the minimum required version was lifted.
 
-It is recommended to fully carefully read the upgrade guides and regression test a system after upgrading.
+It is recommended to carefully read the upgrade guides and perform a full regression test on a system after upgrading.
 
 ## Release quality
 
