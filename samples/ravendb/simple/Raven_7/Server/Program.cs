@@ -34,9 +34,6 @@ class Program
             var outbox = endpointConfiguration.EnableOutbox();
             outbox.SetTimeToKeepDeduplicationData(TimeSpan.FromMinutes(5));
 
-            // disable clean up and rely on document expiration instead
-            outbox.SetFrequencyToRunDeduplicationDataCleanup(Timeout.InfiniteTimeSpan);
-
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
             transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             endpointConfiguration.EnableInstallers();
