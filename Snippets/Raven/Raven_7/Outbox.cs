@@ -14,13 +14,5 @@
             outboxSettings.SetFrequencyToRunDeduplicationDataCleanup(TimeSpan.FromMinutes(1));
             #endregion
         }
-
-        public void OutboxDisableCleanup(EndpointConfiguration endpointConfiguration)
-        {
-            #region OutboxRavendBDisableCleanup
-            var outbox = endpointConfiguration.EnableOutbox();
-            outbox.SetFrequencyToRunDeduplicationDataCleanup(Timeout.InfiniteTimeSpan);
-            #endregion
-        }
     }
 }

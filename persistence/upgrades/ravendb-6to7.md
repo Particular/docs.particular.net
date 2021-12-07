@@ -21,6 +21,14 @@ Up to and including version 6.5, the persistence uses [optimistic concurrency co
 
 snippet: ravendb-persistence-optimistic-concurrency
 
+## Outbox cleaner disabled by default
+
+Starting with NServiceBus.RavenDB version 6.3, it is recommended to rely on [document expiration](https://ravendb.net/docs/article-page/latest/csharp/server/extensions/expiration) for outbox cleanup. The outbox cleaner has been disabled by default in this version of the persister. If the cleaner was previously disabled with
+
+snippet: OutboxRavendBDisableCleanup
+
+the code can be safely removed. For more information, refer to the [outbox cleanup guidance](/persistence/ravendb/outbox.md?version=raven_6.3#deduplication-record-lifespan).
+
 ## Cluster-wide transactions
 
 [Cluster-wide transactions](https://ravendb.net/docs/article-page/5.2/start/server/clustering/cluster-transactions) are supported, enabling the use of RavenDB clusters and database groups replicated across multiple nodes. In case of cluster configurations the cluster-wide transaction mode needs to be enabled:
