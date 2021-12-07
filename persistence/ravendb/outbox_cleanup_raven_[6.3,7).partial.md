@@ -1,3 +1,9 @@
+The RavenDB implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
+
+These default settings can be changed by specifying new defaults in the settings dictionary:
+
+snippet: OutboxRavendBTimeToKeep
+
 Starting with NServiceBus.RavenDB version 6.3, it is recommended to disable cleanup and rely on [document expiration](https://ravendb.net/docs/article-page/latest/csharp/server/extensions/expiration) instead.
 
 Cleanup may be disabled by specifying `Timeout.InfiniteTimeSpan` for `SetFrequencyToRunDeduplicationDataCleanup`:
