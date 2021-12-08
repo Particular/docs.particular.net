@@ -72,14 +72,11 @@ snippet: EmptyHandlerAsync
 
 If you want to learn more about working with async methods, see [Asynchronous Handlers](/nservicebus/handlers/async-handlers.md).
 
-A single class can implement multiple `IHandleMessages<T>` for multiple message types. This allows grouping handlers that are logically related, although a new instance of the class will be created for every message processed.
+It makes no difference whether handlers are implemented inside one or multiple classes. A single class can implement multiple `IHandleMessages<T>` for multiple message types so you can group logically related message handlers together in the same class in order to make your code easier to understand. Just remember that each time a message is processed, a new instance of that class is instantiated by the framework. Thus, you can't set a private member variable in one message handler and then expect to have that value around when the next message (regardless of type) is processed.
 
 snippet: MultiHandler
 
 When NServiceBus starts up, it scans the types in all available assemblies, finds all message handler classes, and automatically wires them up, so that they will be invoked when messages arrive. There's no special configuration required - it just works.
-
-It makes no difference whether handlers are implemented inside one or multiple classes. You can group related message handlers together in the same class in order to make your code easier to understand. Just remember that each time a message is processed, a new instance of that class is instantiated by the framework. You can't set a private member variable in one message handler and then expect to have that value around when the next message (regardless of type) is processed.
-
 
 ## Exercise
 
