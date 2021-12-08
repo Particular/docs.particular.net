@@ -80,9 +80,7 @@ When NServiceBus starts up, it scans the types in all available assemblies, find
 
 ## Exercise
 
-Now let's take the solution we started in the last lesson and modify it to send a message. You can use the completed solution from the last lesson to use as a starting point.
-
-When we're done, the ClientUI endpoint will send a PlaceOrder message to itself and then process that message, as depicted in the following diagram:
+Now let's take the solution we started in the last lesson and modify it to send a message. When we're done, the ClientUI endpoint will send a PlaceOrder message to itself and then process that message, as depicted in the following diagram:
 
 ![Exercise 2 Diagram](diagram.svg)
 
