@@ -1,6 +1,6 @@
-The RavenDB implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
+The RavenDB persistence retains deduplication records for 7 days by default and runs the purge operation every minute.
 
-These default settings can be changed by specifying new defaults in the settings dictionary:
+These settings can be modified by specifying the desired values in the settings dictionary:
 
 snippet: OutboxRavendBTimeToKeep
 
