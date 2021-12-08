@@ -50,3 +50,17 @@ It is possible to [use immutable types as messages](/nservicebus/messaging/immut
 NOTE: On the wire it makes no difference if mutable or immutable message types are used.
 
 For example, the [Newtonsoft JSON Serializer](newtonsoft.md) by default supports immutable messages types.
+
+## Security
+
+Deserialization of messages sometimes happens based on type information that is embedded in the payload. This can result in a security vulnerability where a specially crafted message body can result in unwanted code execution. 
+
+This can be a potential threat when messages are allowed to be sent to a queue by a anonymous identity or by a rogue sender. Such senders could send a malicious body that can results in unwanted code execution or execution of shell commands.
+
+In general embedded type information is used for [messages inheritance and polymorphic dispatch](/nservicebus/messaging/messages-as-interfaces.md). 
+
+### Mitigation
+
+If the system does not use this and the system needs to be security hardened to prevent any attacks then use a serializer that does not use embedded type information for deserialization or configure the selected serializer to ignore embedded type information.
+
+WARN: Disabling deserializing messages with embedded type information can result in such messages failing.
