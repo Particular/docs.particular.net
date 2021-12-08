@@ -1,7 +1,7 @@
 ---
 title: Header Manipulation
 summary: All extension points for mutating messages.
-reviewed: 2019-09-16
+reviewed: 2021-12-07
 component: Core
 related:
 - samples/messagemutators
