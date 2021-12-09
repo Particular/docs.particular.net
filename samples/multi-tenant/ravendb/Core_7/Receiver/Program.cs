@@ -46,12 +46,6 @@ class Program
 
             #endregion
 
-            #region DisableOutboxCleanup
-
-            outbox.SetFrequencyToRunDeduplicationDataCleanup(Timeout.InfiniteTimeSpan);
-
-            #endregion
-
             var pipeline = endpointConfiguration.Pipeline;
 
             pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");

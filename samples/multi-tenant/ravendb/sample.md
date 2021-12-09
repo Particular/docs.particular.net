@@ -36,9 +36,7 @@ include: persistence-code
 
 #### Outbox cleanup
 
-The built-in Outbox cleanup does not work in a multi-tenant environment because it’s executed in the context of the shared database, while Outbox documents are stored in the tenants’ database. For that reason it needs to be disabled.
-
-snippet: DisableOutboxCleanup
+The built-in periodic Outbox cleanup does not work in a multi-tenant environment because it’s executed in the context of the shared database, while Outbox documents are stored in the tenants’ database.
 
 The simplest way to ensure that the dispatched Outbox documents are removed is to use the RavenDB [Document expiration](https://ravendb.net/docs/article-page/5.3/csharp/server/extensions/expiration) feature. The following code ensures that tenants’ databases are created and the feature is enabled:
 
