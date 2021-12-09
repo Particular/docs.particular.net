@@ -1200,6 +1200,9 @@ The word `Bus` should be avoided in documentation. Some replacements include:
 
 The word `Bus` is allowed when a particular piece of documentation refers specifically to version 5 or below and discusses low level implementation details.
 
+### Core
+
+The word `core` as a synonym for `NServiceBus` or `NServiceBus Core` should be avoided in the documentation. Prefer using `NServiceBus` or `NServiceBus package`.
 
 # Links to 3rd parties
 
