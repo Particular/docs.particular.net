@@ -31,7 +31,7 @@ For more information, refer to the [outbox cleanup guidance](/persistence/ravend
 
 ## Cluster-wide transactions
 
-[Cluster-wide transactions](https://ravendb.net/docs/article-page/5.2/start/server/clustering/cluster-transactions) are supported, enabling the use of RavenDB clusters and database groups replicated across multiple nodes. In case of cluster configurations the cluster-wide transaction mode needs to be enabled:
+[Cluster-wide transactions](https://ravendb.net/docs/article-page/5.2/start/server/clustering/cluster-transactions) are supported, enabling the use of RavenDB clusters and database groups replicated across multiple nodes. To turn on cluster-wide transaction support use the following configuration:
 
 snippet: ravendb-persistence-cluster-wide-transactions-6to7
 
