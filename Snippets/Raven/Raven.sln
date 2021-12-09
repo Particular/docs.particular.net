@@ -2,8 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_3", "Raven_3\Raven_3.csproj", "{BC1360FA-FDDD-4908-AC64-0DDB6E0007EA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_4", "Raven_4\Raven_4.csproj", "{10CE989A-8E4F-400C-8BBD-3935B9FEE695}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_All", "Raven_All\Raven_All.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
@@ -20,13 +18,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_6.4", "Raven_6.4\Rave
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_6.5", "Raven_6.5\Raven_6.5.csproj", "{CFE2511D-FFE9-4792-B9BF-B388210183C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_7", "Raven_7\Raven_7.csproj", "{3B73F42C-589B-42FA-A3E1-AE9E5B4DFB9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_8", "Raven_8\Raven_8.csproj", "{78DE4BD1-4F9C-4148-89D8-179B158CD753}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BC1360FA-FDDD-4908-AC64-0DDB6E0007EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC1360FA-FDDD-4908-AC64-0DDB6E0007EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10CE989A-8E4F-400C-8BBD-3935B9FEE695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10CE989A-8E4F-400C-8BBD-3935B9FEE695}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -43,6 +43,10 @@ Global
 		{B6DFDBB6-23B7-4B19-BA29-AFAFA67BCB20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFE2511D-FFE9-4792-B9BF-B388210183C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CFE2511D-FFE9-4792-B9BF-B388210183C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B73F42C-589B-42FA-A3E1-AE9E5B4DFB9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B73F42C-589B-42FA-A3E1-AE9E5B4DFB9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78DE4BD1-4F9C-4148-89D8-179B158CD753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78DE4BD1-4F9C-4148-89D8-179B158CD753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

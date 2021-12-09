@@ -4,7 +4,7 @@ By default NServiceBus.RavenDB uses optimistic concurrency control. Pessimistic 
 
 snippet: ravendb-sagas-pessimistic-lock
 
-NOTE: Starting with NServiceBus.RavenDB version 6.5, pessimistic locking is the default option for concurrency control.
+NOTE: Starting with NServiceBus.RavenDB version 7.0, pessimistic locking is the default option for concurrency control.
 
 ### Pessimistic locking internals
 

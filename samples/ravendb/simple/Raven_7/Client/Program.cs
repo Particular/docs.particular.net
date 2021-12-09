@@ -9,7 +9,7 @@ class Program
         Console.Title = "Samples.RavenDB.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Client");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

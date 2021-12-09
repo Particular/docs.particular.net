@@ -26,7 +26,6 @@ class Program
             documentStore.Initialize();
 
             var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
-            // Only required to simplify the sample setup
             persistence.SetDefaultDocumentStore(documentStore);
 
             #endregion
@@ -34,14 +33,8 @@ class Program
             var outbox = endpointConfiguration.EnableOutbox();
             outbox.SetTimeToKeepDeduplicationData(TimeSpan.FromMinutes(5));
 
-            // disable clean up and rely on document expiration instead
-            outbox.SetFrequencyToRunDeduplicationDataCleanup(Timeout.InfiniteTimeSpan);
-
-            var transport = new LearningTransport
-            {
-                TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
-            };
-            var routing = endpointConfiguration.UseTransport(transport);
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             endpointConfiguration.EnableInstallers();
 
             await EnsureDatabaseExistsAndExpirationEnabled(documentStore);

@@ -9,12 +9,12 @@ redirects:
  - nservicebus/ravendb/how-to-change-resourcemanagerid
  - nservicebus/ravendb/resourcemanagerid
  - nservicebus/ravendb/manual-dtc-settings
-reviewed: 2021-06-14
+reviewed: 2021-12-03
 ---
 
 include: dtc-warning
 
-include: cluster-configuration-warning
+include: cluster-configuration-info
 
 DANGER: Since distributed transactions are not supported for RavenDB persistence, this page remains for archival purposes only.
 
@@ -48,8 +48,8 @@ snippet: RavenDBManualDtcSettingExample
 
 In order to provide transaction safety, the following must be observed:
 
- * `documentStore.ResourceManagerId` must be constant across process restarts, and uniquely identify the process running on the machine. **Do not use `Guid.NewGuid()`. Otherwise, the transaction recovery process will fail when the process restarts.**
- * `documentStore.TransactionRecoveryStorage` must be set to an instance of `LocalDirectoryTransactionRecoveryStorage`, configured to a directory that is constant across process restarts, and writable by the process.
+* `documentStore.ResourceManagerId` must be constant across process restarts, and uniquely identify the process running on the machine. **Do not use `Guid.NewGuid()`. Otherwise, the transaction recovery process will fail when the process restarts.**
+* `documentStore.TransactionRecoveryStorage` must be set to an instance of `LocalDirectoryTransactionRecoveryStorage`, configured to a directory that is constant across process restarts, and writable by the process.
 
 ## Configuration by convention
 

@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 using Raven.Client.Documents;
+using Raven.Client.Documents.Operations;
 using Raven.Client.Documents.Operations.Expiration;
 using Raven.Client.Exceptions;
+using Raven.Client.Exceptions.Database;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
 
@@ -21,40 +22,18 @@ class Program
         {
             Urls = new[] { "http://localhost:8080" },
             Database = "MultiTenantSamples",
-#if NET461
-            EnlistInDistributedTransactions = false
-#endif
         })
         {
-            #region DocumentStoreListener
-
-            documentStore.OnBeforeStore += (sender, args) =>
-            {
-                if (args.Entity.GetType().Name != "OutboxRecord")
-                {
-                    return;
-                }
-
-                var dispatched = args.Entity.GetPropertyValue<bool>("Dispatched");
-                if (dispatched)
-                {
-                    var dispatchedAt = args.Entity.GetPropertyValue<DateTime>("DispatchedAt");
-                    var expiry = dispatchedAt.AddDays(10);
-                    args.DocumentMetadata["Raven-Expiration-Date"] = expiry.ToString(CultureInfo.InvariantCulture);
-                }
-            };
-
-            #endregion
-
             documentStore.Initialize();
             await CreateDatabase(documentStore);
-            await CreateDatabase(documentStore, "A");
-            await CreateDatabase(documentStore, "B");
+            await CreateTenantDatabase(documentStore, "A");
+            await CreateTenantDatabase(documentStore, "B");
 
             var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
             persistence.SetDefaultDocumentStore(documentStore);
 
             endpointConfiguration.UseTransport(new LearningTransport());
+            var outbox = endpointConfiguration.EnableOutbox();
 
             #region DetermineDatabase
 
@@ -64,13 +43,6 @@ class Program
                     ? $"MultiTenantSamples-{tenantId}"
                     : "MultiTenantSamples";
             });
-
-            #endregion
-
-            #region DisableOutboxCleanup
-
-            var outboxSettings = endpointConfiguration.EnableOutbox();
-            outboxSettings.SetFrequencyToRunDeduplicationDataCleanup(Timeout.InfiniteTimeSpan);
 
             #endregion
 
@@ -96,23 +68,49 @@ class Program
         }
     }
 
-    static async Task CreateDatabase(DocumentStore documentStore, string tenant = null)
+    static async Task CreateDatabase(IDocumentStore documentStore)
+    {
+        try
+        {
+            await documentStore.Maintenance.ForDatabase(documentStore.Database).SendAsync(new GetStatisticsOperation());
+        }
+        catch (DatabaseDoesNotExistException)
+        {
+            try
+            {
+                await documentStore.Maintenance.Server.SendAsync(new CreateDatabaseOperation(new DatabaseRecord(documentStore.Database)));
+            }
+            catch (ConcurrencyException)
+            {
+            }
+        }
+    }
+
+    static async Task CreateTenantDatabase(DocumentStore documentStore, string tenant)
     {
         #region CreateDatabase
 
-        var id = tenant != null ? $"MultiTenantSamples-{tenant}" : "MultiTenantSamples";
-        // create the database
+        var id = $"MultiTenantSamples-{tenant}";
         try
         {
-            await documentStore.Maintenance.Server.SendAsync(new CreateDatabaseOperation(new DatabaseRecord(id)));
+            await documentStore.Maintenance.ForDatabase(id).SendAsync(new GetStatisticsOperation());
         }
-        catch (ConcurrencyException)
+        catch (DatabaseDoesNotExistException)
         {
-            // intentionally ignored
+            try
+            {
+                await documentStore.Maintenance.Server.SendAsync(new CreateDatabaseOperation(new DatabaseRecord(id)));
+            }
+            catch (ConcurrencyException)
+            {
+            }
         }
 
-        // enable document expiration
-        await documentStore.Maintenance.ForDatabase(id).SendAsync(new ConfigureExpirationOperation(new ExpirationConfiguration { Disabled = false, DeleteFrequencyInSec = 10}));
+        await documentStore.Maintenance.SendAsync(new ConfigureExpirationOperation(new ExpirationConfiguration
+        {
+            Disabled = false,
+            DeleteFrequencyInSec = 60
+        }));
 
         #endregion
     }

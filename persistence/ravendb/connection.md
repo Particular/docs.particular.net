@@ -7,12 +7,12 @@ redirects:
  - nservicebus/using-ravendb-in-nservicebus-connecting
  - nservicebus/ravendb/connecting
  - nservicebus/ravendb/connection
-reviewed: 2021-06-14
+reviewed: 2021-12-03
 ---
 
 include: dtc-warning
 
-include: cluster-configuration-warning
+include: cluster-configuration-info
 
 The following sections outline various ways to connect to the RavenDB server. Specifying an external shared store (providing a fully configured RavenDB `DocumentStore` instance) is preferred so that the configuration of the DocumentStore is not obscured.
 

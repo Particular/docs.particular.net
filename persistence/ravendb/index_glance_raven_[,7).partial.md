@@ -3,7 +3,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |Feature                    |   |
 |:---                       |---
 |Supported storage types    |Sagas, Outbox, Subscriptions, Timeouts
-|Transactions               |via `IDocumentSession.SaveChanges()`
+|Transactions               |via `IDocumentSession.SaveChanges()`, no support for cluster-wide transactions
 |Concurrency control        |Optimistic concurrency, optional custom pessimistic concurrency for performance
 |Scripted deployment        |Not supported
 |Installers                 |None. Required indexes are created in the database as needed.

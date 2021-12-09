@@ -2,7 +2,7 @@
 title: RavenDB Persistence Saga Concurrency
 summary: Explains how concurrency works with sagas in the RavenDB persister
 component: raven
-reviewed: 2021-06-25
+reviewed: 2021-12-03
 related:
  - nservicebus/sagas/concurrency
 redirects:
@@ -11,7 +11,7 @@ redirects:
 
 include: dtc-warning
 
-include: cluster-configuration-warning
+include: cluster-configuration-info
 
 ## Default behavior
 

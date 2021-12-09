@@ -5,7 +5,7 @@ versions: '[2,)'
 related:
  - samples/ravendb
  - samples/multi-tenant/ravendb
-reviewed: 2021-06-14
+reviewed: 2021-12-03
 redirects:
  - nservicebus/ravendb
  - persistence/ravendb/licensing
@@ -14,7 +14,7 @@ redirects:
 
 include: dtc-warning
 
-include: cluster-configuration-warning
+include: cluster-configuration-info
 
 Uses the [RavenDB document database](https://ravendb.net/) for storage.
 
@@ -27,18 +27,15 @@ partial: glance
 
 Specific versions of RavenDB Persistence are tied to a major version of NServiceBus and also designed to work with a specific version of the RavenDB client library. When releasing a new major version of NServiceBus, the corresponding RavenDB Persistence release will use the last supported version of RavenDB, so that it is never necessary to upgrade both NServiceBus and RavenDB at the same time.
 
-| NServiceBus | RavenDB Persistence | RavenDB Client | Platform    |
-|:-----------:|:-------------------:|:--------------:|:-----------:|
-|     7.x     |        6.x          |       4.2      | .NET 4.7.2 / .NET Core 2.1  |
-|     7.x     |        5.0.x        |       3.5      | .NET 4.5.2 / .NET Core 2.0  |
-|     6.x     |        4.2.x        |       3.5      | .NET 4.5.2  |
-|     6.x     |        4.0.x        |       3.0      | .NET 4.5.2  |
-|     5.x     |        3.2.x        |       3.5      | .NET 4.5.2  |
-|     5.x     |        3.0.x        |       3.0      | .NET 4.5.2  |
-|     5.x     |         2.x         |       2.5      | .NET 4.5.2  |
+| RavenDB Persistence | RavenDB Client |
+|:-------------------:|:--------------:|
+|        7.x          |       5.2      |
+|        6.x          |       4.2      |
+|        5.0.x        |       3.5      |
+|        4.2.x        |       3.5      |
+|        4.0.x        |       3.0      |
 
 See the [NServiceBus Packages Supported Versions](/nservicebus/upgrades/supported-versions.md#persistence-packages-nservicebus-ravendb) to see the support details for each version of RavenDB Persistence.
-
 
 ## Connection options for RavenDB
 
