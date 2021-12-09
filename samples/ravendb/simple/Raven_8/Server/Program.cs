@@ -26,7 +26,6 @@ class Program
             documentStore.Initialize();
 
             var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
-            // Only required to simplify the sample setup
             persistence.SetDefaultDocumentStore(documentStore);
 
             #endregion
