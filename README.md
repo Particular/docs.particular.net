@@ -1202,7 +1202,7 @@ The word `Bus` is allowed when a particular piece of documentation refers specif
 
 ### Core
 
-The word `core` as a synonym of NServiceBus or NServiceBus Core should be avoided in the documentation. Prefer using `NServiceBus` or `NServiceBus package`.
+The word `core` as a synonym for `NServiceBus` or `NServiceBus Core` should be avoided in the documentation. Prefer using `NServiceBus` or `NServiceBus package`.
 
 # Links to 3rd parties
 
