@@ -2,7 +2,7 @@
 title: MSMQ Subscription Persistence
 summary: How to configure the MQMQ persistence for subscriptions
 component: MSMQPersistence
-reviewed: 2019-09-26
+reviewed: 2021-12-10
 related:
  - samples/msmq/persistence
 redirects:
