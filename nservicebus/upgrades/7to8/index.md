@@ -232,7 +232,7 @@ Memory allocations for incoming and outgoing messages bodies are reduced by usin
 
 ## Endpoint addresses
 
-Up to NServiceBus version 8, the local transport-specific queue addresses were accessible via the `settings.LocalAddress()` and `settings.InstaceSpecificQueue()` settings extension methods. In version 8, these extension methods have been obsoleted in favour of the following APIs:
+In NServiceBus version 7 and earlier, the local transport-specific queue addresses are accessible via the `settings.LocalAddress()` and `settings.InstanceSpecificQueue()` settings extension methods. In version 8, these extension methods have been marked as obsolete in favour of the API described in this section.
 
 ### Logical endpoint address
 

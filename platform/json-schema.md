@@ -1,6 +1,6 @@
 ---
 title: ServicePlatform connection schema
-summary: The json schema used by the ServicePlatform Connector package
+summary: The JSON schema used by the ServicePlatform Connector package
 reviewed: 2021-11-25
 component: PlatformConnector
 versions: 'PlatformConnector:*'
@@ -8,7 +8,7 @@ related:
   - platform/connecting
 ---
 
-The [ServicePlatform Connector package](connecting.md) can parse a json file containing connection details with the following schema:
+The [ServicePlatform Connector package](connecting.md) can parse a JSON file containing connection details with the following schema:
 
 - [`ErrorQueue`](#errorqueue)
 - [`Heartbeats`](#heartbeats)
@@ -54,10 +54,10 @@ _Required_: [No](#notes)
 
 | Name            | Type      | Required | Description                                                                    |
 |-----------------|-----------|----------|--------------------------------------------------------------------------------|
-| Enabled         | boolean   | [No](#notes)      | If true, the endpoint will send heartbeats to the Particular Service Platform. |
-| HeartbeatsQueue | string    | [Yes](#notes)      | The transport queue to send Heartbeat messages to.                             |
-| Frequency       | [timespan](#notes)   | No       | The frequency to send Heartbeat messages.                                      |
-| TimeToLive      | [timespan](#notes)   | No       | The maximum time to live for Heartbeat messages.                               |
+| Enabled         | boolean   | [No](#notes)      | If true, the endpoint will send heartbeats to the Particular Service Platform |
+| HeartbeatsQueue | string    | [Yes](#notes)      | The transport queue to send Heartbeat messages to                             |
+| Frequency       | [timespan](#notes)   | No       | The frequency to send Heartbeat messages                                      |
+| TimeToLive      | [timespan](#notes)   | No       | The maximum time to live for Heartbeat messages                               |
 
 ## `CustomChecks`
 
@@ -81,9 +81,9 @@ _Required_: [No](#notes)
 
 | Name              | Type      | Required | Description                                                                              |
 |-------------------|-----------|----------|------------------------------------------------------------------------------------------|
-| Enabled           | boolean   | [No](#notes)      | If true, the endpoint will send custom check results to the Particular Service Platform. |
-| CustomChecksQueue | string    | [Yes](#notes)      | The transport queue to send Custom Checks messages to.                                   |
-| TimeToLive        | [timespan](#notes)   | No       | The maximum time to live for Custom Checks messages.                                     |
+| Enabled           | boolean   | [No](#notes)      | If true, the endpoint will send custom check results to the Particular Service Platform |
+| CustomChecksQueue | string    | [Yes](#notes)      | The transport queue to send Custom Checks messages to                                   |
+| TimeToLive        | [timespan](#notes)   | No       | The maximum time to live for Custom Checks messages                                     |
 
 ## `MessageAudit`
 
@@ -106,8 +106,8 @@ _Required_: [No](#notes)
 
 | Name       | Type      | Required | Description                                                                                          |
 |------------|-----------|----------|------------------------------------------------------------------------------------------------------|
-| Enabled    | boolean   | [No](#notes)      | If true, the endpoint will send a copy of each message processed to the Particular Service Platform. |
-| AuditQueue | string    | [Yes](#notes)      | The transport queue to send Audit message to.                                                        |
+| Enabled    | boolean   | [No](#notes)      | If true, the endpoint will send a copy of each message processed to the Particular Service Platform |
+| AuditQueue | string    | [Yes](#notes)      | The transport queue to send Audit message to                                                        |
 
 ## `SagaAudit`
 
@@ -130,8 +130,8 @@ _Required_: [No](#notes)
 
 | Name              | Type      | Required | Description                                                                           |
 |-------------------|-----------|----------|---------------------------------------------------------------------------------------|
-| Enabled           | boolean   | [No](#notes)      | If true, the endpoint will audit saga invocations to the Particular Service Platform. |
-| SagaAuditQueue    | string    | [Yes](#notes)      | The transport queue to send Saga Audit messages to.                                   |
+| Enabled           | boolean   | [No](#notes)      | If true, the endpoint will audit saga invocations to the Particular Service Platform |
+| SagaAuditQueue    | string    | [Yes](#notes)      | The transport queue to send Saga Audit messages to                                   |
 
 ## `Metrics`
 
@@ -158,10 +158,10 @@ _Required_: [No](#notes)
 | Name         | Type      | Required | Description                                                                                |
 |--------------|-----------|----------|--------------------------------------------------------------------------------------------|
 | Enabled      | boolean   | [No](#notes)      | If true, the endpoint will send metric data to the Particular Service Platform.            |
-| MetricsQueue | string    | [Yes](#notes)      | The transport queue to send Metrics messages to.                                           |
-| Interval     | [timespan](#notes)   | Yes      | The longest interval allowed between Metrics messages.                                     |
-| InstanceId   | string    | No       | Unique, human-readable, stable between restarts, identifier for running endpoint instance. |
-| TimeToLive   | [timespan](#notes)  | No       | The maximum time to live for Metrics messages.                                             |
+| MetricsQueue | string    | [Yes](#notes)      | The transport queue to send Metrics messages to                                           |
+| Interval     | [timespan](#notes)   | Yes      | The longest interval allowed between Metrics messages                                     |
+| InstanceId   | string    | No       | Unique, human-readable, stable between restarts, identifier for running endpoint instance |
+| TimeToLive   | [timespan](#notes)  | No       | The maximum time to live for Metrics messages                                             |
 
 ## Full example
 
@@ -200,5 +200,5 @@ _Required_: [No](#notes)
 ## Notes
 
 - If a section is omitted or does not contain an `Enabled` property then the feature is not configured
-- Timespan properties are encoded as strings in `HH:MM:SS` format
-- Required properties are only checked if the feature is enabled
+- TimeSpan properties are encoded as strings in `HH:MM:SS` format
+- Required properties are checked only if the feature is enabled

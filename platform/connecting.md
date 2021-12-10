@@ -11,24 +11,24 @@ related:
 
 The ServicePlatform Connector plugin provides a unified API to connect an NServiceBus endpoint to the Particular Service Platform by configuring:
 
-- An [error queue](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address-using-code) address
-- [Message auditing](/nservicebus/operations/auditing.md)
-- [Saga auditing](/nservicebus/sagas/saga-audit.md)
-- [Performance metrics](/monitoring/metrics/) collection
-- [Custom checks](/monitoring/custom-checks/install-plugin.md)
-- [Heartbeats](/monitoring/heartbeats/)
+- an [error queue](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address-using-code) address
+- [message auditing](/nservicebus/operations/auditing.md)
+- [saga auditing](/nservicebus/sagas/saga-audit.md)
+- [performance metrics](/monitoring/metrics/) collection
+- [custom checks](/monitoring/custom-checks/install-plugin.md)
+- [heartbeats](/monitoring/heartbeats/)
 
-## Json
+## JSON
 
-The connection details can be parsed from json compliant with [the configuration schema](json-schema.md).
+The connection details can be parsed from JSON-compliant text with [a specific configuration schema](json-schema.md).
 
 snippet: PlatformConnector-FromJson
 
-The json file looks like this:
+The JSON file looks like this:
 
 snippet: PlatformConnector-Json
 
-A json file specific to a concrete deployment of the ServicePlatform is available via ServicePulse. 
+A JSON file specific to a concrete deployment of the ServicePlatform is available via ServicePulse.
 
 ![Screenshot of ServicePulse showing the configuration endpoint connection json file tab](connecting.servicepulse.png)
 
@@ -40,6 +40,6 @@ snippet: PlatformConnector-CodeFirst
 
 ## Combined
 
-It is possible to load configuration from json and then override settings via code.
+It is possible to load configuration from JSON and then override settings via code.
 
 snippet: PlatformConnector-Combo
