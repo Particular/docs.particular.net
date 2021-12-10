@@ -6,7 +6,7 @@ env:
 jobs:
   content-verification:
     name: Content verification
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
         run: docstool test
   integrity-tests:
     name: Integrity tests
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -32,7 +32,7 @@ jobs:
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release
   build-projects:
     name: Build samples & snippets
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - name: Checkout
         uses: actions/checkout@v2
