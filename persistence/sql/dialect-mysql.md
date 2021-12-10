@@ -2,7 +2,7 @@
 title: SQL Persistence - MySQL dialect
 component: SqlPersistence
 related:
-reviewed: 2019-09-26
+reviewed: 2021-12-10
 ---
 
 {{WARNING: This persistence will run on the free version of the above engines, i.e. [MySQL Community Edition](https://www.mysql.com/products/community/). However, it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [MySQL support](https://www.mysql.com/support/) for details.

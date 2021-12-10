@@ -4,7 +4,7 @@ summary: NServiceBus ensures consistency between saga state and messaging.
 component: Core
 redirects:
 - nservicebus/nservicebus-sagas-and-concurrency
-reviewed: 2019-09-24
+reviewed: 2021-12-10
 related:
 - persistence/nhibernate/saga-concurrency
 - persistence/ravendb/saga-concurrency
