@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-alpha.155" />
-    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.0.0-alpha.268" />
+    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.0.0-alpha.294" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup Label="Force a later version of a transitive dependency">
