@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Fluent;
 using NServiceBus;
 
 class Usage
@@ -59,6 +60,30 @@ class Usage
         #region CosmosDBRegisterLogicalBehavior
 
         endpointConfiguration.Pipeline.Register(new RegisterMyBehavior());
+
+        #endregion
+
+        #region CosmosDBConfigureThrottlingWithClientOptions
+
+        endpointConfiguration.UsePersistence<CosmosPersistence>()
+            .CosmosClient(new CosmosClient("ConnectionString", new CosmosClientOptions
+            {
+                MaxRetryWaitTimeOnRateLimitedRequests = TimeSpan.FromSeconds(30),
+                MaxRetryAttemptsOnRateLimitedRequests = 9
+            }));
+
+        #endregion
+
+        #region CosmosDBConfigureThrottlingWithBuilder
+
+        var cosmosClientBuilder = new CosmosClientBuilder("ConnectionString")
+           .WithThrottlingRetryOptions(
+               maxRetryWaitTimeOnThrottledRequests: TimeSpan.FromSeconds(30),
+               maxRetryAttemptsOnThrottledRequests: 9
+           );
+
+        endpointConfiguration.UsePersistence<CosmosPersistence>()
+            .CosmosClient(cosmosClientBuilder.Build());
 
         #endregion
     }
