@@ -289,7 +289,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.5.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.1) | 2021-03-04     | -                 | -                                 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB/7.0.0) | 2021-12-09     | -                 | -                                 |
+| [6.5.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.1) | 2021-03-04     | 2022-12-09        | Superseded by 7.0.x               |
 | [~~6.4.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.4.1) | ~~2020-07-29~~ | ~~2021-06-04~~    | ~~Superseded by 6.5.x~~           |
 | [~~6.3.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.3.2) | ~~2020-05-28~~ | ~~2020-10-29~~    | ~~Superseded by 6.4.x~~           |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.2.0) | ~~2020-02-12~~ | ~~2020-08-28~~    | ~~Superseded by 6.3.x~~           |
@@ -685,7 +686,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.1.1) | 2021-11-30     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/2.0.0) | 2021-12-09     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.1.1) | 2021-11-30     | 2022-12-09        | Superseded by 2.0.x               |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.0.0) | 2020-02-07     | 2022-02-28        | Superseded by 1.1.x               |
 
 #### [NServiceBus.Gateway.Sql](/nuget/NServiceBus.Gateway.Sql)
