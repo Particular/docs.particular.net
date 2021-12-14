@@ -35,7 +35,7 @@
         "MemorySize": 256,
         "Timeout": 30,
         "Role": null,
-        "Policies": [ "AWSLambdaFullAccess", "AmazonSQSFullAccess" ],
+        "Policies": [ "AWSLambda_FullAccess", "AmazonSQSFullAccess" ],
 		"Events": {
             "SqsEvent" : {
                 "Type" : "SQS",
