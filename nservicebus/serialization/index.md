@@ -50,3 +50,9 @@ It is possible to [use immutable types as messages](/nservicebus/messaging/immut
 NOTE: On the wire it makes no difference if mutable or immutable message types are used.
 
 For example, the [Newtonsoft JSON Serializer](newtonsoft.md) by default supports immutable messages types.
+
+## Security
+
+The deserialization target type is defined by the incoming message. Although NServiceBus only deserializes message payloads that are considered a [valid message type](/nservicebus/messaging/messages-events-commands.md), side-effects in constructor methods or property setters of message contracts may be abused by an attacker with access to the transport infrastructure.
+
+To avoid unintended behavior during message deserialization, avoid executing code with side-effects as part of constructors and property setters of message types.
