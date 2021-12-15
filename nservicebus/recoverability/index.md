@@ -26,6 +26,8 @@ snippet: Recoverability-pseudo-code
 
 The reality is more complex. Depending on the transports capabilities, the transactionality mode of the endpoint and user customizations recoverability tries to recover from message failures. For example on a transactional endpoint it will roll back receive transaction when an exception bubbles through to the NServiceBus infrastructure. The message is then returned to the input queue, and any messages that the user code tried to send or publish won't be sent out. The very least that recoverability will ensure is that messages which failed multiple times get moved to the configured error queue. The part of recoverability which is responsible to move failed messages to the error queue is called fault handling.
 
+partial: consecutive-failures-header
+
 NOTE: When a message cannot be deserialized all retry mechanisms will be bypassed and the message will be moved directly to the error queue.
 
 
@@ -60,6 +62,7 @@ NOTE: Retrying messages for extended periods of time would hide failures from op
 
 The delayed retries mechanism is implemented by rolling back the [transport transaction](/transports/transactions.md) and scheduling the message for [delayed-delivery](/nservicebus/messaging/delayed-delivery.md). Aborting the receive operation when transactions are turned off would result in a message loss. Therefore delayed retries cannot be used when transport transactions are disabled and delayed-delivery is not supported.
 
+partial: consecutive-failures
 
 ## Fault handling
 
