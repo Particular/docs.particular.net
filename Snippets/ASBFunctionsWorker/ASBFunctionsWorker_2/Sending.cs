@@ -1,4 +1,4 @@
-﻿namespace ASBFunctionsWorker_1
+﻿namespace ASBFunctionsWorker_2
 {
     using System.Net;
     using System.Threading.Tasks;
