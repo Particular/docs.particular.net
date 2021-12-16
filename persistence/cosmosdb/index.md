@@ -83,7 +83,7 @@ WARN: When using the Cosmos DB persistence with Outbox enabled, throttling error
 
 INFO: Microsoft provides [guidance](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/troubleshoot-request-rate-too-large) on how to diagnose and troubleshoot throttling exceptions.
 
-The Cosmos DB SDK provides a mechanism to automatically retry collection operations when throttling concerns. Besides changing the provisioned RUs, those settings can be adjusted to help prevent messages from failing during spikes in message volume.
+The Cosmos DB SDK provides a mechanism to automatically retry collection operations when throttling occurs. Besides changing the provisioned RUs or switching to the serverless tier, those settings can be adjusted to help prevent messages from failing during spikes in message volume.
 
 These settings may be set when initializing the `CosmosClient` via the `CosmosClientOptions` [`MaxRetryAttemptsOnRateLimitedRequests`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.maxretryattemptsonratelimitedrequests?view=azure-dotnet) and [`MaxRetryWaitTimeOnRateLimitedRequests`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.maxretrywaittimeonratelimitedrequests?view=azure-dotnet) properties:
 
