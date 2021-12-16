@@ -11,4 +11,4 @@ upgradeGuideCoreVersions:
 
 ## .NET 6
 
-The target framework have been updated to .NET 6 [which in turn requires function host v3 to no longer be supported](https://docs.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide#supported-versions).
+The target framework have been updated to .NET 6 [which in turn causes Azure Function Host v3 to no longer be supported](https://docs.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide#supported-versions).
