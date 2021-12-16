@@ -1,10 +1,9 @@
 ---
-title: Azure Functions with Azure Service Bus Upgrade Version 1 to 2
-summary: How to upgrade Azure Functions with Azure Service Bus from version 1 to 2
+title: Azure Functions (in-process) with Azure Service Bus Upgrade Version 1 to 2
+summary: How to upgrade Azure Functions (in-process) with Azure Service Bus from version 1 to 2
 component: ASBFunctions
-reviewed: 2021-10-26
+reviewed: 2021-12-16
 related:
- - nservicebus/upgrades/7to8
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7

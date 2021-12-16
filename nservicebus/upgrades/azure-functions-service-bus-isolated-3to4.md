@@ -1,9 +1,10 @@
 ---
-title: Azure Functions with Azure Service Bus Upgrade Version 2 to 3
-summary: How to upgrade Azure Functions with Azure Service Bus from version 2 to 3
+title: Azure Functions (isolated worker) with Azure Service Bus Upgrade Version 3 to 4
+summary: How to upgrade Azure Functions (isolated worker) with Azure Service Bus from version 3 to 5
 component: ASBFunctions
-reviewed: 2021-10-09
+reviewed: 2021-12-16
 related:
+ - nservicebus/upgrades/7to8
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 8

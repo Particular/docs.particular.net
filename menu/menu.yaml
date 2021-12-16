@@ -211,11 +211,19 @@
         Title: Version 7 to 8
       - Url: nservicebus/upgrades/acs-host-6to7
         Title: Version 6 to 7
-    - Title: Azure Functions with Service Bus
+    - Title: Azure Functions (isolated worker) with Service Bus
       Articles:
-      - Url: nservicebus/upgrades/azure-functions-service-bus-1to2
+      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-1to2
         Title: Version 1 to 2
-      - Url: nservicebus/upgrades/azure-functions-service-bus-2to3
+      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-2to3
+        Title: Version 2 to 3
+      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-3to4
+        Title: Version 3 to 4
+    - Title: Azure Functions (in-process) with Service Bus
+      Articles:
+      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-1to2
+        Title: Version 1 to 2
+      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-2to3
         Title: Version 2 to 3
     - Title: Gateway
       Articles:
