@@ -9,7 +9,7 @@
     <PackageReference Include="Iesi.Collections" Version="4.*" />
     <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="9.0.0-alpha.333" />
-    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="7.0.0-alpha.388" />
+    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="7.0.0-alpha.391" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="2.*" />
   </ItemGroup>
 </Project>

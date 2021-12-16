@@ -7,9 +7,9 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="1.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1896" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1902" />
     <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="7.0.0-alpha.382" />
+    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="7.0.0-alpha.391" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>
