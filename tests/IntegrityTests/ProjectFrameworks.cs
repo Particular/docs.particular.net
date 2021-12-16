@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
@@ -36,7 +34,7 @@ namespace IntegrityTests
                 });
         }
 
-        static readonly string[] sdkProjectAllowedTfmList = new[] { "net5.0", "netcoreapp3.1", "net48", "netstandard2.0" };
+        static readonly string[] sdkProjectAllowedTfmList = new[] { "net6.0", "netcoreapp3.1", "net48", "netstandard2.0" };
         static readonly string[] nonSdkProjectAllowedFrameworkList = new[] { "v4.8" };
 
         [Test]
@@ -54,9 +52,9 @@ namespace IntegrityTests
                         var mgr = new XmlNamespaceManager(new NameTable());
                         mgr.AddNamespace("x", xmlnsNode.Value);
 
-                        foreach(var node in xdoc.XPathSelectElements("/x:Project/x:PropertyGroup/x:TargetFramework", mgr))
+                        foreach (var node in xdoc.XPathSelectElements("/x:Project/x:PropertyGroup/x:TargetFramework", mgr))
                         {
-                            if(!nonSdkProjectAllowedFrameworkList.Contains(node.Value))
+                            if (!nonSdkProjectAllowedFrameworkList.Contains(node.Value))
                             {
                                 return false;
                             }
@@ -73,7 +71,7 @@ namespace IntegrityTests
                         }
                         foreach (var node in xdoc.XPathSelectElements("/Project/PropertyGroup/TargetFrameworks"))
                         {
-                            foreach(var tfm in node.Value.Split(';'))
+                            foreach (var tfm in node.Value.Split(';'))
                             {
                                 if (!sdkProjectAllowedTfmList.Contains(tfm))
                                 {

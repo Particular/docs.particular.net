@@ -8,14 +8,14 @@ env:
 jobs:
   build-solutions:
     name: Build samples & snippets
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup .NET 5 SDK
+      - name: Setup .NET SDK
         uses: actions/setup-dotnet@v1.8.1
         with:
-          dotnet-version: 5.0.x
+          dotnet-version: 6.0.x
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1
       - name: Build affected samples & snippets
