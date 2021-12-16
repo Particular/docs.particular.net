@@ -43,7 +43,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.1) | 2021-10-19     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.2) | 2021-10-19     | -                 | -                                 |
 | [1.9.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.9.0) | 2021-03-01     | 2022-10-19        | Superseded by 2.0.x               |
 
 #### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
