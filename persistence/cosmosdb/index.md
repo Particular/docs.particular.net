@@ -77,7 +77,7 @@ snippet: CosmosDBCustomClientProviderRegistration
 
 ## Provisioned throughput throttling
 
-When using provisioned throughput it is possible for the CosmosDB service to throttle usage, resulting in status code 429 throttling errors.
+When using provisioned throughput it is possible for the CosmosDB service to throttle usage, resulting request rate too large exceptions indicated by the 429 status code .
 
 WARN: When using the Cosmos DB persistence with Outbox enabled, throttling errors may result in handler re-execution and / or duplicate message dispatches depending on which operation is throttled.
 
