@@ -75,15 +75,15 @@ and registered on the container
 
 snippet: CosmosDBCustomClientProviderRegistration
 
-## Provisioned throughput throttling
+## Provisioned throughput rate-limiting
 
-When using provisioned throughput it is possible for the CosmosDB service to throttle usage, resulting request rate too large exceptions indicated by the 429 status code .
+When using provisioned throughput it is possible for the CosmosDB service to rate-limit usage, resulting request rate too large exceptions indicated by the 429 status code.
 
-WARN: When using the Cosmos DB persistence with Outbox enabled, throttling errors may result in handler re-execution and / or duplicate message dispatches depending on which operation is throttled.
+WARN: When using the Cosmos DB persistence with Outbox enabled, request rate too large errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
 
-INFO: Microsoft provides [guidance](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/troubleshoot-request-rate-too-large) on how to diagnose and troubleshoot throttling exceptions.
+INFO: Microsoft provides [guidance](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/troubleshoot-request-rate-too-large) on how to diagnose and troubleshoot request rate too large exceptions.
 
-The Cosmos DB SDK provides a mechanism to automatically retry collection operations when throttling occurs. Besides changing the provisioned RUs or switching to the serverless tier, those settings can be adjusted to help prevent messages from failing during spikes in message volume.
+The Cosmos DB SDK provides a mechanism to automatically retry collection operations when rate-limiting occurs. Besides changing the provisioned RUs or switching to the serverless tier, those settings can be adjusted to help prevent messages from failing during spikes in message volume.
 
 These settings may be set when initializing the `CosmosClient` via the `CosmosClientOptions` [`MaxRetryAttemptsOnRateLimitedRequests`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.maxretryattemptsonratelimitedrequests?view=azure-dotnet) and [`MaxRetryWaitTimeOnRateLimitedRequests`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions.maxretrywaittimeonratelimitedrequests?view=azure-dotnet) properties:
 
