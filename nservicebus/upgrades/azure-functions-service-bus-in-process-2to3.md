@@ -27,3 +27,7 @@ use:
 ```csharp
 functionsHostBuilder.UseNServiceBus(endpointName, "CONNECTIONSTRING");
 ```
+
+## Injecting FunctionEndpoint
+
+`FunctionEndpoint` can no longer be injected, use `IFunctionEndpoint` instead.
