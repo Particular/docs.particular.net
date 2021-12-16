@@ -1,5 +1,5 @@
 ---
-title: Azure Functions (in-process) with Azure Service Bus Upgrade Version 2 to 3
+title: Azure Functions (in-process) for Service Bus Upgrade Version 2 to 3
 summary: How to upgrade Azure Functions (in-process) with Azure Service Bus from version 2 to 3
 component: ASBFunctions
 reviewed: 2021-12-16
