@@ -9,20 +9,6 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-## Code first API to set connection string
+## .NET 6
 
-Setting the connection string can now be done as part of calling `UseNServiceBus()`
-
-Instead of
-
-```csharp
-functionsHostBuilder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration(endpointName){
-    ConnectionString = "CONNECTIONSTRING"
-});
-```
-
-use:
-
-```csharp
-functionsHostBuilder.UseNServiceBus(endpointName, "CONNECTIONSTRING");
-```
+The target framework have been updated to .NET 6 [which in turn requires function host v3 to no longer be supported](https://docs.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide#supported-versions).
