@@ -45,4 +45,6 @@ partial: influence-reply
 
 While it's usually best to let NServiceBus [handle all exceptions](/nservicebus/recoverability/), there are some scenarios where messages might need to be sent regardless of whether the message handler succeeds or not, for example, to send a reply notifying that there was a problem with processing the message.
 
+NOTE: Ensure no issues ghost or duplicate messages are created if this code might be run more-than-once by assigning the same [message identifier](/nservicebus/messaging/message-identity) to message send via immediate dispatch.
+
 partial: immediate-dispatch
