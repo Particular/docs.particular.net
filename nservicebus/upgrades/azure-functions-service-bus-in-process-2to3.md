@@ -7,7 +7,7 @@ related:
  - nservicebus/upgrades/7to8
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
- - 8
+ - 7
 ---
 
 ## Code first API to set connection string
