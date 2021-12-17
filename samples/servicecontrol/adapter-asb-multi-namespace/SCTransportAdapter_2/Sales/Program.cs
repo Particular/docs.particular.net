@@ -23,7 +23,7 @@ class Program
         
         transport.ConnectionString(connectionString);
 
-        var routing = transport.Routing().ConnectToRouter("Router");
+        var routing = transport.Routing().ConnectToRouter("Router", true, false);
         routing.RouteToEndpoint(typeof(ShipOrder), "Samples.ServiceControl.ASBAdapter.Shipping");
 
         var recoverability = endpointConfiguration.Recoverability();

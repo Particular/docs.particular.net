@@ -23,7 +23,7 @@ class ShipOrderHandler :
             OrderId = message.OrderId,
             Value = message.Value
         };
-        await context.Reply(orderShipped)
+        await context.Publish(orderShipped)
             .ConfigureAwait(false);
     }
 }
