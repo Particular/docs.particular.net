@@ -57,9 +57,9 @@ functionsHostBuilder.UseNServiceBus(() =>
 use:
 
 ```csharp
-functionsHostBuilder.UseNServiceBus(endpointName, nsb =>
+functionsHostBuilder.UseNServiceBus(endpointName, endpointConfiguration =>
 {
-    nsb.Routing.RouteToEndpoint(typeof(SomeMessage), "AnotherEndpoint");
+    endpointConfiguration.Routing.RouteToEndpoint(typeof(SomeMessage), "AnotherEndpoint");
 });
 ```
 
