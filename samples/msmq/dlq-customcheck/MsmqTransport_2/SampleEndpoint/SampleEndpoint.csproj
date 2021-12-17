@@ -6,9 +6,9 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1896" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1902" />
     <PackageReference Include="NServiceBus.CustomChecks" Version="4.0.0-alpha.135" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-alpha.195" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-alpha.360" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Messaging" />
