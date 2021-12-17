@@ -3,12 +3,12 @@
 #pragma warning disable 162
 namespace ASBFunctions_2_0
 {
-    using System.Threading.Tasks;
     using Microsoft.Azure.ServiceBus;
     using Microsoft.Azure.ServiceBus.Core;
     using Microsoft.Azure.WebJobs;
     using Microsoft.Extensions.Logging;
     using NServiceBus;
+    using System.Threading.Tasks;
 
     class MessageConsistency
     {
@@ -53,10 +53,9 @@ namespace ASBFunctions_2_0
     {
         const bool EnableTransactions = true;
 
-        // NOTE: Use concrete class instead of interface
-        readonly FunctionEndpoint endpoint;
+        readonly IFunctionEndpoint endpoint;
 
-        public MyFunctions(FunctionEndpoint endpoint)
+        public MyFunctions(IFunctionEndpoint endpoint)
         {
             this.endpoint = endpoint;
         }
@@ -69,14 +68,7 @@ namespace ASBFunctions_2_0
             MessageReceiver messageReceiver,
             ExecutionContext executionContext)
         {
-            if(EnableTransactions)
-            {
-                await endpoint.ProcessTransactional(message, executionContext, messageReceiver, logger);
-            }
-            else
-            {
-                await endpoint.ProcessNonTransactional(message, executionContext, messageReceiver, logger);
-            }
+            await endpoint.Process(message, executionContext, messageReceiver, EnableTransactions, logger);
         }
     }
     #endregion

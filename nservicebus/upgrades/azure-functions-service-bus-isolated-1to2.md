@@ -1,10 +1,9 @@
 ---
-title: Azure Functions with Azure Service Bus Upgrade Version 1 to 2
-summary: How to upgrade Azure Functions with Azure Service Bus from version 1 to 2
+title: Azure Functions (isolated) for Service Bus Upgrade Version 1 to 2
+summary: How to upgrade Azure Functions (isolated worker) with Azure Service Bus from version 1 to 2
 component: ASBFunctions
-reviewed: 2021-10-26
+reviewed: 2021-12-16
 related:
- - nservicebus/upgrades/7to8
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
@@ -58,9 +57,9 @@ functionsHostBuilder.UseNServiceBus(() =>
 use:
 
 ```csharp
-functionsHostBuilder.UseNServiceBus(endpointName, nsb =>
+functionsHostBuilder.UseNServiceBus(endpointName, endpointConfiguration =>
 {
-    nsb.Routing.RouteToEndpoint(typeof(SomeMessage), "AnotherEndpoint");
+    endpointConfiguration.Routing.RouteToEndpoint(typeof(SomeMessage), "AnotherEndpoint");
 });
 ```
 
