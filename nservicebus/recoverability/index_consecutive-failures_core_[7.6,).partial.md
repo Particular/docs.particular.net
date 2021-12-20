@@ -6,7 +6,7 @@ The following code enables the detection of the consecutive failures.
 
 snippet: configure-consecutive-failures
 
-When the endpoint detects a configured number of consecutive failures, it reacts by switching to a single-threaded processing mode in which one message is attempted at a time. If processing fails, the endpoint waits for configured time and attempts to process the next message. The endpoint continues running in this mode until at least one message is processed successfully.
+When the endpoint detects a configured number of consecutive failures, it reacts by switching to a processing mode in which one message is attempted at a time. If processing fails, the endpoint waits for configured time and attempts to process the next message. The endpoint continues running in this mode until at least one message is processed successfully.
 
 ### What to consider configuring automatic rate limiting
 
