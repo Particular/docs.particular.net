@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-alpha.144" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-alpha.155" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="7.0.0-alpha.202" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="7.0.0-alpha.506" />
   </ItemGroup>
   <ItemGroup Label="Transitive references">
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.*" />

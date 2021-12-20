@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1900" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1902" />
     <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-alpha.359" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-alpha.360" />
   </ItemGroup>
 </Project>

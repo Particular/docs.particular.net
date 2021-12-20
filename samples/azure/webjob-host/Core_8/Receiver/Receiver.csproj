@@ -14,8 +14,8 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.*" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.*" />
     <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.0.0-alpha.293" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1898" />
+    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.0.0-alpha.295" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1902" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.development.json">

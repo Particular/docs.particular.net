@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-alpha.155" />
-    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.0.0-alpha.294" />
+    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.0.0-alpha.295" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
