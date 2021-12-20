@@ -48,6 +48,6 @@ For scenarios where the tested code path both invokes operations of `IUniformSes
 
 snippet: 7to8-uniformsessioncontextwrapping
 
-This approach also works for code paths that use `IUniformSession` and `IMessageSession` in the same code path:
+This approach also works for code that use `IUniformSession` and `IMessageSession` in the same code path:
 
 snippet: 7to8-uniformsessionmessagesessionwrapping
