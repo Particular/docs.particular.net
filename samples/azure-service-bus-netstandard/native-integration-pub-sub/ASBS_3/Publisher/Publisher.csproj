@@ -9,10 +9,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-alpha.155" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-alpha.1900" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-alpha.1903" />
   </ItemGroup>
   <ItemGroup Label="Transitive dependencies">
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1899" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1903" />
   </ItemGroup>
 </Project>
