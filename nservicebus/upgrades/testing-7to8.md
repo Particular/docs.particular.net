@@ -37,3 +37,17 @@ This is an example showing two state changes. The first starts the saga that tri
 snippet: 7to8-testsaga
 
 See [the saga unit testing documentation](/nservicebus/testing/#testing-a-saga) for more information.
+
+### Uniform Session
+
+The `NServiceBus.UniformSession.Testing` package provided the `WithUniformSession` method to configure fluent-style tests to work with `IUniformSession`. With AAA-style tests, a new instance of the `TestableUniformSession` class can be created and passed to any class with a dependency on `IUniformSession`:
+
+snippet: 7to8-uniformsession
+
+For scenarios where the tested code path both invokes operations of `IUniformSession` and a pipeline context like `IMessageHandlerContext`, the `TestableUniformSession` can be configured to wrap the context:
+
+snippet: 7to8-uniformsessioncontextwrapping
+
+This approach also works for code that use `IUniformSession` and `IMessageSession` in the same code path:
+
+snippet: 7to8-uniformsessionmessagesessionwrapping

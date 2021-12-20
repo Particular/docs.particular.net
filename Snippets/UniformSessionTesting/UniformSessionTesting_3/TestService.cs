@@ -1,4 +1,5 @@
-﻿using NServiceBus.UniformSession.Testing;
+﻿using NServiceBus.Testing;
+using NServiceBus.UniformSession.Testing;
 
 class TestService
 {

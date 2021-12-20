@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <LangVersion>7.3</LangVersion>
@@ -6,7 +6,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.*" />
     <PackageReference Include="NServiceBus.Gateway" Version="4.0.0-alpha.243" />
-    <PackageReference Include="NServiceBus.Testing" Version="8.0.0-alpha.188" />
+    <PackageReference Include="NServiceBus.Testing" Version="8.0.0-alpha.189" />
+    <PackageReference Include="NServiceBus.UniformSession.Testing" Version="3.0.0-alpha.105" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.*" />
   </ItemGroup>

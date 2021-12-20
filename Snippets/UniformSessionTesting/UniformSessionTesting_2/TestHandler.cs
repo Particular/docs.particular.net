@@ -7,7 +7,8 @@ class TestHandler
     {
         #region UniformSessionHandlerTesting
         var session = new TestableUniformSession();
-        var handler = new SomeMessageHandler(session);
+        var sharedComponent = new SharedComponent(session);
+        var handler = new SomeMessageHandler(sharedComponent);
 
         Test.Handler(handler)
             .WithUniformSession(session)
