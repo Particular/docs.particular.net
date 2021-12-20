@@ -10,6 +10,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.MsmqEndpoint");
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<XmlSerializer>();
         endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
