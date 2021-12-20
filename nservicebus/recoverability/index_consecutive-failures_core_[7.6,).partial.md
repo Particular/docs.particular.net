@@ -1,6 +1,6 @@
 ## Automatic rate limiting
 
-The automatic rate limiting in response to consecutive message processing failures is designed to act as an [automatic circuit breaker](https://en.wikipedia.org/wiki/Circuit_breaker) preventing large number of messages from being redirected to the `error` queue in case of an outage of a resource required for processing of all messages (e.g. a database).
+The automatic rate limiting in response to consecutive message processing failures is designed to act as an [automatic circuit breaker](https://en.wikipedia.org/wiki/Circuit_breaker) preventing large number of messages from being redirected to the `error` queue in case of an outage of a resource required for processing of all messages (e.g. a database or a 3rd party webservice).
 
 The following code enables the detection of the consecutive failures.
 
