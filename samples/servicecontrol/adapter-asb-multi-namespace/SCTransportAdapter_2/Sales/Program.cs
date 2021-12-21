@@ -15,10 +15,10 @@ class Program
 #pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 #pragma warning restore 618
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.1");
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.Sales");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read 'AzureServiceBus.ConnectionString.1' environment variable. Check sample prerequisites.");
+            throw new Exception("Could not read 'AzureServiceBus.ConnectionString.Sales' environment variable. Check sample prerequisites.");
         }
         
         transport.ConnectionString(connectionString);

@@ -8,16 +8,16 @@ namespace Router
     {
         static async Task Main(string[] args)
         {
-            var salesConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.1");
+            var salesConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.Sales");
             if (string.IsNullOrWhiteSpace(salesConnectionString))
             {
-                throw new Exception("Could not read 'AzureServiceBus.ConnectionString.1' environment variable. Check sample prerequisites.");
+                throw new Exception("Could not read 'AzureServiceBus.ConnectionString.Sales' environment variable. Check sample prerequisites.");
             }
 
-            var shippingConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2");
+            var shippingConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.Shipping");
             if (string.IsNullOrWhiteSpace(shippingConnectionString))
             {
-                throw new Exception("Could not read 'AzureServiceBus.ConnectionString.2' environment variable. Check sample prerequisites.");
+                throw new Exception("Could not read 'AzureServiceBus.ConnectionString.Shipping' environment variable. Check sample prerequisites.");
             }
 
             var serviceControlConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.SC");
