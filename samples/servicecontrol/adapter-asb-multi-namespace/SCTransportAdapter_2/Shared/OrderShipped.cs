@@ -1,7 +1,7 @@
 ﻿using NServiceBus;
 
 public class OrderShipped :
-    IMessage
+    IEvent
 {
     public string OrderId { get; set; }
     public decimal Value { get; set; }

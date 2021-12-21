@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
 
 class Program
 {
@@ -13,25 +12,13 @@ class Program
 #pragma warning disable 618
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 #pragma warning restore 618
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2");
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.Shipping");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read 'AzureServiceBus.ConnectionString.2' environment variable. Check sample prerequisites.");
+            throw new Exception("Could not read 'AzureServiceBus.ConnectionString.Shipping' environment variable. Check sample prerequisites.");
         }
 
-        var salesConnectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.1");
-        if (string.IsNullOrWhiteSpace(salesConnectionString))
-        {
-            throw new Exception("Could not read 'AzureServiceBus.ConnectionString.1' environment variable. Check sample prerequisites.");
-        }
         transport.ConnectionString(connectionString);
-        transport.DefaultNamespaceAlias("shipping");
-        transport.UseNamespaceAliasesInsteadOfConnectionStrings();
-        var routing = transport.NamespaceRouting();
-        routing.AddNamespace("sales", salesConnectionString);
-        transport.UseForwardingTopology();
-        transport.BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
-        transport.Composition().UseStrategy<HierarchyComposition>().PathGenerator(path => "scadapter/");
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
@@ -43,15 +30,6 @@ class Program
             });
 
         var recoverability = endpointConfiguration.Recoverability();
-        recoverability.Failed(
-            customizations: retryFailedSettings =>
-            {
-                retryFailedSettings.HeaderCustomization(
-                    customization: headers =>
-                    {
-                        headers[AdapterSpecificHeaders.OriginalNamespace] = "shipping";
-                    });
-            });
         recoverability.Immediate(
             customizations: immediate =>
             {
