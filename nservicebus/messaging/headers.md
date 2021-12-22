@@ -1,7 +1,7 @@
 ---
 title: Message Headers
 summary: List of built-in NServiceBus message headers.
-reviewed: 2019-10-04
+reviewed: 2021-12-22
 component: Core
 versions: '[5.0,)'
 redirects:

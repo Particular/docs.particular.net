@@ -2,7 +2,7 @@
 title: PostgreSQL dialect design
 component: SqlPersistence
 related:
-reviewed: 2019-09-30
+reviewed: 2021-12-22
 versions: "[3,)"
 redirects:
  - nservicebus/sql-persistence/postgresql-design
@@ -54,7 +54,7 @@ The PostgreSQL dialect supports multiple schemas. By default, when schema is not
 snippet: PostgreSqlSchema
 
 
-## Case sensitivity - UpperCamelCase
+## Case sensitivity
 
 Unless explicitly specified, PostgreSQL automatically lower-cases all identifier names (e.g. column or table names, etc.). To enforce case-sensitivity, it is necessary to quote all names.
 

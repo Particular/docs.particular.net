@@ -6,11 +6,11 @@ related:
 - persistence
 - persistence/azure-table
 - persistence/azure-table/performance-tuning
-reviewed: 2019-10-01
+reviewed: 2021-12-22
 ---
 
 
-In Versions 7.4 and above, the Azure Storage Queues transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to provide [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport uses the configured storage to provide delayed delivery without needing an external persister.
+In Versions 7.4 and above, the Azure Storage Queues transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to provide [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport uses the same storage account to provide delayed delivery without needing an external persister.
 
 
 ## How it works

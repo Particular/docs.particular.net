@@ -2,7 +2,7 @@
 title: NHibernate Persistence Scripts
 summary: A collection of scripts for managing NHibernate persistence
 component: NHibernate
-reviewed: 2019-10-04
+reviewed: 2021-12-22
 related:
  - nservicebus/operations
 redirects:

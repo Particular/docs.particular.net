@@ -1,7 +1,7 @@
 ---
 title: Sanitization
 component: ASB
-reviewed: 2019-10-01
+reviewed: 2021-12-22
 redirects:
  - nservicebus/azure-service-bus/sanitization
  - transports/azure-service-bus/sanitization
