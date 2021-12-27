@@ -102,7 +102,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.5.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.5.0) | 2021-03-25     | -                 | -                                 |
-| [~~2.4.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.4.0) | ~~2020-10-08~~ | ~~2021-06-25~~    | ~~Superseded by 2.5.x~~           |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/1.1.1) | 2018-03-15     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Persistence.Sql](/nuget/NServiceBus.Persistence.Sql)
@@ -110,7 +109,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.2.1) | 2021-03-25     | -                 | -                                 |
-| [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.1.1) | ~~2021-02-26~~ | ~~2021-06-25~~    | ~~Superseded by 6.2.x~~           |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/3.2.0) | 2018-07-09     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
@@ -141,7 +139,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.3.0) | 2021-03-25     | -                 | -                                 |
-| [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.2.0) | ~~2018-12-10~~ | ~~2021-06-25~~    | ~~Superseded by 2.3.x~~           |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/1.2.0) | 2018-02-23     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 ### DependencyInjection packages
