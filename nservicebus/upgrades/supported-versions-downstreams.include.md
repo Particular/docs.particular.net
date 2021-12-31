@@ -403,7 +403,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.UniformSession/2.2.0) | 2021-03-31     | -                 | -                                 |
-| [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.UniformSession/2.1.0) | ~~2018-08-10~~ | ~~2021-06-30~~    | ~~Superseded by 2.2.x~~           |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.UniformSession/1.0.0) | 2017-11-10     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.UniformSession.Testing](/nuget/NServiceBus.UniformSession.Testing)
