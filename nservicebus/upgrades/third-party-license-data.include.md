@@ -4,8 +4,8 @@
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/System.Reflection.Emit/" target="_blank">System.Reflection.Emit</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/dotnet/corefx" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Reflection.Emit.Lightweight/" target="_blank">System.Reflection.Emit.Lightweight</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/dotnet/corefx" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/System.Reflection.Metadata/" target="_blank">System.Reflection.Metadata</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/dotnet/runtime" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/System.Security.Cryptography.Xml/" target="_blank">System.Security.Cryptography.Xml</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/dotnet/runtime" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/System.Reflection.Metadata/" target="_blank">System.Reflection.Metadata</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/System.Security.Cryptography.Xml/" target="_blank">System.Security.Cryptography.Xml</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ## Transport packages
 
@@ -45,7 +45,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus/" target="_blank">Azure.Messaging.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.4.0/sdk/servicebus/Azure.Messaging.ServiceBus/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus/" target="_blank">Azure.Messaging.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.5.1/sdk/servicebus/Azure.Messaging.ServiceBus/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.ValueTuple/" target="_blank">System.ValueTuple</a> | <a href="https://github.com/dotnet/corefx/blob/master/LICENSE.TXT" target="_blank">View License</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
@@ -55,6 +55,12 @@
 | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/" target="_blank">Azure.Storage.Blobs</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.10.0/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Storage.Queues/" target="_blank">Azure.Storage.Queues</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Queues_12.8.0/sdk/storage/Azure.Storage.Queues/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos.Table/" target="_blank">Microsoft.Azure.Cosmos.Table</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos.Table/1.0.8/license" target="_blank">View License</a> | <a href="http://go.microsoft.com/fwlink/?LinkId=848761" target="_blank">Project Site</a> |
+
+### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
+
+| Depencency | License | Project Site |
+|:-----------|:-------:|:------------:|
+| <a href="https://www.nuget.org/packages/System.Threading.Channels/" target="_blank">System.Threading.Channels</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
@@ -112,7 +118,13 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/MongoDB.Driver/" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/2.13.2/license" target="_blank">View License</a> | <a href="https://docs.mongodb.com/drivers/csharp/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/MongoDB.Driver/" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/2.14.1/license" target="_blank">View License</a> | <a href="https://docs.mongodb.com/drivers/csharp/" target="_blank">Project Site</a> |
+
+### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
+
+| Depencency | License | Project Site |
+|:-----------|:-------:|:------------:|
+| <a href="https://www.nuget.org/packages/System.Threading.Channels/" target="_blank">System.Threading.Channels</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ## Serializer packages
 
@@ -140,7 +152,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/" target="_blank">Microsoft.Extensions.DependencyInjection</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/dotnet/runtime" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/" target="_blank">Microsoft.Extensions.DependencyInjection</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Ninject](/nuget/NServiceBus.Ninject)
 
@@ -179,7 +191,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/" target="_blank">Microsoft.Extensions.Logging.Abstractions</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/dotnet/runtime" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions/" target="_blank">Microsoft.Extensions.Logging.Abstractions</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Log4Net](/nuget/NServiceBus.Log4Net)
 
@@ -217,7 +229,7 @@
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Extensions/" target="_blank">Microsoft.Azure.Functions.Extensions</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="http://go.microsoft.com/fwlink/?LinkID=320972" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.ServiceBus/" target="_blank">Microsoft.Azure.WebJobs.Extensions.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Microsoft.Azure.WebJobs.Extensions.ServiceBus_5.0.0/sdk/servicebus/Microsoft.Azure.WebJobs.Extensions.ServiceBus/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.ServiceBus/" target="_blank">Microsoft.Azure.WebJobs.Extensions.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Microsoft.Azure.WebJobs.Extensions.ServiceBus_5.2.0/sdk/servicebus/Microsoft.Azure.WebJobs.Extensions.ServiceBus/README.md" target="_blank">Project Site</a> |
 
 ### [NServiceBus.AzureFunctions.StorageQueues](/nuget/NServiceBus.AzureFunctions.StorageQueues)
 
@@ -237,7 +249,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting/" target="_blank">Microsoft.Extensions.Hosting</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/dotnet/runtime" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting/" target="_blank">Microsoft.Extensions.Hosting</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Hosting.Azure](/nuget/NServiceBus.Hosting.Azure)
 
@@ -257,8 +269,14 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/System.Diagnostics.PerformanceCounter/" target="_blank">System.Diagnostics.PerformanceCounter</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/dotnet/runtime" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/System.Diagnostics.PerformanceCounter/" target="_blank">System.Diagnostics.PerformanceCounter</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Security.Principal.Windows/" target="_blank">System.Security.Principal.Windows</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/dotnet/runtime" target="_blank">Project Site</a> |
+
+### [NServiceBus.ServicePlatform.Connector](/nuget/NServiceBus.ServicePlatform.Connector)
+
+| Depencency | License | Project Site |
+|:-----------|:-------:|:------------:|
+| <a href="https://www.nuget.org/packages/System.Text.Json/" target="_blank">System.Text.Json</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### [Particular.PlatformSample](/nuget/Particular.PlatformSample)
 
