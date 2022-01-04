@@ -45,4 +45,6 @@ partial: influence-reply
 
 While it's usually best to let NServiceBus [handle all exceptions](/nservicebus/recoverability/), there are some scenarios where messages might need to be sent regardless of whether the message handler succeeds or not, for example, to send a reply notifying that there was a problem with processing the message.
 
+NOTE: Side effects can occur when failures happen after sending the message. The messages could be retried meaning duplicate messages are created if this code is executed more than once. Ensure that the same [message identifier](/nservicebus/messaging/message-identity.md) gets assigned to messages sent via immediate dispatch when invoked more than once. Second, due to failures it could happen that messages are sent that contain state which is inconsistent because of failing operations like a storage modification that didn't occur.
+
 partial: immediate-dispatch
