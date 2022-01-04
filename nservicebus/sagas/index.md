@@ -36,7 +36,11 @@ Using NServiceBus, it is possible to explicitly define the data used for this st
 
 snippet: simple-saga-data
 
-Saga data types should not be shared across different sagas as this can result in persisters physically sharing the same storage structure.
+### Avoid sharing types between sagas
+
+Saga data types should not be shared across different sagas. Sharing types can result in persisters physically sharing the same storage structure which should be avoided.
+
+WARNING: Sharing property types should also be avoided. Depending on the persister implementation sharing property types can result in shared storage structure.
 
 partial: disable-shared-state-check
 
