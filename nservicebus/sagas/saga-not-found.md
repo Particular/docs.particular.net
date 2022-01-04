@@ -30,7 +30,6 @@ For example, consider a saga that is used for managing the registration process 
 
 The implementation of `IHandleSagaNotFound` should be driven by the business requirements for a specific situation. In some cases the message might be ignored; in others, it might be useful to track whenever that situation happens (e.g. by logging or sending another message). In still other cases, it might make sense to perform a custom compensating action.
 
-
 ## Troubleshooting
 
 Saga not found can occur when:
@@ -94,7 +93,3 @@ Mitigation:
 - Use a logical complete state
 - Use [saga timeouts](timeouts.md) to postpone physically removing the saga state and invoke [`MarkAsComplete`](/nservicebus/sagas/#ending-a-saga).
 - Do not send messages and invoke [`MarkAsComplete`](/nservicebus/sagas/#ending-a-saga). Send an additional message to self (local) that will invoke `MarkAsComplete`.
-
-
-
-
