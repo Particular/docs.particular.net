@@ -92,7 +92,7 @@ A saga that already completed can result in a saga not found.
 Mitigation:
 
 - Use a logical complete state
-- Use [saga timeouts](/nservicebus/sagas/timeouts) to postpone physically removing the saga state and invoke [`MarkAsComplete`](/nservicebus/sagas/#ending-a-saga).
+- Use [saga timeouts](timeouts.md) to postpone physically removing the saga state and invoke [`MarkAsComplete`](/nservicebus/sagas/#ending-a-saga).
 - Do not send messages and invoke [`MarkAsComplete`](/nservicebus/sagas/#ending-a-saga). Send an additional message to self (local) that will invoke `MarkAsComplete`.
 
 
