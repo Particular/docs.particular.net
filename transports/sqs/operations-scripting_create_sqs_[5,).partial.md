@@ -5,7 +5,7 @@ In order to provision the resources required by an endpoint, use the `sqs-transp
 The tool can be obtained from NuGet and installed using the following command:
 
 ```
-dotnet tool install -g NServiceBus.NServiceBus.AmazonSQS.CommandLine
+dotnet tool install -g NServiceBus.AmazonSQS.CommandLine
 ```
 
 Once installed, the `sqs-transport` command line tool will be available for use.
