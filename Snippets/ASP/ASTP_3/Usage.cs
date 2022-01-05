@@ -164,6 +164,23 @@ class Usage
 
         #endregion
     }
+
+    void ConfigureThrottlingSettingsOnStorageTableClient(EndpointConfiguration endpointConfiguration, CloudStorageAccount storageAccount)
+    {
+        #region StorageTableClientConfigureThrottlingWithClientOptions
+
+        endpointConfiguration.UsePersistence<AzureTablePersistence>()
+            .UseCloudTableClient(storageAccount.CreateCloudTableClient(new TableClientConfiguration
+        {
+            CosmosExecutorConfiguration = new CosmosExecutorConfiguration
+            {
+                MaxRetryAttemptsOnThrottledRequests = 9,
+                MaxRetryWaitTimeOnThrottledRequests = 30
+            }
+        }));
+
+        #endregion
+    }
 }
 
 // to avoid host reference
