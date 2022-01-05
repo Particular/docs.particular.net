@@ -28,6 +28,7 @@ namespace IntegrityTests
                 .IgnoreSnippets()
                 .IgnoreTutorials()
                 .IgnoreRegex(@".*\.include\.md")
+                .IgnoreRegex(@".*\.partial\.md")
                 .Run(path =>
                 {
                     // This test is important because if the same Core version is entered twice (i.e. versions 7 and 7) then that
