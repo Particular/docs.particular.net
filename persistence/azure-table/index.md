@@ -30,7 +30,6 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |Scripted deployment        |Not supported
 |Installers                 |Supported. Subscription, the default table or saga tables derived by convention when no default table is set are created at runtime, when enabled.
 
-
 ## Enable Azure Table Persistence
 
 partial: config
@@ -48,7 +47,6 @@ partial: saga-concurrency
 ### Supported saga properties' types
 
 partial: saga-property-types
-
 
 ### Saga Correlation property restrictions
 
