@@ -35,6 +35,8 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 partial: config
 
+partial: ratelimiting
+
 partial: transaction
 
 partial: correlation
