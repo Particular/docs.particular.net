@@ -11,19 +11,19 @@ The views in ServiceInsight show information about message processing failure wi
 
 ## Status in the message list
 
-The status of an errant message is illustrated in the message window.
+The status of an errant message is illustrated in the message window. A message can have one of the statuses below.
 
 ![An error in the message window](images/overview-messagewindowerror.png 'width=500')
 
-A message can have one of the following status:
+**Successful processed message**: A message that was successfully processed. Requires [message auditing](/nservicebus/operations/auditing.md) to be enabled. ![Success icon](images/status-success-icon.png)
 
-![Retry icon](images/status-retry-icon.png 'width=20') **Retried message**: A failed message, for which a retry was requested from ServiceInsight or ServicePulse. If a message remains with this status, there is no further information about that message, neither failure nor audit for a successful processing
+**Message failed one time**: A message that was moved to the error queue only one time. ![Single error icon](images/status-error-icon.png)
 
-![Multiple errors icon](images/status-multiple-error-icon.png 'width=20') **Message failed multiple times**: A message that has been retried at least once using tools like ServiceInsight or ServicePulse, and for which retries weren't able to process the message successfully.
+**Message failed multiple times**: A message that has been retried at least once using tools like ServiceInsight or ServicePulse, and for which retries weren't able to process the message successfully. ![Multiple errors icon](images/status-multiple-error-icon.png)
 
-![Single error icon](images/status-error-icon.png 'width=20') **Message failed one time**: A message that was moved to the error queue only one time.
+**Retry requested for message**: A failed message, for which a retry was requested from ServiceInsight or ServicePulse. If a message remains with this status, there is no further information about that message, neither failure nor audit for a successful processing. Once the message is re-processed, the status will change to resolved successfully, failed once, or failed multiple times. ![Retry icon](images/status-retry-icon.png)
 
-![Success icon](images/status-success-icon.png 'width=20') **Successful processed message**: A message that was successfully processed. Requires [message auditing](/nservicebus/operations/auditing.md) to be enabled.
+**Resolved successfully**: The message has successfully processed after failure(s). ![Retry icon](images/status-resolved-successfully.png)
 
 ## The flow diagram
 
