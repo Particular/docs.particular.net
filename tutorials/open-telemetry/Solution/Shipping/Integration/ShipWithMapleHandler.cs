@@ -2,6 +2,7 @@
 using NServiceBus.Logging;
 using Messages;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Shipping.Integration
@@ -21,7 +22,7 @@ namespace Shipping.Integration
 
             log.Info($"ShipWithMapleHandler: Delaying Order [{message.OrderId}] {waitingTime} seconds.");
 
-            await Task.Delay(waitingTime * 1000);
+            await Task.Delay(waitingTime * 1000, CancellationToken.None);
 
             await context.Reply(new ShipmentAcceptedByMaple());
         }

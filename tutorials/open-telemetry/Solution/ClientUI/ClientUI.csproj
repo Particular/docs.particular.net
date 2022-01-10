@@ -12,12 +12,12 @@
   <ItemGroup>
     <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.0.0-beta.3" />
     <PackageReference Include="Honeycomb.OpenTelemetry" Version="0.18.0-beta" />
-    <PackageReference Include="NServiceBus" Version="7.6.0" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.3018" />
     <PackageReference Include="NServiceBus.Extensions.Diagnostics" Version="1.1.0" />
     <PackageReference Include="NServiceBus.Extensions.Diagnostics.OpenTelemetry" Version="1.0.0" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.1.0" />
-    <PackageReference Include="NServiceBus.Heartbeat" Version="3.0.1" />
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="3.0.6" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-alpha.153" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="4.0.0-alpha.253" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="4.0.0-alpha.164" />
     <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.2.0-rc1" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc8" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc8" />

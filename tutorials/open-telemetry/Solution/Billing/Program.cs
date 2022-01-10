@@ -45,7 +45,7 @@ namespace Billing
                     endpointConfiguration.RegisterComponents(
                         c =>
                         {
-                            c.ConfigureComponent<OrderCalculator>(DependencyLifecycle.SingleInstance);
+                            c.AddScoped<OrderCalculator>();
                         }
                     );
 
