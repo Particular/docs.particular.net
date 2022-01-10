@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Place an order";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card my-4">
+                <div class="card-body">
+                    <form action="/" method="POST">
+                        <h1 class="card-title">Place an order</h1>
+                        <p class="card-text">Click the button to place an order.</p>
+                        <input type="submit" class="btn btn-lg btn-success" onclick="sentMessage()" value="Place order &raquo;" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="card my-4">
+                <div class="card-body">
+                    <p>When you click the button:</p>
+                    <ol>
+                        <li>The <b>ClientUI</b> website will send a <code>PlaceOrder</code> command to the <b>Sales</b> service.</li>
+                        <li>The <b>Sales</b> service will publish an <code>OrderPlaced</code> event.</li>
+                        <li>The <b>Billing</b> service, which subscribes to <code>OrderPlaced</code>, will receive and process <code>OrderPlaced</code>.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
