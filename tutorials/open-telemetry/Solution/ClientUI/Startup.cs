@@ -34,7 +34,7 @@ namespace ClientUI
                                                         {
                                                             Console.WriteLine($"Got an activity named {key}");
                                                         })
-                                                        .AddNServiceBusInstrumentation() // jimmy's package
+                                                        .AddSource("NServiceBus.Extensions.Diagnostics")
                                                         .AddJaegerExporter(c =>
                                                         {
                                                             c.AgentHost = "localhost";
@@ -45,7 +45,7 @@ namespace ClientUI
                                                         {
                                                             ServiceName = "spike",
                                                             ApiKey = Environment.GetEnvironmentVariable("HONEYCOMB_APIKEY"),
-                                                            Dataset = "spike"
+                                                            Dataset = "spike-core"
                                                         })
             );
         }

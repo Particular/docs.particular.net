@@ -49,7 +49,7 @@ namespace Sales
                 {
                     services.AddOpenTelemetryTracing(builder => builder
                                                                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
-                                                                .AddNServiceBusInstrumentation() // jimmy's package
+                                                                .AddSource("NServiceBus.Extensions.Diagnostics")
                                                                 .AddJaegerExporter(c =>
                                                                 {
                                                                     c.AgentHost = "localhost";
@@ -60,7 +60,7 @@ namespace Sales
                                                                 {
                                                                     ServiceName = "spike",
                                                                     ApiKey = Environment.GetEnvironmentVariable("HONEYCOMB_APIKEY"),
-                                                                    Dataset = "spike"
+                                                                    Dataset = "spike-core"
                                                                 })
                     );
                 });
