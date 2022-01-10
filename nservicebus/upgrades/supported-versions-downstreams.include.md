@@ -109,7 +109,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.2.1) | 2021-03-25     | -                 | -                                 |
+| [6.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.3.0) | 2022-01-07     | -                 | -                                 |
+| [6.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.2.1) | 2021-03-25     | 2022-04-07        | Superseded by 6.3.x               |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/3.2.0) | 2018-07-09     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
