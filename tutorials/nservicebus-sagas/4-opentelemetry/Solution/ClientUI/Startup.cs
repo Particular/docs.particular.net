@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 namespace ClientUI
 {
     using Azure.Monitor.OpenTelemetry.Exporter;
+    using Honeycomb.OpenTelemetry;
     using OpenTelemetry.Resources;
     using OpenTelemetry.Trace;
 
