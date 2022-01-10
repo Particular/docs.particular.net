@@ -34,7 +34,7 @@ namespace ClientUI
                                                         {
                                                             Console.WriteLine($"Got an activity named {key}");
                                                         })
-                                                        .AddSource("NServiceBus.Extensions.Diagnostics")
+                                                        .AddSource("NServiceBus")
                                                         .AddJaegerExporter(c =>
                                                         {
                                                             c.AgentHost = "localhost";

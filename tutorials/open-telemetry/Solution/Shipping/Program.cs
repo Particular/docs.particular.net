@@ -53,7 +53,7 @@ namespace Shipping
                 {
                     services.AddOpenTelemetryTracing(builder => builder
                                                                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
-                                                                .AddSource("NServiceBus.Extensions.Diagnostics")
+                                                                .AddSource("NServiceBus")
                                                                 .AddJaegerExporter(c =>
                                                                 {
                                                                     c.AgentHost = "localhost";
