@@ -34,21 +34,18 @@ namespace ClientUI
                                                         {
                                                             Console.WriteLine($"Got an activity named {key}");
                                                         })
-                                                        //.AddNServiceBusInstrumentation() // jimmy's package
+                                                        .AddNServiceBusInstrumentation() // jimmy's package
                                                         .AddJaegerExporter(c =>
                                                         {
                                                             c.AgentHost = "localhost";
                                                             c.AgentPort = 6831;
                                                         })
-                                                        .AddAzureMonitorTraceExporter(c =>
-                                                        {
-                                                            c.ConnectionString = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY");
-                                                        })
+                                                        .AddAzureMonitorTraceExporter(c => { c.ConnectionString = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"); })
                                                         .AddHoneycomb(new HoneycombOptions
                                                         {
-                                                            ServiceName = Program.EndpointName,
-                                                            ApiKey = "{apikey}",
-                                                            Dataset = "{dataset}"
+                                                            ServiceName = "spike",
+                                                            ApiKey = Environment.GetEnvironmentVariable("HONEYCOMB_APIKEY"),
+                                                            Dataset = "spike"
                                                         })
             );
         }

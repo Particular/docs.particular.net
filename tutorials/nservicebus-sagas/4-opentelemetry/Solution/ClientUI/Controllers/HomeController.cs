@@ -32,7 +32,7 @@ namespace ClientUI.Controllers
         public async Task<ActionResult> PlaceOrder()
         {
             var orderId = Guid.NewGuid().ToString().Substring(0, 8);
-            var command = new PlaceOrder { OrderId = orderId };
+            var command = new PlaceOrder { OrderId = orderId, CustomerId = "the-main-customer"};
 
             // Send the command
             await _messageSession.Send(command)

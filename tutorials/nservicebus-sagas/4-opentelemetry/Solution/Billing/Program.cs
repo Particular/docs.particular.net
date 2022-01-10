@@ -55,6 +55,7 @@ namespace Billing
                 {
                     services.AddOpenTelemetryTracing(builder => builder
                                                                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
+                                                                .AddNServiceBusInstrumentation() // jimmy's package
                                                                 .AddJaegerExporter(c =>
                                                                 {
                                                                     c.AgentHost = "localhost";
