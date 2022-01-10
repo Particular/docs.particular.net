@@ -5,7 +5,11 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.0.0-beta.3" />
+    <PackageReference Include="Honeycomb.OpenTelemetry" Version="0.18.0-beta" />
     <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.1.0" />
+    <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.2.0-rc1" />
     <ProjectReference Include="..\Messages\Messages.csproj" />
   </ItemGroup>
 </Project>

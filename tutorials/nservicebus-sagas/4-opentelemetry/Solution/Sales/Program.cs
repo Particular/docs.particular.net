@@ -4,26 +4,66 @@ using NServiceBus;
 
 namespace Sales
 {
+    using Azure.Monitor.OpenTelemetry.Exporter;
+    using Honeycomb.OpenTelemetry;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using OpenTelemetry.Resources;
+    using OpenTelemetry.Trace;
+    using System.Diagnostics;
+
     class Program
     {
-        static async Task Main()
+        static void Main(string[] args)
         {
-            Console.Title = "Sales";
+            var listener = new ActivityListener
+            {
+                ShouldListenTo = _ => true,
+                ActivityStopped = activity =>
+                {
+                    foreach (var (key, value) in activity.Baggage)
+                    {
+                        activity.AddTag(key, value);
+                    }
+                }
+            };
+            ActivitySource.AddActivityListener(listener);
 
-            var endpointConfiguration = new EndpointConfiguration("Sales");
-
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
-
-            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
-
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
-
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
-
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            CreateHostBuilder(args).Build().Run();
+            Console.Title = EndpointName;
         }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .UseNServiceBus(hostBuilderContext =>
+                {
+                    var endpointConfiguration = new EndpointConfiguration(EndpointName);
+
+                    var transport = endpointConfiguration.UseTransport<LearningTransport>();
+
+                    var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+
+                    return endpointConfiguration;
+                })
+                .ConfigureServices((_, services) =>
+                {
+                    services.AddOpenTelemetryTracing(builder => builder
+                                                                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
+                                                                .AddJaegerExporter(c =>
+                                                                {
+                                                                    c.AgentHost = "localhost";
+                                                                    c.AgentPort = 6831;
+                                                                })
+                                                                .AddAzureMonitorTraceExporter(c => { c.ConnectionString = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"); })
+                                                                .AddHoneycomb(new HoneycombOptions
+                                                                {
+                                                                    ServiceName = "spike",
+                                                                    ApiKey = Environment.GetEnvironmentVariable("HONEYCOMB_APIKEY"),
+                                                                    Dataset = "spike"
+                                                                })
+                    );
+                });
+
+        public static string EndpointName => "Sales";
     }
 }
