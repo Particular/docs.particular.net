@@ -4,7 +4,7 @@ snippet: custom-trigger-definition
 
 ## Configuring transaction mode
 
-If the `NServiceBusTriggerFunction` attribute is not used, `IFunctionEndpoint.Process` will determine the transaction mode based on the `ServiceBusTrigger`'s `AutoComplete` property:
+If the `NServiceBusTriggerFunction` attribute is not used, `IFunctionEndpoint.Process` will determine the transaction mode based on the `ServiceBusTrigger`'s auto-complete property:
 
 If auto-complete is **enabled**, which is the default, NServiceBus can't control the receive transaction and the message is processed in `TransportTransactionMode.ReceiveOnly` mode.
 
@@ -13,9 +13,5 @@ snippet: asb-function-message-consistency-process-non-transactionally
 If auto-complete is **disabled**, NServiceBus can fully control incoming and outgoing messages and the message is processed in `TransportTransactionMode.SendsAtomicWithReceive` mode.
 
 snippet: asb-function-message-consistency-process-transactionally
-
-If additional control is needed, or the service bus trigger is not configured using an attribute, use the concrete `FunctionEndpoint` class:
-
-snippet: asb-function-message-consistency-manual
 
 DANGER: Incorrectly configuring the service bus trigger auto-complete setting can lead to message loss. Use the auto-detection mechanism on the function endpoint interface, or use the trigger function attribute to specify message consistency.
