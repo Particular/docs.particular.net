@@ -4,6 +4,7 @@ using Microsoft.Azure.WebJobs.ServiceBus;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 using System.Threading.Tasks;
+using ExecutionContext = Microsoft.Azure.WebJobs.ExecutionContext;
 
 #region custom-trigger-definition
 class CustomTriggerDefinition

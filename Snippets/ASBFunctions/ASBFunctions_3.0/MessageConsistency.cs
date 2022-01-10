@@ -3,14 +3,12 @@
 #pragma warning disable 162
 namespace ASBFunctions_3_0
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Microsoft.Azure.ServiceBus;
-    using Microsoft.Azure.ServiceBus.Core;
+    using Azure.Messaging.ServiceBus;
     using Microsoft.Azure.WebJobs;
+    using Microsoft.Azure.WebJobs.ServiceBus;
     using Microsoft.Extensions.Logging;
     using NServiceBus;
-    using ExecutionContext = Microsoft.Azure.WebJobs.ExecutionContext;
+    using System.Threading.Tasks;
 
     class MessageConsistency
     {
@@ -25,64 +23,28 @@ namespace ASBFunctions_3_0
         [FunctionName("ProcessMessage")]
         public async Task Run(
             // Setting AutoComplete to true (the default) processes the message non-transactionally
-            [ServiceBusTrigger("ProcessMessage", AutoComplete = true)]
-            Message message,
+            [ServiceBusTrigger("ProcessMessage", AutoCompleteMessages = true)]
+            ServiceBusReceivedMessage message,
             ILogger logger,
-            MessageReceiver messageReceiver,
-            ExecutionContext executionContext,
-            CancellationToken cancellationToken)
+            ExecutionContext executionContext)
         {
-            await endpoint.Process(message, executionContext, messageReceiver, logger, cancellationToken);
+            await endpoint.ProcessNonAtomic(message, executionContext, logger);
         }
         #endregion
 
         #region asb-function-message-consistency-process-transactionally
         [FunctionName("ProcessMessageTx")]
-        public async Task RunTx(
+        public Task RunTx(
             // Setting AutoComplete to false processes the message transactionally
-            [ServiceBusTrigger("ProcessMessageTx", AutoComplete = false)]
-            Message message,
+            [ServiceBusTrigger("ProcessMessageTx", AutoCompleteMessages = false)]
+            ServiceBusReceivedMessage message,
+            ServiceBusClient client,
+            ServiceBusMessageActions messageActions,
             ILogger logger,
-            MessageReceiver messageReceiver,
-            ExecutionContext executionContext,
-            CancellationToken cancellationToken)
+            ExecutionContext executionContext)
         {
-            await endpoint.Process(message, executionContext, messageReceiver, logger, cancellationToken);
+            return endpoint.ProcessAtomic(message, executionContext, client, messageActions, logger);
         }
         #endregion
     }
-
-    #region asb-function-message-consistency-manual
-    class MyFunctions
-    {
-        const bool EnableTransactions = true;
-
-        // NOTE: Use concrete class instead of interface
-        readonly FunctionEndpoint endpoint;
-
-        public MyFunctions(FunctionEndpoint endpoint)
-        {
-            this.endpoint = endpoint;
-        }
-
-        [FunctionName("ProcessMessages")]
-        public async Task Run(
-            [ServiceBusTrigger("ProcessMessages", AutoComplete = !EnableTransactions)]
-            Message message,
-            ILogger logger,
-            MessageReceiver messageReceiver,
-            ExecutionContext executionContext,
-            CancellationToken cancellationToken)
-        {
-            if(EnableTransactions)
-            {
-                await endpoint.ProcessTransactional(message, executionContext, messageReceiver, logger, cancellationToken);
-            }
-            else
-            {
-                await endpoint.ProcessNonTransactional(message, executionContext, messageReceiver, logger, cancellationToken);
-            }
-        }
-    }
-    #endregion
 }
