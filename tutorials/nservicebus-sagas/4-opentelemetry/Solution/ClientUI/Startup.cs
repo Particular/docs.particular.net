@@ -43,6 +43,12 @@ namespace ClientUI
                                                         {
                                                             c.ConnectionString = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY");
                                                         })
+                                                        .AddHoneycomb(new HoneycombOptions
+                                                        {
+                                                            ServiceName = Program.EndpointName,
+                                                            ApiKey = "{apikey}",
+                                                            Dataset = "{dataset}"
+                                                        })
             );
         }
 

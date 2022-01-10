@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.0.0-beta.3" />
+    <PackageReference Include="Honeycomb.OpenTelemetry" Version="0.18.0-beta" />
     <PackageReference Include="NServiceBus" Version="7.6.0" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.1.0" />
     <PackageReference Include="NServiceBus.Heartbeat" Version="3.0.1" />
