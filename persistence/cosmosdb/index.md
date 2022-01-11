@@ -19,13 +19,7 @@ WARN: It is important to [read and understand](https://docs.microsoft.com/en-us/
 
 For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
 
-|Feature                    |   |
-|:---                       |---
-|Supported storage types    |Sagas, Outbox
-|Transactions               |Using TransactionalBatch, [with caveats](transactions.md)
-|Concurrency control        |Optimistic concurrency
-|Scripted deployment        |Not supported
-|Installers                 |Container is created by installers.
+partial: glance
 
 NOTE: The Outbox feature requires partition planning.
 
@@ -106,25 +100,3 @@ When the outbox is enabled, the deduplication data is kept for seven days by def
 snippet: CosmosDBOutboxCleanup
 
 Outbox cleanup depends on the Cosmos DB time-to-live feature. Failure to remove the expired outbox records is caused by a misconfigured collection that has time-to-live disabled. Refer to the [Cosmos DB documentation](https://docs.microsoft.com/en-us/azure/cosmos-db/time-to-live) to configure the collection correctly.
-
-## Saga concurrency
-
-Due to the distributed nature of Cosmos DB [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) is always used when updating or deleting saga data. When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
-
-include: saga-concurrency
-
-### Starting a saga
-
-Example exception:
-
-```
-The 'OrderSagaData' saga with id '7ac4d199-6560-4d1a-b83a-b3dad94b0802' could not be created possibly due to a concurrency conflict.
-```
-
-### Updating or deleting saga data
-
-Example exception:
-
-```
-The 'OrderSagaData' saga with id '7ac4d199-6560-4d1a-b83a-b3dad94b0802' was updated by another process or no longer exists.
-```
