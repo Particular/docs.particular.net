@@ -6,7 +6,7 @@ using NServiceBus;
 #region configuration-with-function-host-builder
 
 [assembly: FunctionsStartup(typeof(Startup))]
-[assembly: NServiceBusTriggerFunction(Startup.EndpointName)]
+[assembly: NServiceBusTriggerFunction(Startup.EndpointName, SendsAtomicWithReceive = true)]
 
 public class Startup : FunctionsStartup
 {
