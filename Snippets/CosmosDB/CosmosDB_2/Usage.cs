@@ -2,6 +2,7 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Fluent;
 using NServiceBus;
+using NServiceBus.Persistence.CosmosDB;
 
 class Usage
 {
@@ -52,8 +53,7 @@ class Usage
 
         #region CosmosDBMigrationMode
 
-        endpointConfiguration.UsePersistence<CosmosPersistence>()
-            .EnableMigrationMode();
+        endpointConfiguration.UsePersistence<CosmosPersistence>().Sagas().EnableMigrationMode();
 
         #endregion
 
@@ -84,6 +84,33 @@ class Usage
 
         endpointConfiguration.UsePersistence<CosmosPersistence>()
             .CosmosClient(cosmosClientBuilder.Build());
+
+        #endregion
+
+        #region UsePessimisticLocking
+
+        var sagaPersistenceConfiguration = new SagaPersistenceConfiguration();
+        sagaPersistenceConfiguration.UsePessimisticLocking();
+
+        #endregion
+
+        #region PessimisticLeaseLockDuration
+
+        var pessimisticLockingConfiguration = sagaPersistenceConfiguration.UsePessimisticLocking();
+        pessimisticLockingConfiguration.SetPessimisticLeaseLockTime(TimeSpan.FromMilliseconds(500));
+
+        #endregion
+
+        #region PessimisticLeaseLockAcquisitionTimeout
+
+        pessimisticLockingConfiguration.SetPessimisticLeaseLockAcquisitionTimeout(TimeSpan.FromMilliseconds(500));
+
+        #endregion
+
+        #region PessimisticLeaseLockAcquisitionMinMaxRefreshDelay
+
+        pessimisticLockingConfiguration.SetPessimisticLeaseLockAcquisitionMinimumRefreshDelay(TimeSpan.FromMilliseconds(50));
+        pessimisticLockingConfiguration.SetPessimisticLeaseLockAcquisitionMaximumRefreshDelay(TimeSpan.FromMilliseconds(100));
 
         #endregion
     }

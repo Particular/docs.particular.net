@@ -1,4 +1,5 @@
 ﻿using Microsoft.Azure.Cosmos;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.Persistence.CosmosDB;
 
@@ -22,7 +23,7 @@ class CosmosDBCustomClientProviderRegistration
     {
         #region CosmosDBCustomClientProviderRegistration
 
-        endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<CustomCosmosClientProvider>(DependencyLifecycle.SingleInstance));
+        endpointConfiguration.RegisterComponents(c => c.AddTransient<CustomCosmosClientProvider>());
 
         #endregion
     }
