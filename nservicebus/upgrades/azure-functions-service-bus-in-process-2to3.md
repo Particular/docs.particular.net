@@ -12,7 +12,7 @@ upgradeGuideCoreVersions:
 
 ## Update to Microsoft.Azure.WebJobs.Extensions.ServiceBus SDK Version 5
 
-The dependency to Microsoft.Azure.WebJobs.Extensions.ServiceBus have been updated which means that the new Azure.Messaging.ServiceBus SDK is being used by the function host to receive messages. Should you have code accesses native SDK types make sure to read the [Microsoft Migration Guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/servicebus/Azure.Messaging.ServiceBus/MigrationGuide.md).
+The dependency to Microsoft.Azure.WebJobs.Extensions.ServiceBus have been updated which means that the new Azure.Messaging.ServiceBus SDK is being used by the function host to receive messages. If the solution contains code that directly accesses native SDK types make sure to read the [Microsoft Migration Guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/servicebus/Azure.Messaging.ServiceBus/MigrationGuide.md).
 
 ## Manually invoking process message
 
