@@ -6,7 +6,7 @@ reviewed: 2021-12-03
 related:
  - nservicebus/sagas/concurrency
 redirects:
- - nservicebus/cosmosdb/saga-concurrency
+ - nservicebus/ravendb/saga-concurrency
 ---
 
 include: dtc-warning
