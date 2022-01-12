@@ -97,20 +97,20 @@ class Usage
         #region PessimisticLeaseLockDuration
 
         var pessimisticLockingConfiguration = sagaPersistenceConfiguration.UsePessimisticLocking();
-        pessimisticLockingConfiguration.SetPessimisticLeaseLockTime(TimeSpan.FromMilliseconds(500));
+        pessimisticLockingConfiguration.SetLeaseLockTime(TimeSpan.FromMilliseconds(500));
 
         #endregion
 
         #region PessimisticLeaseLockAcquisitionTimeout
 
-        pessimisticLockingConfiguration.SetPessimisticLeaseLockAcquisitionTimeout(TimeSpan.FromMilliseconds(500));
+        pessimisticLockingConfiguration.SetLeaseLockAcquisitionTimeout(TimeSpan.FromMilliseconds(500));
 
         #endregion
 
         #region PessimisticLeaseLockAcquisitionMinMaxRefreshDelay
 
-        pessimisticLockingConfiguration.SetPessimisticLeaseLockAcquisitionMinimumRefreshDelay(TimeSpan.FromMilliseconds(50));
-        pessimisticLockingConfiguration.SetPessimisticLeaseLockAcquisitionMaximumRefreshDelay(TimeSpan.FromMilliseconds(100));
+        pessimisticLockingConfiguration.SetLeaseLockAcquisitionMinimumRefreshDelay(TimeSpan.FromMilliseconds(50));
+        pessimisticLockingConfiguration.SetLeaseLockAcquisitionMaximumRefreshDelay(TimeSpan.FromMilliseconds(100));
 
         #endregion
     }
