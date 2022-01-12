@@ -27,10 +27,6 @@ namespace ClientUI
 
                             endpointConfiguration.SendFailedMessagesTo("error");
                             endpointConfiguration.AuditProcessedMessagesTo("audit");
-                            endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
-
-                            var metrics = endpointConfiguration.EnableMetrics();
-                            metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromMilliseconds(500));
 
                             return endpointConfiguration;
 
