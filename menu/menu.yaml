@@ -225,6 +225,8 @@
         Title: Version 1 to 2
       - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-2to3
         Title: Version 2 to 3
+      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-3to4
+        Title: Version 3 to 4
     - Title: Gateway
       Articles:
       - Url: nservicebus/upgrades/gateway-1to2

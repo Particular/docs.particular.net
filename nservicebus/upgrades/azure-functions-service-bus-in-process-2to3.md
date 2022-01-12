@@ -10,23 +10,27 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-## Code first API to set connection string
+## Update to Microsoft.Azure.WebJobs.Extensions.ServiceBus SDK Version 5
 
-Setting the connection string can now be done as part of calling `UseNServiceBus()`
+The dependency to Microsoft.Azure.WebJobs.Extensions.ServiceBus have been updated which means that the new Azure.Messaging.ServiceBus SDK is being used by the function host to receive messages. If the solution contains code that directly accesses native SDK types make sure to read the [Microsoft Migration Guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/servicebus/Azure.Messaging.ServiceBus/MigrationGuide.md).
 
-Instead of
+## Manually invoking process message
 
-```csharp
-functionsHostBuilder.UseNServiceBus(() => new ServiceBusTriggeredEndpointConfiguration(endpointName){
-    ConnectionString = "CONNECTIONSTRING"
-});
-```
+Previously `IFunctionEndpoint` exposed a two different `Process` methods where the one accepting a `IMessageReceiver` would be the one that [processed the message in atomic sends with receive mode](/nservicebus/hosting/azure-functions-service-bus/#message-consistency).
 
-use:
+Version 3 now exposes different metods for those two different use cases.
 
-```csharp
-functionsHostBuilder.UseNServiceBus(endpointName, "CONNECTIONSTRING");
-```
+Use:
+
+`Task ProcessAtomic(ServiceBusReceivedMessage message, ExecutionContext executionContext, ServiceBusClient serviceBusClient, ServiceBusMessageActions messageActions, ILogger functionsLogger = null);`
+
+to process the message with atomic sends with receive.
+
+Use:
+
+`Task ProcessNonAtomic(ServiceBusReceivedMessage message, ExecutionContext executionContext, ILogger functionsLogger = null);`
+
+to process the message in receive only mode.
 
 ## Injecting FunctionEndpoint
 

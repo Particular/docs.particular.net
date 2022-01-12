@@ -1,14 +1,15 @@
 ﻿// ReSharper disable ConditionIsAlwaysTrueOrFalse
 // ReSharper disable HeuristicUnreachableCode
 #pragma warning disable 162
-namespace ASBFunctions_1_3
+namespace ASBFunctions_4_0
 {
-    using Microsoft.Azure.ServiceBus;
-    using Microsoft.Azure.ServiceBus.Core;
+    using Azure.Messaging.ServiceBus;
     using Microsoft.Azure.WebJobs;
+    using Microsoft.Azure.WebJobs.ServiceBus;
     using Microsoft.Extensions.Logging;
     using NServiceBus;
     using System.Threading.Tasks;
+    using ExecutionContext = Microsoft.Azure.WebJobs.ExecutionContext;
 
     class MessageConsistency
     {
@@ -23,28 +24,29 @@ namespace ASBFunctions_1_3
         [FunctionName("ProcessMessage")]
         public async Task Run(
             // Setting AutoComplete to true (the default) processes the message non-transactionally
-            [ServiceBusTrigger("ProcessMessage", AutoComplete = true)]
-            Message message,
+            [ServiceBusTrigger("ProcessMessage", AutoCompleteMessages = true)]
+            ServiceBusReceivedMessage message,
             ILogger logger,
-            MessageReceiver messageReceiver,
             ExecutionContext executionContext)
         {
-            await endpoint.Process(message, executionContext, messageReceiver, logger);
+            await endpoint.ProcessNonAtomic(message, executionContext, logger);
         }
         #endregion
 
         #region asb-function-message-consistency-process-transactionally
         [FunctionName("ProcessMessageTx")]
-        public async Task RunTx(
+        public Task RunTx(
             // Setting AutoComplete to false processes the message transactionally
-            [ServiceBusTrigger("ProcessMessageTx", AutoComplete = false)]
-            Message message,
+            [ServiceBusTrigger("ProcessMessageTx", AutoCompleteMessages = false)]
+            ServiceBusReceivedMessage message,
+            ServiceBusClient client,
+            ServiceBusMessageActions messageActions,
             ILogger logger,
-            MessageReceiver messageReceiver,
             ExecutionContext executionContext)
         {
-            await endpoint.Process(message, executionContext, messageReceiver, logger);
+            return endpoint.ProcessAtomic(message, executionContext, client, messageActions, logger);
         }
+
         #endregion
     }
 }

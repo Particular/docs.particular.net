@@ -47,29 +47,4 @@ namespace ASBFunctions_2_0
         }
         #endregion
     }
-
-    #region asb-function-message-consistency-manual
-    class MyFunctions
-    {
-        const bool EnableTransactions = true;
-
-        readonly IFunctionEndpoint endpoint;
-
-        public MyFunctions(IFunctionEndpoint endpoint)
-        {
-            this.endpoint = endpoint;
-        }
-
-        [FunctionName("ProcessMessages")]
-        public async Task Run(
-            [ServiceBusTrigger("ProcessMessages", AutoComplete = !EnableTransactions)]
-            Message message,
-            ILogger logger,
-            MessageReceiver messageReceiver,
-            ExecutionContext executionContext)
-        {
-            await endpoint.Process(message, executionContext, messageReceiver, EnableTransactions, logger);
-        }
-    }
-    #endregion
 }
