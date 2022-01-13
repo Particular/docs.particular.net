@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using NServiceBus;
+using NServiceBus.Persistence.CosmosDB;
 using NServiceBus.Pipeline;
 
 #region CosmosDB-ITransportReceiveContextBehavior
@@ -39,7 +40,7 @@ public class RegisterMyBehavior : RegisterStep
         description: "Determines the PartitionKey from the logical message",
         factoryMethod: b => new PartitionKeyIncomingLogicalMessageContextBehavior())
     {
-        //TODO: Should be removed for Version 2.0 ???
+        //TODO: cleanup?
         //InsertBeforeIfExists(nameof(LogicalOutboxBehavior));
     }
 }

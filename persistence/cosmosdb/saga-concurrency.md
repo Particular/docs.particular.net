@@ -5,8 +5,6 @@ component: CosmosDB
 reviewed: 2022-01-11
 related:
  - nservicebus/sagas/concurrency
-redirects:
- - nservicebus/cosmosdb/saga-concurrency1
 ---
 
 ## Default behavior
