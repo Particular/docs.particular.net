@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.0.0-beta.3" />
     <PackageReference Include="Honeycomb.OpenTelemetry" Version="0.18.0-beta" />
+    <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.20.0" />
     <PackageReference Include="NServiceBus" Version="8.0.0-spike-opentelemetry.1" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-alpha.153" />
     <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.2.0-rc1" />

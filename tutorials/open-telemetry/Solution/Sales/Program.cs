@@ -8,6 +8,7 @@ namespace Sales
     using Honeycomb.OpenTelemetry;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
     using OpenTelemetry.Resources;
     using OpenTelemetry.Trace;
     using System.Diagnostics;
@@ -47,6 +48,10 @@ namespace Sales
                 })
                 .ConfigureServices((_, services) =>
                 {
+                    services.AddLogging(builder =>
+                    {
+                        builder.AddApplicationInsights(Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"));
+                    });
                     services.AddOpenTelemetryTracing(builder => builder
                                                                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
                                                                 .AddSource("NServiceBus")

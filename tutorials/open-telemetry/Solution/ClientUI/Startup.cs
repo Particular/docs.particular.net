@@ -9,6 +9,7 @@ namespace ClientUI
 {
     using Azure.Monitor.OpenTelemetry.Exporter;
     using Honeycomb.OpenTelemetry;
+    using Microsoft.Extensions.Logging;
     using OpenTelemetry.Resources;
     using OpenTelemetry.Trace;
 
@@ -27,6 +28,10 @@ namespace ClientUI
             services.AddControllers();
             services.AddMvc();
 
+            services.AddLogging(builder =>
+            {
+                builder.AddApplicationInsights(Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"));
+            });
             services.AddOpenTelemetryTracing(builder => builder
                                                         .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(Program.EndpointName))
                                                         //.AddHttpClientInstrumentation()
