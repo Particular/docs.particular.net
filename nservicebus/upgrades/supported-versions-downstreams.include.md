@@ -29,7 +29,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.1) | 2021-05-07     | -                 | -                                 |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | ~~2020-07-13~~ | ~~2021-08-07~~    | ~~Superseded by 6.1.x~~           |
-| [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.2.0) | ~~2020-04-17~~ | ~~2021-07-13~~    | ~~Superseded by 6.0.x~~           |
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/4.4.5) | 2017-09-18     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.SqlServer](/nuget/NServiceBus.SqlServer)
