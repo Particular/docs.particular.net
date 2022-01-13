@@ -32,16 +32,16 @@ The implementation of `IHandleSagaNotFound` should be driven by the business req
 
 ## Troubleshooting
 
-Saga not found can occur when:
+*Saga not found* Exceptions can occur when:
 
-1. The saga instance does not exist yet
-2. The saga instance already is removed
+1. The saga instance does not exist (yet)
+2. The saga instance has already been removed
 
-Sometimes its not always that obvious when saga state will exist or be gone due to race conditions, false assumptions
+Sometimes it's not always obvious when saga state exists or be gone due to race conditions or false assumptions.
 
 ### Out of order
 
-If the design assumes message A will create the saga and B updates the saga. If message B is received thus processed before A the saga will not yet exist and will be discarded.
+If the design assumes message A will create the saga and message B updates the saga. If message B is received and processed before message A, the saga doesn't exist yet, and the message will be discarded.
 
 Symptoms:
 
@@ -53,7 +53,7 @@ Mitigation:
 
 ### Concurrency
 
-Messages might be processed concurrently. If the saga is started by messages 1 but that did not yet complete thus create the saga state and message 2 is processed which depends on the existance of the saga state this message will be discarded with saga not found.
+Messages might be processed concurrently. If the saga is started by message A but did not complete yet (the saga state is not persisted yet) and message B, which depends on the existence of the saga state, is processed, it will be discarded with a saga not found error.
 
 Symptoms:
 
