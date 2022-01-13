@@ -36,12 +36,12 @@ sql-persistence script <assembly>
 
 #### Options
  
-`-o` | `--output-dir` : Path to the output directory. If not specified, the current directory will be used.
+`-o=<path>` | `--output-dir=<path>` : Path to the output directory. If not specified, the current directory will be used.
 
 `--clean` : Removes existing files in the output directory
 
 `--overwrite`: Overwrites existing files in the output if they match the files to be generated
 
-`--dialect`: Specifies a dialect to generate. Allowed values are: SqlServer, MySql, Oracle, PostgreSql
+`--dialect=<value>`: Specifies a dialect to generate. Allowed values are: SqlServer, MySql, Oracle, PostgreSql
 
 `--verbose`: Verbose logging
