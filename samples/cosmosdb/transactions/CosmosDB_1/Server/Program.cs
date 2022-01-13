@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using NServiceBus;
+using NServiceBus.Logging;
 
 class Program
 {
@@ -22,10 +23,22 @@ class Program
 
         #endregion
 
-        #region BehaviorRegistration
+        #region TransactionInformationFromLogicalMessage
 
-        endpointConfiguration.Pipeline.Register(new OrderIdHeaderAsPartitionKeyBehavior(), "Extracts a partition key from a header");
-        endpointConfiguration.Pipeline.Register(new OrderIdAsPartitionKeyBehavior.Registration());
+        var transactionInformation = persistence.TransactionInformation();
+        transactionInformation.ExtractFromMessage<IProvideOrderId>(provideOrderId =>
+        {
+            Log.Info($"Found partition key '{provideOrderId.OrderId}' from '{nameof(IProvideOrderId)}'");
+            return new PartitionKey(provideOrderId.OrderId.ToString());
+        });
+        #endregion
+
+        #region TransactionInformationFromHeader
+        transactionInformation.ExtractFromHeader("Sample.CosmosDB.Transaction.OrderId", orderId =>
+        {
+            Log.Info($"Found partition key '{orderId}' from header 'Sample.CosmosDB.Transaction'");
+            return orderId;
+        });
 
         #endregion
 
@@ -41,4 +54,6 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
+
+    static ILog Log = LogManager.GetLogger<Program>();
 }
