@@ -11,7 +11,7 @@ related:
 
 NServiceBus takes instances of .NET objects (messages, events, and commands) and sends/receives them over a specified [transport](/transports/). As part of this process, the object must be serialized and deserialized. NServiceBus achieves this using **serializers**.
 
-NOTE: When transitioning to a new serializer, messages that are currently 'in-flight' are formatted using the previous serialization format. **This includes [saga timeout](/nservicebus/sagas/timeouts.md) and [deferred/delayed](/nservicebus/messaging/delayed-delivery.md) messages via timeout persistence.** 
+NOTE: When transitioning to a new serializer, messages that are currently 'in-flight' are formatted using the previous serialization format. **This includes [saga timeout](/nservicebus/sagas/timeouts.md) and [deferred/delayed](/nservicebus/messaging/delayed-delivery.md) messages via timeout persistence.**
 
 partial: livemigration
 
@@ -53,6 +53,6 @@ For example, the [Newtonsoft JSON Serializer](newtonsoft.md) by default supports
 
 ## Security
 
-The deserialization target type is defined by the incoming message. Although NServiceBus only deserializes message payloads that are considered a [valid message type](/nservicebus/messaging/messages-events-commands.md), side-effects in constructor methods or property setters of message contracts may be abused by an attacker with access to the transport infrastructure.
+The deserialization target type is defined by the incoming message. Although NServiceBus only deserializes message payloads that are considered a [valid message type](/nservicebus/messaging/messages-events-commands.md), side effects in constructor methods or property setters of message contracts may be abused by an attacker with access to the transport infrastructure.
 
-To avoid unintended behavior during message deserialization, avoid executing code with side-effects as part of constructors and property setters of message types.
+To avoid unintended behavior during message deserialization, avoid executing code with side effects as part of constructors and property setters of message types.

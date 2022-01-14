@@ -12,25 +12,25 @@ upgradeGuideCoreVersions:
 
 ## Update to Microsoft.Azure.WebJobs.Extensions.ServiceBus SDK Version 5
 
-The dependency to Microsoft.Azure.WebJobs.Extensions.ServiceBus have been updated which means that the new Azure.Messaging.ServiceBus SDK is being used by the function host to receive messages. If the solution contains code that directly accesses native SDK types make sure to read the [Microsoft Migration Guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/servicebus/Azure.Messaging.ServiceBus/MigrationGuide.md).
+The dependency on Microsoft.Azure.WebJobs.Extensions.ServiceBus has been updated which means that the new Azure.Messaging.ServiceBus SDK is being used by the function host to receive messages. If the solution contains code that directly accesses native SDK types, read the [Microsoft Migration Guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/servicebus/Azure.Messaging.ServiceBus/MigrationGuide.md).
 
 ## Manually invoking process message
 
-Previously `IFunctionEndpoint` exposed a two different `Process` methods where the one accepting a `IMessageReceiver` would be the one that [processed the message in atomic sends with receive mode](/nservicebus/hosting/azure-functions-service-bus/#message-consistency).
+In version 2 of the Azure Functions package, `IFunctionEndpoint` exposed two different `Process` methods where the one accepting a `IMessageReceiver` would be the one that [processed the message in "atomic sends with receive" mode](/nservicebus/hosting/azure-functions-service-bus/#message-consistency).
 
-Version 3 now exposes different metods for those two different use cases.
+Version 3 exposes different methods for the two different use cases.
 
 Use:
 
 `Task ProcessAtomic(ServiceBusReceivedMessage message, ExecutionContext executionContext, ServiceBusClient serviceBusClient, ServiceBusMessageActions messageActions, ILogger functionsLogger = null);`
 
-to process the message with atomic sends with receive.
+to process the message with "atomic sends with receive" transaction mode.
 
 Use:
 
 `Task ProcessNonAtomic(ServiceBusReceivedMessage message, ExecutionContext executionContext, ILogger functionsLogger = null);`
 
-to process the message in receive only mode.
+to process the message in "receive only" transaction mode.
 
 ## Injecting FunctionEndpoint
 
