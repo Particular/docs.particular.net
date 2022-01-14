@@ -14,7 +14,7 @@ The previous location of the `EnableMigrationMode` has been deprecated and now t
 
 ## Changes to transactions
 
-## Move to the new transactions API
+### Move to the new transactions API
 
 A [new Transactions API](persistence/cosmosdb/transactions.md) has been introduced to determine the `PartitionKey` and `ContainerInformation`. It is recommended to move from using a behavior-based approach to using this new API instead.
 
@@ -28,7 +28,7 @@ snippet: EndpointLevelMessageExtractionRulesHeaderKeySaga
 
 For more ways to set the `PartitionKey` see the [Transactions API documentation](persistence/cosmosdb/transactions.md).
 
-## `LogicalOutboxBehavior` has been deprecated
+### `LogicalOutboxBehavior` has been deprecated
 
 The `LogicalOutboxBehavior` has been marked as deprecated and will be internal only starting with version 3.0.
 
