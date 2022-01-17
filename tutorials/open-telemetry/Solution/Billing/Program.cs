@@ -61,6 +61,7 @@ namespace Billing
                 })
                 .ConfigureServices((_, services) =>
                 {
+                    AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);
                     services.AddLogging(builder =>
                     {
                         builder.AddApplicationInsights(Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"));
@@ -78,9 +79,9 @@ namespace Billing
                                                                 .AddAzureMonitorTraceExporter(c => { c.ConnectionString = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"); })
                                                                 .AddHoneycomb(new HoneycombOptions
                                                                 {
-                                                                    ServiceName = "spike",
+                                                                    ServiceName = EndpointName,
                                                                     ApiKey = Environment.GetEnvironmentVariable("HONEYCOMB_APIKEY"),
-                                                                    Dataset = "spike-core"
+                                                                    Dataset = "full-telemetry"
                                                                 })
                     );
                 });

@@ -32,9 +32,9 @@ namespace ClientUI
             {
                 builder.AddApplicationInsights(Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"));
             });
+            AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);
             services.AddOpenTelemetryTracing(builder => builder
                                                         .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(Program.EndpointName))
-                                                        .AddHttpClientInstrumentation()
                                                         .AddAspNetCoreInstrumentation(opt => opt.Enrich = (activity, key, value) =>
                                                         {
                                                             Console.WriteLine($"Got an activity named {key}");
@@ -50,9 +50,9 @@ namespace ClientUI
                                                         .AddAzureMonitorTraceExporter(c => { c.ConnectionString = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"); })
                                                         .AddHoneycomb(new HoneycombOptions
                                                         {
-                                                            ServiceName = "spike",
+                                                            ServiceName = Program.EndpointName,
                                                             ApiKey = Environment.GetEnvironmentVariable("HONEYCOMB_APIKEY"),
-                                                            Dataset = "spike-core"
+                                                            Dataset = "full-telemetry"
                                                         })
             );
         }
