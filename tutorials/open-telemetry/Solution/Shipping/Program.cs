@@ -1,6 +1,7 @@
 ﻿using Messages;
 using NServiceBus;
 using System;
+using System.Data.SqlClient;
 
 namespace Shipping
 {
@@ -39,9 +40,14 @@ namespace Shipping
                 .UseNServiceBus(hostBuilderContext =>
                 {
                     var endpointConfiguration = new EndpointConfiguration("Shipping");
+                    endpointConfiguration.EnableInstallers();
 
-                    var transport = endpointConfiguration.UseTransport<LearningTransport>();
-                    var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+                    var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+                    transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"));
+
+                    var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+                    persistence.ConnectionBuilder(() => new SqlConnection(Environment.GetEnvironmentVariable("SQLServerConnectionString")));
+                    persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
                     var routing = transport.Routing();
                     routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
@@ -58,7 +64,9 @@ namespace Shipping
                     });
                     services.AddOpenTelemetryTracing(builder => builder
                                                                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
+                                                                .AddSqlClientInstrumentation()
                                                                 .AddSource("NServiceBus")
+                                                                .AddSource("Azure.*")
                                                                 .AddJaegerExporter(c =>
                                                                 {
                                                                     c.AgentHost = "localhost";

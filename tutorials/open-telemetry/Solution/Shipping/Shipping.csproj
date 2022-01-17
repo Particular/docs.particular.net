@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <OutputType>Exe</OutputType>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.0.0-beta.3" />
@@ -10,6 +10,9 @@
     <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.20.0" />
     <PackageReference Include="NServiceBus" Version="8.0.0-spike-opentelemetry.1" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-alpha.153" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.0.0-alpha.291" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-alpha.1903" />
     <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.2.0-rc1" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc8" />
     <ProjectReference Include="..\Messages\Messages.csproj" />

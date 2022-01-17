@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using System.Data.SqlClient;
 
 namespace Sales
 {
@@ -40,9 +41,14 @@ namespace Sales
                 {
                     var endpointConfiguration = new EndpointConfiguration(EndpointName);
 
-                    var transport = endpointConfiguration.UseTransport<LearningTransport>();
+                    endpointConfiguration.EnableInstallers();
 
-                    var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+                    var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+                    transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"));
+
+                    var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+                    persistence.ConnectionBuilder(() => new SqlConnection(Environment.GetEnvironmentVariable("SQLServerConnectionString")));
+                    persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
                     return endpointConfiguration;
                 })
@@ -54,7 +60,9 @@ namespace Sales
                     });
                     services.AddOpenTelemetryTracing(builder => builder
                                                                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
+                                                                .AddSqlClientInstrumentation()
                                                                 .AddSource("NServiceBus")
+                                                                .AddSource("Azure.*")
                                                                 .AddJaegerExporter(c =>
                                                                 {
                                                                     c.AgentHost = "localhost";

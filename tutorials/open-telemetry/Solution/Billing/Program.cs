@@ -1,5 +1,6 @@
 ﻿using System;
 using NServiceBus;
+using System.Data.SqlClient;
 
 namespace Billing
 {
@@ -40,8 +41,14 @@ namespace Billing
                 {
                     var endpointConfiguration = new EndpointConfiguration(EndpointName);
 
-                    var transport = endpointConfiguration.UseTransport<LearningTransport>();
-                    var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+                    endpointConfiguration.EnableInstallers();
+
+                    var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+                    transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"));
+
+                    var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+                    persistence.ConnectionBuilder(() => new SqlConnection(Environment.GetEnvironmentVariable("SQLServerConnectionString")));
+                    persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
                     endpointConfiguration.RegisterComponents(
                         c =>
@@ -60,7 +67,9 @@ namespace Billing
                     });
                     services.AddOpenTelemetryTracing(builder => builder
                                                                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
+                                                                .AddSqlClientInstrumentation()
                                                                 .AddSource("NServiceBus")
+                                                                .AddSource("Azure.*")
                                                                 .AddJaegerExporter(c =>
                                                                 {
                                                                     c.AgentHost = "localhost";

@@ -30,16 +30,18 @@ namespace ClientUI
 
             services.AddLogging(builder =>
             {
-                builder.AddApplicationInsights(Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"));
+                builder.AddApplicationInsights("InstrumentationKey=d58c32d8-edd5-460a-9a97-9ed7536eee88;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/");
             });
             services.AddOpenTelemetryTracing(builder => builder
                                                         .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(Program.EndpointName))
-                                                        //.AddHttpClientInstrumentation()
+                                                        .AddHttpClientInstrumentation()
                                                         .AddAspNetCoreInstrumentation(opt => opt.Enrich = (activity, key, value) =>
                                                         {
                                                             Console.WriteLine($"Got an activity named {key}");
                                                         })
+                                                        .AddSqlClientInstrumentation()
                                                         .AddSource("NServiceBus")
+                                                        .AddSource("Azure.*")
                                                         .AddJaegerExporter(c =>
                                                         {
                                                             c.AgentHost = "localhost";
