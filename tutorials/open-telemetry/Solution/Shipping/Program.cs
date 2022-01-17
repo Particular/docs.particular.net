@@ -57,7 +57,7 @@ namespace Shipping
                     return endpointConfiguration;
                 })
                 .ConfigureServices((_, services) =>
-                
+
                 {
                     services.AddLogging(builder =>
                     {
