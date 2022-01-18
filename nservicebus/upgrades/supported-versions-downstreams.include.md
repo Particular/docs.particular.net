@@ -169,7 +169,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Ninject/7.0.0) | 2018-05-29     | -                 | -                                 |
+| [7.1.x](https://www.nuget.org/packages/NServiceBus.Ninject/7.1.0) | 2022-01-17     | -                 | -                                 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Ninject/7.0.0) | 2018-05-29     | 2022-04-17        | Superseded by 7.1.x               |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Ninject/6.0.1) | 2016-10-11     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Spring](/nuget/NServiceBus.Spring)
