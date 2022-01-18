@@ -48,7 +48,7 @@ The Azure Service Bus transport configuration options have been moved to the `Az
 | RuleNameShortener | SubscriptionRuleNamingConvention |
 | SubscriptionRuleNamingConvention | SubscriptionRuleNamingConvention |
 | UseWebSockets | UseWebSockets |
-| CustomTokenProvider | TokenProvider |
+| CustomTokenCredential | TokenCredential |
 | CustomRetryPolicy | RetryPolicy |
 
 ## Accessing the native incoming message
