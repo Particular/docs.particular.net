@@ -310,3 +310,15 @@ public class MyHandler : IHandleMessages<MyMessage>
     }
 }
 ```
+
+## Implicit global using directives
+
+NServiceBus 8 supports the [implicit global using directives](https://docs.microsoft.com/en-us/dotnet/core/project-sdk/overview#implicit-using-directives) feature introduced in the .NET 6 SDK. When `<ImplicitUsings>enable</ImplicitUsings>` has been set in the project file, all files in the project will have an implicit `using NServiceBus;` added to them. In the event that this introduces a conflict between two identically named types in referenced namespaces, the ambiguity will need to be resolved manually.
+
+To disable the implicit adding of the `NServiceBus` namespace while still keeping `ImplicitUsings` enabled, add the following to the project file:
+
+```xml
+<ItemGroup>
+  <Using Remove="NServiceBus" />
+</ItemGroup>
+```
