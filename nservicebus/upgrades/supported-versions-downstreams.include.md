@@ -177,7 +177,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.Spring/8.0.0) | 2018-05-29     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Spring/8.1.0) | 2022-01-18     | -                 | -                                 |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.Spring/8.0.0) | 2018-05-29     | 2022-04-18        | Superseded by 8.1.x               |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Spring/7.0.0) | 2016-10-11     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.StructureMap](/nuget/NServiceBus.StructureMap)
