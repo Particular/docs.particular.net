@@ -18,6 +18,8 @@ The previous location of the `EnableMigrationMode` has been deprecated and now t
 
 A [new Transactions API](/persistence/cosmosdb/transactions.md) has been introduced to determine the `PartitionKey` and `ContainerInformation`. It is recommended to move from using a behavior-based approach to using this new API instead.
 
+### Identifying the `PartitionKey`
+
 The most simple way to extract the `PartitionKey` from the headers is by using the following method:
 
 snippet: ExtractPartitionKeyFromHeaderSimple
