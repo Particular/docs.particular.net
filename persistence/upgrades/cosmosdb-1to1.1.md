@@ -16,7 +16,7 @@ The previous location of the `EnableMigrationMode` has been deprecated and now t
 
 ### Move to the new transactions API
 
-A [new Transactions API](persistence/cosmosdb/transactions.md) has been introduced to determine the `PartitionKey` and `ContainerInformation`. It is recommended to move from using a behavior-based approach to using this new API instead.
+A [new Transactions API](/persistence/cosmosdb/transactions.md) has been introduced to determine the `PartitionKey` and `ContainerInformation`. It is recommended to move from using a behavior-based approach to using this new API instead.
 
 The most simple way to extract the `PartitionKey` from the headers is by using the following method:
 
@@ -26,7 +26,7 @@ The most simple way to extract the `PartitionKey` from the message is by using t
 
 snippet: ExtractPartitionKeyFromMessageExtractor
 
-For more ways to set the `PartitionKey` see the [Transactions API documentation](persistence/cosmosdb/transactions.md).
+For more ways to set the `PartitionKey` see the [Transactions API documentation](/persistence/cosmosdb/transactions.md).
 
 ### `LogicalOutboxBehavior` has been deprecated
 
