@@ -39,25 +39,7 @@ snippet: CosmosDBDatabaseName
 
 ### Customizing the container used
 
-Set the default container using the following configuration API:
-
-snippet: CosmosDBDefaultContainer
-
-When installers are enabled the default container will be created if it doesn't exist. To opt-out from creating the default container either disable the installers or use
-
-snippet: CosmosDBDisableContainerCreation
-
-#### Advanced container customization
-
-WARN: When the container name and partition key path are provided at runtime it takes precedence over any default container configured using [configuration API](#usage-customizing-the-container-used). The container specified at runtime has to exist and be configured properly to order to work.
-
-The container name can be provided using a custom behavior at the physical stage
-
-snippet: CustomContainerNameUsingITransportReceiveContextBehavior
-
-or at the logical stage
-
-snippet: CustomContainerNameUsingIIncomingLogicalMessageContextBehavior
+include: defaultcontainer
 
 ### Customizing the CosmosClient provider
 
