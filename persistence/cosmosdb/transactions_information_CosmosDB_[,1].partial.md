@@ -35,3 +35,4 @@ To register the custom `PartitionKey` behavior:
 snippet: CosmosDBRegisterLogicalBehavior
 
 WARN: Caution must be used when custom behaviors have been introduced in the pipeline that [dispatch messages immediately](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately). If these behaviors execute before the `LogicalOutboxBehavior` the [outbox message guarantees](/nservicebus/outbox/#how-it-works) may be broken.
+include: containeroverride
