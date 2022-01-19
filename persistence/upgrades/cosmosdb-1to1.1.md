@@ -20,11 +20,11 @@ A [new Transactions API](persistence/cosmosdb/transactions.md) has been introduc
 
 The most simple way to extract the `PartitionKey` from the headers is by using the following method:
 
-snippet: EndpointLevelHeaderExtractionRulesHeaderKey
+snippet: ExtractPartitionKeyFromHeaderSimple
 
 The most simple way to extract the `PartitionKey` from the message is by using the following method:
 
-snippet: EndpointLevelMessageExtractionRulesHeaderKeySaga
+snippet: ExtractPartitionKeyFromMessageExtractor
 
 For more ways to set the `PartitionKey` see the [Transactions API documentation](persistence/cosmosdb/transactions.md).
 
