@@ -53,6 +53,7 @@ class Usage
         #region CosmosDBMigrationMode
 
         endpointConfiguration.UsePersistence<CosmosPersistence>()
+            .Sagas()
             .EnableMigrationMode();
 
         #endregion
