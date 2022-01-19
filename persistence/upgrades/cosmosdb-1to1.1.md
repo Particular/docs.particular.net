@@ -30,6 +30,18 @@ snippet: ExtractPartitionKeyFromMessageExtractor
 
 For more ways to set the `PartitionKey` see the [Transactions API documentation](/persistence/cosmosdb/transactions.md).
 
+### Identifying the `ContainerInformation`
+
+The most simple way to extract the `ContainerInformation` from the headers is by using the following method:
+
+snippet: ExtractContainerInfoFromHeaders
+
+The most simple way to extract the `ContainerInformation` from the message is by using the following method:
+
+snippet: ExtractContainerInfoFromMessageExtractor
+
+For more ways to set the `ContainerInformation` see the [Transactions API documentation](/persistence/cosmosdb/transactions.md).
+
 ### `LogicalOutboxBehavior` has been deprecated
 
 The `LogicalOutboxBehavior` has been marked as deprecated and will be internal only starting with version 3.0.
