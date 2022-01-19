@@ -26,7 +26,7 @@ class Program
         #region TransactionInformationFromLogicalMessage
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractFromMessage<IProvideOrderId>(provideOrderId =>
+        transactionInformation.ExtractPartitionKeyFromMessage<IProvideOrderId>(provideOrderId =>
         {
             Log.Info($"Found partition key '{provideOrderId.OrderId}' from '{nameof(IProvideOrderId)}'");
             return new PartitionKey(provideOrderId.OrderId.ToString());
@@ -34,7 +34,7 @@ class Program
         #endregion
 
         #region TransactionInformationFromHeader
-        transactionInformation.ExtractFromHeader("Sample.CosmosDB.Transaction.OrderId", orderId =>
+        transactionInformation.ExtractPartitionKeyFromHeader("Sample.CosmosDB.Transaction.OrderId", orderId =>
         {
             Log.Info($"Found partition key '{orderId}' from header 'Sample.CosmosDB.Transaction'");
             return orderId;

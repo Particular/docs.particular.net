@@ -13,21 +13,20 @@ This sample shows a client/server scenario using non-transactional saga persiste
 
 ## Projects
 
-#### SharedMessages
+### SharedMessages
 
 The shared message contracts used by all endpoints.
 
 ### Client
 
- * Sends the `StartOrder` message to `Server`.
- * Receives and handles the `OrderCompleted` event.
+* Sends the `StartOrder` message to `Server`.
+* Receives and handles the `OrderCompleted` event.
 
 ### Server projects
 
- * Receive the `StartOrder` message and initiate an `OrderSaga`.
- * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
- * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
-
+* Receive the `StartOrder` message and initiate an `OrderSaga`.
+* `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
+* `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
 
 ### Persistence config
 

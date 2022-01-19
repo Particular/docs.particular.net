@@ -5,7 +5,7 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="2.0.0-alpha.32" />
+    <PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="2.0.0-alpha.156" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
