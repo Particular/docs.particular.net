@@ -78,7 +78,7 @@ function Get-BuildSolutions
 
 $exitCode = 0
 $failedSolutions = New-Object Collections.Generic.List[String]
-$failedSolutionsOutput = CombinePaths $pwd.Path "failed-solutions.log"
+$failedSolutionsOutput = CombinePaths $pwd.Path "failed-samples-and-snippets.log"
 $executionDirectory = Get-Location
 
 $solutions = Get-BuildSolutions
@@ -112,7 +112,7 @@ foreach($solution in $solutions) {
             $failedSolutions.Add($solution.FullName)
         }
     }
-    finally 
+    finally
     {
     	# Clean up previous build, GitHub Actions runners only have 14GB SSD
     	git clean -xfdq
