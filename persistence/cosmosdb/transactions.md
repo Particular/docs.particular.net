@@ -10,6 +10,8 @@ redirects:
 
 By default, the persister does not attempt to atomically commit saga data and/or business data and uses the saga id as partition key to store sagas. Through the use of the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
 
+## Configuring NServiceBus
+
 partial: information
 
 ## Sharing the transaction
