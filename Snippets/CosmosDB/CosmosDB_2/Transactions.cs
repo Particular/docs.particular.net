@@ -1,139 +1,182 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Azure.Cosmos;
-using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.Persistence.CosmosDB;
 
 class Transactions
 {
-    void EndpointLevelHeaderExtractionRulesHeaderKey(PersistenceExtensions<CosmosPersistence> persistence)
+    void ExtractPartitionKeyFromHeaderSimple(PersistenceExtensions<CosmosPersistence> persistence)
     {
-        #region EndpointLevelHeaderExtractionRulesHeaderKey
+        #region ExtractPartitionKeyFromHeaderSimple
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractFromHeader("PartitionKeyHeader");
+        transactionInformation.ExtractPartitionKeyFromHeader("PartitionKeyHeader");
 
         #endregion
     }
-    void EndpointLevelHeaderExtractionRulesHeaderKeyContainerInfo(PersistenceExtensions<CosmosPersistence> persistence)
+
+    void ExtractPartitionKeyFromHeadersExtractor(PersistenceExtensions<CosmosPersistence> persistence, MyAppsCustomConfigurationHolder appConfig)
     {
-        #region EndpointLevelHeaderExtractionRulesHeaderKeyContainerInfo
+        #region ExtractPartitionKeyFromHeadersExtractor
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractFromHeader("PartitionKeyHeader", new ContainerInformation("ContainerName", new PartitionKeyPath("PartitionKeyPath")));
+        transactionInformation.ExtractContainerInformationFromHeaders<MyAppsCustomConfigurationHolder>((headers, config) => new ContainerInformation(headers["ContainerNameHeader"], new PartitionKeyPath(config.PartitionKeyPath)), appConfig);
 
         #endregion
     }
-    void EndpointLevelHeaderExtractionRulesHeaderKeyConverterContainerInfo(PersistenceExtensions<CosmosPersistence> persistence)
+
+    void ExtractPartitionKeyFromHeadersCustom(PersistenceExtensions<CosmosPersistence> persistence)
     {
-        #region EndpointLevelHeaderExtractionRulesHeaderKeyConverterContainerInfo
+        #region ExtractPartitionKeyFromHeadersCustom
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractFromHeader("PartitionKeyHeader", (value, toBeRemoved) => value.Replace(toBeRemoved, string.Empty), "__TOBEREMOVED__", new ContainerInformation("ContainerName", new PartitionKeyPath("PartitionKeyPath")));
+        transactionInformation.ExtractPartitionKeyFromHeaders(new CustomPartitionKeyFromHeadersExtractor());
 
         #endregion
     }
-    void ManualRegistrationOfHeaderExtractors(PersistenceExtensions<CosmosPersistence> persistence)
+
+    void ExtractContainerInfoFromHeader(PersistenceExtensions<CosmosPersistence> persistence)
     {
-        #region ManualRegistrationOfHeaderExtractors
+        #region ExtractContainerInfoFromHeader
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractFromHeaders(new CustomHeaderExtractor());
-
-        #endregion
-    }
-    void ContainerRegistrationOfHeaderExtractors(EndpointConfiguration config)
-    {
-        #region ContainerRegistrationOfHeaderExtractors
-
-        config.RegisterComponents(c =>
-            c.AddSingleton<ITransactionInformationFromHeadersExtractor>(b => new CustomHeaderExtractor()));
+        transactionInformation.ExtractContainerInformationFromHeader("ContainerKey", headerValue => new ContainerInformation(headerValue, new PartitionKeyPath("/partitionKey")));
 
         #endregion
     }
 
-
-    void EndpointLevelMessageExtractionRulesHeaderKeySaga(PersistenceExtensions<CosmosPersistence> persistence, Context scenarioContext)
+    void ExtractContainerInfoFromHeaders(PersistenceExtensions<CosmosPersistence> persistence, MyAppsCustomConfigurationHolder appConfig)
     {
-        #region EndpointLevelMessageExtractionRulesHeaderKeySaga
+        #region ExtractContainerInfoFromHeaders
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractFromMessage<StartSaga>(startSaga =>
-        {
-            return new PartitionKey(startSaga.PartitionKey.ToString());
-        }, new ContainerInformation("ContainerName", new PartitionKeyPath("PartitionKeyPath")));
+        transactionInformation.ExtractContainerInformationFromHeaders<MyAppsCustomConfigurationHolder>((headers, config) => new ContainerInformation(headers["ContainerNameHeader"], new PartitionKeyPath(appConfig.PartitionKeyPath)), appConfig);
 
         #endregion
     }
-    void EndpointLevelMessageExtractionRulesHeaderKeySagaContext(PersistenceExtensions<CosmosPersistence> persistence, Context scenarioContext)
+
+    void ExtractContainerInfoFromHeadersCustom(PersistenceExtensions<CosmosPersistence> persistence)
     {
-        #region EndpointLevelMessageExtractionRulesHeaderKeySagaContext
+        #region ExtractContainerInfoFromHeadersCustom
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractFromMessage<StartSaga, Context>((startSaga, state) =>
-        {
-            state.StateMatched = startSaga.PartitionKey.Equals(state.SagaReceivedMessageId);
-            return new PartitionKey(startSaga.PartitionKey.ToString());
-        }, scenarioContext, new ContainerInformation("ContainerName", new PartitionKeyPath("PartitionKeyPath")));
+        transactionInformation.ExtractContainerInformationFromHeaders(new CustomContainerInformationFromHeadersExtractor());
 
         #endregion
     }
-    void ManualRegistrationOfMessageExtractors(PersistenceExtensions<CosmosPersistence> persistence)
+
+    void ExtractPartitionKeyFromMessageExtractor(PersistenceExtensions<CosmosPersistence> persistence)
     {
-        #region ManualRegistrationOfMessageExtractors
+        #region ExtractPartitionKeyFromMessageExtractor
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractFromMessages(new CustomMessageExtractor());
+        transactionInformation.ExtractPartitionKeyFromMessage<MyMessage>(message => new PartitionKey(message.ItemId));
 
         #endregion
     }
-    void ContainerRegistrationOfMessageExtractors(EndpointConfiguration config)
-    {
-        #region ContainerRegistrationOfMessageExtractors
 
-        config.RegisterComponents(c =>
-            c.AddSingleton<ITransactionInformationFromMessagesExtractor>(b => new CustomMessageExtractor()));
+    void ExtractPartitionKeyFromMessageCustom(PersistenceExtensions<CosmosPersistence> persistence)
+    {
+        #region ExtractPartitionKeyFromMessageCustom
+
+        var transactionInformation = persistence.TransactionInformation();
+        transactionInformation.ExtractPartitionKeyFromMessage<MyMessage>(message => new PartitionKey(message.ItemId));
+
+        #endregion
+    }
+
+
+    void ExtractContainerInfoFromMessageExtractor(PersistenceExtensions<CosmosPersistence> persistence)
+    {
+        #region ExtractContainerInfoFromMessageExtractor
+
+        var transactionInformation = persistence.TransactionInformation();
+        transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(message => new ContainerInformation(message.ItemId.ToString(), new PartitionKeyPath("/partitionKey")));
+
+        #endregion
+    }
+
+    void ExtractContainerInfoFromMessageCustom(PersistenceExtensions<CosmosPersistence> persistence)
+    {
+        #region ExtractContainerInfoFromMessageCustom
+
+        var transactionInformation = persistence.TransactionInformation();
+        transactionInformation.ExtractContainerInformationFromMessage(new CustomContainerInformationFromMessagesExtractor());
 
         #endregion
     }
 
 }
 
-#region CustomHeaderExtractor
-public class CustomHeaderExtractor : ITransactionInformationFromHeadersExtractor
+class MyAppsCustomConfigurationHolder
 {
-    public bool TryExtract(IReadOnlyDictionary<string, string> headers, out PartitionKey? partitionKey, out ContainerInformation? containerInformation)
+    public string PartitionKeyPath { get; set; }
+}
+
+#region CustomPartitionKeyFromHeadersExtractor
+public class CustomPartitionKeyFromHeadersExtractor : IPartitionKeyFromHeadersExtractor
+{
+    public bool TryExtract(IReadOnlyDictionary<string, string> headers, out PartitionKey? partitionKey)
     {
-        partitionKey = new PartitionKey(Guid.NewGuid().ToString());
-        containerInformation = new ContainerInformation("ContainerName", new PartitionKeyPath("PartitionKeyPath"));
-        return true;
+        if (headers.TryGetValue("PartitionKeyHeader", out var headerVal))
+        {
+            partitionKey = new PartitionKey(headerVal);
+            return true;
+        }
+
+        partitionKey = null;
+        return false;
     }
 }
 #endregion
 
-#region CustomMessageExtractor
-public class CustomMessageExtractor : ITransactionInformationFromMessagesExtractor
+#region CustomContainerInformationFromHeadersExtractor
+public class CustomContainerInformationFromHeadersExtractor : IContainerInformationFromHeadersExtractor
 {
-    public bool TryExtract(object message, out PartitionKey? partitionKey,
-        out ContainerInformation? containerInformation)
+    public bool TryExtract(IReadOnlyDictionary<string, string> headers, out ContainerInformation? containerInformation)
     {
-        partitionKey = new PartitionKey(Guid.NewGuid().ToString());
-        containerInformation = new ContainerInformation("ContainerName", new PartitionKeyPath("PartitionKeyPath"));
-        return true;
+        if (headers.TryGetValue("ContainerInformationHeader", out var headerVal))
+        {
+            containerInformation = new ContainerInformation(headerVal, new PartitionKeyPath("/partitionKey"));
+            return true;
+        }
+
+        containerInformation = null;
+        return false;
     }
 }
 #endregion
 
-public class StartSaga : ICommand
+#region CustomPartitionKeyFromMessageExtractor
+class CustomPartitionKeyFromMessageExtractor : IPartitionKeyFromMessageExtractor
 {
-    public Guid DataId { get; set; }
-    public Guid PartitionKey { get; set; }
-}
+    public bool TryExtract(object message, IReadOnlyDictionary<string, string> headers, out PartitionKey? partitionKey)
+    {
+        if (message is MyMessage myMessage)
+        {
+            partitionKey = new PartitionKey(myMessage.ItemId);
+            return true;
+        }
 
-public class Context 
-{
-    public Guid SagaReceivedMessageId { get; set; }
-    public bool SagaReceivedMessage { get; set; }
-    public bool StateMatched { get; set; }
+        partitionKey = null;
+        return false;
+    }
 }
+#endregion
+
+#region CustomContainerInformationFromMessageExtractor
+class CustomContainerInformationFromMessagesExtractor : IContainerInformationFromMessagesExtractor
+{
+    public bool TryExtract(object message, IReadOnlyDictionary<string, string> headers, out ContainerInformation? containerInformation)
+    {
+        if (message is MyMessage myMessage)
+        {
+            containerInformation = new ContainerInformation("ContainerNameForMyMessage", new PartitionKeyPath("/partitionKeyPath"));
+            return true;
+        }
+
+        containerInformation = null;
+        return false;
+    }
+}
+#endregion
