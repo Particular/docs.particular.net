@@ -4,7 +4,6 @@ using Microsoft.Azure.Cosmos;
 using NServiceBus;
 using NServiceBus.Logging;
 
-#region UseHeader
 public class ShipOrderHandler :
     IHandleMessages<ShipOrder>
 {
@@ -40,4 +39,3 @@ public class ShipOrderHandler :
 
     static ILog Log = LogManager.GetLogger<ShipOrderHandler>();
 }
-#endregion
