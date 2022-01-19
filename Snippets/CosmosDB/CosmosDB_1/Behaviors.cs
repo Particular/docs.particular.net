@@ -40,7 +40,7 @@ public class RegisterMyBehavior : RegisterStep
         description: "Determines the PartitionKey from the logical message",
         factoryMethod: b => new PartitionKeyIncomingLogicalMessageContextBehavior())
     {
-        InsertBeforeIfExists(nameof(LogicalOutboxBehavior));
+        InsertBeforeIfExists("LogicalOutboxBehavior");
     }
 }
 #endregion
