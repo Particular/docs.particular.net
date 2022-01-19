@@ -20,7 +20,7 @@ class Transactions
         #region ExtractPartitionKeyFromHeadersExtractor
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractContainerInformationFromHeaders<MyAppsCustomConfigurationHolder>((headers, config) => new ContainerInformation(headers["ContainerNameHeader"], new PartitionKeyPath(config.PartitionKeyPath)), appConfig);
+        transactionInformation.ExtractPartitionKeyFromHeaders<MyAppsCustomConfigurationHolder>((headers, config) => new PartitionKey(headers["PartitionKeyHeader"]), appConfig);
 
         #endregion
     }
