@@ -2,7 +2,7 @@
 title: Cosmos DB Persistence Upgrade from 1.0 to 1.1
 summary: Instructions on how to upgrade NServiceBus.Persistence.CosmosDB 1.0 to 1.1
 component: CosmosDB
-reviewed: 2022-01-13
+reviewed: 2022-01-18
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
