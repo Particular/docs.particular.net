@@ -67,7 +67,6 @@ namespace Shipping
                                                                 .AddAzureMonitorTraceExporter(c => { c.ConnectionString = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"); })
                                                                 .AddHoneycomb(new HoneycombOptions
                                                                 {
-                                                                    ServiceName = "spike",
                                                                     ApiKey = Environment.GetEnvironmentVariable("HONEYCOMB_APIKEY"),
                                                                     Dataset = "spike-core"
                                                                 })
