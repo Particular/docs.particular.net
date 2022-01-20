@@ -41,6 +41,8 @@ snippet: CosmosDBDatabaseName
 
 include: defaultcontainer
 
+NOTE: The [transactions](transactions.md) documentation details additional options on how to configure NServiceBus to specify the container using the incoming message headers or contents.
+
 ### Customizing the CosmosClient provider
 
 In cases when the CosmosClient is configured and used via dependency injection a custom provider can be implemented
