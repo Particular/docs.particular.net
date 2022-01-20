@@ -58,12 +58,6 @@ class Usage
 
         #endregion
 
-        #region CosmosDBRegisterLogicalBehavior
-
-        endpointConfiguration.Pipeline.Register(new RegisterMyBehavior());
-
-        #endregion
-
         #region CosmosDBConfigureThrottlingWithClientOptions
 
         endpointConfiguration.UsePersistence<CosmosPersistence>()
