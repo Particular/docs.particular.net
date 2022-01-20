@@ -56,7 +56,9 @@ namespace Billing
                 {
                     services.AddLogging(builder =>
                     {
+                        builder.AddConsole();
                         builder.AddApplicationInsights(Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"));
+                        builder.AddOpenTelemetry(o => o.AddConsoleExporter());
                     });
                     services.AddOpenTelemetryTracing(builder => builder
                                                                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
