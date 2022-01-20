@@ -54,15 +54,6 @@ jobs:
       - name: Notify Slack on failure
         if: ${{ failure() }}
         shell: pwsh
-        with:
-          status: ${{ job.status }}
-          author_name: Integrity tests have failed.
-          fields: message,author,action,eventName,ref,workflow
-          username: GitHub Actions
-          icon_emoji: ":github_actions:"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
         run: |
           $headers = @{
               'Authorization' = "Bearer ${{ secrets.GITHUB_TOKEN }}"

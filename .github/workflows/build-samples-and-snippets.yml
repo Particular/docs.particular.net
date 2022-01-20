@@ -23,13 +23,6 @@ jobs:
       - name: Notify Slack on failure
         if: ${{ failure() }}
         shell: pwsh
-        with:
-          status: ${{ job.status }}
-          text: Failed to build samples and snippets.
-          author_name: Build samples and snippets
-          fields: message,author,action,eventName,ref,workflow
-          username: GitHub Actions
-          icon_emoji: ":github_actions:"
         run: |
           $headers = @{
               'Authorization' = "Bearer ${{ secrets.GITHUB_TOKEN }}"
