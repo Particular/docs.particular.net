@@ -64,6 +64,7 @@ namespace Billing
                     services.AddOpenTelemetryTracing(builder => builder
                                                                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
                                                                 .AddSource("NServiceBus")
+                                                                .AddSource("Test")
                                                                 .AddJaegerExporter(c =>
                                                                 {
                                                                     c.AgentHost = "localhost";
@@ -76,6 +77,7 @@ namespace Billing
                                                                     Dataset = "spike-core"
                                                                 })
                     );
+                    services.AddHostedService<TestService>();
                 });
         public static string EndpointName => "Billing";
     }
