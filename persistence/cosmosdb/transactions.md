@@ -10,8 +10,6 @@ redirects:
 
 By default, the persister does not attempt to atomically commit saga data and/or business data and uses the saga id as partition key to store sagas. Through the use of the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/), saga data and/or business data can be atomically committed if everything is stored in the same partition within a container.
 
-## Configuring transaction information
-
 The Cosmos DB persistence provides the ability to specify the partition and Container used per message using message headers or the message contents.
 
 Using message headers only has the advantage being able to identify the partition or `Container` before the [outbox](/nservicebus/outbox) logic is executed, which allows the outbox feature to work entirely as intended.
