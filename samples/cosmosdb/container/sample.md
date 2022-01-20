@@ -1,7 +1,7 @@
 ---
 title: Cosmos DB Persistence Usage with non-default container
 summary: Using Cosmos DB Persistence to store sagas providing a non-default container dynamically
-reviewed: 2020-09-22
+reviewed: 2022-01-19
 component: CosmosDB
 related:
  - nservicebus/sagas
@@ -13,23 +13,22 @@ This sample shows a client/server scenario using a dynamic container configurati
 
 ## Projects
 
-#### SharedMessages
+### SharedMessages
 
 The shared message contracts used by all endpoints.
 
 ### Client
 
- * Sends the `StartOrder` message to `Server`.
- * Receives and handles the `OrderCompleted` event.
+* Sends the `StartOrder` message to `Server`.
+* Receives and handles the `OrderCompleted` event.
 
 ### Server projects
 
- * Receive the `StartOrder` message and initiate an `OrderSaga`.
- * `OrderSaga` sends a `ShipOrder` command to `ShipOrderSaga`
- * `ShipOrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
- * `ShipOrderSaga` replies with `CompleteOrder` when the `CompleteOrder` timeout fires.
- * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` message arrives.
-
+* Receive the `StartOrder` message and initiate an `OrderSaga`.
+* `OrderSaga` sends a `ShipOrder` command to `ShipOrderSaga`
+* `ShipOrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
+* `ShipOrderSaga` replies with `CompleteOrder` when the `CompleteOrder` timeout fires.
+* `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` message arrives.
 
 ### Persistence config
 
@@ -39,15 +38,15 @@ snippet: CosmosDBConfig
 
 In the non-transactional mode the saga id is used as a partition key and thus the container needs to use `/id` as the partition key path.
 
-## Behaviors
+## Container Mapping
 
-For all messages destined to go to the `ShipOrderSaga` the container is overridden at runtime to use `ShipOrderSagaData` container.
+For `ShipOrder` messages destined to go to the `ShipOrderSaga` the container is overridden at runtime to use `ShipOrderSagaData` container.
 
-snippet: BehaviorAddingContainerInfo
+snippet: ContainerInformationFromLogicalMessage
 
-The behavior needs to be registered in the pipeline
+For all messages that have a saga type header `ShipOrderSaga` the container is overriden to use `ShipOrderSagaData` container too.
 
-snippet: BehaviorRegistration
+snippet: ContainerInformationFromHeaders
 
 ## Order saga data
 

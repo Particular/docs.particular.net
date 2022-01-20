@@ -1102,6 +1102,8 @@
   - Title: Cosmos DB
     Url: persistence/cosmosdb
     Articles:
+    - Title: Saga concurrency
+      Url: persistence/cosmosdb/saga-concurrency
     - Title: Transactions
       Url: persistence/cosmosdb/transactions
     - Title: Migration from Azure Table Persistence

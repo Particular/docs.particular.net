@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using NServiceBus;
+using NServiceBus.Logging;
+using Headers = NServiceBus.Headers;
 
 class Program
 {
@@ -25,10 +27,25 @@ class Program
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 
-        #region BehaviorRegistration
+        #region ContainerInformationFromLogicalMessage
+        var transactionInformation = persistence.TransactionInformation();
+        transactionInformation.ExtractContainerInformationFromMessage<ShipOrder>(m =>
+        {
+            Log.Info($"Message '{m.GetType().AssemblyQualifiedName}' destined to be handled by '{nameof(ShipOrderSaga)}' will use 'ShipOrderSagaData' container.");
+            return new ContainerInformation("ShipOrderSagaData", new PartitionKeyPath("/id"));
+        });
+        #endregion
+        #region ContainerInformationFromHeaders
+        transactionInformation.ExtractContainerInformationFromHeaders(headers =>
+        {
+            if (headers.TryGetValue(Headers.SagaType, out var sagaTypeHeader) && sagaTypeHeader.Contains(nameof(ShipOrderSaga)))
+            {
+                Log.Info($"Message '{headers[Headers.EnclosedMessageTypes]}' destined to be handled by '{nameof(ShipOrderSaga)}' will use 'ShipOrderSagaData' container.");
 
-        endpointConfiguration.Pipeline.Register(new BehaviorProvidingDynamicContainer(), "Provides a non-default container for sagas started by ship order message");
-
+                return new ContainerInformation("ShipOrderSagaData", new PartitionKeyPath("/id"));
+            }
+            return null;
+        });
         #endregion
 
         await cosmosClient.CreateDatabaseIfNotExistsAsync("Samples.CosmosDB.Container");
@@ -44,4 +61,6 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
+
+    static readonly ILog Log = LogManager.GetLogger<Program>();
 }

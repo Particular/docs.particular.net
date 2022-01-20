@@ -2,6 +2,7 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Fluent;
 using NServiceBus;
+using NServiceBus.Persistence.CosmosDB;
 
 class Usage
 {
