@@ -49,7 +49,7 @@ class Transactions
         #region ExtractContainerInfoFromHeaderInstance
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractContainerInformationFromHeader("ContainerKey", new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey"));
+        transactionInformation.ExtractContainerInformationFromHeader("ContainerKey", new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey")));
 
         #endregion
     }

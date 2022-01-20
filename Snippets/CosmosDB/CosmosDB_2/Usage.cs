@@ -85,7 +85,7 @@ class Usage
 
         #region UsePessimisticLocking
 
-        var sagaPersistenceConfiguration = new SagaPersistenceConfiguration();
+        var sagaPersistenceConfiguration = persistence.Sagas();
         sagaPersistenceConfiguration.UsePessimisticLocking();
 
         #endregion
