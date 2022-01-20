@@ -62,3 +62,5 @@ public class RegisterMyBehavior : RegisterStep
     }
 }
 ```
+
+NOTE: It is recommended to move from using a behavior-based approach to using the [new Transactions API](/persistence/cosmosdb/transactions.md) instead.
