@@ -42,6 +42,8 @@ or registered via dependency injection:
 
 snippet: ExtractPartitionKeyFromHeadersRegistration
 
+include: explicit_before_di_note
+
 Besides those API methods shown here, additional overloads are available for extracting `PartitionKey`.
 
 ### Using the message contents
@@ -61,6 +63,8 @@ snippet: ExtractPartitionKeyFromMessageCustom
 or registered via dependency injection:
 
 snippet: ExtractPartitionKeyFromMessageRegistration
+
+include: explicit_before_di_note
 
 Additional overloads are available for extracting `PartitionKey`.
 
@@ -100,6 +104,8 @@ or registered via dependency injection:
 
 snippet: ExtractContainerInfoFromHeadersRegistration
 
+include: explicit_before_di_note
+
 Besides those API methods shown here, additional overloads are available for extracting `ContainerInformation` from headers.
 
 ### Using the message contents
@@ -123,6 +129,8 @@ snippet: ExtractContainerInfoFromMessageCustom
 or registered via dependency injection:
 
 snippet: ExtractContainerInfoFromMessageRegistration
+
+include: explicit_before_di_note
 
 Additional overloads are available for extracting `ContainerInformation` from the message.
 
