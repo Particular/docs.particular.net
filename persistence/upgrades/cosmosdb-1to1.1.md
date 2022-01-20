@@ -10,7 +10,7 @@ upgradeGuideCoreVersions:
 
 ## EnableMigrationMode has moved
 
-The previous location of the `EnableMigrationMode` has been deprecated and now the `persistenceConfiguration.Sagas().EnableMigrationMode()` should be used instead.
+The previous location of the `EnableMigrationMode` has been deprecated and the `persistenceConfiguration.Sagas().EnableMigrationMode()` should be used instead.
 
 ## Changes to transactions
 
