@@ -22,11 +22,11 @@ A [new Transactions API](/persistence/cosmosdb/transactions.md) has been introdu
 
 The most simple way to extract the `PartitionKey` from the headers is by using the following method:
 
-snippet: ExtractPartitionKeyFromHeaderSimple
+snippet: ExtractPartitionKeyFromHeaderSimple1to11
 
 The most simple way to extract the `PartitionKey` from the message is by using the following method:
 
-snippet: ExtractPartitionKeyFromMessageExtractor
+snippet: ExtractPartitionKeyFromMessageExtractor1to11
 
 For more ways to set the `PartitionKey` see the [Transactions API documentation](/persistence/cosmosdb/transactions.md).
 
@@ -34,11 +34,11 @@ For more ways to set the `PartitionKey` see the [Transactions API documentation]
 
 The most simple way to extract the `ContainerInformation` from the headers is by using the following method:
 
-snippet: ExtractContainerInfoFromHeaders
+snippet: ExtractContainerInfoFromHeaders1to11
 
 The most simple way to extract the `ContainerInformation` from the message is by using the following method:
 
-snippet: ExtractContainerInfoFromMessageExtractor
+snippet: ExtractContainerInfoFromMessageExtractor1to11
 
 For more ways to set the `ContainerInformation` see the [Transactions API documentation](/persistence/cosmosdb/transactions.md).
 
