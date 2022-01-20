@@ -1,17 +1,17 @@
-﻿using System;
-using NServiceBus;
-using System.Data.SqlClient;
-
-namespace Billing
+﻿namespace Billing
 {
+    using System;
+    using System.Data.SqlClient;
+    using System.Diagnostics;
     using Azure.Monitor.OpenTelemetry.Exporter;
     using Honeycomb.OpenTelemetry;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
+    using NServiceBus;
+    using OpenTelemetry.Logs;
     using OpenTelemetry.Resources;
     using OpenTelemetry.Trace;
-    using System.Diagnostics;
 
     class Program
     {
@@ -43,12 +43,27 @@ namespace Billing
 
                     endpointConfiguration.EnableInstallers();
 
-                    var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-                    transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"));
 
-                    var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-                    persistence.ConnectionBuilder(() => new SqlConnection(Environment.GetEnvironmentVariable("SQLServerConnectionString")));
-                    persistence.SqlDialect<SqlDialect.MsSqlServer>();
+                    if (null != Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"))
+                    {
+                        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+                        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"));
+                    }
+                    else
+                    {
+                        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+                    }
+
+                    if (null != Environment.GetEnvironmentVariable("SQLServerConnectionString"))
+                    {
+                        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+                        persistence.ConnectionBuilder(() => new SqlConnection(Environment.GetEnvironmentVariable("SQLServerConnectionString")));
+                        persistence.SqlDialect<SqlDialect.MsSqlServer>();
+                    }
+                    else
+                    {
+                        var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+                    }
 
                     endpointConfiguration.RegisterComponents(
                         c =>
@@ -64,7 +79,9 @@ namespace Billing
                     AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);
                     services.AddLogging(builder =>
                     {
+                        builder.AddConsole();
                         builder.AddApplicationInsights(Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"));
+                        builder.AddOpenTelemetry(o => o.AddConsoleExporter());
                     });
                     services.AddOpenTelemetryTracing(builder => builder
                                                                 .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
@@ -79,11 +96,11 @@ namespace Billing
                                                                 .AddAzureMonitorTraceExporter(c => { c.ConnectionString = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"); })
                                                                 .AddHoneycomb(new HoneycombOptions
                                                                 {
-                                                                    ServiceName = EndpointName,
                                                                     ApiKey = Environment.GetEnvironmentVariable("HONEYCOMB_APIKEY"),
                                                                     Dataset = "full-telemetry"
                                                                 })
                     );
+                    services.AddHostedService<TestService>();
                 });
         public static string EndpointName => "Billing";
     }

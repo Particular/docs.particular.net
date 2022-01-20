@@ -50,7 +50,6 @@ namespace ClientUI
                                                         .AddAzureMonitorTraceExporter(c => { c.ConnectionString = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"); })
                                                         .AddHoneycomb(new HoneycombOptions
                                                         {
-                                                            ServiceName = Program.EndpointName,
                                                             ApiKey = Environment.GetEnvironmentVariable("HONEYCOMB_APIKEY"),
                                                             Dataset = "full-telemetry"
                                                         })

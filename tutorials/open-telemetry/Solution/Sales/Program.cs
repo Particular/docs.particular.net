@@ -43,12 +43,26 @@ namespace Sales
 
                     endpointConfiguration.EnableInstallers();
 
-                    var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-                    transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"));
+                    if (null != Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"))
+                    {
+                        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+                        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"));
+                    }
+                    else
+                    {
+                        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+                    }
 
-                    var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-                    persistence.ConnectionBuilder(() => new SqlConnection(Environment.GetEnvironmentVariable("SQLServerConnectionString")));
-                    persistence.SqlDialect<SqlDialect.MsSqlServer>();
+                    if (null != Environment.GetEnvironmentVariable("SQLServerConnectionString"))
+                    {
+                        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+                        persistence.ConnectionBuilder(() => new SqlConnection(Environment.GetEnvironmentVariable("SQLServerConnectionString")));
+                        persistence.SqlDialect<SqlDialect.MsSqlServer>();
+                    }
+                    else
+                    {
+                        var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+                    }
 
                     return endpointConfiguration;
                 })
@@ -72,7 +86,6 @@ namespace Sales
                                                                 .AddAzureMonitorTraceExporter(c => { c.ConnectionString = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"); })
                                                                 .AddHoneycomb(new HoneycombOptions
                                                                 {
-                                                                    ServiceName = EndpointName,
                                                                     ApiKey = Environment.GetEnvironmentVariable("HONEYCOMB_APIKEY"),
                                                                     Dataset = "full-telemetry"
                                                                 })

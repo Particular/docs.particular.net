@@ -42,14 +42,31 @@ namespace Shipping
                     var endpointConfiguration = new EndpointConfiguration("Shipping");
                     endpointConfiguration.EnableInstallers();
 
-                    var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-                    transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"));
+                    RoutingSettings routing;
 
-                    var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-                    persistence.ConnectionBuilder(() => new SqlConnection(Environment.GetEnvironmentVariable("SQLServerConnectionString")));
-                    persistence.SqlDialect<SqlDialect.MsSqlServer>();
+                    if (null != Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"))
+                    {
+                        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+                        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"));
+                        routing = transport.Routing();
+                    }
+                    else
+                    {
+                        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+                        routing = transport.Routing();
+                    }
 
-                    var routing = transport.Routing();
+                    if (null != Environment.GetEnvironmentVariable("SQLServerConnectionString"))
+                    {
+                        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+                        persistence.ConnectionBuilder(() => new SqlConnection(Environment.GetEnvironmentVariable("SQLServerConnectionString")));
+                        persistence.SqlDialect<SqlDialect.MsSqlServer>();
+                    }
+                    else
+                    {
+                        var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+                    }
+
                     routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
                     routing.RouteToEndpoint(typeof(ShipWithMaple), "Shipping");
                     routing.RouteToEndpoint(typeof(ShipWithAlpine), "Shipping");
@@ -76,7 +93,6 @@ namespace Shipping
                                                                 .AddAzureMonitorTraceExporter(c => { c.ConnectionString = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY"); })
                                                                 .AddHoneycomb(new HoneycombOptions
                                                                 {
-                                                                    ServiceName = EndpointName,
                                                                     ApiKey = Environment.GetEnvironmentVariable("HONEYCOMB_APIKEY"),
                                                                     Dataset = "full-telemetry"
                                                                 })
