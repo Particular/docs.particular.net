@@ -87,5 +87,32 @@ class Usage
             .CosmosClient(cosmosClientBuilder.Build());
 
         #endregion
+
+        #region UsePessimisticLocking
+
+        var sagaPersistenceConfiguration = new SagaPersistenceConfiguration();
+        sagaPersistenceConfiguration.UsePessimisticLocking();
+
+        #endregion
+
+        #region PessimisticLeaseLockDuration
+
+        var pessimisticLockingConfiguration = sagaPersistenceConfiguration.UsePessimisticLocking();
+        pessimisticLockingConfiguration.SetLeaseLockTime(TimeSpan.FromMilliseconds(500));
+
+        #endregion
+
+        #region PessimisticLeaseLockAcquisitionTimeout
+
+        pessimisticLockingConfiguration.SetLeaseLockAcquisitionTimeout(TimeSpan.FromMilliseconds(500));
+
+        #endregion
+
+        #region PessimisticLeaseLockAcquisitionMinMaxRefreshDelay
+
+        pessimisticLockingConfiguration.SetLeaseLockAcquisitionMinimumRefreshDelay(TimeSpan.FromMilliseconds(50));
+        pessimisticLockingConfiguration.SetLeaseLockAcquisitionMaximumRefreshDelay(TimeSpan.FromMilliseconds(100));
+
+        #endregion
     }
 }
