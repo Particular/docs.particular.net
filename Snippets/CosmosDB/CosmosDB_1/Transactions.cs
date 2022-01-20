@@ -15,12 +15,12 @@ class Transactions
         #endregion
     }
 
-    void ExtractPartitionKeyFromHeadersExtractor(PersistenceExtensions<CosmosPersistence> persistence, MyAppsCustomConfigurationHolder appConfig)
+    void ExtractPartitionKeyFromHeadersExtractor(PersistenceExtensions<CosmosPersistence> persistence)
     {
         #region ExtractPartitionKeyFromHeadersExtractor
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractPartitionKeyFromHeaders<MyAppsCustomConfigurationHolder>((headers, config) => new PartitionKey(headers["PartitionKeyHeader"]), appConfig);
+        transactionInformation.ExtractPartitionKeyFromHeaders(headers => new PartitionKey(headers["PartitionKeyHeader"]));
 
         #endregion
     }
@@ -35,6 +35,24 @@ class Transactions
         #endregion
     }
 
+    void ExtractPartitionKeyFromHeadersRegistration(EndpointConfiguration endpointConfiguration)
+    {
+        #region ExtractPartitionKeyFromHeadersRegistration
+
+        endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<CustomPartitionKeyFromHeadersExtractor>(DependencyLifecycle.SingleInstance));
+
+        #endregion
+    }
+    void ExtractContainerInfoFromHeaderInstance(PersistenceExtensions<CosmosPersistence> persistence)
+    {
+        #region ExtractContainerInfoFromHeaderInstance
+
+        var transactionInformation = persistence.TransactionInformation();
+        transactionInformation.ExtractContainerInformationFromHeader("ContainerKey", new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey"));
+
+        #endregion
+    }
+
     void ExtractContainerInfoFromHeader(PersistenceExtensions<CosmosPersistence> persistence)
     {
         #region ExtractContainerInfoFromHeader
@@ -45,12 +63,12 @@ class Transactions
         #endregion
     }
 
-    void ExtractContainerInfoFromHeaders(PersistenceExtensions<CosmosPersistence> persistence, MyAppsCustomConfigurationHolder appConfig)
+    void ExtractContainerInfoFromHeaders(PersistenceExtensions<CosmosPersistence> persistence)
     {
         #region ExtractContainerInfoFromHeaders
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractContainerInformationFromHeaders<MyAppsCustomConfigurationHolder>((headers, config) => new ContainerInformation(headers["ContainerNameHeader"], new PartitionKeyPath(appConfig.PartitionKeyPath)), appConfig);
+        transactionInformation.ExtractContainerInformationFromHeaders(headers => new ContainerInformation(headers["ContainerNameHeader"], new PartitionKeyPath("/partitionKeyPath")));
 
         #endregion
     }
@@ -61,6 +79,15 @@ class Transactions
 
         var transactionInformation = persistence.TransactionInformation();
         transactionInformation.ExtractContainerInformationFromHeaders(new CustomContainerInformationFromHeadersExtractor());
+
+        #endregion
+    }
+
+    void ExtractContainerInfoFromHeadersRegistration(EndpointConfiguration endpointConfiguration)
+    {
+        #region ExtractContainerInfoFromHeadersRegistration
+
+        endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<CustomContainerInformationFromHeadersExtractor>(DependencyLifecycle.SingleInstance));
 
         #endregion
     }
@@ -80,11 +107,29 @@ class Transactions
         #region ExtractPartitionKeyFromMessageCustom
 
         var transactionInformation = persistence.TransactionInformation();
-        transactionInformation.ExtractPartitionKeyFromMessage<MyMessage>(message => new PartitionKey(message.ItemId));
+        transactionInformation.ExtractPartitionKeyFromMessages(new CustomPartitionKeyFromMessageExtractor());
 
         #endregion
     }
 
+    void ExtractPartitionKeyFromMessageRegistration(EndpointConfiguration endpointConfiguration)
+    {
+        #region ExtractPartitionKeyFromMessageRegistration
+
+        endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<CustomPartitionKeyFromMessageExtractor>(DependencyLifecycle.SingleInstance));
+
+        #endregion
+    }
+
+    void ExtractContainerInfoFromMessageInstance(PersistenceExtensions<CosmosPersistence> persistence)
+    {
+        #region ExtractContainerInfoFromMessageInstance
+
+        var transactionInformation = persistence.TransactionInformation();
+        transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey")));
+
+        #endregion
+    }
 
     void ExtractContainerInfoFromMessageExtractor(PersistenceExtensions<CosmosPersistence> persistence)
     {
@@ -106,11 +151,14 @@ class Transactions
         #endregion
     }
 
-}
+    void ExtractContainerInfoFromMessageRegistration(EndpointConfiguration endpointConfiguration)
+    {
+        #region ExtractContainerInfoFromMessageRegistration
 
-class MyAppsCustomConfigurationHolder
-{
-    public string PartitionKeyPath { get; set; }
+        endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<CustomContainerInformationFromMessagesExtractor>(DependencyLifecycle.SingleInstance));
+
+        #endregion
+    }
 }
 
 #region CustomPartitionKeyFromHeadersExtractor
