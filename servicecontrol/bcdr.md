@@ -1,7 +1,7 @@
 ---
 title: Business Continuity / Disaster Recovery
 summary: Solutions for business continuity / disaster recovery with ServiceControl
-reviewed: 2019-10-08
+reviewed: 2022-01-21
 related:
 - servicecontrol/backup-sc-database
 - servicecontrol/deploying-servicecontrol-in-a-cluster
