@@ -1,7 +1,8 @@
-using System;
-using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
+using Shared;
+using System;
+using System.Threading.Tasks;
 
 class Program
 {
@@ -13,6 +14,12 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Client");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
+
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
+        var containerClient = await AzureAuditBodyStorageConfiguration.GetContainerClient();
+
+        endpointConfiguration.Pipeline.Register(_ => new StoreAuditBodyInAzureBlobStorageBehavior(containerClient), "Writing the body to azure blobstorage");
+
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
