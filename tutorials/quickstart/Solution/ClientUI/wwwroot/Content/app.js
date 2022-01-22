@@ -6,19 +6,19 @@ ga('create', 'UA-20451773-2');
 ga('set', 'allowAdFeatures', false);
 ga('set', 'transport', 'beacon');
 
-//register kissmetrics
+
 var _kmq = _kmq || [];
-    var _kmk = _kmk || '081ab96143b8f345362841db575656a8512960d3';
-    function _kms(u){
-        setTimeout(function () {
-            var d = document, f = d.getElementsByTagName('script')[0],
-                s = d.createElement('script');
-            s.type = 'text/javascript'; s.async = true; s.src = u;
-            f.parentNode.insertBefore(s, f);
-        }, 1);
+var _kmk = _kmk || '081ab96143b8f345362841db575656a8512960d3';
+function _kms(u){
+setTimeout(function () {
+var d = document, f = d.getElementsByTagName('script')[0],
+s = d.createElement('script');
+s.type = 'text/javascript'; s.async = true; s.src = u;
+f.parentNode.insertBefore(s, f);
+}, 1);
 }
-    _kms('//i.kissmetrics.io/i.js');
-    _kms('//scripts.kissmetrics.io/' + _kmk + '.2.js');
+_kms('//i.kissmetrics.io/i.js');
+_kms('//scripts.kissmetrics.io/' + _kmk + '.2.js');
 
 
 (function ($, window) {
@@ -32,12 +32,12 @@ var _kmq = _kmq || [];
             window.ga('send', 'event', category, action, label);
         };
        
-        gaEvt('QuickStart', 'Running', SOLUTION_VERSION); //send to google analytics when solution is run
-        _kmq.push(['record', 'QuickStart-Running']);//send to kissmetrics when solution is run
+        gaEvt('QuickStart', 'Running', SOLUTION_VERSION); 
+        _kmq.push(['record', 'QuickStart-Running']);
 
         window.sentMessage = function () {
-            gaEvt('QuickStart', 'SentMessage', SOLUTION_VERSION);  //send to google analytics when msg is sent
-            _kmq.push(['record', 'QuickStart-SentMessage']);//send to kissmetrics  when msg is sent
+            gaEvt('QuickStart', 'SentMessage', SOLUTION_VERSION); 
+            _kmq.push(['record', 'QuickStart-SentMessage']);
         };
 
         var licenseBtn = $('#license-btn');
