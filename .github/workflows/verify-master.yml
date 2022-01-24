@@ -31,7 +31,7 @@ jobs:
           $body = @{
             channel = 'docs'
             text = "Content verification has failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml?query=branch%3Amaster"
-            username = 'Content Verification'
+            username = 'Content verification'
             icon_emoji = 'github_actions'
             unfurl_links = false
             unfurl_media = false
@@ -60,8 +60,8 @@ jobs:
           }
           $body = @{
             channel = 'docs'
-            text = "Integrity Tests have failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml?query=branch%3Amaster"
-            username = 'Integrity Tests'
+            text = "Integrity tests have failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml?query=branch%3Amaster"
+            username = 'Integrity tests'
             icon_emoji = 'github_actions'
             unfurl_links = false
             unfurl_media = false

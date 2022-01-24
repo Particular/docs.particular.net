@@ -30,7 +30,7 @@ jobs:
           $body = @{
             channel = 'docs'
             text = "Failed to build samples and snippets on master: https://github.com/Particular/docs.particular.net/actions/workflows/build-samples-and-snippets.yml?query=branch%3Amaster"
-            username = 'Check Samples & Snippets'
+            username = 'Build samples and snippets'
             icon_emoji = 'github_actions'
             unfurl_links = false
             unfurl_media = false
