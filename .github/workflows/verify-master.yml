@@ -23,17 +23,22 @@ jobs:
         run: docstool test --no-version-check
       - name: Notify Slack on failure
         if: ${{ failure() }}
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: Content verification has failed.
-          author_name: Content Verification
-          fields: message,author,action,eventName,ref,workflow
-          username: GitHub Actions
-          icon_emoji: ":github_actions:"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
+        shell: pwsh
+        run: |
+          $headers = @{
+              'Authorization' = "Bearer ${{ secrets.GITHUB_TOKEN }}"
+          }
+          $body = @{
+            channel = 'docs'
+            text = "Content verification has failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml?query=branch%3Amaster"
+            username = 'Content verification'
+            icon_emoji = 'github_actions'
+            unfurl_links = false
+            unfurl_media = false
+          } | ConvertTo-Json
+          $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
+          Write-Output $result
+          exit $(If ($result.ok) { 0 } Else { 1 })
   integrity-tests:
     name: Integrity tests
     runs-on: windows-2022
@@ -48,13 +53,20 @@ jobs:
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release
       - name: Notify Slack on failure
         if: ${{ failure() }}
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          author_name: Integrity tests have failed.
-          fields: message,author,action,eventName,ref,workflow
-          username: GitHub Actions
-          icon_emoji: ":github_actions:"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
+        shell: pwsh
+        run: |
+          $headers = @{
+              'Authorization' = "Bearer ${{ secrets.GITHUB_TOKEN }}"
+          }
+          $body = @{
+            channel = 'docs'
+            text = "Integrity tests have failed on master: https://github.com/Particular/docs.particular.net/actions/workflows/verify-master.yml?query=branch%3Amaster"
+            username = 'Integrity tests'
+            icon_emoji = 'github_actions'
+            unfurl_links = false
+            unfurl_media = false
+          } | ConvertTo-Json
+          $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
+          Write-Output $result
+          exit $(If ($result.ok) { 0 } Else { 1 })
+        

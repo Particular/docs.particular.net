@@ -22,17 +22,22 @@ jobs:
         run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1
       - name: Notify Slack on failure
         if: ${{ failure() }}
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: Failed to build samples and snippets.
-          author_name: Build samples and snippets
-          fields: message,author,action,eventName,ref,workflow
-          username: GitHub Actions
-          icon_emoji: ":github_actions:"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DOCS_CHANNEL_WEBHOOK }}
+        shell: pwsh
+        run: |
+          $headers = @{
+              'Authorization' = "Bearer ${{ secrets.GITHUB_TOKEN }}"
+          }
+          $body = @{
+            channel = 'docs'
+            text = "Failed to build samples and snippets on master: https://github.com/Particular/docs.particular.net/actions/workflows/build-samples-and-snippets.yml?query=branch%3Amaster"
+            username = 'Build samples and snippets'
+            icon_emoji = 'github_actions'
+            unfurl_links = false
+            unfurl_media = false
+          } | ConvertTo-Json
+          $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
+          Write-Output $result
+          exit $(If ($result.ok) { 0 } Else { 1 })
       - name: Output failed failed samples and snippets
         if: ${{ failure() }}
         run: cat .\failed-samples-and-snippets.log
