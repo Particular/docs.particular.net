@@ -1,4 +1,5 @@
 ﻿using NServiceBus;
+using NServiceBus.Gateway;
 using System;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ class Program
         // NOTE: Using InMemoryPersistence since the LearningPersistence does not support the gateway
         config.UsePersistence<InMemoryPersistence>();
 
-        var gatewaySettings = config.Gateway();
+        var gatewaySettings = config.Gateway(new InMemoryDeduplicationConfiguration());
         gatewaySettings.ChannelFactories(
             s => new WebSocketChannelSender(),
             s => new WebSocketChannelReceiver()

@@ -1,4 +1,5 @@
 ﻿using NServiceBus;
+using NServiceBus.Gateway;
 
 class UpgradeGuideUsage
 {
@@ -6,7 +7,7 @@ class UpgradeGuideUsage
     {
         #region 2to3EnableGatewayAfter
 
-        endpointConfiguration.Gateway();
+        endpointConfiguration.Gateway(new InMemoryDeduplicationConfiguration());
 
         #endregion
     }
