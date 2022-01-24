@@ -63,7 +63,7 @@ namespace IntegrityTests
                             return false;
                         }
 
-                        return true;
+                        return false;
                     }
                     catch (System.Exception x)
                     {
