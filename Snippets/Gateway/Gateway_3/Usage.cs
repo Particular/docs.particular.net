@@ -1,10 +1,10 @@
-﻿using System;
+﻿using NServiceBus;
+using NServiceBus.Gateway;
+using NServiceBus.MessageMutator;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Gateway;
-using NServiceBus.MessageMutator;
 
 class Usage
 {
@@ -12,7 +12,7 @@ class Usage
     {
         #region GatewayConfiguration
 
-        endpointConfiguration.Gateway();
+        endpointConfiguration.Gateway(new InMemoryDeduplicationConfiguration());
 
         #endregion
     }
@@ -21,7 +21,7 @@ class Usage
     {
         #region GatewayDefaultRetryPolicyConfiguration
 
-        var gateway = endpointConfiguration.Gateway();
+        var gateway = endpointConfiguration.Gateway(new InMemoryDeduplicationConfiguration());
         gateway.Retries(5, TimeSpan.FromMinutes(1));
 
         #endregion
@@ -31,7 +31,7 @@ class Usage
     {
         #region GatewayCustomRetryPolicyConfiguration
 
-        var gateway = endpointConfiguration.Gateway();
+        var gateway = endpointConfiguration.Gateway(new InMemoryDeduplicationConfiguration());
         gateway.CustomRetryPolicy(
             customRetryPolicy: (message, exception, currentRetry) =>
             {
@@ -39,7 +39,7 @@ class Usage
                 {
                     return TimeSpan.MinValue;
                 }
-                return TimeSpan.FromSeconds(currentRetry*60);
+                return TimeSpan.FromSeconds(currentRetry * 60);
             });
 
         #endregion
@@ -49,7 +49,7 @@ class Usage
     {
         #region GatewayDisableRetriesConfiguration
 
-        var gateway = endpointConfiguration.Gateway();
+        var gateway = endpointConfiguration.Gateway(new InMemoryDeduplicationConfiguration());
         gateway.DisableRetries();
 
         #endregion
@@ -73,7 +73,7 @@ class Usage
     {
         #region GatewayCustomTransactionTimeout
 
-        var gateway = endpointConfiguration.Gateway();
+        var gateway = endpointConfiguration.Gateway(new InMemoryDeduplicationConfiguration());
         gateway.TransactionTimeout(TimeSpan.FromSeconds(40));
 
         #endregion

@@ -1,4 +1,5 @@
 ﻿using NServiceBus;
+using NServiceBus.Gateway;
 
 public class CodeFirstSites
 {
@@ -8,7 +9,7 @@ public class CodeFirstSites
 
         #region CodeFirstSites
 
-        var gatewayConfig = endpointConfiguration.Gateway();
+        var gatewayConfig = endpointConfiguration.Gateway(new InMemoryDeduplicationConfiguration());
 
         gatewayConfig.AddSite("SiteA", "http://SiteA.mycorp.com/");
         gatewayConfig.AddSite("SiteB", "http://SiteB.mycorp.com/");
