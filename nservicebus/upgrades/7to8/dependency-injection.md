@@ -195,3 +195,18 @@ var container = new UnityContainer();
 var serviceProvider = container.BuildServiceProvider(serviceCollection);
 var endpointInstance = await startableEndpoint.Start(serviceProvider);
 ```
+
+
+#### Spring
+
+The following snipped configures NServiceBus to use Spring as its dependency injection container. This requires the `Spring.Extensions.DependencyInjection` NuGet package.
+
+```csharp
+var serviceCollection = new ServiceCollection();
+var startableEndpoint = EndpointWithExternallyManagedContainer.Create(endpointConfiguration, serviceCollection);
+
+var applicationContext = new GenericApplicationContext();
+var serviceProviderFactory = new SpringServiceProviderFactory(applicationContext);
+var serviceProvider = serviceProviderFactory.CreateServiceProvider(serviceProviderFactory.CreateBuilder(serviceCollection));
+var endpointInstance = await startableEndpoint.Start(serviceProvider);
+```
