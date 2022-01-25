@@ -8,6 +8,7 @@ extensions:
   nextText: "Next: Recovering from failure"
   nextUrl: tutorials/quickstart/tutorial-reliability
 previewImage: add-shipping-endpoint.png
+abTestName: Quickstart intro 2022 01
 ---
 
 #variant Control
