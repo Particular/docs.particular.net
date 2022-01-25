@@ -24,7 +24,7 @@ You'll also see how the additional tools in the Particular Service Platform make
 
 In this tutorial, you'll see how NServiceBus takes the grunt work out of system design by handling all of the plumbing for you.
 
-You will build part of an e-commerce system that handles receiving an order placed by a user, as well as the billing and shipping that goes along with it. This is what the final solution will look like:
+You will explore part of an e-commerce system that handles receiving an order placed by a user, as well as the billing and shipping that goes along with it. This is what the final solution will look like:
 
 ![quickstart solution diagram](/tutorials/quickstart/after.svg)
 
