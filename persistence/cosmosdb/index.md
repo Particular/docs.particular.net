@@ -55,9 +55,9 @@ snippet: CosmosDBCustomClientProviderRegistration
 
 ## Provisioned throughput rate-limiting
 
-When using provisioned throughput it is possible for the CosmosDB service to rate-limit usage, resulting request rate too large exceptions indicated by the 429 status code.
+When using provisioned throughput it is possible for the CosmosDB service to rate-limit usage, resulting in "request rate too large" exceptions indicated by the 429 status code.
 
-WARN: When using the Cosmos DB persistence with Outbox enabled, request rate too large errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
+WARN: When using the Cosmos DB persistence with the outbox enabled, "request rate too large" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
 
 INFO: Microsoft provides [guidance](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/troubleshoot-request-rate-too-large) on how to diagnose and troubleshoot request rate too large exceptions.
 

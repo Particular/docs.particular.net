@@ -23,7 +23,7 @@ The status of an errant message is illustrated in the message window. A message 
 
 **Retry requested for message**: A failed message, for which a retry was requested from ServiceInsight or ServicePulse. If a message remains with this status, there is no further information about that message, neither failure nor audit for a successful processing. Once the message is re-processed, the status will change to resolved successfully, failed once, or failed multiple times. ![Retry icon](images/status-retry-icon.png)
 
-**Resolved successfully**: The message has successfully processed after failure(s). ![Retry icon](images/status-resolved-successfully.png)
+**Resolved successfully**: The message was successfully processed after failure(s). ![Retry icon](images/status-resolved-successfully.png)
 
 ## The flow diagram
 

@@ -40,7 +40,7 @@ snippet: simple-saga-data
 
 Saga data types should not be shared across different sagas. Sharing types can result in persisters physically sharing the same storage structure which should be avoided.
 
-WARNING: Sharing property types should also be avoided. Depending on the persister implementation sharing property types can result in shared storage structure.
+WARNING: Sharing property types should also be avoided. Depending on the persister implementation, sharing property types can result in storage structure being shared between endpoints.
 
 partial: disable-shared-state-check
 
@@ -105,7 +105,7 @@ NOTE: Instance cleanup is implemented differently by the various saga persisters
 
 ### Outstanding timeouts
 
-Outstanding timeouts requested by the saga instance will be discarded when they expire without triggering the [`IHandleSagaNotFound` API](saga-not-found.md) 
+Outstanding timeouts requested by the saga instance will be discarded when they expire without triggering the [`IHandleSagaNotFound` API](saga-not-found.md)
 
 ### Messages arriving after saga has been completed
 
