@@ -26,7 +26,7 @@ In this tutorial, you'll see how NServiceBus takes the grunt work out of system 
 
 You will build part of an e-commerce system that handles receiving an order placed by a user, as well as the billing and shipping that goes along with it. This is what the final solution will look like:
 
-![quickstart solution diagram](https://docs.particular.net/tutorials/quickstart/after.svg)
+![quickstart solution diagram](/tutorials/quickstart/after.svg)
 
 The tutorial is composed of 3 parts - introduction, failure recovery, and extensibility - that demonstrate how NServiceBus helps with design best practices and how the Particular Service Platform helps monitor a distributed system. Each part takes approximately 15-20 minutes to complete.
 
