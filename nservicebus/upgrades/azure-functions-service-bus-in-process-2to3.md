@@ -14,6 +14,8 @@ upgradeGuideCoreVersions:
 
 The dependency on Microsoft.Azure.WebJobs.Extensions.ServiceBus has been updated which means that the new Azure.Messaging.ServiceBus SDK is being used by the function host to receive messages. If the solution contains code that directly accesses native SDK types, read the [Microsoft Migration Guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/servicebus/Azure.Messaging.ServiceBus/MigrationGuide.md).
 
+include: servicebus_options_enable_cross_entity_transactions
+
 ## Manually invoking process message
 
 In version 2 of the Azure Functions package, `IFunctionEndpoint` exposed two different `Process` methods where the one accepting a `IMessageReceiver` would be the one that [processed the message in "atomic sends with receive" mode](/nservicebus/hosting/azure-functions-service-bus/#message-consistency).
