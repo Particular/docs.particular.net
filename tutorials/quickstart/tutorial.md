@@ -33,7 +33,7 @@ The tutorial is composed of 3 parts - introduction, failure recovery, and extens
 To run this tutorial you’ll need:
 
 - Experience with C# coding
-- Windows 10 or 11 running an IDE for C# code, for example Visual Studio Code, Visual Studio 2022, or JetBrains Rider.
+- Windows 10 or 11 running an IDE for C# code, for example Visual Studio 2022, Visual Studio Code, or JetBrains Rider.
 #end-variant
 
 This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/). It will teach you the NServiceBus API and important concepts necessary to learn how to build successful message-based software systems.
