@@ -8,9 +8,33 @@ extensions:
   nextText: "Next: Recovering from failure"
   nextUrl: tutorials/quickstart/tutorial-reliability
 previewImage: add-shipping-endpoint.png
+abTestName: Quickstart intro 2022 01
 ---
 
-include: quickstart-tutorial-intro-paragraph
+#variant Control
+
+It is **very difficult** to build a distributed software system correctly from scratch. You _could_ read all 736 pages of the [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/) book (an excellent though very dry reference) and then spend months creating, testing, and documenting a communication framework so that different services can talk to each other. Or instead, you could use a framework that incorporates all those design patterns and guides you straight into the [pit of success](https://blog.codinghorror.com/falling-into-the-pit-of-success/).
+
+NServiceBus combines decades of distributed systems design experience and expertise and distills it into one easy-to-use framework. In this tutorial, you'll see how NServiceBus takes all the grunt work out of system design by handling all of the plumbing for you, taking system design best practices like reliability, failure recovery, and extensibility and baking them right into the software, guiding you toward the pit of success.
+
+You'll also see how the additional tools in the Particular Service Platform make it easy to manage, monitor, and debug.
+#end-variant
+
+#variant Variant
+
+In this tutorial, you'll see how NServiceBus takes the grunt work out of system design by handling all of the plumbing for you.
+
+You will explore part of an e-commerce system that handles receiving an order placed by a user, as well as the billing and shipping that goes along with it. This is what the final solution will look like:
+
+![quickstart solution diagram](/tutorials/quickstart/after.svg)
+
+The tutorial is composed of 3 parts - introduction, failure recovery, and extensibility - that demonstrate how NServiceBus helps with design best practices and how the Particular Service Platform helps monitor a distributed system. Each part takes approximately 15-20 minutes to complete.
+
+To run this tutorial you’ll need:
+
+- Experience with C# coding
+- Windows 10 or 11 running an IDE for C# code, for example Visual Studio 2022, Visual Studio Code, or JetBrains Rider.
+#end-variant
 
 This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/). It will teach you the NServiceBus API and important concepts necessary to learn how to build successful message-based software systems.
 
