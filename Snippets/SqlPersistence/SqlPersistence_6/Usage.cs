@@ -426,15 +426,16 @@ class Usage
 
         #region ScriptRunner
 
+#pragma warning disable CS0618
         await ScriptRunner.Install(
             sqlDialect: new SqlDialect.MsSqlServer(),
             tablePrefix: "MyEndpoint",
-            connectionBuilder: () => new SqlConnection(connectionString), 
+            connectionBuilder: () => new SqlConnection(connectionString),
             scriptDirectory: @"C:\Scripts",
             shouldInstallOutbox: true,
             shouldInstallSagas: true,
-            shouldInstallSubscriptions: true,
-            shouldInstallTimeouts: true);
+            shouldInstallSubscriptions: true);
+#pragma warning restore CS0618
 
         #endregion
     }
