@@ -1,13 +1,15 @@
+# [ParticularDocs](https://docs.particular.net/)
+
 ![VerifyMaster](https://github.com/Particular/docs.particular.net/workflows/VerifyMaster/badge.svg?branch=master) ![BuildProjects](https://github.com/Particular/docs.particular.net/workflows/BuildProjects/badge.svg)
 
-# How to Contribute
+## How to Contribute
 
 Before you start, ensure you have created a [GitHub account](https://github.com/join).
 
 There are two approaches to contributing.
 
 
-## Via the GitHub Web UI
+### Via the GitHub Web UI
 
 For simple changes, the GitHub web UI should suffice.
 
@@ -18,7 +20,7 @@ For simple changes, the GitHub web UI should suffice.
  1. Click `Propose File Changes`.
 
 
-## By Forking and Submitting a Pull Request
+### By Forking and Submitting a Pull Request
 
 For more complex changes you should fork and then submit a pull request. This is useful if you are proposing multiple file changes
 
@@ -31,7 +33,7 @@ For more complex changes you should fork and then submit a pull request. This is
 For more information, see [Collaborating on GitHub](https://help.github.com/categories/63/articles) especially [using GitHub pull requests](https://help.github.com/articles/using-pull-requests).
 
 
-## Reviewing a page
+### Reviewing a page
 
 If, as part of editing a page, a full review of the content is done, the [reviewed header](#reviewed) should be updated. This date is used to render https://docs.particular.net/review.
 
@@ -48,10 +50,10 @@ As part of a full review the following should be done:
  * Update reviewed date in header, even if no changes were made.
 
 
-# Conventions
+## Conventions
 
 
-## Lower case  and `-` delimited
+### Lower case  and `-` delimited
 
 All content files (`.md`, `.png`, `.jpg` etc) and directories must be lower case.
 
@@ -60,7 +62,7 @@ All links pointing to them must be lower case.
 Use a dash (`-`) to delimit filenames (e.g. `specify-endpoint-name.md`).
 
 
-## Headers
+### Headers
 
 Each document has a header. It is enclosed by `---` and is defined in a [YAML](https://en.wikipedia.org/wiki/YAML) document format.
 
@@ -81,7 +83,7 @@ redirects:
 ```
 
 
-### Title
+#### Title
 
 ```
 title: Auditing With NServiceBus
@@ -94,7 +96,7 @@ Required. Used for the web page title tag `<head><title>`, displayed in the page
 **Note: When considering what is a good title keep in mind that the parent context of a given page is fairly well known by other means. ie people can see where it exists in the menu and can see where in the hierarchy it is through the breadcrumbs. So it is often not necessary to include the parent title in the current pages title. For example when documenting "Publishers name configuration", for "Azure Service Bus Transport", then "Publishers name configuration" would be a sufficient title where "Publishers name configuration in Azure Service Bus Transport" is overly verbose and partially redundant.**
 
 
-### Component
+#### Component
 
 ```
 component: Core
@@ -103,7 +105,7 @@ component: Core
 Required when using partials views, recommended also when using snippets in multiple versions. Allows the rendering engine determine what versions of the given page should be generated. Specified by providing the [component key](#component-key).
 
 
-### Versions
+#### Versions
 
 ```
 versions: '[1,2)'
@@ -117,7 +119,7 @@ versions: 'PackageA:[1,2); PackageB : [3,4); PackageC :*'
 Optional. Used for specifying what versions the given page covers, especially relevant for features that are not available in all supported versions. The old format 'nuget_version_range' or 'package_name: nuget_version_range; package_name_2: nuget:version_range2'.
 
 
-### Reviewed
+#### Reviewed
 
 ```
 reviewed: 2016-03-01
@@ -126,7 +128,7 @@ reviewed: 2016-03-01
 Optional. Used to capture the last date that a page was fully reviewed. Format is `yyyy-MM-dd`.
 
 
-### Summary
+#### Summary
 
 ```
 summary: Provides built-in message auditing for every endpoint.
@@ -135,7 +137,7 @@ summary: Provides built-in message auditing for every endpoint.
 Optional. Used for the meta description tag (`<meta name="description" />`) and displaying the search results.
 
 
-### Hidden
+#### Hidden
 
 ```
 hidden: true
@@ -147,7 +149,7 @@ Causes two things:
  * Prevents the page from being found in the docs search.
 
 
-### Preview Image
+#### Preview Image
 
 ```
 previewImage: preview-image.png
@@ -158,7 +160,7 @@ Populates a feature image for the [Open Graph](http://ogp.me/) and [Twitter Card
 The URL should be a relative URL, usually just the filename in the same directory as the article, but `../` to go up a directory is also supported. If it works in a Markdown image tag `![](relative-url.png)` then it should work for the metadata.
 
 
-### Related
+#### Related
 
 ```
 related:
@@ -168,7 +170,7 @@ related:
 A list of related pages for this page. These links will be rendered at the bottom of the page. Can include both samples and articles and they will be grouped as such when rendered in html.
 
 
-### Suppress Related
+#### Suppress Related
 
 ```
 suppressRelated: true
@@ -177,7 +179,7 @@ suppressRelated: true
 No related content will be displayed at the bottom of the article, including specifically included articles in the metadata, as well as any documents discovered by traversing the directory structure. This is intended for pages where tight control over the presentation of related material is desired.
 
 
-### Redirects
+#### Redirects
 
 ```
 redirects:
@@ -191,12 +193,12 @@ When renaming an existing article to a new name, add the `redirects:` section in
  * Values are fully qualified
 
 
-### URL format for Redirects and Related
+#### URL format for Redirects and Related
 
 Should be the URL relative to the root with no beginning or trailing slash padding and no .md.
 
 
-### UpgradeGuides
+#### UpgradeGuides
 
 To Mark something as an upgrade guide use `isUpgradeGuide: true`
 
@@ -210,12 +212,12 @@ upgradeGuideCoreVersions:
 ```
 
 
-### Learning Path
+#### Learning Path
 
 To mark a page as belonging to the [Particular Software Learning Path](https://particular.net/learn) use `isLearningPath: true`.
 
 
-## An example header for an article
+### An example header for an article
 
 - In the following example, whenever the URLs `/servicecontrol/sc-si` or `/servicecontrol/debugging-servicecontrol` are being requested, the given article will be rendered.
 
@@ -232,7 +234,7 @@ related:
 ```
 
 
-## Components
+### Components
 
 Two things are generally referred to as "components", which can be confusing:
 
@@ -241,7 +243,7 @@ Two things are generally referred to as "components", which can be confusing:
 
 **When you are adding a new package,** you therefore need to add new entries to both components.yaml and nugetAlias.txt, which can be a source of confusion.
 
-### components.yaml
+#### components.yaml
 
 "Components" is a general term used to describe a deployable set of functionality. Components exist in [components/components.yaml](components/components.yaml). Note that over time a component may have moved between nugets or split into new nugets. For example, the ASB Data Bus or the Callbacks.
 
@@ -258,22 +260,22 @@ Sample Component:
 When adding a new component
 
 
-#### Component Key
+##### Component Key
 
 The component key allows for shorthand when referring to components in page headers.
 
 
-#### Component URL
+##### Component URL
 
 The component URL is the definitive source of documentation for a given component. This will eventually be used to link back to said documentation from both NuGet usages, samples and articles.
 
 
-#### Component NugetOrder
+##### Component NugetOrder
 
 Since components can be split over multiple different nugets, it is not possible to infer the order from the NuGet version alone. So we need to have a lookup index and the NugetOrder allows us to sensibly sort component versions. For example, NServiceBus.Callbacks.1.0.0 should sort higher than the version of Callbacks that exists in NServiceBus.5.0.0.
 
 
-### nugetAlias.txt
+#### nugetAlias.txt
 
 All NServiceBus-related NuGet packages (used in documentation) are listed in [components/nugetAlias.txt](components/nugetAlias.txt). The alias part of the NuGet is the key that is used to infer the version and component for all snippets. For example, [Snippets/Callbacks](Snippets/Callbacks) has, over its lifetime, existed in both the Core NuGet and the Callbacks NuGet. So the directories under Callbacks are indicative of the NuGet (alias) they exist in and then split over the multiple versions of a given NuGet.
 
@@ -287,7 +289,7 @@ Callbacks: NServiceBus.Callbacks
 ```
 
 
-## Target Frameworks
+### Target Frameworks
 
 Samples can be targeted to multiple [target frameworks](https://docs.microsoft.com/en-us/dotnet/standard/frameworks). Samples can be edited and tested for multiple frameworks within this repository when using Visual Studio 2019. When the site is rendered, separate downloads for each target framework are generated by splitting the framework list and transforming the project files before zipping.
 
@@ -310,7 +312,7 @@ Some things to keep in mind:
   * Download dropdown items are ordered by position in this file descending, so that options for newer frameworks are presented first.
 
 
-## Menu
+### Menu
 
 The menu is a YAML text document stored at [menu/menu.yaml](menu/menu.yaml).
 
@@ -342,26 +344,26 @@ Conventions:
  * URL is optional. if it does not exist it will render as an expandable node.
 
 
-## URLs
+### URLs
 
 The directory structure where a `.md` exists is used to derive the URL for that document.
 
 So a file existing at `nservicebus\logging\nlog.md` will have a URL of `https://docs.particular.net/nservicebus/logging/nlog`.
 
 
-### Index Pages
+#### Index Pages
 
 One exception to the URL rule is when a page is named `index.md`. In this case the `index.md` is omitted in the URL and only the directory structure is used.
 
 So a file existing at `nservicebus\logging\index.md` will have a URL of `https://docs.particular.net/nservicebus/logging/`.
 
 
-#### Related Pages on Index Pages
+##### Related Pages on Index Pages
 
 Like any page an index page can include [related pages](#related). However index pages will, by default, have all sibling and child pages included in the list of related pages. This is effectively a recursive walk of the file system for the directory the given index.md exists in.
 
 
-### Linking
+#### Linking
 
 Links to other documentation pages should be relative and contain the `.md` extension.
 
@@ -375,17 +377,17 @@ Given the case of editing a page located at `\nservicebus\page1.md`:
 Don't link to `index.md` pages, instead link to the directory. So link to `/nservicebus/logging` and NOT `/nservicebus/logging/index.md`
 
 
-## Markdown
+### Markdown
 
 The site is rendered using [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown)
 
 
-### [MarkdownPad](https://markdownpad.com/)
+#### [MarkdownPad](https://markdownpad.com/)
 
 For editing markdown on the desktop (after cloning locally with Git) try [MarkdownPad](https://markdownpad.com/).
 
 
-#### Markdown flavor
+##### Markdown flavor
 
 Ensure you enable `GitHub Flavored Markdown (Offline)` by going to
 
@@ -394,7 +396,7 @@ Ensure you enable `GitHub Flavored Markdown (Offline)` by going to
 Or click in the bottom left on the `M` icon to "hot-switch"
 
 
-#### YAML
+##### YAML
 
 Don't render YAML front-matter by going to
 
@@ -403,12 +405,12 @@ Don't render YAML front-matter by going to
 And checking `Ignore YAML Front-matter`
 
 
-## EIP references
+### EIP references
 
 [Enterprise Integration Patterns (EIP)](https://www.enterpriseintegrationpatterns.com/) is a bible of messaging. We sometimes use the same or similar patterns, but name them differently. When describing such a pattern, it's useful to reference the related EIP pattern, to make it easier to understand.
 
 
-### Terms we use and are aligned with EIP
+#### Terms we use and are aligned with EIP
 
  * Message
  * Message Endpoint
@@ -422,7 +424,7 @@ And checking `Ignore YAML Front-matter`
  * [Message Store](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageStore.html) - we have it in ServiceControl
 
 
-### EIP terms and ideas we don't use but can
+#### EIP terms and ideas we don't use but can
 
  * [Message Bus](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBus.html) - we dropped using the *bus* word when referring to an *endpoint* (which is correct) but I think we can take advantage of this definition of the bus because it is aligned with our concepts.
  * [Dead Letter Channel](https://www.enterpriseintegrationpatterns.com/patterns/messaging/DeadLetterChannel.html) - only MSMQ implements it, we don't have it on NServiceBus level
@@ -433,7 +435,7 @@ And checking `Ignore YAML Front-matter`
  * [Test Message](https://www.enterpriseintegrationpatterns.com/patterns/messaging/TestMessage.html)
 
 
-### Terms we use but have a different meaning or name
+#### Terms we use but have a different meaning or name
 
  * Message Channel - we call it a queue but EIP name seeps to be more appropriate since e.g. SQL transport does not use queues
  * [Point-to-Point](https://www.enterpriseintegrationpatterns.com/patterns/messaging/PointToPointChannel.html) - we use *Unicast* instead
@@ -450,11 +452,11 @@ And checking `Ignore YAML Front-matter`
  * [Wire Tap](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ControlBus.html) - we call it audit queue which confuses the purpose with the implementation. The thing is called *wire tap* and it is usually used to *audit* message flows.
 
 
-## Samples
+### Samples
 
 Our main goal is to provide the user with a smooth F5 experience when using the platform, and that includes samples, as it might be the user's first introduction to the platform.
 
-### When to write a sample
+#### When to write a sample
 
 Any of the following, or combination thereof, could indicate that something should be a sample
 
@@ -467,14 +469,14 @@ Do not write a sample when:
  * The only difference to an existing sample is a minor API usage.
 
 
-### Recommendations
+#### Recommendations
 
  * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example, if the sample is "illustrating IOC with MVC" then "adding SignalR" to that sample will only cause confusion. In general, the fewer NuGet packages required to get the point across the better.
  * Do not "document things inside a sample". A sample is to show how something is used, not to document it. Instead update the appropriate documentation page and link to it. As a general rule, if you add any content to a sample, where that guidance could possibly be applicable to other samples, then that guidance should probably exist in a documentation page.
  * Start a sample with paragraph(s) that summarize why the sample would be useful or interesting. Think about more than what the sample _does_, but also what additional scenarios it can enable. After this summary, put the `downloadbutton` directive in a paragraph by itself, which will be rendered as a large **Download the sample now** button.
 
 
-### Conventions
+#### Conventions
 
  * Samples are located here: https://github.com/Particular/docs.particular.net/tree/master/samples.
  * They are linked to from the home page and are rendered here: https://docs.particular.net/samples/.
@@ -485,13 +487,13 @@ Do not write a sample when:
  * A sample must obey rules that are verified by [Integrity Tests](#integrity-tests).
  * Samples targeting .NET Core should be able to run across Windows, macOS, and Linux. To ensure that's the case, you can run the sample using WSL (Windows Subsystem for Linux) in VS Code. VS Code can be [configured to use WSL as the default development environment](https://code.visualstudio.com/docs/remote/wsl). If a sample cannot be designed to support one or more platforms add a note to the `sample.md`-file with the platforms that are unsupported and the reasoning.
 
-### References
+#### References
 
 Since users often use our samples to kick start their own projects, we want them to always use the latest versions of their dependencies. This is also important since we internally use our samples for smoke testing.
 
 See the [NuGet package reference guidelines](#nuget-package-references) for more details on how to achieve this.
 
-### Startup projects
+#### Startup projects
 
 When a sample is zipped the [VS startup projects](https://msdn.microsoft.com/en-us/library/a1awth7y.aspx) are also configured. This is done by using https://github.com/SimonCropp/SetStartupProjects. By default startable projects are [detected though interrogating the project settings](https://github.com/SimonCropp/SetStartupProjects/blob/master/src/SetStartupProjects/StartProjectFinder.cs). To override this convention and hard-code the list of startup projects add a file named `{SolutionName}.StartupProjects.txt` in the same directory as the solution file. It should contain the relative paths to the project files you would like to use for startup projects.
 
@@ -504,14 +506,14 @@ Endpoint1\Endpoint1.csproj
 To apply this convention on your local clone of the docs repo use the [set startup projects linkpad script](#setstartuplinq).
 
 
-### Bootstrapping a sample
+#### Bootstrapping a sample
 
 At the moment the best way to get started on a sample is to copy an existing one. Ideally one that is similar to what you are trying to achieve.
 
 A good sample to start with is the [Default Logging Sample](https://github.com/Particular/docs.particular.net/tree/master/samples/logging/default), since all it does is enable logging. You can then add the various moving pieces to the copy.
 
 
-### Screenshots
+#### Screenshots
 
 Avoid using screenshots in samples unless it adds significant value over what can be expressed in text. They have the following problems:
 
@@ -523,7 +525,7 @@ Avoid using screenshots in samples unless it adds significant value over what ca
 The most common misuse of screenshots is when capturing console output. **DO NOT DO THIS**. Put the text inside a formatted code section instead.
 
 
-## Guidance content
+### Guidance content
 
 Some of our documentation provides guidance for customers and prospects to make informed decisions when faced with multiple options.
 
@@ -534,7 +536,7 @@ Guidance for these decisions is valuable to our customers and is included in our
 This is not to be confused with comparisons between various vendors or technologies from various vendors. Such comparisons are contentious and are not part of our public documentation.
 
 
-## Tutorials
+### Tutorials
 
 Tutorials are similar to samples but optimized for new users to follow in a step-by-step fashion. Tutorials differ from samples in the following ways:
 
@@ -548,7 +550,7 @@ Tutorials are similar to samples but optimized for new users to follow in a step
 * Allows use of personal voice (you/your/we/etc.) within `/tutorials` directory to foster collaborative tone with user
 
 
-### Directory structure
+#### Directory structure
 
 An example directory structure for a tutorial might look like this:
 
@@ -565,7 +567,7 @@ An example directory structure for a tutorial might look like this:
 Tutorials can be grouped together in a parent directory with a normal article serving as a table of contents.
 
 
-### Multi-lesson tutorials
+#### Multi-lesson tutorials
 
 For tutorials chained together to form multiple lessons, navigation can be created to combine a button linking to the next lesson with the Download Solution link.
 
@@ -578,7 +580,7 @@ For tutorials chained together to form multiple lessons, navigation can be creat
 The `nextText` parameter is optional, and will default to the title of the linked page if omitted.
 
 
-## Markdown partials
+### Markdown partials
 
 Partials are version-specific files that contain markdown.
 
@@ -607,27 +609,27 @@ partial: endpointname
 ```
 
 
-## Markdown includes
+### Markdown includes
 
 Markdown includes are pulled into the document prior to passing the content through the markdown conversion.
 
 
-### Defining an include
+#### Defining an include
 
 Add a file anywhere in the docs repository that is suffixed with `.include.md`. For example, the file might be named `theKey.include.md`.
 
 
-### Using an include
+#### Using an include
 
 Add the following to the markdown:
 ```
 include: theKey
 ```
 
-## Code Snippets
+### Code Snippets
 
 
-### Defining Snippets
+#### Defining Snippets
 
 There is a some code located here: https://github.com/Particular/docs.particular.net/tree/master/Snippets. Any directory containing an `_excludesnippets` file will have its snippets ignored.
 
@@ -651,13 +653,13 @@ File extensions scanned for snippets include:
  * `.yml`
  * `Dockerfile`
 
-### Snippets are highlighted using highlightjs
+#### Snippets are highlighted using highlightjs
 
  * [Documentation](https://highlightjs.readthedocs.io/)
  * [Language List](https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases)
 
 
-### Inline Code
+#### Inline Code
 
  * https://highlightjs.org/static/demo/
  * https://github.com/isagalaev/highlight.js/tree/master/src/languages
@@ -675,7 +677,7 @@ File extensions scanned for snippets include:
 **Always use fenced code blocks with a language.** If no language is defined then highlightjs will guess the language and it regularly gets it wrong.
 
 
-#### Using comments
+##### Using comments
 
 Any code wrapped in a convention-based comment will be picked up. The comment needs to start with `startcode` which is followed by the key.
 
@@ -694,7 +696,7 @@ For non-code snippets apply a similar approach as in code, using comments approp
 |**Close**  |`<!-- endcode -->`       |`# endcode`       |`-- endcode`       |`endcode`       |`# endcode`
 
 
-#### Using regions
+##### Using regions
 
 Any code wrapped in a named C# region will be picked up. The name of the region is used as the key.
 
@@ -705,7 +707,7 @@ var configure = Configure.With();
 ```
 
 
-### Snippet versioning
+#### Snippet versioning
 
 Snippets are versioned. These versions are used to render snippets in a tabbed manner.
 
@@ -716,7 +718,7 @@ Versions follow the [NuGet versioning convention](https://docs.nuget.org/create/
 Snippet versions are derived in two ways
 
 
-#### Version suffix on snippets
+##### Version suffix on snippets
 
 Appending a version to the end of a snippet definition as follows:
 
@@ -735,7 +737,7 @@ My Snippet Code
 ```
 
 
-#### Convention based on the directory
+##### Convention based on the directory
 
 If a snippet has no version defined then the version will be derived by walking up the directory tree until if finds a directory that is suffixed with `_Version` or `_VersionRange`. For example:
 
@@ -744,14 +746,14 @@ If a snippet has no version defined then the version will be derived by walking 
  * Snippets extracted from `docs.particular.net\Snippets\Special_(1.0,2.0)\TheClass.cs` would have a default version of `(> 1.0.0 && < 2.0.0)`.
 
 
-#### Pre-release marker file
+##### Pre-release marker file
 
 If a file named `prerelease.txt` exists in a versioned directory then a `-pre` will be added to the version.
 
 For example, if there is a directory `docs.particular.net\Snippets\{Component}\Snippets_6\` and it contains a `prerelease.txt` file then the version will be `(≥ 6.0.0-pre)`
 
 
-### Using Snippets
+#### Using Snippets
 
 The keyed snippets can then be used in any documentation `.md` file by adding the text
 
@@ -774,7 +776,7 @@ The resulting markdown will be:
     ```
 
 
-### Code indentation
+#### Code indentation
 
 The code snippets will do smart trimming of snippet indentation.
 
@@ -797,7 +799,7 @@ var configure = Configure.With()
 The same behavior will apply to leading tabs.
 
 
-#### Do not mix tabs and spaces
+##### Do not mix tabs and spaces
 
 If tabs and spaces are mixed there is no way for the snippets to work out what to trim.
 
@@ -820,20 +822,20 @@ var configure = Configure.With()
 Note that none of the tabs have been trimmed.
 
 
-### Explicit variable typing versus 'var'
+#### Explicit variable typing versus 'var'
 
 Use `var` everywhere.
 
 
-### Snippets are compiled
+#### Snippets are compiled
 
 The code used by snippets and samples is compiled on the build server. The compilation is done against the versions of the packages referenced in the samples and snippets projects. When a snippet doesn't compile, the build will break so make sure snippets are compiling properly. Samples and snippets should not reference unreleased NuGet packages.
 
 
-## NuGet package references
+### NuGet package references
 
 
-### Use current minor
+#### Use current minor
 
 NuGet package references should use the the most greedy wildcard that is safe for that reference. In most cases that is "current minor":
 
@@ -844,7 +846,7 @@ NuGet package references should use the the most greedy wildcard that is safe fo
 This applies to snippets and samples.
 
 
-### Sometimes current patch
+#### Sometimes current patch
 
 In some cases, usually where a package has significant new API in a minor, it may be necessary to version snippets down to the "current patch".
 
@@ -865,7 +867,7 @@ Note that this should be a temporary state and in the next major default back to
 Also this generally only applies to snippets. It is usually not necessary to go to that level of version granularity for samples.
 
 
-### Samples always pull in one extra level
+#### Samples always pull in one extra level
 
 All samples pull in one extra level of package dependency. So, for example, in the Rabbit samples it would be sufficient to have:
 
@@ -892,14 +894,14 @@ NuGet will then resolve the lowest within those ranges. This make it more diffic
 ```
 
 
-### Unreleased NuGet packages
+#### Unreleased NuGet packages
 
 There are some scenarios where documentation may require unreleased or beta NuGet packages. For example, when creating a PR against documentation for a feature that is not yet released. In this case, it is ok for a PR to reference an unreleased NuGet and have that PR fail to build on the build server. Once the NuGet packages have been released that PR can be merged.
 
 In some cases it may be necessary to have merged documentation for unreleased features. In this case the NuGet packages should be pushed to the [Particular feed on MyGet](https://www.myget.org/feed/Packages/particular). The feed is included by default in the [Snippets nuget.config](https://github.com/Particular/docs.particular.net/blob/master/Snippets/nuget.config#L14).
 
 
-### Temporary unstables
+#### Temporary unstables
 
 When documenting an unstable feature, those unstable packages must be explicitly included using the exact prerelease package version using `-`.
 
@@ -919,7 +921,7 @@ This is a temporary state and once a stable is released it is changed back to th
 ```
 
 
-## Integrity tests
+### Integrity tests
 
 A [number of integrity tests](tests/IntegrityTests) validate that samples and snippets conform to conventions that make the documentation easier to maintain. Pull requests that fail these tests can not be merged.
 
@@ -933,7 +935,7 @@ The integrity tests include:
     1. Tests find all `prerelease.txt` files, parse the component name out of the parent directory name, find the related NuGet packages from component metadata, and then scan all child project files for prerelease package references of those NuGet packages, flagging `prerelease.txt` files with no associated prerelease package reference.
     2. Tests examine all project files, finding a parent versioned directory, parse out the component name, look up the NuGet packages from component metadata, scan the project path for any prerelease package references of those NuGet packages, and then flag any missing a `prerelease.txt` file.
 
-## Alerts
+### Alerts
 
 Sometimes it is necessary to draw attention to items you want to call out in a document.
 
@@ -951,7 +953,7 @@ There are several keys each of which map to a different colored alert
 Keys can be used in two manners
 
 
-### Single-line
+#### Single-line
 
 This can be done with the following syntax
 
@@ -968,7 +970,7 @@ will be rendered as
     </p>
 
 
-### Multi-line
+#### Multi-line
 
 Sometimes it is necessary to group markdown elements inside a note. This can be done with the following syntax
 
@@ -991,19 +993,19 @@ will be rendered as
     </p>
 
 
-## Headings
+### Headings
 
 The first (and all top level) headers in a `.md` page should be a `h2` (i.e. `##`) with sub-headings under it being `h3`, `h4`, etc.
 
 
-## Spaces
+### Spaces
 
 * Add an empty line before a heading and any other text
 * Add an empty line after a heading
 * Add an empty line between paragraphs
 
 
-## Anchors
+### Anchors
 
 One addition to standard markdown is the auto creation of anchors for headings.
 
@@ -1023,7 +1025,7 @@ Which means elsewhere in the page you can link to it with this:
     [Goto My Heading](#My-Heading)
 
 
-## Images
+### Images
 
 Images can be added using the following markdown syntax
 
@@ -1034,7 +1036,7 @@ With the minimal syntax being
     ![](/path/to/img.jpg)
 
 
-### Image sizing
+#### Image sizing
 
 Image size can be controlled by adding the text `width=x` to the end of the title
 
@@ -1053,12 +1055,12 @@ This will result in the image being re-sized with the following parameters
 It will also wrap the image in a clickable lightbox so the full image can be accessed.
 
 
-### Maintaining images
+#### Maintaining images
 
 When creating images, strive to keep sources in order to update and re-create images later. Whenever possible use mermaid. When using LucidChart make sure to keep the sources.
 
 
-### mermaid
+#### mermaid
 
 The support for [mermaid](https://knsv.github.io/mermaid/) is provided as an extension to [Markdig](https://github.com/lunet-io/markdig). Markdig converts the diagram definition from .md to HTML, and then mermaid JavaScript library converts the definition to SVG format on the fly.
 
@@ -1084,7 +1086,7 @@ D --> Q2[Queue2]
 The diagrams can be created and verified using the [online editor](http://knsv.github.io/mermaid/live_editor/).
 
 
-#### Messaging Graph Style
+##### Messaging Graph Style
 
 Diagrams that represent messages and events being passed between endpoint should follow some basic style rules.
 
@@ -1132,33 +1134,33 @@ class AnEvent,AnotherEvent event;
 </code></pre>
 
 
-### LucidChart
+#### LucidChart
 
 Another option is using [LucidChart](https://www.lucidchart.com). LucidChart allows to export and import Visio (VDX) formatted documents. Visio formatted documents can be used to generate images and should be committed along with the images. To generate images from LucidChart (or a Visio document), export the image as PNG, using the "Crop to content" option.
 
 
-## Some Useful Characters
+### Some Useful Characters
 
  * Ticks are done with `&#10004;` &#10004;
  * Crosses are done with `&#10006;` &#10006;
 
 
-## More Information
+### More Information
 
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 
-# Writing style
+## Writing style
 
 
-## Language Preferences
+### Language Preferences
 
 For consistency, prefer American English.
 
 No personal voice. I.e. no "we", "you", "your", "our" etc.
 
 
-## Version language
+### Version language
 
 Avoid ambiguity.
 
@@ -1174,7 +1176,7 @@ Don't assume the latest version of a product is the only one being used
 
 * Instead of "Prior to NServiceBus version 6.5, sagas could not...", say "In NServiceBus 6.4.x and below, sagas can not..."
 
-## Embedding videos
+### Embedding videos
 
 There is a CSS class that will properly style videos: `video-container`
 
@@ -1188,10 +1190,10 @@ Use it as follows:
 
 
 
-## Terminology
+### Terminology
 
 
-### Bus
+#### Bus
 
 The word `Bus` should be avoided in documentation. Some replacements include:
  * When referring to the topology, use `federated` (for which the opposite term is `centralized`)
@@ -1200,36 +1202,36 @@ The word `Bus` should be avoided in documentation. Some replacements include:
 
 The word `Bus` is allowed when a particular piece of documentation refers specifically to version 5 or below and discusses low level implementation details.
 
-### Core
+#### Core
 
 The word `core` as a synonym for `NServiceBus` or `NServiceBus Core` should be avoided in the documentation. Prefer using `NServiceBus` or `NServiceBus package`.
 
-# Links to 3rd parties
+## Links to 3rd parties
 
 
-## RavenDB
+### RavenDB
 
 Avoid deep link into the RavenDB documentation since it is a maintenance pain. For example don't link to `https://ravendb.net/docs/article-page/3.0/Csharp/client-api//session/transaction-support/dtc-transactions#transaction-storage-recovery`. When RavenDB 4 was released, `article-page/3.0/Csharp` became invalid and required an update. Also the RavenDB documentation does not maintain structure between versions. e.g. `https://ravendb.net/docs/article-page/2.0/Csharp/client-api//session/transaction-support/dtc-transactions#transaction-storage-recovery` is a 404. So we can't trust that "just change the version" will work. Instead link to the RavenDB docs search: `https://ravendb.net/docs/search/latest/csharp?searchTerm=THE-SEARCH-TERM`. So for the above example it would be `https://ravendb.net/docs/search/latest/csharp?searchTerm=Transaction-storage-recovery`.
 
 
-# Utilities
+## Utilities
 
 Under https://github.com/Particular/docs.particular.net/tree/master/tools there are several utilities to help with the management of this repository. All are in the form of [LINQPad](https://www.linqpad.net/) scripts.
 
 
-## projectStandards.linq
+### projectStandards.linq
 
 Remove redundant content from sln and csproj files.
 
 Enforces the [Resharper](https://www.jetbrains.com/resharper/) settings to be correct for every solution. The standard is a placeholder .settings file that pull in the [Shared.DotSettings](https://github.com/Particular/docs.particular.net/blob/master/tools/Shared.DotSettings) file as a layer.
 
 
-## setStartup.linq
+### setStartup.linq
 
 Sets the correct startup projects for every solution. This is persisted in an `.suo` file for each solution. Since `.suo` files are not committed to source control, if a re-clone is done this script will need to be re-run.
 
 
-# Git management/behavior
+## Git management/behavior
 
 In general the quality of the git history is not important in this repository. The reason for this is that the standard usages of a clean history (blame, supporting old versions, support branches etc) do not apply to a documentation repository. As such there are several recommendations based on that:
 
@@ -1240,7 +1242,7 @@ In general the quality of the git history is not important in this repository. T
 So if following the [Git pretty flow chart](http://justinhileman.info/article/git-pretty/) you should usually end in the "It's safest to let it stay ugly" end point.
 
 
-# Additional Resources
+## Additional Resources
 
  * [GitHub Flow in the Browser](https://help.github.com/articles/github-flow-in-the-browser/)
  * [General GitHub documentation](https://help.github.com/)
