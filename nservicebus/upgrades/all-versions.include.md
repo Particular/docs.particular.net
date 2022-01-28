@@ -176,7 +176,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.0) | 2021-10-29     | -                 | -                                 |
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | 2020-06-24     | 2022-01-29        | Superseded by 1.2.x               |
+| [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | ~~2020-06-24~~ | ~~2022-01-29~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.0.2) | ~~2018-05-29~~ | ~~2020-09-24~~    | ~~Superseded by 1.1.x~~           |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
@@ -270,7 +270,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.3.0) | 2022-01-07     | -                 | -                                 |
+| [6.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.4.0) | 2022-01-27     | -                 | -                                 |
+| [6.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.3.0) | 2022-01-07     | 2022-04-27        | Superseded by 6.4.x               |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.2.1) | 2021-03-25     | 2022-04-07        | Superseded by 6.3.x               |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.1.1) | ~~2021-02-26~~ | ~~2021-06-25~~    | ~~Superseded by 6.2.x~~           |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.0.4) | ~~2020-06-24~~ | ~~2021-05-26~~    | ~~Superseded by 6.1.x~~           |
@@ -325,7 +326,7 @@ No versions released.
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.0) | 2021-10-29     | -                 | -                                 |
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | 2020-06-24     | 2022-01-29        | Superseded by 1.2.x               |
+| [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | ~~2020-06-24~~ | ~~2022-01-29~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.0.2) | ~~2018-05-29~~ | ~~2020-09-24~~    | ~~Superseded by 1.1.x~~           |
 
 ### Serializer packages
