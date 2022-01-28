@@ -12,7 +12,7 @@ There are two approaches to contributing.
 
 For simple changes, the GitHub web UI should suffice.
 
- 1. Find the page you want to edit on https://docs.particular.net/.
+ 1. Find the page you want to edit on [ParticularDocs](https://docs.particular.net/).
  1. Click the `Edit Online` button. This will automatically fork the project so you can edit the file.
  1. Make the changes you require. Ensure you verify the changes in the `Preview` tab.
  1. Add a description of the changes.
@@ -32,19 +32,19 @@ For more information, see [Collaborating on GitHub](https://help.github.com/cate
 
 ### Reviewing a page
 
-If, as part of editing a page, a full review of the content is done, the [reviewed header](#reviewed) should be updated. This date is used to render https://docs.particular.net/review.
+If, as part of editing a page, a full review of the content is done, the [reviewed header](#reviewed) should be updated. This date is used to render the [last reviewed page](https://docs.particular.net/review).
 
 As part of a full review the following should be done:
 
- * Spelling (US)
- * Grammar
- * Version specific language and content is correct
- * Language is concise
- * All links are relevant. No 3rd party links have redirects or 404s.
- * Are there any more links that can be added to improve the content
- * Content is correct up to and including the current released version
- * Summary and title is adequate
- * Update reviewed date in header, even if no changes were made.
+* Spelling (US)
+* Grammar
+* Version specific language and content is correct
+* Language is concise
+* All links are relevant. No 3rd party links have redirects or 404s.
+* Are there any more links that can be added to improve the content
+* Content is correct up to and including the current released version
+* Summary and title is adequate
+* Update reviewed date in header, even if no changes were made.
 
 ## Conventions
 
@@ -64,7 +64,7 @@ The GitHub UI will [correctly render YAML](https://github.com/blog/1647-viewing-
 
 For example:
 
-```
+```yaml
 ---
 title: Auditing Messages
 summary: Provides built-in message auditing for every endpoint.
@@ -78,11 +78,11 @@ redirects:
 
 #### Title
 
-```
+```yaml
 title: Auditing With NServiceBus
 ```
 
-**Must be 70 characters or less**, and 50-60 characters is recommended. https://moz.com/learn/seo/title-tag
+**Must be 70 characters or less**, and 50-60 characters is [recommended](https://moz.com/learn/seo/title-tag).
 
 Required. Used for the web page title tag `<head><title>`, displayed in the page content, and displayed in search results.
 
@@ -90,7 +90,7 @@ Required. Used for the web page title tag `<head><title>`, displayed in the page
 
 #### Component
 
-```
+```yaml
 component: Core
 ```
 
@@ -98,12 +98,13 @@ Required when using partials views, recommended also when using snippets in mult
 
 #### Versions
 
-```
+```yaml
 versions: '[1,2)'
 ```
 
 In case of components that consist of multiple packages it's also possible to explicitly specify ranges of versions for each package separately:
-```
+
+```yaml
 versions: 'PackageA:[1,2); PackageB : [3,4); PackageC :*'
 ```
 
@@ -111,7 +112,7 @@ Optional. Used for specifying what versions the given page covers, especially re
 
 #### Reviewed
 
-```
+```yaml
 reviewed: 2016-03-01
 ```
 
@@ -119,7 +120,7 @@ Optional. Used to capture the last date that a page was fully reviewed. Format i
 
 #### Summary
 
-```
+```yaml
 summary: Provides built-in message auditing for every endpoint.
 ```
 
@@ -127,18 +128,18 @@ Optional. Used for the meta description tag (`<meta name="description" />`) and 
 
 #### Hidden
 
-```
+```yaml
 hidden: true
 ```
 
 Causes two things:
 
- * Stops search engines from finding the page using a `<meta name="robots" content="noindex" />`.
- * Prevents the page from being found in the docs search.
+* Stops search engines from finding the page using a `<meta name="robots" content="noindex" />`.
+* Prevents the page from being found in the docs search.
 
 #### Preview Image
 
-```
+```yaml
 previewImage: preview-image.png
 ```
 
@@ -148,7 +149,7 @@ The URL should be a relative URL, usually just the filename in the same director
 
 #### Related
 
-```
+```yaml
 related:
 - samples/custom-checks/monitoring3rdparty
 ```
@@ -157,7 +158,7 @@ A list of related pages for this page. These links will be rendered at the botto
 
 #### Suppress Related
 
-```
+```yaml
 suppressRelated: true
 ```
 
@@ -165,16 +166,16 @@ No related content will be displayed at the bottom of the article, including spe
 
 #### Redirects
 
-```
+```yaml
 redirects:
 - nservicebus/overview
 ```
 
 When renaming an existing article to a new name, add the `redirects:` section in the article header and specify the previous name for the article. If the old URL is linked anywhere, the new renamed article will automatically be served when the user clicks on it.
 
- * Values specified in the `redirects` section must be lower case.
- * Multiple values can be specified for the redirects, same as `tags`.
- * Values are fully qualified
+* Values specified in the `redirects` section must be lower case.
+* Multiple values can be specified for the redirects, same as `tags`.
+* Values are fully qualified
 
 #### URL format for Redirects and Related
 
@@ -186,7 +187,7 @@ To Mark something as an upgrade guide use `isUpgradeGuide: true`
 
 The `upgradeGuideCoreVersions` setting can optionally be used to filter which NSB core version tab the page show up in the search results
 
-```
+```yaml
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 5
@@ -199,9 +200,9 @@ To mark a page as belonging to the [Particular Software Learning Path](https://p
 
 ### An example header for an article
 
-- In the following example, whenever the URLs `/servicecontrol/sc-si` or `/servicecontrol/debugging-servicecontrol` are being requested, the given article will be rendered.
+In the following example, whenever the URLs `/servicecontrol/sc-si` or `/servicecontrol/debugging-servicecontrol` are being requested, the given article will be rendered.
 
-```
+```yaml
 ---
 title: ServiceInsight Interaction
 summary: 'Using ServiceInsight Together'
@@ -228,7 +229,7 @@ Two things are generally referred to as "components", which can be confusing:
 
 Sample Component:
 
-```
+```yaml
 - Key: Callbacks
   Url: nservicebus/messaging/callbacks
   NugetOrder:
@@ -256,7 +257,7 @@ All NServiceBus-related NuGet packages (used in documentation) are listed in [co
 
 Example aliases:
 
-```
+```text
 ASP: NServiceBus.Persistence.AzureStorage
 Autofac: NServiceBus.Autofac
 Azure: NServiceBus.Azure
@@ -269,13 +270,13 @@ Samples can be targeted to multiple [target frameworks](https://docs.microsoft.c
 
 The currently recommended set of frameworks is:
 
-```
+```xml
 <TargetFrameworks>net5.0;netcoreapp3.1;net48</TargetFrameworks>
 ```
 
 Shared/messages projects should not be multi-targeted but use a standard framework that works with all targets:
 
-```
+```xml
 <TargetFramework>netstandard2.0</TargetFramework>
 ```
 
@@ -293,7 +294,7 @@ Any sub-items that are prefixed with the title of the parent item will have that
 
 Example content:
 
-```
+```yaml
 - Name: NServiceBus
   Topics:
   - Url: platform
@@ -311,10 +312,10 @@ Example content:
 
 Conventions:
 
- * Top level items the `Name` is used for the URL.
- * `Title` is required for all nodes other than top level.
- * Maximum of 4 levels deep.
- * URL is optional. if it does not exist it will render as an expandable node.
+* Top level items the `Name` is used for the URL.
+* `Title` is required for all nodes other than top level.
+* Maximum of 4 levels deep.
+* URL is optional. if it does not exist it will render as an expandable node.
 
 ### URLs
 
@@ -340,8 +341,8 @@ The `.md` allows links to work inside the GitHub web UI. The `.md` will be trimm
 
 Given the case of editing a page located at `\nservicebus\page1.md`:
 
-- To link to the file `nservicebus\page2.md`, use `[Page 2 Text](Page2.md)`.
-- To link to the file `\servicecontrol\page3.md`, use `[Page 3 Text](/servicecontrol/page3.md)`.
+* To link to the file `nservicebus\page2.md`, use `[Page 2 Text](Page2.md)`.
+* To link to the file `\servicecontrol\page3.md`, use `[Page 3 Text](/servicecontrol/page3.md)`.
 
 Don't link to `index.md` pages, instead link to the directory. So link to `/nservicebus/logging` and NOT `/nservicebus/logging/index.md`
 
@@ -357,7 +358,9 @@ For editing markdown on the desktop (after cloning locally with Git) try [Markdo
 
 Ensure you enable `GitHub Flavored Markdown (Offline)` by going to
 
-    Tools > Options > Markdown > Markdown Processor > GitHub Flavored Markdown (Offline)
+```text
+Tools > Options > Markdown > Markdown Processor > GitHub Flavored Markdown (Offline)
+```
 
 Or click in the bottom left on the `M` icon to "hot-switch"
 
@@ -365,7 +368,9 @@ Or click in the bottom left on the `M` icon to "hot-switch"
 
 Don't render YAML front-matter by going to
 
-    Tools > Options > Markdown > Markdown Settings
+```text
+Tools > Options > Markdown > Markdown Settings
+```
 
 And checking `Ignore YAML Front-matter`
 
@@ -375,42 +380,42 @@ And checking `Ignore YAML Front-matter`
 
 #### Terms we use and are aligned with EIP
 
- * Message
- * Message Endpoint
- * [Messaging Bridge](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html) - Unfortunately we don't have any implementation other than MSMQ-SQL sample
- * [Command Message](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CommandMessage.html)
- * [Event Message](https://www.enterpriseintegrationpatterns.com/patterns/messaging/EventMessage.html)
- * [Request-Reply](https://www.enterpriseintegrationpatterns.com/patterns/messaging/RequestReply.html) - not sure if we are 100% aligned here. We use the term *Full Duplex* to describe a non-synchronous request reply and only use *Request-Reply* or *Callback* for the synchronous variant
- * [Correlation ID](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html)
- * [Transactional Client](https://www.enterpriseintegrationpatterns.com/patterns/messaging/TransactionalClient.html)
- * [Competing Consumers](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)
- * [Message Store](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageStore.html) - we have it in ServiceControl
+* Message
+* Message Endpoint
+* [Messaging Bridge](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html) - Unfortunately we don't have any implementation other than MSMQ-SQL sample
+* [Command Message](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CommandMessage.html)
+* [Event Message](https://www.enterpriseintegrationpatterns.com/patterns/messaging/EventMessage.html)
+* [Request-Reply](https://www.enterpriseintegrationpatterns.com/patterns/messaging/RequestReply.html) - not sure if we are 100% aligned here. We use the term *Full Duplex* to describe a non-synchronous request reply and only use *Request-Reply* or *Callback* for the synchronous variant
+* [Correlation ID](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CorrelationIdentifier.html)
+* [Transactional Client](https://www.enterpriseintegrationpatterns.com/patterns/messaging/TransactionalClient.html)
+* [Competing Consumers](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)
+* [Message Store](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageStore.html) - we have it in ServiceControl
 
 #### EIP terms and ideas we don't use but can
 
- * [Message Bus](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBus.html) - we dropped using the *bus* word when referring to an *endpoint* (which is correct) but I think we can take advantage of this definition of the bus because it is aligned with our concepts.
- * [Dead Letter Channel](https://www.enterpriseintegrationpatterns.com/patterns/messaging/DeadLetterChannel.html) - only MSMQ implements it, we don't have it on NServiceBus level
- * [Datatype Channel](https://www.enterpriseintegrationpatterns.com/patterns/messaging/DatatypeChannel.html) - is a channel reserved for a single data/message type. This is something we should be selling users as a good practice
- * [Channel Adapter](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ChannelAdapter.html) - this seems to be similar to the ADSD idea for integration components that pull data from various services in order to combine them into a message
- * [Messaging Gateway](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingGateway.html) and [Messaging Mapper](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingMapper.html) - we could prepare guidance based on them on how to use NSB in the application
- * [Control Bus](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ControlBus.html) - I believe we should get this implemented in (close) future
- * [Test Message](https://www.enterpriseintegrationpatterns.com/patterns/messaging/TestMessage.html)
+* [Message Bus](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBus.html) - we dropped using the *bus* word when referring to an *endpoint* (which is correct) but I think we can take advantage of this definition of the bus because it is aligned with our concepts.
+* [Dead Letter Channel](https://www.enterpriseintegrationpatterns.com/patterns/messaging/DeadLetterChannel.html) - only MSMQ implements it, we don't have it on NServiceBus level
+* [Datatype Channel](https://www.enterpriseintegrationpatterns.com/patterns/messaging/DatatypeChannel.html) - is a channel reserved for a single data/message type. This is something we should be selling users as a good practice
+* [Channel Adapter](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ChannelAdapter.html) - this seems to be similar to the ADSD idea for integration components that pull data from various services in order to combine them into a message
+* [Messaging Gateway](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingGateway.html) and [Messaging Mapper](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingMapper.html) - we could prepare guidance based on them on how to use NSB in the application
+* [Control Bus](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ControlBus.html) - I believe we should get this implemented in (close) future
+* [Test Message](https://www.enterpriseintegrationpatterns.com/patterns/messaging/TestMessage.html)
 
 #### Terms we use but have a different meaning or name
 
- * Message Channel - we call it a queue but EIP name seeps to be more appropriate since e.g. SQL transport does not use queues
- * [Point-to-Point](https://www.enterpriseintegrationpatterns.com/patterns/messaging/PointToPointChannel.html) - we use *Unicast* instead
- * [Publish-Subscribe](https://www.enterpriseintegrationpatterns.com/patterns/messaging/PublishSubscribeChannel.html) - we use *Multicast* instead. I think these two discrepancies are something we need to live with because we reserve *Publish/Subscribe* name to a logical pattern.
- * [Invalid Message Channel](https://www.enterpriseintegrationpatterns.com/patterns/messaging/InvalidMessageChannel.html) - we call it *error queue*
- * [Guaranteed Delivery](https://www.enterpriseintegrationpatterns.com/patterns/messaging/GuaranteedMessaging.html) - we call it *store and forward*
- * [Return Address](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ReturnAddress.html) - we use *reply address* but I think we are close enough.
- * [Process Manager](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) - we call it *Saga*
- * [Message Broker](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBroker.html) - we use the term broker to describe a centralized transport mechanism where all message channels are on remote machine/cluster. EIP sees broker as a thing that also does routing based on message types (and/or content)
- * [Claim Check](https://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html) - we call it *Data bus*
- * [Event-Driven Consumer](https://www.enterpriseintegrationpatterns.com/patterns/messaging/EventDrivenConsumer.html) - we call it *message pump* or *IPushMessages*
- * [Message Dispatcher](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageDispatcher.html) - we call it *Distributor*
- * [Selective Consumer](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageSelector.html) - I believe our closest equivalent is a message handler
- * [Wire Tap](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ControlBus.html) - we call it audit queue which confuses the purpose with the implementation. The thing is called *wire tap* and it is usually used to *audit* message flows.
+* Message Channel - we call it a queue but EIP name seeps to be more appropriate since e.g. SQL transport does not use queues
+* [Point-to-Point](https://www.enterpriseintegrationpatterns.com/patterns/messaging/PointToPointChannel.html) - we use *Unicast* instead
+* [Publish-Subscribe](https://www.enterpriseintegrationpatterns.com/patterns/messaging/PublishSubscribeChannel.html) - we use *Multicast* instead. I think these two discrepancies are something we need to live with because we reserve *Publish/Subscribe* name to a logical pattern.
+* [Invalid Message Channel](https://www.enterpriseintegrationpatterns.com/patterns/messaging/InvalidMessageChannel.html) - we call it *error queue*
+* [Guaranteed Delivery](https://www.enterpriseintegrationpatterns.com/patterns/messaging/GuaranteedMessaging.html) - we call it *store and forward*
+* [Return Address](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ReturnAddress.html) - we use *reply address* but I think we are close enough.
+* [Process Manager](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) - we call it *Saga*
+* [Message Broker](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBroker.html) - we use the term broker to describe a centralized transport mechanism where all message channels are on remote machine/cluster. EIP sees broker as a thing that also does routing based on message types (and/or content)
+* [Claim Check](https://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html) - we call it *Data bus*
+* [Event-Driven Consumer](https://www.enterpriseintegrationpatterns.com/patterns/messaging/EventDrivenConsumer.html) - we call it *message pump* or *IPushMessages*
+* [Message Dispatcher](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageDispatcher.html) - we call it *Distributor*
+* [Selective Consumer](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageSelector.html) - I believe our closest equivalent is a message handler
+* [Wire Tap](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ControlBus.html) - we call it audit queue which confuses the purpose with the implementation. The thing is called *wire tap* and it is usually used to *audit* message flows.
 
 ### Samples
 
@@ -420,30 +425,30 @@ Our main goal is to provide the user with a smooth F5 experience when using the 
 
 Any of the following, or combination thereof, could indicate that something should be a sample
 
- * When there are multiple non-trivial moving pieces that would be mitigated by being able to download a runnable VS solution.
- * When illustrating how Particular products/tools interact with 3rd-party products/tools.
- * It is a sample of a significant feature of the Particular platform. e.g. Databus, encryption, pipeline etc.
+* When there are multiple non-trivial moving pieces that would be mitigated by being able to download a runnable VS solution.
+* When illustrating how Particular products/tools interact with 3rd-party products/tools.
+* It is a sample of a significant feature of the Particular platform. e.g. Databus, encryption, pipeline etc.
 
 Do not write a sample when:
 
- * The only difference to an existing sample is a minor API usage.
+* The only difference to an existing sample is a minor API usage.
 
 #### Recommendations
 
- * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example, if the sample is "illustrating IOC with MVC" then "adding SignalR" to that sample will only cause confusion. In general, the fewer NuGet packages required to get the point across the better.
- * Do not "document things inside a sample". A sample is to show how something is used, not to document it. Instead update the appropriate documentation page and link to it. As a general rule, if you add any content to a sample, where that guidance could possibly be applicable to other samples, then that guidance should probably exist in a documentation page.
- * Start a sample with paragraph(s) that summarize why the sample would be useful or interesting. Think about more than what the sample _does_, but also what additional scenarios it can enable. After this summary, put the `downloadbutton` directive in a paragraph by itself, which will be rendered as a large **Download the sample now** button.
+* Samples should illustrate a feature or scenario with as few moving pieces as possible. For example, if the sample is "illustrating IOC with MVC" then "adding SignalR" to that sample will only cause confusion. In general, the fewer NuGet packages required to get the point across the better.
+* Do not "document things inside a sample". A sample is to show how something is used, not to document it. Instead update the appropriate documentation page and link to it. As a general rule, if you add any content to a sample, where that guidance could possibly be applicable to other samples, then that guidance should probably exist in a documentation page.
+* Start a sample with paragraph(s) that summarize why the sample would be useful or interesting. Think about more than what the sample _does_, but also what additional scenarios it can enable. After this summary, put the `downloadbutton` directive in a paragraph by itself, which will be rendered as a large **Download the sample now** button.
 
 #### Conventions
 
- * Samples are located here: https://github.com/Particular/docs.particular.net/tree/master/samples.
- * They are linked to from the home page and are rendered here: https://docs.particular.net/samples/.
- * Any directory in that structure with a sample.md will be considered a "root for a sample" or Sample Root.
- * A Sample Root may not contain a sample.md in subdirectories.
- * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
- * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.
- * A sample must obey rules that are verified by [Integrity Tests](#integrity-tests).
- * Samples targeting .NET Core should be able to run across Windows, macOS, and Linux. To ensure that's the case, you can run the sample using WSL (Windows Subsystem for Linux) in VS Code. VS Code can be [configured to use WSL as the default development environment](https://code.visualstudio.com/docs/remote/wsl). If a sample cannot be designed to support one or more platforms add a note to the `sample.md`-file with the platforms that are unsupported and the reasoning.
+* Samples are located [here](https://github.com/Particular/docs.particular.net/tree/master/samples).
+* They are linked to from the home page and are rendered [here](https://docs.particular.net/samples/).
+* Any directory in that structure with a sample.md will be considered a "root for a sample" or Sample Root.
+* A Sample Root may not contain a sample.md in subdirectories.
+* Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
+* A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.
+* A sample must obey rules that are verified by [Integrity Tests](#integrity-tests).
+* Samples targeting .NET Core should be able to run across Windows, macOS, and Linux. To ensure that's the case, you can run the sample using WSL (Windows Subsystem for Linux) in VS Code. VS Code can be [configured to use WSL as the default development environment](https://code.visualstudio.com/docs/remote/wsl). If a sample cannot be designed to support one or more platforms add a note to the `sample.md`-file with the platforms that are unsupported and the reasoning.
 
 #### References
 
@@ -453,11 +458,11 @@ See the [NuGet package reference guidelines](#nuget-package-references) for more
 
 #### Startup projects
 
-When a sample is zipped the [VS startup projects](https://msdn.microsoft.com/en-us/library/a1awth7y.aspx) are also configured. This is done by using https://github.com/SimonCropp/SetStartupProjects. By default startable projects are [detected though interrogating the project settings](https://github.com/SimonCropp/SetStartupProjects/blob/master/src/SetStartupProjects/StartProjectFinder.cs). To override this convention and hard-code the list of startup projects add a file named `{SolutionName}.StartupProjects.txt` in the same directory as the solution file. It should contain the relative paths to the project files you would like to use for startup projects.
+When a sample is zipped the [VS startup projects](https://msdn.microsoft.com/en-us/library/a1awth7y.aspx) are also configured. This is done by using [SetStartupProjects](https://github.com/SimonCropp/SetStartupProjects). By default startable projects are [detected though interrogating the project settings](https://github.com/SimonCropp/SetStartupProjects/blob/master/src/SetStartupProjects/StartProjectFinder.cs). To override this convention and hard-code the list of startup projects add a file named `{SolutionName}.StartupProjects.txt` in the same directory as the solution file. It should contain the relative paths to the project files you would like to use for startup projects.
 
 For example if the solution "TheSolution.sln" contains two endpoints and you only want to start `Endpoint1` the content of `TheSolution.StartupProjects.txt` would be:
 
-```
+```text
 Endpoint1\Endpoint1.csproj
 ```
 
@@ -473,10 +478,10 @@ A good sample to start with is the [Default Logging Sample](https://github.com/P
 
 Avoid using screenshots in samples unless it adds significant value over what can be expressed in text. They have the following problems:
 
- * More time consuming to update than text
- * Not search-able
- * Prone to an inconsistent feel as different people take screenshots at different sizes, different zoom levels and with different color schemes for the app in question
- * Add significantly to the page load time.
+* More time consuming to update than text
+* Not search-able
+* Prone to an inconsistent feel as different people take screenshots at different sizes, different zoom levels and with different color schemes for the app in question
+* Add significantly to the page load time.
 
 The most common misuse of screenshots is when capturing console output. **DO NOT DO THIS**. Put the text inside a formatted code section instead.
 
@@ -507,7 +512,7 @@ Tutorials are similar to samples but optimized for new users to follow in a step
 
 An example directory structure for a tutorial might look like this:
 
-```
+```text
 {tutorial-name}/
   Snippets/ (optional)
     Snippets.sln
@@ -523,7 +528,7 @@ Tutorials can be grouped together in a parent directory with a normal article se
 
 For tutorials chained together to form multiple lessons, navigation can be created to combine a button linking to the next lesson with the Download Solution link.
 
-```
+```yaml
 - !!tutorial
   nextText: "Next Lesson: Sending a command"
   nextUrl: tutorials/nservicebus-step-by-step/2-sending-a-command
@@ -545,7 +550,7 @@ The NuGet alias in samples should match the prefix as defined by the samples sol
 
 Partials are rendered in the target page by using the following syntax
 
-```
+```markdown
 partial: PARTIAL_KEY
 ```
 
@@ -555,7 +560,7 @@ So an example directory structure might be as follows
 
 And to include the `endpointname` partial can be pulled into `sample.md` by including.
 
-```
+```markdown
 partial: endpointname
 ```
 
@@ -570,7 +575,8 @@ Add a file anywhere in the docs repository that is suffixed with `.include.md`. 
 #### Using an include
 
 Add the following to the markdown:
-```
+
+```markdown
 include: theKey
 ```
 
@@ -578,37 +584,37 @@ include: theKey
 
 #### Defining Snippets
 
-There is a some code located here: https://github.com/Particular/docs.particular.net/tree/master/Snippets. Any directory containing an `_excludesnippets` file will have its snippets ignored.
+There is a some code located [here](https://github.com/Particular/docs.particular.net/tree/master/Snippets). Any directory containing an `_excludesnippets` file will have its snippets ignored.
 
 File extensions scanned for snippets include:
 
- * `.config`
- * `.cs`
- * `.cscfg`
- * `.csdef`
- * `csproj`
- * `.html`
- * `.sql`
- * `.txt`
- * `.xml`
- * `.xsd`
- * `ps1`
- * `.ps`
- * `.json`
- * `.proto`
- * `.config`
- * `.yml`
- * `Dockerfile`
+* `.config`
+* `.cs`
+* `.cscfg`
+* `.csdef`
+* `csproj`
+* `.html`
+* `.sql`
+* `.txt`
+* `.xml`
+* `.xsd`
+* `ps1`
+* `.ps`
+* `.json`
+* `.proto`
+* `.config`
+* `.yml`
+* `Dockerfile`
 
 #### Snippets are highlighted using highlightjs
 
- * [Documentation](https://highlightjs.readthedocs.io/)
- * [Language List](https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases)
+* [Documentation](https://highlightjs.readthedocs.io/)
+* [Language List](https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases)
 
 #### Inline Code
 
- * https://highlightjs.org/static/demo/
- * https://github.com/isagalaev/highlight.js/tree/master/src/languages
+* [highlight.js demo](https://highlightjs.org/static/demo/)
+* [highlight.js languages](https://github.com/highlightjs/highlight.js/tree/main/src/languages)
 
 | language     | key            |
 |--------------|----------------|
@@ -625,7 +631,7 @@ File extensions scanned for snippets include:
 
 Any code wrapped in a convention-based comment will be picked up. The comment needs to start with `startcode` which is followed by the key.
 
-```
+```c#
 // startcode ConfigureWith
 var configure = Configure.With();
 // endcode
@@ -643,7 +649,7 @@ For non-code snippets apply a similar approach as in code, using comments approp
 
 Any code wrapped in a named C# region will be picked up. The name of the region is used as the key.
 
-```
+```c#
 #region ConfigureWith
 var configure = Configure.With();
 #endregion
@@ -663,7 +669,7 @@ Snippet versions are derived in two ways
 
 Appending a version to the end of a snippet definition as follows:
 
-```
+```c#
 #region ConfigureWith 4.5
 var configure = Configure.With();
 #endregion
@@ -671,9 +677,9 @@ var configure = Configure.With();
 
 Or version range:
 
-```
+```c#
 #region MySnippetName [1.0,2.0]
-My Snippet Code
+// My Snippet Code
 #endregion
 ```
 
@@ -681,9 +687,9 @@ My Snippet Code
 
 If a snippet has no version defined then the version will be derived by walking up the directory tree until if finds a directory that is suffixed with `_Version` or `_VersionRange`. For example:
 
- * Snippets extracted from `docs.particular.net\Snippets\Snippets_4\TheClass.cs` would have a default version of `(≥ 4.0.0 && < 5.0.0)`.
- * Snippets extracted from `docs.particular.net\Snippets\Snippets_4\Special_4.3\TheClass.cs` would have a default version of `(≥ 4.3.0 && < 5.0.0)`.
- * Snippets extracted from `docs.particular.net\Snippets\Special_(1.0,2.0)\TheClass.cs` would have a default version of `(> 1.0.0 && < 2.0.0)`.
+* Snippets extracted from `docs.particular.net\Snippets\Snippets_4\TheClass.cs` would have a default version of `(≥ 4.0.0 && < 5.0.0)`.
+* Snippets extracted from `docs.particular.net\Snippets\Snippets_4\Special_4.3\TheClass.cs` would have a default version of `(≥ 4.3.0 && < 5.0.0)`.
+* Snippets extracted from `docs.particular.net\Snippets\Special_(1.0,2.0)\TheClass.cs` would have a default version of `(> 1.0.0 && < 2.0.0)`.
 
 ##### Pre-release marker file
 
@@ -695,23 +701,27 @@ For example, if there is a directory `docs.particular.net\Snippets\{Component}\S
 
 The keyed snippets can then be used in any documentation `.md` file by adding the text
 
-**snippet: KEY**
+```markdown
+snippet: KEY
+```
 
 Then snippets with the key (all versions) will be rendered in a tabbed manner. If there is only a single version then it will be rendered as a simple code block with no tabs.
 
 For example:
 
-<pre>
-<code >To configure the bus call
-snippet: ConfigureWith</code>
-</pre>
+```markdown
+    To configure the bus call
+    snippet: ConfigureWith
+```
 
 The resulting markdown will be:
 
+```markdown
     To configure the bus call
     ```
     var configure = Configure.With();
     ```
+```
 
 #### Code indentation
 
@@ -719,16 +729,16 @@ The code snippets will do smart trimming of snippet indentation.
 
 For example, given this snippet:
 
-<pre>
-&#8226;&#8226;#region DataBus
-&#8226;&#8226;var configure = Configure.With()
-&#8226;&#8226;&#8226;&#8226;.FileShareDataBus(databusPath);
-&#8226;&#8226;#endregion
-</pre>
-
-The two leading spaces (&#8226;&#8226;) will be trimmed and the result will be
-
+```c#
+••#region DataBus
+••var configure = Configure.With()
+••••.FileShareDataBus(databusPath);
+••#endregion
 ```
+
+The two leading spaces (••) will be trimmed and the result will be
+
+```c#
 var configure = Configure.With()
 ••.FileShareDataBus(databusPath)
 ```
@@ -741,19 +751,19 @@ If tabs and spaces are mixed there is no way for the snippets to work out what t
 
 So given this snippet:
 
-<pre>
-&#8226;&#8226;#region DataBus
-&#8226;&#8226;var configure = Configure.With()
-&#10137;&#10137;.FileShareDataBus(databusPath);
-&#8226;&#8226;#endregion
-</pre>
+```c#
+••#region DataBus
+••var configure = Configure.With()
+➙➙.FileShareDataBus(databusPath);
+•#endregion
+```
 
 where &#10137; is a tab, the resulting markdown will be
 
-<pre>
+```c#
 var configure = Configure.With()
-&#10137;&#10137;.FileShareDataBus(databusPath)
-</pre>
+➙➙.FileShareDataBus(databusPath)
+```
 
 Note that none of the tabs have been trimmed.
 
@@ -771,7 +781,7 @@ The code used by snippets and samples is compiled on the build server. The compi
 
 NuGet package references should use the the most greedy wildcard that is safe for that reference. In most cases that is "current minor":
 
-```
+```xml
 <PackageReference Include="NServiceBus.Serilog" Version="4.*" />
 ```
 
@@ -781,17 +791,17 @@ This applies to snippets and samples.
 
 In some cases, usually where a package has significant new API in a minor, it may be necessary to version snippets down to the "current patch".
 
-```
+```xml
 <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.0.*" />
 ```
 
-```
+```xml
 <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.1.*" />
 ```
 
 Note that this should be a temporary state and in the next major default back to "current minor".
 
-```
+```xml
 <PackageReference Include="NServiceBus.Persistence.Sql" Version="3.*" />
 ```
 
@@ -801,20 +811,20 @@ Also this generally only applies to snippets. It is usually not necessary to go 
 
 All samples pull in one extra level of package dependency. So, for example, in the Rabbit samples it would be sufficient to have:
 
-```
+```xml
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
 ```
 
 The reference to `NServiceBus` and `RabbitMQ.Client` would then be inferred. However, since the dependencies in `NServiceBus.RabbitMQ` are:
 
-```
+```text
 NServiceBus (>= 6.0.0 && < 7.0.0)
 RabbitMQ.Client (>= 5.0.1 && < 5.1.0)
 ```
 
 NuGet will then resolve the lowest within those ranges. This make it more difficult to smoke test new versions of those dependencies using samples. As such, for all dependencies that are important to use the latest, the extra dependencies are explicitly included with wildcards.
 
-```
+```xml
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
 
 <ItemGroup Label="Required to force the latest version of transitive dependencies">
@@ -833,18 +843,17 @@ In some cases it may be necessary to have merged documentation for unreleased fe
 
 When documenting an unstable feature, those unstable packages must be explicitly included using the exact prerelease package version using `-`.
 
-```
+```xml
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.3.1-alpha.XYZ" />
 ```
 
 Wildcard patterns, like `Version="4.3.1-*` are not allowed for pre-releases since they tend to break the snippet and sample builds.
-```
 
-In snippets this can be safely done at any point in time. Note that when for applied to samples this can have side effects on a user who downloads a sample during that period. As such it is generally only done for samples that are marked with a `prerelease.txt` marker.
+_**In snippets this can be safely done at any point in time. Note that when for applied to samples this can have side effects on a user who downloads a sample during that period. As such it is generally only done for samples that are marked with a `prerelease.txt` marker.**_
 
-This is a temporary state and once a stable is released it is changed back to the "current minor"
+_**This is a temporary state and once a stable is released it is changed back to the "current minor".**_
 
-```
+```xml
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
 ```
 
@@ -855,8 +864,8 @@ A [number of integrity tests](tests/IntegrityTests) validate that samples and sn
 The integrity tests include:
 
 * [Samples should not be multi-targeted](tests/IntegrityTests/ProjectFrameworks.cs) using the `<TargetFrameworks>` (plural) element. This is because a visitor who downloads the solution without .NET Core installed will not be able to run a multi-targeted project even on the .NET Framework. Instead a sample should have separate solutions and projects to support .NET Framework and .NET Core, all using the same underlying code, i.e.:
-    * `SampleName.sln` references `ProjectName.csproj` targeting `net462`
-    * `SampleName.Core.sln` references `ProjectName.Core.csproj` targeting `netcoreapp2.0`
+  * `SampleName.sln` references `ProjectName.csproj` targeting `net462`
+  * `SampleName.Core.sln` references `ProjectName.Core.csproj` targeting `netcoreapp2.0`
 * [Package references cannot use a wildcard-only version](tests/IntegrityTests/ReferenceVersions.cs) using `Version="*"` as this can cause a package restore operation to sometimes fail and yield old, incorrect, or mismatched versions.
 * [Versioned sample/snippet directories (i.e. `Core_7`) must contain a `prerelease.txt` file](tests/IntegrityTests/ValidatePrereleaseTxt.cs) **only** when the contained projects use a prerelease version of that component's NuGet package. This is verified in two ways:
     1. Tests find all `prerelease.txt` files, parse the component name out of the parent directory name, find the related NuGet packages from component metadata, and then scan all child project files for prerelease package references of those NuGet packages, flagging `prerelease.txt` files with no associated prerelease package reference.
@@ -866,7 +875,7 @@ The integrity tests include:
 
 Sometimes it is necessary to draw attention to items you want to call out in a document.
 
-This is achieved through bootstrap alerts https://getbootstrap.com/components/#alerts
+This is achieved through [bootstrap alerts](https://getbootstrap.com/components/#alerts).
 
 There are several keys each of which map to a different colored alert
 
@@ -883,39 +892,51 @@ Keys can be used in two manners
 
 This can be done with the following syntax
 
-    KEY: the note text.
+```markdown
+KEY: the note text.
+```
 
 For example, this
 
-    NOTE: Some sample note text.
+```markdown
+NOTE: Some sample note text.
+```
 
 will be rendered as
 
-    <p class="alert alert-info">
-       Some sample note text.
-    </p>
+```html
+<p class="alert alert-info">
+    Some sample note text.
+</p>
+```
 
 #### Multi-line
 
 Sometimes it is necessary to group markdown elements inside a note. This can be done with the following syntax
 
-    {{KEY:
-    Inner markdown elements
-    }}
+```markdown
+{{KEY:
+Inner markdown elements
+}}
+```
 
 For example, this
 
-    {{NOTE:
-    * Point one
-    * Point Two
-    }}
+```markdown
+{{NOTE:
+* Point one
+* Point Two
+}}
+```
 
 will be rendered as
 
-    <p class="alert alert-info">
-    * Point One
-    * Point Two
-    </p>
+```html
+<p class="alert alert-info">
+* Point One
+* Point Two
+</p>
+```
 
 ### Headings
 
@@ -933,28 +954,38 @@ One addition to standard markdown is the auto creation of anchors for headings.
 
 So if you have a heading like this:
 
-    ## My Heading
+```markdown
+## My Heading
+```
 
 it will be converted to this:
 
-    <h2>
-      <a name="my-heading"/>
-      My Heading
-    </h2>
+```html
+<h2>
+  <a name="my-heading"/>
+  My Heading
+</h2>
+```
 
 Which means elsewhere in the page you can link to it with this:
 
-    [Goto My Heading](#My-Heading)
+```markdown
+[Goto My Heading](#My-Heading)
+```
 
 ### Images
 
 Images can be added using the following markdown syntax
 
-    ![Alt text](/path/to/img.jpg "Optional title")
+```markdown
+![Alt text](/path/to/img.jpg "Optional title")
+```
 
 With the minimal syntax being
 
-    ![](/path/to/img.jpg)
+```markdown
+![](/path/to/img.jpg)
+```
 
 #### Image sizing
 
@@ -962,15 +993,21 @@ Image size can be controlled by adding the text `width=x` to the end of the titl
 
 For example
 
-    ![Alt text](/path/to/img.jpg "Optional title width=x")
+```markdown
+![Alt text](/path/to/img.jpg "Optional title width=x")
+```
 
 With the minimal syntax being
 
-    ![](/path/to/img.jpg "width=x")
+```markdown
+![](/path/to/img.jpg "width=x")
+```
 
 This will result in the image being re-sized with the following parameters
 
-    width="x" height="auto"
+```text
+width="x" height="auto"
+```
 
 It will also wrap the image in a clickable lightbox so the full image can be accessed.
 
@@ -983,23 +1020,25 @@ When creating images, strive to keep sources in order to update and re-create im
 The support for [mermaid](https://knsv.github.io/mermaid/) is provided as an extension to [Markdig](https://github.com/lunet-io/markdig). Markdig converts the diagram definition from .md to HTML, and then mermaid JavaScript library converts the definition to SVG format on the fly.
 
 Diagram images are generated using the  using a pseudocode syntax like this:
-<pre><code>
-```mermaid
-_mermaid_diagram_definition_
+
+```markdown
+    ```mermaid
+    _mermaid_diagram_definition_
+    ```
 ```
-</code></pre>
 
 For example:
-<pre><code>
-```mermaid
-graph TB
-A[ExchangeA] --> B[ExchangeB]
-A --> D[ExchangeD]
-B --> C[ExchangeC]
-B --> Q1[Queue1]
-D --> Q2[Queue2]
+
+```markdown
+    ```mermaid
+    graph TB
+    A[ExchangeA] --> B[ExchangeB]
+    A --> D[ExchangeD]
+    B --> C[ExchangeC]
+    B --> Q1[Queue1]
+    D --> Q2[Queue2]
+    ```
 ```
-</code></pre>
 
 The diagrams can be created and verified using the [online editor](http://knsv.github.io/mermaid/live_editor/).
 
@@ -1008,47 +1047,49 @@ The diagrams can be created and verified using the [online editor](http://knsv.g
 Diagrams that represent messages and events being passed between endpoint should follow some basic style rules.
 
 Endpoints should be represented as nodes with rounded corners. Messages should be represented as nodes. To show an endpoint sending a message to another endpoint use two edges. The first edge goes from the sender to the message being sent. The second edge goes from the message to the receiver. Like this:
-<pre><code>
-```mermaid
-graph LR
-a(EndpointA)
-b(EndpointB)
-a-->SomeCommand
-SomeCommand-->b
+
+```markdown
+    ```mermaid
+    graph LR
+    a(EndpointA)
+    b(EndpointB)
+    a-->SomeCommand
+    SomeCommand-->b
+    ```
 ```
-</code></pre>
 
 Showing an endpoint publishing an event is similar but should use a dotted edge. Events can be delivered to multiple recipients. Use a separate edge for each one. Like this:
-<pre><code>
-```mermaid
-graph LR
-a(EndpointA)
-b(EndpointB)
-c(EndpointC)
-a-.->AnEvent
-AnEvent-->b
-AnEvent-->c
+
+```markdown
+    ```mermaid
+    graph LR
+    a(EndpointA)
+    b(EndpointB)
+    c(EndpointC)
+    a-.->AnEvent
+    AnEvent-->b
+    AnEvent-->c
+    ```
 ```
-</code></pre>
 
 There are two css classes (`event` and `message`) that should be applied to message nodes in these diagrams. To apply these, use the `class` keyword in mermaid:
 
-<pre><code>
-```mermaid
-graph LR
+```markdown
+    ```mermaid
+    graph LR
 
-Endpoint1-->SomeCommand
-Command-->Endpoint2
-Endpoint2-.->AnEvent
-AnEvent-.->Endpoint3
-Endpoint3 -.->AnotherEvent
-AnotherEvent -.->Endpoint1
-AnotherEvent -.->Endpoint4
+    Endpoint1-->SomeCommand
+    Command-->Endpoint2
+    Endpoint2-.->AnEvent
+    AnEvent-.->Endpoint3
+    Endpoint3 -.->AnotherEvent
+    AnotherEvent -.->Endpoint1
+    AnotherEvent -.->Endpoint4
 
-class SomeCommand message;
-class AnEvent,AnotherEvent event;
+    class SomeCommand message;
+    class AnEvent,AnotherEvent event;
+    ```
 ```
-</code></pre>
 
 #### LucidChart
 
@@ -1056,12 +1097,12 @@ Another option is using [LucidChart](https://www.lucidchart.com). LucidChart all
 
 ### Some Useful Characters
 
- * Ticks are done with `&#10004;` &#10004;
- * Crosses are done with `&#10006;` &#10006;
+* Ticks are done with `&#10004;` &#10004;
+* Crosses are done with `&#10006;` &#10006;
 
 ### More Information
 
- * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+* [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 ## Writing style
 
@@ -1093,21 +1134,21 @@ There is a CSS class that will properly style videos: `video-container`
 
 Use it as follows:
 
-```
+```html
 <div class="video-container">
 <iframe src="https://www.youtube.com/embed/QolL1Oum72Q" frameborder="0" allowfullscreen></iframe>
 </div>
 ```
-
 
 ### Terminology
 
 #### Bus
 
 The word `Bus` should be avoided in documentation. Some replacements include:
- * When referring to the topology, use `federated` (for which the opposite term is `centralized`)
- * When referring to the NServiceBus instance, the general thing that sends or publishes messages, use `endpoint instance` or `endpoint` (when it is clear from the context that you are talking about an instance rather than a logical concept)
- * When referring specifically to the `IBus` interface use `message session` or `message context` (depending if you are talking about just sending a messages from external component or from inside a handler)
+
+* When referring to the topology, use `federated` (for which the opposite term is `centralized`)
+* When referring to the NServiceBus instance, the general thing that sends or publishes messages, use `endpoint instance` or `endpoint` (when it is clear from the context that you are talking about an instance rather than a logical concept)
+* When referring specifically to the `IBus` interface use `message session` or `message context` (depending if you are talking about just sending a messages from external component or from inside a handler)
 
 The word `Bus` is allowed when a particular piece of documentation refers specifically to version 5 or below and discusses low level implementation details.
 
@@ -1123,7 +1164,7 @@ Avoid deep link into the RavenDB documentation since it is a maintenance pain. F
 
 ## Utilities
 
-Under https://github.com/Particular/docs.particular.net/tree/master/tools there are several utilities to help with the management of this repository. All are in the form of [LINQPad](https://www.linqpad.net/) scripts.
+Under [tools](https://github.com/Particular/docs.particular.net/tree/master/tools) there are several utilities to help with the management of this repository. All are in the form of [LINQPad](https://www.linqpad.net/) scripts.
 
 ### projectStandards.linq
 
@@ -1139,17 +1180,17 @@ Sets the correct startup projects for every solution. This is persisted in an `.
 
 In general the quality of the git history is not important in this repository. The reason for this is that the standard usages of a clean history (blame, supporting old versions, support branches etc) do not apply to a documentation repository. As such there are several recommendations based on that:
 
- * If pushed to GitHub **do not** re-write history. Even locally it is probably not worth the effort.
- * **Do not** force push.
- * Optionally merge commits immediately prior to merging a PR.
+* If pushed to GitHub **do not** re-write history. Even locally it is probably not worth the effort.
+* **Do not** force push.
+* Optionally merge commits immediately prior to merging a PR.
 
 So if following the [Git pretty flow chart](http://justinhileman.info/article/git-pretty/) you should usually end in the "It's safest to let it stay ugly" end point.
 
 ## Additional Resources
 
- * [GitHub Flow in the Browser](https://help.github.com/articles/github-flow-in-the-browser/)
- * [General GitHub documentation](https://help.github.com/)
- * [GitHub pull request documentation](https://help.github.com/send-pull-requests/)
- * [Forking a Repo](https://help.github.com/articles/fork-a-repo)
- * [Using Pull Requests](https://help.github.com/articles/using-pull-requests)
- * [Markdown Table generator](https://www.tablesgenerator.com/markdown_tables)
+* [GitHub Flow in the Browser](https://help.github.com/articles/github-flow-in-the-browser/)
+* [General GitHub documentation](https://help.github.com/)
+* [GitHub pull request documentation](https://help.github.com/send-pull-requests/)
+* [Forking a Repo](https://help.github.com/articles/fork-a-repo)
+* [Using Pull Requests](https://help.github.com/articles/using-pull-requests)
+* [Markdown Table generator](https://www.tablesgenerator.com/markdown_tables)
