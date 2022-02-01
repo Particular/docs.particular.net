@@ -426,7 +426,6 @@ class Usage
 
         #region ScriptRunner
 
-#pragma warning disable CS0618
         await ScriptRunner.Install(
             sqlDialect: new SqlDialect.MsSqlServer(),
             tablePrefix: "MyEndpoint",
@@ -435,7 +434,6 @@ class Usage
             shouldInstallOutbox: true,
             shouldInstallSagas: true,
             shouldInstallSubscriptions: true);
-#pragma warning restore CS0618
 
         #endregion
     }
