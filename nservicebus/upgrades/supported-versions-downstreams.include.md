@@ -110,7 +110,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.4.0) | 2022-01-27     | -                 | -                                 |
+| [6.5.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.5.0) | 2022-02-01     | -                 | -                                 |
+| [6.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.4.0) | 2022-01-27     | 2022-05-01        | Superseded by 6.5.x               |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.3.0) | 2022-01-07     | 2022-04-27        | Superseded by 6.4.x               |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.2.1) | 2021-03-25     | 2022-04-07        | Superseded by 6.3.x               |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/3.2.0) | 2018-07-09     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
@@ -444,7 +445,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/3.0.0) | 2021-04-16     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/4.0.0) | 2022-02-01     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/3.0.0) | 2021-04-16     | 2023-02-01        | Superseded by 4.0.x               |
 | [2.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/2.0.0) | 2021-03-23     | 2022-04-16        | Superseded by 3.0.x               |
 | [1.2.x](https://www.nuget.org/packages/ServiceControl.Contracts/1.2.0) | 2018-11-01     | 2022-03-23        | Superseded by 2.0.x               |
 
