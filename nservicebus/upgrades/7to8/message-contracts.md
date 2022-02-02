@@ -9,17 +9,17 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-Since NServiceBus version 8 no longer supports .NET Standard, message contract assemblies refrencing NServiceBus might need to be updated. This guidance outlines possible approaches.
+NServiceBus version 8 does not support .NET Standard as a framework target. Therefore, message contract assemblies that target `netstandard2.0` and that reference NServiceBus must be updated. This guidance outlines possible approaches.
 
-Note: When using [unobtrusive mode](TODO), the contracts assembly doesn't require a reference to NServiceBus and therefore is not affected. Unobtrusive message contracts can continue to target .NET Standard.
+Note: When using [unobtrusive mode](https://docs.particular.net/nservicebus/messaging/unobtrusive-mode), the contracts assembly doesn't require a reference to NServiceBus and therefore is not affected. Unobtrusive message contracts can continue to target .NET Standard.
 
-## Change to specifc target Platform
+## Change to specific target Platform
 
-If all endpoints are targeting the same platform (e.g. .NET Core 3.1), the message contracts assembly can be changed to be aligned with all other endpoint projects.
+If all endpoints are targeting the same platform (e.g. .NET Core 3.1), the message contracts assembly can be changed to align with all other endpoint projects.
 
 ## Multi-targeting
 
-If endpoints sharing a contracts assembly are targeting different platforms and frameworks (e.g. .NET Framework 4.8 and .NET Core 3.1), the target assembly can be changed to use [multi-targeting](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting) by replacing the `TargetFramwork` element with the `TargetFrameworks` element in the `.csproj` settings:
+If endpoints that share a common contracts assembly target different platforms and frameworks (e.g. both .NET Framework 4.8 and .NET Core 3.1), the target assembly can use [multi-targeting](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting) by replacing the `TargetFramwork` element with the `TargetFrameworks` element in the `.csproj` settings:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -32,16 +32,16 @@ If endpoints sharing a contracts assembly are targeting different platforms and 
 
 ## Migration
 
-When upgrading endpoints one-by-one, message contracts might need to work across endpoints targeting different versions of NServiceBus. There are multiple ways to handle this:
+When upgrading endpoints one-by-one, message contracts might need to work across endpoints targeting different versions of NServiceBus. There are several ways to handle this:
 
 ### Backwards compatiblity
 
-NServiceBus version 8 can reference message contracts that are referencing older versions of NServiceBus. Therefore, message contract assemblies can remain targeting NServiceBus version 7 until all endpoints have been successfully upgraded to version 8. This approach allows to use the same message contracts assembly version across all endpoints.
+NServiceBus version 8 can reference message contracts that are referencing older versions of NServiceBus. Therefore, message contract assemblies can remain targeting NServiceBus version 7 until all endpoints have been successfully upgraded to version 8. This approach allows all endpoints to use the same message contracts assembly version.
 
 ### Release new contracts assembly
 
-When creating a new version of the contracts assembly (deploying it as a NuGet package or directly as a DLL file), the messages remain wire-level compatible as long as the message contract itself is not changed. See the [evolving message contracts](TODO) documentation for more information on updating message contracts. This approach can be chosen if message contract changes don't need to be propoagated to endpoints that remain on the old version of the message contract assembly.
+When deploying a new version of the contracts assembly (e.g. as a NuGet package or directly as a DLL file), the messages remain wire-level compatible as long as the message contract itself is not changed. See the [evolving message contracts](https://docs.particular.net/nservicebus/messaging/evolving-contracts) documentation for more information on updating message contracts. This approach can be chosen if message contract changes don't need to propagate to endpoints that remain on the old version of the message contract assembly.
 
-Note: It is recommended to maintain a stable assembly-version across different message contract versions. Indicate the contract version information via the NuGet package version or the file-version.
+Note: It is recommended to maintain a stable assembly version across different message contract versions. Indicate the contract version information via the NuGet package version or the file-version.
 
 ## Need help?
