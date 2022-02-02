@@ -17,6 +17,10 @@ NOTE: This is a working document; there is currently no timeline for the release
 
 This document focusses on changes that is affecting general endpoint configuration and message handlers.
 
+## Removed support for .NET Standard
+
+NServiceBus version 8 no longers .NET Standard. Instead, NServiceBus targets .NET Framework 4.5.2 and .NET Core 3.1 directly (read more about our [supported frameworks and platforms](/nservicebus/upgrades/supported-platforms.md)). While this should have no direct impact on endpoint executables, shared message contract assemblies target .NET Standard might need to be adjusted. Refer to the [updating message contracts](message-contracts.md) page for more details.
+
 ## Transport configuration
 
 NServiceBus version 8 comes with a new transport configuration API. Instead of the generic-based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to the the `UseTransport` method. For example, instead of:
