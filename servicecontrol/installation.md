@@ -79,16 +79,16 @@ Clicking the upgrade link will:
 * Run the new binaries to create required queues
 * Start the service
 
+## Upgrade multiple majors
 
-To upgrade multiple majors the following approach needs to be taken:
+A ServiceControl installation should be upgraded one major version at a time. Check the currently installed version of ServiceControl to look up the upgrade path in the table below. For each entry in the upgrade path, install the listed version and upgrade all ServiceControl instances to that version. Once all instances are upgraded and running, install the listed version in the next row until all instancen are upgraded to the latest version.
 
-- Upgrade to the latest minor.patch release within a currently installed major
-  - When v1.34.0 is installed, then install [1.48.0](https://github.com/Particular/ServiceControl/releases/tag/1.48.0) and update all instances
-- Then upgrade to the latest minor patch release of the **next** major 
-  - When 1.48.0 is installed, install [2.1.5](https://github.com/Particular/ServiceControl/releases/tag/2.1.5) and update all instances.
-- Repeat the previous step until the system is up to date with the latest version
-  - When 2.1.5 is installed, install [3.8.4](https://github.com/Particular/ServiceControl/releases/tag/3.8.4) and update all instances.
-  - Then install the [latest release](https://particular.net/start-servicecontrol-download) (4.x at the time of this writing) and update all instances 
+| Current Version | Upgrade Path                                       |
+|--------------------------------|------------------------------------------|
+| 1.x.y | install [1.48.0](https://github.com/Particular/ServiceControl/releases/tag/1.48.0), and update all instances|
+| 2.x.y | install [2.1.5](https://github.com/Particular/ServiceControl/releases/tag/2.1.5), and update all instances| 
+| 3.x.y | install [3.8.4](https://github.com/Particular/ServiceControl/releases/tag/3.8.4), and update all instances|
+| 4.x.y | install the [latest release](https://particular.net/start-servicecontrol-download) (4.x at the time of this writing) and update all instances|
 
 All versions are available at <https://github.com/Particular/ServiceControl/releases>
 
