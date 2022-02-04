@@ -49,7 +49,7 @@ Symptoms:
 
 Mitigation:
 
-- Use [IAmStartedBy<>](https://docs.particular.net/nservicebus/sagas/#starting-a-saga) instead of `IHandleMessages<>` for any message type which can originate from outside of the saga. No matter which order messages are delivered in the first one to be processed will create the saga instance.
+- Use [IAmStartedBy<>](/nservicebus/sagas/#starting-a-saga) instead of `IHandleMessages<>` for any message type which can originate from outside of the saga. No matter which order messages are delivered in the first one to be processed will create the saga instance.
 
 - Each message handler that can start the saga might need to contain logic to check the saga state and see if it is time to take the next action. 
 
