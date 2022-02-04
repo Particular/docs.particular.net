@@ -49,7 +49,11 @@ Symptoms:
 
 Mitigation:
 
-- Create the saga for both message A and B.
+- Use [IAmStartedBy<>](https://docs.particular.net/nservicebus/sagas/#starting-a-saga) instead of `IHandleMessages<>` for any message type which can originate from outside of the saga. No matter which order messages are delivered in the first one to be processed will create the saga instance.
+
+- Each message handler that can start the saga might need to contain logic to check the saga state and see if it is time to take the next action. 
+
+- Messages which are a result of a saga handler do not need this. i.e. A reply to a request made by saga instance does not need to be able to create a new instance.
 
 ### Concurrency
 
@@ -62,10 +66,11 @@ Symptoms:
 Mitigation:
 
 - Reduce processing concurrency to 1 to achieve sequential processing. This only works that only a single endpoint instance active.
+- Use pessimistic locking on the saga persister, this only works if a storage is configured that supports pessimistic locking.
 
 ### Initialization
 
-A saga that immediately sends one or more messages at start that will result in a response message could result in the response message not yet be able to be correlated is the init handler is still running.
+A saga that at start immediately sends one or more request messages and already is receiving response messages while the handler is still running will result in a response message not able to be correlated if the init handler is still running and the saga state not yet been persisted.
 
 This can happen when:
 
