@@ -23,7 +23,7 @@ Learn to master NServiceBus sagas to model complex, long-running business proces
 
 ### [Message replay](message-replay/)
 
-One of the most powerful features of NServiceBus is its ability to replay a message that has failed. Often, message failures are introduced by bug's that aren't found until the code is deployed. When this happens, failed messages can flood into the error queue all at once.
+One of the most powerful features of NServiceBus is its ability to replay a message that has failed. Often, message failures are introduced by bugs that aren't found until the code is deployed. When this happens, failed messages can flood into the error queue all at once.
 
 In this tutorial, we'll see how to use ServiceControl to monitor an NServiceBus system, and use ServicePulse to replay a failed message.
 
