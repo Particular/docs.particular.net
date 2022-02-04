@@ -23,15 +23,32 @@ namespace ClientUI
                             var endpointConfiguration = new EndpointConfiguration(EndpointName);
                             endpointConfiguration.EnableInstallers();
 
-                            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-                            transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"));
+                            RoutingSettings routing;
 
-                            var routing = transport.Routing();
+                            if (null != Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"))
+                            {
+                                var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+                                transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString"));
+                                routing = transport.Routing();
+                            }
+                            else
+                            {
+                                var transport = endpointConfiguration.UseTransport<LearningTransport>();
+                                routing = transport.Routing();
+                            }
+
+                            if (null != Environment.GetEnvironmentVariable("SQLServerConnectionString"))
+                            {
+                                var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+                                persistence.ConnectionBuilder(() => new SqlConnection(Environment.GetEnvironmentVariable("SQLServerConnectionString")));
+                                persistence.SqlDialect<SqlDialect.MsSqlServer>();
+                            }
+                            else
+                            {
+                                var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+                            }
+
                             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
-
-                            var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-                            persistence.ConnectionBuilder(() => new SqlConnection(Environment.GetEnvironmentVariable("SQLServerConnectionString")));
-                            persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
                             endpointConfiguration.SendFailedMessagesTo("error");
                             endpointConfiguration.AuditProcessedMessagesTo("audit");
