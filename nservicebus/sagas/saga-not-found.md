@@ -37,7 +37,9 @@ The implementation of `IHandleSagaNotFound` should be driven by the business req
 1. The saga instance does not exist (yet)
 2. The saga instance has already been removed
 
-Sometimes it's not always obvious when saga state exists or be gone due to race conditions or false assumptions.
+It's not always obvious when saga state does or does not exist. Most often the cause is due to race conditions.
+
+Note: Expect out-of-order delivery if the message flow allows it and expect more-than-once processing.
 
 ### Out of order
 
@@ -45,32 +47,32 @@ If the design assumes message A will create the saga and message B updates the s
 
 Symptoms:
 
-- Saga are created, expected to be completed but this does not always happen.
+- Sagas are expected to exist but this does not always seems to be the case. Inspecting storage shows that the saga does exist.
 
 Mitigation:
 
-- Use [IAmStartedBy<>](/nservicebus/sagas/#starting-a-saga) instead of `IHandleMessages<>` for any message type which can originate from outside of the saga. No matter which order messages are delivered in the first one to be processed will create the saga instance.
+- Use [IAmStartedBy<>](/nservicebus/sagas/#starting-a-saga) instead of `IHandleMessages<>` for **any** message type which can originate from outside of the saga. No matter in which order messages are delivered, any message type processed first must create the saga.
 
 - Each message handler that can start the saga might need to contain logic to check the saga state and see if it is time to take the next action. 
 
-- Messages which are a result of a saga handler do not need this. i.e. A reply to a request made by saga instance does not need to be able to create a new instance.
+- Messages which are a result of a saga handler do not need this. i.e. A reply to a request made by a saga instance does not need to be able to create a new instance.
 
 ### Concurrency
 
-Messages might be processed concurrently. If the saga is started by message A but did not complete yet (the saga state is not persisted yet) and message B, which depends on the existence of the saga state, is processed, it will be discarded with a saga not found error.
+Messages might be processed concurrently which can result in out-of-order processing.
 
 Symptoms:
 
-- Scatter/gather sagas behave unexpectedly and show saga not found.
+- Scatter/gather sagas behave unexpectedly and show saga not found exceptions.
 
 Mitigation:
 
-- Reduce processing concurrency to 1 to achieve sequential processing. This only works that only a single endpoint instance active.
-- Use pessimistic locking on the saga persister, this only works if a storage is configured that supports pessimistic locking.
+- Reduce processing concurrency to 1 to achieve sequential processing. This only works when only a single endpoint instance is active.
+- Use pessimistic locking on the saga persister, this only works if a storage persister is configured that supports pessimistic locking.
 
 ### Initialization
 
-A saga that at start immediately sends one or more request messages and already is receiving response messages while the handler is still running will result in a response message not able to be correlated if the init handler is still running and the saga state not yet been persisted.
+A saga that at creation immediately sends one or more request messages and already is receiving response messages while the handler is still running will result in a response message not able to be correlated if the init handler is still running as the saga state did not yet been persisted
 
 This can happen when:
 
@@ -79,11 +81,11 @@ This can happen when:
 
 Mitigation:
 
-- Do not immediately send messages at start, first send an init message to ensure the saga state is written thus exists. When a message is send to a component that will respond the saga state will now exist.
+- Do not immediately send messages at saga creation, first send an init message to ensure the saga state exists. When a message is sent to a component that will respond the saga state will now exist.
 
-### Duplicates
+### More-than-once processing
 
-A messages that was physically send multiple times and gets processed could result in a saga to be completed. When the duplicate gets processed the saga state could already been removed and can result in a saga not found.
+A message can be processed more-than-once because it was physically sent multiple times or a transport its consistency results in the same message becoming available again. More-than-once processing on a handler that completes the saga will now result in a saga not found for every duplicate. 
 
 Mitigation:
 
@@ -91,7 +93,7 @@ Mitigation:
  
 ### Already completed
 
-A saga that already completed can result in a saga not found.
+A saga that is already completed can result in a saga not found exception.
 
 Mitigation:
 
