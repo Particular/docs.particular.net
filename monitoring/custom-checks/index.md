@@ -60,7 +60,9 @@ It is recommended to periodically check that the endpoint (and its host) can ind
 ### Storage
 
 - When local or remote storage is required by the endpoint, is that storage location available, accessible, and properly configured (security, permissions, quota, etc.)?
-- When local or remote storage is required by the endpoint, is there enough available storage left for required operations? If there is a requirement for a minimum free space available, is that requirement met? Gather a collection of measurements over time and extrapolate when the storage will run out. Is that time below some critical threshold?  
+- When local or remote storage is required by the endpoint, is there enough available storage left for required operations? 
+- If there is a requirement for a minimum free space available, is that requirement met? 
+- Gather a collection of measurements over time and extrapolate when the storage will run out. Is that time below some critical threshold?  
 
 
 ### External Services
