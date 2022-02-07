@@ -10,7 +10,7 @@ related:
 
 TODO: add menu entry
 
-It's recommended to use dedicated assemblies for message contracts. By keeping message contracts in a separate assembly, the amount of information and dependencies shared between services is minimized. It is recommended to have a separate message assembly for every service. When doing so, a service can [evolve its contracts](/nservicebus/messaging/evolving-contracts.md) without impacting other services in the system. Every message contract should be declared in the contracts assembly of the service owning that message contract.
+It's recommended to use dedicated assemblies for message contracts. By keeping message contracts in a separate assembly, the amount of information and dependencies shared between services is minimized. Furthermore, it's recommended to have a separate message assembly for every service. When doing so, a service can [evolve its contracts](/nservicebus/messaging/evolving-contracts.md) without impacting other services in the system. Every message contract should be declared in the contracts assembly of the service owning that message contract.
 
 ## Sharing contracts
 
@@ -36,7 +36,7 @@ When endpoints are updated independentely from each other, it is important to ta
 * Old endpoints are able to process messages sent/published by the updated endpoint
 * The updated endpoint is able to process messages sent/published by old endpoints.
 
-NServiceBus includes the message's fully qualified assembly name (including the assembly version number) in the message headers. Therefore, it is recommended to to maintain a stable *assembly version* for the best compatibility. The version of the contracts can be tracked via the assembly *file version* and/or the *NuGet package version*.
+NServiceBus includes the message's fully qualified assembly name (including the assembly version number) in the message headers. Therefore, it is recommended to maintain a stable *assembly version* for the best compatibility. The version of the contracts can be tracked via the assembly *file version* and/or the *NuGet package version*.
 
 See the [evolving message contracts](/nservicebus/messaging/evolving-contracts.md) guidance for more details on safely updating message contracts.
 

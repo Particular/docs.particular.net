@@ -1,32 +1,37 @@
 ---
 title: Evolving Message Contracts
 summary: Guidelines for choosing a strategy for evolving message contracts
-reviewed: 2020-06-16
+reviewed: 2022-02-10
 component: Core
 isLearningPath: true
 ---
 
-In message-based systems, the messages are part of the contract, which defines how services communicate with each other.
+In message-based systems, the messages are part of a contract, which defines how services communicate with each other.
 
-Evolving contracts over time is not an easy task and the appropriate strategy should be defined individually for each system. When evolving message contracts, the following difficulties should be considered:
 
-* Endpoints updated to the latest message contract might still receive messages using the old contract since senders might still use the old contract or not all messages in queue have been processed before the upgrade.
-* Endpoints updated to the latest message contract might send messages using the new contract to endpoints that are still deployed with the old contract version.
+Evolving contracts over time is challenging and an appropriate strategy should be reviewed and customized for each system. When evolving message contracts, consider the following:
 
-Generally the problem can't be resolved at the infrastructure level; therefore NServiceBus users must analyze their individual systems, consider how they are expected to evolve, and define the strategy which will make the most sense in their particular circumstances.
 
-This article presents basic guidelines for choosing contracts evolution strategy, avoiding common mistakes, and ensuring that contracts will be easy to evolve over time.
+* Endpoints updated to the latest message contract might still receive messages using the old contract. Senders might still use the old contract, or not all in-flight messages (messages waiting to be consumed in input queues) have been processed before the upgrade.
+
+* Endpoints updated to the latest message contract might send messages, using the new contract, to endpoints still based on the old contract version.
+
+
+Generally, the problem can't be resolved at the infrastructure level; therefore, NServiceBus users must analyze their systems, consider how they are expected to evolve, and define the strategy which will make the most sense in their particular circumstances.
+
+This article presents basic guidelines for choosing a contract evolution strategy, avoiding common mistakes, and ensuring that contracts will be easy to evolve over time.
+
 
 TODO: link to new document
 Note: Ensure that message contracts follow the general [messages design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
 
 ## Adding new message contracts
 
-When adding new message contracts to a contracts assembly, ensure to update the endpoints receveiving or subscribing to the new contract type first. When updating the sender/publisher first, the messages fail to be processed by endpoints that are not using the new contract assembly.
+When adding new message contracts to a contracts assembly, update the endpoints receiving or subscribing to the new contract type first. If the sender/publisher endpoints are updated first, receivers and subscribers will not process messages for the new contract type.
 
 ## Adding data to existing contracts
 
-Adding additional data to existing contracts is the most common change of contracts. There are differnt approaches available.
+Adding additional data to existing contracts is the most common change of contracts. There are different approaches available.
 
 ### Create a new contract type
 
