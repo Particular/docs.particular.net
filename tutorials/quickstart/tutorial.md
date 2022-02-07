@@ -30,24 +30,26 @@ downloadbutton
 
 #variant Variant
 
-In this tutorial, you'll see how NServiceBus takes the grunt work out of system design by handling all of the plumbing for you.
+In this tutorial, you'll see how NServiceBus takes the grunt work out of system design by handling all the plumbing for you.
 
-You will explore part of an e-commerce system that handles receiving an order placed by a user, as well as the billing and shipping that goes along with it. This is what the final solution will look like:
+You'll explore part of an e-commerce system that handles receiving an order placed by a user, and the billing and shipping that goes with it. The final solution will look like this:
 
 ![quickstart solution diagram](/tutorials/quickstart/after.svg)
 
-The tutorial is composed of 3 parts - introduction, failure recovery, and extensibility - that demonstrate how NServiceBus helps with design best practices and how the Particular Service Platform helps monitor a distributed system. Each part takes approximately 15-20 minutes to complete.
+The tutorial has 3 parts—an introduction, failure recovery, and extensibility—that demonstrate how NServiceBus helps with best design practices and how the Particular Service Platform helps monitor a distributed system. Each part takes about 15-20 minutes to complete.
 
 To run this tutorial you’ll need:
 
-- Experience with C# coding
-- Windows 10 or 11 with .NET Core 3.1, running an IDE for C# code, for example Visual Studio 2022, Visual Studio Code, or JetBrains Rider.
+- Experience with C#
+- Windows
+- .NET Core 3.1
+- A C# IDE such as Visual Studio 2019 or later, Visual Studio Code, or JetBrains Rider.
 
-This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/). It will teach you the NServiceBus API and important concepts necessary to learn how to build successful message-based software systems.
+To get up and running quickly, the tutorial skips over some concepts and implementation details. If you prefer to go more in-depth, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/). It will teach you the NServiceBus API and important concepts necessary to learn how to build successful message-based software systems.
 
 ## Download solution
 
-The demo solution doesn't require any prerequisites—no message queue or database to install, just Visual Studio. To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file.
+The solution doesn't require installing any message queues or databases. Just download the solution, extract the archive, and open the **RetailDemo.sln** file.
 
 <div class="text-center inline-download hidden-xs"> <div class="btn-group"> <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span aria-hidden="true"></span> Download the solution now <span class="caret"></span> </button> <ul class="dropdown-menu docs-download"><li> <a href="https://quickstart-tutorial.s3.eu-central-1.amazonaws.com/tutorials-quickstart.zip" onclick="return fireGAEvent('TutorialDownloaded', '/tutorials/quickstart/tutorials-quickstart.zip' )"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for .NET Core 3.1 </a> </li></ul> </div></div>
 #end-variant
