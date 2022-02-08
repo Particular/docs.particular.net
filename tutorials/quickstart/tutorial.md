@@ -49,7 +49,7 @@ This tutorial skips over some concepts and implementation details in order to ge
 
 The demo solution doesn't require any prerequisites—no message queue or database to install, just Visual Studio. To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file.
 
-<div class="text-center inline-download hidden-xs"> <div class="btn-group"> <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span aria-hidden="true"></span> Download the solution now <span class="caret"></span> </button> <ul class="dropdown-menu docs-download"><li> <a href="http:/fake.com/tutorials/quickstart/tutorials-quickstart.zip" onclick="return fireGAEvent('TutorialDownloaded', '/tutorials/quickstart/tutorials-quickstart.zip' )"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for .NET Core 3.1 </a> </li></ul> </div></div>
+<div class="text-center inline-download hidden-xs"> <div class="btn-group"> <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span aria-hidden="true"></span> Download the solution now <span class="caret"></span> </button> <ul class="dropdown-menu docs-download"><li> <a href="https://quickstart-tutorial.s3.eu-central-1.amazonaws.com/tutorials-quickstart.zip" onclick="return fireGAEvent('TutorialDownloaded', '/tutorials/quickstart/tutorials-quickstart.zip' )"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for .NET Core 3.1 </a> </li></ul> </div></div>
 #end-variant
 
 
