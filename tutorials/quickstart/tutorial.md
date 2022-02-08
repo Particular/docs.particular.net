@@ -18,6 +18,14 @@ It is **very difficult** to build a distributed software system correctly from s
 NServiceBus combines decades of distributed systems design experience and expertise and distills it into one easy-to-use framework. In this tutorial, you'll see how NServiceBus takes all the grunt work out of system design by handling all of the plumbing for you, taking system design best practices like reliability, failure recovery, and extensibility and baking them right into the software, guiding you toward the pit of success.
 
 You'll also see how the additional tools in the Particular Service Platform make it easy to manage, monitor, and debug.
+
+This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/). It will teach you the NServiceBus API and important concepts necessary to learn how to build successful message-based software systems.
+
+## Download solution
+
+The demo solution doesn't require any prerequisites—no message queue or database to install, just Visual Studio. To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file.
+
+downloadbutton
 #end-variant
 
 #variant Variant
@@ -33,8 +41,7 @@ The tutorial is composed of 3 parts - introduction, failure recovery, and extens
 To run this tutorial you’ll need:
 
 - Experience with C# coding
-- Windows 10 or 11 running an IDE for C# code, for example Visual Studio 2022, Visual Studio Code, or JetBrains Rider.
-#end-variant
+- Windows 10 or 11 with .NET Core 3.1, running an IDE for C# code, for example Visual Studio 2022, Visual Studio Code, or JetBrains Rider.
 
 This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/). It will teach you the NServiceBus API and important concepts necessary to learn how to build successful message-based software systems.
 
@@ -42,7 +49,9 @@ This tutorial skips over some concepts and implementation details in order to ge
 
 The demo solution doesn't require any prerequisites—no message queue or database to install, just Visual Studio. To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file.
 
-downloadbutton
+<div class="text-center inline-download hidden-xs"> <div class="btn-group"> <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span aria-hidden="true"></span> Download the solution now <span class="caret"></span> </button> <ul class="dropdown-menu docs-download"><li> <a href="http:/fake.com/tutorials/quickstart/tutorials-quickstart.zip" onclick="return fireGAEvent('TutorialDownloaded', '/tutorials/quickstart/tutorials-quickstart.zip' )"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for .NET Core 3.1 </a> </li></ul> </div></div>
+#end-variant
+
 
 <style type="text/css">
   /* Remove borders on images as they all have appropriate borders */

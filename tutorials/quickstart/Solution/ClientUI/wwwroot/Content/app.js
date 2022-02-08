@@ -33,11 +33,11 @@ _kms('//scripts.kissmetrics.io/' + _kmk + '.2.js');
         };
        
         gaEvt('QuickStart', 'Running', SOLUTION_VERSION); 
-        _kmq.push(['record', 'QuickStart-Running']);
+        _kmq.push(['record', 'QuickStart-Running-Control']);
 
         window.sentMessage = function () {
             gaEvt('QuickStart', 'SentMessage', SOLUTION_VERSION); 
-            _kmq.push(['record', 'QuickStart-SentMessage']);
+            _kmq.push(['record', 'QuickStart-SentMessage-Control']);
         };
 
         var licenseBtn = $('#license-btn');
