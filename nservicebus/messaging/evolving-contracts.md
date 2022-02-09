@@ -6,77 +6,112 @@ component: Core
 isLearningPath: true
 ---
 
-In message-based systems, the messages are part of a contract, which defines how services communicate with each other.
-
+In message-based systems, messages are part of a contract, which defines how services communicate with each other.
 
 Evolving contracts over time is challenging and an appropriate strategy should be reviewed and customized for each system. When evolving message contracts, consider the following:
 
+* At the time endpoints are upgraded to use new versions of a message contract, there may still be messages in-flight (that is, waiting in input queues to be processed) that use the old version of the contract. As a consequence:
+  * Endpoints that receive or subscribe to messages and that are updated to a later version of the message contract might still receive messages that use the old version of the message contract
+  * Endpoints that send or publish messages and that are updated to a later version of the message contract may send messages to endpoints that are expecting the old version of the message contract
 
-* Endpoints updated to the latest message contract might still receive messages using the old contract. Senders might still use the old contract, or not all in-flight messages (messages waiting to be consumed in input queues) have been processed before the upgrade.
+Generally, the problem can't be resolved at the infrastructure level; therefore, NServiceBus users must analyze their systems, consider how they are expected to evolve, and define a strategy which will make the most sense in their particular circumstances.
 
-* Endpoints updated to the latest message contract might send messages, using the new contract, to endpoints still based on the old contract version.
-
-
-Generally, the problem can't be resolved at the infrastructure level; therefore, NServiceBus users must analyze their systems, consider how they are expected to evolve, and define the strategy which will make the most sense in their particular circumstances.
-
-This article presents basic guidelines for choosing a contract evolution strategy, avoiding common mistakes, and ensuring that contracts will be easy to evolve over time.
+This article presents some guidelines for choosing a contract evolution strategy, avoiding common mistakes, and ensuring that contracts will be easy to evolve over time.
 
 
 TODO: link to new document
 Note: Ensure that message contracts follow the general [messages design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
 
+## Message evolution scenarios
+
+Message contracts evolve in several ways:
+
+* A new message contract is added. This is essentially a brand new message type
+* A property is added to an existing message contract
+* A property is removed from an existing message contract
+
+Note: Message properties can be renamed. From the perspective of the message contract, this is equivalent to removing a property and adding a new one.
+
+In addition, there are different strategies that can be used to update a message contract when changes are required to it:
+
+* Create a new version of the contract class in the same assembly and namespace with a different name (e.g. `OrderCreatedV2`)
+* Create a new version of the contract class in a new namespace (with the same name or a different one)
+* Use inheritance (e.g. `OrderCreatedV2` inherits from `OrderCreated`)
+* Update the original contract class directly
+
+Each option has its pros and cons which are discussed further in this document.
+
 ## Adding new message contracts
 
-When adding new message contracts to a contracts assembly, update the endpoints receiving or subscribing to the new contract type first. If the sender/publisher endpoints are updated first, receivers and subscribers will not process messages for the new contract type.
+Adding a brand new message contract is a simple change. This is what happens when the first version of the system is deployed; all message contracts are new.
 
-## Adding data to existing contracts
+In this scenario, it's most effective to deploy endpoints that receive or subscribe to the new message contracts first. This ensures that all messages will be handled. If the sender/publisher is deployed first, messages could be sent without having an endpoint to receive them.
 
-Adding additional data to existing contracts is the most common change of contracts. There are different approaches available.
+## Adding properties to existing contracts
+
+Adding additional properties to existing contracts is a way to enhance a contract. Typically, new properties represent information that is required to implement new functionality in a system. As discussed earlier, there are different options for implementing a new property on an existing contract
 
 ### Create a new contract type
 
-1. Similar to adding a completely new contract using the original contracts name + some version postfix (e.g. `CreateOrderV2`), create a new message contract by copying the existing contract and adding the additional data to the copy.
-1. Add message handlers for the new contract type to the receiving endpoints. Keep the existing mesage handlers for the "old" contract.
-1. Update the sender/publisher to send messages using the new contract type.
-1. Once all endpoints have been updated, and no more messages using the old contract type is left in the queue, the old type and associated handlers can be safely removed.
+In this scenario, a completely new class is created starting from a copy of the original version of the contract. Typically a postfix is added to the class name (e.g. `CreateOrderV2`) to connect the contract with the original, at least logically. The new properties are then added to the new message contract and endpoints are configured to send and receive the new message type.
 
-This approaches requires all receivers to be updated first, as they will be aware of the new contract type before upgrading which results in message processing failures.
+In a typical case, senders and publishers are updated to send or publish the new version of the contract. On the receiving/subscribing end, typically a separate handler is created to handle the new version of the contract and the existing handler remains as well so that it can continue handling old versions of the contract that may still be in-flight. Eventually, the old receivers/publishers can be decommissioned once it's verified that there are no versions of the old message contract in place.
+
+Similar to adding a new message contract, it's recommended to update the receivers first so that no messages are missed if, for example, a sender sends a new version of a message type when there is no receiver set up to handle it yet.
 
 TODO: what about version namespaces?
 
 ### Add new properties to existing contract types
 
-1. Add the new properties to the existing type.
+In this scenario, new properties are added to the existing contract type; no new class is created. The recommended flow here is:
+
+1. Add the new properties to the existing type
 1. Update senders to the new contract version, setting the additional data on the message
 1. Update receivers to handle the new contract version.
 
-This approach requires less modifications to the contracts and even allows to update senders and receivers in arbitrary order as long as the receivers can handle the absence of a value for the new property.
-TODO: can serialzers handle the absence?  
+This approach requires less modifications to the contracts and even allows to update senders and receivers in arbitrary order as long as the receivers can handle the absence of a value for the new property, and as long is it's acceptable for senders to send new versions of the contract to receivers that are still handling the old contract versions.
+
+TODO: can serialzers handle the absence?
 
 It is recommended to use nullable types for the new properties to allow receivers to identify whether it is dealing with an old version of the contract.
 
 ### Use inheritance to create a new sub-type
+
+Inheritance involves creating a new class that inherits from a previous version of the contract. For example, `OrderCreatedV3` may inherit from `OrderCreatedV2` and have a new property, say, `TaxCode` included on it. The workflow is:
 
 1. Create a new contract type, inheriting from the contract type that should be extended
 1. Add the new properties to the new sub-type
 1. Update the senders to publish/send the new sub-type
 1. Update the receivers to the new sub-type
 
-This approach requires all senders/publishers to be updated first. Due to message inheritance, receivers continue to process the original message version.
+This approach requires that all senders/publishers be updated and deployed first. Due to message inheritance, receivers can continue to process the original message version until they are updated.
 
-## Removing contracts or properties
+## Removing properties and contract types
 
-1. Update all receivers/publishers to no longer use the property or message type to be removed
-1. Remove the contract or property from the contracts
-1. Update senders/publishers to the new contracts assembly.
+Removing a property may involve more planning than adding a property or contract. In some cases, it may involve keeping older versions of handlers around until there are no in-flight messages that use the old version of the contract.
 
-The Obsolete attribute can be used to mark properties/types to be removed beforehand to give consumers of the contract time to update their code.
+One possible workflow is:
+
+1. Update and deploy all receivers/publishers so that they no longer make use of the property to be removed
+1. Remove the property from the contracts
+1. Update senders/publishers to the new contracts assembly and deploy them
+
+At this point, the sender is sending the new version of the message contract with the property removed. The receiver is also aware of the new contract type and functions normally. If there are any in-flight messages that still refer to the old message type, most serializers will still reconstitute the message correctly but without the removed property.
+
+The Obsolete attribute is a useful tool for planning to remove a message property. It can be used to mark properties to be removed in advance of updating senders in order to give consumers of the contract time to update their code.
+
+Removing a message type is similar to removing a property and the same workflow applies:
+
+1. Update and deploy all receivers/publishers so that they no longer handle the contract to be removed
+1. Remove the contract
+1. Update senders/publishers to the new contracts assembly (without the contract that was removed) and deploy them
+
+This scenario is more straightforward in that it doesn't matter the order in which the receivers and senders are deployed. In both cases, the message contract that is being removed is no longer processed, either because it's not being sent by a sender, or because it's not being handled by a receiver. Again, be aware of in-flight messages. If the handlers for them are removed, they may remain in the system indefinitely since there are no longer any handlers for them.
 
 ## Versioning
 
 * Keep the assembly version on 1.0.0 to avoid assembly loading conflicts when endpoints with different contract versions send messages to each other
 * Use file version and/or NuGet package versions to indicate the sematic version of the contracts assembly
-
 
 ## Modifying serialization formats
 
