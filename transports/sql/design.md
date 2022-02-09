@@ -1,7 +1,7 @@
 ---
 title: SQL Transport Design
 summary: The design and implementation details of SQL Server Transport
-reviewed: 2019-10-08
+reviewed: 2022-02-09
 component: SqlTransport
 redirects:
  - nservicebus/sqlserver/design
@@ -15,7 +15,7 @@ In SQL Server Transport each queue is represented as table inside a database. De
 
 ## Structure
 
-The queue table consists of following columns
+The queue table consists of the following columns
 
 ### ID
 

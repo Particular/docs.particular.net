@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Troubleshooting
 summary: Resolutions for common problems with the MSMQ transport.
-reviewed: 2019-10-18
+reviewed: 2022-02-09
 component: MsmqTransport
 isLearningPath: true
 redirects:

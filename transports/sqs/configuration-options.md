@@ -2,7 +2,7 @@
 title: Configuration Options
 summary: Configuration options for the SQS transport.
 component: SQS
-reviewed: 2019-10-17
+reviewed: 2022-02-09
 redirects:
 - nservicebus/sqs/configuration-options
 ---

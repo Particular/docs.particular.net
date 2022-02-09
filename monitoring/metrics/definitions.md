@@ -1,7 +1,7 @@
 ---
 title: Metric definitions
 summary: Measuring the performance and health of an endpoint.
-reviewed: 2019-10-09
+reviewed: 2022-02-09
 redirects:
   - nservicebus/operations/metrics
 ---

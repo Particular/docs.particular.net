@@ -1,7 +1,7 @@
 ---
 title: Security Advisory 2018-01-19
 summary: Azure Storage Queues vulnerability
-reviewed: 2019-10-18
+reviewed: 2022-02-09
 ---
 
 This advisory discloses a security vulnerability that has been found in Azure Storage Queues version 7 and fixed in the released hotfixes 7.5.3 and 7.4.3.

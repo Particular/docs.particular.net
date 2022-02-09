@@ -1,7 +1,7 @@
 ---
 title: Error notifications
 summary: Subscribing to error notifications
-reviewed: 2019-10-23
+reviewed: 2022-02-09
 component: Core
 versions: '[5.0,)'
 redirects:

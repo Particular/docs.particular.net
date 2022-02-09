@@ -1,6 +1,6 @@
 ---
 title: Monitoring
-reviewed: 2019-10-24
+reviewed: 2022-02-09
 isLearningPath: true
 ---
 
@@ -20,7 +20,7 @@ Use this data to understand [which message handlers need to be optimized](/tutor
 
 A ServiceControl instance can track which endpoint instances are running by listening to a [continual stream of heartbeat messages](/monitoring/heartbeats/). Endpoints that fail to send heartbeats within a defined period of time are considered to be inactive. When an inactive endpoint starts sending heartbeats again, it becomes active.
 
-Beyond heartbeats, an endpoint can include [custom code to check anything and report status](/monitoring/custom-checks/). These checks can be run on a regular schedule and can be be used to ensure that third party web services and applications are running as expected.
+Beyond heartbeats, an endpoint can include [custom code to check anything and report status](/monitoring/custom-checks/). These checks can be run on a regular schedule and can be used to ensure that third party web services and applications are running as expected.
 
 ServicePulse can be used to [track which endpoints are active and inactive](/monitoring/heartbeats/in-servicepulse.md) as well as [monitor the status of custom checks](/monitoring/custom-checks/in-servicepulse.md).
 

@@ -1,4 +1,4 @@
-Versions 8 and above of the Azure Service Bus transport provide a more convenient way of sending messages over multiple namespaces that does not required to explicitly specify the destination.
+Versions 8 and above of the Azure Service Bus transport provide a more convenient way of sending messages over multiple namespaces that does not require to explicitly specify the destination.
 
 To leverage that capability the namespace alias and connection string need to be registered using the `NamespaceRouting()` API. Furthermore, the endpoint name needs to be registered on the namespace that it belongs to.
 

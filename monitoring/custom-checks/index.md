@@ -1,7 +1,7 @@
 ---
 title: Custom Checks
 summary: Define a custom set of conditions that are checked on the endpoint.
-reviewed: 2019-10-24
+reviewed: 2022-02-09
 isLearningPath: true
 redirects:
   - nservicebus/operations/custom-checks
