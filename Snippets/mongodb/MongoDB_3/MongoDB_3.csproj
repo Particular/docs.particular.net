@@ -5,6 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Storage.MongoDB" Version="3.0.0-alpha.225" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1896" /> <!--Remove when the MongoDB package is updated -->
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.3019" /> <!--Remove when the MongoDB package is updated -->
   </ItemGroup>
 </Project>

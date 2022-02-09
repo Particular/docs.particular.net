@@ -9,6 +9,6 @@
     <ProjectReference Include="..\NServiceBus.MessageForwarding\NServiceBus.MessageForwarding.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1898" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.3019" />
   </ItemGroup>
 </Project>

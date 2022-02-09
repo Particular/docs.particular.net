@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Iesi.Collections" Version="4.*" />
     <PackageReference Include="NHibernate" Version="5.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1898" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.3019" />
     <PackageReference Include="NServiceBus.NHibernate" Version="9.0.0-alpha.333" />
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1902" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.3019" />
     <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.0.0-alpha.295" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="3.0.0-alpha.105" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-alpha.155" />

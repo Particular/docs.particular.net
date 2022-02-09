@@ -20,7 +20,7 @@
     <PackageReference Include="Microsoft.Owin.Security" Version="3.*" />
     <PackageReference Include="Microsoft.Owin.SelfHost" Version="3.*" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1902" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.3019" />
     <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-alpha.1" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-alpha.360" />
     <PackageReference Include="Owin" Version="1.*" />
