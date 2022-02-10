@@ -18,10 +18,12 @@ TR[Transport<br>Receive]
 IH[Invoke<br>Handler]
 ILM[Incoming<br>Logical<br>Message]
 IPM[Incoming<br>Physical<br>Message]
+RUC[Receiving<br>User Code]
 
 subgraph Ancillary Actions
 Forwarding[Forwarding]
 Audit[Audit]
+Routing
 Dispatch
 end
 
@@ -29,8 +31,6 @@ end
 
 AncillaryTransport[Transport]
 
-
-RUC[Receiving<br>User Code]
 
 
 Transport -- onMessage --> TR
@@ -43,9 +43,9 @@ TR --> IPM
 IH --> RUC
 
 Dispatch --> AncillaryTransport
-Audit--> Dispatch
-Forwarding --> Dispatch
-
+Audit --> Routing
+Forwarding --> Routing
+Routing --> Dispatch
 
 click IH "/nservicebus/handlers-and-sagas"
 click Transport "/transports/"
