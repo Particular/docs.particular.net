@@ -95,11 +95,11 @@ Messages sent from a [saga](/nservicebus/sagas/) using the `ReplyToOriginator` m
 
 ### NServiceBus.ConversationId
 
-Identifier of the conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `Conversation Id` and `RelatedTo` fields allow [ServiceInsight](/serviceinsight/#flow-diagram) to reconstruct the entire message flow.
+Identifier of the conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `ConversationId`, `RelatedTo`, `OriginatingEndpoint`, and `ProcessingEndpoint` fields allow [ServiceInsight](/serviceinsight/#flow-diagram) to reconstruct the entire message flow.
 
-The first message sent in a new flow is automatically assigned a unique `Conversation Id` that is then propagated to all the messages that are sent afterward, forming a _conversation_. Each message sent within a conversation has a `RelatedTo` value that identifies the message that caused it to be sent.
+The first message sent in a new flow is automatically assigned a unique `ConversationId` that gets propagated to all the messages that are sent afterward, forming a _conversation_. Each message sent within a conversation has a `RelatedTo` value that identifies the message that caused it to be sent.
 
-In certain scenarios, the `Conversation Id` must be assigned manually in cases where NServiceBus can't infer when messages belong to the same conversation. For example, when a `CancelOrder` message needs to be part of an existing order conversation, then the Order ID can be used for as the Conversation ID. Manually assigning a `Conversation Id` can be achieved by overriding the header with a custom value:
+In certain scenarios, the `ConversationId` must be assigned manually in cases where NServiceBus can't infer when messages belong to the same conversation. For example, when a `CancelOrder` message needs to be part of an existing order conversation, then the Order ID can be used for as the Conversation ID. Manually assigning a `ConversationId` can be achieved by overriding the header with a custom value:
 
 snippet: override-conversation-id
 
@@ -306,6 +306,7 @@ The timestamp when the message was sent. Used by the [Performance Counters](/mon
 
 The endpoint name the message was sent from.
 
+INFO: Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#nservicebus.conversationid)
 
 ### NServiceBus.OriginatingMachine
 
@@ -331,11 +332,11 @@ The timestamp when the processing of a message ended.
 
 Name of the endpoint where the message was processed.
 
+INFO: Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#nservicebus.conversationid)
 
 ### NServiceBus.ProcessingMachine
 
 The machine name of the endpoint where the message was processed.
-
 
 ### NServiceBus.ProcessingStarted
 
