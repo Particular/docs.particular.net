@@ -47,7 +47,7 @@ If the design assumes message A will create the saga and message B updates the s
 
 Symptoms:
 
-- Sagas are expected to exist but this does not always seems to be the case. Inspecting storage shows that the saga does exist.
+- Sagas are expected to exist but inspecting the storage shows that the saga data does not exist.
 
 Mitigation:
 
