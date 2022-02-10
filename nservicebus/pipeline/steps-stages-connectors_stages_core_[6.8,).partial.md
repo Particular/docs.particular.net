@@ -4,7 +4,7 @@ Note: There currently is no way to provide custom Pipelines, Stages, Fork Connec
 
 ## Stages
 
-The pipeline consists of three parts: incoming, outgoing, and recoverability. Each part is comprised from a number of stages.
+The pipeline consists of two main parts: incoming and outgoing. Both parts are comprised from a number of stages.
 
 The following lists describe some of the common stages that behaviors can be built for. Each stage has a context associated with it (which is used when implementing a custom behavior).
 
