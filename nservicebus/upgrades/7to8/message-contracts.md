@@ -15,7 +15,7 @@ Note: When using [unobtrusive mode](https://docs.particular.net/nservicebus/mess
 
 ## Change to specific target Platform
 
-If all endpoints are targeting the same platform (e.g. .NET Core 3.1), the message contracts assembly can be changed to align with all other endpoint projects.
+If all endpoints target the same platform (e.g., .NET Core 3.1), the message contracts assembly can be changed accordingly to align with all other endpoint projects.
 
 ## Multi-targeting
 
