@@ -2,4 +2,3 @@
 
 * [Data Bus](/nservicebus/messaging/databus/)
 * [Message Property Encryption](/nservicebus/security/property-encryption.md)
-
