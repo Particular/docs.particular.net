@@ -127,13 +127,13 @@ Transport[Transport]
 
 subgraph Recoverability Pipeline
 
-TR[Recoverability<br>Action]
+TR[Recoverability]
 RR[Routing]
 
 end
 
 Transport -- onError --> TR
-TR --> RR
+TR -. 0-to-n .-> RR
 RR --> Dispatch
 
 
