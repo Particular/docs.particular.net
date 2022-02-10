@@ -2,6 +2,7 @@
 title: Message Handling Pipeline
 summary: Overview of the message handling pipeline
 reviewed: 2020-05-07
+component: Core
 redirects:
 - nservicebus/nservicebus-pipeline-intro
 related:
@@ -23,8 +24,4 @@ There are several ways to customize this pipeline with varying levels of complex
 
  Unit testing of custom extensions is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-a-behavior).
 
-## Features built using the pipeline
-
-* [Data Bus](/nservicebus/messaging/databus/)
-* [Message Property Encryption](/nservicebus/security/property-encryption.md)
-* [Recoverability](/nservicebus/recoverability/)
+partial: features
