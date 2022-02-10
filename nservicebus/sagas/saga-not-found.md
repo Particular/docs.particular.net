@@ -39,7 +39,7 @@ The implementation of `IHandleSagaNotFound` should be driven by the business req
 
 It's not always obvious when saga state does or does not exist. Most often the cause is due to race conditions.
 
-Note: Expect out-of-order delivery if the message flow allows it and expect more-than-once processing.
+Note: Expect out-of-order delivery of messages and expect more-than-once processing.
 
 ### Out of order
 
@@ -51,11 +51,9 @@ Symptoms:
 
 Mitigation:
 
-- Use [IAmStartedBy<>](/nservicebus/sagas/#starting-a-saga) instead of `IHandleMessages<>` for **any** message type which can originate from outside of the saga. No matter in which order messages are delivered, any message type processed first must create the saga.
-
-- Each message handler that can start the saga might need to contain logic to check the saga state and see if it is time to take the next action. 
-
-- Messages which are a result of a saga handler do not need this. i.e. A reply to a request made by a saga instance does not need to be able to create a new instance.
+- Use [IAmStartedBy<>](/nservicebus/sagas/#starting-a-saga) instead of `IHandleMessages<>` for **any** message type which can originate from outside of the saga. No matter in which order messages are delivered, any message type processed first must create the saga instance.
+- Each message handler that can start the saga might need to contain logic to check the saga state and see if it is time to take the following action. 
+- Messages resulting from a saga handler do not need to be mapped using `IAmStartedBy<>`. I.e., A reply to a request made by a saga instance does not need to create a new instance.
 
 ### Concurrency
 
@@ -68,35 +66,35 @@ Symptoms:
 Mitigation:
 
 - Reduce processing concurrency to 1 to achieve sequential processing. This only works when only a single endpoint instance is active.
-- Use pessimistic locking on the saga persister, this only works if a storage persister is configured that supports pessimistic locking.
+- Use pessimistic locking on the saga persister, this only works if the configured storage persister supports pessimistic locking.
 
 ### Initialization
 
-A saga that at creation immediately sends one or more request messages and already is receiving response messages while the handler is still running will result in a response message not able to be correlated if the init handler is still running as the saga state did not yet been persisted
+A saga that, at creation, immediately sends one or more request messages and is already receiving response messages while the handler is still running will result in non-correlated response messages. The initialization handler is still running, and the saga state has not persisted yet.
 
 This can happen when:
 
-- Using immediate dispatch
-- Another `IMessageSession` is used instead of `context` or using an alternative protocol
+- Using [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately)
+- Another `IMessageSession` is used instead of the `IMessageHandlerContext` instance or using an alternative protocol
 
 Mitigation:
 
-- Do not immediately send messages at saga creation, first send an init message to ensure the saga state exists. When a message is sent to a component that will respond the saga state will now exist.
+- Do not deliver messages using immediate dispatch, if those messages might be processed by the same saga instance. Always use the provided `IMessageHandlerContext` instance to dispatch messages.
 
 ### More-than-once processing
 
-A message can be processed more-than-once because it was physically sent multiple times or a transport its consistency results in the same message becoming available again. More-than-once processing on a handler that completes the saga will now result in a saga not found for every duplicate. 
+A message can be processed more than once because it was physically sent multiple times. The same might occur because the transport consistency is "at-least-once," resulting in the same message being consumed more than once. More-than-once processing on a handler that completes the saga will now result in a saga not found for every duplicate. 
 
 Mitigation:
 
-- Use [outbox](/nservicebus/outbox/)
+- Use the [outbox](/nservicebus/outbox/)
  
 ### Already completed
 
-A saga that is already completed can result in a saga not found exception.
+A saga that is already completed can result in a saga not found exception if messages are dispatched after the completion.
 
 Mitigation:
 
-- Use a logical complete state
-- Use [saga timeouts](timeouts.md) to postpone physically removing the saga state and invoke [`MarkAsComplete`](/nservicebus/sagas/#ending-a-saga).
-- Do not send messages and invoke [`MarkAsComplete`](/nservicebus/sagas/#ending-a-saga). Send an additional message to self (local) that will invoke `MarkAsComplete`.
+- Use a logical complete state. E.g., do not invoke `MarkAsComplete`, instead use a `bool` property in the saga state to keep track of the logical deletion
+- Use [saga timeouts](timeouts.md) to postpone physically removing the saga state and invoke [`MarkAsComplete`](/nservicebus/sagas/#ending-a-saga) at a later time.
+- Do not send messages and invoke [`MarkAsComplete`](/nservicebus/sagas/#ending-a-saga). Send an additional message to the same saga instance (send local) that will invoke `MarkAsComplete`.
