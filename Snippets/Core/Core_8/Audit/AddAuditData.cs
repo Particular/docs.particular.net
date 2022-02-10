@@ -9,7 +9,7 @@
     {
         public override Task Invoke(IAuditContext context, Func<Task> next)
         {
-            context.AddAuditData("myKey", "myValue");
+            context.AuditMetadata["myKey"] = "MyValue";
             return next();
         }
     }
