@@ -42,6 +42,6 @@ NServiceBus version 8 can reference message contracts referencing older versions
 
 When deploying a new version of the contracts assembly (e.g., as a NuGet package or directly as a DLL file), the messages remain wire-level compatible as long as the message contract itself is not changed. See the [evolving message contracts](https://docs.particular.net/nservicebus/messaging/evolving-contracts) documentation for more information on updating message contracts. This approach can be chosen if message contract changes don't need to propagate to endpoints that remain on the old version of the message contract assembly.
 
-Note: It is recommended to maintain a stable assembly version across different message contract versions. Indicate the contract version information via the NuGet package version or the file-version.
+Note: It is recommended to maintain a stable assembly version across different message contract versions. Use the NuGet package version or the file-version of the shared contract assembly to indicate the assembly's version number.
 
 ## Need help?
