@@ -6,8 +6,8 @@
     using NServiceBus;
     using NServiceBus.Pipeline;
 
-
     #region custom-recoverability-action
+
     public class EnableExternalBodyStorageBehavior : Behavior<IRecoverabilityContext>
     {
         private readonly IExternalBodyStorage storage;
@@ -51,11 +51,11 @@
             }
         }
     }
+
     #endregion
+
     public interface IExternalBodyStorage
     {
         Task<string> StoreBody(string messageId, ReadOnlyMemory<byte> body);
     }
-
-
 }
