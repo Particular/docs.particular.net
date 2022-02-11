@@ -1,14 +1,5 @@
 ## Stage connectors
 
-```mermaid
-graph LR
-
-subgraph Stage connectors
-    A[TFromContext] --- B{Connector}
-    B --- C[TToContext]
-end
-```
-
 Stage connectors connect from the current stage (i.e. `IOutgoingLogicalMessageContext`) to another stage (i.e. `IOutgoingPhysicalMessageContext`). In order to override an existing stage, inherit from `StageConnector<TFromContext, TToContext>` and then replace an existing stage connector. Most pipeline extensions can be done by inheriting from `Behavior<TContext>`. It is rarely necessary to replace existing stage connectors. When implementing a stage connector, ensure that all required data is passed along for the next stage.
 
 snippet: CustomStageConnector
@@ -17,11 +8,11 @@ snippet: CustomStageConnector
 
 ```mermaid
 graph LR
-subgraph Main pipeline
+subgraph Root pipeline
     A[TFromContext] --- B{Fork Connector}
     B --- C[TFromContext]
 end
-subgraph Fork pipeline
+subgraph Forked pipeline
    B --> D[TForkContext]
 end
 ```
@@ -34,11 +25,11 @@ snippet: CustomForkConnector
 
 ```mermaid
 graph LR
-subgraph Stage
+subgraph Root stage
     A[TFromContext] --- B{StageFork<br/>Connector}
     B --- C[TToContext]
 end
-subgraph Fork pipeline
+subgraph Forked pipeline
    B --> D[TForkContext]
 end
 ```
