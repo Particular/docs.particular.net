@@ -30,18 +30,4 @@ If endpoints that share a common contracts assembly target different platforms a
 </Project>
 ```
 
-## Migration
-
-When upgrading endpoints one by one, message contracts might need to work across endpoints targeting different versions of NServiceBus. There are several ways to handle this.
-
-### Backwards compatiblity
-
-NServiceBus version 8 can reference message contracts referencing older versions of NServiceBus. Therefore, message contract assemblies can remain targeting NServiceBus version 7 until all endpoints have been successfully upgraded to version 8. This approach allows all endpoints to use the same message contracts assembly version.
-
-### Release new contracts assembly
-
-When deploying a new version of the contracts assembly (e.g., as a NuGet package or directly as a DLL file), the messages remain wire-level compatible as long as the message contract itself is not changed. See the [evolving message contracts](https://docs.particular.net/nservicebus/messaging/evolving-contracts) documentation for more information on updating message contracts. This approach can be chosen if message contract changes don't need to propagate to endpoints that remain on the old version of the message contract assembly.
-
-Note: It is recommended to maintain a stable assembly version across different message contract versions. Use the NuGet package version or the file-version of the shared contract assembly to indicate the assembly's version number.
-
 ## Need help?
