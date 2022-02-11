@@ -6,7 +6,7 @@ component: Core
 versions: '[8.0,)'
 ---
 
-The recoverability [pipeline](/nervicebus/pipeline) allows advanced customization of metadata captured during message failures and also full control over the recoverability action taken.
+The recoverability [pipeline](/nservicebus/pipeline/) allows advanced customization of metadata captured during message failures and also full control over the recoverability action taken.
 
 The example below shows how to [register a behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) that:
 
