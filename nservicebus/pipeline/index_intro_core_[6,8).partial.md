@@ -1,1 +1,1 @@
-NServiceBus has the concept of a _pipeline_ which refers to the series of actions taken when an incoming message is processed which triggers the incoming pipeline, and an outgoing message is sent which triggers the outgoing pipeline.
+NServiceBus uses the concept of _pipelines_. A pipeline refers to the series of actions taken as a result of the triggering action, e.g. an incoming message triggers the incoming pipeline, or an outgoing message triggers the outgoing pipeline.
