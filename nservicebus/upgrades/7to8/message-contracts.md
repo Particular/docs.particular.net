@@ -31,3 +31,5 @@ If endpoints that share a common contracts assembly target different platforms a
 ```
 
 ## Need help?
+
+For further information and assistance, refer to our [support channels](https://particular.net/support).
