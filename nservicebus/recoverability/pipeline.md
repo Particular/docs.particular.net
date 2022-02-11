@@ -10,8 +10,8 @@ The recoverability [pipeline](/nservicebus/pipeline/) allows advanced customizat
 
 The example below shows how to [register a behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) that:
 
-- Stores the message body separately
-- Excludes it from the message sent to the error queue
+- Stores the message body in an external storage
+- Excludes the body from the message sent to the error queue
 - Adds a metadata entry that links to the stored body
 
 snippet: custom-recoverability-action
