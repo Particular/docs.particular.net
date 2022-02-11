@@ -34,7 +34,7 @@
 
         class SkipFailedMessageBody : MoveToError
         {
-            protected internal SkipFailedMessageBody(string errorQueue) : base(errorQueue)
+            public SkipFailedMessageBody(string errorQueue) : base(errorQueue)
             {
             }
 
