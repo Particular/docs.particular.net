@@ -2,7 +2,8 @@
 
 ```mermaid
 graph LR
-subgraph
+
+subgraph Stage connectors
     A[TFromContext] --- B{Connector}
     B --- C[TToContext]
 end
@@ -16,11 +17,11 @@ snippet: CustomStageConnector
 
 ```mermaid
 graph LR
-subgraph
+subgraph Main pipeline
     A[TFromContext] --- B{Fork Connector}
     B --- C[TFromContext]
 end
-subgraph
+subgraph Fork pipeline
    B --> D[TForkContext]
 end
 ```
@@ -33,11 +34,11 @@ snippet: CustomForkConnector
 
 ```mermaid
 graph LR
-subgraph
+subgraph Stage
     A[TFromContext] --- B{StageFork<br/>Connector}
     B --- C[TToContext]
 end
-subgraph
+subgraph Fork pipeline
    B --> D[TForkContext]
 end
 ```
