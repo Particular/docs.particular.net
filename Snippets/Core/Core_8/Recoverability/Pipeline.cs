@@ -16,6 +16,7 @@
         {
             this.storage = storage;
         }
+
         public async override Task Invoke(IRecoverabilityContext context, Func<Task> next)
         {
             if(context.RecoverabilityAction is MoveToError errorAction)
