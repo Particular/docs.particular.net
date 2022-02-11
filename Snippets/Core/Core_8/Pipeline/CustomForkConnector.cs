@@ -21,7 +21,7 @@ namespace Core8.Pipeline
             var auditAddress = "AuditAddress";
 
             // Fork into new pipeline
-            await fork(this.CreateAuditContext(message, auditAddress, context))
+            await fork(this.CreateAuditContext(message, auditAddress, TimeSpan.FromHours(1), context))
                 .ConfigureAwait(false);
         }
     }
