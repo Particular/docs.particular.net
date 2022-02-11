@@ -12,9 +12,9 @@ related:
 
 partial: intro
 
-## Customizing the pipeline
+## Pipeline customization
 
-There are several ways to customize this pipeline with varying levels of complexity.
+There are several ways to customize the pipelines with varying levels of complexity.
 
 * [Manipulate the pipeline with behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md)
 * [Steps, stages and connectors](/nservicebus/pipeline/steps-stages-connectors.md)
@@ -22,6 +22,6 @@ There are several ways to customize this pipeline with varying levels of complex
 * [Abort the pipeline](/nservicebus/pipeline/aborting.md)
 * [React to pipeline events](/nservicebus/pipeline/events.md)
 
- Unit testing of custom extensions is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-a-behavior).
+Unit testing of custom extensions is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-a-behavior).
 
 partial: features
