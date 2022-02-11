@@ -306,7 +306,7 @@ The timestamp when the message was sent. Used by the [Performance Counters](/mon
 
 The endpoint name the message was sent from.
 
-INFO: Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#nservicebus-conversationid)
+INFO: Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#nservicebusconversationid)
 
 ### NServiceBus.OriginatingMachine
 
@@ -332,7 +332,7 @@ The timestamp when the processing of a message ended.
 
 Name of the endpoint where the message was processed.
 
-INFO: Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#nservicebus-conversationid)
+INFO: Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#nservicebusconversationid)
 
 ### NServiceBus.ProcessingMachine
 
