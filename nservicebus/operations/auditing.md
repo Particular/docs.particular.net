@@ -41,36 +41,30 @@ Perform capacity planning on the store where messages will be written.
 
 When using ServiceControl is it advised read [ServiceControl capacity planning](/servicecontrol/capacity-and-planning.md).
 
-
 ## Message headers
 
 The audited message is enriched with additional headers, which contain information related to processing the message:
 
- * Processing start and end times.
- * Processing host id and name.
- * Processing machine address.
- * Processing endpoint.
-
+* Processing start and end times.
+* Processing host id and name.
+* Processing machine address.
+* Processing endpoint.
 
 ## Handling Audit messages
 
 Audit messages can be handled in a variety of ways: Save them in a database, do custom logging, etc. It is important not to leave the messages in the audit queue however, as most queuing technologies have upper-bound limits on their queue sizes and depth. By not processing these messages, the limits of the underlying queue technology may be reached.
 
-
 ## Configuring auditing
 
 partial: configuration
-
 
 ## Audit configuration options
 
 There two settings that control auditing:
 
-
 ### Queue Name
 
 The queue name to forward audit messages.
-
 
 ### OverrideTimeToBeReceived
 
@@ -85,7 +79,6 @@ Setting a custom OverrideTimeToBeReceived for audits is not supported on transac
 ```
 }}
 
-
 #### Default Value
 
 If no OverrideTimeToBeReceived is defined then:
@@ -93,7 +86,6 @@ If no OverrideTimeToBeReceived is defined then:
 **Versions 5 and below**: TimeToBeReceived of the original message will be used.
 
 **Versions 6 and above**: No TimeToBeReceived will be set.
-
 
 ## Filtering audit messages
 
@@ -105,5 +97,6 @@ Auditing works by sending an exact copy of the received message to the audit que
 
 For sensitive properties, e.g. credit card numbers or passwords, use [message property encryption](/nservicebus/security/property-encryption.md). For large properties, consider [streaming](/samples/pipeline/stream-properties/) them instead to avoid including the actual payload in the audited message.
 
-
 partial: additional-data
+
+partial: custom-audit-action
