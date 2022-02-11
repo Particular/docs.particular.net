@@ -11,7 +11,7 @@ upgradeGuideCoreVersions:
 
 NServiceBus version 8 does not support .NET Standard as a target framework. Therefore, message contract assemblies that target `netstandard2.0` and reference NServiceBus must be updated. This guidance outlines possible approaches.
 
-Note: When using [unobtrusive mode](https://docs.particular.net/nservicebus/messaging/unobtrusive-mode), the contracts assembly doesn't require a reference to NServiceBus and therefore is not affected. Unobtrusive message contracts can continue to target .NET Standard.
+Note: When using [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md), the contracts assembly doesn't require a reference to NServiceBus and therefore is not affected. Unobtrusive message contracts can continue to target .NET Standard.
 
 ## Change to specific target Platform
 
@@ -24,12 +24,12 @@ If endpoints that share a common contracts assembly target different platforms a
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- Typically, it is sufficient to only list the lowest version needed for each platform -->
+    <!-- Typically, it is sufficient to list the lowest version needed -->
     <TargetFrameworks>net48;netcoreapp3.1</TargetFrameworks>
   </PropertyGroup>
 </Project>
 ```
 
-## Need help?
+## Get help
 
-For further information and assistance, refer to our [support channels](https://particular.net/support).
+For further information and assistance, refer to the [support channels](https://particular.net/support).
