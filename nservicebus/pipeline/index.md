@@ -23,5 +23,3 @@ There are several ways to customize the pipelines with varying levels of complex
 * [React to pipeline events](/nservicebus/pipeline/events.md)
 
 Unit testing of custom extensions is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-a-behavior).
-
-partial: features
