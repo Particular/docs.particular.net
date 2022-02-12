@@ -52,7 +52,7 @@ Note: Prior to NServiceBus version 7.2, messages had to be defined as a `class`.
 
 Generic message definitions (e.g. `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message or to use inheritance to reuse shared message characteristics.
 
-Messages define the data contract between two endpoints. Refer to [sharing message contracts](TODO) for more details.
+Messages define the data contract between two endpoints. Refer to [sharing message contracts](sharing-contracts.md) for more details.
 
 ## Identifying messages
 
