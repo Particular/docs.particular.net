@@ -127,6 +127,8 @@
         Title: Transport Configuration Changes
       - Url: nservicebus/upgrades/7to8/dependency-injection
         Title: Dependency Injection Changes
+      - Url: nservicebus/upgrades/7to8/message-contracts
+        Title: Upgrading shared message contracts
     - Url: nservicebus/upgrades/6to7
       Title: NServiceBus 6 to 7
       Articles:
