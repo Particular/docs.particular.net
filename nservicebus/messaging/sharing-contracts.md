@@ -1,5 +1,5 @@
 ---
-title: Defining message contracts
+title: Sharing message contracts
 summary: How to define and share message contracts between different endpoints.
 component: Core
 reviewed: 2022-02-02
@@ -7,8 +7,6 @@ related:
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/unobtrusive-mode
 ---
-
-TODO: add menu entry
 
 It's recommended to use dedicated assemblies for message contracts. By keeping message contracts in a separate assembly, the amount of information and dependencies shared between services is minimized. Furthermore, it's recommended to have a separate message assembly for every service. When doing so, a service can [evolve its contracts](/nservicebus/messaging/evolving-contracts.md) without impacting other services in the system. Every message contract should be declared in the contracts assembly of the service owning that message contract.
 
