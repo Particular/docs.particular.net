@@ -10,6 +10,8 @@ related:
 
 It's recommended to use dedicated assemblies for message contracts. By keeping message contracts in a separate assembly, the amount of information and dependencies shared between services is minimized. Furthermore, it's recommended to have a separate message assembly for every service. When doing so, a service can [evolve its contracts](/nservicebus/messaging/evolving-contracts.md) without impacting other services in the system. Every message contract should be declared in the contracts assembly of the service owning that message contract.
 
+Note: Ensure that message contracts follow the general [messages design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
+
 ## Sharing contracts
 
 Sender and receiver of a message need to use the same message contract. Message contracts can be shared in various ways:
@@ -38,7 +40,6 @@ NServiceBus includes the message's fully qualified assembly name (including the 
 
 See the [evolving message contracts](/nservicebus/messaging/evolving-contracts.md) guidance for more details on safely updating message contracts.
 
-
 ## Breaking down large contract assemblies
 
 In the early days of a system, combining all events, commands and messages into a single contracts assembly might be a good place to start. However, as the system grows, breaking down the contracts into smaller parts makes it easier to evolve a system safely. An common reason is a rise in the number of subscribers for events published by a specific endpoint. It's not desirable to expose commands that are meant to be consumed by a single receiver to all the subscribers interested in that same endpoint's events.
@@ -49,4 +50,3 @@ Depending on the usage and the frequency of changes, separating contracts into m
 
 * EndpointName.Commands
 * EndpointName.Events
-
