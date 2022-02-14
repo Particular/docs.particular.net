@@ -17,7 +17,7 @@ Note: Ensure that message contracts follow the general [messages design guidelin
 Sender and receiver of a message need to use the same message contract. Message contracts can be shared in various ways:
 
 * When all endpoints are located in a single solution, the message contract assemblies can be directly referenced as a project dependency.
-* When endpoints are split into multiple solutions, message contracts can be shared as NuGet packages. Follow the [NuGet settings](TODO) to create a NuGet package when building the contracts assembly. The NuGet package can be deployed to a local folders, private or public NuGet server. Use a [custom NuGet config file](TODO) to configure NuGet package sources.
+* When endpoints are split into multiple solutions, message contracts can be shared as NuGet packages. [Create a NuGet package](https://docs.microsoft.com/en-us/nuget/create-packages/creating-a-package-msbuild) when building the contracts assembly deploy it to a local folders, private or public NuGet server. Use a [custom NuGet config file](https://docs.microsoft.com/en-us/nuget/reference/nuget-config-file) to configure additional NuGet package sources.
 * It's also possible to share messages as C# source files without packaging them into an assembly.
 
 ### NServiceBus.Core dependency
