@@ -52,15 +52,7 @@ Note: Prior to NServiceBus version 7.2, messages had to be defined as a `class`.
 
 Generic message definitions (e.g. `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message or to use inheritance to reuse shared message characteristics.
 
-### Solution structure
-
-Messages define the data contract between two endpoints.
-
-It's recommended to use a dedicated assembly for message contracts. By keeping message contracts in a separate assembly, the amount of information and dependencies shared between services is minimized. It is recommended to have a separate message assembly for every service. When doing so, a service can [evolve its contracts](/nservicebus/messaging/evolving-contracts.md) without impacting other services in the system. Every message contract should be declared in the contracts assembly of the service owning that message contract.
-
-Consideration should be given to how the contracts assembly will be used by services. When certain events are subscribed to by multiple endpoints managed by other teams, it might make sense to extract those contracts into a separate NuGet package. Depending on the usage and the frequency of changes, separating contracts into multiple assemblies might decouple these contracts and minimize the impact of the changes.
-
-It's also possible to share messages as C# source files without packaging them into an assembly. One advantage of this approach is that messages don't need to be compiled against specific NServiceBus versions, which means that assembly redirects are redundant. This can also be accomplished through the use of [unobstrusive mode](/nservicebus/messaging/unobtrusive-mode.md).
+Messages define the data contract between two endpoints. Refer to [sharing message contracts](sharing-contracts.md) for more details.
 
 ## Identifying messages
 
