@@ -8,9 +8,11 @@ using NServiceBus.Transport;
 
 class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 {
-    public LockRenewalBehavior(TimeSpan renewLockTokenIn)
+    public LockRenewalBehavior(TimeSpan lockDuration, TimeSpan renewLockTokenIn, string queueName)
     {
+        this.lockDuration = lockDuration;
         this.renewLockTokenIn = renewLockTokenIn;
+        this.queueName = queueName;
     }
 
     public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
@@ -28,29 +30,61 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
         #endregion
 
-        var messageReceiver = serviceBusClient.CreateReceiver("Samples.ASB.SendReply.LockRenewal");
-
-        var cts = new CancellationTokenSource();
-        var token = cts.Token;
-
-        Log.Info($"Incoming message ID: {message.MessageId}");
-
-        _ = RenewLockToken(token);
-
-        #region processing-and-cancellation
+        var messageReceiver = serviceBusClient.CreateReceiver(queueName);
 
         try
         {
-            await next().ConfigureAwait(false);
+            var now = DateTimeOffset.UtcNow;
+            var remaining = message.LockedUntil - now;
+
+            if (remaining < renewLockTokenIn)
+            {
+                throw new Exception($"Not processing message because remaining lock duration is below configured renewal interval.")
+                {
+                    Data = { { "ServiceBusReceivedMessage.MessageId", message.MessageId } }
+                };
+            }
+
+            var elapsed = lockDuration - remaining;
+
+            if (elapsed > renewLockTokenIn)
+            {
+                Log.Warn($"{message.MessageId}: Incoming message is locked untill {message.LockedUntil:s}Z but already passed configured renewal interval, renewing lock first. Consider lowering the prefetch count.");
+                await messageReceiver.RenewMessageLockAsync(message).ConfigureAwait(false);
+            }
+
+            using (var cts = new CancellationTokenSource())
+            {
+                var token = cts.Token;
+
+                _ = RenewLockToken(token);
+
+                #region processing-and-cancellation
+
+                try
+                {
+                    await next().ConfigureAwait(false);
+                }
+                finally
+                {
+                    remaining = message.LockedUntil - DateTimeOffset.UtcNow;
+
+                    if (remaining < renewLockTokenIn)
+                    {
+                        Log.Warn($"{message.MessageId}: Processing completed but LockedUntil {message.LockedUntil:s}Z less than {renewLockTokenIn}. This could indicate issues during lock renewal.");
+                    }
+
+                    cts.Cancel();
+                }
+
+                #endregion
+            }
         }
         finally
         {
-            Log.Info($"Cancelling renewal task for incoming message ID: {message.MessageId}");
-            cts.Cancel();
-            cts.Dispose();
+            await messageReceiver.DisposeAsync(); // Cannot use "await using" because of lang version 7.3
         }
 
-        #endregion
 
         #region renewal-background-task
 
@@ -58,30 +92,52 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
         {
             try
             {
+                int attempts = 0;
+
                 while (!cancellationToken.IsCancellationRequested)
                 {
-                    Log.Info($"Lock will be renewed in {renewLockTokenIn}");
+                    var now = DateTimeOffset.UtcNow;
+                    var ts = now + renewLockTokenIn;
+                    ts = ts.Round(renewLockTokenIn);
 
-                    await Task.Delay(renewLockTokenIn, cancellationToken).ConfigureAwait(false);
+                    var diff = ts - now;
 
-                    await messageReceiver.RenewMessageLockAsync(message).ConfigureAwait(false);
+                    //await Task.Delay(renewLockTokenIn, cancellationToken).ConfigureAwait(false);
+                    await Task.Delay(diff, cancellationToken).ConfigureAwait(false);
 
-                    Log.Info($"Lock renewed till {message.LockedUntil} UTC / {message.LockedUntil.ToLocalTime()} local");
+                    try
+                    {
+                        await messageReceiver.RenewMessageLockAsync(message, cancellationToken).ConfigureAwait(false);
+                        attempts = 0;
+                        Log.Info($"{message.MessageId}: Lock renewed untill {message.LockedUntil:s}Z.");
+                    }
+                    catch (ServiceBusException e) when (e.Reason == ServiceBusFailureReason.MessageLockLost)
+                    {
+                        Log.Error($"{message.MessageId}: Lock lost.", e);
+                        return;
+                    }
+                    catch (Exception e) when (!(e is OperationCanceledException))
+                    {
+                        ++attempts;
+                        Log.Warn($"{message.MessageId}: Failed to renew lock (#{attempts:N0}), if lock cannot be renewed within {message.LockedUntil:s}Z message will reappear.", e);
+                    }
                 }
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
             {
-                Log.Info($"Lock renewal task for incoming message ID: {message.MessageId} was cancelled.");
+                // Expected, no need to process
             }
-            catch (Exception exception)
+            catch (Exception e)
             {
-                Log.Error($"Failed to renew lock for incoming message ID: {message.MessageId}", exception);
+                Log.Fatal($"{message.MessageId}: RenewLockToken: " + e.Message, e);
             }
         }
 
         #endregion
     }
 
+    readonly TimeSpan lockDuration;
     readonly TimeSpan renewLockTokenIn;
+    readonly string queueName;
     static readonly ILog Log = LogManager.GetLogger<LockRenewalBehavior>();
 }
