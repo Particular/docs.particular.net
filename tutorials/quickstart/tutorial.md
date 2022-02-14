@@ -36,7 +36,7 @@ You'll explore part of an e-commerce system that handles receiving an order plac
 
 ![quickstart solution diagram](/tutorials/quickstart/after.svg)
 
-The tutorial has 3 parts—an introduction, failure recovery, and extensibility—that demonstrate how NServiceBus helps with best design practices and how the Particular Service Platform helps monitor a distributed system. Each part takes about 15-20 minutes to complete.
+The tutorial has 3 parts—an introduction, failure recovery, and extensibility—that demonstrate how NServiceBus helps with best practices and how the Particular Service Platform helps monitor a distributed system. Each part takes about 15-20 minutes to complete.
 
 To run this tutorial you’ll need:
 
