@@ -12,11 +12,7 @@ Evolving contracts over time is not an easy task and the appropriate strategy sh
 
 This article presents basic guidelines for choosing contracts evolution strategy, avoiding common mistakes, and ensuring that contracts will be easy to evolve over time.
 
-## Designing contracts
-
-### Messages
-
-Ensure that messages can be evolved by following general [messages design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
+Note: Ensure that message contracts follow the general [messages design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
 
 ## Common challenges
 
@@ -90,19 +86,3 @@ If the data that needs to be removed wasn't crucial to start with, it could be m
 #### Modifying serialization formats
 
 Another approach for handling breaking changes is to modify serialization formats. Step-by-step guidance is provided in the [transition serialization formats](/samples/serializers/transitioning-formats/) sample.
-
-### Breaking down large contract assemblies
-
-In the early days of a system, combining all events, commands and messages into a single contracts assembly might be a good place to start. However, as the system grows, breaking down the contracts into smaller parts makes it easier to evolve a system safely. An obvious reason is a rise in the number of subscribers for events published by a specific endpoint. It's not desirable to expose commands that are meant to be consumed by a single receiver to all the subscribers interested in that same endpoint's events.
-
-At that point it makes more sense to break down the contracts into multiple assemblies. A possible structure solution is to have multiple assemblies per endpoint with a naming convention similar to:
-
-* EndpointName.Commands
-* EndpointName.Events
-
-Or even more strict:
-
-* EndpointName.AutonomousComponent.Commands
-* EndpointName.AutonomousComponent.Events
-
-While it might make sense to directly reference the \*.Commands assemblies from the sender and receiver endpoints, it might not for the \*.Events assemblies as they are used by many subscribing endpoints. In those cases, considering sharing the assembly through NuGet packages as opposed to using a direct reference.
