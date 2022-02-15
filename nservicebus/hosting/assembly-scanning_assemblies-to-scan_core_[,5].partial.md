@@ -1,1 +1,3 @@
-An "Include a list" approach is used. Since many extensions such as transports and persisters in external NuGet packages relied on assembly scanning, this proved to be problematic. If the list of generated assemblies does include extension assemblies, the endpoint would fail at runtime with some unexpected, hard to diagnose behaviors.
+Further control of scanned assemblies can be configured using an "include list" approach.
+
+Warn: Since many extensions such as transports and persisters in external NuGet packages rely on assembly scanning, accidental exclusion of these assemblies can lead to runtime errors and hard to diagnose behaviors.

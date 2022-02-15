@@ -1,6 +1,4 @@
-
-
-## Additional assembly scanning path
+### Additional assembly scanning path
 
 NOTE: This configuration option is available only in NServiceBus version 7.4 and above.
 

@@ -1,0 +1,1 @@
+Assembly scanning can be configured to completely [prevent automatic loading of assemblies from the file system](/nservicebus/hosting/assembly-scanning.md#assembly-files-disable-assembly-files-scanning).
