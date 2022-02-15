@@ -23,7 +23,7 @@ This tutorial skips over some concepts and implementation details in order to ge
 
 ## Download solution
 
-The demo solution doesn't require any prerequisites—no message queue or database to install, just Visual Studio. To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file.
+The demo solution doesn't require any prerequisites — no message queue or database to install, just Visual Studio. To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file.
 
 downloadbutton
 #end-variant

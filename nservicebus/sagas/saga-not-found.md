@@ -32,18 +32,18 @@ The implementation of `IHandleSagaNotFound` should be driven by the business req
 
 ## Troubleshooting
 
-*Saga not found* Exceptions can occur when:
+*Saga not found* exceptions can occur when:
 
 1. The saga instance does not exist (yet)
 2. The saga instance has already been removed
 
 It's not always obvious when saga state does or does not exist. Most often the cause is due to race conditions.
 
-Note: Expect out-of-order delivery of messages and expect more-than-once processing.
+Note: Plan for delivery of messages in a different order than they were sent, and for messages to be processed more than once. These situations can occur regularly in a distributed system.
 
-### Out of order
+### Out-of-order message processing
 
-If the design assumes message A will create the saga and message B updates the saga. If message B is received and processed before message A, the saga doesn't exist yet, and the message will be discarded.
+An example of out-of-order message processing is when the design assumes message A will create the saga and message B updates the saga. If message B is received and processed before message A, the saga doesn't exist yet, and the message will be discarded.
 
 Symptoms:
 
@@ -52,8 +52,8 @@ Symptoms:
 Mitigation:
 
 - Use [IAmStartedBy<>](/nservicebus/sagas/#starting-a-saga) instead of `IHandleMessages<>` for **any** message type which can originate from outside of the saga. No matter in which order messages are delivered, any message type processed first must create the saga instance.
-- Each message handler that can start the saga might need to contain logic to check the saga state and see if it is time to take the following action. 
-- Messages resulting from a saga handler do not need to be mapped using `IAmStartedBy<>`. I.e., A reply to a request made by a saga instance does not need to create a new instance.
+- Each message handler that can start the saga might need logic to check the saga state and see if it is time to take the following action.
+- Messages resulting from a saga handler do not need to be mapped using `IAmStartedBy<>`. I.e., a reply to a request made by a saga instance does not need to create a new instance.
 
 ### Concurrency
 
@@ -65,8 +65,8 @@ Symptoms:
 
 Mitigation:
 
-- Reduce processing concurrency to 1 to achieve sequential processing. This only works when only a single endpoint instance is active.
-- Use pessimistic locking on the saga persister, this only works if the configured storage persister supports pessimistic locking.
+- Reduce processing concurrency to 1 to achieve sequential processing. This works only when a single endpoint instance is active.
+- Use pessimistic locking on the saga persister. This works only if the configured storage persister supports pessimistic locking.
 
 ### Initialization
 
@@ -79,19 +79,19 @@ This can happen when:
 
 Mitigation:
 
-- Do not deliver messages using immediate dispatch, if those messages might be processed by the same saga instance. Always use the provided `IMessageHandlerContext` instance to dispatch messages.
+- Do not deliver messages using immediate dispatch if those messages might be processed by the same saga instance. Always use the provided `IMessageHandlerContext` instance to dispatch messages.
 
 ### More-than-once processing
 
-A message can be processed more than once because it was physically sent multiple times. The same might occur because the transport consistency is "at-least-once," resulting in the same message being consumed more than once. More-than-once processing on a handler that completes the saga will now result in a saga not found for every duplicate. 
+A message can be processed more than once when it was physically sent multiple times. The same might occur because the transport consistency is "at-least-once," resulting in the same message being consumed more than once. More-than-once processing on a handler that completes the saga will now result in a saga not found for every duplicate.
 
 Mitigation:
 
 - Use the [outbox](/nservicebus/outbox/)
- 
+
 ### Already completed
 
-A saga that is already completed can result in a saga not found exception if messages are dispatched after the completion.
+A saga not found exception will occur if messages are dispatched after the saga is marked as complete.
 
 Mitigation:
 
