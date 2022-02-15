@@ -55,12 +55,9 @@
             }
 
             public class SagaData :
-                IContainSagaData
+                ContainSagaData
             {
-                public Guid Id { get; set; }
                 public Guid Guid { get; set; }
-                public string Originator { get; set; }
-                public string OriginalMessageId { get; set; }
             }
 
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
@@ -99,12 +96,9 @@
             }
 
             public class SagaData :
-                IContainSagaData
+                ContainSagaData
             {
-                public Guid Id { get; set; }
                 public Guid Guid { get; set; }
-                public string Originator { get; set; }
-                public string OriginalMessageId { get; set; }
             }
 
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
