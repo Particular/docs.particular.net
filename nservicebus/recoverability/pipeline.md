@@ -16,4 +16,4 @@ The example below shows how to extend the pipeline with a behavior that:
 
 snippet: custom-recoverability-action
 
-In addition, the behavior needs to be [registered in the pipeline](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step).
+In addition, the behavior must be [registered in the pipeline](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step).
