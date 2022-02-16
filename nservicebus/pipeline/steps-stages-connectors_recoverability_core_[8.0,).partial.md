@@ -7,18 +7,21 @@
 ``` mermaid
 graph LR
 
-Transport[Transport]
+Transport((Transport))
+Transport2((Transport))
 
 subgraph Recoverability Pipeline
 
 TR[Recoverability]
 RR[Routing]
+Dispatch[Immediate<br>Dispatch]
 
 end
 
 Transport -- onError --> TR
 TR -. 0-to-n .-> RR
 RR --> Dispatch
+Dispatch --> Transport2
 
 
 click RR "/nservicebus/recoverability"

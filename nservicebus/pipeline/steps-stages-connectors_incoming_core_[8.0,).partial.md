@@ -10,15 +10,14 @@ The connection between the Incoming Physical Message stage and the audit stages 
 ```mermaid
 graph LR
 
-Transport[Transport]
-
+Transport((Transport))
 
 subgraph Incoming Pipeline
 TR[Transport<br>Receive]
 IH[Invoke<br>Handler]
 ILM[Incoming<br>Logical<br>Message]
 IPM[Incoming<br>Physical<br>Message]
-RUC[Receiving<br>User Code]
+RUC((Receiving User Code))
 
 subgraph Ancillary Actions
 Audit[Audit]
@@ -29,8 +28,6 @@ end
 end
 
 AncillaryTransport[Transport]
-
-
 
 Transport -- onMessage --> TR
 IPM -- Step 1 --> ILM
