@@ -1,8 +1,8 @@
-## Routing APIs
+## Applying routing stragies based on message type
 
-The routing system can be extended by accessing the APIs via the settings bag.
+The first part of routing a message involves selecting the routing strategy based on the message type. Which will result in either a Unicast or a Multicast strategy being used.
 
-### Command routing
+### Unicast routing
 
 To extend [command routing](/nservicebus/messaging/routing.md#command-routing), routing extensions can access the route table from `EndpointConfiguration` level or from the feature level:
 
@@ -10,7 +10,7 @@ snippet: RoutingExtensibility-RouteTableConfig
 
 Note: To access the `GetSettings()` method, include a `using` directive for the `NServiceBus.Configuration.AdvancedExtensibility` namespace.
 
-In the latter case, the route table can be modified in the feature set up phase or can be passed further e.g. to a `FeatureStartupTask` and updated periodically when the source of routing information changes.
+The route table can be modified in the feature set up phase or can be passed further e.g. to a `FeatureStartupTask` and updated periodically when the source of routing information changes.
 
 snippet: RoutingExtensibility-StartupTaskRegistration
 
@@ -24,7 +24,7 @@ The routing system prevents route ambiguity. If new or replaced routes conflict 
 
 snippet: RoutingExtensibility-TriggerEndpointShutdown
 
-### Event routing
+### Multicast routing
 
 [Event routing](/nservicebus/messaging/routing.md#event-routing) differs depending on the transport capabilities. [Multicast transports](/transports/types.md#multicast-enabled-transports) which support the [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern natively implement the event routing themselves. Refer to specific transport documentation for details on extensibility points.
 
