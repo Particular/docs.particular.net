@@ -2,7 +2,7 @@
 
 Routing a message involves the following steps:
 
-- Select the routing strategy based on the [message intent](nservicebus/messaging/messages-events-commands.md)
+- Select the routing strategy based on the [message intent](/nservicebus/messaging/messages-events-commands.md)
 - Determine the specific properties for the selected routing strategy based on the message type e.g. as destination address in case of a Command/Unicast strategy
 
 ### Command/Unicast routing
