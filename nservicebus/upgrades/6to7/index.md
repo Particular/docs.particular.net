@@ -102,12 +102,12 @@ NOTE: **MSMQ**: [Machine names are set via the MSMQ transport routing configurat
 It can be replaced with a combination of the following methods:
 
 
-#### [Command routing](/nservicebus/messaging/routing-extensibility.md#routing-apis-command-routing)
+#### [Command routing](/nservicebus/messaging/routing-extensibility.md#applying-routing-strategies-command-routing)
 
 snippet: 6to7endpoint-mapping-Routing-Logical
 
 
-#### [Event routing](/nservicebus/messaging/routing-extensibility.md#routing-apis-event-routing)
+#### [Event routing](/nservicebus/messaging/routing-extensibility.md#applying-routing-strategies-event-routing)
 
 snippet: 6to7endpoint-mapping-Routing-RegisterPublisher
 

@@ -5,7 +5,7 @@ Routing a message involves the following steps:
 - Select the routing strategy based on the [message intent](/nservicebus/messaging/messages-events-commands.md)
 - Determine the specific properties for the selected routing strategy based on the message type e.g. as destination address in case of a Command/Unicast strategy
 
-### Command/Unicast routing
+### Command routing
 
 To extend [command routing](/nservicebus/messaging/routing.md#command-routing), routing extensions can access the route table on the `EndpointConfiguration` level or from the feature level:
 
@@ -27,7 +27,7 @@ The routing system prevents route ambiguity. If new or replaced routes conflict 
 
 snippet: RoutingExtensibility-TriggerEndpointShutdown
 
-### Event/Multicast routing
+### Event routing
 
 [Event routing](/nservicebus/messaging/routing.md#event-routing) differs depending on the transport capabilities. [Multicast transports](/transports/types.md#multicast-enabled-transports) which support the [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern natively implement the event routing themselves. Refer to specific transport documentation for details on extensibility points.
 
@@ -41,6 +41,6 @@ The publishers collection is thread-safe and all operations on that collection a
 
 ## Advanced routing customizations
 
-In case there's a need to adjust the routing based on anything else but the message type, the [routing pipeline stage](/nservicebus/pipeline/steps-stages-connectors.md#outgoing-pipeline-stages) allows routing customization for all messages emitted by the endpoint.
+In case there's a need to adjust the routing based on anything else but the message type, the [routing pipeline stage](/nservicebus/pipeline/steps-stages-connectors.md#stages-outgoing-pipeline-stages) allows routing customization for all messages emitted by the endpoint.
 
 NOTE: Be aware that this intercepts **any** message that is dispatched, including messages that are not known NServiceBus message types, e.g. an audit message.
