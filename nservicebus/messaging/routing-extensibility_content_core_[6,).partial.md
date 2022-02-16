@@ -1,10 +1,13 @@
-## Applying routing stragies based on message type
+## Applying routing strategies
 
-The first part of routing a message involves selecting the routing strategy based on the message type. Which will result in either a Unicast or a Multicast strategy being used.
+Routing a message involves the following steps:
 
-### Unicast routing
+- Select the routing strategy based on the [message intent](nservicebus/messaging/messages-events-commands.md)
+- Determine the specific properties for the selected routing strategy based on the message type e.g. as destination address in case of a Command/Unicast strategy
 
-To extend [command routing](/nservicebus/messaging/routing.md#command-routing), routing extensions can access the route table from `EndpointConfiguration` level or from the feature level:
+### Command/Unicast routing
+
+To extend [command routing](/nservicebus/messaging/routing.md#command-routing), routing extensions can access the route table on the `EndpointConfiguration` level or from the feature level:
 
 snippet: RoutingExtensibility-RouteTableConfig
 
@@ -24,7 +27,7 @@ The routing system prevents route ambiguity. If new or replaced routes conflict 
 
 snippet: RoutingExtensibility-TriggerEndpointShutdown
 
-### Multicast routing
+### Event/Multicast routing
 
 [Event routing](/nservicebus/messaging/routing.md#event-routing) differs depending on the transport capabilities. [Multicast transports](/transports/types.md#multicast-enabled-transports) which support the [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/) pattern natively implement the event routing themselves. Refer to specific transport documentation for details on extensibility points.
 
@@ -36,12 +39,8 @@ The source parameter has the same meaning and effect as in the routes collection
 
 The publishers collection is thread-safe and all operations on that collection are atomic.
 
-### Physical routing
+## Advanced routing customizations
 
-Physical routing is responsible for mapping the destination logical endpoint to the transport address (queue name).
+In case there's a need to adjust the routing based on anything else but the message type, the [routing pipeline stage](/nservicebus/pipeline/steps-stages-connectors.md#outgoing-pipeline-stages) allows routing customization for all messages emitted by the endpoint.
 
-When using a [broker transport](/transports/types.md#broker-transports), the physical routing is entirely managed by NServiceBus and does not require any configuration.
-
-When using a [federated transport](/transports/types.md#federated-transports), the physical routing is important because the transport address has to contain the information about the node that the endpoint is using. In MSMQ each machine runs a single node of the MSMQ system.
-
-Routing extensions can influence the physical routing by modifying the endpoint instances collection. This is especially important for [federated transports](/transports/types.md#federated-transports) in a dynamically changing environment such as the cloud. Endpoints can be elastically scaled out and scaled in and the routing, in order to stay in sync, needs to derive the physical information from the current state of the environment, not from a static file.
+NOTE: Be aware that this intercepts **any** message that is dispatched, including messages that are not known NServiceBus message types, e.g. an audit message.
