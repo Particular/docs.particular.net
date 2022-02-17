@@ -7,7 +7,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="3.1.*" />
     <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="3.1.*" />
-    <PackageReference Include="NServiceBus.Extensions.DependencyInjection" Version="2.0.0-alpha.140" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-alpha.144" />
     <PackageReference Include="NServiceBus.MicrosoftLogging.Hosting" Version="1.*" />
   </ItemGroup>

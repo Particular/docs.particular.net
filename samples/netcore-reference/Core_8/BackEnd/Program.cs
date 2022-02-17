@@ -54,10 +54,10 @@ internal class Program
 
     private static async Task OnCriticalError(ICriticalErrorContext context, CancellationToken cancellationToken)
     {
-        var fatalMessage = $"The following critical error was " +
+        var fatalMessage = "The following critical error was " +
                            $"encountered: {Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. " +
                            $"StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
-        
+
         EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
 
         try
