@@ -1,5 +1,6 @@
 name: BuildSamplesAndSnippets
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 */4 * * 1-5' # Every 4 hours, Monday-Friday
 env:
