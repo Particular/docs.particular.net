@@ -10,18 +10,13 @@ redirects:
 - samples/azure/azure-service-bus-long-running
 ---
 
-include: legacy-asb-warning
-
-
 ## Prerequisites
 
 include: asb-connectionstring-xplat
 
 include: asp-connectionstring
 
-
 include: asb-transport
-
 
 ## Code walk-through
 
@@ -53,7 +48,6 @@ Processor ->> Server: LongProcessingFinished / LongProcessingFailed
 Processor ->> Client: LongProcessingFinished / LongProcessingFailed
 ```
 
-
 ## Performing processing outside a message handler
 
 When processing takes a long time, [message lock renewal](/transports/azure-service-bus/legacy/message-lock-renewal.md) is possible, but should be avoided to keep message locking to a minimum. 
@@ -68,11 +62,9 @@ For simplicity, `Processor` is not scaled out. If scaling out is required, work 
 
 Also, note that the sample processes files in a serial manner, one at a time. For concurrent processing, `Processor` could spin a task per request. That would require an additional throttling mechanism to be implemented to ensure `Processor` is not overwhelmed.
 
-
 ## Making a request from the client
 
 snippet: request-message
-
 
 ## Business logic with saga and timeout
 
@@ -84,7 +76,6 @@ On timeout:
 
 snippet: on-timeout
 
-
 ## Server communication
 
 `Server` enqueues requests for the processor using an Azure Storage table and replying back to the `Client` to indicate that processing is pending. 
@@ -92,7 +83,6 @@ snippet: on-timeout
 snippet: enqueue-request-for-processor
 
 NOTE: Normally, work would not be done by a saga, but would be delegated to a dedicated handler. For simplicity, a handler was omitted in this sample.
-
 
 ## Processor logic
 
