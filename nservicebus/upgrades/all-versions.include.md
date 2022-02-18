@@ -38,9 +38,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.6.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.6.0) | 2022-01-14     | -                 | -                                 |
-| [5.5.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.5.0) | 2022-01-05     | 2022-04-14        | Superseded by 5.6.x               |
-| [5.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.4.0) | 2021-09-16     | 2022-04-05        | Superseded by 5.5.x               |
+| [5.6.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.6.1) | 2022-01-14     | -                 | -                                 |
+| [5.5.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.5.1) | 2022-01-05     | 2022-04-14        | Superseded by 5.6.x               |
+| [5.4.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.4.1) | 2021-09-16     | 2022-04-05        | Superseded by 5.5.x               |
 | [~~5.3.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.3.1) | ~~2021-01-20~~ | ~~2021-12-16~~    | ~~Superseded by 5.4.x~~           |
 | [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.2.1) | ~~2020-10-20~~ | ~~2021-04-20~~    | ~~Superseded by 5.3.x~~           |
 | [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.1.2) | ~~2020-08-24~~ | ~~2021-01-20~~    | ~~Superseded by 5.2.x~~           |
@@ -846,7 +846,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.3.x](https://www.nuget.org/packages/Particular.PlatformSample/2.3.0) | 2022-02-14     | -                 | -                                 |
+| [2.4.x](https://www.nuget.org/packages/Particular.PlatformSample/2.4.0) | 2022-02-17     | -                 | -                                 |
+| [2.3.x](https://www.nuget.org/packages/Particular.PlatformSample/2.3.0) | 2022-02-14     | 2022-05-17        | Superseded by 2.4.x               |
 | [2.2.x](https://www.nuget.org/packages/Particular.PlatformSample/2.2.0) | 2022-02-03     | 2022-05-14        | Superseded by 2.3.x               |
 | [2.1.x](https://www.nuget.org/packages/Particular.PlatformSample/2.1.4) | 2021-11-02     | 2022-05-03        | Superseded by 2.2.x               |
 | [~~2.0.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.0.0) | ~~2021-09-16~~ | ~~2022-02-02~~    | ~~Superseded by 2.1.x~~           |
