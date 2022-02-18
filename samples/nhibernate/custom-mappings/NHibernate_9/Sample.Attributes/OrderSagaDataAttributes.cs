@@ -1,6 +1,8 @@
-﻿using System;
-using NHibernate.Mapping.Attributes;
+﻿using NHibernate.Mapping.Attributes;
 using NServiceBus;
+using System;
+
+#pragma warning disable NSB0012 // Saga data classes should inherit ContainSagaData
 
 [Class]
 public class OrderSagaDataAttributes :
@@ -43,3 +45,4 @@ public class OrderSagaDataAttributes :
     }
 }
 
+#pragma warning restore NSB0012 // Saga data classes should inherit ContainSagaData
