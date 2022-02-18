@@ -1,10 +1,10 @@
 ﻿namespace Core8.Recoverability
 {
+    using NServiceBus;
+    using NServiceBus.Pipeline;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.Pipeline;
 
     #region custom-recoverability-action
 
@@ -19,9 +19,9 @@
 
         public async override Task Invoke(IRecoverabilityContext context, Func<Task> next)
         {
-            if(context.RecoverabilityAction is MoveToError errorAction)
+            if (context.RecoverabilityAction is MoveToError errorAction)
             {
-                var message = context.ErrorContext.Message;
+                var message = context.FailedMessage;
                 var bodyUrl = await storage.StoreBody(message.MessageId, message.Body);
 
                 context.Metadata["body-url"] = bodyUrl;
