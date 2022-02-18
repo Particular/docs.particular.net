@@ -11,8 +11,8 @@ public class ZipCodeVotesSaga :
 {
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ZipCodeVoteData> mapper)
     {
-        mapper.ConfigureMapping<TrackZipCode>(m => m.ZipCode)
-            .ToSaga(s => s.ZipCode);
+        mapper.MapSaga(s => s.ZipCode)
+            .ToMessage<TrackZipCode>(m => m.ZipCode);
     }
 
     public async Task Handle(TrackZipCode message, IMessageHandlerContext context)

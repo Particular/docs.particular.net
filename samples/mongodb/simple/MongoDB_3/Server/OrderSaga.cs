@@ -14,8 +14,8 @@ public class OrderSaga :
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
-        mapper.ConfigureMapping<StartOrder>(message => message.OrderId)
-            .ToSaga(sagaData => sagaData.OrderId);
+        mapper.MapSaga(sagaData => sagaData.OrderId)
+            .ToMessage<StartOrder>(message => message.OrderId);
     }
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)
