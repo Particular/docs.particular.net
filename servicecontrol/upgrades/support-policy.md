@@ -1,7 +1,7 @@
 ---
 title: Support Policy
 summary: Versions of ServiceControl that are currently supported
-reviewed: 2019-10-24
+reviewed: 2022-02-18
 related:
  - nservicebus/upgrades/release-policy
  - nservicebus/upgrades/supported-versions

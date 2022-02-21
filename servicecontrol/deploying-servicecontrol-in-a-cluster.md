@@ -3,7 +3,7 @@ title: Deploying ServiceControl to a Cluster
 summary: A guide to deploying ServiceControl on a Windows cluster
 related:
 - servicecontrol/troubleshooting
-reviewed: 2019-10-24
+reviewed: 2022-02-18
 ---
 
 NOTE: Clustering might not be required as cloud hosting and enterprise virtualization layers provide high availability and data redundancy features.
@@ -24,7 +24,7 @@ NOTE: This guide assumes that MSMQ is the underlying transport.
   * Ensure it depends on MSMQ and the MSMQ network name
   * Check "use network name as computer name" in the service configuration
 
-Once set up, ServiceControl queues will be available on the cluster. The server name will be the MSMQ network name, not to be confused with the cluster name.
+Once set up, the ServiceControl queues will be available on the cluster. The server name will be the MSMQ network name, not to be confused with the cluster name.
 
 More information is available on [Message Queuing in Server Clusters](https://technet.microsoft.com/en-us/library/cc753575.aspx).
 
