@@ -199,7 +199,7 @@ var endpointInstance = await startableEndpoint.Start(serviceProvider);
 
 #### Spring
 
-The following snipped configures NServiceBus to use Spring as its dependency injection container. This requires the `Spring.Extensions.DependencyInjection` NuGet package.
+The following snippet configures NServiceBus to use Spring as its dependency injection container. This requires the `Spring.Extensions.DependencyInjection` NuGet package.
 
 ```csharp
 var serviceCollection = new ServiceCollection();
