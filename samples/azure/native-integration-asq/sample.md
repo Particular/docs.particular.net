@@ -1,5 +1,5 @@
 ---
-title: Native Integration with Azure Storage Queues Transport
+title: Azure Storage Queues transport native integration sample
 summary: Consuming messages sent by non-NServiceBus endpoints with the Azure Storage Queues transport
 reviewed: 2021-02-25
 component: ASQ
