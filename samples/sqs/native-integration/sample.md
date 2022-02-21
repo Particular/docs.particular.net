@@ -1,5 +1,5 @@
 ---
-title: Native integration with AmazonSQS Transport
+title: AmazonSQS transport native integration sample
 reviewed: 2021-01-19
 component: Sqs
 related:
