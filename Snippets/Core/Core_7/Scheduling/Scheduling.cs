@@ -1,14 +1,15 @@
 ﻿namespace Core7.Scheduling
 {
-    using System;
-    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Logging;
+    using System;
+    using System.Threading.Tasks;
 
     class Scheduling
     {
         static ILog log = LogManager.GetLogger<Scheduling>();
 
+        [Obsolete]
         async Task Simple(IEndpointInstance endpointInstance)
         {
             #region ScheduleTask

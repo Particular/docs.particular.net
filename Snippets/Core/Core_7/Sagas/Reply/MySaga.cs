@@ -1,7 +1,7 @@
 ﻿namespace Core7.Sagas.Reply
 {
-    using System.Threading.Tasks;
     using NServiceBus;
+    using System.Threading.Tasks;
 
     #region saga-with-reply
 
@@ -22,6 +22,8 @@
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
+            mapper.MapSaga(saga => saga.SomeId)
+                .ToMessage<StartMessage>(msg => msg.SomeId);
         }
 
     }
