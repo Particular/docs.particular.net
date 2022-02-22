@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1902" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.3024" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.0.0-alpha.278" />
     <PackageReference Include="NServiceBus.Transport.SqlServer" Version="7.0.0-alpha.391" />
     <PackageReference Include="ServiceStack.OrmLite.SqlServer.Data.Core" Version="5.*" />

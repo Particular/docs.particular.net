@@ -326,3 +326,13 @@ To disable the implicit adding of the `NServiceBus` namespace while still keepin
   <Using Remove="NServiceBus" />
 </ItemGroup>
 ```
+
+## Saga analyzers
+
+NServiceBus version 8 elevates several saga-related [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) introduced in NServiceBus version 7.7 from Warning to Error, which will prevent a successful build when using default analyzer settings. These diagnostics indicate a serious issue that should be fixed. However, all Roslyn analyzer diagnostics [can be suppressed](https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers) if necessary.
+
+* **NSB0003 Non-mapping expression used in ConfigureHowToFindSaga method**: No other statements besides mapping expressions using the provided `mapper` argument are allowed.
+* **NSB0006 Message that starts the saga does not have a message mapping**: Without a mapping expression, the correct saga data cannot be found for an incoming message. A code fix is available that will add a new mapping to the `ConfigureHowToFindSaga` method. If using a [custom saga finder](/nservicebus/sagas/saga-finding.md), the error can be suppressed.
+* **NSB0007 Saga data property is not writeable**: Properties on saga data classes must have public setters so they can be loaded properly.
+* **NSB0009 A saga cannot use the Id property for a Correlation ID**: The `Id` property is reserved for use by the saga. Because some saga storage options are case insensitive, the other casings `ID`, `id`, and `iD` are also not allowed.
+* **NSB0015 Saga should not implement IHandleSagaNotFound**: The `IHandleSagaNotFound` extension point allows handling *any* message where saga data cannot be loaded. Implementing this interface on a saga gives the wrong impression that it only handles sagas not found for that saga, which is incorrect. Instead, implement the saga not found logic on a separate class.

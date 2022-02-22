@@ -1,12 +1,12 @@
 ﻿namespace Core8.Headers.Writers
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Common;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     [TestFixture]
     public class HeaderWriterSaga
@@ -26,7 +26,7 @@
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
-            await endpointInstance.SendLocal(new StartSaga1Message{ Guid = Guid.NewGuid() })
+            await endpointInstance.SendLocal(new StartSaga1Message { Guid = Guid.NewGuid() })
                 .ConfigureAwait(false);
             CountdownEvent.Wait();
         }
@@ -51,22 +51,19 @@
         {
             public Task Handle(StartSaga1Message message, IMessageHandlerContext context)
             {
-                return context.SendLocal(new SendFromSagaMessage{Guid = Guid.NewGuid()});
+                return context.SendLocal(new SendFromSagaMessage { Guid = Guid.NewGuid() });
             }
 
             public class SagaData :
-                IContainSagaData
+                ContainSagaData
             {
-                public Guid Id { get; set; }
                 public Guid Guid { get; set; }
-                public string Originator { get; set; }
-                public string OriginalMessageId { get; set; }
             }
 
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
             {
-                mapper.ConfigureMapping<StartSaga1Message>(message => message.Guid)
-                    .ToSaga(data => data.Guid);
+                mapper.MapSaga(saga => saga.Guid)
+                    .ToMessage<StartSaga1Message>(message => message.Guid);
             }
 
             public Task Handle(ReplyFromSagaMessage message, IMessageHandlerContext context)
@@ -99,18 +96,15 @@
             }
 
             public class SagaData :
-                IContainSagaData
+                ContainSagaData
             {
-                public Guid Id { get; set; }
                 public Guid Guid { get; set; }
-                public string Originator { get; set; }
-                public string OriginalMessageId { get; set; }
             }
 
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
             {
-                mapper.ConfigureMapping<SendFromSagaMessage>(message => message.Guid)
-                    .ToSaga(data => data.Guid);
+                mapper.MapSaga(saga => saga.Guid)
+                    .ToMessage<SendFromSagaMessage>(message => message.Guid);
             }
 
 

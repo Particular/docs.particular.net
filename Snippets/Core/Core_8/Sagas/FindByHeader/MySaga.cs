@@ -9,8 +9,8 @@
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
-            mapper.ConfigureHeaderMapping<MyMessage>("HeaderName")
-                .ToSaga(saga => saga.SomeId);
+            mapper.MapSaga(saga => saga.SomeId)
+                .ToMessageHeader<MyMessage>("HeaderName");
         }
 
         #endregion

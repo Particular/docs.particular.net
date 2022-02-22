@@ -1,12 +1,9 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using System;
 
 public class OrderSagaDataLoquacious :
-    IContainSagaData
+    ContainSagaData
 {
-    public virtual Guid Id { get; set; }
-    public virtual string OriginalMessageId { get; set; }
-    public virtual string Originator { get; set; }
     public virtual string OrderId { get; set; }
     public virtual int Version { get; set; }
     public virtual Location From { get; set; }

@@ -19,10 +19,9 @@ public class MySaga :
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
-        mapper.ConfigureMapping<StartSagaMessage>(message => message.TheId)
-            .ToSaga(sagaData => sagaData.TheId);
-        mapper.ConfigureMapping<CompleteSagaMessage>(message => message.TheId)
-            .ToSaga(sagaData => sagaData.TheId);
+        mapper.MapSaga(sagaData => sagaData.TheId)
+            .ToMessage<StartSagaMessage>(message => message.TheId)
+            .ToMessage<CompleteSagaMessage>(message => message.TheId);
     }
 
     public Task Handle(StartSagaMessage message, IMessageHandlerContext context)

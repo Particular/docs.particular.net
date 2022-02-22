@@ -1,4 +1,5 @@
-﻿namespace Core8.Sagas.Reply
+﻿#pragma warning disable NSB0006 // Message that starts the saga does not have a message mapping
+namespace Core8.Sagas.Reply
 {
     using System.Threading.Tasks;
     using NServiceBus;
@@ -27,3 +28,5 @@
     }
 
 }
+
+#pragma warning restore NSB0006 // Message that starts the saga does not have a message mapping

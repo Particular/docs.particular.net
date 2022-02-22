@@ -5,7 +5,7 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1896" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.3024" />
     <PackageReference Include="NServiceBus.Persistence.AzureTable" Version="4.0.0-alpha.379" />
   </ItemGroup>
   <ItemGroup>
