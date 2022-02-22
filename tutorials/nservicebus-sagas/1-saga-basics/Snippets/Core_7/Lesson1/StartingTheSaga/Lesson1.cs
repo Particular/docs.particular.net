@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
 
 #pragma warning disable 1998
+#pragma warning disable NSB0006 // Message that starts the saga does not have a message mapping
 
     namespace StartedBy1Message
     {
@@ -67,4 +68,5 @@
     }
 
 #pragma warning restore 1998
+#pragma warning restore NSB0006 // Message that starts the saga does not have a message mapping
 }

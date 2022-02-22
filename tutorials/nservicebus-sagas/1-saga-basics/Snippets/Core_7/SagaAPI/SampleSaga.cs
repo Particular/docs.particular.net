@@ -21,11 +21,11 @@ namespace Core_7.SagaAPI
 
     class SampleSagaData : ContainSagaData
     {
-        public object SagaPropertyName { get; set; }
+        public string SagaPropertyName { get; set; }
     }
 
     class MyMessageType
     {
-        public object MessagePropertyName { get; set; }
+        public string MessagePropertyName { get; set; }
     }
 }
