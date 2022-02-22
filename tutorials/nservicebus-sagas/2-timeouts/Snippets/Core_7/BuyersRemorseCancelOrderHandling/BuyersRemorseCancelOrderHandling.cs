@@ -60,16 +60,16 @@
         }
     }
 
-    internal class SagaPropertyMapper<T>
+    internal class SagaPropertyMapper<TSagaData>
     {
-        internal SagaPropertyMapper<T> ConfigureMapping<T1>(Func<T1, object> p)
+        internal SagaPropertyMapper<TSagaData> MapSaga(Func<TSagaData, object> p)
         {
-            throw new NotImplementedException();
+            return this;
         }
 
-        internal void ToSaga(Func<T, object> p)
+        internal SagaPropertyMapper<TSagaData> ToMessage<T>(Func<T, object> p)
         {
-            throw new NotImplementedException();
+            return this;
         }
     }
 
