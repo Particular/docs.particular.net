@@ -13,8 +13,8 @@ namespace Core_7.SagaAPI
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SampleSagaData> mapper)
         {
             #region ConfigureHowToFindSagaSampleAPI
-            mapper.ConfigureMapping<TMessageType>(message => message.MessagePropertyName)
-                .ToSaga(sagaData => sagaData.SagaPropertyName);
+            mapper.MapSaga(sagaData => sagaData.SagaPropertyName)
+                .ToMessage<TMessageType>(message => message.MessagePropertyName);
             #endregion
         }
     }

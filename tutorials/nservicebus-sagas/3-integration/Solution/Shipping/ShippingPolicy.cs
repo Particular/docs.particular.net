@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Shipping
 {
-    class ShippingPolicy : 
+    class ShippingPolicy :
         Saga<ShippingPolicyData>,
         IAmStartedByMessages<OrderBilled>,
         IAmStartedByMessages<OrderPlaced>
@@ -14,10 +14,9 @@ namespace Shipping
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingPolicyData> mapper)
         {
-            mapper.ConfigureMapping<OrderPlaced>(message => message.OrderId)
-                .ToSaga(sagaData => sagaData.OrderId);
-            mapper.ConfigureMapping<OrderBilled>(message => message.OrderId)
-                .ToSaga(sagaData => sagaData.OrderId);
+            mapper.MapSaga(sagaData => sagaData.OrderId)
+                .ToMessage<OrderPlaced>(message => message.OrderId)
+                .ToMessage<OrderBilled>(message => message.OrderId);
         }
 
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
@@ -44,7 +43,7 @@ namespace Shipping
         }
     }
 
-    class ShippingPolicyData : 
+    class ShippingPolicyData :
         ContainSagaData
     {
         public string OrderId { get; set; }

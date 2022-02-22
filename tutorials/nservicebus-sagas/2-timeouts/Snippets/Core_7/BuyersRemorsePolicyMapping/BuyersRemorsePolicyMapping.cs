@@ -13,7 +13,8 @@
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
         {
-            mapper.ConfigureMapping<PlaceOrder>(message => message.OrderId).ToSaga(saga => saga.OrderId);
+            mapper.MapSaga(saga => saga.OrderId)
+                .ToMessage<PlaceOrder>(message => message.OrderId);
         }
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
