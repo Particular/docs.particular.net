@@ -11,6 +11,8 @@ NServiceBus.OriginatingEndpoint = HeaderWriterReplyV7
 NServiceBus.OriginatingMachine = MACHINENAME
 NServiceBus.RelatedTo = e8532511-219f-4255-84ee-ae44013ddb3f
 NServiceBus.ReplyToAddress = HeaderWriterReplyV7
+NServiceBus.Retries = 1
+NServiceBus.Retries.Timestamp = 2022-02-22 19:17:17:022329 Z
 NServiceBus.TimeSent = 2022-02-22 19:17:16:832328 Z
 NServiceBus.Version = 7.7.0
 
