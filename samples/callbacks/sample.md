@@ -33,11 +33,7 @@ include: callbacks-disclaimer
 
 ## WebSender project
 
-An ASP.NET MVC application responsible for sending messages and handling the web callback from the reply. Depending upon the NServiceBus version, the method for integrating with asynchronous controllers is very different.
-
-partial: static
-
-partial: dotnetcore
+A .NET Core MVC application responsible for sending messages and handling the web callback from the reply. A message session is passed into the controller constructor.
 
 ### Send and callback for an enum
 

@@ -1,10 +1,17 @@
-﻿using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
+using System.Threading.Tasks;
 
-public class HomeController :
-    Controller
+public class HomeController : Controller
 {
+    private readonly IMessageSession messageSession;
+
+    public HomeController(IMessageSession messageSession)
+    {
+        this.messageSession = messageSession;
+    }
+
     public ActionResult Index()
     {
         return View();
@@ -17,8 +24,7 @@ public class HomeController :
         var message = new EnumMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var endpointInstance = MvcApplication.EndpointInstance;
-        var statusTask = endpointInstance.Request<Status>(message, sendOptions);
+        var statusTask = messageSession.Request<Status>(message, sendOptions);
         return View("SendEnumMessage", await statusTask.ConfigureAwait(false));
     }
 
@@ -31,8 +37,7 @@ public class HomeController :
         var message = new IntMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var endpointInstance = MvcApplication.EndpointInstance;
-        var statusTask = endpointInstance.Request<int>(message, sendOptions);
+        var statusTask = messageSession.Request<int>(message, sendOptions);
         return View("SendIntMessage", await statusTask.ConfigureAwait(false));
     }
 
@@ -45,10 +50,8 @@ public class HomeController :
         var message = new ObjectMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var endpointInstance = MvcApplication.EndpointInstance;
-        var responseTask = endpointInstance
-            .Request<ObjectResponseMessage>(message, sendOptions);
-        return View("SendObjectMessage", await responseTask.ConfigureAwait(false));
+        var statusTask = messageSession.Request<ObjectResponseMessage>(message, sendOptions);
+        return View("SendObjectMessage", await statusTask.ConfigureAwait(false));
     }
 
     #endregion
