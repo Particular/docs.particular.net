@@ -4,15 +4,15 @@ $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = 5fc2d3fe172c2602b7e1b665f355aa9d
 $.diagnostics.originating.hostid = 5fc2d3fe172c2602b7e1b665f355aa9d
 NServiceBus.ContentType = text/xml
-NServiceBus.ConversationId = 72eafbe4-6834-4f8f-9c3f-ae45014a8b34
-NServiceBus.CorrelationId = 7b4efd62-7c05-43af-a7c0-ae45014a8b34
+NServiceBus.ConversationId = 38d74ac8-ffb3-48d7-ad7e-ae45014c8183
+NServiceBus.CorrelationId = 26dc41f2-cb57-4067-8cd1-ae45014c8182
 NServiceBus.EnclosedMessageTypes = Core7.Headers.Writers.MyNamespace.MessageToSend, MyAssembly, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.ExceptionInfo.Data.Handler failure time = 2022-02-23 20:03:28:700652 Z
-NServiceBus.ExceptionInfo.Data.Handler start time = 2022-02-23 20:03:28:700652 Z
+NServiceBus.ExceptionInfo.Data.Handler failure time = 2022-02-23 20:10:37:187201 Z
+NServiceBus.ExceptionInfo.Data.Handler start time = 2022-02-23 20:10:37:187201 Z
 NServiceBus.ExceptionInfo.Data.Handler type = Core7.Headers.Writers.MyNamespace.MessageHandler
-NServiceBus.ExceptionInfo.Data.Message ID = 7b4efd62-7c05-43af-a7c0-ae45014a8b34
+NServiceBus.ExceptionInfo.Data.Message ID = 26dc41f2-cb57-4067-8cd1-ae45014c8182
 NServiceBus.ExceptionInfo.Data.Message type = Core7.Headers.Writers.MyNamespace.MessageToSend
-NServiceBus.ExceptionInfo.Data.Transport message ID = df6d5495-f9fb-4003-9343-d84527936c0e
+NServiceBus.ExceptionInfo.Data.Transport message ID = ea7919bb-2707-443a-8811-5c5a52a41725
 NServiceBus.ExceptionInfo.ExceptionType = System.Exception
 NServiceBus.ExceptionInfo.HelpLink = 
 NServiceBus.ExceptionInfo.Message = The exception message from the handler.
@@ -31,14 +31,14 @@ NServiceBus.ExceptionInfo.StackTrace = System.Exception: The exception message f
       at NServiceBus.TransportReceiver.<InvokePipeline>d__5.MoveNext()
       at NServiceBus.LearningTransportMessagePump.<ProcessFile>d__10.MoveNext()
 NServiceBus.FailedQ = HeaderWriterErrorV7
-NServiceBus.MessageId = 7b4efd62-7c05-43af-a7c0-ae45014a8b34
+NServiceBus.MessageId = 26dc41f2-cb57-4067-8cd1-ae45014c8182
 NServiceBus.MessageIntent = Send
 NServiceBus.OriginatingEndpoint = HeaderWriterErrorV7
 NServiceBus.OriginatingMachine = MACHINENAME
 NServiceBus.ProcessingEndpoint = HeaderWriterErrorV7
 NServiceBus.ProcessingMachine = MACHINENAME
 NServiceBus.ReplyToAddress = HeaderWriterErrorV7
-NServiceBus.TimeOfFailure = 2022-02-23 20:03:28:704651 Z
-NServiceBus.TimeSent = 2022-02-23 20:03:28:383661 Z
+NServiceBus.TimeOfFailure = 2022-02-23 20:10:37:191197 Z
+NServiceBus.TimeSent = 2022-02-23 20:10:37:017922 Z
 NServiceBus.Version = 7.7.0
 endcode
