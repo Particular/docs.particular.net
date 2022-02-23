@@ -4,7 +4,7 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-alpha.144" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-alpha.153" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>
