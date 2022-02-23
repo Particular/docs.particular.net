@@ -8,6 +8,6 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Callbacks" Version="4.0.0-alpha.129" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="4.0.0-alpha.130" />
   </ItemGroup>
 </Project>

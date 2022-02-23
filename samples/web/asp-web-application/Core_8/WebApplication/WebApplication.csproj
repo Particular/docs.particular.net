@@ -7,7 +7,7 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-alpha.144" />
-    <PackageReference Include="NServiceBus.Callbacks" Version="4.0.0-alpha.129" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-alpha.153" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="4.0.0-alpha.130" />
   </ItemGroup>
 </Project>
