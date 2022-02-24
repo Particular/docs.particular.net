@@ -21,6 +21,8 @@ The NServiceBus **outbox** feature ensures consistency between business data and
 
 Note: Messages dispatched to the transport as part of the Outbox dispatch stage will not be batched and each message is sent in isolation.
 
+Note: Messages sent with [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) will be sent immidiately and won't be handled by the outbox.
+
 ## The consistency problem
 
 Consider a message handler that creates a `User` in the business database, and also publishes a `UserCreated` event. If a failure occurs during the execution of the message handler, two scenarios may occur, depending on the order of operations.
