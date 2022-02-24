@@ -56,7 +56,7 @@ In the Sales project, create a new class called `BuyersRemorsePolicy` and add th
 
 snippet: EmptyBuyersRemorsePolicy
 
-The policy inherits from `Saga<BuyersRemoteState>` which references the `ContainSagaData` class.
+The policy inherits from `Saga<BuyersRemorseeState>` which references the `ContainSagaData` class.
 
 The ClientUI already sends a `PlaceOrder` command to the Sales endpoint. This command is perfect to start the buyer's remorse saga. Let's make the saga implement the `IAmStartedByMessages<PlaceOrder>` interface:
 
