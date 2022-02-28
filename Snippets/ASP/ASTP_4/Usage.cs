@@ -1,6 +1,5 @@
 using System;
 using System.Globalization;
-using System.IO;
 using Microsoft.Azure.Cosmos.Table;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;

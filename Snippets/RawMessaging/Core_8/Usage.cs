@@ -27,7 +27,7 @@ public class Usage
             {
                 new ReceiveSettings(
                     id: "Primary",
-                    receiveAddress: "MyQueue",
+                    receiveAddress: new QueueAddress("MyQueue"),
                     usePublishSubscribe: false,
                     purgeOnStartup: false,
                     errorQueue: "error")
@@ -88,7 +88,7 @@ public class Usage
         throw new NotImplementedException();
     }
 
-    static string Deserialize(byte[] body)
+    static string Deserialize(ReadOnlyMemory<byte> body)
     {
         throw new NotImplementedException();
     }
