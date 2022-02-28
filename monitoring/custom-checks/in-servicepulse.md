@@ -1,7 +1,7 @@
 ---
 title: Managing custom checks in ServicePulse
 summary: Describes how ServicePulse monitors custom check activity
-reviewed: 2019-10-28
+reviewed: 2022-02-28
 redirects:
   - servicepulse/intro-endpoints-custom-checks
 ---
@@ -18,15 +18,14 @@ Click this icon to go to the custom checks details page. This page shows a list 
 
 Each custom check includes information about the endpoint instance that reported the status and how long ago the status was updated.
 
-
 ## Muting custom checks
 
 When a custom check fails, it will continue to make the main Custom Checks badge on the dashboard red until the custom check reports success.
 
 Sometimes a custom check reports an error that is easily solved. The status of the custom check will not be updated in ServicePulse until the custom check is executed again.
 
-If it is a one-off custom check, then the endpoint hosting it will need to be restarted to execute the custom check again. If it is a periodic custom check, then it will be automatically executed again after it's scheduled period.
+If it is a one-off custom check, then the endpoint hosting it will need to be restarted to execute the custom check again. If it is a periodic custom check, then it will be automatically executed again after the scheduled period.
 
-Rather than wait for the failing custom check to be executed again to update its status, it can be muted. Muted custom checks are removed from ServicePulse and will not contribute to the main custom checks dashboard badge.
+Rather than waiting for the failing custom check to be executed again to update its status, it can be muted. Muted custom checks are removed from ServicePulse and will not contribute to the main custom checks dashboard badge.
 
 Whenever a muted custom check is executed and reports its status to ServiceControl, it is automatically un-muted.
