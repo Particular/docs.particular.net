@@ -20,4 +20,4 @@ WARNING: The multi-instance option is deprecated and has been removed in Version
 
 include: deployment-options-multi-instance
 
-In Versions 3.1.x SQL Server Transport does not support the multi-catalog mode explicitly. This mode can be simulated by configuring all connections to refer to a single instance of SQL Server but with different `initial catalog` query string property.
+In Versions 3.1.x SQL Server Transport does not support the multi-catalog mode explicitly. This mode can be simulated by configuring all connections to refer to a single instance of SQL Server with different `initial catalog` query string properties.

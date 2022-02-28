@@ -1,6 +1,6 @@
 ---
 title: Deployment options
-reviewed: 2019-10-24
+reviewed: 2022-02-28
 component: SqlTransport
 related:
  - nservicebus/operations
