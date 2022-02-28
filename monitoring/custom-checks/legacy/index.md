@@ -1,7 +1,7 @@
 ---
 title: CustomChecks Plugin
 summary: Define a custom set of conditions that are checked on the endpoint.
-reviewed: 2019-10-28
+reviewed: 2022-02-28
 component: CustomChecks
 versions: 'CustomChecks3:*;CustomChecks4:*;CustomChecks5:*;CustomChecks6:*'
 related:
@@ -20,7 +20,6 @@ For example, custom checks can include checking that a third-party service provi
 
 There are two types of custom checks: custom checks, and period checks.
 
-
 ### Custom check
 
 A custom check is executed once when the endpoint host starts. NServiceBus assembly scanning mechanism detects a class inheriting from `CustomCheck` and creates an instance of that class. The check should happen in the constructor for NServiceBus Version 5 and the result needs to be communicated back using either `ReportPass` or `ReportFailed` methods. For NServiceBus Version 6 the check should happen in the `PerformCheck` method and the result needs to be communicated back using either `CheckResult.Pass` or `CheckResult.Failed` methods.
@@ -29,15 +28,13 @@ NOTE: Only the instance of a custom check which has been created by the NService
 
 snippet: CustomCheck
 
-
 ### Periodic check
 
 A periodic check is executed at defined intervals. The check happens not in the constructor but in a dedicated `PerformCheck` method which returns the check result.
 
 snippet: PeriodicCheck
 
-NOTE: For NServiceBus Version 6 the `PeriodicCheck` class has been deprecated. Inherit from `CustomCheck` and provided a `TimeSpan` to `repeatAfter` in the constructor of the `CustomCheck`.
-
+NOTE: Starting NServiceBus Version 6 the `PeriodicCheck` class has been deprecated. Inherit from `CustomCheck` and provided a `TimeSpan` to `repeatAfter` in the constructor of the `CustomCheck`.
 
 ### Results
 
