@@ -1,7 +1,7 @@
 ---
 title: Writing Custom Checks
 summary: Authoring one-off or periodic checks with the Custom Checks plugin
-reviewed: 2019-10-28
+reviewed: 2022-02-28
 component: CustomChecks
 versions: 'CustomChecks:*'
 ---
