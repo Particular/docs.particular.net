@@ -1,7 +1,7 @@
 ---
 title: Custom Checks notification events
 summary:
-reviewed: 2019-10-28
+reviewed: 2022-02-28
 component: CustomChecks
 versions: 'CustomChecks:*'
 ---
