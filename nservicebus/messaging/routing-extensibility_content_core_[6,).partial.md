@@ -3,7 +3,7 @@
 Routing a message involves the following steps:
 
 - Select the routing strategy based on the [message intent](/nservicebus/messaging/messages-events-commands.md)
-- Determine the specific properties for the selected routing strategy based on the message type e.g. as destination address in case of a Command/Unicast strategy
+- Determine the specific properties for the selected routing strategy based on the message type. e.g. as destination address in case of a command/[unicast](/transports/types.md#unicast-only-transports) strategy
 
 ### Command routing
 
@@ -13,7 +13,7 @@ snippet: RoutingExtensibility-RouteTableConfig
 
 Note: To access the `GetSettings()` method, include a `using` directive for the `NServiceBus.Configuration.AdvancedExtensibility` namespace.
 
-The route table can be modified in the feature set up phase or can be passed further e.g. to a `FeatureStartupTask` and updated periodically when the source of routing information changes.
+The route table can be modified in the feature set up phase or can be passed further, e.g. to a `FeatureStartupTask`, and updated periodically when the source of the routing information changes.
 
 snippet: RoutingExtensibility-StartupTaskRegistration
 
@@ -41,6 +41,6 @@ The publishers collection is thread-safe and all operations on that collection a
 
 ## Advanced routing customizations
 
-In case there's a need to adjust the routing based on anything else but the message type, the [routing pipeline stage](/nservicebus/pipeline/steps-stages-connectors.md#stages-outgoing-pipeline-stages) allows routing customization for all messages emitted by the endpoint.
+If there's a need to adjust the routing based on criteria other than the message type, the [routing pipeline stage](/nservicebus/pipeline/steps-stages-connectors.md#stages-outgoing-pipeline-stages) allows routing customization for all messages emitted by the endpoint.
 
 NOTE: Be aware that this intercepts **any** message that is dispatched, including messages that are not known NServiceBus message types, e.g. an audit message.
