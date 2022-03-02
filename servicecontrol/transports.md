@@ -41,7 +41,7 @@ In addition to the [connection string options of the transport](/transports/azur
 * `TopicName=<topic-bundle-name>` - Specifies [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
 * `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - Specifies delay between queue length refresh queries for the queue lenght monitoring. The default value is 500 ms.
 
-As of Version 4.21.8 the following options are available for specifying [Mangaged Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) to be used for authentication:
+As of Version 4.21.8 the following options can be used to enable [Mangaged Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) authentication:
 
 * Setting the connection string to a [fully qualified namespace](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusclient.fullyqualifiednamespace) (eg. `my-namespace.servicebus.windows.net`)
   * In this mode a [`DefaultAzureCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential) will be used.
