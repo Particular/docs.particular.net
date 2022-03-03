@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus" Version="7.7.0-alpha.3" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="6.*" />
     <PackageReference Include="RavenDB.Client" Version="4.*" />
   </ItemGroup>
