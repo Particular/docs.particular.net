@@ -15,7 +15,7 @@ NOTE: This is a working document; there is currently no timeline for the release
 * [Changes related to the pipeline](pipeline.md)
 * [Changes to framework requirements](/nservicebus/operations/dotnet-framework-version-requirements.md)
 
-This document focusses on changes that is affecting general endpoint configuration and message handlers.
+This document focuses on changes that are affecting general endpoint configuration and message handlers.
 
 ## Removed support for .NET Standard
 
