@@ -40,13 +40,11 @@ include: unicode-support
 
 Refer to the dedicated [Oracle documentation](https://docs.oracle.com/cd/B19306_01/server.102/b14225/ch2charset.htm) for details.
 
-
 ## Schema support
 
-The notion of schemas is slightly different than in other databases, notably SQL Server and PostgreSQL. By default, when schema is not specified, SQL persistence uses the context of the logged-in user when referring to database objects. When schema is specified, that schema is used instead of logged-in user when referring to database tables. 
+The notion of schemas is slightly different than in other databases, notably SQL Server and PostgreSQL. By default, when schema is not specified, SQL persistence uses the context of the logged-in user when referring to database objects. When a schema is specified, that schema is used instead of the logged-in user when referring to database tables.
 
 snippet: OracleSchema
-
 
 ## Supported name lengths
 
