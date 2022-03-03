@@ -12,10 +12,9 @@ public class CandidateVotesSaga :
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CandidateVoteData> mapper)
     {
-        mapper.ConfigureMapping<VotePlaced>(m => m.Candidate)
-            .ToSaga(s => s.Candidate);
-        mapper.ConfigureMapping<CloseElection>(m => m.Candidate)
-            .ToSaga(s => s.Candidate);
+        mapper.MapSaga(s => s.Candidate)
+            .ToMessage<VotePlaced>(m => m.Candidate)
+            .ToMessage<CloseElection>(m => m.Candidate);
     }
 
     public Task Handle(VotePlaced message, IMessageHandlerContext context)

@@ -1,15 +1,11 @@
 ﻿namespace Core7.Sagas.Timeouts
 {
-    using System;
     using NServiceBus;
+    using System;
 
     public class MySagaData :
-        IContainSagaData
+        ContainSagaData
     {
-        public Guid Id { get; set; }
-        public string Originator { get; set; }
-        public string OriginalMessageId { get; set; }
-
         public string SomeId { get; set; }
 
         public bool Message2Arrived { get; set; }

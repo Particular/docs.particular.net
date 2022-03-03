@@ -1,12 +1,12 @@
 ﻿namespace Core7.Headers.Writers
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Common;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     [TestFixture]
     public class HeaderWriterSaga
@@ -26,7 +26,7 @@
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
-            await endpointInstance.SendLocal(new StartSaga1Message{ Guid = Guid.NewGuid() })
+            await endpointInstance.SendLocal(new StartSaga1Message { Guid = Guid.NewGuid() })
                 .ConfigureAwait(false);
             CountdownEvent.Wait();
         }
@@ -51,16 +51,13 @@
         {
             public Task Handle(StartSaga1Message message, IMessageHandlerContext context)
             {
-                return context.SendLocal(new SendFromSagaMessage{Guid = Guid.NewGuid()});
+                return context.SendLocal(new SendFromSagaMessage { Guid = Guid.NewGuid() });
             }
 
             public class SagaData :
-                IContainSagaData
+                ContainSagaData
             {
-                public Guid Id { get; set; }
                 public Guid Guid { get; set; }
-                public string Originator { get; set; }
-                public string OriginalMessageId { get; set; }
             }
 
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
@@ -99,12 +96,9 @@
             }
 
             public class SagaData :
-                IContainSagaData
+                ContainSagaData
             {
-                public Guid Id { get; set; }
                 public Guid Guid { get; set; }
-                public string Originator { get; set; }
-                public string OriginalMessageId { get; set; }
             }
 
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)

@@ -16,8 +16,9 @@
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
         {
-            mapper.ConfigureMapping<PlaceOrder>(message => message.OrderId).ToSaga(saga => saga.OrderId);
-            mapper.ConfigureMapping<CancelOrder>(message => message.OrderId).ToSaga(saga => saga.OrderId);
+            mapper.MapSaga(saga => saga.OrderId)
+                .ToMessage<PlaceOrder>(message => message.OrderId)
+                .ToMessage<CancelOrder>(message => message.OrderId);
         }
 
         public async Task Handle(PlaceOrder message, IMessageHandlerContext context)

@@ -19,6 +19,7 @@
         public bool IsOrderBilled { get; set; }
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("NServiceBus.Sagas", "NSB0006:Message that starts the saga does not have a message mapping", Justification = "<Pending>")]
     public class ShippingPolicy : Saga<ShippingPolicyData>,
             IAmStartedByMessages<OrderPlaced>,
             IAmStartedByMessages<OrderBilled>

@@ -23,7 +23,8 @@ namespace Creation
         #region Creation-ConfigureHowToFindSaga
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderData> mapper)
         {
-            mapper.ConfigureMapping<ShipOrder>(message => message.OrderId).ToSaga(saga => saga.OrderId);
+            mapper.MapSaga(saga => saga.OrderId)
+                .ToMessage<ShipOrder>(message => message.OrderId);
         }
         #endregion
     }

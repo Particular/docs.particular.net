@@ -1,4 +1,6 @@
-﻿namespace Core_7.BuyersRemorsePolicyStartedByPlaceOrder
+﻿#pragma warning disable NSB0006 // Message that starts the saga does not have a message mapping
+
+namespace Core_7.BuyersRemorsePolicyStartedByPlaceOrder
 {
     using NServiceBus;
     using NServiceBus.Logging;
@@ -38,3 +40,5 @@
         public string OrderId { get; set; }
     }
 }
+
+#pragma warning restore NSB0006 // Message that starts the saga does not have a message mapping

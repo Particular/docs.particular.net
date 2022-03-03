@@ -1,7 +1,9 @@
-﻿namespace Core7.Sagas.SimpleSaga
+﻿#pragma warning disable NSB0004 // Saga mapping expressions can be simplified - Not available until NServiceBus 7.4
+
+namespace Core7.Sagas.SimpleSaga
 {
-    using System.Threading.Tasks;
     using NServiceBus;
+    using System.Threading.Tasks;
 
     #region simple-saga
 
@@ -35,3 +37,4 @@
     #endregion
 
 }
+#pragma warning restore NSB0004 // Saga mapping expressions can be simplified

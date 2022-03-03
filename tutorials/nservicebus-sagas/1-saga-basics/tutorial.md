@@ -123,7 +123,7 @@ snippet: ShippingPolicyStartedBy1Message
 
 _**Not so fast!**_
 
-In message-driven systems, there's generally no way to guarantee message ordering. This is very different than when using the HTTP-based method invocation. In traditional synchronous systems we'd expect that messages are received in the same order as they are sent, i.e. `OrderPlaced` should be received by Shipping before `OrderBilled`. 
+In message-driven systems, there's generally no way to guarantee message ordering. This is very different than when using the HTTP-based method invocation. In traditional synchronous systems we'd expect that messages are received in the same order as they are sent, i.e. `OrderPlaced` should be received by Shipping before `OrderBilled`.
 
 What happens if we're processing multiple messages in parallel? By sheer dumb luck, it's possible that `OrderBilled` may arrive first! If it happens that `OrderBilled` arrives first, it would be discarded, assumed to belong to an already-finished saga. Then, `OrderPlaced` would arrive and start a new saga instance, but its partner message would never arrive.
 
@@ -149,11 +149,11 @@ The first thing we need to do is extend the `ShippingPolicyData` class to keep t
 
 snippet: ExtendedShippingPolicyData
 
-We define a mapping between an incoming message and saga data in the `ConfigureMapping` method using the `mapper` parameter, using an expression like this:
+We define a mapping between an incoming message and saga data in the `ConfigureHowToFindSaga` method using the `mapper` parameter, using an expression like this:
 
 snippet: ConfigureHowToFindSagaSampleAPI
 
-The first expression `message => message.MessagePropertyName` allows NServiceBus to inspect a message and pull out a property value, the value of `MessagePropertyName`. The second expression `.ToSaga(sagaData => sagaData.SagaPropertyName)` allows NServiceBus to create (in relational database terms) a query similar to the following:
+The first expression `mapper.MapSaga(sagaData => sagaData.SagaPropertyName)` allows NServiceBus to identify the property name on the saga data that acts like a unique index. The second expression `.ToMessage<MyMessageType>(message => message.MessagePropertyName)` allows NServiceBus to inspect a message and pull out a property value. Together, the two expressions allow NServiceBus to create (in relational database terms) a query similar to the following:
 
 ```sql
 select * from SagaDataTable
@@ -165,8 +165,6 @@ In our case, we can use `OrderId` as our **correlation id**. Let's update our `C
 snippet: ShippingPolicyFinalMappings
 
 {{NOTE:
-In the `ToSaga` expression, it's required that every mapped message maps to the same saga data property. In other words, it's not valid to have one message type map to `sagaData.PropertyA` and another message type map to `sagaData.PropertyB`.
-
 Unlike the example here, the same property name doesn't have to be used on the message mapping expression, but it certainly makes everything easier if they all match. It is fairly common, especially when integrating events from different teams, to have different message property names that describe the same fundamental concept.
 }}
 

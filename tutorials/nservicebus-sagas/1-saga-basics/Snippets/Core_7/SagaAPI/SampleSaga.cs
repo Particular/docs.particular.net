@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace Core_7.SagaAPI
 {
-    class SampleSaga : Saga<SampleSagaData>, IHandleMessages<TMessageType>
+    class SampleSaga : Saga<SampleSagaData>, IHandleMessages<MyMessageType>
     {
-        public Task Handle(TMessageType message, IMessageHandlerContext context)
+        public Task Handle(MyMessageType message, IMessageHandlerContext context)
         {
             throw new System.NotImplementedException();
         }
@@ -13,19 +13,19 @@ namespace Core_7.SagaAPI
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SampleSagaData> mapper)
         {
             #region ConfigureHowToFindSagaSampleAPI
-            mapper.ConfigureMapping<TMessageType>(message => message.MessagePropertyName)
-                .ToSaga(sagaData => sagaData.SagaPropertyName);
+            mapper.MapSaga(sagaData => sagaData.SagaPropertyName)
+                .ToMessage<MyMessageType>(message => message.MessagePropertyName);
             #endregion
         }
     }
 
     class SampleSagaData : ContainSagaData
     {
-        public object SagaPropertyName { get; set; }
+        public string SagaPropertyName { get; set; }
     }
 
-    class TMessageType
+    class MyMessageType
     {
-        public object MessagePropertyName { get; set; }
+        public string MessagePropertyName { get; set; }
     }
 }

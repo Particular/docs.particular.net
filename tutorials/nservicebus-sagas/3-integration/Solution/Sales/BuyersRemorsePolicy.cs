@@ -16,8 +16,9 @@ namespace Core_7.BuyersRemorseTimeoutRequest
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
         {
-            mapper.ConfigureMapping<PlaceOrder>(message => message.OrderId).ToSaga(saga => saga.OrderId);
-            mapper.ConfigureMapping<CancelOrder>(message => message.OrderId).ToSaga(saga => saga.OrderId);
+            mapper.MapSaga(saga => saga.OrderId)
+                .ToMessage<PlaceOrder>(message => message.OrderId)
+                .ToMessage<CancelOrder>(message => message.OrderId);
         }
 
         public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
@@ -60,7 +61,7 @@ namespace Core_7.BuyersRemorseTimeoutRequest
     {
     }
 
-    public class BuyersRemorseState : 
+    public class BuyersRemorseState :
         ContainSagaData
     {
         public string CustomerId { get; set; }

@@ -55,7 +55,8 @@ namespace EdgeCases
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderData> mapper)
         {
-            mapper.ConfigureMapping<ShipOrder>(message => message.OrderId).ToSaga(saga => saga.OrderId);
+            mapper.MapSaga(saga => saga.OrderId)
+                .ToMessage<ShipOrder>(message => message.OrderId);
         }
 
         internal class ShippingEscalation
