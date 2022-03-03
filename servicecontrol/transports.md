@@ -39,7 +39,7 @@ In addition to the [connection string options of the transport](/transports/azur
 
 * `TransportType=AmqpWebSockets` - Configures the transport to use [AMQP over websockets](/transports/azure-service-bus/configuration.md#connectivity).
 * `TopicName=<topic-bundle-name>` - Specifies [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
-* `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - Specifies delay between queue length refresh queries for the queue lenght monitoring. The default value is 500 ms.
+* `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - Specifies delay between queue length refresh queries for the queue length monitoring. The default value is 500 ms.
 
 As of Version 4.21.8 the following options can be used to enable [Mangaged Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) authentication:
 
@@ -49,7 +49,7 @@ As of Version 4.21.8 the following options can be used to enable [Mangaged Ident
 * Specifying the connection string option `Authentication=Managed Identity`
   * The fully qualified namespace will be parsed from the `Endpoint=sb://my-namespace.servicebus.windows.net/` connection string option
   * In this mode a [`ManagedIdentityCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) will be used.
-  * Use the  `ClientId=some-client-id` connectionstring option to use a specific [user assigned identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types) 
+  * Set the  `ClientId=some-client-id` connectionstring option to use a specific [user assigned identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types) 
 
 #### SQL
 
