@@ -270,7 +270,7 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.5.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.5.0) | 2022-02-01     | -                 | -                                 |
+| [6.5.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.5.1) | 2022-02-01     | -                 | -                                 |
 | [6.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.4.0) | 2022-01-27     | 2022-05-01        | Superseded by 6.5.x               |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.3.0) | 2022-01-07     | 2022-04-27        | Superseded by 6.4.x               |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.2.1) | 2021-03-25     | 2022-04-07        | Superseded by 6.3.x               |

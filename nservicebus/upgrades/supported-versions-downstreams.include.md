@@ -109,7 +109,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.5.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.5.0) | 2022-02-01     | -                 | -                                 |
+| [6.5.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.5.1) | 2022-02-01     | -                 | -                                 |
 | [6.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.4.0) | 2022-01-27     | 2022-05-01        | Superseded by 6.5.x               |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.3.0) | 2022-01-07     | 2022-04-27        | Superseded by 6.4.x               |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.2.1) | 2021-03-25     | 2022-04-07        | Superseded by 6.3.x               |
@@ -440,7 +440,6 @@
 | [~~1.28.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.28.0) | ~~2021-07-16~~ | ~~2021-11-03~~    | ~~Superseded by 1.29.x~~          |
 | [~~1.27.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.27.0) | ~~2021-06-22~~ | ~~2021-10-16~~    | ~~Superseded by 1.28.x~~          |
 | [~~1.26.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.26.0) | ~~2021-06-03~~ | ~~2021-09-22~~    | ~~Superseded by 1.27.x~~          |
-| [~~1.25.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.25.0) | ~~2021-05-07~~ | ~~2021-09-03~~    | ~~Superseded by 1.26.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
