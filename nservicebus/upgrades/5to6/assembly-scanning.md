@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
 
 ## Nested directories not scanned by default
 
-The default behavior of version 6 is to not scan nested directories for assemblies. This behavior can be re-enabled using the [assembly scanning API](/nservicebus/hosting/assembly-scanning.md#nested-directories).
+The default behavior of version 6 is to not scan nested directories for assemblies. This behavior can be re-enabled using the [assembly scanning API](/nservicebus/hosting/assembly-scanning.md#assembly-files-nested-directories).
 
 
 ## Scanning uses an "exclude" approach
