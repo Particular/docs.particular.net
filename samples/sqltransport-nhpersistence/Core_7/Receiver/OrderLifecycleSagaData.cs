@@ -1,11 +1,8 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using System;
 
 public class OrderLifecycleSagaData :
-    IContainSagaData
+    ContainSagaData
 {
     public virtual Guid OrderId { get; set; }
-    public virtual Guid Id { get; set; }
-    public virtual string Originator { get; set; }
-    public virtual string OriginalMessageId { get; set; }
 }
