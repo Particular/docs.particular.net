@@ -1,12 +1,13 @@
-using System;
-using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
+using System;
+using System.Threading.Tasks;
 
 class Program
 {
     static ILog log = LogManager.GetLogger<Program>();
 
+    [Obsolete]
     static async Task Main()
     {
         Console.Title = "Samples.Scheduling";

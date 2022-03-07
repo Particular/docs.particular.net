@@ -1,10 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Logging;
 using Store.Messages.Commands;
 using Store.Messages.Events;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 public class ProcessOrderSaga :
     Saga<ProcessOrderSaga.OrderData>,
@@ -70,10 +70,9 @@ public class ProcessOrderSaga :
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderData> mapper)
     {
-        mapper.ConfigureMapping<SubmitOrder>(message => message.OrderNumber)
-            .ToSaga(sagaData => sagaData.OrderNumber);
-        mapper.ConfigureMapping<CancelOrder>(message => message.OrderNumber)
-            .ToSaga(sagaData => sagaData.OrderNumber);
+        mapper.MapSaga(saga => saga.OrderNumber)
+            .ToMessage<SubmitOrder>(message => message.OrderNumber)
+            .ToMessage<CancelOrder>(message => message.OrderNumber);
     }
 
     public class OrderData :

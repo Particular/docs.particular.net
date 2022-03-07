@@ -1,11 +1,11 @@
 ﻿//#define MIGRATION
 
-using System;
-using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
+using System;
+using System.Threading.Tasks;
 
-    #region Header
+#region Header
 public class TestSaga :
         Saga<TestSaga.TestSagaData>,
         IHandleMessages<ReplyFollowUpMessage>,
@@ -17,7 +17,7 @@ public class TestSaga :
 #else
         IAmStartedByMessages<StartingMessage>
 #endif
-    #endregion
+#endregion
 {
 #if MIGRATION
     //Required to satisfy NServiceBus validation
@@ -32,15 +32,13 @@ public class TestSaga :
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<TestSagaData> mapper)
     {
         #region Mappings
-        mapper.ConfigureMapping<StartingMessage>(m => m.SomeId)
-            .ToSaga(s => s.SomeId);
-        mapper.ConfigureMapping<CorrelatedMessage>(m => m.SomeId)
-            .ToSaga(s => s.SomeId);
-
+        mapper.MapSaga(s => s.SomeId)
+            .ToMessage<StartingMessage>(m => m.SomeId)
+            .ToMessage<CorrelatedMessage>(m => m.SomeId)
 #if MIGRATION
-        mapper.ConfigureMapping<DummyMessage>(m => m.SomeId)
-            .ToSaga(s => s.SomeId);
+            .ToMessage<DummyMessage>(m => m.SomeId)
 #endif
+            ;
         #endregion
     }
 
