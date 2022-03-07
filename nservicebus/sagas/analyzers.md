@@ -20,8 +20,8 @@ See [message correlation](/nservicebus/sagas/message-correlation.md) for details
 
 ## Saga mapping expressions can be simplified
 
-* **Rule ID**: NSB0004
-* **Severity**: Warning
+* **Rule ID**: NSB0004, NSB0018
+* **Severity**: Warning (NSB0004), Info (NSB0018)
 * **Example message**: The saga mapping contains multiple .ToSaga(…) expressions which can be simplified using mapper.MapSaga(…).ToMessage<T>(…) syntax.
 
 The original NServiceBus saga mapping API required repeating the `.ToSaga(…)` expressions for each call to `.ConfigureMapping(…)`.
@@ -35,6 +35,8 @@ The analyzer will also offer a code fix that will automatically rewrite the code
 snippet: SagaAnalyzerSimplifiedMapping
 
 The simplified syntax removes duplication and reduces confusion since the `.ToSaga(…)` mappings in the old syntax must match in order to be valid.
+
+The diagnostics NSB0004 and NSB0018 are the same, but with different severity in different contexts. When only one mapping expression exists, there is no duplication, so NSB0018 is presented at level Info. When two or more mapping expressions exist, duplication is now present, so NSB0004 is presented as a Warning.
 
 ## Saga can only define a single correlation property on the saga data
 
@@ -118,7 +120,11 @@ Prior to NServiceBus version 7.7, this check was a runtime error. In NServiceBus
 * **Severity**: Warning
 * **Example message**: It's easier to inherit the class ContainSagaData, which contains all the necessary properties to implement IContainSagaData, than to implement IContainSagaData directly.
 
-remarks
+The generic class constraints on `Saga<TSagaData>` require the saga data class to implement the `IContainSagaData` interface, which specifies properties required by the saga infrastructure. However, it is much easier to directly inherit `ContainSagaData`, which already specifies these properties.
+
+A benefit to inheriting the `ContainSagaData` class is that in NServiceBus version 7 and above the implemented properties are decorated with `[EditorBrowsable(EditorBrowsableState.Never)]`, which means that those properties that are _only_ needed by the saga infrastructure will not appear in IntelliSense. This makes it less likely that one of these reserved properties will be used accidentally.
+
+One exception comes when [using NHibernate's `[RowVersion]` attribute to control optimistic concurrency ](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version). This attribute is not compatible with derived classes, so in this case the saga data class must implement `IContainSagaData` directly. In this case the `NSB0012` diagnostic can be suppressed to remove the warning.
 
 ## Reply in Saga should be ReplyToOriginator
 
@@ -126,7 +132,11 @@ remarks
 * **Severity**: Info
 * **Example message**: In a Saga, context.Reply() will reply to the sender of the immediate message, which isn't common. To reply to the message that started the saga, use the saga's ReplyToOriginator() method.
 
-remarks
+Using `context.Reply(…)` in a message handler is fairly common, but it is less common (and can be confusing) when used in a saga.
+
+Calling `.Reply(…)` always replies to the immediate message. Imagine a saga is started by `Msg1`, which sends `DoSomething` to an external handler, and that handler replies with a `DoSomethingResponse`. If the saga calls `context.Reply(…)` within the handler for `DoSomethingResponse`, the reply will be sent to the handler that processed `DoSomething`.
+
+More often, a reply in a saga should instead use `.ReplyToOriginator(…)`. In the example above, this will go to the endpoint that originally sent the `Msg1` to start the saga, which is most often the desired effect when used in a saga.
 
 ## Saga should not have intermediate base class
 
@@ -134,7 +144,9 @@ remarks
 * **Severity**: Warning
 * **Example message**: A saga should not have an intermediate base class and should inherit directly from NServiceBus.Saga<TSagaData>.
 
-remarks
+Sagas should not use a base class (i.e. `MySaga : MyAbstractSaga<TSagaData>`) to provide shared functionality to multiple saga types. While this may work for sagas using [Learning Persistence](/persistence/learning/), some persistence libraries such as [SQL Persistence](/persistence/sql/) are unable to generate database scripts when sagas are constructed in this way.
+
+A better way to provide shared functionality to multiple saga types and reduce code duplication is to use [extension methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
 
 ## Saga should not implement IHandleSagaNotFound
 
@@ -142,7 +154,11 @@ remarks
 * **Severity**: Warning, Error starting in NServiceBus version 8
 * **Example message**: A saga should not implement IHandleSagaNotFound, as this catch-all handler will handle messages where *any* saga is not found. Implement IHandleSagaNotFound on a separate class instead.
 
-remarks
+A [saga not found handler](/nservicebus/sagas/saga-not-found.md) provides a way to deal with messages that are not allowed to start a saga but cannot find existing saga data.
+
+Saga not found handlers operate on all saga messages within an endpoint, no matter which saga the message was originally bound for. This makes it misleading to implement `IHandleSagaNotFound` on a saga because it creates the impression that it will only handle not found messages for that _specific_ saga, which is false.
+
+Instead, implement `IHandleSagaNotFound` on an independent class.
 
 ## Correlation property must match message mapping expression type
 
@@ -150,7 +166,13 @@ remarks
 * **Severity**: Error
 * **Example message**: When mapping a message to a saga, the member type on the message and the saga property must match. `MySagaData.CorrelationProperty` is of type `string` and `MyMessage.CorrelationProperty` is of type `int`.
 
-remarks
+When mapping incoming message properties to the saga's correlation property, these must be of the same type or they can't be compared.
+
+When the correlation value can be expressed in different ways, it's best to represent the saga's correlation id as a string. Individual message mapping expressions can format incoming values of other types into a string to match the saga's correlation value, such as this example where one message type contains the value as a `Guid`:
+
+snippet: SagaAnalyzerToMessageStringExpressions
+
+When using [nullable reference types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references), the nullability of the values also matters. A saga data class containing a nullable `string?` can accept a non-nullable `string` from a message, because the `string?` is more permissive than non-nullable `string`. However, the reverse is not true and will trigger the diagnostic.
 
 ## ToSaga mapping must point to a property
 
@@ -158,13 +180,16 @@ remarks
 * **Severity**: Error
 * **Example message**: Mapping expressions for saga members must point to properties.
 
-remarks
+The "to saga" expression argument of the `MapSaga(…)` or `ToSaga(…)` methods must point directly to a property. Mapping to a field or to an expression is not valid.
 
-## Saga mapping expressions can be simplified
+Mapping directly to a property is **valid**:
 
-* **Rule ID**: NSB0018
-* **Severity**: Info
-* **Example message**: This saga mapping expression can be rewritten using mapper.MapSaga(…).ToMessage<T>(…) syntax which avoids duplicate .ToSaga(…) expressions.
+snippet: SagaAnalyzerToSagaPropertyOk
 
-remarks
+Mapping to a field or an arbitrary expression is **invalid**:
 
+snippet: SagaAnalyzerToSagaFieldNotOk
+
+Mapping to an arbitrary expression is also **invalid**:
+
+snippet: SagaAnalyzerToSagaExpressionNotOk
