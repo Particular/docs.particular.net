@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Logging;
+using System;
+using System.Threading.Tasks;
 
 #region replySaga1
 
@@ -16,8 +16,9 @@ namespace MyNamespace1
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
-            mapper.ConfigureMapping<StartReplySaga>(msg => msg.TheId).ToSaga(saga => saga.TheId);
-            mapper.ConfigureMapping<Reply>(msg => msg.TheId).ToSaga(saga => saga.TheId);
+            mapper.MapSaga(saga => saga.TheId)
+                .ToMessage<StartReplySaga>(msg => msg.TheId)
+                .ToMessage<Reply>(msg => msg.TheId);
         }
 
         public Task Handle(StartReplySaga message, IMessageHandlerContext context)
