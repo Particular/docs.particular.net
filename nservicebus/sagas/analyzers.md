@@ -86,7 +86,7 @@ When sagas request timeouts, the delayed message is stamped with a header that i
 
 The `Id` property of a saga (defined by the required `IContainSagaData` interface) is reserved for use by the saga. It cannot be used as a correlation id by mapping to it in the `ConfigureHowToFindSaga()` method.
 
-In addition, some saga persistence libraries, such as [SQL Persistence](/persistence/sql/), store the saga's `Id` value in a column, and the column names are commonly case-insenstiive. This means that other casings of `Id` (`ID`, `id`, or even `iD`) are also not allowed.
+In addition, some saga persistence libraries, such as [SQL Persistence](/persistence/sql/), store the saga's `Id` value in a column, and the column names are commonly case-insensitive. This means that other casings of `Id` (`ID`, `id`, or even `iD`) are also not allowed.
 
 ## Message types should not be used as saga data properties
 
@@ -96,7 +96,7 @@ In addition, some saga persistence libraries, such as [SQL Persistence](/persist
 
 When a saga receives a message, it can be convenient and even tempting to insert the whole thing into the saga data.
 
-However, this creates unintended couling between the saga data and the message contract.
+However, this creates unintended coupling between the saga data and the message contract.
 
 The saga data class is wholly owned and managed by the saga, and represents the internal stored state of that saga. It must be able to be stored to disk and reloaded perhaps minutes, hours, or even days/years later. It must be durable.
 
@@ -124,7 +124,7 @@ The generic class constraints on `Saga<TSagaData>` require the saga data class t
 
 A benefit to inheriting the `ContainSagaData` class is that in NServiceBus version 7 and above the implemented properties are decorated with `[EditorBrowsable(EditorBrowsableState.Never)]`, which means that those properties that are _only_ needed by the saga infrastructure will not appear in IntelliSense. This makes it less likely that one of these reserved properties will be used accidentally.
 
-One exception comes when [using NHibernate's `[RowVersion]` attribute to control optimistic concurrency ](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version). This attribute is not compatible with derived classes, so in this case the saga data class must implement `IContainSagaData` directly. In this case the `NSB0012` diagnostic can be suppressed to remove the warning.
+One exception comes when [using NHibernate's `[RowVersion]` attribute to control optimistic concurrency](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version). This attribute is not compatible with derived classes, so in this case the saga data class must implement `IContainSagaData` directly. In this case the `NSB0012` diagnostic can be suppressed to remove the warning.
 
 ## Reply in Saga should be ReplyToOriginator
 
