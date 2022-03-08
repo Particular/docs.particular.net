@@ -487,16 +487,18 @@
         Title: Message Correlation
       - Url: nservicebus/sagas/timeouts
         Title: Timeouts
-      - Url: nservicebus/sagas/saga-finding
-        Title: Complex finding logic
       - Url: nservicebus/sagas/saga-not-found
         Title: Not Found
       - Url: nservicebus/sagas/concurrency
         Title: Concurrency
+      - Url: nservicebus/sagas/analyzers
+        Title: Roslyn analyzers
       - Url: nservicebus/sagas/reply-replytooriginator-differences
         Title: Reply and ReplyToOriginator differences
       - Url: nservicebus/sagas/saga-audit
         Title: Debugging sagas in ServiceInsight
+      - Url: nservicebus/sagas/saga-finding
+        Title: Complex finding logic
   - Url: nservicebus/testing
     Title: Testing
     Articles:
