@@ -81,7 +81,7 @@ Clicking the upgrade link will:
 
 ## Upgrade multiple majors
 
-A ServiceControl installation should be upgraded one major version at a time. Check the currently installed version of ServiceControl to look up the upgrade path in the table below. For each entry in the upgrade path, install the listed version and upgrade all ServiceControl instances to that version. Once all instances are upgraded and running, install the listed version in the next row until all instancen are upgraded to the latest version.
+A ServiceControl installation should be upgraded one major version at a time. Check the currently installed version of ServiceControl to look up the upgrade path in the table below. For each entry in the upgrade path, install the listed version and upgrade all ServiceControl instances to that version. Once all instances are upgraded and running, install the listed version in the next row until all instances are upgraded to the latest version.
 
 | Current Version | Upgrade Path                                       |
 |--------------------------------|------------------------------------------|
