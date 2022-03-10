@@ -361,7 +361,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Metrics/3.0.0) | 2018-05-29     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Metrics/3.1.0) | 2022-03-09     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Metrics/3.0.0) | 2018-05-29     | 2022-06-09        | Superseded by 3.1.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Metrics/2.0.0) | 2017-10-27     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Metrics.PerformanceCounters](/nuget/NServiceBus.Metrics.PerformanceCounters)
