@@ -14,31 +14,46 @@
         [Test]
         public async Task SampleSagaScenarioTest()
         {
+            // Create the testable saga
             var testableSaga = new TestableSaga<ShippingPolicy, ShippingPolicyData>();
+
+            // Create input messages
             var orderId = Guid.NewGuid().ToString().Substring(0, 8);
+            var orderPlaced = new OrderPlaced { OrderId = orderId };
+            var orderBilled = new OrderBilled { OrderId = orderId };
 
-            var placeResult = await testableSaga.Handle(new OrderPlaced { OrderId = orderId });
-            var billResult = await testableSaga.Handle(new OrderBilled { OrderId = orderId });
-
+            // Process OrderPlaced and make assertions on the result
+            var placeResult = await testableSaga.Handle(orderPlaced);
             Assert.That(placeResult.Completed, Is.False);
-            Assert.That(billResult.Completed, Is.False);
+            Assert.That(placeResult.FindPublishedMessage<OrderShipped>(), Is.Null);
+            Assert.That(placeResult.FindTimeoutMessage<ShippingDelay>(), Is.Null);
 
-            // Snapshots of data are still assertable even after multiple operations have occurred.
+            // Process OrderBilled and make assertions on the result
+            var billResult = await testableSaga.Handle(orderBilled);
+            Assert.That(billResult.Completed, Is.False);
+            Assert.That(billResult.FindPublishedMessage<OrderShipped>(), Is.Null);
+            Assert.That(billResult.FindTimeoutMessage<ShippingDelay>(), Is.Not.Null);
+
+            // Each result includes a snapshot of saga data after each message.
+            // Snapshots can be asserted even after multiple operations have occurred.
             Assert.That(placeResult.SagaDataSnapshot.OrderId, Is.EqualTo(orderId));
             Assert.That(placeResult.SagaDataSnapshot.Placed, Is.True);
             Assert.That(placeResult.SagaDataSnapshot.Billed, Is.False);
 
+            // Timeouts are stored and can be played by advancing time
             var noResults = await testableSaga.AdvanceTime(TimeSpan.FromMinutes(10));
+            // But that wasn't long enough
             Assert.That(noResults.Length, Is.EqualTo(0));
 
+            // Advance time more to get the timeout to fire
             var timeoutResults = await testableSaga.AdvanceTime(TimeSpan.FromHours(1));
-
             Assert.That(timeoutResults.Length, Is.EqualTo(1));
-
             var shipped = timeoutResults.First().FindPublishedMessage<OrderShipped>();
-            Assert.That(shipped.OrderId == "abc");
+            Assert.That(shipped.OrderId == orderId);
         }
         #endregion
+
+
 
         public class ShippingPolicy : NServiceBus.Saga<ShippingPolicyData>,
             IAmStartedByMessages<OrderPlaced>,

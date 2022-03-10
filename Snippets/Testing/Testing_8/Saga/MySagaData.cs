@@ -4,10 +4,8 @@ namespace Testing_8.Saga
     using NServiceBus;
 
     public class MySagaData :
-        IContainSagaData
+        ContainSagaData
     {
-        public Guid Id { get; set; }
-        public string Originator { get; set; }
-        public string OriginalMessageId { get; set; }
+        public string MyId { get; set; }
     }
 }

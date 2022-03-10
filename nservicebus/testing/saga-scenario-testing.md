@@ -3,7 +3,7 @@ title: Saga scenario testing
 summary: Develop service layers and long-running processes using test-driven development.
 reviewed: 2020-05-07
 component: Testing
-versions: '[7.4,8)'
+versions: '[7.4,)'
 related:
 ---
 
@@ -75,3 +75,42 @@ snippet: TestableSagaAdvanceTime
 If a custom `TestableMessageHandlerContext` is needed to process each timeout, an optional parameter allows creating them:
 
 snippet: TestableSagaAdvanceTimeParams
+
+## Simulating external handlers
+
+Many sagas will send commands to external handlers, which do some work and then send a reply message back to the saga so that the saga can move on to the next step of a multi-step process. These reply messages are [auto-correlated](/nservicebus/sagas/message-correlation.md#auto-correlation): the saga includes the saga ID as a message header in the outbound message, and the external handler returns that message when it does a reply.
+
+In a saga scenario test, the external handler's response can be simulated using the `SimulateReply` method:
+
+snippet: TestableSagaSimulateReply
+
+When the saga being tested sends a `DoStep1` command, the reply will be simulated using the provided `Func<TSagaMessage, TReplyMessage>` delegate. The resulting `Step1Response` message will be added to the testable saga's [internal queue](#queued-messages), including the header containing the saga's ID so that a `ConfigureHowToFindSaga` mapping is not required.
+
+Alternatively, a reply message can be handled directly without using a simulator, but then the `SagaId` value must be provided:
+
+snippet: TestableSagaHandleReply
+
+The `HandleReply` method also contains optional parameters for a custom `TestableMessageHandlerContext` or additional message headers:
+
+snippet: TestableSagaHandleReplyParams
+
+## Queued messages
+
+Any message generated of a type that is handled by the saga will be added to the testable saga's internal queue. This includes:
+
+* When a saga handler sends or publishes any message that the saga itself handles. This is commonly done within a saga to create a new transactional scope around a new message.
+* When using a [external handler simulator](#simulating-external-handlers), the resulting message is added to the queue.
+
+The testable saga has several methods available to evaluate what is in the queue, which can be used for test assertions
+
+snippet: TestableSagaQueueOperations
+
+The next message in the queue is handled by calling `HandleQueuedMessage()`:
+
+snippet: TestableSagaHandleQueuedMessage
+
+NOTE: Using `HandleQueuedMessage()` allows specific ordering of message processing in order to write tests related to specific ordering and race condition concerns. Whether or not a timeout or a reply message is handled first in a specific scenario is controlled by whether the test calls the `AdvanceTime()` or `HandleQueuedMessage()` method.
+
+## Additional examples
+
+For more examples of what is possible with saga scenario tests, see the [saga tests in the NServiceBus.Testing repository](https://github.com/Particular/NServiceBus.Testing/tree/master/src/NServiceBus.Testing.Tests/Sagas).

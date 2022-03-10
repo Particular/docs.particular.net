@@ -1,11 +1,11 @@
 ﻿namespace Testing_8.UpgradeGuides._7to8
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Testing;
     using NUnit.Framework;
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     [Explicit]
     #region 7to8-testsaga
@@ -39,12 +39,12 @@
 
             Assert.IsTrue(messageHandlerContext.TimeoutMessages.Any(x =>
                 x.Message is StartsSaga &&
-                x.Within == TimeSpan.FromDays(7)), 
+                x.Within == TimeSpan.FromDays(7)),
                 "The StartsSaga message should be deferred for 7 days"
             );
 
             Assert.IsTrue(messageHandlerContext.PublishedMessages.Any(x =>
-                x.Message is MyEvent), 
+                x.Message is MyEvent),
                 "MyEvent should be published"
             );
 
@@ -67,7 +67,7 @@
             var timeoutMessage = new StartsSaga();
             var timeoutHandlerContext = new TestableMessageHandlerContext();
             await saga.Timeout(timeoutMessage, timeoutHandlerContext);
-            
+
             // Assert
             Assert.IsTrue(timeoutHandlerContext.PublishedMessages.Any(x =>
                 x.Message is MyOtherEvent),
@@ -79,21 +79,26 @@
     }
     #endregion
 
-    class StartsSaga : IMessage {}
-    class MyResponse : IMessage {}
-    class MyEvent : IEvent {}
-    class MyCommand : ICommand {}
-    class MyOtherEvent : IEvent {}
+    class StartsSaga : IMessage
+    {
+        public string MyId { get; set; }
+    }
+    class MyResponse : IMessage { }
+    class MyEvent : IEvent { }
+    class MyCommand : ICommand { }
+    class MyOtherEvent : IEvent { }
 
     class MySaga : NServiceBus.Saga<MySaga.SagaData>, IAmStartedByMessages<StartsSaga>, IHandleTimeouts<StartsSaga>
     {
         internal class SagaData : ContainSagaData
         {
-
+            public string MyId { get; set; }
         }
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
+            mapper.MapSaga(saga => saga.MyId)
+                .ToMessage<StartsSaga>(msg => msg.MyId);
         }
 
         public async Task Handle(StartsSaga message, IMessageHandlerContext context)
