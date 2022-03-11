@@ -34,7 +34,7 @@ A periodic check is executed at defined intervals. The check happens not in the 
 
 snippet: PeriodicCheck
 
-NOTE: Starting NServiceBus Version 6 the `PeriodicCheck` class has been deprecated. Inherit from `CustomCheck` and provided a `TimeSpan` to `repeatAfter` in the constructor of the `CustomCheck`.
+NOTE: Starting with NServiceBus version 6, the `PeriodicCheck` class has been deprecated. Instead, inherit from `CustomCheck` and provided a `TimeSpan` to `repeatAfter` in the constructor of the `CustomCheck`.
 
 ### Results
 
