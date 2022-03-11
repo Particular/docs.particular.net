@@ -5,5 +5,6 @@ namespace Testing_8.Saga
     public class StartsSaga :
         ICommand
     {
+        public string MyId { get; set; }
     }
 }

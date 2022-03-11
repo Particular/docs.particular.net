@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
+using System.Threading.Tasks;
 
 #region SampleSaga
 public class DiscountPolicy :
@@ -42,6 +42,8 @@ public class DiscountPolicy :
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<DiscountPolicyData> mapper)
     {
+        mapper.MapSaga(saga => saga.CustomerId)
+            .ToMessage<SubmitOrder>(msg => msg.CustomerId);
     }
 }
 #endregion
