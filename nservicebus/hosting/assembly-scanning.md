@@ -14,7 +14,7 @@ There are some cases where finer control over which assemblies are loaded is req
 * To limit the number of assemblies being scanned and hence provide improvements to startup time.
 * If hosting multiple endpoints out of the same directory each endpoint may require a subset of assemblies to be loaded.
 
-NOTE: NServiceBus extensions such as `NServiceBus.RavenDB.dll` are not considered a core assembly but will still need to be included when customizing the assembly scanning.
+NOTE: NServiceBus extensions such as `NServiceBus.RavenDB.dll` are not considered a core assembly but still must be included when customizing the assembly scanning.
 
 partial: appdomain
 
@@ -24,7 +24,7 @@ By default all assemblies in the endpoint's `bin` directory are scanned in searc
 
 partial: additional-path
 
-### Nested Directories
+### Nested directories
 
 partial: nested
 
