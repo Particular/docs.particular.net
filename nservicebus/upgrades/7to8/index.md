@@ -329,7 +329,7 @@ To disable the implicit adding of the `NServiceBus` namespace while still keepin
 
 ## Analyzers and packages.config
 
-The Roslyn analyzers included with NServiceBus 8 no longer provide support for projects that use a `packages.config` file. To receive the benefit of Roslyn analyzers such as the [warning on an unawaited Task](https://docs.particular.net/nservicebus/operations/nservicebus-analyzer) or the [saga analyzers](https://docs.particular.net/nservicebus/sagas/analyzers), a project file must use `PackageReference` elements.
+The Roslyn analyzers included with NServiceBus 8 no longer provide support for projects that use a `packages.config` file. To receive the benefit of Roslyn analyzers such as the [warning on an unawaited Task](/nservicebus/operations/nservicebus-analyzer.md) or the [saga analyzers](/nservicebus/sagas/analyzers.md), a project file must use `PackageReference` elements.
 
 ## Saga analyzers
 
