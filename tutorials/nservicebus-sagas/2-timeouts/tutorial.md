@@ -14,7 +14,7 @@ Being able to model the concept of time as part of a long-running process is inc
 
 > For more on the difficulties associated with batch jobs, see [Death to the Batch Job](https://particular.net/blog/death-to-the-batch-job).
 
-![Do I REALLY want to buy this?](feature-image.png)
+![Do I REALLY want to buy this?](saga-tutorial-2-feature.png)
 
 NServiceBus not only has the ability to send and publish messages, but also to [delay messages](/nservicebus/messaging/delayed-delivery.md). Delayed delivery effectively provides the ability to *send messages into the future*, a feature that is used by [Saga Timeouts](/nservicebus/sagas/timeouts.md).
 
