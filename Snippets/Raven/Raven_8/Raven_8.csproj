@@ -4,6 +4,6 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.RavenDB" Version="8.0.0-alpha.484" />
+    <PackageReference Include="NServiceBus.RavenDB" Version="8.0.0-beta.1" />
   </ItemGroup>
 </Project>
