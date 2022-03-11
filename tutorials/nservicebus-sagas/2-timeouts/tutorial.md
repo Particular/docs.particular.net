@@ -3,7 +3,7 @@ title: "NServiceBus sagas: Timeouts"
 reviewed: 2022-03-11
 isLearningPath: true
 summary: "Implement the buyer's remorse pattern using NServiceBus, a common business case to cancel orders within a certain amount of time after the purchase."
-previewImage: feature-image.png
+previewImage: saga-tutorial-2-featurepng.png
 extensions:
 - !!tutorial
   nextText: "Next Lesson: Third-party integration"
