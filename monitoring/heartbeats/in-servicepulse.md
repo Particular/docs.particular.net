@@ -1,7 +1,7 @@
 ---
 title: Managing endpoint heartbeats in ServicePulse
 summary: Describes how ServicePulse monitors endpoints activity and availability using heartbeat messages
-reviewed: 2019-10-30
+reviewed: 2022-03-11
 redirects:
   - servicepulse/intro-endpoints-heartbeats
 ---
@@ -30,7 +30,7 @@ Setting the endpoint to "Off" will prevent it from appearing on the endpoints ov
 
 NOTE: This is a configuration setting only and the endpoint itself may still be configured to send heartbeat messages.
 
-## Removing endpoints 
+## Removing endpoints
 
 When an endpoint has been decommissioned and should no longer be displayed in ServicePulse it can be removed. From the Endpoint Heartbeats screen, click the trash bin icon next to an endpoint's name to remove it from ServicePulse.
 
