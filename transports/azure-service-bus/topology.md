@@ -80,7 +80,7 @@ and match any [EnclosedMessageTypes headers](/nservicebus/messaging/headers.md#s
 
 ##### Evolution of the message contract
 
-As mentioned in [versioning of shared contracts](nservicebus/messaging/sharing-contracts.md#versioning) and also shown in the examples above, NServiceBus uses the fully qualified assembly name in the message header. [Evolving the message contract](/nservicebus/messaging/evolving-contracts.md) encourages creating entirely new contract types and then adding a version number to the original name. For example when evolving `Shipping.OrderAccepted` a new contract would be created by the publisher called `Shipping.OrderAcceptedV2`. When the publisher starts publishing `Shipping.OrderAcceptedV2` the enclosed message type would look like the following
+As mentioned in [versioning of shared contracts](/nservicebus/messaging/sharing-contracts.md#versioning) and also shown in the examples above, NServiceBus uses the fully qualified assembly name in the message header. [Evolving the message contract](/nservicebus/messaging/evolving-contracts.md) encourages creating entirely new contract types and then adding a version number to the original name. For example when evolving `Shipping.OrderAccepted` a new contract would be created by the publisher called `Shipping.OrderAcceptedV2`. When the publisher starts publishing `Shipping.OrderAcceptedV2` the enclosed message type would look like the following
 
 ```
 Shipping.OrderAcceptedV2, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=XYZ;Shipping.IOrderAccepted, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=XYZ;Shipping.IOrderStatusChanged, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=XYZ
