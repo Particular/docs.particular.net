@@ -3,7 +3,7 @@ title: "NServiceBus sagas: Timeouts"
 reviewed: 2022-03-11
 isLearningPath: true
 summary: "Implement the buyer's remorse pattern using NServiceBus, a common business case to cancel orders within a certain amount of time after the purchase."
-previewImage: feature-image.png
+previewImage: saga-tutorial-2-feature.png
 extensions:
 - !!tutorial
   nextText: "Next Lesson: Third-party integration"
@@ -14,7 +14,7 @@ Being able to model the concept of time as part of a long-running process is inc
 
 > For more on the difficulties associated with batch jobs, see [Death to the Batch Job](https://particular.net/blog/death-to-the-batch-job).
 
-![Do I REALLY want to buy this?](feature-image.png)
+![Do I REALLY want to buy this?](saga-tutorial-2-feature.png)
 
 NServiceBus not only has the ability to send and publish messages, but also to [delay messages](/nservicebus/messaging/delayed-delivery.md). Delayed delivery effectively provides the ability to *send messages into the future*, a feature that is used by [Saga Timeouts](/nservicebus/sagas/timeouts.md).
 

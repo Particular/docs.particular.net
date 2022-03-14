@@ -1,8 +1,8 @@
 namespace Testing_8.Saga
 {
+    using NServiceBus;
     using System;
     using System.Threading.Tasks;
-    using NServiceBus;
 
     public class MySaga :
         Saga<MySagaData>,
@@ -29,6 +29,8 @@ namespace Testing_8.Saga
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
+            mapper.MapSaga(saga => saga.MyId)
+                .ToMessage<StartsSaga>(msg => msg.MyId);
         }
     }
 }

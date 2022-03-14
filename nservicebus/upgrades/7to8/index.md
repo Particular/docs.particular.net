@@ -327,9 +327,13 @@ To disable the implicit adding of the `NServiceBus` namespace while still keepin
 </ItemGroup>
 ```
 
+## Analyzers and packages.config
+
+The Roslyn analyzers included with NServiceBus 8 no longer provide support for projects that use a `packages.config` file. To receive the benefit of Roslyn analyzers such as the [warning on an unawaited Task](/nservicebus/operations/nservicebus-analyzer.md) or the [saga analyzers](/nservicebus/sagas/analyzers.md), a project file must use `PackageReference` elements.
+
 ## Saga analyzers
 
-NServiceBus version 8 elevates several saga-related [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) introduced in NServiceBus version 7.7 from Warning to Error, which will prevent a successful build when using default analyzer settings. These diagnostics indicate a serious issue that should be fixed. However, all Roslyn analyzer diagnostics [can be suppressed](https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers) if necessary.
+NServiceBus version 8 elevates several [saga-related Roslyn analyzers](/nservicebus/sagas/analyzers.md) introduced in NServiceBus version 7.7 from Warning to Error, which will prevent a successful build when using default analyzer settings. These diagnostics indicate a serious issue that should be fixed. However, all Roslyn analyzer diagnostics [can be suppressed](https://docs.microsoft.com/en-us/visualstudio/code-quality/use-roslyn-analyzers) if necessary.
 
 * **NSB0003 Non-mapping expression used in ConfigureHowToFindSaga method**: No other statements besides mapping expressions using the provided `mapper` argument are allowed.
 * **NSB0006 Message that starts the saga does not have a message mapping**: Without a mapping expression, the correct saga data cannot be found for an incoming message. A code fix is available that will add a new mapping to the `ConfigureHowToFindSaga` method. If using a [custom saga finder](/nservicebus/sagas/saga-finding.md), the error can be suppressed.
