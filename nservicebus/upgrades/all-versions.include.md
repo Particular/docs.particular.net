@@ -799,7 +799,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.3.x](https://www.nuget.org/packages/NServiceBus.Testing/7.3.0) | 2021-09-07     | -                 | -                                 |
+| [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.0) | 2022-03-11     | -                 | -                                 |
+| [7.3.x](https://www.nuget.org/packages/NServiceBus.Testing/7.3.0) | 2021-09-07     | 2022-06-11        | Superseded by 7.4.x               |
 | [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.2.0) | ~~2019-09-10~~ | ~~2021-12-07~~    | ~~Superseded by 7.3.x~~           |
 | [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.1.0) | ~~2019-03-21~~ | ~~2019-12-10~~    | ~~Superseded by 7.2.x~~           |
 | [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.0.0) | ~~2018-05-29~~ | ~~2019-06-21~~    | ~~Superseded by 7.1.x~~           |
