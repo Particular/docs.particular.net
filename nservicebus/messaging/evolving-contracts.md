@@ -1,5 +1,5 @@
 ---
-title: Evolving Message Contracts
+title: Evolving message contracts
 summary: Guidelines for choosing a strategy for evolving message contracts
 reviewed: 2020-06-16
 component: Core
@@ -12,7 +12,7 @@ Evolving contracts over time is not an easy task and the appropriate strategy sh
 
 This article presents basic guidelines for choosing contracts evolution strategy, avoiding common mistakes, and ensuring that contracts will be easy to evolve over time.
 
-Note: Ensure that message contracts follow the general [messages design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
+Note: Message contracts should also follow the [general message design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
 
 ## Common challenges
 
@@ -83,6 +83,6 @@ When all receivers have been updated to allow for processing with less data, the
 
 If the data that needs to be removed wasn't crucial to start with, it could be marked as obsolete, or removed from the message contract. When choosing this option, ensure that receivers can successfully process the message without the removed properties.
 
-#### Modifying serialization formats
+#### Transitioning serialization formats
 
-Another approach for handling breaking changes is to modify serialization formats. Step-by-step guidance is provided in the [transition serialization formats](/samples/serializers/transitioning-formats/) sample.
+Another approach to handling breaking changes is transitioning serialization formats. Step-by-step guidance is provided in the [transitioning serialization formats sample](/samples/serializers/transitioning-formats/).

@@ -17,7 +17,7 @@ redirects:
  - nservicebus/messaging/invalidoperationexception-in-unobtrusive-mode
 ---
 
-A *message* is the unit of communication for NServiceBus. There are two types of messages, _commands_ and _events_, that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default, but can be [disabled](best-practice-enforcement.md).
+A _message_ is the unit of communication for NServiceBus. There are two types of messages, _commands_ and _events_, that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default, but can be [disabled](best-practice-enforcement.md).
 
 Command | Event
 -- | --
@@ -30,13 +30,11 @@ _Can_ be sent using the [gateway](/nservicebus/gateway). | _Cannot_ be sent usin
 
 Note: In a request and response pattern, _reply_ messages are neither a command nor an event.
 
-
 ### Validation
 
 There are checks in place to ensure best practices are followed. Violations of the above guidelines generate the following exceptions:
 
 partial: errors
-
 
 ## Designing messages
 
@@ -52,7 +50,7 @@ Note: Prior to NServiceBus version 7.2, messages had to be defined as a `class`.
 
 Generic message definitions (e.g. `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message or to use inheritance to reuse shared message characteristics.
 
-Messages define the data contract between two endpoints. Refer to [sharing message contracts](sharing-contracts.md) for more details.
+Messages define the data contracts between endpoints. More details are available in the [sharing message contracts documentation](sharing-contracts.md).
 
 ## Identifying messages
 
