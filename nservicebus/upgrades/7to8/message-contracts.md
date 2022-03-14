@@ -9,7 +9,7 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-NServiceBus version 8 does not support .NET Standard as a target framework. Therefore, message contract assemblies that target `netstandard2.0` and reference NServiceBus must be updated. This guidance outlines possible approaches. Review the [shared message contracts documentation](/nservicebus/messaging/sharing-contracts.md) for general guidance.
+NServiceBus version 8 does not support .NET Standard as a target framework. Therefore, message contract assemblies that target `netstandard2.0` and reference NServiceBus must be updated. This guide shows possible approaches. General guidance is available in the [sharing message contracts documentation](/nservicebus/messaging/sharing-contracts.md).
 
 Note: When using [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md), the contracts assembly doesn't require a reference to NServiceBus and therefore is not affected. Unobtrusive message contracts can continue to target .NET Standard.
 
