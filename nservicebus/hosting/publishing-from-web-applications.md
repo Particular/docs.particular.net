@@ -17,7 +17,7 @@ Firstly, there are good reasons to avoid publishing events from within web appli
 
 Given these facts, conventional wisdom suggests that in the context of a web application, it is better to only send commands to a back-end service endpoint, which can then publish a similar event.
 
-But this is not always the case. Not all [transports](/transports/) handle publish/subscribe mechanics in the same way - many support it natively. Also, cloud transports generally have an associated cost per interaction; sending a message unnecessarily before publishing costs money to operate.
+But this is not always the case. Not all [transports](/transports/selecting.md) handle publish/subscribe mechanics in the same way - many support it natively. Also, cloud transports generally have an associated cost per interaction; sending a message unnecessarily before publishing costs money to operate.
 
 ## Publish/subscribe mechanics
 
