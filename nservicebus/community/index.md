@@ -51,13 +51,11 @@ redirects:
 
 This is a curated list of community-developed extensions and integrations for the NServiceBus ecosystem.
 
-Community projects are maintained by community members and are **not covered** by the [Particular Software License](https://particular.net/licensing) or the [Particular Software Support Agreement](https://particular.net/supportagreement). Each project is covered by its own license and terms. It's possible that a community contribution may not be updated to support the most recent version of NServiceBus.
-
+WARNING: These are **no recommendations** and are used at your own risk! Community projects are maintained by community members and are **not covered** by the [Particular Software License](https://particular.net/licensing) or the [Particular Software Support Agreement](https://particular.net/supportagreement). Each project is covered by its own license and terms. It's possible that a community contribution may not be updated to support the most recent version of NServiceBus.
 
 ## [Aggregates.NET](https://github.com/charlessolar/Aggregates.NET)
 
 A framework to help developers integrate NServiceBus with [EventStore](https://github.com/EventStore/EventStore).
-
 
 ## [Community.NServiceBus.LambdaHandlers](https://github.com/timbussmann/Community.NServiceBus.LambdaHandlers)
 
@@ -71,13 +69,11 @@ Supports routing based on routes stored in files.
 
 Created by [Tim Bussmann](https://github.com/timbussmann).
 
-
 ## [NServiceBus.Gateway.Channels.HttpVNext](https://github.com/welshdave/NServiceBus.Gateway.Channels.HttpVNext)
 
 An HTTP channel implementation for the [NServiceBus Gateway](/nservicebus/gateway/) that doesn't use HTTP headers for message content or metadata. This makes it easier to use this channel in situations where HTTP headers may be modified, such as when a gateway is behind a reverse proxy such as NGINX.
 
 Created by [Dave Lewis](https://www.dllewis.org/).
-
 
 ## [NServiceBus.MessageRouting](https://github.com/jbogard/NServiceBus.MessageRouting)
 
@@ -85,13 +81,11 @@ Provides an implementation of the [routing slip pattern](http://www.enterprisein
 
 Created by [Jimmy Bogard](https://jimmybogard.com/).
 
-
 ## [NServiceBus.Mailer](https://github.com/HEskandari/NServiceBus.Mailer)
 
 Provides a method to more easily and reliably send emails from an NServiceBus message handler.
 
 Created by [Hadi Eskandari](http://www.seesharpsoftware.com.au/).
-
 
 ## [NServiceBus.AttributeConventions](https://github.com/mauroservienti/NServiceBus.AttributeConventions)
 
@@ -99,13 +93,11 @@ Enables identifying NServiceBus messages, commands, and events by conventions us
 
 Created by [Mauro Servienti](https://milestone.topics.it/).
 
-
 ## [Rabbit Operations](http://rabbitoperations.southsidesoft.com/)
 
 Provides operations support for RabbitMQ applications that run on NServiceBus via a graphical user interface.
 
 Created by [SouthsideSoft](http://southsidesoft.com/).
-
 
 ## [Verify.NServiceBus](https://github.com/NServiceBusExtensions/Verify.NServiceBus)
 
@@ -113,13 +105,11 @@ Adds [Verify](https://github.com/VerifyTests/Verify) support to verify NServiceB
 
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
 
-
 ## [NServiceBus.Attachments](https://github.com/NServiceBusExtensions/NServiceBus.Attachments)
 
 Adds a streaming based attachment functionality to NServiceBus.
 
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
-
 
 ## [NServiceBus.AuditFilter](https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter)
 
@@ -127,13 +117,11 @@ Adds audit message filtering functionality to NServiceBus, so that certain messa
 
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
 
-
 [Newtonsoft.Json.Encryption](https://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption)
 
 Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the nodes that require encryption are touched, the remaining content is still human readable. This approach provides a compromise between readability/debugability and security.
 
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
-
 
 ## [NServiceBus.SqlServer.Native](https://github.com/NServiceBusExtensions/NServiceBus.Native)
 
@@ -141,13 +129,11 @@ A shim providing low-level access to the [NServiceBus SQL Server Transport](/tra
 
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
 
-
 ## [NServiceBus Validation](https://github.com/NServiceBusExtensions/NServiceBus.Validation)
 
 Allows validating message contents with options to use [DataAnnotations](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations) and [FluentValidation](https://github.com/JeremySkinner/FluentValidation).
 
 Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
-
 
 ## Serializers
 
