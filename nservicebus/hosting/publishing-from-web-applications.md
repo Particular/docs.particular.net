@@ -4,7 +4,7 @@ summary: Guidelines for publishing messages from within web applications
 component: core
 related:
 - samples/web
-reviewed: 2020-06-30
+reviewed: 2022-03-14
 ---
 
 Publishing events from a web application is something that is possible with NServiceBus, but should be carefully considered before implemented. This article will describe the guidelines for publishing messages from within web applications under different circumstances.
