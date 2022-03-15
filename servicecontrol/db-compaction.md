@@ -4,6 +4,8 @@ summary: How to compact the RavenDB database backing ServiceControl
 reviewed: 2020-06-23
 ---
 
+INFO: Only compact is the retension period, messages throughput or average message size have been reduced. If neither of these has changed compacting will not reduce the database significantly and will only have a very temporary effect.
+
 ServiceControl's embedded RavenDB database can be compacted in one of two ways: with the  [Extensible Storage Engine Utility (esentutl)](https://technet.microsoft.com/en-us/library/hh875546.aspx), or by using the RavenDB management portal.
 
 ## Using EsentUtl (Preferred approach)
@@ -12,7 +14,7 @@ ServiceControl's embedded RavenDB database can be compacted in one of two ways: 
 
 * Open ServiceControl Management
 * Stop the service from the action icons
-* Note the "DATA PATH" for the service(e.g. "C:\ProgramData\Particular\ServiceControl\Particular.ServiceControl\DB")   ![](managementutil-instance-datapath.png 'width=500')
+* Note the "DATA PATH" for the service(e.g. "C:\ProgramData\Particular\ServiceControl\Particular.ServiceControl\DB")   ![SCMU  instance data path](managementutil-instance-datapath.png 'width=500')
 
 WARNING: For the `esentutl` command line utility to work, the ServiceControl service must stop without any errors.
 
