@@ -4,7 +4,7 @@ summary: How to compact the RavenDB database backing ServiceControl
 reviewed: 2020-06-23
 ---
 
-INFO: Only compact is the retension period, messages throughput or average message size have been reduced. If neither of these has changed compacting will not reduce the database significantly and will only have a very temporary effect.
+INFO: Only compact if the retention period, message throughput, or average message size have been reduced. If neither of these has changed then compacting may not provide the expected reduction in database size and may only have a small temporary effect.
 
 ServiceControl's embedded RavenDB database can be compacted in one of two ways: with the  [Extensible Storage Engine Utility (esentutl)](https://technet.microsoft.com/en-us/library/hh875546.aspx), or by using the RavenDB management portal.
 
