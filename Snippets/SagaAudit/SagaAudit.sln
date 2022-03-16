@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaAudit_2", "SagaAudit_2\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaAudit_3", "SagaAudit_3\SagaAudit_3.csproj", "{1371EA0A-8A91-4D10-BDAF-CBCAFABF2820}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaAudit_4", "SagaAudit_4\SagaAudit_4.csproj", "{959C48BE-C6D1-438D-BF35-46CFEC175542}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,8 @@ Global
 		{2E6AAC9E-DE63-41FA-B2A3-B14F5080D717}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1371EA0A-8A91-4D10-BDAF-CBCAFABF2820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1371EA0A-8A91-4D10-BDAF-CBCAFABF2820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{959C48BE-C6D1-438D-BF35-46CFEC175542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{959C48BE-C6D1-438D-BF35-46CFEC175542}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
