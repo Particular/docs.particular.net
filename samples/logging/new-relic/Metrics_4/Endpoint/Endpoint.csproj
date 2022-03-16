@@ -3,12 +3,9 @@
     <TargetFramework>net48</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>7.3</LangVersion>
-    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Windows" />
-    <PackageReference Include="NewRelic.Agent.Api" Version="6.*" />
+	  <PackageReference Include="NewRelic.Agent.Api" Version="6.*" />
     <PackageReference Include="NServiceBus" Version="8.0.0-beta.1" />
     <PackageReference Include="NServiceBus.Metrics" Version="4.0.0-beta.1" />
   </ItemGroup>
