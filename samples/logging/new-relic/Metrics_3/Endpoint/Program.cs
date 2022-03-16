@@ -23,19 +23,21 @@ class Program
 
         try
         {
-            Console.WriteLine("Endpoint started. Press 'enter' to send a message");
-            Console.WriteLine("Press ESC key to quit");
+            Console.WriteLine("Endpoint started.");
+            Console.WriteLine("Press [ENTER] to send additional messages.");
+            Console.WriteLine("Press [ESC] to quit.");
 
             while (true)
             {
-                var key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.Escape)
+                switch (Console.ReadKey(true).Key)
                 {
-                    break;
+                    case ConsoleKey.Escape:
+                        return;
+                    case ConsoleKey.Enter:
+                        await endpointInstance.SendLocal(new SomeCommand())
+                            .ConfigureAwait(false);
+                        break;
                 }
-
-                await endpointInstance.SendLocal(new SomeCommand())
-                    .ConfigureAwait(false);
             }
         }
         finally
