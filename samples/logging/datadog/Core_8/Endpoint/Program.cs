@@ -8,6 +8,7 @@ using StatsdClient;
 class Program
 {
     const string EndpointName = "Samples.Metrics.Tracing.Endpoint";
+
     static async Task Main()
     {
         Console.Title = EndpointName;
