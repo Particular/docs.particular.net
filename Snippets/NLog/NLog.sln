@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLog_3", "NLog_3\NLog_3.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Logging_1", "Extensions.Logging_1\Extensions.Logging_1.csproj", "{B2775B11-80FC-43F2-97E0-41DA005E27E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Logging_2", "Extensions.Logging_2\Extensions.Logging_2.csproj", "{69CF6E49-9BE1-4E6F-B3E5-8FB4117AC211}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,8 @@ Global
 		{80EA5F0F-A031-4172-82F2-0C3A52826352}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2775B11-80FC-43F2-97E0-41DA005E27E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B2775B11-80FC-43F2-97E0-41DA005E27E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69CF6E49-9BE1-4E6F-B3E5-8FB4117AC211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69CF6E49-9BE1-4E6F-B3E5-8FB4117AC211}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
