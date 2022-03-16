@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_8.4", "NHibernat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_8.5", "NHibernate_8.5\NHibernate_8.5.csproj", "{21E0EA71-656A-4D0F-9A7B-6804CBD09FC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate_9", "NHibernate_9\NHibernate_9.csproj", "{E1B53F6C-9B85-42B9-BA86-23525FE238E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,8 @@ Global
 		{DE08797E-1678-40EA-81EA-0F02FB49741D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21E0EA71-656A-4D0F-9A7B-6804CBD09FC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{21E0EA71-656A-4D0F-9A7B-6804CBD09FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1B53F6C-9B85-42B9-BA86-23525FE238E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1B53F6C-9B85-42B9-BA86-23525FE238E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
