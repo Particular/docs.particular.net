@@ -1,4 +1,4 @@
-﻿namespace ServiceFabricPersistence_2
+﻿namespace ServiceFabricPersistence_3
 {
     using System.Threading.Tasks;
     using Microsoft.ServiceFabric.Data.Collections;
