@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <OutputType>Exe</OutputType>
-    <LangVersion>7.3</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-	  <PackageReference Include="NewRelic.Agent.Api" Version="6.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-beta.1" />
-    <PackageReference Include="NServiceBus.Metrics" Version="4.0.0-beta.1" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<LangVersion>7.3</LangVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="NewRelic.Agent.Api" Version="6.*" />
+		<PackageReference Include="NServiceBus" Version="8.0.0-beta.1" />
+		<PackageReference Include="NServiceBus.Metrics" Version="4.0.0-beta.1" />
+	</ItemGroup>
 </Project>
