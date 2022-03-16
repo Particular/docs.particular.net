@@ -2,16 +2,13 @@
 using Newtonsoft.Json.Linq;
 using NServiceBus.Pipeline;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace NServiceBusSubscriber
 {
-    using System.Globalization;
-
     #region Behavior
     public class MassTransitIngestBehavior : Behavior<IIncomingPhysicalMessageContext>
     {

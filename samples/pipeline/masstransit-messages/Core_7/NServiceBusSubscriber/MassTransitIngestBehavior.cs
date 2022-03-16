@@ -2,14 +2,15 @@
 using Newtonsoft.Json.Linq;
 using NServiceBus.Pipeline;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace NServiceBusSubscriber
 {
+
+
     #region Behavior
     public class MassTransitIngestBehavior : Behavior<IIncomingPhysicalMessageContext>
     {
@@ -29,7 +30,7 @@ namespace NServiceBusSubscriber
             AddHeaderIfExists(context, envelope, "destinationAddress", "MassTransit.DestinationAddress");
             AddHeaderIfExists(context, envelope, "sentTime", NServiceBus.Headers.TimeSent, sentTime =>
             {
-                var parsed = DateTimeOffset.Parse(sentTime);
+                var parsed = DateTimeOffset.Parse(sentTime, DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AllowWhiteSpaces);
                 return NServiceBus.DateTimeExtensions.ToWireFormattedString(parsed.DateTime);
             });
 
