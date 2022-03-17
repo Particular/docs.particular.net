@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Endpoint;
 using NServiceBus;
 
 class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Metrics.Tracing.Endpoint";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
+        var endpointConfiguration = new EndpointConfiguration(Console.Title = "Samples.Metrics.Tracing.Endpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+        NewRelicMetrics.Setup(endpointConfiguration);
+
+        var endpointInstance = await NServiceBus.Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
         #region newrelic-load-simulator

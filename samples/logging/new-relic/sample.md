@@ -11,28 +11,23 @@ previewImage: newrelic-processingtime.png
 
 This sample demonstrates how to capture, store and visualize NServiceBus metrics in [NewRelic](https://newrelic.com/), a monitoring solution for storing application performance data, custom events, etc.
 
-
 ![NewRelic NServiceBus processing time](newrelic-processingtime.png)
-
 
 This sample reports the following metrics to NewRelic:
 
- * Fetched messages per second 
- * Failed messages per second
- * Successful messages per second
- * Critical time in seconds
- * Processing time seconds
- * Retries in Version 2 and later
-
+* Fetched messages per second
+* Failed messages per second
+* Successful messages per second
+* Critical time in seconds
+* Processing time seconds
+* Retries in Version 2 and later
 
 For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/monitoring/metrics/definitions.md) section.
-
 
 ## Prerequisites
 
 To run this sample, [create a NewRelic account](https://newrelic.com/signup?via=login), then download and run the NewRelic agent.
 See the [Introduction to New Relic Insights](https://docs.newrelic.com/docs/insights/use-insights-ui/getting-started/introduction-new-relic-insights) guide for information on how to get started with NewRelic monitoring.
-
 
 ## Code overview
 
@@ -40,10 +35,9 @@ The sample simulates messages load with a random 10% failure rate using the `Loa
 
 snippet: newrelic-load-simulator
 
-
 ## Capturing metric values
 
-Custom observers need to be registered for the metric probes provided via `NServiceBus.Metrics`. This is configured in the `NewRelicFeature`:
+Custom observers need to be registered for the metric probes provided via the `NServiceBus.Metrics` package:
 
 snippet: newrelic-enable-nsb-metrics
 
@@ -54,11 +48,12 @@ snippet: newrelic-name-mapping
 The registered observers convert NServiceBus.Metric *Signals* to NewRelic *ResponseTimeMetric* and NServiceBus.Metric *Durations* to NewRelic *Metrics*.
 
 snippet: newrelic-register-probe
+
 During the metric registration the following steps are required:
 
- * Map metric names including the endpoint name and message type, if available
- * Register observer callbacks
- * Record response times and metrics in the observer callback
+* Map metric names including the endpoint name and message type, if available
+* Register observer callbacks
+* Record response times and metrics in the observer callback
 
 snippet: newrelic-observers-registration
 
@@ -66,9 +61,7 @@ The NewRelic agent needs to be configured to monitor the application by modifyin
 
 snippet: newrelic-appname
 
-
 ## Dashboard
-
 
 ### Create
 
@@ -80,7 +73,6 @@ Dashboards can be created by using NewRelic Insights. The following steps have t
  * Edit titles if desired
 
 ![NewRelic Insights Data Explorer](newrelic-insights-dataexplorer.png)
-
 
 ### Samples
 
