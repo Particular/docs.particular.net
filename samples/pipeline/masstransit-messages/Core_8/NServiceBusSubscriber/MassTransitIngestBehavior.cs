@@ -9,8 +9,6 @@ using System.Globalization;
 
 namespace NServiceBusSubscriber
 {
-
-
     #region Behavior
     public class MassTransitIngestBehavior : Behavior<IIncomingPhysicalMessageContext>
     {
@@ -30,8 +28,8 @@ namespace NServiceBusSubscriber
             AddHeaderIfExists(context, envelope, "destinationAddress", "MassTransit.DestinationAddress");
             AddHeaderIfExists(context, envelope, "sentTime", NServiceBus.Headers.TimeSent, sentTime =>
             {
-                var parsed = DateTimeOffset.Parse(sentTime, DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AllowWhiteSpaces);
-                return NServiceBus.DateTimeExtensions.ToWireFormattedString(parsed.DateTime);
+                var parsed = DateTime.Parse(sentTime, DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AllowWhiteSpaces);
+                return NServiceBus.DateTimeOffsetHelper.ToWireFormattedString(parsed);
             });
 
             if (envelope.ContainsKey("host"))
@@ -76,7 +74,7 @@ namespace NServiceBusSubscriber
 
         static JObject DeserializeMassTransitPayload(IIncomingPhysicalMessageContext context)
         {
-            using (var memoryStream = new MemoryStream(context.Message.Body))
+            using (var memoryStream = new MemoryStream(context.Message.Body.ToArray()))
             using (var streamReader = new StreamReader(memoryStream))
             using (var jsonReader = new JsonTextReader(streamReader))
             {

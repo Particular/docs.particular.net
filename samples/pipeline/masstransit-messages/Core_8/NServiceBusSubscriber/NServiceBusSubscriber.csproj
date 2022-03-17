@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
+    <UserSecretsId>dotnet-NServiceBusSubscriber-573F9BD8-FB1A-4A4C-BC88-E4A997A00BE2</UserSecretsId>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="8.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="7.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-beta.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+  </ItemGroup>
+</Project>
