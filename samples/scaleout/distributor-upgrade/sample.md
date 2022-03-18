@@ -1,7 +1,7 @@
 ---
 title: Upgrading a Distributor endpoint from Version 5 to 6
 summary: Upgrading an existing scaled-out endpoint that uses Distributor to version 6 of NServiceBus
-reviewed: 2019-11-06
+reviewed: 2022-03-18
 component: Core
 related:
 - transports/msmq/distributor
