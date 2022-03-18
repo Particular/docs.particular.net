@@ -1,7 +1,7 @@
 ---
 title: SQL Server Native Publish Subscribe
 summary: Describes the native publish subscribe implementation in the SQL Server transport
-reviewed: 2019-11-08
+reviewed: 2022-03-18
 component: SqlTransport
 versions: '[5,)'
 ---
