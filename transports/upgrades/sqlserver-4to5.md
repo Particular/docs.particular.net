@@ -1,6 +1,6 @@
 ---
 title: SQL Server Transport Upgrade Version 4 to 5
-reviewed: 2019-11-06
+reviewed: 2022-03-18
 component: SqlTransport
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
