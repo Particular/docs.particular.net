@@ -1,7 +1,7 @@
 ---
 title: Add handler timing pipeline
 summary: Wraps handlers in a Stopwatch and logs a warning if a handler exceeds a given threshold.
-reviewed: 2019-11-08
+reviewed: 2022-03-18
 component: Core
 related:
 - nservicebus/pipeline
