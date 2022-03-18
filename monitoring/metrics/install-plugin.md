@@ -1,6 +1,6 @@
 ---
 title: Send Metrics data to ServiceControl
-reviewed: 2019-11-08
+reviewed: 2022-03-18
 component: MetricsServiceControl
 related:
   - samples/logging/metrics
