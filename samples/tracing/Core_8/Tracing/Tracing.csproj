@@ -5,8 +5,8 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1898" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-alpha.144" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-beta.1" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.14.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.14" />
   </ItemGroup>

@@ -67,12 +67,10 @@ public class LongProcessingRequestSaga :
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaState> mapper)
     {
-        mapper.ConfigureMapping<LongProcessingRequest>(message => message.Id)
-            .ToSaga(state => state.LongProcessingId);
-        mapper.ConfigureMapping<LongProcessingFinished>(message => message.Id)
-            .ToSaga(state => state.LongProcessingId);
-        mapper.ConfigureMapping<LongProcessingFailed>(message => message.Id)
-            .ToSaga(state => state.LongProcessingId);
+        mapper.MapSaga(state => state.LongProcessingId)
+            .ToMessage<LongProcessingRequest>(message => message.Id)
+            .ToMessage<LongProcessingFinished>(message => message.Id)
+            .ToMessage<LongProcessingFailed>(message => message.Id);
     }
 
     public Task Timeout(ProcessingPossiblyFailed timeoutMessage, IMessageHandlerContext context)

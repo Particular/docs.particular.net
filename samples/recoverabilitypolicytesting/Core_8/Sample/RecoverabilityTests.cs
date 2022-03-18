@@ -64,6 +64,7 @@ public class RecoverabilityTests
             new ReadOnlyMemory<byte>(new byte[0]),
             new TransportTransaction(),
             numberOfDeliveryAttempts,
+            "receive-address",
             new ContextBag());
 
     #endregion

@@ -9,7 +9,7 @@
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.*" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.*" OutputItemType="Analyzer" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.*" />
-    <PackageReference Include="NServiceBus.AzureFunctions.Worker.ServiceBus" Version="4.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.AzureFunctions.Worker.ServiceBus" Version="4.0.0-beta.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AzureFunctions.Messages\AzureFunctions.Messages.csproj" />
