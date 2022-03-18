@@ -51,7 +51,7 @@ redirects:
 
 This is a curated list of community-developed extensions and integrations for the NServiceBus ecosystem.
 
-WARNING: Community projects are maintained by community members and are **not covered** by the [Particular Software License](https://particular.net/licensing) or the [Particular Software Support Agreement](https://particular.net/supportagreement). Each project is covered by its own license and terms. It's possible that a community contribution may not be updated to support the most recent version of NServiceBus.
+WARNING: The listed community projects are not recommendations. Community projects are maintained by community members and are **not covered** by the [Particular Software License](https://particular.net/licensing) or the [Particular Software Support Agreement](https://particular.net/supportagreement). Each project is covered by its own license and terms. It's possible that a community contribution may not be updated to support the most recent version of NServiceBus or development stops without any prior notice.
 
 ## [Aggregates.NET](https://github.com/charlessolar/Aggregates.NET)
 
