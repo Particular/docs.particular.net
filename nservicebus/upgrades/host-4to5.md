@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Host Upgrade Version 4 to 5
 summary: Instructions on how to upgrade NServiceBus Host Version 4 to 5.
-reviewed: 2019-11-08
+reviewed: 2022-03-18
 component: Host
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
