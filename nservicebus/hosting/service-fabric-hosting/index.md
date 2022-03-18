@@ -3,7 +3,7 @@ title: Service Fabric Hosting
 related:
  - persistence/service-fabric
  - samples/azure/azure-service-fabric-routing
-reviewed: 2019-11-11
+reviewed: 2022-03-18
 component: Core
 versions: '[6,)'
 isLearningPath: true
