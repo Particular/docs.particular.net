@@ -12,19 +12,18 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(ConnectionStrings.Green);
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+        transport.ConnectionString(ConnectionStrings.Red);
+        transport.Transactions(TransportTransactionMode.ReceiveOnly);
+        transport.TopicName("bundle-green");
 
         #region BillingRouterConfig
 
         var routing = transport.Routing();
-        var router = routing.ConnectToRouter("Switch");
+        var router = routing.ConnectToRouter("Switch-Green");
         router.RegisterPublisher(typeof(OrderAccepted), "Red.Sales");
 
         #endregion
-
-        SqlHelper.EnsureDatabaseExists(ConnectionStrings.Red);
-        SqlHelper.EnsureDatabaseExists(ConnectionStrings.Green);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

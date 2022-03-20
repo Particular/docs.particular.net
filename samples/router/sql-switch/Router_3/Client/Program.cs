@@ -28,7 +28,6 @@ class Program
         #endregion
 
         SqlHelper.EnsureDatabaseExists(ConnectionStrings.Blue);
-        SqlHelper.EnsureDatabaseExists(ConnectionStrings.Red);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

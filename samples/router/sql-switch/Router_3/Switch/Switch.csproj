@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus.SqlServer" Version="5.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.*" />
     <PackageReference Include="NServiceBus.Router" Version="3.*" />
     <PackageReference Include="System.Reflection.Emit " Version="4.*" />
   </ItemGroup>

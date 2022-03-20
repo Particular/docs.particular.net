@@ -5,7 +5,7 @@ using NServiceBus.Router;
 
 class Program
 {
-    const string SwitchConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=sqlswitch;Integrated Security=True;Max Pool Size=100";
+    const string SwitchConnectionString = @"Data Source=(local);Initial Catalog=sqlswitch;Integrated Security=True;Max Pool Size=100";
 
     static async Task Main()
     {
@@ -13,16 +13,34 @@ class Program
 
         SqlHelper.EnsureDatabaseExists(SwitchConnectionString);
         SqlHelper.EnsureDatabaseExists(ConnectionStrings.Blue);
-        SqlHelper.EnsureDatabaseExists(ConnectionStrings.Red);
-        SqlHelper.EnsureDatabaseExists(ConnectionStrings.Green);
 
         #region SwitchConfig
 
         var routerConfig = new RouterConfiguration("Switch");
 
-        routerConfig.AddInterface<SqlServerTransport>("Blue", t => { t.ConnectionString(ConnectionStrings.Blue); });
-        routerConfig.AddInterface<SqlServerTransport>("Red", t => { t.ConnectionString(ConnectionStrings.Red); });
-        routerConfig.AddInterface<SqlServerTransport>("Green", t => { t.ConnectionString(ConnectionStrings.Green); });
+        routerConfig.AddInterface<SqlServerTransport>("Blue",
+            t =>
+            {
+                t.Transactions(TransportTransactionMode.ReceiveOnly);
+                t.ConnectionString(ConnectionStrings.Blue);
+            });
+        var redInterface = routerConfig.AddInterface<AzureServiceBusTransport>("Red",
+            t =>
+            {
+                t.Transactions(TransportTransactionMode.ReceiveOnly);
+                t.ConnectionString(ConnectionStrings.Red);
+                t.TopicName("bundle-red");
+            });
+        redInterface.OverrideEndpointName("Switch-Red");
+
+        var greenInterface = routerConfig.AddInterface<AzureServiceBusTransport>("Green",
+            t =>
+            {
+                t.Transactions(TransportTransactionMode.ReceiveOnly);
+                t.ConnectionString(ConnectionStrings.Green);
+                t.TopicName("bundle-green");
+            });
+        greenInterface.OverrideEndpointName("Switch-Green");
 
         routerConfig.AutoCreateQueues();
 

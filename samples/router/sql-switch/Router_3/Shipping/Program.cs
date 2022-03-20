@@ -12,10 +12,10 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         transport.ConnectionString(ConnectionStrings.Red);
-
-        SqlHelper.EnsureDatabaseExists(ConnectionStrings.Red);
+        transport.Transactions(TransportTransactionMode.ReceiveOnly);
+        transport.TopicName("bundle-red");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
