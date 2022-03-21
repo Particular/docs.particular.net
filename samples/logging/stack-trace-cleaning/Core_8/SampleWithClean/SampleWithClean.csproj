@@ -8,7 +8,7 @@
     <PackageReference Include="AsyncFriendlyStackTrace" Version="1.*" />
     <PackageReference Include="NLog" Version="4.*" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.7.4" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1898" />
-    <PackageReference Include="NServiceBus.Extensions.Logging" Version="2.0.0-alpha.64" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Extensions.Logging" Version="2.0.0-beta.1" />
   </ItemGroup>
 </Project>
