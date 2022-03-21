@@ -6,6 +6,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GatewayRavenDB_1", "Gateway
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayRavenDB_2", "GatewayRavenDB_2\GatewayRavenDB_2.csproj", "{229B5EC7-A987-4EF7-B38A-7598BCCD89E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GatewayRavenDB_3", "GatewayRavenDB_3\GatewayRavenDB_3.csproj", "{C3B0AEFF-28E5-4423-B960-C7C31EBEB350}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{6B65CB5B-7DFA-4FAF-92C3-3B7AF222E8A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{229B5EC7-A987-4EF7-B38A-7598BCCD89E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{229B5EC7-A987-4EF7-B38A-7598BCCD89E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3B0AEFF-28E5-4423-B960-C7C31EBEB350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3B0AEFF-28E5-4423-B960-C7C31EBEB350}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
