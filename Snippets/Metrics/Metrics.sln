@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics_2", "Metrics_2\Metr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrics_3", "Metrics_3\Metrics_3.csproj", "{EBDF1301-9AEE-452C-AEDE-D9921E80007C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrics_4", "Metrics_4\Metrics_4.csproj", "{896CA36B-9F49-44F0-9D8D-20A63B49AF5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,8 @@ Global
 		{30C71316-BF35-4B26-8AF8-2DF5DE2C3DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBDF1301-9AEE-452C-AEDE-D9921E80007C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EBDF1301-9AEE-452C-AEDE-D9921E80007C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{896CA36B-9F49-44F0-9D8D-20A63B49AF5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{896CA36B-9F49-44F0-9D8D-20A63B49AF5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
