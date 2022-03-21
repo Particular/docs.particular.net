@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_6", "Core_6\Core_6.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsmqTransport_1", "MsmqTransport_1\MsmqTransport_1.csproj", "{08A1241B-DB7E-4F66-83F2-3D9F250FAED2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsmqTransport_2", "MsmqTransport_2\MsmqTransport_2.csproj", "{426A19FF-73F2-4236-8F51-B5526D5B1BDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,8 @@ Global
 		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08A1241B-DB7E-4F66-83F2-3D9F250FAED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{08A1241B-DB7E-4F66-83F2-3D9F250FAED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{426A19FF-73F2-4236-8F51-B5526D5B1BDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{426A19FF-73F2-4236-8F51-B5526D5B1BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

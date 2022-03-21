@@ -1,4 +1,4 @@
-﻿namespace ServiceFabricPersistence_1
+﻿namespace ServiceFabricPersistence_2
 {
     using System.Globalization;
     using System.IO;

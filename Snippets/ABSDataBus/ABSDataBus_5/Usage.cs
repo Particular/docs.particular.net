@@ -2,33 +2,33 @@
 using Azure.Storage.Blobs;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
-using NServiceBus.DataBus.AzureBlobStorage.Config;
+using NServiceBus.DataBus.AzureBlobStorage;
 
 class Usage
 {
     Usage(EndpointConfiguration endpointConfiguration)
     {
         #region AzureDataBus
-        
+
         endpointConfiguration.UseDataBus<AzureDataBus>();
 
         #endregion
-        
+
         #region AzureDataBusConfigureServiceClient
-        
+
         var serviceClient = new BlobServiceClient("connectionString");
         endpointConfiguration.UseDataBus<AzureDataBus>()
                              .UseBlobServiceClient(serviceClient);
 
         #endregion
-        
+
         #region AzureDataBusInjectServiceClient
-        
+
         endpointConfiguration.UseDataBus<AzureDataBus>();
         endpointConfiguration.RegisterComponents(services => services.AddSingleton<IProvideBlobServiceClient, CustomProvider>());
 
         #endregion
-        
+
         #region AzureDataBusConnectionAndContainer
 
         endpointConfiguration.UseDataBus<AzureDataBus>()
@@ -37,7 +37,7 @@ class Usage
 
         #endregion
     }
-    
+
     #region CustomBlobServiceClientProvider
 
     public class CustomProvider : IProvideBlobServiceClient
@@ -50,7 +50,7 @@ class Usage
 
         public BlobServiceClient Client { get; }
     }
-    
+
     #endregion
 
     void Complex(EndpointConfiguration endpointConfiguration)
@@ -74,7 +74,7 @@ class Usage
         dataBus.MaxRetries(maxNumberOfRetryAttempts);
         dataBus.NumberOfIOThreads(numberOfIoThreads);
         dataBus.BackOffInterval(backOffIntervalBetweenRetriesInSecs);
-        
+
         #endregion
     }
 }

@@ -16,8 +16,7 @@ public class OrderHandler :
 
     public Task Handle(OrderMessage message, IMessageHandlerContext context)
     {
-        var nhibernateSession = context.SynchronizedStorageSession.Session();
-        nhibernateSession.Save(new Order());
+        synchronizedStorageSession.Session.Save(new Order());
         return Task.CompletedTask;
     }
 }

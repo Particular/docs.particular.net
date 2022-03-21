@@ -16,6 +16,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_5", "SqlPers
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_6", "SqlPersistence_6\SqlPersistence_6.csproj", "{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlPersistence_7", "SqlPersistence_7\SqlPersistence_7.csproj", "{4DDE682D-CDBF-40EC-B1E2-21387A0E0396}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,8 @@ Global
 		{7F4BBEC8-FDD9-470D-AB3B-1E13C96297B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DDE682D-CDBF-40EC-B1E2-21387A0E0396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DDE682D-CDBF-40EC-B1E2-21387A0E0396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

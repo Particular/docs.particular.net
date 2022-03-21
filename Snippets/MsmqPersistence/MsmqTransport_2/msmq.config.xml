@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- startcode MsmqSubscriptionAppConfig-->
+<configuration>
+  <configSections>
+    <section name="MsmqSubscriptionStorageConfig" 
+             type="NServiceBus.Config.MsmqSubscriptionStorageConfig, NServiceBus.Core" />
+  </configSections>
+  <MsmqSubscriptionStorageConfig Queue="YourEndpointName.Subscriptions" />
+</configuration>
+<!--endcode -->

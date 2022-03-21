@@ -6,6 +6,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft_1", "Newtonsoft_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft_2", "Newtonsoft_2\Newtonsoft_2.csproj", "{1E02F10E-9387-499F-BD8C-95394A612919}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft_3", "Newtonsoft_3\Newtonsoft_3.csproj", "{BA42E9F9-2D42-4857-99E5-36A7ED000569}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{100E3F2F-409C-4E7F-AEAD-599179DC0C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E02F10E-9387-499F-BD8C-95394A612919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E02F10E-9387-499F-BD8C-95394A612919}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA42E9F9-2D42-4857-99E5-36A7ED000569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA42E9F9-2D42-4857-99E5-36A7ED000569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
