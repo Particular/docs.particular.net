@@ -35,7 +35,7 @@ The Platform Sample package performs the following when the Console App is start
 
 ### Showing console output
 
-By default, the console outputs for ServiceControl and ServiceControl.Monitoring are suppressed. To view them for debugging, or curiosity, specify:
+By default, console output from ServiceControl and ServiceControl.Monitoring is suppressed. For debugging or curiosity, console output may be shown by specifying:
 
 snippet: ShowConsoleOutput
 

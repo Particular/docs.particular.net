@@ -16,13 +16,13 @@ Being able to model the concept of time as part of a long-running process is inc
 
 ![Do I REALLY want to buy this?](saga-tutorial-2-feature.png)
 
-NServiceBus not only has the ability to send and publish messages, but also to [delay messages](/nservicebus/messaging/delayed-delivery.md). Delayed delivery effectively provides the ability to *send messages into the future*, a feature that is used by [Saga Timeouts](/nservicebus/sagas/timeouts.md).
+In addition to sending and publishing messages, NServiceBus can also [delay messages](/nservicebus/messaging/delayed-delivery.md). Delayed delivery effectively provides the ability to *send messages into the future*, a feature used by [Saga Timeouts](/nservicebus/sagas/timeouts.md).
 
-There's no need to write batch jobs to query records of interest every night. Instead, each instance is able to manage time in its own workflow, setting virtual alarm clocks to act upon something.
+There's no need to write batch jobs to query data every night. Instead, each instance is able to manage time in its own workflow, setting virtual alarm clocks to do something.
 
-NOTE: Timeouts are guaranteed to not trigger before the specified point in time but might be delayed if the system is very busy.
+NOTE: The delivery of a delayed message is not guaranteed to occur at the specified point in time. It may be delayed further if the system is very busy at that time.
 
-The use cases for saga timeouts are too numerous to count, therefore, in this tutorial we will focus on implementing the [buyer's remorse pattern](https://en.wikipedia.org/wiki/Buyer%27s_remorse). In this pattern, customers that purchased something are able to cancel their order within a certain amount of time after it was placed. This is an important software pattern that pops up in non-retail domains as well. For example, Gmail uses the same pattern for their [Undo Send feature](https://support.google.com/mail/answer/2819488?co=GENIE.Platform%3DDesktop&hl=en).
+The use cases for saga timeouts are too numerous to count, so in this tutorial we will focus on implementing the [buyer's remorse pattern](https://en.wikipedia.org/wiki/Buyer%27s_remorse). In this pattern, customers that purchased something are able to cancel their order within a certain amount of time after it was placed. This is an important software pattern that pops up in non-retail domains as well. For example, Gmail uses the same pattern for their [Undo Send feature](https://support.google.com/mail/answer/2819488?co=GENIE.Platform%3DDesktop&hl=en).
 
 With the buyer's remorse pattern, the purchase is kept in a holding state until after a defined delay. The order isn't *really* sent until the timeout has expired.
 
@@ -44,7 +44,7 @@ Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes a
 
 ### Saga storage
 
-Saga state must be persisted somewhere. There are various persistence options but for this tutorial the `LearningPersistence` is used. This is a simple persistence option for educational purposes and is *not* suited for production-use.
+Saga state must be persisted somewhere. There are various persistence options but for this tutorial the `LearningPersistence` is used. This is a simple persistence option for educational purposes and is *not* suited for production use.
 
 In the Sales project, open `Program.cs` and add the following configuration setting:
 
@@ -56,13 +56,13 @@ In the Sales project, create a new class called `BuyersRemorsePolicy` and add th
 
 snippet: EmptyBuyersRemorsePolicy
 
-The policy inherits from `Saga<BuyersRemorseState>` which references the `BuyersRemorseState` class, which is the class that represent the saga's state by inheriting from `ContainsSagaData`.
+The policy inherits from `Saga<BuyersRemorseState>`. `BuyersRemorseState` represents the saga's state by inheriting from `ContainsSagaData`.
 
 The ClientUI already sends a `PlaceOrder` command to the Sales endpoint. This command is perfect to start the buyer's remorse saga. Let's implement the `IAmStartedByMessages<PlaceOrder>` interface in the saga:
 
 snippet: BuyersRemorsePolicyStartedByPlaceOrder
 
-Next, we need a way to map messages to sagas so we know which saga instances a particular message belongs to. We do this with the `ConfigureHowToFindSaga`-method and in our case, we already have a natural mapping field: `OrderId`.
+Next, we need a way to map messages to sagas so we know which saga instances a particular message belongs to. We do this with the `ConfigureHowToFindSaga` method and, in this case, we already have a natural mapping field: `OrderId`.
 
 snippet: BuyersRemorsePolicyMapping
 
@@ -76,11 +76,11 @@ snippet: BuyersRemorseTimeoutRequest
 
 NOTE: This tutorial uses 20 seconds as a timeout value for simplicity. In production, a business enforced rule should determine the length of this period.
 
-Besides the `context`, the `RequestTimeout` method has two parameters of note. One is the `TimeSpan` which tells us how long to wait before sending our timeout message. In this case, it's 20 seconds.
+Besides the `context`, the `RequestTimeout` method has two interesting parameters. One is the `TimeSpan` which tells us how long to wait before sending our timeout message. In this case, it's 20 seconds.
 
 NOTE: Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this form, remember that local time is affected by Daylight Savings Time (DST) changes: use UTC dates to avoid DST conversion issues.
 
-The other parameter to note is the `BuyersRemorseIsOver` class, which we don't have yet. This parameter represents the actual message that will be sent when the timeout elapses. Let's create it now. You can put it in the same file as our saga and leave it as an empty class:
+The other interesting parameter is the message that will be sent when the timeout elapses. In this case, we are providing an instance of `BuyersRemorseIsOver`, a class which is not yet defined. Let's define it now. You can put it in the same file as our saga and leave it as an empty class:
 
 snippet: BuyersRemorseTimeoutClassDefinition
 
@@ -94,7 +94,7 @@ Handling a timeout method is similar to how other handlers work. But instead of 
 
 snippet: BuyersRemorseTimeoutHandling
 
-The code in the `Timeout` method is business logic; stuff that is supposed to happen when an order is placed. When we're done, we publish an `OrderPlaced` event to notify any interested parties that something important has occured. Remember, our `ShippingPolicy` saga still needs to know that an order has been placed so it can be shipped.
+The code in the `Timeout` method is business logic; stuff that is supposed to happen when an order is placed. When we're done, we publish an `OrderPlaced` event to notify any subscribers that something important has occurred. Remember, our `ShippingPolicy` saga still needs to know that an order has been placed so it can be shipped.
 
 The last line of the method is a call to the `MarkAsComplete` method. This is important because it tells the saga instance that it's finished. Any further messages to this instance will be ignored because there is no further work to be done for the saga. We'll return to this concept in the next section when handling cancellation.
 
@@ -114,9 +114,9 @@ snippet: BuyersRemorseCancelOrderHandling
 
 The `Handle` method is very similar to the saga's `Timeout` method. We log some information, execute some business logic, then mark the saga complete. This effectively cancels any outstanding timeouts currently in place for the saga. Remember, by calling `MarkAsComplete`, we tell this saga instance that there is no further work to be performed.
 
-NOTE: If the system is busy it could be that the cancellation message gets processed after the timeout even though the cancellation was sent before the timeout's timestamp. The probability of this occuring increases the shorter the timeout duration is.
+NOTE: If the system is busy, the cancellation message may be processed *after* the timeout message, even though the cancellation message was sent before the timeout message was due. The shorter the timeout duration is, the higher the probability is of this occurring.
 
-Consider what happens when the buyer's remorse period has ended. The saga has been marked complete but maybe the Cancel button still appears on the user's screen and they click it. Assuming a `CancelOrder` command is fired, nothing will happen. The saga instance is already complete so the message will be discarded. In effect, we can't cancel an order that has already been placed. Similarly, we can't complete an order that has already been processed. `MarkAsComplete` handles both of these scenarios for us.
+Consider what happens when the buyer's remorse period has ended. The saga has been marked complete but maybe the Cancel button still appears on the user's screen and they click it. Assuming a `CancelOrder` command is fired, nothing will happen. The saga instance is already complete so the message is discarded. In effect, we can't cancel an order that has already been placed. Similarly, we can't complete an order that has already been processed. `MarkAsComplete` handles both of these scenarios for us.
 
 NOTE: Technically, it's not true that _nothing_ will happen when a saga message is received after the instance has completed. We can implement the `IHandleSagaNotFound` interface to [perform logic](/nservicebus/sagas/saga-not-found.md) in these scenarios. For example, we could inform the customer that the buyer's remorse period has ended so the order can no longer be cancelled.
 
