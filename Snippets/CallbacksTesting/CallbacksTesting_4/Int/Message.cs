@@ -1,4 +1,4 @@
-﻿namespace CallbacksTesting2.Int
+﻿namespace CallbacksTesting.Int
 {
     using NServiceBus;
 

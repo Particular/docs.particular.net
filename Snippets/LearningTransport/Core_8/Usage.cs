@@ -1,36 +1,33 @@
-﻿namespace Core7
+﻿using NServiceBus;
+
+class Usage
 {
-    using NServiceBus;
-
-    class Usage
+    Usage(EndpointConfiguration endpointConfiguration)
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region LearningTransport
+        #region LearningTransport
 
-            endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void StorageDirectory(EndpointConfiguration endpointConfiguration)
-        {
-            #region StorageDirectory
+    void StorageDirectory(EndpointConfiguration endpointConfiguration)
+    {
+        #region StorageDirectory
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
-            transport.StorageDirectory("PathToStoreTransportFiles");
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        transport.StorageDirectory("PathToStoreTransportFiles");
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void NoPayloadSizeRestriction(EndpointConfiguration endpointConfiguration)
-        {
-            #region NoPayloadSizeRestriction
+    void NoPayloadSizeRestriction(EndpointConfiguration endpointConfiguration)
+    {
+        #region NoPayloadSizeRestriction
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
-            transport.NoPayloadSizeRestriction();
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        transport.NoPayloadSizeRestriction();
 
-            #endregion
-        }
+        #endregion
     }
 }

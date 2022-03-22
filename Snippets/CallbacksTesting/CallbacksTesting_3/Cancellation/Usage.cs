@@ -1,4 +1,4 @@
-﻿namespace CallbacksTesting2.Cancellation
+﻿namespace CallbacksTesting.Cancellation
 {
     using System;
     using System.Threading;

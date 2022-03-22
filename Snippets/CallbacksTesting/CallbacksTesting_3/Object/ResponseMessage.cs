@@ -1,4 +1,4 @@
-﻿namespace CallbacksTesting2.Object
+﻿namespace CallbacksTesting.Object
 {
     using NServiceBus;
 

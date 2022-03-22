@@ -1,21 +1,14 @@
-﻿namespace Core7
+﻿using NServiceBus;
+
+class Usage
 {
-    using NServiceBus;
-
-    class Usage
+    Usage(EndpointConfiguration endpointConfiguration, string databusPath)
     {
-        Usage(EndpointConfiguration endpointConfiguration, string databusPath)
-        {
-            #region FileShareDataBus
+        #region FileShareDataBus
 
-            var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
-            dataBus.BasePath(databusPath);
+        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+        dataBus.BasePath(databusPath);
 
-            #endregion
-        }
+        #endregion
     }
-
-
-
-
 }

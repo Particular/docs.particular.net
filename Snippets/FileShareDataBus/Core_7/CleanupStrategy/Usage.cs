@@ -1,4 +1,4 @@
-namespace Core7.CleanupStrategy
+namespace CleanupStrategy
 {
     using System;
     using System.IO;

@@ -1,4 +1,4 @@
-﻿namespace CallbacksTesting2.Enum
+﻿namespace CallbacksTesting.Enum
 {
     using System.Threading.Tasks;
     using NServiceBus;

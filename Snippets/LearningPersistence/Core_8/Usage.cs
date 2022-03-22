@@ -1,25 +1,23 @@
-﻿namespace Core7
+﻿using NServiceBus;
+
+class Usage
 {
-    using NServiceBus;
-
-    class Usage
+    Usage(EndpointConfiguration endpointConfiguration)
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region LearningPersistence
+        #region LearningPersistence
 
-            endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
 
-            #endregion
-        }
-        void SagaStorageDirectory(EndpointConfiguration endpointConfiguration)
-        {
-            #region LearningPersistenceSagaStorageDirectory
+        #endregion
+    }
 
-            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
-            persistence.SagaStorageDirectory("PathToStoreSagas");
+    void SagaStorageDirectory(EndpointConfiguration endpointConfiguration)
+    {
+        #region LearningPersistenceSagaStorageDirectory
 
-            #endregion
-        }
+        var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+        persistence.SagaStorageDirectory("PathToStoreSagas");
+
+        #endregion
     }
 }
