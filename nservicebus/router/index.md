@@ -4,10 +4,14 @@ summary: How to connect parts of the system that use different transports
 component: Router
 related:
 - samples/azure-service-bus-netstandard/azure-service-bus-msmq-bridge
-- samples/msmq/msmqtosqlrelay
+- samples/router/backplane
+- samples/router/sql-switch
+- samples/router/update-and-publish
+- samples/router/mixed-transports
+- samples/router/sites
 redirects:
 - nservicebus/bridge
-reviewed: 2021-06-05
+reviewed: 2022-03-22
 ---
 
 `NServiceBus.Router` is a universal component that connects parts of an NServiceBus-based solution that otherwise could not talk to each other (e.g. because they use different transports or transport settings).
