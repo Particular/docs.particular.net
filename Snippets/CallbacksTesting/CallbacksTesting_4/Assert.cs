@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-// ReSharper disable UnusedParameter.Global
-// ReSharper disable UnusedTypeParameter
 
 static class Assert
 {
