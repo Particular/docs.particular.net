@@ -17,8 +17,7 @@ namespace MyNamespace2
         {
             mapper.MapSaga(saga => saga.TheId)
                 .ToMessage<StartReplySaga>(msg => msg.TheId)
-                .ToMessage<Reply>(msg => msg.TheId)
-                ;
+                .ToMessage<Reply>(msg => msg.TheId);
         }
 
         public Task Handle(StartReplySaga message, IMessageHandlerContext context)
