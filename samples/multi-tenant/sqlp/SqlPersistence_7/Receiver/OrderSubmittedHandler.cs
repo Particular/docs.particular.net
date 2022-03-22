@@ -23,7 +23,7 @@ public class OrderSubmittedHandler :
         dataContext.Database.UseTransaction(session.Transaction);
 
         dataContext.Orders.Add(order);
-        await dataContext.SaveChangesAsync().ConfigureAwait(false);
+        await dataContext.SaveChangesAsync(context.CancellationToken).ConfigureAwait(false);
 
         var orderAccepted = new OrderAccepted
         {

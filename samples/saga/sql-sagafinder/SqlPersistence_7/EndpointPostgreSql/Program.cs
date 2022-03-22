@@ -11,7 +11,7 @@ class Program
     {
         Console.Title = "Samples.SqlSagaFinder.PostgreSql";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.PostgreSql");
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         #region PostgreSqlConfig

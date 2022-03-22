@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
+using System.Threading;
 
 class Program
 {
@@ -15,7 +16,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         #region DisablingOutboxCleanup
 
@@ -70,13 +71,13 @@ class Program
             shouldInstallOutbox: true,
             shouldInstallSagas: true,
             shouldInstallSubscriptions: false,
-            shouldInstallTimeouts: false);
+            cancellationToken: CancellationToken.None);
 
         await ScriptRunner.Install(dialect, tablePrefix, () => new SqlConnection(Connections.TenantB), scriptDirectory,
             shouldInstallOutbox: true,
             shouldInstallSagas: true,
             shouldInstallSubscriptions: false,
-            shouldInstallTimeouts: false);
+            cancellationToken: CancellationToken.None);
 
         #endregion
 

@@ -1,5 +1,5 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using System;
 
 public class OrderSagaData :
     ContainSagaData

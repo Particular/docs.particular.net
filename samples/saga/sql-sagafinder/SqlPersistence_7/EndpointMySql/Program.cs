@@ -10,7 +10,7 @@ class Program
     {
         Console.Title = "Samples.SqlSagaFinder.MySql";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.MySql");
-        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         #region MySqlConfig
