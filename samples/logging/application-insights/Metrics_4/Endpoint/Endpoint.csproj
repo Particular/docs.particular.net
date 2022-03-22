@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.14.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-alpha.1901" />
-    <PackageReference Include="NServiceBus.Metrics" Version="4.0.0-alpha.153" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Metrics" Version="4.0.0-beta.1" />
   </ItemGroup>
 </Project>

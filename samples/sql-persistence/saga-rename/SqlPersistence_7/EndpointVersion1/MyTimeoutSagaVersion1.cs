@@ -16,7 +16,8 @@ namespace MyNamespace1
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
-            mapper.ConfigureMapping<StartTimeoutSaga>(msg => msg.TheId).ToSaga(saga => saga.TheId);
+            mapper.MapSaga(saga => saga.TheId)
+                .ToMessage<StartTimeoutSaga>(msg => msg.TheId);
         }
 
         public Task Handle(StartTimeoutSaga message, IMessageHandlerContext context)
