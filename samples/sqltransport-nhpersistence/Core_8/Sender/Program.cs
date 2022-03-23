@@ -14,7 +14,7 @@ class Program
     {
         random = new Random();
         Console.Title = "Samples.SqlNHibernate.Sender";
-        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100";
+        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100;Encrypt=False";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Sender");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
