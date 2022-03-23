@@ -14,8 +14,9 @@ public class TestSaga :
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<TestSagaData> mapper)
     {
-        mapper.ConfigureMapping<StartingMessage>(m => m.SomeId).ToSaga(s => s.SomeId);
-        mapper.ConfigureMapping<CorrelatedMessage>(m => m.SomeId).ToSaga(s => s.SomeId);
+        mapper.MapSaga(s => s.SomeId)
+            .ToMessage<StartingMessage>(m => m.SomeId)
+            .ToMessage<CorrelatedMessage>(m => m.SomeId);
     }
 
     #region Handlers

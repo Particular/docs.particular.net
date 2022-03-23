@@ -1,6 +1,7 @@
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Transport;
+using Microsoft.Extensions.DependencyInjection;
 
 class ReceiverSideDistribution :
     Feature
@@ -25,11 +26,10 @@ class ReceiverSideDistribution :
         var pipeline = context.Pipeline;
         if (supportMessageDrivenPubSub)
         {
-            pipeline.Register(new DistributeSubscriptions.Register(discriminator, configuration.Partitions, address => transportInfrastructure.ToTransportAddress(address), queueAddress));
+            pipeline.Register(new DistributeSubscriptions.Register(discriminator, configuration.Partitions, queueAddress));
         }
 
-        var forwarder = new Forwarder(configuration.Partitions, address => transportInfrastructure.ToTransportAddress(address), queueAddress);
-        pipeline.Register(new DistributeMessagesBasedOnHeader(discriminator, forwarder), "Distributes on the receiver side using header only");
-        pipeline.Register(new DistributeMessagesBasedOnPayload(discriminator, forwarder, configuration.MapMessageToPartitionKey), "Distributes on the receiver side using user supplied mapper");
+        pipeline.Register(b => new DistributeMessagesBasedOnHeader(discriminator, new Forwarder(configuration.Partitions, b.GetRequiredService<ITransportAddressResolver>(), queueAddress)), "Distributes on the receiver side using header only");
+        pipeline.Register(b => new DistributeMessagesBasedOnPayload(discriminator, new Forwarder(configuration.Partitions, b.GetRequiredService<ITransportAddressResolver>(), queueAddress), configuration.MapMessageToPartitionKey), "Distributes on the receiver side using user supplied mapper");
     }
 }

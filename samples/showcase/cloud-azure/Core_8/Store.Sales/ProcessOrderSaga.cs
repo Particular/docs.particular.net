@@ -69,10 +69,9 @@ public class ProcessOrderSaga :
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderData> mapper)
     {
-        mapper.ConfigureMapping<SubmitOrder>(message => message.OrderNumber)
-            .ToSaga(sagaData => sagaData.OrderNumber);
-        mapper.ConfigureMapping<CancelOrder>(message => message.OrderNumber)
-            .ToSaga(sagaData => sagaData.OrderNumber);
+        mapper.MapSaga(sagaData => sagaData.OrderNumber)
+            .ToMessage<SubmitOrder>(message => message.OrderNumber)
+            .ToMessage<CancelOrder>(message => message.OrderNumber);
     }
 
     public class OrderData :

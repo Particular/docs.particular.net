@@ -4,20 +4,21 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Pipeline;
 using NServiceBus.Transport;
+using Microsoft.Extensions.DependencyInjection;
 
 class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
 {
     HashSet<string> knownPartitionKeys;
     string localPartitionKey;
-    Func<QueueAddress, string> addressTranslator;
+    ITransportAddressResolver transportAddressResolver;
     QueueAddress logicalAddress;
 
-    public DistributeSubscriptions(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<QueueAddress, string> addressTranslator, QueueAddress logicalAddress)
+    public DistributeSubscriptions(string localPartitionKey, HashSet<string> knownPartitionKeys, ITransportAddressResolver transportAddressResolver, QueueAddress logicalAddress)
     {
         this.logicalAddress = logicalAddress;
-        this.addressTranslator = addressTranslator;
         this.localPartitionKey = localPartitionKey;
         this.knownPartitionKeys = knownPartitionKeys;
+        this.transportAddressResolver = transportAddressResolver;
     }
 
     public async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingPhysicalMessageContext, Task> next)
@@ -43,7 +44,7 @@ class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IInco
                     }
 
                     var queueAddress = new QueueAddress(logicalAddress.BaseAddress, partitionKey, null, null);
-                    var destination = addressTranslator(queueAddress);
+                    var destination = transportAddressResolver.ToTransportAddress(queueAddress);
                     tasks.Add(context.ForwardCurrentMessageTo(destination));
                 }
             }
@@ -57,8 +58,8 @@ class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IInco
     public class Register :
         RegisterStep
     {
-        public Register(string localPartitionKey, HashSet<string> knownPartitionKeys, Func<QueueAddress, string> addressTranslator, QueueAddress logicalAddress) :
-            base("DistributeSubscriptions", typeof(DistributeSubscriptions), "Distributes subscription messages for message driven pubsub using header only.", b => new DistributeSubscriptions(localPartitionKey, knownPartitionKeys, addressTranslator, logicalAddress))
+        public Register(string localPartitionKey, HashSet<string> knownPartitionKeys, QueueAddress logicalAddress) :
+            base("DistributeSubscriptions", typeof(DistributeSubscriptions), "Distributes subscription messages for message driven pubsub using header only.", b => new DistributeSubscriptions(localPartitionKey, knownPartitionKeys, b.GetRequiredService<ITransportAddressResolver>(), logicalAddress))
         {
             InsertBeforeIfExists("ProcessSubscriptionRequests");
         }

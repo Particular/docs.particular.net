@@ -8,12 +8,12 @@ class Forwarder
 {
     QueueAddress logicalAddress;
     HashSet<string> knownPartitionKeys;
-    Func<QueueAddress, string> addressTranslator;
+    ITransportAddressResolver transportAddressResolver;
 
-    public Forwarder(HashSet<string> knownPartitionKeys, Func<QueueAddress, string> addressTranslator, QueueAddress logicalAddress)
+    public Forwarder(HashSet<string> knownPartitionKeys, ITransportAddressResolver transportAddressResolver, QueueAddress logicalAddress)
     {
         this.knownPartitionKeys = knownPartitionKeys;
-        this.addressTranslator = addressTranslator;
+        this.transportAddressResolver = transportAddressResolver;
         this.logicalAddress = logicalAddress;
     }
 
@@ -25,7 +25,7 @@ class Forwarder
         }
 
         var individualizedAddress = new QueueAddress(logicalAddress.BaseAddress, messagePartitionKey, null, null);
-        var destination = addressTranslator(individualizedAddress);
+        var destination = transportAddressResolver.ToTransportAddress(individualizedAddress);
         return context.ForwardCurrentMessageTo(destination);
     }
 }

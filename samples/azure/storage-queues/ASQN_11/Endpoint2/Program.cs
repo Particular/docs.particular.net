@@ -11,7 +11,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.EnableInstallers();
-        var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true", useNativeDelayedDeliveries: false)
+        var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true")
         {
             QueueNameSanitizer = BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener
         };
