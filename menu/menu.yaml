@@ -891,6 +891,8 @@
       Title: Callback support
     - Url: transports/sql/sql-azure
       Title: Azure SQL considerations
+    - Url: transports/sql/troubleshooting
+      Title: Troubleshooting
   - Url: transports/msmq
     Title: MSMQ
     Articles:
