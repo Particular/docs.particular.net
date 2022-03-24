@@ -1,7 +1,7 @@
 ---
 title: Upgrade Version 7 to 8
 summary: Instructions on how to upgrade NServiceBus from version 7 to version 8.
-reviewed: 2020-02-20
+reviewed: 2022-03-24
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -9,13 +9,11 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-NOTE: This is a working document; there is currently no timeline for the release of NServiceBus version 8.0.
+This document focuses on changes that are affecting general endpoint configuration and message handlers. For more upgrade guides, also see the following:
 
 * [Changes for downstream implementations like custom/community transports, persistence, message serializers](implementations.md)
 * [Changes related to the pipeline](pipeline.md)
 * [Changes to framework requirements](/nservicebus/operations/dotnet-framework-version-requirements.md)
-
-This document focuses on changes that are affecting general endpoint configuration and message handlers.
 
 ## Removed support for .NET Standard
 
@@ -27,8 +25,8 @@ NServiceBus version 8 comes with a new transport configuration API. Instead of t
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<MyTransport>();
-
 transport.Transactions(TransportTransactionMode.ReceiveOnly);
+
 var routing = t.Routing();
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
@@ -240,9 +238,9 @@ In NServiceBus version 7 and earlier, the local transport-specific queue address
 
 ### Logical endpoint address
 
-Since the endpoint addresses are translated to the transport-specific later during endpoint startup, addresses are defined using a transport-agnostic `QueueAddress` type. The addresses can be accessed via the `FeatureConfigurationContext`, e.g.:
+Since the endpoint addresses are translated to the transport-specific later during endpoint startup, addresses are defined using a transport-agnostic `QueueAddress` type. The addresses can be accessed via the `FeatureConfigurationContext`, for example:
 
-```
+```csharp
 class MyFeature : Feature
 {
     protected override void Setup(FeatureConfigurationContext context)
@@ -262,7 +260,7 @@ A `QueueAddress` can be translated to a transport-specific address at runtime us
 
 Instead of using the `settings.LocalAddress()` and `settings.InstanceSpecificQueue()` methods to get the endpoint's local receive addresses, inject the `ReceiveAddresses` type to access the endpoint receive addresses.
 
-```
+```csharp
 class StartupTask : FeatureStartupTask
 {
     static readonly ILog log = LogManager.GetLogger<StartupTask>();
@@ -295,7 +293,7 @@ class StartupTask : FeatureStartupTask
 
 Instead of using `settings.Get<TransportDefinition>().ToTransportAddress(myAddress)` to translate `QueueAddress` to a transport-specific address, inject the `ITransportAddressResolver` type to access the address translation mechanism at runtime.
 
-```
+```csharp
 public class MyHandler : IHandleMessages<MyMessage>
 {
     ITransportAddressResolver addressResolver;
