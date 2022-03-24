@@ -1109,6 +1109,8 @@
       Title: Installer Workflow
     - Url: persistence/sql/migrating-from-nhibernate
       Title: Migrating from NHibernate
+    - Url: persistence/sql/troubleshooting
+      Title: Troubleshooting
   - Title: Cosmos DB
     Url: persistence/cosmosdb
     Articles:
