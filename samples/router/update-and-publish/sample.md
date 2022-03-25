@@ -1,6 +1,6 @@
 ---
 title: Using NServiceBus.Router for atomic update-and-publish in WebAPI sample
-summary: NServiceBus sample showing how to use SQL transport and an ASP.NET frontend to allow for atomic update-and-publish and NServiceBus.Router to connect frontend to backend transport
+summary: How to use SQL transport in an ASP.NET frontend to allow for atomic update-and-publish and NServiceBus.Router to connect frontend to backend transport
 component: Router
 reviewed: 2022-03-25
 related:
