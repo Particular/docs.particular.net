@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Queues Transport Upgrade Version 10 to 11
 summary: Instructions on how to upgrade the Azure Storage Queues transport from version 10 to 11.
-reviewed: 2021-03-12
+reviewed: 2022-03-25
 component: ASQ
 related:
 - transports/azure-storage-queues
@@ -21,6 +21,7 @@ Instead of:
 ```csharp
 var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
 transport.Transactions(TransportTransactionMode.ReceiveOnly);
+
 var routing = t.Routing();
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
@@ -32,6 +33,7 @@ var transport = new AzureStorageQueueTransport("azure-storage-connection-string"
 {
     TransportTransactionMode = TransportTransactionMode.ReceiveOnly
 };
+
 var routing = endpointConfiguration.UseTransport(transport);
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```

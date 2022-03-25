@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport Upgrade Version 6 to 7
 summary: Migration instructions on how to migrate the SQL Server transport from version 6 to version 7
-reviewed: 2021-04-01
+reviewed: 2022-03-25
 component: SqlTransport
 related:
 - transports/sql
