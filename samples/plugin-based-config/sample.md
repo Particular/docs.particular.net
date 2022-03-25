@@ -1,13 +1,12 @@
 ---
-title: Customization with MEF or Reflection
-summary: Using MEF or reflection to add custom configuration, startup, and shutdown logic to NServiceBus.
+title: Customization with MEF or Reflection sample
+summary: NServiceBus sample that uses MEF or reflection to add custom configuration, startup, and shutdown logic to NServiceBus.
 component: Core
-reviewed: 2019-11-11
+reviewed: 2022-03-25
 related:
 - nservicebus/lifecycle
 - nservicebus/pipeline
 ---
-
 
 ## Shared
 
@@ -19,37 +18,32 @@ snippet: IRunAfterEndpointStart
 
 The complete list of extension points in this solution are:
 
- * `ICustomizeConfiguration`
- * `IRunBeforeEndpointStart`
- * `IRunAfterEndpointStart`
- * `IRunBeforeEndpointStop`
- * `IRunAfterEndpointStop`
-
+* `ICustomizeConfiguration`
+* `IRunBeforeEndpointStart`
+* `IRunAfterEndpointStart`
+* `IRunBeforeEndpointStop`
+* `IRunAfterEndpointStop`
 
 ## Approaches to executing extension points
 
 Both approaches have similar parts:
 
- * An endpoint project that starts the endpoint and loads + executes the specific extension points in the Shared project.
- * An extensions project that contains the implementations for the extension points in the Shared project.
-
+* An endpoint project that starts the endpoint and loads + executes the specific extension points in the Shared project.
+* An extensions project that contains the implementations for the extension points in the Shared project.
 
 ## Custom reflection
 
 This approach uses directory scanning and reflection to discover and execute the extension points.
 
-
 ### Endpoint startup
 
 snippet: CustomStartup
-
 
 ### Helpers
 
 Some common scanning and reflection helpers:
 
 snippet: Resolver
-
 
 ### Example extension implementations
 
@@ -59,23 +53,19 @@ snippet: CustomRunAfterEndpointStart
 
 snippet: CustomSendMessageAfterEndpointStart
 
-
 ## [Managed Extensibility Framework (MEF)](https://www.nuget.org/packages/System.Composition/)
 
 This approach uses [MEF](https://www.nuget.org/packages/System.Composition/) to discover and execute the extension points.
 
-
 ### Endpoint Startup
 
 snippet: MefStartup
-
 
 ### Helpers
 
 Some common MEF helpers:
 
 snippet: MefExtensions
-
 
 ### Example extension implementations
 
@@ -85,14 +75,11 @@ snippet: MefRunAfterEndpointStart
 
 snippet: MefSendMessageAfterEndpointStart
 
-
 ## Other notes
-
 
 ### Using [dependency injection](/nservicebus/dependency-injection/)
 
 Both the above approaches could be made more extensible and versatile by leveraging [dependency injection](/nservicebus/dependency-injection/). In the case of MEF, most containers have custom integrations, for example [Autofac.Mef](https://docs.autofac.org/en/latest/integration/mef.html). For the custom reflection approach the standard reflection-based APIs of a given container would be used.
-
 
 ### Adding more extensions points
 

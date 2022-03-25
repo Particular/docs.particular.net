@@ -1,14 +1,13 @@
 ---
-title: Using NServiceBus in an ASP.NET Core WebAPI Application
-summary: Illustrates how to send messages to a NServiceBus endpoint from a ASP.NET Core WebAPI application.
+title: Using NServiceBus in an ASP.NET Core WebAPI Application sample
+summary: NServiceBus sample that illustrates how to send messages to an endpoint from a ASP.NET Core WebAPI application.
 component: Core
-reviewed: 2019-11-12
+reviewed: 2022-03-25
 related:
 - nservicebus/hosting
 ---
 
 include: webhost-warning
-
 
 This sample shows how to send messages to an NServiceBus endpoint from an ASP.NET Core WebAPI application.
 
@@ -31,7 +30,6 @@ A [Send-Only endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting) nam
 snippet: EndpointConfiguration
 
 Routing is configured to send every message from the assembly containing `MyMessage` to the `Samples.ASPNETCore.Endpoint` endpoint.
-
 
 ### Injection into the Controller
 

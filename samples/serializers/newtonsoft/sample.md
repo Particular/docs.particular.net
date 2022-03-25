@@ -1,7 +1,7 @@
 ---
-title: Newtonsoft JSON Serializer
-summary: Using the Newtonsoft JSON serializer in an endpoint
-reviewed: 2019-11-11
+title: Newtonsoft JSON Serializer sample
+summary: NServiceBus sample that shows how to use the Newtonsoft JSON serializer in an endpoint
+reviewed: 2022-03-25
 component: Newtonsoft
 related:
  - nservicebus/serialization
@@ -13,11 +13,9 @@ redirects:
 
 This sample uses the Newtonsoft serializer [NServiceBus.Newtonsoft.Json](https://github.com/Particular/NServiceBus.Newtonsoft.Json) to provide full access to the [Newtonsoft Json.net](https://www.newtonsoft.com/json) API.
 
-
 ## Configuring to use NServiceBus.Newtonsoft.Json
 
 snippet: config
-
 
 ## Diagnostic mutator
 
@@ -29,11 +27,9 @@ Register the mutator:
 
 snippet: registermutator
 
-
 ## Sending the message
 
 snippet: message
-
 
 ## Output
 
