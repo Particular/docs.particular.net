@@ -1,5 +1,5 @@
 ---
-title: Native Integration with ASQ
+title: Azure Storage Queue native integration sample
 summary: Sample code and scripts to facilitate native integration scenario's with Azure Storage Queues.
 reviewed: 2021-09-07
 component: ASQ

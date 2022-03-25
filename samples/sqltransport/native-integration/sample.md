@@ -1,5 +1,5 @@
 ---
-title: Native integration
+title: SQL Server transport native integration sample
 summary: Integrating natively with the SQL Server transport.
 reviewed: 2021-03-02
 component: SqlTransport

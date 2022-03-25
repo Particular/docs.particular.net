@@ -1,5 +1,5 @@
 ---
-title: Azure Service Bus Native Integration
+title: Azure Service Bus transport native integration sample
 summary: How to consume messages published by non-NServiceBus endpoints.
 component: ASBS
 isLearningPath: true

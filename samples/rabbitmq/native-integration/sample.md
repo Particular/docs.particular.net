@@ -1,5 +1,5 @@
 ---
-title: Native integration with RabbitMQ
+title: RabbitMQ transport native integration sample
 summary: Consuming messages published by non-NServiceBus endpoints
 reviewed: 2021-08-06
 component: Rabbit
