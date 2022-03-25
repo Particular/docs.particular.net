@@ -7,7 +7,6 @@ class HardcodeReplyToAddressToLogicalAddressFeature : Feature
 {
     protected override void Setup(FeatureConfigurationContext context)
     {
-        var settings = context.Settings;
         context.Pipeline.Register(s =>
         {
             var instanceSpecificQueueAddress = s.GetRequiredService<ITransportAddressResolver>()
