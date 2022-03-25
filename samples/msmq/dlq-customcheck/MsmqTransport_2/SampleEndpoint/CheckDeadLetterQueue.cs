@@ -1,6 +1,7 @@
 using NServiceBus.CustomChecks;
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 
 #region check-dead-letter-queue
@@ -20,7 +21,7 @@ class CheckDeadLetterQueue :
             readOnly: true);
     }
 
-    public override Task<CheckResult> PerformCheck()
+    public override Task<CheckResult> PerformCheck(CancellationToken cancellationToken)
     {
         var currentValue = dlqPerformanceCounter.NextValue();
 

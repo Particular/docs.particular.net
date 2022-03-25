@@ -32,15 +32,14 @@ public class TestSaga :
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<TestSagaData> mapper)
     {
         #region Mappings
-        mapper.ConfigureMapping<StartingMessage>(m => m.SomeId)
-            .ToSaga(s => s.SomeId);
-        mapper.ConfigureMapping<CorrelatedMessage>(m => m.SomeId)
-            .ToSaga(s => s.SomeId);
+        mapper.MapSaga(s => s.SomeId)
 
+            .ToMessage<StartingMessage>(m => m.SomeId)
+            .ToMessage<CorrelatedMessage>(m => m.SomeId)
 #if MIGRATION
-        mapper.ConfigureMapping<DummyMessage>(m => m.SomeId)
-            .ToSaga(s => s.SomeId);
+            .ToMessage<DummyMessage>(m => m.SomeId)
 #endif
+            ;
         #endregion
     }
 

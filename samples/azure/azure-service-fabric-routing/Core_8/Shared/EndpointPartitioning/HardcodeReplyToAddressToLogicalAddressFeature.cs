@@ -1,12 +1,17 @@
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.Features;
+using NServiceBus.Transport;
 
 class HardcodeReplyToAddressToLogicalAddressFeature : Feature
 {
     protected override void Setup(FeatureConfigurationContext context)
     {
-        var settings = context.Settings;
-        var addressToLogicalAddress = new HardcodeReplyToAddressToLogicalAddress(settings.InstanceSpecificQueue());
-        context.Pipeline.Register(addressToLogicalAddress, "Hardcodes the ReplyToAddress to the instance specific address of this endpoint.");
+        context.Pipeline.Register(s =>
+        {
+            var instanceSpecificQueueAddress = s.GetRequiredService<ITransportAddressResolver>()
+                                                .ToTransportAddress(context.InstanceSpecificQueueAddress());
+            return new HardcodeReplyToAddressToLogicalAddress(instanceSpecificQueueAddress);
+        },  "Hardcodes the ReplyToAddress to the instance specific address of this endpoint.");
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
@@ -52,7 +53,7 @@ class Program
                 context.Database.UseTransaction(session.Transaction);
 
                 //Ensure context is flushed before the transaction is committed
-                session.OnSaveChanges(s => context.SaveChangesAsync());
+                session.OnSaveChanges((s, cancellationToken) => context.SaveChangesAsync(cancellationToken));
 
                 return context;
             });
