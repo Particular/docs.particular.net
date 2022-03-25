@@ -26,8 +26,6 @@ The new NServiceBus.Transport.SqlServer package references `Microsoft.Data.SqlCl
 
 NOTE: `System.Data.SqlClient` is in maintenance mode. Microsoft will bring new features and improvements to [`Microsoft.Data.SqlClient`](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) only. For more information, read [Introduction to the new Microsoft.Data.SqlClient](https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/). It is recommended to switch to the new client if possible.
 
-include: sqlserver-client4breakingchange
-
 ## Moved types from namespace `NServiceBus.Transport.SQLServer` to `NServiceBus.Transport.SqlServer`
 
 Certain advanced configuration APIs have been moved from the namespace `NServiceBus.Transport.SQLServer` to `NServiceBus.Transport.SqlServer` (note the change in case). Code must to be adjusted accordingly. A straight forward way is to search and replace

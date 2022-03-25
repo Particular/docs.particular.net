@@ -32,8 +32,6 @@ endpointConfiguration.UseTransport(transport);
 
 include: v7-usetransport-shim-api
 
-include: sqlserver-client4breakingchange
-
 ## Configuration options
 
 The SQL Server transport configuration options have moved to the `SqlServerTransport` class. See the following table for further information:

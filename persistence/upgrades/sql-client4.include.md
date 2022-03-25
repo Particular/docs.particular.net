@@ -1,5 +1,3 @@
-### `Microsoft.Data.SqlClient` version 4 and above
-
 Version 4 of `Microsoft.Data.SqlClient` includes [a breaking change](https://github.com/dotnet/SqlClient/pull/1210) which sets `Encrypt=True` by default. If the client and server are not configured with a valid certificate, this can cause an exception at startup:
 
 ```

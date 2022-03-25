@@ -714,6 +714,8 @@
         Title: Version 3 to 4
     - Title: SQL Server
       Articles:
+      - Url: transports/upgrades/sqlserver-client4
+        Title: Microsoft.Data.SqlClient version 4
       - Url: transports/upgrades/sqlserver-6to7
         Title: Version 6 to 7
       - Url: transports/upgrades/sqlserver-non-clustered-idx
@@ -1033,6 +1035,8 @@
         Title: Version 3 to 4
     - Title: SQL
       Articles:
+      - Url: persistence/upgrades/sql-client4
+        Title: Microsoft.Data.SqlClient version 4
       - Url: persistence/upgrades/sql-6to7
         Title: Version 6 to 7
       - Url: persistence/upgrades/sql-5to6
