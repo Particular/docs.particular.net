@@ -100,7 +100,6 @@ The release cycle consists of the following quality stages:
 
 ### Beta
 
-* The component is feature complete.
 * Likely to contain a number of known or unknown bugs.
 * Performance and stability testing has not been fully completed.
 * This version does not come with a "go live" license and **is not supported** in production.
@@ -114,6 +113,7 @@ The release cycle consists of the following quality stages:
 
 ### Release Candidate (RC)
 
+* The component is feature complete.
 * Intended to be a equivalent to a final version, which is ready to release unless significant bugs are discovered.
 * In this stage of stabilization, all features have been designed, coded, and tested through one or more beta cycles and the version has no known important bugs.
 * There may still be changes to fix discovered bugs, changes to documentation and data files, and peripheral code for test cases or utilities.
