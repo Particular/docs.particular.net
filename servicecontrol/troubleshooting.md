@@ -61,8 +61,8 @@ If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.In
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` run Esent Recovery against the ServiceControl database followed by an Esent Repair.
 
  1. Open an elevated command prompt and navigate to the ServiceControl [database directory](configure-ravendb-location.md) (the default is `%PROGRAMDATA%\Particular\ServiceControl\Particular.ServiceControl\DB`)
- 1. Run `esentutl /r RVN /l "logs"` and wait for it to finish
- 1. Run `esentutl /p Data` and wait for it to finish
+ 1. Run `esentutl /r RVN /l "logs"` to run Recovery (bringing all databases to a clean-shutdown state) and wait for it to finish
+ 1. Run `esentutl /p Data` to run Repair (Repairs a corrupted or damaged database) and wait for it to finish
  1. Restart ServiceControl
 
 ## Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
@@ -212,3 +212,13 @@ For example, a 20-day retention period would be set as follows:
   ```xml
   <add key="ServiceControl/AuditRetentionPeriod" value="20:00:00" />
   ```
+
+## Logs contain EsentOutOfLongValueIDsException
+
+If ServiceControl logs contain a `Microsoft.Isam.Esent.Interop.EsentOutOfLongValueIDsException: Long-value ID counter has reached maximum value. (perform offline defrag to reclaim free/unused LongValueIDs)` error similar to the following snippet the instance its [database needs to be compacted](db-compaction.md).
+
+```txt
+2022-03-25 18:46:50.6564|287|Warn|ServiceControl.Audit.Auditing.AuditIngestionComponent|OnCriticalError. 'Failed to execute recoverability policy for message with native ID: `4f6d43c9-5a78-4232-8daa-6065201edeac`'
+Raven.Abstractions.Connection.ErrorResponseException: Url: "/bulk_docs"
+Microsoft.Isam.Esent.Interop.EsentOutOfLongValueIDsException: Long-value ID counter has reached maximum value. (perform offline defrag to reclaim free/unused LongValueIDs)
+```
