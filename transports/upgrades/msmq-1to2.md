@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Upgrade Version 1 to 2
 summary: Migration instructions on how to upgrade the MSMQ transport from version 1 to 2.
-reviewed: 2021-02-11
+reviewed: 2022-03-25
 component: MsmqTransport
 related:
 - transports/msmq
@@ -40,7 +40,7 @@ In version 2, explicit configuration is required to enable delayed message deliv
 
 snippet: delayed-delivery
 
-When upgrading from version 1 to 2, any currently delayed messages must be migrated using the [timeout migration tool](/nservicebus/tools/migrate-to-native-delivery.md).
+When upgrading from version 1 to 2, all the existing delayed messages must be migrated using the [timeout migration tool](/nservicebus/tools/migrate-to-native-delivery.md).
 
 ## Configuration options
 

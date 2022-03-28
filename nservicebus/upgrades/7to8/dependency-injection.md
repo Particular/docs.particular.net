@@ -1,7 +1,7 @@
 ---
 title: Dependency Injection changes
 summary: Dependency Injection changes from NServiceBus 7 to 8.
-reviewed: 2020-02-20
+reviewed: 2022-03-24
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -9,7 +9,7 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-NServiceBus no longer provides adapters for external dependency injection containers. Instead, NServiceBus version 8 directly provides the ability to use any container that conforms to the `Microsoft.Extensions.DependencyInjection` container abstraction.
+NServiceBus no longer provides adapters for external dependency injection containers. Instead, NServiceBus version 8 provides the ability to directly use any container that conforms to the `Microsoft.Extensions.DependencyInjection` container abstraction.
 
 The following adapter packages will no longer be provided:
 
@@ -19,7 +19,7 @@ The following adapter packages will no longer be provided:
 * [Ninject](/nservicebus/dependency-injection/ninject.md)
 * [Unity](/nservicebus/dependency-injection/unity.md)
 
-Instead of the container adapter packages, use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package or the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode) to use a third party dependency injection container. See the [migrating to the Generic Host](#microsoft-generic-host) or [migrating to externally managed mode](#externally-managed-container-mode) sections for further information.
+Instead of the container adapter packages, use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package. To use a third party dependency injection container use the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode). See the [migrating to the Generic Host](#microsoft-generic-host) or [migrating to externally managed mode](#externally-managed-container-mode) sections for further information.
 
 ## Behavior changes
 
@@ -30,7 +30,7 @@ The behavior has been aligned with the expectations of the `Microsoft.Extensions
 
 ## Property injection
 
-Property injection is not covered by `Microsoft.Extensions.DependencyInjection`. Therefore, the NServiceBus default dependency injection container no longer supports property injection. Property injection might still be supported by third party containers.
+Property injection is not covered by `Microsoft.Extensions.DependencyInjection`. Therefore, the NServiceBus default dependency injection container no longer supports property injection. Property injection might still be supported by the third party containers.
 
 ## UseContainer is deprecated
 
@@ -69,7 +69,7 @@ See the following table for recommended replacements. See the [IServiceCollectio
 | `ConfigureComponent<MyService>(DependencyLifecyle.SingleInstance)`        | `AddSingleton<MyService>()`  |
 | `ConfigureComponent<MyService>(DependencyLifecyle.InstancePerUnitOfWork)` | `AddScoped<MyService>()`     |
 
-The former `ConfigureComponents` automatically registered all interfaces of a given type. The `IServiceCollection.Add` methods do not do this. Any inherited interfaces must be registered explicitly. For example, their registrations may be forwarded to the inheriting type:
+The former `ConfigureComponents` would automatically register all interfaces of a given type. The `IServiceCollection.Add` method, however, would not do this and all the inherited interfaces must be registered explicitly. The registrations may be forwarded to the inheriting type, for example:
 
 ```
 endpointConfiguration.RegisterComponents(s => {

@@ -13,13 +13,13 @@ NServiceBus version 8 does not support .NET Standard as a target framework. Ther
 
 Note: When using [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md), the contracts assembly doesn't require a reference to NServiceBus and therefore is not affected. Unobtrusive message contracts can continue to target .NET Standard.
 
-## Change to specific target Platform
+## Change to specific target Framework
 
-If all endpoints target the same platform (e.g., .NET Core 3.1), the message contracts assembly can be changed accordingly to align with all other endpoint projects.
+If all endpoints share the same target framework (e.g., .NET Core 3.1), the message contracts assembly can be changed from targeting .NET Standard to the same target framework as the endpoint projects.
 
 ## Multi-targeting
 
-If endpoints that share a common contracts assembly target different platforms and frameworks (e.g. both .NET Framework 4.8 and .NET Core 3.1), the target assembly can use [multi-targeting](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting) by replacing the `TargetFramwork` element with the `TargetFrameworks` (note the plural) element in the `.csproj` settings:
+If endpoints sharing a common contracts assembly target different platforms and frameworks (e.g. both .NET Framework 4.8 and .NET Core 3.1), the target assembly can use [multi-targeting](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting) by replacing the `TargetFramwork` element with the `TargetFrameworks` (note the plural) element in the `.csproj` settings:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">

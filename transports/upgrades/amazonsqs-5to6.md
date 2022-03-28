@@ -3,7 +3,7 @@ title: Upgrade AmazonSQS Transport Version 5 to 6
 summary: Instructions on how to upgrade the AmazonSQS transport from version 5 to 6
 component: SQS
 isUpgradeGuide: true
-reviewed: 2021-03-01
+reviewed: 2022-03-25
 upgradeGuideCoreVersions:
  - 7
  - 8
@@ -12,7 +12,6 @@ upgradeGuideCoreVersions:
 ## Delayed delivery
 
 The unrestricted delayed delivery is now always enabled so the `UnrestrictedDurationDelayedDelivery()` API has been deprecated.
-
 
 ## Configuring the SQS transport
 

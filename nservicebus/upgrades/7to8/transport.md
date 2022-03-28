@@ -1,7 +1,7 @@
 ---
 title: Transport configuration changes
 summary: Transport configuration changes from NServiceBus 7 to 8.
-reviewed: 2021-02-12
+reviewed: 2022-03-25
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -9,13 +9,14 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-NServiceBus V8 introduces a new transport configuration API. Instead of the generic-based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to the `UseTransport` method.
+NServiceBus version 8 introduces a new transport configuration API. Instead of the generic-based `UseTransport<TTransport>` method, create an instance of the transport's configuration class and pass it to the `UseTransport` method.
 
 For example, instead of:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<MyTransport>();
 transport.Transactions(TransportTransactionMode.ReceiveOnly);
+
 var routing = t.Routing();
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
@@ -26,6 +27,7 @@ Use:
 var transport = new MyTransport{
     TransportTransactionMode = TransportTransactionMode.ReceiveOnly
 };
+
 var routing = endpointConfiguration.UseTransport(transport);
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
@@ -51,7 +53,7 @@ The existing API transport configuration API is supported for this major version
 
 Instead of the `Transactions` method, use the `TransportTransactionMode` property on the transport configuration instance to configure the desired transaction mode.
 
-```
+```csharp
 var transportConfiguration = new MyTransport{
     TransportTransactionMode = TransportTransactionMode.ReceiveOnly
 };
@@ -68,7 +70,7 @@ A connection string named `NServiceBus/Transport` will **no longer be detected a
 
 Routing can be configured on the `RoutingSettings` object returned from the `UseTransport` method.
 
-```
+```csharp
 var routing = endpointConfiguration.UseTransport(transportConfiguration);
 routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 ```
@@ -77,7 +79,7 @@ routing.RouteToEndpoint(typeof(MyMessage), "DestinationEndpoint");
 
 The `SubscriptionAuthorizer` method is now available on the `RoutingSettings`:
 
-```
+```csharp
 var routing = endpointConfiguration.UseTransport(transportConfiguration);
 routing.SubscriptionAuthorizer(context => <...>);
 ```

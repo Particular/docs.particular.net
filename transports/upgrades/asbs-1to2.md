@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 1 to 2
 summary: Migration instructions on how to upgrade the Azure Service Bus transport from version 1 to 2.
-reviewed: 2021-11-09
+reviewed: 2022-03-25
 component: ASBS
 related:
  - transports/azure-service-bus
@@ -29,4 +29,4 @@ See the [native message customization documentation](/transports/azure-service-b
 
 ## Native message customization
 
-`IMessageHandlerContext` and `IPipelineContext` no longer need to be passed to the `CustomizeNativeMessage` method. See the [native message customization documentation](/transports/azure-service-bus/native-message-access.md) for further details.
+`IMessageHandlerContext` and `IPipelineContext` are no longer needed to be passed to the `CustomizeNativeMessage` method. See the [native message customization documentation](/transports/azure-service-bus/native-message-access.md) for further details.

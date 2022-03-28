@@ -1,7 +1,7 @@
 ---
 title: Upgrade NServiceBus pipeline extensions from Version 7 to 8
 summary: Instructions on how to upgrade NServiceBus pipeline extensions do from version 7 to version 8.
-reviewed: 2020-02-20
+reviewed: 2022-03-25
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -9,23 +9,23 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-Information on breaking changes affecting maintainers of pipeline extensions like pipeline behaviors and message mutators.
+This documentation provides information on breaking changes affecting maintainers of pipeline extensions such as pipeline behaviors and message mutators.
 
 ## IManageUnitOfWork
 
 `IManageUnitOfWork` interface is no longer recommended. The unit of work pattern is more straightforward to implement in a pipeline behavior, where the using keyword and try/catch blocks can be used.
 
-[Custom unit of work sample](/samples/pipeline/unit-of-work/) is an example of the the recommended approach.
+[Custom unit of work sample](/samples/pipeline/unit-of-work/) is an example of the recommended approach.
 
 ## Message mutators with Dependancy Injection (DI)
 
-Message mutators that operate on serialized messages (`IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`) in NServiceBus version 8 represent the message payload as `ReadOnlyMemory<byte>` instead of `byte[]`. Therefore, it is no longer possible to change individual bytes. Instead, a modified copy of the payload must be provided.
+Message mutators that operate on serialized messages (`IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`) in NServiceBus version 8 represent the message payload as `ReadOnlyMemory<byte>` instead of `byte[]`. As a result, the messages are immutable and it is no longer possible to change their content. Instead, a modified copy of the payload must be provided.
 
-In NServiceBus version 7 and below message mutators could be registered in two ways: using a dedicated `endpointConfiguration.RegisterMessageMutator` API and via a dependency injection container. In version 8 only the dedicated API is supported. Mutators registered in the container are ignored.
+In NServiceBus version 7 and below message mutators could be registered in two ways: using a dedicated `endpointConfiguration.RegisterMessageMutator` API or via a dependency injection container. In version 8 only the dedicated API is supported. Mutators registered in the container are ignored.
 
 ## Removing a behavior from the pipeline is obsolete
 
-The `Remove` command is no longer available in `PipelineSettings`. In order to disable a behavior, [replace the behavior](/nservicebus/pipeline/manipulate-with-behaviors.md?version=core_8#disable-an-existing-step) with an empty one.
+The `Remove` method is no longer available in `PipelineSettings`. In order to disable a behavior, [replace the behavior](/nservicebus/pipeline/manipulate-with-behaviors.md?version=core_8#disable-an-existing-step) with an empty one.
 
 ## Pipeline delivery constraints
 
@@ -56,7 +56,7 @@ Throughout the pipeline, all context types (e.g. context for behaviors, stage co
 
 References to message bodies exposed through context types as `ReadOnlyMemory<byte>` are valid only for the time of message processing. After the processing finishes, the data may not be assumed valid.
 
-If message body value is required after processing finishes it is required to copy it while still in scope.
+If message body value is required after processing finishes it must be copied it while it is still in scope.
 
 ### Message Mutators: Updating of message bodies
 

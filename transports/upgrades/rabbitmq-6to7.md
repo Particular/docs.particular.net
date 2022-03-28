@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport Upgrade Version 6 to 7
 summary: Migration instructions on how to upgrade RabbitMQ Transport from Version 6 to 7.
-reviewed: 2020-11-09
+reviewed: 2022-03-25
 component: Rabbit
 related:
 - transports/rabbitmq
