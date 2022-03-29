@@ -65,6 +65,23 @@ If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.In
  1. Run `esentutl /p Data` and wait for it to finish
  1. Restart ServiceControl
 
+## Service fails to start: SqlException certificate chain not trusted
+
+If ServiceControl fails to start and the logs contain the following exception, then ServiceControl is not able to connect to the SQL Server instance.  
+
+```
+System.Data.SqlClient.SqlException
+  HResult=0x80131904
+  Message=A connection was successfully established with the server, but then an error occurred during the login process. (provider: SSL Provider, error: 0 - The certificate chain was issued by an authority that is not trusted.)
+  Source=.Net SqlClient Data Provider
+```
+
+When encyrption is enabled, SQL Server uses a certificate to encrypt communication between itself and ServiceControl. Version 4 of the `Microsoft.Data.SqlClient` package includes a [breaking change](https://github.com/dotnet/SqlClient/pull/1210) to set `Encrypt=true` by default (the previous default was `false`) which causes this exception.
+
+To fix it, [the SQL Server installation must be updated with a valid certificate and the ServiceControl machine must be updated to trust this certificate](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine).
+
+WARNING: It is not recommended to eliminate this warning by adding `Encrypt=False` or `TrustServerCertificate=True` to the connection string. Both of these options leave the ServiceControl installation unsecure.
+
 ## Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
 
  1. Log on to the machine hosting ServiceControl.
