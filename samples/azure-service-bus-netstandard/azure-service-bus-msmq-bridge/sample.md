@@ -13,18 +13,14 @@ Endpoints running on different transports cannot exchange messages and require a
 
 Common examples include:
 
- * A hybrid solution that spans across endpoints deployed on-premises and in a cloud environment.
- * Departments within organization integrating their systems that use different messaging technologies for historical reasons.
+* A hybrid solution that spans across endpoints deployed on-premises and in a cloud environment.
+* Departments within organization integrating their systems that use different messaging technologies for historical reasons.
 
 Traditionally, such integrations would require native messaging or relaying. Bridging is an alternative, allowing endpoints to communicate over different transports without a need to get into low-level messaging technology code. With time, when endpoints can standardize on a single transport, bridging can be removed with a minimal impact on the entire system.
-
 
 ## Prerequisites
 
 include: asb-connectionstring-xplat
-
-include: asb-transport
-
 
 ## Code walk-through
 
@@ -32,9 +28,8 @@ This sample shows an integration between two endpoints running on two different 
 
 Covered scenarios are:
 
- * Sending commands from Azure Service Bus endpoint to MSMQ endpoint.
- * Publishing events from MSMQ endpoint and subscribing to those events from Azure Service Bus endpoint.
-
+* Sending commands from Azure Service Bus endpoint to MSMQ endpoint.
+* Publishing events from MSMQ endpoint and subscribing to those events from Azure Service Bus endpoint.
 
 ### Bridging
 
@@ -58,13 +53,11 @@ To subscribe to an event published by MSMQ endpoint, Azure Service Bus endpoint 
 
 snippet: subscribe-to-event-via-bridge
 
-
 #### MSMQ endpoint configuration
 
 MSMQ endpoint is bridged via `Bridge` queue:
 
 ![MSMQ topology](msmq-topology.png "MSMQ topology")
-
 
 #### Bridge configuration
 

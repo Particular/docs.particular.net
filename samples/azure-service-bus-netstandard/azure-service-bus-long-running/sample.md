@@ -16,8 +16,6 @@ include: asb-connectionstring-xplat
 
 include: asp-connectionstring
 
-include: asb-transport
-
 ## Code walk-through
 
 This sample shows a simplified long-running process
