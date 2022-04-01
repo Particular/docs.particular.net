@@ -2,12 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Elsa" Version="2.4.0.1" />
+    <PackageReference Include="Elsa" Version="2.3.0" />
     <PackageReference Include="NServiceBus" Version="7.6.0" />
   </ItemGroup>
 

@@ -19,9 +19,9 @@ namespace NServiceBus.Activities
     public class CustomElsaHandlerTrigger
         : Behavior<IIncomingLogicalMessageContext>
     {
-        private Func<IServiceProvider?> _serviceProviderFactory;
+        private Func<IServiceProvider> _serviceProviderFactory;
 
-        public CustomElsaHandlerTrigger(Func<IServiceProvider?> serviceProviderFactory)
+        public CustomElsaHandlerTrigger(Func<IServiceProvider> serviceProviderFactory)
         {
             _serviceProviderFactory = serviceProviderFactory;
         }
@@ -56,7 +56,7 @@ namespace NServiceBus.Activities
                     // The message instance is passed into the workflow as "Input"
                     var workflowsFound = await workflowRunner
                         .CollectAndExecuteWorkflowsAsync(query,
-                            new WorkflowInput { Input = context.Message.Instance });
+                            new WorkflowInput( Input: context.Message.Instance));
 
                     // If workflows were found, do not continue the pipeline.
                     // In this case, there aren't any IHandleMessages implementations

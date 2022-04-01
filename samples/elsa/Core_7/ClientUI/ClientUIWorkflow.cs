@@ -6,21 +6,22 @@ using Messages;
 
 using NServiceBus.Activities;
 
+using System;
+
 public class ClientUIWorkflow : IWorkflow
 {
-    /// <summary>
-    /// This isn't used by the POC but is an example of how one might create a workflow using code instead of the designer.
-    /// This essentially does the same thing the original Saga ClientUI, prompt the user on the console, and send a message when they press "P".
-    /// This code will exit if anything other then P is pressed.
-    /// </summary>
-    /// <param name="builder"></param>
-    public void Build(IWorkflowBuilder builder) =>
-        builder
-           .While(true, builder => builder
-                    .WriteLine("Press 'P' to place an order, or 'Q' to quit.")
-                    .ReadLine()
-                    .If(condition: context => context.GetInput<string>()?.ToUpper() == "P",
-                        whenTrue: builder => builder.SendNServiceBusMessage(new PlaceOrder(Guid.NewGuid().ToString())),
-                        whenFalse: builder => builder.Break()))
-           .WriteLine("Exiting");
+  /// <summary>
+  /// This isn't used by the sample but is an example of how one might create a workflow using code instead of the designer.
+  /// This prompts the user on the console and sends a message when they press "P".
+  /// This code will exit if anything other then P is pressed.
+  /// </summary>
+  public void Build(IWorkflowBuilder builder) =>
+      builder
+         .While(true, b => b
+                  .WriteLine("Press 'P' to place an order, or 'Q' to quit.")
+                  .ReadLine()
+                  .If(condition: context => context.GetInput<string>()?.ToUpper() == "P",
+                      whenTrue: t => t.SendNServiceBusMessage(new PlaceOrder(Guid.NewGuid().ToString())),
+                      whenFalse: f => f.Break()))
+         .WriteLine("Exiting");
 }

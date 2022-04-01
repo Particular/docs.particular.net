@@ -4,39 +4,50 @@ using Elsa;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.Sqlite;
 
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
 using NServiceBus;
 using NServiceBus.Activities;
 
-Console.Title = "ClientUI";
+using System;
+using System.Threading.Tasks;
 
-var builder = WebApplication.CreateBuilder(args);
-
-ConfigureServices(builder.Services, builder.Configuration);
-
-builder.Host
-    .UseNServiceBus(ctx =>
-    {
-        var endpointConfiguration = new EndpointConfiguration("ClientUI");
-        var transport = endpointConfiguration.UseTransport<LearningTransport>();
-        return endpointConfiguration;
-    });
-
-var app = builder.Build();
-
-app
-    .UseCors()
-    .UseHttpActivities()
-    .UseRouting()
-    .UseEndpoints(endpoints =>
-    {
-        // Elsa API Endpoints are implemented as regular ASP.NET Core API controllers.
-        endpoints.MapControllers();
-    });
-
-await app.RunAsync();
-
-void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+public static class Program
 {
+  public static async Task Main(string[] args)
+  {
+    Console.Title = "ClientUI";
+
+    var builder = WebApplication.CreateBuilder(args);
+
+    ConfigureServices(builder.Services, builder.Configuration);
+
+    builder.Host
+        .UseNServiceBus(ctx =>
+        {
+          var endpointConfiguration = new EndpointConfiguration("ClientUI");
+          var transport = endpointConfiguration.UseTransport<LearningTransport>();
+          return endpointConfiguration;
+        });
+
+    var app = builder.Build();
+
+    app
+        .UseCors()
+        .UseHttpActivities()
+        .UseRouting()
+        .UseEndpoints(endpoints =>
+        {
+          endpoints.MapControllers();
+        });
+
+    await app.RunAsync();
+  }
+
+  static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+  {
     var elsaSection = configuration.GetSection("Elsa");
 
     services
@@ -49,14 +60,12 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
             .AddNServiceBusActivities());
     services.AddElsaApiEndpoints();
 
-    // Allow arbitrary client browser apps to access the API.
-    // In a production environment, make sure to allow only origins you trust.
-    // These API's are used by the Elsa designer to push workflows at runtime.
     services.AddCors(cors => cors.AddDefaultPolicy(policy => policy
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowAnyOrigin()
         .WithExposedHeaders("Content-Disposition"))
     );
+  }
 }
 

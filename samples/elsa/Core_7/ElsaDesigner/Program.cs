@@ -2,51 +2,60 @@ using Elsa;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.Sqlite;
 
-Console.Title = "Elsa Designer";
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-var builder = WebApplication.CreateBuilder(args);
+using System;
+using System.Threading.Tasks;
 
-ConfigureServices(builder.Services, builder.Configuration);
-
-var app = builder.Build();
-
-Configure(app);
-
-await app.RunAsync();
-
-void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+public static class Program
 {
-    var elsaSection = configuration.GetSection("Elsa");
+  public static async Task Main(string[] args)
+  {
+    Console.Title = "Elsa Designer";
 
-    // Elsa services.
-    services
-        .AddElsa(elsa => elsa
-            .UseEntityFrameworkPersistence(ef => ef.UseSqlite())
-            .AddConsoleActivities()
-            .AddHttpActivities(elsaSection.GetSection("Server").Bind)
-            .AddQuartzTemporalActivities()
-            .AddWorkflowsFrom<Startup>()
-        );
+    var builder = WebApplication.CreateBuilder(args);
 
-    // Elsa API endpoints.
-    services.AddElsaApiEndpoints();
+    ConfigureServices(builder.Services, builder.Configuration);
 
-    // For Dashboard.
-    services.AddRazorPages();
-}
+    var app = builder.Build();
 
-void Configure(IApplicationBuilder app)
-{
+    Configure(app);
+
+    await app.RunAsync();
+
+    void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    {
+      var elsaSection = configuration.GetSection("Elsa");
+
+      services
+          .AddElsa(elsa => elsa
+              .UseEntityFrameworkPersistence(ef => ef.UseSqlite())
+              .AddConsoleActivities()
+              .AddHttpActivities(elsaSection.GetSection("Server").Bind)
+              .AddQuartzTemporalActivities()
+              .AddWorkflowsFrom<Startup>()
+          );
+
+      services.AddElsaApiEndpoints();
+      services.AddRazorPages();
+    }
+
+
+  }
+
+  static void Configure(IApplicationBuilder app)
+  {
     app
-        .UseStaticFiles() // For Dashboard.
+        .UseStaticFiles()
         .UseHttpActivities()
         .UseRouting()
         .UseEndpoints(endpoints =>
         {
-            // Elsa API Endpoints are implemented as regular ASP.NET Core API controllers.
-            endpoints.MapControllers();
-
-            // For Dashboard.
-            endpoints.MapFallbackToPage("/_Host");
+          endpoints.MapControllers();
+          endpoints.MapFallbackToPage("/_Host");
         });
+  }
+
 }

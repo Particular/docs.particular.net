@@ -3,20 +3,23 @@ using System.Threading.Tasks;
 
 using NServiceBus;
 
-
-Console.Title = "Billing";
-
-var endpointConfiguration = new EndpointConfiguration("Billing");
-endpointConfiguration.EnableInstallers();
-endpointConfiguration.AuditProcessedMessagesTo("audit");
-endpointConfiguration.SendFailedMessagesTo("error");
-
-var transport = endpointConfiguration.UseTransport<LearningTransport>();
-
-while (true)
+public static class Program
 {
-    try
+  public static async Task Main(string[] args)
+  {
+    Console.Title = "Billing";
+
+    var endpointConfiguration = new EndpointConfiguration("Billing");
+    endpointConfiguration.EnableInstallers();
+    endpointConfiguration.AuditProcessedMessagesTo("audit");
+    endpointConfiguration.SendFailedMessagesTo("error");
+
+    var transport = endpointConfiguration.UseTransport<LearningTransport>();
+
+    while (true)
     {
+      try
+      {
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
         .ConfigureAwait(false);
 
@@ -27,9 +30,11 @@ while (true)
             .ConfigureAwait(false);
 
         break;
-    }
-    catch (Exception)
-    {
+      }
+      catch (Exception)
+      {
         await Task.Delay(5000);
+      }
     }
+  }
 }

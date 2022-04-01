@@ -6,6 +6,8 @@ using Elsa.Services.Models;
 
 using Microsoft.Extensions.Logging;
 
+using System;
+
 namespace NServiceBus.Activities
 {
     [Trigger(
@@ -16,7 +18,7 @@ namespace NServiceBus.Activities
     public class NServiceBusMessageReceived : Activity
     {
         private readonly ILogger<NServiceBusMessageReceived> _logger;
-        private Type? _messageType;
+        private Type _messageType;
 
         public NServiceBusMessageReceived(ILogger<NServiceBusMessageReceived> logger)
         {
@@ -24,13 +26,13 @@ namespace NServiceBus.Activities
         }
 
         [ActivityInput(Label="Qualified type name", Hint = "The assembly qualified name of the type to be received.")]
-        public string? MessageTypeQualifiedName
+        public string MessageTypeQualifiedName
         {
             get;
             set;
         }
 
-        public Type? MessageType
+        public Type MessageType
         {
             get
             {
@@ -44,7 +46,7 @@ namespace NServiceBus.Activities
         }
 
         [ActivityOutput]
-        public object? Message { get; set; }
+        public object Message { get; set; }
 
         protected override bool OnCanExecute(ActivityExecutionContext context)
         {

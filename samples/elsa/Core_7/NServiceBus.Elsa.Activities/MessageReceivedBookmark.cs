@@ -2,17 +2,17 @@
 
 namespace NServiceBus.Activities
 {
-    internal class MessageReceivedBookmark : IBookmark
+  internal class MessageReceivedBookmark : IBookmark
+  {
+    public MessageReceivedBookmark(string messageType)
     {
-        public MessageReceivedBookmark(string? messageType)
-        {
-            MessageType = messageType;
-        }
-
-        public string? MessageType
-        {
-            get;
-            set;
-        }
+      MessageType = messageType;
     }
+
+    public string MessageType
+    {
+      get;
+      set;
+    }
+  }
 }

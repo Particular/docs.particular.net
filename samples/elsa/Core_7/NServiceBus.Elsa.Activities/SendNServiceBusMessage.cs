@@ -8,6 +8,7 @@ using Elsa.Expressions;
 using Microsoft.Extensions.Logging;
 
 using NServiceBus;
+using System.Threading.Tasks;
 
 namespace NServiceBus.Activities
 {
@@ -27,7 +28,7 @@ namespace NServiceBus.Activities
         }
 
         [ActivityInput(Hint = "The name of the endpoint to which this message should be sent")]
-        public string? EndpointAddress { get; set; }
+        public string EndpointAddress { get; set; }
 
         protected override bool OnCanExecute(ActivityExecutionContext context)
         {
@@ -38,7 +39,7 @@ namespace NServiceBus.Activities
         {
             if (context.Input != null)
             {
-                await _messageSession.Send(EndpointAddress, context.Input!);
+                await _messageSession.Send(EndpointAddress, context.Input);
             }
 
             return Done(context.Input);

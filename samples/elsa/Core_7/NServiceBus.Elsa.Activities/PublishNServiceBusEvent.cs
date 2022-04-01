@@ -8,6 +8,8 @@ using Microsoft.Extensions.Logging;
 
 using NServiceBus;
 
+using System.Threading.Tasks;
+
 namespace NServiceBus.Activities
 {
     #region PublishNServiceBusEvent
@@ -34,7 +36,7 @@ namespace NServiceBus.Activities
         {
             if (context.Input != null)
             {
-                await _messageSession.Publish(context.Input!);
+                await _messageSession.Publish(context.Input);
             }
 
             return Done(context.Input);
