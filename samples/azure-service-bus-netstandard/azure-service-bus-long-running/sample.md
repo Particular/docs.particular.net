@@ -22,10 +22,10 @@ include: asb-transport
 
 This sample shows a simplified long-running process
 
- * `Client` makes a request for processing with a unique ID.
- * `Server` enqueues requests from `Client` to be processed by `Processor`.
- * `Processor` raises events about successful or failed results.
- * `Server` issues warnings for `Client` if the estimated processing time is going to be violated. 
+* `Client` makes a request for processing with a unique ID.
+* `Server` enqueues requests from `Client` to be processed by `Processor`.
+* `Processor` raises events about successful or failed results.
+* `Server` issues warnings for `Client` if the estimated processing time is going to be violated.
 
 ```mermaid
 sequenceDiagram
@@ -50,11 +50,11 @@ Processor ->> Client: LongProcessingFinished / LongProcessingFailed
 
 ## Performing processing outside a message handler
 
-When processing takes a long time, [message lock renewal](/transports/azure-service-bus/legacy/message-lock-renewal.md) is possible, but should be avoided to keep message locking to a minimum. 
+When processing takes a long time, [message lock renewal](/transports/azure-service-bus/legacy/message-lock-renewal.md) is possible, but should be avoided to keep message locking to a minimum.
 
 include: autorenewtimeout-warning
 
-An alternative approach is to perform a long-running operation in an external service, outside of a message handler context and notify the interested parts of the results. 
+An alternative approach is to perform a long-running operation in an external service, outside of a message handler context and notify the interested parts of the results.
 
 This sample is using a standalone process `Processor` to run an emulated long running work and raises events for successful or failed outcomes. `Server` and `Processor` use Azure Storage table to communicate `RequestRecord`s in the `Requests` table.
 
