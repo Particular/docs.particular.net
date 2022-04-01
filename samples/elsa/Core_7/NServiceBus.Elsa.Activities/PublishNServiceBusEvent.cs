@@ -10,9 +10,7 @@ using NServiceBus;
 
 namespace NServiceBus.Activities
 {
-    /// <summary>
-    /// This Elsa Activity will publish an event from NServiceBus  It expects the event object to be passed in as input through the Elsa workflow context.
-    /// </summary>
+    #region PublishNServiceBusEvent
     [Activity(
         Category = "NServiceBus",
         DisplayName = "Publish an event",
@@ -42,4 +40,5 @@ namespace NServiceBus.Activities
             return Done(context.Input);
         }
     }
+    #endregion
 }

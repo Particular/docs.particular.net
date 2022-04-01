@@ -8,10 +8,6 @@ using Messages;
 
 namespace ClientUI
 {
-    /// <summary>
-    /// I found it easiest to just create activities for instantiating message instances. 
-    /// It could likely be done using JSON and evaluating expressions, I went this route to save some time.
-    /// </summary>
     [Activity(
         Category = "Messages",
         DisplayName = "Create PlaceOrder Message",

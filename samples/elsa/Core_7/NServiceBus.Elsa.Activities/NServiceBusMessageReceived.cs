@@ -8,13 +8,9 @@ using Microsoft.Extensions.Logging;
 
 namespace NServiceBus.Activities
 {
-    /// <summary>
-    /// This class is the implementation for an Elsa Activity that triggers when a message is recieved from NServiceBus.
-    /// The Activity suspends until it is triggered by the NSB pipeline extension.  Once triggered, it will output the message object to the next activty in the pipeline.
-    /// </summary>
     [Trigger(
         Category = "NServiceBus",
-        DisplayName = "When a message is recevied",
+        DisplayName = "When a message is received",
         Description = "Triggers when a message is received",
         Outcomes = new[] { OutcomeNames.Done })]
     public class NServiceBusMessageReceived : Activity
@@ -33,7 +29,7 @@ namespace NServiceBus.Activities
             get;
             set;
         }
-        
+
         public Type? MessageType
         {
             get

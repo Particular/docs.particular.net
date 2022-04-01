@@ -11,9 +11,7 @@ using NServiceBus;
 
 namespace NServiceBus.Activities
 {
-    /// <summary>
-    /// This Elsa Activity will send a message from NServiceBus  It expects the event object to be passed in as input through the Elsa workflow context.
-    /// </summary>
+    #region SendNServiceBusMessage
     [Activity(
         Category = "NServiceBus",
         DisplayName = "Send a message",
@@ -46,4 +44,5 @@ namespace NServiceBus.Activities
             return Done(context.Input);
         }
     }
+    #endregion
 }
