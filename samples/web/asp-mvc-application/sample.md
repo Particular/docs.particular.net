@@ -31,7 +31,7 @@ Changing the number in the text box from even to odd changes the result.
 
 This sample has three projects:
 
- * `AsyncPagesMvc`: ASP.NET Core MVC application that sends messages (found in the `Messages` project)
+ * `AsyncPagesMvc`: ASP.NET Core MVC application that sends messages
  * `Shared`: Common code including declaration of messages
  * `Server`: Destination of messages sent from the MVC project. Hosted in a console application
 
@@ -55,11 +55,11 @@ snippet: AsyncController
 
 ### Synchronous message sending: SendAndBlockController controller
 
-Open the SendAndBlockController class:
+Open the `SendAndBlockController` class:
 
 snippet: SendAndBlockController
 
-The controller is sending a message using the instance injected in controller's constructor (`IBus` implementation for NServiceBus version 5 and below, `IMessageSession` for version 6 and above). The code calls the send method, passing in the newly created command object.
+The controller is sending a message using the instance of `IMessageSession` injected in controller's constructor. The code calls the send method, passing in the newly created message object.
 
 The call registers a callback method that will be called (with this parameter) as soon as a response is received by the server.
 
@@ -70,8 +70,8 @@ In the Server project, open the `CommandMessageHandler` class to see the followi
 
 snippet: CommandMessageHandler
 
-This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the Command message.
+This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the `Command` message.
 
-NServiceBus manages the classes that implement this interface. When a message arrives in the input queue, it is deserialized, and then, based on its type, NServiceBus instantiates the relevant classes and calls their Handle method, passing in the message object.
+NServiceBus manages the classes that implement this interface. When a message arrives in the input queue, it is deserialized, and then, based on its type, NServiceBus instantiates the relevant message handler classes and calls their `Handle` method, passing in the message object and the context object.
 
-In the method body notice the response being returned to the originating endpoint. This will result in a message being added to the input queue for `AsyncPagesMVC`.
+In the method body notice the response being returned to the originating endpoint. This will result in a message being added to the input queue for `AsyncPagesMVC` endpoint.
