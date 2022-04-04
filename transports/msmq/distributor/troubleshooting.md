@@ -43,7 +43,7 @@ Instead, in some situations it may be more appropriate to simply scale up hardwa
 
 Avoid running all distributor nodes on a single machine, evaluate other [distributor deployment configurations](/transports/msmq/distributor/#deployment-configurations).
 
-If a distributor node cannot forward messages fast enough to workers even though the workers are not fully utilizing available resources, possible causes are that insufficient network bandwidth or the disk used by MSMQ is too slow.
+If a distributor node cannot forward messages fast enough to workers even though the workers are not fully utilizing available resources, possible causes are insufficient network bandwidth or that the disk used by MSMQ is too slow.
 
 Another alternative is using [sender-side distribution](/transports/msmq/sender-side-distribution.md), which is recommended for scenarios where I/O is the bottleneck.
 
