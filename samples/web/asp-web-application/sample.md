@@ -50,15 +50,15 @@ In the Server project, find this code in the `CommandMessageHandler` class:
 
 snippet: Handler
 
-This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the Command message. NServiceBus manages classes that implement this interface. When a message arrives in the input queue, it is deserialized and then, based on its type, NServiceBus instantiates the relevant classes and calls their `Handle` method, passing in the message object.
+This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the `Command` message. NServiceBus manages classes that implement this interface. When a message arrives in the input queue, it is deserialized and then, based on its type, NServiceBus instantiates the relevant message handler classes and calls their `Handle` method, passing in the message object.
 
-In the method body notice the response being returned to the originating endpoint. This will result in a message being added to the input queue for `MyWebClient`.
+In the method body notice the response being returned to the originating endpoint. This will result in a message being added to the input queue for `MyWebClient` endpoint.
 
 
 ## Handling the response
 
-When the response arrives back at `WebApplication`, the bus invokes the callback that was registered when the request was sent.
+When the response arrives back at `WebApplication`, NServiceBus invokes the callback that was registered when the request was sent.
 
-The `messageSession.Request` method takes the callback code and tells the bus to invoke it when the response is received. There are several overloads to this method; the code above accepts a generic Enum parameter, effectively casting the return code from the server to the given enum.
+The `messageSession.Request` method takes the callback code and tells NServiceBus to invoke it when the response is received. There are several overloads of this method; the code above accepts a generic `Enum` parameter, effectively casting the return code from the server to the given enumeration type.
 
-Finally, the code updates the Text property of a label on the web page, setting it to the string that represents the enum value: sometimes `None`, sometimes `Fail`.
+Finally, the code updates the `Text` property of a label on the web page, setting it to the string that represents the enumeration value: sometimes `None`, sometimes `Fail`.
