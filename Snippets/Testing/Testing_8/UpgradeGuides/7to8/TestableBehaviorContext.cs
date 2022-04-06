@@ -6,19 +6,14 @@ namespace Testing_8.UpgradeGuides._7to8
 
     public class TestableBehaviorContext
     {
-        class TestableBehaviorContextImp : NServiceBus.Testing.TestableBehaviorContext
+        #region 7to8-adddeliveryconstraint
+        public void UsingDispatchPropertiesInTestableBehaviorContext(NServiceBus.Testing.TestableBehaviorContext context)
         {
-        }
-
-        public void UsingDispatchPropertiesInTestableBehaviorContext()
-        {
-            #region 7to8-adddeliveryconstraint
-            var context = new TestableBehaviorContextImp();
             context.Extensions.Set(new DispatchProperties
             {
-                DelayDeliveryWith = new DelayDeliveryWith(TimeSpan.FromDays(1)),
+                DelayDeliveryWith = new DelayDeliveryWith(TimeSpan.FromDays(1))
             });
-            #endregion
         }
+        #endregion
     }
 }
