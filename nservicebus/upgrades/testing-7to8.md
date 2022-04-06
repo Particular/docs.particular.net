@@ -51,3 +51,9 @@ snippet: 7to8-uniformsessioncontextwrapping
 This approach also works for code that use `IUniformSession` and `IMessageSession` in the same code path:
 
 snippet: 7to8-uniformsessionmessagesessionwrapping
+
+### TestableBehaviorContext 
+
+To add delivery constraint to `TestableBehaviorContext` class `DispatchProperties` should be used instead of `AddDeliveryConstraint` on the context bag.
+
+snippet: 7to8-adddeliveryconstraint
