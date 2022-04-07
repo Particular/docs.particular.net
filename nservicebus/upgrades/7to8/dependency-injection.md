@@ -154,6 +154,23 @@ var autofacContainer = containerBuilder.Build();
 var endpointInstance = await startableEndpoint.Start(new AutofacServiceProvider(autofacContainer));
 ```
 
+With newer versions of Autofac the [ability to update an existing container](https://github.com/autofac/Autofac/issues/811) has been removed. The registration phase of the dependencies is now separate from the resolve phase. 
+
+Once a component has been resolved the container is immutable. For cases when an existing lifetime scope was passed to NServiceBus:
+
+```csharp
+endpointConfiguration.UseContainer<AutofacBuilder>(
+    customizations: customizations =>
+    {
+        customizations.ExistingLifetimeScope(container);
+    });
+```
+
+it is recommended to either:
+
+- Avoid building the container early by passing the container builder to the various bootstrapping parts of the application _or_
+- Using a [dedicated child lifetime scope](https://autofac.readthedocs.io/en/latest/integration/netcore.html#using-a-child-scope-as-a-root) which allows accessing singletons of the root container while having dependencies managed by the service collection being "rooted" within the child scope. 
+
 #### StructureMap
 
 Note: StructureMap has been sunsetted. The maintainers recommend to use [Lamar](https://jasperfx.github.io/lamar/) instead.
