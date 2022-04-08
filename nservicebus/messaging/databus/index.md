@@ -11,13 +11,15 @@ related:
  - samples/azure/blob-storage-databus
 ---
 
-Although messaging systems work best with small message sizes, some scenarios require sending large binary data along with a message. For this purpose, NServiceBus has a Data Bus feature to overcome the message size limitations imposed by an underlying transport.
+Although messaging systems work best with small message sizes, some scenarios require sending binary large objects ([BLOB's](https://en.wikipedia.org/wiki/Binary_large_object)) data along with a message. For this purpose, NServiceBus has a Data Bus feature to overcome the message size limitations imposed by an underlying transport.
 
 ## How it works
 
 Instead of serializing the payload along with the rest of the message, the `Data Bus` approach involves storing the payload in a separate location that both the sending and receiving parties can access, then putting the reference to that location in the message.
 
 If the location is not available upon sending, the send operation will fail. When a message is received and the payload location is not available, the receive operation will fail as well, resulting in the standard NServiceBus retry behavior, possibly resulting in the message being moved to the error queue if the error could not be resolved.
+
+## Alternative
 
 The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging the NServiceBus pipeline.
 
@@ -27,6 +29,12 @@ See the individual data bus implementations for details on enabling and configur
 
 * [File Share Data Bus](file-share.md)
 * [Azure Blob Storage Data Bus](azure-blob-storage.md)
+
+## Cleanup
+
+By default, BLOB's are stored without any expiration set. If messages have a [time to be received](/nservicebus/messaging/discard-old-messages.md) set the data bus will pass this along to the databus storage implementation.
+
+NOTE: The value used should be aligned with the [ServiceContol audit retention period](/servicecontrol/how-purge-expired-data.md) if it is required that databus BLOB keys in messages send to the audit queue can still be fetched.
 
 ## Specifying data bus properties
 
