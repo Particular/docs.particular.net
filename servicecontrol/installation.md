@@ -6,6 +6,8 @@ redirects:
  - servicecontrol/multi-transport-support
 ---
 
+NOTE: Scripted installments and upgrades can be done via the [ServiceControl Management PowerShell module](installation-powershell.md).
+
 Every component in the Particular Service Platform (not including NServiceBus), including ServiceControl, must be [downloaded](https://particular.net/downloads) and installed.
 
 After installation, there is no ServiceControl instance running yet. Instances can be installed, upgraded, and removed using the ServiceControl Management Utility. This utility is launched as the final step in the installation process and is also available via the Windows start menu.
