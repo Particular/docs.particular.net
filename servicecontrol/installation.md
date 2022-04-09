@@ -6,7 +6,7 @@ redirects:
  - servicecontrol/multi-transport-support
 ---
 
-NOTE: Scripted installments and upgrades can be done via the [ServiceControl Management PowerShell module](https://docs.particular.net/servicecontrol/installation-powershell).
+NOTE: Scripted installments and upgrades can be done via the [ServiceControl Management PowerShell module](installation-powershell.md).
 
 Every component in the Particular Service Platform (not including NServiceBus), including ServiceControl, must be [downloaded](https://particular.net/downloads) and installed.
 
