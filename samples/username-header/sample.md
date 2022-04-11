@@ -1,32 +1,32 @@
 ---
-title: Appending username using headers
-summary: Using message headers to append the current username to every message.
-reviewed: 2019-11-19
+title: Passing user identity between endpoints using a custom header
+summary: How to pass user identity between sending and receiving endpoints by attaching a custom header to every outgoing message.
+reviewed: 2022-04-11
 component: Core
 related:
 - nservicebus/pipeline/message-mutators
 - nservicebus/messaging/headers
 ---
 
-This sample demonstrates how to append the current username to the outgoing messages and how to extract that value when messages are handled. The current principal is made available by using a principal accessor registered through dependency injection.
+This sample demonstrates how to attach the current user identity (username) to all outgoing messages and how to extract that value when messages are received. User identity is accessed by a current principal accessor, registered through dependency injection.
 
-NOTE: This sample doesn't use `Thread.CurrentPrincipal` because of the behavior of `Thread.CurrentPrincipal` in combination with asynchronous code is dependent on the framework version the code is executed on. For more information, refer to the excellent guideline [Migrate from ClaimsPrincipal.Current of ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/migration/claimsprincipal-current).
+NOTE: This sample doesn't use `Thread.CurrentPrincipal`. When used in asynchronous code, `Thread.CurrentPrincipal` depends on the version of the .NET runtime. Refer to [the Microsoft guidelines](https://docs.microsoft.com/en-us/aspnet/core/migration/claimsprincipal-current) for more details.
 
 ### Fake principal
 
-For demonstration purposes, before sending a message, the `principalAccessor.CurrentPrincipal` is replaced with a new instance. In a production scenario, the `principalAccessor.CurrentPrincipal` would be either the impersonated user from the IIS or the current user sending a message.
+The sample replaces the `principalAccessor.CurrentPrincipal` before sending a message with an ad-hoc value. In a production scenario, the `principalAccessor.CurrentPrincipal` would likely be set by the hosting environment e.g. IIS, and not in the user code.
 
 snippet: send-message
 
-The snippet above uses two concurrent sends to demonstrate how the current principle is properly propagated into the message session.
+The snippet above uses two asynchronous sends to demonstrate that the current principle is properly propagated into the message session.
 
 ## Custom header with a mutator
 
-The recommended approach for capturing the current user is to create a transport mutator that extracts the current identity and then adds it to the header collection of every outgoing message.
+The recommended approach for capturing user information is to create a transport mutator extracting the current identity that adds it to the header collection of every outgoing message.
 
 ### Outgoing message mutator
 
-The outgoing mutator extracts `principalAccessor.CurrentPrincipal.Identity.Name` and adds it to the message headers.
+The outgoing mutator extracts `principalAccessor.CurrentPrincipal.Identity.Name` and adds it to the message headers collection.
 
 snippet: username-header-mutator
 
@@ -44,10 +44,10 @@ snippet: set-principal-from-header-mutator
 
 snippet: component-registration-receiver
 
-This sample doesn't register the outgoing message mutator for the receiver. If desired, the outgoing message mutator could be registered on the receiver as well, which would automatically add the username header to all messages sent.
+This sample doesn't register the outgoing message mutator for the receiver. If desired, the outgoing message mutator could be registered on the receiver as well.
 
 ### The Handler
 
-From within a handler (or saga), this value can be used as follows:
+From within a handler (or saga), the header value holding user identity can be accessed in the following way:
 
 snippet: handler-using-custom-header
