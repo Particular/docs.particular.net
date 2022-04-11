@@ -1,8 +1,8 @@
 ---
 title: Startup and Shutdown Sequence
-summary: The order of startup and shutdown operations including all extension points that plug into that process
+summary: The sequence of steps in an endpoint startup and shutdown process, including all available public extension points
 component: Core
-reviewed: 2019-11-18
+reviewed: 2022-04-11
 related:
 - nservicebus/operations/installers
 ---
@@ -10,12 +10,12 @@ related:
 
 ## Code walk-through
 
-This sample illustrates the order of startup and shutdown operations including all extension points that plug into that process. All interfaces that extend the startup and shutdown are included in an `ExtensionPoints` directory.
+The sample illustrates the order of startup and shutdown steps for an NServiceBus endpoint. All usages of the public extension points API are stored in the `ExtensionPoints` folder of the project.
 
 
 ## Logger
 
-At each step in the process a line is written to both the console and a text file via a logger.
+For each step in the process, there is a corresponding log entry written both to the console and a text file.
 
 snippet: Logger
 
