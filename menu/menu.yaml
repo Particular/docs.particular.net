@@ -631,6 +631,11 @@
       Title: Decommissioning Endpoints
     - Url: nservicebus/operations/nservicebus-analyzer
       Title: NServiceBus Analyzer
+  - Url: nservicebus/bridge
+    Title: Bridge
+    Articles:
+    - Url: nservicebus/bridge
+      Title: Bridge
   - Url: nservicebus/compliance
     Title: Compliance
     Articles:
