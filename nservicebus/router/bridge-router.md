@@ -17,7 +17,14 @@ The `NServiceBus.Bridge` package has been deprecated and replaced by the more po
 The main change on the endpoint side is the use of `ConnectToRouter` instead of `ConnectToBridge`. As the switch model has been removed, the port configuration is no longer available.
 
 ```c#
-snippet: bridge-to-router-connector
+var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
+var transport = endpointConfiguration.UseTransport<LearningTransport>();
+var routing = transport.Routing();
+
+var router = routing.ConnectToRouter("MyRouter");
+
+router.RouteToEndpoint(typeof(MyMessage), "Receiver");
+router.RegisterPublisher(typeof(MyEvent), "Publisher");
 ```
 
 NOTE: When connecting to the router, use the name of router's interface, not the name of the router itself.
