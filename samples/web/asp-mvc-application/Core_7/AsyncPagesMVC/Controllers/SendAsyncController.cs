@@ -29,9 +29,9 @@ public class SendAsyncController :
         }
         #region AsyncController
         var command = new Command
-                        {
-                            Id = number
-                        };
+        {
+            Id = number
+        };
 
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Mvc.Server");
