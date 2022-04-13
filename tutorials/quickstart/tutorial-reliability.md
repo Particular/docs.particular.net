@@ -16,7 +16,11 @@ In the [previous lesson](/tutorials/quickstart), we reviewed the project structu
 
 One of the most powerful advantages of asynchronous messaging is reliability. Failures in one part of a system aren't propagated and won't bring the whole system down.
 
+{{NOTE:
+If you didn't already download the quick start project in the [previous lesson](/tutorials/quickstart), you can download it now:
+
 downloadbutton
+}}
 
 See how that is achieved by following these steps:
 

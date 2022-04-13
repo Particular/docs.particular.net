@@ -14,7 +14,11 @@ previewImage: add-shipping-endpoint.png
 
 In the [first part of the tutorial](/tutorials/quickstart), we saw that publishing events using the [Publish-Subscribe pattern](/nservicebus/messaging/publish-subscribe/) reduces coupling and makes maintaining a system easier in the long run. Next, we saw [how to react to failures](/tutorials/quickstart/tutorial-reliability.md) gracefully. Let's now look at how we can add an additional subscriber without needing to modify any existing code.
 
+{{NOTE:
+If you didn't already download the quick start project in the [previous lesson](/tutorials/quickstart), you can download it now:
+
 downloadbutton
+}}
 
 As shown in the diagram, we'll be adding a new messaging endpoint called **Shipping** that will subscribe to the `OrderPlaced` event.
 
