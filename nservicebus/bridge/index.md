@@ -1,7 +1,7 @@
 ---
 title: Bridge
 summary: TBD
-reviewed: 2022-04-12
+reviewed: 2022-04-01
 component: Bridge
 ---
 
@@ -27,31 +27,13 @@ This enables the following scenarios:
 
 ## Bridge configuration
 
-NServiceBus.Transport.Bridge is packaged as a host-agnostic library. It can be hosted e.g. inside a console application, a Windows service or a Docker container.
+`NServiceBus.Transport.Bridge` is packaged as a host-agnostic library. It can be hosted e.g. inside a console application, a Windows service or a Docker container.
 
-The following snippet shows a simple MSMQ-to-AzureServiceBus configuration using the Generic Host.
+The following snippet shows a simple MSMQ-to-AzureServiceBus configuration.
 
-```c#
-await Host.CreateDefaultBuilder()
-    .ConfigureLogging(logging =>
-    {
-        logging.ClearProviders();
-        logging.AddConsole();
-    })
-    .UseNServiceBusBridge((ctx, bridgeConfiguration) =>
-    {
-        var msmq = new BridgeTransportConfiguration(new MsmqTransport());
-        msmq.HasEndpoint("Sales");
+snippet: bridgeconfiguration
 
-        var asb = new BridgeTransportConfiguration(new SqlServerTransport(connectionString));
-        asb.HasEndpoint("Billing")       
-
-        bridgeConfiguration.AddTransport(msmq);
-        bridgeConfiguration.AddTransport(asb);
-    })
-    .Build()
-    .RunAsync().ConfigureAwait(false);
-```
+The life cycle of the bridge is managed by the .NET Generic Host.
 
 ## Consistency
 
