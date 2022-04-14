@@ -5,9 +5,53 @@ reviewed: 2022-04-12
 component: Bridge
 ---
 
-## TBD
+The `NServiceBus.Transport.Bridge` allows NServiceBus endpoints to connect to other endpoints that are not on the same transport.
 
-TBD
+The bridge is transparent to sending and receiving endpoints.
+
+- Endpoints send and receive messages to and from logical endpoints as if there was no bridge involved.
+- Endpoints are not aware a bridge is transferring messages across transports.
+
+## Why use the bridge
+
+The bridge needs to be made aware of endpoints that exist on any supported transport through configuration. The bridge will then start collecting and processing messages for each endpoint that is on another transport and transfers these messages to this specific endpoint, bridging the transport.
+
+This enables the following scenarios:
+
+- Migration from one transport to another  
+  For example migration from MSMQ to a cloud-native transport to remove the older MSMQ and start using .NET instead of .NET Framework
+- Use multiple transport because of pricing considerations  
+  Instead of *only* relying on a more expensive cloud-native transport, move only the less mission critical endpoints to a cheaper transport.
+- Use transport that best fits non-functional considerations
+  Use a transport that allows bridging geographical locations, while some endpoints on a more secure transport only process more private information.
+
+## Bridge configuration
+
+NServiceBus.Transport.Bridge is packaged as a host-agnostic library. It can be hosted e.g. inside a console application, a Windows service or a Docker container.
+
+The following snippet shows a simple MSMQ-to-AzureServiceBus configuration using the Generic Host.
+
+```c#
+await Host.CreateDefaultBuilder()
+    .ConfigureLogging(logging =>
+    {
+        logging.ClearProviders();
+        logging.AddConsole();
+    })
+    .UseNServiceBusBridge((ctx, bridgeConfiguration) =>
+    {
+        var msmq = new BridgeTransportConfiguration(new MsmqTransport());
+        msmq.HasEndpoint("Sales");
+
+        var asb = new BridgeTransportConfiguration(new SqlServerTransport(connectionString));
+        asb.HasEndpoint("Billing")       
+
+        bridgeConfiguration.AddTransport(msmq);
+        bridgeConfiguration.AddTransport(asb);
+    })
+    .Build()
+    .RunAsync().ConfigureAwait(false);
+```
 
 ## Consistency
 
