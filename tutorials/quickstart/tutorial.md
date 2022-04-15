@@ -8,16 +8,9 @@ extensions:
   nextText: "Next: Recovering from failure"
   nextUrl: tutorials/quickstart/tutorial-reliability
 previewImage: add-shipping-endpoint.png
-abTestName: Quickstart intro 2022 01
 ---
 
-#variant Control
-
-It is **very difficult** to build a distributed software system correctly from scratch. You _could_ read all 736 pages of the [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/) book (an excellent though very dry reference) and then spend months creating, testing, and documenting a communication framework so that different services can talk to each other. Or instead, you could use a framework that incorporates all those design patterns and guides you straight into the [pit of success](https://blog.codinghorror.com/falling-into-the-pit-of-success/).
-
-NServiceBus combines decades of distributed systems design experience and expertise and distills it into one easy-to-use framework. In this tutorial, you'll see how NServiceBus takes all the grunt work out of system design by handling all of the plumbing for you, taking system design best practices like reliability, failure recovery, and extensibility and baking them right into the software, guiding you toward the pit of success.
-
-You'll also see how the additional tools in the Particular Service Platform make it easy to manage, monitor, and debug.
+include: quickstart-tutorial-intro-paragraph
 
 This tutorial skips over some concepts and implementation details in order to get up and running quickly. If you'd prefer to go more in-depth, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/). It will teach you the NServiceBus API and important concepts necessary to learn how to build successful message-based software systems.
 
@@ -26,34 +19,6 @@ This tutorial skips over some concepts and implementation details in order to ge
 The demo solution doesn't require any prerequisites — no message queue or database to install, just Visual Studio. To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file.
 
 downloadbutton
-#end-variant
-
-#variant Variant
-
-In this tutorial, you'll see how NServiceBus takes the grunt work out of system design by handling all the plumbing for you.
-
-You'll explore part of an e-commerce system that handles receiving an order placed by a user, and the billing and shipping that goes with it. The final solution will look like this:
-
-![quickstart solution diagram](/tutorials/quickstart/after.svg)
-
-The tutorial has 3 parts—an introduction, failure recovery, and extensibility—that demonstrate how NServiceBus helps with best practices and how the Particular Service Platform helps monitor a distributed system. Each part takes about 15-20 minutes to complete.
-
-To run this tutorial you’ll need:
-
-- Experience with C#
-- Windows
-- .NET Core 3.1
-- A C# IDE such as Visual Studio 2019 or later, Visual Studio Code, or JetBrains Rider.
-
-To get up and running quickly, the tutorial skips over some concepts and implementation details. If you prefer to go more in-depth, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/). It will teach you the NServiceBus API and important concepts necessary to learn how to build successful message-based software systems.
-
-## Download solution
-
-The solution doesn't require installing any message queues or databases. Just download the solution, extract the archive, and open the **RetailDemo.sln** file.
-
-<div class="text-center inline-download hidden-xs"> <div class="btn-group"> <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span aria-hidden="true"></span> Download the solution now <span class="caret"></span> </button> <ul class="dropdown-menu docs-download"><li> <a href="https://quickstart-tutorial.s3.eu-central-1.amazonaws.com/tutorials-quickstart.zip" onclick="return fireGAEvent('TutorialDownloaded', '/tutorials/quickstart/tutorials-quickstart.zip' )"> <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download for .NET Core 3.1 </a> </li></ul> </div></div>
-#end-variant
-
 
 <style type="text/css">
   /* Remove borders on images as they all have appropriate borders */
@@ -72,7 +37,6 @@ As shown in the diagram below, the **ClientUI** endpoint sends a **PlaceOrder** 
 ![Initial Solution](before.svg "width=680")
 
 The solution mimics a real-life retail system where [the command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction, and the processing occurs in the background. Publishing [an event](/nservicebus/messaging/messages-events-commands.md) allows us to further isolate the code to bill the credit card from the code to place the order, reducing coupling and making the system easier to maintain over the long term. Later in this tutorial, we'll see how to add a second subscriber to that event in a new **Shipping** endpoint which will begin the process of shipping the order.
-
 
 ## Running the solution
 
