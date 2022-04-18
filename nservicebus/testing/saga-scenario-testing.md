@@ -1,13 +1,13 @@
 ---
 title: Saga scenario testing
 summary: Develop service layers and long-running processes using test-driven development.
-reviewed: 2020-05-07
+reviewed: 2022-04-18
 component: Testing
 versions: '[7.4,)'
 related:
 ---
 
-While [each handler in a saga can be tested using a unit test](/samples/unit-testing/#testing-a-saga), often it is advantageous to test an entire scenario involving multiple messages.
+While [each handler in a saga can be tested using a unit test](/samples/unit-testing/#testing-a-saga), often it is helpful to test an entire scenario involving multiple messages.
 
 The `TestableSaga` class allows this type of scenario testing and supports the following features:
 
@@ -27,17 +27,17 @@ In many cases a testable saga can be created using only the type parameters from
 
 snippet: TestableSagaCtor
 
-This assumes that the saga has a parameterless constructor. If the saga has a constructor that requires services to be injected, a factory can be specified to create an instance of the saga class for each handled message.
+This assumes that the saga has a parameter-less constructor. If the saga has a constructor that requires services to be injected, a factory can be specified to create an instance of the saga class for each handled message.
 
 snippet: TestableSagaCtorFactory
 
-By default, the `CurrentTime` for the saga will be set to `DateTime.UtcNow`. The constructor can also be used to set the `CurrentTime` to a different initial value. For more details see [advancing time](#advancing-time).
+By default, the `CurrentTime` for the saga is set to `DateTime.UtcNow`. The constructor can also be used to set the `CurrentTime` to a different initial value. For more details see [advancing time](#advancing-time).
 
 snippet: TestableSagaCtorTime
 
 ## Handling messages
 
-The testable saga is like the saga infrastructure in NServiceBus. Every time it is asked to handle a message, it will instantiate a new instance of the saga class and use the mapping information in the `ConfigureHowToFindSaga` method to locate the correct saga data in the internal storage.
+The testable saga is similar to the saga infrastructure in NServiceBus. Every time it is asked to handle a message, the testable saga instantiates a new instance of the saga class and use the mapping information in the `ConfigureHowToFindSaga` method to locate the correct saga data in the internal storage.
 
 To have the saga infrastructure handle a message, use the `Handle` method:
 
@@ -66,9 +66,9 @@ The `HandleResult` class contains:
 
 ## Advancing time
 
-The testable saga contains a `CurrentTime` property that represents a virtual clock for the saga scenario. The `CurrentTime` defaults to the time when test execution starts, but can be optionally specified [in the `TestableSaga` constructor](#creating-a-testable-saga).
+The testable saga contains a `CurrentTime` property that represents a virtual clock for the saga scenario. The `CurrentTime` property defaults to the time when test execution starts, but can be optionally specified [in the `TestableSaga` constructor](#creating-a-testable-saga).
 
-As each message handler runs, any timeouts are collected in an internal timeout storage. By calling the `AdvanceTime` method, these timeouts will come due and the messages they contain will be handled. The `AdvanceTime` method returns an array of `HandleResult`, one for each timeout that is handled.
+As each message handler runs, timeouts are collected in an internal timeout storage. By calling the `AdvanceTime` method, these timeouts will come due and the messages they contain will be handled. The `AdvanceTime` method returns an array of `HandleResult`, one for each timeout that is handled.
 
 snippet: TestableSagaAdvanceTime
 
@@ -78,13 +78,13 @@ snippet: TestableSagaAdvanceTimeParams
 
 ## Simulating external handlers
 
-Many sagas will send commands to external handlers, which do some work and then send a reply message back to the saga so that the saga can move on to the next step of a multi-step process. These reply messages are [auto-correlated](/nservicebus/sagas/message-correlation.md#auto-correlation): the saga includes the saga ID as a message header in the outbound message, and the external handler returns that message when it does a reply.
+Many sagas send commands to external handlers, which do some work, then send a reply message back to the saga so that the saga can move on to the next step of a multi-step process. These reply messages are [auto-correlated](/nservicebus/sagas/message-correlation.md#auto-correlation): the saga includes the saga ID as a message header in the outbound message, and the external handler returns that message when it does a reply.
 
 In a saga scenario test, the external handler's response can be simulated using the `SimulateReply` method:
 
 snippet: TestableSagaSimulateReply
 
-When the saga being tested sends a `DoStep1` command, the reply will be simulated using the provided `Func<TSagaMessage, TReplyMessage>` delegate. The resulting `Step1Response` message will be added to the testable saga's [internal queue](#queued-messages), including the header containing the saga's ID so that a `ConfigureHowToFindSaga` mapping is not required.
+When the saga being tested sends a `DoStep1` command, the reply is simulated using the provided `Func<TSagaMessage, TReplyMessage>` delegate. The resulting `Step1Response` message is added to the testable saga's [internal queue](#queued-messages), including the header containing the saga's ID so that a `ConfigureHowToFindSaga` mapping is not required.
 
 Alternatively, a reply message can be handled directly without using a simulator, but then the `SagaId` value must be provided:
 
@@ -96,7 +96,7 @@ snippet: TestableSagaHandleReplyParams
 
 ## Queued messages
 
-Any message generated of a type that is handled by the saga will be added to the testable saga's internal queue. This includes:
+Any message generated of a type that is handled by the saga is added to the testable saga's internal queue. This includes:
 
 * When a saga handler sends or publishes any message that the saga itself handles. This is commonly done within a saga to create a new transactional scope around a new message.
 * When using a [external handler simulator](#simulating-external-handlers), the resulting message is added to the queue.
