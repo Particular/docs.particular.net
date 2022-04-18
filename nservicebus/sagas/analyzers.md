@@ -6,7 +6,7 @@ versions: '[7.7,)'
 reviewed: 2022-03-04
 ---
 
-Starting in NServiceBus version 7.7, [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) are packaged with the NServiceBus package that analyze the code in sagas and make suggestions for improvements, right in the editor.
+Starting in NServiceBus version 7.7, [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) are packaged with the NServiceBus package that analyze the code in sagas and make suggestions for improvements, directly in the editor.
 
 ## Non-mapping expression used in ConfigureHowToFindSaga method
 
@@ -46,7 +46,7 @@ The diagnostics NSB0004 and NSB0018 are the same, but with different severity in
 
 When using the `.ConfigureMapping<T>(…).ToSaga(…)` mapping pattern, all of the `.ToSaga(…)` expressions must agree and point to the same property on the saga data class.
 
-This was already a runtime error in NServiceBus 7.6 and below, but the analyzer raises the error as more direct feedback at compile time.
+This was a runtime error in NServiceBus 7.6 and below, but the analyzer raises the error as more direct feedback at compile time.
 
 Once all the `.ToSaga(…)` expressions agree, [NSB0004: Saga mapping expressions can be simplified](#saga-mapping-expressions-can-be-simplified) will be invoked, and the code fix can be used to simplify the saga mapping expression so that `.ToSaga(…)` mappings are not duplicated.
 
@@ -56,7 +56,7 @@ Once all the `.ToSaga(…)` expressions agree, [NSB0004: Saga mapping expression
 * **Severity**: Warning, Error starting in NServiceBus version 8
 * **Example message**: Saga MySaga implements `IAmStartedByMessages<MyMessage>` but does not provide a mapping for that message type. In the ConfigureHowToFindSaga method, after calling `mapper.MapSaga(saga => saga.CorrelationPropertyName)`, add `.ToMessage<MyMessage>(msg => msg.PropertyName)` to map a message property to the saga correlation ID, or `.ToMessageHeader<MyMessage>("HeaderName")` to map a header value that will contain the correlation ID.
 
-A message type identified by `IAmStartedByMessages<TMessage>` means that type of message can start the saga. Because there may not yet be any saga data when this message is received, a message identified in this way **must** have an associated message mapping in the `ConfigureHowToFindSaga()` method, otherwise it would be impossible to know if saga data had already been created.
+A message type identified by `IAmStartedByMessages<TMessage>` means that that type of message can start the saga. Because there may not yet be any saga data when this message is received, a message identified in this way **must** have an associated message mapping in the `ConfigureHowToFindSaga()` method, otherwise it would be impossible to know if saga data had already been created.
 
 The code fix will attempt to rewrite the `ConfigureHowToFindSaga()` method and generate the missing mapping. If the existing mapping expressions already identify a correlation id (i.e. `sagaData.OrderId`) and the message type being mapped has a property with a matching name (i.e. `message.OrderId`) then the mapping will automatically use that property name. Otherwise, the code fix will generate a mapping expression with placeholders to fill in.
 
@@ -68,7 +68,7 @@ The code fix will attempt to rewrite the `ConfigureHowToFindSaga()` method and g
 
 Many saga persistence libraries use serialization and deserialization to store and load saga data, respectively. It's not always possible for serializers to set values unless the property is both marked as `public` and also has a `public` setter.
 
-A saga data class is not a good place to employ specialized data access patterns to restrict write access to certain properties. Saga data classes should be thought of as being an internal storage fully owned by the saga, and are best implemented as simple properties like `public string PropertyName { get; set; }` without any specialized access modifiers.
+A saga data class is not a good place to employ specialized data access patterns to restrict write access to certain properties. Saga data classes should be considered as internal storage fully owned by the saga, and are best implemented as simple properties like `public string PropertyName { get; set; }` without any access modifiers.
 
 ## Saga message mappings are not needed for timeouts
 
@@ -84,9 +84,9 @@ When sagas request timeouts, the delayed message is stamped with a header that i
 * **Severity**: Warning, Error starting in NServiceBus version 8
 * **Example message**: A saga cannot map to the saga data's Id property, regardless of casing. Select a different property (such as OrderId, CustomerId) that relates all of the messages handled by this saga.
 
-The `Id` property of a saga (defined by the required `IContainSagaData` interface) is reserved for use by the saga. It cannot be used as a correlation id by mapping to it in the `ConfigureHowToFindSaga()` method.
+The `Id` property of a saga (defined by the required `IContainSagaData` interface) is reserved for use by the saga. It cannot be used as a correlation ID by mapping to it in the `ConfigureHowToFindSaga()` method.
 
-In addition, some saga persistence libraries, such as [SQL Persistence](/persistence/sql/), store the saga's `Id` value in a column, and the column names are commonly case-insensitive. This means that other casings of `Id` (`ID`, `id`, or even `iD`) are also not allowed.
+In addition, some saga persistence libraries, such as [SQL Persistence](/persistence/sql/), store the saga's `Id` value in a column, and the column names are commonly case-insensitive. This means that other casings of `Id` (e.g. `ID`, `id`, or even `iD`) are also not allowed.
 
 ## Message types should not be used as saga data properties
 
@@ -94,13 +94,13 @@ In addition, some saga persistence libraries, such as [SQL Persistence](/persist
 * **Severity**: Warning
 * **Example message**: Using the message type `MyMessage` to store message contents in saga data is not recommended, as it creates unnecessary coupling between the structure of the message and the stored saga data, making both more difficult to evolve.
 
-When a saga receives a message, it can be convenient and even tempting to insert the whole thing into the saga data.
+When a saga receives a message, it can be tempting to insert the whole message into the saga data.
 
 However, this creates unintended coupling between the saga data and the message contract.
 
-The saga data class is wholly owned and managed by the saga, and represents the internal stored state of that saga. It must be able to be stored to disk and reloaded perhaps minutes, hours, or even days/years later. It must be durable.
+The saga data class is wholly owned and managed by the saga, and represents the internal stored state of that saga. It must be able to be stored to disk and reloaded perhaps minutes, hours, or even days/years later. I.e. it must be durable.
 
-On the other hand, the message is more ephemeral. It only needs to be stable long enough to deal with any messages currently in-flight at the time a new version of a software system is released. Its ownership is different, and needs to be more nimble and able to change over time.
+On the other hand, the message is more ephemeral. It only needs to be stable long enough to deal with any messages currently in-flight at the time a new version of a software system is released. Its ownership is different, and needs to be able to change over time.
 
 By storing a message type inside the saga data, the ephemeral message structure must be locked down by the same rules as the saga data, making it harder for the saga and the other message endpoints it exchanges messages with to evolve.
 
@@ -110,9 +110,9 @@ By storing a message type inside the saga data, the ephemeral message structure 
 * **Severity**: Error
 * **Example message**: A saga correlation property must be one of the following types: string, Guid, long, ulong, int, uint, short, ushort
 
-The correlation property represents the logical identity of the stored saga data. It needs to be something easily represented by nearly every saga persistence library. For example, `DateTime` would make a bad correlation property type, because it is represented so differently on different storage systems, such as between relational SQL tables and NoSQL databases, or even in different amounts of precision in fractions of a second that are stored between different relational database systems.
+The correlation property represents the logical identity of the stored saga data. It needs to be something easily represented by nearly every saga persistence library. For example, `DateTime` is a bad correlation property type, because it is represented differently on different storage systems, such as between relational SQL tables and NoSQL databases, or even in different amounts of precision in fractions of a second that are stored between different relational database systems.
 
-Prior to NServiceBus version 7.7, this check was a runtime error. In NServiceBus version 7.7 and above, the analyzer diagnostic raises this feedback to compile time.
+Prior to NServiceBus version 7.7, this check was a runtime error. In NServiceBus version 7.7 and above, the analyzer diagnostic raises this feedback at compile time.
 
 ## Saga data classes should inherit ContainSagaData
 
@@ -122,9 +122,9 @@ Prior to NServiceBus version 7.7, this check was a runtime error. In NServiceBus
 
 The generic class constraints on `Saga<TSagaData>` require the saga data class to implement the `IContainSagaData` interface, which specifies properties required by the saga infrastructure. However, it is much easier to directly inherit `ContainSagaData`, which already specifies these properties.
 
-A benefit to inheriting the `ContainSagaData` class is that in NServiceBus version 7 and above the implemented properties are decorated with `[EditorBrowsable(EditorBrowsableState.Never)]`, which means that those properties that are _only_ needed by the saga infrastructure will not appear in IntelliSense. This makes it less likely that one of these reserved properties will be used accidentally.
+A benefit to inheriting the `ContainSagaData` class is that in NServiceBus version 7 and above, the implemented properties are decorated with `[EditorBrowsable(EditorBrowsableState.Never)]`, which means that those properties that are _only_ needed by the saga infrastructure will not appear in IntelliSense. So it is less likely that one of these reserved properties will be used accidentally.
 
-One exception comes when [using NHibernate's `[RowVersion]` attribute to control optimistic concurrency](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version). This attribute is not compatible with derived classes, so in this case the saga data class must implement `IContainSagaData` directly. In this case the `NSB0012` diagnostic can be suppressed to remove the warning.
+One exception comes when [using NHibernate's `[RowVersion]` attribute to control optimistic concurrency](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version). This attribute is not compatible with derived classes. In this case the saga data class must implement `IContainSagaData` directly. For this scenario, the `NSB0012` diagnostic can be suppressed to remove the warning.
 
 ## Reply in Saga should be ReplyToOriginator
 
@@ -154,9 +154,9 @@ A better way to provide shared functionality to multiple saga types and reduce c
 * **Severity**: Warning, Error starting in NServiceBus version 8
 * **Example message**: A saga should not implement IHandleSagaNotFound, as this catch-all handler will handle messages where *any* saga is not found. Implement IHandleSagaNotFound on a separate class instead.
 
-A [saga not found handler](/nservicebus/sagas/saga-not-found.md) provides a way to deal with messages that are not allowed to start a saga but cannot find existing saga data.
+A ["saga not found" handler](/nservicebus/sagas/saga-not-found.md) provides a way to deal with messages that are not allowed to start a saga but cannot find existing saga data.
 
-Saga not found handlers operate on all saga messages within an endpoint, no matter which saga the message was originally bound for. This makes it misleading to implement `IHandleSagaNotFound` on a saga because it creates the impression that it will only handle not found messages for that _specific_ saga, which is false.
+"Saga not found" handlers operate on all saga messages within an endpoint, no matter which saga the message was originally bound for. So it is misleading to implement `IHandleSagaNotFound` on a saga because it creates the impression that it will only handle not found messages for that _specific_ saga, which is false.
 
 Instead, implement `IHandleSagaNotFound` on an independent class.
 
@@ -168,7 +168,7 @@ Instead, implement `IHandleSagaNotFound` on an independent class.
 
 When mapping incoming message properties to the saga's correlation property, these must be of the same type or they can't be compared.
 
-When the correlation value can be expressed in different ways, it's best to represent the saga's correlation id as a string. Individual message mapping expressions can format incoming values of other types into a string to match the saga's correlation value, such as this example where one message type contains the value as a `Guid`:
+When the correlation value can be expressed in different ways, it's best to represent the saga's correlation ID as a string. Individual message mapping expressions can format incoming values of other types into a string to match the saga's correlation value, such as this example where one message type contains the value as a `Guid`:
 
 snippet: SagaAnalyzerToMessageStringExpressions
 
