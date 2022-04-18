@@ -169,7 +169,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.1.x](https://www.nuget.org/packages/NServiceBus.Ninject/7.1.0) | 2022-01-17     | -                 | -                                 |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Ninject/7.0.0) | 2018-05-29     | 2022-04-17        | Superseded by 7.1.x               |
+| [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.Ninject/7.0.0) | ~~2018-05-29~~ | ~~2022-04-17~~    | ~~Superseded by 7.1.x~~           |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Ninject/6.0.1) | 2016-10-11     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.Spring](/nuget/NServiceBus.Spring)
@@ -177,7 +177,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Spring/8.1.0) | 2022-01-18     | -                 | -                                 |
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.Spring/8.0.0) | 2018-05-29     | 2022-04-18        | Superseded by 8.1.x               |
+| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Spring/8.0.0) | ~~2018-05-29~~ | ~~2022-04-18~~    | ~~Superseded by 8.1.x~~           |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Spring/7.0.0) | 2016-10-11     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.StructureMap](/nuget/NServiceBus.StructureMap)
@@ -435,7 +435,6 @@
 | [1.31.x](https://www.nuget.org/packages/Particular.PlatformSample/1.31.0) | 2021-09-16     | 2022-09-16        | Superseded by 2.0.x               |
 | [~~1.29.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.29.0) | ~~2021-08-03~~ | ~~2021-12-16~~    | ~~Superseded by 1.31.x~~          |
 | [~~1.28.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.28.0) | ~~2021-07-16~~ | ~~2021-11-03~~    | ~~Superseded by 1.29.x~~          |
-| [~~1.27.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.27.0) | ~~2021-06-22~~ | ~~2021-10-16~~    | ~~Superseded by 1.28.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 

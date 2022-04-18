@@ -407,7 +407,7 @@ No versions released.
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.1.x](https://www.nuget.org/packages/NServiceBus.Ninject/7.1.0) | 2022-01-17     | -                 | -                                 |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Ninject/7.0.0) | 2018-05-29     | 2022-04-17        | Superseded by 7.1.x               |
+| [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.Ninject/7.0.0) | ~~2018-05-29~~ | ~~2022-04-17~~    | ~~Superseded by 7.1.x~~           |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Ninject/6.0.1) | 2016-10-11     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 | [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.Ninject/5.1.2) | ~~2015-08-14~~ | ~~2018-10-11~~    | ~~Extended by NServiceBus 5.2.x~~ |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Ninject/5.0.0) | ~~2014-09-29~~ | ~~2015-11-14~~    | ~~Superseded by 5.1.x~~           |
@@ -429,7 +429,7 @@ No versions released.
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Spring/8.1.0) | 2022-01-18     | -                 | -                                 |
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.Spring/8.0.0) | 2018-05-29     | 2022-04-18        | Superseded by 8.1.x               |
+| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Spring/8.0.0) | ~~2018-05-29~~ | ~~2022-04-18~~    | ~~Superseded by 8.1.x~~           |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Spring/7.0.0) | 2016-10-11     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Spring/6.0.1) | ~~2015-06-25~~ | ~~2018-10-11~~    | ~~Extended by NServiceBus 5.2.x~~ |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Spring/5.0.0) | ~~2014-09-29~~ | ~~2016-06-25~~    | ~~Superseded by 6.0.x~~           |
