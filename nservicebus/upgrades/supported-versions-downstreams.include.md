@@ -92,7 +92,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.1.0) | 2022-01-20     | -                 | -                                 |
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.0.0) | 2021-08-09     | 2022-04-20        | Superseded by 1.1.x               |
+| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.0.0) | ~~2021-08-09~~ | ~~2022-04-20~~    | ~~Superseded by 1.1.x~~           |
 | [0.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/0.2.1) | 2021-03-04     | 2022-08-09        | Superseded by 1.0.x               |
 
 #### [NServiceBus.Persistence.ServiceFabric](/nuget/NServiceBus.Persistence.ServiceFabric)
