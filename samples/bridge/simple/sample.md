@@ -60,25 +60,33 @@ Any project in the solution contains regular NServiceBus code that will not be d
 
 ### LearningTransport as alternative transport
 
-To be able to use LearningTransport on both sides of the bridge, but make it required for those endpoints to communicate with each other using the bridge, the storage location for the transport needs to be modified.
+As mentioned, this sample uses the LearningTransport on both sides of the bridge. To simulate two different transports, the location on disk for the LearningTransport on the right side of the Bridge needs to be changed to a different location on disk.
 
 snippet: alternative-learning-transport 
 
 ### Bridge configuration
 
-In the bridge, every endpoint that is available in our system needs to be configured. The following shows different variations of configuring the endpoints.
+In the bridge, every endpoint that is available in the system needs to be configured. The following shows different variations of configuring the endpoints.
+
+#### LeftSender
 
 The `LeftSender` endpoint is an endpoint without subscriptions to any event and can be configured the easiest way.
 
 snippet: endpoint-adding-simple
 
-The `LeftReceiver` endpoint needs to register a publisher and does this by specifying the type of the `OrderReceived` event, as [described in documentation](/nservicebus/bridge/configuration#registering-publishers). This is possible as the `Shared` assembly has no references to any version of NServiceBus and message types are registered using [conventions](/nservicebus/messaging/conventions).
+#### LeftReceiver
 
-snippet: endpoint-adding-register-publisher-by-type
+The `LeftReceiver` endpoint is a subscriber to `LeftSender`, but it does not need to cross the Bridge. Therefor there's no configuration needed at this moment to specify that a publisher needs to be registered.
+
+#### RightReceiver
 
 The `RightReceiver` endpoint is configured as a new endpoint and the event  `Messages.Events.OrderPlaced` is registered on the publisher `LeftReceiver` using the fully qualified name. This is how events are registered if a message assembly cannot be shared with the Bridge.
 
 snippet: endpoint-adding-register-publisher-by-string
+
+For events in assemblies that can actually be added, it is possible to register them by type, as [described in documentation](/nservicebus/bridge/configuration.md#registering-publishers), to prevent typing mistakes. Registering by type is possible in this sample, as the `Shared` assembly has no references to any version of NServiceBus and message types are registered using [conventions](/nservicebus/messaging/conventions.md). For demo purposes the name was added as a string.
+
+#### Add endpoints to Bridge configuration
 
 The last step is to register all the configured transports with the bridge itself
 

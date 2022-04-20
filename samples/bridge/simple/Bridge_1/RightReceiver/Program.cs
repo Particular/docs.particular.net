@@ -18,7 +18,7 @@ static class Program
         #region alternative-learning-transport
         var learningTransportDefinition = new LearningTransport
         {
-            // Set storage directory and add the character '2' to mimic another transport.
+            // Set storage directory and add the character '2' to simulate a different transport.
             StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"
         };
         endpointConfiguration.UseTransport(learningTransportDefinition);
