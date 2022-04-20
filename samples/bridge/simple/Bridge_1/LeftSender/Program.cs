@@ -34,8 +34,6 @@ static class Program
         Console.WriteLine("Press '2' to publish the OrderReceived event");
         Console.WriteLine("Press 'esc' other key to exit");
 
-        #region PublishLoop
-
         while (true)
         {
             var key = Console.ReadKey();
@@ -66,7 +64,5 @@ static class Program
                     return;
             }
         }
-
-        #endregion
     }
 }

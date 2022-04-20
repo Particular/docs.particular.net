@@ -31,15 +31,9 @@ static class Program
 
                 #endregion
 
-                #region endpoint-adding-register-publisher-by-type
-
-                // TODO: Remove this, it's nonsense!
-
-                #endregion
-
                 var learningTransport = new LearningTransport
                 {
-                    // Set storage directory and add the character '2' to mimic another transport.
+                    // Set storage directory and add the character '2' to simulate a different transport.
                     StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"
                 };
                 var learningRight = new BridgeTransportConfiguration(learningTransport)
