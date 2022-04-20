@@ -7,15 +7,19 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.PubSub.Subscriber";
-        var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber");
+        Console.Title = "Samples.Bridge.RightReceiver";
+        var endpointConfiguration = new EndpointConfiguration("Samples.Bridge.RightReceiver");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+
+        endpointConfiguration.Conventions().DefiningCommandsAs(t => t.Name == "PlaceOrder");
+        endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Name == "OrderResponse");
+        endpointConfiguration.Conventions().DefiningEventsAs(t => t.Name == "OrderReceived");
 
         #region alternative-learning-transport
         var learningTransportDefinition = new LearningTransport
         {
             // Set storage directory and add the character '2' to mimic another transport.
-            StorageDirectory = Path.Combine(LearningTransportInfrastructure.FindStoragePath(), "2")
+            StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"
         };
         endpointConfiguration.UseTransport(learningTransportDefinition);
         #endregion

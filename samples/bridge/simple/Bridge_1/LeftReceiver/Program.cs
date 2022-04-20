@@ -11,6 +11,9 @@ static class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
+        endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Name == "OrderResponse");
+        endpointConfiguration.Conventions().DefiningEventsAs(t => t.Name == "OrderReceived");
+
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 

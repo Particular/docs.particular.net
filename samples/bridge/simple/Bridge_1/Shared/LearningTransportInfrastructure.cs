@@ -1,18 +1,30 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 
 public static class LearningTransportInfrastructure
 {
     public static string FindStoragePath()
     {
         var directory = AppDomain.CurrentDomain.BaseDirectory;
+        var assemblyName = Assembly.GetCallingAssembly().GetName().Name.ToLowerInvariant();
 
         while (true)
         {
+
+
             var learningTransportDirectory = Path.Combine(directory, DefaultLearningTransportDirectory);
             if (Directory.Exists(learningTransportDirectory))
             {
                 return learningTransportDirectory;
+            }
+
+            // This works for samples
+            if (directory.ToLowerInvariant().EndsWith(assemblyName))
+            {
+                var solutionFolder = Directory.GetParent(directory);
+                if (solutionFolder != null)
+                    return Path.Combine(solutionFolder.FullName, DefaultLearningTransportDirectory);
             }
 
             var parent = Directory.GetParent(directory);

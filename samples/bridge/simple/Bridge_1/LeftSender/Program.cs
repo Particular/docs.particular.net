@@ -9,6 +9,11 @@ static class Program
         Console.Title = "Samples.Bridge.LeftSender";
         var endpointConfiguration = new EndpointConfiguration("Samples.Bridge.LeftSender");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+
+        endpointConfiguration.Conventions().DefiningCommandsAs(t => t.Name == "PlaceOrder");
+        endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Name == "OrderResponse");
+        endpointConfiguration.Conventions().DefiningEventsAs(t => t.Name == "OrderReceived");
+
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
         routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.Bridge.RightReceiver");
 
