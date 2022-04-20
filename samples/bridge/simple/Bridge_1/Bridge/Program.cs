@@ -1,7 +1,9 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NServiceBus;
 
 static class Program
 {
@@ -24,26 +26,35 @@ static class Program
             {
                 #region endpoint-adding-simple
 
-                var learningLeft = new BridgeTransport(new LearningTransport());
-                learningLeft.HasEndpoint("Samples.Bridge.Sender");
+                var learningLeft = new BridgeTransportConfiguration(new LearningTransport());
+                learningLeft.HasEndpoint("Samples.Bridge.LeftSender");
 
                 #endregion
 
                 #region endpoint-adding-register-publisher-by-type
 
-                var leftReceiver = new BridgeEndpoint("Samples.Bridge.LeftReceiver");
-                leftReceiver.RegisterPublisher(typeof(OrderReceived), "Samples.Bridge.Sender");
+                // TODO: Remove this, it's nonsense!
 
                 #endregion
 
-                var learningRight = new BridgeTransport(new LearningTransport());
+                var learningTransport = new LearningTransport
+                {
+                    // Set storage directory and add the character '2' to mimic another transport.
+                    StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"
+                };
+                var learningRight = new BridgeTransportConfiguration(learningTransport)
+                {
+                    // A different name is required if transports are used twice.
+                    Name = "right-side"
+                };
 
                 #region endpoint-adding-register-publisher-by-string
 
                 var rightReceiver = new BridgeEndpoint("Samples.Bridge.RightReceiver");
-                rightReceiver.RegisterPublisher("Messages.Events.OrderPlaced", "Samples.Bridge.Sender");
+                rightReceiver.RegisterPublisher("OrderReceived", "Samples.Bridge.LeftSender");
 
                 #endregion
+                learningRight.HasEndpoint(rightReceiver);
 
                 #region add-transports-to-bridge
 
@@ -54,8 +65,5 @@ static class Program
             })
             .Build()
             .RunAsync().ConfigureAwait(false);
-
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
     }
 }
