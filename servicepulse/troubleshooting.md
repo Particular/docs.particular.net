@@ -1,7 +1,7 @@
 ---
 title: ServicePulse Troubleshooting
 summary: ServicePulse installation and common issues troubleshooting
-reviewed: 2020-01-28
+reviewed: 2022-04-21
 component: ServicePulse
 ---
 
@@ -11,16 +11,6 @@ component: ServicePulse
  * See the [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases/) troubleshooting section for guidance on detecting ServiceControl HTTP API accessibility.
  * Verify that ServicePulse is trying to access the correct ServiceControl URI (based on ServiceControl instance URI defined in ServicePulse installation settings).
  * Check that ServicePulse is not blocked from accessing the ServiceControl URI by firewall settings.
-
-
-### ServicePulse reports that 0 endpoints are active, although endpoint plugins were deployed
-
- * Follow the guidance in [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md).
- * Restart the endpoint after copying the endpoint plugin files into the endpoint's `bin` directory.
- * Ensure [auditing](/nservicebus/operations/auditing.md) is enabled for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl.
- * Ensure relevant ServiceControl assemblies are not in the list of assemblies to exclude from scanning. For more details refer to [Assembly scanning](/nservicebus/hosting/assembly-scanning.md).
- * Ensure the endpoint references NServiceBus version 4.0.0 or later.
-
 
 ### ServicePulse reports empty failed message groups
 
@@ -33,9 +23,11 @@ RavenDB index could be disabled. This typically happens when disk space runs out
  
 This assumes ServiceControl is using the default port and host name; adjust the url accordingly if this is not the case.
 
+### ServicePulse only shows the loading icon after an update
+
+There may be previous versions of assets cached by the browser after updating ServicePulse. These previous versions could conflict with the latest versions resulting in an error at startup which would cause ServicePulse not to progress beyond the loading icon. To resolve this issue, clear the browser cache and refresh the page again.
 
 ### Heartbeat failure in ASP.NET applications
-
 
 #### Scenario
 
@@ -81,6 +73,13 @@ The installation path of an endpoint is used by ServiceControl and ServicePulse 
 
 To address this issue, see [Override host identifier](/nservicebus/hosting/override-hostid.md).
 
+### ServicePulse reports that 0 endpoints are active, although endpoint plugins were deployed
+
+ * Follow the guidance in [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md).
+ * Restart the endpoint after copying the endpoint plugin files into the endpoint's `bin` directory.
+ * Ensure [auditing](/nservicebus/operations/auditing.md) is enabled for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl.
+ * Ensure relevant ServiceControl assemblies are not in the list of assemblies to exclude from scanning. For more details refer to [Assembly scanning](/nservicebus/hosting/assembly-scanning.md).
+ * Ensure the endpoint references NServiceBus version 4.0.0 or later.
 
 ### After enabling heartbeat plugins for NServiceBus version 3 endpoints, ServicePulse reports that endpoints are inactive
 
