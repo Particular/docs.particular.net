@@ -7,11 +7,13 @@ reviewed: 2022-04-01
 
 ## Generic host
 
-The `NServiceBus.Transport.Bridge` needs to Generic Host and the [`Microsoft.Extensions.Hosting`](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices/) NuGet package to host the bridge and manage the component's life cycle.
-
-Configuration of the bridge is then achieved as follows:
+The `NServiceBus.Transport.Bridge` is hosted via the [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) which takes lifecycle management, configuration, logging etc.
 
 snippet: generic-host
+
+Use the overload with a [`HostBuilderContext`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.hostbuildercontext) to get access to the [`IConfiguration` API](https://docs.microsoft.com/en-us/dotnet/core/extensions/configuration) and other host related details.
+
+snippet: generic-host-builder-context
 
 ## Registering endpoints
 
