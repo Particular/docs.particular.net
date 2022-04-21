@@ -1,10 +1,10 @@
 ﻿namespace Bridge_1
 {
-    using System.Threading.Tasks;
     using Messages;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
     using NServiceBus;
+    using System.Threading.Tasks;
 
     public class Configuration
     {
@@ -35,11 +35,11 @@
             await Host.CreateDefaultBuilder()
                 .UseNServiceBusBridge((ctx, bridgeConfiguration) =>
                 {
-                    var msmq = new BridgeTransportConfiguration(new MsmqTransport());
+                    var msmq = new BridgeTransport(new MsmqTransport());
                     msmq.HasEndpoint("Sales");
                     msmq.HasEndpoint("Shipping");
 
-                    var asb = new BridgeTransportConfiguration(new AzureServiceBusTransport(connectionString));
+                    var asb = new BridgeTransport(new AzureServiceBusTransport(connectionString));
                     asb.HasEndpoint("Finance.Invoicing");
                     asb.HasEndpoint("Finance.Billing");
 
@@ -56,8 +56,8 @@
         {
             #region register-publisher
 
-            var msmq = new BridgeTransportConfiguration(new MsmqTransport());
-            var asb = new BridgeTransportConfiguration(new AzureServiceBusTransport(connectionString));
+            var msmq = new BridgeTransport(new MsmqTransport());
+            var asb = new BridgeTransport(new AzureServiceBusTransport(connectionString));
 
             msmq.HasEndpoint("Sales");
             msmq.HasEndpoint("Finance.Billing");
