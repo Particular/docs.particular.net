@@ -1,8 +1,8 @@
 ﻿namespace Bridge_1
 {
     using Messages;
+    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Hosting;
-    using Microsoft.Extensions.Logging;
     using NServiceBus;
     using System.Threading.Tasks;
 
@@ -13,14 +13,34 @@
             #region generic-host
 
             await Host.CreateDefaultBuilder()
-                .ConfigureLogging(logging =>
-                {
-                    logging.ClearProviders();
-                    logging.AddConsole();
-                })
-                .UseNServiceBusBridge((ctx, bridgeConfiguration) =>
+                .UseNServiceBusBridge(bridgeConfiguration =>
                 {
                     // Configure the bridge
+                })
+                .Build()
+                .RunAsync();
+
+            #endregion
+        }
+
+        public async Task GenericHostBuilderContext()
+        {
+            #region generic-host-builder-context
+
+            await Host.CreateDefaultBuilder()
+                .UseNServiceBusBridge((hostBuilderContext, bridgeConfiguration) =>
+                {
+                    var connectionString = hostBuilderContext.Configuration.GetValue<string>("MyBridge:AzureServiceBusConnectionString");
+                    var concurrency = hostBuilderContext.Configuration.GetValue<int>("MyBridge:Concurrency");
+
+                    var transport = new BridgeTransport(new AzureServiceBusTransport(connectionString))
+                    {
+                        Concurrency = concurrency
+                    };
+
+                    bridgeConfiguration.AddTransport(transport);
+
+                    // more configuration...
                 })
                 .Build()
                 .RunAsync().ConfigureAwait(false);
