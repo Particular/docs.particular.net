@@ -1,6 +1,6 @@
 ---
 title: Bridge
-summary: TBD
+summary: How to connect endpoints in a system that use different transports
 reviewed: 2022-04-01
 component: Bridge
 ---
