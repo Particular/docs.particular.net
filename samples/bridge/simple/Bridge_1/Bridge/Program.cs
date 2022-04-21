@@ -26,7 +26,7 @@ static class Program
             {
                 #region endpoint-adding-simple
 
-                var learningLeft = new BridgeTransportConfiguration(new LearningTransport());
+                var learningLeft = new BridgeTransport(new LearningTransport());
                 learningLeft.HasEndpoint("Samples.Bridge.LeftSender");
 
                 #endregion
@@ -36,7 +36,7 @@ static class Program
                     // Set storage directory and add the character '2' to simulate a different transport.
                     StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"
                 };
-                var learningRight = new BridgeTransportConfiguration(learningTransport)
+                var learningRight = new BridgeTransport(learningTransport)
                 {
                     // A different name is required if transports are used twice.
                     Name = "right-side"
