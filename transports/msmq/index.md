@@ -61,7 +61,7 @@ Alternatively, the MSMQ service can be installed manually. When installing manua
  * Multicasting Support
  * MSMQ DCOM Proxy
 
-These components can cause issues with the addressing used in NServiceBus.
+Only the Message Queue Server component should be installed. The other components may interfere with the addressing used in NServiceBus and cause messages to not be delivered, with no error messages in the NServiceBus logs.
 
 ### Installation on Windows Server 2012 and higher
 
