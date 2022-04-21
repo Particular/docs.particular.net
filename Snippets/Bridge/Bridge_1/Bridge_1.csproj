@@ -4,6 +4,6 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.Bridge" Version="1.0.0-alpha.0.12" />
+    <PackageReference Include="NServiceBus.Transport.Bridge" Version="0.1.0-alpha.0.31" />
   </ItemGroup>
 </Project>
