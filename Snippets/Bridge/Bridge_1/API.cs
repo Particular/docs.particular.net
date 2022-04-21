@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Transport;
+﻿using NServiceBus;
 
 public class API
 {
@@ -14,8 +9,8 @@ public class API
 
         #region bridgeconfiguration
 
-        var msmq = new BridgeTransportConfiguration(new MsmqTransport());
-        var asb = new BridgeTransportConfiguration(new AzureServiceBusTransport(connectionString));
+        var msmq = new BridgeTransport(new MsmqTransport());
+        var asb = new BridgeTransport(new AzureServiceBusTransport(connectionString));
 
         msmq.HasEndpoint("Sales");
         asb.HasEndpoint("Billing");
