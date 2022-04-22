@@ -70,8 +70,8 @@ snippet: SharingBehaviorData
 
 Note: Contexts are not concurrency-safe.
 
-
 partial: sharedcontext
 
+partial: options
 
 include: mutators-versus-behaviors
