@@ -11,4 +11,4 @@ upgradeGuideCoreVersions:
 
 ## SendOptions changes
 
-In NServiceBus version 8 and earlier, the information if given message was marked for immediate dispatch can be verified by the `sendOptions.RequiredImmediateDispatch()`  `SendOptions` extension methods. In version 9, this extension method have been marked as obsolete in favour of `sendOptions.IsImmediateDispatchSet()`.
+In NServiceBus version 8 and earlier, the indication that a message was marked for [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) was provided by `SendOptions.RequiredImmediateDispatch()`. In version 9, this method has been renamed to `SendOptions.IsImmediateDispatchSet()`.
