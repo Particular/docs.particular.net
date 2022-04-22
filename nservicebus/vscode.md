@@ -55,7 +55,7 @@ The following **tasks.json** describes how to build the solution using `dotnet b
             "group": "build",
             "presentation": {
                 "reveal": "silent"
-            }
+            },
             "problemMatcher": "$msCompile"
         }
     ]
