@@ -16,7 +16,7 @@ Migrating from one transport to another can be a complex task. At all times the 
 
 When a plan is created to move or sunset an endpoint, the easy part is to re-configure the routing for any endpoint and NServiceBus will take care of newly send messages. However in-flight messages need to be carefully considered and action must be taken to ensure these messages arrive at the correct destination, which is not always the place where these messages were originally sent to. 
 
-In our scenario, that is because an endpoint is migrated from MSMQ transport to SQL Server transport. Moving all endpoints at once would be impossible, as all in-flight messages would be stuck on the MSMQ side. This is exactly what was taken into consideration when creating the `NServiceBus.Transport.Bridge`.
+In this scenario, that is because an endpoint is migrated from MSMQ transport to SQL Server transport. Moving all endpoints at once would be impossible, as all in-flight messages would be stuck on the MSMQ side. This is exactly what was taken into consideration when creating the `NServiceBus.Transport.Bridge`.
 
 ### Initial situation
 
@@ -30,7 +30,7 @@ flowchart LR
 
 ### Initiating the migration
 
-To slowly migrate endpoints to the other transport and to prevent moving all endpoints at once, we'll start with two endpoints and move those over to the SQL Server transport.
+To slowly migrate endpoints to the other transport and to prevent moving all endpoints at once, the migration will start with two endpoints and move those over to the SQL Server transport.
 
 ```mermaid
 flowchart LR
