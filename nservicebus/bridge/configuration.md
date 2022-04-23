@@ -5,7 +5,7 @@ component: Bridge
 reviewed: 2022-04-01
 ---
 
-## Generic host
+## Hosting
 
 The `NServiceBus.Transport.Bridge` is hosted via the [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) which takes lifecycle management, configuration, logging etc.
 
@@ -36,3 +36,23 @@ snippet: register-publisher
 It is possible to reference message assemblies and use `typeof()` for type-safety when registering publishers.
 
 If messages implement the `IEvent` interface, the message assembly references NServiceBus. When different versions of NServiceBus are referenced by both the message assembly and the bridge, this will result in compile-time exceptions. It is then an option to register the fully-qualified name of an event as a string. As a result no message assemblies will need to be referenced that can cause conflicts during compile-time.
+
+## Provisioning queues
+
+The bridge will by default **not** create any queues for the endpoints that it proxies to not require elevated priviledges at runtime.
+
+TBD: What guidance or tooling if any should be provided around what exact queues and the names of those queues
+
+The queues can be created using on of the following methods:
+
+- Provision them manually using the tooling provided by the queuing system
+- Use the queue creation tooling provided by Particular Software if such exists for the transports use. See the [individual transports documentation](/transports/) for more details.
+- Configure the Bridge to auto created queues (see below)
+
+### Automatic queue provisioning
+
+NOTE: This option requires the Bridge to have administrative priviledges for the queing systems used and is not recommended for production scenarios.
+
+To enable automatic queue creation configure the Bridge as follows:
+
+snippet: auto-create-queues
