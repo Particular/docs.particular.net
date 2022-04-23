@@ -89,6 +89,23 @@
             #endregion
         }
 
+        public void AutoCreateQueues()
+        {
+            #region auto-create-queues
+
+            var msmq = new BridgeTransport(new MsmqTransport())
+            {
+                AutoCreateQueues = true
+            };
+
+            var azureServiceBus = new BridgeTransport(new AzureServiceBusTransport(connectionString))
+            {
+                AutoCreateQueues = true
+            };
+
+            #endregion
+        }
+
         string connectionString = string.Empty;
     }
 }
