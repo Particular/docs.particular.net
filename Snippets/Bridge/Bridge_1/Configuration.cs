@@ -106,6 +106,23 @@
             #endregion
         }
 
+        public void CustomConcurrency()
+        {
+            #region custom-concurrency
+
+            var msmq = new BridgeTransport(new MsmqTransport())
+            {
+                Concurrency = 10
+            };
+
+            var azureServiceBus = new BridgeTransport(new AzureServiceBusTransport(connectionString))
+            {
+                Concurrency = 5
+            };
+
+            #endregion
+        }
+
         string connectionString = string.Empty;
     }
 }
