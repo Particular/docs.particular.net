@@ -56,3 +56,11 @@ NOTE: This option requires the Bridge to have administrative priviledges for the
 To enable automatic queue creation configure the Bridge as follows:
 
 snippet: auto-create-queues
+
+## Performance tuning
+
+The Bridge will move messages using [the same default concurrency as NServiceBus endpoints](/nservicebus/operations/tuning.md#configuring-concurrency-limit) which is `max(Number of logical processors, 2)`.
+
+Customizing the concurrency level can be done using the followig configuration:
+
+snippet: custom-concurrency
