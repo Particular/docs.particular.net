@@ -26,7 +26,7 @@ When Save is clicked the service will be restarted to apply the change.
 
 ## Windows Event Log
 
-As of Version 4.19.0 all ServiceControl instances will also log to the Windows Event Log. The default level is `WARN` but can be changed by [specifying an explicit log level](#logging-levels). 
+As of version 4.19.0, all ServiceControl instances will log to the Windows Event Log as well as the ServiceControl log. The default level is `WARN` but this setting can be changed by [specifying an explicit log level](#logging-levels).
 
 ## Monitoring
 
@@ -34,7 +34,7 @@ It is recommended to actively monitor the ServiceControl `logfile.${shortdate}.t
 
 ## Customize logging
 
-By default, ServiceControl logs to the event log and filesystem. Log files are named `logfile.${shortdate}.txt` and `ravenlog.${shortdate}.txt`. ServiceControl uses [NLog](https://nlog-project.org/) for logging and the configuration can be overridden by supplying a custom `nlog.config` configuration file in the ServiceControl, ServiceControl.Audit, and ServiceControl.Monitoring application folders. A variety of [NLog logging targets](https://nlog-project.org/config/?tab=targets) can be used to log to almost any possible destination.
+By default, ServiceControl logs to the event log and filesystem. Log files are named `logfile.${shortdate}.txt` and `ravenlog.${shortdate}.txt`. ServiceControl uses [NLog](https://nlog-project.org/) for logging and the configuration can be overridden by supplying a custom `nlog.config` configuration file in the ServiceControl, ServiceControl.Audit, and ServiceControl.Monitoring application folders. A variety of [NLog logging targets](https://nlog-project.org/config/?tab=targets) can be used to log to almost any destination.
 
 NOTE: Any logging related settings (i.e. `ServiceControl/LogLevel`, `ServiceControl/LogPath`, `ServiceControl/RavenDBLogLevel`) are ignored when overriding the NLog configuration.
 
@@ -76,7 +76,7 @@ NOTE: The change in log naming will result in logs produced prior to Version 1.1
 
 ## Logging Levels
 
-Instances of the ServiceControl service write logging information and failed message import stack traces to the Windows Event log and the file system. 
+Instances of the ServiceControl service write logging information and failed message import stack traces to the Windows Event log and the file system.
 
 To configure logging for ServiceControl Audit and Monitoring instances, refer to the [ServiceControl Audit configuration settings](/servicecontrol/audit-instances/creating-config-file.md#host-settings-servicecontrol-auditloglevel) or [ServiceControl Monitoring configuration settings](/servicecontrol/monitoring-instances/installation/creating-config-file.md#logging-monitoringloglevel) documentation pages.
 

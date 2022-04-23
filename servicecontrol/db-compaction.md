@@ -4,7 +4,7 @@ summary: How to compact the RavenDB database backing ServiceControl
 reviewed: 2020-06-23
 ---
 
-INFO: Only compact if the retention period, message throughput, or average message size have been reduced. If neither of these has changed then compacting may not provide the expected reduction in database size and may only have a small temporary effect.
+INFO: Compact the database only if the retention period, message throughput, or average message size have been reduced. If none of these have changed, compacting may not provide a significant reduction in database size, or it may have only a small, temporary effect.
 
 ServiceControl's embedded RavenDB database can be compacted in one of two ways: with the  [Extensible Storage Engine Utility (esentutl)](https://technet.microsoft.com/en-us/library/hh875546.aspx), or by using the RavenDB management portal.
 
@@ -26,7 +26,7 @@ WARNING: For the `esentutl` command line utility to work, the ServiceControl ser
 
 * Open an elevated command prompt and navigate to the ServiceControl "DATA PATH" directory
 * Run **`esentutl /r RVN /l logs /s system`** and wait for it to finish. This will ensure that the database is in a consistent state and is ready for defragmentation.
-* Here is the result of running it:  
+* Here is the result of running it:
 
 ```txt
 Extensible Storage Engine Utilities for Microsoft(R) Windows(R)
@@ -43,7 +43,7 @@ Performing soft recovery...
 Operation completed successfully in 0.78 seconds.
 ```
 
-* Now run **`esentutl /d Data`** and wait for it to finish. Here is the result of running it:  
+* Now run **`esentutl /d Data`** and wait for it to finish. Here is the result of running it:
 
 ```txt
 Extensible Storage Engine Utilities for Microsoft(R) Windows(R)
@@ -104,7 +104,7 @@ NOTE: At this point, it is advisable to take a backup copy of the existing datab
 * Select "Import Database" tab and select all checkboxes.
   ![](import-database-step1.png 'width=500')
 * Click "Choose file" and select the file to import.
-* Click "Import Database" to proceed.  
+* Click "Import Database" to proceed.
 * Wait for the operation to complete.
   ![](import-database-step2.png 'width=500')
 * Stop ServiceControl (from ServiceControl Management).
