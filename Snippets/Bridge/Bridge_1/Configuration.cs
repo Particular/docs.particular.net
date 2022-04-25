@@ -140,6 +140,25 @@
             #endregion
         }
 
+        public void CustomTransportName()
+        {
+            #region custom-error-queue
+
+            var azureServiceBus1 = new BridgeTransport(new AzureServiceBusTransport(connectionStringNamepace1))
+            {
+                Name = "asb-namespace-1"
+            };
+
+            var azureServiceBus2 = new BridgeTransport(new AzureServiceBusTransport(connectionStringNamepace2))
+            {
+                Name = "asb-namespace-2"
+            };
+
+            #endregion
+        }
+
         string connectionString = string.Empty;
+        string connectionStringNamepace1 = string.Empty;
+        string connectionStringNamepace2 = string.Empty;
     }
 }
