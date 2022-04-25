@@ -123,6 +123,23 @@
             #endregion
         }
 
+        public void CustomErrorQueue()
+        {
+            #region custom-error-queue
+
+            var msmq = new BridgeTransport(new MsmqTransport())
+            {
+                ErrorQueue = "my-msmq-bridge-error-queue"
+            };
+
+            var azureServiceBus = new BridgeTransport(new AzureServiceBusTransport(connectionString))
+            {
+                ErrorQueue = "my-asb-bridge-error-queue"
+            };
+
+            #endregion
+        }
+
         string connectionString = string.Empty;
     }
 }
