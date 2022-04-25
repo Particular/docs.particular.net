@@ -64,3 +64,18 @@ The Bridge will move messages using [the same default concurrency as NServiceBus
 Customizing the concurrency level can be done using the followig configuration:
 
 snippet: custom-concurrency
+
+## Recoverability
+
+Should a message fail to be transfered to the target transport the following recoverability actions will be taken:
+
+1. Three immediate retries will be performed to make sure that the problem isn't transient
+1. Should the retries fail the message will be moved to the bridge error queue
+
+### Error queue
+
+The error queue is defaulted to `bridge.error`. Note that the default `error` queue used by other platform components is not used to enable bridiging of the system wide error queue since its not allowed to use a bridged queue as the error queue. See the documentation around briding platform queues for more details. TBD: link
+
+To configure a different error queue using the following configuration:
+
+snippet: custom-error-queue
