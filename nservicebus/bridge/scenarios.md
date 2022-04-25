@@ -1,5 +1,5 @@
 ---
-title: Bridge scenarios
+title: Usage scenarios
 summary: Different scenarios in which the bridge can be used in a system
 reviewed: 2022-04-20
 component: Bridge
