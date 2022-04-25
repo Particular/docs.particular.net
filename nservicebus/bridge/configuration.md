@@ -39,7 +39,7 @@ If messages implement the `IEvent` interface, the message assembly references NS
 
 ## Provisioning queues
 
-The bridge will by default **not** create any queues for the endpoints that it proxies to not require elevated priviledges at runtime.
+The bridge will by default **not** create any queues for the endpoints that it proxies to not require elevated privileges at runtime.
 
 TBD: What guidance or tooling if any should be provided around what exact queues and the names of those queues
 
@@ -51,7 +51,7 @@ The queues can be created using on of the following methods:
 
 ### Automatic queue provisioning
 
-NOTE: This option requires the Bridge to have administrative priviledges for the queing systems used and is not recommended for production scenarios.
+NOTE: This option requires the Bridge to have administrative privileges for the queuing systems used and is not recommended for production scenarios.
 
 To enable automatic queue creation configure the Bridge as follows:
 
@@ -61,13 +61,13 @@ snippet: auto-create-queues
 
 The Bridge will move messages using [the same default concurrency as NServiceBus endpoints](/nservicebus/operations/tuning.md#configuring-concurrency-limit) which is `max(Number of logical processors, 2)`.
 
-Customizing the concurrency level can be done using the followig configuration:
+Customizing the concurrency level can be done using the following configuration:
 
 snippet: custom-concurrency
 
 ## Recoverability
 
-Should a message fail to be transfered to the target transport the following recoverability actions will be taken:
+Should a message fail to be transferred to the target transport the following recoverability actions will be taken:
 
 1. Three immediate retries will be performed to make sure that the problem isn't transient
 1. Should the retries fail the message will be moved to the bridge error queue
