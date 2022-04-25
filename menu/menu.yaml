@@ -636,6 +636,11 @@
       Title: Bridge
     - Url: nservicebus/bridge/configuration
       Title: Configuration
+    - Url: nservicebus/bridge/scenarios
+      Title: Usage scenarios
+      Articles:
+      - Url: nservicebus/bridge/migrating-from-router
+        Title: Migrating from Router
   - Url: nservicebus/compliance
     Title: Compliance
     Articles:
