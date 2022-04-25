@@ -79,3 +79,17 @@ The error queue is defaulted to `bridge.error`. Note that the default `error` qu
 To configure a different error queue using the following configuration:
 
 snippet: custom-error-queue
+
+## Auditing
+
+The bridge will attach a new `NServiceBus.Bridge.Transfer` as a message is transfered between transports. 
+
+The value of the header is `{source-transport-name}->{target-transport-name}`, example:
+
+`msmq->sqlserver`
+
+### Configuring transport name3
+
+The bridge will default the transport name based on the type of transport being used. This means that when bridging transports of the **same type** each transport needs to be given a unique name using the following configuration:
+
+snippet: custom-transport-name
