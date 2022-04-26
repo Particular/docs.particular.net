@@ -142,7 +142,7 @@
 
         public void CustomTransportName()
         {
-            #region custom-error-queue
+            #region custom-transport-name
 
             var azureServiceBus1 = new BridgeTransport(new AzureServiceBusTransport(connectionStringNamepace1))
             {
@@ -153,6 +153,20 @@
             {
                 Name = "asb-namespace-2"
             };
+
+            #endregion
+        }
+
+        public void PlatformBridging()
+        {
+            #region platform-bridging
+
+            var transportWhereServiceControlIsInstalled = new BridgeTransport(new MsmqTransport());
+
+            transportWhereServiceControlIsInstalled.HasEndpoint("ServiceControl");
+            transportWhereServiceControlIsInstalled.HasEndpoint("ServiceControl.Monitoring");
+            transportWhereServiceControlIsInstalled.HasEndpoint("error");
+            transportWhereServiceControlIsInstalled.HasEndpoint("audit");
 
             #endregion
         }

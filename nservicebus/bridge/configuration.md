@@ -88,8 +88,20 @@ The value of the header is `{source-transport-name}->{target-transport-name}`, e
 
 `msmq->sqlserver`
 
-### Configuring transport name3
+### Configuring transport
 
 The bridge will default the transport name based on the type of transport being used. This means that when bridging transports of the **same type** each transport needs to be given a unique name using the following configuration:
 
 snippet: custom-transport-name
+
+## Bridging platform queues
+
+The bridge can be used to enable as single service control installation to manage and monitor endpoints on all bridged transports.
+
+Configure the bridge as follows to enable platform bridging:
+
+snippet: platform-bridging
+
+### Audit queue
+
+Special considerations needs to be taken for the audit queue due to the potentially high volume message volume. Consider installing a [dedicated service control audit instance](/servicecontrol/audit-instances/) for each bridged transport to make audit ingestion more efficient.

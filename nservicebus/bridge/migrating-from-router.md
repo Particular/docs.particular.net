@@ -72,7 +72,7 @@ NOTE: If Endpoint B cannot be taken offline, the time between step 3 and step 4 
 
 #### Additional messages
 
-There are additional messages like request/response messages, which route a message back to the endpoint it originated from. These will all have to be routed back using the Router component. The result is that as long as there are messages like these to be processed, the Router component has to be active within your system.
+There are additional messages like request/response messages, which route a message back to the endpoint it originated from. These will all have to be routed back using the Router component. The result is that as long as there are messages like these to be processed, the Router component has to be active within the system.
 
 ## Conclusion
 
