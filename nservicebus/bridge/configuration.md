@@ -74,11 +74,13 @@ Should a message fail to be transferred to the target transport the following re
 
 ### Error queue
 
-The error queue is defaulted to `bridge.error`. Note that the default `error` queue used by other platform components is not used to enable bridiging of the system wide error queue since its not allowed to use a bridged queue as the error queue. See the documentation around briding platform queues for more details. TBD: link
+The error queue is defaulted to `bridge.error`. Note that the default `error` queue used by other platform components is not used to enable bridiging of the system wide error queue since its not allowed to use a bridged queue as the error queue. See the documentation around [briding platform queues](#bridging-platform-queues) for more details.
 
 To configure a different error queue using the following configuration:
 
 snippet: custom-error-queue
+
+Messages moved to the error queue will have the [`NServiceBus.FailedQ`](/nservicebus/messaging/headers.md#error-forwarding-headers-nservicebus-failedq) header set to allow scripted retries eg. like [RabbitMQ](/transports/rabbitmq/operations-scripting.md#return-message-to-source-queue). Refer to the documentation for the [transports being used](/transports) for more details in how to perform retries.
 
 ## Auditing
 
