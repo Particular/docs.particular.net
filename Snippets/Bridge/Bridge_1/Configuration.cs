@@ -163,8 +163,8 @@
 
             var transportWhereServiceControlIsInstalled = new BridgeTransport(new MsmqTransport());
 
-            transportWhereServiceControlIsInstalled.HasEndpoint("ServiceControl");
-            transportWhereServiceControlIsInstalled.HasEndpoint("ServiceControl.Monitoring");
+            transportWhereServiceControlIsInstalled.HasEndpoint("Particular.ServiceControl");
+            transportWhereServiceControlIsInstalled.HasEndpoint("Particular.Monitoring");
             transportWhereServiceControlIsInstalled.HasEndpoint("error");
             transportWhereServiceControlIsInstalled.HasEndpoint("audit");
 
