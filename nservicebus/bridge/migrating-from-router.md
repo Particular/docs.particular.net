@@ -1,41 +1,45 @@
 ---
-title: Migrating from Router to Bridge
-summary: Migration guide to move from Router to Bridge
+title: Migrating from NServiceBus.Router to NServiceBus.Transport.Bridge
+summary: Guide to migrate from the NServiceBus.Router community package to the transport bridge
 reviewed: 2022-04-25
 component: Bridge
 ---
-This is a migration guide for those that have been making use of the community package `NService.Router` and want to move to the fully supported `NServiceBus.Transport.Bridge` component.
+This is a migration guide for those that use the community package, `NService.Router`, and want to move to the fully supported `NServiceBus.Transport.Bridge` component.
 
-## Router versus Bridge
+## Router versus bridge
 
-The Bridge is fully supported compared to the Router, which is a community package. The Router works perfectly as well, but the fact that the Bridge is fully supported, could by itself  already be a reason to start a migration.
+One important difference between `NServiceBus.Transport.Bridge` and `NServiceBus.Router` is that the bridge is fully supported whereas the NServiceBus.Router component, as a community package, is not.
 
-The Bridge also does not require what the Router calls 'connectors'. After migration, these connectors no longer need to be deployed with every endpoint. A more important result of this is that not a single endpoint is aware of the fact that transports are bridged by a different component. One of the many benefit of this is that [migration to a different transport](scenarios.md) becomes easier than ever before.
+The bridge does not require what the NServiceBus.Router calls _connectors_.
+
+NServiceBus.Router uses the concept of _connectors_ which it uses to configure endpoints so that messages are delivered to the correct destination. Connectors must be deployed alongside the endpoints they are routing. The bridge does not require connectors or any other similar component. Endpoints are not aware that a bridge is translating messages between transports so after migrating to the bridge, these connectors no longer need to be deployed with each endpoint. One of the benefits of this is that [migration to a different transport](scenarios.md) becomes easier with the NServiceBus.Router.
 
 ## Steps to migrate
 
-To migrate the following has to be considered
+To migrate the following messages must be taken into consideration:
 
 - In-flight messages
 - Commands
 - Events
 - Additional messages
 
-#### In-flight messages
+### In-flight messages
 
-In-flight messages are messages that were send to an endpoint, but have not been processed yet. As the Router changes the routing for messages so that they are send directly the the Router component, this means that any in-flight messages will require the Router to be available to them. Even when endpoints have already been configured to no longer use the Router anymore.
+In-flight messages are messages that were send to an endpoint but have not been processed yet. That is, a message may have been sent using NServiceBus.Router but after migration, it may be processed by the transport bridge. Since the NServiceBus.Router changes the routing for messages so that they are sent directly the the Router component, this means that any in-flight messages will require the Router to be available to them, even when endpoints have already been configured to no longer use the Router anymore.
 
-For what time the Router needs to be kept running can depend on a lot of factors. If it is unclear what the right time is to remove the Router, contact [Particular Software](https://particular.net/contactus).
+Because of this, the NServiceBus.Router must remain running until all in-flight messages have been delivered. The time this takes is highly individual to each system. If it is unclear what the right time is to stop the NServiceBus.Router, contact [Particular Software](https://particular.net/contactus) for guidance.
 
 #### Commands
 
-Commands are the easiest to migrate as they have a very specific route towards a specific logical endpoint. After the Bridge has been set up and running, every endpoint can remove any Router related configuration for routing commands using the connector. This implies that the original routing towards the specific endpoint can be restored and the Bridge will make sure it is transferred to the correct transport.
+Commands are the easiest to migrate as they have a specific route to a specific logical endpoint. After the transport bridge has been set up and running, every endpoint can remove any NServiceBus.Router-related configuration for routing commands using the connector. This implies that the original routing towards the specific endpoint can be restored and the bridge will make sure it is transferred to the correct transport.
 
 #### Events
 
-Events are the hardest part for migrating from the Router to the Bridge.
+Events are the hardest message type to migrate to the transport bridge from NServiceBus.Router.
 
-The issue is with the subscriptions that are registered within a message broker. The scenario could exist as seen in the graph below, where `Endpoint B` publishes an event and the event is sent to both the `Router` and the `Bridge`. As a result, `Endpoint C` could receive the same event twice. Both events would have the same message identifier, which enables the [Outbox](/nservicebus/outbox/) to de-duplicate the messages. Without the Outbox, either the message handler needs to be [idempotent](/nservicebus/concepts/glossary.md#idempotence) or the event will be processed twice.
+The issue is with the subscriptions that are registered within a message broker. The scenario could exist as seen in the graph below, where `Endpoint B` publishes an event and the event is sent to both the `NServiceBus.Router` and the `NServiceBus.Transport.Bridge`. As a result, `Endpoint C` could receive the same event twice.
+
+Note that both events would have the same message identifier, which allows the [outbox](/nservicebus/outbox/) to de-duplicate the messages. Without the outbox, either the message handler must be [idempotent](/nservicebus/concepts/glossary.md#idempotence) or the event will be processed twice.
 
 ```mermaid
 flowchart LR
@@ -56,24 +60,23 @@ flowchart LR
   end
 ```
 
-Take the following steps to move from Router to Bridge:
+For this scenario, take the following steps to move from NServiceBus.Router to NServiceBus.Transport.Bridge:
 
 1. Take down both `EndpointB` and the `Bridge`.
-
 1. Configure the `Bridge` to register a publisher with `Endpoint C` for the event that `Endpoint B` publishes.
-2. Remove the subscription from the message broker for the Router.
-3. Add the subscription to the message broker for the Bridge.
+2. Remove the subscription from the message broker for the `Router`.
+3. Add the subscription to the message broker for the `Bridge`.
 4. Start the `Bridge`.
 5. Start `Endpoint B`.
 
-When the `Bridge` starts up, it will also create the subscription and it is not required to manually create the subscription in the message broker. It is important however to be aware of when `Endpoint B` cannot be taken offline due to high availability, scaling out or service level agreements.
+When the `Bridge` starts up, it will also create the subscription; it is not required to manually create the subscription in the message broker. However, tt is important to be aware of when `Endpoint B` cannot be taken offline due to high availability, scaling out or service level agreements.
 
-NOTE: If Endpoint B cannot be taken offline, the time between step 3 and step 4 determine how many events will be lost.
+NOTE: If Endpoint B cannot be taken offline, the time between step 3 and step 4 determines how many events will be lost.
 
 #### Additional messages
 
-There are additional messages like request/response messages, which route a message back to the endpoint it originated from. These will all have to be routed back using the Router component. The result is that as long as there are messages like these to be processed, the Router component has to be active within the system.
+There may be additional messages, like request/response messages, which route a message back to the endpoint it originated from. These must be routed back using the NServiceBus.Router component. The result is that as long as there are messages like these to be processed, the NServiceBus.Router component must be active within the system.
 
 ## Conclusion
 
-Migrating from the Router to the Bridge doesn't have to be extremely hard, but it is something that requires consideration, thought and some time before the Router component can be completely removed from a system.
+Migrating from NServiceBus.Router to NServiceBus.Transport.Bridge is not difficult, but it is something that requires consideration and analysis before the NServiceBus.Router component can be completely removed from a system.
