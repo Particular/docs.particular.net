@@ -30,8 +30,6 @@ snippet: connector
 
 The snippet above tells the endpoint that a designated router listens on queue `MyRouter` and that messages of type `MyMessage` should be sent to the endpoint `Receiver` via the router. It also tells the subscription infrastructure that the event `MyEvent` is published by the endpoint `Publisher` that is hosted behind the router.
 
-NOTE: The NServiceBus.Router.Connector package targets NServiceBus 7. In order to connect to the router from NServiceBus 6 use NServiceBus.Bridge.Connector package.
-
 
 ## Router configuration
 
@@ -60,10 +58,10 @@ In addition to immediate and delayed retries, the router has built-in outage det
 
 ## Topologies
 
-A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endpoints, called *interfaces*, and a *routing protocol* that controls how messages should be forwarded between them. This design is very flexible and allows for various topologies to be implemented. Here are some examples:
+A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endpoints, called *interfaces*, and a *routing protocol* that controls how messages should be forwarded between them. This design is very flexible and allows for various topologies to be implemented. Here are some example topologies:
 
- * [Two-way bridge](bridge.md)
- * [Multi-way bridge](multi-way.md)
+ * [Direct](direct.md)
+ * [Multi-way](multi-way.md)
  * [Backplane](backplane.md)
 
 ## Scaling out

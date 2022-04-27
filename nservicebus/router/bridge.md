@@ -1,5 +1,5 @@
 ---
-title: NServiceBus Router two-way bridge topology
+title: NServiceBus Router two-way direct topology
 summary: How to connect two transports with a router
 component: Router
 related:
@@ -7,15 +7,15 @@ related:
 reviewed: 2020-09-17
 ---
 
-In the simplest form, the Router can be used to create a bi-directional bridge between two NServiceBus transports.
+In the simplest form, the Router can be used to create a bi-directional connection between two NServiceBus transports.
 
-![Bridge](bridge.svg)
+![direct](direct.svg)
 
 The arrows show the path of messages sent from `Endpoint A` to `Endpoint C` and from `Endpoint D` to `Endpoint B`. Each message is initially sent to the router queue and then forwarded to the destination queue. There is one additional *hop* compared to a direct communication between endpoints. The following snippet configures the built-in *static routing protocol* to forward messages between the router's interfaces.
 
 snippet: simple-routing
 
-To learn more about simple bridge topology see [the mixed transports sample](/samples/router/mixed-transports). 
+To learn more about simple direct topology see [the mixed transports sample](/samples/router/mixed-transports). 
 
 ### Case study: Legacy
 
