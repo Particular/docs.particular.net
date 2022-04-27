@@ -27,9 +27,6 @@ Another change is that with the Router it is the sending endpoint who is, by def
 
 snippet: upgrade-router-connector
 
-NOTE: For NServiceBus Version 6 the `NServiceBus.Bridge.Connector` package can be used instead of `NServiceBus.Router.Connector` as the Router is backwards-compatible with the bridge.
-
-
 ## Router side
 
 The Wormhole configuration required remote sites to be declared in the following way:

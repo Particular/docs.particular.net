@@ -358,14 +358,12 @@
     - Url: nservicebus/router
       Title: Router
       Articles:
-      - Url: nservicebus/router/bridge
-        Title: Two-way bridge topology
+      - Url: nservicebus/router/direct
+        Title: Direct topology
       - Url: nservicebus/router/multi-way
-        Title: Multi-way bridge topology
+        Title: Multi-way topology
       - Url: nservicebus/router/backplane
         Title: Backplane topology
-      - Url: nservicebus/router/bridge-router
-        Title: Upgrade NServiceBus.Bridge to NServiceBus.Router
     - Url: nservicebus/rawmessaging
       Title: Raw messaging
     - Url: nservicebus/outbox
