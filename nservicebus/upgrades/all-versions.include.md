@@ -272,7 +272,7 @@ No versions released.
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.5.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.5.1) | 2022-02-01     | -                 | -                                 |
-| [6.4.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.4.0) | 2022-01-27     | 2022-05-01        | Superseded by 6.5.x               |
+| [~~6.4.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.4.0) | ~~2022-01-27~~ | ~~2022-05-01~~    | ~~Superseded by 6.5.x~~           |
 | [~~6.3.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.3.0) | ~~2022-01-07~~ | ~~2022-04-27~~    | ~~Superseded by 6.4.x~~           |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.2.1) | ~~2021-03-25~~ | ~~2022-04-07~~    | ~~Superseded by 6.3.x~~           |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.1.1) | ~~2021-02-26~~ | ~~2021-06-25~~    | ~~Superseded by 6.2.x~~           |
@@ -853,7 +853,7 @@ No versions released.
 | [2.4.x](https://www.nuget.org/packages/Particular.PlatformSample/2.4.0) | 2022-02-17     | 2022-06-04        | Superseded by 2.5.x               |
 | [2.3.x](https://www.nuget.org/packages/Particular.PlatformSample/2.3.0) | 2022-02-14     | 2022-05-17        | Superseded by 2.4.x               |
 | [2.2.x](https://www.nuget.org/packages/Particular.PlatformSample/2.2.0) | 2022-02-03     | 2022-05-14        | Superseded by 2.3.x               |
-| [2.1.x](https://www.nuget.org/packages/Particular.PlatformSample/2.1.4) | 2021-11-02     | 2022-05-03        | Superseded by 2.2.x               |
+| [~~2.1.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.1.4) | ~~2021-11-02~~ | ~~2022-05-03~~    | ~~Superseded by 2.2.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.0.0) | ~~2021-09-16~~ | ~~2022-02-02~~    | ~~Superseded by 2.1.x~~           |
 | [1.31.x](https://www.nuget.org/packages/Particular.PlatformSample/1.31.0) | 2021-09-16     | 2022-09-16        | Superseded by 2.0.x               |
 | [~~1.29.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.29.0) | ~~2021-08-03~~ | ~~2021-12-16~~    | ~~Superseded by 1.31.x~~          |
