@@ -14,6 +14,8 @@ redirects:
 reviewed: 2022-03-22
 ---
 
+include: bridge-to-router-note
+
 `NServiceBus.Router` is a universal component that connects parts of an NServiceBus-based solution that otherwise could not talk to each other (e.g. because they use different transports or transport settings).
 
 The router is transparent to the publishing and replying endpoint. That is:

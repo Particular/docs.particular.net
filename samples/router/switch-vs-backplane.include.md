@@ -1,5 +1,7 @@
 ## Switch vs Backplane
 
+include: bridge-to-router-note
+
 Both [Switch](/samples/router/sql-switch) and [Backplane](/samples/router/backplane) approaches can be used replace the deprecated multi-instance mode in connecting endpoints that use different SQL Server databases. The following table contains a side-by-side comparison of both approaches
 
 | Switch                                                                       | Backplane                                                               |

@@ -7,6 +7,8 @@ related:
 reviewed: 2020-09-17
 ---
 
+include: bridge-to-router-note
+
 In the simplest form, the Router can be used to create a bi-directional connection between two NServiceBus transports.
 
 ![direct](direct.svg)
