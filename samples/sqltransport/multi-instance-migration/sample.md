@@ -1,16 +1,16 @@
 ---
 title: Multi-Instance Mode to bridge migration
-summary: Migration of SQL Server transport Multi-Instance Mode topology to bridge
+summary: Migration of SQL Server transport Multi-Instance Mode topology to router direct topology
 reviewed: 2021-06-14
 component: SqlTransport
 related:
  - transports/sql/deployment-options
- - nservicebus/router/bridge
+ - nservicebus/router/direct
 ---
 
 The multi-instance mode has been deprecated in Version 4 of SQL Server transport. NServiceBus topologies with queues distributed between multiple catalogs and SQL Server instances can be migrated using a combination of [NServiceBus.Router](/nservicebus/router/) and multi-catalog [addressing](/transports/sql/addressing.md).
 
-This samples shows how the NServiceBus.Router [bi-directional bridge topology](/nservicebus/router/bridge.md) can be utilized when endpoints connect to catalogs hosted in different instances of SQL Server. For solutions where all catalogs are hosted within a single SQL Server instance, see [multi-catalog addressing](/transports/sql/addressing.md).
+This samples shows how the NServiceBus.Router [bi-directional bridge topology](/nservicebus/router/direct.md) can be utilized when endpoints connect to catalogs hosted in different instances of SQL Server. For solutions where all catalogs are hosted within a single SQL Server instance, see [multi-catalog addressing](/transports/sql/addressing.md).
 
 
 ## Prerequisites
