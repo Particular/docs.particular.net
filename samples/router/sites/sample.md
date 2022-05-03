@@ -6,6 +6,7 @@ related:
  - nservicebus/router
 ---
 
+include: bridge-to-router-note
 
 ## Running the project
 

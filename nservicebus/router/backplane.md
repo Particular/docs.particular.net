@@ -7,6 +7,8 @@ related:
 reviewed: 2020-09-17
 ---
 
+include: bridge-to-router-note
+
 Two or more routers can be connected together to form a _backplane_ topology.
 
 ![Backplane](backplane.svg)

@@ -7,6 +7,8 @@ related:
 reviewed: 2020-09-17
 ---
 
+include: bridge-to-router-note
+
 ![Multi-way](multi-way.svg)
 
 The router is not limited to only two interfaces but, in case there are more than two interfaces, the routing protocol rules will be more complex and specific. The following snippet configures the built-in *static routing protocol* to forward messages to interfaces based on the prefix of the destination endpoint's name.

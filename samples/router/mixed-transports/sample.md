@@ -8,6 +8,8 @@ redirects:
 - samples/bridge/mixed-transports 
 ---
 
+include: bridge-to-router-note
+
 The sample demonstrates how NServiceBus.Router can be used to connect endpoints that use different transports, in this case MSMQ and RabbitMQ.
 
 ## Prerequisites
