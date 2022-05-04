@@ -28,7 +28,7 @@ namespace Rabbit_All.ErrorQueue
         {
             using (var channel = connection.CreateModel())
             {
-                // Enable publisher confirms so that messages are guaranteed to be sent
+                // Enable publisher confirms so that messages aren't removed from the error queue until the broker confirms it has accepted the new message
                 channel.ConfirmSelect();
 
                 BasicGetResult result;
@@ -47,7 +47,7 @@ namespace Rabbit_All.ErrorQueue
                     channel.BasicPublish(string.Empty, failedQueueName, false, result.BasicProperties, result.Body.ToArray());
 
                     // Wait for confirmation that message is sent back to source queue
-                    channel.WaitForConfirms();
+                    channel.WaitForConfirmsOrDie();
 
                     // Acknolwedge and consume the incoming message
                     channel.BasicAck(result.DeliveryTag, false);
