@@ -10,7 +10,7 @@ NOTE: ServiceControl only supports active/passive clusters. Clustering might not
 
 The following procedure is a high level guide on how to deploy ServiceControl onto a fault-tolerant cluster using Windows Failover Clustering.
 
-NOTE: This guide assumes that MSMQ is the underlying transport. Other transports work as long as these are deployed on a different machine. In that case you can skip the MSMQ specific steps.
+NOTE: This guide assumes that MSMQ is the underlying transport. Other transports work as long as these are deployed on a different machine. In that case, skip the MSMQ specific steps.
 
 
 ## Basic setup
