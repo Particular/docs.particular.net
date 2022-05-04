@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Framing;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Rabbit_All.ErrorQueue
 {
@@ -31,22 +31,26 @@ namespace Rabbit_All.ErrorQueue
             {
                 using (var channel = connection.CreateModel())
                 {
+                    channel.ConfirmSelect();
+
                     channel.QueueDeclare(sourceQueue, true, false, false, null);
                     channel.QueueDeclare(errorQueue, true, false, false, null);
+
+                    var properties = channel.CreateBasicProperties();
+                    properties.MessageId = messageId;
+                    properties.Headers = new Dictionary<string, object>
+                    {
+                        { "NServiceBus.FailedQ", Encoding.UTF8.GetBytes(sourceQueue) },
+                    };
 
                     channel.BasicPublish(
                         string.Empty,
                         errorQueue,
                         false,
-                        new BasicProperties
-                        {
-                            MessageId = messageId,
-                            Headers = new Dictionary<string, object>
-                            {
-                                { "NServiceBus.FailedQ", Encoding.UTF8.GetBytes(sourceQueue) },
-                            },
-                        },
+                        properties,
                         new byte[0]);
+
+                    channel.WaitForConfirmsOrDie();
                 }
 
                 ErrorQueue.ReturnMessageToSourceQueue(
