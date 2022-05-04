@@ -1,16 +1,16 @@
 ---
 title: Deploying ServiceControl to a Cluster
-summary: A guide to deploying ServiceControl on a Windows cluster
+summary: A guide to deploying ServiceControl on a Windows Failover cluster
 related:
 - servicecontrol/troubleshooting
 reviewed: 2022-02-18
 ---
 
-NOTE: Clustering might not be required as cloud hosting and enterprise virtualization layers provide high availability and data redundancy features.
+NOTE: ServiceControl only supports active/passive clusters. Clustering might not be required as cloud hosting and enterprise virtualization layers provide high availability and data redundancy features and message queueing ensures no messages are lost.
 
 The following procedure is a high level guide on how to deploy ServiceControl onto a fault-tolerant cluster using Windows Failover Clustering.
 
-NOTE: This guide assumes that MSMQ is the underlying transport.
+NOTE: This guide assumes that MSMQ is the underlying transport. Other transports work as long as these are deployed on a different machine. In that case you can skip the MSMQ specific steps.
 
 
 ## Basic setup
@@ -31,8 +31,7 @@ More information is available on [Message Queuing in Server Clusters](https://te
 
 ## Database high availability
 
-The RavenDB database must be located in *shared storage* that is highly available and fault tolerant. Shared storage does not mean a  network share but shared cluster storage that allows low latency and exclusive access. Access to the data should always be 'local', although physically that data could be stored on a SAN. When this disk is mounted, RavenDB must be configured to use that location. See [Customize RavenDB Embedded Location](configure-ravendb-location.md) for more information on how to change the ServiceControl database location.
-
+The RavenDB database must be located in *shared storage* that is highly available and fault tolerant. Shared storage does not mean a network share but shared cluster storage that allows low latency and exclusive access. Access to the data should always be 'local', although physically that data could be stored on a SAN. When this disk is mounted, RavenDB must be configured to use that location. See [Customize RavenDB Embedded Location](configure-ravendb-location.md) for more information on how to change the ServiceControl database location.
 
 ## ServiceControl detailed configuration
 
@@ -40,13 +39,11 @@ Once the failover cluster is created and ServiceControl is installed, configure 
 
 NOTE: The following steps must be applied to all ServiceControl installations on every node in the cluster.
 
-
 ### URL ACL(s)
 
 ServiceControl exposes an HTTP API that is used by ServicePulse and ServiceInsight. URL ACL(s) must be [defined on each cluster node](/servicecontrol/setting-custom-hostname.md). The URL must be set to the `cluster name` and the ACL set to give permissions to the `Service Account` running ServiceControl.
 
 NOTE: The default installation of ServiceControl locks down access to `localhost` only. Once the URL ACL is changed from `localhost` to the `cluster name` ServiceControl is accessible from the network.
-
 
 ### Configuration
 
