@@ -1,7 +1,7 @@
-﻿using System;
+﻿using RabbitMQ.Client;
+using System;
 using System.Linq;
 using System.Text;
-using RabbitMQ.Client;
 
 namespace Rabbit_All.ErrorQueue
 {
@@ -28,6 +28,9 @@ namespace Rabbit_All.ErrorQueue
         {
             using (var channel = connection.CreateModel())
             {
+                // Enable publisher confirms so that messages are guaranteed to be sent
+                channel.ConfirmSelect();
+
                 BasicGetResult result;
 
                 do
@@ -40,7 +43,13 @@ namespace Rabbit_All.ErrorQueue
                     }
                     ReadFailedQueueHeader(out var failedQueueName, result);
 
-                    channel.BasicPublish(string.Empty, failedQueueName, false, result.BasicProperties, result.Body);
+                    // Convert the body to a byte array to prevent the ReadOnlyMemory<byte> from being cleaned up
+                    channel.BasicPublish(string.Empty, failedQueueName, false, result.BasicProperties, result.Body.ToArray());
+
+                    // Wait for confirmation that message is sent back to source queue
+                    channel.WaitForConfirms();
+
+                    // Acknolwedge and consume the incoming message
                     channel.BasicAck(result.DeliveryTag, false);
 
                     return;
