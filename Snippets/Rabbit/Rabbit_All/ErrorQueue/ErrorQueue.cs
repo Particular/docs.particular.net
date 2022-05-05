@@ -43,8 +43,7 @@ namespace Rabbit_All.ErrorQueue
                     }
                     ReadFailedQueueHeader(out var failedQueueName, result);
 
-                    // Convert the body to a byte array to prevent the ReadOnlyMemory<byte> from being cleaned up
-                    channel.BasicPublish(string.Empty, failedQueueName, false, result.BasicProperties, result.Body.ToArray());
+                    channel.BasicPublish(string.Empty, failedQueueName, false, result.BasicProperties, result.Body);
 
                     // Wait for confirmation that message is sent back to source queue
                     channel.WaitForConfirmsOrDie();
