@@ -1,7 +1,7 @@
-﻿using System;
+﻿using RabbitMQ.Client;
+using System;
 using System.Linq;
 using System.Text;
-using RabbitMQ.Client;
 
 namespace Rabbit_All.ErrorQueue
 {
@@ -28,6 +28,9 @@ namespace Rabbit_All.ErrorQueue
         {
             using (var channel = connection.CreateModel())
             {
+                // Enable publisher confirms so that messages aren't removed from the error queue until the broker confirms it has accepted the new message
+                channel.ConfirmSelect();
+
                 BasicGetResult result;
 
                 do
@@ -41,6 +44,11 @@ namespace Rabbit_All.ErrorQueue
                     ReadFailedQueueHeader(out var failedQueueName, result);
 
                     channel.BasicPublish(string.Empty, failedQueueName, false, result.BasicProperties, result.Body);
+
+                    // Wait for confirmation that message is sent back to source queue
+                    channel.WaitForConfirmsOrDie();
+
+                    // Acknolwedge and consume the incoming message
                     channel.BasicAck(result.DeliveryTag, false);
 
                     return;
