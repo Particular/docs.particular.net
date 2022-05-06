@@ -641,6 +641,8 @@
       Articles:
       - Url: nservicebus/bridge/migrating-from-router
         Title: Migrating from Router
+    - Url: nservicebus/bridge/performance
+      Title: Performance & Scaling
   - Url: nservicebus/compliance
     Title: Compliance
     Articles:
