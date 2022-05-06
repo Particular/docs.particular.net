@@ -6,7 +6,6 @@ reviewed: 2021-02-22
 related:
  - nservicebus/dotnet-templates
  - samples/servicecontrol/adapter-mixed-transports
- - samples/servicecontrol/adapter-asb-multi-namespace
 ---
 
 NOTE: Transport adapters is beeing deprecated in favour of [`NServiceBus.Transport.Bridge`](/nservicebus/bridge)
