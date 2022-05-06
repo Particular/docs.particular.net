@@ -18,24 +18,15 @@ class Program
         await Host.CreateDefaultBuilder()
             .UseNServiceBusBridge((ctx, bridgeConfiguration) =>
             {
-                var asbTransport = new AzureServiceBusTransport(connectionString)
-                {
-                    //TransportTransactionMode = TransportTransactionMode.ReceiveOnly
-                    TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
-                };
-                var asbBridgeTransport = new BridgeTransport(asbTransport);
+                var asbBridgeTransport = new BridgeTransport(new AzureServiceBusTransport(connectionString));
                 asbBridgeTransport.AutoCreateQueues = true;
                 var asbEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.AsbEndpoint");
                 asbEndpoint.RegisterPublisher<MyEvent>("Samples.Azure.ServiceBus.MsmqEndpoint");
                 asbBridgeTransport.HasEndpoint(asbEndpoint);
 
-                var msmqTransport = new MsmqTransport()
-                {
-                    //TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
-                };
-                var msmqBridgeTransport = new BridgeTransport(msmqTransport);
+                var msmqBridgeTransport = new BridgeTransport(new MsmqTransport());
                 msmqBridgeTransport.AutoCreateQueues = true;
-                var msmqEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.MsmqEndpoint");
+                var msmqEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.MsmqEndpoint", $"Samples.Azure.ServiceBus.MsmqEndpoint@{Environment.MachineName}");
                 msmqEndpoint.RegisterPublisher<OtherEvent>("Samples.Azure.ServiceBus.AsbEndpoint");
                 msmqBridgeTransport.HasEndpoint(msmqEndpoint);
 
