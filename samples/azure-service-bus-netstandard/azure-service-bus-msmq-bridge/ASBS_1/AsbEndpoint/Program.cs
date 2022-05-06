@@ -26,29 +26,7 @@ class Program
 
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Azure.ServiceBus.MsmqEndpoint");
-        //sendOptions.RouteToThisEndpoint();
-
-        //transport.ConnectionString(connectionString);
-
-        //#region connect-asb-side-of-bridge
-
-        //var routing = transport.Routing();
-        //var bridge = routing.ConnectToBridge("Bridge");
-
-        //#endregion
-
-        //#region route-command-via-bridge
-
-        //bridge.RouteToEndpoint(typeof(MyCommand), "Samples.Azure.ServiceBus.MsmqEndpoint");
-
-        //#endregion
-
-        //#region subscribe-to-event-via-bridge
-
-        //bridge.RegisterPublisher(typeof(MyEvent), "Samples.Azure.ServiceBus.MsmqEndpoint");
-
-        //#endregion
-
+        
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 

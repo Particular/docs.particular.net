@@ -11,16 +11,11 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.MsmqEndpoint");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        //endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.UseSerialization<XmlSerializer>();
         endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
         var routingConfig = endpointConfiguration.UseTransport(new MsmqTransport());
         routingConfig.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
-        //var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
-
-        //var bridge = routing.ConnectToBridge("Bridge");
-        //bridge.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
