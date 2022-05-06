@@ -20,17 +20,18 @@ class Program
             {
                 var asbTransport = new AzureServiceBusTransport(connectionString)
                 {
-                    TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+                    //TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+                    TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
                 };
                 var asbBridgeTransport = new BridgeTransport(asbTransport);
-                var asbEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.AsbEndpoint");
                 asbBridgeTransport.AutoCreateQueues = true;
+                var asbEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.AsbEndpoint");
                 asbEndpoint.RegisterPublisher<MyEvent>("Samples.Azure.ServiceBus.MsmqEndpoint");
                 asbBridgeTransport.HasEndpoint(asbEndpoint);
 
                 var msmqTransport = new MsmqTransport()
                 {
-                    TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+                    //TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
                 };
                 var msmqBridgeTransport = new BridgeTransport(msmqTransport);
                 msmqBridgeTransport.AutoCreateQueues = true;
