@@ -44,21 +44,21 @@ The certificate file path and passphrase can now be passed only via the connecti
 
 Instead of this code:
 
-snippet: 6to7certificatepath6
+snippet: 7to8certificatepath7
 
 Use this:
 
-snippet: 6to7certificatepath7
+snippet: 7to8certificatepath8
 
 ## Prefetch count
 
 The two prefetch count settings have been replaced with a single setting that uses a callback. Instead of either of these APIs:
 
-snippet: 6to7prefetchcount6
+snippet: 7to8prefetchcount7
 
 Use one of these:
 
-snippet: 6to7prefetchcount7
+snippet: 7to8prefetchcount8
 
 ## Disabling the durable exchanges and queues
 

@@ -5,7 +5,7 @@ partial class Upgrade
 {
     void CertificatePath(EndpointConfiguration endpointConfiguration)
     {
-        #region 6to7certificatepath7
+        #region 7to8certificatepath8
 
         var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
         {
@@ -19,7 +19,7 @@ partial class Upgrade
 
     void PrefetchCount(EndpointConfiguration endpointConfiguration)
     {
-        #region 6to7prefetchcount7
+        #region 7to8prefetchcount8
 
         var transportWithFixedPrefetchCount = new RabbitMQTransport(Topology.Conventional, "host=localhost")
         {
