@@ -6,6 +6,7 @@
   "MD033": {
     "allowed_elements": [
       "img",
+      "nobr",
       "script"
     ]
   }
