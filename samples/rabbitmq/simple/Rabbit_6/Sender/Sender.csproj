@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="5.*" />
-    <PackageReference Include="RabbitMQ.Client" Version="5.*" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="6.*" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
