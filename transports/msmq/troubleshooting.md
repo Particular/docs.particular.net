@@ -60,7 +60,7 @@ Also, check the outgoing queues to see if messages sent to remote servers are re
   * This queue acts as a recycle bin for other transactional queues. So if other transactional queues have been purged, ensure the TDLQ is purged as well.
   * Within the TDLQ, the Class column shows the reason the message arrived there. Common messages include "The queue was purged" or "The queue was deleted".
  1. If journaling is turned on, purged messages can be found in the journaling queue under System Queues. Ensure that journaling is disabled on each queue level, and only turn it on if needed for debugging purposes.
- 1. Increase the MSMQ storage quota ([MSDN article](https://support.microsoft.com/en-us/kb/899612))
+ 1. Increase the MSMQ storage quota ([archived MSDN article from betaarchive.com](https://www.betaarchive.com/wiki/index.php/Microsoft_KB_Archive/899612))
 
 WARNING: On production servers, uninstalling MSMQ deletes all queues and messages, which may contain business data. Do not attempt uninstalling MSMQ unless message loss is acceptable.
 
