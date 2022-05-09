@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus in an ASP.NET Core Web Application
 component: Core
-reviewed: 2019-11-20
+reviewed: 2022-05-09
 redirects:
 - nservicebus/using-nservicebus-in-a-asp.net-web-application
 related:
