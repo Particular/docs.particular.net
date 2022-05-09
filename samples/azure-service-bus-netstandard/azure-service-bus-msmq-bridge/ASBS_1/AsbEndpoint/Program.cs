@@ -13,16 +13,17 @@ class Program
         Console.Title = "Samples.Azure.ServiceBus.AsbEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.AsbEndpoint");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         endpointConfiguration.AddDeserializer<XmlSerializer>();
 
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
-        endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
+        transport.ConnectionString(connectionString);
 
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Azure.ServiceBus.MsmqEndpoint");
