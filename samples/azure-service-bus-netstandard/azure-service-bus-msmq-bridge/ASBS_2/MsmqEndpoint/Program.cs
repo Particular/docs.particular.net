@@ -14,10 +14,8 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseSerialization<XmlSerializer>();
         endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
-        var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
-
-        var bridge = routing.ConnectToBridge("Bridge");
-        bridge.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
+        var routingConfig = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
+        routingConfig.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
