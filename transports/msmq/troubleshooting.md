@@ -48,6 +48,10 @@ System.Messaging.MessageQueueException (0x80004005): Insufficient resources to p
 at System.Messaging.MessageQueue.SendInternal(Object obj, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
 ```
 
+or the following in the Windows Event Log:
+
+> Machine MSMQ storage quota was exceeded or there is insufficient disk space. No more messages can be stored in user queues. You can increase Message Queuing storage quota or purge unneeded messages by using Computer Management console. This event is logged at most once per 3600 seconds. To change this setting, set \HKLM\Software\Microsoft\MSMQ\Parameters\Event2183 registry value to desired time in seconds.
+
 The cause of this exception is that the MSMQ has run out of space for holding on to messages. This could be due to messages sent that could not be delivered, or messages received that have not been processed.
 
 Also, check the outgoing queues to see if messages sent to remote servers are received and processed. NServiceBus has dead letter queues enabled by default. Enabled dead letter queues results in messages remaining in the outgoing queue of the sender until they are not only delivered but also processed at the receiver. For more information, read [MSMQ dead-letter queues](dead-letter-queues.md).
@@ -55,12 +59,18 @@ Also, check the outgoing queues to see if messages sent to remote servers are re
 
 ### Resolution
 
- 1. Make sure that the hard disk drive has sufficient space.
- 1. Purge the transactional dead-letter queue (TDLQ) under System Queues.
+1. Make sure that the hard disk drive has sufficient space.
+1. Disable MSMQ storage limit if the disk still has plenty of space.
+1. Inspect the (transactional) dead-letter queue (TDLQ) under System Queues via [QueueExplorer by Cogin](https://www.cogin.com/mq/) as the windows built-in viewer is too limited.
+  * 
   * This queue acts as a recycle bin for other transactional queues. So if other transactional queues have been purged, ensure the TDLQ is purged as well.
   * Within the TDLQ, the Class column shows the reason the message arrived there. Common messages include "The queue was purged" or "The queue was deleted".
- 1. If journaling is turned on, purged messages can be found in the journaling queue under System Queues. Ensure that journaling is disabled on each queue level, and only turn it on if needed for debugging purposes.
- 1. Increase the MSMQ storage quota ([archived MSDN article from betaarchive.com](https://www.betaarchive.com/wiki/index.php/Microsoft_KB_Archive/899612))
+1. Inspect outgoing queues for messages that cannot be delivered due to connectivity issues, unavailable, or obsolete machines.
+1. If journaling is turned on, purged messages can be found in the journaling queue under System Queues. Ensure that journaling is disabled on each queue level, and only turn it on if needed for debugging purposes.
+1. Consider [monitoring critical MSMQ WIndows Performance counters](#monitoring-msmq).
+1. Increase the MSMQ storage quota ([archived MSDN article from betaarchive.com](https://www.betaarchive.com/wiki/index.php/Microsoft_KB_Archive/899612))
+
+
 
 WARNING: On production servers, uninstalling MSMQ deletes all queues and messages, which may contain business data. Do not attempt uninstalling MSMQ unless message loss is acceptable.
 
