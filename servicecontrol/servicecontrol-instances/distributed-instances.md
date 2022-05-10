@@ -1,6 +1,6 @@
 ---
 title: Multiple ServiceControl Instances
-reviewed: 2019-11-22
+reviewed: 2022-05-10
 component: ServiceControl
 ---
 
