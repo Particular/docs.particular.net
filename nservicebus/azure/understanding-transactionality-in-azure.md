@@ -4,7 +4,7 @@ summary: Things to keep in mind when using transactions with NServiceBus in Azur
 redirects:
  - nservicebus/transactions
  - nservicebus/understanding-transactions-in-windows-azure
-reviewed: 2019-11-25
+reviewed: 2022-05-10
 isLearningPath: true
 ---
 
