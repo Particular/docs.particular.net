@@ -32,7 +32,7 @@ Supported versions of NServiceBus and its associated packages are determined by 
 
 Particular will apply critical bug fixes to all supported versions. If a bug also impacts a non-supported version, the recommended approach is to upgrade to a supported version which contains the fix.
 
-To be supported by Particular, NServiceBus must be run against a [supported version of .NET](https://dotnet.microsoft.com/en-us/platform/support/policy). See [supported frameworks and platforms](supported-platforms.md) for more information.
+To be supported by Particular, NServiceBus must be run on a [supported version of .NET](https://dotnet.microsoft.com/en-us/platform/support/policy). See [supported frameworks and platforms](supported-platforms.md) for more information.
 
 If support is required for a version that is not listed or has expired, contact [Particular Software Support](https://particular.net/contactus).
 
