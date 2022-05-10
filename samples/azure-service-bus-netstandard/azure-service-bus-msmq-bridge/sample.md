@@ -4,7 +4,7 @@ reviewed: 2021-05-18
 component: ASBS
 related:
 - transports/azure-service-bus
-- nservicebus/router
+- nservicebus/bridge
 redirects:
 - samples/azure/azure-service-bus-msmq-bridge
 ---
