@@ -12,4 +12,6 @@ related:
 
 Supported frameworks can be used for production workloads with technical support available from Particular Software.
 
+Support for individual components requires using [supported component versions](supported-versions.md) on a [supported version of .NET](https://dotnet.microsoft.com/en-us/platform/support/policy).
+
 partial: content
