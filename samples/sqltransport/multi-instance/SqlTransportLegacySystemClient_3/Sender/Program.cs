@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
-using NServiceBus.Transport.SQLServer;
-#pragma warning disable 618
 
 public class Program
 {
+    const string connectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceSender;Integrated Security=True;Max Pool Size=100";
+
     static async Task Main()
     {
         Console.Title = "Samples.SqlServer.MultiInstanceSender";
@@ -15,16 +15,16 @@ public class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.EnableLegacyMultiInstanceMode(ConnectionProvider.GetConnection);
+        transport.ConnectionString(connectionString);
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
+        
+        transport.Routing().RouteToEndpoint(typeof(ClientOrder), "Samples.SqlServer.MultiInstanceReceiver");
 
         #endregion
 
-        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
-
-        SqlHelper.EnsureDatabaseExists(ConnectionProvider.DefaultConnectionString);
+        SqlHelper.EnsureDatabaseExists(connectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -52,7 +52,7 @@ public class Program
         {
             OrderId = Guid.NewGuid()
         };
-        await endpoint.Send("Samples.SqlServer.MultiInstanceReceiver", order)
+        await endpoint.Send(order)
             .ConfigureAwait(false);
 
         #endregion
