@@ -18,20 +18,25 @@ class Program
         await Host.CreateDefaultBuilder()
             .UseNServiceBusBridge((ctx, bridgeConfiguration) =>
             {
+                #region create-asb-endpoint-of-bridge
+                var asbBridgeEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.AsbEndpoint");
+                #endregion
+
+                #region asb-subscribe-to-event-via-bridge
+                asbBridgeEndpoint.RegisterPublisher<MyEvent>("Samples.Azure.ServiceBus.MsmqEndpoint");
+                #endregion
+
                 var asbBridgeTransport = new BridgeTransport(new AzureServiceBusTransport(connectionString));
                 asbBridgeTransport.AutoCreateQueues = true;
-                var asbEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.AsbEndpoint");
-                asbEndpoint.RegisterPublisher<MyEvent>("Samples.Azure.ServiceBus.MsmqEndpoint");
-                asbBridgeTransport.HasEndpoint(asbEndpoint);
+                asbBridgeTransport.HasEndpoint(asbBridgeEndpoint);
+                bridgeConfiguration.AddTransport(asbBridgeTransport);
 
                 var msmqBridgeTransport = new BridgeTransport(new MsmqTransport());
                 msmqBridgeTransport.AutoCreateQueues = true;
-                var msmqEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.MsmqEndpoint", $"Samples.Azure.ServiceBus.MsmqEndpoint@{Environment.MachineName}");
-                msmqEndpoint.RegisterPublisher<OtherEvent>("Samples.Azure.ServiceBus.AsbEndpoint");
-                msmqBridgeTransport.HasEndpoint(msmqEndpoint);
-
+                var msmqBridgeEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.MsmqEndpoint", $"Samples.Azure.ServiceBus.MsmqEndpoint@{Environment.MachineName}");
+                msmqBridgeEndpoint.RegisterPublisher<OtherEvent>("Samples.Azure.ServiceBus.AsbEndpoint");
+                msmqBridgeTransport.HasEndpoint(msmqBridgeEndpoint);
                 bridgeConfiguration.AddTransport(msmqBridgeTransport);
-                bridgeConfiguration.AddTransport(asbBridgeTransport);
             })
             .Build()
             .RunAsync().ConfigureAwait(false);
