@@ -26,17 +26,27 @@ class Program
                 asbBridgeEndpoint.RegisterPublisher<MyEvent>("Samples.Azure.ServiceBus.MsmqEndpoint");
                 #endregion
 
+                #region asb-bridge-configuration
                 var asbBridgeTransport = new BridgeTransport(new AzureServiceBusTransport(connectionString));
                 asbBridgeTransport.AutoCreateQueues = true;
                 asbBridgeTransport.HasEndpoint(asbBridgeEndpoint);
                 bridgeConfiguration.AddTransport(asbBridgeTransport);
+                #endregion
 
+                #region create-msmq-endpoint-of-bridge
+                var msmqBridgeEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.MsmqEndpoint", $"Samples.Azure.ServiceBus.MsmqEndpoint@{Environment.MachineName}");
+                #endregion
+
+                #region msmq-subscribe-to-event-via-bridge
+                msmqBridgeEndpoint.RegisterPublisher<OtherEvent>("Samples.Azure.ServiceBus.AsbEndpoint");
+                #endregion
+
+                #region msmq-bridge-configuration
                 var msmqBridgeTransport = new BridgeTransport(new MsmqTransport());
                 msmqBridgeTransport.AutoCreateQueues = true;
-                var msmqBridgeEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.MsmqEndpoint", $"Samples.Azure.ServiceBus.MsmqEndpoint@{Environment.MachineName}");
-                msmqBridgeEndpoint.RegisterPublisher<OtherEvent>("Samples.Azure.ServiceBus.AsbEndpoint");
                 msmqBridgeTransport.HasEndpoint(msmqBridgeEndpoint);
                 bridgeConfiguration.AddTransport(msmqBridgeTransport);
+                #endregion
             })
             .Build()
             .RunAsync().ConfigureAwait(false);

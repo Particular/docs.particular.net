@@ -32,6 +32,8 @@ Covered scenarios are:
 * Publishing events from MSMQ endpoint and subscribing to those events from Azure Service Bus endpoint.
 * Publishing events from Azure Service Bus and subscribing to those events from the MSMQ endpoint.
 
+NOTE: This sample use a simple `InMemorySubscriptionStorage`. In production `SqlSubscriptionStorage` (included in the NServiceBus.Router package) or custom persistent subscription storage should be used to prevent message loss.
+
 ### Bridging
 
 Endpoints are bridged using [NServiceBus.Transport.Bridge](/nservicebus/bridge/), which is implemented as a standalone process that runs side-by-side with the bridged endpoints, `MsmqEndpoint` and `AsbEndpoint`.  These endpoints are not aware that there is a bridge involved in the sending and receiving of messages.  They simply send/publish messages as if the other endpoints are on the same transport.  All of the configuration to bridge different transports is handled in the bridge endpoint.
@@ -44,17 +46,31 @@ The Azure Service Bus bridge endpoint is configured by using the name of the act
 
 snippet: create-asb-endpoint-of-bridge
 
-![Azure Service Bus topology](asb-topology.png "Azure Service Bus topology")
-
-To subscribe to an event published by MSMQ endpoint, Azure Service Bus endpoint must register publishing endpoint using bridge extension method:
+To subscribe to an event published by MSMQ endpoint, Azure Service Bus endpoint must register publishing endpoint using bridge endpoint method:
 
 snippet: asb-subscribe-to-event-via-bridge
 
+When the bridge endpoint has been created and all the publishers have been registers, the endpoint is added to the transport and the transport is added to the bridge configuration.
+
+snippet: asb-bridge-configuration
+
 #### MSMQ bridge endpoint configuration
 
-MSMQ bridge endpoint is bridged via `Bridge` queue:
+MSMQ bridge endpoint is configured by using the name of the actual MSMQ endpoint where the message needs to be routed to:
 
-![MSMQ topology](msmq-topology.png "MSMQ topology")
+NOTE: The `QueueAddress` parameter is needed to create an MSMQ bridge endpoint when the actual MSMQ endpoint and the bridge are running on separate servers 
 
-NOTE: This sample use a simple `InMemorySubscriptionStorage`. In production `SqlSubscriptionStorage` (included in the NServiceBus.Router package) or custom persistent subscription storage should be used to prevent message loss.
+snippet: create-msmq-endpoint-of-bridge
+
+To subscribe to an event published by Azure Service Bus endpoint, MSMQ endpoint must register publishing endpoint using bridge extension method:
+
+snippet: msmq-subscribe-to-event-via-bridge
+
+When the bridge endpoint has been created and all the publishers have been registers, the endpoint is added to the transport and the transport is added to the bridge configuration.
+
+snippet: msmq-bridge-configuration
+
+ 
+
+
 
