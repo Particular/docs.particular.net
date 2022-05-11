@@ -3,7 +3,7 @@
     using System;
     using NServiceBus;
 
-    public class ClientOrderAccepted :
+    public class ClientOrderResponse :
         IMessage
     {
         public Guid OrderId { get; set; }

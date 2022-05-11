@@ -1,0 +1,42 @@
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
+
+
+namespace Bridge
+{
+    class Program
+    {
+        const string ReceiverConnectionString =
+            @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceReceiver;Integrated Security=True;Max Pool Size=100";
+        const string SenderConnectionString =
+            @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceSender;Integrated Security=True;Max Pool Size=100";
+
+        public static async Task Main(string[] args)
+        {
+            SqlHelper.EnsureDatabaseExists(ReceiverConnectionString);
+            SqlHelper.EnsureDatabaseExists(SenderConnectionString);
+            
+            await Host.CreateDefaultBuilder()
+                .UseNServiceBusBridge((hostBuilderContext, bridgeConfiguration) =>
+                {
+                    var receiverTransport = new BridgeTransport(new SqlServerTransport(ReceiverConnectionString));
+                    receiverTransport.Name = "Receiver";
+                    receiverTransport.HasEndpoint("Samples.SqlServer.MultiInstanceReceiver");
+                    receiverTransport.AutoCreateQueues = true;
+
+                    var senderTransport = new BridgeTransport(new SqlServerTransport(SenderConnectionString));
+                    senderTransport.Name = "Sender";
+                    senderTransport.HasEndpoint("Samples.SqlServer.MultiInstanceSender");
+                    senderTransport.AutoCreateQueues = true;
+                    
+                    bridgeConfiguration.AddTransport(receiverTransport);
+                    bridgeConfiguration.AddTransport(senderTransport);
+
+                    // more configuration...
+                })
+                .Build()
+                .RunAsync().ConfigureAwait(false);
+        }
+    }
+}

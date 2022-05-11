@@ -13,7 +13,7 @@ public class OrderHandler :
     public Task Handle(ClientOrder message, IMessageHandlerContext context)
     {
         log.Info($"Handling ClientOrder with ID {message.OrderId}");
-        var clientOrderAccepted = new ClientOrderAccepted
+        var clientOrderAccepted = new ClientOrderResponse
         {
             OrderId = message.OrderId
         };

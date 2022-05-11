@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Transport.SQLServer;
 #pragma warning disable 618
 
 class Program
 {
+    const string ConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceReceiver;Integrated Security=True;Max Pool Size=100";
+
     static async Task Main()
     {
         Console.Title = "Samples.SqlServer.MultiInstanceReceiver";
@@ -14,16 +15,14 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.EnableLegacyMultiInstanceMode(ConnectionProvider.GetConnection);
+        transport.ConnectionString(ConnectionString);
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
         #endregion
 
-        transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
-
-        SqlHelper.EnsureDatabaseExists(ConnectionProvider.DefaultConnectionString);
+        SqlHelper.EnsureDatabaseExists(ConnectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
