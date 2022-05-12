@@ -5,8 +5,8 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-	<PackageReference Include="NServiceBus" Version="8.0.0-beta.*" />
-	<PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-beta.*" />
+	<PackageReference Include="NServiceBus" Version="8.0.0-beta.1" />
+	<PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-beta.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
