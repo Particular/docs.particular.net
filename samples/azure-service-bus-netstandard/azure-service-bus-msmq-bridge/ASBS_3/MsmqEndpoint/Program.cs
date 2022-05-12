@@ -9,11 +9,9 @@ class Program
         Console.Title = "Samples.Azure.ServiceBus.MsmqEndpoint";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.MsmqEndpoint");
-        endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseSerialization<XmlSerializer>();
-        endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
+
         var routing = endpointConfiguration.UseTransport<MsmqTransport>().Routing();
         routing.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
 

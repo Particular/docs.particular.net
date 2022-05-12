@@ -12,10 +12,6 @@ class Program
 
         Console.Title = "Samples.Azure.ServiceBus.AsbEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.AsbEndpoint");
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-        endpointConfiguration.AddDeserializer<XmlSerializer>();
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
