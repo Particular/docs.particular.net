@@ -9,6 +9,7 @@ namespace Bridge
     {
         const string ReceiverConnectionString =
             @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceReceiver;Integrated Security=True;Max Pool Size=100";
+
         const string SenderConnectionString =
             @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceSender;Integrated Security=True;Max Pool Size=100";
 
@@ -16,10 +17,12 @@ namespace Bridge
         {
             SqlHelper.EnsureDatabaseExists(ReceiverConnectionString);
             SqlHelper.EnsureDatabaseExists(SenderConnectionString);
-            
+
             await Host.CreateDefaultBuilder()
                 .UseNServiceBusBridge((hostBuilderContext, bridgeConfiguration) =>
                 {
+                    #region BridgeConfiguration
+
                     var receiverTransport = new BridgeTransport(new SqlServerTransport(ReceiverConnectionString));
                     receiverTransport.Name = "Receiver";
                     receiverTransport.HasEndpoint("Samples.SqlServer.MultiInstanceReceiver");
@@ -29,9 +32,11 @@ namespace Bridge
                     senderTransport.Name = "Sender";
                     senderTransport.HasEndpoint("Samples.SqlServer.MultiInstanceSender");
                     senderTransport.AutoCreateQueues = true;
-                    
+
                     bridgeConfiguration.AddTransport(receiverTransport);
                     bridgeConfiguration.AddTransport(senderTransport);
+
+                    #endregion
 
                     // more configuration...
                 })
