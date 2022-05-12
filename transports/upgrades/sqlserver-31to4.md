@@ -30,4 +30,4 @@ NServiceBus topologies with queues distributed between multiple catalogs hosted 
 
 snippet: 31to4-multi-catalog
 
-If catalogs are hosted in different instances of SQL Server, use [NServiceBus.Router](/nservicebus/router/) to construct a bridge. The [multi-instance migration sample](/samples/sqltransport/multi-instance-migration) demonstrates this approach.
+If catalogs are hosted in different instances of SQL Server, use [NServiceBus.Transport.Bridge](/nservicebus/bridge/) to construct a bridge. The [multi-instance sample](/samples/bridge/sql-multi-instance) demonstrates this approach.
