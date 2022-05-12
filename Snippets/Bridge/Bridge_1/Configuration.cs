@@ -171,6 +171,19 @@
             #endregion
         }
 
+        public void QueueName()
+        {
+            #region custom-address
+
+            var transport = new BridgeTransport(new MsmqTransport());
+            transport.HasEndpoint("Finance", "finance@machinename");
+
+            var endpoint = new BridgeEndpoint("Sales", "sales@another-machine");
+            transport.HasEndpoint(endpoint);
+
+            #endregion
+        }
+
         string connectionString = string.Empty;
         string connectionStringNamepace1 = string.Empty;
         string connectionStringNamepace2 = string.Empty;
