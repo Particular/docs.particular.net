@@ -46,11 +46,11 @@ The Azure Service Bus bridge endpoint is configured by using the name of the act
 
 snippet: create-asb-endpoint-of-bridge
 
-To subscribe to an event published by MSMQ endpoint, Azure Service Bus endpoint must register publishing endpoint using bridge endpoint method:
+To subscribe to an event published by MSMQ endpoint, Azure Service Bus endpoint must register the publishing endpoint using bridge endpoint method:
 
 snippet: asb-subscribe-to-event-via-bridge
 
-When the bridge endpoint has been created and all the publishers have been registers, the endpoint is added to the transport and the transport is added to the bridge configuration.
+When the bridge endpoint has been created and the publisher has been registered, the endpoint is added to the transport and then the transport is added to the bridge configuration.
 
 snippet: asb-bridge-configuration
 
@@ -62,11 +62,11 @@ NOTE: The `QueueAddress` parameter is needed to create an MSMQ bridge endpoint w
 
 snippet: create-msmq-endpoint-of-bridge
 
-To subscribe to an event published by Azure Service Bus endpoint, MSMQ endpoint must register publishing endpoint using bridge extension method:
+To subscribe to an event published by Azure Service Bus endpoint, MSMQ endpoint must register the publishing endpoint using bridge endpoint method:
 
 snippet: msmq-subscribe-to-event-via-bridge
 
-When the bridge endpoint has been created and all the publishers have been registers, the endpoint is added to the transport and the transport is added to the bridge configuration.
+When the bridge endpoint has been created and the publisher has been registered, the endpoint is added to the transport and then the transport is added to the bridge configuration.
 
 snippet: msmq-bridge-configuration
 
