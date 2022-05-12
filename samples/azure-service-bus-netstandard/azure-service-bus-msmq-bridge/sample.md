@@ -32,8 +32,6 @@ Covered scenarios are:
 * Publishing events from MSMQ endpoint and subscribing to those events from Azure Service Bus endpoint.
 * Publishing events from Azure Service Bus and subscribing to those events from the MSMQ endpoint.
 
-NOTE: This sample use a simple `InMemorySubscriptionStorage`. In production `SqlSubscriptionStorage` (included in the NServiceBus.Router package) or custom persistent subscription storage should be used to prevent message loss.
-
 ### Bridging
 
 Endpoints are bridged using [NServiceBus.Transport.Bridge](/nservicebus/bridge/), which is implemented as a standalone process that runs side-by-side with the bridged endpoints, `MsmqEndpoint` and `AsbEndpoint`.  These endpoints are not aware that there is a bridge involved in the sending and receiving of messages.  They simply send/publish messages as if the other endpoints are on the same transport.  All of the configuration to bridge different transports is handled in the bridge endpoint.
