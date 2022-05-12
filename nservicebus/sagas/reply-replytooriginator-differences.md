@@ -1,7 +1,7 @@
 ---
 title: Reply and ReplyToOriginator Differences
 summary: Outlines the different behaviors of the Reply and ReplyToOriginator methods of the IMessageHandlerContext/IBus instance.
-reviewed: 2019-11-25
+reviewed: 2022-05-12
 redirects:
 - nservicebus/sagas/reply-replaytooriginator-differences
 ---
