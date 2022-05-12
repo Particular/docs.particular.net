@@ -57,6 +57,14 @@ To enable automatic queue creation configure the bridge as follows:
 
 snippet: auto-create-queues
 
+## Custom queue address
+
+The bridge provides the ability to adjust the address for the queue of incoming messages. 
+
+NOTE: With MSMQ endpoints that run on a different server than the Bridge, it is mandatory to provide the address of the queue that messages should be forwarded to.
+
+snippet: custom-address
+
 ## Recoverability
 
 If a message fails to be transferred to the target transport, the following recoverability actions are taken:
