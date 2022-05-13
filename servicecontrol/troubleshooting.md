@@ -67,7 +67,7 @@ If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.In
 
 ## Service fails to start: SqlException certificate chain not trusted
 
-If ServiceControl fails to start and the logs contain the following exception, then ServiceControl is not able to connect to the SQL Server instance.  
+If ServiceControl fails to start and the logs contain the following exception, then ServiceControl is not able to connect to the SQL Server instance.
 
 ```
 System.Data.SqlClient.SqlException
@@ -76,9 +76,9 @@ System.Data.SqlClient.SqlException
   Source=.Net SqlClient Data Provider
 ```
 
-When encyrption is enabled, SQL Server uses a certificate to encrypt communication between itself and ServiceControl. Version 4 of the `Microsoft.Data.SqlClient` package includes a [breaking change](https://github.com/dotnet/SqlClient/pull/1210) to set `Encrypt=true` by default (the previous default was `false`) which causes this exception.
+When encryption is enabled, SQL Server uses a certificate to encrypt communication between itself and ServiceControl. Version 4 of the `Microsoft.Data.SqlClient` package includes a [breaking change](https://github.com/dotnet/SqlClient/pull/1210) to set `Encrypt=true` by default (the previous default was `false`) which causes this exception.
 
-To fix it, [the SQL Server installation must be updated with a valid certificate and the ServiceControl machine must be updated to trust this certificate](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine).
+To fix this error, [the update the SQL Server installation with a valid certificate and update the ServiceControl machine to trust this certificate](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine).
 
 WARNING: It is not recommended to eliminate this warning by adding `Encrypt=False` or `TrustServerCertificate=True` to the connection string. Both of these options leave the ServiceControl installation unsecure.
 
