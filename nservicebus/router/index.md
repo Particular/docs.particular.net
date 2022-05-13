@@ -1,6 +1,6 @@
 ---
 title: NServiceBus Router
-summary: How to connect parts of the system that use different transports 
+summary: How to connect parts of the system that use different transports
 component: Router
 related:
 - samples/azure-service-bus-netstandard/azure-service-bus-msmq-bridge
@@ -60,7 +60,7 @@ In addition to immediate and delayed retries, the router has built-in outage det
 
 ## Topologies
 
-A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endpoints, called *interfaces*, and a *routing protocol* that controls how messages should be forwarded between them. This design is very flexible and allows for various topologies to be implemented. Here are some example topologies:
+A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endpoints, called *interfaces*, and a *routing protocol* that controls how messages should be forwarded between them. This design is very flexible and allows for various topologies to be implemented. Here are some sample topologies:
 
  * [Direct](direct.md)
  * [Multi-way](multi-way.md)
@@ -68,6 +68,6 @@ A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endp
 
 ## Scaling out
 
-The router can be scaled out, just like regular NServiceBus endpoint, through the [competing consumers](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) approach. Multiple copies of the router executable can be deployed to separate hosts and run in parallel attached to the same set of queues and they are going to automatically share the load. 
+The router can be scaled out, just like regular NServiceBus endpoint, through the [competing consumers](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) approach. Multiple copies of the router executable can be deployed to separate hosts and run in parallel attached to the same set of queues and they are going to automatically share the load.
 
 One limitation to this approach is the MSMQ transport where queues are only available locally so deployment to multiple hosts is not possible. Fortunately MSMQ has a relatively high throughput so router is likely not going to become a bottleneck.

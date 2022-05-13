@@ -9,7 +9,7 @@ reviewed: 2020-09-17
 
 include: bridge-to-router-note
 
-In the simplest form, the Router can be used to create a bi-directional connection between two NServiceBus transports.
+In its simplest form, the Router can create a bi-directional connection between two NServiceBus transports.
 
 ![direct](direct.svg)
 
@@ -17,7 +17,7 @@ The arrows show the path of messages sent from `Endpoint A` to `Endpoint C` and 
 
 snippet: simple-routing
 
-To learn more about simple direct topology see [the mixed transports sample](/samples/router/mixed-transports). 
+To learn more about simple direct topology see [the mixed transports sample](/samples/router/mixed-transports).
 
 ### Case study: Legacy
 
@@ -37,6 +37,6 @@ The business logic of a complex system if often split between a frontend web app
 
 Atomic update-and-publish is possible with NServiceBus via distributed transactions, the [Outbox](/nservicebus/outbox) or connection/transaction sharing available only in SQL Server transport. The first option might not be feasible due to infrastructure constraints. The second works only in the context of a message handler so does not apply to a web application.
 
-In cases where SQL Server transport is not a good option for the whole system, the Router can be used to connect the frontend and the backend parts of the system. The frontend can use the SQL Server transport and take advantage of connection/transaction sharing between update and publish while the backend is free to use whatever the transport best suits the system's needs. 
+In cases where SQL Server transport is not a good option for the whole system, the Router can be used to connect the frontend and the backend parts of the system. The frontend can use the SQL Server transport and take advantage of connection/transaction sharing between update and publish while the backend is free to use whatever the transport best suits the system's needs.
 
 To learn more about this case, see the [atomic update-and-publish sample](/samples/router/update-and-publish).
