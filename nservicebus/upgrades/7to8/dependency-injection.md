@@ -38,7 +38,7 @@ The `UseContainer` API to integrate third party containers with NServiceBus has 
 
 ## RegisterComponents changes
 
-The `EndpointConfiguration.RegisterComponents` API now provides access to the underlying `IServiceCollection`. The registration methods formerly provided by `IConfigureComponents` are available as extension methods to simplify migration. However, it is recommended to use the official `IServiceCollection` registration API instead. 
+The `EndpointConfiguration.RegisterComponents` API now provides access to the underlying `IServiceCollection`. The registration methods formerly provided by `IConfigureComponents` are available as extension methods to simplify migration. However, it is recommended to use the official `IServiceCollection` registration API instead.
 
 NServiceBus `DependencyLifecycle` maps directly to ServiceDescriptor `ServiceLifetime`:
 
@@ -51,7 +51,7 @@ NServiceBus `DependencyLifecycle` maps directly to ServiceDescriptor `ServiceLif
 For example, this statement:
 
 ```
-endpointConfiguration.RegisterComponents(s => 
+endpointConfiguration.RegisterComponents(s =>
     s.ConfigureComponent<MyService>(DependencyLifecyle.InstancePerCall));
 ```
 
@@ -154,7 +154,7 @@ var autofacContainer = containerBuilder.Build();
 var endpointInstance = await startableEndpoint.Start(new AutofacServiceProvider(autofacContainer));
 ```
 
-With newer versions of Autofac the [ability to update an existing container](https://github.com/autofac/Autofac/issues/811) has been removed. The registration phase of the dependencies is now separate from the resolve phase. 
+With newer versions of Autofac the [ability to update an existing container](https://github.com/autofac/Autofac/issues/811) has been removed. The registration phase of the dependencies is now separate from the resolve phase.
 
 Once a component has been resolved the container is immutable. For cases when an existing lifetime scope was passed to NServiceBus:
 
@@ -168,8 +168,8 @@ endpointConfiguration.UseContainer<AutofacBuilder>(
 
 it is recommended to either:
 
-- Avoid building the container early by passing the container builder to the various bootstrapping parts of the application _or_
-- Using a [dedicated child lifetime scope](https://autofac.readthedocs.io/en/latest/integration/netcore.html#using-a-child-scope-as-a-root) which allows accessing singletons of the root container while having dependencies managed by the service collection being "rooted" within the child scope. 
+* Avoid building the container early by passing the container builder to the various bootstrapping parts of the application _or_
+* Use a [dedicated child lifetime scope](https://autofac.readthedocs.io/en/latest/integration/netcore.html#using-a-child-scope-as-a-root) which allows accessing singletons of the root container while having dependencies managed by the service collection being "rooted" within the child scope.
 
 #### StructureMap
 

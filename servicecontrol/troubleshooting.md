@@ -232,7 +232,7 @@ For example, a 20-day retention period would be set as follows:
 
 ## Logs contain EsentOutOfLongValueIDsException
 
-If ServiceControl logs contain a `Microsoft.Isam.Esent.Interop.EsentOutOfLongValueIDsException: Long-value ID counter has reached maximum value. (perform offline defrag to reclaim free/unused LongValueIDs)` error similar to the following snippet the instance its [database needs to be compacted](db-compaction.md).
+If ServiceControl logs contain a `Microsoft.Isam.Esent.Interop.EsentOutOfLongValueIDsException: Long-value ID counter has reached maximum value. (perform offline defrag to reclaim free/unused LongValueIDs)` error similar to the following snippet, its [database must be compacted](db-compaction.md).
 
 ```txt
 2022-03-25 18:46:50.6564|287|Warn|ServiceControl.Audit.Auditing.AuditIngestionComponent|OnCriticalError. 'Failed to execute recoverability policy for message with native ID: `4f6d43c9-5a78-4232-8daa-6065201edeac`'

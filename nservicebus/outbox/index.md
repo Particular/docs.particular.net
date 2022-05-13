@@ -19,11 +19,11 @@ Most message queues, and some data stores, do not support distributed transactio
 
 The NServiceBus **outbox** feature ensures consistency between business data and messages. It simulates an atomic transaction, distributed across both the data store used for business data and the message queue used for messaging.
 
-Note: Messages dispatched to the transport as part of the Outbox dispatch stage will not be batched and each message is sent in isolation.
+Note: Messages dispatched to the transport as part of the outbox dispatch stage will not be batched and each message is sent in isolation.
 
 Note: Messages sent with [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) will be sent immediately and won't be handled by the outbox.
 
-Note: Messages sent using `IMessageSession` won't be handled by the outbox. The outbox requires an incoming message context. Use the `IMessageHandlerContext` instance to dispatch messages handled by the outbox. 
+Note: Messages sent using `IMessageSession` won't be handled by the outbox. The outbox requires an incoming message context. Use the `IMessageHandlerContext` instance to dispatch messages handled by the outbox.
 
 ## The consistency problem
 
@@ -38,16 +38,16 @@ Consider a message handler that creates a `User` in the business database, and a
 
 To avoid these problems, developers of distributed systems have two options:
 
-1. Ensure all message handlers are [idempotent](https://en.wikipedia.org/wiki/Idempotence). This means each message handler can handle the same message multiple times without adverse side effects. This is often very difficult to achieve.
+1. Ensure all message handlers are [idempotent](https://en.wikipedia.org/wiki/Idempotence). This means each message handler can handle the same message multiple times without adverse side effects. This is often difficult to achieve.
 2. Implement infrastructure which guarantees consistency between business data and messages. This avoids the need for all messages handlers to be idempotent.
 
 The outbox feature is the infrastructure described in the second option.
 
 ## How it works
 
-The outbox feature guarantees that each message is processed once and once only, using the database transaction used to store business data.
+The outbox feature guarantees that each message is processed once and only once, using the database transaction used to store business data.
 
-Returning to the earlier example of a message handler which creates a `User` and then publishes a `UserCreated` event, the following process occurs. Detailed descriptions are beneath the diagram.
+Returning to the earlier example of a message handler which creates a `User` and then publishes a `UserCreated` event, the following process occurs. Details are described following the diagram.
 
 ```mermaid
 graph TD
@@ -118,8 +118,8 @@ In phase 2, outgoing messages are sent to the messaging infrastructure and outbo
 * For best performance, outbox data should be stored in the same database as business data. For more information, see [_Transaction scope_](#important-design-considerations-transaction-scope) below.
 * The outbox works only in an NServiceBus message handler.
 * Because deduplication is done using `MessageId`, messages sent outside of an NServiceBus message handler (i.e. from a Web API) cannot be deduplicated unless they are sent with the same `MessageId`.
-* The outbox is _expected to_ generate duplicate messages from time to time, especially if there is unreliable communication between the endpoint and the message broker.
-* Endpoints using the outbox feature should not send messages to endpoints using DTC (see below) as the DTC-enabled endpoints will treat duplicates coming from Outbox-enabled endpoints as multiple messages.
+* The outbox is _expected_ to generate duplicate messages from time to time, especially if there is unreliable communication between the endpoint and the message broker.
+* Endpoints using the outbox feature should not send messages to endpoints using DTC (see below) as the DTC-enabled endpoints treat duplicates coming from outbox-enabled endpoints as multiple messages.
 
 ### Transaction scope
 
@@ -133,9 +133,9 @@ The performance of the outbox feature depends on the scope of the transactions u
 
 The [Microsoft Distributed Transaction Coordinator (DTC)](https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator) is a Windows technology that enlists multiple local transactions (called resource managers) within a single distributed `TransactionScope`. All enlisted transactions either complete successfully as a set or are all rolled back.
 
-MSDTC uses a very chatty protocol, due to the need for multiple resource managers to continually check on each other to make sure they are prepared to commit their results. An example of where this works well is a distributed transaction including consuming messages from an MSMQ message queue and storing business data in SQL Server. The communication with MSMQ is local and has very low latency, and there are only two resource managers to coordinate, with only one communication path between them. Early versions of NServiceBus primarily used MSMQ and SQL Server and systems built with those versions tended to use MSDTC.
+MSDTC uses a chatty protocol due to the need for multiple resource managers to continually check on each other to make sure they are prepared to commit their results. An example of where this works well is a distributed transaction including consuming messages from an MSMQ message queue and storing business data in SQL Server. The communication with MSMQ is local and has very low latency, and there are only two resource managers to coordinate, with only one communication path between them. Early versions of NServiceBus primarily used MSMQ and SQL Server and systems built with those versions tended to use MSDTC.
 
-The more resource managers involved and/or the higher the latency between them, the more poorly MSDTC performs. Cloud environments, in particular, have much higher latency and the message queue and the data store are probably not even located in the same server rack.
+The more resource managers involved and/or the higher the latency between them, the worse MSDTC performs. Cloud environments, in particular, have much higher latency and the message queue and the data store are often not even located in the same server rack.
 
 The rise of cloud infrastructure and [decline of MSMQ](https://particular.net/blog/msmq-is-dead) have contributed to the overall decline in use of MSDTC in the software development industry.
 
@@ -151,7 +151,7 @@ Each NServiceBus persistence package may contain specific configuration options,
 
 When converting a system from using the DTC to the outbox, care must be taken to ensure the system does not process duplicate messages incorrectly.
 
-Because the outbox feature uses an "at least once" consistency guarantee at the transport level, endpoints that enable the outbox may occasionally send duplicate messages. These duplicate messages will be properly handled by deduplication in other Outbox-enabled endpoints, but will be processed more than once by endpoints which still use the DTC.
+Because the outbox feature uses an "at least once" consistency guarantee at the transport level, endpoints that enable the outbox may occasionally send duplicate messages. These duplicate messages will be properly handled by deduplication in other outbox-enabled endpoints, but will be processed more than once by endpoints which still use the DTC.
 
 In order to gradually convert an entire system from the DTC to the outbox:
 
@@ -159,15 +159,15 @@ In order to gradually convert an entire system from the DTC to the outbox:
 1. Enable the outbox on any endpoints that only send or publish messages to already-converted endpoints, where the outbox will be able to properly handle any duplicate messages.
 1. Progress outward until all endpoints are converted.
 
-WARNING: When verifying outbox functionality, it can sometimes be helpful to temporarily [stop the MS DTC Service](https://technet.microsoft.com/en-us/library/cc770732.aspx). This ensures that the outbox is working as expected, and no other resources are enlisting in distributed transactions.
+WARNING: When verifying outbox functionality, it can be helpful to temporarily [stop the MSDTC Service](https://technet.microsoft.com/en-us/library/cc770732.aspx). This ensures that the outbox is working as expected, and no other resources are enlisting in distributed transactions.
 
 ## Message identity
 
-The outbox only uses the incoming [message identifier](/nservicebus/messaging/message-identity.md) as a unique key for deduplicating messages. If the sender does not use outbox when sending messages, it is responsible for ensuring that the message identifier value is consistent when that message is sent multiple times.
+The outbox only uses the incoming [message identifier](/nservicebus/messaging/message-identity.md) as a unique key for deduplicating messages. If the sender does not use the outbox when sending messages, it is responsible for ensuring that the message identifier value is consistent when that message is sent multiple times.
 
 ## Outbox expiration duration
 
-To determine if a message has been processed before, the identification data for each outbox record is retained. The duration that this data is retained for will vary depending on the persistence chosen for the outbox. The default duration, as well as the frequency of data removal, can be overridden for all outbox persisters.
+To determine if a message has been processed before, the identification data for each outbox record is retained. The duration that this data is retained for varies depending on the persistence chosen for the outbox. The default duration, as well as the frequency of data removal, can be overridden for all outbox persisters.
 
 After the outbox data retention period has lapsed, a retried message will be seen as the first of its kind and will be reprocessed. It is important to ensure that the retention period of outbox data is longer than the maximum time the message can be retried, including delayed retries and manual retries via ServicePulse.
 
@@ -181,7 +181,7 @@ The amount of storage space required for the outbox can be calculated as follows
 
 A single outbox record, after all transport operations have been dispatched, usually requires less than 50 bytes, most of which are taken for storing the original message ID as this is a string value.
 
-NOTE: If the system is processing a high volume of messages, having a long deduplication time frame will increase the amount of storage space that is required by outbox.
+NOTE: If the system is processing a high volume of messages, having a long deduplication time frame will increase the amount of storage space that is required by the outbox.
 
 ## Persistence
 
