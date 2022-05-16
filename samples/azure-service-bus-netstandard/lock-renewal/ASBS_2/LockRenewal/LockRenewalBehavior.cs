@@ -96,14 +96,7 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
                 while (!cancellationToken.IsCancellationRequested)
                 {
-                    var now = DateTimeOffset.UtcNow;
-                    var ts = now + renewLockTokenIn;
-                    ts = ts.Round(renewLockTokenIn);
-
-                    var diff = ts - now;
-
-                    //await Task.Delay(renewLockTokenIn, cancellationToken).ConfigureAwait(false);
-                    await Task.Delay(diff, cancellationToken).ConfigureAwait(false);
+                    await Task.Delay(renewLockTokenIn, cancellationToken).ConfigureAwait(false);
 
                     try
                     {
