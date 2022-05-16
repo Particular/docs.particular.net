@@ -4,5 +4,5 @@ public class LockRenewalOptions
 {
     public TimeSpan LockDuration { get; set; }
 
-    public TimeSpan ExecuteRenewalBefore { get; set; }
+    public TimeSpan RenewalInterval { get; set; }
 }

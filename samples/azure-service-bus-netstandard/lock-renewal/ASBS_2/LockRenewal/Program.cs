@@ -21,21 +21,24 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
-        endpointConfiguration.UseTransport<AzureServiceBusTransport>().ConnectionString(connectionString);
+        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>().ConnectionString(connectionString);
 
         #region override-lock-renewal-configuration
 
+        var lockDuration = TimeSpan.FromSeconds(30);
+        var renewalInterval = TimeSpan.FromSeconds(5);
+
         endpointConfiguration.LockRenewal(options =>
         {
-            options.LockDuration = TimeSpan.FromSeconds(30);
-            options.ExecuteRenewalBefore = TimeSpan.FromSeconds(5);
+            options.LockDuration = lockDuration;
+            options.RenewalInterval = renewalInterval;
         });
 
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
-        await OverrideQueueLockDuration("Samples.ASB.SendReply.LockRenewal", connectionString).ConfigureAwait(false);
+        await OverrideQueueLockDuration("Samples.ASB.SendReply.LockRenewal", connectionString, lockDuration).ConfigureAwait(false);
 
         await endpointInstance.SendLocal(new LongProcessingMessage { ProcessingDuration = TimeSpan.FromSeconds(45) });
 
@@ -45,11 +48,11 @@ class Program
         await endpointInstance.Stop().ConfigureAwait(false);
     }
 
-    private static async Task OverrideQueueLockDuration(string queuePath, string connectionString)
+    static async Task OverrideQueueLockDuration(string queuePath, string connectionString, TimeSpan lockDuration)
     {
         var managementClient = new ServiceBusAdministrationClient(connectionString);
         var queueDescription = await managementClient.GetQueueAsync(queuePath).ConfigureAwait(false);
-        queueDescription.Value.LockDuration = TimeSpan.FromSeconds(30);
+        queueDescription.Value.LockDuration = lockDuration;
 
         await managementClient.UpdateQueueAsync(queueDescription.Value).ConfigureAwait(false);
     }

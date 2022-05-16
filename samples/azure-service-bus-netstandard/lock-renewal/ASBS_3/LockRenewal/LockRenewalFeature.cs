@@ -1,5 +1,8 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using NServiceBus;
 using NServiceBus.Features;
+using NServiceBus.Transport;
 
 public class LockRenewalFeature : Feature
 {
@@ -15,7 +18,7 @@ public class LockRenewalFeature : Feature
             {
                 // NServiceBus.Transport.AzureServiceBus sets LockDuration to 5 minutes by default
                 LockDuration = TimeSpan.FromMinutes(5),
-                ExecuteRenewalBefore = TimeSpan.FromSeconds(10)
+                RenewalInterval = TimeSpan.FromMinutes(1)
             });
         });
 
@@ -25,11 +28,15 @@ public class LockRenewalFeature : Feature
     protected override void Setup(FeatureConfigurationContext context)
     {
         var lockRenewalOptions = context.Settings.Get<LockRenewalOptions>();
-        var renewLockTokenIn = lockRenewalOptions.LockDuration - lockRenewalOptions.ExecuteRenewalBefore;
+        var localQueueAddress = context.LocalQueueAddress();
 
         context.Pipeline.Register(
             stepId: "LockRenewal",
-            factoryMethod: builder => new LockRenewalBehavior(renewLockTokenIn),
+            factoryMethod: builder => new LockRenewalBehavior(
+                lockRenewalOptions.LockDuration,
+                lockRenewalOptions.RenewalInterval,
+                builder.GetRequiredService<ITransportAddressResolver>().ToTransportAddress(localQueueAddress)
+                ),
             description: "Renew message lock token");
     }
 }
