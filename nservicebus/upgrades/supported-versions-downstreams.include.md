@@ -243,7 +243,6 @@
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/2.1.0) | 2021-12-20     | 2023-01-12        | Superseded by 3.0.x               |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/2.0.2) | ~~2021-10-19~~ | ~~2022-03-20~~    | ~~Superseded by 2.1.x~~           |
 | [1.3.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.3.1) | 2021-08-16     | 2022-10-19        | Superseded by 2.0.x               |
-| [~~1.2.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/1.2.1) | ~~2021-07-15~~ | ~~2021-11-16~~    | ~~Superseded by 1.3.x~~           |
 
 #### [NServiceBus.AzureFunctions.Worker.ServiceBus](/nuget/NServiceBus.AzureFunctions.Worker.ServiceBus)
 
@@ -429,7 +428,7 @@
 | [2.6.x](https://www.nuget.org/packages/Particular.PlatformSample/2.6.0) | 2022-05-04     | -                 | -                                 |
 | [2.5.x](https://www.nuget.org/packages/Particular.PlatformSample/2.5.0) | 2022-03-04     | 2022-08-04        | Superseded by 2.6.x               |
 | [2.4.x](https://www.nuget.org/packages/Particular.PlatformSample/2.4.0) | 2022-02-17     | 2022-06-04        | Superseded by 2.5.x               |
-| [2.3.x](https://www.nuget.org/packages/Particular.PlatformSample/2.3.0) | 2022-02-14     | 2022-05-17        | Superseded by 2.4.x               |
+| [~~2.3.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.3.0) | ~~2022-02-14~~ | ~~2022-05-17~~    | ~~Superseded by 2.4.x~~           |
 | [~~2.2.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.2.0) | ~~2022-02-03~~ | ~~2022-05-14~~    | ~~Superseded by 2.3.x~~           |
 | [~~2.1.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.1.4) | ~~2021-11-02~~ | ~~2022-05-03~~    | ~~Superseded by 2.2.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.0.0) | ~~2021-09-16~~ | ~~2022-02-02~~    | ~~Superseded by 2.1.x~~           |
