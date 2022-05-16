@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using System.Runtime;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Transactions;
 using Azure.Messaging.ServiceBus.Administration;
@@ -27,8 +25,8 @@ class Program
 
         #region override-lock-renewal-configuration
 
-        var lockDuration = TimeSpan.FromMinutes(5);
-        var renewalInterval = TimeSpan.FromMinutes(2);
+        var lockDuration = TimeSpan.FromSeconds(30);
+        var renewalInterval = TimeSpan.FromSeconds(5);
 
         endpointConfiguration.LockRenewal(options =>
         {
