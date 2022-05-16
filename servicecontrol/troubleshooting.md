@@ -246,7 +246,7 @@ When the ServiceControl API is slow the cause is usually one of the following:
 
 ### Due to an incorrect remotes configuration
 
-Invalid value for the [`ServiceControl/RemoteInstances` configuration setting](./servicecontrol-instances/remotes.md#configuration) can result in connectivity issues. Review this setting and check if the entry contains the correct hostnames.
+Invalid value for the [`ServiceControl/RemoteInstances` configuration setting](/servicecontrol/servicecontrol-instances/remotes.md#configuration) can result in connectivity issues. Review this setting and check if the entry contains the correct hostnames.
 
 This usually happens when the hostname was changed. Changing the hostname will not automatically update the `ServiceControl/RemoteInstances` setting.
 
