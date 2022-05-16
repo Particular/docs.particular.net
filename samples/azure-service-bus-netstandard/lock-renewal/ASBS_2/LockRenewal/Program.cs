@@ -10,11 +10,6 @@ using NServiceBus;
 
 class Program
 {
-
-    static readonly TimeSpan LockDuration = TimeSpan.FromMinutes(5);
-    static readonly TimeSpan RenewalInterval = TimeSpan.FromMinutes(1.5);
-    public static readonly TimeSpan ProcessingDuration = TimeSpan.FromMinutes(11);
-
     static async Task Main()
     {
         Console.Title = "Samples.ASB.LockRenewal";
@@ -32,17 +27,20 @@ class Program
 
         #region override-lock-renewal-configuration
 
+        var lockDuration = TimeSpan.FromMinutes(5);
+        var renewalInterval = TimeSpan.FromMinutes(2);
+
         endpointConfiguration.LockRenewal(options =>
         {
-            options.LockDuration = LockDuration;
-            options.RenewalInterval = RenewalInterval;
+            options.LockDuration = lockDuration;
+            options.RenewalInterval = renewalInterval;
         });
 
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
-        await OverrideQueueLockDuration("Samples.ASB.SendReply.LockRenewal", connectionString).ConfigureAwait(false);
+        await OverrideQueueLockDuration("Samples.ASB.SendReply.LockRenewal", connectionString, lockDuration).ConfigureAwait(false);
 
         await endpointInstance.SendLocal(new LongProcessingMessage { ProcessingDuration = TimeSpan.FromSeconds(45) });
 
@@ -52,11 +50,11 @@ class Program
         await endpointInstance.Stop().ConfigureAwait(false);
     }
 
-    static async Task OverrideQueueLockDuration(string queuePath, string connectionString)
+    static async Task OverrideQueueLockDuration(string queuePath, string connectionString, TimeSpan lockDuration)
     {
         var managementClient = new ServiceBusAdministrationClient(connectionString);
         var queueDescription = await managementClient.GetQueueAsync(queuePath).ConfigureAwait(false);
-        queueDescription.Value.LockDuration = LockDuration;
+        queueDescription.Value.LockDuration = lockDuration;
 
         await managementClient.UpdateQueueAsync(queueDescription.Value).ConfigureAwait(false);
     }

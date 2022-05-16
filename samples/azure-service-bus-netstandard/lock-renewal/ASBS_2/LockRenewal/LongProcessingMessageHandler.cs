@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using LockRenewal;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -12,11 +11,9 @@ public class LongProcessingMessageHandler : IHandleMessages<LongProcessingMessag
 
     public async Task Handle(LongProcessingMessage message, IMessageHandlerContext context)
     {
-        //var duration = message.ProcessingDuration;
-        var duration = Program.ProcessingDuration;
-        log.Info($"--- Received a message with processing duration of {duration}, delay until {DateTime.Now+duration}");
+        log.Info($"--- Received a message with processing duration of {message.ProcessingDuration}");
 
-        await Task.Delay(duration).ConfigureAwait(false);
+        await Task.Delay(message.ProcessingDuration).ConfigureAwait(false);
 
         log.Info("--- Processing completed");
     }
