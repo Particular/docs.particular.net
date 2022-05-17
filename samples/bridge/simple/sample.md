@@ -33,7 +33,7 @@ graph LR
 
 The projects are named this way to indicate which side of the bridge they exist. LeftSender and LeftReceiver are on one side of the bridge and RightReceiver is on the other. Both sides use the LearningTransport but RightReceiver uses a separate file location, which the sample does to mimic a separate transport than the one used by LeftSender and LeftReceiver.
 
-The transport on either side can be modified to any supported transport. This also requires updating the bridge configuration (described later) but does _not_ require any changes to endpoints on the other side of the bridge. For example, if RightReceiver is changed to use the [RabbitMQ transport](/transports/rabbitmq/index.md), no changes are required to either LeftSender or LeftReceiver; only the bridge configuration needs to be updated to use the new transport for the corresponding endpoint.
+The transport on either side can be modified to any supported transport. This also requires updating the bridge configuration (described later) but does _not_ require any changes to endpoints on the other side of the bridge. For example, if RightReceiver is changed to use the [RabbitMQ transport](/transports/rabbitmq/), no changes are required to either LeftSender or LeftReceiver; only the bridge configuration needs to be updated to use the new transport for the corresponding endpoint.
 
 Here is a description of each project.
 
