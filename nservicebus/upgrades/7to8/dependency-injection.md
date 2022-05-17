@@ -168,6 +168,7 @@ endpointConfiguration.UseContainer<AutofacBuilder>(
 
 it is recommended to either:
 
+* Move the registrations to the start of the application _or_
 * Avoid building the container early by passing the container builder to the various bootstrapping parts of the application _or_
 * Use a [dedicated child lifetime scope](https://autofac.readthedocs.io/en/latest/integration/netcore.html#using-a-child-scope-as-a-root) which allows accessing singletons of the root container while having dependencies managed by the service collection being "rooted" within the child scope.
 
