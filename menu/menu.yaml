@@ -440,6 +440,8 @@
         Title: Profiles customization
       - Url: nservicebus/hosting/nservicebus-host/logging-configuration
         Title: Logging configuration
+      - Url: nservicebus/hosting/nservicebus-host/troubleshooting
+        Title: Troubleshooting
     - Url: nservicebus/hosting/docker-host
       Title: Docker Container Host
     - Url: nservicebus/hosting/cloud-services-host
