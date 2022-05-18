@@ -152,7 +152,7 @@ Primary -. connected to .-> Secondary
 
 Each ServiceControl instance can have different settings. For example, it is possible to have different [audit retention periods](/servicecontrol/creating-config-file.md#data-retention-servicecontrolauditretentionperiod). With that in mind, high volume endpoints can report audits to a ServiceControl instance with shorter retention periods (thus evicting old messages faster). This allows catering settings as well as resources being used by ServiceControl to the needs of the endpoints configured to audit to a specific ServiceControl instance.
 
-NOTE: If there are message conversations that span `HighVolumenEndpoints` and `LowVolumeEndpoints` data available in audit store might be incomplete.
+NOTE: If there are message conversations that span `HighVolumeEndpoints` and `LowVolumeEndpoints` data available in audit store might be incomplete.
 
 ### Migration
 
