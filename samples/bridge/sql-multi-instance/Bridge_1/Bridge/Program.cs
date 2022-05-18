@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-
 namespace Bridge
 {
     class Program
@@ -23,15 +22,21 @@ namespace Bridge
                 {
                     #region BridgeConfiguration
 
-                    var receiverTransport = new BridgeTransport(new SqlServerTransport(ReceiverConnectionString));
-                    receiverTransport.Name = "Receiver";
-                    receiverTransport.HasEndpoint("Samples.SqlServer.MultiInstanceReceiver");
-                    receiverTransport.AutoCreateQueues = true;
+                    var receiverTransport = new BridgeTransport(new SqlServerTransport(ReceiverConnectionString))
+                    {
+                        Name = "Receiver",
+                        AutoCreateQueues = true
+                    };
 
-                    var senderTransport = new BridgeTransport(new SqlServerTransport(SenderConnectionString));
-                    senderTransport.Name = "Sender";
+                    receiverTransport.HasEndpoint("Samples.SqlServer.MultiInstanceReceiver");
+
+                    var senderTransport = new BridgeTransport(new SqlServerTransport(SenderConnectionString))
+                    {
+                        Name = "Sender",
+                        AutoCreateQueues = true
+                    };
+
                     senderTransport.HasEndpoint("Samples.SqlServer.MultiInstanceSender");
-                    senderTransport.AutoCreateQueues = true;
 
                     bridgeConfiguration.AddTransport(receiverTransport);
                     bridgeConfiguration.AddTransport(senderTransport);

@@ -16,8 +16,6 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionString);
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
         #endregion
