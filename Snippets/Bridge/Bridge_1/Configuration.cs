@@ -85,6 +85,7 @@
             var invoicing = new BridgeEndpoint("Finance.Invoicing");
             invoicing.RegisterPublisher("Messages.OrderPlaced", "Sales");
             invoicing.RegisterPublisher(typeof(OrderBilled), "Finance.Billing");
+            invoicing.RegisterPublisher<OrderShipped>("Shipping");
 
             #endregion
         }
