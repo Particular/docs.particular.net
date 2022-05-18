@@ -9,14 +9,13 @@ related:
 - transports/sql/deployment-options
 ---
 
-NOTE: In SQL Server transport version 4, multi-instance mode has been deprecated. This is sample shows how to use the [NServiceBus.Transport.Bridge](/nservicebus/bridge/) instead.
+This is sample shows how to use the [NServiceBus.Transport.Bridge](/nservicebus/bridge/) instead of the deprecated [SQL Server transport multi-instance mode](/transports/upgrades/sqlserver-31to4.md#multi-instance-mode).
 
 ## Prerequisites
 
 include: sql-prereq
 
 The databases created by this sample are `NsbSamplesSqlMultiInstanceReceiver` and `NsbSamplesSqlMultiInstanceSender`.
-
 
 ## Running the project
 
@@ -27,23 +26,20 @@ The databases created by this sample are `NsbSamplesSqlMultiInstanceReceiver` an
 
  1. Press <kbd>enter</kbd> in the Sender's console window to send a new message.
 
-
 ## Verifying that the sample works correctly
 
  1. The Receiver displays information that an order was submitted.
  1. The Sender displays information that a response arrived for the same order.
 
-
 ## Code walk-through
 
 The sample contains the following projects:
 
- * Sender: A console application responsible for sending the initial `ClientOrder` message and processing the follow-up `ClientOrderResponse` message.
- * Receiver: A console application responsible for processing the order message.
- * Bridge: A console application responsible for routing messages across the two database instances.
- * Messages: A class library containing message definitions.
- * Helpers: A class library for creating the databases and schemas.
-
+* Sender: A console application responsible for sending the initial `ClientOrder` message and processing the follow-up `ClientOrderResponse` message.
+* Receiver: A console application responsible for processing the order message.
+* Bridge: A console application responsible for routing messages across the two database instances.
+* Messages: A class library containing message definitions.
+* Helpers: A class library for creating the databases and schemas.
 
 ### Sender project
 
@@ -54,7 +50,6 @@ snippet: SenderConfiguration
 The Sender sends a message to the Receiver:
 
 snippet: SendMessage
-
 
 ### Receiver project
 
