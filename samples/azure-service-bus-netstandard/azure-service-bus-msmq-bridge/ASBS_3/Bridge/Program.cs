@@ -34,7 +34,7 @@ class Program
                 #endregion
 
                 #region create-msmq-endpoint-of-bridge
-                var msmqBridgeEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.MsmqEndpoint", $"Samples.Azure.ServiceBus.MsmqEndpoint@{Environment.MachineName}");
+                var msmqBridgeEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.MsmqEndpoint");
                 #endregion
 
                 #region msmq-subscribe-to-event-via-bridge
