@@ -12,6 +12,7 @@ class Program
 
         Console.Title = "Samples.Azure.ServiceBus.AsbEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.AsbEndpoint");
+        endpointConfiguration.EnableInstallers();
 
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
