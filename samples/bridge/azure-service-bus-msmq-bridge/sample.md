@@ -1,12 +1,13 @@
 ---
 title: MSMQ to Azure Service Bus Transport Bridging
-reviewed: 2022-05-10
-component: ASBS
+reviewed: 2022-05-19
+component: Bridge
 related:
 - transports/azure-service-bus
+- transports/msmq
 - nservicebus/bridge
 redirects:
-- samples/azure/azure-service-bus-msmq-bridge
+- samples/bridge/azure-service-bus-msmq-bridge
 ---
 
 Endpoints running on different transports cannot exchange messages and require additional integration work.

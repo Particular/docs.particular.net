@@ -3,7 +3,7 @@ title: NServiceBus Router
 summary: How to connect parts of the system that use different transports
 component: Router
 related:
-- samples/azure-service-bus-netstandard/azure-service-bus-msmq-bridge
+- samples/bridge/azure-service-bus-msmq-bridge
 - samples/router/backplane
 - samples/router/sql-switch
 - samples/router/update-and-publish
