@@ -5,8 +5,8 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-	  <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-beta.1" />
-	  <PackageReference Include="NServiceBus.Transport.Bridge" Version="0.1.0-alpha.2" />
+	  <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-beta.2" />
+	  <PackageReference Include="NServiceBus.Transport.Bridge" Version="0.1.0-alpha.3" />
 	  <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-beta.1" />
   </ItemGroup>
   <ItemGroup>
