@@ -1,1 +1,1 @@
-NOTE: [The Bridge component that is currently in preview](/nservicebus/bridge) offers similar functionallity as the Router and should also be considered for multi transport operations.
+NOTE: [The NServiceBus Transport Bridge](/nservicebus/bridge) offers similar functionality to the Router community package and should be considered for multi-transport operations.

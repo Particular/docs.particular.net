@@ -33,7 +33,7 @@ The life cycle of the bridge is managed by the .NET Generic Host.
 
 If the bridge moves messages across different transport types or different brokers of the same type (e.g. Azure ServiceBus namespaces, or RabbitMQ vhosts), [`ReceiveOnly`](/transports/transactions.md#transactions-transport-transaction-receive-only) is the only supported transaction mode. In this mode, messages that are moved across the bridge may be duplicated if some infrastructure-related issue prevents the message from being moved to the target transport. To address this either [ensure that handlers are idempotent or enable deduplication of messages using the outbox](/transports/transactions.md#transactions-transport-transaction-receive-only-consistency-guarantees).
 
-The bridge will use this mode if at least one of the transports being configured are not able to use distributed transactions.
+The bridge will use this mode if at least one of the transports being configured is not able to use distributed transactions.
 
 ### Distributed transactions
 

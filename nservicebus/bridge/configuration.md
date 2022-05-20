@@ -17,7 +17,7 @@ snippet: generic-host-builder-context
 
 ## Registering endpoints
 
-Each logical endpoint that must be available to endpoints using another transport must be registered with the bridge. The endpoint is registered on the transport it is running on. The bridge then creates a proxy on each transport that needs to be bridged.
+If a logical endpoint communicates with other endpoints that use a different transport, it must be registered with the bridge. Endpoints are registered with the bridge on the transport they run on. The bridge then creates a proxy endpoint on each transport that needs to be bridged.
 
 snippet: endpoint-registration
 
@@ -25,25 +25,23 @@ snippet: endpoint-registration
 
 When NServiceBus discovers a message handler in an endpoint for an event, it automatically subscribes to this event on the transport. The publisher itself is not aware of this and does not need to receive a notification for subscribers registering for an event. This represents a challenge for the bridge.
 
-If an endpoint subscribes to an event, the bridge must become aware of this since it must register the same subscription on the transports it's bridging. As the bridge is completely unaware of any subscriptions, the bridge needs to be configured to mimic the behavior of the endpoints.
+If an endpoint subscribes to an event, the bridge must be made aware of this subscription since it must register the same subscription on the transports it's bridging. As the bridge is unaware of any subscriptions, the bridge must be configured to mimic the behavior of the endpoints.
 
-This results in duplicating subscriptions for any endpoint that subscribes to an event. The endpoint that publishes the event needs to be configured as well.
+The result is duplicate subscriptions for any endpoint that subscribes to an event. The endpoint that publishes the event must be configured as well.
 
 snippet: register-publisher
 
 ### Events
 
-It is possible to reference message assemblies and use `typeof()` for type-safety when registering publishers.
-
-If messages implement the `IEvent` interface, the message assembly references NServiceBus. When different versions of NServiceBus are referenced by both the message assembly and the bridge, this results in compile-time exceptions. It is then an option to register the fully-qualified name of an event as a string. In this scenario, no message assemblies need to be referenced, reducing the likelihood of conflicts during compile-time.
+It is possible to reference message assemblies and use `typeof()` for type-safety when registering publishers. When this option isn't available (for example if the shared message assembly references a different version of NServiceBus than the bridge), the fully-qualified name of an event can be used instead. In this scenario, no message assemblies need to be referenced, reducing the likelihood of conflicts during compile-time.
 
 ## Provisioning queues
 
-By default, the bridge does **not** create any queues for the endpoints that it proxies. This is done so that elevated privileges (needed to create the queues) are not required at runtime.
+By default, the bridge does **not** create queues for the endpoints that it proxies. This is done so that elevated privileges (which are often needed to create the queues) are not required at runtime.
 
 TBD: What guidance or tooling if any should be provided around what exact queues and the names of those queues
 
-The queues can be created using on of the following methods:
+The queues can be created using one of the following methods:
 
 - Provision them manually using the tooling provided by the queuing system
 - Use the queue creation tooling provided by Particular Software if one exists for the transports being used. See the [individual transports documentation](/transports/) for more details.
@@ -61,36 +59,32 @@ snippet: auto-create-queues
 
 The bridge provides the ability to adjust the address for the queue of incoming messages. 
 
-NOTE: With MSMQ endpoints that run on a different server than the Bridge, it is mandatory to provide the address of the queue that messages should be forwarded to.
+NOTE: With MSMQ endpoints that run on a different server than the bridge, it is mandatory to provide the address of the queue that messages should be forwarded to.
 
 snippet: custom-address
 
 ## Recoverability
 
-If a message fails to be transferred to the target transport, the following recoverability actions are taken:
+If a message fails while it is being transferred to the target transport, the following recoverability actions are taken:
 
 1. Three immediate retries are performed to make sure that the problem isn't transient
 1. If the retries fail, the message is moved to the bridge error queue
 
 ### Error queue
 
-The error queue used by the bridge is `bridge.error` by default. Note that the default `error` queue used by other platform components can not be used to enable bridging of the system wide error queue since its not allowed to use a bridged queue as the error queue. See the documentation around [bridging platform queues](#bridging-platform-queues) for more details.
+The error queue used by the bridge is named `bridge.error` by default. Note that the default `error` queue used by other platform components can not be used to enable bridging of the system-wide error queue since a bridged queue may not be used as the error queue. See the documentation around [bridging platform queues](#bridging-platform-queues) for more details.
 
 To configure a different error queue using the following configuration:
 
 snippet: custom-error-queue
 
-Messages moved to the error queue have the [`NServiceBus.FailedQ`](/nservicebus/messaging/headers.md#error-forwarding-headers-nservicebus-failedq) header set to allow scripted retries, eg. [RabbitMQ](/transports/rabbitmq/operations-scripting.md#return-message-to-source-queue). Refer to the documentation for the [transports being used](/transports) for more details in how to perform retries.
+Messages moved to the error queue have the [`NServiceBus.FailedQ`](/nservicebus/messaging/headers.md#error-forwarding-headers-nservicebus-failedq) header set to allow scripted retries, e.g. [RabbitMQ](/transports/rabbitmq/operations-scripting.md#return-message-to-source-queue). Refer to the documentation for the [various transports](/transports) for more details in how to perform retries.
 
 ## Auditing
 
 The bridge attaches a new `NServiceBus.Bridge.Transfer` header while a message is transferred between transports.
 
-The value of the header is `{source-transport-name}->{target-transport-name}`, example:
-
-`msmq->sqlserver`
-
-This header provides traceability for a message as it moves through the bridge.
+The value of the header is `{source-transport-name}->{target-transport-name}`. For example: `msmq->sqlserver`. This header provides traceability for a message as it moves through the bridge.
 
 ### Configuring transport
 
