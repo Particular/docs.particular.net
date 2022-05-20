@@ -13,36 +13,16 @@ class Program
         Console.Title = "Samples.Azure.ServiceBus.AsbEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.AsbEndpoint");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-        endpointConfiguration.AddDeserializer<XmlSerializer>();
 
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
         }
-        transport.ConnectionString(connectionString);
+        endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
 
-        #region connect-asb-side-of-bridge
-
-        var routing = transport.Routing();
-        var bridge = routing.ConnectToBridge("Bridge");
-
-        #endregion
-
-        #region route-command-via-bridge
-
-        bridge.RouteToEndpoint(typeof(MyCommand), "Samples.Azure.ServiceBus.MsmqEndpoint");
-
-        #endregion
-
-        #region subscribe-to-event-via-bridge
-
-        bridge.RegisterPublisher(typeof(MyEvent), "Samples.Azure.ServiceBus.MsmqEndpoint");
-
-        #endregion
+        var sendOptions = new SendOptions();
+        sendOptions.SetDestination("Samples.Azure.ServiceBus.MsmqEndpoint");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -59,7 +39,7 @@ class Program
             }
 
             var prop = new string(Enumerable.Range(0, 3).Select(i => letters[random.Next(letters.Length)]).ToArray());
-            await endpointInstance.Send(new MyCommand { Property = prop }).ConfigureAwait(false);
+            await endpointInstance.Send(new MyCommand { Property = prop }, sendOptions).ConfigureAwait(false);
             Console.WriteLine($"\nCommand with value '{prop}' sent");
         }
 
