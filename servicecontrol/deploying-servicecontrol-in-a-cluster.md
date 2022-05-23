@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl to a Cluster
-summary: A guide to deploying ServiceControl on a Windows Failover cluster
+summary: A guide to deploying ServiceControl on a Windows failover cluster
 related:
 - servicecontrol/troubleshooting
 reviewed: 2022-02-18
@@ -10,8 +10,7 @@ NOTE: ServiceControl only supports active/passive clusters. Clustering might not
 
 The following procedure is a high level guide on how to deploy ServiceControl onto a fault-tolerant cluster using Windows Failover Clustering.
 
-NOTE: This guide assumes that MSMQ is the underlying transport. Other transports work as long as these are deployed on a different machine. In that case, skip the MSMQ specific steps.
-
+NOTE: This guide assumes that MSMQ is the underlying transport. Other transports work as long as these are deployed on a different machine. In that case, skip the MSMQ-specific steps.
 
 ## Basic setup
 
@@ -58,19 +57,19 @@ The following is a sample ServiceControl configuration file (ServiceControl.exe.
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/DbPath" 
+    <add key="ServiceControl/DbPath"
          value="drive:\SomeDir\" />
-    <add key="ServiceControl/Hostname" 
+    <add key="ServiceControl/Hostname"
          value="clusterName" />
-    <add key="ServiceControl/Port" 
+    <add key="ServiceControl/Port"
          value="33333" />
     <add key="ServiceBus/AuditQueue"
          value="audit@clusterName" />
-    <add key="ServiceBus/ErrorQueue" 
+    <add key="ServiceBus/ErrorQueue"
          value="error@clusterName" />
-    <add key="ServiceBus/ErrorLogQueue" 
+    <add key="ServiceBus/ErrorLogQueue"
          value="error.log@clusterName" />
-    <add key="ServiceBus/AuditLogQueue" 
+    <add key="ServiceBus/AuditLogQueue"
          value="audit.log@clusterName" />
   </appSettings>
 </configuration>
