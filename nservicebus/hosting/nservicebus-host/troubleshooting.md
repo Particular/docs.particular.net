@@ -1,6 +1,6 @@
 ---
-title: NServiceBus Host Troubleshooting
-summary: Resolve common NServiceBus Host issues
+title: NServiceBus host troubleshooting
+summary: Resolve common NServiceBus host issues
 component: Host
 reviewed: 2022-05-17
 ---
@@ -29,7 +29,7 @@ at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotifi
 at NServiceBus.Hosting.Windows.WindowsHost.Start() in C:\BuildAgent\work\3fdd02ec65f005b\src\NServiceBus.Hosting.Windows\WindowsHost.cs:line 32
 ```
 
-Validate that:
+Verify that:
 
 1. Assembly binding redirects in the `NServiceBus.Host.exe.config` are correct and match with any entries generated in the `App.config` file.
 2. All files in the deployment (sub)folder are correct and no old files are present from previous deployments.

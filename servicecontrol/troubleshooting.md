@@ -242,27 +242,27 @@ Microsoft.Isam.Esent.Interop.EsentOutOfLongValueIDsException: Long-value ID coun
 
 ## API is slow
 
-When the ServiceControl API is slow the cause is usually one of the following:
+If the ServiceControl API is slow, the cause is usually one of the following:
 
-### Due to an incorrect remotes configuration
+### Incorrect remotes configuration
 
-Invalid value for the [`ServiceControl/RemoteInstances` configuration setting](/servicecontrol/servicecontrol-instances/remotes.md#configuration) can result in connectivity issues. Review this setting and check if the entry contains the correct hostnames.
+An invalid value for the [`ServiceControl/RemoteInstances` configuration setting](/servicecontrol/servicecontrol-instances/remotes.md#configuration) can result in connectivity issues. Review this setting and check if the entry contains the correct host names.
 
-This usually happens when the hostname was changed. Changing the hostname will not automatically update the `ServiceControl/RemoteInstances` setting.
+This usually happens when the host name was changed. Changing the host name will not automatically update the `ServiceControl/RemoteInstances` setting.
 
 1. Launch ServiceControl Management Utility (SCMU)
-2. Scroll to the ServiceControl instance
-3. Select the installation path Browse button
-4. Open the file `ServiceControl.exe.config` in an editor with administratove priviledges
-5. Review the `ServiceControl/RemoteInstances` setting for invalid hostnames or obsolete instances
+1. Scroll to the ServiceControl instance
+1. Select the installation path Browse button
+1. Open the file `ServiceControl.exe.config` in an editor with administrative privileges
+1. Review the `ServiceControl/RemoteInstances` setting for invalid host names or obsolete instances
 
-### Due to an unreachable audit instance
+### Unreachable audit instance
 
 Review if the listed hostname in the `ServiceControl/RemoteInstances` setting is reachable from the machine that hosts the ServiceControl instance. Common methods are:
 
 - Pinging the host
 - Opening the API url (`http://localhost:33333/api/`) in the browser with the same hostname as specified in the config file
 
-### Due to stopped audit instance
+### Stopped audit instance
 
 Review if all listed audit instances are running.

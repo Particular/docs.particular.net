@@ -6,14 +6,14 @@ reviewed: 2022-05-12
 
 ## ServiceInsight is slow
 
-Loading a conversation is slow when selecting messages in the grid.
+If ServiceInsight takes a long time to load a conversation when selecting messages in the grid, verify if one of the following scenarios is occurring:
 
 1. Audit instance(s) might not be running.
-2. ServiceControl remotes configuration might be incorrect. See [ServiceControl Troubleshooting - API is slow](/servicecontrol/troubleshooting.md#api-is-slow)
+1. ServiceControl remotes configuration might be incorrect. See [ServiceControl Troubleshooting - API is slow](/servicecontrol/troubleshooting.md#api-is-slow)
 
-## ServiceInsight isn't showing succesfully processed messages
+## ServiceInsight isn't showing successfully processed messages
 
-When ServiceInsight isn't showing succesfully processed messages (green icon) this then:
+If ServiceInsight isn't showing successfully processed messages (i.e. messages with a green icon):
 
 1. Auditing might not be enabled, see [NServiceBus auditing](/nservicebus/operations/auditing.md).
 2. ServiceControl Audit instance(s) might not be running.
