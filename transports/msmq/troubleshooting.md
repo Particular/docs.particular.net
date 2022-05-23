@@ -38,7 +38,6 @@ Approaches for diagnosing messages stuck in the outgoing queue:
 * Check the Microsoft support article [MSMQ service might not send or receive messages after a restart](https://support.microsoft.com/en-us/kb/2554746). This details how an error in MSMQ's binding process for IP addresses and ports can cause one server to be unable to validate messages coming from another, causing them to be rejected.
 * If servers are cloned from the same virtual machine image, this causes them to have the same `QMId` in the registry key `HKEY_LOCAL_MACHINE\Software\Microsoft\MSMQ\Parameters\Machine Cache`, which interferes with message delivery. Use the workaround described in [MSMQ prefers to be unique](https://blogs.msdn.microsoft.com/johnbreakwell/2007/02/06/msmq-prefers-to-be-unique/) to reset the `QMId` on an existing machine, but it is preferable to use [Microsoft's Sysprep tool](https://support.microsoft.com/en-us/kb/314828) before capturing the virtual machine image.
 
-
 ## MessageQueueException: Insufficient resources to perform operation
 
 This exception may occur when trying to send messages to a machine that has been offline for a while, or the System is suffering from a larger than expected load spike, or when message queuing quota has exceeded its limit:
@@ -48,7 +47,7 @@ System.Messaging.MessageQueueException (0x80004005): Insufficient resources to p
 at System.Messaging.MessageQueue.SendInternal(Object obj, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
 ```
 
-or the following in the Windows Event Log:
+Alternatively, the following will appear in the Windows Event Log:
 
 > Machine MSMQ storage quota was exceeded or there is insufficient disk space. No more messages can be stored in user queues. You can increase Message Queuing storage quota or purge unneeded messages by using Computer Management console. This event is logged at most once per 3600 seconds. To change this setting, set \HKLM\Software\Microsoft\MSMQ\Parameters\Event2183 registry value to desired time in seconds.
 
@@ -56,18 +55,17 @@ The cause of this exception is that the MSMQ has run out of space for holding on
 
 Also, check the outgoing queues to see if messages sent to remote servers are received and processed. NServiceBus has dead letter queues enabled by default. Enabled dead letter queues results in messages remaining in the outgoing queue of the sender until they are not only delivered but also processed at the receiver. For more information, read [MSMQ dead-letter queues](dead-letter-queues.md).
 
-
 ### Resolution
 
 1. Make sure that the hard disk drive has sufficient space.
-1. Disable MSMQ storage limit if the disk still has plenty of space.
-1. Inspect the (transactional) dead-letter queue (TDLQ) under System Queues via [QueueExplorer by Cogin](https://www.cogin.com/mq/) as the windows built-in viewer is too limited.
-  * Dead-letter queues acts as a recycle bin for other transactional queues. So if other transactional queues have been purged, ensure the TDLQ is purged as well.
+1. Disable the MSMQ storage limit if the disk still has plenty of space.
+1. Inspect the (transactional) dead-letter queue (TDLQ) under System Queues via [QueueExplorer by Cogin](https://www.cogin.com/mq/) as the built-in viewer for Windows has limitations.
+  * Dead-letter queues acts as a recycle bin for other transactional queues. If other transactional queues have been purged, ensure the TDLQ is purged as well.
   * Within the TDLQ, the Class column shows the reason the message arrived there. Common messages include "The queue was purged" or "The queue was deleted".
-  * Purge content of the TDLQ/DLQ based to free storage space.
-1. Inspect outgoing queues for messages that cannot be delivered due to connectivity issues, unavailable, or obsolete machines, resolve connectivity issues to ensure queued outgoing message will be delivered to the remote machine(s).
+  * Purge the content of the TDLQ/DLQ to free storage space.
+1. Inspect outgoing queues for messages that cannot be delivered due to connectivity issues, or machines that are unavailable or obsolete. Resolve connectivity issues to ensure queued outgoing messages will be delivered to the remote machine(s).
 1. If journaling is turned on, purged messages can be found in the journaling queue under System Queues. Ensure that journaling is disabled on each queue level, and only turn it on if needed for debugging purposes.
-1. Consider [monitoring critical MSMQ WIndows Performance counters](#monitoring-msmq).
+1. Consider [monitoring critical MSMQ Windows performance counters](#monitoring-msmq).
 1. Increase the MSMQ storage quota ([archived MSDN article from betaarchive.com](https://www.betaarchive.com/wiki/index.php/Microsoft_KB_Archive/899612))
 
 ![Disable MSMQ storage limit](troubleshooting-remove-storage-quota.gif)
