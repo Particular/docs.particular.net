@@ -6,15 +6,15 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Azure.ServiceBus.MsmqEndpoint";
+        Console.Title = "Samples.Transport.Bridge.MsmqEndpoint";
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.MsmqEndpoint");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Transport.Bridge.MsmqEndpoint");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();    
 
         var routingConfig = endpointConfiguration.UseTransport(new MsmqTransport());
-        routingConfig.RegisterPublisher(typeof(OtherEvent), "Samples.Azure.ServiceBus.AsbEndpoint");
+        routingConfig.RegisterPublisher(typeof(OtherEvent), "Samples.Transport.Bridge.AsbEndpoint");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

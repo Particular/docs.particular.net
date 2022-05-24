@@ -10,19 +10,20 @@ class Program
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var random = new Random();
 
-        Console.Title = "Samples.Azure.ServiceBus.AsbEndpoint";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.AsbEndpoint");
+        Console.Title = "Samples.Transport.Bridge.AsbEndpoint";
+        var endpointConfiguration = new EndpointConfiguration("Samples.Transport.Bridge.AsbEndpoint");
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
         endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
 
         var sendOptions = new SendOptions();
-        sendOptions.SetDestination("Samples.Azure.ServiceBus.MsmqEndpoint");
+        sendOptions.SetDestination("Samples.Transport.Bridge.MsmqEndpoint");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

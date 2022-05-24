@@ -7,23 +7,23 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        Console.Title = "Samples.Azure.ServiceBus.Bridge";
+        Console.Title = "Samples.Transport.Bridge.Bridge";
 
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
-            throw new Exception("Could not read the 'AzureServiceBus.ConnectionString' environment variable. Check the sample prerequisites.");
+            throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
         await Host.CreateDefaultBuilder()
             .UseNServiceBusBridge((ctx, bridgeConfiguration) =>
             {
                 #region create-asb-endpoint-of-bridge
-                var asbBridgeEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.AsbEndpoint");
+                var asbBridgeEndpoint = new BridgeEndpoint("Samples.Transport.Bridge.AsbEndpoint");
                 #endregion
 
                 #region asb-subscribe-to-event-via-bridge
-                asbBridgeEndpoint.RegisterPublisher<MyEvent>("Samples.Azure.ServiceBus.MsmqEndpoint");
+                asbBridgeEndpoint.RegisterPublisher<MyEvent>("Samples.Transport.Bridge.MsmqEndpoint");
                 #endregion
 
                 #region asb-bridge-configuration
@@ -34,11 +34,11 @@ class Program
                 #endregion
 
                 #region create-msmq-endpoint-of-bridge
-                var msmqBridgeEndpoint = new BridgeEndpoint("Samples.Azure.ServiceBus.MsmqEndpoint");
+                var msmqBridgeEndpoint = new BridgeEndpoint("Samples.Transport.Bridge.MsmqEndpoint");
                 #endregion
 
                 #region msmq-subscribe-to-event-via-bridge
-                msmqBridgeEndpoint.RegisterPublisher<OtherEvent>("Samples.Azure.ServiceBus.AsbEndpoint");
+                msmqBridgeEndpoint.RegisterPublisher<OtherEvent>("Samples.Transport.Bridge.AsbEndpoint");
                 #endregion
 
                 #region msmq-bridge-configuration
