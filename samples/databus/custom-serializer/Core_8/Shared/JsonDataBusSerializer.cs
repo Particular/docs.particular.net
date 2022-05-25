@@ -2,9 +2,10 @@
 
 namespace Shared
 {
-    using System.IO;
     using Newtonsoft.Json;
     using NServiceBus.DataBus;
+    using System;
+    using System.IO;
 
     #region CustomDataBusSerializer
 
@@ -27,12 +28,12 @@ namespace Shared
                 bufferSize: 1024,
                 leaveOpen: true);
 
-        public object Deserialize(Stream stream)
+        public object Deserialize(Type propertyType, Stream stream)
         {
             using (var reader = new StreamReader(stream))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return serializer.Deserialize(jsonReader);
+                return serializer.Deserialize(jsonReader, propertyType);
             }
         }
 
@@ -42,6 +43,8 @@ namespace Shared
                 TypeNameHandling = TypeNameHandling.All
             }
         );
+
+        public string ContentType => "application/json";
     }
 
     #endregion

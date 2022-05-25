@@ -1,10 +1,9 @@
+using NServiceBus;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
-using Shared;
 
 class Program
 {
@@ -15,18 +14,11 @@ class Program
 
         #region ConfigureSenderCustomDataBusSerializer
 
-        endpointConfiguration.RegisterComponents(
-            registration: components =>
-            {
-                components.AddSingleton<JsonDataBusSerializer>();
-            });
-
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, JsonDataBusSerializer>();
         dataBus.BasePath(@"..\..\..\..\storage");
 
         #endregion
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
