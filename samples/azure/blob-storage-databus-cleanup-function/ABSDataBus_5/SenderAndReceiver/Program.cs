@@ -1,6 +1,6 @@
-﻿using System;
+﻿using NServiceBus;
+using System;
 using System.Threading.Tasks;
-using NServiceBus;
 
 class Program
 {
@@ -9,11 +9,10 @@ class Program
         Console.Title = "Samples.AzureDataBusCleanupWithFunctions.SenderAndReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureDataBusCleanupWithFunctions.SenderAndReceiver");
 
-        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
+        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>();
         dataBus.ConnectionString("UseDevelopmentStorage=true");
 
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
@@ -52,7 +51,7 @@ class Program
         var message = new MessageWithLargePayload
         {
             Description = "This message contains a large payload that will be sent on the Azure data bus",
-            LargePayload = new DataBusProperty<byte[]>(new byte[1024*1024*5]) // 5MB
+            LargePayload = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]) // 5MB
         };
         await messageSession.SendLocal(message)
             .ConfigureAwait(false);
