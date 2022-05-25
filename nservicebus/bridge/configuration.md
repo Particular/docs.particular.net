@@ -39,8 +39,6 @@ It is possible to reference message assemblies and use `typeof()` for type-safet
 
 By default, the bridge does **not** create queues for the endpoints that it proxies. This is done so that elevated privileges (which are often needed to create the queues) are not required at runtime.
 
-TBD: What guidance or tooling if any should be provided around what exact queues and the names of those queues
-
 The queues can be created using one of the following methods:
 
 - Provision them manually using the tooling provided by the queuing system
