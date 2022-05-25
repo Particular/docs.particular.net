@@ -21,7 +21,6 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/8.2.5) | ~~2020-03-05~~ | ~~2021-11-25~~    | ~~Superseded by 9.0.x of NServiceBus.Transport.AzureStorageQueues~~ |
 | [7.5.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/7.5.9) | 2017-12-04     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.RabbitMQ](/nuget/NServiceBus.RabbitMQ)
