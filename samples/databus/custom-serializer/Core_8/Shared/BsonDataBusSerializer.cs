@@ -3,39 +3,39 @@
 namespace Shared
 {
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Bson;
     using NServiceBus.DataBus;
     using System;
     using System.IO;
 
     #region CustomDataBusSerializer
 
-    public class JsonDataBusSerializer :
+    public class BsonDataBusSerializer :
         IDataBusSerializer
     {
         public void Serialize(object databusProperty, Stream stream)
         {
-            using (var writer = CreateNonClosingStreamWriter(stream))
-            using (var jsonWriter = new JsonTextWriter(writer))
+            using (var writer = CreateNonClosingBinaryWriter(stream))
+            using (var bsonWriter = new BsonDataWriter(writer))
             {
-                serializer.Serialize(jsonWriter, databusProperty);
+                serializer.Serialize(bsonWriter, databusProperty);
             }
         }
 
-        StreamWriter CreateNonClosingStreamWriter(Stream stream)
-            => new StreamWriter(
-                stream,
-                Encoding.UTF8,
-                bufferSize: 1024,
-                leaveOpen: true);
-
         public object Deserialize(Type propertyType, Stream stream)
         {
-            using (var reader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(reader))
+            using (var jsonReader = new BsonDataReader(stream))
             {
                 return serializer.Deserialize(jsonReader, propertyType);
             }
         }
+
+        BinaryWriter CreateNonClosingBinaryWriter(Stream stream) =>
+            new BinaryWriter(
+                stream,
+                Encoding.UTF8,
+                leaveOpen: true);
+
 
         JsonSerializer serializer = JsonSerializer.Create(
             new JsonSerializerSettings
@@ -44,7 +44,7 @@ namespace Shared
             }
         );
 
-        public string ContentType => "application/json";
+        public string ContentType => "application/bson";
     }
 
     #endregion
