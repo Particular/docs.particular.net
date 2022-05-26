@@ -7,8 +7,7 @@
         Usage(EndpointConfiguration endpointConfiguration)
         {
             #region PluginCustomDataBus
-            endpointConfiguration.UseDataBus(typeof(CustomDataBus));
-
+            endpointConfiguration.UseDataBus(svc => new CustomDataBus(), new SystemJsonDataBusSerializer());
             #endregion
         }
     }
