@@ -380,7 +380,7 @@
       - Url: nservicebus/messaging/databus/azure-blob-storage
         Title: Azure Blob Storage
       - Url: nservicebus/messaging/databus/custom
-        Title: Custom
+        Title: Customizing DataBus
   - Url: nservicebus/hosting
     Title: Hosting
     Articles:
