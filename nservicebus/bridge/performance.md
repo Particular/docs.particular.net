@@ -37,7 +37,7 @@ NOTE: It may be practical to split up logical endpoints to increase throughput f
 
 
 ```mermaid
-flowchart LR
+graph LR
   Br2[Bridge 2<br /><sup>Endpoint A<br />Endpoint D</sup>]
   A[Endpoint A] --- Br2
   B[Endpoint B]
