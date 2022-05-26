@@ -28,8 +28,9 @@ Taking a sample migration scenario, assume there are four endpoints that can com
 
 ```mermaid
 graph LR
-  A[Endpoint A] <---> C[Endpoint C]
-  B[Endpoint B] <---> D[Endpoint D]
+
+A[Endpoint A] <---> C[Endpoint C]
+B[Endpoint B] <---> D[Endpoint D]  
 ```
 
 ### Initiating the migration
@@ -38,19 +39,20 @@ To slowly migrate endpoints to the other transport and to prevent moving all end
 
 ```mermaid
 graph LR
-  Br(Bridge)
-  A[Endpoint A] <---> Br
-  B[Endpoint B] <---> Br
-  Br <---> C[Endpoint C]
-  Br <---> D[Endpoint D]
-  subgraph msmq
-    A
-    B
-  end
-  subgraph sql
-    C
-    D
-  end
+
+Br(Bridge)
+A[Endpoint A] <---> Br
+B[Endpoint B] <---> Br
+Br <---> C[Endpoint C]
+Br <---> D[Endpoint D]
+subgraph msmq
+  A
+  B
+end
+subgraph sql
+  C
+  D
+end
 ```
 
 In this scenario, a new endpoint is introduced which will act as the bridge. The bridge is configured with two instances of `BridgeTransport`, one for MSMQ and one for SQL Server. The MSMQ `BridgeTransport` is configured to have `EndpointA` and `EndpointB` and the SQL Server `BridgeTransport` is configured to have `EndpointC` and `EndpointD`. If any events are involved, the publishers for those [must be configured](/nservicebus/bridge/configuration.md#registering-publishers).
