@@ -40,7 +40,7 @@ Events require more effort to migrate to the transport bridge from NServiceBus.R
 Note that both events would have the same message identifier, which allows the [outbox](/nservicebus/outbox/) to de-duplicate the messages. Without the outbox, either the message handler must be [idempotent](/nservicebus/concepts/glossary.md#idempotence) or the event will be processed twice.
 
 ```mermaid
-flowchart LR
+graph LR
   Br(Bridge)
   A[Endpoint A] <---> Br
   B[Endpoint B] <---> Br
