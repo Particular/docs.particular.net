@@ -1,0 +1,1 @@
+NOTE: [The NServiceBus Transport Bridge](/nservicebus/bridge) offers similar functionality to the Router community package and should be considered for multi-transport operations.

@@ -1,11 +1,13 @@
 ---
-title: NServiceBus Router multi-way bridge topology
+title: NServiceBus Router multi-way direct topology
 summary: How to connect more than two transports with a single router
 component: Router
 related:
 - samples/router/sql-switch
 reviewed: 2020-09-17
 ---
+
+include: bridge-to-router-note
 
 ![Multi-way](multi-way.svg)
 
@@ -15,7 +17,7 @@ snippet: three-way-router
 
 NOTE: All three interfaces use the same transport type (SQL Server Transport) but may use different settings, e.g. different database instances. This way, each part of the system (Sales, Shipping and Billing) can be autonomous and own its database server yet they can still exchange messages in the same way as if they were connected to a single shared instance.
 
-For more information about using the Router in multi-way bridge topology with SQL Server transport, see [the sample](/samples/router/sql-switch).
+For more information about using the Router in multi-way direct topology with SQL Server transport, see [the sample](/samples/router/sql-switch).
 
 ### Case study: SQL Server multi-instance mode migration
 

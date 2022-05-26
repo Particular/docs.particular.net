@@ -595,15 +595,13 @@
 
 - Key: Bridge
   Name: Transport Bridge
-  DocsUrl: /nservicebus/router
-  GitHubOwner: SzymonPobiega
+  DocsUrl: /nservicebus/bridge
+  GitHubOwner: Particular
   Category: Other
-  SupportLevel: Community
-  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.Bridge/blob/master/LICENSE
-  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Bridge
+  SupportLevel: Preview
+  ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Bridge
   NugetOrder:
-    - NServiceBus.Bridge
-    - NServiceBus.Bridge.Connector
+    - NServiceBus.Transport.Bridge
 
 - Key: Wormhole
   Name: Wormhole Gateway

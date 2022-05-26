@@ -1,9 +1,9 @@
 ---
 title: NServiceBus Router
-summary: How to connect parts of the system that use different transports 
+summary: How to connect parts of the system that use different transports
 component: Router
 related:
-- samples/azure-service-bus-netstandard/azure-service-bus-msmq-bridge
+- samples/bridge/azure-service-bus-msmq-bridge
 - samples/router/backplane
 - samples/router/sql-switch
 - samples/router/update-and-publish
@@ -13,6 +13,8 @@ redirects:
 - nservicebus/bridge
 reviewed: 2022-03-22
 ---
+
+include: bridge-to-router-note
 
 `NServiceBus.Router` is a universal component that connects parts of an NServiceBus-based solution that otherwise could not talk to each other (e.g. because they use different transports or transport settings).
 
@@ -29,8 +31,6 @@ Regular endpoints connect to the router using *connectors* that allow them to co
 snippet: connector
 
 The snippet above tells the endpoint that a designated router listens on queue `MyRouter` and that messages of type `MyMessage` should be sent to the endpoint `Receiver` via the router. It also tells the subscription infrastructure that the event `MyEvent` is published by the endpoint `Publisher` that is hosted behind the router.
-
-NOTE: The NServiceBus.Router.Connector package targets NServiceBus 7. In order to connect to the router from NServiceBus 6 use NServiceBus.Bridge.Connector package.
 
 
 ## Router configuration
@@ -60,14 +60,14 @@ In addition to immediate and delayed retries, the router has built-in outage det
 
 ## Topologies
 
-A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endpoints, called *interfaces*, and a *routing protocol* that controls how messages should be forwarded between them. This design is very flexible and allows for various topologies to be implemented. Here are some examples:
+A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endpoints, called *interfaces*, and a *routing protocol* that controls how messages should be forwarded between them. This design is very flexible and allows for various topologies to be implemented. Here are some sample topologies:
 
- * [Two-way bridge](bridge.md)
- * [Multi-way bridge](multi-way.md)
+ * [Direct](direct.md)
+ * [Multi-way](multi-way.md)
  * [Backplane](backplane.md)
 
 ## Scaling out
 
-The router can be scaled out, just like regular NServiceBus endpoint, through the [competing consumers](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) approach. Multiple copies of the router executable can be deployed to separate hosts and run in parallel attached to the same set of queues and they are going to automatically share the load. 
+The router can be scaled out, just like regular NServiceBus endpoint, through the [competing consumers](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) approach. Multiple copies of the router executable can be deployed to separate hosts and run in parallel attached to the same set of queues and they are going to automatically share the load.
 
 One limitation to this approach is the MSMQ transport where queues are only available locally so deployment to multiple hosts is not possible. Fortunately MSMQ has a relatively high throughput so router is likely not going to become a bottleneck.

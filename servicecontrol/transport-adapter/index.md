@@ -6,8 +6,9 @@ reviewed: 2021-02-22
 related:
  - nservicebus/dotnet-templates
  - samples/servicecontrol/adapter-mixed-transports
- - samples/servicecontrol/adapter-asb-multi-namespace
 ---
+
+NOTE: Transport adapters are no longer recommended. Instead, use the [`NServiceBus.Transport.Bridge`](/nservicebus/bridge)
 
 The ServiceControl Transport Adapter decouples ServiceControl from the specifics of the business endpoint's transport to support scenarios where the endpoint's transport uses physical routing features [not compatible with ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md) or where endpoints use mixed transports or multiple instances of a message broker.
 

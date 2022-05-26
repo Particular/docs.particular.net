@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <TargetFramework>net48</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-beta.2" />
+    <PackageReference Include="NServiceBus.Transport.Bridge" Version="0.1.0-beta.2" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.0.0-beta.2" />
+  </ItemGroup>
+</Project>

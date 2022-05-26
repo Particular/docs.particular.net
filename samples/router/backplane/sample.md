@@ -12,6 +12,8 @@ redirects:
 - samples/bridge/backplane 
 ---
 
+include: bridge-to-router-note
+
 The sample demonstrates how to use NServiceBus.Router to connect endpoints running SQL Server transport that use different instances of SQL Server. This is an alternative to the multi-instance mode of SQL Server transport which has been removed in Version 4.
 
 The RabbitMQ broker is used as a backplane in this sample. 

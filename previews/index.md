@@ -22,6 +22,7 @@ User feedback is central to the Preview Program, so the more feedback is receive
 |----------------------------|:-------:|:------:|--------|
 | [NServiceBus.AzureFunctions.StorageQueues](/previews/azure-functions-storage-queues.md)| :white_check_mark: | :white_check_mark: | [Forum discussion](https://discuss.particular.net/t/nservicebus-azurefunctions-storagequeues-public-preview/1911) |
 | [NServiceBus.AwsLambda.Sqs](/previews/aws-lambda-simple-queue-service.md)| :white_check_mark: | :white_check_mark: | [Forum discussion](https://discuss.particular.net/t/nservicebus-awslambda-sqs-public-preview-release-available/2158) |
+| [NServiceBus.Transport.Bridge](/nservicebus/bridge)| :white_check_mark: | :white_check_mark: | [Forum discussion](https://discuss.particular.net/t/tbd) |
 
 :white_large_square: - not started<br>
 :green_square: - in development<br>

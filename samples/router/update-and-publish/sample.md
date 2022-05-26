@@ -8,6 +8,8 @@ related:
 - samples/web/send-from-aspnetcore-webapi
 ---
 
+include: bridge-to-router-note
+
 This sample shows how to use the SQL Server transport in the ASP.NET Core WebAPI application to implement atomic update-and-publish while using a different transport for the backend. Basic concepts related to hosting NServiceBus endpoints in the MVC application are intentionally skipped but available in the [basic MVC Core sample](/samples/web/send-from-aspnetcore-webapi).
 
 Very often the web controller needs to modify the data in a database and publish a message as part of handling a single HTTP request. For consistency these two operations need to be done atomically. That means that if either of them fails, nothing is visible to the outside world. If the transport used by the system does not support distributed transactions, the solution is to use a dedicated specialized transport only for the frontend, and route messages between the two transports using NServiceBus.Router.

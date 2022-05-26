@@ -358,14 +358,12 @@
     - Url: nservicebus/router
       Title: Router
       Articles:
-      - Url: nservicebus/router/bridge
-        Title: Two-way bridge topology
+      - Url: nservicebus/router/direct
+        Title: Direct topology
       - Url: nservicebus/router/multi-way
-        Title: Multi-way bridge topology
+        Title: Multi-way topology
       - Url: nservicebus/router/backplane
         Title: Backplane topology
-      - Url: nservicebus/router/bridge-router
-        Title: Upgrade NServiceBus.Bridge to NServiceBus.Router
     - Url: nservicebus/rawmessaging
       Title: Raw messaging
     - Url: nservicebus/outbox
@@ -633,6 +631,20 @@
       Title: Decommissioning Endpoints
     - Url: nservicebus/operations/nservicebus-analyzer
       Title: NServiceBus Analyzer
+  - Url: nservicebus/bridge
+    Title: Bridge
+    Articles:
+    - Url: nservicebus/bridge
+      Title: Bridge
+    - Url: nservicebus/bridge/configuration
+      Title: Configuration
+    - Url: nservicebus/bridge/scenarios
+      Title: Usage scenarios
+      Articles:
+      - Url: nservicebus/bridge/migrating-from-router
+        Title: Migrating from Router
+    - Url: nservicebus/bridge/performance
+      Title: Performance & Scaling
   - Url: nservicebus/compliance
     Title: Compliance
     Articles:
