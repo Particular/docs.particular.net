@@ -8,7 +8,7 @@ namespace CleanupStrategy
         {
             #region DefineFileLocationForDatabusFiles
 
-            var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+            var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
             dataBus.BasePath(@"\\share\databus_attachments\");
 
             #endregion
