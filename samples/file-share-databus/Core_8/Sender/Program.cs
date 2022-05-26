@@ -11,7 +11,7 @@ class Program
 
         #region ConfigureDataBus
 
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
         dataBus.BasePath(@"..\..\..\..\storage");
 
         #endregion
