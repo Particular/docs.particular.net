@@ -7,7 +7,7 @@ related:
 ---
 
 1. Run the solution. Two console applications start.
-2. Find the Sender application by looking for the one with "Sender" in it's console title and press Enter to send a message. A message is sent that includes a DataBus property that is serialized using a custom JSON serializer.
+2. Find the Sender application by looking for the one with "Sender" in it's console title and press Enter to send a message. A message is sent that includes a DataBus property that is serialized using a custom serializer.
 3. The sample uses the `FileShareDataBus`. Open the solution folder in Windows Explorer and navigate to the `\storage\` sub-folder. Each sub-folder within the `\storage` folder contains serialized data bus properties. 
 
 WARNING: The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/databus/file-share.md#cleanup-strategy).
