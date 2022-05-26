@@ -21,9 +21,6 @@
             endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>()
                 .AddDeserializer<BsonDataBusSerializer>();
             #endregion
-
-            #region Custom
-            #endregion
         }
 
         class BsonDataBusSerializer : IDataBusSerializer
