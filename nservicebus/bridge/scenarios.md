@@ -27,10 +27,10 @@ Take the scenario where a system migrates from the MSMQ transport to the SQL Ser
 Taking a sample migration scenario, assume there are four endpoints that can communicate with each other via messaging. Each endpoint can communicate with the others, but for simplicity the number of arrows between them are reduced.
 
 ```mermaid
-graph LR
+flowchart LR
 
-A[Endpoint A] --> C[Endpoint C]
-B[Endpoint B] --> D[Endpoint D]
+A[Endpoint A] <---> C[Endpoint C]
+B[Endpoint B] <---> D[Endpoint D]
 ```
 
 ### Initiating the migration
@@ -38,13 +38,13 @@ B[Endpoint B] --> D[Endpoint D]
 To slowly migrate endpoints to the other transport and to prevent moving all endpoints at once, the migration will start with two endpoints and move them to the SQL Server transport.
 
 ```mermaid
-graph LR
+flowchart LR
 
 Br(Bridge)
-A[Endpoint A] --> Br
-B[Endpoint B] --> Br
-Br --> C[Endpoint C]
-Br --> D[Endpoint D]
+A[Endpoint A] <---> Br
+B[Endpoint B] <---> Br
+Br <---> C[Endpoint C]
+Br <---> D[Endpoint D]
 subgraph msmq
   A
   B
