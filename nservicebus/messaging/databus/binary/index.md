@@ -12,4 +12,4 @@ This DataBus serializer uses the `BinaryFormatter` to serialize and deserialize 
 
 snippet: BinaryDataBusUsage
 
-WARN: `BinaryFormatter` [is not supported in .NET 5](https://docs.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/5.0/binaryformatter-serialization-obsolete). For projects that target .NET 5 and later, migrate to a [safer serializer](/nservicebus/messaging/databus#serialization).
+WARN: `BinaryFormatter` [is not supported in .NET 5](https://docs.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/5.0/binaryformatter-serialization-obsolete). For projects that target .NET 5 and later, migrate to a [safer serializer](/nservicebus/messaging/databus/#serialization).
