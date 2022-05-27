@@ -16,6 +16,15 @@
   NugetOrder:
     - NServiceBus.DataBus.AzureBlobStorage
 
+- Key: BinaryDataBus
+  Name: DataBus Binary Serializer
+  DocsUrl: /nservicebus/messaging/databus/binary
+  GitHubOwner: Particular
+  Category: Databus
+  ProjectUrl: https://github.com/Particular/NServiceBus.DataBus.BinarySerializer
+  NugetOrder:
+    - NServiceBus.DataBus.BinarySerializer
+
 - Key: SQS
   Name: Amazon SQS Transport
   DocsUrl: /transports/sqs
