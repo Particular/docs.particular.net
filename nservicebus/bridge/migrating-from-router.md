@@ -42,12 +42,12 @@ Note that both events would have the same message identifier, which allows the [
 ```mermaid
 graph LR
   Br(Bridge)
-  A[Endpoint A] <---> Br
-  B[Endpoint B] <---> Br
-  Br <---> C[Endpoint C]
-  Br <---> D[Endpoint D]
-  Ro[Router] <---> C
-  B <--> Ro
+  A[Endpoint A] --> Br
+  B[Endpoint B] --> Br
+  Br --> C[Endpoint C]
+  Br --> D[Endpoint D]
+  Ro[Router] --> C
+  B --> Ro
   subgraph msmq
     A
     B

@@ -29,8 +29,8 @@ Taking a sample migration scenario, assume there are four endpoints that can com
 ```mermaid
 graph LR
 
-A[Endpoint A] <---> C[Endpoint C]
-B[Endpoint B] <---> D[Endpoint D]  
+A[Endpoint A] --> C[Endpoint C]
+B[Endpoint B] --> D[Endpoint D]
 ```
 
 ### Initiating the migration
@@ -41,10 +41,10 @@ To slowly migrate endpoints to the other transport and to prevent moving all end
 graph LR
 
 Br(Bridge)
-A[Endpoint A] <---> Br
-B[Endpoint B] <---> Br
-Br <---> C[Endpoint C]
-Br <---> D[Endpoint D]
+A[Endpoint A] --> Br
+B[Endpoint B] --> Br
+Br --> C[Endpoint C]
+Br --> D[Endpoint D]
 subgraph msmq
   A
   B

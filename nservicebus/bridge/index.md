@@ -3,6 +3,10 @@ title: Bridge
 summary: Connect endpoints in a system that use different transports with the transport bridge
 reviewed: 2022-04-01
 component: Bridge
+related:
+ - samples/bridge/simple
+ - samples/bridge/azure-service-bus-msmq-bridge
+ - samples/bridge/sql-multi-instance
 ---
 
 The `NServiceBus.Transport.Bridge` allows NServiceBus endpoints to connect to other endpoints that are not using the same transport.
