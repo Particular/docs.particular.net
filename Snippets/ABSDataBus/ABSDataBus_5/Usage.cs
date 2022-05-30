@@ -1,8 +1,8 @@
-﻿using System;
-using Azure.Storage.Blobs;
+﻿using Azure.Storage.Blobs;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.DataBus.AzureBlobStorage;
+using System;
 
 class Usage
 {
@@ -10,28 +10,28 @@ class Usage
     {
         #region AzureDataBus
 
-        endpointConfiguration.UseDataBus<AzureDataBus>();
+        endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>();
 
         #endregion
 
         #region AzureDataBusConfigureServiceClient
 
         var serviceClient = new BlobServiceClient("connectionString");
-        endpointConfiguration.UseDataBus<AzureDataBus>()
+        endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>()
                              .UseBlobServiceClient(serviceClient);
 
         #endregion
 
         #region AzureDataBusInjectServiceClient
 
-        endpointConfiguration.UseDataBus<AzureDataBus>();
+        endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>();
         endpointConfiguration.RegisterComponents(services => services.AddSingleton<IProvideBlobServiceClient, CustomProvider>());
 
         #endregion
 
         #region AzureDataBusConnectionAndContainer
 
-        endpointConfiguration.UseDataBus<AzureDataBus>()
+        endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>()
             .ConnectionString("connectionString")
             .Container("containerName");
 
@@ -67,7 +67,7 @@ class Usage
 
         #region AzureDataBusSetup
 
-        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>();
+        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>();
         dataBus.ConnectionString(azureStorageConnectionString);
         dataBus.Container(containerName);
         dataBus.BasePath(basePathWithinContainer);

@@ -19,7 +19,7 @@
         public async Task Write()
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
-            var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+            var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
             dataBus.BasePath(@"..\..\..\storage");
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
             endpointConfiguration.SetTypesToScan(typesToScan);

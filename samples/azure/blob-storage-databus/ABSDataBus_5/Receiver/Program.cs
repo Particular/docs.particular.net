@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using Azure.Storage.Blobs;
+﻿using Azure.Storage.Blobs;
 using NServiceBus;
+using System;
+using System.Threading.Tasks;
 
 class Program
 {
@@ -11,12 +11,11 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Receiver");
 
         var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
-        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>()
+        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>()
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
 
         endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

@@ -6,7 +6,7 @@ class Usage
     {
         #region FileShareDataBus
 
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
         dataBus.BasePath(databusPath);
 
         #endregion

@@ -1,6 +1,6 @@
 ---
-title: Custom Data Bus Implementation
-summary: Details how to register and plug in a custom data bus implementation into an endpoint.
+title: Customizing DataBus
+summary: Details how to register and plug in a customized data bus implementation into an endpoint.
 component: Core
 reviewed: 2021-05-11
 redirects:

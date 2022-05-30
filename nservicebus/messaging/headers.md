@@ -445,6 +445,7 @@ When using the [file share data bus](/nservicebus/messaging/databus/file-share.m
 
 When using the `DataBusProperty`, NServiceBus uses that property as a placeholder at serialization time. The serialized value of that property will contain a key. This key maps to a named header. That header then provides the path suffix of where that binary data is stored on disk on the file system.
 
+partial: databuscontenttype
 
 #### Example headers
 
