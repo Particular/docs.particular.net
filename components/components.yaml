@@ -16,7 +16,7 @@
   NugetOrder:
     - NServiceBus.DataBus.AzureBlobStorage
 
-- Key: BinaryDataBus
+- Key: BinaryDataBusSerializer
   Name: DataBus Binary Serializer
   DocsUrl: /nservicebus/messaging/databus/binary
   GitHubOwner: Particular

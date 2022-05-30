@@ -1,7 +1,7 @@
 ---
 title: DataBus Binary Serializer
 summary: A binary serializer for data bus
-component: BinaryDataBus
+component: BinaryDataBusSerializer
 reviewed: 2022-05-27
 related:
  - samples/file-share-databus
