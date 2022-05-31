@@ -4,11 +4,11 @@ summary: Guide to migrate from the NServiceBus.Router community package to the t
 reviewed: 2022-04-25
 component: Bridge
 ---
-This is a migration guide for those that use the community package, `NService.Router`, and want to move to the fully supported `NServiceBus.Transport.Bridge` component.
+This is a guide for migrating from the `NService.Router` community package to Particular Software's `NServiceBus.Transport.Bridge` package.
 
 ## Router versus bridge
 
-One important difference between `NServiceBus.Transport.Bridge` and `NServiceBus.Router` is that the bridge is fully supported whereas the NServiceBus.Router component, as a community package, is not.
+One important difference between `NServiceBus.Transport.Bridge` and `NServiceBus.Router` is that the `NServiceBus.Transport.Bridge` is supported by Particular Software. `NServiceBus.Router` is a community package and is not supported by Particular Software.
 
 The bridge does not require what the NServiceBus.Router calls _connectors_.
 
