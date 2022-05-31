@@ -551,6 +551,10 @@ No versions released.
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/1.1.2) | 2017-03-24     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/1.0.1) | ~~2016-10-11~~ | ~~2017-06-24~~    | ~~Superseded by 1.1.x~~           |
 
+#### [NServiceBus.DataBus.BinarySerializer](/nuget/NServiceBus.DataBus.BinarySerializer)
+
+No versions released.
+
 ### Host packages
 
 #### [NServiceBus.AzureFunctions.InProcess.ServiceBus](/nuget/NServiceBus.AzureFunctions.InProcess.ServiceBus)
