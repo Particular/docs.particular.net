@@ -91,4 +91,4 @@ NOTE: The exact values for a production system may vary but the table above shou
 
 When designing Software-as-a-Service systems, it is recommended to use separate databases and endpoint sets for groups of tenants rather than for vertical slices of a business flow. With this approach each database would support relatively high number (whole business flow end-to-end) of low-throughput endpoints (a portion of customer base) as opposed to low number of high-throughput endpoints.
 
-When using multiple instances of SQL Azure consider connecting them with [NServiceBus.Router](/nservicebus/router/). In order to ensure exactly-once message processing semantics, consider [elastic transactions](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-transactions-overview) in the message router.
+When using multiple instances of SQL Azure consider connecting them with [the NServiceBus Bridge](/nservicebus/bridge/). In order to ensure exactly-once message processing semantics, consider [elastic transactions](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-transactions-overview) in the message router.
