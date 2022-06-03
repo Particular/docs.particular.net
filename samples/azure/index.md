@@ -1,6 +1,6 @@
 ---
 title: Azure Samples
-reviewed: 2019-11-27
+reviewed: 2022-06-03
 related:
  - samples/showcase/cloud-azure
 ---

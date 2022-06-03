@@ -1,7 +1,7 @@
 ---
-title: Client-Side Callbacks
+title: Client-side callbacks
 summary: Gradually transition applications from synchronous to a messaging architecture
-reviewed: 2019-12-02
+reviewed: 2022-06-03
 component: Callbacks
 redirects:
 - nservicebus/how-do-i-handle-responses-on-the-client-side
@@ -12,15 +12,13 @@ related:
 
 Callbacks enable the use of messaging behind a synchronous API that can't be changed. A common use case is introducing messaging to existing synchronous web or WCF applications. The advantage of using callbacks is that they allow gradually transitioning applications towards messaging.
 
-
 ## When to use callbacks
 
 WARNING: **Do not call the callback APIs from inside a `Handle` method in an `IHandleMessages<T>` class** as this can cause deadlocks or other unexpected behavior.
 
 DANGER: Because callbacks won't survive restarts, use callbacks when the data returned is **not business critical and data loss is acceptable**. Otherwise, use [request/response](/samples/fullduplex) with a message handler for the reply messages.
 
-When using callbacks in an ASP.NET Web/MVC/Web API, the NServiceBus callbacks can be used in combination with the async support in ASP.NET to avoid blocking the web server thread and allowing processing of other requests. When a response is received, it is handled and returned to the client. Web clients will still be blocked while waiting for response. This scenario is common when migrating from traditional blocking request/response to messaging.
-
+When using callbacks in an ASP.NET Web/MVC/Web API application, the NServiceBus callbacks can be used in combination with the async support in ASP.NET to avoid blocking the web server thread and allowing processing of other requests. When a response is received, it is handled and returned to the client. Web clients will still be blocked while waiting for response. This scenario is common when migrating from traditional blocking request/response to messaging.
 
 ## Handling responses in the context of a message being sent
 
@@ -31,7 +29,6 @@ DANGER: If the server process returns multiple responses, NServiceBus does not k
 To handle responses from the processing endpoint, the sending endpoint must have its own queue. Therefore, the sending endpoint cannot be configured as a [SendOnly endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting). Messages arriving in this queue are handled using a message handler, similar to that of the processing endpoint, as shown:
 
 snippet: EmptyHandler
-
 
 ## Prerequisites for callback functionality
 
@@ -45,8 +42,7 @@ partial: enabling-callbacks
 
 The callback functionality can be split into three categories based on the type of information being used: integers, enums and objects. Each of these categories involves two parts: send+callback and the response.
 
-
-### Int
+### Integers
 
 The integer response scenario allows any integer value to be returned in a strongly-typed manner.
 
@@ -56,18 +52,15 @@ WARNING: This type of callback won't cause response messages to end up in the [e
 
 snippet: IntCallback
 
-
 #### Response
 
 snippet: IntCallbackResponse
 
 partial: int-reply
 
-
 ### Enum
 
 The enum response scenario allows any enum value to be returned in a strongly-typed manner.
-
 
 #### Send and Callback
 
@@ -75,23 +68,19 @@ snippet: EnumCallback
 
 partial: enum-reply
 
-
 #### Response
 
 snippet: EnumCallbackResponse
-
 
 ### Object
 
 The object response scenario allows an object instance to be returned.
 
-
 #### The response message
 
-This feature leverages the message reply mechanism of the bus, so the response needs to be a message.
+This feature leverages the message reply mechanism of the bus, so the response must be a message.
 
 snippet: CallbackResponseMessage
-
 
 #### Send and callback
 
@@ -99,16 +88,13 @@ snippet: ObjectCallback
 
 partial: fakeHandler
 
-
 #### Response
 
 snippet: ObjectCallbackResponse
 
 partial: cancellation
 
-
 ## Message routing
-
 
 partial: route
 
