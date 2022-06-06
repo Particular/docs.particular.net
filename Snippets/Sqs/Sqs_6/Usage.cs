@@ -384,6 +384,58 @@ class Usage
         #endregion
     }
 
+    void EnableMessageDrivenPubSubCompatibilityMode(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable 618
+        #region EnableMessageDrivenPubSubCompatibilityMode
+
+        var routing = endpointConfiguration.UseTransport(new SqsTransport());
+
+        routing.EnableMessageDrivenPubSubCompatibilityMode();
+
+        #endregion
+#pragma warning restore 618
+    }
+
+    void SubscriptionCacheTtl(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable 618
+        var routing = endpointConfiguration.UseTransport(new SqsTransport());
+        #region SubscriptionsCacheTTL
+
+        var migrationSettings = routing.EnableMessageDrivenPubSubCompatibilityMode();
+        migrationSettings.SubscriptionsCacheTTL(TimeSpan.FromSeconds(30));
+
+        #endregion
+#pragma warning restore 618
+    }
+
+    void TopicCacheTtl(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable 618
+        var routing = endpointConfiguration.UseTransport(new SqsTransport());
+        #region TopicCacheTtl
+
+        var migrationSettings = routing.EnableMessageDrivenPubSubCompatibilityMode();
+        migrationSettings.TopicCacheTTL(TimeSpan.FromSeconds(30));
+
+        #endregion
+#pragma warning restore 618
+    }
+
+    void MessageVisibilityTimeout(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable 618
+        var routing = endpointConfiguration.UseTransport(new SqsTransport());
+        #region MessageVisibilityTimeout
+
+        var migrationSettings = routing.EnableMessageDrivenPubSubCompatibilityMode();
+        migrationSettings.MessageVisibilityTimeout(timeoutInSeconds: 10);
+
+        #endregion
+#pragma warning restore 618
+    }
+
     class SubscribedEvent { }
 
     class PublishedEvent { }
