@@ -396,7 +396,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.1) | 2022-03-11     | -                 | -                                 |
 | [7.3.x](https://www.nuget.org/packages/NServiceBus.Testing/7.3.0) | 2021-09-07     | 2022-06-11        | Superseded by 7.4.x               |
-| [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.2.0) | ~~2019-09-10~~ | ~~2021-12-07~~    | ~~Superseded by 7.3.x~~           |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Testing/6.0.4) | 2016-10-11     | 2020-05-29        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2022-05-29 |
 
 #### [NServiceBus.UniformSession](/nuget/NServiceBus.UniformSession)
