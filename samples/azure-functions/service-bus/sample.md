@@ -47,7 +47,7 @@ Running the sample will launch the **Azure Functions runtime** window.
 
 To try the Azure Function:
 
-1. Open a browser and navigate to `http://localhost:7071/api/HttpSender`. The port number might be different and will be indicated when the function project is started.
+1. Open a browser and navigate to <http://localhost:7071/api/HttpSender>. The port number might be different and will be indicated when the function project is started.
 1. The queue-triggered function will receive the `TriggerMessage` and process it with NServiceBus.
 1. The NServiceBus message handler for `TriggerMessage` sends a `FollowUpMessage`.
 1. The queue-triggered function will receive the `FollowUpMessage` and process it with NServiceBus.
