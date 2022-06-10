@@ -344,7 +344,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.1) | 2022-03-11     | -                 | -                                 |
-| [7.3.x](https://www.nuget.org/packages/NServiceBus.Testing/7.3.0) | 2021-09-07     | 2022-06-11        | Superseded by 7.4.x               |
+| [~~7.3.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.3.0) | ~~2021-09-07~~ | ~~2022-06-11~~    | ~~Superseded by 7.4.x~~           |
 
 #### [NServiceBus.UniformSession](/nuget/NServiceBus.UniformSession)
 
