@@ -1,6 +1,6 @@
 ---
 title: DataBus Binary Serializer
-summary: A binary serializer for data bus
+summary: A binary serializer for the data bus
 component: BinaryDataBusSerializer
 reviewed: 2022-05-27
 related:
