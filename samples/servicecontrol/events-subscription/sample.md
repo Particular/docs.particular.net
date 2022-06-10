@@ -88,6 +88,6 @@ snippet: ServiceControlEventsHandlers
 
 This sample uses the [Learning Transport](/transports/learning/) in order to be portable with no transport dependencies.
 
-If adjusting this sample to use the [Azure Service Bus transport](/transports/azure-service-bus/legacy/), note that the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation), or if using the [legacy Azure Service Bus transport](), see its [sanitization strategy documentation](/transports/azure-service-bus/legacy/sanitization.md). 
+When changing this sample to use Azure Service Bus as messaging infrastructure, note that the subscribing endpoint must not override the default name shortening strategy in [enity creation configuration settings](/transports/azure-service-bus/configuration.md#entity-creation) when using [Azure Service Bus Transport](https://docs.particular.net/transports/azure-service-bus/), nor [sanitization strategy documentation](/transports/azure-service-bus/legacy/sanitization.md) when using [the legacy version of the transport](https://docs.particular.net/transports/azure-service-bus/legacy/). 
 
 Same applies to [Azure Storage Queues](/transports/azure-storage-queues) name [sanitization strategy](/transports/azure-storage-queues/sanitization.md#backward-compatibility-with-versions-7-and-below)
