@@ -26,6 +26,7 @@ WARNING: As Microsoft is not making MSMQ available for .NET Core, building new s
 |Scale-out             |Distributor or Windows Network Load Balancing
 |Scripted Deployment        |C#, PowerShell
 |Installers                 |Optional
+|Native integration         |[Supported](native-integration.md)
 
 ## Configuring the endpoint
 

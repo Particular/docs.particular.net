@@ -24,6 +24,7 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Supported using `NServiceBus.Transport.AzureServiceBus.CommandLine`
 |Installers                 |Optional
+|Native integration         |[Supported](native-integration.md)
 
 NOTE: The Azure Service Bus transport only supports Standard and Premium tiers of the Microsoft Azure Service Bus service. Premium tier is recommended for production environments.
 

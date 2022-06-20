@@ -30,6 +30,7 @@ include: learning-usages
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Not supported
 |Installers                 |Not supported, the transport always create the required folder structure
+|Native integration         |Not supported
 
 ### Publish and subscribe
 

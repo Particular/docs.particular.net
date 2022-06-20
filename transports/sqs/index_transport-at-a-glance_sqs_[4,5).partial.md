@@ -9,3 +9,4 @@
 |Scale-out             |Competing consumer
 |Scripted Deployment        |PowerShell, CloudFormation, C#
 |Installers                 |Optional
+|Native integration         |Not supported
