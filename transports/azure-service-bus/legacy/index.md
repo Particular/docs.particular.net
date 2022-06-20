@@ -35,6 +35,7 @@ include: azure-transports
 |Scale-out             |Competing consumer
 |Scripted Deployment        | Not supported
 |Installers                 |Optional
+|Native integration         |[Supported](native-integration.md)
 
 
 ## Enabling the Transport

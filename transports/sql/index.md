@@ -28,6 +28,7 @@ WARNING: Although this transport will run on the free version of the engine, i.e
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Sql Scripts
 |Installers                 |Optional
+|Native integration         |[Supported](native-integration.md)
 
 ## Usage
 

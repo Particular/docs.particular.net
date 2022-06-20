@@ -9,3 +9,4 @@
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Built-in CLI, C#
 |Installers                 |Optional
+|Native integration         |[Supported](native-integration.md)

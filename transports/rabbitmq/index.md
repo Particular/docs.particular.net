@@ -30,6 +30,7 @@ WARNING: The transport is not compatible with RabbitMQ broker version 3.3.X and 
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Not supported
 |Installers                 |Mandatory
+|Native integration         |[Supported](native-integration.md)
 
 ## Configuring the endpoint
 
