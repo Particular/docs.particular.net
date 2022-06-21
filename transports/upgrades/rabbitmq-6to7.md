@@ -12,6 +12,11 @@ upgradeGuideCoreVersions:
  - 7
 ---
 
-To make sure that delayed messages can be safely executed version 7 requires all RabbitMQ nodes to be on version `3.10.0` or above. 
+To make sure that delayed messages can be safely executed version 7 requires all RabbitMQ nodes to be on version `3.10.0` or above.
 
 See the [minimum broker requirements documentation](/transports/rabbitmq/#broker-compatibility) for more details.
+
+- Queue type is now mandatory on the routing topology
+- Quorum queues now full supported
+  - Migration instructions
+- Tooling in general
