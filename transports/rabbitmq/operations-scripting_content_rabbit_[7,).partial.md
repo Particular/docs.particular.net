@@ -13,18 +13,22 @@ Once installed, the `rabbitmq-transport` command line tool will be available for
 ### Available commands
 
 - `endpoint create`
-- TBD
+- `queue migrate-to-quorum`
+- `delays create`
+- `delays verify`
+- `delays migrate`
 
 ### rabbitmq-transport endpoint create
 
 Create a new endpoint using:
 
 ```
-asb-transport endpoint create name
+rabbitmq-transport endpoint create name
 ```
 
 #### options
 
-`-todo` | `--todo` : todo
+`-error-queue` | `--error` : todo
+`-audit-queue` | `--error` : todo
 
 include: return-to-source-queue
