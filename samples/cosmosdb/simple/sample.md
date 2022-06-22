@@ -11,6 +11,10 @@ redirects:
 
 This sample shows a client/server scenario using non-transactional saga persistence.
 
+## Prerequisites
+
+Ensure that an instance of the latest [Azure Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator) is running.
+
 ## Projects
 
 ### SharedMessages
