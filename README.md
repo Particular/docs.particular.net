@@ -449,6 +449,7 @@ Do not write a sample when:
 * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.
 * A sample must obey rules that are verified by [Integrity Tests](#integrity-tests).
 * Samples targeting .NET Core should be able to run across Windows, macOS, and Linux. To ensure that's the case, you can run the sample using WSL (Windows Subsystem for Linux) in VS Code. VS Code can be [configured to use WSL as the default development environment](https://code.visualstudio.com/docs/remote/wsl). If a sample cannot be designed to support one or more platforms add a note to the `sample.md`-file with the platforms that are unsupported and the reasoning.
+* Samples contain no calls to `ConfigureAwait(bool)` unless they are explicitly required.
 
 #### References
 
