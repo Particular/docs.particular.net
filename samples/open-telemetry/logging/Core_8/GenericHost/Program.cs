@@ -42,7 +42,7 @@ internal class Program
         {
             services.AddOpenTelemetryTracing(config => config
                                                        .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("MyEndpointName"))
-                                                       .AddSource("NServiceBus.Diagnostics")
+                                                       .AddSource("NServiceBus.*")
                                                        .AddConsoleExporter());
 
         });
