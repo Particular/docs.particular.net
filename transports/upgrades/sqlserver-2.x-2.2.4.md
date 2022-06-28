@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport Upgrade Version 2.x to 2.2.4
 summary: Instructions on how to patch SQL injection vulnerability in SQL Server Transport version 2.x
-reviewed: 2019-12-10
+reviewed: 2022-06-28
 component: SqlTransport
 related:
  - security-advisories/sqlserver-sqlinjection
@@ -12,11 +12,9 @@ upgradeGuideCoreVersions:
  - 5
 ---
 
-
 This document explains how to patch a system for [SQL injection vulnerability in the SQL Server Transport](https://github.com/Particular/NServiceBus.SqlServer/issues/272) using hotfix release 2.2.4.
 
 NOTE: Detailed information about the vulnerability, its impact, available mitigation steps and patching instructions can be found in the [security advisory](/security-advisories/sqlserver-sqlinjection.md).
-
 
 ## Updating the NuGet package
 
@@ -28,13 +26,12 @@ Update-Package NServiceBus.SqlServer -Version 2.2.4
 
 After the package has been updated, all affected endpoints must be rebuilt and redeployed.
 
-
 ## Patching a deployed system
 
 This vulnerability can also be fixed by updating the SQL Server Transport DLL without the need to rebuild and redeploy an affected endpoint by following these steps:
 
- 1. Update the NuGet package
- 1. For each affected endpoint:
-  1. Stop the endpoint.
-  1. Copy the `NServiceBus.Transport.SqlServer.dll` file from the updated NuGet package to directory where binaries of the endpoint are stored. Make sure that updated version of the .dll overwrites the previous one.
-  1. Restart the endpoint.
+1. Update the NuGet package
+1. For each affected endpoint:
+   1. Stop the endpoint.
+   1. Copy the `NServiceBus.Transport.SqlServer.dll` file from the updated NuGet package to directory where binaries of the endpoint are stored. Make sure that updated version of the .dll overwrites the previous one.
+   1. Restart the endpoint.
