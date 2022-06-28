@@ -43,7 +43,7 @@ class Usage
         #region rabbitmq-config-useconventionalroutingtopology
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseConventionalRoutingTopology();
+        transport.UseConventionalRoutingTopology(QueueType.Quorum);
 
         #endregion
     }
@@ -53,7 +53,7 @@ class Usage
         #region rabbitmq-config-usedirectroutingtopology
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseDirectRoutingTopology();
+        transport.UseDirectRoutingTopology(QueueType.Quorum);
 
         #endregion
     }
@@ -64,6 +64,7 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.UseDirectRoutingTopology(
+            QueueType.Quorum,
             routingKeyConvention: MyRoutingKeyConvention,
             exchangeNameConvention: () => "MyTopic");
 
