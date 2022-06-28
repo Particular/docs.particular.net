@@ -21,3 +21,25 @@ snippet: otel-logging
 
 This will apply the OpenTelemetry logging format to all the logs. More importantly, it will [correlate all logs](https://opentelemetry.io/docs/reference/specification/logs/overview/#log-correlation) to the active traces.
 This means that each log statement will include a `TraceId` and `SpanId` as part of the log entry.
+
+The following log statement:
+
+snippet: log-statement
+
+Will lead to the following output:
+
+info: MyMessageHandler[0]
+Received message #54
+LogRecord.Timestamp:               2022-06-28T09:02:34.5342602Z
+LogRecord.TraceId:                 964b320925ab08cd2134c02d0abe920d
+LogRecord.SpanId:                  066fce94c5438add
+LogRecord.TraceFlags:              Recorded
+LogRecord.CategoryName:            MyMessageHandler
+LogRecord.LogLevel:                Information
+LogRecord.FormattedMessage:        Received message #54
+LogRecord.StateValues (Key:Value):
+{OriginalFormat}: Received message #54
+LogRecord.ScopeValues (Key:Value):
+[Scope.0]:SpanId: 066fce94c5438add
+[Scope.0]:TraceId: 964b320925ab08cd2134c02d0abe920d
+[Scope.0]:ParentId: e595cc6a4d9b0768
