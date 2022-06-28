@@ -7,7 +7,7 @@ partial class Upgrade
         #region 6to7conventional
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseConventionalRoutingTopology();
+        transport.UseConventionalRoutingTopology(QueueType.Quorum);
 
         #endregion
     }
@@ -17,7 +17,7 @@ partial class Upgrade
         #region 6to7direct
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseDirectRoutingTopology();
+        transport.UseDirectRoutingTopology(QueueType.Quorum);
 
         #endregion
     }
