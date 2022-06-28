@@ -10,8 +10,8 @@ related:
 
  1. Run the solution. Two console applications start.
  1. Find the Sender application by looking for the one with "Sender" in its path
- 1. Press `d` in the window to send a large message. A message has just been sent that is larger than the limit allowed by the learning transport. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
- 1. Click `n` in the Sender window. A message larger than the allowed limit is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown in the "Sender" application.
+ 1. Press <kbd>D</kbd> in the window to send a large message. A message has just been sent that is larger than the limit allowed by the learning transport. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
+ 1. Click <kbd>N</kbd> in the Sender window. A message larger than the allowed limit is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown in the "Sender" application.
 
 WARNING: The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/databus/file-share.md#cleanup-strategy).
 
