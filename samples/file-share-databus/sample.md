@@ -1,6 +1,6 @@
 ---
 title: File Share Data Bus Usage
-reviewed: 2019-12-12
+reviewed: 2022-06-28
 component: FileShareDataBus
 redirects:
  - nservicebus/attachments-databus-sample
@@ -11,19 +11,17 @@ related:
  1. Run the solution. Two console applications start.
  1. Find the Sender application by looking for the one with "Sender" in its path
  1. Press `d` in the window to send a large message. A message has just been sent that is larger than the limit allowed by the learning transport. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
- 1. Click 'n' in the Sender window. A message larger than the allowed limit is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown in the "Sender" application.
+ 1. Click `n` in the Sender window. A message larger than the allowed limit is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown in the "Sender" application.
 
 WARNING: The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/databus/file-share.md#cleanup-strategy).
-
 
 ## Code walk-through
 
 This sample contains three projects:
 
- * Messages - A class library containing the sample messages. Only one of the message types utilizes the data bus.
- * Sender - A console application responsible for sending the large messages.
- * Receiver - A console application responsible for receiving the large messages from Sender.
-
+* Messages - A class library containing the sample messages. Only one of the message types utilizes the data bus.
+* Sender - A console application responsible for sending the large messages.
+* Receiver - A console application responsible for receiving the large messages from Sender.
 
 ### Messages project
 
@@ -54,17 +52,15 @@ Following is an example of the message with `DataBus` property that is sent to t
 }
 ```
 
-
 ### Configuring the databus location
 
 Both the `Sender` and `Receive` project must share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment.
 
 snippet: ConfigureDataBus
 
-
 ### Sender project
 
-The following `Sender` project code sends the `MessageWithLargePayload `message, using the NServiceBus attachment mechanism:
+The following `Sender` project code sends the `MessageWithLargePayload` message, using the NServiceBus attachment mechanism:
 
 snippet: SendMessageLargePayload
 
@@ -73,7 +69,6 @@ The following `Sender` project code sends the `AnotherMessageWithLargePayload` m
 snippet: SendMessageTooLargePayload
 
 In both cases, a 5MB message is sent, but the `MessageWithLargePayload` message is successfully delivered, while `AnotherMessageWithLargePayload` fails.
-
 
 ### Receiver project
 
