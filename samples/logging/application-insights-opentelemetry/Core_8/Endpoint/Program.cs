@@ -1,4 +1,4 @@
-﻿//using Azure.Monitor.OpenTelemetry.Exporter;
+﻿using Azure.Monitor.OpenTelemetry.Exporter;
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
@@ -19,13 +19,13 @@ internal class Program
             ["service.instance.id"] = Guid.NewGuid().ToString(),
         };
 
-        //var appInsightsConnectionString = "<YOUR KEY HERE>";
+        var appInsightsConnectionString = "<YOUR KEY HERE>";
 
         var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(attributes);
         using var traceProvider = Sdk.CreateTracerProviderBuilder()
             .SetResourceBuilder(resourceBuilder)
             .AddSource("NServiceBus.*")
-            //.AddAzureMonitorTraceExporter(o => o.ConnectionString = appInsightsConnectionString)
+            .AddAzureMonitorTraceExporter(o => o.ConnectionString = appInsightsConnectionString)
             .AddConsoleExporter(o => o.Targets = OpenTelemetry.Exporter.ConsoleExporterOutputTargets.Console)
             .Build();
 
