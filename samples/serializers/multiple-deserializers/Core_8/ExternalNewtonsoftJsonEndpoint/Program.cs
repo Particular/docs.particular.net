@@ -9,7 +9,7 @@ static class Program
         Console.Title = "Samples.MultipleDeserializers.ExternalNewtonsoftJsonEndpoint";
         #region configExternalNewtonsoftJson
         var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ExternalNewtonsoftJsonEndpoint");
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serialization.ContentTypeKey("NewtonsoftJson");
         endpointConfiguration.RegisterOutgoingMessageLogger();
 
