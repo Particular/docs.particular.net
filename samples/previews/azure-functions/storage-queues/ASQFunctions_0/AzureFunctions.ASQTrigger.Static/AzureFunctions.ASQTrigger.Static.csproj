@@ -8,7 +8,7 @@
     <PackageReference Include="NServiceBus.AzureFunctions.StorageQueues" Version="0.4.*" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="3.*" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AzureFunctions.Messages\AzureFunctions.Messages.csproj" />

@@ -22,7 +22,7 @@ class Program
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
         transport.ConnectionString(connectionString);
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>()
             .Settings(new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,

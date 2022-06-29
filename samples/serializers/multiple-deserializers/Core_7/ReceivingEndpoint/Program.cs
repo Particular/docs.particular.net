@@ -18,11 +18,11 @@ static class Program
         endpointConfiguration.UseSerialization<XmlSerializer>();
 
         // External Newtonsoft Json
-        var externalNewtonsoftJson = endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
+        var externalNewtonsoftJson = endpointConfiguration.AddDeserializer<NewtonsoftJsonSerializer>();
         externalNewtonsoftJson.ContentTypeKey("NewtonsoftJson");
 
         // External Newtonsoft Bson
-        var externalNewtonsoftBson = endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
+        var externalNewtonsoftBson = endpointConfiguration.AddDeserializer<NewtonsoftJsonSerializer>();
         externalNewtonsoftBson.ReaderCreator(stream => new BsonDataReader(stream));
         externalNewtonsoftBson.WriterCreator(stream => new BsonDataWriter(stream));
         externalNewtonsoftBson.ContentTypeKey("NewtonsoftBson");

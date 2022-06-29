@@ -41,7 +41,7 @@ class Program
                 var settings = transport.GetSettings();
 
                 // Register serializer used to serialize MessageWrapper (custom MessageWrapper serializer or endpoint's serializer different than JSON)
-                var serializer = Tuple.Create(new NewtonsoftSerializer() as SerializationDefinition, new SettingsHolder());
+                var serializer = Tuple.Create(new NewtonsoftJsonSerializer() as SerializationDefinition, new SettingsHolder());
                 settings.Set("MainSerializer", serializer);
 
                 #endregion
@@ -67,7 +67,7 @@ class Program
                 var settings = transport.GetSettings();
 
                 // Register serializer used to serialize MessageWrapper (custom MessageWrapper serializer or endpoint's serializer different than JSON)
-                var serializer = Tuple.Create(new NewtonsoftSerializer() as SerializationDefinition, new SettingsHolder());
+                var serializer = Tuple.Create(new NewtonsoftJsonSerializer() as SerializationDefinition, new SettingsHolder());
                 settings.Set("MainSerializer", serializer);
 
                 #endregion

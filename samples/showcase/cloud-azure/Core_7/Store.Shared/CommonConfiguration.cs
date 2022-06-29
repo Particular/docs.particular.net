@@ -35,6 +35,6 @@ public static class CommonConfiguration
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.RegisterMessageMutator(new DebugFlagMutator());
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
     }
 }

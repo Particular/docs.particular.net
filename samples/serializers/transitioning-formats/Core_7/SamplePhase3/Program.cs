@@ -18,7 +18,7 @@ static class Program
             Formatting = Formatting.Indented,
             ContractResolver = new ExtendedResolver()
         };
-        var serializationV2 = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serializationV2 = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serializationV2.Settings(settingsV2);
         serializationV2.ContentTypeKey("jsonv2");
 
@@ -26,7 +26,7 @@ static class Program
         {
             Formatting = Formatting.Indented
         };
-        var serializationV1 = endpointConfiguration.AddDeserializer<NewtonsoftSerializer>();
+        var serializationV1 = endpointConfiguration.AddDeserializer<NewtonsoftJsonSerializer>();
         serializationV1.Settings(settingsV1);
         serializationV1.ContentTypeKey("jsonv1");
 

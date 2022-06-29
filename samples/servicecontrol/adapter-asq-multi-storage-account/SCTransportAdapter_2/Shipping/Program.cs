@@ -26,7 +26,7 @@ class Program
         transport.AccountRouting().AddAccount("storage_account", connectionString);
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
         var chaos = new ChaosGenerator();
         endpointConfiguration.RegisterComponents(

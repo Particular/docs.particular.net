@@ -27,7 +27,7 @@ class Program
         transport.DisablePublishing();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.DisableFeature<TimeoutManager>();
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
         #region sanitization
