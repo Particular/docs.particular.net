@@ -28,7 +28,7 @@ The `UsePublisherConfirms` API has been deprecated in version 6. Publisher confi
 
 ## `UseRoutingTopology` has been renamed
 
-The `UseRoutingTopology` API has been renamed to `UseCustomRoutingTopology` to indicate that the API overrides the default routing topology.
+The `UseRoutingTopology` API has been renamed to `UseCustomRoutingTopology` to make it clearer that the API is used when a custom routing topology has been implemented.
 
 ## `SetClientCertificates` has been renamed
 
