@@ -46,7 +46,7 @@ namespace Rabbit_All.NativeSend
             logFactory.Level(LogLevel.Warn);
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.SendFailedMessagesTo(errorQueueName);
-            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+            endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(
                 customizations: setting =>

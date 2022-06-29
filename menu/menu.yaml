@@ -726,6 +726,8 @@
         Title: Version 6 to 7
     - Title: RabbitMQ
       Articles:
+      - Url: transports/upgrades/rabbitmq-7to8
+        Title: Version 7 to 8
       - Url: transports/upgrades/rabbitmq-6to7
         Title: Version 6 to 7
       - Url: transports/upgrades/rabbitmq-5to6
