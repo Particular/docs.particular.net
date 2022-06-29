@@ -13,7 +13,7 @@ namespace Receiver
             var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Cluster.MyEndpoint");
 
             #region cluster-configuration
-            var transport = new RabbitMQClusterTransport(Topology.Conventional, "host=localhost", QueueMode.Quorum, DelayedDeliverySupport.Disabled);
+            var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), "host=localhost");
             #endregion
 
             #region cluster-add-nodes

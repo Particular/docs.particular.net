@@ -8,7 +8,7 @@
         {
             #region quorum-queue-config
 
-            var rabbitMqTransport = new RabbitMQClusterTransport(Topology.Conventional, "host=localhost", QueueMode.Quorum, DelayedDeliverySupport.Disabled);
+            var rabbitMqTransport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), "host=localhost");
             endpointConfiguration.UseTransport(rabbitMqTransport);
 
             #endregion
@@ -18,7 +18,7 @@
         {
             #region disable-delayed-delivery
 
-            var rabbitMqTransport = new RabbitMQClusterTransport(Topology.Conventional, "host=localhost", QueueMode.Classic, DelayedDeliverySupport.Disabled);
+            var rabbitMqTransport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), "host=localhost");
             endpointConfiguration.UseTransport(rabbitMqTransport);
 
             // delayed retries are enabled by default and need to be explicitly disabled:
@@ -31,7 +31,7 @@
         {
             #region enable-delayed-delivery
 
-            var rabbitMqTransport = new RabbitMQClusterTransport(Topology.Conventional, "host=localhost", QueueMode.Classic, DelayedDeliverySupport.UnsafeEnabled);
+            var rabbitMqTransport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), "host=localhost");
             endpointConfiguration.UseTransport(rabbitMqTransport);
 
             #endregion

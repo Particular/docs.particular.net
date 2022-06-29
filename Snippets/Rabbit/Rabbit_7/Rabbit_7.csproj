@@ -4,7 +4,6 @@
 		<LangVersion>7.3</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<!-- TODO: Update to 7.* once we have a version on myget -->
-		<PackageReference Include="NServiceBus.RabbitMQ" Version="6.*" />
+		<PackageReference Include="NServiceBus.RabbitMQ" Version="7.0.0-beta.2" />
 	</ItemGroup>
 </Project>

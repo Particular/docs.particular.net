@@ -11,7 +11,7 @@ class Program
         #region ConfigureRabbit
 
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleSender");
-        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost");
+        var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), "host=localhost");
         var routing = endpointConfiguration.UseTransport(transport);
 
         #endregion

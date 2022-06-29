@@ -12,7 +12,7 @@ namespace Receiver
             Console.Title = "Samples.RabbitMQ.SimpleReceiver";
             var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleReceiver");
             var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-            transport.UseConventionalRoutingTopology();
+            transport.UseConventionalRoutingTopology(QueueType.Quorum);
             transport.ConnectionString("host=localhost");
             endpointConfiguration.EnableInstallers();
 

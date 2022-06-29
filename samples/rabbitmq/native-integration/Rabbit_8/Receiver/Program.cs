@@ -10,7 +10,7 @@ class Program
 
         #region ConfigureRabbitQueueName
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.NativeIntegration");
-        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost");
+        var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), "host=localhost");
         endpointConfiguration.UseTransport(transport);
         #endregion
 
