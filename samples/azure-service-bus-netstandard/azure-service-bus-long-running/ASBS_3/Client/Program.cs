@@ -15,7 +15,7 @@ class Program
         }
 
         endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
