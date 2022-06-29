@@ -9,7 +9,7 @@ class Program
         Console.Title = "NServiceBusEndpoint";
         var endpointConfiguration = new EndpointConfiguration("NServiceBusEndpoint");
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 

@@ -32,7 +32,7 @@ namespace NServiceBusSubscriber
                     #endregion
 
                     #region Serializer
-                    endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+                    endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
                     #endregion
 
                     #region Conventions

@@ -12,11 +12,9 @@ This serialiser uses [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet depe
 
 partial: howcoreusesjson
 
-
 ## Usage
 
 snippet: NewtonsoftSerialization
-
 
 ### Json.NET attributes
 
@@ -34,13 +32,11 @@ Customize the instance of [JsonSerializerSettings](https://www.newtonsoft.com/js
 
 snippet: NewtonsoftCustomSettings
 
-
 ### Custom reader
 
 Customize the creation of the [JsonReader](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
 
 snippet: NewtonsoftCustomReader
-
 
 ### Custom writer
 
@@ -50,18 +46,11 @@ In the example below, the custom writer omits the [Byte Order Mark (BOM)](https:
 
 snippet: NewtonsoftCustomWriter
 
-
 include: custom-contenttype-key
 
 snippet: NewtonsoftContentTypeKey
 
-## TypeNameHandling
-
-For backward compatibility, the serializer is using `TypeNameHandling.Auto` by default. This allows Json.NET to include additional type information for serialization and deserialization (see [Inferring message type from $type for more information](#inferring-message-type-from-type)).
-
-Warn: `TypeNameHandling.Auto` should be used with caution and it is recommended to use `TypeNameHandling.None` via [custom settings](#usage-custom-settings) instead. When using `TypeNameHandling.Auto`, consider a [custom SerializationBinder](https://www.newtonsoft.com/json/help/html/SerializeSerializationBinder.htm) to limit the allowed deserialization types.
-
-`TypeNameHandling.Auto` can be a security risk as it allows the message payload to control the deserialization target type. See [CA2326: Do not use TypeNameHandling values other than None](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2326) for further details on this vulnerability. By [configuring custom `JsonSerializerSettings` settings](#usage-custom-settings), the `TypeNameHandling` setting can be explicitly controlled (the default setting on new `JsonSerializerSettings` is `TypeNameHandling.None`).
+partial: typenamehandling
 
 ## Inferring message type from $type
 
@@ -74,7 +63,6 @@ See [native integration with SqlTransport sample](/samples/sqltransport/native-i
 Customize to use the [Newtonsoft Bson serialization](https://www.newtonsoft.com/json/help/html/SerializeToBson.htm).
 
 snippet: NewtonsoftBson
-
 
 ## Compatibility with the core JSON serializer
 
@@ -90,16 +78,15 @@ Configure the converter as follows:
 
 snippet: UseConverter
 
-###  No support for bundled logical messages
+### No support for bundled logical messages
 
 This serializer is not compatible with multiple bundled messages (when using the `Send(object[] messages)` APIs) sent from NServiceBus version 3 and below. If this scenario is detected then an exception with the following message will be thrown:
 
-```
+```txt
 Multiple messages in the same stream are not supported.
 ```
 
 The `AddDeserializer` API can help transition between serializers. See the [Multiple Deserializers Sample](/samples/serializers/multiple-deserializers/) for more information.
-
 
 ### Use of $type requires an assembly qualified name
 

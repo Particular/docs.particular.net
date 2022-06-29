@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "EndpointsMonitor";
         var endpointConfiguration = new EndpointConfiguration("EndpointsMonitor");
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

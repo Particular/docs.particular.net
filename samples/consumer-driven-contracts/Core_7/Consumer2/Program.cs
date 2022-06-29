@@ -12,7 +12,7 @@ class Program
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
         // uncomment below to demonstrate json
-        //endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        //endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

@@ -10,7 +10,7 @@ static class Program
         Console.Title = "Samples.MultipleDeserializers.ExternalNewtonsoftBsonEndpoint";
         #region configExternalNewtonsoftBson
         var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ExternalNewtonsoftBsonEndpoint");
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serialization.ReaderCreator(stream => new BsonDataReader(stream));
         serialization.WriterCreator(stream => new BsonDataWriter(stream));
         serialization.ContentTypeKey("NewtonsoftBson");

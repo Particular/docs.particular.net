@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <LangVersion>7.3</LangVersion>
+	  <TargetFrameworks>net6.0;net48</TargetFrameworks>
+	  <OutputType>Exe</OutputType>
+	  <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-beta.1" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-beta.4" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="7.0.0-beta.1" />
   </ItemGroup>
   <ItemGroup Label="Transitive references">

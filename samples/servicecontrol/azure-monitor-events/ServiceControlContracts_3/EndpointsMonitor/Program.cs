@@ -10,7 +10,7 @@ class Program
     {
         Console.Title = "AzureMonitorConnector";
         var endpointConfiguration = new EndpointConfiguration("AzureMonitorConnector");
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

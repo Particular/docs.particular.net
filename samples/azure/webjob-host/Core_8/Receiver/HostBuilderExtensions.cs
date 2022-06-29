@@ -34,7 +34,7 @@ public static class HostBuilderExtensions
             var endpointConfiguration = new EndpointConfiguration("receiver");
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);            
             endpointConfiguration.UsePersistence<NonDurablePersistence>();
-            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+            endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
             endpointConfiguration.EnableInstallers();
 
             var transportConnectionString = ctx.Configuration.GetConnectionString("TransportConnectionString");
@@ -57,8 +57,7 @@ public static class HostBuilderExtensions
     static async Task OnCriticalError(ICriticalErrorContext context,CancellationToken cancellationToken)
     {
         var fatalMessage =
-            $"The following critical error was encountered:{Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
-        EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
+            $"The following critical error was encountered:{Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";       
 
         try
         {

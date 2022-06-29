@@ -35,7 +35,7 @@ class Program
             var endpointConfiguration = new EndpointConfiguration("AwsLambda.Sender");
             endpointConfiguration.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+            endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
             var transport = endpointConfiguration.UseTransport<SqsTransport>();
                 

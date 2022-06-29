@@ -18,7 +18,7 @@ static class Program
         {
             Formatting = Formatting.Indented
         };
-        var serializationV1 = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serializationV1 = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serializationV1.Settings(settingsV1);
         serializationV1.ContentTypeKey("jsonv1");
 

@@ -13,7 +13,7 @@ class Program
         Console.Title = endpointName;
 
         var endpointConfiguration = new EndpointConfiguration(endpointName);
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();

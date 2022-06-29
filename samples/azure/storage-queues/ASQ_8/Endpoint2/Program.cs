@@ -11,7 +11,7 @@ class Program
         var endpointName = "Samples.Azure.StorageQueues.Endpoint2";
         Console.Title = endpointName;
         var endpointConfiguration = new EndpointConfiguration(endpointName);
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         transport.ConnectionString("UseDevelopmentStorage=true");

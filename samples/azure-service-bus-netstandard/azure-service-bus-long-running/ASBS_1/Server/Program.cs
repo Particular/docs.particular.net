@@ -8,7 +8,7 @@ class Program
     {
         Console.Title = "Samples.Azure.ServiceBus.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.Azure.ServiceBus.Server");
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
