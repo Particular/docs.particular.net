@@ -12,11 +12,9 @@ This serialiser uses [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet depe
 
 partial: howcoreusesjson
 
-
 ## Usage
 
 snippet: NewtonsoftSerialization
-
 
 ### Json.NET attributes
 
@@ -34,13 +32,11 @@ Customize the instance of [JsonSerializerSettings](https://www.newtonsoft.com/js
 
 snippet: NewtonsoftCustomSettings
 
-
 ### Custom reader
 
 Customize the creation of the [JsonReader](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
 
 snippet: NewtonsoftCustomReader
-
 
 ### Custom writer
 
@@ -49,7 +45,6 @@ Customize the creation of the [JsonWriter](https://www.newtonsoft.com/json/help/
 In the example below, the custom writer omits the [Byte Order Mark (BOM)](https://en.wikipedia.org/wiki/Byte_order_mark).
 
 snippet: NewtonsoftCustomWriter
-
 
 include: custom-contenttype-key
 
@@ -69,7 +64,6 @@ Customize to use the [Newtonsoft Bson serialization](https://www.newtonsoft.com/
 
 snippet: NewtonsoftBson
 
-
 ## Compatibility with the core JSON serializer
 
 Up to NServiceBus version 6, a [JSON serializer based on Json.NET](json.md) was bundled with the core package. This section outlines the compatibility considerations when switching to this serializer.
@@ -84,16 +78,15 @@ Configure the converter as follows:
 
 snippet: UseConverter
 
-###  No support for bundled logical messages
+### No support for bundled logical messages
 
 This serializer is not compatible with multiple bundled messages (when using the `Send(object[] messages)` APIs) sent from NServiceBus version 3 and below. If this scenario is detected then an exception with the following message will be thrown:
 
-```
+```txt
 Multiple messages in the same stream are not supported.
 ```
 
 The `AddDeserializer` API can help transition between serializers. See the [Multiple Deserializers Sample](/samples/serializers/multiple-deserializers/) for more information.
-
 
 ### Use of $type requires an assembly qualified name
 
