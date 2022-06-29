@@ -59,7 +59,7 @@ class Usage
     {
         #region NewtonsoftCustomWriter
 
-        var noBomEncoding = new UTF8Encoding(false, false);
+        var noBomEncoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: false);
 
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serialization.WriterCreator(stream =>
@@ -79,7 +79,7 @@ class Usage
         #region NewtonsoftContentTypeKey
 
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-        serialization.ContentTypeKey("custom-key");
+        serialization.ContentTypeKey("application/json; charset=utf-8"); // Add `charset` to identify encoding.
 
         #endregion
     }

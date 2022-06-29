@@ -34,10 +34,7 @@ class XmlJsonConverter : JsonConverter
             }
             catch (Exception exception)
             {
-                throw new Exception($"Error parsing XContainer string: {reader.Value}", exception)
-                {
-                    Data = {{"Value", reader.Value}}
-                };
+                throw new Exception($"Error parsing XContainer string: {reader.Value}", exception);
             }
         }
 
