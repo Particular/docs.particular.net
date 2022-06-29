@@ -79,7 +79,7 @@ class Usage
         #region NewtonsoftContentTypeKey
 
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-        serialization.ContentTypeKey("application/json; charset=utf-8"); // Add `charset` to identity encoding.
+        serialization.ContentTypeKey("custom-key");
 
         #endregion
     }

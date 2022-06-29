@@ -15,6 +15,7 @@ static class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+        serialization.ContentTypeKey("application/bson");
         serialization.ReaderCreator(stream => new BsonDataReader(stream));
         serialization.WriterCreator(stream => new BsonDataWriter(stream));
 
