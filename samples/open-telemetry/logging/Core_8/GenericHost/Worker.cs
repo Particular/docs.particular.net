@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-#region generic-host-worker
 class Worker : BackgroundService
 {
     private readonly IMessageSession messageSession;
@@ -33,4 +32,3 @@ class Worker : BackgroundService
         }
     }
 }
-#endregion

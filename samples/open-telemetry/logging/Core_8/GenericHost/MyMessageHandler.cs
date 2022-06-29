@@ -14,8 +14,11 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         #region log-statement
+
         logger.LogInformation($"Received message #{message.Number}");
+
         #endregion
+
         return Task.CompletedTask;
     }
 }

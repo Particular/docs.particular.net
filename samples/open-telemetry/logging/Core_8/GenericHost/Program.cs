@@ -21,8 +21,6 @@ internal class Program
     {
         var builder = Host.CreateDefaultBuilder(args);
 
-        #region generic-host-nservicebus
-
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("Samples.Hosting.GenericHost");
@@ -30,8 +28,6 @@ internal class Program
 
             return endpointConfiguration;
         });
-
-        #endregion
 
         #region otel-config
 
