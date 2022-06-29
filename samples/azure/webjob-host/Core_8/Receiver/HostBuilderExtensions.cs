@@ -34,7 +34,7 @@ public static class HostBuilderExtensions
             var endpointConfiguration = new EndpointConfiguration("receiver");
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);            
             endpointConfiguration.UsePersistence<NonDurablePersistence>();
-            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+            endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
             endpointConfiguration.EnableInstallers();
 
             var transportConnectionString = ctx.Configuration.GetConnectionString("TransportConnectionString");
