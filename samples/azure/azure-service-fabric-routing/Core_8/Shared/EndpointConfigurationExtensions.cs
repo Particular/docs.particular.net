@@ -8,7 +8,7 @@ public static class EndpointConfigurationExtensions
     public static RoutingSettings<AzureServiceBusTransport> ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration, IReliableStateManager stateManager)
     {
         endpointConfiguration.AuditProcessedMessagesTo("audit");
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<ServiceFabricPersistence>();
         persistence.StateManager(stateManager);
