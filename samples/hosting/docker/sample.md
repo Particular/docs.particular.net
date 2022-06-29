@@ -1,7 +1,7 @@
 ---
 title: Hosting endpoints in Docker Linux containers
 summary: Hosting multiple endpoints in several Docker Linux containers managed by Docker Compose
-reviewed: 2019-12-16
+reviewed: 2022-06-29
 component: Core
 related:
 - nservicebus/hosting/docker-host
@@ -16,9 +16,9 @@ downloadbutton
 
 This sample requires that the following tools are installed:
 
- * [.NET Core 3.1 SDK](https://www.microsoft.com/net/download/core)
- * [Docker Community Edition](https://www.docker.com/community-edition) or higher
- * If using Windows, [configure Docker to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers) to support the Linux-based RabbitMQ container
+* [.NET Core 3.1 SDK](https://www.microsoft.com/net/download/core)
+* [Docker Community Edition](https://www.docker.com/community-edition) or higher
+* If using Windows, [configure Docker to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers) to support the Linux-based RabbitMQ container
 
 ## Running the sample
 
