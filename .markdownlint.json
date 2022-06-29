@@ -7,7 +7,8 @@
     "allowed_elements": [
       "img",
       "nobr",
-      "script"
+      "script",
+      "sup"
     ]
   }
 }

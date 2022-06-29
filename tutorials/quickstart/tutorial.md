@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Quick Start"
-reviewed: 2019-12-16
+reviewed: 2022-06-28
 isLearningPath: true
 summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
 extensions:
@@ -24,7 +24,6 @@ downloadbutton
   /* Remove borders on images as they all have appropriate borders */
   img.center { border-style: none !important; }
 </style>
-
 
 ## Project structure
 

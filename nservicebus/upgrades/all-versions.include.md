@@ -238,14 +238,14 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.1.0) | 2021-03-01     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.1.1) | 2021-03-01     | -                 | -                                 |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.0.0) | ~~2020-11-23~~ | ~~2021-06-01~~    | ~~Superseded by 3.1.x~~           |
 
 #### [NServiceBus.Persistence.CosmosDB](/nuget/NServiceBus.Persistence.CosmosDB)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.1.0) | 2022-01-20     | -                 | -                                 |
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.1.1) | 2022-01-20     | -                 | -                                 |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.0.0) | ~~2021-08-09~~ | ~~2022-04-20~~    | ~~Superseded by 1.1.x~~           |
 | [0.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/0.2.1) | 2021-03-04     | 2022-08-09        | Superseded by 1.0.x               |
 | [~~0.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/0.1.2) | ~~2020-10-13~~ | ~~2021-06-04~~    | ~~Superseded by 0.2.x~~           |
