@@ -30,7 +30,7 @@ class Program
 
         routingSettings.DisablePublishing();
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
