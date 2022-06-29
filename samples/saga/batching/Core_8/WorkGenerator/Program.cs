@@ -9,7 +9,7 @@ public static class Program
         var config = new EndpointConfiguration(EndpointNames.WorkGenerator);
 
         config.UsePersistence<LearningPersistence>();
-        config.UseSerialization<NewtonsoftSerializer>();
+        config.UseSerialization<NewtonsoftJsonSerializer>();
         config.AuditProcessedMessagesTo("audit");
         config.SendFailedMessagesTo("error");
 

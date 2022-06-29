@@ -10,7 +10,7 @@ public static class Program
 
         config.UsePersistence<LearningPersistence>();
         config.UseTransport<LearningTransport>();
-        config.UseSerialization<NewtonsoftSerializer>();
+        config.UseSerialization<NewtonsoftJsonSerializer>();
         config.AuditProcessedMessagesTo("audit");
         config.SendFailedMessagesTo("error");
         config.LimitMessageProcessingConcurrencyTo(64);
