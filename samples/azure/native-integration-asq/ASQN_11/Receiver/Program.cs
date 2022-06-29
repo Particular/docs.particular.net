@@ -12,7 +12,7 @@ class Program
         Console.Title = endpointName;
 
         var endpointConfiguration = new EndpointConfiguration(endpointName);
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
         var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true", useNativeDelayedDeliveries: false);
