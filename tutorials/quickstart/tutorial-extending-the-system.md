@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Quick Start: Extending the system"
-reviewed: 2019-12-16
+reviewed: 2022-06-29
 isLearningPath: true
 summary: "Part 3: Learn how easy it is to extend a distributed system by adding new functionality without affecting the other components of the system"
 extensions:
@@ -9,8 +9,6 @@ extensions:
   nextUrl: tutorials/nservicebus-step-by-step/1-getting-started
 previewImage: add-shipping-endpoint.png
 ---
-
-
 
 In the [first part of the tutorial](/tutorials/quickstart), we saw that publishing events using the [Publish-Subscribe pattern](/nservicebus/messaging/publish-subscribe/) reduces coupling and makes maintaining a system easier in the long run. Next, we saw [how to react to failures](/tutorials/quickstart/tutorial-reliability.md) gracefully. Let's now look at how we can add an additional subscriber without needing to modify any existing code.
 
@@ -86,7 +84,6 @@ When complete, the `OrderPlacedHandler` class should look like this:
 
 snippet: OrderPlacedHandler
 
-
 ### Run the updated solution
 
 Now run the solution, and assuming you remembered to [update the startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), a window for the **Shipping** endpoint will open in addition to the other three.
@@ -102,7 +99,6 @@ INFO Shipping has received OrderPlaced, OrderId = 25c5ba63
 **Shipping** is now receiving events published by **Sales** without having to change the code in the **Sales** endpoint. Additional subscribers could be added, for example, to email a receipt to the customer, notify a fulfillment agency via a web service, update a wish list or gift registry, or update data on items that are frequently bought together. Each business activity would occur in its own isolated message handler and doesn't depend on what happens in other parts of the system.
 
 NOTE: You may also want to take a look at the ServicePulse window, where you should now be able to see heartbeat and endpoint monitoring information for the new endpoint as well.
-
 
 ## Summary
 
