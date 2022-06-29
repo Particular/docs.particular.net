@@ -32,7 +32,7 @@ namespace Receiver
 
                     #endregion
 
-                    endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+                    endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
                     endpointConfiguration.EnableInstallers();
                     endpointConfiguration.DefineCriticalErrorAction(CriticalErrorActions.RestartContainer);
                     return endpointConfiguration;
