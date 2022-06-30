@@ -30,61 +30,46 @@ NServiceBus version 8.x uses OpenTelemetry standard to report metrics. The metri
 
 snippet: enable-opentelemetry-metrics
 
-There are three metrics reported as a Counter:
+There are three metrics reported as a Counter, with the following keys:
 
- * Number of fetched messages 
- * Number of failed messages
- * Number of successfully processed messages
+ * Number of fetched messages via `messaging.fetches`
+ * Number of failed messages via `messaging.failures`
+ * Number of successfully processed messages via `messaging.successes`
 
 Each reported metric is tagged with the following additional information:
 
- * `messaging_discriminator` a uniquely addressable address for the endpoint (discriminator when scaling out)
- * `messaging_endpoint` endpoint name
  * `messaging_queue` the queue name of the endpoint
- * `messaging_type` the .NET type information for the message being processed
+ * `messaging_discriminator` a uniquely addressable address for the endpoint (discriminator when scaling out)
+ * `messaging_type` the .NET fully-qualified type information for the message being processed
  * `messaging_failure_type` the exception type name (if applicable)
 
 ## Exporting metrics
 
-The metrics are gathered using OpenTelemetry standard on the endpoint and need to be reported and collected by an external service. A Prometheus exporter can expose this data to the Prometheus service, hosted as a docker service. This exporter is available via a NuGet package `OpenTelemetry.Exporter.Prometheus`. The sample exposes an HTTP endpoint that enables Prometheus to scrape data reported by the OpenTelemetry metrics. In the sample the service that exposes the data to scrape is hosted on `http://localhost:9185/metrics`. To enable the Prometheus exporter, the following should be executed:
+The metrics are gathered using OpenTelemetry standard on the endpoint and need to be reported and collected by an external service. A Prometheus exporter can expose this data via an HTTP endpoint and the Prometheus service, hosted as a docker service, can retireve and store these information. This exporter is available via a NuGet package `OpenTelemetry.Exporter.Prometheus`. In this sample the service that exposes the data to scrape is hosted on `http://localhost:9185/metrics`. To enable the Prometheus exporter, the following should be executed:
 
 snippet: enable-prometheus-exporter
 
-Note: that the HTTP endpoint is also exposed through a local IP address so the Prometheus on docker can reach.
+Note: that the HTTP endpoint is also exposed through a local IP address so the Prometheus service running in docker can reach it over the network.
 
 The raw metrics retrieved through the scraping endpoint would look like this:
 
 ```text
 # HELP messaging_successes Total number of messages processed successfully by the endpoint.
 # TYPE messaging_successes counter
-messaging_successes{messaging_discriminator="main",messaging_endpoint="Samples.OpenTelemetry.Metrics",messaging_queue="Samples.OpenTelemetry.Metrics",messaging_type="SomeCommand, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"} 526 1656039256653
+messaging_successes{messaging_discriminator="main",messaging_queue="Samples.OpenTelemetry.Metrics",messaging_type="SomeCommand, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"} 526 1656039256653
 
 # HELP messaging_fetches Total number of messages fetched from the queue by the endpoint.
 # TYPE messaging_fetches counter
-messaging_fetches{messaging_discriminator="main",messaging_endpoint="Samples.OpenTelemetry.Metrics",messaging_queue="Samples.OpenTelemetry.Metrics",messaging_type="SomeCommand, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"} 643 1656039256653
+messaging_fetches{messaging_discriminator="main",messaging_queue="Samples.OpenTelemetry.Metrics",messaging_type="SomeCommand, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"} 643 1656039256653
 
 # HELP messaging_failures Total number of messages processed unsuccessfully by the endpoint.
 # TYPE messaging_failures counter
-messaging_failures{messaging_discriminator="main",messaging_endpoint="Samples.OpenTelemetry.Metrics",messaging_failure_type="System.Exception",messaging_queue="Samples.OpenTelemetry.Metrics",messaging_type="SomeCommand, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"} 117 1656039256653
+messaging_failures{messaging_discriminator="main",messaging_failure_type="System.Exception",messaging_queue="Samples.OpenTelemetry.Metrics",messaging_type="SomeCommand, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"} 117 1656039256653
 ```
-
-Custom observers need to be registered for the metric probes provided via `NServiceBus.Metrics`. This is all setup in the `PrometheusFeature`
-
-
-The registered observers convert `NServiceBus.Metric` *Signals* to Prometheus *Counters* and `NServiceBus.Metric` *Durations* to Prometheus *Summaries*.  Additionally, labels are added that identify the endpoint, the endpoint queue and more within Prometheus. With these labels, it is possible to filter and group metric values. 
-
-WARNING: Labels should be chosen thoughtfully since each unique combination of key-value label pairs represents a new time series which can dramatically increase the amount of data stored. The labels used here are for demonstration purpose only.
-
-During the registration the following steps are required:
-
- * Map metric names
- * Register observer callbacks
- * Create summaries and counters with corresponding labels
- * Invoke the summaries and counters in the observer callback
 
 ## Docker stack
 
-Prometheus needs to be configured to get the metric data from the endpoint. Grafana also needs to be configured to get the data from Promethus and visualize it as graphs.
+Prometheus service needs to be configured to get the metrics data from the endpoint. Grafana also needs to be configured to get the data from Promethus and visualize it as graphs.
 
 To run the docker stack, run `docker-compse up -d` in the directory where the `docker-compose.yml` file is located.
 
@@ -95,7 +80,7 @@ Copy the following files into the mapped volumes of the Prometheus and Grafana.
  * `prometheus_ds.yml` should be copied to `./grafana/provisioning/datasources` folder
  * `prometheus.yml` should be copied to `./prometheus` folder
 
-Open `prometheus.yml` and update the target IP address. This should be the address of the machine running the sample, and docker should be able to reach it. 
+Open `prometheus.yml` and update the target IP address. This should be the address of the machine running the sample and the port the Promethus exporter is configured to run. Docker stack should be able to reach this IP and port. 
 
 ```yml
   - targets:
@@ -104,7 +89,7 @@ Open `prometheus.yml` and update the target IP address. This should be the addre
 
 ### Show a graph
 
-Start Prometheus by running the docker stack. NServiceBus pushes events for *success, failure, and fetched*. These events need to be converted to rates by a query:
+Start Prometheus by running the docker stack. NServiceBus pushes events for *success, failure, and fetched*. These events need to be converted to rates by a query, for example the `messaging_successes` metric can be queried as:
 
 ```
 avg(rate(messaging_successes[5m]))
@@ -114,21 +99,20 @@ avg(rate(messaging_successes[5m]))
 
 ## Grafana
 
-Grafana needs to be installed and configured to display the data available in Prometheus. For more information how to install Grafana refer to the [Installation Guide](https://docs.grafana.org/installation).
+Grafana needs to be installed and configured to display the data scraped and stored in Prometheus. For more information how to install Grafana refer to the [Installation Guide](https://docs.grafana.org/installation). In this sample, the Grafana service runs as part of the docker stack mentioned above.
 
 #### Dashboard
 
-To graph the Prometheus rule  `nservicebus_failure_total:avg_rate5m` the following steps have to be performed:
+To graph the metrics, the following steps have to be performed:
 
  * Add a new dashboard
  * Add a graph
  * Click its title to edit
- * Click the Metric tab
+ * From the Data source dropdown select Prometheus
+ * For the query open the Metrics dropdown and select one of the metrics. Built-in functions (e.g. rate) can also be applied.
 
 <!-- ![Grafana metric using Prometheus as datasource](grafana-metric.png) -->
 
-### Dashboard
-
 ![Grafana dashboard with NServiceBus OpenTelemetry metrics](example-grafana-dashboard.png)
 
-The sample included an [export of the grafana dashboard](grafana-endpoints-dashboard.json), this can be [imported](https://docs.grafana.org/reference/export_import/) as a reference.
+The sample includes an [export of the grafana dashboard](grafana-endpoints-dashboard.json) which can be [imported](https://docs.grafana.org/reference/export_import/) as a reference.
