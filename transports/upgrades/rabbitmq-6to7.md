@@ -18,9 +18,9 @@ See the [minimum broker requirements documentation](/transports/rabbitmq/#broker
 
 The original delay infrastructure could lose messages due to the [lack of safety guarantees when dead-lettering messages with classic queues](https://www.rabbitmq.com/dlx.html#safety).
 
-Version 7 introduces a new v2 delay infrastructure that uses quorum queues instead of classic queues. The v2 infrastructure can exist side-by-side with the previous infrastructure. Any messages in the original infrastructure can be migrated to the new infrastructure with the new `delays migrate` command provided in the new command line tool.
+Version 7 introduces a new v2 delay infrastructure that uses quorum queues instead of classic queues. The v2 infrastructure can exist side-by-side with the previous infrastructure. Any messages in the original infrastructure can be migrated to the new infrastructure with the `delays migrate` command provided in the new command line tool.
 
-## `UseConventionalRoutingTopology` now has mandatory `QueueType` parameter
+## `UseConventionalRoutingTopology` now has a mandatory `QueueType` parameter
 
 To control what type of queue the endpoint will use, a `QueueType` parameter has been added to `UseConventionalRoutingTopology`:
 
@@ -28,7 +28,7 @@ snippet: 6to7conventional
 
 The parameter controls what type of queues the endpoint will create if installers are enabled.
 
-## `UseDirectRoutingTopology` now has mandatory` QueueType` parameter
+## `UseDirectRoutingTopology` now has a mandatory` QueueType` parameter
 
 To control what type of queue the endpoint will use, a `QueueType` parameter has been added to `UseDirectRoutingTopology`:
 
@@ -36,9 +36,6 @@ snippet: 6to7direct
 
 The parameter controls what type of queues the endpoint will create if installers are enabled.
 
+## Installers no longer ignore queue type mismatches when declaring queues
 
-
-
-- Quorum queues now full supported
-  - Migration instructions
-- Tooling in general
+Now that there is a way to control what sort of queue type is created when installers are enabled, the queue creation installer will once again throw an exception if there is a mismatch between the type of queue it declares and the type of the queue that already exists on the broker.
