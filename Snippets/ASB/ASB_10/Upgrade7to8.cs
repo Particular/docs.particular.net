@@ -8,7 +8,7 @@ class Upgrade7to8
     {
         #region 7to8_asb-backwardscompatible-serializer
 
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
         #endregion
     }
