@@ -25,17 +25,6 @@
   NugetOrder:
     - NServiceBus.DataBus.BinarySerializer
 
-- Key: Bridge
-  Name: Transport Bridge
-  DocsUrl: /nservicebus/bridge
-  GitHubOwner: Particular
-  Category: Other
-  SupportLevel: Preview
-  LicenseUrl: https://github.com/Particular/NServiceBus.Transport.Bridge/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Bridge
-  NugetOrder:
-    - NServiceBus.Transport.Bridge
-
 - Key: SQS
   Name: Amazon SQS Transport
   DocsUrl: /transports/sqs
