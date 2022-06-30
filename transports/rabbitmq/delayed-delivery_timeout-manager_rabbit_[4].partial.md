@@ -1,4 +1,4 @@
-### Disabling the timeout manager
+#### Disabling the timeout manager
 
 To assist with the upgrade process, the timeout manager is still enabled by default, so any delayed messages already stored in the endpoint's persistence database before the upgrade will be sent when their timeouts expire. Any delayed messages sent after the upgrade will be sent through the delay infrastructure even though the timeout manager is enabled.
 
