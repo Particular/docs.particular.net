@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using NServiceBus;
 
 // Simulates busy (almost no delay) / quite time in a sine wave
@@ -54,7 +57,7 @@ class LoadSimulator
     }
 
     IEndpointInstance endpointInstance;
-    CancellationTokenSource tokenSource = new();
+    CancellationTokenSource tokenSource = new CancellationTokenSource();
     TimeSpan minimumDelay;
     TimeSpan idleDuration;
     int index;

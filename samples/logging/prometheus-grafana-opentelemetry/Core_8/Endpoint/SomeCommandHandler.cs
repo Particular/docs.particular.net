@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -5,7 +7,7 @@ class SomeCommandHandler :
     IHandleMessages<SomeCommand>
 {
     static ILog log = LogManager.GetLogger<SomeCommandHandler>();
-    static Random random = new();
+    static Random random = new Random();
 
     public async Task Handle(SomeCommand message, IMessageHandlerContext context)
     {
