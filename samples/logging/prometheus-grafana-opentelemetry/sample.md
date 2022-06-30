@@ -67,6 +67,19 @@ messaging_fetches{messaging_discriminator="main",messaging_queue="Samples.OpenTe
 messaging_failures{messaging_discriminator="main",messaging_failure_type="System.Exception",messaging_queue="Samples.OpenTelemetry.Metrics",messaging_type="SomeCommand, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"} 117 1656039256653
 ```
 
+Below diagram shows the overall component interactions:
+
+```mermaid
+graph TD
+    A[NServiceBus Endpoint] -->|Report Metrics| B(Prometheus Exporter)
+    B -->|Expose| C{Metric Endpoint}
+    C -->|No Metrics| D[Status 200]
+    C -->|Has Metrics| E[Return Metrics]
+    F[Promethus Service] --> |Poll Metrics| E
+    F --> |Store Metrics| F
+    G[Grafana] --> |Query Data| F
+```
+
 ## Docker stack
 
 Prometheus service needs to be configured to get the metrics data from the endpoint. Grafana also needs to be configured to get the data from Promethus and visualize it as graphs.
