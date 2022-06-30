@@ -180,7 +180,7 @@ class Usage
     {
         #region AzureStorageQueueSerialization
 
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
         #endregion
     }

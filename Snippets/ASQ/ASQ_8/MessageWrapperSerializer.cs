@@ -11,7 +11,7 @@ class MessageWrapperSerializer
         endpointConfiguration.UseSerialization<XmlSerializer>();
         var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
         // wrap messages in JSON
-        transport.SerializeMessageWrapperWith<NewtonsoftSerializer>();
+        transport.SerializeMessageWrapperWith<NewtonsoftJsonSerializer>();
 
         #endregion
     }
