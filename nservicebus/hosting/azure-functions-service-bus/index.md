@@ -25,6 +25,8 @@ partial: configuration
 
 Any services registered via the `IFunctionsHostBuilder` will be available to message handlers via dependency injection. The startup class must be declared via the `FunctionStartup` attribute: `[assembly: FunctionsStartup(typeof(Startup))]`.
 
+Note: Any setting that is related to the configuration of the transport like the concurrency limit are ignored. This is because it is not NServiceBus that manages the incoming message pump logic with Azure Service Bus but Azure Function. These settings are controlled via the Azure Function `host.json` configuration file. Most common settings are  `prefetchCount`, `maxConcurrentCalls`, and `maxConcurrentSessions`. More info available in the [Microsoft Azure, Azure Functions, Concurrency guidance](https://docs.microsoft.com/en-us/azure/azure-functions/functions-concurrency#service-bus)
+
 ### Azure Function queue trigger for NServiceBus
 
 partial: queue-trigger-wiring
