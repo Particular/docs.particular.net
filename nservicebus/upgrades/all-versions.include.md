@@ -338,7 +338,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.3.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.3.0) | 2021-03-25     | -                 | -                                 |
+| [2.4.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.4.0) | 2022-06-30     | -                 | -                                 |
+| [2.3.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.3.0) | 2021-03-25     | 2022-09-30        | Superseded by 2.4.x               |
 | [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.2.0) | ~~2018-12-10~~ | ~~2021-06-25~~    | ~~Superseded by 2.3.x~~           |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.1.0) | ~~2018-05-30~~ | ~~2019-03-10~~    | ~~Superseded by 2.2.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.0.0) | ~~2018-05-29~~ | ~~2018-08-30~~    | ~~Superseded by 2.1.x~~           |
