@@ -1,4 +1,8 @@
-﻿class BillOrderHandler : IHandleMessages<BillOrder>
+﻿using NServiceBus;
+using System;
+using System.Threading.Tasks;
+
+class BillOrderHandler : IHandleMessages<BillOrder>
 {
     public Task Handle(BillOrder message, IMessageHandlerContext context)
     {

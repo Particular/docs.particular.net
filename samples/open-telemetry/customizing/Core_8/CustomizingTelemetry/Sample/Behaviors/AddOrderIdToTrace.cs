@@ -1,5 +1,7 @@
 ﻿using NServiceBus.Pipeline;
+using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 #region add-tags-from-behavior
 class AddOrderIdToTrace : Behavior<IIncomingLogicalMessageContext>

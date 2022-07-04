@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using NServiceBus;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 #region add-tags-from-handler
 class ShipOrderHandler : IHandleMessages<ShipOrder>

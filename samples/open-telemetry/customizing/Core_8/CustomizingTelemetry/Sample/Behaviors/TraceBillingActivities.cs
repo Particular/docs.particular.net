@@ -1,4 +1,6 @@
 ﻿using NServiceBus.Pipeline;
+using System;
+using System.Threading.Tasks;
 
 #region custom-activity-in-behavior
 class TraceBillingActivities : Behavior<IIncomingLogicalMessageContext>
@@ -8,13 +10,15 @@ class TraceBillingActivities : Behavior<IIncomingLogicalMessageContext>
         Func<Task> next
     )
     {
-        if(context.Message.Instance is BillOrder billOrder)
+        if (context.Message.Instance is BillOrder billOrder)
         {
-            using var activity = CustomActivitySources.Main.StartActivity(
+            using (var activity = CustomActivitySources.Main.StartActivity(
                 "Billing operation"
-            );
-            activity?.AddTag("sample.billing.order_id", billOrder.OrderId);
-            await next();
+            ))
+            {
+                activity?.AddTag("sample.billing.order_id", billOrder.OrderId);
+                await next();
+            }
         }
         else
         {
