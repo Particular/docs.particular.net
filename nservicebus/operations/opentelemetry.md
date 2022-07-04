@@ -3,6 +3,8 @@ title: OpenTelemetry
 summary: Observing NServiceBus endpoints via OpenTelemetry
 component: core
 reviewed: 2022-06-29
+related:
+ - samples/open-telemetry
 ---
 
 NServiceBus version 8 and above provides diagnostic trace and meter information via [OpenTelemetry](https://opentelemetry.io/docs/instrumentation/net/).
@@ -20,7 +22,7 @@ using var traceProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-See samples for instructions on how to send trace information to different tools.
+See [samples](/samples/open-telemetry/) for instructions on how to send trace information to different tools.
 
 ## Meters
 
@@ -41,3 +43,4 @@ Once the source has been added, enable OpenTelemetry meterics on the NServiceBus
 endpointConfiguration.EnableOpenTelemetryMetrics();
 ```
 
+See [samples](/samples/open-telemetry/) for instructions on how to send metric information to different tools.
