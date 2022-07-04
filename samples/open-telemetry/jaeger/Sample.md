@@ -28,7 +28,7 @@ With this default configuration, the Jaeger UI should be available at `http://lo
 
 ## Code overview
 
-The sample contains two endpoints exchanging publish-subscribe event and point-to-point messages between each other. To enable tracing and export to Jaeger, each endpoint has to configure Open Telemetry:
+The sample contains two endpoints exchanging publish-subscribe events and point-to-point messages between each other. To enable tracing and export to Jaeger, each endpoint has to configure Open Telemetry:
 
 snippet: jaeger-exporter-configuration
 
