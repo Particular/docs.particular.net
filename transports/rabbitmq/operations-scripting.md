@@ -9,6 +9,4 @@ redirects:
 - nservicebus/rabbitmq/operations-scripting
 ---
 
-## Operational Scripting
-
 partial: content
