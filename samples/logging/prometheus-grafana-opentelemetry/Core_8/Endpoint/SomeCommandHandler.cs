@@ -11,8 +11,7 @@ class SomeCommandHandler :
 
     public async Task Handle(SomeCommand message, IMessageHandlerContext context)
     {
-        await Task.Delay(random.Next(50, 250), context.CancellationToken)
-            .ConfigureAwait(false);
+        await Task.Delay(random.Next(50, 250), context.CancellationToken);
 
         if (random.Next(10) <= 1)
         {

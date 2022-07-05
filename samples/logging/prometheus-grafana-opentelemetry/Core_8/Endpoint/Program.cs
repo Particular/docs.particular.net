@@ -28,7 +28,6 @@ public class Program
         var config = new EndpointConfiguration("Samples.OpenTelemetry.Metrics");
         config.UseTransport<LearningTransport>();
         config.UsePersistence<LearningPersistence>();
-        config.UseSerialization<XmlSerializer>();
         config.MakeInstanceUniquelyAddressable("main");
 
         #region enable-opentelemetry-metrics
@@ -59,14 +58,13 @@ public class Program
                     break;
                 }
 
-                await endpointInstance.SendLocal(new SomeCommand())
-                    .ConfigureAwait(false);
+                await endpointInstance.SendLocal(new SomeCommand());
             }
         }
         finally
         {
-            await simulator.Stop().ConfigureAwait(false);
-            await endpointInstance.Stop().ConfigureAwait(false);
+            await simulator.Stop();
+            await endpointInstance.Stop();
             meterProvider?.Dispose();
         }
     }
