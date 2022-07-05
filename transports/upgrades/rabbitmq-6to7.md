@@ -8,7 +8,7 @@ isUpgradeGuide: true
 
 Version 7 of the RabbitMQ transport is focused on fully supporting [quorum queues](https://www.rabbitmq.com/quorum-queues.html).
 
-## Minium broker version
+## Minimum broker version
 
 Version 7 relies on quorum queue features introduced in RabbitMQ 3.10.0, so all RabbitMQ nodes are required to be on version `3.10.0` or above.
 
