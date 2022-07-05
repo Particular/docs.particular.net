@@ -26,7 +26,7 @@ The sample simulates messages load with a random 10% failure rate using the `Loa
 snippet: prometheus-load-simulator
 
 ## Reporting metric values
-NServiceBus version 8.x uses OpenTelemetry standard to report metrics. The metrics are disabled by default, and can be enabled:
+NServiceBus version 8.1 uses OpenTelemetry standard to report metrics. The metrics are disabled by default, and can be enabled:
 
 snippet: enable-opentelemetry-metrics
 
