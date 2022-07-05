@@ -4,6 +4,8 @@ summary: Instructions on how to upgrade RabbitMQ Transport from version 6 to 7.
 reviewed: 2022-05-05
 component: Rabbit
 isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 7
 ---
 
 Version 7 of the RabbitMQ transport is focused on fully supporting [quorum queues](https://www.rabbitmq.com/quorum-queues.html).

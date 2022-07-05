@@ -4,6 +4,8 @@ summary: Instructions on how to upgrade RabbitMQ Transport from version 5 to 6.
 reviewed: 2022-05-06
 component: Rabbit
 isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 7
 ---
 
 Version 6 of the RabbitMQ transport is focused on supporting RabbitMQ.Client 6.1.0.
