@@ -22,7 +22,7 @@ Once installed, the `rabbitmq-transport` command line tool will be available for
 
 Verify broker pre-requisites for using the delay infrastructure v2.
 
-NOTE: This command requires the RabbitMQ management api plugin to be installed on the broker.
+NOTE: This command requires the [RabbitMQ management plugin](https://www.rabbitmq.com/management.html) to be installed on the broker.
 
 ```
 rabbitmq-transport delays verify --url http://localhost:15672/ --username guest --password guest
