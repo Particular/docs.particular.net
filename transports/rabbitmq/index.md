@@ -36,7 +36,7 @@ To use RabbitMQ as the underlying transport:
 
 snippet: rabbitmq-config-basic
 
-The RabbitMQ transport requires a connection string to connect to the broker. See [connection settings](/transports/rabbitmq/connection-settings.md) for options on how to provide the connection string.
+The RabbitMQ transport requires a connection string to connect to the broker. A [clustered](https://www.rabbitmq.com/clustering.html) configuration is recommended. See [connection settings](/transports/rabbitmq/connection-settings.md) for options on how to provide the connection string.
 
 partial: v7-usetransport
 
