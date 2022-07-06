@@ -4,5 +4,5 @@ The v1 and v2 infrastructure can exist side-by-side in the broker, so delayed me
 
 #### Migrating delayed messages to v2
 
-The [`delays migrate`](operations-scripting.md?version=rabbit_7#rabbitmq-transport-delays-migrate) command provided by the command line tool can be used to migrate existing delayed messages.
+The [`delays migrate`](operations-scripting.md?version=rabbit_7#delays-migrate) command provided by the command line tool can be used to migrate existing delayed messages.
 
