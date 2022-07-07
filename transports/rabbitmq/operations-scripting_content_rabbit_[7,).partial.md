@@ -93,7 +93,7 @@ rabbitmq-transport endpoint create MyEndPoint --connectionString host=localhost
 
 ### `queue migrate-to-quorum`
 
-Migrate an existing classic queue to quorum queues.
+Migrate an existing classic queue to a quorum queue.
 
 ```
 rabbitmq-transport queue migrate-to-quorum MyQueue --connectionString host=localhost
