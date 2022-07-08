@@ -25,8 +25,6 @@ partial: configuration
 
 Any services registered via the `IFunctionsHostBuilder` will be available to message handlers via dependency injection. The startup class must be declared via the `FunctionStartup` attribute: `[assembly: FunctionsStartup(typeof(Startup))]`.
 
-Note: Any setting that is related to the configuration of the transport like the concurrency limit are ignored. This is because it is not NServiceBus that manages the incoming message pump logic with Azure Service Bus but Azure Function. Concurrency related settings are controlled via the Azure Function `host.json` configuration file. Most common settings are  `prefetchCount`, `maxConcurrentCalls`, `maxConcurrentSessions`, and `dynamicConcurrencyEnabled`. More info available in the [Microsoft Azure, Azure Functions, Concurrency guidance](https://docs.microsoft.com/en-us/azure/azure-functions/functions-concurrency#service-bus)
-
 ### Azure Function queue trigger for NServiceBus
 
 partial: queue-trigger-wiring
@@ -36,6 +34,14 @@ partial: queue-trigger-wiring
 Triggering a message using HTTP function:
 
 snippet: asb-dispatching-outside-message-handler
+
+## Transport configuration constraints and limitations
+
+The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization; however, not all of the options will be applicable to execution within Azure Functions.
+
+Any setting that is related to the configuration of the transport like the concurrency limit are ignored. This is because it is not NServiceBus that manages the incoming message pump logic with Azure Service Bus but Azure Function.
+
+Concurrency related settings are controlled via the Azure Function `host.json` configuration file. Most common settings are  `prefetchCount`, `maxConcurrentCalls`, `maxConcurrentSessions`, and `dynamicConcurrencyEnabled`. More info available in the [Microsoft Azure, Azure Functions, Concurrency guidance](https://docs.microsoft.com/en-us/azure/azure-functions/functions-concurrency#service-bus)
 
 ## Message consistency
 
@@ -71,10 +77,6 @@ For recoverability to move the continuously failing messages to the error queue 
 
 snippet: asb-configure-error-queue
 
-### Known constraints and limitations
-
-The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization; however, not all of the options will be applicable to execution within Azure Functions.
-
 ## Preparing the Azure Service Bus namespace
 
 Function endpoints cannot create their own queues or other infrastructure in the Azure Service Bus namespace.
@@ -83,7 +85,7 @@ Use the [`asb-transport` command line (CLI) tool](/transports/azure-service-bus/
 
 ### Creating the endpoint queue
 
-```
+```txt
 asb-transport endpoint create <queue name>
 ```
 
@@ -93,7 +95,7 @@ WARN: If the `asb-tranport` command-line tool is not used to create the queue, i
 
 ### Subscribing to events
 
-```
+```txt
 asb-transport endpoint subscribe <queue name> <eventtype>
 ```
 
@@ -105,6 +107,6 @@ partial: assembly-scanner
 
 `NServiceBus.AzureFunctions.Worker.ServiceBus` requires Visual Studio 2019 and .NET SDK version `5.0.300` or higher. Older versions of the .NET SDK might display the following warning which prevents the trigger definition from being auto-generated:
 
-```
+```txt
 CSC : warning CS8032: An instance of analyzer NServiceBus.AzureFunctions.SourceGenerator.TriggerFunctionGenerator cannot be created from NServiceBus.AzureFunctions.SourceGenerator.dll : Could not load file or assembly 'Microsoft.CodeAnalysis, Version=3.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35'. The system cannot find the file specified..
 ```
