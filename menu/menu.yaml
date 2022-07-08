@@ -981,15 +981,13 @@
     - Url: transports/rabbitmq/routing-topology
       Title: Routing topology
     - Url: transports/rabbitmq/delayed-delivery
-      Title: Delayed Delivery
+      Title: Delayed delivery
     - Url: transports/rabbitmq/native-integration
       Title: Native integration
     - Url: transports/rabbitmq/callbacks
       Title: Callback support
     - Url: transports/rabbitmq/transactions-and-delivery-guarantees
       Title: Transactions and delivery guarantees
-    - Url: transports/rabbitmq/cluster
-      Title: In a cluster
     - Url: transports/rabbitmq/operations-scripting
       Title: Scripting
   - Url: transports/sqs

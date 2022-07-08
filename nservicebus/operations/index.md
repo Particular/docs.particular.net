@@ -52,7 +52,6 @@ Operational documentation is best reviewed from the perspective of the selected 
 
  * [Routing topology](/transports/rabbitmq/routing-topology.md)
  * [Scripting](/transports/rabbitmq/operations-scripting.md)
- * [In a cluster](/transports/rabbitmq/cluster.md)
 
 
 ## Persistences

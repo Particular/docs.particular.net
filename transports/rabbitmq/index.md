@@ -13,11 +13,9 @@ redirects:
 
 Provides support for sending messages over [RabbitMQ](https://www.rabbitmq.com/) using the [RabbitMQ .NET Client](https://www.nuget.org/packages/RabbitMQ.Client/).
 
-## Hosting options
+## Broker compatibility
 
-The transport is compatible with RabbitMQ broker version 3.4 or higher either self-hosted or running on [Amazon MQ](https://aws.amazon.com/amazon-mq/) or [CloudAMQP](https://www.cloudamqp.com/).
-
-WARNING: The transport is not compatible with RabbitMQ broker version 3.3.X and below.
+partial: broker-compatibility
 
 ## Transport at a glance
 
@@ -38,7 +36,7 @@ To use RabbitMQ as the underlying transport:
 
 snippet: rabbitmq-config-basic
 
-The RabbitMQ transport requires a connection string to connect to the broker. See [connection settings](/transports/rabbitmq/connection-settings.md) for options on how to provide the connection string.
+The RabbitMQ transport requires a connection string to connect to the broker. A [clustered](https://www.rabbitmq.com/clustering.html) configuration is recommended. See [connection settings](/transports/rabbitmq/connection-settings.md) for options on how to provide the connection string.
 
 partial: v7-usetransport
 
