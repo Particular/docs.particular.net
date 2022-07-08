@@ -5,7 +5,6 @@ reviewed: 2020-07-27
 component: ServiceControl
 related:
  - servicecontrol/plugins
- - monitoring/heartbeats/legacy
  - monitoring/custom-checks/legacy
  - servicecontrol/plugins/saga-audit
 isUpgradeGuide: true

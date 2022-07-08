@@ -5,7 +5,6 @@ reviewed: 2021-11-04
 component: Heartbeats
 related:
  - servicecontrol/plugins
- - monitoring/heartbeats/legacy
 isUpgradeGuide: true
 ignoreSeoRecommendations: true
 upgradeGuideCoreVersions:
