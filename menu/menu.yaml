@@ -405,8 +405,6 @@
       Title: Overriding the host identifier
     - Url: nservicebus/hosting/override-machine-name
       Title: Overriding the machine name
-    - Url: nservicebus/hosting/custom-configuration-providers
-      Title: Overriding app.config settings
     - Url: nservicebus/hosting/assembly-scanning
       Title: Assembly scanning
     - Url: nservicebus/hosting/cooperative-cancellation
@@ -459,8 +457,6 @@
         Title: Logging
       - Url: nservicebus/hosting/cloud-services-host/startup
         Title: Startup Behavior
-      - Url: nservicebus/hosting/cloud-services-host/shared-hosting
-        Title: Shared Hosting
       - Url: nservicebus/hosting/cloud-services-host/critical
         Title: Critical Errors
       - Url: nservicebus/hosting/cloud-services-host/running-without-emulator
@@ -474,8 +470,6 @@
         Title: Initialization
       - Url: nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized
         Title: Before Configuration Finalized
-      - Url: nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete
-        Title: Configuration Ends
       - Url: nservicebus/lifecycle/endpointstartandstop
         Title: Endpoint Instance Starts and Stops
   - Url: nservicebus/handlers-and-sagas
@@ -1085,9 +1079,6 @@
     Title: Learning Persistence
   - Url: persistence/non-durable
     Title: Non-Durable
-    Articles:
-    - Url: persistence/non-durable/gateway-deduplication
-      Title: Gateway Deduplication
   - Url: persistence/sql
     Title: SQL
     Articles:
@@ -1178,8 +1169,6 @@
       Title: Scripting
     - Url: persistence/ravendb/installation
       Title: Installation
-    - Url: persistence/ravendb/manual-dtc-settings
-      Title: Configure DTC
     - Url: persistence/ravendb/outbox
       Title: Outbox
     - Url: persistence/ravendb/reroute-existing-timeouts
