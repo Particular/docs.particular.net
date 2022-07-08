@@ -92,8 +92,9 @@ partial: publisher-confirms
 
 The time to wait before trying to reconnect to the broker if the connection is lost.
 
-Default: `10` seconds
+Type: `System.TimeSpan`
 
+Default: `00:00:10` (10 seconds)
 
 partial: tls-settings
 
