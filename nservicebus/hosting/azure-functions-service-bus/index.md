@@ -39,9 +39,9 @@ snippet: asb-dispatching-outside-message-handler
 
 The Configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization; however, not all of the options will be applicable to execution within Azure Functions.
 
-Any setting that is related to the configuration of the transport like the concurrency limit are ignored. This is because it is not NServiceBus that manages the incoming message pump logic with Azure Service Bus but Azure Function.
+Any setting that is related to the configuration of the transport like the concurrency limit are ignored, because in this environment Azure Functions is responsible for managing the flow of messages.
 
-Concurrency related settings are controlled via the Azure Function `host.json` configuration file. Most common settings are  `prefetchCount`, `maxConcurrentCalls`, `maxConcurrentSessions`, and `dynamicConcurrencyEnabled`. More info available in the [Microsoft Azure, Azure Functions, Concurrency guidance](https://docs.microsoft.com/en-us/azure/azure-functions/functions-concurrency#service-bus)
+Concurrency related settings are controlled via the Azure Function `host.json` configuration file. See [Concurrency in Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-concurrency#service-bus) for details.
 
 ## Message consistency
 
