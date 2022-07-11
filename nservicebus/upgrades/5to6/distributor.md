@@ -1,8 +1,6 @@
 ---
 title: Migrating the distributor to use sender-side distribution
 reviewed: 2020-04-30
-related:
- - samples/scaleout/distributor-upgrade
 redirects:
  - nservicebus/scalability-and-ha/distributor/upgrading-the-distributor
 isUpgradeGuide: true

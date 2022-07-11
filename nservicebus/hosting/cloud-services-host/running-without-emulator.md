@@ -11,4 +11,6 @@ Debugging endpoints hosted with Cloud Services requires starting up Azure Cloud 
 
 Following these steps will enable local execution of endpoints without Azure Cloud Service emulator:
 
-Partial: running-locally
+ * Add NuGet reference to the `NServiceBus.Hosting.Azure.HostProcess` package
+ * Update the endpoint project's Debug start action to point to `NServiceBus.Hosting.Azure.HostProcess.exe`
+ * Launch the endpoint with debugger
