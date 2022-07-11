@@ -2,8 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Metrics_1.1", "Metrics_1.1\Metrics_1.1.csproj", "{DE9F5B9B-CFE0-4208-982C-E2A8F6B4B73B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrics_3", "Metrics_3\Metrics_3.csproj", "{EBDF1301-9AEE-452C-AEDE-D9921E80007C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metrics_4", "Metrics_4\Metrics_4.csproj", "{896CA36B-9F49-44F0-9D8D-20A63B49AF5F}"

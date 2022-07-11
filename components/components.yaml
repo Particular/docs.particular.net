@@ -162,16 +162,6 @@
   NugetOrder:
     - NServiceBus
 
-- Key: Distributor
-  Name: Distributor
-  DocsUrl: /transports/msmq/distributor
-  GitHubOwner: Particular
-  Category: Other
-  ProjectUrl: https://github.com/Particular/NServiceBus.Distributor.Msmq
-  NugetOrder:
-    - NServiceBus.Distributor.MSMQ
-    - NServiceBus
-
 - Key: Gateway
   Name: Gateway
   DocsUrl: /nservicebus/gateway

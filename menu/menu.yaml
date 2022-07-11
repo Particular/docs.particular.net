@@ -242,7 +242,7 @@
     - Title: Newtonsoft Serializer
       Articles:
       - Url: nservicebus/upgrades/newtonsoft-2to3
-        Title: Version 2 to 3      
+        Title: Version 2 to 3
     - Title: NServiceBus Testing
       Articles:
       - Url: nservicebus/upgrades/testing-7to8
@@ -956,23 +956,6 @@
       Title: Scaling out
     - Url: transports/msmq/sender-side-distribution
       Title: Scaling out with Sender-Side Distribution
-    - Url: transports/msmq/distributor
-      Title: Scaling with the Distributor
-      Articles:
-      - Url: transports/msmq/distributor/configuration
-        Title: Configuration
-      - Url: transports/msmq/distributor/deploying-to-a-cluster
-        Title: Deploying to Failover Cluster
-      - Url: transports/msmq/distributor/when-worker-goes-down
-        Title: When a worker goes down
-      - Url: transports/msmq/distributor/disconnect-workers
-        Title: Disconnect Workers
-      - Url: transports/msmq/distributor/publish-subscribe
-        Title: Publish-Subscribe
-      - Url: transports/msmq/distributor/error-handling
-        Title: Error handling
-      - Url: transports/msmq/distributor/troubleshooting
-        Title: Troubleshooting
   - Url: transports/rabbitmq
     Title: RabbitMQ
     Articles:

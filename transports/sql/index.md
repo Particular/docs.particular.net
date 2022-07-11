@@ -49,7 +49,7 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
  * No additional licensing and training costs; many Microsoft stack organizations have SQL Server installed and have the knowledge required to manage it.
  * Mature tooling, such as [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms).
  * Free to start with the [SQL Server Express edition](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express).
- * Queues support competing consumers (multiple instances of the same endpoint feeding off the same queue) so scale-out doesn't require a [distributor](/transports/msmq/distributor/).
+ * Queues support competing consumers.
  * Supports [Microsoft Distributed Transaction Coordinator (MSDTC)](https://msdn.microsoft.com/en-us/library/ms684146.aspx), but can also use only single shared database transaction. Can also be paired with [SQL Persistence](/persistence/sql/) using a single local database transaction. ([Sample](/samples/sqltransport-sqlpersistence/))
 
 
