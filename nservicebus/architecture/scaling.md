@@ -10,14 +10,6 @@ This page describes how to scale out endpoints using NServiceBus. There are seve
 
 It is important to distinguish between a logical endpoint and an endpoint instance. Review the documentation on [logical endpoints](/nservicebus/endpoints/) for more details.
 
-There are several ways to scale out with NServiceBus:
-
-- [Splitting message handlers](#splitting-message-handlers)
-- [Scaling out to multiple nodes](#scaling-out-to-multiple-nodes)
-  - [Competing consumers](#competing-consumers)
-  - [Sender-side distribution](#sender-side-distribution)
-- [High availability](#high-availability)
-
 ## Splitting message handlers
 
 If message throughput is an issue, the first method to consider is splitting up [message handlers](/nservicebus/handlers/) and [sagas](/nservicebus/sagas/) over multiple logical endpoints.
