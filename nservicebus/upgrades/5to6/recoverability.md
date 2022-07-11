@@ -92,7 +92,7 @@ busConfiguration.DisableFeature<SecondLevelRetries>();
 
 ## MaxRetries value for first level retries
 
-In NServiceBus version 5, the `MaxRetries` parameter for first level retries defined the number of immediate message deliveries, including initial delivery. As a result, setting this value to `1` resulted in no immediate retries being performed. In NServiceBus version 6, the meaning of this parameter has changed and now defines the number of immediate retries alone (excluding initial delivery). 
+In NServiceBus version 5, the `MaxRetries` parameter for first level retries defined the number of immediate message deliveries, including initial delivery. As a result, setting this value to `1` resulted in no immediate retries being performed. In NServiceBus version 6, the meaning of this parameter has changed and now defines the number of immediate retries alone (excluding initial delivery).
 
 In order to get the same behavior in NServiceBus version 6 as in the previous version, the value configured in version 6 should be one less than in version 5.
 
@@ -121,7 +121,7 @@ var retriesSettings = busConfiguration.SecondLevelRetries();
 retriesSettings.CustomRetryPolicy(MyCustomRetryPolicy);
 ```
 
-The custom recoverability policy doesn't have to fully override the default behavior; for example, it can provide custom logic for a specific type of error. In any case, the default behavior can be reused by calling the `Invoke` method on the `DefaultRecoverabilityPolicy` class. 
+The custom recoverability policy doesn't have to fully override the default behavior; for example, it can provide custom logic for a specific type of error. In any case, the default behavior can be reused by calling the `Invoke` method on the `DefaultRecoverabilityPolicy` class.
 
 The following snippet is an example of a custom recoverability policy that changes the delay value calculated by the default policy.
 
@@ -225,19 +225,19 @@ recoverability.Delayed(
 
 ## Legacy .Retries queue
 
-The `.Retries` satellite queue is no longer necessary when running NServiceBus version 6. However, when starting a version 6 endpoint, unless explicitly configured, a dedicated receiver that watches the .retries queue will still be started. This default configuration is mainly for a one-time scenario necessary to prevent message loss when upgrading from version 5 to version 6. 
+The `.Retries` satellite queue is no longer necessary when running NServiceBus version 6. However, when starting a version 6 endpoint, unless explicitly configured, a dedicated receiver that watches the .retries queue will still be started. This default configuration is mainly for a one-time scenario necessary to prevent message loss when upgrading from version 5 to version 6.
 
 
 ### Upgrading from versions 5 and below
 
-In NServiceBus versions 5 and below, the [delayed retries](/nservicebus/recoverability/#delayed-retries) of NServiceBus use the `[endpoint_name].Retries` queue to durably store messages before persisting them for retries.  When upgrading to version 6, during the process of stopping the endpoint, there is a possibility that the .retries queue may contain some of these messages that were meant to be delayed and retried. Therefore, to prevent message loss, when starting a version 6 endpoint, the `.Retries` satellite receiver executes to serve a one-time purpose of forwarding those messages from the `.Retries` queue to the endpoint's main queue to be retried appropriately. 
+In NServiceBus versions 5 and below, the [delayed retries](/nservicebus/recoverability/#delayed-retries) of NServiceBus use the `[endpoint_name].Retries` queue to durably store messages before persisting them for retries.  When upgrading to version 6, during the process of stopping the endpoint, there is a possibility that the .retries queue may contain some of these messages that were meant to be delayed and retried. Therefore, to prevent message loss, when starting a version 6 endpoint, the `.Retries` satellite receiver executes to serve a one-time purpose of forwarding those messages from the `.Retries` queue to the endpoint's main queue to be retried appropriately.
 
-Once the upgrade is done, the receiver can be safely [disabled](/nservicebus/recoverability/configure-delayed-retries.md?version=Core_6#custom-retry-policy-legacy-retries-message-receiver) and the `.Retries` queue can be safely deleted.
+Once the upgrade is done, the receiver can be safely disabled and the `.Retries` queue can be safely deleted.
 
 
 ### Creating new endpoints using version 6
 
-In NServiceBus version 6, the only reason that the `.Retries` queue exists is so that version 5 endpoints can be migrated to version 6 without message loss. Endpoints written using NServiceBus version 6 can safely use the configuration API to [disable the satellite](/nservicebus/recoverability/configure-delayed-retries.md?version=Core_6#custom-retry-policy-legacy-retries-message-receiver).
+In NServiceBus version 6, the only reason that the `.Retries` queue exists is so that version 5 endpoints can be migrated to version 6 without message loss. Endpoints written using NServiceBus version 6 can safely use the configuration API to disable the satellite.
 
 
 ## IManageMessageFailures is now obsolete.

@@ -5,7 +5,7 @@ component: PropertyEncryption
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
-related: 
+related:
  - nservicebus/security/property-encryption
 ---
 
@@ -16,7 +16,7 @@ The API was also modified.
 
 ## Removed APIs
 
-Configuring encryption [via app.config](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-app-config) and [via IProvideConfiguration](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-iprovideconfiguration) have been removed. Instead, use [configuration via code](/nservicebus/security/property-encryption.md?version=core_6#configuration-via-code).
+Configuring encryption via app.config and via `IProvideConfiguration` have been removed. Instead, use configuration via code.
 
 
 ## Compatibility

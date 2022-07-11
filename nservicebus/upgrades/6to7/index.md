@@ -239,7 +239,7 @@ AppDomain assemblies are now scanned by default. Use the [ScanAppDomainAssemblie
 
 ## Legacy .Retries message receiver
 
-The [.Retries message receiver](/nservicebus/recoverability/configure-delayed-retries.md?version=core_6#custom-retry-policy-legacy-retries-message-receiver), which was added to assist in migrating from version 5 to version 6, has been removed. The API to disable it has also been removed.
+The `.Retries` message receiver, which was added to assist in migrating from version 5 to version 6, has been removed. The API to disable it has also been removed.
 
 
 ## MSMQ
