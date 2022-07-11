@@ -1,7 +1,7 @@
 ---
 title: No Async Suffix
 summary: Why there is no Async suffix on Task-based APIs
-reviewed: 2019-12-19
+reviewed: 2022-07-11
 component: Core
 redirects:
  - nservicebus/upgrades/5to6-async-suffix
@@ -37,7 +37,7 @@ Adding async to NServiceBus version 6 in itself is a breaking change. In compari
 
 ### Noise in API usage
 
-There is already non-trivial verbosity that is added to a codebase when asyncronous principles are adopted. For example `.ConfigureAwait()` additions, `async` and `await` keywords, and `Task<T>` return values.
+There is already non-trivial verbosity that is added to a codebase when asynchronous principles are adopted. For example `.ConfigureAwait()` additions, `async` and `await` keywords, and `Task<T>` return values.
 
 
 ### NServiceBus APIs do not follow Hungarian notation
