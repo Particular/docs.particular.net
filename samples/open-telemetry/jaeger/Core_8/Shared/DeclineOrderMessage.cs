@@ -1,6 +1,10 @@
-﻿namespace Shared;
-
-public class DeclineOrderMessage : IMessage
+﻿namespace Shared
 {
-    public Guid OrderId { get; set; }
+    using System;
+    using NServiceBus;
+
+    public class DeclineOrderMessage : IMessage
+    {
+        public Guid OrderId { get; set; }
+    }
 }

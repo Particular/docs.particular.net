@@ -1,6 +1,7 @@
-﻿using Shared;
-
-namespace Publisher;
+﻿using System;
+using System.Threading.Tasks;
+using NServiceBus;
+using Shared;
 
 public class OrderConfirmationHandler : IHandleMessages<ConfirmOrderMessage>, IHandleMessages<DeclineOrderMessage>
 {

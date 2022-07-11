@@ -1,6 +1,7 @@
-﻿using Shared;
-
-namespace Subscriber;
+﻿using System;
+using System.Threading.Tasks;
+using NServiceBus;
+using Shared;
 
 public class OrderValidationHandler : IHandleMessages<OrderReceived>
 {

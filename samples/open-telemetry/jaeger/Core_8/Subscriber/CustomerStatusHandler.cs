@@ -1,6 +1,6 @@
-﻿using Shared;
-
-namespace Subscriber;
+﻿using System.Threading.Tasks;
+using NServiceBus;
+using Shared;
 
 public class CustomerStatusHandler : IHandleMessages<OrderReceived>
 {

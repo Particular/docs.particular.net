@@ -1,6 +1,10 @@
-﻿namespace Shared;
-
-public class ConfirmOrderMessage : IMessage
+﻿namespace Shared
 {
-    public Guid OrderId { get; set; }
+    using System;
+    using NServiceBus;
+
+    public class ConfirmOrderMessage : IMessage
+    {
+        public Guid OrderId { get; set; }
+    }
 }
