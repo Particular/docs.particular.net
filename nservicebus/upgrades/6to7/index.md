@@ -32,14 +32,35 @@ Instead use one of the following methods:
 
 #### Configure with the code API
 
-snippet: 6to7AuditCode
+```csharp
+endpointConfiguration.AuditProcessedMessagesTo(
+    auditQueue: "targetAuditQueue",
+    timeToBeReceived: TimeSpan.FromMinutes(10));
+```
 
 
 #### Read from appSettings and configure with the code API
 
-snippet: 6to7AuditAppSettings
+```xml
+<configuration>
+  <appSettings>
+    <add key="AuditQueue"
+         value="targetAuditQueue" />
+    <add key="TimeToBeReceived"
+         value="00:10:00" />
+  </appSettings>
+</configuration>
+```
 
-snippet: 6to7AuditReadAppSettings
+```csharp
+var appSettings = ConfigurationManager.AppSettings;
+var auditQueue = appSettings.Get("auditQueue");
+var timeToBeReceivedSetting = appSettings.Get("timeToBeReceived");
+var timeToBeReceived = TimeSpan.Parse(timeToBeReceivedSetting);
+endpointConfiguration.AuditProcessedMessagesTo(
+    auditQueue: auditQueue,
+    timeToBeReceived: timeToBeReceived);
+```
 
 
 ### [Logging](/nservicebus/logging/)
@@ -55,14 +76,28 @@ Instead use one of the following methods:
 
 #### Configure with the code API
 
-snippet: 6to7LoggingCode
+```csharp
+var logFactory = LogManager.Use<DefaultFactory>();
+logFactory.Level(LogLevel.Info);
+```
 
 
 #### Read from appSettings and configure with the code API
 
-snippet: 6to7LoggingAppSettings
+```xml
+<appSettings>
+  <add key="LoggingThreshold"
+       value="Debug" />
+</appSettings>
+```
 
-snippet: 6to7LoggingReadAppSettings
+```csharp
+var appSettings = ConfigurationManager.AppSettings;
+var appSetting = appSettings.Get("LoggingThreshold");
+var level = (LogLevel)Enum.Parse(typeof(LogLevel), appSetting);
+var logFactory = LogManager.Use<DefaultFactory>();
+logFactory.Level(level);
+```
 
 
 ### [Error queue](/nservicebus/recoverability/configure-error-handling.md)
@@ -79,14 +114,27 @@ Instead use one of the following methods:
 
 #### Configure with the code API
 
-snippet: 6to7ErrorCode
+```csharp
+endpointConfiguration.SendFailedMessagesTo("error");
+```
 
 
 #### Read from appSettings and configure with the code API
 
-snippet: 6to7ErrorAppSettings
+```xml
+<configuration>
+  <appSettings>
+    <add key="ErrorQueue"
+         value="error" />
+  </appSettings>
+</configuration>
+```
 
-snippet: 6to7ErrorReadAppSettings
+```csharp
+var appSettings = ConfigurationManager.AppSettings;
+var errorQueue = appSettings.Get("errorQueue");
+endpointConfiguration.SendFailedMessagesTo(errorQueue);
+```
 
 
 ### [Endpoint mappings](/nservicebus/messaging/routing.md)
@@ -104,12 +152,44 @@ It can be replaced with a combination of the following methods:
 
 #### [Command routing](/nservicebus/messaging/routing-extensibility.md#applying-routing-strategies-command-routing)
 
-snippet: 6to7endpoint-mapping-Routing-Logical
+```csharp
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+
+var routing = transport.Routing();
+routing.RouteToEndpoint(
+    assembly: typeof(AcceptOrder).Assembly,
+    destination: "Sales");
+
+routing.RouteToEndpoint(
+    assembly: typeof(AcceptOrder).Assembly,
+    @namespace: "PriorityMessages",
+    destination: "Preferred");
+
+routing.RouteToEndpoint(
+    messageType: typeof(SendOrder),
+    destination: "Sending");
+```
 
 
 #### [Event routing](/nservicebus/messaging/routing-extensibility.md#applying-routing-strategies-event-routing)
 
-snippet: 6to7endpoint-mapping-Routing-RegisterPublisher
+```csharp
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+
+var routing = transport.Routing();
+routing.RegisterPublisher(
+    assembly: typeof(OrderAccepted).Assembly,
+    publisherEndpoint: "Sales");
+
+routing.RegisterPublisher(
+    assembly: typeof(OrderAccepted).Assembly,
+    @namespace: "PriorityMessages",
+    publisherEndpoint: "Preferred");
+
+routing.RegisterPublisher(
+    eventType: typeof(OrderSent),
+    publisherEndpoint: "Sending");
+```
 
 
 ## Renamed APIs
@@ -202,7 +282,9 @@ There is no longer a default transport; an exception will be thrown if an endpoi
 
 In NServiceBus version 6 and below, the default transport was [MSMQ](/transports/msmq/). To use MSMQ in version 7 and above, reference [NServiceBus.Transport.Msmq](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/) and configure with:
 
-snippet: 6to7-UseMsmqTransport
+```csharp
+endpointConfiguration.UseTransport<MsmqTransport>();
+```
 
 
 ## Message property encryption
@@ -275,7 +357,11 @@ When running on .NET Core, a connection string named `NServiceBus/Transport` wil
 
 When running on the .NET Framework, the `NServiceBus/Transport` connection string will continue to function as per previous versions, however a warning will be logged indicating that it should be explicitly configured instead.
 
-snippet: 6to7ConnectionStrings
+```csharp
+var connection = ConfigurationManager.ConnectionStrings["theConnectionName"];
+var connectionString = connection.ConnectionString;
+transport.ConnectionString(connectionString);
+```
 
 
 ## Installers

@@ -14,10 +14,29 @@ The API was also modified. The version 6 API is asynchronous by default and allo
 
 The `NServiceBus.Callbacks` package has to be referenced only by the requesting endpoint. The responding endpoint needs `NServiceBus.Callbacks` only if it replies  with `int` or `enum` types.
 
-snippet: 5to6-Callbacks
+```csharp
+// For NServiceBus version 5.x
+var requestMessage = new RequestMessage();
+bus.Send(requestMessage)
+    .Register(
+        callback: asyncResult =>
+        {
+            var localResult = (CompletionResult) asyncResult.AsyncState;
+            var response = (ResponseMessage) localResult.Messages[0];
+        },
+        state: null);
+
+// For Callbacks version 1.x
+var message = new RequestMessage();
+var response = await endpoint.Request<ResponseMessage>(message)
+    .ConfigureAwait(false);
+```
 
 In order to use callbacks, the endpoint must be uniquely addressable:
 
-snippet: 5to6-Callbacks-InstanceId
+```csharp
+var instanceDiscriminator = ConfigurationManager.AppSettings["InstanceId"];
+endpointConfiguration.MakeInstanceUniquelyAddressable(instanceDiscriminator);
+```
 
 NOTE: This ID should never be hard-coded; it can be read from a configuration file or from the environment (e.g. role ID in Azure) so that it can be changed without code changes and redeployment.

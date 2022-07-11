@@ -18,11 +18,19 @@ upgradeGuideCoreVersions:
 
 Either configure a time to cache for:
 
-snippet: 1to2_subscriptions_CacheFor
+```csharp
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+var subscriptions = persistence.SubscriptionSettings();
+subscriptions.CacheFor(TimeSpan.FromMinutes(1));
+```
 
 Or explicitly disable the subscription caching.
 
-snippet: 1to2_subscriptions_Disable
+```csharp
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+var subscriptions = persistence.SubscriptionSettings();
+subscriptions.DisableCache();
+```
 
 
 ## Inheriting from SqlSaga now required
@@ -39,7 +47,23 @@ In Version 1, having deep class hierarchies inheriting from `SqlSaga<T>` was sup
 
 The API for defining a Correlation Property has been moved from an attribute to a property at the saga class level.
 
-snippet: 1to2_Correlation
+```csharp
+// For Sql Persistence version 2.x
+public class MySaga :
+    SqlSaga<MySaga.SagaData>,
+    IAmStartedByMessages<MyMessage>
+{
+    protected override string CorrelationPropertyName => nameof(SagaData.TheId);
+
+// For Sql Persistence version 1.x
+[SqlSaga(
+    correlationProperty: nameof(SagaData.TheId)
+)]
+public class MySaga :
+    SqlSaga<MySaga.SagaData>,
+    IAmStartedByMessages<MyMessage>
+{
+```
 
 
 ## Message Mapping
@@ -49,7 +73,19 @@ The API to define message mapping has been changed to bring it in line with the 
  * `MapMessage` renamed to `ConfigureMapping`.
  * `MessagePropertyMapper<T>` renamed to `IMessagePropertyMapper`.
 
-snippet: 1to2_Mapping
+```csharp
+// For Sql Persistence version 2.x
+protected override void ConfigureMapping(IMessagePropertyMapper mapper)
+{
+    mapper.ConfigureMapping<MyMessage>(_ => _.TheId);
+}
+
+// For Sql Persistence version 1.x
+protected override void ConfigureMapping(MessagePropertyMapper<SagaData> mapper)
+{
+    mapper.MapMessage<MyMessage>(_ => _.TheId);
+}
+```
 
 
 ## SqlSaga.ConfigureMapping made abstract
@@ -61,25 +97,65 @@ To simplify implementing a saga using `SqlSaga<T>` class, the method `SqlSaga<T>
 
 Attributes have been moved to use properties instead of optional parameters in the constructor.
 
-snippet: 1to2_SqlPersistenceSettings
+```csharp
+// For Sql Persistence version 2.x
+[assembly: SqlPersistenceSettings(
+    MsSqlServerScripts = true,
+    MySqlScripts = true)]
+
+// For Sql Persistence version 1.x
+[assembly: SqlPersistenceSettings(
+    msSqlServerScripts: true,
+    mySqlScripts: true)]
+```
 
 
 ## SqlSagaAttribute made obsolete
 
 The `[SqlSagaAttribute]` has been made obsolete and replaced by property overrides on the `SqlSaga<T>` class.
 
-snippet: 1to2_SagaAttribute
+```csharp
+// For Sql Persistence version 2.x
+public class MySaga :
+    SqlSaga<MySaga.SagaData>
+{
+    protected override string CorrelationPropertyName => nameof(SagaData.CorrelationProperty);
+    protected override string TransitionalCorrelationPropertyName => nameof(SagaData.TransitionalCorrelationProperty);
+    protected override string TableSuffix => "TheCustomTableName";
+
+// For Sql Persistence version 1.x
+[SqlSaga(
+    tableSuffix: "TheCustomTableName",
+    transitionalCorrelationProperty: "OtherPropertyName"
+)]
+```
 
 
 ## Explicit schema API
 
 An explicit schema API has been added.
 
-snippet: 1to2_Schema
+```csharp
+// For Sql Persistence version 2.x
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+persistence.Schema("MySchema");
+
+// For Sql Persistence version 1.x
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+persistence.TablePrefix("MySchema.");
+```
 
 If characters that required quoting were previously used in the table prefix, they can be removed and the following can be used instead:
 
-snippet: 1to2_Schema_Extended
+```csharp
+// For Sql Persistence version 2.x
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+persistence.Schema("My Schema");
+
+// For Sql Persistence version 1.x
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+persistence.TablePrefix("[My Schema].");
+```
 
 WARNING: An exception will be thrown if any of ], [ or &grave; are detected in the `tablePrefix` or the schema.
 

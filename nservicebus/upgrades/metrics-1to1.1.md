@@ -15,18 +15,104 @@ include: metrics-registerobservers
 
 Replace with explicit calls to [Trace.WriteLine](https://msdn.microsoft.com/en-us/library/system.diagnostics.trace.writeline.aspx).
 
-snippet: 1to11EnableToTrace
+```csharp
+// For Metrics version 1.x
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.RegisterObservers(
+    register: context =>
+    {
+        foreach (var duration in context.Durations)
+        {
+            duration.Register(
+                observer: length =>
+                {
+                    Trace.WriteLine($"Duration '{duration.Name}'. Value: '{length}'");
+                });
+        }
+        foreach (var signal in context.Signals)
+        {
+            signal.Register(
+                observer: () =>
+                {
+                    Trace.WriteLine($"Signal: '{signal.Name}'");
+                });
+        }
+    });
+
+// For Metrics version 1.x
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.EnableMetricTracing(TimeSpan.FromSeconds(5));
+```
 
 
 ### EnableLogTracing
 
 Replace with explicit calls to an [NServiceBus logger](/nservicebus/logging/usage.md).
 
-snippet: 1to11EnableToLog
+```csharp
+// For Metrics version 1.x
+//TODO: the logger instance should be a static field
+var log = LogManager.GetLogger("LoggerName");
+
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.RegisterObservers(
+    register: context =>
+    {
+        foreach (var duration in context.Durations)
+        {
+            duration.Register(
+                observer: length =>
+                {
+                    log.Info($"Duration: '{duration.Name}'. Value: '{length}'");
+                });
+        }
+        foreach (var signal in context.Signals)
+        {
+            signal.Register(
+                observer: () =>
+                {
+                    log.Info($"Signal: '{signal.Name}'");
+                });
+        }
+    });
+
+// For Metrics version 1.x
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.EnableLogTracing(TimeSpan.FromSeconds(5), LogLevel.Info);
+```
 
 
 ### EnableCustomReport
 
 Replace with explicit calls to the custom method.
 
-snippet: 1to11Custom
+```csharp
+// For Metrics version 1.x
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.RegisterObservers(
+    register: context =>
+    {
+        foreach (var duration in context.Durations)
+        {
+            duration.Register(
+                observer: length =>
+                {
+                    ProcessMetric(duration, length);
+                });
+        }
+        foreach (var signal in context.Signals)
+        {
+            signal.Register(
+                observer: () =>
+                {
+                    ProcessMetric(signal);
+                });
+        }
+    });
+
+// For Metrics version 1.x
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.EnableCustomReport(
+    func: data => ProcessMetric(data),
+    interval: TimeSpan.FromSeconds(5));
+```

@@ -22,7 +22,19 @@ See [routing topology](/transports/rabbitmq/routing-topology.md) for further det
 
 The convention for overriding the name of the exchange used when publishing events has changed. The address and the event type are no longer passed to the `exchangeNameConvention` parameter of the [UseDirectRoutingTopology](/transports/rabbitmq/routing-topology.md#direct-routing-topology-enabling-the-direct-routing-topology) method.
 
-snippet: 4to5usedirectroutingtopology
+```csharp
+// For RabbitMQ Transport version 5.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.UseDirectRoutingTopology(
+    routingKeyConvention: type => "myroutingkey",
+    exchangeNameConvention: () => "MyTopic");
+
+// For RabbitMQ Transport version 4.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.UseDirectRoutingTopology(
+    routingKeyConvention: type => "myroutingkey",
+    exchangeNameConvention: (address, eventType) => "MyTopic");
+```
 
 
 ## Custom routing topology changes
@@ -44,15 +56,68 @@ The [ISupportDelayedDelivery](/transports/rabbitmq/routing-topology.md?version=r
 
 [Exchange and queue durability](/transports/rabbitmq/routing-topology.md?version=rabbit_4#controlling-exchange-and-queue-durability) is no longer controlled by the [global message durability settings](/nservicebus/messaging/non-durable-messaging.md#enabling-non-durable-messaging-global-for-the-endpoint) specified for the endpoint. The routing topologies provided by the transport now create durable exchanges and queues by default. The `UseDurableExchangesAndQueues` setting has been introduced to control durability:
 
-snippet: rabbitmq-disable-durable-exchanges
+```csharp
+// For RabbitMQ Transport version 8.x
+var topology = RoutingTopology.Conventional(QueueType.Quorum, useDurableEntities: false);
+
+var transport = new RabbitMQTransport(topology, "host=localhost");
+
+endpointConfiguration.UseTransport(transport);
+
+// For RabbitMQ Transport version 7.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.DisableDurableExchangesAndQueues();
+
+// For RabbitMQ Transport version 6.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.DisableDurableExchangesAndQueues();
+
+// For RabbitMQ Transport version 5.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.UseDurableExchangesAndQueues(false);
+
+// For RabbitMQ Transport version 5.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.UseDurableExchangesAndQueues(false);
+```
 
 If `DisableDurableMessages` has been called, the transport will throw an exception unless `UseDurableExchangesAndQueues` is also called:
 
-snippet: rabbitmq-disable-durable-messages
+```csharp
+// For RabbitMQ Transport version 5.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+endpointConfiguration.DisableDurableMessages();
+transport.UseDurableExchangesAndQueues(true);
+
+// For RabbitMQ Transport version 5.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+endpointConfiguration.DisableDurableMessages();
+transport.UseDurableExchangesAndQueues(true);
+```
 
 
 ## Delayed Delivery
 
 The timeout manager is no longer enabled by default, so the `DisableTimeoutManager` API has been deprecated. If an endpoint still has undelivered messages stored in its persistence database, the new `EnableTimeoutManager` API can be used to ensure those messages are delivered.
 
-snippet: rabbitmq-delay-enable-timeout-manager
+```csharp
+// For RabbitMQ Transport version 7.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+var delayedDelivery = transport.DelayedDelivery();
+delayedDelivery.EnableTimeoutManager();
+
+// For RabbitMQ Transport version 6.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+var delayedDelivery = transport.DelayedDelivery();
+delayedDelivery.EnableTimeoutManager();
+
+// For RabbitMQ Transport version 5.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+var delayedDelivery = transport.DelayedDelivery();
+delayedDelivery.EnableTimeoutManager();
+
+// For RabbitMQ Transport version 5.x
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+var delayedDelivery = transport.DelayedDelivery();
+delayedDelivery.EnableTimeoutManager();
+```

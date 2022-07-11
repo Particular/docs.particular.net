@@ -10,7 +10,40 @@ upgradeGuideCoreVersions:
 
 SQL Server transport 3.1 introduces native handling of delayed messages. It does so via a dedicated table which holds messages that have been sent but are not yet due. The snippet below shows T-SQL script that creates delayed messages table:
 
-snippet: 3to31-createdelayedmessagestoretextsql
+```sql
+IF EXISTS (
+    SELECT *
+    FROM {1}.sys.objects
+    WHERE object_id = OBJECT_ID(N'{0}')
+        AND type in (N'U'))
+RETURN
+
+EXEC sp_getapplock @Resource = '{0}_lock', @LockMode = 'Exclusive'
+
+IF EXISTS (
+    SELECT *
+    FROM {1}.sys.objects
+    WHERE object_id = OBJECT_ID(N'{0}')
+        AND type in (N'U'))
+BEGIN
+    EXEC sp_releaseapplock @Resource = '{0}_lock'
+    RETURN
+END
+
+CREATE TABLE {0} (
+    Headers nvarchar(max) NOT NULL,
+    Body varbinary(max),
+    Due datetime NOT NULL,
+    RowVersion bigint IDENTITY(1,1) NOT NULL
+);
+
+CREATE NONCLUSTERED INDEX [Index_Due] ON {0}
+(
+    [Due]
+)
+
+EXEC sp_releaseapplock @Resource = '{0}_lock'
+```
 
 In order to drain all delayed messages sent before upgrading to version 3.1, [Timeout Manager](/nservicebus/messaging/timeout-manager.md) is enabled by default in version 3.1 of the transport. 
 
@@ -30,6 +63,22 @@ NOTE: Some persisters, e.g. NHibernate, store all the delayed messages for all t
 
 Once exported, use the following script to insert the data into SQL Server transport's table.
 
-snippet: 3to31-storedelayedmessagetextsql
+```sql
+DECLARE @NOCOUNT VARCHAR(3) = 'OFF';
+IF ( (512 & @@OPTIONS) = 512 ) SET @NOCOUNT = 'ON'
+SET NOCOUNT ON;
+
+INSERT INTO {0} (
+    Headers,
+    Body,
+    Due)
+VALUES (
+    @Headers,
+    @Body,
+    @Due);
+
+IF(@NOCOUNT = 'ON') SET NOCOUNT ON;
+IF(@NOCOUNT = 'OFF') SET NOCOUNT OFF;
+```
 
 NOTE: By default, the table used to store delayed messages has the `Delayed` suffix so for an endpoint called `MyEndpoint` the delayed messages are stored in a table called `MyEndpoint.Delayed`.

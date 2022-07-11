@@ -15,46 +15,101 @@ NServiceBus version 6 provides a configuration API that is more aligned with the
 
 Transactions are enabled by default so calls to `.Enable()` can safely be removed.
 
-snippet: 5to6EnableTransactions
+```csharp
+// For NServiceBus version 6.x
+// Using a transport will enable transactions automatically.
+endpointConfiguration.UseTransport<MyTransport>();
+
+// For NServiceBus version 5.x
+var transactionSettings = busConfiguration.Transactions();
+transactionSettings.Enable();
+```
 
 
 ## Disabling transactions
 
 Disabling transactions is now done by setting a transport transaction mode.
 
-snippet: 5to6DisableTransactions
+```csharp
+// For NServiceBus version 6.x
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+transport.Transactions(TransportTransactionMode.None);
+
+// For NServiceBus version 5.x
+var transactionSettings = busConfiguration.Transactions();
+transactionSettings.Disable();
+```
 
 
 ## Enabling distributed transactions
 
 Distributed transaction mode is the default mode for transports with DTC support but can be enabled explicitly.
 
-snippet: 5to6EnableDistributedTransactions
+```csharp
+// For NServiceBus version 6.x
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+transport.Transactions(TransportTransactionMode.TransactionScope);
+
+// For NServiceBus version 5.x
+var transactionSettings = busConfiguration.Transactions();
+transactionSettings.EnableDistributedTransactions();
+```
 
 
 ## Disabling distributed transactions
 
 Disabling distributed transactions is now done by setting a transport transaction mode.
 
-snippet: 5to6DisableDistributedTransactions
+```csharp
+// For NServiceBus version 6.x
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+transport.Transactions(TransportTransactionMode.ReceiveOnly);
+
+// For NServiceBus version 5.x
+var transactionSettings = busConfiguration.Transactions();
+transactionSettings.DisableDistributedTransactions();
+```
 
 Or, if the transport supports native AtomicWithReceive:
 
-snippet: 5to6DisableDistributedTransactionsNative
+```csharp
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+```
 
 
 ## Controlling transaction scope options
 
 NServiceBus version 6 allows transaction scope options to be configured at the transport level. Setting isolation level and timeout can now be done with the following:
 
-snippet: 5to6TransportTransactionScopeOptions
+```csharp
+// For NServiceBus version 6.x
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+transport.Transactions(TransportTransactionMode.TransactionScope);
+transport.TransactionScopeOptions(
+    isolationLevel: IsolationLevel.RepeatableRead,
+    timeout: TimeSpan.FromSeconds(30));
+
+// For NServiceBus version 5.x
+var transactionSettings = busConfiguration.Transactions();
+transactionSettings.IsolationLevel(IsolationLevel.RepeatableRead);
+transactionSettings.DefaultTimeout(TimeSpan.FromSeconds(30));
+```
 
 
 ## Wrapping handlers execution in a transaction scope
 
 NServiceBus version 6 comes with a unit of work that wraps execution of handlers in a transaction scope, which can now be done with the following API:
 
-snippet: 5to6WrapHandlersExecutionInATransactionScope
+```csharp
+// For NServiceBus version 6.x
+var unitOfWork = endpointConfiguration.UnitOfWork();
+unitOfWork.WrapHandlersInATransactionScope();
+
+// For NServiceBus version 5.x
+var transactionSettings = busConfiguration.Transactions();
+transactionSettings.WrapHandlersExecutionInATransactionScope();
+```
 
 
 ## Forwarding messages to error queue when transactions are disabled
@@ -68,7 +123,15 @@ When transactions are disabled and if any errors are encountered during the proc
 
 In NServiceBus version 6, handlers will be wrapped in a [TransactionScope](https://msdn.microsoft.com/en-us/library/system.transactions.transactionscope.aspx) only if the given transport chooses to do so. Transports that do this in their default configuration include [MSMQ](/transports/msmq/) and [SQL Server](/transports/sql/). This means that performing storage operations against data sources that also support transaction scopes will escalate to a distributed transaction. Opting out of this behavior can be done with the following:
 
-snippet: 5to6DoNotWrapHandlersInTransaction
+```csharp
+// For NServiceBus version 6.x
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+transport.Transactions(TransportTransactionMode.ReceiveOnly);
+
+// For NServiceBus version 5.x
+var transactions = busConfiguration.Transactions();
+transactions.DoNotWrapHandlersExecutionInATransactionScope();
+```
 
 For more information see [Transport transaction - sends atomic with receive](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive).
 
@@ -86,11 +149,25 @@ The following properties have been obsoleted on `TransactionSettings` class.
 
 To determine if distributed transactions are suppressed.
 
-snippet: 5to6SuppressDistributedTransactions
+```csharp
+// For NServiceBus version 6.x
+var transactionModeForReceives = readOnlySettings.GetRequiredTransactionModeForReceives();
+var suppressDistributedTransactions = transactionModeForReceives != TransportTransactionMode.TransactionScope;
+
+// For NServiceBus version 5.x
+var suppressDistributedTransactions = transactionSettings.SuppressDistributedTransactions;
+```
 
 
 ### IsTransactional
 
 To determine if transactions are enabled.
 
-snippet: 5to6IsTransactional
+```csharp
+// For NServiceBus version 6.x
+var transactionModeForReceives = readOnlySettings.GetRequiredTransactionModeForReceives();
+var isTransactional = transactionModeForReceives != TransportTransactionMode.None;
+
+// For NServiceBus version 5.x
+var isTransactional = transactionSettings.IsTransactional;
+```

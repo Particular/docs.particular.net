@@ -19,13 +19,39 @@ See also: [Header Manipulation](/nservicebus/messaging/header-manipulation.md).
 
 NServiceBus allows setting headers that are applied to all outgoing messages for the entire endpoint. In version 6, this can be done using:
 
-snippet: 5to6header-static-endpoint
+```csharp
+endpointConfiguration.AddHeaderToAllOutgoingMessages("MyGlobalHeader", "some static value");
+```
 
 
 ## Setting headers on the outgoing pipeline
 
 Headers for outgoing messages can now be set using `context.Headers` on pipelines such as:
 
-snippet: 5to6header-outgoing-behavior
+```csharp
+// For NServiceBus version 6.x
+public class OutgoingBehavior :
+    Behavior<IOutgoingLogicalMessageContext>
+{
+    public override Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
+    {
+        var headers = context.Headers;
+        headers["MyCustomHeader"] = "My custom value";
+        return next();
+    }
+}
+
+// For NServiceBus version 5.x
+public class OutgoingBehavior :
+    IBehavior<OutgoingContext>
+{
+    public void Invoke(OutgoingContext context, Action next)
+    {
+        var headers = context.OutgoingMessage.Headers;
+        headers["MyCustomHeader"] = "My custom value";
+        next();
+    }
+}
+```
 
 Also note that headers can only be set on the outgoing pipeline.

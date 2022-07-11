@@ -53,20 +53,94 @@ Note: All endpoints must be updated to the `NServiceBus.Encryption.MessageProper
 
 ## Enabling RijndaelEncryptionService
 
-snippet: SplitEncryptionFromCode
+```csharp
+// For NServiceBus version 6.x
+var defaultKey = "2015-10";
+
+var keys = new Dictionary<string, byte[]>
+{
+    {"2015-10", Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6")},
+    {"2015-09", Convert.FromBase64String("abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6")},
+    {"2015-08", Convert.FromBase64String("cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6")},
+};
+endpointConfiguration.RijndaelEncryptionService(defaultKey, keys);
+
+// For Message Property Encryption version 1.x
+var defaultKey = "2015-10";
+
+var keys = new Dictionary<string, byte[]>
+{
+    {"2015-10", Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6")},
+    {"2015-09", Convert.FromBase64String("abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6")},
+    {"2015-08", Convert.FromBase64String("cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6")},
+};
+var encryptionService = new RijndaelEncryptionService(defaultKey, keys);
+
+endpointConfiguration.EnableMessagePropertyEncryption(encryptionService);
+```
 
 
 ## Using EncryptedString
 
-snippet: SplitMessageWithEncryptedProperty
+```csharp
+// For NServiceBus version 6.x
+using NServiceBus;
+
+public class MyMessage :
+    IMessage
+{
+    public WireEncryptedString MyEncryptedProperty { get; set; }
+}
+
+// For Message Property Encryption version 1.x
+using NServiceBus;
+using NServiceBus.Encryption.MessageProperty;
+
+public class MyMessage :
+    IMessage
+{
+    public EncryptedString MyEncryptedProperty { get; set; }
+}
+```
 
 
 ## Encrypted property convention
 
-snippet: SplitDefiningEncryptedPropertiesAs
+```csharp
+// For NServiceBus version 6.x
+var conventions = endpointConfiguration.Conventions();
+conventions.DefiningEncryptedPropertiesAs(
+    definesEncryptedProperty: propertyInfo =>
+    {
+        return propertyInfo.Name.EndsWith("EncryptedProperty");
+    });
+
+// For Message Property Encryption version 1.x
+var encryptionService = new RijndaelEncryptionService(
+    encryptionKeyIdentifier: "2015-10",
+    key: Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+
+endpointConfiguration.EnableMessagePropertyEncryption(
+    encryptionService: encryptionService,
+    encryptedPropertyConvention: propertyInfo =>
+    {
+        return propertyInfo.Name.EndsWith("EncryptedProperty");
+    }
+);
+```
 
 
 ## Custom encryption service
 
-snippet: SplitEncryptionFromIEncryptionService
+```csharp
+// For NServiceBus version 6.x
+endpointConfiguration.RegisterEncryptionService(
+    func: () =>
+    {
+        return new EncryptionService();
+    });
+
+// For Message Property Encryption version 1.x
+endpointConfiguration.EnableMessagePropertyEncryption(new EncryptionService());
+```
 

@@ -21,7 +21,25 @@ upgradeGuideCoreVersions:
 
 `NumberOfWorkerThreads` is deprecated as a parameter for channels in the endpoint config file. Use `MaxConcurrency` to set the maximum number of messages that should be processed at any given time by the gateway instead.
 
-snippet: 1to2GatewayConfig
+```xml
+// For Gateway version 2.x
+<GatewayConfig>
+  <Channels>
+    <Channel Address="http://hq.mycorp.com/"
+             ChannelType="Http"
+             MaxConcurrency="3"/>
+  </Channels>
+</GatewayConfig>
+
+// For Gateway version 1.x
+<GatewayConfig>
+  <Channels>
+    <Channel Address="http://hq.mycorp.com/"
+             ChannelType="Http"
+             NumberOfWorkerThreads="3"/>
+  </Channels>
+</GatewayConfig>
+```
 
 
 ## Automatic retries
@@ -41,4 +59,30 @@ In order to send or publish messages to a Gateway version 1.x, it is required to
 
 The following message mutator can be temporarily deployed until all Gateway 1.x endpoints are migrated to a newer major version.
 
-snippet: HeaderMutator
+```csharp
+// For Gateway version 3.x
+public class AddRequiredHeadersForGatewayBackwardsCompatibility : IMutateOutgoingTransportMessages
+{
+    public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
+    {
+        var headers = context.OutgoingHeaders;
+        headers.Add(Headers.TimeToBeReceived, TimeSpan.MaxValue.ToString());
+        headers.Add(Headers.NonDurableMessage, false.ToString());
+
+        return Task.CompletedTask;
+    }
+}
+
+// For Gateway version 2.x
+public class AddRequiredHeadersForGatewayBackwardsCompatibility : IMutateOutgoingTransportMessages
+{
+    public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
+    {
+        var headers = context.OutgoingHeaders;
+        headers.Add(Headers.TimeToBeReceived, TimeSpan.MaxValue.ToString());
+        headers.Add(Headers.NonDurableMessage, false.ToString());
+
+        return Task.CompletedTask;
+    }
+}
+```
