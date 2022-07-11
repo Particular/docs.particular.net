@@ -53,7 +53,12 @@ For more details on setting up connection strings and securing them, refer to th
 
 To set the connection string use the following:
 
-partial: code-connection
+
+
+### Via Code
+
+snippet: setting_asb_connection_string
+
 
 
 ### Via App.Config

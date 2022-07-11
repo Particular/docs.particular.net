@@ -33,13 +33,49 @@ To send a message from inside a message handler:
 
 snippet: SendFromHandler
 
-partial: batch-sends-performance
+NOTE: `Send` is an asynchronous operation. When the invocation ends, it does not mean that the message has actually been sent. In scenarios where a large number of messages are sent in a short period, it might be beneficial, from a performance perspective, to limit the number of outstanding send operations pending for completion. Sample approaches that can be used to limit the number of send tasks can be found in [Writing Async Handlers](/nservicebus/handlers/async-handlers.md#concurrency-large-amount-of-concurrent-message-operations).
 
-partial: override-default-routing
+## Overriding the default routing
 
-partial: sending-to-self
+The `SendOptions` object can be used to override the default routing.
 
-partial: influence-reply
+Using the destination address:
+
+snippet: BasicSendSetDestination
+
+Using the ID of the target instance:
+
+snippet: BasicSendSpecificInstance
+
+## Sending to *self*
+
+Sending a message to the same endpoint, i.e. sending to *self*, can be done in two ways.
+
+An endpoint can send a message to any of its own instances:
+
+snippet: BasicSendToAnyInstance
+
+Or, it can request a message to be routed to itself, i.e. the same instance.
+
+NOTE: This option is only possible when an endpoint instance ID has been specified.
+
+snippet: BasicSendToThisInstance
+
+## Influencing the reply behavior
+
+When a receiving endpoint replies to a message, the reply message will be routed to any instance of the sending endpoint by default. The sender of the message can also control how reply messages are received. 
+
+To send the reply message to the specific instance that sent the initial message:
+
+snippet: BasicSendReplyToThisInstance
+
+To send the reply message to any instance of the endpoint:
+
+snippet: BasicSendReplyToAnyInstance
+
+The sender can also request the reply to be routed to a specific transport address
+
+snippet: BasicSendReplyToDestination
 
 ## Dispatching a message immediately
 
@@ -47,4 +83,8 @@ While it's usually best to let NServiceBus [handle all exceptions](/nservicebus/
 
 NOTE: Side effects can occur when failures happen after sending the message. The messages could be retried meaning duplicate messages are created if this code is executed more than once. When messages are sent via immediate disaptch, ensure that the same [message identifier](/nservicebus/messaging/message-identity.md) gets assigned to them when invoked more than once. Second, due to failures it could happen that messages are sent that contain state which is inconsistent because of failing operations like a storage modification that didn't occur.
 
-partial: immediate-dispatch
+This can be done by using the immediate dispatch API:
+
+snippet: RequestImmediateDispatch
+
+WARNING: By specifying immediate dispatch, outgoing messages will not be [batched](/nservicebus/messaging/batched-dispatch.md) or enlisted in the current receive transaction, even if the transport supports transactions or batching. Similarly, when the [outbox](/nservicebus/outbox/) feature is enabled, messages sent using immediate dispatch won't go through the outbox.

@@ -13,7 +13,11 @@ PII stands for personally identifiable information (also know as personal data) 
 
 ## Headers
 
-partial: headers
+| Name | Description |
+| :------------------ | :--------- |
+| OriginatingEndpoint | Contains endpoint name |
+| OriginatingMachine | Contains the machine from which the message originated | 
+| ReplyToAddress | Contains the queue name that should get the answer |
 
 These system headers are not configurable and should be considered present on all messages that originate from within the application. 
 

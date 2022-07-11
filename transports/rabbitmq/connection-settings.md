@@ -96,7 +96,21 @@ Type: `System.TimeSpan`
 
 Default: `00:00:10` (10 seconds)
 
-partial: tls-settings
+### UseTls
+
+Indicates if the connection to the broker should be secured with [TLS](#transport-layer-security-support).
+
+Default: `false`
+
+
+### CertPath
+
+The file path to the client authentication certificate when using [TLS](#transport-layer-security-support).
+
+
+### CertPassphrase
+
+The password for the client authentication certificate specified in `CertPath`
 
 
 partial: tls-details
@@ -129,7 +143,8 @@ Type: `System.TimeSpan`
 
 Default: `00:02:00` (2 minutes)
 
-partial: timetowaitbeforetriggering
+
+snippet: rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-code
 
 
 partial: delayafterfailure
