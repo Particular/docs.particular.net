@@ -457,8 +457,6 @@
         Title: Logging
       - Url: nservicebus/hosting/cloud-services-host/startup
         Title: Startup Behavior
-      - Url: nservicebus/hosting/cloud-services-host/shared-hosting
-        Title: Shared Hosting
       - Url: nservicebus/hosting/cloud-services-host/critical
         Title: Critical Errors
       - Url: nservicebus/hosting/cloud-services-host/running-without-emulator
@@ -1153,8 +1151,6 @@
       Title: Scripting
     - Url: persistence/ravendb/installation
       Title: Installation
-    - Url: persistence/ravendb/manual-dtc-settings
-      Title: Configure DTC
     - Url: persistence/ravendb/outbox
       Title: Outbox
     - Url: persistence/ravendb/reroute-existing-timeouts

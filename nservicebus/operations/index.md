@@ -74,7 +74,6 @@ Operational documentation is best reviewed from the perspective of the selected 
 ### [RavenDB Persistence](/persistence/ravendb/)
 
  * [Scripting](/persistence/ravendb/operations-scripting.md)
- * [Configuring RavenDB DTC](/persistence/ravendb/manual-dtc-settings.md)
  * [Installing RavenDB](/persistence/ravendb/installation.md)
 
 
