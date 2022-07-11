@@ -405,8 +405,6 @@
       Title: Overriding the host identifier
     - Url: nservicebus/hosting/override-machine-name
       Title: Overriding the machine name
-    - Url: nservicebus/hosting/custom-configuration-providers
-      Title: Overriding app.config settings
     - Url: nservicebus/hosting/assembly-scanning
       Title: Assembly scanning
     - Url: nservicebus/hosting/cooperative-cancellation
@@ -474,8 +472,6 @@
         Title: Initialization
       - Url: nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized
         Title: Before Configuration Finalized
-      - Url: nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete
-        Title: Configuration Ends
       - Url: nservicebus/lifecycle/endpointstartandstop
         Title: Endpoint Instance Starts and Stops
   - Url: nservicebus/handlers-and-sagas
