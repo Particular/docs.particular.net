@@ -2,7 +2,7 @@
 title: Monitor mixed transports with ServiceControl adapter
 summary: Centralize monitoring of mixed transport solution with the ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2019-12-18
+reviewed: 2022-07-11
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
@@ -34,7 +34,7 @@ include: sql-prereq
  1. Press the "Retry all" button in ServicePulse.
  1. Go to the Endpoint console and verify that the message has been successfully processed.
  1. Shut down the Endpoint.
- 1. Open ServicePulse and notice a red label next to the heart icon. Click on the that icon to open the Endpoints Overview. Notice that the Endpoint is now displayed in the Inactive Endpoints tab.
+ 1. Open ServicePulse and notice a red label next to the heart icon. Click on that icon to open the Endpoints Overview. Notice that the Endpoint is now displayed in the Inactive Endpoints tab.
 
 
 ## Code walk-through 

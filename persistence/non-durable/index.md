@@ -2,14 +2,14 @@
 title: Non-durable persistence
 summary: Non-durable persistence (previously known as In-Memory persistence) stores data in a non-durable manner
 component: NonDurablePersistence
-reviewed: 2019-12-17
+reviewed: 2022-07-11
 redirects:
 - nservicebus/persistence/in-memory
 ---
 
 partial: noteinmemory
 
-Some scenarios require an non-durable persistence such as the development environment or a lightweight client not interested in durability across restarts:
+Some scenarios require a non-durable persistence such as the development environment or a lightweight client not interested in durability across restarts:
 
 ## Persistence at a glance
 

@@ -2,7 +2,7 @@
 title: Bus versus broker architecture
 summary: Bus versus broker architectural styles
 component: core
-reviewed: 2019-12-19
+reviewed: 2022-07-11
 redirects:
 - nservicebus/overview
 - nservicebus/nservicebus-and-biztalk
