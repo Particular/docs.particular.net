@@ -54,7 +54,7 @@ Setting the configuration values can now be done through the API as follows:
 * [ConnectionString](/transports/azure-storage-queues/configuration.md#configuration-parameters-connectionstring)
 * [BatchSize](/transports/azure-storage-queues/configuration.md#configuration-parameters-batchsize)
 * [MaximumWaitTimeWhenIdle](/transports/azure-storage-queues/configuration.md#configuration-parameters-maximumwaittimewhenidle)
-* [DegreeOfReceiveParallelism](/transports/azure-storage-queues/configuration.md?version=asq_7#configuration-parameters-degreeofreceiveparallelism)
+* [DegreeOfReceiveParallelism](/transports/azure-storage-queues/configuration.md#configuration-parameters-degreeofreceiveparallelism)
 * [PeekInterval](/transports/azure-storage-queues/configuration.md#configuration-parameters-peekinterval)
 * [MessageInvisibleTime](/transports/azure-storage-queues/configuration.md#configuration-parameters-messageinvisibletime)
 

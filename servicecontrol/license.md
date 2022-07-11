@@ -39,12 +39,12 @@ Note: The easiest way to find the configuration file is by launching the Service
 <add key="NServiceBus/LicensePath" value="d:\NServiceBus\License\License.xml" />
 ```
 
-Note: [This is the same setting to configure a license path for an NServiceBus 5 endpoint](/nservicebus/licensing/?version=core_5#license-management-using-app-config-appsettings).
+Note: This is the same setting to configure a license path for an NServiceBus 5 endpoint.
 
 
 ## Using other platform tools
 
-See the [ServiceInsight licensing page](/serviceinsight/license.md) or the [instructions for licensing manually using the registry](/nservicebus/licensing/?version=core_6#license-management-using-the-registry) for more information.
+See the [ServiceInsight licensing page](/serviceinsight/license.md) for more information.
 
 ## Instance licensing
 
