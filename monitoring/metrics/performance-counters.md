@@ -24,9 +24,27 @@ NServiceBus includes several performance counters to address this. They are inst
 
 Since all performance counters in Windows are exposed via Windows Management Instrumentation (WMI), it is very straightforward to pull this information into the existing monitoring infrastructure.
 
-partial: note
+While the standard performance counters in the NServiceBus 6 package are marked obsolete, for compatibility reasons they are still enabled by default.
 
-partial: counters
+## Counters
+
+All counters are defined in the NuGet package dependency [NServiceBus.Metrics](https://www.nuget.org/packages/NServiceBus.Metrics/). The dependency is automatically pulled in.
+
+For more information about the metrics defined consult the [Metrics](.) documentation page.
+
+
+### Configuration
+
+The counters can be enabled using the the following code:
+
+snippet: enable-criticaltime
+
+In the NServiceBus host the counters are enabled by default.
+
+Setting up an SLA value can be done using the following code:
+
+snippet: enable-sla
+
 
 partial: installing
 
