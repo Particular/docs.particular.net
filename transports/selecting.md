@@ -185,7 +185,7 @@ This is a popular transport for systems hosted in AWS, the Amazon cloud offering
 
 ## MSMQ
 
-WARNING: Microsoft is not making MSMQ available for .NET Core; building new systems using MSMQ is not recommended. 
+WARNING: Microsoft is not making MSMQ available for .NET Core; building new systems using MSMQ is not recommended.
 
 The MSMQ transport uses the native Windows queueing technology, MSMQ, to send and deliver messages. MSMQ is a distributed or "federated" system that consists of multiple processes, one on each machine. The client only interacts with the local MSMQ process, which stores the messages on disk. The messages are forwarded to the remote machine in the background.
 
@@ -198,7 +198,7 @@ The MSMQ transport uses the native Windows queueing technology, MSMQ, to send an
 ### Disadvantages
 
 - Does not offer a native publish-subscribe mechanism. A database is required for storing event subscriptions (via [NServiceBus persistence](/persistence)). [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
-- Scaling out requires setting up the [distributor](msmq/distributor) or [sender-side distribution](msmq/sender-side-distribution.md) to distribute messages across the destination queues of the scaled-out instances. With a broker-based transport, all scaled-out instances communicate with the centralized broker.
+- Scaling out requires setting up [sender-side distribution](msmq/sender-side-distribution.md) to distribute messages across the destination queues of the scaled-out instances. With a broker-based transport, all scaled-out instances communicate with the centralized broker.
 
 ### When to select this transport
 

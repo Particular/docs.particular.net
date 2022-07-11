@@ -17,7 +17,7 @@ upgradeGuideCoreVersions:
 
 ## Connection string options
 
-When upgrading, there are several [connection string options](/transports/rabbitmq/connection-settings.md?version=rabbit_3#connection-string-options) that should be removed from existing connection strings.
+When upgrading, there are several connection string options that should be removed from existing connection strings.
 
 
 ### DequeueTimeout
@@ -46,7 +46,7 @@ transport.PrefetchCount(100);
 
 ### UsePublisherConfirms
 
-The `UsePublisherConfirms` setting has been replaced by the following: 
+The `UsePublisherConfirms` setting has been replaced by the following:
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
@@ -85,12 +85,12 @@ transport.CallbackReceiverMaxConcurrency(10);
 
 ## Providing a custom connection manager
 
-The ability to [provide a custom connection manager](/transports/rabbitmq/connection-settings.md?version=rabbit_3#providing-a-custom-connection-manager) via the `IManageRabbitMqConnections` interface has been removed. Connections are now managed internally by the transport in a way that is not extensible.
+The ability to provide a custom connection manager via the `IManageRabbitMqConnections` interface has been removed. Connections are now managed internally by the transport in a way that is not extensible.
 
 
 ## Controlling behavior when the broker connection is lost
 
-The XML configuration options for [controlling lost connection behavior](/transports/rabbitmq/connection-settings.md?version=rabbit_3#controlling-behavior-when-the-broker-connection-is-lost) have been removed.
+The XML configuration options for controlling lost connection behavior have been removed.
 
 
 ### TimeToWaitBeforeTriggering
