@@ -9,7 +9,7 @@ component: Core
 
 ## Prerequisites
 
-A Jaeger instance is required to send, process and view Open Telemetry trace diagnostics. To get started, use the [`All in one` Jaeger container image](https://www.jaegertracing.io/docs/1.8/getting-started/#all-in-one) for development and testing purpose:
+A Jaeger instance is required to send, process and view Open Telemetry trace diagnostics. Use the [`All in one` Jaeger container image](https://www.jaegertracing.io/docs/1.8/getting-started/#all-in-one) for development and testing purpose by running the following docker command:
 
 ```
 $ docker run -d --name jaeger \
@@ -36,8 +36,8 @@ snippet: jaeger-exporter-configuration
 
 Run the sample and press `1` on the `Publisher` endpoint to publish one or more events. Navigate to the Jaeger UI (by default at `http://localhost:16686`) to inspect the captured traces:
 
-TODO: image of search view
+![jaeger search UI](jaeger-search-view.png)
 
 Inspecting a selected trace shows the conversation flow between the `Publisher` and the `Subscriber` endpoint:
 
-TODO: image of span view
+![jaeger trace UI](jaeger-trace-view.png)
