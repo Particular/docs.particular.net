@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-  <!--3to4rabbitmq-custom-breaker-settings-time-to-wait-before-triggering -->
-  <appSettings>
-    <add key="NServiceBus/RabbitMqDequeueStrategy/TimeToWaitBeforeTriggering"
-         value="00:02:00"/>
-  </appSettings>
-  <!--endcode-->
-</configuration>

@@ -1,1 +1,0 @@
-It is possible to take full control over the delayed retries part of Recoverability by provided a [custom delayed retries policy](/nservicebus/recoverability/configure-delayed-retries.md).

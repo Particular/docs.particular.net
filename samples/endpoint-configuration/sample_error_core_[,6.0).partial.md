@@ -1,1 +1,0 @@
-In Version 5 and below this approach uses the [IProvideConfiguration](/nservicebus/hosting/custom-configuration-providers.md) approach to programmatically override the error queue. 

@@ -2,10 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_6", "NHibernate_6\NHibernate_6.csproj", "{1B35A112-27C4-4364-ACA5-F21BA3A24BF7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_7", "NHibernate_7\NHibernate_7.csproj", "{BB237840-0A91-4836-9C52-5E509B697CEB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_8", "NHibernate_8\NHibernate_8.csproj", "{76225127-4DA4-4BD8-BE0C-F5BFFD806079}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_8.4", "NHibernate_8.4\NHibernate_8.4.csproj", "{DE08797E-1678-40EA-81EA-0F02FB49741D}"
@@ -19,10 +15,6 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1B35A112-27C4-4364-ACA5-F21BA3A24BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B35A112-27C4-4364-ACA5-F21BA3A24BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB237840-0A91-4836-9C52-5E509B697CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB237840-0A91-4836-9C52-5E509B697CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76225127-4DA4-4BD8-BE0C-F5BFFD806079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76225127-4DA4-4BD8-BE0C-F5BFFD806079}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE08797E-1678-40EA-81EA-0F02FB49741D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

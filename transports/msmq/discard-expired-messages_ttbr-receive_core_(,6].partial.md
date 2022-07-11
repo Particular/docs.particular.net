@@ -1,1 +1,0 @@
-This header is ignored by endpoints and messages with an elapsed `NServiceBus.TimeToBeReceivedHeader` value will be processed.

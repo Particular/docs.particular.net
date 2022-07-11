@@ -1,1 +1,0 @@
-NOTE: The Timeout Manager is enabled by default.

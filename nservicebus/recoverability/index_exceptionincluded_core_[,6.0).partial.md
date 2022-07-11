@@ -1,1 +1,0 @@
-Note that in some cases a log entry contains the exception (`Exception included`) and in some cases it is omitted (`Exception omitted`).

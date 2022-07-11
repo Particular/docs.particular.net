@@ -1,1 +1,0 @@
-NOTE: Encryption is enabled by default and disables itself when there are no messages that require encryption.
