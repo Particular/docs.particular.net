@@ -222,15 +222,6 @@
     - NServiceBus.Persistence.NonDurable
     - NServiceBus
 
-- Key: Json
-  Name: Json Serializer
-  DocsUrl: /nservicebus/serialization/json
-  Category: Serializer
-  GitHubOwner: Particular
-  ProjectUrl: https://github.com/Particular/NServiceBus
-  NugetOrder:
-    - NServiceBus
-
 - Key: LearningPersistence
   Name: Learning Persistence
   DocsUrl: /persistence/learning

@@ -565,8 +565,6 @@
     Articles:
     - Url: nservicebus/serialization/newtonsoft
       Title: Json.NET
-    - Url: nservicebus/serialization/json
-      Title: JSON
     - Url: nservicebus/serialization/xml
       Title: Xml
     - Url: nservicebus/serialization/custom-serializer
