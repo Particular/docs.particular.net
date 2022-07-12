@@ -1,1 +1,0 @@
-NOTE: In this mode the transport doesn't wrap the receive operation in any kind of transaction. Should the message fail to process it will be moved straight to the error queue.

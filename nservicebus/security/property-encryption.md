@@ -9,7 +9,7 @@ related:
 - samples/encryption
 ---
 
-partial: obsolete
+WARNING: Message property encryption is available as a [dedicated NuGet package](/nservicebus/security/property-encryption.md?version=propertyencryption_1). The API documented on this page will continue to work for NServiceBus Version 6 but it will hint about its upcoming obsoletion with the following warning: *Message property encryption is released as a dedicated 'NServiceBus.Encryption.MessageProperty' package.*.
 
 Property encryption operates on specific properties of a message. The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible.
 

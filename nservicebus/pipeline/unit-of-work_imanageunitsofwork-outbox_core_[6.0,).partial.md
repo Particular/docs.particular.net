@@ -1,1 +1,0 @@
-NOTE: In Version 6 `IManageUnitsOfWork` does not wrap the persistence transaction. The persistence transaction can therefore still fail after the unit of work completed.

@@ -13,7 +13,7 @@ NServiceBus takes instances of .NET objects (messages, events, and commands) and
 
 NOTE: When transitioning to a new serializer, messages that are currently 'in-flight' are formatted using the previous serialization format. **This includes [saga timeout](/nservicebus/sagas/timeouts.md) and [deferred/delayed](/nservicebus/messaging/delayed-delivery.md) messages via timeout persistence.**
 
-partial: livemigration
+It's possible to transition to another serialization format while still remaining compatible with messages in-flight that used the previous serialization format. This is accomplished by adding the previous serialization format as an [additional deserializer](#specifying-additional-deserializers), which is supported in NServiceBus versions 6 and above.
 
 The [Newtonsoft JSON Serializer](newtonsoft.md) provides an effective general-purpose serializer appropriate for most use cases based on the ubiquitous [Json.NET package](https://www.newtonsoft.com/json). The Newtonsoft package provides a good combination of compactness, human readability, and performance. Other serializers are supported in order to enable specific performance or integration requirements.
 
@@ -36,7 +36,14 @@ The default serializer used in NServiceBus projects is the custom [XmlSerializer
 
 Besides the officially supported and community maintained serializers, it is also possible to [implement and register a custom serializer](/nservicebus/serialization/custom-serializer.md).
 
-partial: additionaldeserializers
+
+## Specifying additional deserializers
+
+To support sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. It is possible to register additional deserializers to process incoming messages. Additionally, if a deserializer requires custom settings, they can be provided during its registration.
+
+snippet: AdditionalDeserializers
+
+Note: When using multiple deserializers make sure that there's only one type registered per given `ContentType`.
 
 ## Immutable message types
 
