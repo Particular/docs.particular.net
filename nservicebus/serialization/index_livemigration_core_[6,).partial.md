@@ -1,0 +1,1 @@
+It's possible to transition to another serialization format while still remaining compatible with messages in-flight that used the previous serialization format. This is accomplished by adding the previous serialization format as an [additional deserializer](#specifying-additional-deserializers), which is supported in NServiceBus versions 6 and above.

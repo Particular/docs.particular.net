@@ -1,0 +1,1 @@
+If the sample were to use the [MSMQ transport](/transports/msmq/), this message would fail without the mutator since it would exceed MSMQ's message size limit of 4MB. However, the outgoing transport message mutator compresses it to a size within the MSMQ limit and the message will get to the server.

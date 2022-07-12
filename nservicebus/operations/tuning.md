@@ -22,8 +22,7 @@ Examples where concurrency tuning might be relevant are:
 
 ## Configuring concurrency limit
 
-
-NOTE: The default concurrency limit is `max(Number of logical processors, 2)`.
+partial: defaults
 
 Limit maximum concurrency so that no more messages than the specified value are ever processed at the same time. If a maximum concurrency is not specified, the transport will choose an optimal value that is a balance between throughput and effective resource usage. The concurrency limit cannot be changed at run-time and can only be applied at endpoint instance creation and requires the instance to be restarted for concurrency changes to take effect.
 
@@ -39,7 +38,7 @@ NOTE: Sequential processing on the endpoint (logical) level is not possible when
 
 ## Throttling
 
-Throughput throttling options have been deprecated. To enable throttling on Version 6 and higher, a custom behavior should be used. The [throttling sample](/samples/throttling/) demonstrates how such a behavior can be implemented.
+partial: throttling
 
 ## Configuration
 

@@ -1,0 +1,1 @@
+Notifications are manipulated at configuration time.

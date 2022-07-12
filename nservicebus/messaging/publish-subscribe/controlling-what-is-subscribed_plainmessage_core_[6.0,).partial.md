@@ -1,0 +1,1 @@
+In NServiceBus version 6 and above, it is possible to subscribe to messages not defined as events by [manually subscribing](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message) to the message type.

@@ -143,11 +143,7 @@ The outbox feature is designed to provide the same level of consistency between 
 
 ## Enabling the outbox
 
-In order to enable the Outbox, use the following code API:
-
-snippet: OutboxEnablineInCode
-
-Note: When Outbox is enabled then NServiceBus automatically lowers the default delivery guarantee level to `ReceiveOnly`. A different level can be explicitly [specified in configuration](/transports/transactions.md).
+partial: enable-outbox
 
 Each NServiceBus persistence package may contain specific configuration options, such as a time to keep deduplication data and a deduplication data cleanup interval. For details, refer to the specific page for each persistence package in the [persistence section](#persistence) below.
 

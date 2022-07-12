@@ -17,19 +17,7 @@ When using the Publish-Subscribe pattern, an endpoint handling an event shouldn'
 
 The reply address is controlled by the sender of the message replying to. See [how to influence the reply behavior when sending messages](send-a-message.md#influencing-the-reply-behavior).
 
-## Influencing the reply behavior
-
-A sender of a reply can influence how the requester will behave when continuing the conversation (replying to a reply). It can request a reply to go to itself (not any other instance of the same endpoint)
-
-snippet: BasicReplyReplyToThisInstance
-
-or explicitly to any instance of the endpoint (which overrides the *public reply address* setting)
-
-snippet: BasicReplyReplyToAnyInstance
-
-It can also request the reply to be routed to a specified transport address instead
-
-snippet: BasicReplyReplyToDestination
+partial: influence
 
 NOTE: Replies participate in the handler transaction and are not sent if the message rolls back. If the code requires a response whether or not message processing succeeds, use [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) on the reply options. Make sure exceptions are rethrown to rollback any transactions and use a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) to not retry non-transient errors.
 

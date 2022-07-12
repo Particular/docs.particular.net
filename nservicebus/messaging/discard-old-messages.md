@@ -59,7 +59,7 @@ MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as
 
 NOTE: MSMQ enforces a single TimeToBeReceived value for all messages in a transaction. To prevent message loss, `TimeToBeReceived` is not supported for endpoints with [transaction mode](/transports/transactions.md) `SendsAtomicWithReceive` or `TransactionScope` by default. 
 
-WARNING: Due to a bug in Version 6 `TransportTransactionMode.ReceiveOnly` wrongly enlisted all outgoing messages in the same transaction causing the issues described above.
+partial: msmq
 
 For more details about how the MSMQ transport handles TimeToBeReceived, see [discarding expired messages in MSMQ](/transports/msmq/discard-expired-messages.md).
 
@@ -76,6 +76,6 @@ The Azure transports evaluate the TimeToBeReceived for a message only when the m
 
 ### SQL transport
 
-The SQL Server transport runs a periodic task that removes expired messages from the queue. The task is first executed when the endpoint starts and is subsequently scheduled to execute 5 minutes after the previous run when the task has been completed. Expired messages are not received from the queue and their disk space will be reclaimed when the periodic task executes.
+partial: sql
 
 

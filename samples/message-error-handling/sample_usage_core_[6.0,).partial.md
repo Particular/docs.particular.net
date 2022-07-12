@@ -1,0 +1,1 @@
+In Versions 6 and above, the `IManageMessageFailures` is deprecated and there's no direct way to manage custom exceptions. The Recoverability API allows for much easier configuration of immediate and delayed retries. However finer-grain control can be achieved by writing a custom Behavior and having it executed as step in the message handling pipeline.

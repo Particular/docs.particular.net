@@ -35,7 +35,7 @@ There are three built-in environment profiles that adjust the host behavior to t
 
 Suitable for running on a development machine, for example, inside Visual Studio.
 
- * [Installers](/nservicebus/operations/installers.md) are always invoked when running the Lite profile.
+partial: lite
 
 
 ### Integration profile
@@ -56,7 +56,7 @@ partial: production
 
 ## Feature profiles
 
- * `PerformanceCounters` turns on the [NServiceBus performance counters](/monitoring/metrics/performance-counters.md).
+partial: feature
 
 
 ## Specifying which profiles to run

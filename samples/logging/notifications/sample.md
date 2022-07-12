@@ -43,7 +43,7 @@ snippet: endpointConfig
 snippet: subscriptions
 
 
-Notifications are manipulated at configuration time.
+partial: usage
 
 
 include: notificationThread

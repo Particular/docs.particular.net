@@ -22,7 +22,7 @@ INFO: When using the C# code samples, be sure to add the proper includes for bot
 
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
 
-NOTE: It may be necessary to script the creation of extra instance-specific queues. For example when using [callbacks](/nservicebus/messaging/callbacks.md#message-routing) or scale-out based on [sender-side distribution](/samples/scaleout/senderside/).
+partial: extra-queues
 
 
 See also: [Queue Permissions](/transports/msmq/#permissions)

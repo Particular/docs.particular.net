@@ -69,7 +69,6 @@ If an incoming mutator throws an exception, the message aborts, rolls back to th
 
 If an outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish. If the operation is performed on a context in the pipeline the message aborts, rolls back to the queue, and [recoverability](/nservicebus/recoverability/) is applied. If the operation is performed on the message session the exception might bubble up to the user code or tear down the application domain if not properly handled.
 
-
-include: non-null-task
+partial: nonnulltask
 
 include: mutators-versus-behaviors
