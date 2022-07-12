@@ -70,16 +70,6 @@ class Usage
         #endregion
     }
 
-    void DisablePublisherConfirms(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-config-disablepublisherconfirms
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UsePublisherConfirms(false);
-
-        #endregion
-    }
-
     string MyRoutingKeyConvention(Type type)
     {
         throw new NotImplementedException();
