@@ -8,33 +8,30 @@ public class Program
 {
     public static async Task Main()
     {
-        #region enable-prometheus-exporter
-        var meterProvider = Sdk.CreateMeterProviderBuilder()
-            .AddMeter("NServiceBus.Diagnostics")
-            .AddPrometheusExporter(opt =>
-            {
-                opt.StartHttpListener = true;
-                opt.HttpListenerPrefixes = new[]
-                {
-                    "http://localhost:9185",
-                    "http://192.168.0.114:9184"
-                };
-                opt.ScrapeEndpointPath = "/metrics";
-            })
-            .Build();
+        var meterProviderBuilder = Sdk.CreateMeterProviderBuilder();
 
+        #region enable-opentelemetry-metrics
+        meterProviderBuilder.AddMeter("NServiceBus.Core");
         #endregion
 
+        #region enable-prometheus-exporter
+        meterProviderBuilder.AddPrometheusExporter(opt =>
+        {
+            opt.StartHttpListener = true;
+            opt.HttpListenerPrefixes = new[]
+            {
+                "http://localhost:9185",
+                "http://192.168.0.114:9184"
+            };
+            opt.ScrapeEndpointPath = "/metrics";
+        });
+        #endregion
+
+        var meterProvider = meterProviderBuilder.Build();
         var config = new EndpointConfiguration("Samples.OpenTelemetry.Metrics");
         config.UseTransport<LearningTransport>();
         config.UsePersistence<LearningPersistence>();
         config.MakeInstanceUniquelyAddressable("main");
-
-        #region enable-opentelemetry-metrics
-
-        config.EnableOpenTelemetryMetrics();
-
-        #endregion
 
         var endpointInstance = await Endpoint.Start(config);
 
