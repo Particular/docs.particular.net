@@ -20,4 +20,18 @@ The default behavior of version 6 is to not scan nested directories for assembli
 
 The API has been changed to an "exclude a list" approach. See [Assemblies to scan](/nservicebus/hosting/assembly-scanning.md#assemblies-to-scan) for more information.
 
-snippet: 5to6ScanningUpgrade
+```csharp
+// For NServiceBus version 6.x
+var scanner = endpointConfiguration.AssemblyScanner();
+scanner.ExcludeAssemblies(
+    "BadAssembly1.dll",
+    "BadAssembly2.dll");
+
+// For NServiceBus version 5.x
+var excludesBuilder =
+    AllAssemblies.Matching("NServiceBus")
+        .And("MyCompany.")
+        .Except("BadAssembly1.dll")
+        .And("BadAssembly2.dll");
+busConfiguration.AssembliesToScan(excludesBuilder);
+```

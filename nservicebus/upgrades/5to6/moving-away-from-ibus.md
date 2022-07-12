@@ -33,7 +33,37 @@ In previous versions to start a new instance of an endpoint, either the `Bus` st
 
 `BusConfiguration` has been deprecated. Use `EndpointConfiguration` instead to configure and start the endpoint. Because `IBus` has been deprecated, the `BusConfiguration` class has been renamed to `EndpointConfiguration` to keep terminology consistent.
 
-snippet: 5to6-endpoint-start-stop
+```csharp
+// For NServiceBus version 6.x
+var endpointConfiguration = new EndpointConfiguration("EndpointName");
+
+// Custom code before start
+var endpointInstance = await Endpoint.Start(endpointConfiguration)
+    .ConfigureAwait(false);
+// Custom code after start
+
+// Block the process
+
+// Custom code before stop
+await endpointInstance.Stop()
+    .ConfigureAwait(false);
+// Custom code after stop
+
+// For NServiceBus version 5.x
+var busConfiguration = new BusConfiguration();
+
+// Custom code before start
+var startableBus = Bus.Create(busConfiguration);
+using (var bus = startableBus.Start())
+{
+    // Custom code after start
+
+    // Block the process
+
+    // Custom code before stop
+}
+// Custom code after stop
+```
 
 Starting the endpoint provides access to `IMessageSession` or `IEndpointInstance` respectively which can be used to send messages during endpoint startup instead of using the `IBus` interface.
 
@@ -43,7 +73,15 @@ Starting the endpoint provides access to `IMessageSession` or `IEndpointInstance
 
 Previously it was possible to access message parameters, such as `MessageId`, `ReplyToAddress` and the message headers, via the `CurrentMessageContext` property on the `IBus` interface. These message properties are now available directly via the message handler context parameter.
 
-snippet: 5to6-messagecontext
+```csharp
+public Task Handle(MyMessage message, IMessageHandlerContext context)
+{
+    var messageId = context.MessageId;
+    var replyToAddress = context.ReplyToAddress;
+    var headers = context.MessageHeaders;
+    return Task.CompletedTask;
+}
+```
 
 ### Sending messages inside message handlers
 
@@ -51,13 +89,31 @@ Instances of `IBus` that were being injected into message handler classes by dep
 
 The message handler signature now includes an additional `IMessageHandlerContext` parameter, which provides the methods that used to be called from `IBus`. Use the `IMessageHandlerContext` to send and publish messages from within the message handler.
 
-snippet: 5to6-bus-send-publish
+```csharp
+public class SendAndPublishHandler :
+    IHandleMessages<MyMessage>
+{
+    public async Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        await context.Send(new MyOtherMessage())
+            .ConfigureAwait(false);
+        await context.Publish(new MyEvent())
+            .ConfigureAwait(false);
+    }
+}
+```
 
 ### Sending messages outside message handlers
 
 A common use of `IBus` is to invoke bus operations outside of the pipeline (e.g., in handlers, sagas and pipeline extensions), such as sending a message from an ASP.NET request or a client application. Instead of an `IBus,` the `IMessageSession` offers all available messaging operations outside the message processing pipeline. For example:
 
-snippet: 5to6-endpoint-send-messages-outside-handlers
+```csharp
+var endpointInstance = await Endpoint.Start(endpointConfiguration)
+    .ConfigureAwait(false);
+IMessageSession messageSession = endpointInstance;
+await messageSession.Send(new SomeMessage())
+    .ConfigureAwait(false);
+```
 
 In this example, a message is being sent during the startup of an Endpoint. Hence the `IMessageSession` is available via the `IEndpointInstance` class from `Endpoint.Start`. Note that implicitly converting from `IEndpointInstance` to `IMessageSession` is optional but it is preferred as `IMessageSession` offers a more concise API for messaging interactions.
 
@@ -90,15 +146,129 @@ Some of the dangers when using an `IMessageSession` interface inside a message h
 
 The snippet below shows a handler with a dependency that accesses the `IBus` interface. The dependency is injected into a handler and used from within the handler.
 
-snippet: 5to6-handler-with-dependency
+```csharp
+public class MyDependency
+{
+    IBus bus;
+
+    public MyDependency(IBus bus)
+    {
+        this.bus = bus;
+    }
+
+    public void Do()
+    {
+        foreach (var changedCustomer in LoadChangedCustomers())
+        {
+            bus.Publish(new CustomerChanged { Name = changedCustomer.Name });
+        }
+    }
+
+    static IEnumerable<Customer> LoadChangedCustomers()
+    {
+        return Enumerable.Empty<Customer>();
+    }
+}
+
+public class HandlerWithDependencyWhichUsesIBus :
+    IHandleMessagesFromPreviousVersions<MyMessage>
+{
+    MyDependency dependency;
+
+    public HandlerWithDependencyWhichUsesIBus(MyDependency dependency)
+    {
+        this.dependency = dependency;
+    }
+
+    public void Handle(MyMessage message)
+    {
+        dependency.Do();
+    }
+}
+```
 
 Since message handler context operations are asynchronous, it is advised to refactor the dependency to no longer use the bus operations towards a design in which the dependency returns information to the caller that can be used to determine what bus operations are required. The following snippet illustrates that:
 
-snippet: 5to6-handler-with-dependency-which-returns
+```csharp
+public class MyReturningDependency
+{
+    IBus bus;
+
+    public MyReturningDependency(IBus bus)
+    {
+        this.bus = bus;
+    }
+
+    public IEnumerable<string> Do()
+    {
+        return LoadChangedCustomers().Select(changedCustomer => changedCustomer.Name);
+    }
+
+    static IEnumerable<Customer> LoadChangedCustomers()
+    {
+        return Enumerable.Empty<Customer>();
+    }
+}
+
+public class HandlerWithDependencyWhichReturns :
+    IHandleMessages<MyMessage>
+{
+    MyReturningDependency dependency;
+
+    public HandlerWithDependencyWhichReturns(MyReturningDependency dependency)
+    {
+        this.dependency = dependency;
+    }
+
+    public async Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        foreach (var customerName in dependency.Do())
+        {
+            await context.Publish(new CustomerChanged { Name = customerName })
+                .ConfigureAwait(false);
+        }
+    }
+}
+```
 
 By using this approach, the asynchronous APIs won't ripple through all the layers, and the dependency can remain synchronous if desired. If such a change is not feasible or desired the context has to be floated into the dependency by using method injection like shown below:
 
-snippet: 5to6-handler-with-dependency-which-accesses-context
+```csharp
+public class MyContextAccessingDependency
+{
+    public async Task Do(IMessageHandlerContext context)
+    {
+        foreach (var changedCustomer in LoadChangedCustomers())
+        {
+            await context.Publish(new CustomerChanged { Name = changedCustomer.Name })
+                .ConfigureAwait(false);
+        }
+    }
+
+    static IEnumerable<Customer> LoadChangedCustomers()
+    {
+        return Enumerable.Empty<Customer>();
+    }
+}
+
+public class HandlerWithDependencyWhichAccessesContext :
+    IHandleMessages<MyMessage>
+{
+    MyContextAccessingDependency dependency;
+
+    public HandlerWithDependencyWhichAccessesContext(MyContextAccessingDependency dependency)
+    {
+        this.dependency = dependency;
+    }
+
+    public async Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        // float the context into the dependency via method injection
+        await dependency.Do(context)
+            .ConfigureAwait(false);
+    }
+}
+```
 
 ### Uniform session
 
@@ -110,7 +280,9 @@ If a step by step migration like shown above is not possible or takes a longer p
 
 When using the `IBuilder` interface outside the infrastructure of NServiceBus, it was possible to use a hack by casting the `IBus` interface to `UnicastBus` and then accessing the `Builder` property like this:
 
-snippet: 5to6AccessBuilder
+```csharp
+var builder = ((UnicastBus) bus).Builder;
+```
 
 This is no longer supported. Instead of using `IBuilder` directly, it is advised to use [dependency injection](/nservicebus/dependency-injection/).
 
@@ -118,7 +290,14 @@ This is no longer supported. Instead of using `IBuilder` directly, it is advised
 
 Control over `HostInformation` was previously done using `UnicastBus.HostInformation`. This is now done using a [more explicit API to set the host identifier](/nservicebus/hosting/override-hostid.md#overriding-the-host-identifier) using the endpoint configuration.
 
-snippet: 5to6-Specifying-HostId-Using-Api
+```csharp
+endpointConfiguration.UniquelyIdentifyRunningInstance()
+    .UsingNames("endpointName", Environment.MachineName);
+// or
+var hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
+endpointConfiguration.UniquelyIdentifyRunningInstance()
+    .UsingCustomIdentifier(hostId);
+```
 
 ### Accessing ReadOnlySettings
 

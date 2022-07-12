@@ -2,10 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_5", "Core_5\Core_5.csproj", "{30F5B3E6-2B7F-46BE-8086-169FD856BA64}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_6", "Core_6\Core_6.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsmqTransport_1", "MsmqTransport_1\MsmqTransport_1.csproj", "{08A1241B-DB7E-4F66-83F2-3D9F250FAED2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsmqTransport_2", "MsmqTransport_2\MsmqTransport_2.csproj", "{426A19FF-73F2-4236-8F51-B5526D5B1BDD}"
@@ -15,10 +11,6 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{30F5B3E6-2B7F-46BE-8086-169FD856BA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30F5B3E6-2B7F-46BE-8086-169FD856BA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08A1241B-DB7E-4F66-83F2-3D9F250FAED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{08A1241B-DB7E-4F66-83F2-3D9F250FAED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{426A19FF-73F2-4236-8F51-B5526D5B1BDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

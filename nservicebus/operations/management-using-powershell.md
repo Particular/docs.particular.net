@@ -17,7 +17,6 @@ The PowerShell module provides cmdlets to assist with:
  * Configuring Microsoft Distributed Transaction Coordinator (MSDTC)
  * Setting the addresses of the default Error and Audit queues for use by deployed Endpoints
  * Importing a Particular Platform license into the Registry
- * Removing a worker from a [Distributor](/transports/msmq/distributor/)
 
 
 ## Prerequisites

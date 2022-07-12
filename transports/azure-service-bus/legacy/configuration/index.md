@@ -47,8 +47,3 @@ There have historically been regular changes to the physical addressing logic, f
  * [`Composition()`](/transports/azure-service-bus/legacy/configuration/full.md#physical-addressing-logic-composition)
  * [`Sanitization()`](/transports/azure-service-bus/legacy/configuration/full.md#physical-addressing-logic-sanitization)
  * [`Individualization()`](/transports/azure-service-bus/legacy/addressing-logic.md#individualization)
-
-
-## AzureServiceBusQueueConfig
-
-In versions 6 and below, configuration values are provided using the `AzureServiceBusQueueConfig` configuration section, refer to the [AzureServiceBusQueueConfig configuration page](/transports/azure-service-bus/legacy/configuration/azureservicebusqueueconfig.md) for more details.

@@ -25,7 +25,68 @@ upgradeGuideCoreVersions:
 
 In NServiceBus version 5, the implementation of the interface `ICreateQueues` was called for each queue that needed to be created. In version 6, `ICreateQueues` has been redesigned. The implementation of the interface is called once but with all queues provided on the `QueueBindings` object. It is now up to the implementation of that interface to determine if the queues are created asynchronously in a sequential order or even in parallel.
 
-snippet: 5to6-QueueCreation
+```csharp
+// For NServiceBus version 6.x
+public class FeatureThatRequiresAQueue :
+    Feature
+{
+    protected override void Setup(FeatureConfigurationContext context)
+    {
+        var queueBindings = context.Settings.Get<QueueBindings>();
+        queueBindings.BindReceiving("someQueue");
+    }
+}
+
+class YourQueueCreator :
+    ICreateQueues
+{
+    public async Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
+    {
+        // create the queues here
+    }
+}
+
+// For NServiceBus version 5.x
+public class QueueRegistration :
+    IWantQueueCreated
+{
+    public QueueRegistration(Address queueAddress)
+    {
+        Address = queueAddress;
+    }
+
+    public Address Address { get; }
+
+    public bool ShouldCreateQueue()
+    {
+        return true;
+    }
+}
+
+public class FeatureThatRequiresAQueue :
+    Feature
+{
+    protected override void Setup(FeatureConfigurationContext context)
+    {
+        var container = context.Container;
+        container.ConfigureComponent(
+            componentFactory: () =>
+            {
+                return new Transports.QueueRegistration(Address.Parse("someQueue"));
+            },
+            dependencyLifecycle: DependencyLifecycle.InstancePerCall);
+    }
+}
+
+class YourQueueCreator :
+    ICreateQueues
+{
+    public void CreateQueueIfNecessary(Address address, string account)
+    {
+        // create the queues here
+    }
+}
+```
 
 See also [Transport-specific queue creation](/transports/msmq/operations-scripting.md#create-queues).
 
@@ -42,7 +103,27 @@ See also [Transport-specific queue creation](/transports/msmq/operations-scripti
 
 Feature dependencies, using the string API, are now declared using the target feature's full type name (`Type.FullName`) which includes the namespace. Removing the `Feature` suffix is no longer required.
 
-snippet: 5to6-DependentFeature
+```csharp
+// For NServiceBus version 6.x
+public class DependentFeature :
+    Feature
+{
+    public DependentFeature()
+    {
+        DependsOn("Namespace.DependencyB");
+        DependsOnAtLeastOne("Namespace.DependencyC", "Namespace.DependencyD");
+    }
+
+// For NServiceBus version 5.x
+public class DependentFeature :
+    Feature
+{
+    public DependentFeature()
+    {
+        DependsOn("DependencyB");
+        DependsOnAtLeastOne("DependencyC", "DependencyD");
+    }
+```
 
 
 ## Satellites

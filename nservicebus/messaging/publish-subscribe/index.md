@@ -14,7 +14,6 @@ related:
  - tutorials/nservicebus-step-by-step
  - nservicebus/messaging/messages-events-commands
  - nservicebus/messaging/headers
- - transports/msmq/distributor/publish-subscribe
  - transports/msmq/subscription-authorisation
 ---
 

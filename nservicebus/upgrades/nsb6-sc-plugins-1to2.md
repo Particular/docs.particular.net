@@ -23,7 +23,12 @@ Version 2 of the ServiceControl plugins changes the way that the plugins connect
 
 The location of the ServiceControl queue can be specified once for all plugins in via an `appSetting` in the endpoint configuration file.
 
-snippet: sc-plugin-queue-config
+```xml
+<appSettings>
+  <add key="ServiceControl/Queue"
+       value="particular.servicecontrol@machine" />
+</appSettings>
+```
 
 
 ### Code

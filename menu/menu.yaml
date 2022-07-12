@@ -242,7 +242,7 @@
     - Title: Newtonsoft Serializer
       Articles:
       - Url: nservicebus/upgrades/newtonsoft-2to3
-        Title: Version 2 to 3      
+        Title: Version 2 to 3
     - Title: NServiceBus Testing
       Articles:
       - Url: nservicebus/upgrades/testing-7to8
@@ -405,8 +405,6 @@
       Title: Overriding the host identifier
     - Url: nservicebus/hosting/override-machine-name
       Title: Overriding the machine name
-    - Url: nservicebus/hosting/custom-configuration-providers
-      Title: Overriding app.config settings
     - Url: nservicebus/hosting/assembly-scanning
       Title: Assembly scanning
     - Url: nservicebus/hosting/cooperative-cancellation
@@ -459,8 +457,6 @@
         Title: Logging
       - Url: nservicebus/hosting/cloud-services-host/startup
         Title: Startup Behavior
-      - Url: nservicebus/hosting/cloud-services-host/shared-hosting
-        Title: Shared Hosting
       - Url: nservicebus/hosting/cloud-services-host/critical
         Title: Critical Errors
       - Url: nservicebus/hosting/cloud-services-host/running-without-emulator
@@ -474,8 +470,6 @@
         Title: Initialization
       - Url: nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized
         Title: Before Configuration Finalized
-      - Url: nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete
-        Title: Configuration Ends
       - Url: nservicebus/lifecycle/endpointstartandstop
         Title: Endpoint Instance Starts and Stops
   - Url: nservicebus/handlers-and-sagas
@@ -565,8 +559,6 @@
     Articles:
     - Url: nservicebus/serialization/newtonsoft
       Title: Json.NET
-    - Url: nservicebus/serialization/json
-      Title: JSON
     - Url: nservicebus/serialization/xml
       Title: Xml
     - Url: nservicebus/serialization/custom-serializer
@@ -956,23 +948,6 @@
       Title: Scaling out
     - Url: transports/msmq/sender-side-distribution
       Title: Scaling out with Sender-Side Distribution
-    - Url: transports/msmq/distributor
-      Title: Scaling with the Distributor
-      Articles:
-      - Url: transports/msmq/distributor/configuration
-        Title: Configuration
-      - Url: transports/msmq/distributor/deploying-to-a-cluster
-        Title: Deploying to Failover Cluster
-      - Url: transports/msmq/distributor/when-worker-goes-down
-        Title: When a worker goes down
-      - Url: transports/msmq/distributor/disconnect-workers
-        Title: Disconnect Workers
-      - Url: transports/msmq/distributor/publish-subscribe
-        Title: Publish-Subscribe
-      - Url: transports/msmq/distributor/error-handling
-        Title: Error handling
-      - Url: transports/msmq/distributor/troubleshooting
-        Title: Troubleshooting
   - Url: transports/rabbitmq
     Title: RabbitMQ
     Articles:
@@ -1176,8 +1151,6 @@
       Title: Scripting
     - Url: persistence/ravendb/installation
       Title: Installation
-    - Url: persistence/ravendb/manual-dtc-settings
-      Title: Configure DTC
     - Url: persistence/ravendb/outbox
       Title: Outbox
     - Url: persistence/ravendb/reroute-existing-timeouts

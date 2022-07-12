@@ -1,1 +1,0 @@
-It is possible to take full control over the whole Recoverability process using a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md).

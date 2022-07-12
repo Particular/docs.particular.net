@@ -22,4 +22,24 @@ include: amazonsqs-xto3
 
 Versions 2 and 3 of the transport break wire compatibility with version 1 endpoints. The `TimeToBeReceived` and `ReplyToAddress` properties are no longer present in the message envelope, but instead are available in the message headers. Starting with version 3.3.0 of the transport, a setting has been introduced to enable wire compatibility with 1.x endpoints when needed, at the expense of larger message size. To do so use the [`EnableV1CompatibilityMode` setting](/transports/sqs/configuration-options.md#v1-compatibility-mode):
 
-snippet: V1BackwardsCompatibility
+```csharp
+// For Amazon SQS Transport version 6.x
+var transport = new SqsTransport
+{
+    EnableV1CompatibilityMode = true
+};
+
+endpointConfiguration.UseTransport(transport);
+
+// For Amazon SQS Transport version 5.x
+var transport = endpointConfiguration.UseTransport<SqsTransport>();
+transport.EnableV1CompatibilityMode();
+
+// For Amazon SQS Transport version 4.x
+var transport = endpointConfiguration.UseTransport<SqsTransport>();
+transport.EnableV1CompatibilityMode();
+
+// For Amazon SQS Transport version 3.x
+var transport = endpointConfiguration.UseTransport<SqsTransport>();
+transport.EnableV1CompatibilityMode();
+```

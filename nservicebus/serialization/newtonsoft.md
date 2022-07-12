@@ -66,7 +66,7 @@ snippet: NewtonsoftBson
 
 ## Compatibility with the core JSON serializer
 
-Up to NServiceBus version 6, a [JSON serializer based on Json.NET](json.md) was bundled with the core package. This section outlines the compatibility considerations when switching to this serializer.
+Up to NServiceBus version 6, a JSON serializer based on Json.NET] was bundled with the core package. This section outlines the compatibility considerations when switching to this serializer.
 
 ### No support for `XContainer` and `XDocument` properties
 

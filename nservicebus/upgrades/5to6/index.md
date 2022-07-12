@@ -49,11 +49,46 @@ Once the instance of `EndpointConfiguration` has been created, it can be used to
 
 In NServiceBus version 6 and above, any operation that interacts with the transport is asynchronous and returns a `Task`. This includes the `Start` method on the static `Endpoint` class and the `Stop` method on `IEndpointInstance`. Ideally these methods are called from within an `async` method and the results can simply be `awaited` (with `ConfigureAwait(false)` applied to them).
 
-snippet: v6-endpoint-start-stop-full-async
+```csharp
+async Task Run(EndpointConfiguration endpointConfiguration)
+{
+    // pre startup
+    var endpointInstance = await Endpoint.Start(endpointConfiguration)
+        .ConfigureAwait(false);
+    // post startup
+
+    // block process
+
+    // pre shutdown
+    await endpointInstance.Stop()
+        .ConfigureAwait(false);
+    // post shutdown
+}
+```
 
 If this is not the case then these calls must be converted back into synchronous ones using `GetAwaiter().GetResult()`. It is recommended that this conversion occur early in the application lifecycle.
 
-snippet: v6-endpoint-start-stop-sync-wrapper
+```csharp
+void Run(EndpointConfiguration endpointConfiguration)
+{
+    RunAsync(endpointConfiguration).GetAwaiter().GetResult();
+}
+
+async Task RunAsync(EndpointConfiguration endpointConfiguration)
+{
+    // pre startup
+    var endpointInstance = await Endpoint.Start(endpointConfiguration)
+        .ConfigureAwait(false);
+    // post startup
+
+    // block process
+
+    // pre shutdown
+    await endpointInstance.Stop()
+        .ConfigureAwait(false);
+    // post shutdown
+}
+```
 
 Note that in NServiceBus version 5, `IBus` implements `IDisposable` and stops communicating with the transport when `Dispose` is called. It is common to call `Bus.Create` from within a `using` block in console applications. In version 6, stopping an instance of an endpoint is asynchronous and must return a `Task` which is not possible with the signature of `IDisposable`. `IEndpointInstance` does not implement `IDisposable` and explicitly calling `Stop` and `await`ing the returned `Task` is the only way to shut down the endpoint.
 

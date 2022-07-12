@@ -1,1 +1,0 @@
-Defaults: 1000 ms (1 second)

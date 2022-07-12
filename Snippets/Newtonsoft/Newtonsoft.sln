@@ -2,8 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft_1", "Newtonsoft_1\Newtonsoft_1.csproj", "{100E3F2F-409C-4E7F-AEAD-599179DC0C69}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft_2", "Newtonsoft_2\Newtonsoft_2.csproj", "{1E02F10E-9387-499F-BD8C-95394A612919}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft_3", "Newtonsoft_3\Newtonsoft_3.csproj", "{BA42E9F9-2D42-4857-99E5-36A7ED000569}"
@@ -16,10 +14,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{100E3F2F-409C-4E7F-AEAD-599179DC0C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{100E3F2F-409C-4E7F-AEAD-599179DC0C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{100E3F2F-409C-4E7F-AEAD-599179DC0C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{100E3F2F-409C-4E7F-AEAD-599179DC0C69}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E02F10E-9387-499F-BD8C-95394A612919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E02F10E-9387-499F-BD8C-95394A612919}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E02F10E-9387-499F-BD8C-95394A612919}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,3 +1,0 @@
-### Using code
-
-snippet: ErrorWithCode

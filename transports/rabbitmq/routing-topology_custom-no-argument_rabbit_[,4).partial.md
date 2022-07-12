@@ -1,1 +1,0 @@
-snippet: rabbitmq-config-useroutingtopology

@@ -1,1 +1,0 @@
-MSMQ is the default transport used by NServiceBus.

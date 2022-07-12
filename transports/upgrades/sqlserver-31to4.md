@@ -24,10 +24,28 @@ NOTE: Transaction scope is supposed to be supported by `SqlConnection` in future
 
 The multi-instance mode has been deprecated in Version 4. So the following is no longer supported:
 
-snippet: 31to4-legacy-multi-instance
+```csharp
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+transport.EnableLegacyMultiInstanceMode(async address =>
+{
+    var connectionString = address.StartsWith("RemoteEndpoint")
+        ? "Data Source=SQL; Database=RemoteEndpoint; Integrated Security=True"
+        : "Data Source=SQL; Database=ThisEndpoint; Integrated Security=True";
+    var connection = new SqlConnection(connectionString);
+    await connection.OpenAsync()
+        .ConfigureAwait(false);
+    return connection;
+});
+```
 
 NServiceBus topologies with queues distributed between multiple catalogs hosted in a single instance of SQL Server can now be configured using multi-catalog [addressing](/transports/sql/addressing.md):
 
-snippet: 31to4-multi-catalog
+```csharp
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+transport.ConnectionString("Data Source=SQL; Database=ThisEndpoint; Integrated Security=True");
+transport.UseCatalogForEndpoint(
+    endpointName: "RemoteEndpoint",
+    catalog: "RemoteEndpoint");
+```
 
 If catalogs are hosted in different instances of SQL Server, use [NServiceBus.Transport.Bridge](/nservicebus/bridge/) to construct a bridge. The [multi-instance sample](/samples/bridge/sql-multi-instance) demonstrates this approach.

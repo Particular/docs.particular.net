@@ -22,7 +22,17 @@ When upgrading to NServiceBus.Testing Version 7, projects will also require an u
 
 The `AssertSagaCompletionIs` method has been obsoleted and replaced by `ExpectSagaCompleted` and `ExpectSagaNotCompleted`.
 
-snippet: 6to7-ExpectSagaCompleted
+```csharp
+// For Testing version 7.x
+Test.Saga<MySaga>()
+    .ExpectSagaCompleted()
+    .WhenHandling<CompleteSagaMessage>();
+
+// For Testing version 6.x
+Test.Saga<MySaga>()
+    .WhenHandling<CompleteSagaMessage>()
+    .AssertSagaCompletionIs(true);
+```
 
 Note the `ExpectSagaCompleted` and `ExpectSagaNotCompleted` expectations must be placed **before** a `When` method, similar to other expectation methods.
 
@@ -34,7 +44,21 @@ The `ExpectHandleCurrentMessageLater` method has been obsoleted as `IMessageHand
 
 An overload of the `WhenHandling` method has been added, which accepts a preconstructed message.
 
-snippet: 6to7-WhenHandling
+```csharp
+// For Testing version 7.x
+var message = new CompleteSagaMessage();
+
+Test.Saga<MySaga>()
+    .ExpectSagaCompleted()
+    .WhenHandling(message);
+
+// For Testing version 6.x
+var message = new CompleteSagaMessage();
+
+Test.Saga<MySaga>()
+    .WhenHandling<CompleteSagaMessage>(msg => { /* msg has already been created */ })
+    .AssertSagaCompletionIs(true);
+```
 
 ## Fluent-style tests deprecated
 

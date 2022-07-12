@@ -2,12 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_5", "Core_5\Core_5.csproj", "{30F5B3E6-2B7F-46BE-8086-169FD856BA64}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Callbacks_1", "Callbacks_1\Callbacks_1.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Callbacks_2", "Callbacks_2\Callbacks_2.csproj", "{8BE07348-34C6-4B37-96A2-69AEDB4686C9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Callbacks_3", "Callbacks_3\Callbacks_3.csproj", "{574262E9-D355-4718-8065-FDB928CCA8C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callbacks_4", "Callbacks_4\Callbacks_4.csproj", "{80CCA5AC-95D9-4422-89F2-8AC505DEDC6E}"
@@ -17,12 +11,6 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{30F5B3E6-2B7F-46BE-8086-169FD856BA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30F5B3E6-2B7F-46BE-8086-169FD856BA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8BE07348-34C6-4B37-96A2-69AEDB4686C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BE07348-34C6-4B37-96A2-69AEDB4686C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{574262E9-D355-4718-8065-FDB928CCA8C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{574262E9-D355-4718-8065-FDB928CCA8C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80CCA5AC-95D9-4422-89F2-8AC505DEDC6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

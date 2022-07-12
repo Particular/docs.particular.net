@@ -1,1 +1,0 @@
-WARNING: NServiceBus can only guarantee this behavior if [uniqueness is defined for the saga data](/nservicebus/sagas/message-correlation.md#uniqueness). Otherwise, more than one saga instance may be created.

@@ -1,8 +1,6 @@
 ---
 title: Migrating the distributor to use sender-side distribution
 reviewed: 2020-04-30
-related:
- - samples/scaleout/distributor-upgrade
 redirects:
  - nservicebus/scalability-and-ha/distributor/upgrading-the-distributor
 isUpgradeGuide: true
@@ -11,7 +9,7 @@ upgradeGuideCoreVersions:
  - 6
 ---
 
-The [distributor](/transports/msmq/distributor) has scaling limitations. For better scalability, the distributor should be replaced by [sender-side distribution](/transports/msmq/sender-side-distribution.md) with NServiceBus version 6. Before upgrading, consider the current [limitations of sender-side distribution](/transports/msmq/sender-side-distribution.md#limitations) mode.
+The distributor has scaling limitations. For better scalability, the distributor should be replaced by [sender-side distribution](/transports/msmq/sender-side-distribution.md) with NServiceBus version 6. Before upgrading, consider the current [limitations of sender-side distribution](/transports/msmq/sender-side-distribution.md#limitations) mode.
 
 
 ## Client-side distribution
@@ -30,7 +28,7 @@ This process aims to allow upgrade without message loss and with minimal downtim
  * Apply the following steps for each worker, one after another:
   * Shut down the worker.
   * [Upgrade to NServiceBus version 6](#upgrade-endpoint-to-version-6).
-  * [Configure it to enlist it with the distributor](/transports/msmq/distributor/configuration.md#worker-configuration-when-self-hosting).
+  * Configure it to enlist it with the distributor.
   * Start the worker again.
  * Configure [sender-side distribution](/transports/msmq/sender-side-distribution.md) for all endpoints sending commands or publishing events to the scaled-out endpoint. Leave one instance of the scaled-out endpoint excluded from the sender-side distribution for now.
  * Detach the workers from the distributor by applying the following steps to the instances enlisted to the distributor. But **skip this step for the instance that was not included in the sender-side distribution** to ensure the distributor queue can be drained.
@@ -163,4 +161,4 @@ Remove the distributor from the publisher's subscription storages by removing al
 Environments consisting entirely of NServiceBus version 6 endpoints no longer require distributor endpoints. NServiceBus version 5 endpoints can communicate directly to NServiceBus version 6 endpoints but the sender-side distribution feature of version 6 is not compatible with endpoints using NServiceBus version 5.
 
  * NServiceBus version 6 endpoints must route their messages to a distributor when communicating with scaled out NServiceBus version 5 instances.
- * NServiceBus version 5 endpoints must route their messages to a distributor when communicating with scaled out NServiceBus version 6 instances. In this scenario, the NServiceBus version 6 instances must [enlist with a NServiceBus version 5 distributor](/transports/msmq/distributor/configuration.md#worker-configuration-when-self-hosting).
+ * NServiceBus version 5 endpoints must route their messages to a distributor when communicating with scaled out NServiceBus version 6 instances. In this scenario, the NServiceBus version 6 instances must enlist with a NServiceBus version 5 distributor.

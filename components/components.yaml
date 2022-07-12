@@ -162,16 +162,6 @@
   NugetOrder:
     - NServiceBus
 
-- Key: Distributor
-  Name: Distributor
-  DocsUrl: /transports/msmq/distributor
-  GitHubOwner: Particular
-  Category: Other
-  ProjectUrl: https://github.com/Particular/NServiceBus.Distributor.Msmq
-  NugetOrder:
-    - NServiceBus.Distributor.MSMQ
-    - NServiceBus
-
 - Key: Gateway
   Name: Gateway
   DocsUrl: /nservicebus/gateway
@@ -230,15 +220,6 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.NonDurable
   NugetOrder:
     - NServiceBus.Persistence.NonDurable
-    - NServiceBus
-
-- Key: Json
-  Name: Json Serializer
-  DocsUrl: /nservicebus/serialization/json
-  Category: Serializer
-  GitHubOwner: Particular
-  ProjectUrl: https://github.com/Particular/NServiceBus
-  NugetOrder:
     - NServiceBus
 
 - Key: LearningPersistence

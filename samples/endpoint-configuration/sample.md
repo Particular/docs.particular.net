@@ -45,7 +45,7 @@ snippet: logging
 
 The following code will create the configuration instance and define the endpoint name.
 
-partial: endpointname
+WARNING: In Versions 6 and above, the [endpoint](/nservicebus/endpoints/) name is mandatory.
 
 snippet: create-config
 
@@ -66,14 +66,14 @@ snippet: serialization
 
 ## Select and configure a [transport](/transports)
 
-partial: transport
+This sample uses the [learning](/transports/learning/) transport.
 
 snippet: transport
 
 
 ## Select and configure [persistence](/persistence)
 
-partial: persistence
+This sample uses the [learning](/persistence/learning/) persistence.
 
 snippet: persistence
 
@@ -87,7 +87,7 @@ snippet: start-bus
 
 ## Shut down the [endpoint](/nservicebus/endpoints/)
 
-partial: stop-endpoint
+The endpoint should be stopped when the process is shut down.
 
 snippet: stop-endpoint
 

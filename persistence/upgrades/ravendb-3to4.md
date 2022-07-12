@@ -58,14 +58,30 @@ Previously, the API exposed an [`IDocumentSession`](https://ravendb.net/docs/sea
 
 Configuring a shared raven session now requires a `Func<IAsyncDocumentSession>` instead of a `Func<IDocumentSession>`.
 
-snippet: 3to4-ravensharedsession
+```csharp
+Func<IAsyncDocumentSession> sessionFactory = () => someAsyncSession;
+
+var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
+persistence.UseSharedAsyncSession(sessionFactory);
+```
 
 
 ## ISessionProvider is obsolete
 
 In Version 3 of NServiceBus.RavenDB, an `ISessionProvider` was available for dependency injection. The new method of accessing the raven session is the `SynchronizedStorageSession`.
 
-snippet: 3to4-acccessingravenfromhandler
+```csharp
+public class HandlerWithRavenSession :
+    IHandleMessages<MyMessage>
+{
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        var ravenSession = context.SynchronizedStorageSession
+            .RavenSession();
+        return SomeLibrary.SomeAsyncMethod(message, ravenSession);
+    }
+}
+```
 
 
 ### Session is available regardless of features enabled

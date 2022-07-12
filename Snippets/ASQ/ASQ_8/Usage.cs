@@ -120,15 +120,6 @@ class Usage
         #endregion
     }
 
-    void SetSerialization(EndpointConfiguration endpointConfiguration)
-    {
-        #region AzureStorageQueueSerialization
-
-        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-
-        #endregion
-    }
-
     public class MyMessage :
         ICommand
     { }

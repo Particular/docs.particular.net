@@ -23,7 +23,27 @@ In previous versions, the transport was responsible for sanitization of the queu
 
 In Versions 8 and above, the transport is no longer performing sanitization by default. Instead, sanitization logic must be [registered](/transports/azure-storage-queues/sanitization.md).
 
-snippet: azure-storage-queue-sanitization
+```csharp
+// For Azure Storage Queues Transport version 11.x
+var transport = new AzureStorageQueueTransport("connection string")
+{
+    QueueNameSanitizer = queueName => queueName.Replace('.', '-')
+};
+
+endpointConfiguration.UseTransport(transport);
+
+// For Azure Storage Queues Transport version 10.x
+var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+transport.SanitizeQueueNamesWith(queueName => queueName.Replace('.', '-'));
+
+// For Azure Storage Queues Transport version 9.x
+var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+transport.SanitizeQueueNamesWith(queueName => queueName.Replace('.', '-'));
+
+// For Azure Storage Queues Transport version 8.x
+var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+transport.SanitizeQueueNamesWith(queueName => queueName.Replace('.', '-'));
+```
 
 
 ## Serialization is mandatory
@@ -32,4 +52,16 @@ In Versions 7 and below, the transport was setting the default serialization. In
 
 For backwards compatibility with the previous default serialization, `NServiceBus.Newtonsoft.Json` serializer must be used.
 
-snippet: AzureStorageQueueSerialization
+```csharp
+// For Azure Storage Queues Transport version 11.x
+endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+
+// For Azure Storage Queues Transport version 10.x
+endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+
+// For Azure Storage Queues Transport version 9.x
+endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+
+// For Azure Storage Queues Transport version 8.x
+endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+```

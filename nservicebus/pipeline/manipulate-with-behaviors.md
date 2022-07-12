@@ -29,7 +29,16 @@ Warning: Each behavior is responsible to call the next step in the pipeline chai
 
 ## Add a new step
 
-partial: registernew
+
+To add a custom behavior to the pipeline, register it from the endpoint configuration:
+
+snippet: RegisterBehaviorEndpointConfiguration
+
+Behaviors can also be registered from a `Feature` as shown below:
+
+snippet: RegisterBehaviorFromFeature
+
+WARNING: Behaviors are only created once and the same instance is reused on every invocation of the pipeline. Consequently, every behavior dependency will also behave as a singleton, even if a different option was specified when registering it in [dependency injection](/nservicebus/dependency-injection/). Furthermore, the behavior and all dependencies called during the invocation phase must be concurrency-safe and possibly stateless. Storing state in a behavior instance should be avoided since it will cause the state to be shared across all message handling sessions. This could lead to unwanted side effects.
 
 ## Replace an existing step
 
@@ -57,7 +66,16 @@ Exceptions thrown from a behavior's `Invoke` method bubble up the chain. If the 
 
 If a message fails to deserialize, a `MessageDeserializationException` exception will be thrown by the `DeserializeLogicalMessagesBehavior` behavior. In this case, the message is directly moved to the error queue to avoid blocking the system with poison messages.
 
-partial: skipserialization
+
+## Skip serialization
+
+When writing extensions to the pipeline it may be necessary to either take control of the serialization or to skip it entirely. One example of this is with the [callbacks feature](/nservicebus/messaging/callbacks.md). Callbacks skip serialization for integers and enums and instead embed them in the message headers.
+
+To skip serialization, implement a behavior that targets `IOutgoingLogicalMessageContext`. For example, the following behavior skips serialization if the message is an integer, placing it in a header instead.
+
+snippet: SkipSerialization
+
+On the receiving side, this header can then be extracted and decisions on the incoming message processing pipeline can be made based on it.
 
 ## Sharing data between behaviors
 
@@ -67,7 +85,8 @@ snippet: SharingBehaviorData
 
 Note: Contexts are not concurrency-safe.
 
-partial: sharedcontext
+
+Note: In NServiceBus version 6 and above, the context respects the stage hierarchy and only allows adding new entries in the scope of the current context. A child behavior (later in the pipeline chain) can read and even modify entries set by a parent behavior (earlier in the pipeline chain) but entries added by the child cannot be accessed from the parent.
 
 partial: options
 

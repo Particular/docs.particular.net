@@ -130,11 +130,6 @@ NServiceBus has some sensible defaults for logging built in and, for more advanc
 An alternative to Distributed Transactions to provide exactly-once message processing semantics when accessing user data store as part of message processing.
 
 
-### [Distributor](/transports/msmq/distributor/)
-
-A load balancing tool for message distribution.
-
-
 ### [Idempotence](https://en.wikipedia.org/wiki/Idempotence)
 
 The ability to call the same message handler more than once without causing inconsistent business results.

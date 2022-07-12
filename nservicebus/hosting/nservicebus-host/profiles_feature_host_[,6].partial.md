@@ -1,4 +1,0 @@
- * `Master` makes the endpoint a "master node endpoint". This means that it runs the gateway for multi-site interaction, the timeout manager, and the distributor. It also starts a worker that enlists with the distributor. It cannot be combined with the Worker or Distributor profiles.
- * `Worker` makes the current endpoint enlist as a worker with its distributor running on the master node. It cannot be combined with the Master or Distributor profiles.
- * `Distributor` starts the endpoint as a distributor only. This means that the endpoint does no work and only distributes the load among its enlisted workers. It cannot be combined with the Master and Worker profiles.
- * `PerformanceCounters` turns on the [NServiceBus performance counters](/monitoring/metrics/performance-counters.md). Performance counters are enabled by default when running the Production profile.

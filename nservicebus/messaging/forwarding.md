@@ -16,7 +16,7 @@ Use this feature to forward successfully processed messages from an endpoint to 
 Auditing is used for collecting information on what is happening in the system. The audited message is enriched with additional [information regarding the processing of it](/nservicebus/operations/auditing.md#message-headers). Forwarding would send a copy of the processed message without the additional auditing information.
 
 
-partial: headers
+The forwarded messages do **not** contain the [audit message headers](/nservicebus/messaging/headers.md#audit-headers).
 
 partial: config
 

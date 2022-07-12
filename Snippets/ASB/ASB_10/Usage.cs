@@ -24,28 +24,6 @@ class Usage
         #endregion
     }
 
-    void SettingQueueProperties(EndpointConfiguration endpointConfiguration)
-    {
-        #region setting_queue_properties
-
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var queues = transport.Queues();
-        queues.LockDuration(TimeSpan.FromMinutes(1));
-
-        #endregion
-    }
-
-    void SettingTopicProperties(EndpointConfiguration endpointConfiguration)
-    {
-        #region setting_topic_properties
-
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var topics = transport.Topics();
-        topics.MaxSizeInMegabytes(SizeInMegabytes.Size5120);
-
-        #endregion
-    }
-
     void PublisherNamesMappingByMessageType(EndpointConfiguration endpointConfiguration)
     {
         #region publisher_names_mapping_by_message_type
@@ -69,36 +47,8 @@ class Usage
         #endregion
     }
 
-    void PublisherNamesMappingUpgradeGuide(EndpointConfiguration endpointConfiguration)
-    {
-        #region publisher_names_mapping_upgrade_guide
-
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        var topology = transport.UseEndpointOrientedTopology();
-
-        topology.RegisterPublisher(typeof(MyMessage), "publisherName");
-        // OR
-        var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
-        topology.RegisterPublisher(messagesAssembly, "publisherName");
-
-        #endregion
-    }
-
     class MyMessage
     {
-    }
-
-    void TopologySelectionUpgradeGuide(EndpointConfiguration endpointConfiguration)
-    {
-        #region topology-selection-upgrade-guide
-
-        var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-
-        transport.UseForwardingTopology();
-        // OR
-        transport.UseEndpointOrientedTopology();
-
-        #endregion
     }
 
     void AutoLockRenewal(EndpointConfiguration endpointConfiguration)

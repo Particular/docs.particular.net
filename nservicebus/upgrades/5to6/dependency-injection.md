@@ -55,14 +55,34 @@ It is no longer possible to access the builder to create an encryption service. 
 
 Explicitly setting property values via `.ConfigureProperty<T>()` and `.InitializeHandlerProperty<T>()` is deprecated in NServiceBus version 6. Instead configure the properties explicitly using:
 
-snippet: 5to6-ExplicitProperties
+```csharp
+endpointConfiguration.RegisterComponents(
+    registration: components =>
+    {
+        components.ConfigureComponent(
+            componentFactory: builder =>
+            {
+                return new MyHandler
+                {
+                    MyIntProperty = 25,
+                    MyStringProperty = "Some string"
+                };
+            },
+            dependencyLifecycle: DependencyLifecycle.InstancePerUnitOfWork);
+    });
+```
 
 
 ## IConfigureComponents no longer registered
 
 To access `IConfigureComponents` at runtime, create a new [feature](/nservicebus/pipeline/features.md) and put the following code in the `.Setup` method
 
-snippet: 5to6-IConfigureComponentsNotInjected
+```csharp
+var container = context.Container;
+container.ConfigureComponent(
+    componentFactory: builder => new MyDependency(container),
+    dependencyLifecycle: DependencyLifecycle.InstancePerCall);
+```
 
 
 ## Instances passed to the configuration API are no longer disposed
