@@ -4,10 +4,6 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsServiceControl_3", "MetricsServiceControl_3\MetricsServiceControl_3.csproj", "{B157EB55-7E46-46CA-9A39-29028520F908}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsServiceControl_1.1", "MetricsServiceControl_1.1\MetricsServiceControl_1.1.csproj", "{6B4C008D-C744-40C0-B937-96B6153227E7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsServiceControl_1.2", "MetricsServiceControl_1.2\MetricsServiceControl_1.2.csproj", "{F5753EA1-4168-47FC-8736-ECE3C029989A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricsServiceControl_4", "MetricsServiceControl_4\MetricsServiceControl_4.csproj", "{50DB99D6-360E-4311-BA6E-AE191BE74D29}"
 EndProject
 Global

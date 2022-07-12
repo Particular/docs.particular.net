@@ -2,8 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerfCounters_1.1", "PerfCounters_1.1\PerfCounters_1.1.csproj", "{2BD57353-9B22-45D1-ADB5-C885359737B2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerfCounters_3", "PerfCounters_3\PerfCounters_3.csproj", "{7316318D-8695-4559-8978-7B0ABD2F0555}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerfCounters_4", "PerfCounters_4\PerfCounters_4.csproj", "{B84075A8-308C-411A-9A6B-948146D69CFE}"
