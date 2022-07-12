@@ -22,7 +22,8 @@ partial: handlecurrentmessagelater
 
 ## Delaying message dispatching
 
-partial: intro
+
+Delaying a message is done using `SendOptions` and the `DelayDeliveryWith` method. This allows to defer the sending of a message to any endpoint. The behavior of delayed handling using `DelayDeliveryWith` can be seen in [Delayed Delivery Sample](/samples/delayed-delivery).
 
 
 ## Using a TimeSpan
@@ -48,7 +49,7 @@ Delayed delivery of messages is supported when one of the following requirements
 
 When deferring a message, it is sent to the Timeout Manager requesting it to deliver the message at a later time or deferred by using the transports native capability to defer messages.
 
-partial: caveatsnote
+NOTE: The Timeout Manager is enabled by default. However, it is automatically disabled for send-only endpoints and transports that support delayed delivery natively (i.e. Azure Service Bus).
 
 NOTE: When relying on Timeout Manager, the sending endpoint must be running when the timeout is reached in order for the message to be sent. If the endpoint is not running when the timeout is reached then the message will be sent when the endpoint is next started.
 

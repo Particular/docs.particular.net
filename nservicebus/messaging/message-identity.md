@@ -16,4 +16,6 @@ Message identity can be explicitly specified, overriding the default identity pr
 
 WARNING: It is important that the strategy used to generate message identities results in globally unique identifiers. If two messages ever have the same identity then some features will treat them as the same message. This will cause errors which are difficult to diagnose.
 
-partial: change
+Specify message identity using the `SendOptions` class.
+
+snippet: MessageId-SendOptions

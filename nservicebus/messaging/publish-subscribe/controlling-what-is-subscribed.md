@@ -33,7 +33,7 @@ snippet: DoNotAutoSubscribeSagas
 
 WARNING: This is a bad practice. Subscriptions should be based on events.
 
-partial: plainmessage
+In NServiceBus version 6 and above, it is possible to subscribe to messages not defined as events by [manually subscribing](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message) to the message type.
 
 
 ### When a subscriber stops or uninstalls
@@ -54,4 +54,4 @@ Events can manually be subscribed and unsubscribed to:
 
 snippet: ExplicitSubscribe
 
-partial: manualsubscriptions
+In NServiceBus version 6 and above, `Subscribe` and `Unsubscribe` are accessible via the `IMessageSession` available on the `IEndpointInstance` or within a [feature startup task](/nservicebus/pipeline/features.md#feature-startup-tasks).

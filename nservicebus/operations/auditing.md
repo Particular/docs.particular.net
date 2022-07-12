@@ -97,6 +97,12 @@ Auditing works by sending an exact copy of the received message to the audit que
 
 For sensitive properties, e.g. credit card numbers or passwords, use [message property encryption](/nservicebus/security/property-encryption.md). For large properties, consider [streaming](/samples/pipeline/stream-properties/) them instead to avoid including the actual payload in the audited message.
 
-partial: additional-data
+## Additional audit information
+
+Additional information can be added to audit messages using a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) as shown in the following snippet. The additional data will be contained in the audit message headers.
+
+snippet: AddAuditData
+
+Note: Message headers count towards the message size and the additional audit information has to honor the transport's message header limitations.
 
 partial: custom-audit-action

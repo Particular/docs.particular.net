@@ -1,1 +1,0 @@
-The forwarded messages do **not** contain the [audit message headers](/nservicebus/messaging/headers.md#audit-headers).
