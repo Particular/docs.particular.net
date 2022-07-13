@@ -676,14 +676,6 @@ No versions released.
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.CustomChecks/2.0.1) | ~~2017-11-15~~ | ~~2020-05-29~~    | ~~Extended by NServiceBus 6.5.x~~ |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.CustomChecks/1.0.0) | ~~2017-11-15~~ | ~~2018-10-11~~    | ~~Bounded by NServiceBus 5.2.x~~  |
 
-#### [NServiceBus.Distributor.MSMQ](/nuget/NServiceBus.Distributor.MSMQ)
-
-| Version   | Released       | Supported until   | Notes                             |
-|:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ/5.0.5) | ~~2014-10-02~~ | ~~2018-10-11~~    | ~~Bounded by NServiceBus 5.2.x~~  |
-| [~~4.4.x~~](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ/4.4.9) | ~~2014-02-12~~ | ~~2016-09-29~~    | ~~Extended by NServiceBus 4.7.x~~ |
-| [~~4.3.x~~](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ/4.3.10) | ~~2013-12-16~~ | ~~2014-05-12~~    | ~~Superseded by 4.4.x~~           |
-
 #### [NServiceBus.Encryption.MessageProperty](/nuget/NServiceBus.Encryption.MessageProperty)
 
 | Version   | Released       | Supported until   | Notes                             |
