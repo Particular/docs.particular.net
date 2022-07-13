@@ -22,7 +22,7 @@ class Program
             ["service.instance.id"] = Guid.NewGuid().ToString(),
         };
 
-        //var appInsightsConnectionString = "<YOUR KEY HERE>";
+        var appInsightsConnectionString = "<YOUR KEY HERE>";
 
         var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(attributes);
 
@@ -31,7 +31,7 @@ class Program
         var traceProvider = Sdk.CreateTracerProviderBuilder()
             .SetResourceBuilder(resourceBuilder)
             .AddSource("NServiceBus.Core")
-            //.AddAzureMonitorTraceExporter(o => o.ConnectionString = appInsightsConnectionString)
+            .AddAzureMonitorTraceExporter(o => o.ConnectionString = appInsightsConnectionString)
             .AddConsoleExporter()
             .Build();
 
@@ -40,7 +40,7 @@ class Program
         #region enable-meters
 
         var telemetryConfiguration = TelemetryConfiguration.CreateDefault();
-        //telemetryConfiguration.ConnectionString = appInsightsConnectionString;
+        telemetryConfiguration.ConnectionString = appInsightsConnectionString;
         var telemetryClient = new TelemetryClient(telemetryConfiguration);
 
         var meterProvider = Sdk.CreateMeterProviderBuilder()
