@@ -57,7 +57,7 @@ The following table describes the extended support status for all major versions
 |          Version           |  Released               | Current Support | Mainstream <nobr>Support Expires</nobr> | Extended <nobr>Support Expires</nobr> |
 | :------------------------: | :---------------------: | :-------------: | :-------------------------------------: | :-----------------------------------: |
 | <nobr>NServiceBus 7</nobr> | <nobr>2018-03-30</nobr> |   Mainstream    |             Current Version             |            Current Version            |
-| <nobr>NServiceBus 6</nobr> | <nobr>2016-10-11</nobr> |    Extended     |               2020-05-29                |              2022-05-29               |
+| <nobr>NServiceBus 6</nobr> | <nobr>2016-10-11</nobr> |   Unsupported   |               2020-05-29                |              2022-05-29               |
 | <nobr>NServiceBus 5</nobr> | <nobr>2014-09-29</nobr> |   Unsupported   |               2018-10-11                |              2020-10-12               |
 | <nobr>NServiceBus 4</nobr> | <nobr>2013-07-11</nobr> |   Unsupported   |               2016-09-29                |              2018-09-29               |
 | <nobr>NServiceBus 3</nobr> | <nobr>2012-03-08</nobr> |   Unsupported   |               2015-07-11                |              2017-07-11               |
