@@ -1,0 +1,1 @@
+The ASB component (Azure Service Bus Legacy) still exists so that upgrade guides will work, but there are no snippets.

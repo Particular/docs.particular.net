@@ -36,7 +36,7 @@
 
 - Key: ASB
   Name: Azure Service Bus Transport (Legacy)
-  DocsUrl: /transports/azure-service-bus/legacy
+  DocsUrl: /transports/azure-service-bus
   GitHubOwner: Particular
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureServiceBus

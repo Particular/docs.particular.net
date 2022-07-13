@@ -33,5 +33,3 @@ The message is not removed from the queue directly after receive, but it's hidde
 When transactions are disabled in NServiceBus, the transport uses the Azure Service Bus ['ReceiveAndDelete' mode](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.receivemode).
 
 The message is deleted from the queue directly after the receive operation completes and before it is processed, so it's not possible to retry that message in case of processing failures. As transient exceptions occur regularly when integrating with online services, disabling retries when in unreliable mode is not recommended. This mode should only be used in very specific situations, when message loss is acceptable.
-
-NOTE: For a full explanation of the transactional behavior in Azure, refer to [Understanding internal transactions and delivery guarantees](/transports/azure-service-bus/legacy/understanding-transactions-and-delivery-guarantees.md).
