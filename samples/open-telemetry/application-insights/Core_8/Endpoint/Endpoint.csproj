@@ -8,15 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Reference Include="NServiceBus.Core">
-			<HintPath>..\..\..\..\..\..\NServiceBus\src\NServiceBus.Core\bin\Debug\net6.0\NServiceBus.Core.dll</HintPath>
-		</Reference>
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.3.0" />
 		<PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.0.0-beta.3" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="NServiceBus" Version="8.0.0-beta.4" />
 	</ItemGroup>
 
 </Project>
