@@ -6,8 +6,11 @@ using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using System.Collections.Generic;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.Extensibility;
+using OpenTelemetry.Metrics;
 
-internal class Program
+class Program
 {
     static async Task Main(string[] args)
     {
@@ -19,15 +22,34 @@ internal class Program
             ["service.instance.id"] = Guid.NewGuid().ToString(),
         };
 
-        var appInsightsConnectionString = "<YOUR KEY HERE>";
+        //var appInsightsConnectionString = "<YOUR KEY HERE>";
 
         var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(attributes);
-        using var traceProvider = Sdk.CreateTracerProviderBuilder()
+
+        #region enable-tracing
+
+        var traceProvider = Sdk.CreateTracerProviderBuilder()
             .SetResourceBuilder(resourceBuilder)
-            .AddSource("NServiceBus.*")
-            .AddAzureMonitorTraceExporter(o => o.ConnectionString = appInsightsConnectionString)
-            .AddConsoleExporter(o => o.Targets = OpenTelemetry.Exporter.ConsoleExporterOutputTargets.Console)
+            .AddSource("NServiceBus.Core")
+            //.AddAzureMonitorTraceExporter(o => o.ConnectionString = appInsightsConnectionString)
+            .AddConsoleExporter()
             .Build();
+
+        #endregion
+
+        #region enable-meters
+
+        var telemetryConfiguration = TelemetryConfiguration.CreateDefault();
+        //telemetryConfiguration.ConnectionString = appInsightsConnectionString;
+        var telemetryClient = new TelemetryClient(telemetryConfiguration);
+
+        var meterProvider = Sdk.CreateMeterProviderBuilder()
+            .SetResourceBuilder(resourceBuilder)
+            .AddMeter("NServiceBus.Core")
+            .AddNServiceBusTelemetryClientExporter(telemetryClient)
+            .AddConsoleExporter()
+            .Build();
+        #endregion
 
         var config = new EndpointConfiguration("Samples.OpenTelemetry.AppInsights");
         config.UseTransport<LearningTransport>();
@@ -43,19 +65,7 @@ internal class Program
         }
 
         await endpointInstance.Stop();
-    }
-}
-
-class SomeMessage : IMessage
-{
-
-}
-
-class SomeMessageHandler : IHandleMessages<SomeMessage>
-{
-    public Task Handle(SomeMessage message, IMessageHandlerContext context)
-    {
-        Console.WriteLine("Message handled");
-        return Task.CompletedTask;
+        traceProvider.Dispose();
+        meterProvider.Dispose();
     }
 }
