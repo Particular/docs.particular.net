@@ -32,16 +32,16 @@ snippet: enable-opentelemetry-metrics
 
 There are three metrics reported as a Counter, with the following keys:
 
- * Number of fetched messages via `messaging.fetches`
- * Number of failed messages via `messaging.failures`
- * Number of successfully processed messages via `messaging.successes`
+ * Number of fetched messages via `nservicebus_messaging_fetches`
+ * Number of failed messages via `nservicebus_messaging_failures`
+ * Number of successfully processed messages via `nservicebus_messaging_successes`
 
 Each reported metric is tagged with the following additional information:
 
- * `messaging_queue` the queue name of the endpoint
- * `messaging_discriminator` a uniquely addressable address for the endpoint (discriminator when scaling out)
- * `messaging_type` the .NET fully-qualified type information for the message being processed
- * `messaging_failure_type` the exception type name (if applicable)
+ * `nservicebus_queue` the queue name of the endpoint
+ * `nservicebus_discriminator` a uniquely addressable address for the endpoint (discriminator when scaling out)
+ * `nservicebus_message_type` the .NET fully-qualified type information for the message being processed
+ * `nservicebus_failure_type` the exception type name (if applicable)
 
 ## Exporting metrics
 
@@ -54,17 +54,17 @@ Note: that the HTTP endpoint is also exposed through a local IP address so the P
 The raw metrics retrieved through the scraping endpoint would look like this:
 
 ```text
-# HELP messaging_successes Total number of messages processed successfully by the endpoint.
-# TYPE messaging_successes counter
-messaging_successes{messaging_discriminator="main",messaging_queue="Samples.OpenTelemetry.Metrics",messaging_type="SomeCommand, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"} 526 1656039256653
+# HELP nservicebus_messaging_successes Total number of messages processed successfully by the endpoint.
+# TYPE nservicebus_messaging_successes counter
+nservicebus_messaging_successes{nservicebus_discriminator="main",nservicebus_message_type="SomeCommand, Endpoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",nservicebus_queue="OpenTelemetryDemo"} 850 1657693075515
 
-# HELP messaging_fetches Total number of messages fetched from the queue by the endpoint.
-# TYPE messaging_fetches counter
-messaging_fetches{messaging_discriminator="main",messaging_queue="Samples.OpenTelemetry.Metrics",messaging_type="SomeCommand, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"} 643 1656039256653
+# HELP nservicebus_messaging_fetches Total number of messages fetched from the queue by the endpoint.
+# TYPE nservicebus_messaging_fetches counter
+nservicebus_messaging_fetches{nservicebus_discriminator="main",nservicebus_message_type="SomeCommand, Endpoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",nservicebus_queue="OpenTelemetryDemo"} 1060 1657693075515
 
-# HELP messaging_failures Total number of messages processed unsuccessfully by the endpoint.
-# TYPE messaging_failures counter
-messaging_failures{messaging_discriminator="main",messaging_failure_type="System.Exception",messaging_queue="Samples.OpenTelemetry.Metrics",messaging_type="SomeCommand, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"} 117 1656039256653
+# HELP nservicebus_messaging_failures Total number of messages processed unsuccessfully by the endpoint.
+# TYPE nservicebus_messaging_failures counter
+nservicebus_messaging_failures{nservicebus_discriminator="main",nservicebus_failure_type="System.Exception",nservicebus_message_type="SomeCommand, Endpoint, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",nservicebus_queue="OpenTelemetryDemo"} 210 1657693075515
 ```
 
 Below diagram shows the overall component interactions:
@@ -102,10 +102,10 @@ Open `prometheus.yml` and update the target IP address. This should be the addre
 
 ### Show a graph
 
-Start Prometheus by running the docker stack. NServiceBus pushes events for *success, failure, and fetched*. These events need to be converted to rates by a query, for example the `messaging_successes` metric can be queried as:
+Start Prometheus by running the docker stack. NServiceBus pushes events for *success, failure, and fetched*. These events need to be converted to rates by a query, for example the `nservicebus_messaging_successes` metric can be queried as:
 
 ```
-avg(rate(messaging_successes[5m]))
+avg(rate(nservicebus_messaging_successes[5m]))
 ```
 
 ![Prometheus graphs based on query](example-prometheus-graph.png)

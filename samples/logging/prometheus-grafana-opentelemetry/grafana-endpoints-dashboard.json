@@ -24,14 +24,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "xp0iH7qnk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -78,13 +78,9 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "xp0iH7qnk"
+            "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
-          "expr": "sum without (messaging_type) (rate(messaging_successes[5m])*100)",
-          "interval": "",
-          "legendFormat": "",
-          "queryType": "randomWalk",
+          "expr": "sum without (messaging_type) (rate(nservicebus_messaging_successes[5m])*100)",
           "refId": "A"
         }
       ],
@@ -94,7 +90,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "xp0iH7qnk"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "",
       "fieldConfig": {
@@ -151,14 +147,9 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "xp0iH7qnk"
+            "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
-          "expr": "rate(messaging_failures[5m])*100",
-          "format": "time_series",
-          "interval": "",
-          "legendFormat": "",
-          "queryType": "randomWalk",
+          "expr": "rate(nservicebus_messaging_failures[5m])*100",
           "refId": "A"
         }
       ],
@@ -168,7 +159,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "xp0iH7qnk"
+        "uid": "PBFA97CFB590B2093"
       },
       "description": "",
       "fieldConfig": {
@@ -230,15 +221,12 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "xp0iH7qnk"
+            "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "exemplar": true,
-          "expr": "rate(messaging_successes[5m])*100",
-          "format": "time_series",
+          "expr": "rate(nservicebus_messaging_successes[5m])*100",
           "interval": "",
-          "legendFormat": "{{messaging_type}}",
-          "queryType": "randomWalk",
+          "legendFormat": "{{nservicebus_message_type}}",
           "range": true,
           "refId": "A"
         }
@@ -249,7 +237,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "xp0iH7qnk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -268,32 +256,7 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"192.168.0.114:9184\", job=\"NServiceBus Telemetry\", messaging_type=\"ProcessRequest, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\"}"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "ProcessRequest"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "{instance=\"192.168.0.114:9184\", job=\"NServiceBus Telemetry\", messaging_type=\"SecondaryRequest, Otel.MetricsDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\"}"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "SecondaryRequest"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -322,14 +285,9 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "xp0iH7qnk"
+            "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
-          "expr": "rate(messaging_successes[5m])*100",
-          "format": "time_series",
-          "interval": "",
-          "legendFormat": "",
-          "queryType": "randomWalk",
+          "expr": "rate(nservicebus_messaging_successes[5m])*100",
           "refId": "A"
         }
       ],
@@ -339,7 +297,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "xp0iH7qnk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -411,13 +369,9 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "xp0iH7qnk"
+            "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
-          "expr": "rate(messaging_successes[5m])*100",
-          "interval": "",
-          "legendFormat": "",
-          "queryType": "randomWalk",
+          "expr": "rate(nservicebus_messaging_successes[5m])*100",
           "refId": "A"
         }
       ],
@@ -427,7 +381,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "xp0iH7qnk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -503,13 +457,9 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "xp0iH7qnk"
+            "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
-          "expr": "rate(messaging_fetches[5m])*100",
-          "interval": "",
-          "legendFormat": "",
-          "queryType": "randomWalk",
+          "expr": "rate(nservicebus_messaging_fetches[5m])*100",
           "refId": "A"
         }
       ],
@@ -519,7 +469,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "xp0iH7qnk"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -564,11 +514,11 @@
               },
               {
                 "color": "orange",
-                "value": 50
+                "value": 5
               },
               {
                 "color": "red",
-                "value": 100
+                "value": 10
               }
             ]
           },
@@ -611,14 +561,9 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "xp0iH7qnk"
+            "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
-          "expr": "rate(messaging_failures[5m]) * 100",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "",
-          "queryType": "randomWalk",
+          "expr": "rate(nservicebus_messaging_failures[5m]) * 100",
           "refId": "A"
         }
       ],
@@ -641,6 +586,6 @@
   "timezone": "",
   "title": "NServiceBus",
   "uid": "MHqYOIqnz",
-  "version": 9,
+  "version": 2,
   "weekStart": ""
 }
