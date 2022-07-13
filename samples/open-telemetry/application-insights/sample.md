@@ -20,8 +20,21 @@ This sample requires an Application Insights connection string.
 2. Copy the connection string from the Azure portal dashboard into the sample
 3. Start the sample endpoint
 4. Press any key to send a message, or ESC to quit
-5. On the Aure portal dashboard, open the Monitoring -> Logs panel
-6. Run the query `requests` to see a list of the requests. Review the `customDimensions` attribute to see NServiceBus headers
+
+### Reviewing traces
+
+1. On the Aure portal dashboard, open the Monitoring -> Logs panel
+2. Run the query `requests` to see a list of the requests. Review the `customDimensions` attribute to see NServiceBus headers
+
+### Reviewing meters
+
+1. Open the Azure portal dashboard for the configured Application Insight instance
+2. Navigate to Monitoring -> Metrics
+3. Add a metric with the following information:
+- Metric Namespace: `azure.applicationinsights`
+- Metric: `nservicebus.messaging.successes`
+
+NOTE: It may take a few minutes for the meter data to populate to Azure
 
 ## Code walk-through
 
