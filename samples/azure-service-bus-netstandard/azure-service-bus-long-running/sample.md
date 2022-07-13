@@ -48,7 +48,7 @@ Processor ->> Client: LongProcessingFinished / LongProcessingFailed
 
 ## Performing processing outside a message handler
 
-When processing takes a long time, [message lock renewal](/transports/azure-service-bus/legacy/message-lock-renewal.md) is possible, but should be avoided to keep message locking to a minimum.
+When processing takes a long time, message lock renewal is possible, but should be avoided to keep message locking to a minimum.
 
 include: autorenewtimeout-warning
 
@@ -76,7 +76,7 @@ snippet: on-timeout
 
 ## Server communication
 
-`Server` enqueues requests for the processor using an Azure Storage table and replying back to the `Client` to indicate that processing is pending. 
+`Server` enqueues requests for the processor using an Azure Storage table and replying back to the `Client` to indicate that processing is pending.
 
 snippet: enqueue-request-for-processor
 

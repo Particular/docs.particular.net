@@ -8,7 +8,7 @@ related:
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
- ---
+---
 
 ## Migrating from Azure Service Bus (legacy) to Azure Service Bus transport
 
@@ -59,7 +59,7 @@ The following settings can be configured via the [Azure CLI](https://docs.micros
 
 ### Removed options
 
-Any configuration options not already explictly covered that was previously accessed via the `Queues()`, `Topics()`, or `Subscriptions` [settings](/transports/azure-service-bus/legacy/configuration/full.md#controlling-entities) have been removed.
+Any configuration options not already explictly covered that was previously accessed via the `Queues()`, `Topics()`, or `Subscriptions` settings have been removed.
 
 The configuration options for controlling connectivity as well as the physical addressing logic have also been removed and replaced with optimal defaults for most use cases. These settings include:
 
@@ -77,6 +77,6 @@ The configuration options for controlling connectivity as well as the physical a
   * `NamespacePartitioning`
   * `Composition`
 
-The [message lock renewal](/transports/azure-service-bus/legacy/message-lock-renewal.md) feature was removed. A custom pipeline behavior may be used instead. See the message lock renewal [sample](/samples/azure-service-bus-netstandard/lock-renewal) for more details.
+The message lock renewal feature was removed. A custom pipeline behavior may be used instead. See the [message lock renewal sample](/samples/azure-service-bus-netstandard/lock-renewal) for more details.
 
 NOTE: Some legacy transport features, such as namespace partitioning for high availability, were removed in favor of the native broker features. Customers are advised to evaluate the Service Bus Premium tier to take advantage of those native features.

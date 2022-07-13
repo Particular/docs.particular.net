@@ -802,15 +802,9 @@
     Articles:
     - Url: transports/azure-service-bus/legacy/migration
       Title: Migration
-    - Url: transports/azure-service-bus/legacy/topologies
-      Title: Topologies
     - Url: transports/azure-service-bus/legacy/transaction-support
       Title: Transaction Support
       Articles:
-      - Url: nservicebus/azure/understanding-transactionality-in-azure
-        Title: Transactions in Azure
-      - Url: nservicebus/azure/ways-to-live-without-transactions
-        Title: Avoiding Transactions
       - Url: transports/azure-service-bus/legacy/understanding-transactions-and-delivery-guarantees
         Title: Internal transaction and delivery guarantees
   - Url: transports/azure-storage-queues

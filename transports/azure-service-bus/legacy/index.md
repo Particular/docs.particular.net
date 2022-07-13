@@ -26,7 +26,7 @@ include: azure-transports
 
 ## Transport at a glance
 
-|Feature                    |   |  
+|Feature                    |   |
 |:---                       |---
 |Transactions |None, ReceiveOnly, SendsWithAtomicReceive
 |Pub/Sub                    |Native
@@ -35,7 +35,7 @@ include: azure-transports
 |Scale-out             |Competing consumer
 |Scripted Deployment        | Not supported
 |Installers                 |Optional
-|Native integration         |[Supported](native-integration.md)
+|Native integration         |Supported
 
 
 ## Enabling the Transport
@@ -49,7 +49,7 @@ snippet: AzureServiceBusTransportWithAzure
 
 ## Setting the Connection String
 
-For more details on setting up connection strings and securing them, refer to the [Configuration Connection Strings](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions) and the [Securing Credentials](/transports/azure-service-bus/legacy/securing-connection-strings.md) articles.
+For more details on setting up connection strings and securing them, refer to [Configuration Connection Strings](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions).
 
 To set the connection string use the following:
 
