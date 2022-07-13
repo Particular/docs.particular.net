@@ -9,7 +9,7 @@ related:
 
 This sample shows how to configure an NServiceBus endpoint to collect telemetry data and link the traces and logs together.
 
-First, OpenTelemetry needs to be configured on the endpoint:
+First, OpenTelemetry needs to be configured to capture NServiceBus traces:
 
 snippet: otel-config
 
