@@ -22,18 +22,18 @@ snippet: BasicSend
 
 Based on the type of the message, the routing subsystem will provide the destination address.
 
-NServiceBus routing consists of two layers, logical and physical. Logical routing defines which logical endpoint should receive a given outgoing message. Physical routing defines to which physical instance of the selected endpoint should the message be delivered. While logical routing is a developer's concern, physical routing is controlled by operations. 
+NServiceBus routing consists of two layers, logical and physical. Logical routing defines which logical endpoint should receive a given outgoing message. Physical routing defines to which physical instance of the selected endpoint should the message be delivered. While logical routing is a developer's concern, physical routing is controlled by operations.
 
 [Broker transports](/transports/types.md#broker-transports) handle the physical routing automatically. Other transport might require specific configuration. See also [MSMQ Routing](/transports/msmq/routing.md).
 
 
 ## Command routing
 
-As described in [messages, events and commands](/nservicebus/messaging/messages-events-commands.md), NServiceBus distinguishes between these kinds of messages. Command messages are always routed to a single logical endpoint. 
+As described in [messages, events and commands](/nservicebus/messaging/messages-events-commands.md), NServiceBus distinguishes between these kinds of messages. Command messages are always routed to a single logical endpoint.
 
 partial: commands
 
-Per-namespace routes override assembly-level routes while per-type routes override both namespace and assembly routes. 
+Per-namespace routes override assembly-level routes while per-type routes override both namespace and assembly routes.
 
 
 ### Overriding the destination
@@ -49,8 +49,6 @@ When events are published, they can be received by multiple logical endpoints. H
 ### Native
 
 [Multicast transports](/transports/types.md#multicast-enabled-transports) support the Publish-Subscribe pattern natively. In this case the subscriber uses the APIs of the transport to create a route for a given subscribed message type.
-
-Note: The Azure Service Bus (Legacy) `EndpointOrientedTopology` requires [publisher names](/transports/azure-service-bus/legacy/publisher-names-configuration.md) to be configured.
 
 
 ### Message-driven

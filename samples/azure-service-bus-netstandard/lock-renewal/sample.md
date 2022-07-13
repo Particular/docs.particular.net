@@ -13,8 +13,6 @@ related:
 
 include: asb-connectionstring-xplat
 
-<!-- include documentation from https://docs.particular.net/transports/azure-service-bus/legacy/message-lock-renewal -->
-
 ## Important information about lock renewal
 
 1. The transport must use the default [`SendsAtomicWithReceive`](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive) transaction mode for the sample to work.

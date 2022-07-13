@@ -15,7 +15,7 @@ upgradeGuideCoreVersions:
 ---
 
 
-## [Forwarding topology](/transports/azure-service-bus/legacy/topologies.md) number of entities in bundle removed
+## Forwarding topology number of entities in bundle removed
 
 In Versions 8 and above the API to configure bundle prefix and number of entities in a bundle has been removed:
 
@@ -29,8 +29,6 @@ forwardingTopology.NumberOfEntitiesInBundle(3);
 
 The bundle is set to one entity. For existing endpoints running with multiple entities in a bundle, the transport automatically picks up previously configured entities. The default topic name for bundle is set to `bundle-1`.
 
-See also [Azure Service Bus Transport Topologies](/transports/azure-service-bus/legacy/topologies.md).
-
 
 ## Controlling entity creation
 
@@ -43,7 +41,7 @@ In version 7 the transport sets `MaxDeliveryCount` to match immediate retries sp
 
 In version 8 and above, `MaxDeliveryCount` is set to `int.MaxValue` to ensure messages are not dead-lettered accidentally and to remove the dependency on the endpoints' immediate retries configuration.
 
-Customization of `MaxDeliveryCount` is strongly discouraged, yet can be performed using `DescriptionCustomizer` API for queues and topics.  
+Customization of `MaxDeliveryCount` is strongly discouraged, yet can be performed using `DescriptionCustomizer` API for queues and topics.
 
 ## BrokeredMessage conventions
 
@@ -80,7 +78,7 @@ endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
 ## Send/publish namespaces caching
 
-In Version 7 to control sending/publishing namespaces caching, the transport must provide an implementation of two contracts. 
+In Version 7 to control sending/publishing namespaces caching, the transport must provide an implementation of two contracts.
 
 ```csharp
 // For Azure Service Bus Transport (Legacy) version 10.x

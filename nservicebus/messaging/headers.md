@@ -48,7 +48,7 @@ The `TimeToBeReceived` header [controls when a message becomes obsolete and can 
 
 ### NServiceBus.Transport.Encoding
 
-States what type of body serialization is used. Currently only set by Azure Service Bus based the configured value for [BrokeredMessageBodyType](/transports/azure-service-bus/legacy/configuration/full.md#controlling-connectivity).
+States what type of body serialization is used. Used only by the legacy Azure Service Bus transport which is no longer supported.
 
 ## Serialization headers
 

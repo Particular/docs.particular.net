@@ -1,1 +1,0 @@
-WARNING: Message lock renewal operation is initiated by the Azure Service Bus client, not the broker. If it fails after all the retries, the lock won't be re-acquired, and the message will become unlocked and available for processing. Lock renewal should be treated as _best-effort_ and not as a guaranteed operation.

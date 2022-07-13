@@ -90,6 +90,6 @@ The handler creates a custom telemetry event and pushes it to Application Insigh
 
 This sample uses the [learning transport](/transports/learning/) in order to be portable with no transport dependencies.
 
-When adjusting this sample to use the [Azure Service Bus transport](/transports/azure-service-bus/), note that the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation), or if using the [legacy Azure Service Bus transport](/transports/azure-service-bus/legacy/), see its [sanitization strategy documentation](/transports/azure-service-bus/legacy/sanitization.md). 
+When adjusting this sample to use the [Azure Service Bus transport](/transports/azure-service-bus/), note that the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation).
 
 The same applies to the [Azure Storage Queues](/transports/azure-storage-queues) name [sanitization strategy](/transports/azure-storage-queues/sanitization.md#backward-compatibility-with-versions-7-and-below)

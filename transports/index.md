@@ -24,7 +24,6 @@ Initially, it's challenging to decide which queuing technology may be best for a
 - [Learning](/transports/learning/)
 - [MSMQ](/transports/msmq)
 - [Azure Service Bus](/transports/azure-service-bus/)
-- [Azure Service Bus (Legacy)](/transports/azure-service-bus/legacy/)
 - [Azure Storage Queues](/transports/azure-storage-queues/)
 - [SQL Server](/transports/sql/)
 - [RabbitMQ](/transports/rabbitmq/)
