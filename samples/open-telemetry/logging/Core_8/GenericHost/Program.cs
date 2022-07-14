@@ -7,37 +7,33 @@ using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Threading;
 using System.Threading.Tasks;
+using OpenTelemetry.Metrics;
 
 internal class Program
 {
-    public static void Main(string[] args)
+    const string EndpointName = "Samples.Hosting.GenericHost";
+
+    public static async Task Main(string[] args)
     {
-        CreateHostBuilder(args).Build().Run();
+        await CreateHostBuilder(args).Build().RunAsync();
     }
 
     private static IHostBuilder CreateHostBuilder(string[] args)
     {
+
         var builder = Host.CreateDefaultBuilder(args);
-
-        builder.UseNServiceBus(ctx =>
-        {
-            var endpointConfiguration = new EndpointConfiguration("Samples.Hosting.GenericHost");
-            endpointConfiguration.UseTransport(new LearningTransport());
-
-            return endpointConfiguration;
-        });
 
         #region otel-config
 
         builder.ConfigureServices(services =>
         {
             services.AddOpenTelemetryTracing(config => config
-                                                       .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("MyEndpointName"))
-                                                       .AddSource("NServiceBus.*")
-                                                       .AddConsoleExporter());
-
+                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
+                .AddSource("NServiceBus.*")
+                .AddConsoleExporter());
         });
 
         #endregion
@@ -62,6 +58,14 @@ internal class Program
 
         #endregion
 
-        return builder.ConfigureServices(services => services.AddHostedService<Worker>());
+        builder.UseNServiceBus(ctx =>
+        {
+            var endpointConfiguration = new EndpointConfiguration(EndpointName);
+            endpointConfiguration.UseTransport(new LearningTransport());
+
+            return endpointConfiguration;
+        });
+
+        return builder.ConfigureServices(services => services.AddHostedService<MessageGenerator>());
     }
 }

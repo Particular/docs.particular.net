@@ -7,7 +7,9 @@ related:
 - nservicebus/logging
 ---
 
-This sample shows how to configure an NServiceBus endpoint to collect telemetry data and link the traces and logs together.
+This sample shows how to configure an NServiceBus endpoint to link OpenTelemetry traces and logs together.
+
+## Configuration
 
 First, OpenTelemetry needs to be configured to capture NServiceBus traces:
 
@@ -22,12 +24,15 @@ snippet: otel-logging
 This will apply the OpenTelemetry logging format to all the logs. More importantly, it will [correlate all logs](https://opentelemetry.io/docs/reference/specification/logs/overview/#log-correlation) to the active traces.
 This means that each log statement will include a `TraceId` and `SpanId` as part of the log entry.
 
-The following log statement:
+## Running the sample
+
+When running the sample, the following log statement in the message handler:
 
 snippet: log-statement
 
 Will lead to the following output:
 
+```
 info: MyMessageHandler[0]
 Received message #54
 LogRecord.Timestamp:               2022-06-28T09:02:34.5342602Z
@@ -43,3 +48,4 @@ LogRecord.ScopeValues (Key:Value):
 [Scope.0]:SpanId: 066fce94c5438add
 [Scope.0]:TraceId: 964b320925ab08cd2134c02d0abe920d
 [Scope.0]:ParentId: e595cc6a4d9b0768
+```

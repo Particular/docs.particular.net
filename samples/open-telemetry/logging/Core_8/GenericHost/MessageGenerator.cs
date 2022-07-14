@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Worker : BackgroundService
+class MessageGenerator : BackgroundService
 {
     private readonly IMessageSession messageSession;
 
-    public Worker(IMessageSession messageSession)
+    public MessageGenerator(IMessageSession messageSession)
     {
         this.messageSession = messageSession;
     }
