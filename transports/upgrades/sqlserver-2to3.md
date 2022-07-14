@@ -148,9 +148,9 @@ This enables configuring custom schema both for local endpoint as well as for ot
 
 ### Multi-instance support
 
-The configuration API for [multi-instance support](/transports/sql/deployment-options.md?version=SqlTransportLegacySystemClient_3#multi-instance) has changed. Multiple connection strings must be provided by a connection factory method passed to `EnableLegacyMultiInstanceMode` method.
+The configuration API for multi-instance support has changed. Multiple connection strings must be provided by a connection factory method passed to `EnableLegacyMultiInstanceMode` method.
 
-Note that `EnableLegacyMultiInstanceMode` method replaces both [pull and push modes](/transports/sql/connection-settings.md?version=SqlTransportLegacySystemClient_3#multiple-connection-strings) from version 2.x.
+Note that `EnableLegacyMultiInstanceMode` method replaces both pull and push modes from version 2.x.
 
 ```csharp
 // For SQL Transport version 3.x
