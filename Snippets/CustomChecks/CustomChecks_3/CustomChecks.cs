@@ -1,8 +1,8 @@
-﻿using System;
+﻿using NServiceBus;
+using NServiceBus.CustomChecks;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.CustomChecks;
 
 class CustomChecks
 {
@@ -16,7 +16,7 @@ class CustomChecks
 
         }
 
-        public override Task<CheckResult> PerformCheck(CancellationToken cancellationToken = default)
+        public override Task<CheckResult> PerformCheck()
         {
             if (SomeService.GetStatus())
             {
@@ -37,7 +37,7 @@ class CustomChecks
         {
         }
 
-        public override Task<CheckResult> PerformCheck(CancellationToken cancellationToken = default)
+        public override Task<CheckResult> PerformCheck()
         {
             if (SomeService.GetStatus())
             {
