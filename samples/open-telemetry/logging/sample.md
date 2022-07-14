@@ -53,3 +53,23 @@ LogRecord.ScopeValues (Key:Value):
 [Scope.0]:TraceId: 964b320925ab08cd2134c02d0abe920d
 [Scope.0]:ParentId: e595cc6a4d9b0768
 ```
+
+The console will also show information for the captured traces:
+
+```
+Activity.TraceId:          964b320925ab08cd2134c02d0abe920d
+Activity.SpanId:           066fce94c5438add
+Activity.TraceFlags:           Recorded
+Activity.ParentSpanId:    eb999a0dadc477ea
+Activity.ActivitySourceName: NServiceBus.Core
+Activity.DisplayName: MyMessageHandler
+Activity.Kind:        Internal
+Activity.StartTime:   2022-06-28T09:02:34.5322602Z
+Activity.Duration:    00:00:00.0017675
+Activity.Tags:
+    nservicebus.handler.handler_type: MyMessageHandler
+StatusCode : Ok
+Resource associated with Activity:
+    service.name: Samples.Hosting.GenericHost
+    service.instance.id: 93d66e53-7537-4e21-99f9-e62b579b5fa3
+```
