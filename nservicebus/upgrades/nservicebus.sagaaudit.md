@@ -5,7 +5,7 @@ reviewed: 2021-11-04
 component: SagaAudit
 related:
  - servicecontrol/plugins
- - servicecontrol/plugins/saga-audit
+ - nservicebus/sagas/saga-audit
 isUpgradeGuide: true
 ignoreSeoRecommendations: true
 upgradeGuideCoreVersions:

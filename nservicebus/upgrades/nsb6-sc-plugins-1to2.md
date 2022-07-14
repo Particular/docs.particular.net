@@ -7,7 +7,7 @@ related:
  - servicecontrol/plugins
  - monitoring/heartbeats/legacy
  - monitoring/custom-checks/legacy
- - servicecontrol/plugins/saga-audit
+ - nservicebus/sagas/saga-audit
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
@@ -16,7 +16,7 @@ upgradeGuideCoreVersions:
 
 ## Connecting to ServiceControl
 
-Version 2 of the ServiceControl plugins changes the way that the plugins connect to ServiceControl. The plugins no longer derive a ServiceControl queue name from the Error/Audit queues. Additional configuration is required to specify the location of the ServiceControl queue. 
+Version 2 of the ServiceControl plugins changes the way that the plugins connect to ServiceControl. The plugins no longer derive a ServiceControl queue name from the Error/Audit queues. Additional configuration is required to specify the location of the ServiceControl queue.
 
 
 ### Configuration File

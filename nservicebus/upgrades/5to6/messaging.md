@@ -99,4 +99,4 @@ Forwarded messages no longer contain additional [auditing headers](/nservicebus/
 
 In NServiceBus version 5, the `InvokedSagas` header is added to audited messages and populated with the name of the saga classes invoked along with their unique identifiers.
 
-This functionality has been moved from the NServiceBus core to the [SagaAudit plugin](/servicecontrol/plugins/saga-audit.md) compatible with version 6.
+This functionality has been moved from the NServiceBus core to the [SagaAudit plugin](/nservicebus/sagas/saga-audit.md) compatible with version 6.

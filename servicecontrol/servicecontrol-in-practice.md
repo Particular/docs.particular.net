@@ -7,7 +7,7 @@ isLearningPath: true
 
 ServiceControl provides many capabilities such as endpoint monitoring, advanced debugging, and failed message management. These capabilities can be extended by adding optional [plugins](/servicecontrol/plugins/) into the endpoints being monitored. Each capability and plugin provides valuable information, but they have certain resource and performance costs.
 
-Hardware, peak and average message throughput, and number of endpoints in the system all have an impact on the performance of ServiceControl. These factors can vary greatly between environments. Capabilities and plugins that provide value in one environment may have a negative impact if included in another environment. For example, the [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin provides additional information to support a development environment where message load is low. In a production environment, where there are many more saga instances to audit, the increased overhead is magnified and can have a significant performance impact. 
+Hardware, peak and average message throughput, and number of endpoints in the system all have an impact on the performance of ServiceControl. These factors can vary greatly between environments. Capabilities and plugins that provide value in one environment may have a negative impact if included in another environment. For example, the [Saga Audit](/nservicebus/sagas/saga-audit.md) plugin provides additional information to support a development environment where message load is low. In a production environment, where there are many more saga instances to audit, the increased overhead is magnified and can have a significant performance impact.
 
 Each capability and plugin should be considered carefully for each environment to determine if the value that it provides in that environment outweighs the costs that it imposes.
 
@@ -43,7 +43,7 @@ Heartbeat messages tend to be frequent, and a large backlog can occur if Service
 
 ### Saga audit
 
-The [Saga Audit](/servicecontrol/plugins/saga-audit.md) can add significant load on ServiceControl due to volume of messages it sends but is invaluable when diagnosing issues with Saga behavior. In order to use it in the production environment make sure to use ServiceControl 4.13.0 or later and configure the Saga Audit plugin to send messages to the `audit` queue. If necessary consider [scaling out the audit processing](/servicecontrol/servicecontrol-instances/distributed-instances.md).
+The [Saga Audit](/nservicebus/sagas/saga-audit.md) can add significant load on ServiceControl due to volume of messages it sends but is invaluable when diagnosing issues with Saga behavior. In order to use it in the production environment make sure to use ServiceControl 4.13.0 or later and configure the Saga Audit plugin to send messages to the `audit` queue. If necessary consider [scaling out the audit processing](/servicecontrol/servicecontrol-instances/distributed-instances.md).
 
 ## Performance considerations
 
