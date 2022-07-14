@@ -50,7 +50,7 @@ The metrics are gathered using OpenTelemetry standard on the endpoint and need t
 
 snippet: enable-prometheus-exporter
 
-Note: that the HTTP endpoint is also exposed through a local IP address so the Prometheus service running in docker can reach it over the network.
+Note: the HTTP endpoint is also exposed through a local IP address so the Prometheus service running in docker can reach it over the network.
 
 The raw metrics retrieved through the scraping endpoint would look like this:
 
