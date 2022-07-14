@@ -3,6 +3,8 @@ title: Distributed tracing with Jaeger
 summary: How to configure NServiceBus export Open Telemetry traces to Jaeger
 reviewed: 2022-06-29
 component: Core
+related:
+ - nservicebus/operations/opentelemetry
 ---
 
 ## Introduction
