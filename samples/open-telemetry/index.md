@@ -1,5 +1,5 @@
 ---
-title: OpenTelemetry
+title: OpenTelemetry Samples
 reviewed: 2022-07-04
 related:
  - nservicebus/operations/opentelemetry
