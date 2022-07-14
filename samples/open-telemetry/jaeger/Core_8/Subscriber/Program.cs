@@ -21,7 +21,8 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration(EndpointName);
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.EnableOpenTelemetry();
+
         endpointConfiguration.UseTransport(new LearningTransport());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);

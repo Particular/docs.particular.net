@@ -22,10 +22,16 @@ class Program
             .Build();
         #endregion
 
+        #region jaeger-endpoint-configuration
+
         var endpointConfiguration = new EndpointConfiguration(EndpointName);
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.EnableOpenTelemetry();
+
+        #endregion
+
         endpointConfiguration.UseTransport(new LearningTransport());
+
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
