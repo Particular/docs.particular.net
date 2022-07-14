@@ -62,7 +62,7 @@ internal class Program
         {
             var endpointConfiguration = new EndpointConfiguration(EndpointName);
             endpointConfiguration.UseTransport(new LearningTransport());
-
+            endpointConfiguration.EnableOpenTelemetry();
             return endpointConfiguration;
         });
 
