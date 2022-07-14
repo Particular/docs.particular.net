@@ -12,13 +12,15 @@ using OpenTelemetry.Metrics;
 
 class Program
 {
+    const string EndpointName = "Samples.OpenTelemetry.AppInsights";
+
     static async Task Main(string[] args)
     {
-        Console.Title = "Samples.OpenTelemetry.AppInsights";
+        Console.Title = EndpointName;
 
         var attributes = new Dictionary<string, object>
         {
-            ["service.name"] = "Samples.OpenTelemetry.AppInsights",
+            ["service.name"] = EndpointName,
             ["service.instance.id"] = Guid.NewGuid().ToString(),
         };
 
@@ -51,9 +53,9 @@ class Program
             .Build();
         #endregion
 
-        var config = new EndpointConfiguration("Samples.OpenTelemetry.AppInsights");
+        var config = new EndpointConfiguration(EndpointName);
         config.UseTransport<LearningTransport>();
-        config.UsePersistence<LearningPersistence>();
+        config.EnableOpenTelemetry();
 
         var endpointInstance = await Endpoint.Start(config);
 
