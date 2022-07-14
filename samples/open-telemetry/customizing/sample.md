@@ -91,4 +91,4 @@ A behavior in the outgoing pipeline adds an order id tag to the send message act
 
 snippet: add-tags-from-outgoing-behavior
 
-WARN: `Activity.Current` may be `null` if there is not configured trace listener. Always check if the value is null before calling methods on an `Activity` instance.
+WARN: `Activity.Current` may be `null` if there are no configured trace listeners. Always check if the value is null before calling methods on an `Activity` instance, or use the null-conditional operator (`?.`).
