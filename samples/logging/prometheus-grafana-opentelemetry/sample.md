@@ -39,10 +39,10 @@ There are three metrics reported as a Counter, with the following keys:
 
 Each reported metric is tagged with the following additional information:
 
- * `nservicebus_queue` the queue name of the endpoint
- * `nservicebus_discriminator` a uniquely addressable address for the endpoint (discriminator when scaling out)
- * `nservicebus_message_type` the .NET fully-qualified type information for the message being processed
- * `nservicebus_failure_type` the exception type name (if applicable)
+ * the queue name of the endpoint
+ * the uniquely addressable address for the endpoint (if set)
+ * the .NET fully-qualified type information for the message being processed
+ * the exception type name (if applicable)
 
 ## Exporting metrics
 
