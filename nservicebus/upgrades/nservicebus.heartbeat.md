@@ -5,7 +5,7 @@ reviewed: 2021-11-04
 component: Heartbeats
 related:
  - servicecontrol/plugins
- - monitoring/heartbeats/legacy
+ - monitoring/heartbeats
 isUpgradeGuide: true
 ignoreSeoRecommendations: true
 upgradeGuideCoreVersions:
@@ -41,7 +41,7 @@ endpointConfiguration.SendHeartbeatTo(
 
 ## Heartbeats feature made internal
 
-The deprecated packages contained a public feature class called `Heartbeats`. This feature was enabled by default and exposed publicly so that it could be disabled using the features API. 
+The deprecated packages contained a public feature class called `Heartbeats`. This feature was enabled by default and exposed publicly so that it could be disabled using the features API.
 
 ```csharp
 if (!shouldSendHeartbeat)
@@ -50,4 +50,4 @@ if (!shouldSendHeartbeat)
 }
 ```
 
-This feature is no longer enabled by default and requires explicit configuration (above) in order to activate. The feature class itself has been made internal and any code referencing it to disable the feature can be removed. 
+This feature is no longer enabled by default and requires explicit configuration (above) in order to activate. The feature class itself has been made internal and any code referencing it to disable the feature can be removed.

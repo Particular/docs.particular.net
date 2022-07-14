@@ -1305,9 +1305,6 @@
       Url: servicecontrol/app-insights-integration
     - Title: Plugins
       Url: servicecontrol/plugins
-      Articles:
-      - Title: Saga audits
-        Url:  servicecontrol/plugins/saga-audit
     - Title: Integration events
       Url: servicecontrol/contracts
     - Title: Transport adapter

@@ -5,7 +5,6 @@ reviewed: 2021-11-04
 component: CustomChecks
 related:
  - servicecontrol/plugins
- - monitoring/custom-checks/legacy
 isUpgradeGuide: true
 ignoreSeoRecommendations: true
 upgradeGuideCoreVersions:

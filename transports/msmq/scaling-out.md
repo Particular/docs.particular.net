@@ -11,7 +11,9 @@ redirects:
 ---
 
 
-partial: overview
+## Sender-side distribution
+
+Scaling out an MSMQ endpoint is supported by [sender-side distribution](sender-side-distribution.md).
 
 ## MSMQ remote receive
 
