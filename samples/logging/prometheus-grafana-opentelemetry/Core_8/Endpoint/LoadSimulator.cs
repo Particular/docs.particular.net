@@ -13,20 +13,20 @@ class LoadSimulator
         this.idleDuration = TimeSpan.FromTicks(idleDuration.Ticks / 2);
     }
 
-    public void Start()
+    public void Start(CancellationToken cancellationToken)
     {
-        _ = Task.Run(Loop, CancellationToken.None);
+        _ = Task.Run(() => Loop(cancellationToken), cancellationToken);
     }
 
-    async Task Loop()
+    async Task Loop(CancellationToken cancellationToken)
     {
         try
         {
-            while (!tokenSource.IsCancellationRequested)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 await Work();
                 var delay = NextDelay();
-                await Task.Delay(delay, tokenSource.Token);
+                await Task.Delay(delay, cancellationToken);
             }
         }
         catch (OperationCanceledException)
@@ -48,14 +48,12 @@ class LoadSimulator
         return endpointInstance.SendLocal(new SomeCommand());
     }
 
-    public Task Stop()
+    public Task Stop(CancellationToken cancellationToken)
     {
-        tokenSource.Cancel();
         return Task.CompletedTask;
     }
 
     IEndpointInstance endpointInstance;
-    CancellationTokenSource tokenSource = new CancellationTokenSource();
     TimeSpan minimumDelay;
     TimeSpan idleDuration;
     int index;

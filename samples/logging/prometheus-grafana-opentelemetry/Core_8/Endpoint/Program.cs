@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 using OpenTelemetry;
@@ -31,14 +32,14 @@ public class Program
         var config = new EndpointConfiguration("Samples.OpenTelemetry.Metrics");
         config.UseTransport<LearningTransport>();
         config.UsePersistence<LearningPersistence>();
-        config.MakeInstanceUniquelyAddressable("main");
 
-        var endpointInstance = await Endpoint.Start(config);
+        var cancellation = new CancellationTokenSource();
+        var endpointInstance = await Endpoint.Start(config, cancellation.Token);
 
         #region prometheus-load-simulator
 
         var simulator = new LoadSimulator(endpointInstance, TimeSpan.Zero, TimeSpan.FromSeconds(10));
-        simulator.Start();
+        simulator.Start(cancellation.Token);
 
         #endregion
 
@@ -55,13 +56,13 @@ public class Program
                     break;
                 }
 
-                await endpointInstance.SendLocal(new SomeCommand());
+                await endpointInstance.SendLocal(new SomeCommand(), cancellation.Token);
             }
         }
         finally
         {
-            await simulator.Stop();
-            await endpointInstance.Stop();
+            await simulator.Stop(cancellation.Token);
+            await endpointInstance.Stop(cancellation.Token);
             meterProvider?.Dispose();
         }
     }
