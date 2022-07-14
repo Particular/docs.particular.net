@@ -58,13 +58,17 @@ internal class Program
 
         #endregion
 
+        #region otel-nsb-config
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration(EndpointName);
             endpointConfiguration.UseTransport(new LearningTransport());
+
             endpointConfiguration.EnableOpenTelemetry();
+
             return endpointConfiguration;
         });
+        #endregion
 
         return builder.ConfigureServices(services => services.AddHostedService<MessageGenerator>());
     }

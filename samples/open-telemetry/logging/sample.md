@@ -24,6 +24,10 @@ snippet: otel-logging
 This will apply the OpenTelemetry logging format to all the logs. More importantly, it will [correlate all logs](https://opentelemetry.io/docs/reference/specification/logs/overview/#log-correlation) to the active traces.
 This means that each log statement will include a `TraceId` and `SpanId` as part of the log entry.
 
+Lastly, the NServiceBus endpoint needs to enable the OpenTelemetry instrumentation:
+
+snippet: otel-nsb-config
+
 ## Running the sample
 
 When running the sample, the following log statement in the message handler:
