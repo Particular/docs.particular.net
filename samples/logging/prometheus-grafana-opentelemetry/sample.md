@@ -33,9 +33,9 @@ snippet: enable-opentelemetry-metrics
 
 There are three metrics reported as a Counter, with the following keys:
 
- * Number of fetched messages via `nservicebus_messaging_fetches`
- * Number of failed messages via `nservicebus_messaging_failures`
- * Number of successfully processed messages via `nservicebus_messaging_successes`
+ * Number of fetched messages via `nservicebus.messaging.fetches`
+ * Number of failed messages via `nservicebus.messaging.failures`
+ * Number of successfully processed messages via `nservicebus.messaging.successes`
 
 Each reported metric is tagged with the following additional information:
 
