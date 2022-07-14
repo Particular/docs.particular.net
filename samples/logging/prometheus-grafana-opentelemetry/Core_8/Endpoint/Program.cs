@@ -9,10 +9,9 @@ public class Program
 {
     public static async Task Main()
     {
-        var meterProviderBuilder = Sdk.CreateMeterProviderBuilder();
-
         #region enable-opentelemetry-metrics
-        meterProviderBuilder.AddMeter("NServiceBus.Core");
+        var meterProviderBuilder = Sdk.CreateMeterProviderBuilder()
+            .AddMeter("NServiceBus.Core");
         #endregion
 
         #region enable-prometheus-exporter

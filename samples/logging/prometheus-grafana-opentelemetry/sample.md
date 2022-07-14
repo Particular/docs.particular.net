@@ -125,8 +125,6 @@ To graph the metrics, the following steps have to be performed:
  * From the Data source dropdown select Prometheus
  * For the query open the Metrics dropdown and select one of the metrics. Built-in functions (e.g. rate) can also be applied.
 
-<!-- ![Grafana metric using Prometheus as datasource](grafana-metric.png) -->
-
 ![Grafana dashboard with NServiceBus OpenTelemetry metrics](example-grafana-dashboard.png)
 
 The sample includes an [export of the grafana dashboard](grafana-endpoints-dashboard.json) which can be [imported](https://docs.grafana.org/reference/export_import/) as a reference.
