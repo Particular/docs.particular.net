@@ -99,7 +99,7 @@ Each individual failed message page allows for viewing the following additional 
 * **StackTrace** - Full .NET exception stacktrace.
 * **Headers** - Complete set of message headers.
 * **Body** - Serialized message body.
-* **Flow diagram** - Displays a flow diagram of the conversation that the failed message is part of.
+* **Flow diagram** - Displays a flow diagram of the conversation that contains the failed message. Other failed messages in the conversation can also be seen and link to their respective details pages.
 
 ![Flow Diagram](images/flow-diagram.png 'width=500')
 
