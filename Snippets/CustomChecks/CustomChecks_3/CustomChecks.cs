@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
-using ServiceControl.Plugin.CustomChecks;
+using NServiceBus.CustomChecks;
 
 class CustomChecks
 {
@@ -15,7 +16,7 @@ class CustomChecks
 
         }
 
-        public override Task<CheckResult> PerformCheck()
+        public override Task<CheckResult> PerformCheck(CancellationToken cancellationToken = default)
         {
             if (SomeService.GetStatus())
             {
@@ -36,7 +37,7 @@ class CustomChecks
         {
         }
 
-        public override Task<CheckResult> PerformCheck()
+        public override Task<CheckResult> PerformCheck(CancellationToken cancellationToken = default)
         {
             if (SomeService.GetStatus())
             {
@@ -57,20 +58,13 @@ class CustomChecks
     }
 
 
-    void CustomCheck_Configure_ServiceControl()
+    public void CustomCheck_Configure_ServiceControl()
     {
-        #region CustomCheck_Configure_ServiceControl
-        var endpointConfiguration = new EndpointConfiguration("myendpoint");
-        endpointConfiguration.CustomCheckPlugin(
-            serviceControlQueue: "ServiceControl_Queue");
-        #endregion
-    }
-
-    void CustomCheck_disable()
-    {
-        #region CustomCheck_disable
-        var endpointConfiguration = new EndpointConfiguration("myendpoint");
-        endpointConfiguration.DisableFeature<ServiceControl.Features.CustomChecks>();
+        #region CustomCheckNew_Enable
+        var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
+        endpointConfiguration.ReportCustomChecksTo(
+            serviceControlQueue: "ServiceControl_Queue",
+            timeToLive: TimeSpan.FromSeconds(10));
         #endregion
     }
 }
