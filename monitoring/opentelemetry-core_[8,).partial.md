@@ -1,0 +1,1 @@
+NOTE: Starting with version 8, NServiceBus supports OpenTelemetry standard. See related samples as an alternative to the `NServiceBus.Metrics` package.
