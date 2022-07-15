@@ -7,6 +7,7 @@ reviewed: 2021-09-08
 previewImage: grafana-graph.png
 ---
 
+INFO: NServiceBus version 8 and above can export metric data to Prometheus and Grafana via OpenTelemetry without the metrics package. See [this sample](/samples/open-telemetry/prometheus-grafana/) for more details.
 
 ## Introduction
 

@@ -12,6 +12,7 @@ redirects:
 previewImage: example-graph-events.png
 ---
 
+INFO: NServiceBus version 8 and above can export metric data to Application Insights via OpenTelemetry without the metrics package. See [this sample](/samples/open-telemetry/application-insights/) for more details.
 
 ## Introduction
 
