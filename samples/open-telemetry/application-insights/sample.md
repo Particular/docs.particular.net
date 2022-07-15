@@ -74,3 +74,5 @@ snippet: custom-meter-exporter
 This exporter is installed into the meter provider builder with a custom extension method. The exporter is wrapped by a `PeriodicExportingMetricReader` instance that executes the exporter once every 10 seconds.
 
 snippet: custom-meter-exporter-installation
+
+NOTE: The shim passes `QueueName` as a custom dimension which allows filtering the graphs in Application Insights. Multi-dimensional metrics are not enabled by default. Check [the Microsoft Documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/app/get-metric#enable-multi-dimensional-metrics) for instructions on how to enable this feature.

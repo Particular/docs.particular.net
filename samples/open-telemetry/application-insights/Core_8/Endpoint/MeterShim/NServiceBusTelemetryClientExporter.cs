@@ -20,14 +20,27 @@ class NServiceBusTelemetryClientExporter : BaseExporter<Metric>
             if (!metric.Name.StartsWith("nservicebus.")) continue;
             if (metric.MetricType != MetricType.LongSum) continue;
 
-            var telemetryMetric = telemetryClient.GetMetric(metric.Name);
+            var telemetryMetric = telemetryClient.GetMetric(metric.Name, "QueueName");
 
             foreach (var dataPoint in metric.GetMetricPoints())
             {
-                telemetryMetric.TrackValue(dataPoint.GetSumLong());
+                telemetryMetric.TrackValue(dataPoint.GetSumLong(), GetQueueName(dataPoint));
             }
         }
         return ExportResult.Success;
+    }
+
+    static string GetQueueName(MetricPoint metricPoint)
+    {
+        foreach (var tag in metricPoint.Tags)
+        {
+            if (tag.Key == "nservicebus.queue")
+            {
+                return (string)tag.Value;
+            }
+        }
+
+        return "UNKNOWN";
     }
 }
 #endregion
