@@ -9,11 +9,15 @@ related:
 
 ## Introduction
 
-This sample shows how to capture NServiceBus OpenTelemetry traces and export them to Application Insights in Azure. The sample simulates message load and includes a 10% failure rate on processing messages.
+[Azure Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) (App Insights) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints.
+
+This sample shows how to capture NServiceBus OpenTelemetry traces and export them to App Insights. The sample simulates message load and includes a 10% failure rate on processing messages.
 
 ## Prerequisites
 
-This sample requires an Application Insights connection string.
+This sample requires an App Insights connection string.
+
+Note: Although the sample uses Azure Application Insights, the solution itself does not have to run on an Azure message transport. This example uses the [Learning Transport](/transports/learning/) but could be modified to run on any [transport](/transports/).
 
 ## Running the sample
 
