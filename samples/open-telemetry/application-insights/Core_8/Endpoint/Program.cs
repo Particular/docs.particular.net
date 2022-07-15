@@ -53,11 +53,13 @@ class Program
             .Build();
         #endregion
 
-        var config = new EndpointConfiguration(EndpointName);
-        config.UseTransport<LearningTransport>();
-        config.EnableOpenTelemetry();
+        #region enable-open-telemetry
+        var endpointConfiguration = new EndpointConfiguration(EndpointName);
+        endpointConfiguration.EnableOpenTelemetry();
+        #endregion
 
-        var endpointInstance = await Endpoint.Start(config);
+        endpointConfiguration.UseTransport<LearningTransport>();
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Endpoint started. Press ESC to stop");
 

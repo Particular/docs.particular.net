@@ -1,9 +1,10 @@
 ---
-title: Exporting OpenTelemetry data to Application Insights
-summary: How to configure an endpoint to export OpenTelemetry traces to Application Insights
-reviewed: 2022-07-13
+title: Monitoring NServiceBus endpoints with Application Insights
+summary: How to configure NServiceBus to export OpenTelemetry traces and meters to Application Insights
+reviewed: 2022-07-15
 component: Core
 related:
+- nservicebus/operations/opentelemetry
 ---
 
 ## Introduction
@@ -23,28 +24,36 @@ This sample requires an Application Insights connection string.
 
 ### Reviewing traces
 
-1. On the Aure portal dashboard, open the Monitoring -> Logs panel
-2. Run the query `requests` to see a list of the requests. Review the `customDimensions` attribute to see NServiceBus headers
+1. On the Aure portal dashboard, open the _Investigate_ → _Performance_ panel
+2. Drill into the samples
+3. Review the custom properties
 
 ### Reviewing meters
 
 1. Open the Azure portal dashboard for the configured Application Insight instance
-2. Navigate to Monitoring -> Metrics
-3. Add a metric with the following information:
+2. Navigate to _Monitoring_ → _Metrics_
+3. Add metrics with the following information:
 - Metric Namespace: `azure.applicationinsights`
-- Metric: `nservicebus.messaging.successes`
+- Metrics:
+  - `nservicebus.messaging.successes`
+  - `nservicebus.messaging.failures`
+  - `nservicebus.messaging.fetches`
 
-NOTE: It may take a few minutes for the meter data to populate to Azure
+NOTE: It may take a few minutes for the meter data to populate to Azure. Meters will only appear on the dashboard once they have reported at least one value.
 
 ## Code walk-through
 
-### Enable tracing
+The OpenTelemetry instrumentation is enabled on the endpoint.
+
+snippet: enable-open-telemetry
+
+### Tracing
 
 The endpoint configures an OpenTelemetry trace provider that includes the `NServiceBus.Core` source and exports traces to Azure Monitor.
 
 snippet: enable-tracing
 
-### Enable meters
+### Meters
 
 The endpoint also configures an OpenTelemetry meter provider that includes the `NServiceBus.Core` meter and exports data to Azure Monitor.
 
@@ -52,7 +61,7 @@ snippet: enable-meters
 
 #### Meter shim
 
-The Azure Monitor exporter package does not currently support exporting meter data so the sample includes custom code to collect the meter.
+NOTE: The Azure Monitor exporter package does not currently support exporting meter data. The sample includes custom code to collect the meter.
 
 The custom meter exporter captures all meters that begin with `nservicebus.` of the `long` sum type, and forwards them to a `TelemetryClient`.
 
