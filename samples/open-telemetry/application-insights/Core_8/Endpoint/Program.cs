@@ -6,6 +6,7 @@ using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using System.Collections.Generic;
+using System.Threading;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
 using OpenTelemetry.Metrics;
@@ -44,6 +45,7 @@ class Program
         var telemetryConfiguration = TelemetryConfiguration.CreateDefault();
         telemetryConfiguration.ConnectionString = appInsightsConnectionString;
         var telemetryClient = new TelemetryClient(telemetryConfiguration);
+        telemetryClient.Context.GlobalProperties["Endpoint"] = EndpointName;
 
         var meterProvider = Sdk.CreateMeterProviderBuilder()
             .SetResourceBuilder(resourceBuilder)
@@ -59,17 +61,27 @@ class Program
         #endregion
 
         endpointConfiguration.UseTransport<LearningTransport>();
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var cancellation = new CancellationTokenSource();
+        var endpointInstance = await Endpoint.Start(endpointConfiguration, cancellation.Token);
 
-        Console.WriteLine("Endpoint started. Press ESC to stop");
+        var simulator = new LoadSimulator(endpointInstance, TimeSpan.Zero, TimeSpan.FromSeconds(10));
+        simulator.Start(cancellation.Token);
 
-        while(Console.ReadKey(true).Key != ConsoleKey.Escape)
+        try
         {
-            await endpointInstance.SendLocal(new SomeMessage());
-        }
+            Console.WriteLine("Endpoint started. Press any key to send a message. Press ESC to stop");
 
-        await endpointInstance.Stop();
-        traceProvider.Dispose();
-        meterProvider.Dispose();
+            while (Console.ReadKey(true).Key != ConsoleKey.Escape)
+            {
+                await endpointInstance.SendLocal(new SomeMessage(), cancellation.Token);
+            }
+        }
+        finally
+        {
+            await simulator.Stop(cancellation.Token);
+            await endpointInstance.Stop(cancellation.Token);
+            traceProvider?.Dispose();
+            meterProvider?.Dispose();
+        }
     }
 }

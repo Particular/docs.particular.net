@@ -9,7 +9,7 @@ related:
 
 ## Introduction
 
-This sample shows how to capture NServiceBus OpenTelemetry traces and export them to Application Insights in Azure.
+This sample shows how to capture NServiceBus OpenTelemetry traces and export them to Application Insights in Azure. The sample simulates message load and includes a 10% failure rate on processing messages.
 
 ## Prerequisites
 
@@ -28,6 +28,8 @@ This sample requires an Application Insights connection string.
 2. Drill into the samples
 3. Review the custom properties
 
+![Timeline view of a trace in Application Insights](trace-timeline.png)
+
 ### Reviewing meters
 
 1. Open the Azure portal dashboard for the configured Application Insight instance
@@ -38,6 +40,8 @@ This sample requires an Application Insights connection string.
   - `nservicebus.messaging.successes`
   - `nservicebus.messaging.failures`
   - `nservicebus.messaging.fetches`
+
+![Graph tracking success and failed metrics in Application Insights](metrics-dashboard.png)
 
 NOTE: It may take a few minutes for the meter data to populate to Azure. Meters will only appear on the dashboard once they have reported at least one value.
 
