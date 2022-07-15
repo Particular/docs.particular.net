@@ -611,6 +611,8 @@
       Title: Particular Service Platform Installation
     - Url: nservicebus/hosting/startup-diagnostics
       Title: Startup diagnostics
+    - Url: nservicebus/operations/opentelemetry
+      Title: OpenTelemetry
     - Url: nservicebus/operations/transactions-message-processing
       Title: Transactions and Message Processing
     - Url: nservicebus/operations/auditing
