@@ -28,7 +28,10 @@ public class Program
         #endregion
 
         var meterProvider = meterProviderBuilder.Build();
+        #region enable-opentelemetry
         var config = new EndpointConfiguration("Samples.OpenTelemetry.Metrics");
+        config.EnableOpenTelemetry();
+        #endregion
         config.UseTransport<LearningTransport>();
         config.UsePersistence<LearningPersistence>();
 

@@ -29,7 +29,11 @@ snippet: prometheus-load-simulator
 
 ## Reporting metric values
 
-NServiceBus uses the OpenTelemetry standard to report metrics. The metrics are disabled by default, and can be enabled by opting into a specific metric, either by name or by wildcard: 
+NServiceBus uses the OpenTelemetry standard to report metrics. The metrics are disabled by default, and must be enabled on the endpoint configuration.
+
+snippet: enable-opentelemetry
+
+Opt into a specific metric, either by name or by wildcard: 
 
 snippet: enable-opentelemetry-metrics
 
