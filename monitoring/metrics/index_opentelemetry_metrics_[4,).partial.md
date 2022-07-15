@@ -1,1 +1,1 @@
-NOTE: Starting with version 8, NServiceBus supports OpenTelemetry standard. See related samples as an alternative to the `NServiceBus.Metrics` package.
+NOTE: Starting with version 8, NServiceBus supports [OpenTelemetry](https://opentelemetry.io/) as an alternative to the `NServiceBus.Metrics` package. See the [NServiceBus OpenTelemetry documentation](/nservicebus/operations/opentelemetry.md) for further information.
