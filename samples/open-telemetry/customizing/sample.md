@@ -3,6 +3,8 @@ title: Customizing OpenTelemetry tracing
 summary: Demonstrates how to add data to existing OpenTelemetry traces
 reviewed: 2022-07-04
 component: Core
+related:
+- nservicebus/operations/opentelemetry
 ---
 
 This sample shows how to extend the OpenTelemetry activities in a variety of ways.
@@ -13,11 +15,15 @@ The code consists of a single endpoint project that sends messages to itself.
 
 Press `O` to send a `CreateOrder` message with a randomized `OrderId`. When the message is handled, two more messages are created (`BillOrder` and `ShipOrder`).
 
-As the messages are sent and processed, trace data is exported to the console. Some of the trace data originates from NServiceBus and some from custom activities in the sample.
+As the messages are sent and processed, trace data is exported to the console. Some of the trace data originates from NServiceBus and some from custom code in the sample.
 
 ## Code walk through
 
 ### Global configuration
+
+NServiceBus OpenTelemetry instrumentation is not enabled by default. It must be enabled on the endpoint configuration.
+
+snippet: enable-opentelemetry
 
 OpenTelemetry is configured to export all traces to the command line. It includes the `NServiceBus.Core` source which is built into NServiceBus and a custom activity source defined in the sample (see below).
 
@@ -48,19 +54,6 @@ Send CreateOrder
       Send ShipOrder
 ```
 
-The pipeline also includes a custom behavior that wraps incoming `BillOrder` operations in a custom activity called `Billing operation`.
-
-snippet: custom-activity-in-behavior
-
-This activity will be created as a child of the process message activity created by NServiceBus. The NServiceBus invoke handler activity will be created as a child of this activity.
-
-```
-Send BillOrder
-  Process BillOrder
-    Billing operation <-- Custom activity
-      Invoke BillOrderHandler
-```
-
 ### Adding tags
 
 The handler for `ShipOrder` adds tags to the ambient behavior.
@@ -71,23 +64,11 @@ In the sample, these tags will be added to the NServiceBus invoke handler activi
 
 ```
 Send ShipOrder
-  Proceess ShipOrder
+  Process ShipOrder
     Invoke ShipOrderHandler <-- Custom tag gets added here
 ```
 
-A behavior also detects incoming `ShipOrder` messages and adds a tag to the ambient trace.
-
-snippet: add-tags-from-behavior
-
-As this behavior is installed on the incoming pipeline, these tags will be added to the process message activity. 
-
-```
-Send ShipOrder
-  Process ShipOrder <-- custom tag gets added here
-    Invoke ShipOrderHandler
-```
-
-A behavior in the outgoing pipeline adds an order id tag to the send message activity.
+A behavior in the outgoing pipeline adds the size of the message as a tag for all outgoing message activities.
 
 snippet: add-tags-from-outgoing-behavior
 

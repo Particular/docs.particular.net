@@ -25,22 +25,15 @@ public static class Program
 
         using (var tracerProvider = tracerProviderBuilder.Build())
         {
+            #region enable-opentelemetry
             var endpointConfiguration = new EndpointConfiguration("CustomTelemetry");
+            endpointConfiguration.EnableOpenTelemetry();
+            #endregion
             endpointConfiguration.UseTransport<LearningTransport>();
 
             endpointConfiguration.Pipeline.Register(
-                new AddOrderIdToTrace(),
-                "Adds order id to the ambient trace for incoming ShipOrder messages"
-            );
-
-            endpointConfiguration.Pipeline.Register(
-                new TraceBillingActivities(),
-                "Traces incoming billing messages"
-            );
-
-            endpointConfiguration.Pipeline.Register(
-                new TraceOutgoingOrderIdsBehavior(),
-                "Captures outgoing order ids as trace tags"
+                new TraceOutgoingMessageSizeBehavior(),
+                "Captures body size of outgoing messages as OpenTelemetry tags"
             );
 
             var endpoint = await Endpoint.Start(endpointConfiguration);

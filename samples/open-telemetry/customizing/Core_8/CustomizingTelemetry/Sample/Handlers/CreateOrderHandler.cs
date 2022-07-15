@@ -10,6 +10,7 @@ class CreateOrderHandler : IHandleMessages<CreateOrder>
         using(var activity = CustomActivitySources.Main.StartActivity("Billing Order"))
         {
             Console.WriteLine($"Billing order {message.OrderId}");
+            activity?.AddTag("sample.billing.system", "paypal");
             // Calculate order cost
             await context.SendLocal(new BillOrder { OrderId = message.OrderId });
         }
