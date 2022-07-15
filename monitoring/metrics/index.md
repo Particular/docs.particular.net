@@ -4,9 +4,13 @@ summary:
 reviewed: 2022-02-28
 component: Metrics
 versions: 'Metrics:*'
+related:
+ - samples/open-telemetry
 ---
 
 NOTE: This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
+
+partial: opentelemetry
 
 The Metrics plugin collects metric data about the performance of running endpoints. This data can be forwarded to a ServiceControl monitoring instance and then viewed in ServicePulse.
 

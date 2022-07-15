@@ -6,8 +6,6 @@ isLearningPath: true
 
 The endpoints of an NServiceBus system collect different types of information about their operation. This information can be collected and aggregated into a monitoring solution for the whole system.
 
-partial: opentelemetry
-
 ## Endpoint performance
 
 Endpoints collect [performance metrics](/monitoring/metrics/) about their own operation. This data can be [sent to a ServiceControl monitoring instance](/monitoring/metrics/install-plugin.md) for [visualization in ServicePulse](/monitoring/metrics/in-servicepulse.md).
