@@ -2,7 +2,7 @@
 title: Connecting OpenTelemetry traces and logs
 summary: How to connect OpenTelemetry traces to logs
 reviewed: 2022-07-15
-component: Extensions.Logging
+component: Core
 related:
  - nservicebus/operations/opentelemetry
  - nservicebus/logging
