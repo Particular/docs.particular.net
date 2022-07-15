@@ -1,9 +1,9 @@
 ---
-title: Use OpenTelemetry with Prometheus and Grafana
-summary: Use OpenTelemetry with Prometheus and Grafana to capture and visualize NServiceBus metrics.
+title: Monitoring NServiceBus endpoints with Prometheus and Grafana
+summary: How to configure NServiceBus to export OpenTelemetry metrics to Prometheus and Grafana
 component: Core
 isLearningPath: true
-reviewed: 2022-06-24
+reviewed: 2022-07-15
 previewImage: grafana.png
 related:
 - nservicebus/operations/opentelemetry
