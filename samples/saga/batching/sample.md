@@ -1,7 +1,7 @@
 ---
-title: Batch messages using Saga
-summary: Use batching when generating tasks using Saga
-reviewed: 2022-04-09
+title: Batch messages using sagas
+summary: Use batching when generating tasks using sagas
+reviewed: 2022-07-18
 component: Core
 related:
 - nservicebus/sagas
@@ -10,14 +10,14 @@ related:
 
 ## Introduction
 
-This sample shows how to control the task (work) generation via batching of the work items through Sagas. This pattern of throttled message generation can be helpful when the the rate of generation needs to be controlled:
+This sample shows how to control task generation via batching of the work items through Sagas. This pattern of throttled message generation can be helpful when the the rate of generation needs to be controlled. For example:
 
-- When lots of messages are generated as part of an incoming message, the amount of messages can further delay other messages in the same queue.
-- When the work as a whole is completed only when all messages are processed. If all messages are generated upfront and the work is considered 'cancelled' or 'failed', generated messages that are already in the queue would still have to be processed (e.g. no-op).
+- when many messages are generated as part of an incoming message. In this case, the number of messages can further delay other messages in the same queue.
+- when the work as a whole is completed only when all messages are processed. If all messages are generated upfront and the work is considered 'cancelled' or 'failed', generated messages that are already in the queue would still have to be processed (e.g. no-op).
 
-Alternatively to avoid congesting the queue, messages can be generated and routed to a [specific endpoint](/nservicebus/messaging/routing.md#make-instance-uniquely-addressable) (endpoint per work type), or [lower the concurrency limit](/nservicebus/operations/tuning.md#configuring-concurrency-limit) to have the messages processed sequentially. The [routing slip pattern](/samples/routing-slips/) might also be a good alternative in processing sequential messages.
+To avoid congestion in the queue, messages can be generated and routed to a [specific endpoint](/nservicebus/messaging/routing.md#make-instance-uniquely-addressable) (endpoint per work type), or [the concurrency limit can be set to 1](/nservicebus/operations/tuning.md#configuring-concurrency-limit) to have the messages processed sequentially. The [routing slip pattern](/samples/routing-slips/) is also a good alternative in processing sequential messages.
 
-The messages generated upfront could cause delays on processing of the message that get in the queue, where as with a batching saga processing can be interleaved and multiple batches can be processed in parallel.
+The messages generated upfront could cause delays on processing of the message that get in the queue, whereas with batching, saga processing can be interleaved and multiple batches can be processed in parallel.
 
 ```mermaid
 gantt
@@ -41,9 +41,9 @@ gantt
     Work Request C (25 msgs) : s9, after s8, 1d
 ```
 
-Once the projects are started, press <kbr>S</kbr> to send a `StartProcessing` message with a randomly `WorkCount` number that starts a new saga instance. This is a result of as configuration specified with the `IAmStartedByMessages` interface and mapping that [correlates](/nservicebus/sagas/message-correlation.md) `StartProcessing.ProcessId` property on the message with `OrderSagaData.ProcessId` property on the saga data.
+Once the projects are started, press <kbd>S</kbd> to send a `StartProcessing` message with a randomly-generated `WorkCount` number that starts a new saga instance. This is a result of a configuration specified with the `IAmStartedByMessages` interface and mapping that [correlates](/nservicebus/sagas/message-correlation.md) the `StartProcessing.ProcessId` property on the message with the `OrderSagaData.ProcessId` property on the saga data.
 
-When processing the `StartProcessing` message each saga instance creates `ProcessWorkOrder` in batches of 100 messages (in each batch) and sends them off to the `WorkProcessor` endpoint to handle. Once all the messages of a batch is completed, the next batch of messages are generated.
+When processing the `StartProcessing` message, each saga instance creates a `ProcessWorkOrder` instance in batches of 100 messages and sends them off to the `WorkProcessor` endpoint to handle. Once all the messages of a batch are completed, the next batch of messages are generated.
 
 The output to the console of the `WorkGenerator` will be:
 
@@ -77,16 +77,16 @@ Processing work order '441'
 Processing work order '420'
 ```
 
-Notice that while the work requests are generated in sequence, on the processing side the work can happen out of order. The total time it took the process to finish is also logged.
+Notice that while the work requests are generated in sequence, on the processing side the work can happen out of order. The total time taken the process to finish is also logged.
 
 NOTE: Metrics such as Critical Time may not be sufficient to monitor how long the end-to-end process takes. This is something to note and measure to ensure quality of service.
 
-## The Saga
+## The saga
 
-The saga controls the generation of the next batch of work and monitors for the completion signal of all messages in that batch, before starting the next batch. Very long running work items or failed work items could unintentionally stall the subsequent work items. Consider using saga timeouts and or work item failure responses to mitigate this if required.
+The saga controls the generation of the next batch of work and monitors for the completion signal of all messages in that batch, before starting the next batch. Very long-running work items or failed work items could unintentionally stall the subsequent work items. Consider using saga timeouts and or work item failure responses to mitigate this if required.
 
-snippet: saga-import-nextbach
+snippet: saga-import-nextbatch
 
-When a `WorkOrderCompleted` message comes back from the work handling endpoint, the saga checks if the work all completed or there is still a next batch to generate.
+When a `WorkOrderCompleted` message comes back from the work-handling endpoint, the saga checks if all the work completed or if there is still another batch to generate.
 
 snippet: saga-work-completed

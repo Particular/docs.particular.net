@@ -30,7 +30,7 @@ public class ProcessingSaga : Saga<ProcessingSagaData>,
         await ImportNextBatch(context);
     }
 
-    #region saga-import-nextbach
+    #region saga-import-nextbatch
     private async Task ImportNextBatch(IMessageHandlerContext context)
     {
         if (Data.Progress.AllWorkCompleted(Data.WorkCount))
