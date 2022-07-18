@@ -8,7 +8,7 @@ redirects:
  - nservicebus/rabbitmq/connection-settings
 ---
 
-partial: connection-string
+The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker, and there are two different styles to choose from. It can accept the standard [AMQP URI](https://www.rabbitmq.com/uri-spec.html) connection strings, and it also can use a custom format that is documented below.
 
 
 ### Specifying the connection string via code
@@ -76,7 +76,7 @@ Default: `guest`
 
 The interval for heartbeats between the endpoint and the broker.
 
-partial: requested-heartbeat-default
+Default: `60` seconds
 
 
 partial: DequeueTimeout
@@ -129,10 +129,26 @@ partial: publisher-confirms-setting
 
 The RabbitMQ transport monitors the connection to the broker and will trigger the critical error action if the connection fails and stays disconnected for the configured amount of time.
 
-partial: heartbeat-interval
+### Heartbeat interval
+
+Controls how frequently AMQP heartbeat messages will be sent between the endpoint and the broker.
+
+Type: `System.TimeSpan`
+
+Default: `00:01:00` (1 minute)
+
+snippet: change-heartbeat-interval
 
 
-partial: network-recovery-interval
+## Network recovery interval
+
+Controls the time to wait between attempts to reconnect to the broker if the connection is lost.
+
+Type: `System.TimeSpan`
+
+Default: `00:00:10` (10 seconds)
+
+snippet: change-network-recovery-interval
 
 
 ### TimeToWaitBeforeTriggering
@@ -152,4 +168,13 @@ partial: delayafterfailure
 
 ## Debugging recommendations
 
-partial: debugging-note
+For debugging purposes, it can be helpful to increase the heartbeat interval via the connection string:
+
+snippet: rabbitmq-connectionstring-debug
+
+Or via the API:
+
+snippet: rabbitmq-debug-api
+
+Increasing this setting can help to avoid connection timeouts while debugging.
+

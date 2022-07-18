@@ -61,7 +61,7 @@ The `MaxWaitTimeForConfirms` setting has been removed because the transport no l
 
 ## Callback support
 
-[Callbacks](/transports/rabbitmq/callbacks.md?version=rabbit_3) are no longer directly managed by the RabbitMQ transport; the settings related to the callback receiver queue have been removed.
+Callbacks are no longer directly managed by the RabbitMQ transport. The settings related to the callback receiver queue have been removed.
 
 
 ### DisableCallbackReceiver
