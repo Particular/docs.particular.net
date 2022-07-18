@@ -344,7 +344,7 @@ NServiceBus version 8 elevates several [saga-related Roslyn analyzers](/nservice
 
 NServiceBus 8 comes with built-in OpenTelemetry support for tracing and metrics. To enable OpenTelemetry instrumentation in NServiceBus, refer to the [NServiceBus OpenTelemetry documentation](/nservicebus/operations/opentelemetry.md).
 
-The tracing functionality is compatible with the [NServiceBus.Extensions.Diagnostics community package](https://github.com/jbogard/NServiceBus.Extensions.Diagnostics) available for NServiceBus version 7. When uprading endpoints from version 7, switch to the built-in OpenTelemetry support following these steps:
+The tracing functionality is compatible with the [NServiceBus.Extensions.Diagnostics](https://github.com/jbogard/NServiceBus.Extensions.Diagnostics) community package available for NServiceBus version 7. When upgrading endpoints from version 7, switch to the built-in OpenTelemetry support following these steps:
 
 1. Remove the references to the `NServiceBus.Extensions.Diagnostics` and `NServiceBus.Extensions.Diagnostics.OpenTelemetry` packages.
 2. Enable NServiceBus OpenTelemetry support using the `endpointConfiguration.EnableOpenTelemetry()` API.
