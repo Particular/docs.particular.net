@@ -18,7 +18,7 @@ The RabbitMQ transport has the concept of a routing topology, which controls how
 
 The conventional routing topology relies on [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages. 
 
-partial: mandatory
+Note: The recommended routing topology is the conventional routing topology. It was the default topology prior to NServiceBus.RabbitMQ version 5.
 
 
 ### Sending using the conventional routing topology
@@ -35,7 +35,11 @@ When an endpoint subscribes to an event, it first ensures that the above infrast
 When an endpoint publishes an event, it first ensures that the above infrastructure exists. It then publishes the message to the exchange corresponding to the message type being published.
 
 
-partial: enable-conventional-routing-topology
+### Enabling the conventional routing topology
+
+To enable the conventional routing topology, use the following configuration:
+
+snippet: rabbitmq-config-useconventionalroutingtopology
 
 
 ## Direct routing topology
@@ -73,7 +77,11 @@ WARNING: In some cases, the direct routing topology may not deliver message type
 
 partial: queue-type
 
-partial: exchange-queue-durability
+## Controlling exchange and queue durability
+
+The routing topologies provided by the transport create durable exchanges and queues by default. To create transient exchanges and queues, use the following:
+
+snippet: rabbitmq-disable-durable-exchanges
 
 
 ## Custom routing topology
