@@ -12,7 +12,7 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-## NewtonsoftSerializer Obsolete
+## NewtonsoftSerializer obsolete
 
 The `NewtonsoftSerializer` is obsolete in NServiceBus version 8. It uses `TypeNameHandling.Auto` as its default value which can be a security risk as it allows the message payload to control the deserialization target type. See [CA2326: Do not use TypeNameHandling values other than None](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2326) for further details on this vulnerability.
 
@@ -30,5 +30,5 @@ Use:
 var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 ```
 
-If the use of `TypeNameHandling.Auto` is required, it can be achieved by customizing the instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
+If `TypeNameHandling.Auto` is required, customize the instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
 See [the Json.Net Serializer documentation](/nservicebus/serialization/newtonsoft.md) for more information.

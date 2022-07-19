@@ -1,6 +1,6 @@
 ---
 title: RabbitMQ Transport Upgrade Version 7 to 8
-summary: Migration instructions on how to upgrade RabbitMQ Transport from Version 7 to 8.
+summary: Migration instructions on how to upgrade RabbitMQ Transport from version 7 to 8.
 reviewed: 2022-05-05
 component: Rabbit
 related:
@@ -14,7 +14,7 @@ upgradeGuideCoreVersions:
 
 ## Timeout manager
 
-The [timeout manager has been removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backward compatibility mode obsolete. If backward compatibility mode was enabled these APIs must be removed.
+The [timeout manager has been removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backward-compatibility mode obsolete. If backward-compatibility mode was enabled these APIs must be removed.
 
 ## Configuring the RabbitMQ transport
 
