@@ -15,6 +15,8 @@ related:
 
 The SQL Server transport implements a message queuing mechanism on top of [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/). It provides support for sending messages using SQL Server tables. It does **not** make use of a [service broker](https://technet.microsoft.com/en-us/library/ms166104.aspx).
 
+NOTE: The SQL Server transport can only be used with [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/). It cannot be used with any other database platform.
+
 WARNING: Although this transport will run on the free version of the engine, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express), it is strongly recommended to use commercial versions for production systems. It is also recommended to ensure that support agreements are in place from [Microsoft Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx), or another third party support provider.
 
 ## Transport at a glance
