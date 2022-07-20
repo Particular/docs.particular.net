@@ -20,8 +20,6 @@ internal class Program
         var builder = Host.CreateDefaultBuilder(args);
         builder.UseConsoleLifetime();
 
-        #region generic-host-nservicebus
-
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("Samples.TransactionalSession.Console");
@@ -32,12 +30,7 @@ internal class Program
             return endpointConfiguration;
         });
 
-        #endregion
-
-        #region generic-host-worker-registration
 
         return builder.ConfigureServices(services => { services.AddHostedService<Worker>(); });
-
-        #endregion
     }
 }

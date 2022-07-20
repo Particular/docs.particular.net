@@ -6,7 +6,6 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.TransactionalSession;
 
-#region generic-host-worker
 class Worker : BackgroundService
 {
     private readonly IServiceProvider serviceProvider;
@@ -61,4 +60,3 @@ class Worker : BackgroundService
         }
     }
 }
-#endregion
