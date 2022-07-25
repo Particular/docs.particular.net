@@ -1,7 +1,7 @@
 ---
 title: Specify Endpoint Name
 summary: Describes the ways in which to specify an endpoint name
-reviewed: 2019-12-25
+reviewed: 2022-07-25
 component: Core
 redirects:
 - nservicebus/how-to-specify-your-input-queue-name
