@@ -1,5 +1,5 @@
 ---
-title: Transport types 
+title: Transport types
 summary: A list of all transports offered by the Particular Service Platform
 component: Core
 reviewed: 2020-08-10
@@ -30,7 +30,6 @@ Broker transports are inherently centralized. Even if there are multiple servers
 Broker transports include:
 
 - [Azure Service Bus](/transports/azure-service-bus/)
-- [Azure Service Bus (legacy)](/transports/azure-service-bus/legacy/)
 - [Azure Storage Queues](/transports/azure-storage-queues/)
 - [SQL Server](/transports/sql/)
 - [RabbitMQ](/transports/rabbitmq/)
@@ -54,7 +53,6 @@ Multicast-enabled transports include:
 
 - [Learning](/transports/learning/)
 - [Azure Service Bus](/transports/azure-service-bus/)
-- [Azure Service Bus (legacy)](/transports/azure-service-bus/legacy/)
 - [RabbitMQ](/transports/rabbitmq/)
 - [SQL Server version 5 and above](/transports/sql/)
 - [Amazon SQS version 5 and above](/transports/sqs/)

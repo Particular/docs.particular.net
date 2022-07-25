@@ -39,11 +39,17 @@ In Version 5, selection of subscription versioning scheme is now mandatory, so t
 
 New projects and projects where the subscriptions have been converted to the new format should disable subscription versioning:
 
-snippet: 4to5-DisableSubscriptionVersioning
+```csharp
+var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
+persistence.DisableSubscriptionVersioning();
+```
 
 When converting an older project, the old versioned subscriptions behavior can be maintained until such a time when subscriptions can be converted to the new format:
 
-snippet: 4to5-LegacySubscriptionVersioning
+```csharp
+var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
+persistence.UseLegacyVersionedSubscriptions();
+```
 
 When using this setting, RavenDB Persistence will log a warning at each endpoint startup:
 

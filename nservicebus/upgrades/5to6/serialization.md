@@ -43,7 +43,21 @@ public class MessageWithNullable : IMessage
 
 A null `BirthDate` would result in a message in the following:
 
-snippet: 5to6nullXml
+```xml
+// For NServiceBus version 6.x
+<MessageWithNullable 
+  xmlns="http://tempuri.net/NServiceBus.Serializers.XML.Test">
+  <FirstName>FirstName</FirstName>
+  <BirthDate xsi:nil="true"></BirthDate>
+</MessageWithNullable>
+
+// For NServiceBus version 5.x
+<MessageWithNullable 
+  xmlns="http://tempuri.net/NServiceBus.Serializers.XML.Test">
+  <FirstName>FirstName</FirstName>
+  <BirthDate>null</BirthDate>
+</MessageWithNullable>
+```
 
 WARNING: External integration systems need to ensure compatibility when receiving messages in the new format.
 

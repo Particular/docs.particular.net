@@ -8,6 +8,7 @@ versions: 'Heartbeats:*'
 redirects:
  - servicecontrol/heartbeat-configuration
  - nservicebus/operations/heartbeat
+ - monitoring/heartbeats/legacy
 ---
 
 The Heartbeat plugin enables endpoint health monitoring by sending regular heartbeat messages from the endpoint to a ServiceControl instance. The ServiceControl instance keeps track of which endpoint instances are sending heartbeats and which ones are not.

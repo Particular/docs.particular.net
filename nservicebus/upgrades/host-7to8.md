@@ -35,7 +35,19 @@ Code in `IConfigureThisEndpoint.Customize` can be transferred as-is to the confi
 
 The `AsA_Client` role can be replaced with the following configuration:
 
-snippet: 7to8AsAClient 
+```csharp
+endpointConfiguration.PurgeOnStartup(true);
+endpointConfiguration.DisableFeature<TimeoutManager>();
+var transport = endpointConfiguration.UseTransport<MyTransport>();
+transport.Transactions(TransportTransactionMode.None);
+
+var recoverability = endpointConfiguration.Recoverability();
+recoverability.Delayed(
+    customizations: delayed =>
+    {
+        delayed.NumberOfRetries(0);
+    });
+```
 
 NOTE: When trasitioning from `AsA_Client` to self-hosting the equivalent setting for the transport transaction mode is `None`. Make sure that message loss is acceptable. See [transport transactions](/transports/transactions.md) documentation for more details.
 

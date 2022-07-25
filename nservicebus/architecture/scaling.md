@@ -10,12 +10,6 @@ This page describes how to scale out endpoints using NServiceBus. There are seve
 
 It is important to distinguish between a logical endpoint and an endpoint instance. Review the documentation on [logical endpoints](/nservicebus/endpoints/) for more details.
 
-There are several ways to scale out with NServiceBus:
-
-- [Splitting message handlers](#splitting-message-handlers)
-- [Scaling out to different nodes](#scaling-out-to-multiple-nodes)
-- [High availability](#high-availability)
-
 ## Splitting message handlers
 
 If message throughput is an issue, the first method to consider is splitting up [message handlers](/nservicebus/handlers/) and [sagas](/nservicebus/sagas/) over multiple logical endpoints.
@@ -40,12 +34,7 @@ The image below shows the component `ClientUI` sending a command message to the 
 
 ### Sender-side distribution
 
-Because of the federated nature of queues with MSMQ, with scaled out endpoints across different nodes, each node has its own physical queue. This makes it impossible to apply the *competing consumer pattern*. For this reason NServiceBus supports two options to scale out MSMQ endpoints across nodes.
-
-- [Sender Side Distribution](/transports/msmq/sender-side-distribution.md)
-- [Distributor](/transports/msmq/distributor)
-
-Both have their advantages and disadvantages which can be found in the documentation.
+Because of the federated nature of queues with MSMQ, with scaled out endpoints across different nodes, each node has its own physical queue. This makes it impossible to apply the *competing consumer pattern*. See [Sender Side Distribution](/transports/msmq/sender-side-distribution.md) for more information.
 
 ## High availability
 

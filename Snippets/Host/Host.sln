@@ -2,12 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Host_5", "Host_5\Host_5.csproj", "{0BC1A508-E067-4223-AF8C-EA9C3A06071B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Host_6", "Host_6\Host_6.csproj", "{62EDEAAA-1E92-478C-AC69-28A0C9940A3E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Host_7", "Host_7\Host_7.csproj", "{55F496CB-A58F-4F14-AFFA-626C07621EBE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Host_8", "Host_8\Host_8.csproj", "{5F950443-E391-44CF-B685-E6DF4CB253F4}"
 EndProject
 Global
@@ -15,12 +9,6 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0BC1A508-E067-4223-AF8C-EA9C3A06071B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BC1A508-E067-4223-AF8C-EA9C3A06071B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62EDEAAA-1E92-478C-AC69-28A0C9940A3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62EDEAAA-1E92-478C-AC69-28A0C9940A3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55F496CB-A58F-4F14-AFFA-626C07621EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55F496CB-A58F-4F14-AFFA-626C07621EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F950443-E391-44CF-B685-E6DF4CB253F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F950443-E391-44CF-B685-E6DF4CB253F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection

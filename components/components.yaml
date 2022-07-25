@@ -36,7 +36,7 @@
 
 - Key: ASB
   Name: Azure Service Bus Transport (Legacy)
-  DocsUrl: /transports/azure-service-bus/legacy
+  DocsUrl: /transports/azure-service-bus
   GitHubOwner: Particular
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureServiceBus
@@ -57,7 +57,7 @@
   DocsUrl: /persistence/azure-table
   GitHubOwner: Particular
   Category: Persistence
-  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.AzureStorage
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.AzureTable
   NugetOrder:
     - NServiceBus.Persistence.AzureTable
     - NServiceBus.Persistence.AzureStorage
@@ -80,6 +80,17 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Autofac
   NugetOrder:
     - NServiceBus.Autofac
+
+- Key: Bridge
+  Name: Transport Bridge
+  DocsUrl: /nservicebus/bridge
+  GitHubOwner: Particular
+  Category: Other
+  SupportLevel: Preview
+  LicenseUrl: https://github.com/Particular/NServiceBus.Transport.Bridge/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Bridge
+  NugetOrder:
+    - NServiceBus.Transport.Bridge
 
 - Key: Callbacks
   Name: Callbacks
@@ -151,16 +162,6 @@
   NugetOrder:
     - NServiceBus
 
-- Key: Distributor
-  Name: Distributor
-  DocsUrl: /transports/msmq/distributor
-  GitHubOwner: Particular
-  Category: Other
-  ProjectUrl: https://github.com/Particular/NServiceBus.Distributor.Msmq
-  NugetOrder:
-    - NServiceBus.Distributor.MSMQ
-    - NServiceBus
-
 - Key: Gateway
   Name: Gateway
   DocsUrl: /nservicebus/gateway
@@ -219,15 +220,6 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.NonDurable
   NugetOrder:
     - NServiceBus.Persistence.NonDurable
-    - NServiceBus
-
-- Key: Json
-  Name: Json Serializer
-  DocsUrl: /nservicebus/serialization/json
-  Category: Serializer
-  GitHubOwner: Particular
-  ProjectUrl: https://github.com/Particular/NServiceBus
-  NugetOrder:
     - NServiceBus
 
 - Key: LearningPersistence
@@ -601,16 +593,6 @@
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
     - NServiceBus
-
-- Key: Bridge
-  Name: Transport Bridge
-  DocsUrl: /nservicebus/bridge
-  GitHubOwner: Particular
-  Category: Other
-  SupportLevel: Preview
-  ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Bridge
-  NugetOrder:
-    - NServiceBus.Transport.Bridge
 
 - Key: Wormhole
   Name: Wormhole Gateway

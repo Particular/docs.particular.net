@@ -13,7 +13,7 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
 
         // uncomment below to demonstrate json
-        //endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        //endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         //endpointConfiguration.Pipeline.Register(new PublishFullTypeNameOnlyBehavior(), "Replaces the fully qualified assembly name with the full name only.");
 
         endpointConfiguration.SendFailedMessagesTo("error");

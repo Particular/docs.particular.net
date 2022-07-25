@@ -10,7 +10,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomChecks.Monitor3rdParty");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

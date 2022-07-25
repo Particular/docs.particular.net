@@ -239,6 +239,10 @@
         Title: Version 1 to 2
       - Url: nservicebus/upgrades/gateway-2to3
         Title: Version 2 to 3
+    - Title: Newtonsoft Serializer
+      Articles:
+      - Url: nservicebus/upgrades/newtonsoft-2to3
+        Title: Version 2 to 3
     - Title: NServiceBus Testing
       Articles:
       - Url: nservicebus/upgrades/testing-7to8
@@ -401,8 +405,6 @@
       Title: Overriding the host identifier
     - Url: nservicebus/hosting/override-machine-name
       Title: Overriding the machine name
-    - Url: nservicebus/hosting/custom-configuration-providers
-      Title: Overriding app.config settings
     - Url: nservicebus/hosting/assembly-scanning
       Title: Assembly scanning
     - Url: nservicebus/hosting/cooperative-cancellation
@@ -455,8 +457,6 @@
         Title: Logging
       - Url: nservicebus/hosting/cloud-services-host/startup
         Title: Startup Behavior
-      - Url: nservicebus/hosting/cloud-services-host/shared-hosting
-        Title: Shared Hosting
       - Url: nservicebus/hosting/cloud-services-host/critical
         Title: Critical Errors
       - Url: nservicebus/hosting/cloud-services-host/running-without-emulator
@@ -470,8 +470,6 @@
         Title: Initialization
       - Url: nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized
         Title: Before Configuration Finalized
-      - Url: nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete
-        Title: Configuration Ends
       - Url: nservicebus/lifecycle/endpointstartandstop
         Title: Endpoint Instance Starts and Stops
   - Url: nservicebus/handlers-and-sagas
@@ -561,8 +559,6 @@
     Articles:
     - Url: nservicebus/serialization/newtonsoft
       Title: Json.NET
-    - Url: nservicebus/serialization/json
-      Title: JSON
     - Url: nservicebus/serialization/xml
       Title: Xml
     - Url: nservicebus/serialization/custom-serializer
@@ -615,6 +611,8 @@
       Title: Particular Service Platform Installation
     - Url: nservicebus/hosting/startup-diagnostics
       Title: Startup diagnostics
+    - Url: nservicebus/operations/opentelemetry
+      Title: OpenTelemetry
     - Url: nservicebus/operations/transactions-message-processing
       Title: Transactions and Message Processing
     - Url: nservicebus/operations/auditing
@@ -722,6 +720,8 @@
         Title: Version 6 to 7
     - Title: RabbitMQ
       Articles:
+      - Url: transports/upgrades/rabbitmq-7to8
+        Title: Version 7 to 8
       - Url: transports/upgrades/rabbitmq-6to7
         Title: Version 6 to 7
       - Url: transports/upgrades/rabbitmq-5to6
@@ -799,63 +799,6 @@
           Title: Avoiding Transactions
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational scripting
-  - Url: transports/azure-service-bus/legacy
-    Title: Azure Service Bus (Legacy)
-    Articles:
-    - Url: transports/azure-service-bus/legacy/migration
-      Title: Migration
-    - Url: transports/azure-service-bus/legacy/topologies
-      Title: Topologies
-    - Url: transports/azure-service-bus/legacy/configuration
-      Title: Configuration
-      Articles:
-      - Url: transports/azure-service-bus/legacy/configuration/full
-        Title: Full API
-      - Url: transports/azure-service-bus/legacy/retries
-        Title: Retry behavior
-      - Url: transports/azure-service-bus/legacy/sanitization
-        Title: Sanitization
-      - Url: transports/azure-service-bus/legacy/addressing-logic
-        Title: Addressing Logic
-      - Url: transports/azure-service-bus/legacy/securing-connection-strings
-        Title: Securing Namespace Connections
-      - Url: transports/azure-service-bus/legacy/namespace-hierarchy
-        Title: Namespace hierarchy
-      - Url: transports/azure-service-bus/legacy/token-provider
-        Title: Token Provider
-    - Title: Routing
-      Articles:
-      - Url: transports/azure-service-bus/legacy/publisher-names-configuration
-        Title: Publishers name configuration
-      - Url: transports/azure-service-bus/legacy/multiple-namespaces-support
-        Title: Multiple namespaces
-    - Url: transports/azure-service-bus/legacy/performance-tuning
-      Title: Performance Tuning
-      Articles:
-      - Url: transports/azure-service-bus/legacy/batching
-        Title: Batching
-      - Url: transports/azure-service-bus/legacy/message-lock-renewal
-        Title: Message lock renewal
-    - Url: transports/azure-service-bus/legacy/transaction-support
-      Title: Transaction Support
-      Articles:
-      - Url: nservicebus/azure/understanding-transactionality-in-azure
-        Title: Transactions in Azure
-      - Url: nservicebus/azure/ways-to-live-without-transactions
-        Title: Avoiding Transactions
-      - Url: transports/azure-service-bus/legacy/understanding-transactions-and-delivery-guarantees
-        Title: Internal transaction and delivery guarantees
-    - Url: transports/azure-service-bus/legacy/error-handling
-      Title: Error Handling
-      Articles:
-      - Url: transports/azure-service-bus/legacy/dlq-forwarding
-        Title: Forwarding
-      - Url: transports/azure-service-bus/legacy/oversized-sends
-        Title: Oversized Sends
-    - Url: transports/azure-service-bus/legacy/native-integration
-      Title: Native Integration
-    - Url: transports/azure-service-bus/legacy/brokered-message-creation
-      Title: Brokered Message Creation
   - Url: transports/azure-storage-queues
     Title: Azure Storage Queues
     Articles:
@@ -950,23 +893,6 @@
       Title: Scaling out
     - Url: transports/msmq/sender-side-distribution
       Title: Scaling out with Sender-Side Distribution
-    - Url: transports/msmq/distributor
-      Title: Scaling with the Distributor
-      Articles:
-      - Url: transports/msmq/distributor/configuration
-        Title: Configuration
-      - Url: transports/msmq/distributor/deploying-to-a-cluster
-        Title: Deploying to Failover Cluster
-      - Url: transports/msmq/distributor/when-worker-goes-down
-        Title: When a worker goes down
-      - Url: transports/msmq/distributor/disconnect-workers
-        Title: Disconnect Workers
-      - Url: transports/msmq/distributor/publish-subscribe
-        Title: Publish-Subscribe
-      - Url: transports/msmq/distributor/error-handling
-        Title: Error handling
-      - Url: transports/msmq/distributor/troubleshooting
-        Title: Troubleshooting
   - Url: transports/rabbitmq
     Title: RabbitMQ
     Articles:
@@ -975,15 +901,11 @@
     - Url: transports/rabbitmq/routing-topology
       Title: Routing topology
     - Url: transports/rabbitmq/delayed-delivery
-      Title: Delayed Delivery
+      Title: Delayed delivery
     - Url: transports/rabbitmq/native-integration
       Title: Native integration
-    - Url: transports/rabbitmq/callbacks
-      Title: Callback support
     - Url: transports/rabbitmq/transactions-and-delivery-guarantees
       Title: Transactions and delivery guarantees
-    - Url: transports/rabbitmq/cluster
-      Title: In a cluster
     - Url: transports/rabbitmq/operations-scripting
       Title: Scripting
   - Url: transports/sqs
@@ -1172,8 +1094,6 @@
       Title: Scripting
     - Url: persistence/ravendb/installation
       Title: Installation
-    - Url: persistence/ravendb/manual-dtc-settings
-      Title: Configure DTC
     - Url: persistence/ravendb/outbox
       Title: Outbox
     - Url: persistence/ravendb/reroute-existing-timeouts
@@ -1385,9 +1305,6 @@
       Url: servicecontrol/app-insights-integration
     - Title: Plugins
       Url: servicecontrol/plugins
-      Articles:
-      - Title: Saga audits
-        Url:  servicecontrol/plugins/saga-audit
     - Title: Integration events
       Url: servicecontrol/contracts
     - Title: Transport adapter

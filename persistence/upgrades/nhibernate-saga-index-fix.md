@@ -51,12 +51,47 @@ Each row in the result set represents a single logical saga instance that was du
 
 #### Microsoft SQL Server
 
-snippet: DetectSagaDataDuplicates_MsSqlServer
+```sql
+declare @sagaDataTableName nvarchar(max) = '...'
+declare @correlationPropertyColumnName nvarchar(max) = '...'
+declare @sql nvarchar(max)
+
+select @sql = 'select ' + @correlationPropertyColumnName + ', count(*) as SagaRows from ' + @sagaDataTableName + ' group by ' + @correlationPropertyColumnName + ' having count(*) > 1'
+exec sp_executeSQL @sql
+```
 
 
 #### Oracle
 
-snippet:  DetectSagaDataDuplicates_Oracle
+```sql
+declare
+  sagaDataTableName varchar2(30) := '...';
+  correlationPropertyColumnName varchar2(30) := '...';
+  detectDuplicates varchar2(500);
+  type SagaCursorType is ref cursor;
+  sagaCursor SagaCursorType;
+  correlationProperty <type of correlationPropertyColumnName>;
+  instanceCount number(10);
+begin
+    detectDuplicates :=
+       'select ' || correlationPropertyColumnName || ', count(*)
+        from ' || sagaDataTableName || '
+        group by ' || correlationPropertyColumnName || '
+        having count(*) > 1';
+        
+    open sagaCursor for detectDuplicates;
+    
+    loop
+      fetch sagaCursor into correlationProperty, instanceCount;
+      exit when sagaCursor%NOTFOUND;
+      
+      dbms_output.put_line(correlationProperty);
+      
+    end loop;
+    
+    close sagaCursor;
+end;
+```
 
 
 ### Add unique constraint on correlation property column
@@ -70,11 +105,30 @@ NOTE: It requires providing values for `sagaDataTableName` and `correlationPrope
 
 NOTE: If adding a unique constraint fails with the error `The CREATE UNIQUE INDEX statement terminated because a duplicate key was found for the object name ...`, ensure that all duplicated rows detected have been merged.
 
-snippet: AddUniqueConstraintOnSagaDataTable_MsSqlServer
+```sql
+declare @sagaDataTableName nvarchar(max) = '...'
+declare @correlationPropertyColumnName nvarchar(max) = '...'
+declare @sql nvarchar(max)
+
+select @sql = 'alter table ' + @sagaDataTableName + ' add unique nonclustered ( ' + @correlationPropertyColumnName + ' asc )with (pad_index = off, statistics_norecompute = off, sort_in_tempdb = off, ignore_dup_key = off, online = off, allow_row_locks = on, allow_page_locks = on)'
+exec sp_executeSQL @sql
+```
 
 
 #### Oracle
 
 NOTE: Oracle requires that a unique constraint has a name. Use the `uniqueConstraintName` variable to set the name of the constraint.
 
-snippet: AddUniqueConstraintOnSagaDataTable_Oracle
+```sql
+declare
+  sagaDataTableName varchar2(30) := '...';
+  correlationPropertyColumnName varchar2(30) := '...';
+  uniqueConstraintName varchar2(30) := '...';
+  addUniqueConstraint varchar2(500);
+begin
+    addUniqueConstraint :=
+       'alter table ' || sagaDataTableName || ' add constraint ' || uniqueConstraintName || ' unique (' || correlationPropertyColumnName || ')';
+       
+    execute immediate addUniqueConstraint;
+end;
+```

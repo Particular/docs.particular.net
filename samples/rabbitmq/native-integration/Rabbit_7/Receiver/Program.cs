@@ -10,11 +10,13 @@ class Program
 
         #region ConfigureRabbitQueueName
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.NativeIntegration");
-        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost");
-        endpointConfiguration.UseTransport(transport);
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseConventionalRoutingTopology(QueueType.Quorum);
+        transport.ConnectionString("host=localhost");
         #endregion
 
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -8,13 +8,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-beta.3" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-beta.5" />
     <PackageReference Include="NServiceBus.Callbacks" Version="3.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="2.*" />
     <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="3.*" />
     <PackageReference Include="Newtonsoft.Json" Version="11.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    <PackageReference Include="OpenTelemetry" Version="1.3.0" />
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web" />

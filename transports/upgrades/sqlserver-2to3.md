@@ -23,7 +23,15 @@ The primary namespace is `NServiceBus`. Advanced APIs have been moved to `NServi
 
 The native transaction support has been split into two levels: `ReceiveOnly` and `SendAtomicWithReceive`. Both are supported. `SendAtomicWithReceive` is equivalent to disabling distributed transactions in NServiceBus version 5.
 
-snippet: 2to3-enable-native-transaction
+```csharp
+// For SQL Transport version 3.x
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+
+// For SQL Transport version 2.x
+var transactions = busConfiguration.Transactions();
+transactions.DisableDistributedTransactions();
+```
 
 As shown in the above snippet, transaction settings are now handled in the transport level configuration.
 
@@ -34,7 +42,50 @@ For more details and examples refer to the [transaction configuration API](/nser
 
 The custom connection factory method is now expected to be `async` and no parameters are passed to it by the framework:
 
-snippet: 2to3-sqlserver-custom-connection-factory
+```csharp
+// For SQL Transport version 3.x
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+transport.UseCustomSqlConnectionFactory(
+    sqlConnectionFactory: async () =>
+    {
+        var connection = new SqlConnection("SomeConnectionString");
+        try
+        {
+            await connection.OpenAsync()
+                .ConfigureAwait(false);
+
+            // perform custom operations
+
+            return connection;
+        }
+        catch
+        {
+            connection.Dispose();
+            throw;
+        }
+    });
+
+// For SQL Transport version 2.x
+var transport = busConfiguration.UseTransport<SqlServerTransport>();
+transport.UseCustomSqlConnectionFactory(
+    connectionString =>
+    {
+        var connection = new SqlConnection(connectionString);
+        try
+        {
+            connection.Open();
+
+            // custom operations
+
+            return connection;
+        }
+        catch
+        {
+            connection.Dispose();
+            throw;
+        }
+    });
+```
 
 
 ### Accessing transport connection
@@ -43,7 +94,10 @@ Accessing transport connection can be done in version 2 of the transport by inje
 
 In version 3, this API has been removed. The same goal can be achieved in version 3 by using ambient transaction mode.
 
-snippet: 2to3-enable-ambient-transaction
+```csharp
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+transport.Transactions(TransportTransactionMode.TransactionScope);
+```
 
 The handler must open a connection to access the data, but assuming both handler and the transport are configured to use the same connection string, there is no DTC escalation. SQL Server 2008 and later can detect that both connections target the same resource and merges the two transactions into a single lightweight transaction.
 
@@ -56,24 +110,97 @@ The configuration API for [multi-schema support](/transports/sql/deployment-opti
 
 The schema for the configured endpoint can be specified using `DefaultSchema` method:
 
-snippet: 2to3-sqlserver-non-standard-schema
+```csharp
+// For SQL Transport version 3.x
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+transport.DefaultSchema("myschema");
+
+// For SQL Transport version 2.x
+var transport = busConfiguration.UseTransport<SqlServerTransport>();
+transport.DefaultSchema("myschema");
+```
 
 or by defining a custom schema per endpoint or queue:
 
-snippet: 2to3-sqlserver-multischema-config-for-endpoint-and-queue
+```csharp
+var transport = busConfiguration.UseTransport<SqlServerTransport>();
+transport.UseSpecificConnectionInformation(
+    EndpointConnectionInfo.For("sales")
+        .UseSchema("sender"),
+    EndpointConnectionInfo.For("error")
+        .UseSchema("control")
+);
+```
 
 This enables configuring custom schema both for local endpoint as well as for other endpoints that the configured endpoint communicates with. When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint-name@schema-name` convention:
 
-snippet: 2to3-sqlserver-multischema-config
+```xml
+<UnicastBusConfig>
+  <MessageEndpointMappings>
+    <add Assembly="Billing.Contract"
+         Endpoint="billing@schema_name"/>
+    <add Assembly="Sales.Contract"
+         Endpoint="sales@another_schema_name"/>
+  </MessageEndpointMappings>
+</UnicastBusConfig>
+```
 
 
 ### Multi-instance support
 
-The configuration API for [multi-instance support](/transports/sql/deployment-options.md?version=SqlTransportLegacySystemClient_3#multi-instance) has changed. Multiple connection strings must be provided by a connection factory method passed to `EnableLegacyMultiInstanceMode` method.
+The configuration API for multi-instance support has changed. Multiple connection strings must be provided by a connection factory method passed to `EnableLegacyMultiInstanceMode` method.
 
-Note that `EnableLegacyMultiInstanceMode` method replaces both [pull and push modes](/transports/sql/connection-settings.md?version=SqlTransportLegacySystemClient_3#multiple-connection-strings) from version 2.x.
+Note that `EnableLegacyMultiInstanceMode` method replaces both pull and push modes from version 2.x.
 
-snippet: 2to3-sqlserver-multiinstance-upgrade
+```csharp
+// For SQL Transport version 3.x
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+transport.EnableLegacyMultiInstanceMode(
+    sqlConnectionFactory: async address =>
+    {
+        string connectionString;
+        if (address == "RemoteEndpoint")
+        {
+            connectionString = "SomeConnectionString";
+        }
+        else
+        {
+            connectionString = "SomeOtherConnectionString";
+        }
+        var connection = new SqlConnection(connectionString);
+        await connection.OpenAsync()
+            .ConfigureAwait(false);
+        return connection;
+    });
+
+// For SQL Transport version 2.x
+var transport = busConfiguration.UseTransport<SqlServerTransport>();
+// Option 1
+transport
+    .UseSpecificConnectionInformation(
+        EndpointConnectionInfo.For("RemoteEndpoint")
+            .UseConnectionString("SomeConnectionString"),
+        EndpointConnectionInfo.For("AnotherEndpoint")
+            .UseConnectionString("SomeOtherConnectionString"));
+
+// Option 2
+transport
+    .UseSpecificConnectionInformation(
+        connectionInformationProvider: x =>
+        {
+            if (x == "RemoteEndpoint")
+            {
+                var connection = ConnectionInfo.Create();
+                return connection.UseConnectionString("SomeConnectionString");
+            }
+            if (x == "AnotherEndpoint")
+            {
+                var connection = ConnectionInfo.Create();
+                return connection.UseConnectionString("SomeOtherConnectionString");
+            }
+            return null;
+        });
+```
 
 Note that `multi-instance` mode has been deprecated and is not recommended for new projects.
 
@@ -92,6 +219,17 @@ The method `PauseAfterReceiveFailure(TimeSpan)` is no longer supported. In versi
 
 Queue tables created by version 2.2.1 or lower require manual creation of a non-clustered index on the `[Expires]` column. The following SQL statement can be used to create the missing index:
 
-snippet: 2to3-sqlExpiresIndex
+```sql
+CREATE NONCLUSTERED INDEX [Index_Expires]
+ON [schema].[queuename]
+(
+	[Expires] ASC
+)
+INCLUDE
+(
+	[Id],
+	[RowVersion]
+)
+```
 
 A warning will be logged when a missing index is detected.

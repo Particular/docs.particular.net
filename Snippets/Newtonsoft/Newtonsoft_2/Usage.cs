@@ -59,7 +59,7 @@ class Usage
     {
         #region NewtonsoftCustomWriter
 
-        var noBomEncoding = new UTF8Encoding(false, false);
+        var noBomEncoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: false);
 
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
         serialization.WriterCreator(stream =>

@@ -10,7 +10,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Voter");
 
         endpointConfiguration.AuditProcessedMessagesTo("audit");
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
 

@@ -2,25 +2,22 @@
 
 partial class Upgrade
 {
-    void CertificatePath(EndpointConfiguration endpointConfiguration)
+    void UseConventionalRoutingTopology(EndpointConfiguration endpointConfiguration)
     {
-        #region 6to7certificatepath6
+        #region 6to7conventional
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetClientCertificate("path", "password");
+        transport.UseConventionalRoutingTopology();
 
         #endregion
     }
 
-    void PrefetchCount(EndpointConfiguration endpointConfiguration)
+    void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
     {
-        #region 6to7prefetchcount6
+        #region 6to7direct
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-
-        transport.PrefetchCount(100);
-        //or
-        transport.PrefetchMultiplier(7);
+        transport.UseDirectRoutingTopology();
 
         #endregion
     }

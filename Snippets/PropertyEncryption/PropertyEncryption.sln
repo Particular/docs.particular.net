@@ -2,13 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_5", "Core_5\Core_5.csproj", "{30F5B3E6-2B7F-46BE-8086-169FD856BA64}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_6", "Core_6\Core_6.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_All", "PropertyEncryption_All\PropertyEncryption_All.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_1", "PropertyEncryption_1\PropertyEncryption_1.csproj", "{F189306E-FAE7-4898-A4E1-9BF7278B30EE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_2", "PropertyEncryption_2\PropertyEncryption_2.csproj", "{39AF2F33-4245-4193-9AFF-E4BC7AFC83B2}"
 EndProject
@@ -19,14 +13,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{30F5B3E6-2B7F-46BE-8086-169FD856BA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30F5B3E6-2B7F-46BE-8086-169FD856BA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F189306E-FAE7-4898-A4E1-9BF7278B30EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F189306E-FAE7-4898-A4E1-9BF7278B30EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39AF2F33-4245-4193-9AFF-E4BC7AFC83B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{39AF2F33-4245-4193-9AFF-E4BC7AFC83B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4D023B2-1637-4096-B84F-A404B7EA60C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

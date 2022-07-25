@@ -15,15 +15,19 @@ upgradeGuideCoreVersions:
 ---
 
 
-## [Forwarding topology](/transports/azure-service-bus/legacy/topologies.md) number of entities in bundle removed
+## Forwarding topology number of entities in bundle removed
 
 In Versions 8 and above the API to configure bundle prefix and number of entities in a bundle has been removed:
 
-snippet: 7to8-number-of-entities-bundle
+```csharp
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var forwardingTopology = transport.UseForwardingTopology();
+
+forwardingTopology.BundlePrefix("my-prefix");
+forwardingTopology.NumberOfEntitiesInBundle(3);
+```
 
 The bundle is set to one entity. For existing endpoints running with multiple entities in a bundle, the transport automatically picks up previously configured entities. The default topic name for bundle is set to `bundle-1`.
-
-See also [Azure Service Bus Transport Topologies](/transports/azure-service-bus/legacy/topologies.md).
 
 
 ## Controlling entity creation
@@ -37,15 +41,21 @@ In version 7 the transport sets `MaxDeliveryCount` to match immediate retries sp
 
 In version 8 and above, `MaxDeliveryCount` is set to `int.MaxValue` to ensure messages are not dead-lettered accidentally and to remove the dependency on the endpoints' immediate retries configuration.
 
-Customization of `MaxDeliveryCount` is strongly discouraged, yet can be performed using `DescriptionCustomizer` API for queues and topics.  
+Customization of `MaxDeliveryCount` is strongly discouraged, yet can be performed using `DescriptionCustomizer` API for queues and topics.
 
 ## BrokeredMessage conventions
 
 Due to complexity, and resultant risk, of implementation, the API to specify how the `BrokeredMessage` body is stored and retrieved by overriding the default conventions is obsoleted and the following methods were deprecated:
 
-snippet: 7to8_asb-incoming-message-convention
+```csharp
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+transport.UseBrokeredMessageToIncomingMessageConverter<CustomIncomingMessageConversion>();
+```
 
-snippet: 7to8_asb-outgoing-message-convention
+```csharp
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+transport.UseOutgoingMessageToBrokeredMessageConverter<CustomOutgoingMessageConversion>();
+```
 
 
 ## Serialization is mandatory
@@ -54,15 +64,136 @@ In Versions 7 and below, the transport was setting the default serialization. In
 
 For backwards compatibility, `NServiceBus.Newtonsoft.Json` serializer should be used.
 
-snippet: 7to8_asb-backwardscompatible-serializer
+```csharp
+// For Azure Service Bus Transport (Legacy) version 10.x
+endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+
+// For Azure Service Bus Transport (Legacy) version 9.x
+endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+
+// For Azure Service Bus Transport (Legacy) version 8.x
+endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+```
 
 
 ## Send/publish namespaces caching
 
-In Version 7 to control sending/publishing namespaces caching, the transport must provide an implementation of two contracts. 
+In Version 7 to control sending/publishing namespaces caching, the transport must provide an implementation of two contracts.
 
-snippet: custom-namespace-partitioning-strategy-with-caching
+```csharp
+// For Azure Service Bus Transport (Legacy) version 10.x
+public class CustomNamespacePartitioningStrategy :
+    INamespacePartitioningStrategy
+{
+    ReadOnlySettings settings;
+
+    public CustomNamespacePartitioningStrategy(ReadOnlySettings settings)
+    {
+        this.settings = settings;
+    }
+
+    public IEnumerable<RuntimeNamespaceInfo> GetNamespaces(PartitioningIntent partitioningIntent)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool SendingNamespacesCanBeCached { get; }
+}
+
+// For Azure Service Bus Transport (Legacy) version 9.x
+public class CustomNamespacePartitioningStrategy :
+    INamespacePartitioningStrategy
+{
+    ReadOnlySettings settings;
+
+    public CustomNamespacePartitioningStrategy(ReadOnlySettings settings)
+    {
+        this.settings = settings;
+    }
+
+    public IEnumerable<RuntimeNamespaceInfo> GetNamespaces(PartitioningIntent partitioningIntent)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool SendingNamespacesCanBeCached { get; }
+}
+
+// For Azure Service Bus Transport (Legacy) version 8.x
+public class CustomNamespacePartitioningStrategy :
+    INamespacePartitioningStrategy
+{
+    ReadOnlySettings settings;
+
+    public CustomNamespacePartitioningStrategy(ReadOnlySettings settings)
+    {
+        this.settings = settings;
+    }
+
+    public IEnumerable<RuntimeNamespaceInfo> GetNamespaces(PartitioningIntent partitioningIntent)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool SendingNamespacesCanBeCached { get; }
+}
+
+// For Azure Service Bus Transport (Legacy) version 7.x
+public class MyNamespacePartitioningStrategyWithControlledCaching :
+    INamespacePartitioningStrategy, ICacheSendingNamespaces
+{
+    ReadOnlySettings settings;
+
+    public MyNamespacePartitioningStrategyWithControlledCaching(ReadOnlySettings settings)
+    {
+        this.settings = settings;
+    }
+
+    public IEnumerable<RuntimeNamespaceInfo> GetNamespaces(PartitioningIntent partitioningIntent)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool SendingNamespacesCanBeCached { get; } = false;
+}
+```
 
 From Versions 8 and above, only a single contract is required.
 
-snippet: 7to8_asb-namespace-partitioning-caching
+```csharp
+// For Azure Service Bus Transport (Legacy) version 10.x
+public class MyNamespacePartitioningStrategy :
+    INamespacePartitioningStrategy
+{
+    public IEnumerable<RuntimeNamespaceInfo> GetNamespaces(PartitioningIntent partitioningIntent)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool SendingNamespacesCanBeCached { get; }
+}
+
+// For Azure Service Bus Transport (Legacy) version 9.x
+public class MyNamespacePartitioningStrategy :
+    INamespacePartitioningStrategy
+{
+    public IEnumerable<RuntimeNamespaceInfo> GetNamespaces(PartitioningIntent partitioningIntent)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool SendingNamespacesCanBeCached { get; }
+}
+
+// For Azure Service Bus Transport (Legacy) version 8.x
+public class MyNamespacePartitioningStrategy :
+    INamespacePartitioningStrategy
+{
+    public IEnumerable<RuntimeNamespaceInfo> GetNamespaces(PartitioningIntent partitioningIntent)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public bool SendingNamespacesCanBeCached { get; }
+}
+```

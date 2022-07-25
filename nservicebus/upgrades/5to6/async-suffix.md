@@ -1,7 +1,7 @@
 ---
 title: No Async Suffix
 summary: Why there is no Async suffix on Task-based APIs
-reviewed: 2019-12-19
+reviewed: 2022-07-11
 component: Core
 redirects:
  - nservicebus/upgrades/5to6-async-suffix
@@ -37,7 +37,7 @@ Adding async to NServiceBus version 6 in itself is a breaking change. In compari
 
 ### Noise in API usage
 
-There is already non-trivial verbosity that is added to a codebase when asyncronous principles are adopted. For example `.ConfigureAwait()` additions, `async` and `await` keywords, and `Task<T>` return values.
+There is already non-trivial verbosity that is added to a codebase when asynchronous principles are adopted. For example `.ConfigureAwait()` additions, `async` and `await` keywords, and `Task<T>` return values.
 
 
 ### NServiceBus APIs do not follow Hungarian notation
@@ -64,7 +64,13 @@ One of the arguments for the *Async* suffix is that all asynchronous methods sho
 
 When a Task method calls an async method but neglects to await that method.
 
-snippet: TaskMethodMissingAwait
+```csharp
+public static Task TaskMethodMissingAwait()
+{
+    var writer = new StreamWriter("stub");
+    writer.WriteLineAsync();
+}
+```
 
 Results in [Compiler Error CS0161](https://docs.microsoft.com/en-us/dotnet/csharp/misc/cs0161)
 
@@ -73,7 +79,13 @@ Results in [Compiler Error CS0161](https://docs.microsoft.com/en-us/dotnet/cshar
 
 When an async Task method calls an async method but neglects to await that method.
 
-snippet: AsyncMethodMissingAwait
+```csharp
+public static async Task AsyncMethodMissingAwait()
+{
+    var writer = new StreamWriter("stub");
+    writer.WriteLineAsync();
+}
+```
 
 Results in [Compiler Warning CS4014](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs4014)
 
@@ -82,7 +94,14 @@ Results in [Compiler Warning CS4014](https://docs.microsoft.com/en-us/dotnet/csh
 
 When an async Task method awaits one async method but neglects to await another.
 
-snippet: AsyncMethodMissingOneAwait
+```csharp
+public static async Task AsyncMethodMissingOneAwait()
+{
+    var writer = new StreamWriter("stub");
+    writer.WriteLineAsync();
+    await writer.WriteLineAsync();
+}
+```
 
 Results in [Compiler Warning CS4014](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs4014)
 
@@ -96,7 +115,25 @@ Note that several of the above examples contain warnings rather than errors. As 
 
 There are some cases that are not detected by the compiler. For example:
 
-snippet: TaskCasesNotDetectedByTheCompiler
+```csharp
+public static Task MissingTaskUsage1()
+{
+    var writer = new StreamReader("stub");
+
+    // Note the returned instance is not used
+    writer.ReadLineAsync();
+
+    return writer.ReadLineAsync();
+}
+
+public static void MissingTaskUsage2()
+{
+    var writer = new StreamReader("stub");
+
+    // Note the returned instance is not used
+    writer.ReadLineAsync();
+}
+```
 
 In these scenarios, there are other possible solutions, such as writing a [Roslyn analyzer](https://msdn.microsoft.com/en-us/library/mt162308.aspx).
 

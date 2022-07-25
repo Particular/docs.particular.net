@@ -34,7 +34,7 @@ namespace Sender
                     var routing = transport.Routing();
                     routing.RouteToEndpoint(typeof(RequestMessage), "Samples.Docker.Receiver");
 
-                    endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+                    endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
                     endpointConfiguration.EnableInstallers();
                     endpointConfiguration.DefineCriticalErrorAction(CriticalErrorActions.RestartContainer);
                     return endpointConfiguration;

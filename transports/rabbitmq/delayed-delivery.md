@@ -8,6 +8,8 @@ redirects:
  - nservicebus/rabbitmq/delayed-delivery
 ---
 
+partial: v1-warning
+
 In versions 4.3 and above, the RabbitMQ transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure inside the broker which can delay messages using native RabbitMQ features.
 
 
@@ -55,19 +57,19 @@ graph TD
 
 subgraph Delay-Level Exchanges, Queues, Bindings, and TTLs
 
-exchange27(Exchange: nsb.delay-level-27)
-queue27[Queue: nsb.delay-level-27]
-exchange26(Exchange: nsb.delay-level-26)
-queue26[Queue: nsb.delay-level-26]
-exchange25(Exchange: nsb.delay-level-25)
+exchange27(Exchange: nsb.v2.delay-level-27)
+queue27[Queue: nsb.v2.delay-level-27]
+exchange26(Exchange: nsb.v2.delay-level-26)
+queue26[Queue: nsb.v2.delay-level-26]
+exchange25(Exchange: nsb.v2.delay-level-25)
 
-hiddenExchanges(Not Shown: nsb.delay-level-24 through nsb.delay-level-2)
+hiddenExchanges(Not Shown: nsb.v2.delay-level-24 through nsb.v2.delay-level-2)
 
-exchange1(Exchange: nsb.delay-level-01)
-queue1(Queue: nsb.delay-level-01)
-exchange0(Exchange: nsb.delay-level-00)
-queue0(Queue: nsb.delay-level-00)
-delivery(Exchange: nsb.delay-delivery)
+exchange1(Exchange: nsb.v2.delay-level-01)
+queue1(Queue: nsb.v2.delay-level-01)
+exchange0(Exchange: nsb.v2.delay-level-00)
+queue0(Queue: nsb.v2.delay-level-00)
+delivery(Exchange: nsb.v2.delay-delivery)
 
 exchange27 -->|"Binding: 1.#<br/>(No * wildcards)"| queue27
 exchange27 -->|"Binding: 0.#<br/>(No * wildcards)"| exchange26
@@ -97,15 +99,15 @@ class hiddenExchanges hiddenExchanges
 end
 ```
 
-To avoid unnecessary traversal through the delay infrastructure, the message is published to the first applicable exchange by identifying the first level that will route to a queue, or in other words, the first `1` in the routing key. In the 10-second example (binary `1010`), the message would first be published to the `nsb.delay-level-03` exchange, and all of that exchange's bindings are evaluated. Only two bindings exist for the exchange, so:
+To avoid unnecessary traversal through the delay infrastructure, the message is published to the first applicable exchange by identifying the first level that will route to a queue, or in other words, the first `1` in the routing key. In the 10-second example (binary `1010`), the message would first be published to the `nsb.v2.delay-level-03` exchange, and all of that exchange's bindings are evaluated. Only two bindings exist for the exchange, so:
 
-* If the value is a `1`, the exchange will route the message to the `nsb.delay-level-03` queue, where it will wait until the TTL expires (2^3 seconds) before being forwarded to the `nsb-delay-level-02` exchange.
-* If the value is a `0`, the exchange will route the message to the `nsb.delay-level-02` exchange.
+* If the value is a `1`, the exchange will route the message to the `nsb.v2.delay-level-03` queue, where it will wait until the TTL expires (2^3 seconds) before being forwarded to the `nsb.v2.delay-level-02` exchange.
+* If the value is a `0`, the exchange will route the message to the `nsb.v2.delay-level-02` exchange.
 
 
 ### Delivery
 
-At the end of this process, the message is routed to the `nsb.delay-delivery` exchange. It is at this final step where the message destination is evaluated to determine where the message should be routed to.
+At the end of this process, the message is routed to the `nsb.v2.delay-delivery` exchange. It is at this final step where the message destination is evaluated to determine where the message should be routed to.
 
 Every endpoint that can receive delayed messages will create bindings like `#.EndpointName` to this exchange to control final routing. The exact process depends upon the [routing topology](routing-topology.md) in use. These bindings match any combination of delay values, but only the binding for the correct destination endpoint will match, resulting in the message being delivered only to the correct endpoint.
 
@@ -168,10 +170,14 @@ end
 
 ## Backwards compatibility
 
+### Non-native to native
+
 It is safe to operate a combination of native-delay and non-native-delay endpoints at the same time. Native endpoints can send delayed messages to endpoints that are not yet aware of the native delay infrastructure. Native endpoints can continue to receive delayed messages from non-native endpoints as well.
 
 partial: timeout-manager
 
-## Migrating timeouts to Native Delayed Delivery
+#### Migrating timeouts to native delayed delivery
 
 In order to migrate timeouts to the native-delay delivery implementation, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used.
+
+partial: v1-to-v2

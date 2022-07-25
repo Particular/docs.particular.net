@@ -13,19 +13,20 @@ redirects:
  - nservicebus/msmq
 ---
 
-WARNING: As Microsoft is not making MSMQ available for .NET Core, building new systems using MSMQ is not recommended. 
+WARNING: As Microsoft is not making MSMQ available for .NET Core, building new systems using MSMQ is not recommended.
 
 ## Transport at a glance
 
-|Feature                    |   |  
+|Feature                    |   |
 |:---                       |---
 |Transactions |None, ReceiveOnly, SendsWithAtomicReceive, TransactionScope
 |Pub/Sub                    |message driven
 |Timeouts                   |via timeouts storage
 |Large message bodies       |via data bus
-|Scale-out             |Distributor or Windows Network Load Balancing
+|Scale-out             |[Sender-side distribution](sender-side-distribution.md)
 |Scripted Deployment        |C#, PowerShell
 |Installers                 |Optional
+|Native integration         |[Supported](native-integration.md)
 
 ## Configuring the endpoint
 
@@ -34,16 +35,16 @@ partial: default
 
 ## Advantages
 
- * MSMQ is natively available as part of the Windows operating system. In Windows servers, the MSMQ role might need to be turned on.  
+ * MSMQ is natively available as part of the Windows operating system. In Windows servers, the MSMQ role might need to be turned on.
  * MSMQ offers transactional queues which also support distributed transactions. With the transactional behavior, it is possible to get exactly-once delivery.
  * MSMQ provides a store and forward mechanism. Therefore it promotes a more natural [bus-style architecture](/transports/types.md#federated-transports). When sending messages to unavailable servers, the messages are stored locally in the outgoing queues and will be delivered automatically once the machine comes back online.
- 
+
 
 ## Disadvantages
 
  * MSMQ does not offer a native publish-subscribe mechanism, therefore it requires NServiceBus persistence to be configured for storing event subscriptions. [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
  * Many organizations don't have the same level of operational expertise with MSMQ that they do with other technologies (e.g. SQL Server), so it may require additional training. For example, as MSMQ is not a broker transport, the messages could be on different servers, and managing the storage space on each machine is important.
- * As MSMQ is a store and forward transport, it requires more setup for load balancing. I.e. it requires either a [distributor or sender side distribution](/transports/msmq/scaling-out.md) to be configured.
+ * As MSMQ is a store and forward transport, it requires more setup for load balancing. I.e. it requires either a [sender side distribution](/transports/msmq/scaling-out.md) to be configured.
  * MSMQ (i.e. the `System.Messaging` namespace) is not available on .NET Core
 
 
@@ -124,9 +125,9 @@ Although MSMQ has the concept of both [public and private queues](https://docs.m
 
 NOTE: In NServiceBus version 6.1.0 and above, the NServiceBus installers will not automatically grant permissions to the `Anonymous` and `Everyone` group. The installer will respect the existing queue permissions that have been set up for the endpoint queue. The permissions granted to `Anonymous` and `Everyone` groups are based on standard Windows behavior.
 
-Any endpoint that sends a message to a target endpoint requires the `Send` permission to be granted for the sending user account on the target queue. For example, if an `endpoint A` is running as `userA` and is sending a message to `endpoint B`, then `userA` requires the `Send` permission to be granted on `endpoint B`'s queue. When using messaging patterns like request-response or publish-subscribe, the queues for both endpoints will require `Send` permissions to be granted to each user account. 
+Any endpoint that sends a message to a target endpoint requires the `Send` permission to be granted for the sending user account on the target queue. For example, if an `endpoint A` is running as `userA` and is sending a message to `endpoint B`, then `userA` requires the `Send` permission to be granted on `endpoint B`'s queue. When using messaging patterns like request-response or publish-subscribe, the queues for both endpoints will require `Send` permissions to be granted to each user account.
 
-When an endpoint creates a queue on a machine, permissions depend on whether the server is joined to a [domain or a workgroup](https://support.microsoft.com/en-us/help/884974/information-about-workgroup-mode-and-about-domain-mode-in-microsoft-me) due to Windows behavior. 
+When an endpoint creates a queue on a machine, permissions depend on whether the server is joined to a [domain or a workgroup](https://support.microsoft.com/en-us/help/884974/information-about-workgroup-mode-and-about-domain-mode-in-microsoft-me) due to Windows behavior.
 
 
 ### Domain mode

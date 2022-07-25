@@ -23,7 +23,7 @@ class Program
         {
             TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
         });
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>()
             .Settings(new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,

@@ -3,7 +3,7 @@ title: Non-durable gateway deduplication persistence
 summary: Non-durable gateway persistence stores data in a non-durable manner
 component: Gateway
 versions: '[3.1,4.0)'
-reviewed: 2019-12-17
+reviewed: 2022-07-11
 ---
 
 DANGER: All information stored is discarded when the process ends. This can result in more-than-once message delivery.

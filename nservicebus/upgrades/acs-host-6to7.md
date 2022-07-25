@@ -21,14 +21,77 @@ All types specified in this document are now in the `NServiceBus` namespace.
 
 `IConfigureThisEndpoint.Customize` is passed an instance of `EndpointConfiguration` instead of `BusConfiguration`.
 
-snippet: ConfigureEndpointWithAzureHost
+```csharp
+// For Azure Cloud Service Host version 8.x
+public class EndpointConfig :
+    IConfigureThisEndpoint,
+    AsA_Worker
+{
+    public void Customize(EndpointConfiguration endpointConfiguration)
+    {
+        // Configure transport, persistence, etc.
+    }
+}
+
+// For Azure Cloud Service Host version 7.x
+public class EndpointConfig :
+    IConfigureThisEndpoint,
+    AsA_Worker
+{
+    public void Customize(EndpointConfiguration endpointConfiguration)
+    {
+        // Configure transport, persistence, etc.
+    }
+}
+
+// For Azure Cloud Service Host version 6.x
+public class EndpointConfig :
+    IConfigureThisEndpoint,
+    AsA_Worker
+{
+    public void Customize(BusConfiguration busConfiguration)
+    {
+        // Configure transport, persistence, etc.
+    }
+}
+```
 
 
 ## AsA_Host role changes into IConfigureThisHost
 
 The specifiers `IConfigureThisEndpoint` and `AsA_Host` are now merged into `IConfigureThisHost`.
 
-snippet: AsAHost
+```csharp
+// For Azure Cloud Service Host version 8.x
+public class EndpointHostConfig :
+    IConfigureThisHost
+{
+    public HostingSettings Configure()
+    {
+        return new HostingSettings("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
+    }
+}
+
+// For Azure Cloud Service Host version 7.x
+public class EndpointHostConfig :
+    IConfigureThisHost
+{
+    public HostingSettings Configure()
+    {
+        return new HostingSettings("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
+    }
+}
+
+// For Azure Cloud Service Host version 6.x
+public class EndpointHostConfig :
+    IConfigureThisEndpoint,
+    AsA_Host
+{
+    public void Customize(BusConfiguration configuration)
+    {
+    }
+}
+```
 
 
 ### Removal of DynamicHostControllerConfig
@@ -83,4 +146,22 @@ public class Bootstrapper :
 
 ### Interface in NServiceBus.Hosting.Azure version 7
 
-snippet: 5to6-EndpointStartAndStopCloudHost
+```csharp
+public class Bootstrapper :
+    IWantToRunWhenEndpointStartsAndStops
+{
+    public Task Start(IMessageSession session)
+    {
+        // Do startup actions here.
+        // Either mark Start method as async or do the following
+        return Task.CompletedTask;
+    }
+
+    public Task Stop(IMessageSession session)
+    {
+        // Do cleanup actions here.
+        // Either mark Stop method as async or do the following
+        return Task.CompletedTask;
+    }
+}
+```

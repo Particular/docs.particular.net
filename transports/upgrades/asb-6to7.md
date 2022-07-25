@@ -17,18 +17,79 @@ upgradeGuideCoreVersions:
 
 ## Topology is mandatory
 
-In Versions 7 and above the [topology selection](/transports/azure-service-bus/legacy/topologies.md) is mandatory:
+In Versions 7 and above the topology selection is mandatory:
 
-snippet: topology-selection-upgrade-guide
+```csharp
+// For Azure Service Bus Transport (Legacy) version 10.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
-The [`EndpointOrientedTopology`](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-endpoint-oriented-topology) is backward compatible with versions 6 and below of the transport. The [`ForwardingTopology`](/transports/azure-service-bus/legacy/topologies.md#versions-7-and-above-forwarding-topology) is the recommended option for new projects.
+transport.UseForwardingTopology();
+// OR
+transport.UseEndpointOrientedTopology();
 
-When selecting `EndpointOrientedTopology`, it is also necessary to configure [publisher names](/transports/azure-service-bus/legacy/publisher-names-configuration.md), in order to ensure that subscribers are subscribed to the correct publisher:
+// For Azure Service Bus Transport (Legacy) version 9.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
-snippet: publisher_names_mapping_upgrade_guide
+transport.UseForwardingTopology();
+// OR
+transport.UseEndpointOrientedTopology();
 
-For more details on topologies refer to the [Azure Service Bus Transport Topologies](/transports/azure-service-bus/legacy/topologies.md) article.
+// For Azure Service Bus Transport (Legacy) version 8.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
 
+transport.UseForwardingTopology();
+// OR
+transport.UseEndpointOrientedTopology();
+
+// For Azure Service Bus Transport (Legacy) version 7.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+
+transport.UseForwardingTopology();
+// OR
+transport.UseEndpointOrientedTopology();
+```
+
+The `EndpointOrientedTopology` is backward compatible with versions 6 and below of the transport. The `ForwardingTopology` is the recommended option for new projects.
+
+When selecting `EndpointOrientedTopology`, it is also necessary to configure publisher names, in order to ensure that subscribers are subscribed to the correct publisher:
+
+```csharp
+// For Azure Service Bus Transport (Legacy) version 10.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var topology = transport.UseEndpointOrientedTopology();
+
+topology.RegisterPublisher(typeof(MyMessage), "publisherName");
+// OR
+var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
+topology.RegisterPublisher(messagesAssembly, "publisherName");
+
+// For Azure Service Bus Transport (Legacy) version 9.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var topology = transport.UseEndpointOrientedTopology();
+
+topology.RegisterPublisher(typeof(MyMessage), "publisherName");
+// OR
+var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
+topology.RegisterPublisher(messagesAssembly, "publisherName");
+
+// For Azure Service Bus Transport (Legacy) version 8.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var topology = transport.UseEndpointOrientedTopology();
+
+topology.RegisterPublisher(typeof(MyMessage), "publisherName");
+// OR
+var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
+topology.RegisterPublisher(messagesAssembly, "publisherName");
+
+// For Azure Service Bus Transport (Legacy) version 7.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var topology = transport.UseEndpointOrientedTopology();
+
+topology.RegisterPublisher(typeof(MyMessage), "publisherName");
+// OR
+var messagesAssembly = Assembly.LoadFrom("path/to/assembly/containing/messages");
+topology.RegisterPublisher(messagesAssembly, "publisherName");
+```
 
 ## Sanitization
 
@@ -36,33 +97,34 @@ Azure Service Bus entities have path and naming rules that limit the allowed cha
 
 In Versions 6 and below sanitization was performed by default and the MD5 algorithm was used to truncate entity names. In Versions 7 and above, the sanitization has to configured explicitly.
 
-In order to maintain backward compatibility, [register a custom sanitization strategy](/transports/azure-service-bus/legacy/sanitization.md#automated-sanitization-backward-compatibility-with-versions-6-and-below).
+In order to maintain backward compatibility, register a custom sanitization strategy.
 
-In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a [custom sanitization strategy](/transports/azure-service-bus/legacy/sanitization.md#sanitization).
+In version 6.4.0 `NamingConventions` class was introduced to customize sanitization. The class is obsoleted. Instead, implement a custom sanitization strategy.
 
 
 ## New Configuration API
 
 In Versions 6 and below the transport was configured using the `AzureServiceBusQueueConfig`configuration section. This section has been removed in favor of a more granular code based configuration API.
 
-The new API is accessible through the `.UseTransport<AzureServiceBusTransport>()` extension point. Refer to the [Full Configuration Page](/transports/azure-service-bus/legacy/configuration/full.md) for more details.
+The new API is accessible through the `.UseTransport<AzureServiceBusTransport>()` extension point.
 
 
 ### Configuring a connection string
 
 Setting a connection string is still supported using the `ConnectionString` extension method:
 
-snippet: 6to7_setting_asb_connection_string
+```csharp
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+transport.ConnectionString("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
+```
 
 
 ### Default value changes
 
 The default values for the following settings have changed:
 
- * `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200. 
+ * `BatchSize`, which had a default value of 1000, is replaced by `PrefetchCount` with a default value of 200.
  * `MaxDeliveryCount` is set to number of immediate retries + 1. For system queues the value has changed from 6 to 10.
-
-For more details refer to the [ASB Batching](/transports/azure-service-bus/legacy/batching.md) and [ASB Retry behavior](/transports/azure-service-bus/legacy/retries.md) articles. 
 
 ### Setting Entity Property Values
 
@@ -72,16 +134,56 @@ In the new configuration API the settings for queues, topics and subscriptions c
 
 For example the lock duration on a queue can be configured using the `LockDuration` setting:
 
-snippet: setting_queue_properties
+```csharp
+// For Azure Service Bus Transport (Legacy) version 10.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var queues = transport.Queues();
+queues.LockDuration(TimeSpan.FromMinutes(1));
+
+// For Azure Service Bus Transport (Legacy) version 9.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var queues = transport.Queues();
+queues.LockDuration(TimeSpan.FromMinutes(1));
+
+// For Azure Service Bus Transport (Legacy) version 8.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var queues = transport.Queues();
+queues.LockDuration(TimeSpan.FromMinutes(1));
+
+// For Azure Service Bus Transport (Legacy) version 7.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var queues = transport.Queues();
+queues.LockDuration(TimeSpan.FromMinutes(1));
+```
 
 and the size of the topics can be configured using the `MaxSizeInMegabytes` setting:
 
-snippet: setting_topic_properties
+```csharp
+// For Azure Service Bus Transport (Legacy) version 10.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var topics = transport.Topics();
+topics.MaxSizeInMegabytes(SizeInMegabytes.Size5120);
+
+// For Azure Service Bus Transport (Legacy) version 9.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var topics = transport.Topics();
+topics.MaxSizeInMegabytes(SizeInMegabytes.Size5120);
+
+// For Azure Service Bus Transport (Legacy) version 8.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var topics = transport.Topics();
+topics.MaxSizeInMegabytes(SizeInMegabytes.Size5120);
+
+// For Azure Service Bus Transport (Legacy) version 7.x
+var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
+var topics = transport.Topics();
+topics.MaxSizeInMegabytes(SizeInMegabytes.Size5120);
+```
 
 
-## [Securing Credentials](/transports/azure-service-bus/legacy/securing-connection-strings.md)
+## Securing Credentials
 
-include: asb-credential-warning
+WARN: All endpoints need to be upgraded to Version 7 prior to enabling this feature. Older versions of the transport cannot use namespace names.
 
 In order to enhance security and to avoid sharing sensitive information enable the `UseNamespaceNameInsteadOfConnectionString` feature using the following steps:
 
@@ -91,4 +193,4 @@ In order to enhance security and to avoid sharing sensitive information enable t
 
 ## BrokeredMessage conventions
 
-In versions 6 and below, `BrokeredMessage` conventions were specified using `BrokeredMessageBodyConversion` class. In versions 7 and above, it has been replaced by [configuration API](/transports/azure-service-bus/legacy/brokered-message-creation.md).
+In versions 6 and below, `BrokeredMessage` conventions were specified using `BrokeredMessageBodyConversion` class. In versions 7 and above, it has been replaced by configuration API.

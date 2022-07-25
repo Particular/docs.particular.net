@@ -10,7 +10,7 @@ related:
  - samples/scaleout/senderside
 ---
 
-Endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an endpoint using the MSMQ transport without relying on a centralized [distributor](/transports/msmq/distributor/) assigning messages to available workers.
+Endpoints using the MSMQ transport are unable to use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an endpoint using the MSMQ transport without relying on a centralized distributor assigning messages to available workers.
 
 When using sender-side distribution:
 
@@ -68,7 +68,7 @@ When an event is published the event will be send to only one of the endpoint in
 
 ## Limitations
 
-Sender-side distribution does not use message processing confirmations (the distributor approach). Therefore the sender has no feedback on the availability of workers and, by default, sends the messages in a round-robin behavior. Should one of the nodes stop processing, the messages will pile up in its input queue. As such, nodes running in sender-side distribution mode require more careful monitoring compared to distributor workers.
+Sender-side distribution does not use message processing confirmations. Therefore the sender has no feedback on the availability of workers and, by default, sends the messages in a round-robin behavior. Should one of the nodes stop processing, the messages will pile up in its input queue. As such, nodes running in sender-side distribution mode require more careful monitoring.
 
 include: sender-side-distribution-with-distributor
 

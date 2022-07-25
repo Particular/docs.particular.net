@@ -60,7 +60,9 @@ This interface tells NServiceBus that the saga not only handles `StartOrder`, bu
 
 > Create a new instance if an existing one can't be found
 
-partial: at-least-one
+
+NOTE: NServiceBus requires each saga to have at least one message that is able to start it.
+
 
 ### Dealing with out of order delivery
 

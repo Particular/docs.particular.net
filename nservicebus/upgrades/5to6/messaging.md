@@ -24,7 +24,18 @@ This feature was removed in version 5 and the `WinIdName` header will no longer 
 
 To re-add this header to outgoing messages a [mutator](/nservicebus/pipeline/message-mutators.md) can be used.
 
-snippet: 5to6ReAddWinIdNameHeader
+```csharp
+public class WinIdNameMutator :
+    IMutateOutgoingTransportMessages
+{
+    public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
+    {
+        var currentIdentity = Thread.CurrentPrincipal.Identity;
+        context.OutgoingHeaders["WinIdName"] = currentIdentity.Name;
+        return Task.CompletedTask;
+    }
+}
+```
 
 Another option is to use a custom header as illustrated in the [appending username using headers](/samples/username-header/) sample.
 
@@ -62,7 +73,21 @@ Any usages of `Address` should be replaced by `string`.
 
 With the deprecation of `IBus`, message delivery can no longer be delayed with `bus.Defer()`. To delay a message, use the `DelayDeliveryWith(TimeSpan)` and `DoNotDeliverBefore(DateTime)` methods on `SendOptions` passed into `Send()`.
 
-snippet: 5to6delayed-delivery
+```csharp
+// For NServiceBus version 6.x
+var sendOptions = new SendOptions();
+sendOptions.DelayDeliveryWith(TimeSpan.FromMinutes(30));
+// OR
+sendOptions.DoNotDeliverBefore(new DateTime(2016, 12, 25));
+
+await handlerContext.Send(message, sendOptions)
+    .ConfigureAwait(false);
+
+// For NServiceBus version 5.x
+bus.Defer(TimeSpan.FromMinutes(30), message);
+// OR
+bus.Defer(new DateTime(2016, 12, 25), message);
+```
 
 
 ## Message forwarding
@@ -74,4 +99,4 @@ Forwarded messages no longer contain additional [auditing headers](/nservicebus/
 
 In NServiceBus version 5, the `InvokedSagas` header is added to audited messages and populated with the name of the saga classes invoked along with their unique identifiers.
 
-This functionality has been moved from the NServiceBus core to the [SagaAudit plugin](/servicecontrol/plugins/saga-audit.md) compatible with version 6.
+This functionality has been moved from the NServiceBus core to the [SagaAudit plugin](/nservicebus/sagas/saga-audit.md) compatible with version 6.

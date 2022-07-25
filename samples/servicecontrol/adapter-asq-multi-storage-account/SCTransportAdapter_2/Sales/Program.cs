@@ -29,7 +29,7 @@ class Program
         // Required to address https://github.com/Particular/NServiceBus.AzureStorageQueues/issues/308
         transport.AccountRouting().AddAccount("storage_account", connectionString);
 
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
         var recoverability = endpointConfiguration.Recoverability();
 

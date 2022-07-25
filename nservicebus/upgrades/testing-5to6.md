@@ -40,7 +40,57 @@ Use `ExpectReply` instead of `ExpectReturn`.
 
 `ExpectSendToSites` and `ExpectNotSendToSites` methods have been removed from the testing framework. Handlers using the gateway can still be tested using the `ExpectSend` overload which provides the `SendOption`:
 
-snippet: ExpectSendToSiteV6
+```csharp
+// For Testing version 7.x
+[Test]
+public void ExpectSendToSite()
+{
+    Test.Handler<MyHandler>()
+        .ExpectSend<GatewayMessage>(
+            check: (message, options) =>
+            {
+                return options.GetSitesRoutingTo().Contains("myFavouriteSite");
+            })
+        .OnMessage(new MyMessage());
+}
+
+class MyHandler :
+    IHandleMessages<MyMessage>
+{
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        var options = new SendOptions();
+        options.RouteToSites("myFavoriteSite");
+
+        return context.Send(new GatewayMessage(), options);
+    }
+}
+
+// For Testing version 6.x
+[Test]
+public void ExpectSendToSite()
+{
+    Test.Handler<MyHandler>()
+        .ExpectSend<GatewayMessage>(
+            check: (message, options) =>
+            {
+                return options.GetSitesRoutingTo().Contains("myFavouriteSite");
+            })
+        .OnMessage(new MyMessage());
+}
+
+class MyHandler :
+    IHandleMessages<MyMessage>
+{
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        var options = new SendOptions();
+        options.RouteToSites("myFavoriteSite");
+
+        return context.Send(new GatewayMessage(), options);
+    }
+}
+```
 
 ## Testing sagas
 
@@ -48,11 +98,24 @@ snippet: ExpectSendToSiteV6
 
 In NServiceBus version 6 and above, message handlers have an additional `IMessageHandlerContext` parameter. This context parameter must be provided when defining the method to invoke.
 
-snippet: 5to6-usingWhen
+```csharp
+.When(
+    sagaIsInvoked: (saga, context) =>
+    {
+        return saga.Handle(new StartsSaga(), context);
+    })
+```
 
 A new overload has been added to simplify this:
 
-snippet: 5to6-usingNewOverload
+```csharp
+.When(
+    handlerSelector: saga =>
+    {
+        return saga.Handle;
+    },
+    message: new StartsSaga())
+```
 
 WARNING: It's important to pass the context provided by the delegate arguments to the handle method.
 
@@ -64,4 +127,22 @@ The message ID can be configured manually using the `ConfigureMessageHandler` op
 
 Both saga and handler tests contain a `ConfigureHandlerContext` method to enable custom configuration of the `IMessageHandlerContext` which is passed to the invoked handler methods.
 
-snippet: ConfigureSagaMessageId
+```csharp
+// For Testing version 7.x
+Test.Saga<MySaga>()
+    .ConfigureHandlerContext(c =>
+    {
+        c.MessageId = "my message ID";
+    })
+    .ExpectPublish<MyEvent>()
+    .When(s => s.Handle, new StartsSaga());
+
+// For Testing version 6.x
+Test.Saga<MySaga>()
+    .ConfigureHandlerContext(c =>
+    {
+        c.MessageId = "my message ID";
+    })
+    .ExpectPublish<MyEvent>()
+    .When(s => s.Handle, new StartsSaga());
+```

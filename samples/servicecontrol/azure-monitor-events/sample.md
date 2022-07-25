@@ -68,7 +68,7 @@ The `MessageFailed` event is published whenever ServiceControl detects a new mes
 
 In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint must use the [heartbeats plugin](/monitoring/heartbeats).
 
-NOTE: Heartbeat control messages are sent [every 30 seconds by default](/monitoring/heartbeats/legacy#configuration-time-to-live-ttl) so there will be up to a 30 second delay before ServiceControl realizes that it lost or restored connection with the endpoint.
+NOTE: Heartbeat control messages are sent [every 30 seconds by default](/monitoring/heartbeats/install-plugin.md#heartbeat-interval) so there will be up to a 30 second delay before ServiceControl realizes that it lost or restored connection with the endpoint.
 
 ## Connect to Application Insights Azure Monitor
 
@@ -90,6 +90,6 @@ The handler creates a custom telemetry event and pushes it to Application Insigh
 
 This sample uses the [learning transport](/transports/learning/) in order to be portable with no transport dependencies.
 
-When adjusting this sample to use the [Azure Service Bus transport](/transports/azure-service-bus/), note that the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation), or if using the [legacy Azure Service Bus transport](/transports/azure-service-bus/legacy/), see its [sanitization strategy documentation](/transports/azure-service-bus/legacy/sanitization.md). 
+When adjusting this sample to use the [Azure Service Bus transport](/transports/azure-service-bus/), note that the subscribing endpoint must also use the same name shortening strategy as ServiceControl. See the [configuration settings](/transports/azure-service-bus/configuration.md#entity-creation).
 
 The same applies to the [Azure Storage Queues](/transports/azure-storage-queues) name [sanitization strategy](/transports/azure-storage-queues/sanitization.md#backward-compatibility-with-versions-7-and-below)

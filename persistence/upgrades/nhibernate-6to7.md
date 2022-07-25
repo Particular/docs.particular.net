@@ -18,7 +18,18 @@ upgradeGuideCoreVersions:
 
 The way the NHibernate's `ISession` object is accessed has changed. This object is no longer accessible through dependency injection or `NHibernateStorageContext`. When Property or Constructor injection is used to get an instance of `ISession` directly or through `NHibernateStorageContext`, the code needs to be refactored after the upgrade to this version.
 
-snippet: NHibernateAccessingSessionUpgrade6To7
+```csharp
+public class OrderHandler :
+    IHandleMessages<OrderMessage>
+{
+    public Task Handle(OrderMessage message, IMessageHandlerContext context)
+    {
+        var nhibernateSession = context.SynchronizedStorageSession.Session();
+        nhibernateSession.Save(new Order());
+        return Task.CompletedTask;
+    }
+}
+```
 
 As shown in the above snippet, the only way to access the `ISession` object is through the `Session()` extension method on `IMessageHandlerContext.SynchronizedStorageSession`.
 

@@ -1,2 +1,0 @@
-
-An input message is received using native transaction. The transaction is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.

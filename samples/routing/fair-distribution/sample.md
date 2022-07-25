@@ -5,7 +5,7 @@ component: Core
 reviewed: 2020-05-25
 ---
 
-This sample demonstrates how to extend the NServiceBus routing model with a custom distribution strategy. Distribution strategies replace the distributor feature as a scale-out mechanism for MSMQ. The default built-in distribution strategy uses a simple round-robin approach. This sample shows a more sophisticated distribution strategy that keeps the queue length of all load-balanced instances equal, allowing for the effective use of non-heterogeneous worker clusters.
+This sample demonstrates how to extend the NServiceBus routing model with a custom distribution strategy. The default built-in distribution strategy uses a simple round-robin approach. This sample shows a more sophisticated distribution strategy that keeps the queue length of all load-balanced instances equal, allowing for the effective use of non-heterogeneous worker clusters.
 
 ## Prerequisites
 

@@ -18,11 +18,22 @@ When [accessing business data](/persistence/sql/accessing-data.md) in Versions 2
 
 To more accurately reflect SQL vernacular "Variant" has been renamed to "Dialect":
 
-snippet: 2to3_VariantToDialect
+```csharp
+// For Sql Persistence version 3.x
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+persistence.SqlDialect<SqlDialect.MySql>();
+
+// For Sql Persistence version 2.x
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+persistence.SqlVariant(SqlVariant.MySql);
+```
 
 The `SqlDialect` method returns a typed settings instance that can be used to apply configuration specific to that dialect:
 
-snippet: 2to3_DialectSettings
+```csharp
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+var mySqlDialectSettings = persistence.SqlDialect<SqlDialect.MySql>();
+```
 
 
 ## Dialect selection made mandatory
@@ -34,4 +45,13 @@ Versions 2 and below defaulted to SQL Server when a call to `SqlVariant` was omi
 
 Schema configuration has been moved to extend the result of the `SqlDialect` method:
 
-snippet: 2to3_Schema
+```csharp
+// For Sql Persistence version 3.x
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
+dialect.Schema("MySchema");
+
+// For Sql Persistence version 2.x
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+persistence.Schema("MySchema");
+```

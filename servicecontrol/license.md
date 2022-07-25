@@ -5,8 +5,6 @@ reviewed: 2020-06-23
 
 There are a few options to add a license to ServiceControl.
 
-include: registry-licensing
-
 ## ServiceControl Management tool
 
 ServiceControl has a license user interface which can be accessed in ServiceControl Management. ServiceControl Management is installed together with ServiceControl and can be found in the Windows Start Menu.
@@ -33,7 +31,7 @@ Import-ServiceControlLicense <LicenseFile>
 
 It is also possible to load the license from the file system but this must be done manually. This allows the license to be loaded from (for example) a central network share instead of the registry.
 
-Add the `NServiceBus/LicensePath` application setting to the `ServiceControl.exe.config` configuration file. 
+Add the `NServiceBus/LicensePath` application setting to the `ServiceControl.exe.config` configuration file.
 
 Note: The easiest way to find the configuration file is by launching the Service Control Management Utility (SCMU), navigate to the relavant instance and open its deployment paths.
 
@@ -41,12 +39,12 @@ Note: The easiest way to find the configuration file is by launching the Service
 <add key="NServiceBus/LicensePath" value="d:\NServiceBus\License\License.xml" />
 ```
 
-Note: [This is the same setting to configure a license path for an NServiceBus 5 endpoint](/nservicebus/licensing/?version=core_5#license-management-using-app-config-appsettings).
+Note: This is the same setting to configure a license path for an NServiceBus 5 endpoint.
 
 
 ## Using other platform tools
 
-See the [ServiceInsight licensing page](/serviceinsight/license.md) or the [instructions for licensing manually using the registry](/nservicebus/licensing/?version=core_6#license-management-using-the-registry) for more information.
+See the [ServiceInsight licensing page](/serviceinsight/license.md) for more information.
 
 ## Instance licensing
 

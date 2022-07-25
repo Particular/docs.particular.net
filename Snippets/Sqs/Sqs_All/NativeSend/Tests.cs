@@ -220,7 +220,7 @@
             var transport = endpointConfiguration.UseTransport<SqsTransport>();
             transport.ConfigureSqsTransport();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+            endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
             var recoverabilitySettings = endpointConfiguration.Recoverability();
             recoverabilitySettings.Immediate(customizations => customizations.NumberOfRetries(0));
             recoverabilitySettings.Delayed(customizations => customizations.NumberOfRetries(0));

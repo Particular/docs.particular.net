@@ -1,1 +1,0 @@
-NOTE: The transport does not support `transport.ConnectionString(...)` to specify the connection string via code.

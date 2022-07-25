@@ -1,7 +1,7 @@
 ---
 title: Azure Functions with Azure Storage Queues
 component: ASQFunctions
-summary: Hosting NServiceBus endpoints with Azure Functions triggered by Azure Storage Queus
+summary: Hosting NServiceBus endpoints with Azure Functions triggered by Azure Storage Queues
 related:
  - samples/previews/azure-functions/storage-queues
 reviewed: 2021-01-13
@@ -37,7 +37,7 @@ snippet: asq-static-trigger-endpoint
 
 ## IFunctionsHostBuilder usage
 
-As an alternative to the configuration approach described in the previous section, an endpoint can also be configured with a static `IFunctionEndpoint` field using the `IFunctionsHostBuilder` API as described in [Use dependency injection in .NET Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection). 
+As an alternative to the configuration approach described in the previous section, an endpoint can also be configured with a static `IFunctionEndpoint` field using the `IFunctionsHostBuilder` API as described in [Use dependency injection in .NET Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection).
 
 ### Endpoint configuration
 

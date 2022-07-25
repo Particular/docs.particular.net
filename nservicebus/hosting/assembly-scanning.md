@@ -26,13 +26,15 @@ partial: additional-path
 
 ### Nested directories
 
-partial: nested
+Nested directories are **not** scanned for assemblies by default. Nested directory assembly scanning can be enabled using:
+
+snippet: ScanningNestedAssebliesEnabled
 
 partial: disable-file-scanning
 
 ## Assemblies to scan
 
-partial: assemblies-to-scan
+The assemblies being scanned can be further controlled via user-defined exclusions. This supports common scenarios removing specific assemblies from scanning without the risk of accidentally excluding required assemblies.
 
 partial: include
 
@@ -40,10 +42,25 @@ partial: include
 
 snippet: ScanningExcludeByName
 
-partial: wildcard
+
+### Exclude assemblies by wildcard:
+
+Multiple assemblies can be excluded by wildcards using the following approach:
+
+snippet: ScanningAssembliesWildcard
 
 ### Exclude specific types
 
 snippet: ScanningExcludeTypes
 
-partial: suppress
+
+
+## Suppress scanning exceptions
+
+NOTE: This configuration option is only available in NServiceBus 6.2 and above.
+
+By default, exceptions occurred during assembly scanning will be re-thrown. Those exceptions can be ignored using the following:
+
+snippet: SwallowScanningExceptions
+
+WARNING: Ignoring assembly scanning exceptions can cause the endpoint to not load some features, behaviors, messages or message handlers and cause incorrect behavior.

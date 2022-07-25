@@ -1,39 +1,23 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using NServiceBus;
+﻿using NServiceBus;
 
 partial class Upgrade
 {
-    void CertificatePath(EndpointConfiguration endpointConfiguration)
+    void UseConventionalRoutingTopology(EndpointConfiguration endpointConfiguration)
     {
-        #region 6to7certificatepath7
+        #region 6to7conventional
 
-        var transport = new RabbitMQTransport(Topology.Conventional, "host=localhost")
-        {
-            ClientCertificate = new X509Certificate2("path", "password")
-        };
-
-        endpointConfiguration.UseTransport(transport);
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseConventionalRoutingTopology(QueueType.Quorum);
 
         #endregion
     }
 
-    void PrefetchCount(EndpointConfiguration endpointConfiguration)
+    void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
     {
-        #region 6to7prefetchcount7
+        #region 6to7direct
 
-        var transportWithFixedPrefetchCount = new RabbitMQTransport(Topology.Conventional, "host=localhost")
-        {
-            PrefetchCountCalculation = _ => 100
-        };
-        endpointConfiguration.UseTransport(transportWithFixedPrefetchCount);
-
-        //or
-
-        var transportWithConcurrencyBasedPrefetchCount = new RabbitMQTransport(Topology.Conventional, "host=localhost")
-        {
-            PrefetchCountCalculation = concurrency => concurrency * 7
-        };
-        endpointConfiguration.UseTransport(transportWithConcurrencyBasedPrefetchCount);
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.UseDirectRoutingTopology(QueueType.Quorum);
 
         #endregion
     }

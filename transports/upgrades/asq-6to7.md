@@ -20,17 +20,32 @@ In versions 6 and below, the Azure Storage Queues transport was configured using
 
 The new configuration API is accessible through extension methods on the `UseTransport<AzureStorageQueueTransport>()` extension point in the endpoint configuration. See also: [Azure Storage Queues Configuration](/transports/azure-storage-queues/configuration.md).
 
-snippet: 6to7AzureStorageQueueTransportWithAzure
+```csharp
+var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+// Configure the transport
+transport.ConnectionString("The Connection String");
+```
 
 ### To continue reading from app.config
 
 Add the following to the project's app.config:
 
-snippet: 6to7ConnectionStringFromConfigXml
+```xml
+<configuration>
+  <appSettings>
+    <add key="AzureStorageQueueConnection"
+         value="The Connection String" />
+  </appSettings>
+</configuration>
+```
 
 Then read from app.config and pass the value to the transport configuration:
 
-snippet: 6to7ConnectionStringFromConfig
+```csharp
+var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+var connection = ConfigurationManager.AppSettings["AzureStorageQueueConnection"];
+transport.ConnectionString(connection);
+```
 
 ### Setting the configuration values via API
 
@@ -39,19 +54,75 @@ Setting the configuration values can now be done through the API as follows:
 * [ConnectionString](/transports/azure-storage-queues/configuration.md#configuration-parameters-connectionstring)
 * [BatchSize](/transports/azure-storage-queues/configuration.md#configuration-parameters-batchsize)
 * [MaximumWaitTimeWhenIdle](/transports/azure-storage-queues/configuration.md#configuration-parameters-maximumwaittimewhenidle)
-* [DegreeOfReceiveParallelism](/transports/azure-storage-queues/configuration.md?version=asq_7#configuration-parameters-degreeofreceiveparallelism)
+* [DegreeOfReceiveParallelism](/transports/azure-storage-queues/configuration.md#configuration-parameters-degreeofreceiveparallelism)
 * [PeekInterval](/transports/azure-storage-queues/configuration.md#configuration-parameters-peekinterval)
 * [MessageInvisibleTime](/transports/azure-storage-queues/configuration.md#configuration-parameters-messageinvisibletime)
 
 These values can be set using corresponding extension methods:
 
-snippet: AzureStorageQueueConfigCodeOnly
+```csharp
+// For Azure Storage Queues Transport version 11.x
+var transport = new AzureStorageQueueTransport(queueServiceClient, blobServiceClient, cloudTableClient)
+{
+    ReceiverBatchSize = 20,
+    MaximumWaitTimeWhenIdle = TimeSpan.FromSeconds(1),
+    DegreeOfReceiveParallelism = 16,
+    PeekInterval = TimeSpan.FromMilliseconds(100),
+    MessageInvisibleTime = TimeSpan.FromSeconds(30)
+};
+
+endpointConfiguration.UseTransport(transport);
+
+// For Azure Storage Queues Transport version 10.x
+var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
+transport.BatchSize(20);
+transport.MaximumWaitTimeWhenIdle(TimeSpan.FromSeconds(1));
+transport.DegreeOfReceiveParallelism(16);
+transport.PeekInterval(TimeSpan.FromMilliseconds(100));
+transport.MessageInvisibleTime(TimeSpan.FromSeconds(30));
+transport.UseQueueServiceClient(queueServiceClient);
+transport.UseBlobServiceClient(blobServiceClient);
+transport.UseCloudTableClient(cloudTableClient);
+
+// For Azure Storage Queues Transport version 9.x
+var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
+transport.BatchSize(20);
+transport.MaximumWaitTimeWhenIdle(TimeSpan.FromSeconds(1));
+transport.DegreeOfReceiveParallelism(16);
+transport.PeekInterval(TimeSpan.FromMilliseconds(100));
+transport.MessageInvisibleTime(TimeSpan.FromSeconds(30));
+transport.UseQueueServiceClient(queueServiceClient);
+transport.UseBlobServiceClient(blobServiceClient);
+transport.UseCloudTableClient(cloudTableClient);
+
+// For Azure Storage Queues Transport version 8.x
+var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
+transport.BatchSize(20);
+transport.MaximumWaitTimeWhenIdle(TimeSpan.FromSeconds(1));
+transport.DegreeOfReceiveParallelism(16);
+transport.PeekInterval(TimeSpan.FromMilliseconds(100));
+transport.MessageInvisibleTime(TimeSpan.FromSeconds(30));
+
+// For Azure Storage Queues Transport version 7.x
+var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+transport.ConnectionString("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
+transport.BatchSize(20);
+transport.MaximumWaitTimeWhenIdle(TimeSpan.FromSeconds(1));
+transport.DegreeOfReceiveParallelism(16);
+transport.PeekInterval(TimeSpan.FromMilliseconds(100));
+transport.MessageInvisibleTime(TimeSpan.FromSeconds(30));
+```
 
 ### PurgeOnStartup
 
 The `PurgeOnStartup` setting now can be set on `EndpointConfiguration` using an extension method.
 
-snippet: AzureStorageQueuePurgeOnStartup
+```csharp
+endpointConfiguration.PurgeOnStartup(true);
+```
 
 ### DefaultQueuePerInstance
 
@@ -70,7 +141,10 @@ In previous versions of the Azure Storage Queues transport, change the default `
 
 In version 6 of NServiceBus, transports don't have the ability to manipulate serialization. To preserve backward compatibility and ensure that message payloads are small, setting JSON serialization should now be done on the endpoint configuration level.
 
-snippet: 6to7-serializer-definition
+```csharp
+endpointConfiguration.UseSerialization<JsonSerializer>();
+endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
+```
 
 ## API Changes
 

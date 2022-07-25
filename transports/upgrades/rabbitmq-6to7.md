@@ -1,79 +1,43 @@
 ---
 title: RabbitMQ Transport Upgrade Version 6 to 7
-summary: Migration instructions on how to upgrade RabbitMQ Transport from Version 6 to 7.
-reviewed: 2022-03-25
+summary: Instructions on how to upgrade RabbitMQ Transport from version 6 to 7.
+reviewed: 2022-05-05
 component: Rabbit
-related:
-- transports/rabbitmq
-- nservicebus/upgrades/7to8
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
- - 8
 ---
 
-## Timeout manager
+Version 7 of the RabbitMQ transport is focused on fully supporting [quorum queues](https://www.rabbitmq.com/quorum-queues.html).
 
-The [timeout manager has been removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backward compatibility mode obsolete. If backward compatibility mode was enabled these APIs must be removed.
+## Minimum broker version
 
-## Configuring the RabbitMQ transport
+Version 7 relies on quorum queue features introduced in RabbitMQ 3.10.0, so the transport now requires that all RabbitMQ nodes be on version `3.10.0` or above.
 
-To use the RabbitMQ transport for NServiceBus, create a new instance of the `RabbitMQTransport` and pass it to `EndpointConfiguration.UseTransport`.
+See the [minimum broker requirements documentation](/transports/rabbitmq/#broker-compatibility) for more details.
 
-Instead of:
+## New version of the delay infrastructure
 
-```csharp
-var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-transport.ConnectionString(connectionString);
-```
+The original v1 delay infrastructure can lose messages due to the [lack of safety guarantees when dead-lettering messages with classic queues](https://www.rabbitmq.com/dlx.html#safety).
 
-Use:
+Version 7 introduces a new v2 delay infrastructure that uses quorum queues instead of classic queues. The v2 infrastructure can exist side-by-side with the previous v1 infrastructure. Messages in the v1 infrastructure are not automatically migrated, but they can be manually migrated with the [`delays migrate`](/transports/rabbitmq/operations-scripting.md#delays-migrate) command provided in the new command line tool.
 
-```csharp
-var transport = new RabbitMQTransport(Topology.Conventional, connectionString);
-endpointConfiguration.UseTransport(transport);
-```
+## `UseConventionalRoutingTopology` now has a mandatory `QueueType` parameter
 
-The mandatory configuration settings, the topology and the connection string, are now required to construct the instance of the transport definition class.
+To control what type of queue the endpoint will use, a `QueueType` parameter has been added to `UseConventionalRoutingTopology`:
 
-include: v7-usetransport-shim-api
+snippet: 6to7conventional
 
-## Certificate path and passphrase
+The parameter controls what type of queues the endpoint will create if installers are enabled.
 
-The certificate file path and passphrase can now be passed only via the connection string. When configuring a secure connection via the API, the only option is to pass an instance of the `X505Certificate2` class. This instance can be constructed using a path and passphrase.
+## `UseDirectRoutingTopology` now has a mandatory` QueueType` parameter
 
-Instead of this code:
+To control what type of queue the endpoint will use, a `QueueType` parameter has been added to `UseDirectRoutingTopology`:
 
-snippet: 6to7certificatepath6
+snippet: 6to7direct
 
-Use this:
+The parameter controls what type of queues the endpoint will create if installers are enabled.
 
-snippet: 6to7certificatepath7
+## Installers no longer ignore queue type mismatches when declaring queues
 
-## Prefetch count
-
-The two prefetch count settings have been replaced with a single setting that uses a callback. Instead of either of these APIs:
-
-snippet: 6to7prefetchcount6
-
-Use one of these:
-
-snippet: 6to7prefetchcount7
-
-## Disabling the durable exchanges and queues
-
-Disabling the durable exchanges and queues has been moved to the constructor of the topology classes, `ConventionalRoutingTopology` and `DirectRoutingTopology`. In order to set the value of that parameter use the variant of the `RabbitMQTransport` constructor that accepts an instance of the topology.
-
-## Configuration options
-
-The RabbitMQ transport configuration options that have not changed have been moved to the `RabbitMQTransport` class. See the following table for further information:
-
-| Version 6 configuration option | Version 7 configuration option |
-| --- | --- |
-| CustomMessageIdStrategy | MessageIdStrategy |
-| DisableRemoteCertificateValidation | ValidateRemoteCertificate |
-| SetClientCertificate | ClientCertificate |
-| SetHeartbeatInterval | HeartbeatInterval |
-| SetNetworkRecoveryInterval | NetworkRecoveryInterval |
-| TimeToWaitBeforeTriggeringCircuitBreaker | TimeToWaitBeforeTriggeringCircuitBreaker |
-| UseExternalAuthMechanism | UseExternalAuthMechanism |
+Now that there is a way to control what sort of queue type is created when installers are enabled, the queue creation installer will once again throw an exception if there is a mismatch between the type of queue it declares and the type of the queue that already exists on the broker.

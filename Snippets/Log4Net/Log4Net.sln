@@ -2,10 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log4Net_1", "Log4Net_1\Log4Net_1.csproj", "{30F5B3E6-2B7F-46BE-8086-169FD856BA64}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log4Net_2", "Log4Net_2\Log4Net_2.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log4Net_3", "Log4Net_3\Log4Net_3.csproj", "{36AC5DE2-B16B-403F-BFD1-03E9DA2F4FC0}"
 EndProject
 Global
@@ -13,10 +9,6 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{30F5B3E6-2B7F-46BE-8086-169FD856BA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30F5B3E6-2B7F-46BE-8086-169FD856BA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36AC5DE2-B16B-403F-BFD1-03E9DA2F4FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36AC5DE2-B16B-403F-BFD1-03E9DA2F4FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection

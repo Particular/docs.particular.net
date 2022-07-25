@@ -29,6 +29,7 @@ include: azure-transports
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Not supported
 |Installers                 |Mandatory
+|Native integration         |[Supported](native-integration.md)
 
 ## Configuring the endpoint
 

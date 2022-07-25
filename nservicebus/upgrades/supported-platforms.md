@@ -14,4 +14,7 @@ Supported frameworks can be used for production workloads with technical support
 
 Support for individual components requires using [supported component versions](supported-versions.md) on a [supported version of .NET](https://dotnet.microsoft.com/en-us/platform/support/policy).
 
+1. Not all packages support all frameworks and versions, due to framework restrictions, obsolete APIs, or transitive dependencies.
+2. In this context, "supported" applies only to the framework runtime and doesn't necessarily indicate support for all languages features.
+
 partial: content

@@ -16,4 +16,11 @@ include: cluster-configuration-info
 
 After moving an endpoint from one machine to another or changing an endpoint's name, existing timeouts must be manually modified to end up in the new endpoint. To do that, follow these steps:
 
-partial: fields
+* Update the following values in the Timeout Data documents in the Raven persister with the new endpoint name or updated machine name:
+  * Destination
+  * OwningTimeoutManager (contains endpoint name only)
+  * Headers:
+    * NServiceBus.ReplyToAddress
+    * NServiceBus.Timeout.RouteExpiredTimeoutTo
+    * NServiceBus.OriginatingEndpoint
+* After the above changes are made, restart the endpoint to process the timeout.

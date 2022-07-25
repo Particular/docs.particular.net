@@ -16,17 +16,91 @@ upgradeGuideCoreVersions:
 
 `IConfigureThisEndpoint.Customize` is passed an instance of `EndpointConfiguration` instead of `BusConfiguration`.
 
-snippet: 6to7customize_nsb_host
+```csharp
+// For NServiceBus Host version 7.x
+class CustomizingHostUpgrade :
+    IConfigureThisEndpoint
+{
+    public void Customize(EndpointConfiguration endpointConfiguration)
+    {
+        // perform some custom configuration
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+    }
+}
+
+// For NServiceBus Host version 6.x
+class CustomizingHostUpgrade :
+    IConfigureThisEndpoint
+{
+    public void Customize(BusConfiguration busConfiguration)
+    {
+        // perform some custom configuration
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+    }
+}
+```
 
 ## IConfigureLogging and IConfigureLoggingForProfile<T> changes
 
 These interfaces will be removed in version 8 of NServiceBus.Host. The logging can still be configured in the constructor of the class that implements `IConfigureThisEndpoint`. 
 
-snippet: CustomHostLogging
+```csharp
+// For NServiceBus Host version 8.x
+class CustomLogging :
+    IConfigureThisEndpoint
+{
+    public void Customize(EndpointConfiguration configuration)
+    {
+        LogManager.Use<DefaultFactory>();
+    }
+}
+
+// For NServiceBus Host version 7.x
+class CustomLogging :
+    IConfigureThisEndpoint
+{
+    public void Customize(EndpointConfiguration configuration)
+    {
+        LogManager.Use<DefaultFactory>();
+    }
+}
+
+// For NServiceBus Host version 6.x
+class CustomLogging : IConfigureThisEndpoint
+{
+    public void Customize(BusConfiguration configuration)
+    {
+        LogManager.Use<DefaultFactory>();
+    }
+}
+
+// For NServiceBus Host version 5.x
+class CustomLogging : IConfigureThisEndpoint
+{
+    public void Customize(BusConfiguration configuration)
+    {
+        LogManager.Use<DefaultFactory>();
+    }
+}
+```
 
 The way the runtime profile is detected will need to be re-created but a simple approach could be like this:
 
-snippet: 6to7-ProfileForLogging
+```csharp
+class RuntimeProfile :
+    IConfigureThisEndpoint
+{
+    public void Customize(BusConfiguration busConfiguration)
+    {
+        var profile = Environment.GetCommandLineArgs();
+
+        if (profile.Contains("Production"))
+        {
+            // configure the production profile
+        }
+    }
+}
+```
 
 ## IWantToRunWhenEndpointStartsAndStops
 
@@ -56,7 +130,29 @@ public class Bootstrapper :
 
 ### Interface in version 7 of NServiceBus.Host
 
-snippet: 5to6-EndpointStartAndStopHost
+```csharp
+// Use this in NServiceBus.Host or NServiceBus.Host.AzureCloudService
+namespace Host_7.UpgradeGuides.Core5to6
+{
+    public class Bootstrapper :
+        IWantToRunWhenEndpointStartsAndStops
+    {
+        public Task Start(IMessageSession session)
+        {
+            // Do startup actions here.
+            // Either mark Start method as async or do the following
+            return Task.CompletedTask;
+        }
+
+        public Task Stop(IMessageSession session)
+        {
+            // Do cleanup actions here.
+            // Either mark Stop method as async or do the following
+            return Task.CompletedTask;
+        }
+    }
+}
+```
 
 
 The `IMessageSession` parameter provides all the necessary methods to send messages as part of the endpoint start up.

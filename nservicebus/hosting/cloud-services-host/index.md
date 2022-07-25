@@ -29,7 +29,9 @@ Next, define the endpoint behavior. The role has been named `AsA_Worker`. Specif
 
 snippet: ConfigureEndpointWithAzureHost
 
-Partial: Worker
+This will integrate and configure the default infrastructure:
+
+ * Logs will be sent to the `Trace` infrastructure, which should have been configured with Azure diagnostic monitor trace listener by the Visual Studio tooling.
 
 When self-hosting, everything can be configured using the API and extension methods available in the NServiceBus Azure-related packages; it's not required to reference the hosting package. To self-host an endpoint, add the required configuration to the role entry point.
 
@@ -44,8 +46,11 @@ The configuration API is used with the following extension methods to achieve th
 
 snippet: HostingInWebRole
 
-Partial: Web
+A short explanation of each:
 
+ *  Logs will be sent to the `Trace` infrastructure, which should have been configured with Azure diagnostic monitor trace listener by the Visual Studio tooling.
+ * `UseTransport<AzureStorageQueueTransport>`: Sets [Azure storage queues](/transports/azure-storage-queues/) as the [transport](/transports).
+ * `UsePersistence<AzureStoragePersistence>`: Configures [Azure storage](/persistence/azure-table/) for [persistence](/persistence).
 
 ## When endpoint instance starts and stops
 

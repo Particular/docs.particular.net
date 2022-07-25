@@ -1,1 +1,0 @@
-Some of the  [audit message headers](/nservicebus/messaging/headers.md#audit-headers) are available

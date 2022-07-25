@@ -50,11 +50,18 @@ From the perspective of an outgoing message, the `TimeToBeReceived` is a deliver
 
 Set the `TimeToBeReceived`
 
-snippet: SetDeliveryConstraintDiscardIfNotReceivedBefore
+```csharp
+var timeToBeReceived = TimeSpan.FromSeconds(25);
+var deliveryConstraint = new DiscardIfNotReceivedBefore(timeToBeReceived);
+context.Extensions.AddDeliveryConstraint(deliveryConstraint);
+```
 
 Read the `TimeToBeReceived`
 
-snippet: ReadDeliveryConstraintDiscardIfNotReceivedBefore
+```csharp
+context.Extensions.TryGetDeliveryConstraint(out DiscardIfNotReceivedBefore constraint);
+timeToBeReceived = constraint.MaxTime;
+```
 
 From the perspective of an incoming message, the `TimeToBeReceived` can be acquired by using the `Headers.TimeToBeReceived` on the `IncomingMessage.Headers` dictionary.
 
@@ -65,11 +72,15 @@ From the perspective of an outgoing message, the `Recoverable` flag is a deliver
 
 Set the `Recoverable`
 
-snippet: SetDeliveryConstraintNonDurable
+```csharp
+context.Extensions.AddDeliveryConstraint(new NonDurableDelivery());
+```
 
 Read the `Recoverable`
 
-snippet: ReadDeliveryConstraintNonDurable
+```csharp
+context.Extensions.TryGetDeliveryConstraint(out NonDurableDelivery constraint);
+```
 
 From the perspective of an incoming message, the `Recoverable` flag can be acquired by using the `Headers.NonDurableMessage` on the `IncomingMessage.Headers` dictionary.
 
@@ -78,4 +89,22 @@ From the perspective of an incoming message, the `Recoverable` flag can be acqui
 
 In NServiceBus version 5, it was possible  to use `ISendMessages` to do raw sends. In version 6 `IDispatchMessages` was introduced. The following snippet shows an example of how to send raw messages:
 
-snippet: DispatcherRawSending
+```csharp
+var headers = new Dictionary<string, string>();
+var outgoingMessage = new OutgoingMessage("MessageId", headers, new byte[]
+{
+});
+var constraints = new List<DeliveryConstraint>
+{
+    new NonDurableDelivery()
+};
+var address = new UnicastAddressTag("Destination");
+var operation = new TransportOperation(
+    message: outgoingMessage,
+    addressTag: address,
+    requiredDispatchConsistency: DispatchConsistency.Default,
+    deliveryConstraints: constraints);
+var operations = new TransportOperations(operation);
+await dispatcher.Dispatch(operations, new TransportTransaction(), new ContextBag())
+    .ConfigureAwait(false);
+```

@@ -35,4 +35,16 @@ Because the version has been baked in to the RavenDB document id since the very 
  1. If possible, do not version message assemblies at all. Design message contracts to be backward and forward compatible so that explicit versioning is not required.
  1. Instead of versioning with the [AssemblyVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyversionattribute.aspx), use the [AssemblyFileVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyfileversionattribute.aspx) or [AssemblyInformationalVersionAttribute](https://msdn.microsoft.com/en-us/library/system.reflection.assemblyinformationalversionattribute.aspx) instead, while leaving the `AssemblyVersionAttribute` fixed. The RavenDB persister only uses the Major version of the `AssemblyVersionAttribute` as part of the subscription document id.
 
-partial: non-versioned-subscriptions
+## Non-versioned subscriptions support
+
+In Versions 4.2 and above support for non-versioned subscriptions has been introduced. Non-versioned subscription are an opt-in feature due to their incompatibility with the default subscription storage behavior. To enable support for storing subscriptions without storing the message version change endpoint configuration as follows:
+
+snippet: DisableSubscriptionVersioning
+
+NOTE: Due to the breaking nature of this feature it is important to take into account the impact of enabling it on pre-existing installations. Once enabled all the stored subscriptions, if any, will be immediately ignored and publishers will stop publishing events until all subscribers are restarted and new subscription requests reach the publisher endpoint. Opting in this new feature has no effects for newly deployed publisher endpoints that never received any subscription requests.
+
+In Version 5.0 and above choosing a subscription versioning strategy is required to use RavenDB subscription storage. In order to continue using legacy versioned subscriptions, change the endpoint configuration as follows:
+
+snippet: LegacySubscriptionVersioning
+
+WARNING: If neither subscription versioning option is selected, an exception will be thrown.

@@ -5,6 +5,7 @@ reviewed: 2022-02-09
 isLearningPath: true
 redirects:
   - nservicebus/operations/custom-checks
+  - monitoring/custom-checks/legacy
 ---
 
 The Custom Checks plugin enables endpoint health monitoring by running custom code and reporting status (success or failure) to a ServiceControl instance.
@@ -60,9 +61,9 @@ It is recommended to periodically check that the endpoint (and its host) can ind
 ### Storage
 
 - When local or remote storage is required by the endpoint, is that storage location available, accessible, and properly configured (security, permissions, quota, etc.)?
-- When local or remote storage is required by the endpoint, is there enough available storage left for required operations? 
-- If there is a requirement for a minimum free space available, is that requirement met? 
-- Gather a collection of measurements over time and extrapolate when the storage will run out. Is that time below some critical threshold?  
+- When local or remote storage is required by the endpoint, is there enough available storage left for required operations?
+- If there is a requirement for a minimum free space available, is that requirement met?
+- Gather a collection of measurements over time and extrapolate when the storage will run out. Is that time below some critical threshold?
 
 
 ### External Services

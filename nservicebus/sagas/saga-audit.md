@@ -4,13 +4,15 @@ summary: For visualizing and debugging sagas with ServiceInsight
 component: SagaAudit
 versions: 'SagaAudit:*'
 reviewed: 2021-11-04
+redirects:
+ - servicecontrol/plugins/saga-audit
 ---
 
 NOTE: This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
 
 WARN: This plugin will result in an increase in the load placed on ServiceControl and the endpoint it is installed in. Make sure the environment is prepared for the increased load. Consider [scaling out audit processing](/servicecontrol/servicecontrol-instances/distributed-instances.md) if necessary.
 
-The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view). 
+The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view).
 
 ![SagaAudit View in ServiceInsight](saga-audit-screenshot.png)
 
@@ -34,15 +36,15 @@ subgraph Endpoint
 Auditing
 SagaAudit[Saga Audit]
 end
-	
+
 SagaAudit -- Saga Change<br>Audit Data --> SCQ[ServiceControl<br>Input Queue]
 
 SagaAudit -- Saga Change<br>Audit Data --> AuditQ[audit<br>queue]
-	
+
 Auditing -- Message<br>Audit Data --> AuditQ[audit<br>queue]
 
 AuditQ --> ServiceControl
-	
+
 SCQ --> ServiceControl
 ```
 

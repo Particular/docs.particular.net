@@ -76,7 +76,7 @@ To configure a different error queue using the following configuration:
 
 snippet: custom-error-queue
 
-Messages moved to the error queue have the [`NServiceBus.FailedQ`](/nservicebus/messaging/headers.md#error-forwarding-headers-nservicebus-failedq) header set to allow scripted retries, e.g. [RabbitMQ](/transports/rabbitmq/operations-scripting.md#return-message-to-source-queue). Refer to the documentation for the [various transports](/transports) for more details in how to perform retries.
+Messages moved to the error queue have the [`NServiceBus.FailedQ`](/nservicebus/messaging/headers.md#error-forwarding-headers-nservicebus-failedq) header set to allow scripted retries. Refer to the documentation for the [various transports](/transports) for more details in how to perform retries.
 
 ## Auditing
 

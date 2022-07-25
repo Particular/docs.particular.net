@@ -98,6 +98,25 @@ will still receive those events automatically since the base name of `Shipping.O
 
 which matches the newly created contract more closely.
 
+#### Single topic design
+
+The "single topic" design was chosen over a "topic per event type" design due to:
+
+- Support for polymorphic events
+- Stronger decoupling of the publishers and subscribers
+- Simpler hierarchy of topic, subscriptions, and rules
+- Simpler management and mapping from events to parts of the topology
+
+The need to support polymorphism was the most substantial reason to implement a "single topic" design.
+
+With simple events and without the need to support polymorphism, it is possible to map the contract type to the topic since the relationship is 1:1. Such topologies are mostly built without automatically forwarding messages in subscriptions to the destination queues. The subscription acts in such a scenario as a virtual queue. In cases when subscribers are offline or slow for some time, the quota of the topic might be reached, which can cause all publish operations to the topic to fail. Subscriptions in non-forwarding mode share the topic quota.
+
+Once forwarding is enabled on that subscription, that problem will go away. The benefit of the simple event to topic mapping is that the filter rules can be the default catch-all rule expressed as `1 = 1`. Those are relatively straightforward to evaluate at runtime by the broker and do not impose high-performance impacts. The client-to-broker interaction gets more complex as soon as the need for polymorphism comes into play. The subscriber needs to be able to figure out all the possible contracts of the event and create multiple subscriptions on multiple topics based on the contracts exposed. But in some cases, the subscriber doesn't have access to the whole event contract the publisher publishes. Then complex manual mapping would be required to determine the publisher and subscriber relationship. Such a design imposes more coupling between the publisher and the subscriber, serving the opposite of what publish/subscribe is intended to solve.
+
+On the other hand, the publisher needs to figure out to what possible topics the events should be published and then publish by issuing multiple operations against multiple entities initiated by the client. These operations are impacted by the latency between the client and the broker, might fail, and must be retried in case of transient errors. Once multiple subscriptions on multiple topics must be managed, duplicates will likely occur because the broker duplicates the original message per subscription. In the case of polymorphism, the publisher might be publishing the same event to multiple topics, which naturally leads to duplicates.
+
+The complexity of managing all the topics, subscriptions and rules can increase quickly. With the single topic design, only a common topic bundle and a subscription per endpoint that contains the rules that match the enclosed message type headers are required. Polymorphism and de-duplication support is built into the design. The downside is that more advanced SQL filters for the rules can impact the namespace performance when the broker evaluates rules, which could impose a performance penalty in extremely high throughput scenarios.
+
 #### Topology highlights
 
 |                                             |                     |

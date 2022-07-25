@@ -40,7 +40,24 @@ NOTE: This process can be done on a per-endpoint basis or in bulk for all affect
 
 Run the following upgrade script
 
-snippet: ConvertOutboxToNonclustered
+```sql
+declare @table nvarchar(max) = @tablePrefix + 'OutboxData';
+declare @index nvarchar(max)
+declare @dropSql nvarchar(max)
+declare @createSql nvarchar(max)
+
+select @index = si.name
+from sys.tables st
+  join sys.indexes si on st.object_id = si.object_id
+where st.name = @table
+  and si.is_primary_key = 1
+
+select @dropSql = 'alter table ' + @table + ' drop constraint ' + @index
+exec sp_executeSQL @dropSql;
+
+select @createSql = 'alter table ' + @table + ' add constraint ' + @index + ' primary key nonclustered (MessageId)'
+exec sp_executeSQL @createSql;
+```
 
 This script takes a [tablePrefix](/persistence/sql/install.md#table-prefix) as a parameter and then performs the following actions:
 
@@ -50,7 +67,21 @@ This script takes a [tablePrefix](/persistence/sql/install.md#table-prefix) as a
 
 This script can be executed as part of a deployment using the following code:
 
-snippet: ExecuteConvertOutboxToNonclustered
+```csharp
+using (var connection = new SqlConnection("ConnectionString"))
+{
+    connection.Open();
+    using (var command = connection.CreateCommand())
+    {
+        command.CommandText = File.ReadAllText("PathToConvertOutboxToNonclustered.sql");
+        var parameter = command.CreateParameter();
+        parameter.ParameterName = "tablePrefix";
+        parameter.Value = tablePrefix;
+        command.Parameters.Add(parameter);
+        command.ExecuteNonQuery();
+    }
+}
+```
 
 
 #### Start endpoint

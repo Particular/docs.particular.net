@@ -11,14 +11,14 @@ redirects:
 ---
 
 
-The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the exchanges it creates to send and publish messages. All endpoints in a system must use the same topology to be able to communicate with each other. For new systems, the [conventional routing topology](routing-topology.md#conventional-routing-topology) should be used. The [direct routing topology](routing-topology.md#direct-routing-topology) is recommended only when adding an endpoint to an existing system that already uses that topology. A custom topology can be useful when integrating with a legacy system.
+The RabbitMQ transport has the concept of a routing topology, which controls how it creates exchanges, queues, and the bindings between them in the RabbitMQ broker. The routing topology also controls how the transport uses the exchanges it creates to send and publish messages. All endpoints in a system must use the same routing topology to be able to communicate with each other. For new systems, the [conventional routing topology](routing-topology.md#conventional-routing-topology) should be used. The [direct routing topology](routing-topology.md#direct-routing-topology) is recommended only when adding an endpoint to an existing system that already uses that routing topology. A custom routing topology can be useful when integrating with a legacy system.
 
 
 ## Conventional routing topology
 
 The conventional routing topology relies on [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages. 
 
-partial: mandatory
+Note: The recommended routing topology is the conventional routing topology. It was the default topology prior to NServiceBus.RabbitMQ version 5.
 
 
 ### Sending using the conventional routing topology
@@ -35,7 +35,11 @@ When an endpoint subscribes to an event, it first ensures that the above infrast
 When an endpoint publishes an event, it first ensures that the above infrastructure exists. It then publishes the message to the exchange corresponding to the message type being published.
 
 
-partial: enable-conventional-routing-topology
+### Enabling the conventional routing topology
+
+To enable the conventional routing topology, use the following configuration:
+
+snippet: rabbitmq-config-useconventionalroutingtopology
 
 
 ## Direct routing topology
@@ -71,8 +75,13 @@ snippet: rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
 WARNING: In some cases, the direct routing topology may not deliver message types with "non-system" interfaces in their inheritance hierarchy. A "non-system" interface is any interface which is not contained in a .NET Framework assembly (any assembly signed with the same public key as mscorlib), and is not one of the [interfaces](/nservicebus/messaging/messages-events-commands.md#identifying-messages). When using the direct routing topology, message types must not inherit from "non-system" interfaces. To guarantee delivery of message types which inherit from non-system interfaces, the conventional routing topology must be used.
 
+partial: queue-type
 
-partial: exchange-queue-durability
+## Controlling exchange and queue durability
+
+The routing topologies provided by the transport create durable exchanges and queues by default. To create transient exchanges and queues, use the following:
+
+snippet: rabbitmq-disable-durable-exchanges
 
 
 ## Custom routing topology
@@ -80,9 +89,12 @@ partial: exchange-queue-durability
 If the built-in routing topologies do not satisfy the requirements of the system, a custom routing topology may be used. To do this:
 
  1. Define the routing topology by creating a class implementing `IRoutingTopology`.
- 1. Register it with the transport calling `UseRoutingTopology` as shown below.
+ 1. Register it with the transport as shown below:
 
-partial: custom-delegate-argument
+snippet: rabbitmq-config-useroutingtopologyDelegate
+
+The boolean argument supplied to the factory delegate indicates whether the custom routing topology should create durable exchanges and queues on the broker. Read more about durable exchanges and queues in the [AMQP Concepts Guide](https://www.rabbitmq.com/tutorials/amqp-concepts.html).
+
 
 partial: custom-no-argument
 

@@ -62,16 +62,3 @@ public class MvcApplication :
 }
 
 #endregion
-
-#region AsAHost
-
-public class EndpointHostConfig :
-    IConfigureThisHost
-{
-    public HostingSettings Configure()
-    {
-        return new HostingSettings("DefaultEndpointsProtocol=https;AccountName=[ACCOUNT];AccountKey=[KEY];");
-    }
-}
-
-#endregion

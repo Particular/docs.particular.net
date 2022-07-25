@@ -40,7 +40,7 @@ snippet: DependentFeature
 
 A feature might use either strongly or loosely typed API when declaring dependencies (the latter can be useful if a dependency is declared in an external assembly).
 
-partial: dependson
+WARNING: The feature name is derived from the name of the type. The `Feature` suffix must not be removed and dependency strings must be prefixed with the namespace of the target Feature.
 
 The API also allows declaring optional dependencies on one or more listed features.
 
@@ -140,4 +140,8 @@ The task will only be created and called if the feature is enabled. The `Feature
 Note: Avoid long-running operations which will delay the endpoint startup time.
 
 
-partial: endpointinstance
+### Accessing the Endpoint Instance
+
+In Versions 6 and above access to the message session, which allows to do basic endpoint operations, inside a `FeatureStartupTask` is provided via method parameters.
+
+snippet: MyStartupTaskThatUsesMessageSession

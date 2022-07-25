@@ -1,6 +1,6 @@
 ---
 title: Samples
-summary: Samples using NServiceBus and the Particular Service Platform 
+summary: Samples using NServiceBus and the Particular Service Platform
 reviewed: 2020-01-30
 ---
 
@@ -54,7 +54,11 @@ All samples target **C# 7.3** to take advantage of the new language features. If
 
 ### ConfigureAwait
 
-Samples by default use `ConfigureAwait(false)` when awaiting asynchronous methods. Using `ConfigureAwait(false)` whenever possible is [considered a best practice](https://msdn.microsoft.com/en-us/magazine/jj991977.aspx) which helps avoid deadlocks and improves performance.
+Samples only call `ConfigureAwait(bool)` when it is required. If any code is copied from samples, appropriate calls to `ConfigureAwait(bool)` should be added.
+
+For example, to help avoid deadlocks and improve performance, it is [recommended](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2007) to call `ConfigureAwait(false)` whenever possible, in case the code is used in a context which requires it<sup>1</sup>. The code in samples is _not_ designed to be used anywhere else as-is, so it does not contain these calls.
+
+_<sup>1</sup> For more detail, see the [ConfigureAwait FAQ](https://devblogs.microsoft.com/dotnet/configureawait-faq/)._
 
 
 ### [Transport](/transports/)

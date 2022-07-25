@@ -2,12 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spring_5", "Spring_5\Spring_5.csproj", "{C10E98E1-8C70-4AA6-9F37-50C2C2114C8D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spring_6", "Spring_6\Spring_6.csproj", "{DDED6663-C361-46DD-956C-2B4CE66474A8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spring_7", "Spring_7\Spring_7.csproj", "{DB15C773-D838-42A9-90BB-6B05B943A569}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spring_8", "Spring_8\Spring_8.csproj", "{406FEAA3-CA37-4170-BB00-C82C4670F491}"
 EndProject
 Global
@@ -15,12 +9,6 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C10E98E1-8C70-4AA6-9F37-50C2C2114C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C10E98E1-8C70-4AA6-9F37-50C2C2114C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DDED6663-C361-46DD-956C-2B4CE66474A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DDED6663-C361-46DD-956C-2B4CE66474A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB15C773-D838-42A9-90BB-6B05B943A569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB15C773-D838-42A9-90BB-6B05B943A569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{406FEAA3-CA37-4170-BB00-C82C4670F491}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{406FEAA3-CA37-4170-BB00-C82C4670F491}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection

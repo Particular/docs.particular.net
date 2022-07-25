@@ -1,7 +1,6 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.Features;
-using NServiceBus.Transport;
 
 public class FairDistribution :
     Feature
@@ -16,8 +15,6 @@ public class FairDistribution :
         var sessionId = Guid.NewGuid().ToString();
         var flowManager = context.Settings.Get<FlowManager>();
         var controlAddress = context.Settings.InstanceSpecificQueue() ?? context.Settings.LocalAddress();
-
-        var transportInfrastructure = context.Settings.Get<TransportInfrastructure>();
 
         var pipeline = context.Pipeline;
         pipeline.Register(

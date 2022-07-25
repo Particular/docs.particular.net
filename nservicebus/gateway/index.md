@@ -3,7 +3,7 @@ title: Gateway
 summary: Durable fire-and-forget messaging across physically separated IT infrastructure
 component: Gateway
 isLearningPath: true
-reviewed: 2019-12-17
+reviewed: 2022-07-11
 redirects:
  - nservicebus/introduction-to-the-gateway
 related:
@@ -14,7 +14,7 @@ The purpose of the gateway is to provide durable fire-and-forget messaging with 
 
 It is useful for communicating when using regular queued transports for communication is not possible, for example when setting up a VPN connection is prevented because of security concerns, bandwidth limitations, latency problems, high availability constraints, etc.
 
-The gateway should not be used as a disaster recovery mechanism between sites. In this scenario, all sites are expected to be exact replicas. From a logical perspective they're a single application, replicated in multiple locations. In this situation it is recommended to use the existing support infrastructure to keep all sites synchronized.
+The gateway should not be used as a disaster recovery mechanism between sites. In this scenario, all sites are expected to be exact replicas. From a logical perspective, they're a single application, replicated in multiple locations. In this situation it is recommended to use the existing support infrastructure to keep all sites synchronized.
 
 The gateway supports the following features:
 
@@ -31,7 +31,7 @@ The gateway supports the following features:
 
 Sites are _logically different_ when each site differs in behavior from others. In fact, they might also serve a completely different business purposes.
 
-One example is a chain of retail stores. The prices of products are specified by people working in headquarters. All the stores in the chain need to know the prices in order to function. Also all stores send sales reports to headquarters in order to provide them with information for adjusting prices. The prices have to remain effective for a minimum of one day, so it is sufficient for the headquarters to push the price updates to the sites only once per day.
+One example is a chain of retail stores. The prices of products are specified by people working at headquarters. All the stores in the chain need to know the prices in order to function. Also, all stores send sales reports to headquarters in order to provide them with information for adjusting prices. The prices have to remain effective for a minimum of one day, so it is sufficient for the headquarters to push the price updates to the sites only once per day.
 
 ![Gateway Store and Headquarters example](store-to-headquarters-pricing-and-sales.png "Logical view")
 

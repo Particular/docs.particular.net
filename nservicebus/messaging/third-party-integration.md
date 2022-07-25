@@ -16,10 +16,9 @@ In order to [deserialize](/nservicebus/serialization/) a message coming from a t
 
 Starting from NServiceBus version 7.4, the [NServiceBus.EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) is automatically populated when missing. When using NServiceBus version 7.3 and below, the sender should set that header.
 
-Some serializers can infer the message type from information embedded in the message body. 
+Some serializers can infer the message type from information embedded in the message body.
 
- * [XML](/nservicebus/serialization/xml.md) 
- * [JSON](/nservicebus/serialization/json.md)
+ * [XML](/nservicebus/serialization/xml.md)
  * [Newtonsoft](/nservicebus/serialization/newtonsoft.md)
 
 The [RabbitMQ](/samples/rabbitmq/native-integration/), [SQL](/samples/sqltransport/native-integration/), and [Azure Service Bus](/samples/azure-service-bus-netstandard/native-integration/) native integration samples demonstrate inferring message type from the message body.

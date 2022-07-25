@@ -338,3 +338,18 @@ NServiceBus version 8 elevates several [saga-related Roslyn analyzers](/nservice
 * **NSB0007 Saga data property is not writeable**: Properties on saga data classes must have public setters so they can be loaded properly.
 * **NSB0009 A saga cannot use the Id property for a Correlation ID**: The `Id` property is reserved for use by the saga. Because some saga storage options are case insensitive, the other casings `ID`, `id`, and `iD` are also not allowed.
 * **NSB0015 Saga should not implement IHandleSagaNotFound**: The `IHandleSagaNotFound` extension point allows handling *any* message where saga data cannot be loaded. Implementing this interface on a saga gives the wrong impression that it only handles sagas not found for that saga, which is incorrect. Instead, implement the saga not found logic on a separate class.
+
+
+## OpenTelemetry
+
+NServiceBus 8 comes with built-in OpenTelemetry support for tracing and metrics. To enable OpenTelemetry instrumentation in NServiceBus, refer to the [NServiceBus OpenTelemetry documentation](/nservicebus/operations/opentelemetry.md).
+
+The tracing functionality is compatible with the [NServiceBus.Extensions.Diagnostics](https://github.com/jbogard/NServiceBus.Extensions.Diagnostics) community package available for NServiceBus version 7. When upgrading endpoints from version 7, switch to the built-in OpenTelemetry support following these steps:
+
+1. Remove the references to the `NServiceBus.Extensions.Diagnostics` and `NServiceBus.Extensions.Diagnostics.OpenTelemetry` packages.
+2. Enable NServiceBus OpenTelemetry support using the `endpointConfiguration.EnableOpenTelemetry()` API.
+3. Change the source name in the `AddSource(...)` method of the `TracerProviderBuilder` and `MeterProviderBuilder` APIs from `"NServiceBus.Extensions.Diagnostics"` to `"NServiceBus.Core"`.
+
+The spans and metrics captured by NServiceBus can differ from the community package.
+
+See the [OpenTelemetry samples](/samples/open-telemetry/) for more guidance on integrating with 3rd party OpenTelemetry tooling.

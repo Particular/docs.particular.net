@@ -5,9 +5,9 @@ reviewed: 2020-07-27
 component: ServiceControl
 related:
  - servicecontrol/plugins
- - monitoring/heartbeats/legacy
- - monitoring/custom-checks/legacy
- - servicecontrol/plugins/saga-audit
+ - monitoring/heartbeats
+ - monitoring/custom-checks
+ - nservicebus/sagas/saga-audit
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 6
@@ -16,14 +16,19 @@ upgradeGuideCoreVersions:
 
 ## Connecting to ServiceControl
 
-Version 2 of the ServiceControl plugins changes the way that the plugins connect to ServiceControl. The plugins no longer derive a ServiceControl queue name from the Error/Audit queues. Additional configuration is required to specify the location of the ServiceControl queue. 
+Version 2 of the ServiceControl plugins changes the way that the plugins connect to ServiceControl. The plugins no longer derive a ServiceControl queue name from the Error/Audit queues. Additional configuration is required to specify the location of the ServiceControl queue.
 
 
 ### Configuration File
 
 The location of the ServiceControl queue can be specified once for all plugins in via an `appSetting` in the endpoint configuration file.
 
-snippet: sc-plugin-queue-config
+```xml
+<appSettings>
+  <add key="ServiceControl/Queue"
+       value="particular.servicecontrol@machine" />
+</appSettings>
+```
 
 
 ### Code

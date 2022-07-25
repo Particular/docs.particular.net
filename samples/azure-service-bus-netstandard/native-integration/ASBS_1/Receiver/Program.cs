@@ -16,7 +16,7 @@ class Program
 
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.Conventions().DefiningMessagesAs(type => type.Name == "NativeMessage");
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();

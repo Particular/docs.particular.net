@@ -1,7 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.CustomChecks;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 class CustomChecks
 {

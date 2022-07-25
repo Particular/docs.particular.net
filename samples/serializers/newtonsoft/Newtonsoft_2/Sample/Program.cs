@@ -17,7 +17,7 @@ static class Program
         {
             Formatting = Formatting.Indented
         };
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serialization.Settings(settings);
 
         #endregion

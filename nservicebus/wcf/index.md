@@ -13,12 +13,13 @@ reviewed: 2020-06-08
 
 It is possible to expose the message send+receive action as a WCF service. In effect, this allows a WCF service call to be "proxied" through to a message being sent, and then wait for the response to return the WCF result.
 
-NOTE: When doing a blocking send+receive inside a WCF service, the service implementation is a client of the [callback functionality](/nservicebus/messaging/callbacks.md). 
+NOTE: When doing a blocking send+receive inside a WCF service, the service implementation is a client of the [callback functionality](/nservicebus/messaging/callbacks.md).
 
 
 ## Prerequisites for WCF functionality
 
-partial: prereq
+The WCF functionality is part of the [NServiceBus.Wcf NuGet package](https://www.nuget.org/packages/NServiceBus.Wcf). The package has a dependency to `NServiceBus.Callback`. The endpoint hosting the WCF services needs to configure the [callbacks accordingly](/nservicebus/messaging/callbacks.md).
+
 
 
 ## Expose a WCF service
@@ -50,7 +51,7 @@ To expose the WCF service, change the configuration as shown below:
     <service name="Server.WebServices.CancelOrderService"
              behaviorConfiguration="Default">
       <endpoint address="mex"
-                binding="mexHttpBinding" 
+                binding="mexHttpBinding"
                 contract="IMetadataExchange" />
       <host>
         <baseAddresses>
@@ -64,13 +65,92 @@ To expose the WCF service, change the configuration as shown below:
 
 The service name in `<service name="XXX"` must match the [`Type.FullName`](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TRequest, TResponse>`.
 
-partial: bindingaddressincode
+### OverrideBinding
 
-partial: requestresponse
+It is also possible to configure the binding and address in code for each service type individually:
 
-partial: cancellation
+snippet: WcfOverrideBinding
 
-partial: routing
+The delegate is invoked for each service type discovered. The delegate needs to return a binding configuration which contains the binding instance to be used as well as optionally an absolute listening address.
+
+### Int
+
+The integer response scenario allows any integer value to be returned in a strong typed manner.
+
+NOTE: The receiving endpoint requires a reference to `NServiceBus.Callbacks`.
+
+
+#### Expose service
+
+snippet: WcfIntCallback
+
+
+#### Response
+
+snippet: WcfIntCallbackResponse
+
+
+### Enum
+
+The enum response scenario allows any enum value to be returned in a strong typed manner.
+
+NOTE: The receiving endpoint requires a reference to `NServiceBus.Callbacks`.
+
+
+#### Expose service
+
+snippet: WcfEnumCallback
+
+
+#### Response
+
+snippet: WcfEnumCallbackResponse
+
+
+### Object
+
+The Object response scenario allows an object instance to be returned.
+
+NOTE: The receiving endpoint does not require a reference to `NServiceBus.Callbacks`.
+
+
+#### The Response message
+
+This feature leverages the message Reply mechanism of the bus and hence the response need to be a message.
+
+snippet: WcfCallbackResponseMessage
+
+
+#### Expose service
+
+snippet: WcfObjectCallback
+
+
+#### Response
+
+snippet: WcfObjectCallbackResponse
+
+
+## Cancellation
+
+By default a request is canceled after 60 seconds. It is possible to override the cancellation behavior with:
+
+snippet: WcfCancelRequest
+
+The delegate is invoked for each service type discovered. The delegate needs to return a time span indicating how long a request can take until it gets canceled.
+
+
+## Routing
+
+By default a request is routed to the local endpoint instance. It is possible to override the routing behavior with:
+
+snippet: WcfRouting
+
+the replying endpoint handler:
+
+snippet: WcfReplyFromAnotherEndpoint
+
+The delegate is invoked for each service type discovered. The delegate needs to return a function delegate which creates a `SendOption` instance every time it is called.
 
 
 ## Queries and other return values
@@ -84,6 +164,6 @@ When performing operations that aren't as straightforward as a simple query to r
 
 When invoking a Web/WCF service as a part of message handling logic, where that logic also updates transactional resources like a database, the best practice is to split it into two endpoints.
 
-If no response is required from the Web/WCF service then use [publish-subscribe](/nservicebus/messaging/publish-subscribe/). Have the first endpoint publish an event, to which the second endpoint subscribes, and have the second endpoint call the Web/WCF service. 
+If no response is required from the Web/WCF service then use [publish-subscribe](/nservicebus/messaging/publish-subscribe/). Have the first endpoint publish an event, to which the second endpoint subscribes, and have the second endpoint call the Web/WCF service.
 
 If a response is required from the Web/WCF service, turn the first endpoint into a [saga](/nservicebus/sagas/) that sends (_not_ publishes) a message to the second endpoint, which calls the Web/WCF service and [replies](/nservicebus/messaging/reply-to-a-message.md) with a response that is handled by the saga in the first endpoint.

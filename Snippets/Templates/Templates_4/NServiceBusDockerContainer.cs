@@ -26,7 +26,7 @@ namespace Templates_4
 
                     // TODO: ensure the most appropriate serializer is chosen
                     // https://docs.particular.net/nservicebus/serialization/
-                    endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+                    endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
                     endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 

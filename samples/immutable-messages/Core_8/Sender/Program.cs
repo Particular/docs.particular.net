@@ -13,7 +13,7 @@ class Program
 #region immutable-messages-endpoint-config
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ImmutableMessages.UsingInterfaces.Sender");
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         var routingConfiguration = endpointConfiguration.UseTransport(new LearningTransport());
 

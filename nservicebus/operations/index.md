@@ -23,14 +23,6 @@ Operational documentation is best reviewed from the perspective of the selected 
  * [Scripting](/transports/azure-service-bus/operational-scripting.md)
 
 
-### [Azure Service Bus Transport (Legacy)](/transports/azure-service-bus/legacy)
-
- * [Messaging topology](/transports/azure-service-bus/legacy/topologies.md)
- * [Securing Connection Strings To Namespaces](/transports/azure-service-bus/legacy/securing-connection-strings.md)
- * [Performance Tuning](/transports/azure-service-bus/legacy/performance-tuning.md)
- * [Native Integration](/transports/azure-service-bus/legacy/native-integration.md)
-
-
 ### [Azure Storage Queues Transport](/transports/azure-storage-queues/)
 
  * [Performance Tuning](/transports/azure-storage-queues/performance-tuning.md)
@@ -52,7 +44,6 @@ Operational documentation is best reviewed from the perspective of the selected 
 
  * [Routing topology](/transports/rabbitmq/routing-topology.md)
  * [Scripting](/transports/rabbitmq/operations-scripting.md)
- * [In a cluster](/transports/rabbitmq/cluster.md)
 
 
 ## Persistences
@@ -75,7 +66,6 @@ Operational documentation is best reviewed from the perspective of the selected 
 ### [RavenDB Persistence](/persistence/ravendb/)
 
  * [Scripting](/persistence/ravendb/operations-scripting.md)
- * [Configuring RavenDB DTC](/persistence/ravendb/manual-dtc-settings.md)
  * [Installing RavenDB](/persistence/ravendb/installation.md)
 
 

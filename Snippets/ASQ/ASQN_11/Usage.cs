@@ -176,15 +176,6 @@ class Usage
 #pragma warning restore CS0618
     }
 
-    void SetSerialization(EndpointConfiguration endpointConfiguration)
-    {
-        #region AzureStorageQueueSerialization
-
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-
-        #endregion
-    }
-
     public class MyMessage :
         ICommand
     { }

@@ -19,12 +19,6 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 ## Transports
 
 
-### [Azure Service Bus Transport (Legacy)](/transports/azure-service-bus/)
-
- * [Securing Connection Strings To Namespaces](/transports/azure-service-bus/legacy/securing-connection-strings.md)
- * [Authentication and authorization](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-authentication-and-authorization)
-
-
 ### [Azure Storage Queues Transport](/transports/azure-storage-queues/)
 
  * [Security Guide](https://docs.microsoft.com/en-us/azure/storage/storage-security-guide)
