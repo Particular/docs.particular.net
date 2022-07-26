@@ -15,48 +15,56 @@ class Worker : BackgroundService
         this.serviceProvider = serviceProvider;
     }
 
-    protected override async Task ExecuteAsync(CancellationToken cancellationToken)
+    protected override Task ExecuteAsync(CancellationToken cancellationToken)
     {
-        try
+        _ = Task.Run(async () =>
         {
-            var number = 0;
-            while (!cancellationToken.IsCancellationRequested)
+            try
             {
-                Console.WriteLine("Opening a new transactional session");
-
-                using (var scope = serviceProvider.CreateScope())
+                var number = 0;
+                while (!cancellationToken.IsCancellationRequested)
                 {
-                    var session = scope.ServiceProvider.GetRequiredService<ITransactionalSession>();
-                    await session.Open(cancellationToken);
+                    Console.WriteLine("Opening a new transactional session");
 
-                    Console.WriteLine("Press 's' to send a message, 'c' to commit or 'a' to abort the transaction");
-                    var continueSending = true;
-                    while (continueSending)
+                    using (var scope = serviceProvider.CreateScope())
                     {
-                        var key = char.ToLower(Console.ReadKey().KeyChar);
-                        switch (key)
-                        {
-                            case 's':
-                                await session.SendLocal(new MyMessage { Number = number++ }, cancellationToken)
-                                    .ConfigureAwait(false);
-                                break;
-                            case 'c':
-                                await session.Commit(cancellationToken);
-                                continueSending = false;
-                                break;
-                            case 'a':
-                                continueSending = false;
-                                break;
-                        }
-                    }
+                        var session = scope.ServiceProvider.GetRequiredService<ITransactionalSession>();
+                        await session.Open(cancellationToken: cancellationToken);
 
-                    Console.WriteLine();
+                        Console.WriteLine("Press 's' to send a message, 'c' to commit or 'a' to abort the transaction");
+                        var continueSending = true;
+                        while (continueSending)
+                        {
+                            var key = char.ToLower(Console.ReadKey().KeyChar);
+                            cancellationToken.ThrowIfCancellationRequested();
+
+                            switch (key)
+                            {
+                                case 's':
+                                    await session.SendLocal(new MyMessage { Number = number++ }, cancellationToken)
+                                        .ConfigureAwait(false);
+                                    break;
+                                case 'c':
+                                    await session.Commit(cancellationToken);
+                                    continueSending = false;
+                                    break;
+                                case 'a':
+                                    continueSending = false;
+                                    break;
+                            }
+                        }
+
+                        Console.WriteLine();
+                    }
                 }
             }
-        }
-        catch (OperationCanceledException)
-        {
-            // graceful shutdown
-        }
+            catch (OperationCanceledException)
+            {
+                // graceful shutdown
+            }
+        });
+
+        // Avoids blocking shutdown due to Console.ReadKey() calls
+        return Task.CompletedTask;
     }
 }
