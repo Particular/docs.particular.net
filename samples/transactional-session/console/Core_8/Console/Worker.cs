@@ -35,20 +35,20 @@ class Worker : BackgroundService
                         var continueSending = true;
                         while (continueSending)
                         {
-                            var key = char.ToLower(Console.ReadKey().KeyChar);
+                            var key = Console.ReadKey();
                             cancellationToken.ThrowIfCancellationRequested();
 
-                            switch (key)
+                            switch (key.Key)
                             {
-                                case 's':
-                                    await session.SendLocal(new MyMessage { Number = number++ }, cancellationToken)
+                                case ConsoleKey.S:
+                                    await session.SendLocal(new MyMessage { Number = ++number }, cancellationToken)
                                         .ConfigureAwait(false);
                                     break;
-                                case 'c':
+                                case ConsoleKey.C:
                                     await session.Commit(cancellationToken);
                                     continueSending = false;
                                     break;
-                                case 'a':
+                                case ConsoleKey.A:
                                     continueSending = false;
                                     break;
                             }
