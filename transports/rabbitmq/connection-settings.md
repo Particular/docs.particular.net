@@ -142,6 +142,7 @@ By default, the broker requires a username and password to authenticate the clie
 
 snippet: rabbitmq-external-auth-mechanism
 
+partial: add-cluster-node
 
 ## Controlling the prefetch count
 
