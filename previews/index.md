@@ -18,15 +18,11 @@ User feedback is central to the Preview Program, so the more feedback is receive
 
 ## Active Previews
 
-| Name                       | Private | Public | Notes  |
-|----------------------------|:-------:|:------:|--------|
-| [NServiceBus.AzureFunctions.StorageQueues](/previews/azure-functions-storage-queues.md)| :white_check_mark: | :white_check_mark: | [Archival planned](https://discuss.particular.net/t/nservicebus-azurefunctions-storagequeues-package-will-be-archived/3108/),  [Forum discussion](https://discuss.particular.net/t/nservicebus-azurefunctions-storagequeues-public-preview/1911) |
-| [NServiceBus.AwsLambda.Sqs](/previews/aws-lambda-simple-queue-service.md)| :white_check_mark: | :white_check_mark: | [Forum discussion](https://discuss.particular.net/t/nservicebus-awslambda-sqs-public-preview-release-available/2158) |
-| [NServiceBus.Transport.Bridge](/nservicebus/bridge)| :white_check_mark: | :white_check_mark: | [Forum discussion](https://discuss.particular.net/t/nservicebus-transport-bridge-0-1-0-preview-release-available/3059) |
-
-:white_large_square: - not started<br>
-:green_square: - in development<br>
-:white_check_mark: - available<br>
+| Name                       | Status | Notes  |
+|----------------------------|:------------:|--------|
+| [NServiceBus.AzureFunctions.StorageQueues](/previews/azure-functions-storage-queues.md)| :white_check_mark: **Public preview** | [Archival planned](https://discuss.particular.net/t/nservicebus-azurefunctions-storagequeues-package-will-be-archived/3108/),  [Forum discussion](https://discuss.particular.net/t/nservicebus-azurefunctions-storagequeues-public-preview/1911) |
+| [NServiceBus.AwsLambda.Sqs](/previews/aws-lambda-simple-queue-service.md)| :white_check_mark: **Public preview** | [Forum discussion](https://discuss.particular.net/t/nservicebus-awslambda-sqs-public-preview-release-available/2158) |
+| [NServiceBus.Transport.Bridge](/nservicebus/bridge)| :white_check_mark: **Public preview** | [Forum discussion](https://discuss.particular.net/t/nservicebus-transport-bridge-0-1-0-preview-release-available/3059) |
 
 ## Completed Previews
 
