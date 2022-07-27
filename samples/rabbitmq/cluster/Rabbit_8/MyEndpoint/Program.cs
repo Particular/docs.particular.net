@@ -18,8 +18,8 @@ namespace Receiver
 
             #region cluster-add-nodes
             // if you have setup the 3-node cluster as mentioned in the sample instructions
-            transport.AddClusterNode("localhost", 5673);
-            transport.AddClusterNode("localhost", 5674);
+            transport.AddClusterNode("localhost", 5673, false);
+            transport.AddClusterNode("localhost", 5674, false);
             #endregion
 
             endpointConfiguration.UseTransport(transport);
