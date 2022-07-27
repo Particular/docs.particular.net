@@ -26,7 +26,7 @@ The `requestedHeartbeat` connection string option has been removed. The [`SetHea
 
 ## `retryDelay` connection string option removed
 
-The `retryDelay` connection string option has been removed. The [`SetNetworkRecoveryInterval`](/transports/rabbitmq/connection-settings.md#network-recovery-interval) API should be used instead.
+The `retryDelay` connection string option has been removed. The [`SetNetworkRecoveryInterval`](/transports/rabbitmq/connection-settings.md#controlling-behavior-when-the-broker-connection-is-lost-network-recovery-interval) API should be used instead.
 
 ## Transport no longer claims to support `TransportTransactionMode.None`
 

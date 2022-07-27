@@ -172,7 +172,7 @@ Default: `00:01:00` (1 minute)
 snippet: change-heartbeat-interval
 
 
-## Network recovery interval
+### Network recovery interval
 
 Controls the time to wait between attempts to reconnect to the broker if the connection is lost.
 
