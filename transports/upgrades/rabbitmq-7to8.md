@@ -18,15 +18,15 @@ The [timeout manager has been removed from NServiceBus 8](/nservicebus/upgrades/
 
 ## Certificate connection string options removed
 
-The `certPath` and `certPassphrase` connection string options have been removed. The `SetClientCertificate` API should be used instead.
+The `certPath` and `certPassphrase` connection string options have been removed. The [`SetClientCertificate`](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-client-authentication) API should be used instead.
 
 ## `requestedHeartbeat` connection string option removed
 
-The `requestedHeartbeat` connection string option has been removed. The `SetHeartbeatInterval` API should be used instead.
+The `requestedHeartbeat` connection string option has been removed. The [`SetHeartbeatInterval`](/transports/rabbitmq/connection-settings.md#controlling-behavior-when-the-broker-connection-is-lost-heartbeat-interval) API should be used instead.
 
 ## `retryDelay` connection string option removed
 
-The `retryDelay` connection string option has been removed. The `SetNetworkRecoveryInterval` API should be used instead.
+The `retryDelay` connection string option has been removed. The [`SetNetworkRecoveryInterval`](/transports/rabbitmq/connection-settings.md#network-recovery-interval) API should be used instead.
 
 ## Transport no longer claims to support `TransportTransactionMode.None`
 
@@ -34,4 +34,4 @@ The transport does not have any functional difference between `TransportTransact
 
 ## `IRoutingTopology` `SetupSubscription` and `TeardownSubscription` changes
 
-The `type` parameter of the `SetupSubscription` and `TeardownSubscription` methods of the `IRoutingTopology` interface has changed from `System.Type` to `NServiceBus.Unicast.Messages.MessageMetadata`. Custom routing topology implementations will need to be updated.
+The `type` parameter of the `SetupSubscription` and `TeardownSubscription` methods of the `IRoutingTopology` interface has changed from `System.Type` to `NServiceBus.Unicast.Messages.MessageMetadata`. [Custom routing topology](/transports/rabbitmq/routing-topology.md#custom-routing-topology) implementations will need to be updated.
