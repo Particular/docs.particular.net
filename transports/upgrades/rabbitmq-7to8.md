@@ -28,6 +28,10 @@ The `requestedHeartbeat` connection string option has been removed. The `SetHear
 
 The `retryDelay` connection string option has been removed. The `SetNetworkRecoveryInterval` API should be used instead.
 
+## Transport no longer claims to support `TransportTransactionMode.None`
+
+The transport does not have any functional difference between `TransportTransactionMode.ReceiveOnly` and `TransportTransactionMode.None` modes, but there has been no way to indicate this before NServiceBus 8. Now that NServiceBus 8 has enabled this, the transport now only supports `TransportTransactionMode.ReceiveOnly`.
+
 ## `IRoutingTopology` `SetupSubscription` and `TeardownSubscription` changes
 
 The `type` parameter of the `SetupSubscription` and `TeardownSubscription` methods of the `IRoutingTopology` interface has changed from `System.Type` to `NServiceBus.Unicast.Messages.MessageMetadata`. Custom routing topology implementations will need to be updated.
