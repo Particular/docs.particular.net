@@ -7,9 +7,9 @@ class Program
     static void Main()
     {
         var endpointName = "Samples.RabbitMQ.NativeIntegration.Sender";
-        
+
         Console.Title = endpointName;
-        
+
         var connectionFactory = new ConnectionFactory();
 
         using (var connection = connectionFactory.CreateConnection(endpointName))
