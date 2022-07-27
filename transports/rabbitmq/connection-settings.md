@@ -27,18 +27,7 @@ Below is the list of connection string options. When constructing a connection s
 
 The host name of the broker.
 
-NOTE: This Host value is required.
-
-By default, the [guest user can only connect via localhost](https://www.rabbitmq.com/access-control.html). If connecting to a remote host, a user name and password must be provided.
-
-```xml
-<connectionStrings>
-   <add name="NServiceBus/Transport"
-        connectionString="host=myremoteserver;
-                          username=myusername;
-                          password=mypassword"/>
-</connectionStrings>
-```
+NOTE: The host name is required.
 
 
 ### Port
@@ -89,13 +78,7 @@ WARNING: TLS 1.2 must be enabled on the broker to establish a secure connection.
 
 ### Client authentication
 
-If the broker has been configured to require client authentication, a client certificate must be specified in the `CertPath` setting. If that certificate requires a password, it must be specified in the `CertPassphrase` setting.
-
-Here is a sample connection string using these settings:
-
-snippet: rabbitmq-connection-client-auth
-
-Client certificates can also be specified via code instead of using the connection string:
+If the broker has been configured to require client authentication, a client certificate must be specified:
 
 snippet: rabbitmq-client-certificate-file
 
@@ -103,7 +86,7 @@ This can also be done by passing a certificate in directly:
 
 snippet: rabbitmq-client-certificate
 
-NOTE: If a certificate is specified via either code API, the `CertPath` and `CertPassphrase` connection string settings are ignored.
+partial: connection-string-cert
 
 
 ### Remote certificate validation 
@@ -175,13 +158,6 @@ snippet: rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-code
 
 ## Debugging recommendations
 
-For debugging purposes, it can be helpful to increase the heartbeat interval via the connection string:
-
-snippet: rabbitmq-connectionstring-debug
-
-Or via the API:
+It can be helpful to increase the heartbeat interval to avoid connection timeouts while debugging:
 
 snippet: rabbitmq-debug-api
-
-Increasing this setting can help to avoid connection timeouts while debugging.
-

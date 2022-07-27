@@ -160,16 +160,6 @@ class Usage
         #endregion
     }
 
-    void ChangeRequestedHeartbeat(EndpointConfiguration endpointConfiguration)
-    {
-        #region rabbitmq-connectionstring-debug
-
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.ConnectionString("host=broker1;RequestedHeartbeat=600");
-
-        #endregion
-    }
-
     void ChangeRequestedHeartbeatForDebugging(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-debug-api
