@@ -18,9 +18,6 @@ To specify the connection string in code:
 snippet: rabbitmq-config-connectionstring-in-code
 
 
-partial: appconfig
-
-
 ## Connection string options
 
 Below is the list of connection string options. When constructing a connection string, these options should be separated by a semicolon.
@@ -79,15 +76,6 @@ The interval for heartbeats between the endpoint and the broker.
 Default: `60` seconds
 
 
-partial: DequeueTimeout
-
-
-partial: PrefetchCount
-
-
-partial: publisher-confirms
-
-
 ### RetryDelay
 
 The time to wait before trying to reconnect to the broker if the connection is lost.
@@ -113,16 +101,60 @@ The file path to the client authentication certificate when using [TLS](#transpo
 The password for the client authentication certificate specified in `CertPath`
 
 
-partial: tls-details
+## Transport Layer Security support
+
+Secure connections to the broker using [Transport Layer Security (TLS)](https://www.rabbitmq.com/ssl.html) are supported. To enable TLS support, set the `UseTls` setting to `true` in the connection string:
+
+snippet: rabbitmq-connection-tls
+
+WARNING: TLS 1.2 must be enabled on the broker to establish a secure connection.
 
 
-partial: connection-manager
+### Client authentication
+
+If the broker has been configured to require client authentication, a client certificate must be specified in the `CertPath` setting. If that certificate requires a password, it must be specified in the `CertPassphrase` setting.
+
+Here is a sample connection string using these settings:
+
+snippet: rabbitmq-connection-client-auth
+
+Client certificates can also be specified via code instead of using the connection string:
+
+snippet: rabbitmq-client-certificate-file
+
+This can also be done by passing a certificate in directly:
+
+snippet: rabbitmq-client-certificate
+
+NOTE: If a certificate is specified via either code API, the `CertPath` and `CertPassphrase` connection string settings are ignored.
 
 
-partial: prefetch-control
+### Remote certificate validation 
+
+By default, the RabbitMQ client will refuse to connect to the broker if the remote server certificate is invalid. This validation can be disabled by using the following setting:
+
+snippet: rabbitmq-disable-remote-certificate-validation
 
 
-partial: publisher-confirms-setting
+### External authentication
+
+By default, the broker requires a username and password to authenticate the client, but it can be configured to use other external authentication mechanisms. If the broker requires an external authentication mechanism, the client can be configured to use it with the following setting:
+
+snippet: rabbitmq-external-auth-mechanism
+
+
+## Controlling the prefetch count
+
+When consuming messages from the broker, throughput can be improved by having the consumer [prefetch](https://www.rabbitmq.com/consumer-prefetch.html) additional messages.
+The prefetch count is calculated by multiplying the [maximum concurrency](/nservicebus/operations/tuning.md#tuning-concurrency) by the prefetch multiplier. The default value of the multiplier is 3, but it can be changed by using the following:
+
+snippet: rabbitmq-config-prefetch-multiplier
+
+Alternatively, the whole calculation can be overridden by setting the prefetch count directly using the following:
+
+snippet: rabbitmq-config-prefetch-count
+
+NOTE: If the configured value is less than the maximum concurrency, the prefetch count will be set to the maximum concurrency value instead.
 
 
 ## Controlling behavior when the broker connection is lost
@@ -161,9 +193,6 @@ Default: `00:02:00` (2 minutes)
 
 
 snippet: rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-code
-
-
-partial: delayafterfailure
 
 
 ## Debugging recommendations
