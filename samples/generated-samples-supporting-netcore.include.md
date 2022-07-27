@@ -39,7 +39,6 @@
 * [Azure Service Bus Send/Reply Sample](/samples/azure-service-bus-netstandard/send-reply/)
 * [Azure Storage Queues Transport](/samples/azure/storage-queues/)
 * [Change/Move Message Type](/samples/serializers/change-message-type/)
-* [Clustered RabbitMQ transport usage](/samples/rabbitmq/cluster/)
 * [Command routing](/samples/routing/command-routing/)
 * [CommonLogging Usage](/samples/logging/commonlogging/)
 * [Control of serialization via the pipeline](/samples/pipeline/multi-serializer/)

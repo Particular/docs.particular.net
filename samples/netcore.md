@@ -37,7 +37,7 @@ To get started with .NET Core and NServiceBus, the following samples are recomme
 
 ### Message transport samples
 
-* [Simple RabbitMQ Transport Usage](/samples/rabbitmq/simple/?version=rabbit_5)
+* [Simple RabbitMQ Transport Usage](/samples/rabbitmq/simple/?version=rabbit_7)
 * [Simple SQL Server Transport Usage](/samples/sqltransport/simple/?version=sqltransport_4)
 * [Azure Storage Queues Transport](/samples/azure/storage-queues/?version=asq_8)
 * [Simple AmazonSQS Transport Usage](/samples/sqs/simple/?version=sqs_4)
