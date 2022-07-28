@@ -34,3 +34,4 @@ internal class Program
         return builder.ConfigureServices(services => { services.AddHostedService<Worker>(); });
     }
 }
+
