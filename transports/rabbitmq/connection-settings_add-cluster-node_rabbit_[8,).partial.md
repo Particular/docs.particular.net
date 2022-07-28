@@ -1,8 +1,8 @@
 ## Connecting to multiple cluster nodes
 
-The connection string for an endpoint allows one host name to be specified. When connecting to a RabbitMQ cluster, it can be useful for the endpoint to know about all of the nodes in the cluster. If a node goes down, the endpoint can attempt to reconnect to a different node.
+When connecting to a RabbitMQ cluster, it is beneficial if endpoints are able to connect to any of the nodes in the cluster. For example, if a node goes down, the endpoint can attempt to reconnect to a different node and continue operation.
 
-The endpoint can be told about additional nodes in the cluster using the `AddClusterNode` API:
+Since endpoint connection strings are limited to specifying a single hostname, the `AddClusterNode` API can be used to tell the endpoint about additional cluster nodes:
 
 snippet: rabbitmq-add-cluster-node
 
