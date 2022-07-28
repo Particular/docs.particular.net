@@ -199,4 +199,20 @@ class Usage
 
         #endregion
     }
+
+    void AddClusterNode(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-add-cluster-node
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.AddClusterNode("node2", useTls: false);
+
+        #endregion
+
+        #region rabbitmq-add-cluster-node-with-port
+
+        transport.AddClusterNode("node2", 5675, useTls: true);
+
+        #endregion
+    }
 }
