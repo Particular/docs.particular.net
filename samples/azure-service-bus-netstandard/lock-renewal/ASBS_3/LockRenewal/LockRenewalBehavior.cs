@@ -49,7 +49,7 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
             if (elapsed > renewLockTokenIn)
             {
-                Log.Warn($"{message.MessageId}: Incoming message is locked untill {message.LockedUntil:s}Z but already passed configured renewal interval, renewing lock first. Consider lowering the prefetch count.");
+                Log.Warn($"{message.MessageId}: Incoming message is locked until {message.LockedUntil:s}Z but already passed configured renewal interval, renewing lock first. Consider lowering the prefetch count.");
                 await messageReceiver.RenewMessageLockAsync(message, context.CancellationToken).ConfigureAwait(false);
             }
 
