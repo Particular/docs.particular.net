@@ -1,6 +1,6 @@
 ---
 title: RabbitMQ Transport Upgrade Version 7 to 8
-summary: Migration instructions on how to upgrade RabbitMQ Transport from version 7 to 8.
+summary: Instructions on how to upgrade RabbitMQ Transport from version 7 to 8.
 reviewed: 2022-05-05
 component: Rabbit
 related:
@@ -14,66 +14,24 @@ upgradeGuideCoreVersions:
 
 ## Timeout manager
 
-The [timeout manager has been removed from core](/nservicebus/upgrades/7to8/#timeout-manager-removed) which makes timeout manager backward-compatibility mode obsolete. If backward-compatibility mode was enabled these APIs must be removed.
+The [timeout manager has been removed from NServiceBus 8](/nservicebus/upgrades/7to8/#timeout-manager-removed), so the `EnableTimeoutManager` backwards compatibility API has been removed from the transport. The [timeout migration tool](/nservicebus/tools/migrate-to-native-delivery.md) should be used to migrate any remaining timeout messages.
 
-## Configuring the RabbitMQ transport
+## Certificate connection string options removed
 
-To use the RabbitMQ transport for NServiceBus, create a new instance of the `RabbitMQTransport` and pass it to `EndpointConfiguration.UseTransport`.
+The `certPath` and `certPassphrase` connection string options have been removed. The [`SetClientCertificate`](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-client-authentication) API should be used instead.
 
-Instead of:
+## `requestedHeartbeat` connection string option removed
 
-```csharp
-var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-transport.ConnectionString(connectionString);
-```
+The `requestedHeartbeat` connection string option has been removed. The [`SetHeartbeatInterval`](/transports/rabbitmq/connection-settings.md#controlling-behavior-when-the-broker-connection-is-lost-heartbeat-interval) API should be used instead.
 
-Use:
+## `retryDelay` connection string option removed
 
-```csharp
-var transport = new RabbitMQTransport(Topology.Conventional, connectionString);
-endpointConfiguration.UseTransport(transport);
-```
+The `retryDelay` connection string option has been removed. The [`SetNetworkRecoveryInterval`](/transports/rabbitmq/connection-settings.md#controlling-behavior-when-the-broker-connection-is-lost-network-recovery-interval) API should be used instead.
 
-The mandatory configuration settings, the topology and the connection string, are now required to construct the instance of the transport definition class.
+## Transport no longer claims to support `TransportTransactionMode.None`
 
-include: v7-usetransport-shim-api
+The transport does not have any functional difference between `TransportTransactionMode.ReceiveOnly` and `TransportTransactionMode.None` modes, but there has been no way to indicate this before NServiceBus 8. Now that NServiceBus 8 has enabled this, the transport now only supports `TransportTransactionMode.ReceiveOnly`.
 
-## Certificate path and passphrase
+## `IRoutingTopology` `SetupSubscription` and `TeardownSubscription` changes
 
-The certificate file path and passphrase can now be passed only via the connection string. When configuring a secure connection via the API, the only option is to pass an instance of the `X505Certificate2` class. This instance can be constructed using a path and passphrase.
-
-Instead of this code:
-
-snippet: 7to8certificatepath7
-
-Use this:
-
-snippet: 7to8certificatepath8
-
-## Prefetch count
-
-The two prefetch count settings have been replaced with a single setting that uses a callback. Instead of either of these APIs:
-
-snippet: 7to8prefetchcount7
-
-Use one of these:
-
-snippet: 7to8prefetchcount8
-
-## Disabling the durable exchanges and queues
-
-Disabling the durable exchanges and queues has been moved to the constructor of the topology classes, `ConventionalRoutingTopology` and `DirectRoutingTopology`. In order to set the value of that parameter use the variant of the `RabbitMQTransport` constructor that accepts an instance of the topology.
-
-## Configuration options
-
-The RabbitMQ transport configuration options that have not changed have been moved to the `RabbitMQTransport` class. See the following table for further information:
-
-| Version 6 configuration option | Version 7 configuration option |
-| --- | --- |
-| CustomMessageIdStrategy | MessageIdStrategy |
-| DisableRemoteCertificateValidation | ValidateRemoteCertificate |
-| SetClientCertificate | ClientCertificate |
-| SetHeartbeatInterval | HeartbeatInterval |
-| SetNetworkRecoveryInterval | NetworkRecoveryInterval |
-| TimeToWaitBeforeTriggeringCircuitBreaker | TimeToWaitBeforeTriggeringCircuitBreaker |
-| UseExternalAuthMechanism | UseExternalAuthMechanism |
+The `type` parameter of the `SetupSubscription` and `TeardownSubscription` methods of the `IRoutingTopology` interface has changed from `System.Type` to `NServiceBus.Unicast.Messages.MessageMetadata`. [Custom routing topology](/transports/rabbitmq/routing-topology.md#custom-routing-topology) implementations will need to be updated.
