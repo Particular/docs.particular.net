@@ -103,7 +103,7 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
                     {
                         await messageReceiver.RenewMessageLockAsync(message, cancellationToken).ConfigureAwait(false);
                         attempts = 0;
-                        Log.Info($"{message.MessageId}: Lock renewed untill {message.LockedUntil:s}Z.");
+                        Log.Info($"{message.MessageId}: Lock renewed until {message.LockedUntil:s}Z.");
                     }
                     catch (ServiceBusException e) when (e.Reason == ServiceBusFailureReason.MessageLockLost)
                     {
