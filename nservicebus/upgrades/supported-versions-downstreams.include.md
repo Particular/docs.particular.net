@@ -46,7 +46,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.1) | 2021-10-29     | -                 | -                                 |
-| [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | ~~2020-06-24~~ | ~~2022-01-29~~    | ~~Superseded by 1.2.x~~           |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
@@ -110,7 +109,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.1) | 2021-10-29     | -                 | -                                 |
-| [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | ~~2020-06-24~~ | ~~2022-01-29~~    | ~~Superseded by 1.2.x~~           |
 
 ### Serializer packages
 
