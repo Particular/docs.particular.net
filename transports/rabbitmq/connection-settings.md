@@ -29,13 +29,11 @@ The host name of the broker.
 
 NOTE: The host name is required.
 
-
 ### Port
 
 The port where the broker listens.
 
 Default: `5671` if the `UseTls` setting is set to `true`, otherwise the default value is `5672`
-
 
 ### VirtualHost
 
@@ -43,20 +41,17 @@ The [virtual host](https://www.rabbitmq.com/vhosts.html) to use.
 
 Default: `/`
 
-
 ### UserName
 
 The user name to use to connect to the broker.
 
 Default: `guest`
 
-
 ### Password
 
 The password to use to connect to the broker.
 
 Default: `guest`
-
 
 ### UseTls
 
@@ -66,7 +61,6 @@ Default: `false`
 
 partial: options
 
-
 ## Transport Layer Security support
 
 Secure connections to the broker using [Transport Layer Security (TLS)](https://www.rabbitmq.com/ssl.html) are supported. To enable TLS support, set the `UseTls` setting to `true` in the connection string:
@@ -74,7 +68,6 @@ Secure connections to the broker using [Transport Layer Security (TLS)](https://
 snippet: rabbitmq-connection-tls
 
 WARNING: TLS 1.2 must be enabled on the broker to establish a secure connection.
-
 
 ### Client authentication
 
@@ -88,13 +81,11 @@ snippet: rabbitmq-client-certificate
 
 partial: connection-string-cert
 
+### Remote certificate validation
 
-### Remote certificate validation 
-
-By default, the RabbitMQ client will refuse to connect to the broker if the remote server certificate is invalid. This validation can be disabled by using the following setting:
+By default, the RabbitMQ client will refuse to connect to the broker if the remote server certificate is invalid. This validation can be disabled with the following setting:
 
 snippet: rabbitmq-disable-remote-certificate-validation
-
 
 ### External authentication
 
@@ -107,16 +98,15 @@ partial: add-cluster-node
 ## Controlling the prefetch count
 
 When consuming messages from the broker, throughput can be improved by having the consumer [prefetch](https://www.rabbitmq.com/consumer-prefetch.html) additional messages.
-The prefetch count is calculated by multiplying the [maximum concurrency](/nservicebus/operations/tuning.md#tuning-concurrency) by the prefetch multiplier. The default value of the multiplier is 3, but it can be changed by using the following:
+The prefetch count is calculated by multiplying the [maximum concurrency](/nservicebus/operations/tuning.md#tuning-concurrency) by the prefetch multiplier. The default value of the multiplier is 3, but it can be changed as follows:
 
 snippet: rabbitmq-config-prefetch-multiplier
 
-Alternatively, the whole calculation can be overridden by setting the prefetch count directly using the following:
+Alternatively, the whole calculation can be overridden by setting the prefetch count directly as follows:
 
 snippet: rabbitmq-config-prefetch-count
 
 NOTE: If the configured value is less than the maximum concurrency, the prefetch count will be set to the maximum concurrency value instead.
-
 
 ## Controlling behavior when the broker connection is lost
 
@@ -124,14 +114,13 @@ The RabbitMQ transport monitors the connection to the broker and will trigger th
 
 ### Heartbeat interval
 
-Controls how frequently AMQP heartbeat messages will be sent between the endpoint and the broker.
+Controls how frequently AMQP heartbeat messages are sent between the endpoint and the broker.
 
 Type: `System.TimeSpan`
 
 Default: `00:01:00` (1 minute)
 
 snippet: change-heartbeat-interval
-
 
 ### Network recovery interval
 
@@ -143,7 +132,6 @@ Default: `00:00:10` (10 seconds)
 
 snippet: change-network-recovery-interval
 
-
 ### TimeToWaitBeforeTriggering
 
 Controls the amount of time the transport waits after a failure is detected before triggering the critical error action.
@@ -152,9 +140,7 @@ Type: `System.TimeSpan`
 
 Default: `00:02:00` (2 minutes)
 
-
 snippet: rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-code
-
 
 ## Debugging recommendations
 
