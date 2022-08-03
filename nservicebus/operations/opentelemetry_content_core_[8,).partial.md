@@ -11,7 +11,7 @@ NServiceBus endpoints generate OpenTelemetry traces for incoming and outgoing me
 
 snippet: opentelemetry-enabletracing
 
-See [samples](/samples/open-telemetry/) for instructions on how to send trace information to different tools.
+See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send trace information to different tools.
 
 ## Meters
 
@@ -19,8 +19,8 @@ NServiceBus endpoints can be configured to expose metrics related to message pro
 
 snippet: opentelemetry-enablemeters
 
-See [samples](/samples/open-telemetry/) for instructions on how to send metric information to different tools.
+See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send metric information to different tools.
 
 ## Logging
 
-NServiceBus already supports logging out of the box. To collect OpenTelemetry-compatible logging in NServiceBus endpoints, it's possible to configure the endpoint to connect traces and logging when using `Microsoft.Extensions.Logging` package. See the [_Connecting OpenTelemetry traces and logs_ sample](/samples/open-telemetry/logging) for more details.
+NServiceBus supports logging out of the box. To collect OpenTelemetry-compatible logging in NServiceBus endpoints, it's possible to configure the endpoint to connect traces and logging when using `Microsoft.Extensions.Logging` package. See the [_Connecting OpenTelemetry traces and logs_ sample](/samples/open-telemetry/logging) for more details.

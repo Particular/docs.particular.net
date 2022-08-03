@@ -1,6 +1,6 @@
 ---
 title: Connecting OpenTelemetry traces and logs
-summary: How to connect OpenTelemetry traces to logs
+summary: How to connect OpenTelemetry traces to logs in an NServiceBus endpoint
 reviewed: 2022-07-15
 component: Core
 related:
@@ -12,30 +12,30 @@ This sample shows how to configure an NServiceBus endpoint to link OpenTelemetry
 
 ## Configuration
 
-First, OpenTelemetry needs to be configured to capture NServiceBus traces:
+First, configure OpenTelemetry to capture NServiceBus traces:
 
 snippet: otel-config
 
-In this example, all telemetry is being sent to a `ConsoleExporter`, but any OpenTelemetry-compliant exporter will work.
+In this example, all telemetry is sent to a `ConsoleExporter`, but any OpenTelemetry-compliant exporter will work.
 
-Then, the logs emitted by the application can be connected to the traces as follows:
+Next, connect the logs emitted by the application to the traces as follows:
 
 snippet: otel-logging
 
 This will apply the OpenTelemetry logging format to all the logs. More importantly, it will [correlate all logs](https://opentelemetry.io/docs/reference/specification/logs/overview/#log-correlation) to the active traces.
 This means that each log statement will include a `TraceId` and `SpanId` as part of the log entry.
 
-Lastly, the NServiceBus endpoint needs to enable the OpenTelemetry instrumentation:
+Lastly, the NServiceBus endpoint must enable the OpenTelemetry instrumentation:
 
 snippet: otel-nsb-config
 
 ## Running the sample
 
-When running the sample, the following log statement in the message handler:
+When running the sample, the following log statement from the message handler:
 
 snippet: log-statement
 
-Will lead to the following output:
+will lead to the following output:
 
 ```
 info: MyMessageHandler[0]

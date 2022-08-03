@@ -5,4 +5,4 @@ related:
  - nservicebus/operations/opentelemetry
 ---
 
-These samples show how to monitor NServiceBus endpoints with OpenTelemetry.
+These samples demonstrate how to monitor NServiceBus endpoints with OpenTelemetry.

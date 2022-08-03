@@ -7,28 +7,26 @@ related:
 - nservicebus/operations/opentelemetry
 ---
 
-## Introduction
-
 [Azure Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) (App Insights) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints.
 
-This sample shows how to capture NServiceBus OpenTelemetry traces and export them to App Insights. The sample simulates message load and includes a 10% failure rate on processing messages.
+This sample shows how to capture NServiceBus OpenTelemetry traces and export them to App Insights. The sample simulates message load as well as a 10% failure rate on processing messages.
 
 ## Prerequisites
 
 This sample requires an App Insights connection string.
 
-Note: Although the sample uses Azure Application Insights, the solution itself does not have to run on an Azure message transport. This example uses the [Learning Transport](/transports/learning/) but could be modified to run on any [transport](/transports/).
+Note: Although the sample uses Azure Application Insights, the solution itself does not require an Azure message transport. This example uses the [Learning Transport](/transports/learning/) but could be modified to run on any [transport](/transports/).
 
 ## Running the sample
 
 1. Create an Application Insights resource in Azure
 2. Copy the connection string from the Azure portal dashboard into the sample
 3. Start the sample endpoint
-4. Press any key to send a message, or ESC to quit
+4. Press any key to send a message, or <kbd>ESC</kbd> to quit
 
 ### Reviewing traces
 
-1. On the Aure portal dashboard, open the _Investigate_ → _Performance_ panel
+1. On the Azure portal dashboard, open the _Investigate_ → _Performance_ panel
 2. Drill into the samples
 3. Review the custom properties
 
@@ -79,4 +77,4 @@ This exporter is installed into the meter provider builder with a custom extensi
 
 snippet: custom-meter-exporter-installation
 
-NOTE: The shim passes `QueueName` as a custom dimension which allows filtering the graphs in Application Insights. Multi-dimensional metrics are not enabled by default. Check [the Microsoft Documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/app/get-metric#enable-multi-dimensional-metrics) for instructions on how to enable this feature.
+NOTE: The shim passes `QueueName` as a custom dimension which allows filtering the graphs in Application Insights. Multi-dimensional metrics are not enabled by default. Check [the Azure Monitor documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/app/get-metric#enable-multi-dimensional-metrics) for instructions on how to enable this feature.

@@ -7,13 +7,13 @@ related:
 - nservicebus/operations/opentelemetry
 ---
 
-This sample shows how to extend the OpenTelemetry activities in a variety of ways.
+This sample shows how to extend the OpenTelemetry activities in different ways.
 
 ## Running the project
 
 The code consists of a single endpoint project that sends messages to itself.
 
-Press `O` to send a `CreateOrder` message with a randomized `OrderId`. When the message is handled, two more messages are created (`BillOrder` and `ShipOrder`).
+Press <kbd>O</kdb> to send a `CreateOrder` message with a randomized `OrderId`. When the message is handled, two more messages are created: `BillOrder` and `ShipOrder`.
 
 As the messages are sent and processed, trace data is exported to the console. Some of the trace data originates from NServiceBus and some from custom code in the sample.
 
@@ -43,7 +43,7 @@ The handler for `CreateOrder` includes a custom activity that wraps around the b
 
 snippet: custom-activity-in-handler
 
-This will automatically be created as a child activity of the invoke handler activity created by NServiceBus. The NServiceBus send message activity will treat this custom activity as it's parent.
+This will automatically be created as a child activity of the invoke handler activity created by NServiceBus. The NServiceBus send message activity will treat this custom activity as its parent.
 
 ```
 Send CreateOrder

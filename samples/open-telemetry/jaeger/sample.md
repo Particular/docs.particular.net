@@ -7,11 +7,11 @@ related:
  - nservicebus/operations/opentelemetry
 ---
 
-## Introduction
+Jaeger is a distributed tracing system for monitoring and troubleshooting distributed systems. This sample demonstrates how to export OpenTelemetry traces from NServiceBus-based systems to Jaeger.
 
 ## Prerequisites
 
-A Jaeger instance is required to send, process and view Open Telemetry trace diagnostics. Use the [`All in one` Jaeger container image](https://www.jaegertracing.io/docs/1.8/getting-started/#all-in-one) for development and testing purpose by running the following docker command:
+A Jaeger instance is required to send, process and view OpenTelemetry trace diagnostics. Use the [`All in one` Jaeger container image](https://www.jaegertracing.io/docs/1.8/getting-started/#all-in-one) for development and testing purpose by running the following docker command:
 
 ```
 $ docker run -d --name jaeger \
@@ -26,22 +26,21 @@ $ docker run -d --name jaeger \
   jaegertracing/all-in-one:1.8
 ```
 
-With this default configuration, the Jaeger UI should be available at `http://localhost:16686`.
+With this default configuration, the Jaeger UI will be available at `http://localhost:16686`.
 
 ## Code overview
 
-The sample contains two endpoints exchanging publish-subscribe events and point-to-point messages between each other. To enable tracing and export to Jaeger, the `TraceProvider` has to be configured like this:
-each endpoint has to configure Open Telemetry:
+The sample contains two endpoints exchanging publish-subscribe events and point-to-point messages between each other. To enable tracing and export to Jaeger, the `TraceProvider` for each endpoint has to be configured as follows:
 
 snippet: jaeger-exporter-configuration
 
-NServiceBus also needs to enable the OpenTelemetry instrumentation:
+NServiceBus must also enable the OpenTelemetry instrumentation:
 
 snippet: jaeger-endpoint-configuration
 
 ## Running the sample
 
-Run the sample and press `1` on the `Publisher` endpoint to publish one or more events. Navigate to the Jaeger UI (by default at `http://localhost:16686`) to inspect the captured traces:
+Run the sample and press <kbd>1</kbd> on the `Publisher` endpoint to publish one or more events. Navigate to the Jaeger UI (at `http://localhost:16686`) to inspect the captured traces:
 
 ![jaeger search UI](jaeger-search-view.png)
 
