@@ -1,19 +1,20 @@
 ﻿using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using System.Threading.Tasks;
 
 #region asb-function-isolated-configuration
 [assembly: NServiceBusTriggerFunction("WorkerDemoEndpoint")]
 
 public class Program
 {
-    public static void Main()
+    public static Task Main()
     {
         var host = new HostBuilder()
             .ConfigureFunctionsWorkerDefaults()
             .UseNServiceBus()
             .Build();
 
-        host.Run();
+        return host.RunAsync();
     }
 }
 #endregion asb-function-isolated-configuration
@@ -21,7 +22,7 @@ public class Program
 class EnableDiagnostics
 {
     #region asb-function-isolated-enable-diagnostics
-    public static void Main()
+    public static Task Main()
     {
         var host = new HostBuilder()
             .ConfigureFunctionsWorkerDefaults()
@@ -31,7 +32,7 @@ class EnableDiagnostics
             })
             .Build();
 
-        host.Run();
+        return host.RunAsync();
     }
     #endregion
 }
@@ -39,7 +40,7 @@ class EnableDiagnostics
 class ConfigureErrorQueue
 {
     #region asb-function-isolated-configure-error-queue
-    public static void Main()
+    public static Task Main()
     {
         var host = new HostBuilder()
             .ConfigureFunctionsWorkerDefaults()
@@ -53,7 +54,7 @@ class ConfigureErrorQueue
             })
             .Build();
 
-        host.Run();
+        return host.RunAsync();
     }
     #endregion
 }

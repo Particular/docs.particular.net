@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using System.Threading.Tasks;
 
 public static class Program
 {
-    public static void Main(string[] args)
+    public static Task Main(string[] args)
     {
         var host = Host.CreateDefaultBuilder()
             .UseNServiceBus(context =>
@@ -20,6 +21,6 @@ public static class Program
             .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
             .Build();
 
-        host.Run();
+        return host.RunAsync();
     }
 }
