@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using System.Threading.Tasks;
 
 public class Program
 {
-    public static void Main()
+    public static Task Main()
     {
         #region EndpointConfiguration
         var host = Host.CreateDefaultBuilder()
@@ -24,6 +25,6 @@ public class Program
             .Build();
         #endregion
 
-        host.Run();
+        return host.RunAsync();
     }
 }
