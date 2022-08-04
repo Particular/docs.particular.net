@@ -36,7 +36,7 @@ window.defaultConfig = {
 };
 ```
 
-### Messages that are rending retries
+### Messages that are Pending Retries
 
 The Pending Retries screen shows failed messages for which a retry was requested and for which the retry is still pending. The status of retried failures is updated when the message is processed again as either an audited message (i.e. a successful delivery) or as a failed message.
 
