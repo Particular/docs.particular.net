@@ -74,5 +74,5 @@ WARNING: A pending retry message that is retried will remain in the pending retr
 
 Retried messages are moved to the `Processed` state as soon as ServiceControl receives and processes the retry confirmation from the endpoint.
 
-NOTE: Systems running NServiceBus version 7.4 (or earlier) and ServiceControl version 4.19 (or earlier) require the [auditing to be enabled both on the endpoint](/nservicebus/operations/auditing.md) and in ServiceControl. Otherwise, the failed message will show as *retry pending* indefinitely even after the message has been successfully processed by the endpoint. In this scenario, use the `Mark as complete` feature to manually mark the failed message as resolved. Once the message is marked as resolved, it will no longer appear in the pending retries message list.
+NOTE: Systems running NServiceBus version 7.4 (or earlier) and ServiceControl version 4.19 (or earlier) require [auditing to be enabled both on the endpoint](/nservicebus/operations/auditing.md) and in ServiceControl. Otherwise, the failed message will show as *retry pending* indefinitely even after the message has been successfully processed by the endpoint. In this scenario, use the `Mark as complete` feature to manually mark the failed message as resolved. Once the message is marked as resolved, it will no longer appear in the pending retries message list.
 
