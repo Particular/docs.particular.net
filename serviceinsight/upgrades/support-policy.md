@@ -1,16 +1,31 @@
 ---
-title: Support Policy
+title: ServiceInsight support policy
 summary: Versions of ServiceInsight that are currently supported
-reviewed: 2022-02-18
+reviewed: 2022-08-05
 related:
+ - nservicebus/licensing
+ - nservicebus/upgrades/all-versions
+ - nservicebus/upgrades/support-policy
  - nservicebus/upgrades/release-policy
  - nservicebus/upgrades/supported-versions
  - nservicebus/upgrades/supported-platforms
+ - servicecontrol/upgrades/support-policy
  - servicecontrol/upgrades/supported-versions
 ---
 
-- Major versions are supported for a period of one year after the release of the next major version.
-- Only the latest minor version of a previous major version is supported.
-- Patch versions similarly go out of support when a new patch or minor versions are released.
+Only the latest version of ServiceInsight is supported.
 
-For a list of supported ServiceInsight versions, refer to [supported versions](supported-versions.md).
+## ServiceInsight supported versions
+
+The following table lists both currently and recently supported versions of ServiceInsight.
+
+include: supported-versions-serviceinsight
+
+## Upgrade Tips
+
+1. Ensure the machine running ServiceInsight can reach the service running ServiceControl and has access to the IP/Port.
+1. The application settings are automatically migrated to the newer version when ServiceInsight is upgraded.
+
+## ServiceControl compatibility
+
+ServiceInsight is compatible with currently supported version of [ServiceControl](/servicecontrol/upgrades/supported-versions.md).

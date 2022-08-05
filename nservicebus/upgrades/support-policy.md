@@ -78,7 +78,7 @@ Therefore the recommended approach is to upgrade *one* major version at a time, 
 
 **Does this policy apply to the [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/), [ServicePulse](/servicepulse/) applications, [Tools](/nservicebus/tools/), or [previews](/previews/)?**
 
-No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Packages Supported Versions](supported-versions.md) page. Previews are governed by the [support policy for previews](/previews/support-policy.md).ServiceControl, ServicePulse and ServiceInsight are governed by their own support policy, linked below. 
+No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Packages Supported Versions](supported-versions.md) page. Previews are governed by the [support policy for previews](/previews/support-policy.md). ServiceControl, ServicePulse and ServiceInsight are governed by their own support policy, linked below. 
 
 - [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md)
 - [ServicePulse support policy](/servicepulse/upgrades/support-policy.md)
