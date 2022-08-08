@@ -13,7 +13,7 @@ related:
  - servicecontrol/upgrades/supported-versions
 ---
 
-Only the latest version of ServiceInsight is supported.
+Only the latest version of ServiceInsight is supported. The latest version can be found on the [downloads page](https://particular.net/downloads).
 
 ## ServiceInsight supported versions
 
