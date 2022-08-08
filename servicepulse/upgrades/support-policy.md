@@ -15,11 +15,6 @@ related:
 
 Only the latest version of ServicePulse is supported.  The latest version can be found on the [downloads page](https://particular.net/downloads).
 
-## ServicePulse supported versions
-
-The following table lists both currently and recently supported versions of ServicePulse.
-
-include: supported-versions-servicepulse
 
 ## Upgrade Tips
 

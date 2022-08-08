@@ -15,11 +15,6 @@ related:
 
 Only the latest version of ServiceInsight is supported. The latest version can be found on the [downloads page](https://particular.net/downloads).
 
-## ServiceInsight supported versions
-
-The following table lists both currently and recently supported versions of ServiceInsight.
-
-include: supported-versions-serviceinsight
 
 ## Upgrade Tips
 
