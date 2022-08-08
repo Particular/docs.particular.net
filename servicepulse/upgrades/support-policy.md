@@ -13,7 +13,7 @@ related:
  - servicecontrol/upgrades/supported-versions
 ---
 
-Only the latest version of ServicePulse is supported.
+Only the latest version of ServicePulse is supported.  The latest version can be found on the [downloads page](https://particular.net/downloads).
 
 ## ServicePulse supported versions
 
