@@ -25,6 +25,6 @@ partial: settings
 
 In scaled-out environments, endpoint instances compete to execute outbox cleanup, which can result in occasional conflicts. There are a few options available to minimize this:
 
-- Have cleanup only run on a single instance
-- Increase this interval based on the amount of instances to average out the cleanup. The background timer isn't strict and over time these will drift and will cause less overlap in cleanup. For example, when you have 10 instances let cleanup run every 10 minutes.
+- Run the cleanup on only a single instance.
+- Increase the cleanup interval so that, on average, one endpoint instance cleans up as often as a single instance would normally. The cleanup timer isn't strict and over time these will drift and will cause less overlap. For example, for 10 endpoint instances, let cleanup run every 10 minutes instead of every minute.
 - Disable cleanup on all instances and have cleanup run as a scheduled job in the database.
