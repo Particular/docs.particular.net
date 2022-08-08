@@ -22,3 +22,9 @@ partial: modes
 By default, the SQL persistence implementation keeps deduplication records for 7 days and runs the purge every minute.
 
 partial: settings
+
+In scaled out environments endpoint instance can be competing on the outbox cleanup and can result in a lot of cleanup activity as not a specific instance is responsible for cleanup.
+
+- Have cleanup only run on a single instance
+- Increase this interval based on the amount of instances to average out the cleanup. The background timer isn't strict and over time these will drift and will cause less overlap in cleanup. For example, when you have 10 instances let cleanup run every 10 minutes.
+- Disable cleanup on all instances and have cleanup run as a scheduled job in the database.
