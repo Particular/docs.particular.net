@@ -25,12 +25,9 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
         #region get-connection-and-path
 
-        var transportTransaction = context.Extensions.Get<TransportTransaction>();
-        var serviceBusClient = transportTransaction.Get<ServiceBusClient>();
+        var messageReceiver = context.Extensions.Get<ServiceBusReceiver>();
 
         #endregion
-
-        var messageReceiver = serviceBusClient.CreateReceiver(queueName);
 
         try
         {

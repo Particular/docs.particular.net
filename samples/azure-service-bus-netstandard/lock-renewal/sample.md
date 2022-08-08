@@ -45,11 +45,11 @@ The behavior processes every incoming message and uses [native message access](/
 
 snippet: native-message-access
 
-The request to renew the lock must use the same Azure Service Bus connection object and queue path used to receive the incoming message. These items are available in the `TransportTransaction`:
+The request to renew the lock must the message receiver must be obtained:
 
 snippet: get-connection-and-path
 
-With the lock token, connection object, and queue path, an Azure Service Bus `MessageReceiver` object may be created to renew the lock. This is done in a background task, running in an infinite loop until the specified cancellation token is signaled as canceled.
+In the background an infinite loop is started that will renew the lock until the specified cancellation token is signaled as canceled.
 
 snippet: renewal-background-task
 
