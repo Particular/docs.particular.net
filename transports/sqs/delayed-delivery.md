@@ -127,30 +127,20 @@ sequenceDiagram
 
 ```mermaid
 graph LR
-
-subgraph 
-
-Sender .-> |DelaySeconds = 845sec| Destination
-
-end
+   Sender .-> |DelaySeconds = 845sec| Destination
 ```
 
 #### Delay of 32 minutes and 5 seconds
 
 ```mermaid
 graph LR
+  Sender
+  fifo(Destination-delay.fifo)
+  Destination
 
-subgraph 
-
-Sender
-fifo(Destination-delay.fifo)
-Destination
-
-Sender .-> |T1: NServiceBus.AmazonSQS.DelaySeconds = 1,925sec| fifo
-fifo --> |"T2: NServiceBus.AmazonSQS.DelaySeconds = 1,025sec"| fifo
-fifo .-> |"T3: DelaySeconds = 125sec"| Destination
-
-end
+  Sender .-> |T1: NServiceBus.AmazonSQS.DelaySeconds = 1,925sec| fifo
+  fifo --> |"T2: NServiceBus.AmazonSQS.DelaySeconds = 1,025sec"| fifo
+  fifo .-> |"T3: DelaySeconds = 125sec"| Destination
 ```
 
 ## Cost considerations
