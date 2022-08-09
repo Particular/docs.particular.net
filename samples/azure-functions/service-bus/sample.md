@@ -35,8 +35,6 @@ The sample contains the following projects:
 - `AzureFunctions.ASBTrigger.FunctionsHostBuilder` - NServiceBus endpoint
 - `AzureFunctions.Messages` - message definitions
 
-NOTE: `AzureFunctions.ASBTrigger.FunctionsHostBuilder` and `AzureFunctions.ASBTrigger.Static`are both using the same trigger queue and should not be executed simultaneously. 
-
 ## Running the sample
 
 The Functions project contains two functions:
