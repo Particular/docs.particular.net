@@ -1,5 +1,5 @@
 ---
-title: Support Policy
+title: ServiceControl support policy
 summary: Versions of ServiceControl that are currently supported
 reviewed: 2022-02-18
 related:
