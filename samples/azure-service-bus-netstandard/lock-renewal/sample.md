@@ -49,7 +49,7 @@ The request to renew the lock must the message receiver must be obtained:
 
 snippet: get-connection-and-path
 
-In the background an infinite loop is started that will renew the lock until the specified cancellation token is signaled as canceled.
+A background task is started that will renew the lock until the completion of message processing signals the cancellation token.
 
 snippet: renewal-background-task
 
