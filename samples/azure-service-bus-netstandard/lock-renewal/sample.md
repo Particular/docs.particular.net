@@ -45,7 +45,7 @@ The behavior processes every incoming message and uses [native message access](/
 
 snippet: native-message-access
 
-The request to renew the lock must the message receiver must be obtained:
+Obtain the message receiver to renew the lock:
 
 snippet: get-connection-and-path
 
