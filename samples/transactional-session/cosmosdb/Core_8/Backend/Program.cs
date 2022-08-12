@@ -2,7 +2,6 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using Shared;
 
 internal class Program
 {
