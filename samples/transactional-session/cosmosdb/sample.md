@@ -10,20 +10,60 @@ This sample uses the transactional session package with the CosmosDB persistence
 
 downloadbutton
 
+## Overview
+
+The sample contains a frontend and a backend service sharing a CosmosDB database instance. When the transactional session on the frontend is commited, an `Order` document is created with the status `Received` and an `OrderReceived` event is published. The backend service subscribes to the event and loads the order document to update it's status to `Accepted`.
+
+```mermaid
+sequenceDiagram
+    Frontend->>ITransactionalSession: Commit()
+    activate ITransactionalSession
+    ITransactionalSession->>CosmosDB: Store(order)
+    ITransactionalSession->>Queue: Publish(orderReceived)
+    ITransactionalSession-->>Frontend: 
+    deactivate ITransactionalSession
+    Queue->>Backend: Process(orderReceived)
+    activate Backend
+    Backend->>CosmosDB: Update(order)
+    Backend-->>Queue: 
+    deactivate Backend
+```
+
+The database and transport operations are executed atomically when the session is committed. If the session is aborted all database and transport operations are rolled back.
+
 ## Prerequisties
 
-The sample is intended to be used with the CosmosDB emulator to run locally. Alternatively, a connection string to an Azure CosmosDB instance can be provided.
+The sample is intended to be used with the [CosmosDB emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=ssl-netstd21) to run locally. Alternatively, a connection string to an Azure CosmosDB instance can be provided.
+
 
 ## Configuration
 
-To enable transactional consistency between database operations and message operations, the endpoint needs to be configured with Outbox enabled:
+### Frontend
 
-TODO
+The `Frontend` service needs to enable the transactional storage feature in the endpoint configuration:
 
-Using multi-document transactions requires the endpoint to be configured with a partition key mapping to ensure that documents and outbox data are stored on the same partition key:
+snippet: cosmos-txsession-frontend-config
 
-TODO
+Note that the `Outbox` feature must be enabled for the transactional session feature to work.
 
-The transactional session also requires information about the partition key:
+The endpoint is also configured to use CosmosDB persister with a default container and partition key path:
 
-WARN: These settings are mandatory and not configuring the paritition keys correctly can lead to message loss!
+snippet: cosmos-txsession-frontend-persistence
+
+### Backend
+
+The `Backend` service contains a message handler for the `OrderReceived` event. CosmosDB also needs to be configured for CosmosDB:
+
+snippet: cosmos-txsession-backend-persistence
+
+Note that the backend needs a partition key mapping configured for the `OrderReceived` to determine what partition needs to be used to access the order.
+
+## Running the sample
+
+Start the `Frontend` and `Backend` services.
+
+On the Frontend application, press `[s]` to create a new `OrderDocument` and publish an `OrderReceived`. Database and queue operations are not executed until the session is committed. Press the `[s]` key several times to enlist multiple document and message operations in the same transaction.
+
+Press `[c]` to commit the transaction. All previously created orders will now show up in the database with a status of `Received`. The `OrderReceived` events will be published to the `Backend` service. Once the `Backend` service receives the event, it will load the order document and update its status to `Accepted`. Once committed, a new session will be opened in the sample.
+
+Press `[a]` to abort the transaction. All database and queue operations will be rolled back. A new session will be opened in the sample.

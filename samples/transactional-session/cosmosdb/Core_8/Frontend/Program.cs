@@ -3,6 +3,7 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using Shared;
 
 internal class Program
 {
@@ -23,15 +24,17 @@ internal class Program
             var endpointConfiguration = new EndpointConfiguration("Samples.TransactionalSession.Frontend");
             endpointConfiguration.EnableInstallers();
             var transport = endpointConfiguration.UseTransport(new LearningTransport() { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
+
+            #region cosmos-txsession-frontend-config
             endpointConfiguration.EnableOutbox();
-
             endpointConfiguration.EnableTransactionalSession();
+            #endregion
 
+            #region cosmos-txsession-frontend-persistence
             var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
-            persistence.CosmosClient(new CosmosClient(
-                "AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="));
-
+            persistence.CosmosClient(new CosmosClient(Configuration.CosmosDBConnectionString));
             persistence.DefaultContainer("Orders", "/CustomerId");
+            #endregion
 
             endpointConfiguration.PurgeOnStartup(true);
 

@@ -12,7 +12,7 @@ class OrderReceivedHandler : IHandleMessages<OrderReceived>
         this.logger = logger;
     }
 
-    public async Task Handle(OrderReceived message, IMessageHandlerContext context)
+    public async Task Handle(OrderReceived message, IMessageHandlerContext context)adad
     {
         logger.LogInformation($"Received {nameof(OrderReceived)} event for order #{message.OrderId}");
 

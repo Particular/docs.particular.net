@@ -2,6 +2,7 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using Shared;
 
 internal class Program
 {
@@ -23,10 +24,12 @@ internal class Program
             endpointConfiguration.UseTransport(new LearningTransport { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
             endpointConfiguration.EnableOutbox();
 
+            #region MyRegion
             var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
-            persistence.CosmosClient(new CosmosClient("AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="));
+            persistence.CosmosClient(new CosmosClient(Configuration.CosmosDBConnectionString));
             persistence.DefaultContainer("Orders", "/CustomerId");
             persistence.TransactionInformation().ExtractPartitionKeyFromMessage<OrderReceived>(message => new PartitionKey(message.CustomerId));
+            #endregion
 
             return endpointConfiguration;
         });
