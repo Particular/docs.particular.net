@@ -20,7 +20,6 @@ public class Program
             myDataContext.Database.EnsureCreated();
         }
 
-        #region EndpointConfiguration
         var host = Host.CreateDefaultBuilder()
 
             #region txsession-nsb-configuration
@@ -76,9 +75,7 @@ public class Program
                     app.UseEndpoints(r => r.MapControllers());
                 });
             })
-
             .Build();
-        #endregion
 
         host.Run();
     }
