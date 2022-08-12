@@ -116,7 +116,7 @@ In phase 2, outgoing messages are sent to the messaging infrastructure and outbo
 ## Important design considerations
 
 * For best performance, outbox data should be stored in the same database as business data. For more information, see [_Transaction scope_](#important-design-considerations-transaction-scope) below.
-* The outbox works only in an NServiceBus message handler.
+* The outbox works only in an NServiceBus message handler. For use outside the context of a message handler, the [TransactionalSession-package]() can be used.
 * Because deduplication is done using `MessageId`, messages sent outside of an NServiceBus message handler (i.e. from a Web API) cannot be deduplicated unless they are sent with the same `MessageId`.
 * The outbox is _expected_ to generate duplicate messages from time to time, especially if there is unreliable communication between the endpoint and the message broker.
 * Endpoints using the outbox feature should not send messages to endpoints using DTC (see below) as the DTC-enabled endpoints treat duplicates coming from outbox-enabled endpoints as multiple messages.

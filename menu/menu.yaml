@@ -374,6 +374,8 @@
       Title: Raw messaging
     - Url: nservicebus/outbox
       Title: Outbox
+    - Url: nservicebus/transactional-session
+      Title: Transactional session
     - Url: nservicebus/messaging/databus
       Title: Data Bus
       Articles:
