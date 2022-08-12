@@ -10,16 +10,13 @@ public class SendMessageController : Controller
     readonly ITransactionalSession messageSession;
     readonly MyDataContext dataContext;
 
-    #region MessageSessionInjection
     public SendMessageController(ITransactionalSession messageSession, MyDataContext dataContext)
     {
         this.messageSession = messageSession;
         this.dataContext = dataContext;
     }
-    #endregion
 
-
-    #region MessageSessionUsage
+    #region txsession-controller
     [HttpGet]
     public async Task<string> Get()
     {

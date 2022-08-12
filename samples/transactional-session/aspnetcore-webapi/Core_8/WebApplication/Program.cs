@@ -9,12 +9,12 @@ using NServiceBus.Persistence;
 
 public class Program
 {
+    const string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=True;";
+
     public static void Main()
     {
-        var connectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=True;";
-
         using (var myDataContext = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
-                   .UseSqlServer(new SqlConnection(connectionString))
+                   .UseSqlServer(new SqlConnection(ConnectionString))
                    .Options))
         {
             myDataContext.Database.EnsureCreated();
@@ -22,6 +22,8 @@ public class Program
 
         #region EndpointConfiguration
         var host = Host.CreateDefaultBuilder()
+
+            #region txsession-nsb-configuration
             .UseNServiceBus(context =>
             {
                 var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
@@ -30,7 +32,7 @@ public class Program
 
                 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
                 persistence.SqlDialect<SqlDialect.MsSqlServer>();
-                persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
+                persistence.ConnectionBuilder(() => new SqlConnection(ConnectionString));
 
                 endpointConfiguration.EnableOutbox();
                 endpointConfiguration.EnableTransactionalSession();
@@ -38,6 +40,9 @@ public class Program
 
                 return endpointConfiguration;
             })
+            #endregion
+
+            #region txsession-ef-configuration
             .ConfigureServices(c =>
             {
                 // Configure Entity Framework to attach to the synchronized storage session
@@ -57,18 +62,21 @@ public class Program
                     return context;
                 });
             })
+            #endregion
+
             .ConfigureWebHostDefaults(c =>
             {
                 c.ConfigureServices(s => s.AddControllers());
                 c.Configure(app =>
                 {
-                    app.UseDeveloperExceptionPage();
+                    #region txsession-web-configuration
                     app.UseMiddleware<MessageSessionMiddleware>();
+                    #endregion
                     app.UseRouting();
                     app.UseEndpoints(r => r.MapControllers());
-                    app.UseStatusCodePages();
                 });
             })
+
             .Build();
         #endregion
 

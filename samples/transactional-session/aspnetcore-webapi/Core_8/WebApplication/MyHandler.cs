@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using NServiceBus;
 using NServiceBus.Logging;
 
+#region txsession-handler
 public class MyHandler : IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger<MyHandler>();
@@ -26,3 +27,4 @@ public class MyHandler : IHandleMessages<MyMessage>
     }
     #endregion
 }
+#endregion
