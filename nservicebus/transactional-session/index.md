@@ -46,6 +46,17 @@ Once all the operations that are part of this request have been executed, the se
 
 snippet: committing-transactional-session
 
+## Requirements
+
+The transactional session feature requires a persistence in order to store outgoing messages. This feature is currently supported for the following persistence packages:
+
+* [Azure Table](/persistence/azure-table)
+* [CosmosDB](/persistence/cosmosdb)
+* [SQL](/persistence/sql)
+* [NHibernate](/persistence/nhibernate)
+* [RavenDB](/persistence/ravendb)
+* [MongoDB](/persistence/mongodb)
+
 ## Important design consideration
 
 - dedup should be done by the user based on session
