@@ -26,11 +26,31 @@ However, there are scenarios where this approach is not feasible:
 
 The `TransactionalSession` feature solves exactly this problem.
 
-## Enabling the Transactional session
+## Usage
+
+To use the transactional session, first, the `NServiceBus.TransactionalSession`-package needs to be installed in the project.
+
+Then, the feature needs to be enabled on the endpoint:
+
+snippet: enabling-transactional-session
+
+The transactional session can be resolved from the container, and needs to be opened:
+
+snippet: opening-transactional-session
+
+To send messages in an atomic manner, they can be sent through the `ITransactionalSession`:
+
+snippet: sending-transactional-session
+
+Once all the operations that are part of this request have been executed, the session should be committed:
+
+snippet: committing-transactional-session
 
 ## Important design consideration
 
 - dedup should be done by the user based on session
+- doesn't work in send only endpoints
+- requires a persistence that supports transactional session (where do we keep the list?)
 
 ## How it works
 
