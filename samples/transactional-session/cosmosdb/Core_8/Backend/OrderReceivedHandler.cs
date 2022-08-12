@@ -3,7 +3,7 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 
-public class OrderReceivedHandler : IHandleMessages<OrderReceived>
+class OrderReceivedHandler : IHandleMessages<OrderReceived>
 {
     private readonly ILogger<OrderReceivedHandler> logger;
 

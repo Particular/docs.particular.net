@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -37,11 +36,7 @@ class Worker : BackgroundService
                         var session = scope.ServiceProvider.GetRequiredService<ITransactionalSession>();
                         var sessionOptions = new OpenSessionOptions();
 
-                        // Configure partition key information for CosmosDB
-                        sessionOptions.Extensions.Set(new PartitionKey(customerId));
-                        sessionOptions.Metadata.Add("CosmosPartitionKey", customerId);
-
-                        await session.Open(sessionOptions, cancellationToken: cancellationToken);
+                        await session.OpenCosmosDBSession(partitionKey: customerId, options: sessionOptions, cancellationToken: cancellationToken);
 
                         Console.WriteLine(
                             "Press 's' to create a new order, 'c' to commit or 'a' to abort the transaction");
@@ -61,10 +56,10 @@ class Worker : BackgroundService
                                         Status = "Received"
                                     };
                                     var storageSession = session.SynchronizedStorageSession.CosmosPersistenceSession();
-                                    // store document atomically with the outgoing messages
+                                    // store document atomically with the outgoing message
                                     storageSession.Batch.CreateItem(order);
                                     await session.Publish(
-                                        new OrderReceived { CustomerId = customerId, OrderId = order.OrderId },
+                                        new OrderReceived { OrderId = order.OrderId, CustomerId = customerId },
                                         cancellationToken);
                                     break;
                                 case ConsoleKey.C:
