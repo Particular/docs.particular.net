@@ -6,13 +6,13 @@ related:
 - nservicebus/messaging/transactionalsession
 ---
 
-This sample uses the transactional session package with the CosmosDB persistence package to achieve transactionally consistent database changes and message operations.
+This sample uses the `NServiceBus.TransactionalSession`-package with the `NServiceBus.Persistence.CosmosDB`-package to achieve transactionally consistent database changes and message operations.
 
 downloadbutton
 
 ## Overview
 
-The sample contains a frontend and a backend service sharing a CosmosDB database instance. When the transactional session on the frontend is commited, an `Order` document is created with the status `Received` and an `OrderReceived` event is published. The backend service subscribes to the event and loads the order document to update it's status to `Accepted`.
+The sample contains a frontend and a backend service both accessing the same CosmosDB database instance. When the `ITransactionalSession` on the frontend is committed, an `Order` document is created with the status `Received` and an `OrderReceived` event is published. The backend service subscribes to the event and loads the order document to update its status to `Accepted`.
 
 ```mermaid
 sequenceDiagram
@@ -29,38 +29,37 @@ sequenceDiagram
     deactivate Backend
 ```
 
-The database and transport operations are executed atomically when the session is committed. If the session is aborted all database and transport operations are rolled back.
+The database and transport operations are executed atomically when the session is committed. If the session is aborted, all database and transport operations are rolled back.
 
 ## Prerequisties
 
 The sample is intended to be used with the [CosmosDB emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=ssl-netstd21) to run locally. Alternatively, a connection string to an Azure CosmosDB instance can be provided.
 
-
 ## Configuration
 
 ### Frontend
 
-The `Frontend` service needs to enable the transactional storage feature in the endpoint configuration:
+The `Frontend` service needs to enable the transactional session feature in the endpoint configuration:
 
 snippet: cosmos-txsession-frontend-config
 
 Note that the `Outbox` feature must be enabled for the transactional session feature to work.
 
-The endpoint is also configured to use CosmosDB persister with a default container and partition key path:
+The endpoint is also configured to use the CosmosDB persistence with a default container and partition key path:
 
 snippet: cosmos-txsession-frontend-persistence
 
 ### Backend
 
-The `Backend` service contains a message handler for the `OrderReceived` event. CosmosDB also needs to be configured for CosmosDB:
+The `Backend` service contains a message handler for the `OrderReceived` event. The `Backend` endpoint also needs to be configured for CosmosDB:
 
 snippet: cosmos-txsession-backend-persistence
 
-Note that the backend needs a partition key mapping configured for the `OrderReceived` to determine what partition needs to be used to access the order.
+Note that the backend needs a [partition key mapping](/persistence/cosmosdb/transactions.md#specifying-the-partitionkey-to-use-for-the-transaction) configured for the `OrderReceived` to determine what partition needs to be used to access the order.
 
 ## Running the sample
 
-Start the `Frontend` and `Backend` services.
+Start the `Frontend` and `Backend` endpoints.
 
 On the Frontend application, press `[s]` to create a new `OrderDocument` and publish an `OrderReceived`. Database and queue operations are not executed until the session is committed. Press the `[s]` key several times to enlist multiple document and message operations in the same transaction.
 
