@@ -46,7 +46,7 @@ Once all the operations that are part of this request have been executed, the se
 
 snippet: committing-transactional-session
 
-TODO: disposing without committing rolls back the session
+Note that disposing the transactional session without committing, will roll-back any changes that were made.
 
 ## Requirements
 
