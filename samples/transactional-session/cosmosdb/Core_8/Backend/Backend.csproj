@@ -11,7 +11,6 @@
 		<PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-beta.2" />
 		<PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="2.0.0-beta.2.15" />
 		<PackageReference Include="NServiceBus.TransactionalSession" Version="2.0.0-beta.1" />
-		<PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-beta.2" />
 	</ItemGroup>
 
 	<ItemGroup>
