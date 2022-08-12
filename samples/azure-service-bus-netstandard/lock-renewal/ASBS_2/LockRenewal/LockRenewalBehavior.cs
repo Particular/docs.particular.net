@@ -4,15 +4,13 @@ using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
-using NServiceBus.Transport;
 
 class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 {
-    public LockRenewalBehavior(TimeSpan lockDuration, TimeSpan renewLockTokenIn, string queueName)
+    public LockRenewalBehavior(TimeSpan lockDuration, TimeSpan renewLockTokenIn)
     {
         this.lockDuration = lockDuration;
         this.renewLockTokenIn = renewLockTokenIn;
-        this.queueName = queueName;
     }
 
     public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
@@ -46,7 +44,7 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
             if (elapsed > renewLockTokenIn)
             {
-                Log.Warn($"{message.MessageId}: Incoming message is locked untill {message.LockedUntil:s}Z but already passed configured renewal interval, renewing lock first. Consider lowering the prefetch count.");
+                Log.Warn($"{message.MessageId}: Incoming message is locked until {message.LockedUntil:s}Z but already passed configured renewal interval, renewing lock first. Consider lowering the prefetch count.");
                 await messageReceiver.RenewMessageLockAsync(message).ConfigureAwait(false);
             }
 
@@ -99,7 +97,7 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
                     {
                         await messageReceiver.RenewMessageLockAsync(message, cancellationToken).ConfigureAwait(false);
                         attempts = 0;
-                        Log.Info($"{message.MessageId}: Lock renewed untill {message.LockedUntil:s}Z.");
+                        Log.Info($"{message.MessageId}: Lock renewed until {message.LockedUntil:s}Z.");
                     }
                     catch (ServiceBusException e) when (e.Reason == ServiceBusFailureReason.MessageLockLost)
                     {
@@ -128,6 +126,5 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
     readonly TimeSpan lockDuration;
     readonly TimeSpan renewLockTokenIn;
-    readonly string queueName;
     static readonly ILog Log = LogManager.GetLogger<LockRenewalBehavior>();
 }

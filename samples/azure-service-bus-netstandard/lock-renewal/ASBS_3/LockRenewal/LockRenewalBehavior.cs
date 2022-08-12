@@ -4,15 +4,13 @@ using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
-using NServiceBus.Transport;
 
 class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 {
-    public LockRenewalBehavior(TimeSpan lockDuration, TimeSpan renewLockTokenIn, string queueName)
+    public LockRenewalBehavior(TimeSpan lockDuration, TimeSpan renewLockTokenIn)
     {
         this.lockDuration = lockDuration;
         this.renewLockTokenIn = renewLockTokenIn;
-        this.queueName = queueName;
     }
 
     public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
@@ -25,12 +23,9 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
         #region get-connection-and-path
 
-        var transportTransaction = context.Extensions.Get<TransportTransaction>();
-        var serviceBusClient = transportTransaction.Get<ServiceBusClient>();
+        var messageReceiver = context.Extensions.Get<ServiceBusReceiver>();
 
         #endregion
-
-        var messageReceiver = serviceBusClient.CreateReceiver(queueName);
 
         try
         {
@@ -132,6 +127,5 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
     readonly TimeSpan lockDuration;
     readonly TimeSpan renewLockTokenIn;
-    readonly string queueName;
     static readonly ILog Log = LogManager.GetLogger<LockRenewalBehavior>();
 }

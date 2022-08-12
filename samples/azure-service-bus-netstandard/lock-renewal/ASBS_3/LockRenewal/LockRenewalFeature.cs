@@ -1,8 +1,5 @@
 ﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
 using NServiceBus.Features;
-using NServiceBus.Transport;
 
 public class LockRenewalFeature : Feature
 {
@@ -28,14 +25,12 @@ public class LockRenewalFeature : Feature
     protected override void Setup(FeatureConfigurationContext context)
     {
         var lockRenewalOptions = context.Settings.Get<LockRenewalOptions>();
-        var localQueueAddress = context.LocalQueueAddress();
 
         context.Pipeline.Register(
             stepId: "LockRenewal",
             factoryMethod: builder => new LockRenewalBehavior(
                 lockRenewalOptions.LockDuration,
-                lockRenewalOptions.RenewalInterval,
-                builder.GetRequiredService<ITransportAddressResolver>().ToTransportAddress(localQueueAddress)
+                lockRenewalOptions.RenewalInterval
                 ),
             description: "Renew message lock token");
     }

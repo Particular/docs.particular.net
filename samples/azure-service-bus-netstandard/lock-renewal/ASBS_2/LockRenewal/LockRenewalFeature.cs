@@ -1,5 +1,4 @@
 ﻿using System;
-using NServiceBus;
 using NServiceBus.Features;
 
 public class LockRenewalFeature : Feature
@@ -26,11 +25,13 @@ public class LockRenewalFeature : Feature
     protected override void Setup(FeatureConfigurationContext context)
     {
         var lockRenewalOptions = context.Settings.Get<LockRenewalOptions>();
-        var queueName = context.Settings.LocalAddress();
 
         context.Pipeline.Register(
             stepId: "LockRenewal",
-            factoryMethod: builder => new LockRenewalBehavior(lockRenewalOptions.LockDuration, lockRenewalOptions.RenewalInterval, queueName),
+            factoryMethod: builder => new LockRenewalBehavior(
+                lockRenewalOptions.LockDuration,
+                lockRenewalOptions.RenewalInterval
+                ),
             description: "Renew message lock token");
     }
 }
