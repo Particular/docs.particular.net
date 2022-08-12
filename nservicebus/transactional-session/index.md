@@ -50,7 +50,7 @@ snippet: committing-transactional-session
 
 - dedup should be done by the user based on session
 - doesn't work in send only endpoints
-- requires a persistence that supports transactional session (where do we keep the list?)
+- requires a persistence that supports transactional session (where to add the list?)
 
 ## How it works
 
