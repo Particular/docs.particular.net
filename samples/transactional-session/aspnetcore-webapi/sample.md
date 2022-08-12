@@ -52,6 +52,27 @@ The session has already been opened by the `MessageSessionMiddleware`. The middl
 
 snippet: txsession-middleware
 
+This diagram visualizes the interaction between the middleware, `ITransactionalSession`, and the Web API controller:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    User->>Middleware: Http Request
+    activate Middleware
+    Middleware->>TransactionalSession: Open
+    activate TransactionalSession
+    TransactionalSession-->>Middleware: 
+    Middleware->>Controller: next()
+    activate Controller
+    Controller->>TransactionalSession: Send/Publish...
+    Controller->>TransactionalSession: Use SynchronizedStorageSession
+    deactivate Controller
+    Middleware->>TransactionalSession: Commit
+    deactivate TransactionalSession
+    Middleware-->>User: 
+    deactivate Middleware
+```
+
 ## Handling the message
 
 The `MyHandler` message handler handles the message sent by the ASP.NET controller. It can access the previously committed data stored by the controller:
