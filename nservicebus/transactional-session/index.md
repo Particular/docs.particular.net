@@ -9,9 +9,9 @@ redirects:
 
 ## The consistency problem
 
-Consider a web controller that creates a `User` in the business database, and also publishes a `UserCreated` event. If a failure occurs during the execution of the request, two scenarios may occur, depending on the order of operations.
+Consider an ASP.NET Core controller that creates a `User` in the business database, and also publishes a `UserCreated` event. If a failure occurs during the execution of the request, two scenarios may occur, depending on the order of operations.
 
-1. **Phantom record**: The message handler creates the `User` in the database first, then publishes the `UserCreated` event. If a failure occurs between these two operations:
+1. **Phantom record**: The controller creates the `User` in the database first, then publishes the `UserCreated` event. If a failure occurs between these two operations:
     * The `User` is created in the database, but the `UserCreated` event is not published.
     * This results in a `User` in the database, known as a phantom record, which is never announced to the rest of the system.
 2. **Ghost message**: The controller publishes the `UserCreated` event first, then creates the `User` in the database. If a failure occurs between these two operations:
@@ -46,6 +46,8 @@ Once all the operations that are part of this request have been executed, the se
 
 snippet: committing-transactional-session
 
+TODO: disposing without committing rolls back the session
+
 ## Requirements
 
 The transactional session feature requires a persistence in order to store outgoing messages. This feature is currently supported for the following persistence packages:
@@ -57,11 +59,85 @@ The transactional session feature requires a persistence in order to store outgo
 * [RavenDB](/persistence/ravendb)
 * [MongoDB](/persistence/mongodb)
 
-## Important design consideration
-
-- dedup should be done by the user based on session
-- doesn't work in send only endpoints
-- requires a persistence that supports transactional session (where to add the list?)
-
 ## How it works
 
+The transactional session feature guarantees that all outgoing message operations are eventually consistent with the data operations.
+
+Returning to the earlier example of a message handler which creates a `User` and then publishes a `UserCreated` event, the following process occurs. Details are described following the diagram.
+
+```mermaid
+sequenceDiagram
+    actor User
+    autonumber
+    Note over User: Phase 1
+    activate User
+    User->>TransactionalSession: Open()
+    activate TransactionalSession
+    TransactionalSession->>PendingTransportOperations: new()
+    TransactionalSession->>Storage: BeginTransaction()
+    activate Storage
+    Storage-->>TransactionalSession: transaction
+    deactivate Storage
+    deactivate TransactionalSession
+
+    User->>TransactionalSession: Publish<UserCreated>()
+    activate TransactionalSession
+    TransactionalSession->>PendingTransportOperations: Add()
+    deactivate TransactionalSession
+
+    activate TransactionalSession
+    deactivate TransactionalSession
+    User->>Storage: Store(user)
+
+    User->>TransactionalSession: Commit()
+    activate TransactionalSession
+    TransactionalSession->>Transport: Dispatch(controlMessage)
+    TransactionalSession->>PendingTransportOperations: ConvertToOutboxOperations
+    activate PendingTransportOperations
+    PendingTransportOperations-->>TransactionalSession: outboxRecord
+    deactivate PendingTransportOperations
+    TransactionalSession->>Storage: Store(outboxRecord)
+    TransactionalSession->>Storage: Complete()
+    TransactionalSession-->>User:
+    deactivate TransactionalSession
+    deactivate User
+
+    Note over ReceivePipeline: Phase 2
+    ReceivePipeline->>Transport: Read()
+    activate ReceivePipeline
+    ReceivePipeline->>Storage: GetOutboxRecord()
+    activate Storage
+    Storage-->>ReceivePipeline: outboxRecord
+    deactivate Storage
+    ReceivePipeline->>Transport: Dispatch(outboxRecord.Operations)
+    ReceivePipeline->>Storage: SetAsDispatched()
+    ReceivePipeline-->>Transport: Ack()
+    deactivate ReceivePipeline
+```
+
+There is no single transaction that spans all the operations. The operations occur in two separate phases:
+
+### Phase 1
+
+1. The user opens a transactional session.
+2. A set of `PendingOperations` is initialized, in which the message operations will be collected.
+3. A transaction is started on the storage seam.
+4. The user can execute any message operations that are needed on the transactional session.
+5. The user can store any data using the persistence-specific session that is exposed on the transactional session.
+6. When all operations have been registered, the user calls ´Commit´ on the transactional session.
+7. A control message is dispatched to the local queue.
+8. The message operations are converted and stored into an outbox record.
+9. The transaction is committed and the outbox record and business data-modifications done by the user are atomically stored.
+
+### Phase 2
+
+The endpoint receives the control message, and processes it as follows:
+   * Find the outbox record.
+   * If it exists, it hasn't been marked as dispatched, and there are pending operations, dispatch those operations, and set the outbox record as dispatched.
+   * If it doesn't exist, processing of the control message is delayed to a later point.
+
+## Important design consideration
+
+* The transactional session uses a control message that is sent to the local queue. Due to this design, this feature requires a full endpoint and cannot be used in send-only endpoints.
+
+- dedup should be done by the user based on session
