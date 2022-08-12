@@ -24,7 +24,7 @@ internal class Program
             endpointConfiguration.UseTransport(new LearningTransport { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
             endpointConfiguration.EnableOutbox();
 
-            #region MyRegion
+            #region cosmos-txsession-backend-persistence
             var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
             persistence.CosmosClient(new CosmosClient(Configuration.CosmosDBConnectionString));
             persistence.DefaultContainer("Orders", "/CustomerId");
