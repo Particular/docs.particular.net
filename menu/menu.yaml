@@ -1140,11 +1140,13 @@
 
 - Name: ServiceInsight
   Topics:
-  - Title: Getting Started
+  - Title: Introduction
     Url: serviceinsight
     Articles:
     - Url: serviceinsight/license
-      Title: License installation
+      Title: Licensing
+    - Url: serviceinsight/support-policy
+      Title: Support Policy
   - Title: Usage
     Articles:
     - Url: serviceinsight/application-invocation
@@ -1159,7 +1161,7 @@
       Title: Data not available
     - Url: serviceinsight/logging
       Title: Logging
-
+  
 - Name: ServicePulse
   Topics:
   - Title: Introduction
@@ -1184,6 +1186,8 @@
       Title: Health check notifications
     - Url: servicepulse/endpoint-connection
       Title: Endpoint connection settings
+    - Url: servicepulse/support-policy
+      Title: Support Policy
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config
