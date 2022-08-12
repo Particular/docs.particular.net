@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using NServiceBus.TransactionalSession;
@@ -13,8 +14,10 @@ public class MessageSessionMiddleware
 
     public async Task InvokeAsync(HttpContext httpContext, ITransactionalSession session)
     {
-        await session.Open();
+        await session.OpenSqlSession();
+
         await next(httpContext);
+
         await session.Commit();
     }
 }

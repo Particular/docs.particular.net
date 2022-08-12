@@ -1,17 +1,17 @@
 ﻿using System.Data.SqlClient;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Persistence;
-using NServiceBus.Persistence.Sql;
 
 public class Program
 {
     public static void Main()
     {
-        var connectionString = @"server=(local);database=nservicebus;Integrated Security=True;Max Pool Size=100";
+        var connectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=True;";
 
         using (var myDataContext = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
                    .UseSqlServer(new SqlConnection(connectionString))
@@ -25,22 +25,22 @@ public class Program
             .UseNServiceBus(context =>
             {
                 var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
-                var transport = endpointConfiguration.UseTransport(new LearningTransport());
-                transport.RouteToEndpoint(
-                    assembly: typeof(MyMessage).Assembly,
-                    destination: "Samples.ASPNETCore.Endpoint");
+                var transport = endpointConfiguration.UseTransport(new LearningTransport { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
+                endpointConfiguration.EnableInstallers();
 
                 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
                 persistence.SqlDialect<SqlDialect.MsSqlServer>();
                 persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
+
+                endpointConfiguration.EnableOutbox();
                 endpointConfiguration.EnableTransactionalSession();
 
-                    
 
                 return endpointConfiguration;
             })
             .ConfigureServices(c =>
             {
+                // Configure Entity Framework to attach to the synchronized storage session
                 c.AddScoped(b =>
                 {
                     var session = b.GetRequiredService<ISynchronizedStorageSession>();
@@ -57,7 +57,18 @@ public class Program
                     return context;
                 });
             })
-            .ConfigureWebHostDefaults(c => c.UseStartup<Startup>())
+            .ConfigureWebHostDefaults(c =>
+            {
+                c.ConfigureServices(s => s.AddControllers());
+                c.Configure(app =>
+                {
+                    app.UseDeveloperExceptionPage();
+                    app.UseMiddleware<MessageSessionMiddleware>();
+                    app.UseRouting();
+                    app.UseEndpoints(r => r.MapControllers());
+                    app.UseStatusCodePages();
+                });
+            })
             .Build();
         #endregion
 
