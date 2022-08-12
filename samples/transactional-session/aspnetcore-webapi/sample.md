@@ -4,7 +4,6 @@ summary: NServiceBus.TransactionalSession sample that illustrates how to send me
 component: TransactionalSession
 reviewed: 2022-08-12
 related:
-  - TODO
 ---
 
 include: webhost-warning
@@ -78,7 +77,3 @@ sequenceDiagram
 The `MyHandler` message handler handles the message sent by the ASP.NET controller. It can access the previously committed data stored by the controller:
 
 snippet: txsession-handler
-
-The message session is injected into `SendMessageController` via constructor injection.
-
-snippet: MessageSessionInjection
