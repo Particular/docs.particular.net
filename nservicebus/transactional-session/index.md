@@ -139,5 +139,4 @@ The endpoint receives the control message, and processes it as follows:
 ## Important design consideration
 
 * The transactional session uses a control message that is sent to the local queue. Due to this design, this feature requires a full endpoint and cannot be used in send-only endpoints.
-
-- dedup should be done by the user based on session
+* Deduplication is guaranteed in Phase 2, but not in Phase 1. In Phase 2, the outbox record ensures that the operations will never be dispatched more than once. However, during Phase 1, a unique ID is assigned to the session. At that point, the user is responsible to ensure that no duplicate requests are executed.
