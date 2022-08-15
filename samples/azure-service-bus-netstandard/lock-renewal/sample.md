@@ -25,21 +25,11 @@ partial: transactionmode
 
 The sample contains a single executable project, `LockRenewal`, that sends a `LongProcessingMessage` message to itself, and the time taken to process that message exceeds the maximum lock duration on the endpoint's input queue.
 
-### Lock renewal feature
+### Configuration
 
 Lock renewal is enabled by the `LockRenewalFeature`, which is configured to be enabled by default.
 
-snippet: LockRenewalFeature
-
-The Azure Service Bus transport sets `LockDuration` to 5 minutes by default, so the default `LockDuration` for the feature has the same value. `ExecuteRenewalBefore` is a `TimeSpan` specifying how soon to attempt lock renewal before the lock expires. The default is 10 seconds. Both settings may be overridden using the `EndpointConfiguration` API.
-
-snippet: override-lock-renewal-configuration
-
-In the sample, `LockDuration` is set to 30 seconds, and `ExecuteRenewalBefore` is set to 5 seconds.
-
-### Lock renewal behavior
-
-The `LockRenewalFeature` uses the two settings to register the `LockRenewalBehavior` pipeline behavior. With `LockDuration` set to 30 seconds and `ExecuteRenewalBefore` set to 5 seconds, the lock will be renewed every 25 seconds (`LockDuration` - `ExecuteRenewalBefore`).
+partial: walkthrough
 
 The behavior processes every incoming message and uses [native message access](/transports/azure-service-bus/native-message-access.md) to get the message's lock token, which is required for lock renewal.
 
@@ -56,6 +46,10 @@ snippet: renewal-background-task
 The behavior executes the rest of the pipeline and cancels the background task when execution is completed.
 
 snippet: processing-and-cancellation
+
+### Prefetching
+
+It is adviced to disable prefetching if the majority of message in the queue result in long processing durations. This reduced unnecessary lock expiration of prefetced messages.
 
 ### Long-running handler
 
