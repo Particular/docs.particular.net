@@ -27,10 +27,10 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
         var transportTransaction = context.Extensions.Get<TransportTransaction>();
         var (serviceBusConnection, path) = transportTransaction.Get<(ServiceBusConnection, string)>();
+        var messageReceiver = new MessageReceiver(serviceBusConnection, path);
 
         #endregion
 
-        var messageReceiver = new MessageReceiver(serviceBusConnection, path);
 
         var cts = new CancellationTokenSource();
         var token = cts.Token;
