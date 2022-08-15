@@ -154,7 +154,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.2) | 2021-10-19     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.3) | 2021-10-19     | -                 | -                                 |
 | [1.9.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.9.0) | 2021-03-01     | 2022-10-19        | Superseded by 2.0.x               |
 | [~~1.8.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.8.0) | ~~2020-12-24~~ | ~~2021-06-01~~    | ~~Superseded by 1.9.x~~           |
 | [~~1.7.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | ~~2020-11-24~~ | ~~2021-03-24~~    | ~~Superseded by 1.8.x~~           |
@@ -848,7 +848,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.13.x](https://www.nuget.org/packages/Particular.PlatformSample/2.13.0) | 2022-08-10     | -                 | -                                 |
+| [2.14.x](https://www.nuget.org/packages/Particular.PlatformSample/2.14.0) | 2022-08-12     | -                 | -                                 |
+| [2.13.x](https://www.nuget.org/packages/Particular.PlatformSample/2.13.0) | 2022-08-10     | 2022-11-12        | Superseded by 2.14.x              |
 | [2.12.x](https://www.nuget.org/packages/Particular.PlatformSample/2.12.0) | 2022-08-05     | 2022-11-10        | Superseded by 2.13.x              |
 | [2.11.x](https://www.nuget.org/packages/Particular.PlatformSample/2.11.0) | 2022-08-03     | 2022-11-05        | Superseded by 2.12.x              |
 | [2.8.x](https://www.nuget.org/packages/Particular.PlatformSample/2.8.1) | 2022-06-22     | 2022-11-03        | Superseded by 2.11.x              |
