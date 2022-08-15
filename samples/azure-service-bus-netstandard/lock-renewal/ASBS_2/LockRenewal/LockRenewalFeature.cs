@@ -4,11 +4,7 @@ public class LockRenewalFeature : Feature
 {
     internal LockRenewalFeature()
     {
-        #region LockRenewalFeature
-
         EnableByDefault();
-
-        #endregion
     }
 
     protected override void Setup(FeatureConfigurationContext context)
