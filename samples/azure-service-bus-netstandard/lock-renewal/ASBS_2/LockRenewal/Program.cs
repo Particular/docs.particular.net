@@ -22,23 +22,11 @@ class Program
         }
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>().ConnectionString(connectionString);
-
-        #region override-lock-renewal-configuration
-
-        var lockDuration = TimeSpan.FromSeconds(30);
-        var renewalInterval = TimeSpan.FromSeconds(5);
-
-        endpointConfiguration.LockRenewal(options =>
-        {
-            options.LockDuration = lockDuration;
-            options.RenewalInterval = renewalInterval;
-        });
-
-        #endregion
+        transport.PrefetchCount(0);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
-        await OverrideQueueLockDuration("Samples.ASB.SendReply.LockRenewal", connectionString, lockDuration).ConfigureAwait(false);
+        await OverrideQueueLockDuration("Samples.ASB.SendReply.LockRenewal", connectionString, TimeSpan.FromSeconds(30)).ConfigureAwait(false);
 
         await endpointInstance.SendLocal(new LongProcessingMessage { ProcessingDuration = TimeSpan.FromSeconds(45) });
 

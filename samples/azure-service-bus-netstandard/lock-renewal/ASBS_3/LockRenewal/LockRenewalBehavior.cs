@@ -7,12 +7,6 @@ using NServiceBus.Pipeline;
 
 class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 {
-    public LockRenewalBehavior(TimeSpan lockDuration, TimeSpan renewLockTokenIn)
-    {
-        this.lockDuration = lockDuration;
-        this.renewLockTokenIn = renewLockTokenIn;
-    }
-
     public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
     {
         #region native-message-access
@@ -27,60 +21,43 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
         #endregion
 
-        try
+        var now = DateTimeOffset.UtcNow;
+        var remaining = message.LockedUntil - now;
+
+        if (remaining < MaximumRenewBufferDuration)
         {
-            var now = DateTimeOffset.UtcNow;
-            var remaining = message.LockedUntil - now;
-
-            if (remaining < renewLockTokenIn)
+            throw new Exception($"Not processing message because remaining lock duration is below maximum renew buffer duration ({MaximumRenewBufferDuration}). Consider lowering the prefetch count.")
             {
-                throw new Exception($"Not processing message because remaining lock duration is below configured renewal interval.")
-                {
-                    Data = { { "ServiceBusReceivedMessage.MessageId", message.MessageId } }
-                };
-            }
-
-            var elapsed = lockDuration - remaining;
-
-            if (elapsed > renewLockTokenIn)
-            {
-                Log.Warn($"{message.MessageId}: Incoming message is locked until {message.LockedUntil:s}Z but already passed configured renewal interval, renewing lock first. Consider lowering the prefetch count.");
-                await messageReceiver.RenewMessageLockAsync(message, context.CancellationToken).ConfigureAwait(false);
-            }
-
-            ;
-            using (var cts = CancellationTokenSource.CreateLinkedTokenSource(context.CancellationToken))
-            {
-                var token = cts.Token;
-
-                _ = RenewLockToken(token);
-
-                #region processing-and-cancellation
-
-                try
-                {
-                    await next().ConfigureAwait(false);
-                }
-                finally
-                {
-                    remaining = message.LockedUntil - DateTimeOffset.UtcNow;
-
-                    if (remaining < renewLockTokenIn)
-                    {
-                        Log.Warn($"{message.MessageId}: Processing completed but LockedUntil {message.LockedUntil:s}Z less than {renewLockTokenIn}. This could indicate issues during lock renewal.");
-                    }
-
-                    cts.Cancel();
-                }
-
-                #endregion
-            }
-        }
-        finally
-        {
-            await messageReceiver.DisposeAsync(); // Cannot use "await using" because of lang version 7.3
+                Data = { { "ServiceBusReceivedMessage.MessageId", message.MessageId } }
+            };
         }
 
+        using (var cts = new CancellationTokenSource())
+        {
+            var token = cts.Token;
+
+            _ = RenewLockToken(token);
+
+            #region processing-and-cancellation
+
+            try
+            {
+                await next().ConfigureAwait(false);
+            }
+            finally
+            {
+                remaining = message.LockedUntil - DateTimeOffset.UtcNow;
+
+                if (remaining < MaximumRenewBufferDuration)
+                {
+                    Log.Warn($"{message.MessageId}: Processing completed but LockedUntil {message.LockedUntil:s}Z less than {MaximumRenewBufferDuration}. This could indicate issues during lock renewal.");
+                }
+
+                cts.Cancel();
+            }
+
+            #endregion
+        }
 
         #region renewal-background-task
 
@@ -92,7 +69,13 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
                 while (!cancellationToken.IsCancellationRequested)
                 {
-                    await Task.Delay(renewLockTokenIn, cancellationToken).ConfigureAwait(false);
+                    now = DateTimeOffset.UtcNow;
+                    remaining = message.LockedUntil - now;
+
+                    var buffer = TimeSpan.FromTicks(Math.Min(remaining.Ticks / 2, MaximumRenewBufferDuration.Ticks));
+                    var renewAfter = remaining - buffer;
+
+                    await Task.Delay(renewAfter, cancellationToken).ConfigureAwait(false);
 
                     try
                     {
@@ -125,7 +108,8 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
         #endregion
     }
 
-    readonly TimeSpan lockDuration;
-    readonly TimeSpan renewLockTokenIn;
     static readonly ILog Log = LogManager.GetLogger<LockRenewalBehavior>();
+
+    // https://github.com/Azure/azure-sdk-for-net/blob/4162f6fa2445b2127468b9cfd080f01c9da88eba/sdk/servicebus/Microsoft.Azure.ServiceBus/src/MessagingUtilities.cs#L10-L23
+    static readonly TimeSpan MaximumRenewBufferDuration = TimeSpan.FromSeconds(10);
 }
