@@ -14,6 +14,10 @@ Version 7 of the RabbitMQ transport is focused on fully supporting [quorum queue
 
 Version 7 relies on quorum queue features introduced in RabbitMQ 3.10.0, so the transport now requires that all RabbitMQ nodes be on version `3.10.0` or above.
 
+In addition, the `stream_queue` and `quorum_queue` [feature flags](https://www.rabbitmq.com/feature-flags.html) must be enabled.
+
+The broker requirements can be verified with the [`delays verify`](/transports/rabbitmq/operations-scripting.md#delays-verify) command provided by the command line tool.
+
 See the [minimum broker requirements documentation](/transports/rabbitmq/#broker-compatibility) for more details.
 
 ## New version of the delay infrastructure
