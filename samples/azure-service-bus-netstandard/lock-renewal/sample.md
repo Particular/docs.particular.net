@@ -49,7 +49,7 @@ snippet: processing-and-cancellation
 
 ### Prefetching
 
-It is adviced to disable prefetching if the majority of message in the queue result in long processing durations. This reduced unnecessary lock expiration of prefetced messages.
+Disable prefetching if the majority of messages in the queue result in long processing durations. Otherwise, the lock for prefetched messages could expire before processing even starts.
 
 ### Long-running handler
 
