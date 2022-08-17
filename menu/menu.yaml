@@ -722,6 +722,8 @@
       Articles:
       - Url: transports/upgrades/rabbitmq-7to8
         Title: Version 7 to 8
+      - Url: transports/upgrades/rabbitmq-classic-to-quorum-migration
+        Title: Migrating from classic queues to quorum queues
       - Url: transports/upgrades/rabbitmq-6to7
         Title: Version 6 to 7
       - Url: transports/upgrades/rabbitmq-5to6
