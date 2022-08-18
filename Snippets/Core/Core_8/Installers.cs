@@ -1,4 +1,4 @@
-﻿// ReSharper disable RedundantJumpStatement
+﻿
 namespace Core8
 {
     using System;

@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 using NServiceBus.Hosting.Profiles;
-// ReSharper disable RedundantNameQualifier
+
 #region profile_behavior
 class LiteEmailBehavior :
     IHandleProfile<NServiceBus.Lite>

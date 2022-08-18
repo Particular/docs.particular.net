@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Common.Logging;
 using NServiceBus;
-// ReSharper disable RedundantNameQualifier
+
 
 class Program
 {

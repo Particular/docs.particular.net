@@ -6,7 +6,6 @@ using NServiceBus;
 using NServiceBus.Faults;
 using NServiceBus.Logging;
 
-// ReSharper disable UnusedParameter.Local
 
 #region subscriptions
 
