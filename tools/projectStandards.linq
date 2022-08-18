@@ -5,7 +5,6 @@ string docsDirectory = Directory.GetParent(Path.GetDirectoryName(Util.CurrentQue
 
 void Main()
 {
-	FixResharperSettings();
 	CleanUpSolutions();
 	CleanUpProjects();
 	DeleteAssemblyInfo();
@@ -64,7 +63,7 @@ void CleanUpSolutions()
 void CleanUpProjects()
 {
     var noBomUtf8Encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
-    
+
 	foreach (var projectFile in Directory.EnumerateFiles(docsDirectory, "*.csproj", SearchOption.AllDirectories))
 	{
 		var xdocument = XDocument.Load(projectFile, LoadOptions.PreserveWhitespace);
@@ -74,7 +73,7 @@ void CleanUpProjects()
 		if (propertyGroup != null)
 		{
 			var langVersion = propertyGroup.Element("LangVersion");
-            
+
 			if (langVersion == null)
 			{
 				propertyGroup.Add(new XElement("LangVersion", "7.3"));
@@ -92,34 +91,14 @@ void CleanUpProjects()
                 targetFrameworks.Remove();
             }
         }
-        
+
         var settings = new XmlWriterSettings { Encoding = noBomUtf8Encoding, OmitXmlDeclaration = true };
         using (var writer = XmlWriter.Create(projectFile, settings))
         {
             xdocument.Save(writer);
         }
-     
-		CollapseEmptyElements(projectFile);
-	}
-}
 
-void FixResharperSettings()
-{
-	var sharedSettings = Path.Combine(toolsDiretory, "Shared.DotSettings");
-	var layeredSettings = Path.Combine(toolsDiretory, "Layered.DotSettings");
-	var layeredText = File.ReadAllText(layeredSettings);
-	foreach (var solutionFile in Directory.EnumerateFiles(docsDirectory, "*.sln", SearchOption.AllDirectories))
-	{
-		var solutionDirectory = Path.GetDirectoryName(solutionFile);
-		var solutionName = Path.GetFileNameWithoutExtension(solutionFile);
-		foreach (string file in Directory.GetFiles(solutionDirectory, $"*{solutionName}.sln.DotSettings"))
-		{
-			File.Delete(file);
-		}
-		var relative = GetRelativePath(sharedSettings, solutionDirectory);
-		var replaced = layeredText.Replace("SharedDotSettings", relative);
-		var targetFile = solutionFile + ".DotSettings";
-		File.WriteAllText(targetFile, replaced);
+		CollapseEmptyElements(projectFile);
 	}
 }
 
