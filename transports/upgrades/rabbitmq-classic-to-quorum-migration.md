@@ -7,6 +7,8 @@ component: Rabbit
 
 ## Migration steps
 
+The following steps can be followed to migrate queues from classic to quorum. Each step is self-contained, so the system is usable at every point in the process.
+
 ### Step 1: Upgrade broker
 
 The broker needs to be running 3.10.0 or higher. The `stream_queue` and `quorum_queue` [feature flags](https://www.rabbitmq.com/feature-flags.html) also need to be enabled.
