@@ -13,3 +13,34 @@ related:
 1. Account for downtime of ServicePulse as failed messages cannot be retried when ServiceControl is not running.
 1. Account for queue storage size. While ServiceControl is down, messages are not ingested but they will still build up in the queue. If the system has a high message throughput the queues act as a buffer. Ensure queues will not run out of storage (quota) space as when queues are full no new messages can be added which will cause application outage.
 1. Analyze the storage size for each ServiceControl instance and update starting from the smallest to the largest. This helps understand how smaller migrations run and can be used to extrapolate how long updating the larger instances will take which can help decided whether a side-by-side upgrade is necessary.
+
+
+## Downgrading
+
+### Instances
+
+ServiceControl instances cannot be downgraded via ServiceControl Management Utility. This is because the storage schema COULD have been changed during upgrading.
+
+Note: If a downgrade MUST be performed ensure that the storage schema is compatible!
+
+Note: It is not advised to execute this procedure without supervision of particular software support engineers.
+
+1. Open the ServiceControl Management Utility
+2. Scroll to the instance that requires downgrading
+3. Open the "Installation path"
+4. Copy the `ServiceControl.exe.config` and store the identical instance name
+5. Delete the instance but keep the database files
+6. Close ServiceControl Management Utility
+7. [Downgrade the installer](#downgrading-installer)
+8. Add a new instance using the same identical name and configuration as the deleted instance
+
+### Installer
+
+Once a newer version of the downloaded  ServiceControl setup is installed it does not allow to install an older version. Might there be a need to setup an instance for a previous older version then do the following:
+
+1. Uninstall the current (newer) version from Windows in "Add remove programs".
+2. Install the previous version
+
+The ServiceControl Management Utility (SCMU) can now be used again to add instances based on that version.
+
+Note: Downgrading the setup can results in SCMU not being able to manage newer instance versions.
