@@ -1171,8 +1171,6 @@ Under [tools](https://github.com/Particular/docs.particular.net/tree/master/tool
 
 Remove redundant content from sln and csproj files.
 
-Enforces the [Resharper](https://www.jetbrains.com/resharper/) settings to be correct for every solution. The standard is a placeholder .settings file that pull in the [Shared.DotSettings](https://github.com/Particular/docs.particular.net/blob/master/tools/Shared.DotSettings) file as a layer.
-
 ### setStartup.linq
 
 Sets the correct startup projects for every solution. This is persisted in an `.suo` file for each solution. Since `.suo` files are not committed to source control, if a re-clone is done this script will need to be re-run.

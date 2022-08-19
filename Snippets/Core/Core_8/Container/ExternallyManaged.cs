@@ -1,4 +1,4 @@
-﻿// ReSharper disable SuggestVarOrType_SimpleTypes
+﻿
 namespace Core8.Container.Custom
 {
     using System;

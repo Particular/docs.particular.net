@@ -35,7 +35,6 @@ class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IInco
             {
                 context.Message.Headers[PartitionHeaders.ForwardedSubscription] = string.Empty;
 
-                // ReSharper disable once LoopCanBeConvertedToQuery
                 foreach (var partitionKey in knownPartitionKeys)
                 {
                     if (partitionKey == localPartitionKey)

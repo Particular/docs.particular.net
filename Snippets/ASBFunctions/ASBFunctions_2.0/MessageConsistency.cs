@@ -1,6 +1,4 @@
-﻿// ReSharper disable ConditionIsAlwaysTrueOrFalse
-// ReSharper disable HeuristicUnreachableCode
-#pragma warning disable 162
+﻿#pragma warning disable 162
 namespace ASBFunctions_2_0
 {
     using Microsoft.Azure.ServiceBus;
