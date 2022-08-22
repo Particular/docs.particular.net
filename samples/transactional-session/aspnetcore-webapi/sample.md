@@ -19,19 +19,19 @@ This sample shows how to send messages and modify data in a database atomically 
 
 When the solution is run, a new browser window/tab opens, as well as a console application. The browser will navigate to `http://localhost:58118/`.
 
-An async [WebAPI](https://dotnet.microsoft.com/apps/aspnet/apis) controller handles the request. It stores a new document using Entity Framework and sends an NServiceBus message to the endpoint running in the console application. 
+An async [WebAPI](https://dotnet.microsoft.com/apps/aspnet/apis) controller handles the request. It stores a new document using Entity Framework and sends an NServiceBus message to the endpoint hosted in the console application. 
 
-The message will be processed by the NServiceBus message handler and print `"Message received at endpoint"` to the console. The message handler also updates the previously created entity.
+The message will be processed by the NServiceBus message handler and result in `"Message received at endpoint"` begin printed to the console. The handler will also update the previously created entity.
 
 ## Configuration
 
-The host is configures NServiceBus with the `UseNServiceBus` extension method:
+The endpoint is configured using the `UseNServiceBus` extension method:
 
 snippet: txsession-nsb-configuration
 
-The configuration enables the transactional session functionalty using `endpointConfiguration.EnableTransactionalSession()`. Note that the transactional session feature also requires the outbox to be enabled.
+The transactional session is enabled via `endpointConfiguration.EnableTransactionalSession()` method call. Note that the transactional session feature requires [the Outbox](/nservicebus/outbox/) to be enabled.
 
-ASP.NET Core is configured using the `ConfigureWebHostDefaults` extension method. A custom middleware is registered to manage the `ITransactionalSession` lifetime:
+ASP.NET Core uses `ConfigureWebHostDefaults` for configuration and a custom middleware is registered for the `ITransactionalSession` lifetime management:
 
 snippet: txsession-web-configuration
 
@@ -39,7 +39,7 @@ Entity Framework support is configured by this registration for the `DbContext`:
 
 snippet: txsession-ef-configuration
 
-This registration registers the `MyDataContext` type to be built using the same session and transaction used by the `ITransactionalSession`. Once the transactional session is committed, it notifies the Entity Framework context to call `SaveChangesAsync`.
+The registration ensures that the `MyDataContext` type is built using the same session and transaction that is used by the `ITransactionalSession`. Once the transactional session is committed, it notifies the Entity Framework context to call `SaveChangesAsync`.
 
 ## Using the session
 
@@ -47,7 +47,7 @@ The message session is injected into `SendMessageController` via constructor inj
 
 snippet: txsession-controller
 
-The session has already been opened by the `MessageSessionMiddleware`. The middleware will also take care of committing the session once the ASP.NET pipeline completed:
+The lifecycle of the session is managed by the `MessageSessionMiddleware`. It opens the session when an HTTP request arrives and takes care of committing the session once the ASP.NET pipeline completes:
 
 snippet: txsession-middleware
 
@@ -74,6 +74,6 @@ sequenceDiagram
 
 ## Handling the message
 
-The `MyHandler` message handler handles the message sent by the ASP.NET controller. It can access the previously committed data stored by the controller:
+The `MyHandler` handles the message sent by the ASP.NET controller and accesses the previously committed data stored by the controller:
 
 snippet: txsession-handler
