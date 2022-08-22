@@ -23,19 +23,7 @@ The broker requirements can be verified with the [delays verify](/transports/rab
 
 Before starting the migration progress, all endpoints should be using version 6.1.1 of the transport. This ensures that endpoints which have not yet been migrated to quorum queues will continue to work whether or not the error and audit queues have been migrated.
 
-### Step 3: Verify current ServiceControl version
-
-Before starting the migration progress, ensure ServiceControl is upgraded to 4.21.8. This version of ServiceControl will also tolerate any queue type for error and audit.
-
-### Step 4: Migrate audit and error queues
- 
-Use the [`queue migrate-to-quorum`](/transports/rabbitmq/operations-scripting.md#queue-migrate-to-quorum) command provided by the command line tool to migrate all audit and error queues to quorum queues.
-
-### Step 5: Migrate ServiceControl queues
-
-Use the [`queue migrate-to-quorum`](/transports/rabbitmq/operations-scripting.md#queue-migrate-to-quorum) command provided by the command line tool to migrate all ServiceControl queues (such as `Particular.ServiceControl`) to quorum queues.
-
-### Step 6: Upgrade ServiceControl
+### Step 3: Upgrade ServiceControl and update instances
 
 Starting in ServiceControl version 4.23.0, there are now four RabbitMQ transport types:
 
@@ -44,23 +32,41 @@ Starting in ServiceControl version 4.23.0, there are now four RabbitMQ transport
 * RabbitMQ - Direct routing topology (classic queues)
 * RabbitMQ - Direct routing topology (quorum queues)
 
-Updating an instance using the conventional routing topology will automatically update the ServiceControl transport to "RabbitMQ - Conventional routing topology (classic queues)". However, because the error, audit, and ServiceControl queues have already been migrated, the transport will need to be modified to use quorum queues, which can only be done by manually editing the configuration file.
+Updating an instance using the conventional routing topology will automatically update the ServiceControl transport to "RabbitMQ - Conventional routing topology (classic queues)". 
 
-To get started, download the latest version of ServiceControl from the [downloads page](https://particular.net/downloads) and install it. Then, open ServiceControl Management Utility.
+To get started, download the latest version of ServiceControl from the [downloads page](https://particular.net/downloads) and install it. Then, update each instance to the latest version.
+
+### Step 4: Migrate audit and error queues
+
+Use the [`queue migrate-to-quorum`](/transports/rabbitmq/operations-scripting.md#queue-migrate-to-quorum) command provided by the command line tool to migrate all audit and error queues to quorum queues.
+
+### Step 5: Migrate ServiceControl queues
+
+Use the [`queue migrate-to-quorum`](/transports/rabbitmq/operations-scripting.md#queue-migrate-to-quorum) command provided by the command line tool to migrate all ServiceControl queues (such as `Particular.ServiceControl`) to quorum queues.
+
+### Step 6: Change the transport of the ServiceControl instances
+
+Now that the error, audit, and ServiceControl queues have been migrated, the transport of each ServiceControl instance will need to be modified to use quorum queues, which can only be done by manually editing the configuration file.
+
+To get started, open ServiceControl Management Utility.
 
 For each deployed ServiceControl instance:
 
-1. Update the instance to version 4.23.0.
 1. Under **Installation Path**, click **Browse**.
 1. In the Explorer window that appears, locate and edit the **ServiceControl.exe.config** file.
 1. Change the value of the `ServiceControl/TransportType` setting to `ServiceControl.Transports.RabbitMQ.RabbitMQQuorumConventionalRoutingTransportCustomization, ServiceControl.Transports.RabbitMQ`.
 1. In ServiceControl Management Utility, start the instance.
 
-### Step 7: Update endpoints
+### Step 7: Migrate endpoints
 
-Update each endpoint to use NServiceBus.RabbitMQ 7.0.0. As part of this upgrade, set the [queue type](/transports/rabbitmq/routing-topology.md#controlling-queue-type) to use classic queues.
+Endpoints can now be migrated to use quorum queues as their input queues on a per-endpoint basis.
 
-The goal of this upgrade is to migrate delayed messages to the new delay infrastructure. Updating the endpoint's input queues to use quorum queues can come later.
+For each endpoint:
+
+1. Update to NServiceBus.RabbitMQ 7.0.0.
+1. In the endpoint configuration code, set the [queue type](/transports/rabbitmq/routing-topology.md#controlling-queue-type) to use quorum queues.
+1. Use the [`queue migrate-to-quorum`](/transports/rabbitmq/operations-scripting.md#queue-migrate-to-quorum) command provided by the command line tool to migrate all queues used by the endpoint to quorum queues. In addition to the queue with the same name as the endpoint, there may be queues named according to the pattern `{EndpointName}-{Discriminator}` which also need to be migrated.
+1. Deploy the new version of the endpoint code.
 
 ## Step 8: Migrate delayed messages
 
@@ -78,13 +84,3 @@ Delayed message migration can be done after each endpoint is upgraded, or only o
 ## Step 9: Remove v1 delay infrastructure
 
 After all delayed messages have been migrated, the exchanges and queues that make up the v1 delay infrastructure (queues and exchanges matching `nsb.delay-level-##` and the `nsb.delay-delivery` exchange) can be removed from the broker.
-
-### Step 10: Migrate endpoints
-
-Endpoints can now be migrated to use quorum queues as their input queues on a per-endpoint basis. 
-
-For each endpoint:
-
-1. In the endpoint configuration code, set the [queue type](/transports/rabbitmq/routing-topology.md#controlling-queue-type) to use quorum queues.
-1. Use the [`queue migrate-to-quorum`](/transports/rabbitmq/operations-scripting.md#queue-migrate-to-quorum) command provided by the command line tool to migrate all queues used by the endpoint to quorum queues. In addition to the queue with the same name as the endpoint, there may be queues named according to the pattern `{EndpointName}-{Discriminator}` which also need to be migrated.
-1. Deploy the new version of the endpoint code.
