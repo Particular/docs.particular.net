@@ -15,7 +15,7 @@ Forwarding should not be used to abort processing.  Messages cannot be forwarded
 
 To abort processing throw an exception which ensures no ghost message are transmitted and any (transactional) state to be rolled back. 
 
-If you want to prevent unnessary retries declare a [unrecoreable exception](/nservicebus/recoverability/#unrecoverable-exceptions) or create a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md)
+To prevent unnessary retries declare a [unrecoreable exception](/nservicebus/recoverability/#unrecoverable-exceptions) or create a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md).
 
 ## Auditing vs. Forwarding
 
