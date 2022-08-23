@@ -2,7 +2,7 @@
 title: Batched message dispatch
 summary: Describes how NServiceBus collects outgoing operations when processing message in order to dispatch them more efficiently.
 component: Core
-reviewed: 2019-12-23
+reviewed: 2022-08-23
 ---
 
 In Versions 6 and above, all outgoing operations that happen as part of processing a message (e.g. commands, responses, events) will be bundled together and passed to the transport after message handling pipeline has completed. This has two benefits:
