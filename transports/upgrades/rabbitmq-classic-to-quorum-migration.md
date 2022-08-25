@@ -1,5 +1,5 @@
 ---
-title: Migrating from classic queues to quorum queues
+title: Migrating RabbitMQ from classic to quorum queues
 summary: Instructions on how to migrate from classic queues to quorum queues
 reviewed: 2022-05-05
 component: Rabbit
