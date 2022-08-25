@@ -1,6 +1,6 @@
 ---
 title: Using TransactionalSession with Entity Framework and ASP.NET Core
-summary: NServiceBus.TransactionalSession sample that illustrates how to send messages and modify data with Entity Framework atomically in ASP.NET Core.
+summary: NServiceBus.TransactionalSession sample that illustrates how to send messages and modify data with Entity Framework in an atomic manner using ASP.NET Core.
 component: TransactionalSession
 reviewed: 2022-08-12
 related:
@@ -12,16 +12,16 @@ This sample shows how to send messages and modify data in a database atomically 
 
 ## Prerequisites
 
-- Visual Studio 2019 is required to run this sample.
-- LocalDB support is required to run the sample. A custom connection string needs to be configured otherwise.
+- Visual Studio 2019
+- LocalDB support: A custom connection string needs to be configured otherwise.
 
 ## Running the solution
 
 When the solution is run, a new browser window/tab opens, as well as a console application. The browser will navigate to `http://localhost:58118/`.
 
-An async [WebAPI](https://dotnet.microsoft.com/apps/aspnet/apis) controller handles the request. It stores a new document using Entity Framework and sends an NServiceBus message to the endpoint hosted in the console application. 
+An async [WebAPI](https://dotnet.microsoft.com/apps/aspnet/apis) controller handles the request. It stores a new document using Entity Framework and sends an NServiceBus message to the endpoint hosted in the console application.
 
-The message will be processed by the NServiceBus message handler and result in `"Message received at endpoint"` begin printed to the console. The handler will also update the previously created entity.
+The message will be processed by the NServiceBus message handler and result in `"Message received at endpoint"`-message printed to the console. In addition, the handler will update the previously created entity.
 
 ## Configuration
 
@@ -29,7 +29,7 @@ The endpoint is configured using the `UseNServiceBus` extension method:
 
 snippet: txsession-nsb-configuration
 
-The transactional session is enabled via `endpointConfiguration.EnableTransactionalSession()` method call. Note that the transactional session feature requires [the Outbox](/nservicebus/outbox/) to be enabled.
+The transactional session is enabled via the `endpointConfiguration.EnableTransactionalSession()` method call. Note that the transactional session feature requires [the Outbox](/nservicebus/outbox/) to ensure that operations across the storage and the message broker are atomic.
 
 ASP.NET Core uses `ConfigureWebHostDefaults` for configuration and a custom middleware is registered for the `ITransactionalSession` lifetime management:
 
@@ -60,7 +60,7 @@ sequenceDiagram
     activate Middleware
     Middleware->>TransactionalSession: Open
     activate TransactionalSession
-    TransactionalSession-->>Middleware: 
+    TransactionalSession-->>Middleware:
     Middleware->>Controller: next()
     activate Controller
     Controller->>TransactionalSession: Send/Publish...
@@ -68,7 +68,7 @@ sequenceDiagram
     deactivate Controller
     Middleware->>TransactionalSession: Commit
     deactivate TransactionalSession
-    Middleware-->>User: 
+    Middleware-->>User:
     deactivate Middleware
 ```
 
