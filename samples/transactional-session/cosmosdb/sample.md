@@ -20,18 +20,18 @@ sequenceDiagram
     activate ITransactionalSession
     ITransactionalSession->>CosmosDB: Store(order)
     ITransactionalSession->>Queue: Publish(orderReceived)
-    ITransactionalSession-->>Frontend: 
+    ITransactionalSession-->>Frontend:
     deactivate ITransactionalSession
     Queue->>Backend: Process(orderReceived)
     activate Backend
     Backend->>CosmosDB: Update(order)
-    Backend-->>Queue: 
+    Backend-->>Queue:
     deactivate Backend
 ```
 
 The database and transport operations are executed atomically when the session is committed. If the session is aborted, all database and transport operations are rolled back.
 
-## Prerequisties
+## Prerequisites
 
 The sample is intended to be used with the [CosmosDB emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=ssl-netstd21) to run locally. Alternatively, a connection string to an Azure CosmosDB instance can be provided.
 
@@ -43,7 +43,7 @@ The `Frontend` service needs to enable the transactional session feature in the 
 
 snippet: cosmos-txsession-frontend-config
 
-Note that the `Outbox` feature must be enabled for the transactional session feature to work.
+Note that the `Outbox` feature must be enabled to achieve atomicity with the transactional session feature.
 
 The endpoint is also configured to use the CosmosDB persistence with a default container and partition key path:
 
@@ -55,7 +55,7 @@ The `Backend` service contains a message handler for the `OrderReceived` event. 
 
 snippet: cosmos-txsession-backend-persistence
 
-Note that the backend needs a [partition key mapping](/persistence/cosmosdb/transactions.md#specifying-the-partitionkey-to-use-for-the-transaction) configured for the `OrderReceived` to determine what partition needs to be used to access the order.
+Note that the backend service requires a [partition key mapping](/persistence/cosmosdb/transactions.md#specifying-the-partitionkey-to-use-for-the-transaction) configured for the `OrderReceived` to determine what partition needs to be used to access the order.
 
 ## Running the sample
 
