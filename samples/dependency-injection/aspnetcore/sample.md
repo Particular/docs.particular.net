@@ -1,12 +1,10 @@
 ---
-title: ASP.NET Core 3 Dependency Injection Integration
+title: ASP.NET Core Dependency Injection Integration
 component: Extensions.Hosting
-reviewed: 2020-02-24
+reviewed: 2022-08-17
 related:
  - nservicebus/dependency-injection
 ---
-
-include: webhost-warning
 
 [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) has an integrated [dependency injection (DI) feature](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection). When hosting NServiceBus endpoints inside an ASP.NET Core app, it may be necessary to share components registered for DI between ASP.NET components and NServiceBus message handlers. Use the [NServiceBus.Extensions.Hosting package](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting) to host an endpoint as part of an ASP.NET Core application.
 
