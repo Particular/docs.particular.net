@@ -6,7 +6,6 @@ component: Core
 versions: '[5.0,)'
 redirects:
  - nservicebus/message-headers
- - nservicebus/messaging/headers
  - nservicebus/messaging/message-correlation
 related:
  - samples/header-manipulation

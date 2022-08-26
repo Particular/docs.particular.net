@@ -5,7 +5,6 @@ summary: Configuring Azure Storage as persistence
 reviewed: 2020-11-19
 redirects:
  - nservicebus/azure-storage-persistence/configuration
- - persistence/azure-table/configuration
 ---
 
 partial: sections
