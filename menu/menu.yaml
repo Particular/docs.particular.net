@@ -1,50 +1,49 @@
 - Name: Getting Started
   Topics:
-  - Url: get-started
-    Title: Getting Started
+  - Title: Quick Start Tutorial
     Articles:
     - Url: tutorials/quickstart
-      Title: Quick Start Tutorial
-      Articles:
-      - Url: tutorials/quickstart/tutorial-reliability
-        Title: "Quick Start: Recovering from failure"
-      - Url: tutorials/quickstart/tutorial-extending-the-system
-        Title: "Quick Start: Extending the system"
-    - Url: tutorials/nservicebus-step-by-step
-      Title: Introduction to NServiceBus
-      Articles:
-      - Url: tutorials/nservicebus-step-by-step/1-getting-started
-        Title: Getting Started
-      - Url: tutorials/nservicebus-step-by-step/2-sending-a-command
-        Title: Sending a command
-      - Url: tutorials/nservicebus-step-by-step/3-multiple-endpoints
-        Title: Multiple endpoints
-      - Url: tutorials/nservicebus-step-by-step/4-publishing-events
-        Title: Publishing events
-      - Url: tutorials/nservicebus-step-by-step/5-retrying-errors
-        Title: Retrying errors
-    - Url: tutorials/message-replay
-      Title: Message replay tutorial
+      Title: "Part 1: Introduction"
+    - Url: tutorials/quickstart/tutorial-reliability
+      Title: "Part 2: Recovering from failure"
+    - Url: tutorials/quickstart/tutorial-extending-the-system
+      Title: "Part 3: Extending the system"
+  - Title: Introduction to NServiceBus
+    Articles:
+    - Url: tutorials/nservicebus-step-by-step/1-getting-started
+      Title: "Lesson 1: Getting Started"
+    - Url: tutorials/nservicebus-step-by-step/2-sending-a-command
+      Title: "Lesson 2: Sending a command"
+    - Url: tutorials/nservicebus-step-by-step/3-multiple-endpoints
+      Title: "Lesson 3: Multiple endpoints"
+    - Url: tutorials/nservicebus-step-by-step/4-publishing-events
+      Title: "Lesson 4: Publishing events"
+    - Url: tutorials/nservicebus-step-by-step/5-retrying-errors
+      Title: "Lesson 5: Retrying errors"  
+  - Title: NServiceBus Sagas
+    Articles:
     - Url: tutorials/nservicebus-sagas
-      Title: NServiceBus Sagas
-      Articles:
-      - Url: tutorials/nservicebus-sagas/1-saga-basics
-        Title: Saga basics
-      - Url: tutorials/nservicebus-sagas/2-timeouts
-        Title: Timeouts
-      - Url: tutorials/nservicebus-sagas/3-integration
-        Title: Third-party integration
+      Title: Introduction
+    - Url: tutorials/nservicebus-sagas/1-saga-basics
+      Title: "Part 1: Saga basics"
+    - Url: tutorials/nservicebus-sagas/2-timeouts
+      Title: "Part 2: Timeouts"
+    - Url: tutorials/nservicebus-sagas/3-integration
+      Title: "Part 3: Third-party integration"
+  - Title: More tutorials
+    Articles:    
+    - Url: tutorials/message-replay
+    Title: Message replay tutorial
+    - Url: tutorials/monitoring-setup
+      Title: NServiceBus monitoring setup
+    - Url: tutorials/monitoring-demo
+      Title: NServiceBus monitoring demo
     - Url: tutorials
-      Title: More tutorials
-      Articles:
-      - Url: tutorials/monitoring-setup
-        Title: NServiceBus monitoring setup
-      - Url: tutorials/monitoring-demo
-        Title: NServiceBus monitoring demo
-    - Url: get-started/high-level-content
-      Title: High-level content
-    - Url: samples/netcore
-      Title: .NET Core Samples
+      Title: All tutorials  
+  - Url: get-started/high-level-content
+    Title: High-level content
+  - Url: samples/netcore
+    Title: .NET Core Samples
 - Name: NServiceBus
   Topics:
   - Title: General
