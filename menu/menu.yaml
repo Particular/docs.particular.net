@@ -33,7 +33,7 @@
   - Title: More tutorials
     Articles:    
     - Url: tutorials/message-replay
-    Title: Message replay tutorial
+      Title: Message replay tutorial
     - Url: tutorials/monitoring-setup
       Title: NServiceBus monitoring setup
     - Url: tutorials/monitoring-demo
