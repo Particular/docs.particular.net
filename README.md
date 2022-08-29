@@ -539,7 +539,7 @@ The `nextText` parameter is optional, and will default to the title of the linke
 
 ### Markdown partials
 
-Partials are version-specific files that contain markdown.
+Partials are version-specific files that contain markdown. Partials are preferable for situations where quite a bit of content differs, or there there will be multiple variants for multiple different versions. For simpler situations, such as a 1-3 line note or aside only for one range of versions, see [inline version conditionals](#inline-version-conditionals) below instead.
 
 They are only rendered in the target page when the version filter matches the convention for a give file.
 
@@ -564,6 +564,29 @@ And to include the `endpointname` partial can be pulled into `sample.md` by incl
 ```markdown
 partial: endpointname
 ```
+
+### Inline version conditionals
+
+Inline version conditionals allow a short section of markdown to only apply to a specific version range. This is perfect for situations like an alert for all versions less than version N, where using a [partial file](#markdown-partials) might be too heavy-handed and harder to comprehend.
+
+It's important to remember that neither partials nor inline conditionals can _**create**_ an item in the versions dropdown—only Snippets can do that.
+
+```markdown
+#if-version [7.7, )
+
+This content only displays for versions 7.7 and up
+
+#end-if
+
+#if-version [, 8)
+
+This content only displays for versions less than 8.0
+
+#end-if
+```
+
+A full NuGet-style version expression is required. `#if-version 6` is not allowed because ultimately it would not be clear if that meant version 6 and above `[6, )` or only version 6 `[6, 7)`.
+
 
 ### Markdown includes
 
