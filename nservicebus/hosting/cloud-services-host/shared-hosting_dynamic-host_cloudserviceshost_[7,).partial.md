@@ -1,1 +1,0 @@
-For version 7 and above, return this information from the `Configure` method in the class implementing the `IConfigureThisHost` interface.
