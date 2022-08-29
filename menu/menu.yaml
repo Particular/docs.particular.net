@@ -10,6 +10,8 @@
       Title: "Part 3: Extending the system"
   - Title: Introduction to NServiceBus
     Articles:
+    - Url: tutorials/nservicebus-step-by-step
+      Title: Introduction
     - Url: tutorials/nservicebus-step-by-step/1-getting-started
       Title: "Lesson 1: Getting Started"
     - Url: tutorials/nservicebus-step-by-step/2-sending-a-command
