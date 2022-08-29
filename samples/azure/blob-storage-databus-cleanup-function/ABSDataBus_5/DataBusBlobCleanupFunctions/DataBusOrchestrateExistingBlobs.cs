@@ -4,21 +4,19 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.Storage.Blob;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
-using Microsoft.Extensions.Logging;
-using Microsoft.Azure.Storage.Blob;
 using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Extensions.Logging;
 
 public class DataBusOrchestrateExistingBlobs
 {
     readonly CloudBlobContainer container;
-    private readonly DataBusBlobTimeoutCalculator calculator;
 
-    public DataBusOrchestrateExistingBlobs(CloudBlobContainer container, DataBusBlobTimeoutCalculator calculator)
+    public DataBusOrchestrateExistingBlobs(CloudBlobContainer container)
     {
         this.container = container;
-        this.calculator = calculator;
     }
 
     #region DataBusOrchestrateExistingBlobsFunction
@@ -48,7 +46,7 @@ public class DataBusOrchestrateExistingBlobs
                         continue;
                     }
 
-                    var validUntilUtc = calculator.GetValidUntil(blockBlob);
+                    var validUntilUtc = DataBusBlobTimeoutCalculator.GetValidUntil(blockBlob);
 
                     if (validUntilUtc == DateTime.MaxValue)
                     {
@@ -59,7 +57,7 @@ public class DataBusOrchestrateExistingBlobs
                     await starter.StartNewAsync(nameof(DataBusCleanupOrchestrator), instanceId, new DataBusBlobData
                     {
                         Path = blockBlob.Uri.ToString(),
-                        ValidUntilUtc = calculator.ToWireFormattedString(validUntilUtc)
+                        ValidUntilUtc = DataBusBlobTimeoutCalculator.ToWireFormattedString(validUntilUtc)
                     });
 
                     counter++;
@@ -71,7 +69,7 @@ public class DataBusOrchestrateExistingBlobs
         {
             var result = new ObjectResult(exception.Message)
             {
-                StatusCode = (int) HttpStatusCode.InternalServerError
+                StatusCode = (int)HttpStatusCode.InternalServerError
             };
 
             return result;
