@@ -20,6 +20,14 @@ To install the tool:
     dotnet tool install -g Particular.ThroughputTool --add-source=https://www.myget.org/F/particular/api/v3/index.json
     ```
 
+### Updating
+
+To update the tool to the latest version, execute the following command in a terminal window:
+
+```shell
+dotnet tool update -g Particular.ThroughputTool --add-source https://www.myget.org/F/particular/api/v3/index.json
+```
+
 ## Usage
 
 First, determine which method of data collection to use:
