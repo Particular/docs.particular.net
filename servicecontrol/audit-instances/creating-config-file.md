@@ -260,7 +260,7 @@ Default: `false`
 After restarting the ServiceControl Audit service, access the RavenDB studio locally at the following endpoint:
 
 ```no-highlight
-http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&database=%3Csystem%3E
+http://localhost:{configured ServiceControl instance maintenance port}/studio/index.html#databases/documents?&database=%3Csystem%3E
 ```
 
 NOTE: The ServiceControl Audit embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](/servicecontrol/setting-custom-hostname.md).
