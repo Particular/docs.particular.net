@@ -575,7 +575,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.0.0) | 2021-12-20     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.1.0) | 2022-08-31     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.0.0) | 2021-12-20     | 2022-11-30        | Superseded by 3.1.x               |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/2.0.2) | ~~2021-10-19~~ | ~~2022-05-08~~    | ~~Targets .NET 5 which is not supported after May 8, 2022~~ |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/1.0.0) | ~~2021-09-06~~ | ~~2022-05-08~~    | ~~Targets .NET 5 which is not supported after May 8, 2022~~ |
 
