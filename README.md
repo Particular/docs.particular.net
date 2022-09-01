@@ -583,6 +583,12 @@ This content only displays for versions 7.7 and up
 This content only displays for versions less than 8.0
 
 #end-if
+
+#if-version SqlTransportLegacySystemClient [4, 6)
+
+On pages where the snippets span more than one [NuGet package alias](https://github.com/Particular/docs.particular.net/blob/version-conditionals/components/nugetAlias.txt), version expressions must include the version expression.
+
+#end-if
 ```
 
 A full NuGet-style version expression is required. `#if-version 6` is not allowed because ultimately it would not be clear if that meant version 6 and above `[6, )` or only version 6 `[6, 7)`.
