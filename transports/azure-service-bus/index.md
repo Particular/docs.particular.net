@@ -27,12 +27,3 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 |Native integration         |[Supported](native-integration.md)
 
 NOTE: The Azure Service Bus transport only supports Standard and Premium tiers of the Microsoft Azure Service Bus service. Premium tier is recommended for production environments.
-
-## Configuring an endpoint
-
-To use Azure Service Bus as the underlying transport:
-
-snippet: azure-service-bus-for-dotnet-standard
-
-partial: requires-connectionstring
-partial: v7-usetransport
