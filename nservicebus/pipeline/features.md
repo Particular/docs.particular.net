@@ -131,7 +131,7 @@ If it's required to execute some feature-related logic after the feature has bee
 
 snippet: FeatureStartupTaskDefinition
 
-To associate a `FeatureStartupTask` with the feature, use `RegisterStartupTask`.
+To associate a `FeatureStartupTask` with the feature, use `RegisterStartupTask` in the feature's `Setup` method.
 
 snippet: FeatureStartupTaskRegistration
 
