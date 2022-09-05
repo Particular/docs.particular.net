@@ -41,7 +41,12 @@ namespace IntegrityTests
                     var directoryPath = Path.GetDirectoryName(path);
                     var projects = Directory.GetFiles(directoryPath, "*.csproj", SearchOption.AllDirectories);
 
-                    return projects.Any(projectPath => HasPrereleasePackages(projectPath, packageNames));
+                    var projectFiles = projects.Where(projectPath => HasPrereleasePackages(projectPath, packageNames)).ToList();
+                    foreach(var file in projectFiles)
+                    {
+                        Assert.Warn($"Component {file} has incorrect pre-release package");
+                    }
+                    return projects.Length > 0;
                 });
         }
 
@@ -145,7 +150,16 @@ namespace IntegrityTests
 
         private static bool HasPrereleasePackages(string projectPath, IEnumerable<string> packageNames)
         {
-            var packageRefs = QueryPackageRefs(projectPath);
+            IEnumerable<XElement> packageRefs = default;
+
+            try
+            {
+                 packageRefs = QueryPackageRefs(projectPath);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception($"Failed to parse references from project file at '{projectPath}'", ex);
+            }
 
             return packageRefs
                 .Where(pkgRef => packageNames.Contains(pkgRef.Attribute("Include").Value, StringComparer.OrdinalIgnoreCase))

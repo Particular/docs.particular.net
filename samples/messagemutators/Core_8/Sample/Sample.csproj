@@ -6,6 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <PackageReference Include="NServiceBus" Version="[8.0.0-rc.1, 9.0.0)"
+    <PackageReference Include="NServiceBus" Version="[8.0.0-rc.1, 9.0.0)" />
   </ItemGroup>
 </Project>
