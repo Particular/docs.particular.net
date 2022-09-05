@@ -8,6 +8,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="5.0.0-beta.1" />
     <PackageReference Include="NServiceBus" Version="8.0.0-beta.1" />
-    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-rc.1
   </ItemGroup>
 </Project>

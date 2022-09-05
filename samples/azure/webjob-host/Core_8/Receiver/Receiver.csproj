@@ -13,7 +13,7 @@
   <ItemGroup Label="To disable Dashboard logging (https://docs.microsoft.com/en-us/azure/app-service/webjobs-sdk-get-started#enable-console-logging)">
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.*" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.*" />
-    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-rc.1" />
     <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.0.0-beta.1" />
     <PackageReference Include="NServiceBus" Version="8.0.0-rc.1" />
   </ItemGroup>
