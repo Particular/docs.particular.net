@@ -9,7 +9,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Windows" />
     <PackageReference Include="NServiceBus" Version="8.0.0-beta.1" />
-    <PackageReference Include="NServiceBus.Metrics" Version="4.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Metrics" Version="4.0.0-rc.1" />
     <PackageReference Include="prometheus-net" Version="3.*" />
   </ItemGroup>
 </Project>
