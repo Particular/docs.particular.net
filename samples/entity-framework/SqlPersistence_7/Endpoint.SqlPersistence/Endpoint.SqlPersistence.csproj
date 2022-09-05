@@ -9,7 +9,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="8.0.0-beta.1" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.0.0-beta.1" />
-    <PackageReference Include="NServiceBus.Autofac" Version="8.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Autofac" Version="8.0.0-rc.1" />
     <PackageReference Include="NServiceBus.SqlServer" Version="7.0.0-beta.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
     <PackageReference Include="EntityFramework" Version="6.*" />
