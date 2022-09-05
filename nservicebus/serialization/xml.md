@@ -35,7 +35,11 @@ snippet: MessageWithXElement
 
 ### Payload with raw XML
 
-Using `XDocument` or `XElement` message properties will wrap the raw xml data in an outer node named after the property. In the examples above, the full message payload might look like this:
+Using `XDocument` or `XElement` message properties will wrap the raw xml data in an outer node named after the property. With the message defintions above and the following XML content: 
+
+snippet: RawXmlContent
+
+The full message payload might look like this:
 
 snippet: RawXmlPayload
 
