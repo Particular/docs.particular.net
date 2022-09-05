@@ -6,6 +6,6 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-rc.1" />
+    <PackageReference Include="NServiceBus" Version="[8.0.0-rc.1, 9.0.0)" />
   </ItemGroup>
 </Project>
