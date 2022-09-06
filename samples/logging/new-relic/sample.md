@@ -22,7 +22,7 @@ This sample reports the following metrics to NewRelic:
 * Processing time seconds
 * Retries in Version 2 and later
 
-For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/monitoring/metrics/definitions.md) section.
+For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/monitoring/metrics/definitions.md) section and [New Relic NServiceBus integration](https://newrelic.com/instant-observability/nservicebus/f3f28a00-8cea-41f1-a6fe-ebf5eae5791e).
 
 ## Prerequisites
 
