@@ -9,8 +9,6 @@ related:
 
 Classes that implement `NServiceBus.INeedInitialization` are created and called as one of the first steps performed during endpoint creation. Use `INeedInitialization` to register components that will be used later in the endpoint creation sequence.
 
-partial: namespace
-
 Instances are:
 
  * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md).

@@ -37,8 +37,6 @@ They can also be enabled by a machine name convention:
 
 snippet: InstallersRunWhenNecessaryMachineNameConvention
 
-partial: disable
-
 NOTE: Some combinations of transports / persisters / DI containers may require `.Start` to be called instead of `.Create`. In this case call both `.Start` and `.Stop` and allow the endpoint to shutdown immediately after startup.
 
 ## Custom installers

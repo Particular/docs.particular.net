@@ -37,5 +37,3 @@ See also [How to specify endpoint name](/nservicebus/endpoints/specify-endpoint-
 ## Database creation
 
 Prior to RavenDB version 4.0, RavenDB automatically creates the database if it doesn't already exist. This is no longer the case in RavenDB versions 4.0 and above.
-
-partial: caveats

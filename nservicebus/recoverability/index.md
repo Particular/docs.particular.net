@@ -153,8 +153,6 @@ The output in the log will be:
 
 snippet: RetryLogging
 
-partial: exceptionincluded
-
 
 ## Recoverability memory consumption
 

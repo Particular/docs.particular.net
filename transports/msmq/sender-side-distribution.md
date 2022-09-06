@@ -51,8 +51,6 @@ snippet: RoutingExtensibility-Distribution
 
 snippet: RoutingExtensibility-DistributionStrategy
 
-partial: select-destination
-
 To learn more about creating custom distribution strategies, see the [fair distribution sample](/samples/routing/fair-distribution/).
 
 ## Events and subscriptions

@@ -44,5 +44,3 @@ Throughput throttling options have been deprecated. To enable throttling on Vers
 ## Configuration
 
 partial: configuration
-
-partial: runtime

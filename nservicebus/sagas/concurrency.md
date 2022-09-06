@@ -27,8 +27,6 @@ When messages that start the same saga instance are received simultaneously, NSe
 
 Using optimistic concurrency, only one message handler is allowed to succeed. The saga state is created and sent messages are dispatched. The other handlers fail, roll back, and their messages enter [recoverability](/nservicebus/recoverability/). When those messages are retried, the existing saga state is found. Handling the messages may involve changing the state or completing the saga. See below for how those scenarios are handled.
 
-partial: unique
-
 ## Changes to saga state
 
 When using some persisters, messages received simultaneously that correlate to the same existing saga instance are not handled simultaneously. The persister uses pessimistic locking to ensure that message handlers are invoked one after another.

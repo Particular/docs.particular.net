@@ -16,8 +16,4 @@ partial: direct-access
 
 Regardless of how the `ISession` object is accessed, it is fully managed by NServiceBus according to the best practices defined by NServiceBus documentation with regards to transactions.
 
-partial: customizing-session
-
-partial: limitations
-
 partial: transactionscope

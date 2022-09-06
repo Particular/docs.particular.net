@@ -34,8 +34,6 @@ Note: When using non-transactional queues, an endpoint must be [configured not t
 
 partial: rabbitmq
 
-partial: rabbitmq-confirms
-
 
 ### SQL Server
 

@@ -44,8 +44,6 @@ This sample implements two mutators, which validate all DataAnnotations attribut
 
 snippet: ValidationMessageMutator
 
-partial: imessagemutator
-
 Although not shown here, it is possible to mutate only certain types of messages by checking the type of the message object received as a parameter to the method.
 
 ### Transport message mutators
@@ -55,8 +53,6 @@ Similar interfaces exist for transport messages, i.e. `IMutateIncomingTransportM
 This transport mutator compresses the outgoing transport message and decompresses the incoming message.
 
 snippet: TransportMessageCompressionMutator
-
-partial: imutatetransportmessages
 
 The `TransportMessageCompressionMutator` is a transport message mutator, meaning that NServiceBus allows the mutation of the outgoing and incoming transport message.
 

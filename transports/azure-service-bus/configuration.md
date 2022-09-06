@@ -11,9 +11,6 @@ To use Azure Service Bus as the underlying transport:
 
 snippet: azure-service-bus-for-dotnet-standard
 
-partial: requires-connectionstring
-partial: v7-usetransport
-
 ## Connectivity
 
 These settings control how the transport connects to the broker.

@@ -24,5 +24,3 @@ WARNING: If logging is not initialized in the constructor and anything goes wron
 To change the host's logging configuration, implement the `IConfigureThisEndoint` interface. Provide the custom configuration in the `Customize` method:
 
 snippet: CustomHostLogging
-
-partial: profile

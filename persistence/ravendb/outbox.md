@@ -22,5 +22,3 @@ To keep track of duplicate messages, the RavenDB implementation of Outbox create
 ## Deduplication record lifespan
 
 partial: cleanup
-
-partial: effect-on-docstore

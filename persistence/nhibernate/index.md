@@ -121,9 +121,6 @@ In some cases it may be necessary to take full control over creating the SQL str
 snippet: DisableSchemaUpdate
 
 
-partial: gateway-schema-update
-
-
 **For subscription schema update:**
 
 snippet: DisableSubscriptionSchemaUpdate

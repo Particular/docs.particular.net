@@ -50,5 +50,3 @@ Full control over how a message is correlated can be achieved by creating a cust
 NServiceBus will make sure that all properties used for correlation are unique across all instances of the given saga type. How this is enforced is up to each persister but will most likely translate to a unique key constraint in the database.
 
 Mapping a single message to multiple saga instances is not supported. This can be simulated by using a message handler that looks up all saga instance affected and send a separate message targeting each of those instances using the regular correlation described above.
-
-partial: unique

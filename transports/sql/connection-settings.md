@@ -22,8 +22,6 @@ The connection string can be configured in several ways:
 
 partial: connection-string
 
-partial: multi-instance
-
 ## Custom database schemas
 
 The SQL Server transport uses `dbo` as a default schema. It is used for every queue if no other schema is explicitly provided in a transport address. This includes all local queues, error, audit and remote queues of other endpoints.

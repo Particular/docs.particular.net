@@ -86,8 +86,6 @@ snippet: CallbackResponseMessage
 
 snippet: ObjectCallback
 
-partial: fakeHandler
-
 #### Response
 
 snippet: ObjectCallbackResponse

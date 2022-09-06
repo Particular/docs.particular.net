@@ -91,8 +91,6 @@ asb-transport endpoint subscribe <queue name> <eventtype>
 
 See the [operational scripting documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-subscribe) for the `asb-transport endpoint subscribe` command for more details.
 
-partial: assembly-scanner
-
 ## Package requirements
 
 `NServiceBus.AzureFunctions.Worker.ServiceBus` requires Visual Studio 2019 and .NET SDK version `5.0.300` or higher. Older versions of the .NET SDK might display the following warning which prevents the trigger definition from being auto-generated:
