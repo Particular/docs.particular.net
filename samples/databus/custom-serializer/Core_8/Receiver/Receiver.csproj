@@ -6,6 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus" Version="[8.0.0-rc.1, 9.0.0)" /> />
+    <PackageReference Include="NServiceBus" Version="[8.0.0-rc.1, 9.0.0)" />
   </ItemGroup>
 </Project>
