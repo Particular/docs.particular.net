@@ -39,9 +39,9 @@ namespace IntegrityTests
                 {
                     var partialName = Regex.Replace(match.Value, replacePattern, "").Trim();
 
-                    if (!allPartials.Any(x => x.Contains(fileName + "_" + partialName)))
+                    if (!allPartials.Any(x => x.Contains(fileName + "_" + partialName, StringComparison.OrdinalIgnoreCase)))
                     {
-                        errors.Add($"    - '{match.Value}' at postion ({match.Index})");
+                        errors.Add($"    - '{match.Value}' at position ({match.Index})");
                     }                
                 }
 
