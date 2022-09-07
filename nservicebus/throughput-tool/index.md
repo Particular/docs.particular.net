@@ -14,10 +14,10 @@ The ServiceControl collection method is preferred and also can be run instantly 
 
 To install the tool:
 
-1. Install [.NET 6.0](https://dotnet.microsoft.com/en-us/download).
-2. From a terminal window, use the following command to install the Particular.ThroughputTool from MyGet:
+1. Install either [.NET Core 3.1 or .NET 6.0](https://dotnet.microsoft.com/en-us/download).
+2. From a terminal window, use the following command to install the Particular.EndpointThroughputCounter from MyGet:
     ```shell
-    dotnet tool install -g Particular.ThroughputTool --add-source=https://www.myget.org/F/particular/api/v3/index.json
+    dotnet tool install -g Particular.EndpointThroughputCounter --add-source=https://www.myget.org/F/particular/api/v3/index.json
     ```
 
 ### Updating
@@ -26,6 +26,14 @@ To update the tool to the latest version, execute the following command in a ter
 
 ```shell
 dotnet tool update -g Particular.ThroughputTool --add-source https://www.myget.org/F/particular/api/v3/index.json
+```
+
+### Uninstalling
+
+To uninstall the tool, execute the following command in a terminal window:
+
+```shell
+dotnet tool uninstall -g Particular.EndpointThroughputCounter
 ```
 
 ## Usage
@@ -42,7 +50,7 @@ First, determine which method of data collection to use:
 Once installed, execute the tool with the URLs for the ServiceControl and monitoring APIs, as in this example:
 
 ```shell
-particular-throughput-tool servicecontrol --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/ --outputPath throughput-report.json
+throughput-counter servicecontrol --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/ --outputPath throughput-report.json
 ```
 
 Because ServiceControl contains, at maximum, the previous 1 hour of monitoring data, the tool will query the ServiceControl API 24 times with a one-hour sleep period between each attempt in order to capture a total of 24 hours worth of data.
@@ -78,7 +86,7 @@ This screenshot shows how to copy the `SubscriptionId` value:
 Once these prerequisites are complete, execute the tool with the resource id of the Azure Service Bus namespace, as in this example:
 
 ```shell
-particular-throughput-tool azureservicebus --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace --outputPath throughput-report.json
+throughput-counter azureservicebus --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace --outputPath throughput-report.json
 ```
 
 The tool may open additional terminal windows, which are Powershell processes gathering the data from the Azure CLI.
@@ -101,7 +109,7 @@ To collect data from RabbitMQ, the [management plugin](https://www.rabbitmq.com/
 Execute the tool with the RabbitMQ management URL, as in this example where the RabbitMQ broker is running on localhost:
 
 ```shell
-particular-throughput-tool rabbitmq --apiUrl http://localhost:15672 --outputPath throughput-report.json
+throughput-counter rabbitmq --apiUrl http://localhost:15672 --outputPath throughput-report.json
 ```
 
 The tool will prompt for the username and password to access the RabbitMQ management interface. After that, it will take its initial reading, then sleep for 24 hours before taking its final reading and generating a report.
@@ -120,7 +128,7 @@ All options are required:
 Once installed, execute the tool with the database connection string used by SQL Server endpoints, as in this example:
 
 ```shell
-particular-throughput-tool sqlserver --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;" --outputPath throughput-report.json
+throughput-counter sqlserver --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;" --outputPath throughput-report.json
 ```
 
 The tool will run for slightly longer than 24 hours in order to capture a beginning and ending `RowVersion` value for each queue table. A value can only be detected when a message is waiting in the queue to be processed, and not from an empty queue, so multiple queries may be required. The tool will use a backoff mechanism to avoid putting undue pressure on the SQL Server instance.
@@ -139,7 +147,7 @@ All options are required:
 The report that is generated will contain the names of endpoints/queues. If the queue names themselves contain confidential or proprietary information, certain strings can be masked in the report file.
 
 ```shell
-particular-throughput-tool <command> <options> --queueNameMasks Samples
+throughput-counter <command> <options> --queueNameMasks Samples
 ```
 
 This will result in a report file with masked data, such as:
