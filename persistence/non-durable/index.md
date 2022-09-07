@@ -51,5 +51,3 @@ System.InvalidOperationException: The saga with the correlation id 'Name: OrderI
 Non-durable persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
 
 Example exception:
-
-partial: concurrencyex

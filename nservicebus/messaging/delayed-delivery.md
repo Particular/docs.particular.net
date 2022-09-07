@@ -17,9 +17,6 @@ Delayed delivery is used for:
 
 NOTE: Only send operations can be deferred. Publish and reply operations cannot be deferred.
 
-partial: handlecurrentmessagelater
-
-
 ## Delaying message dispatching
 
 
