@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using NServiceBus;
 
+namespace WebApp;
+
 [ApiController]
 [Route("")]
 public class SendMessageController : Controller
