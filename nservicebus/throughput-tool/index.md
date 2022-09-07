@@ -53,10 +53,13 @@ All options are required:
 
 | Option | Description |
 |-|-|
-| <nobr>`--serviceControlApiUrl`</nobr> | The URL of the ServiceControl API. In the ServiceControl Management Utility, find the instance identified as a **ServiceControl Instance** and use the value of the **URL** field. |
-| <nobr>`--monitoringApiUrl`</nobr> | The URL of the Monitoring API. In the ServiceControl Management Utility, find the instance identified as a **Monitoring Instance** and use the value of the **URL** field. |
+| <nobr>`--serviceControlApiUrl`</nobr> | The URL of the ServiceControl API. In the [ServiceControl Management Utility](/servicecontrol/installation.md), find the instance identified as a **ServiceControl Instance** and use the value of the **URL** field, as shown in the screenshot below. |
+| <nobr>`--monitoringApiUrl`</nobr> | The URL of the Monitoring API. In the [ServiceControl Management Utility](/servicecontrol/installation.md), find the instance identified as a **Monitoring Instance** and use the value of the **URL** field, as shown in the screenshot below. |
 | <nobr>`--outputPath`</nobr> | A local path where the JSON report file should be generated. |
 
+This screenshot shows how to identify the instance types and locate the required URLs:
+
+![ServiceControl instances showing tool inputs](servicecontrol.png)
 
 ### Azure Service Bus
 
@@ -66,7 +69,11 @@ Collecting metrics from Azure Service Bus relies upon the Azure Command Line Int
 1. Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
 1. From a command line, execute `az login`, which will open a browser to complete the authentication to Azure. The Azure login must have access to view metrics data for the Azure Service Bus namespace.
 1. Execute `az set --subscription {SubscriptionId}`, where `SubscriptionId` is a Guid matching the subscription id that contains the Azure Service Bus namespace.
-1. In the Azure Portal, go to the Azure Service Bus namespace, click **Properties** in the side navigtation, and then copy the `Id` value, which will be needed to run the tool. The `Id` value should have a format similar to `/subscriptions/{Guid}/resourceGroups/{rsrcGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}`.
+1. In the Azure Portal, go to the Azure Service Bus namespace, click **Properties** in the side navigtation (as shown in the screenshot below) and then copy the `Id` value, which will be needed to run the tool. The `Id` value should have a format similar to `/subscriptions/{Guid}/resourceGroups/{rsrcGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}`.
+
+This screenshot shows how to copy the `SubscriptionId` value:
+
+![How to collect the Subscription Id](azure-service-bus.png)
 
 Once these prerequisites are complete, execute the tool with the resource id of the Azure Service Bus namespace, as in this example:
 
@@ -76,7 +83,7 @@ particular-throughput-tool azureservicebus --resourceId /subscriptions/xxxxxxxx-
 
 The tool may open additional terminal windows, which are Powershell processes gathering the data from the Azure CLI.
 
-Unlike other query options, using Azure Service Bus metrics allows the tool to capture the last 30 days worth of data, which means that results are returned instantly.
+Unlike ServiceControl, using Azure Service Bus metrics allows the tool to capture the last 30 days worth of data at once, which means that the report will be generated without delay.
 
 #### Options
 
@@ -89,7 +96,9 @@ All options are required:
 
 ### RabbitMQ
 
-Once installed, execute the tool with the RabbitMQ management URL, as in this example:
+To collect data from RabbitMQ, the [management plugin](https://www.rabbitmq.com/management.html) must be enabled on the RabbitMQ broker. The tool will also require a login that can access the management UI.
+
+Execute the tool with the RabbitMQ management URL, as in this example where the RabbitMQ broker is running on localhost:
 
 ```shell
 particular-throughput-tool rabbitmq --apiUrl http://localhost:15672 --outputPath throughput-report.json
