@@ -2,11 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
+#region ApplicationStart
 var builder = WebApplication.CreateBuilder();
 
-builder.Services.AddRazorPages();
-
-#region ApplicationStart
 builder.Host.UseNServiceBus(context =>
 {
     var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
@@ -16,6 +14,8 @@ builder.Host.UseNServiceBus(context =>
     return endpointConfiguration;
 });
 #endregion
+
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 

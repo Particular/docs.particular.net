@@ -2,11 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
-var builder = WebApplication.CreateBuilder();
-
-builder.Services.AddRazorPages();
-
 #region ApplicationStart
+var builder = WebApplication.CreateBuilder();
 
 builder.Host.UseNServiceBus(context =>
 {
@@ -17,6 +14,8 @@ builder.Host.UseNServiceBus(context =>
     return endpointConfiguration;
 });
 #endregion
+
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
