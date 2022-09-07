@@ -68,7 +68,7 @@ Collecting metrics from Azure Service Bus relies upon the Azure Command Line Int
 1. Execute `az set --subscription {SubscriptionId}`, where `SubscriptionId` is a Guid matching the subscription id that contains the Azure Service Bus namespace.
 1. In the Azure Portal, go to the Azure Service Bus namespace, click **Properties** in the side navigtation, and then copy the `Id` value, which will be needed to run the tool. The `Id` value should have a format similar to `/subscriptions/{Guid}/resourceGroups/{rsrcGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}`.
 
-Once these prerequisites are comlpete, execute the tool with the resource id of the Azure Service Bus namespace, as in this example:
+Once these prerequisites are complete, execute the tool with the resource id of the Azure Service Bus namespace, as in this example:
 
 ```shell
 particular-throughput-tool azureservicebus --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace --outputPath throughput-report.json
