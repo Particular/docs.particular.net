@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NServiceBus;
 
-namespace WebApplication.Core.Pages
+namespace WebApp.Pages
 {
     [IgnoreAntiforgeryToken]
     public class IndexModel : PageModel
