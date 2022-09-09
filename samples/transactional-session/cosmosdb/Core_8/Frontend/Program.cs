@@ -27,10 +27,6 @@ class Program
 
             #region cosmos-txsession-frontend-config
             endpointConfiguration.EnableOutbox();
-            #endregion
-
-            #region cosmos-txsession-frontend-persistence
-            endpointConfiguration.EnableOutbox();
 
             var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
             persistence.CosmosClient(new CosmosClient(Configuration.CosmosDBConnectionString));

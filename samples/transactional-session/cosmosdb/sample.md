@@ -4,9 +4,10 @@ reviewed: 2022-07-20
 component: Core
 related:
 - nservicebus/messaging/transactionalsession
+- persistence/cosmosdb
 ---
 
-This sample uses the `NServiceBus.TransactionalSession`-package with the `NServiceBus.Persistence.CosmosDB`-package to achieve transactionally consistent database changes and message operations.
+This sample uses the [transactional session](/nservicebus/transactional-session) feature  with the [CosmosDB persistence](/persistence/cosmosdb) to achieve transactionally consistent database changes and message operations.
 
 downloadbutton
 
@@ -39,21 +40,17 @@ The sample is intended to be used with the [CosmosDB emulator](https://docs.micr
 
 ### Frontend
 
-The `Frontend` service needs to enable the transactional session feature in the endpoint configuration:
+The `Frontend` service needs to enable the transactional session feature in the endpoint configuration. The endpoint is also configured to use the CosmosDB persistence with a default container and partition key path:
 
 snippet: cosmos-txsession-frontend-config
 
 Note that the `Outbox` feature must be enabled to achieve atomicity with the transactional session feature.
 
-The endpoint is also configured to use the CosmosDB persistence with a default container and partition key path:
-
-snippet: cosmos-txsession-frontend-persistence
-
 ### Backend
 
 The `Backend` service contains a message handler for the `OrderReceived` event. The `Backend` endpoint also needs to be configured for CosmosDB:
 
-snippet: cosmos-txsession-backend-persistence
+snippet: cosmos-txsession-backend-config
 
 Note that the backend service requires a [partition key mapping](/persistence/cosmosdb/transactions.md#specifying-the-partitionkey-to-use-for-the-transaction) configured for the `OrderReceived` to determine what partition needs to be used to access the order.
 
