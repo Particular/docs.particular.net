@@ -1,30 +1,35 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using NServiceBus;
+﻿using Microsoft.AspNetCore.Builder;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using NServiceBus;
 
 public class Program
 {
     public static Task Main()
     {
+
         #region EndpointConfiguration
-        var host = Host.CreateDefaultBuilder()
-            .UseNServiceBus(context =>
-            {
-                var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
-                var transport = endpointConfiguration.UseTransport<LearningTransport>();
-                transport.Routing().RouteToEndpoint(
-                    assembly: typeof(MyMessage).Assembly,
-                    destination: "Samples.ASPNETCore.Endpoint");
+        var builder = WebApplication.CreateBuilder();
+        builder.Host.UseNServiceBus(context =>
+        {
+            var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.Routing().RouteToEndpoint(
+                assembly: typeof(MyMessage).Assembly,
+                destination: "Samples.ASPNETCore.Endpoint");
 
-                endpointConfiguration.SendOnly();
+            endpointConfiguration.SendOnly();
 
-                return endpointConfiguration;
-            })
-            .ConfigureWebHostDefaults(c => c.UseStartup<Startup>())
-            .Build();
+            return endpointConfiguration;
+        });
         #endregion
 
-        return host.RunAsync();
+        builder.Services.AddControllers();
+
+        var app = builder.Build();
+
+        app.MapControllers();
+
+        return app.RunAsync();
     }
 }
