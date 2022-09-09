@@ -3,8 +3,9 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using NServiceBus.TransactionalSession;
 
-internal class Program
+class Program
 {
     public static void Main(string[] args)
     {
@@ -13,7 +14,7 @@ internal class Program
         host.Run();
     }
 
-    private static IHostBuilder CreateHostBuilder(string[] args)
+    static IHostBuilder CreateHostBuilder(string[] args)
     {
         var builder = Host.CreateDefaultBuilder(args);
         builder.UseConsoleLifetime();
@@ -26,13 +27,15 @@ internal class Program
 
             #region cosmos-txsession-frontend-config
             endpointConfiguration.EnableOutbox();
-            endpointConfiguration.EnableTransactionalSession();
             #endregion
 
             #region cosmos-txsession-frontend-persistence
+            endpointConfiguration.EnableOutbox();
+
             var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
             persistence.CosmosClient(new CosmosClient(Configuration.CosmosDBConnectionString));
             persistence.DefaultContainer("Orders", "/CustomerId");
+            persistence.EnableTransactionalSession();
             #endregion
 
             endpointConfiguration.PurgeOnStartup(true);

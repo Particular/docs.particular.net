@@ -3,7 +3,7 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-internal class Program
+class Program
 {
     public static void Main(string[] args)
     {
@@ -12,7 +12,7 @@ internal class Program
         host.Run();
     }
 
-    private static IHostBuilder CreateHostBuilder(string[] args)
+    static IHostBuilder CreateHostBuilder(string[] args)
     {
         var builder = Host.CreateDefaultBuilder(args);
         builder.UseConsoleLifetime();

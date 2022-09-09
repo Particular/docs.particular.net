@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -9,9 +10,9 @@ using NServiceBus.TransactionalSession;
 
 class Worker : BackgroundService
 {
-    private readonly IServiceProvider serviceProvider;
-    private readonly ILogger<Worker> logger;
-    private readonly IHostApplicationLifetime applicationLifetime;
+    readonly IServiceProvider serviceProvider;
+    readonly ILogger<Worker> logger;
+    readonly IHostApplicationLifetime applicationLifetime;
 
     public Worker(IServiceProvider serviceProvider, ILogger<Worker> logger, IHostApplicationLifetime applicationLifetime)
     {
@@ -34,9 +35,8 @@ class Worker : BackgroundService
                     {
                         var customerId = Guid.NewGuid().ToString();
                         var session = scope.ServiceProvider.GetRequiredService<ITransactionalSession>();
-                        var sessionOptions = new OpenSessionOptions();
 
-                        await session.OpenCosmosDBSession(partitionKey: customerId, options: sessionOptions, cancellationToken: cancellationToken);
+                        await session.Open(new CosmosOpenSessionOptions(new PartitionKey(customerId)), cancellationToken);
 
                         Console.WriteLine(
                             "Press 's' to create a new order, 'c' to commit or 'a' to abort the transaction");

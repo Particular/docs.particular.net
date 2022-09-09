@@ -5,7 +5,7 @@ using NServiceBus;
 
 class OrderReceivedHandler : IHandleMessages<OrderReceived>
 {
-    private readonly ILogger<OrderReceivedHandler> logger;
+    readonly ILogger<OrderReceivedHandler> logger;
 
     public OrderReceivedHandler(ILogger<OrderReceivedHandler> logger)
     {
