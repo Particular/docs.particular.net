@@ -7,7 +7,6 @@ public class Program
 {
     public static Task Main()
     {
-
         #region EndpointConfiguration
         var builder = WebApplication.CreateBuilder();
         builder.Host.UseNServiceBus(context =>

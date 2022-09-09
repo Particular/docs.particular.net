@@ -14,7 +14,7 @@ class Program
             var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
             endpointConfiguration.MakeInstanceUniquelyAddressable("1");
             endpointConfiguration.EnableCallbacks();
-            endpointConfiguration.UseTransport<LearningTransport>();
+            endpointConfiguration.UseTransport(new LearningTransport());
             return endpointConfiguration;
         });
         #endregion
