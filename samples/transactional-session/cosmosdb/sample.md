@@ -44,7 +44,7 @@ The `Frontend` service needs to enable the transactional session feature in the 
 
 snippet: cosmos-txsession-frontend-config
 
-Note that the `Outbox` feature must be enabled to achieve atomicity with the transactional session feature.
+Note: The `Outbox` feature must be enabled to achieve atomicity with the transactional session feature.
 
 ### Backend
 
