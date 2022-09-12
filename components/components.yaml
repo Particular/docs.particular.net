@@ -627,15 +627,6 @@
   NugetOrder:
     - NServiceBus.UniformSession
 
-- Key: TransactionalSession
-  Name: TransactionalSession Support
-  DocsUrl: /nservicebus/messaging/transactionalsession
-  GitHubOwner: Particular
-  Category: Other
-  ProjectUrl: https://github.com/Particular/NServiceBus.TransactionalSession
-  NugetOrder:
-    - NServiceBus.TransactionalSession
-
 - Key: UniformSessionTesting
   Name: UniformSession.Testing
   DocsUrl: /nservicebus/messaging/uniformsession-testing

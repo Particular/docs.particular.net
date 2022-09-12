@@ -50,7 +50,7 @@ Note: The `Outbox` feature must be enabled to achieve atomicity with the transac
 
 The `Backend` service contains a message handler for the `OrderReceived` event. The `Backend` endpoint also needs to be configured for CosmosDB:
 
-snippet: cosmos-txsession-backend-config
+snippet: cosmos-txsession-backend-persistence
 
 Note that the backend service requires a [partition key mapping](/persistence/cosmosdb/transactions.md#specifying-the-partitionkey-to-use-for-the-transaction) configured for the `OrderReceived` to determine what partition needs to be used to access the order.
 
