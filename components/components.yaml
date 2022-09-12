@@ -723,3 +723,13 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.CosmosDB
   NugetOrder:
     - NServiceBus.Persistence.CosmosDB
+
+- Key: TransactionalSession
+  Name: NServiceBus.TransactionalSession
+  DocsUrl: /nservicebus/transactional-session
+  GitHubOwner: Particular
+  Category: Other
+  LicenseUrl: https://github.com/Particular/NServiceBus.TransactionalSession/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.TransactionalSession
+  NugetOrder:
+    - NServiceBus.TransactionalSession
