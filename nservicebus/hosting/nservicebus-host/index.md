@@ -117,8 +117,6 @@ In Versions 5 and above roles are obsoleted and should not be used. The function
 
 snippet: AsAClientEquivalent
 
-partial: slaviolation
-
 ## When Endpoint Instance Starts and Stops
 
 Classes that plug into the startup/shutdown sequence are invoked just after the endpoint instance has been started and just before it is stopped. This approach may be used for any tasks that need to execute with the same lifecycle as the endpoint instance.

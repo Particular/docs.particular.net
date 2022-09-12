@@ -78,5 +78,3 @@ snippet: header-outgoing-saga
 NServiceBus supports registering headers at configuration time that are then added to all outgoing messages for the endpoint.
 
 snippet: header-static-endpoint
-
-partial: threadsafe

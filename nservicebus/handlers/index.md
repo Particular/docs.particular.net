@@ -32,8 +32,6 @@ var fallback = message.GetType().FullName;
 
 Receiving a message for which there are no message handlers is considered an error and the received message will be forwarded to the configured error queue.
 
-partial: behaviorcaveat
-
 ## Multiple handlers for a single message
 
 Handling a single message in a given endpoint is treated as a single unit of work, regardless of how many handlers handle that message. If one handler fails, the message is retried according to the [recoverability policy](/nservicebus/recoverability) of the endpoint. When the message is retried, _all_ matching handlers are invoked again, including any that successfully handled the message during previous attempts.

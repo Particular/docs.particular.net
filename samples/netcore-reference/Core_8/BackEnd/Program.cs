@@ -58,7 +58,8 @@ internal class Program
                            $"encountered: {Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. " +
                            $"StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
 
-        EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
+        // Useful if running on Windows
+        // EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
 
         try
         {

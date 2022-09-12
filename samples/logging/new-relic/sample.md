@@ -24,6 +24,8 @@ This sample reports the following metrics to NewRelic:
 
 For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/monitoring/metrics/definitions.md) section.
 
+The [New Relic NServiceBus integration](https://newrelic.com/instant-observability/nservicebus/f3f28a00-8cea-41f1-a6fe-ebf5eae5791e) can be used to get started quickly.
+
 ## Prerequisites
 
 To run this sample, [create a NewRelic account](https://newrelic.com/signup?via=login), then download and run the NewRelic agent.
@@ -63,9 +65,11 @@ snippet: newrelic-appname
 
 ## Dashboard
 
-### Create
+A ready-to-use dashboard is available in the [official New Relic NServiceBus integration](https://newrelic.com/instant-observability/nservicebus/f3f28a00-8cea-41f1-a6fe-ebf5eae5791e).
 
-Dashboards can be created by using NewRelic Insights. The following steps have to be performed:
+### Create a custom dashboard
+
+Custom dashboards can be created by using NewRelic Insights. The following steps have to be performed:
 
  * Create a new dashboard by using the `Create a dashboard` button under `All Dashboards`.
  * Open up the Data Explorer, select the corresponding application name and filter for `Custom` metrics.

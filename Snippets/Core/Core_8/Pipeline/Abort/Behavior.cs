@@ -1,4 +1,4 @@
-﻿// ReSharper disable UnusedParameter.Local
+﻿
 namespace Core8.Pipeline.Abort
 {
     using System;

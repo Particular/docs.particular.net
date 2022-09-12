@@ -65,9 +65,6 @@ The `Client` initiates the ordering process. The 'Client' defers sending the mes
 snippet: DeferOrder
 
 
-partial: HandleDefer
-
-
 ### The Server
 
 The `Server` project processes an Order. It receives `PlaceDelayedOrder` sent from `Client` and processes it normally.

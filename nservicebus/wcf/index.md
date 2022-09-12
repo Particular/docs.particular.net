@@ -30,8 +30,6 @@ Example:
 
 snippet: ExposeWCFService
 
-partial: enumnote
-
 
 ## Configure binding and address of WCF service
 

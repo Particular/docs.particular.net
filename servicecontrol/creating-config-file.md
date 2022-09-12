@@ -1,7 +1,7 @@
 ---
 title: Configuration Settings
 summary: Categorized list of ServiceControl configuration settings.
-reviewed: 2019-12-20
+reviewed: 2022-08-23
 ---
 
 
@@ -395,7 +395,7 @@ Default: `false`
 After restarting the ServiceControl service, access the RavenDB studio locally at the following endpoint:
 
 ```no-highlight
-http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&database=%3Csystem%3E
+http://localhost:{configured ServiceControl instance maintenance port}/studio/index.html#databases/documents?&database=%3Csystem%3E
 ```
 
 NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).

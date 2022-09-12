@@ -58,8 +58,6 @@ NServiceBus allows to specify destination addresses using an `"endpoint@physical
 
 Using this notation it is possible to route messages to any endpoint hosted in any storage account.
 
-partial: message-endpoint-mapping
-
 partial: routing-send-options-full-connectionstring
 
 partial: aliases

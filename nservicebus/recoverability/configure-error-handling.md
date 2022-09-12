@@ -25,8 +25,6 @@ snippet: ErrorWithCode
 
 include: configurationWarning
 
-partial: errorwithconfig
-
 ## Error message header customizations
 
 Before a message is moved to the error queue it is possible to inspect and modify its headers including [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers).

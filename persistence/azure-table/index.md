@@ -38,8 +38,6 @@ partial: ratelimiting
 
 partial: transaction
 
-partial: correlation
-
 ### Saga concurrency
 
 partial: saga-concurrency

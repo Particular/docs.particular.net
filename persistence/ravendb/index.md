@@ -50,8 +50,6 @@ snippet: ravendb-persistence-shared-session-for-saga
 
 ## Customizing the IDocumentSession
 
-partial: shared-session-api-incompatible-with-outbox
-
 The creation of the RavenDB `IDocumentSession` instance used by NServiceBus and made available as the [shared session](#shared-session) can be customized as shown in the following snippet. Despite the name of the method, this option *does not enable the shared session* but only affects the customization of that session.
 
 snippet: ravendb-persistence-customize-document-session
@@ -59,10 +57,6 @@ snippet: ravendb-persistence-customize-document-session
 include: raven-dispose-warning
 
 partial: multitenant
-
-partial: unsafereads
-
-partial: subscription-versioning
 
 
 ## Viewing the data

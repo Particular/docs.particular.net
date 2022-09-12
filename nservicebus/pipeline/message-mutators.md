@@ -32,9 +32,6 @@ snippet: IMutateIncomingMessages
 snippet: IMutateOutgoingMessages
 
 
-partial: imessagemutator
-
-
 ## Transport messages mutators
 
 Transport message mutators work on the serialized transport message and are useful for compression, header manipulation, etc.
@@ -49,9 +46,6 @@ snippet: IMutateIncomingTransportMessages
 ### IMutateOutgoingTransportMessages
 
 snippet: IMutateOutgoingTransportMessages
-
-
-partial: imutatetransportmessages
 
 
 ## Registering a mutator

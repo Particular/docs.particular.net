@@ -1,6 +1,4 @@
-﻿// ReSharper disable SuggestVarOrType_Elsewhere
-
-using NServiceBus;
+﻿using NServiceBus;
 
 class DelayedDelivery
 {

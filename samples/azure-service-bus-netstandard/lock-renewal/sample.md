@@ -15,8 +15,8 @@ include: asb-connectionstring-xplat
 
 ## Important information about lock renewal
 
-1. The transport must use the default [`SendsAtomicWithReceive`](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive) transaction mode for the sample to work.
-1. When using lock renewal with the [outbox feature](/nservicebus/outbox/), the transport transaction mode has to be **explicitly** set to [`SendsAtomicWithReceive`](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive) in the endpoint configuration code.
+partial: transactionmode
+
 1. For a lock to be extended for longer than 10 minutes, the value of [`TransactionManager.MaxTimeout`](https://docs.microsoft.com/en-us/dotnet/api/system.transactions.transactionmanager.maximumtimeout) must be changed to the maximum time allowed to process a message. This is a machine wide setting and should be treated carefully.
 1. Message lock renewal is initiated by client code, not the broker. If the request to renew the lock fails after all the SDK built-in retries, the lock won't be renewed, and the message will become unlocked and available for processing by competing consumers. Lock renewal should be treated as best-effort and not as a guaranteed operation.
 1. Message lock renewal applies to **only** the message currently being processed. Prefetched messages that are not handled within the `LockDuration` time will lose their lock, indicated by a `LockLostException` in the log when the transport attempts to complete them. The number of prefetched messages may be adjusted, which may help to prevent exceptions with lock renewal. Alternatively, the endpoint's concurrency limit may be raised to increase the rate of message processing, but this may also increase resource contention.
@@ -25,37 +25,31 @@ include: asb-connectionstring-xplat
 
 The sample contains a single executable project, `LockRenewal`, that sends a `LongProcessingMessage` message to itself, and the time taken to process that message exceeds the maximum lock duration on the endpoint's input queue.
 
-### Lock renewal feature
+### Configuration
 
 Lock renewal is enabled by the `LockRenewalFeature`, which is configured to be enabled by default.
 
-snippet: LockRenewalFeature
-
-The Azure Service Bus transport sets `LockDuration` to 5 minutes by default, so the default `LockDuration` for the feature has the same value. `ExecuteRenewalBefore` is a `TimeSpan` specifying how soon to attempt lock renewal before the lock expires. The default is 10 seconds. Both settings may be overridden using the `EndpointConfiguration` API.
-
-snippet: override-lock-renewal-configuration
-
-In the sample, `LockDuration` is set to 30 seconds, and `ExecuteRenewalBefore` is set to 5 seconds.
-
-### Lock renewal behavior
-
-The `LockRenewalFeature` uses the two settings to register the `LockRenewalBehavior` pipeline behavior. With `LockDuration` set to 30 seconds and `ExecuteRenewalBefore` set to 5 seconds, the lock will be renewed every 25 seconds (`LockDuration` - `ExecuteRenewalBefore`).
+partial: walkthrough
 
 The behavior processes every incoming message and uses [native message access](/transports/azure-service-bus/native-message-access.md) to get the message's lock token, which is required for lock renewal.
 
 snippet: native-message-access
 
-The request to renew the lock must use the same Azure Service Bus connection object and queue path used to receive the incoming message. These items are available in the `TransportTransaction`:
+Obtain the message receiver to renew the lock:
 
 snippet: get-connection-and-path
 
-With the lock token, connection object, and queue path, an Azure Service Bus `MessageReceiver` object may be created to renew the lock. This is done in a background task, running in an infinite loop until the specified cancellation token is signaled as canceled.
+A background task is started that will renew the lock until the completion of message processing signals the cancellation token.
 
 snippet: renewal-background-task
 
 The behavior executes the rest of the pipeline and cancels the background task when execution is completed.
 
 snippet: processing-and-cancellation
+
+### Prefetching
+
+Disable prefetching if the majority of messages in the queue result in long processing durations. Otherwise, the lock for prefetched messages could expire before processing even starts.
 
 ### Long-running handler
 

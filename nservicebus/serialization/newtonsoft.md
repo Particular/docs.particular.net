@@ -10,8 +10,6 @@ related:
 
 This serialiser uses [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Json.NET](https://www.newtonsoft.com/json).
 
-partial: howcoreusesjson
-
 ## Usage
 
 snippet: NewtonsoftSerialization

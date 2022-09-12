@@ -1,3 +1,0 @@
-### Via Code
-
-snippet: EncryptionFromCode

@@ -1,4 +1,4 @@
-﻿// ReSharper disable UnusedParameter.Local
+﻿
 namespace Core7.Features
 {
     using System;

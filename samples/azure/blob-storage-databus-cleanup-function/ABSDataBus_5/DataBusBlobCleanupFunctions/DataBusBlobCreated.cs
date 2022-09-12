@@ -7,17 +7,10 @@ using Microsoft.Extensions.Logging;
 
 public class DataBusBlobCreated
 {
-    private readonly DataBusBlobTimeoutCalculator calculator;
-
-    public DataBusBlobCreated(DataBusBlobTimeoutCalculator calculator)
-    {
-        this.calculator = calculator;
-    }
-
     #region DataBusBlobCreatedFunction
 
     [FunctionName(nameof(DataBusBlobCreated))]
-    public async Task Run([BlobTrigger("databus/{name}", Connection = "DataBusStorageAccount")]CloudBlockBlob  myBlob, [DurableClient] IDurableOrchestrationClient starter, ILogger log)
+    public async Task Run([BlobTrigger("databus/{name}", Connection = "DataBusStorageAccount")] CloudBlockBlob myBlob, [DurableClient] IDurableOrchestrationClient starter, ILogger log)
     {
         log.LogInformation($"Blob created at {myBlob.Uri}");
 
@@ -30,7 +23,7 @@ public class DataBusBlobCreated
             return;
         }
 
-        var validUntilUtc =  calculator.GetValidUntil(myBlob);
+        var validUntilUtc = DataBusBlobTimeoutCalculator.GetValidUntil(myBlob);
 
         if (validUntilUtc == DateTime.MaxValue)
         {
@@ -41,7 +34,7 @@ public class DataBusBlobCreated
         await starter.StartNewAsync(nameof(DataBusCleanupOrchestrator), instanceId, new DataBusBlobData
         {
             Path = myBlob.Uri.ToString(),
-            ValidUntilUtc = calculator.ToWireFormattedString(validUntilUtc)
+            ValidUntilUtc = DataBusBlobTimeoutCalculator.ToWireFormattedString(validUntilUtc)
         });
     }
 

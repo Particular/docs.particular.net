@@ -1,7 +1,7 @@
 ---
 title: Publish-Subscribe
 summary: Subscribers tell the publisher they are interested. Publishers store addresses for sending messages.
-reviewed: 2019-12-23
+reviewed: 2022-08-23
 component: Core
 redirects:
  - nservicebus/how-pub-sub-works

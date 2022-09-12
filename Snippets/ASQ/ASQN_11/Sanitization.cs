@@ -1,13 +1,9 @@
-﻿// ReSharper disable SuggestVarOrType_Elsewhere
-
-using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using NServiceBus;
 
-[SuppressMessage("ReSharper", "UnusedMember.Local")]
 public class Sanitization
 {
     void CustomSanitization(EndpointConfiguration endpointConfiguration)

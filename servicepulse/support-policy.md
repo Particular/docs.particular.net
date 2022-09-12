@@ -15,11 +15,10 @@ related:
 
 Only the latest version of ServicePulse is supported.  The latest version can be found on the [downloads page](https://particular.net/downloads).
 
+## Upgrade tips
 
-## Upgrade Tips
-
-1. Ensure the machine running ServicePulse can reach the service running ServiceControl and has access to the IP/Port.
+1. Ensure the machine running ServicePulse can reach the service running ServiceControl and has access to the correct IP address and port.
 
 ## ServiceControl compatibility
 
-ServicePulse is compatible with currently supported version of [ServiceControl](/servicecontrol/upgrades/supported-versions.md).
+ServicePulse is compatible with supported versions of [ServiceControl](/servicecontrol/upgrades/supported-versions.md).

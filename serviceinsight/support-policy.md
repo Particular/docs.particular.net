@@ -15,12 +15,11 @@ related:
 
 Only the latest version of ServiceInsight is supported. The latest version can be found on the [downloads page](https://particular.net/downloads).
 
+## Upgrade tips
 
-## Upgrade Tips
-
-1. Ensure the machine running ServiceInsight can reach the service running ServiceControl and has access to the IP/Port.
+1. Ensure the machine running ServiceInsight can reach the machine running ServiceControl and has access to the correct IP address and port.
 1. The application settings are automatically migrated to the newer version when ServiceInsight is upgraded.
 
 ## ServiceControl compatibility
 
-ServiceInsight is compatible with currently supported version of [ServiceControl](/servicecontrol/upgrades/supported-versions.md).
+ServiceInsight is compatible with supported versions of [ServiceControl](/servicecontrol/upgrades/supported-versions.md).

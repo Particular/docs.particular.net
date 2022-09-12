@@ -43,7 +43,6 @@ Suitable for running on a development machine, for example, inside Visual Studio
 Suitable for running the endpoint in integration and QA environments.
 
 * [Installers](/nservicebus/operations/installers.md) are invoked to make deployment easy to automate.
-partial: integration
 
 
 ### Production profile
@@ -51,7 +50,6 @@ partial: integration
 The default if no explicit profile is defined. This profile configures the endpoint for production use.
 
 * [Installers](/nservicebus/operations/installers.md) are not invoked since the endpoint is often installed as a Windows Service and does not run with elevated privileges. [Installers](/nservicebus/operations/installers.md) run only when [installing the host](/nservicebus/hosting/nservicebus-host/installation.md) or when the code runs inside Visual Studio in Debug mode.
-partial: production
 
 
 ## Feature profiles

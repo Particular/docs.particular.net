@@ -80,6 +80,7 @@ RouterConnector: NServiceBus.Router.Connector
 Wormhole: NServiceBus.Wormhole
 WormholeGateway: NServiceBus.Wormhole.Gateway
 UniformSession: NServiceBus.UniformSession
+TransactionalSession: NServiceBus.TransactionalSession
 UniformSessionTesting: NServiceBus.UniformSession.Testing
 PlatformSample: Particular.PlatformSample
 Extensions.Hosting: NServiceBus.Extensions.Hosting

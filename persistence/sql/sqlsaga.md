@@ -19,8 +19,6 @@ snippet: SqlPersistenceSaga
 
 Note that there are differences to how a standard NServiceBus saga is implemented.
 
-partial: attribute-required
-
 
 ## Correlation IDs
 

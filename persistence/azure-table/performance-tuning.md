@@ -7,7 +7,6 @@ related:
  - nservicebus/operations
 redirects:
  - nservicebus/azure-storage-persistence/performance-tuning
- - persistence/azure-table/performance-tuning
 ---
 
 ## General guidelines

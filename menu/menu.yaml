@@ -1,56 +1,57 @@
 - Name: Getting Started
-  Url: get-started
   Topics:
-  - Url: get-started
-    Title: Getting Started
+  - Title: Quick Start Tutorial
     Articles:
     - Url: tutorials/quickstart
-      Title: Quick Start Tutorial
-      Articles:
-      - Url: tutorials/quickstart/tutorial-reliability
-        Title: "Quick Start: Recovering from failure"
-      - Url: tutorials/quickstart/tutorial-extending-the-system
-        Title: "Quick Start: Extending the system"
+      Title: "Part 1: Introduction"
+    - Url: tutorials/quickstart/tutorial-reliability
+      Title: "Part 2: Recovering from failure"
+    - Url: tutorials/quickstart/tutorial-extending-the-system
+      Title: "Part 3: Extending the system"
+  - Title: Introduction to NServiceBus
+    Articles:
     - Url: tutorials/nservicebus-step-by-step
-      Title: Introduction to NServiceBus
-      Articles:
-      - Url: tutorials/nservicebus-step-by-step/1-getting-started
-        Title: Getting Started
-      - Url: tutorials/nservicebus-step-by-step/2-sending-a-command
-        Title: Sending a command
-      - Url: tutorials/nservicebus-step-by-step/3-multiple-endpoints
-        Title: Multiple endpoints
-      - Url: tutorials/nservicebus-step-by-step/4-publishing-events
-        Title: Publishing events
-      - Url: tutorials/nservicebus-step-by-step/5-retrying-errors
-        Title: Retrying errors
+      Title: Introduction
+    - Url: tutorials/nservicebus-step-by-step/1-getting-started
+      Title: "Lesson 1: Getting Started"
+    - Url: tutorials/nservicebus-step-by-step/2-sending-a-command
+      Title: "Lesson 2: Sending a command"
+    - Url: tutorials/nservicebus-step-by-step/3-multiple-endpoints
+      Title: "Lesson 3: Multiple endpoints"
+    - Url: tutorials/nservicebus-step-by-step/4-publishing-events
+      Title: "Lesson 4: Publishing events"
+    - Url: tutorials/nservicebus-step-by-step/5-retrying-errors
+      Title: "Lesson 5: Retrying errors"  
+  - Title: NServiceBus Sagas
+    Articles:
+    - Url: tutorials/nservicebus-sagas
+      Title: Introduction
+    - Url: tutorials/nservicebus-sagas/1-saga-basics
+      Title: "Part 1: Saga basics"
+    - Url: tutorials/nservicebus-sagas/2-timeouts
+      Title: "Part 2: Timeouts"
+    - Url: tutorials/nservicebus-sagas/3-integration
+      Title: "Part 3: Third-party integration"
+  - Title: More tutorials
+    Articles:    
     - Url: tutorials/message-replay
       Title: Message replay tutorial
-    - Url: tutorials/nservicebus-sagas
-      Title: NServiceBus Sagas
-      Articles:
-      - Url: tutorials/nservicebus-sagas/1-saga-basics
-        Title: Saga basics
-      - Url: tutorials/nservicebus-sagas/2-timeouts
-        Title: Timeouts
-      - Url: tutorials/nservicebus-sagas/3-integration
-        Title: Third-party integration
+    - Url: tutorials/monitoring-setup
+      Title: NServiceBus monitoring setup
+    - Url: tutorials/monitoring-demo
+      Title: NServiceBus monitoring demo
     - Url: tutorials
-      Title: More tutorials
-      Articles:
-      - Url: tutorials/monitoring-setup
-        Title: NServiceBus monitoring setup
-      - Url: tutorials/monitoring-demo
-        Title: NServiceBus monitoring demo
-    - Url: get-started/high-level-content
-      Title: High-level content
-    - Url: samples/netcore
-      Title: .NET Core Samples
+      Title: All tutorials  
+  - Url: get-started/high-level-content
+    Title: High-level content
+  - Url: samples/netcore
+    Title: .NET Core Samples
 - Name: NServiceBus
   Topics:
-  - Url: nservicebus
-    Title: General
+  - Title: General
     Articles:
+    - Url: nservicebus
+      Title: About NServiceBus
     - Url: nservicebus/best-practices
       Title: Best practices
     - Url: nservicebus/concepts
@@ -93,9 +94,10 @@
       Title: Scaling out
     - Url: nservicebus/architecture
       Title: Bus vs. Broker
-  - Url: nservicebus/upgrades
-    Title: Upgrade Guides
+  - Title: Upgrade Guides
     Articles:
+    - Url: nservicebus/upgrades
+      Title: About upgrading NServiceBus
     - Url: nservicebus/upgrades/support-policy
       Title: Support Policy
       Articles:
@@ -275,9 +277,10 @@
         Title: ServiceControl.Plugin.X.Heartbeat to NServiceBus.Heartbeat
     - Title: Upgrade NServiceBus.Wormhole to NServiceBus.Router
       Url: nservicebus/upgrades/wormhole-router
-  - Url: nservicebus/messaging
-    Title: Messaging
+  - Title: Messaging
     Articles:
+    - Url: nservicebus/messaging
+      Title: About messaging
     - Url: nservicebus/messaging/messages-events-commands
       Title: Messages, Events and Commands
       Articles:
@@ -387,9 +390,10 @@
         Title: DataBus binary serializer
       - Url: nservicebus/messaging/databus/custom
         Title: Customizing DataBus
-  - Url: nservicebus/hosting
-    Title: Hosting
+  - Title: Hosting
     Articles:
+    - Url: nservicebus/hosting
+      Title: About hosting
     - Url: nservicebus/endpoints
       Title: Endpoints
       Articles:
@@ -474,9 +478,10 @@
         Title: Before Configuration Finalized
       - Url: nservicebus/lifecycle/endpointstartandstop
         Title: Endpoint Instance Starts and Stops
-  - Url: nservicebus/handlers-and-sagas
-    Title: Handlers and Sagas
+  - Title: Handlers and sagas
     Articles:
+    - Url: nservicebus/handlers-and-sagas
+      Title: About handlers and sagas
     - Url: nservicebus/handlers/async-handlers
       Title: Asynchronous Handlers
     - Url: nservicebus/handlers
@@ -505,9 +510,10 @@
         Title: Debugging sagas in ServiceInsight
       - Url: nservicebus/sagas/saga-finding
         Title: Complex finding logic
-  - Url: nservicebus/testing
-    Title: Testing
+  - Title: Testing
     Articles:
+    - Url: nservicebus/testing
+      Title: About testing NServiceBus
     - Url: samples/unit-testing
       Title: AAA style tests
     - Url: nservicebus/testing/saga-scenario-testing
@@ -518,9 +524,10 @@
       Title: Callbacks
     - Url: nservicebus/messaging/uniformsession-testing
       Title: Uniform session
-  - Url: nservicebus/recoverability
-    Title: Recoverability
+  - Title: Recoverability
     Articles:
+    - Url: nservicebus/recoverability
+      Title: About recoverability with NServiceBus
     - Url: nservicebus/recoverability/configure-error-handling
       Title: Configure error handling
     - Url: nservicebus/recoverability/configure-immediate-retries
@@ -535,9 +542,10 @@
       Title: Error notifications
     - Url: nservicebus/recoverability/pipeline
       Title: Recoverability pipeline
-  - Url: nservicebus/pipeline
-    Title: Pipeline
+  - Title: Pipeline
     Articles:
+    - Url: nservicebus/pipeline
+      Title: About message handling pipeline
     - Url: nservicebus/pipeline/steps-stages-connectors
       Title: Steps, Stages and Connectors
     - Url: nservicebus/pipeline/manipulate-with-behaviors
@@ -556,18 +564,20 @@
       Title: Customizing Error Handling
     - Url: nservicebus/satellites
       Title: Satellites
-  - Url: nservicebus/serialization
-    Title: Serialization
+  - Title: Serialization
     Articles:
+    - Url: nservicebus/serialization
+      Title: About serialization with NServiceBus
     - Url: nservicebus/serialization/newtonsoft
       Title: Json.NET
     - Url: nservicebus/serialization/xml
       Title: Xml
     - Url: nservicebus/serialization/custom-serializer
       Title: Custom
-  - Url: nservicebus/dependency-injection
-    Title: Dependency Injection
+  - Title: Dependency Injection
     Articles:
+    - Url: nservicebus/dependency-injection
+      Title: About NServiceBus and dependency injection
     - Url: nservicebus/dependency-injection/child-lifetime
       Title: Child Lifetimes
     - Url: nservicebus/dependency-injection/extensions-dependencyinjection
@@ -584,9 +594,10 @@
       Title: StructureMap
     - Url: nservicebus/dependency-injection/unity
       Title: Unity
-  - Url: nservicebus/logging
-    Title: Logging
+  - Title: Logging
     Articles:
+    - Url: nservicebus/logging
+      Title: About NServiceBus logging
     - Url: nservicebus/logging/extensions-logging
       Title: Microsoft.Extensions.Logging
     - Url: nservicebus/logging/message-contents
@@ -601,14 +612,16 @@
       Title: CommonLogging
     - Url: nservicebus/operations/auditing
       Title: Auditing Messages
-  - Url: nservicebus/security
-    Title: Security
+  - Title: Security
     Articles:
+    - Url: nservicebus/security
+      Title: About security and NServiceBus
     - Url: nservicebus/security/generating-encryption-keys
       Title: Generating secure random strong encryption keys
-  - Url: nservicebus/operations
-    Title: Operations
+  - Title: Operations
     Articles:
+    - Url: platform/installer/offline
+      Title: About operations and NServiceBus
     - Url: platform/installer/offline
       Title: Particular Service Platform Installation
     - Url: nservicebus/hosting/startup-diagnostics
@@ -635,11 +648,10 @@
       Title: Decommissioning Endpoints
     - Url: nservicebus/operations/nservicebus-analyzer
       Title: NServiceBus Analyzer
-  - Url: nservicebus/bridge
-    Title: Bridge
+  - Title: Bridge
     Articles:
     - Url: nservicebus/bridge
-      Title: Bridge
+      Title: NServiceBus transport bridge
     - Url: nservicebus/bridge/configuration
       Title: Configuration
     - Url: nservicebus/bridge/scenarios
@@ -649,22 +661,21 @@
         Title: Migrating from Router
     - Url: nservicebus/bridge/performance
       Title: Performance & Scaling
-  - Url: nservicebus/compliance
-    Title: Compliance
+  - Title: Compliance
     Articles:
+    - Url: nservicebus/compliance
+      Title: Compliance and NServiceBus
     - Url: nservicebus/compliance/gdpr
       Title: GDPR
     - Url: nservicebus/compliance/fips
       Title: FIPS
     - Url: nservicebus/compliance/software-supply-chain
       Title: Software supply chain
-  - Url: nservicebus/tools
-    Title: Tools
+  - Title: Tools
     Articles:
     - Url: nservicebus/tools/migrate-to-native-delivery
       Title: Migrating timeouts
-  - Url: nservicebus/troubleshooting
-    Title: Troubleshooting
+  - Title: Troubleshooting
     Articles:
     - Url: nservicebus/troubleshooting/message-loss
       Title: Message loss
@@ -672,9 +683,10 @@
 - Name: Transports
   Url: transports
   Topics:
-  - Url: transports
-    Title: General
+  - Title: General
     Articles:
+    - Url: transports
+      Title: NServiceBus and transports
     - Url: transports/selecting
       Title: Selecting a transport
     - Url: transports/types
@@ -683,8 +695,7 @@
       Title: Transactions
     - Url: transports/queuecreation
       Title: Creating queues
-  - Url: transports/upgrades
-    Title: Upgrade Guides
+  - Title: Upgrade Guides
     Articles:
     - Title: Azure Storage Queues
       Articles:
@@ -724,6 +735,8 @@
       Articles:
       - Url: transports/upgrades/rabbitmq-7to8
         Title: Version 7 to 8
+      - Url: transports/upgrades/rabbitmq-classic-to-quorum-migration
+        Title: Migrating from classic queues to quorum queues
       - Url: transports/upgrades/rabbitmq-6to7
         Title: Version 6 to 7
       - Url: transports/upgrades/rabbitmq-5to6
@@ -774,14 +787,16 @@
       Articles:
       - Url: transports/upgrades/msmq-1to2
         Title: Version 1 to 2
-  - Url: transports/learning
-    Title: Learning Transport
+  - Title: Learning
     Articles:
+    - Url: transports/learning
+      Title: Learning transport
     - Url: transports/learning/viewing-messages
       Title: Viewing content
-  - Url: transports/azure-service-bus
-    Title: Azure Service Bus
+  - Title: Azure Service Bus
     Articles:
+    - Url: transports/azure-service-bus
+      Title: Azure Service Bus transport
     - Url: transports/azure-service-bus/configuration
       Title: Configuration
     - Url: transports/azure-service-bus/native-message-access
@@ -801,9 +816,10 @@
           Title: Avoiding Transactions
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational scripting
-  - Url: transports/azure-storage-queues
-    Title: Azure Storage Queues
+  - Title: Azure Storage Queues
     Articles:
+    - Url: transports/azure-storage-queues
+      Title: Azure Storage Queues transport
     - Url: transports/azure-storage-queues/transaction-support
       Title: Transaction Support
       Articles:
@@ -827,9 +843,10 @@
       Title: Multiple storage accounts
     - Url: transports/azure-storage-queues/troubleshooting
       Title: Troubleshooting
-  - Url: transports/sql
-    Title: SQL Server
+  - Title: SQL Server
     Articles:
+    - Url: transports/sql
+      Title: SQL Server transport
     - Url: transports/sql/design
       Title: Design
     - Url: transports/sql/native-publish-subscribe
@@ -860,9 +877,10 @@
       Title: Azure SQL considerations
     - Url: transports/sql/troubleshooting
       Title: Troubleshooting
-  - Url: transports/msmq
-    Title: MSMQ
+  - Title: MSMQ
     Articles:
+    - Url: transports/msmq
+      Title: MSMQ transport
     - Url: transports/msmq/routing
       Title: Physical routing
       Articles:
@@ -895,9 +913,10 @@
       Title: Scaling out
     - Url: transports/msmq/sender-side-distribution
       Title: Scaling out with Sender-Side Distribution
-  - Url: transports/rabbitmq
-    Title: RabbitMQ
+  - Title: RabbitMQ
     Articles:
+    - Url: transports/rabbitmq
+      Title: RabbitMQ transport
     - Url: transports/rabbitmq/connection-settings
       Title: Connection settings
     - Url: transports/rabbitmq/routing-topology
@@ -910,9 +929,10 @@
       Title: Transactions and delivery guarantees
     - Url: transports/rabbitmq/operations-scripting
       Title: Scripting
-  - Url: transports/sqs
-    Title: Amazon SQS
+  - Title: Amazon SQS
     Articles:
+    - Url: transports/sqs
+      Title: Amazon SQS transport
     - Url: transports/sqs/configuration-options
       Title: Configuration Options
     - Url: transports/sqs/delayed-delivery
@@ -929,17 +949,16 @@
       Title: Troubleshooting
 
 - Name: Persistence
-  Url: persistence
   Topics:
-  - Url: persistence
-    Title: General
+  - Title: General
     Articles:
+    - Url: persistence
+      Title: NServiceBus and persistence
     - Url: persistence/selecting
       Title: Selecting a persister
     - Url: persistence/order
       Title: Persistence order
-  - Url: persistence/upgrades
-    Title: Upgrade Guides
+  - Title: Upgrade Guides
     Articles:
     - Title: Azure Table
       Articles:
@@ -999,16 +1018,20 @@
         Title: Version 1 to 1.0.1
       - Url: persistence/upgrades/sql-null-endpoint
         Title: Support NServiceBus 5 subscribers
-  - Url: persistence/learning
-    Title: Learning Persistence
-  - Url: persistence/non-durable
-    Title: Non-Durable
+  - Title: Learning
     Articles:
+    - Url: persistence/learning
+      Title: Learning persistence
+  - Title: Non-Durable
+    Articles:
+    - Url: persistence/non-durable
+      Title: Non-durable persistence
     - Url: persistence/non-durable/gateway-deduplication
       Title: Gateway Deduplication
-  - Url: persistence/sql
-    Title: SQL
+  - Title: SQL
     Articles:
+    - Url: persistence/sql
+      Title: SQL persistence
     - Url: persistence/sql/dialect-mssql
       Title: SQL Server
       Articles:
@@ -1061,18 +1084,20 @@
       Title: Migrating from NHibernate
     - Url: persistence/sql/troubleshooting
       Title: Troubleshooting
-  - Title: Cosmos DB
-    Url: persistence/cosmosdb
+  - Title: Cosmos DB    
     Articles:
+    - Title: Azure Cosmos DB Persistence
+      Url: persistence/cosmosdb
     - Title: Saga concurrency
       Url: persistence/cosmosdb/saga-concurrency
     - Title: Transactions
       Url: persistence/cosmosdb/transactions
     - Title: Migration from Azure Table Persistence
       Url: persistence/cosmosdb/migration-from-azure-table
-  - Url: persistence/azure-table
-    Title: Azure Table
+  - Title: Azure Table
     Articles:
+    - Url: persistence/azure-table
+      Title: Azure Table Persistence
     - Url: persistence/azure-table/configuration
       Title: Configuration
     - Url: persistence/azure-table/transactions
@@ -1085,9 +1110,10 @@
       Title: Scripting
     - Title: Migration from Azure Table Storage to Cosmos DB Table API
       Url: persistence/azure-table/migration-from-azure-storage-table-to-cosmos-table
-  - Url: persistence/ravendb
-    Title: RavenDB
+  - Title: RavenDB
     Articles:
+    - Url: persistence/ravendb
+      Title: RavenDB persistence
     - Url: persistence/ravendb/connection
       Title: Connection options
     - Url: persistence/ravendb/saga-concurrency
@@ -1106,18 +1132,20 @@
       Title: DTC not supported
     - Url: persistence/ravendb/cluster-configuration
       Title: Cluster configurations
-  - Url: persistence/service-fabric
-    Title: Service Fabric
+  - Title: Service Fabric
     Articles:
+    - Url: persistence/service-fabric
+      Title: Service Fabric persistence
     - Url: persistence/service-fabric/sagas
       Title: Sagas
     - Url: persistence/service-fabric/outbox
       Title: Outbox
     - Url: persistence/service-fabric/transaction-sharing
       Title: Transaction Sharing
-  - Url: persistence/nhibernate
-    Title: NHibernate
+  - Title: NHibernate
     Articles:
+    - Url: persistence/nhibernate
+      Title: NHibernate persistence
     - Url: persistence/nhibernate/accessing-data
       Title: Business data
     - Url: persistence/nhibernate/saga-concurrency
@@ -1128,11 +1156,14 @@
       Title: SQL Azure
     - Url: persistence/nhibernate/scripting
       Title: Scripting
-  - Url: persistence/msmq
-    Title: MSMQ Subscription
-  - Url: persistence/mongodb
-    Title: MongoDB
+  - Title: MSMQ Subscription
     Articles:
+    - Url: persistence/msmq
+      Title: MSMQ Subscription persistence
+  - Title: MongoDB
+    Articles:
+    - Url: persistence/mongodb
+      Title: MongoDB persistence
     - Url: persistence/mongodb/document-version
       Title: How document versioning works
     - Url: persistence/mongodb/migrating-from-sbmako
@@ -1142,11 +1173,14 @@
 
 - Name: ServiceInsight
   Topics:
-  - Title: Getting Started
-    Url: serviceinsight
+  - Title: Introduction
     Articles:
+    - Url: serviceinsight
+      Title: About ServiceInsight
     - Url: serviceinsight/license
-      Title: License installation
+      Title: Licensing
+    - Url: serviceinsight/support-policy
+      Title: Support Policy
   - Title: Usage
     Articles:
     - Url: serviceinsight/application-invocation
@@ -1161,11 +1195,13 @@
       Title: Data not available
     - Url: serviceinsight/logging
       Title: Logging
-
+  
 - Name: ServicePulse
   Topics:
   - Title: Introduction
     Articles:
+    - Url: servicepulse
+      Title: About ServicePulse
     - Url: servicepulse/installation
       Title: Installation
     - Url: servicepulse/intro-failed-messages
@@ -1186,6 +1222,8 @@
       Title: Health check notifications
     - Url: servicepulse/endpoint-connection
       Title: Endpoint connection settings
+    - Url: servicepulse/support-policy
+      Title: Support Policy
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config
@@ -1200,8 +1238,9 @@
 - Name: ServiceControl
   Topics:
   - Title: Introduction
-    Url: servicecontrol
     Articles:
+    - Title: About ServiceControl
+      Url: servicecontrol
     - Title: Installation
       Url: servicecontrol/installation
     - Title: How does it work
@@ -1215,9 +1254,10 @@
         Url: servicecontrol/installation-powershell
     - Title: Licensing
       Url: servicecontrol/license
-  - Title: Upgrade Guides
-    Url: servicecontrol/upgrades
+  - Title: Upgrade Guides    
     Articles:
+    - Title: Upgrade tips
+      Url: servicecontrol/upgrades
     - Title: Support policy
       Url: servicecontrol/upgrades/support-policy
     - Title: Version 3 to 4
@@ -1226,12 +1266,14 @@
       Url: servicecontrol/upgrades/2to3
     - Title: Version 1 to 2
       Url: servicecontrol/upgrades/1to2
-  - Title: Error instances
-    Url: servicecontrol/servicecontrol-instances
+  - Title: Error instances    
     Articles:
+    - Title: ServiceControl instances
+      Url: servicecontrol/servicecontrol-instances
     - Title: Planning
-      Url: servicecontrol/servicecontrol-in-practice
       Articles:
+      - Title: Optimizing for use in different environments
+        Url: servicecontrol/servicecontrol-in-practice
       - Title: Hardware Considerations
         Url: servicecontrol/servicecontrol-instances/hardware
       - Title: Capacity Planning
@@ -1273,15 +1315,17 @@
       - Title: Compacting database
         Url: servicecontrol/db-compaction
     - Title: Troubleshooting
-      Url: servicecontrol/troubleshooting
       Articles:
-      - Title: Maintenance Mode
+      - Title: ServiceControl troubleshooting
+        Url: servicecontrol/troubleshooting
+      - Title: Maintenance mode
         Url: servicecontrol/maintenance-mode
       - Title: Retry importing messages
         Url: servicecontrol/import-failed-messages
-  - Title: Audit instances
-    Url: servicecontrol/audit-instances
+  - Title: Audit instances    
     Articles:
+      - Title: ServiceControl Audit instances
+        Url: servicecontrol/audit-instances
       - Title: Managing via PowerShell
         Url: servicecontrol/audit-instances/installation-powershell
       - Title: Settings
@@ -1289,20 +1333,22 @@
       - Title: Maintenance Mode
         Url: servicecontrol/audit-instances/maintenance-mode
   - Title: Monitoring instances
-    Url: servicecontrol/monitoring-instances
     Articles:
+      - Title: ServiceControl monitoring instances
+        Url: servicecontrol/monitoring-instances
       - Title: Installation
         Url: servicecontrol/monitoring-instances/installation
         Articles:
-          - Title: Managing via PowerShell
-            Url: servicecontrol/monitoring-instances/installation/installation-powershell
-          - Title: Settings
-            Url: servicecontrol/monitoring-instances/installation/creating-config-file
-          - Title: Configure the URI
-            Url: servicecontrol/monitoring-instances/installation/configure-the-uri
+        - Title: Managing via PowerShell
+          Url: servicecontrol/monitoring-instances/installation/installation-powershell
+        - Title: Settings
+          Url: servicecontrol/monitoring-instances/installation/creating-config-file
+        - Title: Configure the URI
+          Url: servicecontrol/monitoring-instances/installation/configure-the-uri
   - Title: Integration
-    Url: servicecontrol/integration
     Articles:
+    - Title: ServiceControl integration
+      Url: servicecontrol/integration
     - Title: Azure Application Insights
       Url: servicecontrol/app-insights-integration
     - Title: Plugins
@@ -1319,18 +1365,20 @@
   Topics:
   - Title: Intro to Monitoring
     Url: monitoring
-  - Title: Heartbeats
-    Url: monitoring/heartbeats
+  - Title: Heartbeats    
     Articles:
+    - Title: Introduction to heartbeats
+      Url: monitoring/heartbeats
     - Title: Install plugin
       Url: monitoring/heartbeats/install-plugin
     - Title: Managing in ServicePulse
       Url: monitoring/heartbeats/in-servicepulse
     - Title: Notification events
       Url: monitoring/heartbeats/notification-events
-  - Title: Custom Checks
-    Url: monitoring/custom-checks
+  - Title: Custom checks
     Articles:
+    - Title: Introduction to custom checks
+      Url: monitoring/custom-checks
     - Title: Install plugin
       Url: monitoring/custom-checks/install-plugin
     - Title: Writing Custom Checks
@@ -1340,8 +1388,9 @@
     - Title: Notification events
       Url: monitoring/custom-checks/notification-events
   - Title: Performance Metrics
-    Url: monitoring/metrics
     Articles:
+    - Title: Introduction to performance metrics
+      Url: monitoring/metrics
     - Title: Metrics captured
       Url: monitoring/metrics/definitions
     - Title: Install plugin
@@ -1353,16 +1402,15 @@
     - Title: Accessing raw metric data
       Url: monitoring/metrics/raw
   - Title: Upgrade guides
-    Url: monitoring/upgrade-guides
     Articles:
     - Title: Upgrading to native queue length metric
       Url: monitoring/upgrade-guides/native-queue-length
 - Name: Previews
-  Url: previews
   Topics:
   - Title: General
-    Url: previews
     Articles:
+    - Title: About previews
+      Url: previews
     - Title: Support Policy
       Url: previews/support-policy
   - Title: Azure Functions

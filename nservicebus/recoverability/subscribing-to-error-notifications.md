@@ -24,10 +24,6 @@ snippet: SubscribeToErrorsNotifications
 
 include: notificationThread
 
-partial: reactive
-
-partial: unsubscribing
-
 
 ## Message Body
 

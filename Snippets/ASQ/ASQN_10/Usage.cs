@@ -1,14 +1,10 @@
-﻿// ReSharper disable SuggestVarOrType_Elsewhere
-
-using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System;
 using System.Threading.Tasks;
 using Azure.Storage.Blobs;
 using Azure.Storage.Queues;
 using Microsoft.Azure.Cosmos.Table;
 using NServiceBus;
 
-[SuppressMessage("ReSharper", "UnusedMember.Local")]
 class Usage
 {
     void UseTransport(EndpointConfiguration endpointConfiguration)

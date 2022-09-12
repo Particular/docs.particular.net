@@ -2,28 +2,10 @@
 using System.Globalization;
 using Microsoft.Azure.Storage.Blob;
 
-public class DataBusBlobTimeoutCalculator
+public static class DataBusBlobTimeoutCalculator
 {
-    public TimeSpan DefaultTtl { get; private set; }
-
-    public DataBusBlobTimeoutCalculator()
-    {
-        var defaultTtlSettingValue = Environment.GetEnvironmentVariable("DefaultTimeToLiveInSeconds");
-        if (defaultTtlSettingValue == null)
-        {
-            throw new Exception("Could not read the DefaultTimeToLiveInSeconds settings value.");
-        }
-
-        if (!long.TryParse(defaultTtlSettingValue, out var defaultTtlSeconds))
-        {
-            throw new Exception($"Could not parse the DefaultTimeToLiveInSeconds value '{defaultTtlSettingValue}");
-        }
-
-        DefaultTtl = TimeSpan.FromSeconds(defaultTtlSeconds);
-    }
-
     #region GetValidUntil
-    public DateTime GetValidUntil(CloudBlockBlob blockBlob)
+    public static DateTime GetValidUntil(CloudBlockBlob blockBlob)
     {
         if (blockBlob.Metadata.TryGetValue("ValidUntilUtc", out var validUntilUtcString))
         {
@@ -38,7 +20,7 @@ public class DataBusBlobTimeoutCalculator
     /// <summary>
     /// Converts the <see cref="DateTime" /> to a <see cref="string" /> suitable for transport over the wire.
     /// </summary>
-    public string ToWireFormattedString(DateTime dateTime)
+    public static string ToWireFormattedString(DateTime dateTime)
     {
         return dateTime.ToUniversalTime().ToString(format, CultureInfo.InvariantCulture);
     }
@@ -47,7 +29,7 @@ public class DataBusBlobTimeoutCalculator
     /// Converts a wire-formatted <see cref="string" /> from <see cref="ToWireFormattedString" /> to a UTC
     /// <see cref="DateTime" />.
     /// </summary>
-    public DateTime ToUtcDateTime(string wireFormattedString)
+    public static DateTime ToUtcDateTime(string wireFormattedString)
     {
         if (string.IsNullOrWhiteSpace(wireFormattedString))
         {

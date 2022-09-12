@@ -1,7 +1,7 @@
 ---
 title: Message routing
 summary: How NServiceBus routes messages between endpoints.
-reviewed: 2019-12-23
+reviewed: 2022-08-23
 component: Core
 isLearningPath: true
 redirects:
