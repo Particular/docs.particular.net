@@ -28,7 +28,7 @@ namespace Receiver
                     var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");
                     #region TransportConfiguration
 
-                    var transport = endpointConfiguration.UseTransport(new RabbitMQTransport(Topology.Conventional, "host=rabbitmq"));
+                    var transport = endpointConfiguration.UseTransport(new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Classic), "host=rabbitmq"));
 
                     #endregion
 

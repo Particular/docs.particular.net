@@ -9,7 +9,7 @@ class Usage
 
         var gatewayStorageConfiguration = new InMemoryDeduplicationConfiguration
         {
-            CacheSize = 50000,
+            CacheSize = 50000
         };
 
         endpointConfiguration.Gateway(gatewayStorageConfiguration);

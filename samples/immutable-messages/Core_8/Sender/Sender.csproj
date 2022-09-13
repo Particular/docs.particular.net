@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-beta.3" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-beta.4" />
+    <PackageReference Include="NServiceBus" Version="[8.0.0-rc.3, 9.0.0)" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="[3.0.0-rc.3, 4.0.0)" />
     <Compile Include="..\ConventionExtensions.cs" />
   </ItemGroup>
 </Project>

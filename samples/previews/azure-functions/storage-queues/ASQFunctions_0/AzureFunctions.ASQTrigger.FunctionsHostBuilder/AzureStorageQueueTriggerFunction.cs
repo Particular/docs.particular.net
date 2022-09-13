@@ -8,10 +8,10 @@ public class AzureStorageQueueTriggerFunction
 {
     internal const string EndpointName = "ASQTriggerQueue";
 
-    readonly IFunctionEndpoint endpoint;
+    readonly FunctionEndpoint endpoint;
 
     #region endpoint-injection
-    public AzureStorageQueueTriggerFunction(IFunctionEndpoint endpoint)
+    public AzureStorageQueueTriggerFunction(FunctionEndpoint endpoint)
     {
         this.endpoint = endpoint;
     }
