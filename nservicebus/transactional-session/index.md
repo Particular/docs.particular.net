@@ -4,7 +4,9 @@ summary: Atomicity when modifying data and sending messages in the context of a 
 reviewed: 2022-09-12
 component: TransactionalSession
 versions: "[7,)"
-redirects:
+related:
+- samples/transactional-session/aspnetcore-webapi
+- samples/transactional-session/cosmosdb
 ---
 
 ## The consistency problem
