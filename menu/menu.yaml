@@ -21,7 +21,7 @@
     - Url: tutorials/nservicebus-step-by-step/4-publishing-events
       Title: "Lesson 4: Publishing events"
     - Url: tutorials/nservicebus-step-by-step/5-retrying-errors
-      Title: "Lesson 5: Retrying errors"  
+      Title: "Lesson 5: Retrying errors"
   - Title: NServiceBus Sagas
     Articles:
     - Url: tutorials/nservicebus-sagas
@@ -33,7 +33,7 @@
     - Url: tutorials/nservicebus-sagas/3-integration
       Title: "Part 3: Third-party integration"
   - Title: More tutorials
-    Articles:    
+    Articles:
     - Url: tutorials/message-replay
       Title: Message replay tutorial
     - Url: tutorials/monitoring-setup
@@ -41,7 +41,7 @@
     - Url: tutorials/monitoring-demo
       Title: NServiceBus monitoring demo
     - Url: tutorials
-      Title: All tutorials  
+      Title: All tutorials
   - Url: get-started/high-level-content
     Title: High-level content
   - Url: samples/netcore
@@ -379,6 +379,19 @@
       Title: Outbox
     - Url: nservicebus/transactional-session
       Title: Transactional session
+      Articles:
+        - Url: nservicebus/transactional-session/persistences/azure-table
+          Title: Azure Table Persistence
+        - Url: nservicebus/transactional-session/persistences/cosmosdb
+          Title: CosmosDB Persistence
+        - Url: nservicebus/transactional-session/persistences/mongodb
+          Title: MongoDB Persistence
+        - Url: nservicebus/transactional-session/persistences/sql-persistence
+          Title: SQL Persistence
+        - Url: nservicebus/transactional-session/persistences/nhibernate
+          Title: NHibernate Persistence
+        - Url: nservicebus/transactional-session/persistences/ravendb
+          Title: RavenDB Persistence
     - Url: nservicebus/messaging/databus
       Title: Data Bus
       Articles:
@@ -1084,7 +1097,7 @@
       Title: Migrating from NHibernate
     - Url: persistence/sql/troubleshooting
       Title: Troubleshooting
-  - Title: Cosmos DB    
+  - Title: Cosmos DB
     Articles:
     - Title: Azure Cosmos DB Persistence
       Url: persistence/cosmosdb
@@ -1195,7 +1208,7 @@
       Title: Data not available
     - Url: serviceinsight/logging
       Title: Logging
-  
+
 - Name: ServicePulse
   Topics:
   - Title: Introduction
@@ -1254,7 +1267,7 @@
         Url: servicecontrol/installation-powershell
     - Title: Licensing
       Url: servicecontrol/license
-  - Title: Upgrade Guides    
+  - Title: Upgrade Guides
     Articles:
     - Title: Upgrade tips
       Url: servicecontrol/upgrades
@@ -1266,7 +1279,7 @@
       Url: servicecontrol/upgrades/2to3
     - Title: Version 1 to 2
       Url: servicecontrol/upgrades/1to2
-  - Title: Error instances    
+  - Title: Error instances
     Articles:
     - Title: ServiceControl instances
       Url: servicecontrol/servicecontrol-instances
@@ -1322,7 +1335,7 @@
         Url: servicecontrol/maintenance-mode
       - Title: Retry importing messages
         Url: servicecontrol/import-failed-messages
-  - Title: Audit instances    
+  - Title: Audit instances
     Articles:
       - Title: ServiceControl Audit instances
         Url: servicecontrol/audit-instances
@@ -1365,7 +1378,7 @@
   Topics:
   - Title: Intro to Monitoring
     Url: monitoring
-  - Title: Heartbeats    
+  - Title: Heartbeats
     Articles:
     - Title: Introduction to heartbeats
       Url: monitoring/heartbeats
