@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBusEndpoint", "NServiceBusEndpoint\NServiceBusEndpoint.csproj", "{814CEA2E-C5F5-4315-8FC3-8517B09C5931}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureMonitorConnector", "EndpointsMonitor\AzureMonitorConnector.csproj", "{7A1C1662-35D1-4720-9F9F-4D23E9A57CE1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlatformLauncher", "PlatformLauncher\PlatformLauncher.csproj", "{EED01887-FC83-4920-901E-2B52AFFDCBE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{814CEA2E-C5F5-4315-8FC3-8517B09C5931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{814CEA2E-C5F5-4315-8FC3-8517B09C5931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A1C1662-35D1-4720-9F9F-4D23E9A57CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A1C1662-35D1-4720-9F9F-4D23E9A57CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EED01887-FC83-4920-901E-2B52AFFDCBE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED01887-FC83-4920-901E-2B52AFFDCBE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4ACEBE4-E83E-4146-9EFF-9E61728BD574}
+	EndGlobalSection
+EndGlobal
