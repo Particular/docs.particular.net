@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using NServiceBus.Storage.MongoDB;
-
-namespace MongoDB_2
+﻿namespace MongoDB_2
 {
+    using System.Threading.Tasks;
+    using NServiceBus.Storage.MongoDB;
+
     public class SharedTransactionDI
     {
         #region MongoDBSharedTransactionDI
