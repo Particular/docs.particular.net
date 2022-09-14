@@ -1,6 +1,6 @@
-﻿using System;
+﻿using NServiceBus;
+using System;
 using System.Threading.Tasks;
-using NServiceBus;
 
 class Program
 {
@@ -10,7 +10,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("EndpointsMonitor");
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
@@ -24,7 +24,6 @@ class Program
                        type.Namespace != null &&
                        type.Namespace.StartsWith("ServiceControl.Contracts");
             });
-
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
