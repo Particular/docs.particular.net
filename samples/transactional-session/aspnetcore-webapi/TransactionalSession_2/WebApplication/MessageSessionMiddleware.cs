@@ -14,7 +14,7 @@ public class MessageSessionMiddleware
     #region txsession-middleware
     public async Task InvokeAsync(HttpContext httpContext, ITransactionalSession session)
     {
-        await session.OpenSqlSession();
+        await session.Open(new SqlPersistenceOpenSessionOptions());
 
         await next(httpContext);
 

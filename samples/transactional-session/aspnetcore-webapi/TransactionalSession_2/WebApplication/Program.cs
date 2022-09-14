@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Persistence;
+using NServiceBus.TransactionalSession;
 
 public class Program
 {
@@ -32,10 +33,9 @@ public class Program
                 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
                 persistence.SqlDialect<SqlDialect.MsSqlServer>();
                 persistence.ConnectionBuilder(() => new SqlConnection(ConnectionString));
+                persistence.EnableTransactionalSession();
 
                 endpointConfiguration.EnableOutbox();
-                endpointConfiguration.EnableTransactionalSession();
-
 
                 return endpointConfiguration;
             })
