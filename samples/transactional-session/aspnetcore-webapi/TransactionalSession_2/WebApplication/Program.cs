@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using NServiceBus.Persistence;
+using NServiceBus.Persistence.Sql;
 using NServiceBus.TransactionalSession;
 
 public class Program
@@ -47,16 +47,16 @@ public class Program
                 // Configure Entity Framework to attach to the synchronized storage session
                 c.AddScoped(b =>
                 {
-                    var session = b.GetRequiredService<ISynchronizedStorageSession>();
+                    var session = b.GetRequiredService<ISqlStorageSession>();
                     var context = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
-                        .UseSqlServer(session.SqlPersistenceSession().Connection)
+                        .UseSqlServer(session.Connection)
                         .Options);
 
                     //Use the same underlying ADO.NET transaction
-                    context.Database.UseTransaction(session.SqlPersistenceSession().Transaction);
+                    context.Database.UseTransaction(session.Transaction);
 
                     //Ensure context is flushed before the transaction is committed
-                    session.SqlPersistenceSession().OnSaveChanges((s, token) => context.SaveChangesAsync(token));
+                    session.OnSaveChanges((s, token) => context.SaveChangesAsync(token));
 
                     return context;
                 });
