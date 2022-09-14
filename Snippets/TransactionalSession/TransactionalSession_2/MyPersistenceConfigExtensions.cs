@@ -1,8 +1,11 @@
-using NServiceBus;
-
-static class MyPersistenceConfigExtensions
+namespace NServiceBus.MyPersistence
 {
-    public static void EnableTransactionalSession(this PersistenceExtensions<MyPersistence> persistence)
+    using NServiceBus;
+
+    static class MyPersistenceConfigExtensions
     {
+        public static void EnableTransactionalSession(this PersistenceExtensions<MyPersistence> persistence)
+        {
+        }
     }
 }

@@ -3,7 +3,7 @@ title: Using Transactional Session with CosmosDB
 reviewed: 2022-07-20
 component: TransactionalSession
 related:
-- nservicebus/messaging/transactionalsession
+- nservicebus/transactional-session
 - persistence/cosmosdb
 ---
 

@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
+using NServiceBus.MyPersistence;
 using NServiceBus.TransactionalSession;
 
 class Api
@@ -11,7 +12,7 @@ class Api
     {
         #region enabling-transactional-session
 
-        //Each persistence has a specific Enable method
+        //Each persistence has a specific Configure method
         config.UsePersistence<MyPersistence>().EnableTransactionalSession();
 
         #endregion

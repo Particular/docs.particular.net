@@ -1,6 +1,9 @@
-using NServiceBus.Persistence;
-
-class MyPersistence : PersistenceDefinition
+namespace NServiceBus.MyPersistence
 {
+    using NServiceBus.Persistence;
 
+    class MyPersistence : PersistenceDefinition
+    {
+
+    }
 }
