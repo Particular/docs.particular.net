@@ -79,16 +79,13 @@ sequenceDiagram
     Storage-->>TransactionalSession: transaction
     deactivate Storage
     deactivate TransactionalSession
-
     User->>TransactionalSession: Publish<UserCreated>()
     activate TransactionalSession
     TransactionalSession->>PendingTransportOperations: Add()
     deactivate TransactionalSession
-
     activate TransactionalSession
     deactivate TransactionalSession
     User->>Storage: Store(user)
-
     User->>TransactionalSession: Commit()
     activate TransactionalSession
     TransactionalSession->>Transport: Dispatch(controlMessage)
@@ -98,10 +95,8 @@ sequenceDiagram
     deactivate PendingTransportOperations
     TransactionalSession->>Storage: Store(outboxRecord)
     TransactionalSession->>Storage: Complete()
-    TransactionalSession-->>User:
     deactivate TransactionalSession
     deactivate User
-
     Note over ReceivePipeline: Phase 2
     ReceivePipeline->>Transport: Read()
     activate ReceivePipeline
