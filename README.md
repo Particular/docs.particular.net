@@ -271,13 +271,7 @@ Samples can be targeted to multiple [target frameworks](https://docs.microsoft.c
 The currently recommended set of frameworks is:
 
 ```xml
-<TargetFrameworks>net5.0;netcoreapp3.1;net48</TargetFrameworks>
-```
-
-Shared/messages projects should not be multi-targeted but use a standard framework that works with all targets:
-
-```xml
-<TargetFramework>netstandard2.0</TargetFramework>
+<TargetFrameworks>net6.0;net48</TargetFrameworks>
 ```
 
 Some things to keep in mind:
