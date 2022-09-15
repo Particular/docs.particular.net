@@ -24,10 +24,25 @@ namespace TransactionalSession_1
             var session = childScope.Build<ITransactionalSession>();
             await session.Open(new NHibernateOpenSessionOptions());
 
-            await session.Send(new MyMessage());
+            // use the session
 
             await session.Commit();
 
+            #endregion
+        }
+
+        public async Task UseSession(ITransactionalSession session)
+        {
+            #region use-transactional-session-nhibernate
+            await session.Open(new NHibernateOpenSessionOptions());
+
+            // add messages to the transaction:
+            await session.Send(new MyMessage());
+
+            // access the database:
+            var nhibernateSession = session.SynchronizedStorageSession.Session();
+
+            await session.Commit();
             #endregion
         }
     }
