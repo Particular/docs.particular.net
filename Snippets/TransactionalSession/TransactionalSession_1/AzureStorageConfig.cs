@@ -3,6 +3,7 @@ using NServiceBus.ObjectBuilder;
 using NServiceBus.TransactionalSession;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
+using NServiceBus.Persistence.AzureTable;
 
 namespace TransactionalSession_1
 {
@@ -17,7 +18,7 @@ namespace TransactionalSession_1
             #endregion
         }
 
-        public static async Task OpenDefault(IBuilder builder)
+        public async Task OpenDefault(IBuilder builder)
         {
             #region open-transactional-session-azurestorage
 
@@ -25,7 +26,7 @@ namespace TransactionalSession_1
             var session = childScope.Build<ITransactionalSession>();
             await session.Open(new AzureTableOpenSessionOptions(new TableEntityPartitionKey("ABC")));
 
-            await session.Send(new MyMessage());
+            // use the session
 
             await session.Commit();
 
@@ -42,10 +43,25 @@ namespace TransactionalSession_1
                 new TableEntityPartitionKey("ABC"),
                 new TableInformation("MyTable")));
 
-            await session.Send(new MyMessage());
+            // use the session
 
             await session.Commit();
 
+            #endregion
+        }
+
+        public async Task UseSession(ITransactionalSession session)
+        {
+            #region use-transactional-session-azurestorage
+            await session.Open(new AzureTableOpenSessionOptions(new TableEntityPartitionKey("ABC")));
+
+            // add messages to the transaction:
+            await session.Send(new MyMessage());
+
+            // access the database:
+            var azureTableSession = session.SynchronizedStorageSession.AzureTablePersistenceSession();
+
+            await session.Commit();
             #endregion
         }
     }
