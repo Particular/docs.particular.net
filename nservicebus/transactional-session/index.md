@@ -3,7 +3,6 @@ title: Transactional session
 summary: Atomicity when modifying data and sending messages in the context of a request
 reviewed: 2022-09-12
 component: TransactionalSession
-versions: "[7,)"
 related:
 - samples/transactional-session/aspnetcore-webapi
 - samples/transactional-session/cosmosdb
