@@ -1,10 +1,10 @@
 ﻿namespace Testing_7.UpgradeGuides._7to8
 {
-    using System;
-    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Testing;
     using NUnit.Framework;
+    using System;
+    using System.Threading.Tasks;
 
     [Explicit]
     #region 7to8-testsaga
@@ -15,7 +15,6 @@
         public void TestSagaFluent()
         {
             Test.Saga<MySaga>()
-                .ExpectReplyToOriginator<MyResponse>()
                 .ExpectTimeoutToBeSetIn<StartsSaga>(
                     check: (state, span) =>
                     {
@@ -35,11 +34,11 @@
     }
     #endregion
 
-    class StartsSaga : IMessage {}
-    class MyResponse : IMessage {}
-    class MyEvent : IEvent {}
-    class MyCommand : ICommand {}
-    class MyOtherEvent : IEvent {}
+    class StartsSaga : IMessage { }
+    class MyResponse : IMessage { }
+    class MyEvent : IEvent { }
+    class MyCommand : ICommand { }
+    class MyOtherEvent : IEvent { }
 
     class MySaga : NServiceBus.Saga<MySaga.SagaData>, IAmStartedByMessages<StartsSaga>, IHandleTimeouts<StartsSaga>
     {
@@ -54,7 +53,6 @@
 
         public async Task Handle(StartsSaga message, IMessageHandlerContext context)
         {
-            await ReplyToOriginator(context, new MyResponse());
             await RequestTimeout(context, TimeSpan.FromDays(7), message);
             await context.Publish<MyEvent>();
             await context.Send(new MyCommand());

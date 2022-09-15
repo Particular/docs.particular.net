@@ -16,65 +16,26 @@
         public async Task When_Saga_is_started_by_StartsSaga()
         {
             // Arrange
-            var saga = new MySaga
-            {
-                Data = new MySaga.SagaData
-                {
-                    Originator = "Originator"
-                }
-            };
+            var testableSaga = new TestableSaga<MySaga, MySaga.SagaData>();
 
             // Act
-            var message = new StartsSaga();
-            var messageHandlerContext = new TestableMessageHandlerContext();
-
-            await saga.Handle(message, messageHandlerContext);
+            var message = new StartsSaga { MyId = "some-id" };
+            var startResult = await testableSaga.Handle(message);
 
             // Assert
-            Assert.IsTrue(messageHandlerContext.RepliedMessages.Any(x =>
-                x.Message is MyResponse &&
-                x.Options.GetDestination() == "Originator"),
-                "A MyResponse reply should be sent to the originator"
-            );
+            Assert.That(startResult.FindPublishedMessage<MyEvent>(), Is.Not.Null,
+                "MyEvent should be published");
 
-            Assert.IsTrue(messageHandlerContext.TimeoutMessages.Any(x =>
-                x.Message is StartsSaga &&
-                x.Within == TimeSpan.FromDays(7)),
-                "The StartsSaga message should be deferred for 7 days"
-            );
+            Assert.That(startResult.FindSentMessage<MyCommand>(), Is.Not.Null,
+                "MyCommand should be sent");
 
-            Assert.IsTrue(messageHandlerContext.PublishedMessages.Any(x =>
-                x.Message is MyEvent),
-                "MyEvent should be published"
-            );
+            // Instead of asserting on timeouts placed, virtually advance time
+            // and then assert on the results
+            var advanceTimeResults = await testableSaga.AdvanceTime(TimeSpan.FromDays(7));
 
-            Assert.IsTrue(messageHandlerContext.SentMessages.Any(x =>
-                x.Message is MyCommand),
-                "MyCommand should be sent"
-            );
-        }
-
-        [Test]
-        public async Task When_StartsSaga_Timeout_completes()
-        {
-            // Arrange
-            var saga = new MySaga
-            {
-                Data = new MySaga.SagaData()
-            };
-
-            // Act
-            var timeoutMessage = new StartsSaga();
-            var timeoutHandlerContext = new TestableMessageHandlerContext();
-            await saga.Timeout(timeoutMessage, timeoutHandlerContext);
-
-            // Assert
-            Assert.IsTrue(timeoutHandlerContext.PublishedMessages.Any(x =>
-                x.Message is MyOtherEvent),
-                "MyOtherEvent should be published"
-            );
-
-            Assert.IsTrue(saga.Completed, "Saga should be completed");
+            Assert.That(advanceTimeResults.Length, Is.EqualTo(1));
+            var timeoutResult = advanceTimeResults.Single();
+            Assert.That(timeoutResult.Completed, Is.True);
         }
     }
     #endregion
@@ -103,7 +64,6 @@
 
         public async Task Handle(StartsSaga message, IMessageHandlerContext context)
         {
-            await ReplyToOriginator(context, new MyResponse());
             await RequestTimeout(context, TimeSpan.FromDays(7), message);
             await context.Publish<MyEvent>();
             await context.Send(new MyCommand());
