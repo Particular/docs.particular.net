@@ -16,7 +16,7 @@ namespace TransactionalSession_1
             #endregion
         }
 
-        public static async Task OpenDefault(IBuilder builder)
+        public async Task OpenDefault(IBuilder builder)
         {
             #region open-transactional-session-mongo
 
@@ -24,10 +24,25 @@ namespace TransactionalSession_1
             var session = childScope.Build<ITransactionalSession>();
             await session.Open(new MongoOpenSessionOptions());
 
-            await session.Send(new MyMessage());
+            // use the session
 
             await session.Commit();
 
+            #endregion
+        }
+
+        public async Task UseSession(ITransactionalSession session)
+        {
+            #region use-transactional-session-mongo
+            await session.Open(new MongoOpenSessionOptions());
+
+            // add messages to the transaction:
+            await session.Send(new MyMessage());
+
+            // access the database:
+            var mongoSession = session.SynchronizedStorageSession.MongoPersistenceSession();
+
+            await session.Commit();
             #endregion
         }
     }
