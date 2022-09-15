@@ -22,9 +22,19 @@ To open a RavenDB transactional session:
 
 snippet: open-transactional-session-ravendb
 
-## Multi-tenancy support
+### Multi-tenancy support
 
 The specific tenant database name is retrieved from message headers as configured in the [`SetMessageToDatabaseMappingConvention`-method](/persistence/ravendb/#multi-tenant-support).
 This header needs to be set in the options so that the method has the necessary information available when storing operations.
 
 snippet: open-transactional-session-ravendb-multitenant
+
+## Transaction usage
+
+Message and database operations made via the the transactional session are committed together once the session is committed:
+
+snippet: use-transactional-session-raven
+
+See the [RavenDB shared session documentation](/persistence/ravendb/#shared-session) for further details about using the transaction.
+
+WARN: In order to guarantee atomic consistency across message and database operations, the [Outbox](/nservicebus/outbox) needs to be enabled. Otherwise `Commit` will execute all operations in a best-effort fashion.

@@ -17,7 +17,7 @@ namespace TransactionalSession_1
             #endregion
         }
 
-        private static async Task OpenDefault(IBuilder builder)
+        private async Task OpenDefault(IBuilder builder)
         {
             #region open-transactional-session-ravendb
 
@@ -25,7 +25,7 @@ namespace TransactionalSession_1
             var session = childScope.Build<ITransactionalSession>();
             await session.Open(new RavenDbOpenSessionOptions());
 
-            await session.Send(new MyMessage());
+            // use the session
 
             await session.Commit();
 
@@ -44,10 +44,25 @@ namespace TransactionalSession_1
                 {"tenantDatabaseName", "tenantA-databaseName"}
             }));
 
-            await session.Send(new MyMessage());
+            // use the session
 
             await session.Commit();
 
+            #endregion
+        }
+
+        public async Task UseSession(ITransactionalSession session)
+        {
+            #region use-transactional-session-raven
+            await session.Open(new RavenDbOpenSessionOptions());
+
+            // add messages to the transaction:
+            await session.Send(new MyMessage());
+
+            // access the database:
+            var ravenSession = session.SynchronizedStorageSession.RavenSession();
+
+            await session.Commit();
             #endregion
         }
     }
