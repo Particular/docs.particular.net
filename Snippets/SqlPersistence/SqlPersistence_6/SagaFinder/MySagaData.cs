@@ -1,10 +1,8 @@
 ﻿namespace SagaFinder
 {
-    using System;
     using NServiceBus;
 
-    public class MySagaData :
-        ContainSagaData
+    public class MySagaData : ContainSagaData
     {
         public string OrderId { get; set; }
         public string PaymentTransactionId { get; set; }

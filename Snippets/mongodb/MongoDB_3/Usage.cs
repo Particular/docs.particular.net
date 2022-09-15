@@ -1,4 +1,4 @@
-﻿namespace MongoDB_2
+﻿namespace MongoDB_3
 {
     using System;
     using MongoDB.Driver;

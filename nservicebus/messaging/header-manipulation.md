@@ -1,7 +1,7 @@
 ---
 title: Manipulating message headers
 summary: Access and manipulate the built-in NServiceBus headers or add custom headers
-reviewed: 2020-01-03
+reviewed: 2022-09-09
 component: Core
 redirects:
 - nservicebus/how-do-i-get-technical-information-about-a-message
@@ -43,11 +43,6 @@ snippet: header-incoming-mutator
 snippet: header-incoming-handler
 
 
-### From a saga
-
-snippet: header-incoming-saga
-
-
 ## Writing outgoing headers
 
 Headers can be written for an outgoing message.
@@ -66,11 +61,6 @@ snippet: header-outgoing-mutator
 ### From a handler
 
 snippet: header-outgoing-handler
-
-
-### From a saga
-
-snippet: header-outgoing-saga
 
 
 ### For all outgoing messages

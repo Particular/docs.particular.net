@@ -63,13 +63,21 @@ Note that this disables the ability to use pessimistic locking for sagas which m
 
 ### Shared transactions
 
-NServiceBus supports sharing MongoDB transactions between Saga persistence and business data. The shared transaction can be used to persist document updates for both concerns atomically.
+NServiceBus supports sharing MongoDB sessions between Saga persistence, Outbox storage, and business data. The shared session can be used to persist multiple document updates atomically.
 
 To use the shared transaction in a message handler:
 
 snippet: MongoDBHandlerSharedTransaction
 
 WARN: In order to participate in the shared transaction the MongoDB session must be passed into collection API calls as demonstrated above.
+
+The shared session can also be accessed via dependency injection using the `IMongoSynchronizedStorageSession` interface:
+
+snippet: MongoDBSharedTransactionDI
+
+WARN: In order to participate in the shared transaction the MongoDB session must be passed into collection API calls as demonstrated above.
+
+NOTE: The `IMongoSynchronizedStorageSession` lifetime is scoped to the message processing pipeline. Do not resolve the shared session into dependencies with _Singleton_ lifetime.
 
 #### Testing
 
