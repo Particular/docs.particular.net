@@ -22,8 +22,18 @@ To open a CosmosDB transactional session, a partition key must be provided:
 
 snippet: open-transactional-session-cosmos
 
-## Custom container
+### Custom container
 
 By default, the transactional session uses the [configured default container](/persistence/cosmosdb/#usage-customizing-the-container-used). The `CosmosOpenSessionOptions` can be configured with container information to be used for this transaction:
 
 snippet: open-transactional-session-cosmos-container
+
+## Transaction usage
+
+Message and database operations made via the the transactional session are committed together once the session is committed:
+
+snippet: use-transactional-session-cosmos
+
+See the [Cosmos DB persistence transactions documentation](/persistence/cosmosdb/transactions.md#sharing-the-transaction) for further details about using the transaction.
+
+WARN: In order to guarantee atomic consistency across message and database operations, the [Outbox](/nservicebus/outbox) needs to be enabled. Otherwise `Commit` will execute all operations in a best-effort fashion.
