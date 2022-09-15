@@ -11,7 +11,7 @@ namespace TransactionalSession_2
     {
         public void Configure(EndpointConfiguration config)
         {
-            #region enabling-transactional-session-cosmosdb
+            #region enabling-transactional-session-cosmos
 
             config.UsePersistence<CosmosPersistence>().EnableTransactionalSession();
 
@@ -20,11 +20,11 @@ namespace TransactionalSession_2
 
         private static async Task OpenDefault(IServiceProvider serviceProvider)
         {
-            #region open-transactional-session-cosmosdb
+            #region open-transactional-session-cosmos
 
             using var childScope = serviceProvider.CreateScope();
             var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
-            await session.Open(new CosmosOpenSessionOptions(new PartitionKey("ABC")));
+            await session.Open(new CosmosOpenSessionOptions(new PartitionKey("MyPartitionKey")));
 
             await session.Send(new MyMessage());
 
@@ -35,12 +35,12 @@ namespace TransactionalSession_2
 
         public async Task OpenContainerInfo(IServiceProvider serviceProvider)
         {
-            #region open-transactional-session-cosmosdb-container
+            #region open-transactional-session-cosmos-container
 
             using var childScope = serviceProvider.CreateScope();
             var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
             await session.Open(new CosmosOpenSessionOptions(
-                new PartitionKey("ABC"),
+                new PartitionKey("MyPartitionKey"),
                 new ContainerInformation(
                     "MyContainer",
                     new PartitionKeyPath("/path/to/partition/key"))));

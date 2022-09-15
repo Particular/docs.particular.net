@@ -10,7 +10,7 @@ namespace TransactionalSession_2
     {
         public void Configure(EndpointConfiguration config)
         {
-            #region enabling-transactional-session-mongodb
+            #region enabling-transactional-session-mongo
 
             config.UsePersistence<MongoPersistence>().EnableTransactionalSession();
 
@@ -19,7 +19,7 @@ namespace TransactionalSession_2
 
         public static async Task OpenDefault(IServiceProvider serviceProvider)
         {
-            #region open-transactional-session-mongodb
+            #region open-transactional-session-mongo
 
             using var childScope = serviceProvider.CreateScope();
             var session = childScope.ServiceProvider.GetService<ITransactionalSession>();

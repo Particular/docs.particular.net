@@ -10,7 +10,7 @@ namespace TransactionalSession_1
     {
         public void Configure(EndpointConfiguration config)
         {
-            #region enabling-transactional-session-cosmosdb
+            #region enabling-transactional-session-cosmos
 
             config.UsePersistence<CosmosPersistence>().EnableTransactionalSession();
 
@@ -19,7 +19,7 @@ namespace TransactionalSession_1
 
         public static async Task OpenDefault(IBuilder builder)
         {
-            #region open-transactional-session-cosmosdb
+            #region open-transactional-session-cosmos
 
             using var childScope = builder.CreateChildBuilder();
             var session = childScope.Build<ITransactionalSession>();
@@ -34,7 +34,7 @@ namespace TransactionalSession_1
 
         public async Task OpenContainerInfo(IBuilder builder)
         {
-            #region open-transactional-session-cosmosdb-container
+            #region open-transactional-session-cosmos-container
 
             using var childScope = builder.CreateChildBuilder();
             var session = childScope.Build<ITransactionalSession>();

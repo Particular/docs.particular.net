@@ -9,7 +9,7 @@ namespace TransactionalSession_1
     {
         public void Configure(EndpointConfiguration config)
         {
-            #region enabling-transactional-session-mongodb
+            #region enabling-transactional-session-mongo
 
             config.UsePersistence<MongoPersistence>().EnableTransactionalSession();
 
@@ -18,7 +18,7 @@ namespace TransactionalSession_1
 
         public static async Task OpenDefault(IBuilder builder)
         {
-            #region open-transactional-session-mongodb
+            #region open-transactional-session-mongo
 
             using var childScope = builder.CreateChildBuilder();
             var session = childScope.Build<ITransactionalSession>();
