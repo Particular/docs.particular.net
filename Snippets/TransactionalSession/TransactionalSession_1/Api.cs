@@ -18,6 +18,15 @@ class Api
         #endregion
     }
 
+    public void Outbox(EndpointConfiguration config)
+    {
+        #region enabling-outbox
+
+        config.EnableOutbox();
+
+        #endregion
+    }
+
     public async Task Open(IServiceScope scope, CancellationToken cancellationToken)
     {
         #region opening-transactional-session

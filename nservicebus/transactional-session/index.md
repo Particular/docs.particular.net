@@ -29,11 +29,17 @@ The `TransactionalSession` feature solves this problem exactly.
 
 ## Usage
 
-To use the transactional session, first, install the `NServiceBus.TransactionalSession`-package in the project.
+To use the transactional session, first, install the [transactional session package for a supported persister](/nservicebus/transactional-session/persistences) in the project.
 
 Then, enable the future on the endpoint as follows:
 
 snippet: enabling-transactional-session
+
+To ensure atomic consitency across database and message operations, enable the [Outbox](/nservicebus/outbox):
+
+snippet: enabling-outbox
+
+NOTE: The Outbox is optional. See the [transaction consistency](#transaction-consistency) section for further details.
 
 The transactional session can be resolved from the container, and needs to be opened:
 
@@ -43,11 +49,13 @@ Sending messages in an atomic manner is done through the `ITransactionalSession`
 
 snippet: sending-transactional-session
 
+The persistence specific database session is accessible via the `transactionalSession.SynchronizedStorageSession` property. See the [persistence specific documentation](/nservicebus/transactional-session/persistences) for more details.
+
 Once all the operations that are part of the atomic request have been executed, the session should be committed:
 
 snippet: committing-transactional-session
 
-Note that disposing the transactional session without committing, will roll-back any changes that were made.
+Disposing the transactional session without committing, will roll-back any changes that were made.
 
 ## Requirements
 
@@ -59,6 +67,12 @@ The transactional session feature requires a persistence in order to store outgo
 * [NHibernate](/persistence/nhibernate)
 * [RavenDB](/persistence/ravendb)
 * [MongoDB](/persistence/mongodb)
+
+## Transaction consistency
+
+To guarantee atomic consitency across database and message operations, the transactional session requires the [Outbox](/nservicebus/outbox) to be enabled.
+
+With the Outbox disabled, database and message operations are not executed until the session is committed. All database operations shre the same database transaction but message operations are not guaranteed to be atomic with the database changes. This might lead to phantom records or ghost messages when in case of a failure during the commit phase.doc
 
 ## How it works
 
