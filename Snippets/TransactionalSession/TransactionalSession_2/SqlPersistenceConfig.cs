@@ -17,7 +17,7 @@ namespace TransactionalSession_2
             #endregion
         }
 
-        public static async Task OpenDefault(IServiceProvider serviceProvider)
+        public async Task OpenDefault(IServiceProvider serviceProvider)
         {
             #region open-transactional-session-sqlp
 
@@ -25,7 +25,7 @@ namespace TransactionalSession_2
             var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
             await session.Open(new SqlPersistenceOpenSessionOptions());
 
-            await session.Send(new MyMessage());
+            // use the session
 
             await session.Commit();
 
@@ -42,10 +42,25 @@ namespace TransactionalSession_2
                 "MyTenantIdHeader", //Name of the header configured in this endpoint to carry the tenant ID
                 "TenantA")));       //The value of the tenant ID header
 
-            await session.Send(new MyMessage());
+            // use the session
 
             await session.Commit();
 
+            #endregion
+        }
+
+        public async Task UseSession(ITransactionalSession session)
+        {
+            #region use-transactional-session-sqlp
+            await session.Open(new SqlPersistenceOpenSessionOptions());
+
+            // add messages to the transaction:
+            await session.Send(new MyMessage());
+
+            // access the database:
+            var sqlSession = session.SynchronizedStorageSession.SqlPersistenceSession();
+
+            await session.Commit();
             #endregion
         }
     }

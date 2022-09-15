@@ -22,9 +22,19 @@ To open a SQL Persistence transactional session:
 
 snippet: open-transactional-session-sqlp
 
-## Multi-tenancy support
+### Multi-tenancy support
 
 The specific tenant id that is used to construct the connection string is retrieved from message headers as configured in the [`MultiTenantConnectionBuilder`-method](/persistence/sql/multi-tenant.md).
 This header needs to be set in the options so that the method has the necessary information available when storing operations.
 
 snippet: open-transactional-session-sqlp-multitenant
+
+## Transaction usage
+
+Message and database operations made via the the transactional session are committed together once the session is committed:
+
+snippet: use-transactional-session-sqlp
+
+See the [SQL shared session documentation](/persistence/sql/accessing-data.md) for further details about using the transaction.
+
+WARN: In order to guarantee atomic consistency across message and database operations, the [Outbox](/nservicebus/outbox) needs to be enabled. Otherwise `Commit` will execute all operations in a best-effort fashion.
