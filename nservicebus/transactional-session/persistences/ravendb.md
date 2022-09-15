@@ -6,7 +6,7 @@ reviewed: 2022-09-12
 redirects:
 ---
 
-In order to use the TransactionalSession feature with RavenDB Persistence, add a reference to the `NServiceBus.RavenDB.TransactionalSession` NuGet package.
+In order to use the TransactionalSession feature with RavenDB persistence, add a reference to the `NServiceBus.RavenDB.TransactionalSession` NuGet package.
 
 ## Configuration
 
@@ -22,7 +22,7 @@ snippet: open-transactional-session-ravendb
 
 ## Multi-tenancy support
 
-The specific tenant database name is retrieved from message headers as configured in the [`SetMessageToDatabaseMappingConvention`-method](/persistence/ravendb).
+The specific tenant database name is retrieved from message headers as configured in the [`SetMessageToDatabaseMappingConvention`-method](/persistence/ravendb/#multi-tenant-support).
 This header needs to be set in the options so that the method has the necessary information available when storing operations.
 
 snippet: open-transactional-session-ravendb-multitenant
