@@ -22,8 +22,8 @@ namespace TransactionalSession_1
         {
             #region open-transactional-session-ravendb
 
-            using var childScope = builder.CreateChildBuilder();
-            var session = childScope.Build<ITransactionalSession>();
+            using var childBuilder = builder.CreateChildBuilder();
+            var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(new RavenDbOpenSessionOptions()).ConfigureAwait(false);
 
             // use the session
@@ -37,8 +37,8 @@ namespace TransactionalSession_1
         {
             #region open-transactional-session-ravendb-multitenant
 
-            using var childScope = builder.CreateChildBuilder();
-            var session = childScope.Build<ITransactionalSession>();
+            using var childBuilder = builder.CreateChildBuilder();
+            var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(new RavenDbOpenSessionOptions(new Dictionary<string, string>
             {
                 // information is added to the message headers for the `SetMessageToDatabaseMappingConvention`-method

@@ -23,8 +23,8 @@ namespace TransactionalSession_1
         {
             #region open-transactional-session-azurestorage
 
-            using var childScope = builder.CreateChildBuilder();
-            var session = childScope.Build<ITransactionalSession>();
+            using var childBuilder = builder.CreateChildBuilder();
+            var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(new AzureTableOpenSessionOptions(
                                 new TableEntityPartitionKey("ABC")))
                          .ConfigureAwait(false);
@@ -40,8 +40,8 @@ namespace TransactionalSession_1
         {
             #region open-transactional-session-azurestorage-table
 
-            using var childScope = builder.CreateChildBuilder();
-            var session = childScope.Build<ITransactionalSession>();
+            using var childBuilder = builder.CreateChildBuilder();
+            var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(new AzureTableOpenSessionOptions(
                                    new TableEntityPartitionKey("ABC"),
                                    new TableInformation("MyTable")))

@@ -21,8 +21,8 @@ namespace TransactionalSession_1
         {
             #region open-transactional-session-nhibernate
 
-            using var childScope = builder.CreateChildBuilder();
-            var session = childScope.Build<ITransactionalSession>();
+            using var childBuilder = builder.CreateChildBuilder();
+            var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(new NHibernateOpenSessionOptions()).ConfigureAwait(false);
 
             // use the session

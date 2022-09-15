@@ -21,8 +21,8 @@ namespace TransactionalSession_1
         {
             #region open-transactional-session-sqlp
 
-            using var childScope = builder.CreateChildBuilder();
-            var session = childScope.Build<ITransactionalSession>();
+            using var childBuilder = builder.CreateChildBuilder();
+            var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(new SqlPersistenceOpenSessionOptions()).ConfigureAwait(false);
 
             // use the session
@@ -36,8 +36,8 @@ namespace TransactionalSession_1
         {
             #region open-transactional-session-sqlp-multitenant
 
-            using var childScope = builder.CreateChildBuilder();
-            var session = childScope.Build<ITransactionalSession>();
+            using var childBuilder = builder.CreateChildBuilder();
+            var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(
                             new SqlPersistenceOpenSessionOptions((
                                 "MyTenantIdHeader", //Name of the header configured in this endpoint to carry the tenant ID

@@ -21,8 +21,8 @@ namespace TransactionalSession_1
         {
             #region open-transactional-session-mongo
 
-            using var childScope = builder.CreateChildBuilder();
-            var session = childScope.Build<ITransactionalSession>();
+            using var childBuilder = builder.CreateChildBuilder();
+            var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(new MongoOpenSessionOptions()).ConfigureAwait(false);
 
             // use the session

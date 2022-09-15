@@ -22,8 +22,8 @@ namespace TransactionalSession_1
         {
             #region open-transactional-session-cosmos
 
-            using var childScope = builder.CreateChildBuilder();
-            var session = childScope.Build<ITransactionalSession>();
+            using var childBuilder = builder.CreateChildBuilder();
+            var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(new CosmosOpenSessionOptions(new PartitionKey("ABC"))).ConfigureAwait(false);
 
             // use the session
@@ -37,8 +37,8 @@ namespace TransactionalSession_1
         {
             #region open-transactional-session-cosmos-container
 
-            using var childScope = builder.CreateChildBuilder();
-            var session = childScope.Build<ITransactionalSession>();
+            using var childBuilder = builder.CreateChildBuilder();
+            var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(new CosmosOpenSessionOptions(
                                 new PartitionKey("ABC"),
                                 new ContainerInformation("MyContainer", new PartitionKeyPath("/path/to/partition/key"))))
