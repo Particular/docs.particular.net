@@ -13,7 +13,8 @@ class Api
         #region enabling-transactional-session
 
         //Each persistence has a specific Configure method
-        config.UsePersistence<MyPersistence>().EnableTransactionalSession();
+        var persistence = config.UsePersistence<MyPersistence>();
+        persistence.EnableTransactionalSession();
 
         #endregion
     }
@@ -33,7 +34,7 @@ class Api
 
         var session = scope.ServiceProvider.GetRequiredService<ITransactionalSession>();
         await session.Open(new MyPersistenceOpenSessionOptions(),
-            cancellationToken: cancellationToken);
+            cancellationToken: cancellationToken).ConfigureAwait(false);
 
         #endregion
     }
@@ -53,10 +54,8 @@ class Api
     {
         #region committing-transactional-session
 
-        await session.Commit(cancellationToken);
+        await session.Commit(cancellationToken).ConfigureAwait(false);
 
         #endregion
     }
-
-
 }

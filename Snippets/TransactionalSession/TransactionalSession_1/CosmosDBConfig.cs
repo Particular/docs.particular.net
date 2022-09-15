@@ -12,7 +12,8 @@ namespace TransactionalSession_1
         {
             #region enabling-transactional-session-cosmos
 
-            config.UsePersistence<CosmosPersistence>().EnableTransactionalSession();
+            var persistence = config.UsePersistence<CosmosPersistence>();
+            persistence.EnableTransactionalSession();
 
             #endregion
         }
@@ -23,11 +24,11 @@ namespace TransactionalSession_1
 
             using var childScope = builder.CreateChildBuilder();
             var session = childScope.Build<ITransactionalSession>();
-            await session.Open(new CosmosOpenSessionOptions(new PartitionKey("ABC")));
+            await session.Open(new CosmosOpenSessionOptions(new PartitionKey("ABC"))).ConfigureAwait(false);
 
             // use the session
 
-            await session.Commit();
+            await session.Commit().ConfigureAwait(false);
 
             #endregion
         }
@@ -39,14 +40,13 @@ namespace TransactionalSession_1
             using var childScope = builder.CreateChildBuilder();
             var session = childScope.Build<ITransactionalSession>();
             await session.Open(new CosmosOpenSessionOptions(
-                new PartitionKey("ABC"),
-                new ContainerInformation(
-                    "MyContainer",
-                    new PartitionKeyPath("/path/to/partition/key"))));
+                                new PartitionKey("ABC"),
+                                new ContainerInformation("MyContainer", new PartitionKeyPath("/path/to/partition/key"))))
+                         .ConfigureAwait(false);
 
             // use the session
 
-            await session.Commit();
+            await session.Commit().ConfigureAwait(false);
 
             #endregion
         }
@@ -54,15 +54,16 @@ namespace TransactionalSession_1
         public async Task UseSession(ITransactionalSession session)
         {
             #region use-transactional-session-cosmos
-            await session.Open(new CosmosOpenSessionOptions(new PartitionKey("MyPartitionKey")));
+            await session.Open(new CosmosOpenSessionOptions(new PartitionKey("MyPartitionKey")))
+                         .ConfigureAwait(false);
 
             // add messages to the transaction:
-            await session.Send(new MyMessage());
+            await session.Send(new MyMessage()).ConfigureAwait(false);
 
             // access the database:
             var cosmosSession = session.SynchronizedStorageSession.CosmosPersistenceSession();
 
-            await session.Commit();
+            await session.Commit().ConfigureAwait(false);
             #endregion
         }
     }

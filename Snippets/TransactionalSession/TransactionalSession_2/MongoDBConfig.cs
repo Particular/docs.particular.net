@@ -12,7 +12,8 @@ namespace TransactionalSession_2
         {
             #region enabling-transactional-session-mongo
 
-            config.UsePersistence<MongoPersistence>().EnableTransactionalSession();
+            var persistence = config.UsePersistence<MongoPersistence>();
+            persistence.EnableTransactionalSession();
 
             #endregion
         }
@@ -23,11 +24,11 @@ namespace TransactionalSession_2
 
             using var childScope = serviceProvider.CreateScope();
             var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
-            await session.Open(new MongoOpenSessionOptions());
+            await session.Open(new MongoOpenSessionOptions()).ConfigureAwait(false);
 
             // use the session
 
-            await session.Commit();
+            await session.Commit().ConfigureAwait(false);
 
             #endregion
         }
@@ -35,15 +36,15 @@ namespace TransactionalSession_2
         public async Task UseSession(ITransactionalSession session)
         {
             #region use-transactional-session-mongo
-            await session.Open(new MongoOpenSessionOptions());
+            await session.Open(new MongoOpenSessionOptions()).ConfigureAwait(false);
 
             // add messages to the transaction:
-            await session.Send(new MyMessage());
+            await session.Send(new MyMessage()).ConfigureAwait(false);
 
             // access the database:
             var mongoSession = session.SynchronizedStorageSession.MongoPersistenceSession();
 
-            await session.Commit();
+            await session.Commit().ConfigureAwait(false);
             #endregion
         }
     }

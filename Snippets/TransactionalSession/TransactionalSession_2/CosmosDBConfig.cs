@@ -13,7 +13,8 @@ namespace TransactionalSession_2
         {
             #region enabling-transactional-session-cosmos
 
-            config.UsePersistence<CosmosPersistence>().EnableTransactionalSession();
+            var persistence = config.UsePersistence<CosmosPersistence>();
+            persistence.EnableTransactionalSession();
 
             #endregion
         }
@@ -24,11 +25,12 @@ namespace TransactionalSession_2
 
             using var childScope = serviceProvider.CreateScope();
             var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
-            await session.Open(new CosmosOpenSessionOptions(new PartitionKey("MyPartitionKey")));
+            await session.Open(new CosmosOpenSessionOptions(new PartitionKey("MyPartitionKey")))
+                         .ConfigureAwait(false);
 
             // use the session
 
-            await session.Commit();
+            await session.Commit().ConfigureAwait(false);
 
             #endregion
         }
@@ -40,14 +42,15 @@ namespace TransactionalSession_2
             using var childScope = serviceProvider.CreateScope();
             var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
             await session.Open(new CosmosOpenSessionOptions(
-                new PartitionKey("MyPartitionKey"),
-                new ContainerInformation(
-                    "MyContainer",
-                    new PartitionKeyPath("/path/to/partition/key"))));
+                                new PartitionKey("MyPartitionKey"),
+                                new ContainerInformation(
+                                    "MyContainer",
+                                    new PartitionKeyPath("/path/to/partition/key"))))
+                          .ConfigureAwait(false);
 
             // use the session
 
-            await session.Commit();
+            await session.Commit().ConfigureAwait(false);
 
             #endregion
         }
@@ -55,15 +58,16 @@ namespace TransactionalSession_2
         public async Task UseSession(ITransactionalSession session)
         {
             #region use-transactional-session-cosmos
-            await session.Open(new CosmosOpenSessionOptions(new PartitionKey("MyPartitionKey")));
+            await session.Open(new CosmosOpenSessionOptions(new PartitionKey("MyPartitionKey")))
+                         .ConfigureAwait(false);
 
             // add messages to the transaction:
-            await session.Send(new MyMessage());
+            await session.Send(new MyMessage()).ConfigureAwait(false);
 
             // access the database:
             var cosmosSession = session.SynchronizedStorageSession.CosmosPersistenceSession();
 
-            await session.Commit();
+            await session.Commit().ConfigureAwait(false);
             #endregion
         }
     }
