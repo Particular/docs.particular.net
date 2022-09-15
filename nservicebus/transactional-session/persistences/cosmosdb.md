@@ -4,6 +4,8 @@ summary: How to configure the transactional session with CosmosDB Persistence
 component: TransactionalSession
 reviewed: 2022-09-12
 redirects:
+related:
+- persistence/cosmosdb
 ---
 
 In order to use the TransactionalSession feature with CosmosDB Persistence, add a reference to the `NServiceBus.Persistence.CosmosDB.TransactionalSession` NuGet package.

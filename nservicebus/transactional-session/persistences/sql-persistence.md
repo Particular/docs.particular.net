@@ -4,6 +4,8 @@ summary: How to configure the transactional session with SQL Persistence
 component: TransactionalSession
 reviewed: 2022-09-12
 redirects:
+related:
+- persistence/sql
 ---
 
 In order to use the TransactionalSession feature with SQL Persistence, add a reference to the `NServiceBus.Persistence.Sql.TransactionalSession` NuGet package.

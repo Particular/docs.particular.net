@@ -3,6 +3,8 @@ title: Transactional Session with Azure Storage Persistence
 summary: How to configure the transactional session with Azure Storage Persistence
 component: TransactionalSession
 reviewed: 2022-09-12
+related:
+- persistence/azure-table
 redirects:
 ---
 
