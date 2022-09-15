@@ -9,17 +9,13 @@ namespace TransactionalSession_2
 {
     public class RavenDBConfig
     {
-        public async Task Configure(EndpointConfiguration config)
+        public void Configure(EndpointConfiguration config)
         {
             #region enabling-transactional-session-ravendb
 
             config.UsePersistence<RavenDBPersistence>().EnableTransactionalSession();
 
             #endregion
-
-            IServiceProvider serviceProvider = null;
-
-            await OpenDefault(serviceProvider);
         }
 
         private static async Task OpenDefault(IServiceProvider serviceProvider)

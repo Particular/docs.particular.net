@@ -8,17 +8,13 @@ namespace TransactionalSession_1
 {
     public class RavenDBConfig
     {
-        public async Task Configure(EndpointConfiguration config)
+        public void Configure(EndpointConfiguration config)
         {
             #region enabling-transactional-session-ravendb
 
             config.UsePersistence<RavenDBPersistence>().EnableTransactionalSession();
 
             #endregion
-
-            IBuilder builder = null;
-
-            await OpenDefault(builder);
         }
 
         private static async Task OpenDefault(IBuilder builder)
