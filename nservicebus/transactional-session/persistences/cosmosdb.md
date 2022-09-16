@@ -36,4 +36,4 @@ snippet: use-transactional-session-cosmos
 
 See the [Cosmos DB persistence transactions documentation](/persistence/cosmosdb/transactions.md#sharing-the-transaction) for further details about using the transaction.
 
-WARN: In order to guarantee atomic consistency across message and database operations, the [Outbox](/nservicebus/outbox) needs to be enabled. Otherwise `Commit` will execute all operations in a best-effort fashion.
+include: ts-outbox-warning

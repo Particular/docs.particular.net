@@ -30,4 +30,4 @@ snippet: use-transactional-session-nhibernate
 
 See the [NHibernate shared session documentation](/persistence/nhibernate/accessing-data.md) for further details about using the transaction.
 
-WARN: In order to guarantee atomic consistency across message and database operations, the [Outbox](/nservicebus/outbox) needs to be enabled. Otherwise `Commit` will execute all operations in a best-effort fashion.
+include: ts-outbox-warning

@@ -30,4 +30,4 @@ snippet: use-transactional-session-mongo
 
 See the [MongoDB persistence transactions documentation](/persistence/mongodb/#transactions) for further details about using the MongoDB transaction.
 
-WARN: In order to guarantee atomic consistency across message and database operations, the [Outbox](/nservicebus/outbox) needs to be enabled. Otherwise `Commit` will execute all operations in a best-effort fashion.
+include: ts-outbox-warning

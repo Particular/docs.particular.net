@@ -36,4 +36,4 @@ snippet: use-transactional-session-azurestorage
 
 See the [Azure table persistence transactions documentation](/persistence/azure-table/transactions.md#sharing-the-transaction) for further details about using the transaction.
 
-WARN: In order to guarantee atomic consistency across message and database operations, the [Outbox](/nservicebus/outbox) needs to be enabled. Otherwise `Commit` will execute all operations in a best-effort fashion.
+include: ts-outbox-warning
