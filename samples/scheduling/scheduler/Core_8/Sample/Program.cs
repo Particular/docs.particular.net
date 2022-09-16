@@ -15,8 +15,7 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         #region Schedule
 
         // Send a message every 5 seconds
@@ -26,8 +25,7 @@ class Program
                 {
                     var message = new MyMessage();
                     return pipelineContext.SendLocal(message);
-                })
-            .ConfigureAwait(false);
+                });
 
         // Name a schedule task and invoke it every 5 seconds
         await endpointInstance.ScheduleEvery(
@@ -37,14 +35,12 @@ class Program
                 {
                     log.Info("Custom Task executed");
                     return Task.CompletedTask;
-                })
-            .ConfigureAwait(false);
+                });
 
         #endregion
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }
