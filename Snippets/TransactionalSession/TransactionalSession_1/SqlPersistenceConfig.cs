@@ -23,11 +23,13 @@ namespace TransactionalSession_1
 
             using var childBuilder = builder.CreateChildBuilder();
             var session = childBuilder.Build<ITransactionalSession>();
-            await session.Open(new SqlPersistenceOpenSessionOptions()).ConfigureAwait(false);
+            await session.Open(new SqlPersistenceOpenSessionOptions())
+                .ConfigureAwait(false);
 
             // use the session
 
-            await session.Commit().ConfigureAwait(false);
+            await session.Commit()
+                .ConfigureAwait(false);
 
             #endregion
         }
@@ -39,14 +41,15 @@ namespace TransactionalSession_1
             using var childBuilder = builder.CreateChildBuilder();
             var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(
-                            new SqlPersistenceOpenSessionOptions((
-                                "MyTenantIdHeader", //Name of the header configured in this endpoint to carry the tenant ID
-                                "TenantA"))) //The value of the tenant ID header
-                         .ConfigureAwait(false);
+                    new SqlPersistenceOpenSessionOptions((
+                                "MyTenantIdHeader", // Name of the header configured in this endpoint to carry the tenant ID
+                                "TenantA"))) // The value of the tenant ID header
+                .ConfigureAwait(false);
 
             // use the session
 
-            await session.Commit().ConfigureAwait(false);
+            await session.Commit()
+                .ConfigureAwait(false);
 
             #endregion
         }
@@ -54,15 +57,18 @@ namespace TransactionalSession_1
         public async Task UseSession(ITransactionalSession session)
         {
             #region use-transactional-session-sqlp
-            await session.Open(new SqlPersistenceOpenSessionOptions()).ConfigureAwait(false);
+            await session.Open(new SqlPersistenceOpenSessionOptions())
+                .ConfigureAwait(false);
 
             // add messages to the transaction:
-            await session.Send(new MyMessage()).ConfigureAwait(false);
+            await session.Send(new MyMessage())
+                .ConfigureAwait(false);
 
             // access the database:
             var sqlSession = session.SynchronizedStorageSession.SqlPersistenceSession();
 
-            await session.Commit().ConfigureAwait(false);
+            await session.Commit()
+                .ConfigureAwait(false);
             #endregion
         }
     }

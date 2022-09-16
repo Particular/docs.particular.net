@@ -3,6 +3,7 @@ using NServiceBus;
 using NServiceBus.TransactionalSession;
 using System;
 using System.Threading.Tasks;
+using NServiceBus.TransactionalSession.FakeExtensions;
 
 namespace TransactionalSession_2
 {
@@ -24,11 +25,13 @@ namespace TransactionalSession_2
 
             using var childScope = serviceProvider.CreateScope();
             var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
-            await session.Open(new NHibernateOpenSessionOptions()).ConfigureAwait(false);
+            await session.Open()
+                .ConfigureAwait(false);
 
             // use the session
 
-            await session.Commit().ConfigureAwait(false);
+            await session.Commit()
+                .ConfigureAwait(false);
 
             #endregion
         }
@@ -36,15 +39,18 @@ namespace TransactionalSession_2
         public async Task UseSession(ITransactionalSession session)
         {
             #region use-transactional-session-nhibernate
-            await session.Open(new NHibernateOpenSessionOptions()).ConfigureAwait(false);
+            await session.Open()
+                .ConfigureAwait(false);
 
             // add messages to the transaction:
-            await session.Send(new MyMessage()).ConfigureAwait(false);
+            await session.Send(new MyMessage())
+                .ConfigureAwait(false);
 
             // access the database:
             var nhibernateSession = session.SynchronizedStorageSession.Session();
 
-            await session.Commit().ConfigureAwait(false);
+            await session.Commit()
+                .ConfigureAwait(false);
             #endregion
         }
     }

@@ -1,8 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.MyPersistence;
+using NServiceBus.ObjectBuilder;
 using NServiceBus.TransactionalSession;
 
 class Api
@@ -27,13 +27,14 @@ class Api
         #endregion
     }
 
-    public async Task Open(IServiceScope scope, CancellationToken cancellationToken)
+    public async Task Open(IBuilder childBuilder, CancellationToken cancellationToken)
     {
         #region opening-transactional-session
 
-        using var session = scope.ServiceProvider.GetRequiredService<ITransactionalSession>();
+        using var session = childBuilder.Build<ITransactionalSession>();
         await session.Open(new MyPersistenceOpenSessionOptions(),
-            cancellationToken: cancellationToken).ConfigureAwait(false);
+            cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
 
         #endregion
     }
@@ -42,7 +43,8 @@ class Api
     {
         #region sending-transactional-session
 
-        await session.SendLocal(new MyMessage(), cancellationToken).ConfigureAwait(false);
+        await session.SendLocal(new MyMessage(), cancellationToken)
+            .ConfigureAwait(false);
 
         #endregion
 
@@ -52,7 +54,8 @@ class Api
     {
         #region committing-transactional-session
 
-        await session.Commit(cancellationToken).ConfigureAwait(false);
+        await session.Commit(cancellationToken)
+            .ConfigureAwait(false);
 
         #endregion
     }

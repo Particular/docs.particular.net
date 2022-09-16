@@ -26,13 +26,15 @@ namespace TransactionalSession_2
 
             using var childScope = serviceProvider.CreateScope();
             var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
-            await session.Open(new AzureTableOpenSessionOptions(
-                                new TableEntityPartitionKey("ABC")))
-                         .ConfigureAwait(false);
+            await session.Open(
+                    new AzureTableOpenSessionOptions(
+                        new TableEntityPartitionKey("MyPartitionKey")))
+                .ConfigureAwait(false);
 
             // use the session
 
-            await session.Commit().ConfigureAwait(false);
+            await session.Commit()
+                .ConfigureAwait(false);
 
             #endregion
         }
@@ -43,14 +45,16 @@ namespace TransactionalSession_2
 
             using var childScope = serviceProvider.CreateScope();
             var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
-            await session.Open(new AzureTableOpenSessionOptions(
-                                new TableEntityPartitionKey("ABC"),
-                                new TableInformation("MyTable")))
-                         .ConfigureAwait(false);
+            await session.Open(
+                    new AzureTableOpenSessionOptions(
+                        new TableEntityPartitionKey("MyPartitionKey"),
+                        new TableInformation("MyTable")))
+                .ConfigureAwait(false);
 
             // use the session
 
-            await session.Commit().ConfigureAwait(false);
+            await session.Commit()
+                .ConfigureAwait(false);
 
             #endregion
         }
@@ -58,16 +62,20 @@ namespace TransactionalSession_2
         public async Task UseSession(ITransactionalSession session)
         {
             #region use-transactional-session-azurestorage
-            await session.Open(new AzureTableOpenSessionOptions(new TableEntityPartitionKey("ABC")))
-                         .ConfigureAwait(false);
+            await session.Open(
+                    new AzureTableOpenSessionOptions(
+                        new TableEntityPartitionKey("MyPartitionKey")))
+                .ConfigureAwait(false);
 
             // add messages to the transaction:
-            await session.Send(new MyMessage()).ConfigureAwait(false);
+            await session.Send(new MyMessage())
+                .ConfigureAwait(false);
 
             // access the database:
             var azureTableSession = session.SynchronizedStorageSession.AzureTablePersistenceSession();
 
-            await session.Commit().ConfigureAwait(false);
+            await session.Commit()
+                .ConfigureAwait(false);
             #endregion
         }
     }

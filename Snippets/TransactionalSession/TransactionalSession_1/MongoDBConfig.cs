@@ -2,6 +2,7 @@
 using NServiceBus.ObjectBuilder;
 using NServiceBus.TransactionalSession;
 using System.Threading.Tasks;
+using NServiceBus.TransactionalSession.FakeExtensions;
 
 namespace TransactionalSession_1
 {
@@ -23,11 +24,13 @@ namespace TransactionalSession_1
 
             using var childBuilder = builder.CreateChildBuilder();
             var session = childBuilder.Build<ITransactionalSession>();
-            await session.Open(new MongoOpenSessionOptions()).ConfigureAwait(false);
+            await session.Open()
+                .ConfigureAwait(false);
 
             // use the session
 
-            await session.Commit().ConfigureAwait(false);
+            await session.Commit()
+                .ConfigureAwait(false);
 
             #endregion
         }
@@ -35,15 +38,18 @@ namespace TransactionalSession_1
         public async Task UseSession(ITransactionalSession session)
         {
             #region use-transactional-session-mongo
-            await session.Open(new MongoOpenSessionOptions()).ConfigureAwait(false);
+            await session.Open()
+                .ConfigureAwait(false);
 
             // add messages to the transaction:
-            await session.Send(new MyMessage()).ConfigureAwait(false);
+            await session.Send(new MyMessage())
+                .ConfigureAwait(false);
 
             // access the database:
             var mongoSession = session.SynchronizedStorageSession.MongoPersistenceSession();
 
-            await session.Commit().ConfigureAwait(false);
+            await session.Commit()
+                .ConfigureAwait(false);
             #endregion
         }
     }
