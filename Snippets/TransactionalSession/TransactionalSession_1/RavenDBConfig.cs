@@ -41,7 +41,8 @@ namespace TransactionalSession_1
             var session = childBuilder.Build<ITransactionalSession>();
             await session.Open(new RavenDbOpenSessionOptions(new Dictionary<string, string>
             {
-                // information is added to the message headers for the `SetMessageToDatabaseMappingConvention`-method
+                // information is added to the message headers for the 
+                // `SetMessageToDatabaseMappingConvention`-method
                 {"tenantDatabaseName", "tenantA-databaseName"}
             })).ConfigureAwait(false);
 

@@ -1,6 +1,6 @@
 ---
-title: Transactional Session with Azure Storage Persistence
-summary: How to configure the transactional session with Azure Storage Persistence
+title: Transactional Session with Azure Table Persistence
+summary: How to configure the transactional session with Azure Table Persistence
 component: TransactionalSession
 reviewed: 2022-09-12
 related:
@@ -8,7 +8,7 @@ related:
 redirects:
 ---
 
-In order to use the TransactionalSession feature with Azure Storage Persistence, add a reference to the `NServiceBus.Persistence.AzureTable.TransactionalSession` NuGet package.
+In order to use the TransactionalSession feature with Azure Table Persistence, add a reference to the `NServiceBus.Persistence.AzureTable.TransactionalSession` NuGet package.
 
 ## Configuration
 
