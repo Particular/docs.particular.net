@@ -9,7 +9,7 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-This document focuses on changes that are affecting general endpoint configuration and message handlers. For more upgrade guides, also see the following:
+This document focuses on changes that are affecting general endpoint configuration and message handlers. For more upgrade guides, see the following additional guides:
 
 * [Changes for downstream implementations like custom/community transports, persistence, message serializers](implementations.md)
 * [Changes related to the pipeline](pipeline.md)
@@ -98,7 +98,7 @@ The NServiceBus gateway has been moved to a separate `NServiceBus.Gateway` packa
 
 ## Error notification events
 
-In NServiceBus version 7.2, error notification events for `MessageSentToErrorQueue`, `MessageHasFailedAnImmediateRetryAttempt`, and `MessageHasBeenSentToDelayedRetries` using .NET events were deprecated in favor of `Task`-based callbacks. In NServiceBus version 8 and above, the event-based notifications will throw an error.
+In NServiceBus version 7.2, error notification events for `MessageSentToErrorQueue`, `MessageHasFailedAnImmediateRetryAttempt`, and `MessageHasBeenSentToDelayedRetries` using .NET events were deprecated in favor of `Task`-based callbacks. Starting in NServiceBus version 8, the event-based notifications will throw an error.
 
 Error notifications can be set with the `Task`-based callbacks through the recoverability settings:
 
@@ -118,13 +118,13 @@ snippet: DisablePublishing-UpgradeGuide
 
  NServiceBus version 8 will no longer attempt to load the license file from the `appSettings` section of an app.config or web.config file, in order to create better alignment between .NET Framework 4.x and .NET Core.
 
-In NServiceBus version 7 and below, the license path could be loaded from the `NServiceBus/LicensePath` app setting, or the license text itself could be loaded from the `NServiceBus/License` app setting.
+In NServiceBus version 7 and below, the license path can be loaded from the `NServiceBus/LicensePath` app setting, or the license text itself can be loaded from the `NServiceBus/License` app setting.
 
-Starting in NServiceBus version 8, one of the [other methods of providing a license](/nservicebus/licensing/?version=core_8) must be used.
+Starting in NServiceBus version 8, one of the [other methods of providing a license](/nservicebus/licensing/?version=core_8) must be used instead.
 
 ## Support for message forwarding
 
-NServiceBus no longer natively supports forwarding a copy of every message processed by an endpoint. Instead, create a custom behavior to forward a copy of every processed message as described in [message forwarding sample](/samples/routing/message-forwarding).
+Starting with version 8, NServiceBus no longer natively supports forwarding a copy of every message processed by an endpoint. Instead, create a custom behavior to forward a copy of every processed message as described in the [message forwarding sample](/samples/routing/message-forwarding).
 
 ## NServiceBus Host
 
@@ -155,7 +155,7 @@ In NServiceBus version 8, all APIs have been migrated from `DateTime` to `DateTi
 
 In NServiceBus version 8, the Scheduler API has been deprecated in favor of options like [sagas](/nservicebus/sagas/) and production-grade schedulers such as Hangfire, Quartz, and FluentScheduler.
 
-It is recommended to create a .NET Timer with the same interval as the scheduled task and use `IMessageSession.SendLocal` to send a message to process. Using message processing has the benefit of using recoverability and uses a transactional context. If these benefits are not needed then do not send a message at all and directly invoke logic from the timer.
+It is recommended to create a .NET Timer with the same interval as the scheduled task and use `IMessageSession.SendLocal` to send a message to process. Adopting a message processing approach has the benefit of using recoverability and a transactional context. If these benefits are not needed then do not send a message and directly invoke logic from the timer instead.
 
 INFO: The behavior in NServiceBus version 7 is to **not** retry the task on failures, so be sure to wrap the business logic in a `try-catch` statement to get the same behavior in NServiceBus version 8.
 
@@ -167,13 +167,13 @@ NServiceBus version 8 throws an `InvalidOperationException` when invoking messag
 
 ## Non-durable messaging
 
-Support for non-durable messaging has been moved to the transports that can support it, which as of November 2020 is only the RabbitMQ transport. When using another transport, use of `[Express]` or message conventions to request non-durable delivery can safely be removed.
+Support for non-durable messaging has been moved to the transports that can support it, which at the time of the NServiceBus version 8 release is only the RabbitMQ transport. When using another transport, the use of `[Express]` or message conventions to request non-durable delivery can safely be removed.
 
-RabbitMQ user should use the new [`options.UseNonPersistentDeliveryMode()` API provided by `NServiceBus.RabbitMQ` Version 7](/transports/rabbitmq/#controlling-delivery-mode)
+RabbitMQ users should use the new [`options.UseNonPersistentDeliveryMode()` API provided by `NServiceBus.RabbitMQ` Version 7](/transports/rabbitmq/#controlling-delivery-mode)
 
 ## Non-durable persistence
 
-Support for non-durable persistence (previously known as `InMemoryPersistence`) has been removed from the `NServiceBus` package to a separate `NServiceBus.Persistence.NonDurable` package. To continue using it, add a reference to the new package and update the configuration code.
+Support for non-durable persistence (previously known as `InMemoryPersistence`) has been removed from the `NServiceBus` package to a separate `NServiceBus.Persistence.NonDurable` package. To continue using it, add a reference to the new package and update the configuration code as follows:
 
 ```csharp
 endpointConfiguration.UsePersistence<NonDurablePersistence>();
@@ -181,7 +181,7 @@ endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
 ## Timeout manager removed
 
-With all currently-supported transports now supporting native delayed delivery, the [timeout manager](/nservicebus/messaging/timeout-manager.md) is no longer needed. Any calls to `EndpointConfiguration.TimeoutManager()` and `EndpointConfiguration.UseExternalTimeoutManager()` can safely be removed.
+All supported transports now support native delayed delivery, so the [timeout manager](/nservicebus/messaging/timeout-manager.md) is no longer necessary. Any calls to `EndpointConfiguration.TimeoutManager()` and `EndpointConfiguration.UseExternalTimeoutManager()` can safely be removed.
 
 ### Data migration
 
@@ -213,7 +213,7 @@ endpointConfiguration.EnableOutbox();
 
 ## Renamed extension method types
 
-The following static extension method types were renamed:
+The following static extension method types have been renamed:
 
 | Old name                       | New name                      |
 |--------------------------------|-------------------------------|
@@ -222,7 +222,7 @@ The following static extension method types were renamed:
 | `IMessageSessionExtensions`    | `MessageSessionExtensions`    |
 | `IPipelineContextExtensions`   | `PipelineContextExtensions`   |
 
-All references to the old types must be changed to the new types, although usually these types are not referenced, since they only contain extension methods.
+All references to the old types must be changed to the new types. Note that these types are not usually referenced directly, since they contain only extension methods.
 
 ## Gateway in-memory deduplication
 
@@ -238,7 +238,7 @@ In NServiceBus version 7 and earlier, the local transport-specific queue address
 
 ### Logical endpoint address
 
-Since the endpoint addresses are translated to the transport-specific later during endpoint startup, addresses are defined using a transport-agnostic `QueueAddress` type. The addresses can be accessed via the `FeatureConfigurationContext`, for example:
+Since endpoint addresses are translated to transport-specific ones later during endpoint startup, addresses are defined using a transport-agnostic `QueueAddress` type. The addresses can be accessed via the `FeatureConfigurationContext`, for example:
 
 ```csharp
 class MyFeature : Feature
@@ -315,9 +315,9 @@ public class MyHandler : IHandleMessages<MyMessage>
 
 ## Implicit global using directives
 
-NServiceBus 8 supports the [implicit global using directives](https://docs.microsoft.com/en-us/dotnet/core/project-sdk/overview#implicit-using-directives) feature introduced in the .NET 6 SDK. When `<ImplicitUsings>enable</ImplicitUsings>` has been set in the project file, all files in the project will have an implicit `using NServiceBus;` added to them. In the event that this introduces a conflict between two identically named types in referenced namespaces, the ambiguity will need to be resolved manually.
+NServiceBus 8 supports the [implicit global using directives](https://docs.microsoft.com/en-us/dotnet/core/project-sdk/overview#implicit-using-directives) feature introduced in the .NET 6 SDK. When `<ImplicitUsings>enable</ImplicitUsings>` has been set in the project file, all files in the project will have an implicit `using NServiceBus;` added to them. In the event that this introduces a conflict between two identically named types in referenced namespaces, the ambiguity must be resolved manually.
 
-To disable the implicit adding of the `NServiceBus` namespace while still keeping `ImplicitUsings` enabled, add the following to the project file:
+To disable the feature of implicitly adding the `NServiceBus` namespace while still keeping `ImplicitUsings` enabled, add the following to the project file:
 
 ```xml
 <ItemGroup>
@@ -336,19 +336,18 @@ NServiceBus version 8 elevates several [saga-related Roslyn analyzers](/nservice
 * **NSB0003 Non-mapping expression used in ConfigureHowToFindSaga method**: No other statements besides mapping expressions using the provided `mapper` argument are allowed.
 * **NSB0006 Message that starts the saga does not have a message mapping**: Without a mapping expression, the correct saga data cannot be found for an incoming message. A code fix is available that will add a new mapping to the `ConfigureHowToFindSaga` method. If using a [custom saga finder](/nservicebus/sagas/saga-finding.md), the error can be suppressed.
 * **NSB0007 Saga data property is not writeable**: Properties on saga data classes must have public setters so they can be loaded properly.
-* **NSB0009 A saga cannot use the Id property for a Correlation ID**: The `Id` property is reserved for use by the saga. Because some saga storage options are case insensitive, the other casings `ID`, `id`, and `iD` are also not allowed.
+* **NSB0009 A saga cannot use the Id property for a Correlation ID**: The `Id` property is reserved for use by the saga. Because some saga storage options are case insensitive, `ID`, `id`, and `iD` are also not allowed as properties for a Correlation ID.
 * **NSB0015 Saga should not implement IHandleSagaNotFound**: The `IHandleSagaNotFound` extension point allows handling *any* message where saga data cannot be loaded. Implementing this interface on a saga gives the wrong impression that it only handles sagas not found for that saga, which is incorrect. Instead, implement the saga not found logic on a separate class.
-
 
 ## OpenTelemetry
 
-NServiceBus 8 comes with built-in OpenTelemetry support for tracing and metrics. To enable OpenTelemetry instrumentation in NServiceBus, refer to the [NServiceBus OpenTelemetry documentation](/nservicebus/operations/opentelemetry.md).
+NServiceBus 8 includes built-in OpenTelemetry support for tracing and metrics. To enable OpenTelemetry instrumentation in NServiceBus, refer to the [NServiceBus OpenTelemetry documentation](/nservicebus/operations/opentelemetry.md).
 
 The tracing functionality is compatible with the [NServiceBus.Extensions.Diagnostics](https://github.com/jbogard/NServiceBus.Extensions.Diagnostics) community package available for NServiceBus version 7. When upgrading endpoints from version 7, switch to the built-in OpenTelemetry support following these steps:
 
-1. Remove the references to the `NServiceBus.Extensions.Diagnostics` and `NServiceBus.Extensions.Diagnostics.OpenTelemetry` packages.
-2. Enable NServiceBus OpenTelemetry support using the `endpointConfiguration.EnableOpenTelemetry()` API.
-3. Change the source name in the `AddSource(...)` method of the `TracerProviderBuilder` and `MeterProviderBuilder` APIs from `"NServiceBus.Extensions.Diagnostics"` to `"NServiceBus.Core"`.
+1. Remove references to the `NServiceBus.Extensions.Diagnostics` and `NServiceBus.Extensions.Diagnostics.OpenTelemetry` packages.
+1. Enable NServiceBus OpenTelemetry support using the `endpointConfiguration.EnableOpenTelemetry()` API.
+1. Change the source name in the `AddSource(...)` method of the `TracerProviderBuilder` and `MeterProviderBuilder` APIs from `"NServiceBus.Extensions.Diagnostics"` to `"NServiceBus.Core"`.
 
 The spans and metrics captured by NServiceBus can differ from the community package.
 
