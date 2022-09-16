@@ -1,1 +1,1 @@
-WARN: In order to guarantee atomic consistency across message and database operations, the [Outbox](/nservicebus/outbox) needs to be enabled. Otherwise `Commit` will only execute the database operations and the message sending and publishing will happen afterwards in a best-effort manner.
+WARN: In order to guarantee atomic consistency across message and database operations, the [Outbox](/nservicebus/outbox) needs to be enabled. Otherwise `Commit` executes database modifications first and then messages are dispatched with best-effort.
