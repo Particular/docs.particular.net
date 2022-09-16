@@ -25,7 +25,7 @@ snippet: open-transactional-session-sqlp
 ### Multi-tenancy support
 
 The specific tenant id that is used to construct the connection string is retrieved from message headers as configured in the [`MultiTenantConnectionBuilder`-method](/persistence/sql/multi-tenant.md).
-This header needs to be set in the options so that the method has the necessary information available when storing operations.
+This header needs to be set in the options so that the necessary information is available when storing operations and interacting with the outbox.
 
 snippet: open-transactional-session-sqlp-multitenant
 

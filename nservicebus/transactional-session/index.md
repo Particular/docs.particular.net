@@ -1,6 +1,6 @@
 ---
 title: Transactional session
-summary: Atomicity when modifying data and sending messages in the context of a request
+summary: Atomicity when modifying data and sending messages outside the context of a mesage handler
 reviewed: 2022-09-12
 component: TransactionalSession
 related:
@@ -14,15 +14,17 @@ Consider an ASP.NET Core controller that creates a user in the business database
 
 1. **Phantom record**: The controller creates the `User` in the database first, then publishes the `UserCreated` event. If a failure occurs between these two operations:
     * The user is created in the database, but the `UserCreated` event is not published.
-    * This results in a user in the database, known as a phantom record, which is never announced to the rest of the system.
+    * This results is a user in the database, known as a phantom record, which is never announced to the rest of the system.
 2. **Ghost message**: The controller publishes the `UserCreated` event first, then creates the user in the database. If a failure occurs between these two operations:
     * The `UserCreated` event is published, but the user is not created in the database.
-    * The rest of the system is notified about the creation of the user, but the record does not exist in the database. This causes further errors in the system which expect the user to exist in the database.
+    * The rest of the system is notified about the creation of the user, but the record does not exist in the database. This causes further errors in the system which expects the user to exist in the database.
 
-In the context of a message handler, the Outbox feature can mitigate this problem, however, such scenarios remain unsolved outside of the context of a message handler.
-The only way to address this problem on the client-side is to defer all operations to the message handler. This entails sending a message to create the user and publishing the `UserCreated`-event from that message handler.
+In the context of a message handler, the [Outbox](/nservicebus/outbox) feature can mitigate this problem, however, such scenarios remain unsolved outside of the context of a message handler.
+
+The ideal and long-term way to address this problem on the client-side is to defer all operations to a message handler. This entails sending a message to create the user and publishing the `UserCreated`-event from within a message handler.
 However, there are scenarios where this approach is not feasible:
 - Existing applications that want to introduce messaging already have quite some logic in controllers. Moving all that logic into dedicated message handlers requires a lot of effort, and might no be feasible from day one.
+- Existing logic in the controller might assume certain side-effects to occur within the scope of the request (for example validation, notifications or error-handling) and not yet ready to fully embrace the asynchronous and fire&forget nature of offloading the work into message handlers.
 - There may be other scenarios in which it's not feasible to delay the database operation.
 
 The `TransactionalSession` feature solves this problem exactly.
@@ -31,11 +33,11 @@ The `TransactionalSession` feature solves this problem exactly.
 
 To use the transactional session, first, install the [transactional session package for a supported persister](/nservicebus/transactional-session/persistences) in the project.
 
-Then, enable the future on the endpoint as follows:
+Then, enable the session integration on the endpoint as follows:
 
 snippet: enabling-transactional-session
 
-To ensure atomic consitency across database and message operations, enable the [Outbox](/nservicebus/outbox):
+To ensure atomic consistency across database and message operations, enable the [Outbox](/nservicebus/outbox):
 
 snippet: enabling-outbox
 
@@ -49,7 +51,7 @@ Sending messages in an atomic manner is done through the `ITransactionalSession`
 
 snippet: sending-transactional-session
 
-The persistence specific database session is accessible via the `transactionalSession.SynchronizedStorageSession` property. See the [persistence specific documentation](/nservicebus/transactional-session/persistences) for more details.
+The persistence specific database session is accessible via the `transactionalSession.SynchronizedStorageSession` property or via dependency injection. See the [persistence specific documentation](/nservicebus/transactional-session/persistences) for more details.
 
 Once all the operations that are part of the atomic request have been executed, the session should be committed:
 
@@ -72,7 +74,7 @@ The transactional session feature requires a persistence in order to store outgo
 
 To guarantee atomic consitency across database and message operations, the transactional session requires the [Outbox](/nservicebus/outbox) to be enabled.
 
-With the Outbox disabled, database and message operations are not executed until the session is committed. All database operations shre the same database transaction but message operations are not guaranteed to be atomic with the database changes. This might lead to phantom records or ghost messages when in case of a failure during the commit phase.doc
+With the Outbox disabled, database and message operations are not executed until the session is committed. All database operations share the same database transaction but message operations are not guaranteed to be atomic with the database changes. This might lead to phantom records or ghost messages when in case of a failure during the commit phase.
 
 ## How it works
 

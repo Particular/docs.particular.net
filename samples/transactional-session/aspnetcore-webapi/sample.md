@@ -8,7 +8,7 @@ related:
 
 include: webhost-warning
 
-This sample shows how to send messages and modify data in a database atomically using the `NServiceBus.TransactionalSession` package. The operations are triggered by an incoming HTTP request to ASP.NET which will manage the `ITransactionalSession` lifetime.
+This sample shows how to send messages and modify data in a database atomically within the scope of a webrequest using the `NServiceBus.TransactionalSession` package in conjunction with ASP.NET Core. The operations are triggered by an incoming HTTP request to ASP.NET Core which will manage the `ITransactionalSession` lifetime inside a request middleware.
 
 ## Prerequisites
 

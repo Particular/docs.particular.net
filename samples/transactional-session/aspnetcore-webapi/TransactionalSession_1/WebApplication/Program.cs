@@ -35,6 +35,7 @@ public class Program
                 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
                 persistence.SqlDialect<SqlDialect.MsSqlServer>();
                 persistence.ConnectionBuilder(() => new SqlConnection(ConnectionString));
+
                 persistence.EnableTransactionalSession();
 
                 endpointConfiguration.EnableOutbox();

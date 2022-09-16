@@ -32,6 +32,7 @@ class Program
             var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
             persistence.CosmosClient(new CosmosClient(Configuration.CosmosDBConnectionString));
             persistence.DefaultContainer("Orders", "/CustomerId");
+
             persistence.EnableTransactionalSession();
             #endregion
 

@@ -25,7 +25,7 @@ snippet: open-transactional-session-ravendb
 ### Multi-tenancy support
 
 The specific tenant database name is retrieved from message headers as configured in the [`SetMessageToDatabaseMappingConvention`-method](/persistence/ravendb/#multi-tenant-support).
-This header needs to be set in the options so that the method has the necessary information available when storing operations.
+This header needs to be set in the options so that the necessary information is available when storing operations and interacting with the outbox.
 
 snippet: open-transactional-session-ravendb-multitenant
 

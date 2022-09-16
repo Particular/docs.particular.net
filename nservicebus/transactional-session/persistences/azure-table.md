@@ -12,7 +12,7 @@ In order to use the TransactionalSession feature with Azure Storage Persistence,
 
 ## Configuration
 
-To enable the TransactionalSession feature:
+To enable the transactional session:
 
 snippet: enabling-transactional-session-azurestorage
 
