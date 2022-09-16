@@ -9,7 +9,7 @@ class Program
         Console.Title = "Samples.Unobtrusive.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Client");
         endpointConfiguration.UseTransport(new LearningTransport());
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus>();
+        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
         dataBus.BasePath(@"..\..\..\..\DataBusShare\");
 
         endpointConfiguration.ApplyCustomConventions();

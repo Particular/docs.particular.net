@@ -18,7 +18,7 @@ namespace Tracing
 
         public static string ReceiveMessage = "NServiceBus.Receive";
         public static string SendMessage = "NServiceBus.Send";
-        
+
         public static string ParentActivityIdHeaderName = "NServiceBus.Tracing.ParentActivityId";
     }
 
@@ -36,9 +36,9 @@ namespace Tracing
             {
                 activity = new Activity(MessageTracing.SendMessage);
 
-                foreach (var (key, value) in context.Headers)
+                foreach (var kvp in context.Headers)
                 {
-                    activity.AddTag(key, value);
+                    activity.AddTag(kvp.Key, kvp.Value);
                 }
 
                 diagnosticSource.StartActivity(activity, context.Headers);
@@ -90,9 +90,9 @@ namespace Tracing
                     activity.SetParentId(activityId);
                 }
 
-                foreach (var (key, value) in context.MessageHeaders)
+                foreach (var kvp in context.MessageHeaders)
                 {
-                    activity.AddTag(key, value);
+                    activity.AddTag(kvp.Key, kvp.Value);
                 }
 
                 diagnosticSource.StartActivity(activity, context.MessageHeaders);
@@ -105,7 +105,7 @@ namespace Tracing
             catch
             {
                 success = false;
-                
+
                 throw;
             }
             finally

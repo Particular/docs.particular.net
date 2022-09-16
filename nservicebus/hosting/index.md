@@ -2,7 +2,7 @@
 title: Hosting
 summary: Describes the various approaches to endpoint hosting
 component: Core
-reviewed: 2020-01-03
+reviewed: 2022-09-07
 redirects:
 - nservicebus/hosting/self-hosting
 - nservicebus/hosting/self-hosting-v4.x
@@ -29,7 +29,7 @@ The [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundam
  * [Endpoint Lifecycle](/nservicebus/lifecycle/)
  * [Critical Error handling](critical-errors.md)
 
-Note: Override the default critical error callback when self-hosting NServiceBus. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
+Note: It is recommend to override the default critical error callback when self-hosting NServiceBus. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
 
 When self-hosting, the user is responsible for creating and starting the endpoint instance:
 
@@ -44,7 +44,7 @@ NOTE: The endpoint instance is not disposable due to the asynchronous nature of 
 
 ### Windows Service hosting
 
-A [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is the most common way to host NServiceBus in Windows.
+A [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) is a common way to host NServiceBus in Windows.
 
 Related:
  * [Generic host as Windows Service](/samples/hosting/generic-host)

@@ -3,7 +3,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.7.x](https://www.nuget.org/packages/NServiceBus/7.7.4) | 2022-03-09     | -                 | -                                 |
-| [7.6.x](https://www.nuget.org/packages/NServiceBus/7.6.3) | 2021-12-17     | 2022-09-09        | Superseded by 7.7.x               |
+| [~~7.6.x~~](https://www.nuget.org/packages/NServiceBus/7.6.3) | ~~2021-12-17~~ | ~~2022-09-09~~    | ~~Superseded by 7.7.x~~           |
 | [~~7.5.x~~](https://www.nuget.org/packages/NServiceBus/7.5.2) | ~~2021-07-15~~ | ~~2022-06-17~~    | ~~Superseded by 7.6.x~~           |
 | [~~7.4.x~~](https://www.nuget.org/packages/NServiceBus/7.4.7) | ~~2020-08-14~~ | ~~2022-01-15~~    | ~~Superseded by 7.5.x~~           |
 | [~~7.3.x~~](https://www.nuget.org/packages/NServiceBus/7.3.2) | ~~2020-05-08~~ | ~~2021-02-14~~    | ~~Superseded by 7.4.x~~           |
@@ -170,7 +170,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/10.0.3) | 2021-03-16     | -                 | -                                 |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/10.0.4) | 2021-03-16     | -                 | -                                 |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/9.0.4) | ~~2020-11-25~~ | ~~2022-03-16~~    | ~~Superseded by 10.0.x~~          |
 
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
@@ -545,7 +545,7 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/4.0.0) | 2020-11-10     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/4.0.1) | 2020-11-10     | -                 | -                                 |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/3.1.1) | ~~2020-03-04~~ | ~~2021-11-10~~    | ~~Superseded by 4.0.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/3.0.1) | ~~2019-05-09~~ | ~~2020-06-04~~    | ~~Superseded by 3.1.x~~           |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/2.1.1) | ~~2018-09-28~~ | ~~2020-05-09~~    | ~~Superseded by 3.0.x~~           |
@@ -849,7 +849,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.14.x](https://www.nuget.org/packages/Particular.PlatformSample/2.14.0) | 2022-08-12     | -                 | -                                 |
+| [2.16.x](https://www.nuget.org/packages/Particular.PlatformSample/2.16.0) | 2022-09-08     | -                 | -                                 |
+| [2.14.x](https://www.nuget.org/packages/Particular.PlatformSample/2.14.0) | 2022-08-12     | 2022-12-08        | Superseded by 2.16.x              |
 | [2.13.x](https://www.nuget.org/packages/Particular.PlatformSample/2.13.0) | 2022-08-10     | 2022-11-12        | Superseded by 2.14.x              |
 | [2.12.x](https://www.nuget.org/packages/Particular.PlatformSample/2.12.0) | 2022-08-05     | 2022-11-10        | Superseded by 2.13.x              |
 | [2.11.x](https://www.nuget.org/packages/Particular.PlatformSample/2.11.0) | 2022-08-03     | 2022-11-05        | Superseded by 2.12.x              |
@@ -862,7 +863,7 @@ No versions released.
 | [~~2.2.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.2.0) | ~~2022-02-03~~ | ~~2022-05-14~~    | ~~Superseded by 2.3.x~~           |
 | [~~2.1.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.1.4) | ~~2021-11-02~~ | ~~2022-05-03~~    | ~~Superseded by 2.2.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.0.0) | ~~2021-09-16~~ | ~~2022-02-02~~    | ~~Superseded by 2.1.x~~           |
-| [1.31.x](https://www.nuget.org/packages/Particular.PlatformSample/1.31.0) | 2021-09-16     | 2022-09-16        | Superseded by 2.0.x               |
+| [~~1.31.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.31.0) | ~~2021-09-16~~ | ~~2022-09-16~~    | ~~Superseded by 2.0.x~~           |
 | [~~1.29.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.29.0) | ~~2021-08-03~~ | ~~2021-12-16~~    | ~~Superseded by 1.31.x~~          |
 | [~~1.28.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.28.0) | ~~2021-07-16~~ | ~~2021-11-03~~    | ~~Superseded by 1.29.x~~          |
 | [~~1.27.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.27.0) | ~~2021-06-22~~ | ~~2021-10-16~~    | ~~Superseded by 1.28.x~~          |

@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
 	<LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.4.6" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.1.0" />
-    <PackageReference Include="NServiceBus.Heartbeat" Version="3.0.1" />
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="3.0.6" />
+    <PackageReference Include="NServiceBus" Version="[8.0.0-rc.3, 8.0.0)" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="[2.0.0-rc.2, 2.0.0)" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="[4.0.0-rc.2, 4.0.0)" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="[4.0.0-rc.2, 4.0.0)" />
   </ItemGroup>
 
   <ItemGroup>

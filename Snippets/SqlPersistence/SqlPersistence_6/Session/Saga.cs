@@ -28,6 +28,6 @@ public class SagaThatUsesSession :
     public class SagaData :
         ContainSagaData
     {
-        public object CorrelationProperty { get; }
+        public object CorrelationProperty { get; set; }
     }
 }

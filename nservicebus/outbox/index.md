@@ -13,6 +13,9 @@ related:
 - persistence/service-fabric/outbox
 - persistence/ravendb/outbox
 - persistence/sql/outbox
+- persistence/cosmosdb
+- persistence/azure-table
+- persistence/mongodb
 ---
 
 Most message queues, and some data stores, do not support distributed transactions. This may cause problems when message handlers modify business data. Business data and messages may become inconsistent in the form of **phantom records** or **ghost messages** (see below).
@@ -198,3 +201,5 @@ For more information on the outbox persistence options available refer to the de
 * [SQL](/persistence/sql/outbox.md)
 * [ServiceFabric](/persistence/service-fabric/outbox.md)
 * [MongoDB](/persistence/mongodb/#outbox-cleanup)
+* [CosmosDB](/persistence/cosmosdb)
+* [Azure Table](/persistence/azure-table)

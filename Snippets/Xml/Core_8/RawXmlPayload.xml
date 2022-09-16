@@ -1,0 +1,13 @@
+﻿<!--startcode RawXmlPayload-->
+<?xml version="1.0"?>
+<MessageWithXDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <nutrition>
+        <nutrition>
+            <daily-values>
+                <total-fat units="g">65</total-fat>
+                <saturated-fat units="g">20</saturated-fat>
+            </daily-values>
+        </nutrition>
+    </nutrition>
+</MessageWithXDocument>
+<!--endcode-->
