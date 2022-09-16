@@ -24,9 +24,9 @@ As most web technologies operate in a scale-out manner, NServiceBus can be hoste
 
 ### Using the Generic Host
 
-NServiceBus can be easily integrated into any web host that supports the [Microsoft Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) using the [NServiceBus Generic Host integration](/nservicebus/hosting/extensions-hosting.md). The Generic Host integration automatically registered `IMessageSession` with the dependency injection container.
+NServiceBus can be easily integrated into any web host that supports the [Microsoft Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) using the [NServiceBus Generic Host integration](/nservicebus/hosting/extensions-hosting.md). The Generic Host integration automatically registers `IMessageSession` with the dependency injection container.
 
-### Using self-hosting
+### Self-hosting
 
 Web request handlers (MVC Controllers, WCF Handlers, NancyFx Modules, etc.) require access to the endpoint messaging session in order to [send messages](/nservicebus/messaging/send-a-message.md) as a result of incoming HTTP requests. Many of the supported web application hosts resolve these web request handlers using dependency injection. NServiceBus already creates and manages its own dependency injection when using self-hosting.
 
@@ -39,6 +39,6 @@ The recommended approach to handle this scenario is to have two dependency injec
   * even if the services are registered with a singleton lifetime, there will still be one created for each dependency injection instance unless the instance is explicitly managed by the caller.
   * if a service must be shared and a single instance, it must be created externally during the web application host startup, and that specific instance must be registered in both dependency injection instances.
 
-## Endpoint Lifecycle
+## Endpoint lifecycle
 
 In a web-hosted scenario, [recycling an IIS process](https://docs.microsoft.com/en-us/previous-versions/iis/6.0-sdk/ms525803(v=vs.90)) causes the hosted NServiceBus endpoint to shutdown and restart.

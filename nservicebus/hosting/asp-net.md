@@ -8,11 +8,11 @@ related:
  - samples/web
 ---
 
-NServiceBus can be easily integrated with [ASP.NET Core](https://asp.net) applications.
+NServiceBus easily integrates with [ASP.NET Core](https://asp.net) applications.
 
-## Minimal Host
+## Minimal APIs
 
-ASP.NET 6 introduces a new hosting API with the [ASP.NET minimal APIs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0). The [NServiceBus.Extensions.Hosting package](/nservicebus/hosting/extensions-hosting.md) is fully compatible with the minimal API's `WebApplication` host:
+ASP.NET 6 introduced a new hosting API with the [ASP.NET minimal APIs](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-6.0). The [NServiceBus.Extensions.Hosting package](/nservicebus/hosting/extensions-hosting.md) is fully compatible with the minimal API's `WebApplication` host:
 
 snippet: asp-net-minimal-host-endpoint
 
@@ -23,15 +23,15 @@ Starting with ASP.NET 3, the [NServiceBus Generic Host support](/nservicebus/hos
 snippet: asp-net-generic-host-endpoint
 
 
-## Dependency Injection
+## Dependency injection
 
 Messages can be sent with NServiceBus using the `IMessageSession` API which is available via the dependency injection container.
 
-### Web API Controllers
+### Web API controllers
 
 snippet: web-api-usage
 
-### MVC Controllers
+### MVC controllers
 
 snippet: mvc-controller-usage
 

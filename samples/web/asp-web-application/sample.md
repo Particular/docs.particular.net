@@ -21,7 +21,7 @@ Enter the number "1" into the text box in the browser and click "Go". Notice the
 
 Changing the number in the text box from even to odd numbers changes the result in the Server console.
 
-The web page renders synchronously; from the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is doing asynchronous send-reply pattern using the [callbacks package](/nservicebus/messaging/callbacks.md).
+The web page renders synchronously; from the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is implementing an asynchronous send-reply pattern using the [callbacks package](/nservicebus/messaging/callbacks.md).
 
 ## Configuration
 
