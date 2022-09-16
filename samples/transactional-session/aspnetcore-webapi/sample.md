@@ -4,6 +4,7 @@ summary: NServiceBus.TransactionalSession sample that illustrates how to send me
 component: TransactionalSession
 reviewed: 2022-08-12
 related:
+- nservicebus/messaging/transactional-session
 ---
 
 include: webhost-warning
