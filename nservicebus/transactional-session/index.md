@@ -130,7 +130,7 @@ sequenceDiagram
     deactivate ReceivePipeline
 ```
 
-There is no single transaction that spans all the operations. The operations occur in two separate phases:
+Internally the transactional session doesn't use a single transaction that spans all the operations. The transactional session ackknowledgement occurs in two seperate phases:
 
 ### Phase 1
 
