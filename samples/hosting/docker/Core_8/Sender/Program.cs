@@ -27,7 +27,7 @@ namespace Sender
                 {
                     var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
 
-                    var routing = endpointConfiguration.UseTransport(new RabbitMQTransport(Topology.Conventional, "host=rabbitmq"));
+                    var routing = endpointConfiguration.UseTransport(new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Classic), "host=rabbitmq"));
 
                     routing.RouteToEndpoint(typeof(RequestMessage), "Samples.Docker.Receiver");
 

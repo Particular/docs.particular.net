@@ -7,7 +7,7 @@ class Usage
     {
         #region SetReplyToUri
 
-        var gatewaySettings = endpointConfiguration.Gateway();
+        var gatewaySettings = endpointConfiguration.Gateway(new InMemoryDeduplicationConfiguration());
 
         // Local HTTP binding address uses wilcard domain
         gatewaySettings.AddReceiveChannel("http://+:12345/MyEndpoint/");

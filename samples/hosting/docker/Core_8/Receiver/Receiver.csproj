@@ -8,9 +8,9 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-beta.1" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-beta.4" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="7.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="[2.0.0-rc.2, 3.0.0)" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="[3.0.0-rc.3, 4.0.0)" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="[8.0.0-rc.2, 8.0.0)" />
   </ItemGroup>
   <ItemGroup Label="Transitive references">
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.*" />
