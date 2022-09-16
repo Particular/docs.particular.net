@@ -18,7 +18,7 @@ class OrderReceivedHandler : IHandleMessages<OrderReceived>
 
         var session = context.SynchronizedStorageSession.CosmosPersistenceSession();
 
-        var order = await session.Container.ReadItemAsync<OrderDocument>(message.OrderId, new PartitionKey(message.CustomerId), cancellationToken: context.CancellationToken);
+        var order = await session.Container.ReadItemAsync<OrderDocument>(message.OrderId, session.PartitionKey, cancellationToken: context.CancellationToken);
         order.Resource.Status = "Accepted";
 
         // update the document atomically with consuming the message
