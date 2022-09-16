@@ -21,7 +21,7 @@ Consider an ASP.NET Core controller that creates a user in the business database
 
 In the context of a message handler, the [Outbox](/nservicebus/outbox) feature can mitigate this problem, however, such scenarios remain unsolved outside of the context of a message handler.
 
-The ideal and long-term way to address this problem on the client-side is to defer all operations to a message handler. This entails sending a message to create the user and publishing the `UserCreated`-event from within a message handler.
+A common technique to address this problem on the client side is to defer all operations to a message handler. This entails sending a message to create the user and publishing the `UserCreated`-event from within a message handler.
 However, there are scenarios where this approach is not feasible:
 - Existing applications that want to introduce messaging already have quite some logic in controllers. Moving all that logic into dedicated message handlers requires a lot of effort, and might no be feasible from day one.
 - Existing logic in the controller might assume certain side-effects to occur within the scope of the request (for example validation, notifications or error-handling) and not yet ready to fully embrace the asynchronous and fire&forget nature of offloading the work into message handlers.
