@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NServiceBus.NHibernate.TransactionalSession" Version="8.6.0" />
+		<PackageReference Include="NServiceBus.Persistence.CosmosDB.TransactionalSession" Version="1.2.0" />
+		<PackageReference Include="NServiceBus.Persistence.Sql.TransactionalSession" Version="6.6.0" />
+		<PackageReference Include="NServiceBus.RavenDB.TransactionalSession" Version="7.1.0" />
+		<PackageReference Include="NServiceBus.Persistence.AzureTable.TransactionalSession" Version="3.2.0" />
+		<PackageReference Include="NServiceBus.Storage.MongoDB.TransactionalSession" Version="2.3.0" />
+
+		<PackageReference Include="NServiceBus.TransactionalSession" Version="1.0.0" />
+	</ItemGroup>
+
+</Project>
