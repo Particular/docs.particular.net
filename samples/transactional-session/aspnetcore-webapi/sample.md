@@ -14,7 +14,7 @@ This sample shows how to send messages and modify data in a database atomically 
 ## Prerequisites
 
 - Visual Studio 2019
-- LocalDB support: A custom connection string needs to be configured otherwise.
+- LocalDB support. A custom connection string needs to be configured otherwise.
 
 ## Running the solution
 
