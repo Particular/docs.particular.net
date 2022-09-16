@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
-using NServiceBus.Persistence.AzureTable;
 using NServiceBus.TransactionalSession;
 using System;
 using System.Threading.Tasks;
