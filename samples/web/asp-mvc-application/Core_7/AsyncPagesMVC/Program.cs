@@ -1,31 +1,36 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
 namespace AsyncPagesMVC.Core
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
-            BuildWebHost(args).Build().Run();
+            #region ApplicationStart
+            var builder = WebApplication.CreateBuilder();
+
+            builder.Host.UseNServiceBus(context =>
+            {
+                var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
+                endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+                endpointConfiguration.EnableCallbacks();
+
+                endpointConfiguration.UsePersistence<LearningPersistence>();
+                endpointConfiguration.UseTransport<LearningTransport>();
+
+                return endpointConfiguration;
+            });
+            #endregion
+
+            builder.Services.AddMvc();
+
+            var app = builder.Build();
+
+            app.MapControllerRoute("default", "{controller=Home}/{action=SendLinks}/{id?}");
+
+            app.Run();
         }
-
-        public static IHostBuilder BuildWebHost(string[] args) =>
-        #region ApplicationStart
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(configure => configure.UseStartup<Startup>())
-                .UseNServiceBus(context =>
-                {
-                    var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
-                    endpointConfiguration.MakeInstanceUniquelyAddressable("1");
-                    endpointConfiguration.EnableCallbacks();
-
-                    endpointConfiguration.UsePersistence<LearningPersistence>();
-                    endpointConfiguration.UseTransport<LearningTransport>();
-
-                    return endpointConfiguration;
-                });
-        #endregion
     }
 }

@@ -433,7 +433,10 @@
     - Url: nservicebus/hosting/extensions-hosting
       Title: Microsoft Generic Host
     - Url: nservicebus/hosting/web-application
-      Title: Web Application
+      Title: Web Applications
+      Articles:
+      - Url: nservicebus/hosting/asp-net
+        Title: ASP.NET
     - Url: nservicebus/hosting/azure-functions-service-bus
       Title: Azure Functions with Service Bus
       Articles:

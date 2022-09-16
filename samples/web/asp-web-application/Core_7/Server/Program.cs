@@ -4,19 +4,16 @@ using NServiceBus;
 
 class Program
 {
-    static async Task Main()
+    public static async Task Main()
     {
-        Console.Title = "Samples.AsyncPages.Server";
-        var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.Server");
+        var endpointConfiguration = new EndpointConfiguration(Console.Title = "Samples.AsyncPages.Server");
         endpointConfiguration.EnableCallbacks(makesRequests: false);
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }
