@@ -58,7 +58,8 @@ namespace TransactionalSession_1
         {
             #region use-transactional-session-azurestorage
 
-            await session.Open(new AzureTableOpenSessionOptions(new TableEntityPartitionKey("ABC")));
+            await session.Open(new AzureTableOpenSessionOptions(new TableEntityPartitionKey("ABC")))
+                         .ConfigureAwait(false);
 
             // add messages to the transaction:
             await session.Send(new MyMessage()).ConfigureAwait(false);
