@@ -125,4 +125,3 @@
 * [Simple Azure Table Persistence Usage](/samples/azure/azure-table/simple/)
 * [Simple Cosmos DB Persistence Usage](/samples/cosmosdb/simple/)
 * [Using NServiceBus in AWS Lambda with SQS](/samples/previews/aws-lambda/sqs/)
-* [Using NServiceBus in Azure Functions with Storage Queue triggers](/samples/previews/azure-functions/storage-queues/)
