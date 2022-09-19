@@ -13,7 +13,6 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionString);
-        transport.NativeDelayedDelivery();
 
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.EnableInstallers();
