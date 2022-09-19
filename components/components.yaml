@@ -724,3 +724,63 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.TransactionalSession
   NugetOrder:
     - NServiceBus.TransactionalSession
+
+- Key: TransactionalSession.NHibernate
+  Name: NServiceBus.NHibernate.TransactionalSession
+  DocsUrl: /nservicebus/transactional-session/persistences/nhibernate
+  GitHubOwner: Particular
+  Category: Other
+  LicenseUrl: https://github.com/Particular/NServiceBus.NHibernate/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.NHibernate
+  NugetOrder:
+    - NServiceBus.NHibernate.TransactionalSession
+
+- Key: TransactionalSession.SqlPersistence
+  Name: NServiceBus.Persistence.Sql.TransactionalSession
+  DocsUrl: /nservicebus/transactional-session/persistences/sql-persistence
+  GitHubOwner: Particular
+  Category: Other
+  LicenseUrl: https://github.com/Particular/NServiceBus.Persistence.Sql/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.Sql
+  NugetOrder:
+    - NServiceBus.Persistence.Sql.TransactionalSession
+
+- Key: TransactionalSession.AzureTable
+  Name: NServiceBus.Persistence.AzureTable.TransactionalSession
+  DocsUrl: /nservicebus/transactional-session/persistences/azure-table
+  GitHubOwner: Particular
+  Category: Other
+  LicenseUrl: https://github.com/Particular/NServiceBus.Persistence.AzureTable/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.AzureTable
+  NugetOrder:
+    - NServiceBus.Persistence.AzureTable.TransactionalSession
+
+- Key: TransactionalSession.CosmosDB
+  Name: NServiceBus.Persistence.CosmosDB.TransactionalSession
+  DocsUrl: /nservicebus/transactional-session/persistences/cosmosdb
+  GitHubOwner: Particular
+  Category: Other
+  LicenseUrl: https://github.com/Particular/NServiceBus.Persistence.CosmosDB/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.CosmosDB
+  NugetOrder:
+    - NServiceBus.Persistence.CosmosDB.TransactionalSession
+
+- Key: TransactionalSession.MongoDB
+  Name: NServiceBus.Storage.MongoDB.TransactionalSession
+  DocsUrl: /nservicebus/transactional-session/persistences/mongodb
+  GitHubOwner: Particular
+  Category: Other
+  LicenseUrl: https://github.com/Particular/NServiceBus.Storage.MongoDB/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.Storage.MongoDB
+  NugetOrder:
+    - NServiceBus.Storage.MongoDB.TransactionalSession
+
+- Key: TransactionalSession.RavenDB
+  Name: NServiceBus.RavenDB.TransactionalSession
+  DocsUrl: /nservicebus/transactional-session/persistences/ravendb
+  GitHubOwner: Particular
+  Category: Other
+  LicenseUrl: https://github.com/Particular/NServiceBus.RavenDB/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.RavenDB
+  NugetOrder:
+    - NServiceBus.RavenDB.TransactionalSession
