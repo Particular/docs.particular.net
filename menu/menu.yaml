@@ -1429,10 +1429,6 @@
       Url: previews
     - Title: Support Policy
       Url: previews/support-policy
-  - Title: Azure Functions
-    Articles:
-    - Title: NServiceBus.AzureFunctions.StorageQueues
-      Url: previews/azure-functions-storage-queues
   - Title: AWS Lambda
     Articles:
     - Title: NServiceBus.AwsLambda.Sqs
