@@ -109,6 +109,8 @@
         Title: Supported frameworks and platforms
     - Url: nservicebus/upgrades/release-policy
       Title: Release Policy
+    - Url: nservicebus/throughput-tool
+      Title: Measuring system throughput
     - Url: nservicebus/upgrades/third-party-licenses
       Title: Third-party licenses
     - Url: security-advisories
