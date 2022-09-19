@@ -654,17 +654,6 @@
   NugetOrder:
     - NServiceBus.AzureFunctions.Worker.ServiceBus
 
-- Key: ASQFunctions
-  Name: NServiceBus.AzureFunctions.StorageQueues
-  DocsUrl: /previews/azure-functions-storage-queues
-  GitHubOwner: Particular
-  Category: Host
-  SupportLevel: Preview
-  LicenseUrl: https://github.com/Particular/NServiceBus.AzureFunctions.StorageQueues/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.StorageQueues
-  NugetOrder:
-    - NServiceBus.AzureFunctions.StorageQueues
-
 - Key: SQSLambda
   Name: AWS Lambda (SQS)
   DocsUrl: /previews/aws-lambda-simple-queue-service
