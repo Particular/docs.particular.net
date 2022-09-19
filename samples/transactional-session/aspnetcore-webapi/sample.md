@@ -1,6 +1,6 @@
 ---
 title: Using TransactionalSession with Entity Framework and ASP.NET Core
-summary: NServiceBus.TransactionalSession sample that illustrates how to send messages and modify data with Entity Framework in an atomic manner using ASP.NET Core.
+summary: Transactional Session sample that illustrates how to send messages and modify data with Entity Framework in an atomic manner using ASP.NET Core.
 component: TransactionalSession
 reviewed: 2022-08-12
 related:
