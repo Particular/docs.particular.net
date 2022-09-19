@@ -20,21 +20,17 @@ class Program
         endpointConfiguration.EnableInstallers();
         SqlHelper.EnsureDatabaseExists(ConnectionString);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         var options = new SendOptions();
         options.RouteToThisEndpoint();
         options.DelayDeliveryWith(TimeSpan.FromSeconds(10));
-        await endpointInstance.Send(new MyMessage(), options)
-            .ConfigureAwait(false);
+        await endpointInstance.Send(new MyMessage(), options);
 
         //Ensure timeout message is processed and stored in the database
-        await Task.Delay(TimeSpan.FromSeconds(5))
-            .ConfigureAwait(false);
+        await Task.Delay(TimeSpan.FromSeconds(5));
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
 
         Console.WriteLine("The timeout has been requested. Press any key to exit");
         Console.ReadKey();
