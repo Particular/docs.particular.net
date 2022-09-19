@@ -8,6 +8,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="8.0.0-rc.3" />
     <PackageReference Include="NServiceBus.Heartbeat" Version="4.0.0-rc.2" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-rc.3" />
   </ItemGroup>
 </Project>
