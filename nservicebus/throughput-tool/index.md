@@ -1,7 +1,7 @@
 ---
 title: Measuring system throughput
 summary: Use the Particular throughput tool to measure the throughput of your NServiceBus system.
-reviewed: 2022-08-30
+reviewed: 2022-09-19
 ---
 
 The Particular throughput tool can be installed locally and run against a production system to discover the throughput of each endpoint in a system over a period of time, which can then be extrapolated to daily throughput numbers.
@@ -90,7 +90,7 @@ throughput-counter azureservicebus --resourceId /subscriptions/xxxxxxxx-xxxx-xxx
 
 The tool may open additional terminal windows, which are Powershell processes gathering the data from the Azure CLI.
 
-Unlike ServiceControl, using Azure Service Bus metrics allows the tool to capture the last 30 days worth of data at once, which means that the report will be generated without delay.
+Unlike ServiceControl, using Azure Service Bus metrics allows the tool to capture the last 30 days worth of data at once, which means that the report will be generated without delay. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
 
 ### Options
 
