@@ -98,7 +98,7 @@ The transactional session feature requires a persistence in order to store outgo
 
 ## Transaction consistency
 
-To guarantee atomic consitency across database and message operations, the transactional session requires the [Outbox](/nservicebus/outbox) to be enabled. Using the transactional session together with the outbox provides the strongest concistency guarantees and is therefore the recommended safe-by-default configuration.
+To guarantee atomic concistency across database and message operations, the transactional session requires the [Outbox](/nservicebus/outbox) to be enabled. Using the transactional session together with the outbox provides the strongest concistency guarantees and is therefore the recommended safe-by-default configuration.
 
 With the Outbox disabled, database and message operations are not executed until the session is committed. All database operations share the same database transaction but message operations are not guaranteed to be atomic with the database changes. This might lead to phantom records or ghost messages when in case of a failure during the commit phase.
 
