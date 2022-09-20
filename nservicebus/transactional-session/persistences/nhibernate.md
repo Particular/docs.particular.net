@@ -1,7 +1,7 @@
 ---
 title: Transactional Session with NHibernate Persistence
 summary: How to configure the transactional session with NHibernate Persistence
-component: TransactionalSession
+component: TransactionalSession.NHibernate
 reviewed: 2022-09-12
 redirects:
 related:

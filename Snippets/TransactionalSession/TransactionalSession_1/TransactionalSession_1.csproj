@@ -6,7 +6,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NServiceBus.NHibernate.TransactionalSession" Version="8.6.0" />
 		<PackageReference Include="NServiceBus.Persistence.CosmosDB.TransactionalSession" Version="1.2.0" />
 		<PackageReference Include="NServiceBus.Persistence.Sql.TransactionalSession" Version="6.6.0" />
 		<PackageReference Include="NServiceBus.RavenDB.TransactionalSession" Version="7.1.0" />
