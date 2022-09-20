@@ -1,7 +1,7 @@
 ---
 title: Transactional Session with CosmosDB Persistence
 summary: How to configure the transactional session with CosmosDB Persistence
-component: TransactionalSession
+component: TransactionalSession.CosmosDB
 reviewed: 2022-09-12
 redirects:
 related:

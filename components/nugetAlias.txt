@@ -89,3 +89,9 @@ TimeoutMigration: Particular.TimeoutMigration
 CosmosDB: NServiceBus.Persistence.CosmosDB
 NonDurablePersistence: NServiceBus.Persistence.NonDurable
 TransactionalSession: NServiceBus.TransactionalSession
+NHibernateTS: NServiceBus.NHibernate.TransactionalSession
+SqlPersistenceTS: NServiceBus.Persistence.Sql.TransactionalSession
+AzureTableTS: NServiceBus.Persistence.AzureTable.TransactionalSession
+CosmosTS: NServiceBus.Persistence.CosmosDB.TransactionalSession
+MongoTS: NServiceBus.Storage.MongoDB.TransactionalSession
+RavenTS: NServiceBus.RavenDB.TransactionalSession

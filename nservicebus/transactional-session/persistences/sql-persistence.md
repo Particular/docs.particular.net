@@ -1,7 +1,7 @@
 ---
 title: Transactional Session with SQL Persistence
 summary: How to configure the transactional session with SQL Persistence
-component: TransactionalSession
+component: TransactionalSession.SqlPersistence
 reviewed: 2022-09-12
 redirects:
 related:
