@@ -7,7 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="[7.0.0-rc.2, 8.0.0)" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.0.0-rc.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
   </ItemGroup>
 </Project>

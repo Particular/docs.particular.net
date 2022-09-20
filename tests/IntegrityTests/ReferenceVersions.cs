@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
@@ -39,7 +40,18 @@ namespace IntegrityTests
             new TestRunner("*.csproj", "Package References cannot have ranged versions as restore will sometimes fail and yield old, incorrect, or mismatched versions.")
                 .Run(projectFilePath =>
                 {
-                    var xdoc = XDocument.Load(projectFilePath);
+                    XDocument xdoc = default;
+
+                    try
+                    {
+                        xdoc = XDocument.Load(projectFilePath);
+                    }
+                    catch
+                    {
+                        Console.WriteLine($"WARN: Could not parse the .csproj file at: '{projectFilePath}'");
+                        return true;
+                    }
+
                     var nsMgr = new XmlNamespaceManager(new NameTable());
                     var versionQuery = "/Project/ItemGroup/PackageReference[@Version]";
                     var xmlnsAtt = xdoc.Root.Attribute("xmlns");

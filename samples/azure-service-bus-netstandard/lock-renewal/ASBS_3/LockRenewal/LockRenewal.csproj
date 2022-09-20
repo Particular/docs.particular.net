@@ -8,11 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.*" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="[3.0.0-rc.2, 4.0.0)" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.0.0-rc.2" />
   </ItemGroup>
 
   <ItemGroup Label="Transitive dependencies">
-    <PackageReference Include="NServiceBus" Version="[8.0.0-rc.3, 9.0.0)" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-rc.3" />
   </ItemGroup>
 
 </Project>

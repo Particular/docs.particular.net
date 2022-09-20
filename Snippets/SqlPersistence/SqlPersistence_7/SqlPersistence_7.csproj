@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="[7.0.0-rc.1, 8.0.0)" />
-    <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="[7.0.0-rc.1, 8.0.0)" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.0.0-rc.1" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="7.0.0-rc.1" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
