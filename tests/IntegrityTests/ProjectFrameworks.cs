@@ -45,7 +45,17 @@ namespace IntegrityTests
             new TestRunner("*.csproj", "Allowed target frameworks are: " + tfmString)
                 .Run(projectFilePath =>
                 {
-                    var xdoc = XDocument.Load(projectFilePath);
+                    XDocument xdoc = default;
+
+                    try
+                    {
+                        xdoc = XDocument.Load(projectFilePath);
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+
                     var xmlnsNode = xdoc.Root.Attribute("xmlns");
                     if (xmlnsNode != null)
                     {

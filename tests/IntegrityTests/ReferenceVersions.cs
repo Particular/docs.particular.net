@@ -17,7 +17,17 @@ namespace IntegrityTests
                     "Package References cannot have Version=\"*\" or restore will sometimes fail and yield old, incorrect, or mismatched versions.")
                 .Run(projectFilePath =>
                 {
-                    var xdoc = XDocument.Load(projectFilePath);
+                    XDocument xdoc = default;
+
+                    try
+                    {
+                        xdoc = XDocument.Load(projectFilePath);
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+
                     var nsMgr = new XmlNamespaceManager(new NameTable());
                     var query = "/Project/ItemGroup/PackageReference[@Version='*']";
                     var xmlnsAtt = xdoc.Root.Attribute("xmlns");
