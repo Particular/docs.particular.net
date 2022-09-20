@@ -6,7 +6,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NServiceBus.RavenDB.TransactionalSession" Version="7.1.0" />
+		<PackageReference Include="NServiceBus.RavenDB.TransactionalSession" Version="7.*" />
 	</ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NServiceBus.Storage.MongoDB.TransactionalSession" Version="2.3.0" />
+		<PackageReference Include="NServiceBus.Storage.MongoDB.TransactionalSession" Version="2.*" />
 	</ItemGroup>
 
 </Project>

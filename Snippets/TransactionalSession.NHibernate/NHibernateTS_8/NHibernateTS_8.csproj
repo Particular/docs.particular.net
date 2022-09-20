@@ -6,8 +6,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NServiceBus.NHibernate.TransactionalSession" Version="8.6.0" />
-		<PackageReference Include="NServiceBus.TransactionalSession" Version="1.0.0" />
+		<PackageReference Include="NServiceBus.NHibernate.TransactionalSession" Version="8.*" />
 	</ItemGroup>
 
 </Project>

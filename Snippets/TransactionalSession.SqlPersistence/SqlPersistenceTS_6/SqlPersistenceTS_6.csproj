@@ -6,7 +6,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NServiceBus.Persistence.Sql.TransactionalSession" Version="6.6.0" />
+		<PackageReference Include="NServiceBus.Persistence.Sql.TransactionalSession" Version="6.*" />
 	</ItemGroup>
 
 </Project>
