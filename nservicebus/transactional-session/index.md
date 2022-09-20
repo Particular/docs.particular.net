@@ -23,9 +23,10 @@ In the context of a message handler, the [Outbox](/nservicebus/outbox) feature c
 
 A common technique to address this problem on the client side is to defer all operations to a message handler. This entails sending a message to create the user and publishing the `UserCreated`-event from within a message handler.
 However, there are scenarios where this approach is not feasible:
-- Existing applications that want to introduce messaging already have quite some logic in controllers. Moving all that logic into dedicated message handlers requires a lot of effort, and might no be feasible from day one.
-- Existing logic in the controller might assume certain side-effects to occur within the scope of the request (for example validation, notifications or error-handling) and not yet ready to fully embrace the asynchronous and fire&forget nature of offloading the work into message handlers.
-- There may be other scenarios in which it's not feasible to delay the database operation.
+
+* Existing applications that want to introduce messaging already have quite some logic in controllers. Moving all that logic into dedicated message handlers requires a lot of effort, and might no be feasible from day one.
+* Existing logic in the controller might assume certain side-effects to occur within the scope of the request (for example validation, notifications or error-handling) and not yet ready to fully embrace the asynchronous and fire&forget nature of offloading the work into message handlers.
+* There may be other scenarios in which it's not feasible to delay the database operation.
 
 The `TransactionalSession` feature solves this problem for messages sent/published outside of the context of a message handler when combined with the [Outbox](/nservicebus/outbox) feature.
 
@@ -71,7 +72,7 @@ The maximum commit duration is not actual total transaction time from the perspe
 
 When the control message arrives and the outbox record is not yet visible the following formula applies to delay the message (see [Phase 2](#phase-2)):
 
-```
+```text
 CommitDelayIncrement = 2 * CommitDelayIncrement;
 RemainingCommitDuration = RemainingCommitDuration - 
    (CommitDelayIncrement > RemainingCommitDuration ? RemainingCommitDuration : CommitDelayIncrement)
@@ -175,15 +176,17 @@ Internally the transactional session doesn't use a single transaction that spans
 ### Phase 2
 
 The endpoint receives the control message and processes it as follows:
-   * Find the outbox record.
-   * If it exists, it hasn't been marked as dispatched, and there are pending operations, dispatch those operations, and set the outbox record as dispatched.
-   * If it doesn't exist, processing of the control message is delayed to a later point.
+
+* Find the outbox record.
+  * If it exists, it hasn't been marked as dispatched, and there are pending operations, dispatch those operations, and set the outbox record as dispatched.
+  * If it doesn't exist, processing of the control message is delayed to a later point.
 
 ## Failure scenarios
 
 The transactional session provides atomic store-and-send guarantees similar to Outbox (but no incoming message de-duplication). That said, it cannot rely on the recoverability mechanism used in the `Outbox` that ensures pushing the outgoing messages out in face of a failure. Instead, the previously mentioned control message is used to make sure that **exactly one** of these two outcomes happens:
-   * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
-   * Transaction finishes with data stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
+
+* Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
+* Transaction finishes with data stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 
 Sending the control message first ensures that eventually the transaction will have an atomic result. If the `Commit` of the `OutboxRecord` succeeds, the control message will make sure the outgoing operations are sent out. If the `Commit` fails, the control message will be eventually (after the [maximum commit duration](#maximum-commit-duration) elapses) consumed, leaving no side effects.
 
