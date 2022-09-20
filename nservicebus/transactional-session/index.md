@@ -70,7 +70,7 @@ snippet: configuring-timeout-transactional-session
 
 The maximum commit duration is not the actual total transaction time from the perspective of the clock, but the actual time observed from the perspective of the control message that is used to settle the transaction outcome. The actual total transaction time observed might be longer, considering delays in the transport due to latency, delayed delivery, load on the input queue, endpoint concurrency limits and more.
 
-When the control message arrives and the outbox record is not yet visible the following formula applies to delay the message (see [Phase 2](#phase-2)):
+When the control message arrives and the outbox record is not yet visible the following formula applies to delay the message (see [Phase 2](#how-it-works-phase-2)):
 
 ```text
 CommitDelayIncrement = 2 * CommitDelayIncrement;
@@ -103,7 +103,7 @@ To guarantee atomic consistency across database and message operations, the tran
 
 NOTE: The outbox has to be [enabled explicitly](/nservicebus/outbox/#enabling-the-outbox) on the endpoint configuration.
 
-With the Outbox disabled, database and message operations are not executed until the session is committed. All database operations share the same database transaction and are commit first. When the database operations were successful, the message operations are [batch-dispatched by the transport](/nservicebus/messaging/batched-dispatch). The message operations are not guaranteed to be atomic with the database changes. This might lead to phantom records or ghost messages when in case of a failure during the commit phase.
+With the Outbox disabled, database and message operations are not executed until the session is committed. All database operations share the same database transaction and are commit first. When the database operations were successful, the message operations are [batch-dispatched by the transport](/nservicebus/messaging/batched-dispatch.md). The message operations are not guaranteed to be atomic with the database changes. This might lead to phantom records or ghost messages when in case of a failure during the commit phase.
 
 ## How it works
 
@@ -188,7 +188,7 @@ The transactional session provides atomic store-and-send guarantees similar to O
 * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
 * Transaction finishes with data stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 
-Sending the control message first ensures that eventually the transaction will have an atomic result. If the `Commit` of the `OutboxRecord` succeeds, the control message will make sure the outgoing operations are sent out. If the `Commit` fails, the control message will be eventually (after the [maximum commit duration](#maximum-commit-duration) elapses) consumed, leaving no side effects.
+Sending the control message first ensures that eventually the transaction will have an atomic result. If the `Commit` of the `OutboxRecord` succeeds, the control message will make sure the outgoing operations are sent out. If the `Commit` fails, the control message will be eventually (after the [maximum commit duration](#usage-advanced-maximum-commit-duration) elapses) consumed, leaving no side effects.
 
 When dispatching of the control message fails, the transactional session changes will be rolled-back and an error is raised to the user committing the session.
 
