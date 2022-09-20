@@ -15,9 +15,10 @@ Consider an ASP.NET Core controller that creates a user in the business database
 1. **Phantom record**: The controller creates the `User` in the database first, then publishes the `UserCreated` event. If a failure occurs between these two operations:
     * The user is created in the database, but the `UserCreated` event is not published.
     * This results is a user in the database, known as a phantom record, which is never announced to the rest of the system.
-2. **Ghost message**: The controller publishes the `UserCreated` event first, then creates the user in the database. If a failure occurs between these two operations:
-    * The `UserCreated` event is published, but the user is not created in the database.
-    * The rest of the system is notified about the creation of the user, but the record does not exist in the database. This causes further errors in the system which expects the user to exist in the database.
+2. **Tainted message**: The controller publishes the `UserCreated` event first, then creates the user in the database. If a failure occurs between these two operations:
+    * The `UserCreated` event is published, most probably containing the ID of the user, but that record is not created in the database.
+      *  Some other transaction may end up creating a user with that ID (for example, when using database generated sequential numbers), but the event was not meant to refer to that record.
+    * The rest of the system is notified about the creation of the user with that incorrect ID. This may cause errors in those other parts of the system as they get tainted by that incorrect data.
 
 In the context of a message handler, the [Outbox](/nservicebus/outbox) feature can mitigate this problem, however, such scenarios remain unsolved outside of the context of a message handler.
 
@@ -74,7 +75,7 @@ The transactional session feature requires a persistence in order to store outgo
 
 To guarantee atomic consitency across database and message operations, the transactional session requires the [Outbox](/nservicebus/outbox) to be enabled.
 
-With the Outbox disabled, database and message operations are not executed until the session is committed. All database operations share the same database transaction but message operations are not guaranteed to be atomic with the database changes. This might lead to phantom records or ghost messages when in case of a failure during the commit phase.
+With the Outbox disabled, database and message operations are not executed until the session is committed. All database operations share the same database transaction but message operations are not guaranteed to be atomic with the database changes. This might lead to phantom records or tainted messages in case of a failure during the commit phase.
 
 ## How it works
 
