@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus" Version="[8.0.0-rc.3, 9.0.0)" />
-    <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="[5.0.0-rc.2, 6.0.0)" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-rc.3" />
+    <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="5.0.0-rc.2" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

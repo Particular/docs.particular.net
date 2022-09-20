@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <OutputType>Exe</OutputType>
@@ -7,7 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Helpers\Helpers.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus" Version="[8.0.0-rc.3, 8.0.0)" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="[7.0.0-rc.2, 7.0.0)" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-rc.3" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="7.0.0-rc.2" />
   </ItemGroup>
 </Project>

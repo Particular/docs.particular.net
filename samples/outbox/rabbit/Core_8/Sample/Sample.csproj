@@ -5,9 +5,9 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="[8.0.0-rc.3, 9.0.0)" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="[8.0.0-rc.2, 8.0.0)" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="[7.0.0-rc.2, 8.0.0)" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="NServiceBus" Version="8.0.0-rc.3" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="8.0.0-rc.2" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.0.0-rc.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.*" />
   </ItemGroup>
 </Project>
