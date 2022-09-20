@@ -179,8 +179,8 @@ The endpoint receives the control message and processes it as follows:
    * If it exists, it hasn't been marked as dispatched, and there are pending operations, dispatch those operations, and set the outbox record as dispatched.
    * If it doesn't exist, processing of the control message is delayed to a later point.
 
-## Important design consideration
+## Limitations
 
-* The transactional session uses a control message that is sent to the local queue. Due to this design, this feature requires a full endpoint and cannot be used in send-only endpoints.
-* Deduplication is guaranteed in Phase 2, but not in Phase 1. In Phase 2, the outbox record ensures that the operations will never be dispatched more than once. However, during Phase 1, a unique ID is assigned to the session and thus the operations in Phase 1 cannot be retried.
+* The transactional session requires a full endpoint to send a control message to the local queue and therefore cannot be used in send-only endpoints.
+* Deduplication is guaranteed in Phase 2, but not in Phase 1. In Phase 2, the outbox record ensures that the operations will never be dispatched more than once. However, during Phase 1, a unique ID is assigned to the session automatically and thus the operations in Phase 1 cannot be retried.
 * The transport must have the same or higher availability guarantees as the database.
