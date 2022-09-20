@@ -1,7 +1,7 @@
 ---
 title: Transactional Session with Azure Table Persistence
 summary: How to configure the transactional session with Azure Table Persistence
-component: TransactionalSession
+component: TransactionalSession.AzureTable
 reviewed: 2022-09-12
 related:
 - persistence/azure-table

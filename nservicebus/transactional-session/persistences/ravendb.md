@@ -1,7 +1,7 @@
 ---
 title: Transactional Session with RavenDB Persistence
 summary: How to configure the transactional session with RavenDB Persistence
-component: TransactionalSession
+component: TransactionalSession.RavenDB
 reviewed: 2022-09-12
 redirects:
 related:
