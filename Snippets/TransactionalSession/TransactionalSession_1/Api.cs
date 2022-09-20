@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
@@ -34,6 +35,31 @@ class Api
         using var session = childBuilder.Build<ITransactionalSession>();
         await session.Open(new MyPersistenceOpenSessionOptions(),
             cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        #endregion
+
+        #region configuring-timeout-transactional-session
+
+        await session.Open(new MyPersistenceOpenSessionOptions
+                {
+                    MaximumCommitDuration = TimeSpan.FromSeconds(15)
+                },
+                cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        #endregion
+
+        #region configuring-metadata-transactional-session
+
+        await session.Open(new MyPersistenceOpenSessionOptions
+                {
+                    Metadata =
+                    {
+                        { "SomeKey", "SomeValue" }
+                    }
+                },
+                cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
         #endregion
