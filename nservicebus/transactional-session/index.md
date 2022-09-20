@@ -168,7 +168,7 @@ Internally the transactional session doesn't use a single transaction that spans
 4. The user can execute any required message operations using the transactional session.
 5. The user can store any data using the persistence-specific session, which is accessible through the transactional session.
 6. When all operations are registered, the user calls ´Commit´ on the transactional session.
-7. A control message is dispatched to the local queue.
+7. A control message to settle the transaction is dispatched to the local queue. The control message is independent from the message operations and not stored in the outbox record.
 8. The message operations are converted and stored into an outbox record.
 9. The transaction is committed, and the outbox record and business data modifications are stored atomically.
 
