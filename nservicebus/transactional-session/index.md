@@ -59,6 +59,24 @@ snippet: committing-transactional-session
 
 Disposing the transactional session without committing, will roll-back any changes that were made.
 
+### Advanced
+
+#### Maximum commit duration
+
+The maximum commit duration is by default set to `TimeSpan.FromSeconds(15)`.
+
+The maximum commit duration represents the maximum duration the transaction is allowed to attempt to atomically commit. The value can be configured when opening the session.
+
+snippet: configuring-timeout-transactional-session
+
+The maximum commit duration is not actual total transaction time from the perspective of the clock but the actual time observed from the perspective of the control message that is used to settle the transaction outcome. The actual total transaction time observed might be longer, taking into account delays in the transport due to latency, delayed delivery, load on the input queue, endpoint concurrency limits and more.
+
+#### Metadata
+
+It is possible to add custom headers to the control message that is used to settle the transaction outcome. Custom headers can be set by adding them to the metadata when opening the session.
+
+snippet: configuring-metadata-transactional-session
+
 ## Requirements
 
 The transactional session feature requires a persistence in order to store outgoing messages. This feature is currently supported for the following persistence packages:
