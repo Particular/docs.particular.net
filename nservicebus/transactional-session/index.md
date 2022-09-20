@@ -179,6 +179,16 @@ The endpoint receives the control message and processes it as follows:
    * If it exists, it hasn't been marked as dispatched, and there are pending operations, dispatch those operations, and set the outbox record as dispatched.
    * If it doesn't exist, processing of the control message is delayed to a later point.
 
+## Failure scenarios
+
+The transactional session provides atomic store-and-send guarantees similar to Outbox (but no incoming message de-duplication). That said, it cannot rely on the recoverability mechanism used in the `Outbox` that ensures pushing the outgoing messages out in face of a failure. Instead, the previously mentioned control message is used to make sure that **exactly one** of these two outcomes happens:
+   * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
+   * Transaction finishes with data stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
+
+Sending the control message first ensures that eventually the transaction will have an atomic result. If the `Commit` of the `OutboxRecord` succeeds, the control message will make sure the outgoing operations are sent out. If the `Commit` fails, the control message will be eventually (after the [maximum commit duration](#maximum-commit-duration) elapses) consumed, leaving no side effects.
+
+When dispatching of the control message fails, the transactional session changes will be rolled-back and an error is raised to the user committing the session.
+
 ## Limitations
 
 * The transactional session requires a full endpoint to send a control message to the local queue and therefore cannot be used in send-only endpoints.
