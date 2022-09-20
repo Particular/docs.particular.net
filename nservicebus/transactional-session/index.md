@@ -27,7 +27,7 @@ However, there are scenarios where this approach is not feasible:
 - Existing logic in the controller might assume certain side-effects to occur within the scope of the request (for example validation, notifications or error-handling) and not yet ready to fully embrace the asynchronous and fire&forget nature of offloading the work into message handlers.
 - There may be other scenarios in which it's not feasible to delay the database operation.
 
-The `TransactionalSession` feature solves this problem exactly.
+The `TransactionalSession` feature solves this problem for messages sent/published outside of the context of a message handler when combined with the [Outbox](/nservicebus/outbox) feature.
 
 ## Usage
 
@@ -40,8 +40,6 @@ snippet: enabling-transactional-session
 To ensure atomic consistency across database and message operations, enable the [Outbox](/nservicebus/outbox):
 
 snippet: enabling-outbox
-
-NOTE: The Outbox is optional. See the [transaction consistency](#transaction-consistency) section for further details.
 
 The transactional session can be resolved from the container, and needs to be opened:
 
@@ -100,7 +98,7 @@ The transactional session feature requires a persistence in order to store outgo
 
 ## Transaction consistency
 
-To guarantee atomic consitency across database and message operations, the transactional session requires the [Outbox](/nservicebus/outbox) to be enabled.
+To guarantee atomic consitency across database and message operations, the transactional session requires the [Outbox](/nservicebus/outbox) to be enabled. Using the transactional session together with the outbox provides the strongest concistency guarantees and is therefore the recommended safe-by-default configuration.
 
 With the Outbox disabled, database and message operations are not executed until the session is committed. All database operations share the same database transaction but message operations are not guaranteed to be atomic with the database changes. This might lead to phantom records or ghost messages when in case of a failure during the commit phase.
 
