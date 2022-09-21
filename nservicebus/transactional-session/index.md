@@ -25,7 +25,7 @@ A common technique to address this problem on the client side is to defer all op
 However, there are scenarios where this approach is not feasible:
 
 * Existing applications are likely to have non-trivial processing logic in controllers. Moving it all into dedicated message handlers requires significant effort.
-* Existing logic in the controller may assume specific side effects to occur within the scope of the request, e.g., validation, notifications, or error handling. The logic may, therefore, not be ready to fully embrace the asynchronous and fire&forget nature of offloading work into message handlers.
+* Processing logic in the controller may assume specific side effects to occur within the scope of the request, e.g., validation, notifications, or error handling. The logic may, therefore, not be ready for the asynchronous, fire-and-forget approach required when offloading work into message handlers.
 * There may be other scenarios in which it's not feasible to delay the database operation.
 
 The `TransactionalSession`, when combined with [Outbox](/nservicebus/outbox), solves this problem for messages sent and/or published outside the context of a message handler.
