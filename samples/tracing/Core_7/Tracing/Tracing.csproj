@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.*" />
-    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.*" />
-    <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.*" />
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.14.*" />
+    <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.14.*" />
   </ItemGroup>
 </Project>
