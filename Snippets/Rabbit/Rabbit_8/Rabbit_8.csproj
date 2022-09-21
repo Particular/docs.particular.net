@@ -4,6 +4,6 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="[8.0.0-rc.2, 9.0.0)" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="8.0.0-rc.2" />
   </ItemGroup>
 </Project>

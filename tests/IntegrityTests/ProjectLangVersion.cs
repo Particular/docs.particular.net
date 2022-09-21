@@ -16,7 +16,16 @@ namespace IntegrityTests
                 .IgnoreSnippets()
                 .Run(projectFilePath =>
                 {
-                    var xdoc = XDocument.Load(projectFilePath);
+                    XDocument xdoc = default;
+
+                    try
+                    {
+                        xdoc = XDocument.Load(projectFilePath);
+                    }
+                    catch
+                    {
+                        return false;
+                    }
 
                     // Ignore non-Sdk (VS2015 and previous) style projects
                     var sdk = xdoc.Root.Attribute("Sdk");
