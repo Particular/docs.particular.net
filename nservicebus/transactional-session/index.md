@@ -195,5 +195,4 @@ When dispatching the control message fails, the transactional session changes wi
 ## Limitations
 
 * The transactional session cannot be used in send-only endpoints. A full endpoint is required to send a control message to the local queue.
-* Deduplication is guaranteed in Phase 2, but not in Phase 1. In Phase 2, the Outbox record ensures that the operations will never be dispatched more than once. However, in Phase 1, the session is always assigned a unique identifier and thus the operations in Phase 1 cannot be retried.
 * The transport must have the same or higher availability guarantees as the database.
