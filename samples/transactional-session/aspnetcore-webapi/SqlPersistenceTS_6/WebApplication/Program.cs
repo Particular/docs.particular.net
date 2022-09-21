@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using NServiceBus.Persistence;
 using NServiceBus.Persistence.Sql;
 using NServiceBus.TransactionalSession;
 
@@ -27,7 +28,8 @@ public class Program
             .UseNServiceBus(context =>
             {
                 var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
-                var transport = endpointConfiguration.UseTransport(new LearningTransport { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
+                var transport = endpointConfiguration.UseTransport<LearningTransport>();
+                transport.Transactions(TransportTransactionMode.ReceiveOnly);
                 endpointConfiguration.EnableInstallers();
 
                 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
@@ -57,7 +59,7 @@ public class Program
                     context.Database.UseTransaction(session.Transaction);
 
                     //Ensure context is flushed before the transaction is committed
-                    session.OnSaveChanges((s, token) => context.SaveChangesAsync(token));
+                    session.OnSaveChanges((s) => context.SaveChangesAsync());
 
                     return context;
                 });
