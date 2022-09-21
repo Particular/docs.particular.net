@@ -17,18 +17,18 @@ Consider an ASP.NET Core controller that creates a user in the business database
     * This results is a user in the database, known as a phantom record, which is never announced to the rest of the system.
 2. **Ghost message**: The controller publishes the `UserCreated` event first, then creates the user in the database. If a failure occurs between these two operations:
     * The `UserCreated` event is published, but the user is not created in the database.
-    * The rest of the system is notified about the creation of the user, but the record does not exist in the database. This inconsistency causes errors in the system, as parts of the system expect the user to exist in the database.
+    * The rest of the system is notified about the creation of the user, but the user record is never created. This inconsistency causes errors, as parts of the system expect the record to exist in the database.
 
 In the context of a message handler, the [Outbox](/nservicebus/outbox) feature can mitigate this problem. However, such scenarios remain unsolved outside the context of a message handler.
 
 A common technique to address this problem on the client side is to defer all operations to a message handler. This entails sending a message to create the user and publishing the `UserCreated`-event from within a message handler.
 However, there are scenarios where this approach is not feasible:
 
-* Existing applications that want to introduce messaging already have quite some logic in controllers. Moving all that logic into dedicated message handlers requires significant effort, and might not be feasible from day one.
+* Existing applications are likely to have non-trivial processing logic in controllers. Moving it all into dedicated message handlers requires significant effort.
 * Existing logic in the controller may assume specific side effects to occur within the scope of the request, e.g., validation, notifications, or error handling. The logic may, therefore, not be ready to fully embrace the asynchronous and fire&forget nature of offloading work into message handlers.
 * There may be other scenarios in which it's not feasible to delay the database operation.
 
-The `TransactionalSession` feature solves this problem for messages sent/published outside the context of a message handler when combined with the [Outbox](/nservicebus/outbox) feature.
+The `TransactionalSession`, when combined with [Outbox](/nservicebus/outbox), solves this problem for messages sent and/or published outside the context of a message handler.
 
 ## Usage
 
@@ -64,11 +64,11 @@ Disposing the transactional session, without committing, will roll back any chan
 
 The maximum commit duration defaults to `TimeSpan.FromSeconds(15)`.
 
-The maximum commit duration limits the amount of time the transaction can attempt to commit the changes atomically. The value can be configured when opening the session.
+The maximum commit duration limits the amount of time it can take for a transaction to commit the changes. The value can be configured when opening the session.
 
 snippet: configuring-timeout-transactional-session
 
-The maximum commit duration does not represent the total transaction time, but rather the actual time observed from the perspective of the control message used to settle the transaction outcome. The total transaction time observed might be longer, considering delays in the transport due to latency, delayed delivery, load on the input queue, endpoint concurrency limits, and more.
+The maximum commit duration does not represent the total transaction time, but rather the time it takes to complete the commit operation (as observed from the perspective of the control message). In practice, the observed total commit time might be longer due to delays in the transport caused by latency, delayed delivery, load on the input queue, endpoint concurrency limits, and more.
 
 When the control message is consumed, but the outbox record is not yet available in storage, the following formula is applied to delay the message (see [Phase 2](#how-it-works-phase-2)):
 
@@ -82,7 +82,7 @@ The default commit delay increment is set to `Timespan.FromSeconds(2)`and cannot
 
 #### Metadata
 
-It is possible to add custom headers to the control message that is used to settle the transaction outcome. Custom headers can be set by adding them to the metadata when opening the session.
+It is possible to add custom headers to the control message that is used to settle the transaction outcome. Custom headers can be set by adding them to the metadata when opening the session. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors#add-a-new-step) in the `TransportReceive` part of the pipeline.
 
 snippet: configuring-metadata-transactional-session
 
@@ -103,7 +103,7 @@ To guarantee atomic consistency across database and message operations, the tran
 
 NOTE: The outbox has to be [enabled explicitly](/nservicebus/outbox/#enabling-the-outbox) on the endpoint configuration.
 
-With the Outbox disabled, database and message operations are not executed until the session is committed. All database operations share the same database transaction and are committed first. When the database operations are successful, the message operations are [batch-dispatched by the transport](/nservicebus/messaging/batched-dispatch.md). The message operations are not guaranteed to be atomic with the database changes. This might lead to phantom records or ghost messages in case of a failure during the commit phase.
+With the Outbox disabled, database and message operations are not applied until the session is committed. All database operations share the same database transaction and are committed first. When the database operations complete successfully, the message operations are [batch-dispatched by the transport](/nservicebus/messaging/batched-dispatch.md). The message operations and the database changes are not guaranteed to be atomic. This might lead to phantom records or ghost messages in case of a failure during the commit phase.
 
 ## How it works
 
@@ -179,21 +179,21 @@ The endpoint receives the control message and processes it as follows:
 
 * Find the outbox record.
   * If it exists, it hasn't been marked as dispatched, and there are pending operations, dispatch those operations, and set the outbox record as dispatched.
-  * If it doesn't exist, processing of the control message is delayed to a later point.
+  * If it doesn't exist, delay the processing of the control message.
 
 ## Failure scenarios
 
 The transactional session provides atomic store-and-send guarantees, similar to Outbox (except for incoming message de-duplication). That said, it cannot rely on the recoverability mechanism used by the Outbox, which uses retries to ensure outgoing messages are dispatched when failures occur. Instead, the control message is used to ensure that **exactly one** of these two outcomes occur:
 
 * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
-* Transaction finishes with data stored, and outgoing messages are eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
+* Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 
-Sending the control message first ensures that, eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent out. If the `Commit` fails, the control message will, with respect to the [maximum commit duration](#usage-advanced-maximum-commit-duration) eventually be consumed, leaving no side effects.
+Sending the control message first ensures that, eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent out. If the `Commit` fails, the control message will (after the [maximum commit duration](#usage-advanced-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
 
-When dispatching the control message fails, the transactional session changes will be rolled back, and an error is raised to the user committing the session.
+When dispatching the control message fails, the transactional session changes will be rolled back, and an error will be raised to the user committing the session.
 
 ## Limitations
 
-* The transactional session requires a full endpoint to send a control message to the local queue, and therefore cannot be used in send-only endpoints.
-* Deduplication is guaranteed in Phase 2, but not in Phase 1. In Phase 2, the outbox record ensures that the operations will never be dispatched more than once. However, during Phase 1, a unique ID is assigned to the session automatically and thus the operations in Phase 1 cannot be retried.
+* The transactional session cannot be used in send-only endpoints. A full endpoint is required to send a control message to the local queue.
+* Deduplication is guaranteed in Phase 2, but not in Phase 1. In Phase 2, the Outbox record ensures that the operations will never be dispatched more than once. However, in Phase 1, the session is always assigned a unique identifier and thus the operations in Phase 1 cannot be retried.
 * The transport must have the same or higher availability guarantees as the database.
