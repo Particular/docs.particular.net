@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.ApplicationInsights;
+﻿using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
 using NServiceBus;
+using System;
+using System.Threading.Tasks;
 
 class Program
 {
@@ -18,6 +18,7 @@ class Program
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
         var conventions = endpointConfiguration.Conventions();
+        var appInsightsConnectionString = "<YOUR KEY HERE>";
         conventions.DefiningEventsAs(
             type =>
             {
@@ -39,9 +40,11 @@ class Program
 
         Console.WriteLine("Using application insights application key: {0}", instrumentationKey);
 
-
-        var telemetryConfiguration = new TelemetryConfiguration(instrumentationKey);
+        #region configure Telemetry
+        var telemetryConfiguration = TelemetryConfiguration.CreateDefault();
+        telemetryConfiguration.ConnectionString = appInsightsConnectionString;
         var telemetryClient = new TelemetryClient(telemetryConfiguration);
+        #endregion
 
         endpointConfiguration.RegisterComponents(cc => cc.RegisterSingleton(telemetryClient));
 
