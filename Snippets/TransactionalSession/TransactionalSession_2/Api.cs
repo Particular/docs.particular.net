@@ -38,6 +38,31 @@ class Api
             .ConfigureAwait(false);
 
         #endregion
+
+        #region configuring-timeout-transactional-session
+
+        await session.Open(new MyPersistenceOpenSessionOptions
+                {
+                    MaximumCommitDuration = TimeSpan.FromSeconds(15)
+                },
+                cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        #endregion
+
+        #region configuring-metadata-transactional-session
+
+        await session.Open(new MyPersistenceOpenSessionOptions
+                {
+                    Metadata =
+                    {
+                        { "SomeKey", "SomeValue" }
+                    }
+                },
+                cancellationToken: cancellationToken)
+            .ConfigureAwait(false);
+
+        #endregion
     }
 
     public async Task Send(ITransactionalSession session, CancellationToken cancellationToken)
