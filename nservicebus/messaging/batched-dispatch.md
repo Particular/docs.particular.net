@@ -1,6 +1,6 @@
 ---
 title: Batched message dispatch
-summary: Describes how NServiceBus can collect outgoing operations in order to dispatch them more efficiently.
+summary: Describes how NServiceBus collects outgoing operations in order to dispatch them more efficiently.
 component: Core
 reviewed: 2022-09-20
 ---
