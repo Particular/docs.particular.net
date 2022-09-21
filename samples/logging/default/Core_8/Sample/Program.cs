@@ -10,7 +10,8 @@ class Program
         #region ConfigureLogging
 
         // No config is required in version 5 and enabled by default but when overriding logging
-        // ensure this happens before Endpoint.Start or creating EndpointConfiguration
+        // ensure this happens before Endpoint.Start
+
         var defaultFactory = NServiceBus.Logging.LogManager.Use<NServiceBus.Logging.DefaultFactory>();
 
         // The default logging directory is HttpContext.Current.Server.MapPath("~/App_Data/") for websites

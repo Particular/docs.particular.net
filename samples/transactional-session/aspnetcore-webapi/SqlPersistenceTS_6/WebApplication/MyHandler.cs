@@ -20,7 +20,7 @@ public class MyHandler : IHandleMessages<MyMessage>
         log.Info("Message received at endpoint");
 
         var entity = await dataContext.MyEntities.Where(e => e.Id == message.EntityId)
-           .FirstAsync(cancellationToken: context.CancellationToken);
+           .FirstAsync();
         entity.Processed = true;
     }
 }
