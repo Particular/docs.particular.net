@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.ApplicationInsights.Extensibility;
+﻿using Microsoft.ApplicationInsights.Extensibility;
 using NServiceBus;
+using System;
+using System.Threading.Tasks;
 
 class Program
 {
@@ -14,6 +14,7 @@ class Program
 
         var envInstrumentationKey = "ApplicationInsightKey";
         var instrumentationKey = Environment.GetEnvironmentVariable(envInstrumentationKey);
+        var appInsightsConnectionString = "<YOUR KEY HERE>";
 
         if (string.IsNullOrEmpty(instrumentationKey))
         {
@@ -23,11 +24,9 @@ class Program
         Console.WriteLine("Using application insights application key: {0}", instrumentationKey);
 
         #region configure-ai-instrumentation-key
-
-        var telemetryConfiguration = new TelemetryConfiguration(instrumentationKey);
-
+        var telemetryConfiguration = TelemetryConfiguration.CreateDefault();
+        telemetryConfiguration.ConnectionString = appInsightsConnectionString;
         endpointConfiguration.EnableApplicationInsights(telemetryConfiguration);
-
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
