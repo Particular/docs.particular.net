@@ -472,21 +472,6 @@
         Title: Troubleshooting
     - Url: nservicebus/hosting/docker-host
       Title: Docker Container Host
-    - Url: nservicebus/hosting/cloud-services-host
-      Title: Azure Cloud Services Host
-      Articles:
-      - Url: nservicebus/hosting/cloud-services-host/configuration
-        Title: Configuration
-      - Url: nservicebus/hosting/cloud-services-host/logging
-        Title: Logging
-      - Url: nservicebus/hosting/cloud-services-host/startup
-        Title: Startup Behavior
-      - Url: nservicebus/hosting/cloud-services-host/critical
-        Title: Critical Errors
-      - Url: nservicebus/hosting/cloud-services-host/running-without-emulator
-        Title: Running without emulator
-      - Url: nservicebus/hosting/cloud-services-host/faq
-        Title: FAQ
     - Url: nservicebus/lifecycle
       Title: Interface lifecycles
       Articles:
