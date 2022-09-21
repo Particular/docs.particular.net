@@ -19,7 +19,8 @@ public class MyHandler : IHandleMessages<MyMessage>
     {
         log.Info("Message received at endpoint");
 
-        var entity = await dataContext.MyEntities.Where(e => e.Id == message.EntityId).FirstAsync();
+        var entity = await dataContext.MyEntities.Where(e => e.Id == message.EntityId)
+           .FirstAsync();
         entity.Processed = true;
     }
 }

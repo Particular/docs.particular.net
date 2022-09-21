@@ -11,7 +11,7 @@ using NServiceBus.TransactionalSession;
 
 public class Program
 {
-    private const string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=True;";
+    const string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=True;";
 
     public static void Main()
     {
