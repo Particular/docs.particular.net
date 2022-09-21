@@ -5,7 +5,7 @@ component: Core
 reviewed: 2022-09-20
 ---
 
-In Versions 6 and above, all outgoing operations that happen as part of processing a message (e.g. commands, responses, events) will be bundled together and passed to the transport after the message handling pipeline has been completed. With the introduction of the [transactional session](/nservicebus/transactional-session), outgoing message operations can also be bundled together and passed to the transport when the session commits. This has two benefits:
+Starting from Versions 6, all outgoing operations executed during message processing (e.g. commands, responses, events) are bundled together and handed to the transport only after the message handling pipeline has completed (the [transactional session](/nservicebus/transactional-session) offers similar behavior for outgoing message operations when the session is committed). This has two benefits:
 
  * Business data operations will be committed to storage before outgoing operations are dispatched. This ensures no outgoing messages are sent in case an exception occurs - during or after the business data operations are committed.
  * Allows transports to improve performance by batching outgoing operations. Since transports get access to all outgoing messages as a group they can optimize communication with the underlying queuing infrastructure to minimize round trips.
