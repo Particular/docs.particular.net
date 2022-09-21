@@ -1,7 +1,7 @@
 ---
 title: Simple NHibernate Persistence Usage
 summary: Using NHibernate to store sagas and timeouts.
-reviewed: 2020-01-27
+reviewed: 2022-09-21
 component: NHibernate
 related:
  - nservicebus/sagas
@@ -11,7 +11,7 @@ related:
 
 ## Prerequisites
 
-The sample relies on `.\SqlExpress` and the existence of a database named `Samples.NHibernate`.
+The sample relies on the availability of a SQL Server named `.\SqlExpress` and the existence of a database named `Samples.NHibernate`.
 
 
 ## Code walk-through
@@ -28,7 +28,7 @@ This sample shows a simple client/server scenario.
 
 ### NHibernate config
 
-NHibernate is first configured with the right driver, dialect, and connection string. Then, since NHibernate needs a way to map the class to the database table, the configuration code does this using the ModelMapper API. Finally, the configuration is used to run the endpoint.
+NHibernate is configured with the right driver, dialect, and connection string. Then, since NHibernate needs a way to map the class to the database table, the configuration code does this using the ModelMapper API. Finally, the configuration is used to run the endpoint.
 
 snippet: config
 
