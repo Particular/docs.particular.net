@@ -13,7 +13,6 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.SendReply.Endpoint1");
         endpointConfiguration.EnableInstallers();
 
-        // var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {
