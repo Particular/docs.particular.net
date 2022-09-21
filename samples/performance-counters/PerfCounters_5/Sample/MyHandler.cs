@@ -16,7 +16,7 @@ public class MyHandler :
     {
         var sleepTime = random.Next(1, 1000);
         log.Info($"Hello from MyHandler. Slept for {sleepTime}ms");
-        return Task.Delay(sleepTime);
+        return Task.Delay(sleepTime, context.CancellationToken);
     }
 }
 
