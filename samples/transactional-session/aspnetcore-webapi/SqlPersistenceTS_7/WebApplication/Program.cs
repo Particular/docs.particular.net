@@ -5,13 +5,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using NServiceBus.Persistence;
 using NServiceBus.Persistence.Sql;
 using NServiceBus.TransactionalSession;
 
 public class Program
 {
-    private const string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=True;";
+    const string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=True;";
 
     public static void Main()
     {
@@ -28,8 +27,7 @@ public class Program
             .UseNServiceBus(context =>
             {
                 var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
-                var transport = endpointConfiguration.UseTransport<LearningTransport>();
-                transport.Transactions(TransportTransactionMode.ReceiveOnly);
+                var transport = endpointConfiguration.UseTransport(new LearningTransport { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
                 endpointConfiguration.EnableInstallers();
 
                 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
@@ -59,7 +57,7 @@ public class Program
                     context.Database.UseTransaction(session.Transaction);
 
                     //Ensure context is flushed before the transaction is committed
-                    session.OnSaveChanges((s) => context.SaveChangesAsync());
+                    session.OnSaveChanges((s, token) => context.SaveChangesAsync(token));
 
                     return context;
                 });
