@@ -82,7 +82,7 @@ The default commit delay increment is set to `Timespan.FromSeconds(2)`and cannot
 
 #### Metadata
 
-It is possible to add custom headers to the control message that is used to settle the transaction outcome. Custom headers can be set by adding them to the metadata when opening the session. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors#add-a-new-step) in the `TransportReceive` part of the pipeline.
+It is possible to add custom headers to the control message that is used to settle the transaction outcome. Custom headers can be set by adding them to the metadata when opening the session. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) in the `TransportReceive` part of the pipeline.
 
 snippet: configuring-metadata-transactional-session
 
