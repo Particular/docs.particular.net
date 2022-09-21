@@ -21,5 +21,5 @@ This sample shows basic usage of MSMQ as a transport for NServiceBus. The applic
 
 snippet: ConfigureMsmqEndpoint
 
-Other settings such as usage of dead-letter queues, journaling, etc., can be configured using the [configuration API](/transports/msmq/msmq/transportconfig.md).
+Other settings such as usage of dead-letter queues, journaling, etc., can be configured using the [configuration API](/transports/msmq/transportconfig.md).
 
