@@ -99,11 +99,11 @@ foreach($solution in $solutions) {
         if(Test-Path $msBuildMarkerFile)
         {
             Write-Output ("::warning::Using msbuild for solution using legacy csproj format: {0}" -f $solution.FullName)
-            msbuild $solution.Name -verbosity:minimal -restore -property:RestorePackagesConfig=true
+            msbuild $solution.Name -maxCpuCount -verbosity:minimal -restore -property:RestorePackagesConfig=true
         }
         else
         {
-            dotnet build $solution.Name --verbosity minimal
+            dotnet build $solution.Name -maxCpuCount --verbosity minimal
         }
 
         if( -not $? ) {
