@@ -1,7 +1,7 @@
-﻿using Microsoft.ApplicationInsights.Extensibility;
-using NServiceBus;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights.Extensibility;
+using NServiceBus;
 
 class Program
 {
@@ -27,6 +27,7 @@ class Program
         var telemetryConfiguration = new TelemetryConfiguration(instrumentationKey);
         
         endpointConfiguration.EnableApplicationInsights(telemetryConfiguration);
+
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

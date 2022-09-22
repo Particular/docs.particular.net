@@ -1,9 +1,9 @@
-﻿using Microsoft.ApplicationInsights;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
-using System;
-using System.Threading.Tasks;
 
 class Program
 {
