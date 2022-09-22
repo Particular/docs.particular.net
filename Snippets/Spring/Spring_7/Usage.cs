@@ -5,18 +5,15 @@ class Usage
 {
     Usage(EndpointConfiguration endpointConfiguration)
     {
-#pragma warning disable CS0618 // Type or member is obsolete
         #region Spring
 
         endpointConfiguration.UseContainer<SpringBuilder>();
 
         #endregion
-#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     void Existing(EndpointConfiguration endpointConfiguration)
     {
-#pragma warning disable CS0618 // Type or member is obsolete
         #region Spring_Existing
 
         var applicationContext = new GenericApplicationContext();
@@ -29,7 +26,6 @@ class Usage
             });
 
         #endregion
-#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     class MyService
