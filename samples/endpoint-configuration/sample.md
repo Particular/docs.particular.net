@@ -3,12 +3,13 @@ title: Endpoint configuration choices
 summary: Shows the standard configuration options for hosting an endpoint.
 reviewed: 2022-09-22
 component: Core
+versions: '[,8)' # No longer supported as we recommend using the .NET Generic Host sample
 related:
 - nservicebus/hosting/assembly-scanning
 - nservicebus/hosting
 ---
 
-WARN: This sample is obsolete. We recommend using the [.NET Generic Host sample](https://docs.particular.net/samples/hosting/generic-host/).
+WARN: This sample is obsolete. Particular recommends using the [.NET Generic Host sample](/samples/hosting/generic-host/).
 
 ## Code walk-through
 
