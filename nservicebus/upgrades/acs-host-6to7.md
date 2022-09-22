@@ -11,11 +11,9 @@ upgradeGuideCoreVersions:
  - 6
 ---
 
-
 ## Namespace changes
 
 All types specified in this document are now in the `NServiceBus` namespace.
-
 
 ## IConfigureThisEndpoint changes
 
@@ -56,7 +54,6 @@ public class EndpointConfig :
 }
 ```
 
-
 ## AsA_Host role changes into IConfigureThisHost
 
 The specifiers `IConfigureThisEndpoint` and `AsA_Host` are now merged into `IConfigureThisHost`.
@@ -93,13 +90,11 @@ public class EndpointHostConfig :
 }
 ```
 
-
 ### Removal of DynamicHostControllerConfig
 
 The `DynamicHostControllerConfig`configuration section has been removed; instead the `IConfigureThisHost.Customize` implementation must return an instance of `HostSettings` which contains the configuration values.
 
 `RoleEnvironment.GetConfigurationSettingValue` can be used to read an existing configuration setting from the `.cscfg` file.
-
 
 ## Removal of dependencies
 
@@ -112,13 +107,11 @@ The host role entry point and host process no longer depend on the following com
 
 If these components are not used for other purposes they may be removed.
 
-
 ## Deprecation of profiles
 
-The infrastructure backing profiles has been removed from the host and therefore the `Development` and `Production` profiles are no longer available. Note that Visual Studio native logging has replaced the profiles. Refer to the [logging documentation](/nservicebus/hosting/cloud-services-host/logging.md) to learn how to set this up.
+The infrastructure backing profiles has been removed from the host and therefore the `Development` and `Production` profiles are no longer available. Note that Visual Studio native logging has replaced the profiles.
 
 Any code in custom profile handlers should be moved into the `IConfigureThisEndpoint` or `IConfigureThisHost` configuration extension points.
-
 
 ## IWantToRunWhenEndpointStartsAndStops
 
@@ -142,7 +135,6 @@ public class Bootstrapper :
     }
 }
 ```
-
 
 ### Interface in NServiceBus.Hosting.Azure version 7
 
