@@ -871,7 +871,7 @@ When documenting an unstable feature, those unstable packages must be explicitly
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.3.1-alpha.XYZ" />
 ```
 
-Wildcard patterns, like `4.3.1-*`, or `8.0.0-alphe/beta/rc.*` are not allowed for pre-releases since they tend to break the snippet and sample builds.
+Wildcard patterns, like `4.3.1-*`, `8.0.0-alpha.*`, `8.0.0-beta.*`, or  `8.0.0-rc.*` are not allowed for pre-releases since they tend to break the snippet and sample builds.
 
 _**In snippets this can be safely done at any point in time. Note that when for applied to samples this can have side effects on a user who downloads a sample during that period. As such it is generally only done for samples that are marked with a `prerelease.txt` marker.**_
 
