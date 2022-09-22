@@ -10,7 +10,7 @@ class Program
 {
     static async Task Main()
     {
-        var connection = @"server=(local)\sqlexpress;database=nservicebus;Integrated Security=True;Max Pool Size=100";
+        var connection = @"server=.;database=nservicebus;Integrated Security=True;Max Pool Size=100";
         Console.Title = "Samples.EntityFrameworkUnitOfWork.SQL";
 
         using (var receiverDataContext = new ReceiverDataContext(new DbContextOptionsBuilder<ReceiverDataContext>()
