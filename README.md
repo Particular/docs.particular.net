@@ -871,7 +871,7 @@ When documenting an unstable feature, those unstable packages must be explicitly
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.3.1-alpha.XYZ" />
 ```
 
-Wildcard patterns, like `Version="4.3.1-*` are not allowed for pre-releases since they tend to break the snippet and sample builds.
+Wildcard patterns, like `4.3.1-*`, `8.0.0-any-pre-release-version.*` are not allowed for pre-releases since they tend to break the snippet and sample builds.
 
 _**In snippets this can be safely done at any point in time. Note that when for applied to samples this can have side effects on a user who downloads a sample during that period. As such it is generally only done for samples that are marked with a `prerelease.txt` marker.**_
 
@@ -880,6 +880,10 @@ _**This is a temporary state and once a stable is released it is changed back to
 ```xml
 <PackageReference Include="NServiceBus.RabbitMQ" Version="4.*" />
 ```
+
+#### Version ranges
+
+Avoid using [version ranges](https://learn.microsoft.com/en-us/nuget/concepts/package-versioning#version-ranges) for package references. The integrity tests will enforce this.
 
 ### Integrity tests
 
@@ -891,6 +895,7 @@ The integrity tests include:
   * `SampleName.sln` references `ProjectName.csproj` targeting `net462`
   * `SampleName.Core.sln` references `ProjectName.Core.csproj` targeting `netcoreapp2.0`
 * [Package references cannot use a wildcard-only version](tests/IntegrityTests/ReferenceVersions.cs) using `Version="*"` as this can cause a package restore operation to sometimes fail and yield old, incorrect, or mismatched versions.
+* [Package references cannot use a ranged version](tests/IntegrityTests/ReferenceVersions.cs#L48) using [ranged version format](https://learn.microsoft.com/en-us/nuget/concepts/package-versioning#version-ranges) as this can cause a package restore operation to sometimes fail and yield old, incorrect, or mismatched versions.
 * [Versioned sample/snippet directories (i.e. `Core_7`) must contain a `prerelease.txt` file](tests/IntegrityTests/ValidatePrereleaseTxt.cs) **only** when the contained projects use a prerelease version of that component's NuGet package. This is verified in two ways:
     1. Tests find all `prerelease.txt` files, parse the component name out of the parent directory name, find the related NuGet packages from component metadata, and then scan all child project files for prerelease package references of those NuGet packages, flagging `prerelease.txt` files with no associated prerelease package reference.
     2. Tests examine all project files, finding a parent versioned directory, parse out the component name, look up the NuGet packages from component metadata, scan the project path for any prerelease package references of those NuGet packages, and then flag any missing a `prerelease.txt` file.
