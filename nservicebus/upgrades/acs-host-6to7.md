@@ -2,7 +2,6 @@
 title: Azure Cloud Services Host Upgrade Version 6 to 7
 summary: Instructions on how to upgrade Azure Cloud Service Host from version 6 to 7.
 reviewed: 2020-06-29
-component: CloudServicesHost
 related:
  - nservicebus/upgrades/5to6
 isUpgradeGuide: true

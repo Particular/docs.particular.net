@@ -2,7 +2,6 @@
 title: NServiceBus Azure Host Upgrade Version 7 to 8
 summary: Instructions on how to upgrade NServiceBus Azure Host Version 7 to 8.
 reviewed: 2021-07-23
-component: CloudServicesHost
 related:
  - nservicebus/upgrades/6to7
 isUpgradeGuide: true
