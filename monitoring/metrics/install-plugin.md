@@ -43,7 +43,3 @@ A human readable value is being passed in the following example:
 snippet: SendMetricDataToServiceControlHostId
 
 Note: It is **not** required to add a process identification. The `InstanceId` is not required to be physically identifying the running instance uniquely. The plugin uses its own internal unique session identifier for this.
-
-#### Azure host
-
-The value of `$.diagnostics.hostdisplayname` is expected to be human readable. This might be problematic when using the [Azure Host](/nservicebus/hosting/cloud-services-host/faq.md#host-identifier) as it uses Role Name for the `$.diagnostics.hostdisplayname`, which results in the same display name for all instances.

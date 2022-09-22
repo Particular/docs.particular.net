@@ -73,16 +73,9 @@ While the [Dispose Pattern](https://docs.microsoft.com/en-us/dotnet/standard/des
 
 If the extensibility provided by `IWantToRunWhenBusStartsAndStops` is still required, it can be achieved via other means, such as [using MEF or reflection to customize NServiceBus](/samples/plugin-based-config/).
 
-
 ### Using [NServiceBus.Host](/nservicebus/hosting/nservicebus-host/)
 
 See the upgrade guide for more details on [using the new interface](/nservicebus/upgrades/host-6to7.md) provided by the host.
-
-
-### Using [AzureCloudService Host](/nservicebus/hosting/cloud-services-host/)
-
-See the upgrade guide for more details on [using the new interface](/nservicebus/upgrades/acs-host-6to7.md) provided by the host.
-
 
 ## Endpoint name helper
 
