@@ -801,6 +801,8 @@ The code used by snippets and samples is compiled on the build server. The compi
 
 ### NuGet package references
 
+Docs assumes all dependencies follow SemVer and uses [NuGet DependencyVersion mode `HighestMinor` (`~/nuget.config`)](https://learn.microsoft.com/en-us/nuget/reference/nuget-config-file#config-section)
+
 #### Use current minor
 
 NuGet package references should use the the most greedy wildcard that is safe for that reference. In most cases that is "current minor":
@@ -813,7 +815,7 @@ This applies to snippets and samples.
 
 #### Sometimes current patch
 
-In some cases, usually where a package has significant new API in a minor, it may be necessary to version snippets down to the "current patch".
+Due to DependencyVersion mode `HighestMinor` it is not needed to pin to a minor unless the referenced package is not following SemVer. It may be necessary to version snippets down to the "current patch".
 
 ```xml
 <PackageReference Include="NServiceBus.Persistence.Sql" Version="2.0.*" />
