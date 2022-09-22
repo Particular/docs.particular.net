@@ -10,10 +10,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Caliburn.Micro" Version="3.2.0" />
-        <PackageReference Include="Autofac" Version="6.1.0" />
-        <PackageReference Include="Autofac.Configuration" Version="6.0.0" />
-        <PackageReference Include="AvalonEdit" Version="6.0.1" />
+        <PackageReference Include="Caliburn.Micro" Version="3.*" />
+        <PackageReference Include="Autofac" Version="6.*" />
+        <PackageReference Include="Autofac.Configuration" Version="6.*" />
+        <PackageReference Include="AvalonEdit" Version="6.*" />
     </ItemGroup>
 
     <ItemGroup>

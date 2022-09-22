@@ -5,9 +5,9 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MassTransit.AspNetCore" Version="7.2.4" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.4" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.*" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.*" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />

@@ -14,7 +14,7 @@ class Program
 
         var envInstrumentationKey = "ApplicationInsightKey";
         var instrumentationKey = Environment.GetEnvironmentVariable(envInstrumentationKey);
-
+      
         if (string.IsNullOrEmpty(instrumentationKey))
         {
             throw new Exception($"Environment variable '{envInstrumentationKey}' required.");
@@ -23,9 +23,9 @@ class Program
         Console.WriteLine("Using application insights application key: {0}", instrumentationKey);
 
         #region configure-ai-instrumentation-key
-
+        
         var telemetryConfiguration = new TelemetryConfiguration(instrumentationKey);
-
+        
         endpointConfiguration.EnableApplicationInsights(telemetryConfiguration);
 
         #endregion
