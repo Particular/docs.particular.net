@@ -243,6 +243,8 @@
         Title: Version 1 to 2
       - Url: nservicebus/upgrades/gateway-2to3
         Title: Version 2 to 3
+      - Url: nservicebus/upgrades/gateway-3to4
+        Title: Version 3 to 4
     - Title: Newtonsoft Serializer
       Articles:
       - Url: nservicebus/upgrades/newtonsoft-2to3
