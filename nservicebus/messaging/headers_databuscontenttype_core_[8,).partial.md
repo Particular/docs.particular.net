@@ -1,1 +1,1 @@
-The payload content-type is captured in the header `NServiceBus.DataBus.ContentType`.
+The payload content-type is captured in the header `NServiceBus.DataBusConfig.ContentType`.
