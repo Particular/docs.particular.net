@@ -24,6 +24,7 @@ When an exception is thrown during deserialization of data bus messages, additio
 - Once all endpoints are migrated and the in-flight messages are processed, remove the `BinarySerializer` as the additional deserializer.
 
 Note that the newly added header, `NServiceBus.DataBus.ContentType`, in NServiceBus version 8 determines which deserializer should be used. If the header is missing, the main deserializer will be used first, followed by the additional configured deserializers.
+Note that the newly added header, `NServiceBus.DataBusConfig.ContentType`, in NServiceBus version 8 determines which deserializer should be used. If the header is missing, the main deserializer will be used first, followed by the additional configured deserializers.
 
 ## Removal of dependency injection support for serializers
 
