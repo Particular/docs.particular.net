@@ -1,20 +1,22 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 
-internal class Program
+class Program
 {
+    static IHostApplicationLifetime lifetime;
+
     public static void Main(string[] args)
     {
-        CreateHostBuilder(args).Build().Run();
+        var host = CreateHostBuilder(args).Build();
+        lifetime = host.Services.GetRequiredService<IHostApplicationLifetime>();
+        host.Run();
     }
 
-    private static IHostBuilder CreateHostBuilder(string[] args)
+    static IHostBuilder CreateHostBuilder(string[] args)
     {
         #region generic-host-service-lifetime
 
@@ -50,7 +52,6 @@ internal class Program
         {
             var endpointConfiguration = new EndpointConfiguration("Samples.Hosting.GenericHost");
             endpointConfiguration.UseTransport(new LearningTransport());
-
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
             return endpointConfiguration;
@@ -67,21 +68,10 @@ internal class Program
 
     #region generic-host-critical-error
 
-    private static async Task OnCriticalError(ICriticalErrorContext context, CancellationToken cancellationToken)
+    static async Task OnCriticalError(ICriticalErrorContext context, CancellationToken cancellationToken)
     {
-        var fatalMessage =
-            $"The following critical error was encountered:{Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
-
-        EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
-
-        try
-        {
-            await context.Stop(cancellationToken).ConfigureAwait(false);
-        }
-        finally
-        {
-            Environment.FailFast(fatalMessage, context.Exception);
-        }
+        await context.Stop(cancellationToken).ConfigureAwait(false);
+        lifetime.StopApplication();
     }
 
     #endregion
