@@ -70,7 +70,7 @@ class Program
 
     static async Task OnCriticalError(ICriticalErrorContext context, CancellationToken cancellationToken)
     {
-        await context.Stop(cancellationToken).ConfigureAwait(false);
+        // Not needed to call await context.Stop(cancellationToken) when invoking lifetime.StopApplication();
         lifetime.StopApplication();
     }
 
