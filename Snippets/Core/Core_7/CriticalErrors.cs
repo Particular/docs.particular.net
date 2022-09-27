@@ -38,6 +38,15 @@ namespace Core7
 
         #endregion
 
+        async Task CriticalErrorHandler(ICriticalErrorContext criticalErrorContext)
+        {
+            #region StopEndpointInCriticalError
+
+            await criticalErrorContext.Stop();
+
+            #endregion
+        }
+
 
         void InvokeCriticalError(CriticalError criticalError, string errorMessage, Exception exception)
         {
