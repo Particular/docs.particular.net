@@ -64,7 +64,7 @@ NOTE: If ServiceControl is configured with a host other than `localhost` then ch
 
 Installation Steps:
 
- 1. Install the IIS [URL Rewrite extension](https://www.iis.net/downloads/microsoft/url-rewrite).
+ 1. Install IIS [URL Rewrite extension](https://www.iis.net/downloads/microsoft/url-rewrite).
  1. Go to the root directory for the website created in the basic configuration.
  1. Create a new subdirectory called `api`.
  1. Edit `app\js\app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`.
