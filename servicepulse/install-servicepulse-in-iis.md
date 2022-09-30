@@ -1,7 +1,7 @@
 ---
 title: Install ServicePulse in IIS
 summary: Describes how to manually install ServicePulse in IIS
-reviewed: 2019-12-25
+reviewed: 2022-09-29
 component: ServicePulse
 ---
 
@@ -56,11 +56,11 @@ NOTE: If SSL is to be applied to ServicePulse then ServiceControl also must be c
 
 ## Advanced configuration
 
-ServicePulse relies on the ServiceControl REST API. It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServiceControl website using the Microsoft [URL Rewrite extenstion](https://www.iis.net/downloads/microsoft/url-rewrite) IIS extension.
+ServicePulse relies on the ServiceControl REST API. It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServiceControl website using the Microsoft [URL Rewrite extension](https://www.iis.net/downloads/microsoft/url-rewrite) IIS extension.
 
 This is useful to lock down access to ServicePulse or to expose the website over a single port.
 
-NOTE: If ServiceControl is configured with a host other than `localhost` then change the hostname value back to `localhost`.
+NOTE: If ServiceControl is configured with a hostname other than `localhost` then change the hostname value back to `localhost`.
 
 Installation Steps:
 
@@ -109,13 +109,14 @@ After executing the steps outlined above, ServicePulse requires authentication b
 snippet: RoleBasedSecurity
 
 There are three roles defined:
+
  * `SPReaders` members can read all the content but cannot trigger any actions
  * `SPFailedMessages` members can manage the failed messages (retry, delete, groups etc.)
  * `SPMonitoring` members can manage monitoring (e.g. enabling/disabling heartbeat monitoring for a particular endpoint)
 
 ### ServiceControl monitoring
 
-When using monitoring capabilities the following steps should be followed to create a reverse proxy to access the monitoring API from IIS.
+When using [monitoring capabilities](/monitoring) the following steps should be followed to create a reverse proxy to access the monitoring API from IIS.
 
 Installation steps:
 
