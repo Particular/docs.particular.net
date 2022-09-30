@@ -1,7 +1,7 @@
 ---
 title: File Share Data Bus
 summary: An implementation of data bus using file shares
-reviewed: 2020-01-03
+reviewed: 2022-09-30
 component: FileShareDataBus
 related:
  - samples/file-share-databus
