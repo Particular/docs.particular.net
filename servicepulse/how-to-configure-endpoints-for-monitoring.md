@@ -1,7 +1,7 @@
 ---
 title: Configuring endpoints for monitoring
 summary: Steps to configure endpoints to be monitored by ServicePulse
-reviewed: 2020-01-28
+reviewed: 2022-09-30
 component: ServicePulse
 related:
 - servicecontrol/plugins
