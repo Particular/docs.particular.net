@@ -77,15 +77,18 @@
             #region register-publisher
 
             var msmq = new BridgeTransport(new MsmqTransport());
-            var asb = new BridgeTransport(new AzureServiceBusTransport(connectionString));
-
             msmq.HasEndpoint("Sales");
             msmq.HasEndpoint("Finance.Billing");
+
+            var asb = new BridgeTransport(new AzureServiceBusTransport(connectionString));
+            asb.HasEndpoint("Shipping");
 
             var invoicing = new BridgeEndpoint("Finance.Invoicing");
             invoicing.RegisterPublisher("Messages.OrderPlaced", "Sales");
             invoicing.RegisterPublisher(typeof(OrderBilled), "Finance.Billing");
             invoicing.RegisterPublisher<OrderShipped>("Shipping");
+
+            asb.HasEndpoint(invoicing);
 
             #endregion
         }
