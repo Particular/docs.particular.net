@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Elsa" Version="2.3.0" />
-    <PackageReference Include="NServiceBus" Version="7.6.0" />
+    <PackageReference Include="Elsa" Version="2.*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
 
 </Project>

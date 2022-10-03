@@ -1,7 +1,7 @@
 ---
 title: Install ServicePulse in IIS
 summary: Describes how to manually install ServicePulse in IIS
-reviewed: 2022-09-21
+reviewed: 2022-09-29
 component: ServicePulse
 ---
 
@@ -60,7 +60,7 @@ ServicePulse relies on the ServiceControl REST API. It is possible to add a [rev
 
 This is useful to lock down access to ServicePulse or to expose the website over a single port.
 
-NOTE: If ServiceControl is configured with a host other than `localhost` then change the hostname value back to `localhost`.
+NOTE: If ServiceControl is configured with a hostname other than `localhost` then change the hostname value back to `localhost`.
 
 Installation Steps:
 
@@ -109,13 +109,14 @@ After executing the steps outlined above, ServicePulse requires authentication b
 snippet: RoleBasedSecurity
 
 There are three roles defined:
+
  * `SPReaders` members can read all the content but cannot trigger any actions.
  * `SPFailedMessages` members can manage the failed messages (retry, delete, groups etc.).
  * `SPMonitoring` members can manage monitoring (e.g. enabling/disabling heartbeat monitoring for a particular endpoint).
 
 ### ServiceControl monitoring
 
-When using monitoring capabilities the following steps should be followed to create a reverse proxy to access the monitoring API from IIS.
+When using [monitoring capabilities](/monitoring) the following steps should be followed to create a reverse proxy to access the monitoring API from IIS.
 
 Installation steps:
 

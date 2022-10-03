@@ -9,7 +9,7 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-NServiceBus no longer provides adapters for external dependency injection containers. Instead, NServiceBus version 8 provides the ability to directly use any container that conforms to the `Microsoft.Extensions.DependencyInjection` container abstraction.
+NServiceBus no longer provides adapters for external dependency injection containers. Instead, NServiceBus version 8 provides the ability to use any container that conforms to the `Microsoft.Extensions.DependencyInjection` abstraction.
 
 The following adapter packages will no longer be provided:
 
@@ -19,9 +19,9 @@ The following adapter packages will no longer be provided:
 * [Ninject](/nservicebus/dependency-injection/ninject.md)
 * [Unity](/nservicebus/dependency-injection/unity.md)
 
-Instead of the container adapter packages, use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package. To use a third party dependency injection container use the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode). See the [migrating to the Generic Host](#microsoft-generic-host) or [migrating to externally managed mode](#externally-managed-container-mode) sections for further information.
+Instead of the container adapter packages, use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package. To use a third party dependency injection container refer to the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode). See the [migrating to the Generic Host](#microsoft-generic-host) or [migrating to externally managed mode](#externally-managed-container-mode) sections for further information.
 
-## Behavior changes
+## Behavioral changes
 
 The behavior has been aligned with the expectations of the `Microsoft.Extensions.DependencyInjection` package. The following changes have been introduced:
 
@@ -50,14 +50,14 @@ NServiceBus `DependencyLifecycle` maps directly to ServiceDescriptor `ServiceLif
 
 For example, this statement:
 
-```
+```csharp
 endpointConfiguration.RegisterComponents(s =>
     s.ConfigureComponent<MyService>(DependencyLifecyle.InstancePerCall));
 ```
 
 may be replaced with:
 
-```
+```csharp
 endpointConfiguration.RegisterComponents(s => s.AddTransient<MyService>());
 ```
 
@@ -187,7 +187,6 @@ container.Populate(serviceCollection);
 var endpointInstance = await startableEndpoint.Start(container.GetInstance<IServiceProvider>());
 ```
 
-
 #### Castle Windsor
 
 The following snippet configures NServiceBus to use Castle Windsor as its dependency injection container. This requires the `Castle.Windsor.MsDependencyInjection` NuGet package.
@@ -213,7 +212,6 @@ var container = new UnityContainer();
 var serviceProvider = container.BuildServiceProvider(serviceCollection);
 var endpointInstance = await startableEndpoint.Start(serviceProvider);
 ```
-
 
 #### Spring
 

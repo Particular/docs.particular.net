@@ -15,7 +15,7 @@ This sample shows the [default logging functionality](/nservicebus/logging/#defa
 
 ## Verifying that the sample works correctly
 
-Inside the `[path_to_the_sample]\Core_6\Sample\bin\[Debug/Release]` directory should be created a log file called `nsb_log_[current_date]_0`.
+Inside the `[path_to_the_sample]\bin\[Debug/Release]` directory should be created a log file called `nsb_log_[current_date]_0`.
 
 
 ### Enabling Logging

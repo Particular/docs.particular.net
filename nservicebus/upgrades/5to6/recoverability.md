@@ -1,7 +1,7 @@
 ---
 title: Recoverability Changes in Version 6
 summary: Describes changes to the recoverability feature in NServiceBus version 6
-reviewed: 2022-09-21
+reviewed: 2022-09-30
 component: Core
 related:
  - nservicebus/upgrades/5to6
@@ -46,7 +46,7 @@ The API enables setting all automatic retry parameters that were previously avai
 
 ## Disabling immediate retries
 
-The `TransportConfig` API is obsolete and no longer used to disable immediate retries. Equivalent behavior can be achieved through the API by configuring immediate retries:
+The `TransportConfig` API is obsolete and no longer used to disable immediate retries. Equivalent behavior can be achieved through the code-first API by configuring immediate retries:
 
 ```csharp
 // For NServiceBus version 6.x
@@ -74,7 +74,7 @@ class ConfigTransport :
 
 ## Disabling delayed retries
 
-The `SecondLevelRetries` feature is not used to disable delayed retries. Equivalent behavior can be achieved through the API by configuring delayed retries:
+The `SecondLevelRetries` feature is not used to disable delayed retries. Equivalent behavior can be achieved through the code-first API by configuring delayed retries:
 
 ```csharp
 // For NServiceBus version 6.x

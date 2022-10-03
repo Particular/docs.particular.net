@@ -1,6 +1,6 @@
 ---
 title: Simple MSMQ Transport usage
-reviewed: 2022-09-21
+reviewed: 2022-09-30
 component: MsmqTransport
 related:
 - transports/msmq

@@ -14,5 +14,10 @@ namespace NServiceBus.Activities
       get;
       set;
     }
+
+    public bool? Compare(IBookmark bookmark)
+    {
+      throw new System.NotImplementedException();
+    }
   }
 }

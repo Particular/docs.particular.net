@@ -3,7 +3,7 @@ title: Message forwarding
 summary: Describes how to set up message forwarding
 component: Core
 reviewed: 2020-11-02
-related: 
+related:
  - nservicebus/operations/auditing
 ---
 
@@ -13,9 +13,9 @@ Use this feature to forward successfully processed messages from an endpoint to 
 
 Forwarding should not be used to abort message processing. Messages cannot be forwarded to the `error` queue as the required metadata for failed messages would not be present in the forwarded message's metadata.  Attempting to use forwarding as a mechanism to abort processing can result in partial updates.
 
-To abort processing throw an exception in the message handler. This ensures that no ghost message are transmitted and any transactional state changes are rolled back. 
+To abort processing throw an exception in the message handler. This ensures that no ghost message are transmitted and any transactional state changes are rolled back.
 
-To prevent unnessary retries declare an [unrecoreable exception](/nservicebus/recoverability/#unrecoverable-exceptions) or create a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md).
+To prevent unnecessary retries declare an [unrecoverable exception](/nservicebus/recoverability/#unrecoverable-exceptions) or create a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md).
 
 ## Auditing vs. Forwarding
 

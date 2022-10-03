@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence Saga Rename
 summary: Renaming a saga that is stored in the SQL Persistence
-reviewed: 2022-09-21
+reviewed: 2022-09-30
 component: SqlPersistence
 related:
  - nservicebus/sagas

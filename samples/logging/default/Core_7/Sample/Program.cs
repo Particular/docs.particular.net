@@ -8,9 +8,19 @@ class Program
     {
         Console.Title = "Samples.Logging.Default";
         #region ConfigureLogging
+
+        // No config is required in version 5 and enabled by default but when overriding logging
+        // ensure this happens before Endpoint.Start or creating EndpointConfiguration
+        var defaultFactory = NServiceBus.Logging.LogManager.Use<NServiceBus.Logging.DefaultFactory>();
+
+        // The default logging directory is HttpContext.Current.Server.MapPath("~/App_Data/") for websites
+        // and AppDomain.CurrentDomain.BaseDirectory for all other processes.
+        defaultFactory.Directory(".");
+
+        // Default is LogLevel.Info
+        defaultFactory.Level(NServiceBus.Logging.LogLevel.Debug);
+
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.Default");
-        // No config is required in version 5 and
-        // higher since logging is enabled by default
         #endregion
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

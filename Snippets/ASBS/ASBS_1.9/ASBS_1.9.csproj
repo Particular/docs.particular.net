@@ -5,6 +5,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Testing" Version="7.*" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="1.9.*" />
   </ItemGroup>
 </Project>

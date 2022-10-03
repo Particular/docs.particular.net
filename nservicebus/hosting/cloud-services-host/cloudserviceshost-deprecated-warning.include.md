@@ -1,1 +1,0 @@
-WARNING: The NServiceBus Azure Host package is deprecated as of Version 9 as Microft has deprecated the Cloud Service hosting model. Users are recommended to switch to a different cloud hosting model.
