@@ -14,12 +14,12 @@ Ensure that MSMQ has been installed.
 
 ## Code walk-through
 
-This sample shows basic usage of MSMQ as a transport for NServiceBus. The application sends an empty message to itself, via the MSMQ transport, and writes to the console when the message is received.
+This sample shows basic usage of MSMQ as a transport for NServiceBus. The application sends an empty message to itself and writes to the console when the message is received.
 
 
 ### Configuration
 
 snippet: ConfigureMsmqEndpoint
 
-Other settings such as DeadLetterQueue, Journal behavior, etc., can also be configured via the [connection string](/transports/msmq/connection-strings.md).
+Other settings such as usage of dead-letter queues, journaling, etc., can be configured using the [configuration API](/transports/msmq/transportconfig.md).
 

@@ -18,5 +18,4 @@ related:
 The following actions are required in order to monitor endpoints in ServicePulse:
 
 1. Configure the [NServiceBus.Heartbeat](/monitoring/heartbeats/install-plugin.md) and/or [NServiceBus.CustomChecks](/monitoring/custom-checks/install-plugin.md) packages
-1. Enable auditing for all monitored endpoints (see [auditing with NServiceBus](/nservicebus/operations/auditing.md)).
-1. For all endpoints, forward audit data to a single audit and error queue that is monitored by a ServiceControl instance.
+1. Enable auditing for all monitored endpoints (see [auditing with NServiceBus](/nservicebus/operations/auditing.md)). Forward audit data to a single audit and error queue that is monitored by a ServiceControl instance.
