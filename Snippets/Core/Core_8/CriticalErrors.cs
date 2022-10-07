@@ -39,6 +39,14 @@ namespace Core8
 
         #endregion
 
+        async Task CriticalErrorHandler(ICriticalErrorContext criticalErrorContext, CancellationToken cancellationToken)
+        {
+            #region StopEndpointInCriticalError
+
+            await criticalErrorContext.Stop(cancellationToken);
+
+            #endregion
+        }
 
         void InvokeCriticalError(CriticalError criticalError, string errorMessage, Exception exception)
         {

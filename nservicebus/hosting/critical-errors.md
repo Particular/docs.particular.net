@@ -31,11 +31,18 @@ Define a custom handler using the following code.
 
 snippet: DefiningCustomHostErrorHandlingAction
 
-### Terminating the process
+### Stopping the endpoint
 
-It is often unknown if the issue is recoverable when a critical error occurs. A sound strategy is to terminate the process when a critical error occurs and rely on the process hosting environment to restart the process as a recovery mechanism, resulting in a resilient way to deal with critical errors.
+It is often unknown if the issue is recoverable when a critical error occurs. A sound strategy is to terminate the process (e.g. via `Environment.FailFast` or `IHostApplicationLifetime.Stop`) when a critical error occurs and rely on the process hosting environment to restart the process as a recovery mechanism, resulting in a resilient way to deal with critical errors.
 
-However, this strategy only works when the endpoint instance is hosted in isolation and does not have another component. For example, when co-hosting NServiceBus with a web-service or website, terminating the process would result in these components becoming unavailable to users or other systems.
+Before terminating the process, the NServiceBus endpoint can attempt a graceful shutdown which can be useful in non-transactional processing environments:
+
+snippet: StopEndpointInCriticalError
+
+Note: [The Microsoft Generic Host's](/nservicebus/hosting/extensions-hosting.md) `IHostApplicationLifetime.Stop` method also stops the NServiceBus endpoint gracefully.
+
+Warn: Calling `criticalErrorContext.Stop` without terminating the host process will only stop the NServiceBus endpoint without affecting the host process and other components running within the same process. It is generally recommended to restart the process after stopping the endpoint.
+
 
 ### Host OS recoverability
 
