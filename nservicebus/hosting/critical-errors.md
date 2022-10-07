@@ -35,7 +35,7 @@ snippet: DefiningCustomHostErrorHandlingAction
 
 It is often unknown if the issue is recoverable when a critical error occurs. A sound strategy is to terminate the process (e.g. via `Environment.FailFast` or `IHostApplicationLifetime.Stop`) when a critical error occurs and rely on the process hosting environment to restart the process as a recovery mechanism, resulting in a resilient way to deal with critical errors.
 
-Before terminating the process, the NServiceBus endpoint can attempt a graceful shutdown:
+Before terminating the process, the NServiceBus endpoint can attempt a graceful shutdown which can be useful in non-transactional processing environments:
 
 snippet: StopEndpointInCriticalError
 
