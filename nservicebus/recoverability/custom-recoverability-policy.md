@@ -2,7 +2,7 @@
 title: Custom Recoverability Policy
 summary: Shows how to take full control over Recoverability by implementing a Recoverability Policy
 component: Core
-reviewed: 2020-01-29
+reviewed: 2022-10-03
 versions: '[6.0,)'
 related:
  - samples/faulttolerance

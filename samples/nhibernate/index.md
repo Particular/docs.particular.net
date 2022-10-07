@@ -1,5 +1,5 @@
 ---
 title: NHibernate Persistence Samples
-reviewed: 2020-02-03
+reviewed: 2022-10-07
 component: nhibernate
 ---

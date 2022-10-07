@@ -1,6 +1,6 @@
 ---
 title: Dependency Injection Samples
-reviewed: 2020-02-03
+reviewed: 2022-10-07
 related:
  - nservicebus/dependency-injection
 redirects:

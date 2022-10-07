@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Scripting
 summary: Sample code and scripts to facilitate deployment and operational actions against MSMQ.
-reviewed: 2020-01-30
+reviewed: 2022-10-07
 component: MsmqTransport
 redirects:
  - nservicebus/msmq/operations-scripting

@@ -1,7 +1,7 @@
 ---
 title: SQL Server transport
 summary: An overview of the NServiceBus SQL Server transport.
-reviewed: 2020-01-31
+reviewed: 2022-10-07
 component: SqlTransport
 redirects:
  - nservicebus/sqlserver/usage

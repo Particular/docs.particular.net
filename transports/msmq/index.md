@@ -7,7 +7,7 @@ related:
  - samples/msmq/persistence
  - samples/msmq/dlq-customcheck
  - samples/msmq/msmqtosqlrelay
-reviewed: 2020-01-30
+reviewed: 2022-10-07
 redirects:
  - nservicebus/msmq-information
  - nservicebus/msmq
