@@ -25,7 +25,7 @@ To install the tool:
 To update the tool to the latest version, execute the following command in a terminal window:
 
 ```shell
-dotnet tool update -g Particular.ThroughputTool --add-source https://www.myget.org/F/particular/api/v3/index.json
+dotnet tool update -g Particular.EndpointThroughputCounter --add-source https://www.myget.org/F/particular/api/v3/index.json
 ```
 
 ### Uninstalling
