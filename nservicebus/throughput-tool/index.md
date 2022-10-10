@@ -41,7 +41,8 @@ dotnet tool uninstall -g Particular.EndpointThroughputCounter
 First, determine which method of data collection to use:
 
 * **(Preferred) [ServiceControl data collection](#run-using-servicecontrol-data)**: Use when the system employs [monitoring performance metrics in ServicePulse](/monitoring/metrics/in-servicepulse.md) and all endpoints have the [monitoring plug-in](/monitoring/metrics/install-plugin.md) installed.
-* **[Azure Service Bus](#run-using-azure-service-bus):**: Use for Azure Service Bus systems.
+* **[Azure Service Bus](#run-using-azure-service-bus)**: Use for Azure Service Bus systems.
+* **[Amazon SQS](#run-using-amazon-sqs)**: use for Amazon SQS systems.
 * **[RabbitMQ](#run-using-rabbitmq)**: Use for RabbitMQ systems when ServiceControl is unavailable.
 * **[SQL Transport](#run-using-sql-transport)**: Use for SQL transport systems when ServiceControl is unavailable.
 
@@ -99,6 +100,33 @@ All options are required:
 | Option | Description |
 |-|-|
 | <nobr>`--resourceId`</nobr> | The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above. |
+
+## Run using Amazon SQS
+
+Collecting metrics for SQS relies upon [AWSSDK.SQS](https://www.nuget.org/packages/AWSSDK.SQS) to discover queue names and [AWSSDK.CloudWatch](https://www.nuget.org/packages/AWSSDK.CloudWatch) to gather per-queue metrics.
+
+Authentication to AWS requires a [AWS credentials profile](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/keys-profiles-credentials.html), or credentials can be created from the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables, if both are not empty. The tool uses default constructors for the SQS and CloudWatch clients and follows the [credential and profile resolution](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/creds-assign.html) rules determined by the AWS SDK.
+
+The AWS region can be specified either by command-line parameter or by the `AWS_REGION` environment variable.
+
+Execute the tool as shown in this example:
+
+```shell
+throughput-counter sqs
+```
+
+The tool will fetch all queue names, query CloudWatch for metrics for each queue, and then generate the report file.
+
+Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 30 days worth of data at once, which means that the report will be generated without delay. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
+
+### Options
+
+All options for collecting SQS metrics are optional:
+
+| Option | Description |
+|-|-|
+| <nobr>`--profile`</nobr> | The name of a local [AWS credentials profile](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/keys-profiles-credentials.html). If not included, credentials can be read from the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. |
+| <nobr>`--region`</nobr> | The AWS region to use when accessing AWS services. If not provided, the default profile value or `AWS_REGION` environment variable will be used. |
 
 ## Run using RabbitMQ
 
