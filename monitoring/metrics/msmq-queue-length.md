@@ -1,12 +1,12 @@
 ---
 title: Setup Queue Length Metrics Reporting for the MSMQ Transport
-reviewed: 2020-02-10
+reviewed: 2022-10-12
 component: MetricsServiceControl
 related:
   - samples/logging/metrics  
 ---
 
-The component `NServiceBus.Metrics.ServiceControl.Msmq` monitors endpoints' queue length and passes that data to `NServiceBus.Metrics.ServiceControl` which in turn sends it to an instance of the `ServiceControl.Monitoring` service.
+The `NServiceBus.Metrics.ServiceControl.Msmq` component monitor endpoints' queue length and passes that data to `NServiceBus.Metrics.ServiceControl` which in turn sends it to an instance of the `ServiceControl.Monitoring` service.
 
 ```mermaid
 graph LR
