@@ -2,7 +2,7 @@
 title: SQL Gateway Storage
 summary: SQL deduplication storage for the gateway component
 component: GatewaySql
-reviewed: 2020-02-05
+reviewed: 2022-10-12
 related:
  - samples/gateway
 ---
@@ -19,7 +19,7 @@ snippet: DefaultUsage
 
 ### Customizing schema and table name
 
-The following code shows how to customize the schema name and table name:
+The following code shows how to customize the schema and table name:
 
 snippet: CustomizeSchemaAndTableName
 
