@@ -801,8 +801,6 @@ The code used by snippets and samples is compiled on the build server. The compi
 
 ### NuGet package references
 
-Docs assumes all dependencies follow SemVer.
-
 #### Use current minor
 
 NuGet package references should use the the most greedy wildcard that is safe for that reference. In most cases that is "current minor":
