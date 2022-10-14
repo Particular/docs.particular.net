@@ -29,7 +29,7 @@ az servicebus queue create --name ASBWorkerEndpoint --namespace-name <asb-namesp
 
 TODO: Create empty bundle to satisfy dependencies
 
-### Connection string
+### Configure Connection string
 
 To use the sample, a valid Azure Service Bus connection string must be provided in the `local.settings.json` file.
 
