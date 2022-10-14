@@ -30,7 +30,9 @@ az servicebus queue create --name ASBTriggerQueue --namespace-name <asb-namespac
 ```
 ### Manually create bundle topic
 
-TODO: Create empty bundle to satisfy dependencies
+```
+az servicebus topic create --name bundle-1 --namespace-name <asb-namespace-to-use> --resource-group <resource-group-containing-namespace>
+```
 
 ### Configure Connection string
 
