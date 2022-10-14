@@ -15,6 +15,8 @@ downloadbutton
 
 ## Prerequisites
 
+### Manually create queue
+
 Unlike a traditional NServiceBus endpoint, an endpoint hosted in Azure Functions cannot create its own input queue; the queue must be created elsewhere, for example in the Azure portal or with the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli). In this sample, the queue name is `ASBWorkerEndpoint`.
 
 To create the queue with the Azure CLI, execute the following Azure CLI command:
@@ -22,6 +24,12 @@ To create the queue with the Azure CLI, execute the following Azure CLI command:
 ```
 az servicebus queue create --name ASBWorkerEndpoint --namespace-name <asb-namespace-to-use> --resource-group <resource-group-containing-namespace>
 ```
+
+### Manually create bundle topic
+
+TODO: Create empty bundle to satisfy dependencies
+
+### Connection string
 
 To use the sample, a valid Azure Service Bus connection string must be provided in the `local.settings.json` file.
 
