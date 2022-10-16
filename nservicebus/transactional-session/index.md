@@ -12,10 +12,10 @@ related:
 
 Consider an ASP.NET Core controller that creates a user in the business database and publishes a `UserCreated` event. If a failure occurs during the execution of the request, two scenarios may occur, depending on the order of operations.
 
-1. **Phantom record**: The controller creates the `User` in the database first, then publishes the `UserCreated` event. If a failure occurs between these two operations:
+1. The controller creates the `User` in the database first, then publishes the `UserCreated` event. If a failure occurs between these two operations:
     * The user is created in the database, but the `UserCreated` event is not published.
-    * This results is a user in the database, known as a phantom record, which is never announced to the rest of the system.
-2. **Ghost message**: The controller publishes the `UserCreated` event first, then creates the user in the database. If a failure occurs between these two operations:
+    * This results in a user in the database which is never announced to the rest of the system.
+2. The controller publishes the `UserCreated` event first, then creates the user in the database. If a failure occurs between these two operations:
     * The `UserCreated` event is published, but the user is not created in the database.
     * The rest of the system is notified about the creation of the user, but the user record is never created. This inconsistency causes errors, as parts of the system expect the record to exist in the database.
 
@@ -103,7 +103,7 @@ To guarantee atomic consistency across database and message operations, the tran
 
 NOTE: The outbox has to be [enabled explicitly](/nservicebus/outbox/#enabling-the-outbox) on the endpoint configuration.
 
-With the Outbox disabled, database and message operations are not applied until the session is committed. All database operations share the same database transaction and are committed first. When the database operations complete successfully, the message operations are [batch-dispatched by the transport](/nservicebus/messaging/batched-dispatch.md). The message operations and the database changes are not guaranteed to be atomic. This might lead to phantom records or ghost messages in case of a failure during the commit phase.
+With the Outbox disabled, database and message operations are not applied until the session is committed. All database operations share the same database transaction and are committed first. When the database operations complete successfully, the message operations are [batch-dispatched by the transport](/nservicebus/messaging/batched-dispatch.md). The message operations and the database changes are not guaranteed to be atomic. This might lead to inconsistencies in case of a failure during the commit phase.
 
 ## How it works
 
