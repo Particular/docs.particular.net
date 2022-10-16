@@ -93,7 +93,7 @@ In production, the creation of queues, database tables, and other tables should 
 
 :heavy_check_mark: **DO use the [Outbox feature](/nservicebus/outbox/) to provide consistency between business data modifications and messaging operations**
 
-Because message queues generally do not support any form of transactions, message handlers that modify business data in a database run into problems when the messages that are sent become inconsistent with the changes made to business data, resulting in ghost messages or phantom records.
+Because message queues generally do not support any form of transactions, message handlers that modify business data in a database run into problems when the messages that are sent become inconsistent with the changes made to business data.
 
 Using the outbox guarantees exactly-once message processing by taking advantage of the local database transaction used to store business data.
 
