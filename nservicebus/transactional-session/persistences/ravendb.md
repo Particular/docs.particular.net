@@ -6,13 +6,14 @@ reviewed: 2022-09-12
 redirects:
 related:
 - persistence/ravendb
+- nservicebus/transactional-session
 ---
 
-In order to use the TransactionalSession feature with RavenDB persistence, add a reference to the `NServiceBus.RavenDB.TransactionalSession` NuGet package.
+In order to use the [transactional session feature](/nservicebus/transactional-session/) with RavenDB persistence, add a reference to the `NServiceBus.RavenDB.TransactionalSession` NuGet package.
 
 ## Configuration
 
-To enable the TransactionalSession feature:
+To enable the transactional session feature:
 
 snippet: enabling-transactional-session-ravendb
 

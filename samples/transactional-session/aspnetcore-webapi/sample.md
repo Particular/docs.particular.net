@@ -11,12 +11,12 @@ related:
 
 include: webhost-warning
 
-This sample shows how to send messages and modify data in a database atomically within the scope of a webrequest using the `NServiceBus.TransactionalSession` package in conjunction with ASP.NET Core. The operations are triggered by an incoming HTTP request to ASP.NET Core which will manage the `ITransactionalSession` lifetime inside a request middleware.
+This sample shows how to send messages and modify data in a database atomically within the scope of a web request using the `NServiceBus.TransactionalSession` package in conjunction with ASP.NET Core. The operations are triggered by an incoming HTTP request to ASP.NET Core which will manage the `ITransactionalSession` lifetime inside a request middleware.
 
 ## Prerequisites
 
 - Visual Studio 2019
-- LocalDB support. A custom connection string needs to be configured otherwise.
+- LocalDB support. Alternatively, a custom connection string can be provided
 
 ## Running the solution
 
@@ -32,13 +32,13 @@ The endpoint is configured using the `UseNServiceBus` extension method:
 
 snippet: txsession-nsb-configuration
 
-The transactional session is enabled via the `endpointConfiguration.EnableTransactionalSession()` method call. Note that the transactional session feature requires [the Outbox](/nservicebus/outbox/) to ensure that operations across the storage and the message broker are atomic.
+The transactional session is enabled via the `endpointConfiguration.EnableTransactionalSession()` method call. Note that the transactional session feature requires [the outbox](/nservicebus/outbox/) to be configured in order to ensure that operations across the storage and the message broker are atomic.
 
 ASP.NET Core uses `ConfigureWebHostDefaults` for configuration and a custom middleware is registered for the `ITransactionalSession` lifetime management:
 
 snippet: txsession-web-configuration
 
-Entity Framework support is configured by this registration for the `DbContext`:
+Entity Framework support is configured by registering the `DbContext`:
 
 snippet: txsession-ef-configuration
 
@@ -46,7 +46,7 @@ The registration ensures that the `MyDataContext` type is built using the same s
 
 ## Using the session
 
-The message session is injected into `SendMessageController` via constructor injection along with the entity framework database context. Message operations executed on the `ITransactionalSession` API are transactionally consistent with the database operations performed on the `MyDataContext`.
+The message session is injected into `SendMessageController` via constructor injection along with the Entity Framework database context. Message operations executed on the `ITransactionalSession` API are transactionally consistent with the database operations performed on the `MyDataContext`.
 
 snippet: txsession-controller
 
@@ -63,7 +63,7 @@ sequenceDiagram
     activate Middleware
     Middleware->>TransactionalSession: Open
     activate TransactionalSession
-    TransactionalSession-->>Middleware: 
+    TransactionalSession-->>Middleware:
     Middleware->>Controller: next()
     activate Controller
     Controller->>TransactionalSession: Send/Publish...
@@ -71,7 +71,7 @@ sequenceDiagram
     deactivate Controller
     Middleware->>TransactionalSession: Commit
     deactivate TransactionalSession
-    Middleware-->>User: 
+    Middleware-->>User:
     deactivate Middleware
 ```
 

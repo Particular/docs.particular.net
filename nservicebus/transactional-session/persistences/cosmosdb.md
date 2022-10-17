@@ -1,18 +1,19 @@
 ---
 title: Transactional Session with CosmosDB Persistence
-summary: How to configure the transactional session with CosmosDB Persistence
+summary: How to configure a transactional session with CosmosDB Persistence
 component: TransactionalSession.CosmosDB
 reviewed: 2022-09-12
 redirects:
 related:
 - persistence/cosmosdb
+- nservicebus/transactional-session
 ---
 
-In order to use the TransactionalSession feature with CosmosDB Persistence, add a reference to the `NServiceBus.Persistence.CosmosDB.TransactionalSession` NuGet package.
+In order to use the [transactional session feature](/nservicebus/transactional-session/) with CosmosDB Persistence, add a reference to the `NServiceBus.Persistence.CosmosDB.TransactionalSession` NuGet package.
 
 ## Configuration
 
-To enable the TransactionalSession feature:
+To enable the transactional session feature:
 
 snippet: enabling-transactional-session-cosmos
 
@@ -24,7 +25,7 @@ snippet: open-transactional-session-cosmos
 
 ### Custom container
 
-By default, the transactional session uses the [configured default container](/persistence/cosmosdb/#usage-customizing-the-container-used). The `CosmosOpenSessionOptions` can be configured with container information to be used for this transaction:
+By default, the transactional session uses the [configured default container](/persistence/cosmosdb/#usage-customizing-the-container-used). The `CosmosOpenSessionOptions` instance can be configured with container information to be used for this transaction:
 
 snippet: open-transactional-session-cosmos-container
 

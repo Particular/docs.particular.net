@@ -18,10 +18,9 @@ snippet: asp-net-minimal-host-endpoint
 
 ## Generic Host
 
-Starting with ASP.NET 3, the [NServiceBus Generic Host support](/nservicebus/hosting/extensions-hosting.md) provides easy integration with ASP.NET Core applications:
+Starting with ASP.NET 3, the [NServiceBus Generic Host support](/nservicebus/hosting/extensions-hosting.md) provides integration with ASP.NET Core applications:
 
 snippet: asp-net-generic-host-endpoint
-
 
 ## Dependency injection
 

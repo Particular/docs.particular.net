@@ -6,13 +6,14 @@ reviewed: 2022-09-12
 redirects:
 related:
 - persistence/nhibernate
+- nservicebus/transactional-session
 ---
 
-In order to use the TransactionalSession feature with NHibernate Persistence, add a reference to the `NServiceBus.NHibernate.TransactionalSession` NuGet package.
+In order to use the [transactional session feature](/nservicebus/transactional-session/) with NHibernate Persistence, add a reference to the `NServiceBus.NHibernate.TransactionalSession` NuGet package.
 
 ## Configuration
 
-To enable the TransactionalSession feature:
+To enable the transactional session feature:
 
 snippet: enabling-transactional-session-nhibernate
 

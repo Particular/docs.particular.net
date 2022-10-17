@@ -8,6 +8,8 @@ related:
 - samples/transactional-session/cosmosdb
 ---
 
+This article describes how to achieve consistency when modifying business data and sending messages, similar to the [outbox](/nservicebus/outbox), outside the context of an NServiceBus message handler.
+
 ## The consistency problem
 
 Consider an ASP.NET Core controller that creates a user in the business database and publishes a `UserCreated` event. If a failure occurs during the execution of the request, two scenarios may occur, depending on the order of operations.
@@ -19,34 +21,32 @@ Consider an ASP.NET Core controller that creates a user in the business database
     * The `UserCreated` event is published, but the user is not created in the database.
     * The rest of the system is notified about the creation of the user, but the user record is never created. This inconsistency causes errors, as parts of the system expect the record to exist in the database.
 
-In the context of a message handler, the [Outbox](/nservicebus/outbox) feature can mitigate this problem. However, such scenarios remain unsolved outside the context of a message handler.
+In the context of a message handler, the [NServiceBus Outbox](/nservicebus/outbox) feature can mitigate this problem. However, these scenarios require that the operations occur within a message handler.
 
-A common technique to address this problem on the client side is to defer all operations to a message handler. This entails sending a message to create the user and publishing the `UserCreated`-event from within a message handler.
-However, there are scenarios where this approach is not feasible:
+A common technique to address this problem on the client side is to defer all operations to a message handler. This entails sending a message to create the user and publishing the `UserCreated`-event from within a message handler. However, this approach is not always feasible. Here are two examples:
 
-* Existing applications are likely to have non-trivial processing logic in controllers. Moving it all into dedicated message handlers requires significant effort.
+* Existing applications often have non-trivial processing logic in controllers. Moving all of it into dedicated message handlers could entail significant effort.
 * Processing logic in the controller may assume specific side effects to occur within the scope of the request, e.g., validation, notifications, or error handling. The logic may, therefore, not be ready for the asynchronous, fire-and-forget approach required when offloading work into message handlers.
-* There may be other scenarios in which it's not feasible to delay the database operation.
 
-The `TransactionalSession`, when combined with [Outbox](/nservicebus/outbox), solves this problem for messages sent and/or published outside the context of a message handler.
+The `TransactionalSession`, when combined with [outbox](/nservicebus/outbox), solves this problem for messages sent and/or published outside the context of a message handler.
 
 ## Usage
 
-To use the transactional session, first, install the [transactional session package for a supported persister](/nservicebus/transactional-session/persistences) in the project.
+To use the transactional session, first install the [transactional session package for a supported persister](/nservicebus/transactional-session/persistences) in the project.
 
-Then, enable the session integration on the endpoint as follows:
+Next, enable the session integration on the endpoint as follows:
 
 snippet: enabling-transactional-session
 
-To ensure atomic consistency across database and message operations, enable the [Outbox](/nservicebus/outbox):
+To ensure atomic consistency across database and message operations, enable the [outbox](/nservicebus/outbox):
 
 snippet: enabling-outbox
 
-The transactional session can be resolved from the container, and needs to be opened:
+The transactional session can be resolved from the container, and must be opened:
 
 snippet: opening-transactional-session
 
-Sending messages in an atomic manner is done through the `ITransactionalSession`:
+Sending messages in an atomic manner is done through the `ITransactionalSession` instance:
 
 snippet: sending-transactional-session
 
@@ -56,15 +56,15 @@ Once all the operations that are part of the atomic request have been executed, 
 
 snippet: committing-transactional-session
 
-Disposing the transactional session, without committing, will roll back any changes that were made.
+Disposing the transactional session without committing will roll back any changes that were made.
 
-### Advanced
+### Advanced configuration
 
 #### Maximum commit duration
 
-The maximum commit duration defaults to `TimeSpan.FromSeconds(15)`.
+The maximum commit duration limits the amount of time it can take for a transaction to commit the changes before the operation times out. The value can be configured when opening the session.
 
-The maximum commit duration limits the amount of time it can take for a transaction to commit the changes. The value can be configured when opening the session.
+The default value for the maximum commit duration is `TimeSpan.FromSeconds(15)`.
 
 snippet: configuring-timeout-transactional-session
 
@@ -74,7 +74,7 @@ When the control message is consumed, but the outbox record is not yet available
 
 ```text
 CommitDelayIncrement = 2 * CommitDelayIncrement;
-RemainingCommitDuration = RemainingCommitDuration - 
+RemainingCommitDuration = RemainingCommitDuration -
    (CommitDelayIncrement > RemainingCommitDuration ? RemainingCommitDuration : CommitDelayIncrement)
 ```
 
@@ -88,7 +88,7 @@ snippet: configuring-metadata-transactional-session
 
 ## Requirements
 
-The transactional session feature requires a persistence to store outgoing messages. This feature is currently supported for the following persistence packages:
+The transactional session feature requires a supported persistence package to store outgoing messages. This feature is currently supported for the following persistence packages:
 
 * [Azure Table](/persistence/azure-table)
 * [CosmosDB](/persistence/cosmosdb)
@@ -99,11 +99,11 @@ The transactional session feature requires a persistence to store outgoing messa
 
 ## Transaction consistency
 
-To guarantee atomic consistency across database and message operations, the transactional session requires the [Outbox](/nservicebus/outbox) to be enabled. This combination of features provides the strongest consistency guarantees and is, therefore, the recommended, safe-by-default configuration.
+To guarantee atomic consistency across database and message operations, the transactional session requires the [outbox](/nservicebus/outbox) to be enabled. This combination of features provides the strongest consistency guarantees and is, therefore, the recommended, safe-by-default configuration.
 
-NOTE: The outbox has to be [enabled explicitly](/nservicebus/outbox/#enabling-the-outbox) on the endpoint configuration.
+NOTE: The outbox must be [enabled explicitly](/nservicebus/outbox/#enabling-the-outbox) on the endpoint configuration.
 
-With the Outbox disabled, database and message operations are not applied until the session is committed. All database operations share the same database transaction and are committed first. When the database operations complete successfully, the message operations are [batch-dispatched by the transport](/nservicebus/messaging/batched-dispatch.md). The message operations and the database changes are not guaranteed to be atomic. This might lead to phantom records or ghost messages in case of a failure during the commit phase.
+With the outbox disabled, database and message operations are not applied until the session is committed. All database operations share the same database transaction and are committed first. When the database operations complete successfully, the message operations are [batch-dispatched by the transport](/nservicebus/messaging/batched-dispatch.md). The message operations and the database changes are not guaranteed to be atomic. This might lead to phantom records or ghost messages in case of a failure during the commit phase.
 
 ## How it works
 
@@ -178,19 +178,19 @@ Internally, the transactional session doesn't use a single transaction that span
 The endpoint receives the control message and processes it as follows:
 
 * Find the outbox record.
-  * If it exists, it hasn't been marked as dispatched, and there are pending operations they are dispatched, and the outbox record is set as dispatched.
+  * If it exists, and it hasn't been marked as dispatched, and there are pending operations they are dispatched, and the outbox record is set as dispatched.
   * If it doesn't exist yet, delay the processing of the control message.
 
 ## Failure scenarios
 
-The transactional session provides atomic store-and-send guarantees, similar to Outbox (except for incoming message de-duplication). That said, it cannot rely on the recoverability mechanism used by the Outbox, which uses [retries](/nservicebus/recoverability) to ensure outgoing messages are dispatched when failures occur. Instead, the control message is used to ensure that **exactly one** of these two outcomes occur:
+The transactional session provides atomic store-and-send guarantees, similar to the outbox feature (except for incoming message de-duplication). That said, it cannot rely on the recoverability mechanism used by the outbox, which uses [retries](/nservicebus/recoverability) to ensure outgoing messages are dispatched when failures occur. Instead, the control message is used to ensure that **exactly one** of the following outcomes occur:
 
 * Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
 
-Sending the control message first ensures that, eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent out. If the `Commit` fails, the control message will (after the [maximum commit duration](#usage-advanced-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
+Sending the control message first ensures that eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. If the `Commit` fails, the control message will (after the [maximum commit duration](#usage-advanced-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
 
-When dispatching the control message fails, the transactional session changes will be rolled back, and an error will be raised to the user committing the session.
+If dispatching the control message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
 
 ## Limitations
 

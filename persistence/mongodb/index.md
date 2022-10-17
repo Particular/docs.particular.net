@@ -75,15 +75,15 @@ The shared session can also be accessed via dependency injection using the `IMon
 
 snippet: MongoDBSharedTransactionDI
 
-WARN: In order to participate in the shared transaction the MongoDB session must be passed into collection API calls as demonstrated above.
+WARN: In order to participate in the shared transaction, the MongoDB session must be passed into collection API calls as demonstrated above.
 
-NOTE: The `IMongoSynchronizedStorageSession` lifetime is scoped to the message processing pipeline. Do not resolve the shared session into dependencies with _Singleton_ lifetime.
+NOTE: The `IMongoSynchronizedStorageSession` lifetime is scoped to the message processing pipeline. Do not resolve the shared session into dependencies with a _Singleton_ lifetime.
 
 #### Testing
 
 The `TestableMongoSynchronizedStorageSession` class in the `NServiceBus.Testing` namespace has been provided to facilitate [testing a handler](/nservicebus/testing/) that utilizes the shared transaction feature.
 
-## Outbox cleanup 
+## Outbox cleanup
 
 When the outbox is enabled, the deduplication data is kept for seven days by default. To customize this time frame, use the following API:
 
