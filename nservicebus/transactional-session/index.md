@@ -188,7 +188,7 @@ The transactional session provides atomic store-and-send guarantees, similar to 
 * Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
 
-Sending the control message first ensures that eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. If the `Commit` fails, the control message will (after the [maximum commit duration](#usage-advanced-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
+Sending the control message first ensures that eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. If the `Commit` fails, the control message will (after the [maximum commit duration](#usage-advanced-configuration-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
 
 If dispatching the control message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
 
