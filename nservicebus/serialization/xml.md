@@ -19,11 +19,9 @@ In integration scenarios where the sender is unable to add headers to the messag
 
 This technique allows messages without any headers, including the `NServiceBus.EnclosedMessageTypes` header, to be processed. This is demonstrated by the [native integration with RabbitMQ sample](/samples/rabbitmq/native-integration/).
 
-
 ## Raw XML
 
 In certain integration scenarios it may be necessary to bypass NServiceBus's opinionated serialization format (essentially key/value pairs) and directly send custom XML structures over messaging. In order to do that, declare one or more properties on the message contract as `XDocument` or `XElement`.
-
 
 ### Message with XDocument
 
@@ -35,7 +33,7 @@ snippet: MessageWithXElement
 
 ### Payload with raw XML
 
-Using `XDocument` or `XElement` message properties will wrap the raw xml data in an outer node named after the property. With the message defintions above and the following XML content: 
+Using `XDocument` or `XElement` message properties will wrap the raw XML data in an outer node named after the property. The node will have the message definitions above and the following XML content:
 
 snippet: RawXmlContent
 
@@ -43,27 +41,24 @@ The full message payload might look like this:
 
 snippet: RawXmlPayload
 
-To avoid the extra node for interoperability reasons, instruct the serializer not to wrap raw XML structures:
+To avoid the extra node (e.g. for interoperability reasons), instruct the serializer not to wrap raw XML structures:
 
 snippet: ConfigureRawXmlSerialization
 
-This will change the payload to look like this:
+This will change the payload as follows:
 
 snippet: RawXmlNoWrapPayload
 
 NOTE: The name of the property on the message must match the name of the root node in the XML structure exactly in order to be able to correctly deserialize the no longer wrapped content.
 
-
 ## Caveats
-
 
 ### XML attributes
 
 The XML serializer in NServiceBus is a custom implementation. As such it does not support the [standard .NET XML attributes](https://docs.microsoft.com/en-us/dotnet/framework/serialization/controlling-xml-serialization-using-attributes).
 
-
 ### Unsupported types
 
- * [HashTable](https://msdn.microsoft.com/en-us/library/system.collections.hashtable.aspx)
- * Types with non-default constructors. So types must have a public constructor with no parameters.
- * [ArrayList](https://msdn.microsoft.com/en-us/library/system.collections.arraylist.aspx)
+* [HashTable](https://msdn.microsoft.com/en-us/library/system.collections.hashtable.aspx)
+* Types with non-default constructors. So types must have a public constructor with no parameters.
+* [ArrayList](https://msdn.microsoft.com/en-us/library/system.collections.arraylist.aspx)
