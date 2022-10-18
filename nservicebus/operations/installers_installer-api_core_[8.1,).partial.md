@@ -8,7 +8,7 @@ When the setup requires access to services that are provided via an externally m
 
 snippet: installer-setup-externally-managed-container
 
-Note: The installer APIs always run installers, regardless whether the endpoint has configured `EnableInstallers`.
+Note: The installer APIs always run installers, regardless of whether the endpoint has configured `EnableInstallers`.
 
-The installer APIs are intended to be used when the endpoint host process be run with different privileges after installation. The `EndpointConfiguration` can't be reused in the same process to call `Endpoint.Start`. To setup the endpoint as part of the endpoint host process, use see the [Running installers during endpoint startup](#running-installers-during-endpoint-startup).
+The installer APIs are intended to be used when resources required by the endpoint must be set up with different privileges than the endpoint itself requires. `EndpointConfiguration` can't be reused in the same process to call `Endpoint.Start`. To setup the endpoint as part of the endpoint host process, see the [Running installers during endpoint startup](#running-installers-during-endpoint-startup) article.
 
