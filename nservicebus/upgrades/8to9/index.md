@@ -15,4 +15,4 @@ In NServiceBus version 8 and earlier, the indication that a message was marked f
 
 ## DataBus interface changes
 
-Starting with NServiceBus version 8, it is mandatory to provide a serializer to the data bus configuration API. This is now enforced in NServiceBus version 9. The `BinaryFormatterDataBusSerializer` has been removed and `SystemJsonDataBusSerializer` is the default option that's built-in.
+Starting with NServiceBus version 8, it is mandatory to provide a serializer to the data bus configuration API. The `BinaryFormatterDataBusSerializer` has been removed and `SystemJsonDataBusSerializer` is the default option that's built-in.
