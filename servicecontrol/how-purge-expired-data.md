@@ -16,5 +16,5 @@ Warning: The database will not automatically shrink in size after reducing the r
 
 ## Differences in purge implementations
 
-Expiration of error and audit data is implemented by runnig a reccuring task that checks the documents for old data and deleting the rows that should be deleted. Changing the expiration setting results in it being picked up during the next time the service is run. 
-In the ServiceControl.Audit version 4.26 and up expiration is done using the persistance mechanisms, that results in metadata key to be stored with every message. Thanks to that, purging of the data can be handled fully by database itself. The drawback is that changing of expiration setting is only applied to new rows. 
+Expiration of error and audit data is implemented by a reccuring task that checks the documents for old data and deletes documents that have expired. Changing the expiration setting results in it being picked up during the next time the service is run. 
+In ServiceControl.Audit version 4.26 and above expiration is handled by the database automatically. Each audited message contains a metadata key that tells the database when to remove it. When the expiration setting changes, the new value is only applied to new audit data. Existing audit meta is not changed. Messages already in the database are not affected by the change to the expiration setting.
