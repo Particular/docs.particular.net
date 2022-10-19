@@ -88,12 +88,25 @@ snippet: BasicSendReplyToDestination
 
 ## Dispatching a message immediately
 
+NOTE: The API does not impact sending outside a incoming message context like when invoking message operations on `IMessageSession` for example send-only endpoints.
+
 While it's usually best to let NServiceBus [handle all exceptions](/nservicebus/recoverability/), there are some scenarios where messages might need to be sent regardless of whether the message handler succeeds or not, for example, to send a reply notifying that there was a problem with processing the message.
 
-NOTE: Side effects can occur when failures happen after sending the message. The messages could be retried meaning duplicate messages are created if this code is executed more than once. When messages are sent via immediate disaptch, ensure that the same [message identifier](/nservicebus/messaging/message-identity.md) gets assigned to them when invoked more than once. Second, due to failures it could happen that messages are sent that contain state which is inconsistent because of failing operations like a storage modification that didn't occur.
+### Usage
 
 This can be done by using the immediate dispatch API:
 
 snippet: RequestImmediateDispatch
 
-WARNING: By specifying immediate dispatch, outgoing messages will not be [batched](/nservicebus/messaging/batched-dispatch.md) or enlisted in the current receive transaction, even if the transport supports transactions or batching. Similarly, when the [outbox](/nservicebus/outbox/) feature is enabled, messages sent using immediate dispatch won't go through the outbox.
+### More-than-once side effects
+
+Side effects can occur when failures happen after sending the message. The messages could be retried meaning duplicate messages are created if this code is executed more than once.
+
+When messages are sent via immediate disaptch:
+
+1. Ensure that the same [message identifier](/nservicebus/messaging/message-identity.md) gets assigned to them when invoked more than once.
+2. Due to failures it could happen that messages are sent that contain state which is inconsistent because of failing operations like a storage modification that didn't occur.
+
+### Bypasses outbox and batching
+
+By specifying immediate dispatch, outgoing messages will not be [batched](/nservicebus/messaging/batched-dispatch.md) or enlisted in the current receive transaction, even if the transport supports transactions or batching. Similarly, when the [outbox](/nservicebus/outbox/) feature is enabled, messages sent using immediate dispatch won't go through the outbox.
