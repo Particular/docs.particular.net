@@ -1,7 +1,7 @@
 ---
 title: NHibernate Persistence Upgrade Version 8 to 9
 summary: Migration instructions on how to upgrade the NHibernate persistence from version 8 to 9.
-reviewed: 2020-02-11
+reviewed: 2022-10-19
 component: NHibernate
 related:
 - persistence/nhibernate
