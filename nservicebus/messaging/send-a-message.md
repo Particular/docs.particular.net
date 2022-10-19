@@ -88,8 +88,6 @@ snippet: BasicSendReplyToDestination
 
 ## Dispatching a message immediately
 
-NOTE: The API does not impact sending outside a incoming message context like when invoking message operations on `IMessageSession` for example send-only endpoints.
-
 While it's usually best to let NServiceBus [handle all exceptions](/nservicebus/recoverability/), there are some scenarios where messages might need to be sent regardless of whether the message handler succeeds or not, for example, to send a reply notifying that there was a problem with processing the message.
 
 ### Usage
@@ -97,6 +95,8 @@ While it's usually best to let NServiceBus [handle all exceptions](/nservicebus/
 This can be done by using the immediate dispatch API:
 
 snippet: RequestImmediateDispatch
+
+NOTE: The API does not impact sending outside a incoming message context like when invoking message operations on `IMessageSession` for example send-only endpoints.
 
 ### More-than-once side effects
 
