@@ -1335,6 +1335,8 @@
         Url: servicecontrol/audit-instances/installation-powershell
       - Title: Settings
         Url: servicecontrol/audit-instances/creating-config-file
+      - Title: Persistence
+        Url: servicecontrol/audit-instances/persistence
       - Title: Maintenance Mode
         Url: servicecontrol/audit-instances/maintenance-mode
   - Title: Monitoring instances
