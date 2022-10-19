@@ -113,6 +113,52 @@ class ServiceControl ServiceControlPrimary
 class ServiceControlAudit1,ServiceControlAudit2 ServiceControlRemote
 ```
 
+### Multi-region deployments
+
+It is possible to create a multi-region deployment using remotes.
+
+```mermaid
+graph TD
+insight[ServiceInsight] -..-> crossRegionPrimary[Cross Region<br/>ServiceControl<br/>primary]
+crossRegionPrimary -. connected to .-> auditB
+
+subgraph Region B
+primaryB -. connected to .-> auditB
+servicePulseB[ServicePulse] -. connected to .-> primaryB
+endpointsB[endpoints] -- send errors to --> errorQueueB[error queue]
+endpointsB -- send audits to --> auditQueueB[audit queue]
+errorQueueB -- ingested by --> primaryB[ServiceControl<br/>primary]
+auditQueueB -- ingested by --> auditB[ServiceControl Audit<br/>remote]
+end
+
+subgraph Region A
+endpointsA[endpoints] -- send errors to --> errorQueueA[error queue]
+endpointsA -- send audits to --> auditQueueA[audit queue]
+errorQueueA -- ingested by --> primaryA[ServiceControl<br/>primary]
+auditQueueA -- ingested by --> auditA[ServiceControl Audit<br/>remote]
+primaryA -. connected to .-> auditA
+servicePulseA[ServicePulse] -. connected to .-> primaryA
+end
+
+crossRegionPrimary -. connected to .-> auditA
+
+classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
+classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
+classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
+classDef ServiceControlPrimary fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
+classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
+
+class endpointsA,endpointsB Endpoints
+class insight ServiceInsight
+class servicePulseA,servicePulseB ServicePulse
+class primaryA,primaryB,crossRegionPrimary ServiceControlPrimary
+class auditA,auditB ServiceControlRemote
+```
+
+In this deployment, each region has a full ServiceControl installation with a primary instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse.
+
+A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific audit instance as a remote. The cross-region instance should disable error queue monitoring by configuring the [error queue](/servicecontrol/creating-config-file.md#transport-servicebuserrorqueue) with the value `!disable`.
+
 ## Configuration
 
 Remote instances are listed in the `ServiceControl/RemoteInstances` app setting in the primary instance [configuration file](/servicecontrol/creating-config-file.md). The value of this setting is a JSON array of remote instances. Each entry requires an `api_url` property specifying the API URL of the remote instance. For ServiceControl version 3 and earlier, each entry requires a `queue_address` property specifying the queue address of the remote instance.
