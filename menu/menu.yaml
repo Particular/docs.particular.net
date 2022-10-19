@@ -1323,6 +1323,8 @@
       Articles:
       - Title: ServiceControl troubleshooting
         Url: servicecontrol/troubleshooting
+      - Title: Persistence
+        Url: servicecontrol/persistence
       - Title: Maintenance mode
         Url: servicecontrol/maintenance-mode
       - Title: Retry importing messages

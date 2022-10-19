@@ -9,6 +9,3 @@ ServiceControl audit instances store their data in a RavenDB embedded database. 
 Upgrading ServiceControl.Audit instances into version 4.26 or higher does not change the database version. So instance that use RavenDB version 3.5 upgraded to the newest version will still be using RavenDB version 3.5.
 
 WARNING: The ServiceControl Audit RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
-
-## Document expiration
-
