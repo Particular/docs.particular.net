@@ -1,7 +1,9 @@
 ---
 title: ServiceControl remote instances
-reviewed: 2021-05-06
+reviewed: 2022-10-19
 component: ServiceControl
+redirects:
+- servicecontrol/servicecontrol-instances/distributed-instances
 ---
 
 [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse) retrieve data from a [ServiceControl instance](/servicecontrol/servicecontrol-instances/) using an HTTP API. In some installations, that data may reside in multiple ServiceControl instances. The ServiceControl Remotes features allows a ServiceControl instance to aggregate data from other ServiceControl instances, providing a unified experience in ServiceInsight and ServicePulse.
