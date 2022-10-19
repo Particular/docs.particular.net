@@ -1,5 +1,5 @@
 ---
 title: SQL Persistence Samples
-reviewed: 2020-02-10
+reviewed: 2022-10-19
 component: SqlPersistence
 ---

@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport
 summary: An overview of the RabbitMQ transport
-reviewed: 2020-02-18
+reviewed: 2022-10-19
 component: Rabbit
 related:
  - samples/rabbitmq/simple
