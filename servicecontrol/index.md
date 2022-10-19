@@ -1,7 +1,7 @@
 ---
 title: ServiceControl
 summary: An overview of ServiceControl and what it does
-reviewed: 2020-02-10
+reviewed: 2022-10-19
 component: ServiceControl
 isLearningPath: true
 ---
