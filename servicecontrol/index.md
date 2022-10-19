@@ -8,7 +8,7 @@ isLearningPath: true
 
 include: servicecontrol
 
-For more information on how ServiceControl, ServicePulse, and ServiceInsight work together, refer to [the Particular Service Platform](/platform/) article.
+For more information on how ServiceControl, ServicePulse, and ServiceInsight work together, refer to [the Particular Service Platform](/platform/) article. For a quick overview of the different instances, what they do and how to configure endpoints, refer to the [how does ServiceControl work](/servicecontrol/how.md) article.
 
 ### ServiceControl instance types
 
