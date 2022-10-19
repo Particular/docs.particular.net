@@ -120,7 +120,7 @@ It is possible to create a multi-region deployment using remotes.
 ```mermaid
 graph TD
 insight[ServiceInsight] -..-> crossRegionPrimary[Cross Region<br/>ServiceControl<br/>primary]
-crossRegionPrimary -. connected to .-> auditB
+crossRegionPrimary -. connected to .-> primaryB
 
 subgraph Region B
 primaryB -. connected to .-> auditB
@@ -140,7 +140,7 @@ primaryA -. connected to .-> auditA
 servicePulseA[ServicePulse] -. connected to .-> primaryA
 end
 
-crossRegionPrimary -. connected to .-> auditA
+crossRegionPrimary -. connected to .-> primaryA
 
 classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
 classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
@@ -157,7 +157,7 @@ class auditA,auditB ServiceControlRemote
 
 In this deployment, each region has a full ServiceControl installation with a primary instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse.
 
-A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific audit instance as a remote. The cross-region instance should disable error queue monitoring by configuring the [error queue](/servicecontrol/creating-config-file.md#transport-servicebuserrorqueue) with the value `!disable`.
+A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance should disable error queue management by configuring the [error queue](/servicecontrol/creating-config-file.md#transport-servicebuserrorqueue) with the value `!disable`.
 
 ## Configuration
 
