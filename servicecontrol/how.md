@@ -1,7 +1,7 @@
 ---
 title: How does ServiceControl work?
 summary: An overview of how ServiceControl collects and processes messages and data from an NServiceBus system
-reviewed: 2021-08-26
+reviewed: 2022-10-19
 ---
 
 ServiceControl is a background process that will collect and store data and make it available via an HTTP API to ServicePulse and ServiceControl.
@@ -67,6 +67,10 @@ Find out more about [failed messages](/servicepulse/intro-failed-messages.md) in
 To enable ServiceInsight to visualize the message flow through the system, it must have access to every message that has been successfully processed by the system. This requires endpoints to [enable auditing](/nservicebus/operations/auditing.md). ServiceControl consumes these messages and stores them in its internal database.
 
 ServiceInsight will retrieve the data from ServiceControl via the HTTP API and use header information (added by NServiceBus during message processing) to figure out which message caused other messages to be sent, including which sagas were accessed when the [SagaAudit plugin](/nservicebus/sagas/saga-audit.md) is configured in an endpoint.
+
+### Monitoring instances
+
+For ServicePulse to report metrics on logical endpoints, endpoint instances and on specific messages, each endpoints needs to be [enabled to forward metrics](/monitoring/metrics/install-plugin.md) to ServiceControl. ServicePulse will then be able to retrieve the data from ServiceControl via the HTTP API.
 
 ## Forwarding
 
