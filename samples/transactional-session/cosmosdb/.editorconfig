@@ -1,3 +1,0 @@
-# Disable this as mermaid needs trailing spaces for our sequence diagrams in the sample
-[sample.md]
-trim_trailing_whitespace  = false

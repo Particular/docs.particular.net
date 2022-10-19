@@ -63,7 +63,7 @@ sequenceDiagram
     activate Middleware
     Middleware->>TransactionalSession: Open
     activate TransactionalSession
-    TransactionalSession-->>Middleware: 
+    TransactionalSession-->>Middleware: Reply
     Middleware->>Controller: next()
     activate Controller
     Controller->>TransactionalSession: Send/Publish...
@@ -71,7 +71,7 @@ sequenceDiagram
     deactivate Controller
     Middleware->>TransactionalSession: Commit
     deactivate TransactionalSession
-    Middleware-->>User: 
+    Middleware-->>User: Reply
     deactivate Middleware
 ```
 
