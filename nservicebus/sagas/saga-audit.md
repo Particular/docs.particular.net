@@ -10,7 +10,7 @@ redirects:
 
 NOTE: This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
 
-WARN: This plugin will result in an increase in the load placed on ServiceControl and the endpoint it is installed in. Make sure the environment is prepared for the increased load. Consider [scaling out audit processing](/servicecontrol/servicecontrol-instances/distributed-instances.md) if necessary.
+WARN: This plugin will result in an increase in the load placed on ServiceControl and the endpoint it is installed in. Make sure the environment is prepared for the increased load. Consider [scaling out audit processing](/servicecontrol/servicecontrol-instances/remotes.md) if necessary.
 
 The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view).
 
@@ -61,7 +61,7 @@ This plugin results in an increase in load in several areas:
  1. Network load due to the extra information sent to ServiceControl
  1. ServiceControl load in the areas of ingestion, correlation and data cleanup
 
-The increase in load is proportional to size of the saga data multiplied by the number of messages the the saga receives. Since both these variables are dependent on the specific saga implementation it is not possible to give accurate predictions on the impact of this load in a production system. In versions of ServiceControl prior to 4.13.0, do not run SagaAudit plugin in production environments due to the increased load on the main ServiceControl instance. Starting with version 4.13.0, audit instances can process saga state change information from the SagaAudit plugin. In case the additional load from the SagaAudit plugin is too big for a single audit instance to handle, consider [scaling out ServiceControl audit processing](/servicecontrol/servicecontrol-instances/distributed-instances.md).
+The increase in load is proportional to size of the saga data multiplied by the number of messages the the saga receives. Since both these variables are dependent on the specific saga implementation it is not possible to give accurate predictions on the impact of this load in a production system. In versions of ServiceControl prior to 4.13.0, do not run SagaAudit plugin in production environments due to the increased load on the main ServiceControl instance. Starting with version 4.13.0, audit instances can process saga state change information from the SagaAudit plugin. In case the additional load from the SagaAudit plugin is too big for a single audit instance to handle, consider [scaling out ServiceControl audit processing](/servicecontrol/servicecontrol-instances/remotes.md).
 
 ## Configuration
 

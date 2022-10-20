@@ -62,7 +62,7 @@ Using multiple 7500 IOPS disks in striped mode in Azure may not improve performa
 
 ### Scale out
 
-If it is not possible to scale up ServiceControl to handle system volume, partition audit processing between multiple instances of ServiceControl. See [Multiple ServiceControl Instances](distributed-instances.md) for more details.
+If it is not possible to scale up ServiceControl to handle system volume, partition audit processing between multiple instances of ServiceControl. See [Multiple ServiceControl Instances](remotes.md) for more details.
 
 ### Turn off full-text search
 
