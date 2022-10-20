@@ -23,12 +23,12 @@ sequenceDiagram
     activate ITransactionalSession
     ITransactionalSession->>CosmosDB: Store(order)
     ITransactionalSession->>Queue: Publish(orderReceived)
-    ITransactionalSession-->>Frontend: Reply
+    ITransactionalSession-->>Frontend: Committed
     deactivate ITransactionalSession
     Queue->>Backend: Process(orderReceived)
     activate Backend
     Backend->>CosmosDB: Update(order)
-    Backend-->>Queue: Reply
+    Backend-->>Queue: Processed(orderReceived)
     deactivate Backend
 ```
 
