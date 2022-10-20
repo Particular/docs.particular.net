@@ -161,6 +161,10 @@ In this deployment, each region has a full ServiceControl installation with a pr
 
 A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance should disable error queue management by configuring the [error queue](/servicecontrol/creating-config-file.md#transport-servicebuserrorqueue) with the value `!disable`.
 
+### Zero downtime upgrades
+
+The remotes feature can be used to perform [zero downtime upgrades](/servicecontrol/upgrades/zero-downtime.md).
+
 ## Configuration
 
 Remote instances are listed in the `ServiceControl/RemoteInstances` app setting in the primary instance [configuration file](/servicecontrol/creating-config-file.md). The value of this setting is a JSON array of remote instances. Each entry requires an `api_url` property specifying the API URL of the remote instance. For ServiceControl version 3 and earlier, each entry requires a `queue_address` property specifying the queue address of the remote instance.
