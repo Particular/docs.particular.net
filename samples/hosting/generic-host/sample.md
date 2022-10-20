@@ -4,8 +4,7 @@ summary: Hosting an endpoint with the Generic Host.
 reviewed: 2020-02-27
 component: Core
 related:
-- nservicebus/hosting
-- nservicebus/hosting/assembly-scanning
+- nservicebus/hosting/extensions-hosting
 ---
 
 The sample uses the Generic Host and the [`Microsoft.Extensions.Hosting.WindowsServices`](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices/) NuGet package to host NServiceBus as a Windows Service using the Generic Host underneath.
