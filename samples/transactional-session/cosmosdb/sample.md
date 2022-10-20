@@ -28,7 +28,7 @@ sequenceDiagram
     Queue->>Backend: Process(orderReceived)
     activate Backend
     Backend->>CosmosDB: Update(order)
-    Backend-->>Queue: Processed(orderReceived)
+    Backend-->>Queue: Processed
     deactivate Backend
 ```
 
