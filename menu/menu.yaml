@@ -1263,6 +1263,8 @@
     Articles:
     - Title: Upgrade tips
       Url: servicecontrol/upgrades
+    - Title: Zero downtime
+      Url: servicecontrol/upgrades/zero-downtime
     - Title: Support policy
       Url: servicecontrol/upgrades/support-policy
     - Title: Version 3 to 4
