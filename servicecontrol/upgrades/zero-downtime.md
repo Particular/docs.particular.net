@@ -7,6 +7,8 @@ reviewed: 2022-10-20
 
 The [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/remotes.md) can be used to upgrade a ServiceControl installation without taking it offline.
 
+NOTE: PowerShell must be used to install individual instances. Example scripts are provided for each step.
+
 ## Audit instances
 
 The process follows these steps:
@@ -46,6 +48,31 @@ class sca ServiceControlRemote
 
 Create a new audit instance, and configure it as a remote instance of the primary instance.
 
+On the audit instance machine:
+```ps1
+$auditInstance = New-ServiceControlAuditInstance `
+  -Name Particular.ServiceControl.NewAudit `
+  -InstallPath C:\ServiceControl.NewAudit\Bin `
+  -DBPath C:\ServiceControl.NewAudit\DB `
+  -LogPath C:\ServiceControl.NewAudit\Logs `
+  -Port 44446 `
+  -DatabaseMaintenancePort 44447 `
+  -Transport MSMQ `
+  -AuditQueue audit `
+  -AuditRetentionPersion 10:00:00:00 `
+  -ForwardAuditMessages:$false `
+  -ServiceControlQueueAddress "Particular.ServiceControl"
+```
+
+On the primary instance machine:
+```ps1
+Add-ServiceControlRemote `
+  -Name "Particular.ServiceControl" `
+  -RemoteInstanceAddress "http://localhost:44446/api"
+```
+
+After this step the installation looks like this:
+
 ```mermaid
 graph TD
 endpoints -- send errors to --> errorQ[Error Queue]
@@ -75,7 +102,28 @@ Although both ServiceControl Audit instances ingest messages from the audit queu
 
 ### Disable audit queue management on the old instance
 
-Update the audit queue configuration on the original Audit instance to the value `!disable`.
+Update the audit queue configuration on the original Audit instance to the value `!disable` and restart the instance.
+
+On the original audit instance machine:
+```ps1
+$originalAuditInstanceName = "Particular.ServiceControl.Audit"
+$auditInstance = (Get-ServiceControlAuditInstances | where Name -eq $originalAuditInstanceName)[0]
+
+# Stop instance
+Stop-Service $originalAuditInstanceName
+
+# Update configuration
+$configPath = Join-Path $auditInstance.InstallPath "ServiceControl.Audit.exe.config"
+[xml]$configDoc = Get-Content $configPath
+$element = $configDoc.SelectSingleNode("//configuration/appSettings/add[@key='ServiceBus/AuditQueue']")
+$element.value = "!disable"
+$configDoc.Save($configPath)
+
+# Start instance
+Start-Service $originalAuditInstanceName
+```
+
+After this step the installation looks like this:
 
 ```mermaid
 graph TD
@@ -106,6 +154,23 @@ The primary instance continues to query both instances but the original Audit in
 ### Decommission the old audit instance, when it is empty
 
 As the original audit instance is no longer ingesting messages, it will be empty after the audit retention period has elapsed and can be removed.
+
+On the primary instance machine:
+```ps1
+Remove-ServiceControlRemote `
+  -Name Particular.ServiceControl.OriginalAudit ` 
+  -RemoteInstanceAddress "http://localhost:44444/api"
+```
+
+On the original audit instance machine:
+```ps1
+Remote-ServiceControlAuditInstance `
+  -Name Particular.ServiceControl.OriginalAudit `
+  -RemoveDB `
+  -RemoveLogs
+```
+
+After this step the installation looks like this:
 
 ```mermaid
 graph TD
