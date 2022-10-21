@@ -39,3 +39,7 @@ NServiceBus endpoints hosted as part of the generic host automatically use the p
 Custom dependency injection containers may be configured using `IWebHostBuilder.UseServiceProviderFactory`. NServiceBus automatically uses the host's dependency injection container. Refer to the container's documentation for further details.
 
 partial: shutdown-timeout
+
+## Stopping the endpoint
+
+When using the generic host, the `IEndpointInstance` interface to stop the endpoint is not directly exposed. To stop the endpoint, use the [`IApplicationLifetime`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostapplicationlifetime) interface to gracefully stop the NServiceBus endpoint and other hosted services. See the [generic host application lifetime documentation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host#ihostapplicationlifetime) for further information.
