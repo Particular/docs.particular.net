@@ -1261,6 +1261,8 @@
     Articles:
     - Title: Upgrade tips
       Url: servicecontrol/upgrades
+    - Title: New persistence format
+      Url: servicecontrol/upgrades/new-persistence
     - Title: Zero downtime
       Url: servicecontrol/upgrades/zero-downtime
     - Title: Support policy
