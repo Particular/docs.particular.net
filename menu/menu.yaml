@@ -1323,6 +1323,8 @@
       Articles:
       - Title: ServiceControl troubleshooting
         Url: servicecontrol/troubleshooting
+      - Title: Persistence
+        Url: servicecontrol/persistence
       - Title: Maintenance mode
         Url: servicecontrol/maintenance-mode
       - Title: Retry importing messages
@@ -1335,6 +1337,8 @@
         Url: servicecontrol/audit-instances/installation-powershell
       - Title: Settings
         Url: servicecontrol/audit-instances/creating-config-file
+      - Title: Persistence
+        Url: servicecontrol/audit-instances/persistence
       - Title: Maintenance Mode
         Url: servicecontrol/audit-instances/maintenance-mode
   - Title: Monitoring instances
