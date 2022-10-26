@@ -245,9 +245,24 @@ Type: string
 
 ## Troubleshooting
 
-#### ServiceControl.Audit/ExposeRavenDB
 
-ServiceControl Audit stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl Audit service. If, during troubleshooting, direct access to the RavenDB instance is required while ServiceControl Audit is running, ServiceControl Audit can be configured to expose the RavenDB studio.
+ServiceControl Audit stores its data in a RavenDB embedded instance. If, during troubleshooting, direct access to the RavenDB instance is required while ServiceControl Audit is running use the following instructions.
+
+### Version 4.26 and above
+
+Browse: 
+
+```no-highlight
+http://localhost:{configured ServiceControl instance maintenance port}
+```
+
+to access the internal database via [the RavenDB studio interface](https://ravendb.net/docs/article-page/5.4/csharp/studio/overview).
+
+### Version 4.25 and below
+
+ServiceControl Audit can be configured to expose the RavenDB studio.
+
+#### ServiceControl.Audit/ExposeRavenDB
 
 NOTE: [Maintenance mode](/servicecontrol/audit-instances/maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
