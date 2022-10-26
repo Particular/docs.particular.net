@@ -6,7 +6,7 @@ reviewed: 2022-10-26
 
 INFO: Compact the database only if the retention period, message throughput, or average message size have been reduced. If none of these have changed, compacting may not provide a significant reduction in database size, or it may have only a small, temporary effect.
 
-INFO: The following documentation applies to ServiceControl primary and audit instances using RavenDB 3.5 as storage option. New audit instances crerated with version 4.26 and onward use by default RavenDB 5 and don't need any compaction.
+INFO: The following documentation applies to ServiceControl primary and audit instances using RavenDB 3.5 as storage option. New audit instances created with version 4.26 and onward use by default RavenDB 5 and don't need any compaction.
 
 ServiceControl's embedded RavenDB 3.5 database can be compacted in one of two ways: with the  [Extensible Storage Engine Utility (esentutl)](https://technet.microsoft.com/en-us/library/hh875546.aspx), or by using the RavenDB management portal.
 
