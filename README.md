@@ -1159,15 +1159,19 @@ Don't assume the latest version of a product is the only one being used
 
 ### Embedding videos
 
-There is a CSS class that will properly style videos: `video-container`
+A YouTube video can be embedded in Markdown using the `youtube` command at the beginning of a line:
 
-Use it as follows:
+Here's an example that embeds the Rick Roll video:
 
-```html
-<div class="video-container">
-<iframe src="https://www.youtube.com/embed/QolL1Oum72Q" frameborder="0" allowfullscreen></iframe>
-</div>
+```md
+Paragraph before…
+
+youtube: https://www.youtube.com/watch?v=eBGIQ7ZuuiU
+
+Paragraph after…
 ```
+
+The engine will parse the video ID out of the YouTube URL and create a properly styled embed.
 
 ### Terminology
 
