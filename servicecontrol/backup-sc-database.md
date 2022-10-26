@@ -23,14 +23,9 @@ If the ServiceControl instance to backup uses RavenDB 3.5 to persist data, the f
  1. Replace the contents of this directory with the previously copied data
  1. Start the service again once the copy is complete
 
-### Backup ServiceControl primary or audit instances using RavenDB 5
+### Backup and restore ServiceControl primary or audit instances using RavenDB 5
 
-If the ServiceControl instance to backup uses RavenDB 5 to persist data, the following steps outline how to perform a data backup:
-
- 1. Open the RavenDB studio
- 1. Navigate to `Tasks` -> `Backups` -> `Create a Periodic Backup`.
- 1. Select the backup type and content to backup
- 1. Schedule the ongoing task
+If the ServiceControl instance to backup uses RavenDB 5 to persist data, refer to the [official RavenDB documentation on how to perform a backup and restore data](https://ravendb.net/docs/article-page/5.4/csharp/server/ongoing-tasks/backup-overview).
 
 ### Important notes and restrictions
 
