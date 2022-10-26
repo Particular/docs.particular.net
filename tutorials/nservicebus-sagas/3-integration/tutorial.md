@@ -7,7 +7,7 @@ summary: In this tutorial, learn how to use NServiceBus sagas to manage integrat
 previewImage: https://img.youtube.com/vi/BHlKPgY2xxg/maxresdefault.jpg
 ---
 
-<div style="display:block;width:100%;margin:20px auto;position:relative;height:0;padding-bottom:56.25%;border:solid 1px #ccc;"><iframe src="https://www.youtube.com/embed/BHlKPgY2xxg" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>
+youtube: https://www.youtube.com/watch?v=BHlKPgY2xxg
 
 The need for orchestration of a business process arises quickly when integrating with third parties. We'll frequently need to call a third-party service, and then depending on the result, kick off a new process locally, or perhaps even turn around and call a different third party.
 
