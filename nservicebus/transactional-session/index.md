@@ -6,7 +6,6 @@ component: TransactionalSession
 related:
 - samples/transactional-session/aspnetcore-webapi
 - samples/transactional-session/cosmosdb
-- https://particular.net/blog/transactional-session
 ---
 
 This article describes how to achieve consistency when modifying business data and sending messages, similar to the [outbox](/nservicebus/outbox), outside the context of an NServiceBus message handler.
