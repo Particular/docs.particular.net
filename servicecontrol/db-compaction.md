@@ -22,7 +22,7 @@ WARNING: For the `esentutl` command line utility to work, the ServiceControl ser
 
 ### Step 2: Back up the ServiceControl instance
 
-* Follow the [backup instructions](backup-sc-database.md#backup) to back up the embedded RavenDB database.
+* Follow the [backup instructions](backup-sc-database.md) to back up the embedded RavenDB database.
 
 ### Step 3: Administrator command prompt
 
