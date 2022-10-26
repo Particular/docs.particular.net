@@ -10,6 +10,8 @@ related:
 
 This article describes how to achieve consistency when modifying business data and sending messages, similar to the [outbox](/nservicebus/outbox), outside the context of an NServiceBus message handler.
 
+youtube: https://www.youtube.com/watch?v=-UOyxjnlYXs
+
 ## The consistency problem
 
 Consider an ASP.NET Core controller that creates a user in the business database and publishes a `UserCreated` event. If a failure occurs during the execution of the request, two scenarios may occur, depending on the order of operations.
