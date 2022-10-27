@@ -1,7 +1,7 @@
 ---
 title: Configuration Settings
 summary: Categorized list of ServiceControl Audit configuration settings.
-reviewed: 2022-10-37
+reviewed: 2022-10-27
 ---
 
 
