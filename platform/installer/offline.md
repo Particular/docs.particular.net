@@ -6,7 +6,7 @@ reviewed: 2020-08-17
 
 ## .NET prerequisite version
 
-The Particular Service Platform products require [.NET 4.6.2](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net462-offline-installer). Before proceeding, ensure that this version of .NET is available on the system. 
+The Particular Service Platform products require [.NET 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net472-offline-installer). Before proceeding, ensure that this version of .NET is available on the system. 
 
 
 ## MSMQ prerequisites
