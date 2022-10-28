@@ -13,7 +13,8 @@ upgradeGuideCoreVersions:
 
 ## Migration from BinaryFormatter
 
-WARNING: When migrating from the `BinaryFormatter` ensure that all endpoints on all sites are updated to use the newly selected databus deserializer.
+WARNING: When migrating from the `BinaryFormatter` ensure that all endpoints on all sites are updated to use the newly selected data bus deserializer.
 
-The `BinaryFormatter` is being phased out by Microsoft. The new data bus configuration API now requires a serializer.
-Refer to the [Migration from BinaryFormatter](/nservicebus/upgrades/7to8/databus.md#migration-from-binaryformatter) for details on this.
+The `BinaryFormatter` is being phased out by Microsoft. The data bus configuration API now requires a serializer.
+
+Refer to the [Migration from BinaryFormatter](/nservicebus/upgrades/7to8/databus.md#migration-from-binaryformatter) for details.
