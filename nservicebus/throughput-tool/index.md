@@ -20,7 +20,7 @@ To install the tool:
     dotnet tool install -g Particular.EndpointThroughputCounter --add-source=https://www.myget.org/F/particular/api/v3/index.json
     ```
 
-### Updating
+### Updating the throughput tool
 
 To update the tool to the latest version, execute the following command in a terminal window:
 
@@ -28,7 +28,7 @@ To update the tool to the latest version, execute the following command in a ter
 dotnet tool update -g Particular.EndpointThroughputCounter --add-source https://www.myget.org/F/particular/api/v3/index.json
 ```
 
-### Uninstalling
+### Uninstalling the throughput tool
 
 To uninstall the tool, execute the following command in a terminal window:
 
@@ -36,13 +36,13 @@ To uninstall the tool, execute the following command in a terminal window:
 dotnet tool uninstall -g Particular.EndpointThroughputCounter
 ```
 
-## Selecting data collection method
+## Selecting the data collection method
 
 First, determine which method of data collection to use:
 
 * **(Preferred) [ServiceControl data collection](#run-using-servicecontrol-data)**: Use when the system employs [monitoring performance metrics in ServicePulse](/monitoring/metrics/in-servicepulse.md) and all endpoints have the [monitoring plug-in](/monitoring/metrics/install-plugin.md) installed.
 * **[Azure Service Bus](#run-using-azure-service-bus)**: Use for Azure Service Bus systems.
-* **[Amazon SQS](#run-using-amazon-sqs)**: use for Amazon SQS systems.
+* **[Amazon SQS](#run-using-amazon-sqs)**: Use for Amazon SQS systems.
 * **[RabbitMQ](#run-using-rabbitmq)**: Use for RabbitMQ systems when ServiceControl is unavailable.
 * **[SQL Transport](#run-using-sql-transport)**: Use for SQL transport systems when ServiceControl is unavailable.
 
@@ -83,7 +83,7 @@ This screenshot shows how to copy the Service Bus Namespace's `Id` value:
 
 ![How to collect the Service Bus Namespace Id](azure-service-bus.png)
 
-Once these prerequisites are complete, execute the tool with the resource id of the Azure Service Bus namespace, as in this example:
+Once these prerequisites are complete, execute the tool with the resource ID of the Azure Service Bus namespace, as in this example:
 
 ```shell
 throughput-counter azureservicebus --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace

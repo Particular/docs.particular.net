@@ -15,15 +15,17 @@ related:
 1. Analyze the storage size for each ServiceControl instance and update starting from the smallest to the largest. This helps understand how smaller migrations run and can be used to extrapolate how long updating the larger instances will take which can help decided whether a side-by-side upgrade is necessary.
 
 
-## Downgrading
+## Downgrading ServiceControl
+
+This section contains information about downgrading ServiceControl instances and the ServiceControl Management Utility.
 
 ### Instances
 
-ServiceControl instances cannot be downgraded via ServiceControl Management Utility. This is because the storage schema COULD have been changed during upgrading.
+ServiceControl instances cannot be downgraded with the ServiceControl Management Utility. This is because the storage schema could have changed during a previous upgrade.
 
-Note: If a downgrade MUST be performed ensure that the storage schema is compatible!
+Note: If a downgrade MUST be performed ensure that the storage schema is compatible.
 
-Note: It is not advised to execute this procedure without supervision of particular software support engineers.
+Note: It is recommended to execute this procedure under the supervision of a Particular software support engineer.
 
 1. Open the ServiceControl Management Utility
 2. Scroll to the instance that requires downgrading
@@ -31,16 +33,16 @@ Note: It is not advised to execute this procedure without supervision of particu
 4. Copy the `ServiceControl.exe.config` and store the identical instance name
 5. Delete the instance but keep the database files
 6. Close ServiceControl Management Utility
-7. [Downgrade the installer](#downgrading-installer)
+7. [Downgrade the installer](#downgrading-servicecontrol-installer)
 8. Add a new instance using the same identical name and configuration as the deleted instance
 
 ### Installer
 
-Once a newer version of the downloaded  ServiceControl setup is installed it does not allow to install an older version. Might there be a need to setup an instance for a previous older version then do the following:
+There may be a need to setup a ServiceControl instance for an older version of ServiceControl, in which case follow these steps:
 
-1. Uninstall the current (newer) version from Windows in "Add remove programs".
+1. Uninstall the current (newer) version from Windows in "Add/remove programs"
 2. Install the previous version
 
-The ServiceControl Management Utility (SCMU) can now be used again to add instances based on that version.
+The ServiceControl Management Utility (SCMU) can now be used again to add instances based on the older version.
 
 Note: Downgrading the setup can results in SCMU not being able to manage newer instance versions.
