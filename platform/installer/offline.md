@@ -1,7 +1,7 @@
 ---
 title: Installing the Particular Platform
 summary: How to install the Particular Platform
-reviewed: 2020-08-17
+reviewed: 2022-10-28
 ---
 
 ## .NET prerequisite version
