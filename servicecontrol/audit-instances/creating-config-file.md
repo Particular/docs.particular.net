@@ -1,7 +1,7 @@
 ---
 title: Configuration Settings
 summary: Categorized list of ServiceControl Audit configuration settings.
-reviewed: 2021-08-06
+reviewed: 2022-10-27
 ---
 
 
@@ -245,13 +245,28 @@ Type: string
 
 ## Troubleshooting
 
-#### ServiceControl.Audit/ExposeRavenDB
 
-ServiceControl Audit stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl Audit service. If, during troubleshooting, direct access to the RavenDB instance is required while ServiceControl Audit is running, ServiceControl Audit can be configured to expose the RavenDB studio.
+ServiceControl Audit stores its data in a RavenDB embedded instance. If, during troubleshooting, direct access to the RavenDB instance is required while ServiceControl Audit is running use the following instructions.
 
 NOTE: [Maintenance mode](/servicecontrol/audit-instances/maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
 WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl Audit and is not intended for external manipulation or modifications.
+
+### RavenDB 5
+
+For instances running version 4.26 and above, which are configured to use [the new RavenDB 5 persistence](/servicecontrol/upgrades/new-persistence.md) browse to:
+
+```no-highlight
+http://localhost:{configured ServiceControl instance maintenance port}
+```
+
+to access the internal database via [the RavenDB studio interface](https://ravendb.net/docs/article-page/5.4/csharp/studio/overview).
+
+### RavenDB 3.5
+
+For instances running version 4.25 and below or using the old RavenDB 3.5 persistence the ServiceControl Audit instance can be configured to expose the RavenDB studio.
+
+#### ServiceControl.Audit/ExposeRavenDB
 
 Type: bool
 
