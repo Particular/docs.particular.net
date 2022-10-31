@@ -254,7 +254,7 @@ WARNING: The ServiceControl RavenDB embedded instance is used exclusively by Ser
 
 ### RavenDB 5
 
-If on Version 4.26 and using [the new RavenDB 5 persister](/servicecontrol/upgrades/new-persistence.md) browse to:
+For instances running version 4.26 and above, which are configured to use [the new RavenDB 5 persistence](/servicecontrol/upgrades/new-persistence.md) browse to:
 
 ```no-highlight
 http://localhost:{configured ServiceControl instance maintenance port}
@@ -264,7 +264,7 @@ to access the internal database via [the RavenDB studio interface](https://raven
 
 ### RavenDB 3.5
 
-If on Version 4.25 and below or using the old RavenDB 3.5 persister the ServiceControl Audit instance can be configured to expose the RavenDB studio.
+For instances running version 4.25 and below or using the old RavenDB 3.5 persistence the ServiceControl Audit instance can be configured to expose the RavenDB studio.
 
 #### ServiceControl.Audit/ExposeRavenDB
 
