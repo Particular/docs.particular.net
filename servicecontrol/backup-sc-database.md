@@ -1,28 +1,31 @@
 ---
 title: Backup the ServiceControl Data
 summary: How to backup the ServiceControl RavenDB Embedded instance
-reviewed: 2020-06-18
+reviewed: 2022-10-26
 ---
 ServiceControl uses an embedded RavenDB for data storage. To backup or restore the database instance, follow these procedures:
 
-### Backup
+### Backup and restore ServiceControl primary or audit instances using RavenDB 5
+
+If the ServiceControl instance to backup uses RavenDB 5 to persist data, refer to the [official RavenDB documentation on how to perform a backup and restore data](https://ravendb.net/docs/article-page/5.4/csharp/server/ongoing-tasks/backup-overview).
+
+### Backup ServiceControl primary or audit instances using RavenDB 3.5
+
+If the ServiceControl instance to backup uses RavenDB 3.5 to persist data, the following steps outline how to perform a data backup:
 
  1. Open ServiceControl Management to view the list of ServiceControl service instances
-  ![ServiceControl Management Utility](managementutil-instance.png 'width=500')
  1. Stop the service using the action icons
  1. Click the link under data path to go to the data directory
  1. Copy or archive the contents of the data directory
  1. Start the service again once the copy is complete
 
-
-### Restore
+#### Restore
 
  1. Open ServiceControl Management to view the list of ServiceControl service instances
  1. Stop the service from the action icons
  1. Click the link under data path to go to the data directory
  1. Replace the contents of this directory with the previously copied data
  1. Start the service again once the copy is complete
-
 
 ### Important notes and restrictions
 
