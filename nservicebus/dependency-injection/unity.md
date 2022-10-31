@@ -2,7 +2,7 @@
 title: Unity
 summary: Details on how to Configure NServiceBus to use Unity for dependency injection.
 component: Unity
-reviewed: 2020-02-20
+reviewed: 2022-10-31
 related:
  - samples/dependency-injection/unity
 redirects:
