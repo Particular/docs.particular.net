@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport Upgrade Version 2 to 3
 summary: Instructions on how to upgrade the SQL Server transport from version 2 to 3
-reviewed: 2020-02-20
+reviewed: 2022-10-31
 component: SqlTransport
 related:
  - nservicebus/upgrades/5to6
@@ -13,11 +13,9 @@ upgradeGuideCoreVersions:
  - 6
 ---
 
-
 ## Namespace changes
 
-The primary namespace is `NServiceBus`. Advanced APIs have been moved to `NServiceBus.Transport.SqlServer`. A `using NServiceBus` directive should be sufficient to find all basic options. A `using NServiceBus.Transport.SqlServer` statement is needed to access these configuration options.
-
+The primary namespace is `NServiceBus`. Advanced APIs have been moved to `NServiceBus.Transport.SqlServer`. A `using NServiceBus` directive should be sufficient to find all basic options. A `using NServiceBus.Transport.SqlServer` statement is needed to access advanced configuration options.
 
 ### Transactions
 
@@ -33,14 +31,13 @@ var transactions = busConfiguration.Transactions();
 transactions.DisableDistributedTransactions();
 ```
 
-As shown in the above snippet, transaction settings are now handled in the transport level configuration.
+As shown in the above snippet, transaction settings are now handled at the transport level configuration.
 
 For more details and examples refer to the [transaction configuration API](/nservicebus/upgrades/5to6/transaction-configuration.md) and [transaction support](/transports/transactions.md) pages.
 
-
 ### Connection factory
 
-The custom connection factory method is now expected to be `async` and no parameters are passed to it by the framework:
+The custom connection factory method is now expected to be `async` and no parameters are passed to it by the transport:
 
 ```csharp
 // For SQL Transport version 3.x
@@ -87,10 +84,9 @@ transport.UseCustomSqlConnectionFactory(
     });
 ```
 
-
 ### Accessing transport connection
 
-Accessing transport connection can be done in version 2 of the transport by injecting `SqlServerStorageContext` into a handler. This way the handler can access the data residing in the same database as the queue tables within the message receive transaction managed by the transport.
+Accessing the transport connection can be achived in version 2 of the transport by injecting `SqlServerStorageContext` into a handler. This way the handler can access the data residing in the same database as the queue tables using the same message receive transaction managed by the transport.
 
 In version 3, this API has been removed. The same goal can be achieved in version 3 by using ambient transaction mode.
 
@@ -99,16 +95,16 @@ var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
 transport.Transactions(TransportTransactionMode.TransactionScope);
 ```
 
-The handler must open a connection to access the data, but assuming both handler and the transport are configured to use the same connection string, there is no DTC escalation. SQL Server 2008 and later can detect that both connections target the same resource and merges the two transactions into a single lightweight transaction.
+The handler must open a connection to access the data, but assuming both handler and the transport are configured to use the same connection string, there is no DTC escalation. SQL Server 2008 and later can detect that both connections target the same resource and merge the two transactions into a single lightweight transaction.
 
-NOTE: The above statement is does not apply when using the NHibernate persistence. NHibernate persistence opens its own connection within the context of the ambient transaction. See [access business data](/persistence/nhibernate/accessing-data.md) in context of processing a message with NHibernate persistence.
+NOTE: The above statement does not apply when using the NHibernate persistence. NHibernate persistence opens its own connection within the context of the ambient transaction. See [access business data](/persistence/nhibernate/accessing-data.md) in context of processing a message with NHibernate persistence.
 
 
 ### Multi-schema support
 
 The configuration API for [multi-schema support](/transports/sql/deployment-options.md#multi-schema) has now changed. The `QueueSchema` parameter is no longer supported in the config file and the code configuration API.
 
-The schema for the configured endpoint can be specified using `DefaultSchema` method:
+The schema for the configured endpoint can be specified using the `DefaultSchema` method:
 
 ```csharp
 // For SQL Transport version 3.x
@@ -120,7 +116,7 @@ var transport = busConfiguration.UseTransport<SqlServerTransport>();
 transport.DefaultSchema("myschema");
 ```
 
-or by defining a custom schema per endpoint or queue:
+or by defining a custom schema for each endpoint or queue:
 
 ```csharp
 var transport = busConfiguration.UseTransport<SqlServerTransport>();
@@ -132,7 +128,7 @@ transport.UseSpecificConnectionInformation(
 );
 ```
 
-This enables configuring custom schema both for local endpoint as well as for other endpoints that the configured endpoint communicates with. When using configuration file to specify schemas for other endpoints, their schemas should be placed in the `MessageEndpointMappings` section and follow `endpoint-name@schema-name` convention:
+This enables configuring custom schemas both for local the endpoint as well as for other endpoints it communicates with. When using a configuration file to specify schemas for other endpoints, their schemas must be placed in the `MessageEndpointMappings` section and follow the `endpoint-name@schema-name` convention:
 
 ```xml
 <UnicastBusConfig>
@@ -144,7 +140,6 @@ This enables configuring custom schema both for local endpoint as well as for ot
   </MessageEndpointMappings>
 </UnicastBusConfig>
 ```
-
 
 ### Multi-instance support
 
@@ -204,16 +199,13 @@ transport
 
 Note that `multi-instance` mode has been deprecated and is not recommended for new projects.
 
-
 #### Multi-instance support and outbox
 
-Version 3 does not support outbox in `multi-instance` mode.
-
+Version 3 does not support the outbox in `multi-instance` mode.
 
 ### Circuit breaker
 
 The method `PauseAfterReceiveFailure(TimeSpan)` is no longer supported. In version 3, the pause value is hard-coded at one second.
-
 
 ### Indexes
 
