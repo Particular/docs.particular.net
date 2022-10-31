@@ -6,10 +6,11 @@ reviewed: 2022-10-28
 
 ## .NET and redistributable packages prerequisite version
 
-The Particular Service Platform products require
+The Particular Service Platform products requires the following to be installed on a x64 windows operating system:
 
-- [.NET 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net472-offline-installer).
-- [.NET Runtime 6.0.9, or later](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
+- [.NET 4.7.2, or later](https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net472-offline-installer).
+- [.NET Runtime 6.0.10, or later](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
+- [ASP.NET Core Runtime 6.0.10, or later](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
 - [VC++ 2015 Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=53840).
 
 Before proceeding, ensure that these versions are available on the system.
