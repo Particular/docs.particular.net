@@ -352,3 +352,7 @@ The tracing functionality is compatible with the [NServiceBus.Extensions.Diagnos
 The spans and metrics captured by NServiceBus can differ from the community package.
 
 See the [OpenTelemetry samples](/samples/open-telemetry/) for more guidance on integrating with 3rd party OpenTelemetry tooling.
+
+## Raw messaging
+
+Starting with NServiceBus version 8, the transport infrastructure can be used directly without the need to spin up a full NServiceBus endpoint. This is especially useful when integrating with third-party systems and when building message gateways or bridges and allows for low-level sending and receiving byte arrays and completely skip the incoming/outgoing pipeline.
