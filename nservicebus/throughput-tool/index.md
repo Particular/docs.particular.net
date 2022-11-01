@@ -40,7 +40,7 @@ dotnet tool uninstall -g Particular.EndpointThroughputCounter
 
 First, determine which method of data collection to use:
 
-* **(Preferred) [ServiceControl data collection](#run-using-servicecontrol-data)**: Use when the system employs [monitoring performance metrics in ServicePulse](/monitoring/metrics/in-servicepulse.md) and all endpoints have the [monitoring plug-in](/monitoring/metrics/install-plugin.md) installed.
+* **(Preferred) [ServiceControl data collection](#run-using-servicecontrol-data)**: Use when the system employs [monitoring performance metrics in ServicePulse](/monitoring/metrics/in-servicepulse.md) and all endpoints have the [monitoring plug-in](/monitoring/metrics/install-plugin.md) installed, otherwise falls back to using [message audit information](/nservicebus/operations/auditing.md) instead.
 * **[Azure Service Bus](#run-using-azure-service-bus)**: Use for Azure Service Bus systems.
 * **[Amazon SQS](#run-using-amazon-sqs)**: Use for Amazon SQS systems.
 * **[RabbitMQ](#run-using-rabbitmq)**: Use for RabbitMQ systems when ServiceControl is unavailable.
@@ -55,6 +55,8 @@ throughput-counter servicecontrol --serviceControlApiUrl http://localhost:33333/
 ```
 
 Because ServiceControl contains, at maximum, the previous 1 hour of monitoring data, the tool will query the ServiceControl API 24 times with a one-hour sleep period between each attempt in order to capture a total of 24 hours worth of data.
+
+For endpoints that do not have monitoring enabled, the tool will fall back to querying [message audit data](/nservicebus/operations/auditing.md) to determine how many messages have been processed each hour.
 
 ### Options
 
