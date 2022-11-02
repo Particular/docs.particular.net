@@ -17,7 +17,7 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
         #region get-connection-and-path
 
-        var messageReceiver = context.Extensions.Get<ServiceBusReceiver>();
+        var processMessageEventArgs = context.Extensions.Get<ProcessMessageEventArgs>();
 
         #endregion
 
@@ -79,7 +79,7 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
                     try
                     {
-                        await messageReceiver.RenewMessageLockAsync(message, cancellationToken).ConfigureAwait(false);
+                        await processMessageEventArgs.RenewMessageLockAsync(message, cancellationToken).ConfigureAwait(false);
                         attempts = 0;
                         Log.Info($"{message.MessageId}: Lock renewed until {message.LockedUntil:s}Z.");
                     }
