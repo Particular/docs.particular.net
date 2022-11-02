@@ -7,23 +7,26 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Router.MixedTransports.Router";
+        Console.Title = "Samples.Router.TrafficMirroring.Router";
 
         #region RouterConfig
 
-        var routerConfig = new RouterConfiguration("Samples.Router.MixedTransports.Router");
+        var routerConfig = new RouterConfiguration("Samples.Router.TrafficMirroring.Router");
 
-        var msmqInterface = routerConfig.AddInterface<MsmqTransport>("MSMQ", t => { });
-        msmqInterface.EnableMessageDrivenPublishSubscribe(new InMemorySubscriptionStorage());
-
-        var rabbitMQInterface = routerConfig.AddInterface<RabbitMQTransport>("RabbitMQ", t =>
+        var prodInterface = routerConfig.AddInterface<AzureServiceBusTransport>("Prod", t =>
         {
-            t.ConnectionString("host=localhost");
-            t.UseConventionalRoutingTopology();
+            t.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
+            t.Transactions(TransportTransactionMode.ReceiveOnly);
+        });
+
+        var testInterface = routerConfig.AddInterface<AzureServiceBusTransport>("Test", t =>
+        {
+            t.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2"));
+            t.Transactions(TransportTransactionMode.ReceiveOnly);
         });
 
         var staticRouting = routerConfig.UseStaticRoutingProtocol();
-        staticRouting.AddForwardRoute("MSMQ", "RabbitMQ");
+        staticRouting.AddForwardRoute("Prod", "Test");
         routerConfig.AutoCreateQueues();
 
         #endregion

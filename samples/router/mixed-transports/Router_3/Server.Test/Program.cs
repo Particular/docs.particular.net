@@ -6,12 +6,12 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Router.TrafficMirroring.Server";
+        Console.Title = "Samples.Router.TrafficMirroring.Server - TEST";
         var endpointConfiguration = new EndpointConfiguration(
             "Samples.Router.TrafficMirroring.Server");
 
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString")); //PROD
+        transport.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString.2")); //TEST
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
