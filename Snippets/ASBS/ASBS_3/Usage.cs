@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using Azure.Identity;
 using NServiceBus;
 
 class Usage
@@ -14,6 +15,13 @@ class Usage
 
         #endregion
 
+        #region token-credentials
+
+        var transportWithTokenCredentials = new AzureServiceBusTransport("[NAMESPACE].servicebus.windows.net", new DefaultAzureCredential());
+        endpointConfiguration.UseTransport(transportWithTokenCredentials);
+
+        #endregion
+
         #region custom-prefetch-multiplier
 
         transport.PrefetchMultiplier = 3;
@@ -23,6 +31,12 @@ class Usage
         #region custom-prefetch-count
 
         transport.PrefetchCount = 100;
+
+        #endregion
+
+        #region custom-auto-lock-renewal
+
+        transport.MaxAutoLockRenewalDuration = TimeSpan.FromMinutes(10);
 
         #endregion
 
