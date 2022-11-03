@@ -164,7 +164,7 @@ Remove-ServiceControlRemote `
 
 On the original audit instance machine:
 ```ps1
-Remote-ServiceControlAuditInstance `
+Remove-ServiceControlAuditInstance `
   -Name Particular.ServiceControl.OriginalAudit `
   -RemoveDB `
   -RemoveLogs
