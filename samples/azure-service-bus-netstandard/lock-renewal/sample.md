@@ -75,24 +75,4 @@ INFO  LockRenewalBehavior Lock renewal task for incoming message ID: 940e9a1f-fd
 
 Message processing takes 45 seconds, and the `LockDuration` is 30 seconds, so the message will have its lock renewed once, and processing will finish successfully.
 
-## Overriding the value of TransactionManager.MaxTimeout
-
-### .NET Framework
-
-The setting can be modified using a machine level-configuration file:
-
-```xml
-<system.transactions>
-  <machineSettings maxTimeout="01:00:00" />
-</system.transactions>
-```
-
-or using reflection:
-
-snippet: override-transaction-manager-timeout-net-framework
-
-### .NET Core
-
-The setting can be modified using reflection:
-
-snippet: override-transaction-manager-timeout-net-core
+partial: maxtimeout
