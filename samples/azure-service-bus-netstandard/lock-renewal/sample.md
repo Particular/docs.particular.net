@@ -8,6 +8,7 @@ related:
 - samples/azure-service-bus-netstandard/azure-service-bus-long-running
 ---
 
+Note: Starting from version 3 of the Azure Service Bus transport [lock renewal is built-into the transport](/transports/azure-service-bus/configuration.md#lock-renewal) and custom lock renewal is no longer required. This sample will be removed in future versions of the transport.
 
 ## Prerequisites
 
