@@ -35,20 +35,20 @@ include: v7-usetransport-shim-api
 
 The Azure Service Bus transport configuration options have been moved to the `AzureServiceBusTransport` class. See the following table for further information:
 
-| Version 1 configuration option | Version 2 configuration option | Version 3 configuration option |
+| Version 2 configuration option | Version 3 configuration option
 | --- | --- |
-| TopicName | TopicName | TopicName |
-| EntityMaximumSize | EntityMaximumSize | EntityMaximumSize |
-| EnablePartitioning | EnablePartitioning | EnablePartitioning |
-| PrefetchMultiplier | PrefetchMultiplier | PrefetchMultiplier |
-| PrefetchCount | PrefetchCount | refetchCount |
-| TimeToWaitBeforeTriggeringCircuitBreaker | TimeToWaitBeforeTriggeringCircuitBreaker | TimeToWaitBeforeTriggeringCircuitBreaker |
-| SubscriptionNameShortener | SubscriptionNamingConvention | SubscriptionNamingConvention |
-| SubscriptionNamingConvention | SubscriptionNamingConvention | SubscriptionNamingConvention |
-| RuleNameShortener | SubscriptionRuleNamingConvention | SubscriptionRuleNamingConvention |
-| SubscriptionRuleNamingConvention | SubscriptionRuleNamingConvention | SubscriptionRuleNamingConvention |
-| UseWebSockets | UseWebSockets | UseWebSockets |
-| CustomTokenCredential | TokenCredential | Overloaded constructor of the transport |
+| TopicName | TopicName |
+| EntityMaximumSize | EntityMaximumSize |
+| EnablePartitioning | EnablePartitioning |
+| PrefetchMultiplier | PrefetchMultiplier |
+| PrefetchCount | PrefetchCount |
+| TimeToWaitBeforeTriggeringCircuitBreaker | TimeToWaitBeforeTriggeringCircuitBreaker |
+| SubscriptionNameShortener | SubscriptionNamingConvention |
+| SubscriptionNamingConvention | SubscriptionNamingConvention |
+| RuleNameShortener | SubscriptionRuleNamingConvention |
+| SubscriptionRuleNamingConvention | SubscriptionRuleNamingConvention |
+| UseWebSockets | UseWebSockets |
+| TokenCredential | Overloaded constructor of the transport |
 | CustomRetryPolicy | RetryPolicy |
 
 ### TokenCredential
