@@ -47,34 +47,4 @@ class Program
 
         await managementClient.UpdateQueueAsync(queueDescription.Value).ConfigureAwait(false);
     }
-
-    #region override-transaction-manager-timeout-net-core
-
-    static void ConfigureTransactionTimeoutCore(TimeSpan timeout)
-    {
-        SetTransactionManagerField("s_cachedMaxTimeout", true);
-        SetTransactionManagerField("s_maximumTimeout", timeout);
-
-        void SetTransactionManagerField(string fieldName, object value) =>
-            typeof(TransactionManager)
-                .GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Static)
-                .SetValue(null, value);
-    }
-
-    #endregion
-
-    #region override-transaction-manager-timeout-net-framework
-
-    static void ConfigureTransactionTimeoutNetFramework(TimeSpan timeout)
-    {
-        SetTransactionManagerField("_cachedMaxTimeout", true);
-        SetTransactionManagerField("_maximumTimeout", timeout);
-
-        void SetTransactionManagerField(string fieldName, object value) =>
-            typeof(TransactionManager)
-                .GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Static)
-                .SetValue(null, value);
-    }
-
-    #endregion
 }
