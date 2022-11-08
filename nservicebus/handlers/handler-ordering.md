@@ -1,7 +1,7 @@
 ---
 title: Handler Ordering
 summary: Controlling the order in which handlers are executed
-reviewed: 2020-02-27
+reviewed: 2022-11-08
 component: Core
 redirects:
 - nservicebus/how-do-i-specify-the-order-in-which-handlers-are-invoked
