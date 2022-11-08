@@ -2,7 +2,7 @@
 title: Self-Hosting in Azure WebJobs
 summary: Uses NServiceBus the self-hosting capability to host an endpoint in an Azure WebJob.
 component: Core
-reviewed: 2020-02-26
+reviewed: 2022-11-08
 isLearningPath: true
 related:
 - samples/dependency-injection/aspnetcore
