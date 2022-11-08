@@ -53,7 +53,7 @@ The Azure Service Bus transport configuration options have been moved to the `Az
 
 ### TokenCredential
 
-Previously when using `CustomTokenCredential` or `TokenCredential` it was required to pass a fully-qualified namespace (e.g. `<asb-namespace-name>.servicebus.windows.net`) instead of a connection string (e.g. `Endpoint=sb://<asb-namespace-name>.servicebus.windows.net>;[...]`). The dual purpose of the connection-string option has been removed. In order to use `TokenCredential` pass the credential plus the fully-qualified namespace to the constructor of the transport.
+Previously when using `CustomTokenCredential` or `TokenCredential` it was required to pass a fully-qualified namespace (e.g. `<asb-namespace-name>.servicebus.windows.net`) instead of a connection string (e.g. `Endpoint=sb://<asb-namespace-name>.servicebus.windows.net>;[...]`). The dual purpose of the connection-string option has been removed. To use `TokenCredential` pass the credential plus the fully-qualified namespace to the constructor of the transport.
 
 snippet: token-credentials
 
@@ -73,11 +73,11 @@ snippet: custom-auto-lock-renewal
 
 ### Transaction timeout
 
-The transport has been changed allowing for transactions to take longer than the default [`TransactionManager.MaximumTimeout`](https://learn.microsoft.com/en-us/dotnet/api/system.transactions.transactionmanager.maximumtimeout). It is no longer required to [override the maximum timeout](/samples/azure-service-bus-netstandard/lock-renewal/?version=asbs_2#overriding-the-value-of-transactionmanager-maxtimeout).
+The transport now allows transactions to take longer than the default [`TransactionManager.MaximumTimeout`](https://learn.microsoft.com/en-us/dotnet/api/system.transactions.transactionmanager.maximumtimeout). It is no longer required to [override the maximum timeout](/samples/azure-service-bus-netstandard/lock-renewal/?version=asbs_2#overriding-the-value-of-transactionmanager-maxtimeout).
 
 ### Advanced/custom lock renewal
 
-Prior to the new lock renewal support in order to have longer than five minutes lock renewal it was required to write custom lock renewal handling as outlined by the [lock renewal sample](/samples/azure-service-bus-netstandard/lock-renewal/). While it is still possible to manually renew the lock as outlined in the sample it is encouraged to leverage the built in lock renewal. Existing custom lock renewal implementations are required to change from
+Previous versions of the transport required custom lock renewal logic to extend the renewal beyond five minutes, as outlined by the [lock renewal sample](/samples/azure-service-bus-netstandard/lock-renewal/). While this scenario still works as expected, it is encouraged to leverage the built-in lock renewal mechanism. Existing custom lock renewal implementations are required to change from
 
 ```csharp
 context.Extensions<ServiceBusReceiver>();

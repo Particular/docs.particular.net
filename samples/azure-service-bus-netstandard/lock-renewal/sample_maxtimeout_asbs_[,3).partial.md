@@ -1,4 +1,4 @@
-## Overriding the value of TransactionManager.MaxTimeout
+## Overriding the TransactionManager.MaxTimeout value
 
 ### .NET Framework
 

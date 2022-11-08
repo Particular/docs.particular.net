@@ -47,7 +47,7 @@ To disable prefetching, prefetch count should be set to zero.
 
 ## Lock-renewal
 
-For all supported transport transaction modes (expect `TransportTransactionMode.None`) the transport uses a peek lock to make sure only one instance of an endpoint can process a message. The default lock duration depends on the settings specified during the creation of the entity. By default the transport uses the default maximum auto lock renewal duration of 5 minutes.
+For all supported transport transaction modes (expect `TransportTransactionMode.None`), the transport uses a peek-lock mechanism to ensure a single instance of an endpoint can process a message. The default lock duration is specified during the entity creation. By default, the transport uses the SDK's default maximum auto lock renewal duration of 5 minutes.
 
 partial: lockrenewal
 
