@@ -73,7 +73,7 @@ snippet: custom-auto-lock-renewal
 
 ### Transaction timeout
 
-The transport now allows transactions to take longer than the default [`TransactionManager.MaximumTimeout`](https://learn.microsoft.com/en-us/dotnet/api/system.transactions.transactionmanager.maximumtimeout). It is no longer required to [override the maximum timeout](/samples/azure-service-bus-netstandard/lock-renewal/?version=asbs_2#overriding-the-value-of-transactionmanager-maxtimeout).
+The transport now allows transactions to take longer than the default [`TransactionManager.MaximumTimeout`](https://learn.microsoft.com/en-us/dotnet/api/system.transactions.transactionmanager.maximumtimeout). It is no longer required to [override the maximum timeout](/samples/azure-service-bus-netstandard/lock-renewal/?version=asbs_2#overriding-the-transactionmanager-maxtimeout-value).
 
 ### Advanced/custom lock renewal
 
