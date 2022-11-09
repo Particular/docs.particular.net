@@ -1,7 +1,7 @@
 ---
 title: WebSocket Gateway
 summary: Demonstrates how to replace an NServiceBus gateway with a WebSockets channel
-reviewed: 2020-02-27
+reviewed: 2022-11-09
 component: Gateway
 related:
 - nservicebus/gateway
