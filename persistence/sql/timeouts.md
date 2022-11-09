@@ -1,7 +1,7 @@
 ---
 title: Timeouts Persister
 component: SqlPersistence
-reviewed: 2020-02-27
+reviewed: 2022-11-09
 versions: '[4,)'
 ---
 
