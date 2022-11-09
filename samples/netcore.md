@@ -1,7 +1,7 @@
 ---
 title: Samples supporting .NET Core
 summary: Samples containing a .NET Core solution
-reviewed: 2020-02-27
+reviewed: 2022-11-09
 ---
 
 The following samples contain variants for both .NET Core and .NET Framework.
