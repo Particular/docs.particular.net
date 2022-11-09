@@ -1,7 +1,7 @@
 ---
 title: Subscription Persister
 component: SqlPersistence
-reviewed: 2020-02-27
+reviewed: 2022-11-09
 redirects:
  - nservicebus/sql-persistence/subscriptions
 versions: '[2,)'
