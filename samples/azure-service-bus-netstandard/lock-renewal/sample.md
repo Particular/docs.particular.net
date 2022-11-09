@@ -37,7 +37,7 @@ The behavior processes every incoming message and uses [native message access](/
 
 snippet: native-message-access
 
-Obtain the means to renew the lock:
+To renew the lock, get the following object from the context:
 
 snippet: get-connection-and-path
 
