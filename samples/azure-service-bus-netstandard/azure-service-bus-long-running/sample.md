@@ -48,9 +48,7 @@ Processor ->> Client: LongProcessingFinished / LongProcessingFailed
 
 ## Performing processing outside a message handler
 
-When processing takes a long time, message lock renewal is possible, but should be avoided to keep message locking to a minimum.
-
-WARNING: Message lock renewal operation is initiated by the Azure Service Bus client, not the broker. If it fails after all the retries, the lock won't be re-acquired, and the message will become unlocked and available for processing. Lock renewal should be treated as best-effort and not as a guaranteed operation.
+When processing takes a long time, [message lock renewal](/transports/azure-service-bus/configuration.md#lock-renewal) is possible. The client initiates lock renewal, not the broker. If the request to renew the lock fails after all the SDK built-in retries (.e.g, due to connection loss), the lock won't be renewed, and the message will be made available for processing by competing consumers. Lock renewal should be treated as a best effort, not as a guaranteed operation.
 
 An alternative approach is to perform a long-running operation in an external service, outside of a message handler context and notify the interested parts of the results.
 
