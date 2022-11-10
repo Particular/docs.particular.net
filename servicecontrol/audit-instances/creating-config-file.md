@@ -140,6 +140,7 @@ Type: timespan
 
 Valid range for this setting is from 1 hour to 364 days.
 
+NOTE: Starting with version 4.26.0, new audit instances using RavenDB 5 will use the built-in RavenDB expiration process. Changing the audit retention setting will affect only newly ingested messages. Already ingested messages will expire according to the previous retention setting value.
 
 ## Performance tuning
 
