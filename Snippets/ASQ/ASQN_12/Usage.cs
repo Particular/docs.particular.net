@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Azure.Storage.Blobs;
 using Azure.Storage.Queues;
-using Microsoft.Azure.Cosmos.Table;
+using Azure.Data.Tables;
 using NServiceBus;
 
 class Usage
@@ -56,8 +56,7 @@ class Usage
         var anotherAccount = transport.AccountRouting.AddAccount(
             "AnotherAccountName",
             new QueueServiceClient("anotherConnectionString"),
-            CloudStorageAccount.Parse("anotherConnectionString").CreateCloudTableClient());
-
+            new TableServiceClient("anotherConnectionString"));
         anotherAccount.AddEndpoint("Receiver");
 
         var routingConfig = configuration.UseTransport(transport);
@@ -86,8 +85,7 @@ class Usage
         var anotherAccount = transport.AccountRouting.AddAccount(
             "publisher",
             new QueueServiceClient("anotherConnectionString"),
-            CloudStorageAccount.Parse("anotherConnectionString").CreateCloudTableClient());
-
+            new TableServiceClient("anotherConnectionString"));
         anotherAccount.AddEndpoint("Publisher1", new[] { typeof(MyEvent)  }, "optionalSubscriptionTableName");
 
         configuration.UseTransport(transport);
@@ -106,7 +104,7 @@ class Usage
         var anotherAccount = transport.AccountRouting.AddAccount(
             "subscriber",
             new QueueServiceClient("connectionString"),
-            CloudStorageAccount.Parse("connectionString").CreateCloudTableClient());
+            new TableServiceClient("connectionString"));
         anotherAccount.AddEndpoint("Subscriber1");
 
         configuration.UseTransport(transport);
@@ -155,7 +153,7 @@ class Usage
         accountRouting.AddAccount(
             "account_B",
             new QueueServiceClient("account_B_connection_string"),
-            CloudStorageAccount.Parse("account_B_connection_string").CreateCloudTableClient());
+            new TableServiceClient("account_B_connection_string"));
 
         endpointConfiguration.UseTransport(transport);
 

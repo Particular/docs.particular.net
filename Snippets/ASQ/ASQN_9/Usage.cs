@@ -52,17 +52,6 @@ class Usage
         #endregion
     }
 
-    async Task SendToMulitpleAccountUsingConnectionSTring(IEndpointInstance endpointInstance)
-    {
-        #region storage_account_routing_send_options_full_connectionstring
-
-        await endpointInstance.Send(
-            destination: "sales@accountAlias",
-            message: new MyMessage());
-
-        #endregion
-    }
-
     async Task SendToMulitpleAccountUsingAlias(IEndpointInstance endpointInstance)
     {
         #region storage_account_routing_send_options_alias
