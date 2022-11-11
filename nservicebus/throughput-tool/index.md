@@ -1,14 +1,10 @@
 ---
 title: Measuring system throughput
-summary: Use the Particular throughput tool to measure the throughput of your NServiceBus system.
-reviewed: 2022-09-19
+summary: Use the Particular throughput tool to measure the throughput of an NServiceBus system.
+reviewed: 2022-11-09
 ---
 
-The Particular throughput tool can be installed locally and run against a production system to discover the throughput of each endpoint in a system over a period of time, which can then be extrapolated to daily throughput numbers.
-
-The tool currently supports collecting data from [ServiceControl performance metrics](/monitoring/metrics/install-plugin.md) normally [displayed in ServicePulse](/monitoring/metrics/in-servicepulse.md), or by directly interrogating the message transport when using the [Azure Service Bus](/transports/azure-service-bus/), [RabbitMQ](/transports/rabbitmq/), or [SQL Sever](/transports/sql/) transports.
-
-The ServiceControl collection method is preferred as ServiceControl already understands what queues comprise an NServiceBus message endpoint.
+The Particular throughput tool can be installed locally and run against a production system to discover the throughput of each endpoint in a system over a period of time.
 
 ## Installation
 
@@ -20,153 +16,16 @@ To install the tool:
     dotnet tool install -g Particular.EndpointThroughputCounter --add-source=https://www.myget.org/F/particular/api/v3/index.json
     ```
 
-### Updating the throughput tool
+## Running
 
-To update the tool to the latest version, execute the following command in a terminal window:
+The tool can collect data using a variety of methods depending upon the system's configuration. To run the tool, refer to the article based on the system configuration:
 
-```shell
-dotnet tool update -g Particular.EndpointThroughputCounter --add-source https://www.myget.org/F/particular/api/v3/index.json
-```
-
-### Uninstalling the throughput tool
-
-To uninstall the tool, execute the following command in a terminal window:
-
-```shell
-dotnet tool uninstall -g Particular.EndpointThroughputCounter
-```
-
-## Selecting the data collection method
-
-First, determine which method of data collection to use:
-
-* **(Preferred) [ServiceControl data collection](#run-using-servicecontrol-data)**: Use when the system employs [monitoring performance metrics in ServicePulse](/monitoring/metrics/in-servicepulse.md) and all endpoints have the [monitoring plug-in](/monitoring/metrics/install-plugin.md) installed, otherwise falls back to using [message audit information](/nservicebus/operations/auditing.md) instead.
-* **[Azure Service Bus](#run-using-azure-service-bus)**: Use for Azure Service Bus systems.
-* **[Amazon SQS](#run-using-amazon-sqs)**: Use for Amazon SQS systems.
-* **[RabbitMQ](#run-using-rabbitmq)**: Use for RabbitMQ systems when ServiceControl is unavailable.
-* **[SQL Transport](#run-using-sql-transport)**: Use for SQL transport systems when ServiceControl is unavailable.
-
-## Run using ServiceControl data
-
-Once installed, execute the tool with the URLs for the ServiceControl and monitoring APIs, as in this example:
-
-```shell
-throughput-counter servicecontrol --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/
-```
-
-Because ServiceControl contains, at maximum, the previous 1 hour of monitoring data, the tool will query the ServiceControl API 24 times with a one-hour sleep period between each attempt in order to capture a total of 24 hours worth of data.
-
-For endpoints that do not have monitoring enabled, the tool will fall back to querying [message audit data](/nservicebus/operations/auditing.md) to determine how many messages have been processed each hour.
-
-### Options
-
-All options are required:
-
-| Option | Description |
-|-|-|
-| <nobr>`--serviceControlApiUrl`</nobr> | The URL of the ServiceControl API. In the [ServiceControl Management Utility](/servicecontrol/installation.md), find the instance identified as a **ServiceControl Instance** and use the value of the **URL** field, as shown in the screenshot below. |
-| <nobr>`--monitoringApiUrl`</nobr> | The URL of the Monitoring API. In the [ServiceControl Management Utility](/servicecontrol/installation.md), find the instance identified as a **Monitoring Instance** and use the value of the **URL** field, as shown in the screenshot below. |
-
-This screenshot shows how to identify the instance types and locate the required URLs:
-
-![ServiceControl instances showing tool inputs](servicecontrol.png)
-
-## Run using Azure Service Bus
-
-Collecting metrics from Azure Service Bus relies upon the Azure Command Line Interface (CLI), which must be installed first.
-
-1. Install a version of [Powershell or Powershell Core](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell) on the host system, if not already available.
-1. Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
-1. From a command line, execute `az login`, which will open a browser to complete the authentication to Azure. The Azure login must have access to view metrics data for the Azure Service Bus namespace.
-1. Execute `az set --subscription {SubscriptionId}`, where `{SubscriptionId}` is a Guid matching the subscription id that contains the Azure Service Bus namespace.
-1. In the Azure Portal, go to the Azure Service Bus namespace, click **Properties** in the side navigtation (as shown in the screenshot below) and then copy the `Id` value, which will be needed to run the tool. The `Id` value should have a format similar to `/subscriptions/{Guid}/resourceGroups/{rsrcGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}`.
-
-This screenshot shows how to copy the Service Bus Namespace's `Id` value:
-
-![How to collect the Service Bus Namespace Id](azure-service-bus.png)
-
-Once these prerequisites are complete, execute the tool with the resource ID of the Azure Service Bus namespace, as in this example:
-
-```shell
-throughput-counter azureservicebus --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
-```
-
-The tool may open additional terminal windows, which are Powershell processes gathering the data from the Azure CLI.
-
-Unlike ServiceControl, using Azure Service Bus metrics allows the tool to capture the last 30 days worth of data at once, which means that the report will be generated without delay. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
-
-### Options
-
-All options are required:
-
-| Option | Description |
-|-|-|
-| <nobr>`--resourceId`</nobr> | The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above. |
-
-## Run using Amazon SQS
-
-Collecting metrics for SQS relies upon [AWSSDK.SQS](https://www.nuget.org/packages/AWSSDK.SQS) to discover queue names and [AWSSDK.CloudWatch](https://www.nuget.org/packages/AWSSDK.CloudWatch) to gather per-queue metrics.
-
-Authentication to AWS requires a [AWS credentials profile](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/keys-profiles-credentials.html), or credentials can be created from the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables, if both are not empty. The tool uses default constructors for the SQS and CloudWatch clients and follows the [credential and profile resolution](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/creds-assign.html) rules determined by the AWS SDK.
-
-The AWS region can be specified either by command-line parameter or by the `AWS_REGION` environment variable.
-
-Execute the tool as shown in this example:
-
-```shell
-throughput-counter sqs
-```
-
-The tool will fetch all queue names, query CloudWatch for metrics for each queue, and then generate the report file.
-
-Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 30 days worth of data at once, which means that the report will be generated without delay. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
-
-### Options
-
-All options for collecting SQS metrics are optional:
-
-| Option | Description |
-|-|-|
-| <nobr>`--profile`</nobr> | The name of a local [AWS credentials profile](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/keys-profiles-credentials.html). If not included, credentials can be read from the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. |
-| <nobr>`--region`</nobr> | The AWS region to use when accessing AWS services. If not provided, the default profile value or `AWS_REGION` environment variable will be used. |
-
-## Run using RabbitMQ
-
-To collect data from RabbitMQ, the [management plugin](https://www.rabbitmq.com/management.html) must be enabled on the RabbitMQ broker. The tool will also require a login that can access the management UI.
-
-Execute the tool with the RabbitMQ management URL, as in this example where the RabbitMQ broker is running on localhost:
-
-```shell
-throughput-counter rabbitmq --apiUrl http://localhost:15672
-```
-
-The tool will prompt for the username and password to access the RabbitMQ management interface. After that, it will take its initial reading, then sleep for 24 hours before taking its final reading and generating a report.
-
-### Options
-
-All options are required:
-
-| Option | Description |
-|-|-|
-| <nobr>`--apiUrl`</nobr> | The URL for the RabbitMQ management site. |
-
-## Run using SQL Transport
-
-Once installed, execute the tool with the database connection string used by SQL Server endpoints, as in this example:
-
-```shell
-throughput-counter sqlserver --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;"
-```
-
-The tool will run for slightly longer than 24 hours in order to capture a beginning and ending `RowVersion` value for each queue table. A value can only be detected when a message is waiting in the queue to be processed, and not from an empty queue, so the tool may execute multiple SQL queries for each table. The tool will use a backoff mechanism to avoid putting undue pressure on the SQL Server instance.
-
-### Options
-
-All options are required:
-
-| Option | Description |
-|-|-|
-| <nobr>`--connectionString`</nobr> | The database connection string that will provide at least read access to all queue tables. |
+1. Use [**ServiceControl data collection**](service-control.md) when the system is monitored by ServiceControl. **This is the preferred method** becuase ServiceControl already understands NServiceBus logical message endpoints.
+2. If ServiceControl is unavailable, use the data collection method based on the message transport being used:
+    * [Azure Service Bus](azure-service-bus.md)
+    * [Amazon SQS](amazon-sqs.md)
+    * [RabbitMQ](rabbitmq.md)
+    * [SQL Transport](sql-transport.md)
 
 ## Masking private data
 
@@ -183,4 +42,20 @@ This will result in a report file with masked data, such as:
     "QueueName": "***.RabbitMQ.SimpleReceiver",
     "Throughput": 0
 }
+```
+
+## Updating
+
+To update the tool to the latest version, execute the following command in a terminal window:
+
+```shell
+dotnet tool update -g Particular.EndpointThroughputCounter --add-source https://www.myget.org/F/particular/api/v3/index.json
+```
+
+## Uninstalling
+
+To uninstall the tool, execute the following command in a terminal window:
+
+```shell
+dotnet tool uninstall -g Particular.EndpointThroughputCounter
 ```
