@@ -66,3 +66,24 @@ The Azure Storage Queues transport configuration options have been moved to the 
 | UseQueueServiceClient                                 | use the transport constructor overload   |
 | UseBlobServiceClient                                  | use the transport constructor overload   |
 | UseCloudTableClient                                   | use the transport constructor overload   |
+
+## Account routing changes
+
+When setting up aliases for account routing, use the overload that accepts `QueueServiceClient` and `CloudTableClient` instances instead of the deprecated overload that accepts a connection string (which will be removed in a future version).
+
+Instead of:
+
+```csharp
+var accountRouting = transport.AccountRouting();
+accountRouting.AddAccount("accountAlias", "account_connection_string");
+```
+
+Use:
+
+```csharp
+var accountRouting = transport.AccountRouting();
+accountRouting.AddAccount(
+    "accountAlias",
+    new QueueServiceClient("account_connection_string"),
+    CloudStorageAccount.Parse("account_connection_string").CreateCloudTableClient());
+```
