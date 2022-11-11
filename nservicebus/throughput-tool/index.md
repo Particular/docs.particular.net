@@ -8,12 +8,29 @@ The Particular throughput tool can be installed locally and run against a produc
 
 ## Installation
 
-To install the tool:
+The tool can be installed as a .NET tool for Windows/Linux or as a self-contained Windows executable.
+
+### .NET tool install (preferred)
 
 1. Install either [.NET Core 3.1 or .NET 6.0](https://dotnet.microsoft.com/en-us/download).
 2. From a terminal window, use the following command to install the throughput counter from MyGet:
     ```shell
     dotnet tool install -g Particular.EndpointThroughputCounter --add-source=https://www.myget.org/F/particular/api/v3/index.json
+    ```
+3. Run the tool by executing `throughput-counter`:
+    ```shell
+    throughput-counter <arguments>
+    ```
+
+### Self-contained executable
+
+In this mode, the target system does not need any version of .NET preinstalled:
+
+1. [Download the self-contained Windows executable](https://s3.amazonaws.com/particular.downloads/EndpointThroughputCounter/Particular.EndpointThroughputCounter.zip)
+2. Unzip the downloaded file.
+3. Execute the tool using its full name from the folder in which it was downloaded:
+    ```shell
+    Particular.EndpointThroughputCounter.exe <arguments>
     ```
 
 ## Running
