@@ -153,7 +153,14 @@ The primary instance continues to query both instances but the original Audit in
 
 ### Decommission the old audit instance, when it is empty
 
-As the original audit instance is no longer ingesting messages, it will be empty after the audit retention period has elapsed and can be removed.
+As the original audit instance is no longer ingesting messages, it will be empty after the audit retention period has elapsed and can be removed. The following steps describe how to determine when an audit instance is empty:
+
+1. Put the audit instance in [maintenance mode](/servicecontrol/audit-instances/maintenance-mode.md).
+2. Launch RavenDB Management Studio with a browser
+3. If the instance is using RavenDB 3.5 for persistence, go to the `<system>` database. If the instance is using RavenDB 5, go to the `audit` database.
+4. Check the documents count in the `ProcessedMessages` collection.
+
+When the `ProcessedMessages` collection is empty, the audit instance can be decomissioned.
 
 On the primary instance machine:
 ```ps1
