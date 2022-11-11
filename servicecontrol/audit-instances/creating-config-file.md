@@ -193,6 +193,8 @@ Type: bool `true` or `false`
 
 Default: `true`.
 
+NOTE: If the audit instance uses RavenDB 5 persistence (available starting 4.26.0), changing the full-text search setting will cause indexes to be redeployed and rebuilt. Depending on the number of documents stored, this operation might take a long time and search results won't be available until completed.
+
 ## Transport
 
 #### ServiceControl.Audit/TransportType
