@@ -111,6 +111,17 @@ Default: 60 seconds
 Valid settings are between 5 seconds and 1 hour.
 
 
+#### ServiceControl.Audit/InternalQueueName
+
+Controls the name of the internal queue that ServiceControl uses for internal control messages.
+
+This setting was introduced in ServiceControl version 4.27.0.
+
+Type: string
+
+Default: The Service Name
+
+
 ## Data retention
 
 
