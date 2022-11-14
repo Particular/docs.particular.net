@@ -16,5 +16,5 @@ Warning: The database will not automatically shrink in size after reducing the r
 
 ## Differences in message retention implementations
 
-The expiration of error and audit data is implemented by a recurring task that checks and deletes expired documents. Changing the expiration setting results in it being picked up the next time the service is run. 
-In ServiceControl.Audit version 4.26 and above expiration is handled by the database automatically. Each audited message contains a metadata key that tells the database when to remove it. When the expiration setting changes, the new value is only applied to new audit data. Metadata for already ingested messages is not changed. Only new audited messages are affected by the change to the expiration setting.
+The expiration of error and audit data is implemented by a recurring task that checks and deletes expired documents. Changing the expiration setting results in it being picked up the next time the service is run.
+In ServiceControl.Audit version 4.26 and above expiration is handled by the database automatically. Each audited message contains a metadata key that tells the database when to remove it. When the expiration setting changes, the new value is applied only to new audit data. Metadata for messages that were previously ingested is not changed. Only new audited messages are affected by the change to the expiration setting.

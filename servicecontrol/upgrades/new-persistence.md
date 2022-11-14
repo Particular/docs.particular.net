@@ -7,7 +7,7 @@ reviewed: 2022-10-21
 
 Version 4.26 of ServiceControl introduced a new persistence format for audit instances. The new persistence format is faster and more efficient, using less space on disk.
 
-Any new audit instance created with ServiceControl version 4.26 and above will use the new persistence format. Any existing audit instance that was created with ServiceControl version 4.25 and below will continue to use the old persistence format, even if it is upgraded.
+New audit instances created with ServiceControl version 4.26 and above will use the new persistence format. Existing audit instances created with ServiceControl version 4.25 and below will continue to use the old persistence format, even if it is upgraded.
 
 WARN: Updating an existing audit instance to version 4.26 and above will _not_ automatically change the persistence format.
 
@@ -21,10 +21,10 @@ To switch to the new persistence format, follow the steps for [zero downtime upg
 
 ## How to determine which persistence format is used
 
-Any audit instance that was created using ServiceControl version 4.25 and below is using the old instance format. Even if this instance is upgraded to a newer version, it will continue to use the old format.
+Audit instances created using ServiceControl version 4.25 and below use the old instance format. Even if this instance is upgraded to a newer version, it will continue to use the old format.
 
 The persistence format of an instance can be verified using ServiceControl Management or the `Get-ServiceControlAuditInstances` powershell cmdlet after installing ServiceControl 4.26 or above.
 
 If the value is `RavenDB 5` then the instance is using the new persistence format and does not require upgrading.
 
-If the value is `RavenDB 3.5` then the instance is using the old persistence format and should follw the [instructions above](#how-to-switch-to-the-new-persistence-format) to migrate to the new prsistence format.
+If the value is `RavenDB 3.5` then the instance is using the old persistence format and should follow the [instructions above](#how-to-switch-to-the-new-persistence-format) to migrate to the new persistence format.
