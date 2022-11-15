@@ -24,6 +24,7 @@ Steps
  1. Remove the `netsh` url restriction
  1. Make sure that [WebSocket support is enabled for IIS](https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/iis-80-websocket-protocol-support)
  1. Create a website in IIS referring to the ServicePulse directory
+ 1. Configure URL Rewrites 
 
 ### Detailed steps
 
@@ -53,6 +54,31 @@ NOTE: Make sure that the ServicePulse Windows Service is not running and that th
 
 NOTE: If TLS is to be applied to ServicePulse then ServiceControl also must be configured for TLS. This can be achieved by reverse proxying ServiceControl through IIS as outlined below.
 
+5. Install [URL Rewrite](https://www.iis.net/downloads/microsoft/url-rewrite) module and in the root directory of the IIS website create `web.config` file with the following content:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.webServer>
+    <rewrite>
+      <rules>
+        <rule name="Handle app.constants.js requests from AngularJs" stopProcessing="true">
+          <match url="^a/js/app.constants.js(.*)" />
+          <action type="Rewrite" url="/js/app.constants.js{R:1}" />
+        </rule>
+        <rule name="Handle Vue.js routing paths" stopProcessing="true">
+          <match url="(.*)" />
+          <conditions logicalGrouping="MatchAll">
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+          </conditions>
+          <action type="Rewrite" url="/" />
+        </rule>
+      </rules>
+    </rewrite>
+  </system.webServer>
+</configuration>
+```
 
 ## Advanced configuration
 
