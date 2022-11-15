@@ -48,6 +48,7 @@ var accountInfo = new AccountInfo(
 ```
 
 ### Configuring clients
+
 Configuring clients for queue, blob or table is done via the constructor overload. Setting those via endpoint configuration methods is no longer possible.
 
 Instead of:
