@@ -22,7 +22,12 @@ class Usage
     {
         #region AzureStorageQueueConfigCodeOnly
 
-        var transport = new AzureStorageQueueTransport("connectionString")
+        var queueServiceClient = new QueueServiceClient("connectionString", new QueueClientOptions());
+        var blobServiceClient = new BlobServiceClient("connectionString", new BlobClientOptions());
+        var cloudStorageAccount = CloudStorageAccount.Parse("connectionString");
+        var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
+
+        var transport = new AzureStorageQueueTransport(queueServiceClient, blobServiceClient, cloudTableClient)
         {
             ReceiverBatchSize = 20,
             MaximumWaitTimeWhenIdle = TimeSpan.FromSeconds(1),
