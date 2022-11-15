@@ -57,7 +57,7 @@ partial: parallelismdegree
 
 partial: serialization
 
-## Configuration API
+## Setting configuration parameters
 
 partial: config
 
