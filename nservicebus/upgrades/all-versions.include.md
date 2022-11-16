@@ -281,7 +281,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.6.0) | 2022-05-06     | -                 | -                                 |
+| [2.7.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.7.0) | 2022-11-15     | -                 | -                                 |
+| [2.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.6.0) | 2022-05-06     | 2023-02-15        | Superseded by 2.7.x               |
 | [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.5.0) | ~~2021-03-25~~ | ~~2022-08-06~~    | ~~Superseded by 2.6.x~~           |
 | [~~2.4.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.4.0) | ~~2020-10-08~~ | ~~2021-06-25~~    | ~~Superseded by 2.5.x~~           |
 | [~~2.3.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.3.0) | ~~2020-06-30~~ | ~~2021-01-08~~    | ~~Superseded by 2.4.x~~           |

@@ -96,7 +96,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.6.0) | 2022-05-06     | -                 | -                                 |
+| [2.7.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.7.0) | 2022-11-15     | -                 | -                                 |
+| [2.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.6.0) | 2022-05-06     | 2023-02-15        | Superseded by 2.7.x               |
 | [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.5.0) | ~~2021-03-25~~ | ~~2022-08-06~~    | ~~Superseded by 2.6.x~~           |
 
 #### [NServiceBus.Persistence.Sql](/nuget/NServiceBus.Persistence.Sql)
