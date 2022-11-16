@@ -44,7 +44,7 @@ asb-transport endpoint create name
 
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
-`-n` | `--namespace` : Sets the fully qualified namespace for connecting with cached credentials, such as those from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
 
 `-s` | `--size` : Queue size in GB (defaults to 5)
 
@@ -73,7 +73,7 @@ asb-transport endpoint subscribe name event-type
 
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
-`-n` | `--namespace` : Sets the fully qualified namespace for connecting with cached credentials, such as those from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
 
 `-t` | `--topic`: Topic name to subscribe on (defaults to 'bundle-1')
 
@@ -96,7 +96,7 @@ asb-transport endpoint unsubscribe name event-type
 
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
-`-n` | `--namespace` : Sets the fully qualified namespace for connecting with cached credentials, such as those from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
 
 `-t` | `--topic`: Topic name to unsubscribe from (defaults to 'bundle-1')
 
@@ -118,7 +118,7 @@ asb-transport queue create name
 
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
-`-n` | `--namespace` : Sets the fully qualified namespace for connecting with cached credentials, such as those from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
 
 `-s` | `--size`: Queue size in GB (defaults to 5)
 
@@ -137,7 +137,7 @@ asb-transport queue delete name
 
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
-`-n` | `--namespace` : Sets the fully qualified namespace for connecting with cached credentials, such as those from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
 
 ### Examples
 

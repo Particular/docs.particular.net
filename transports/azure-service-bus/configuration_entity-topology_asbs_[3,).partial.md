@@ -1,6 +1,6 @@
 ### Topology
 
-* `Topology`: The topology used to publish events between endpoints and subscribing for events. The topology is shared by the endpoints that need to be able to publish and subscribe to events from each other. Defaults to `Topology.DefaultBundle` which represents a single topic called `bundle-1`.
+* `Topology`: The topology used to publish and subscribe to events between endpoints. The topology is shared by the endpoints that need to publish and subscribe to events from each other. Defaults to `Topology.DefaultBundle`, which represents a single topic called `bundle-1`.
 
 It is possible to override the single topic topology from the default bundle to a custom bundle:
 

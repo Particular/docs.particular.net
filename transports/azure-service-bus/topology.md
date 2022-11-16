@@ -18,9 +18,9 @@ Subscriptions are created under the topic, with one subscription entity per subs
 
 #### Quotas and limitations
 
-The `ForwardingTopology` is subjected to [quotas](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) of Azure Service Bus. A single topic can have up to 2000 subscriptions and 2000 filters/rules. For every logical endpoint one subscription is created that contains one rule per event type subscribed as shown on the topology overview.
+The `ForwardingTopology` is subject to [quotas](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) of Azure Service Bus. A single topic supports up to 2000 subscriptions and 2000 filters/rules. For every logical endpoint, one subscription is created that contains one rule per event type subscribed, as shown on the topology overview.
 
-As an example, in larger system there may be dozens of event types for various business components to interact with each other. Considering a system of 100 different event types with every endpoint subscribing to 25% of the events. An endpoint would have to manage at least 25 rules, which would mean the `ForwardingTopology` could handle up to 80 different logical endpoints in such a system until it reaches its scaling limits. The more events there are and the more an endpoint is interested in subscribing to them, the fewer endpoints can be added to the system.
+As an example, in larger systems, there may be dozens of event types for various business components to interact with each other. Considering a system with 100 different event types, with every endpoint subscribing to 25% of the events, an endpoint would have to manage at least 25 rules. This means the `ForwardingTopology` can handle up to 80 different logical endpoints until it reaches its scaling limits. The more events there are and the more an endpoint is interested in subscribing to them, the fewer endpoints can be added to the system.
 
 partial: hierarchy
 
