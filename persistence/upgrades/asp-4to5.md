@@ -47,6 +47,4 @@ See the configuration section for [additional guidance](/persistence/azure-table
 
 ### Secondary key lookup placeholder
 
-
-
-
+TODO
