@@ -9,11 +9,13 @@ snippet: AzurePersistenceSagasCustomization
 The following settings are available for changing the behavior of saga persistence section:
 
  * `ConnectionString`: Sets the connection string for the storage account to be used for storing saga information.
- * `UseCloudTableClient`: Allows to set a fully pre-configured Cloud Table client instead of using a connection string.
+ * `UseTableServiceClient`: Allows to set a fully pre-configured Table Service client instead of using a connection string.
 
 #### Saga compatibility configuration
 
 snippet: AzurePersistenceSagasCompatibility
+
+TODO -- when change for flipping the default is done!
 
 The following settings are available for changing the behavior of saga persistence compatibility section:
 
@@ -28,11 +30,11 @@ snippet: AzurePersistenceSubscriptionsCustomization
 The following settings are available for changing the behavior of subscription persistence:
 
  * `ConnectionString`: Sets the connection string for the storage account to be used for storing subscription information.
- * `UseCloudTableClient`: Allows to set a fully pre-configured Cloud Table client instead of using a connection string.
+ * `UseTableServiceClient`: Allows to set a fully pre-configured Table Service client instead of using a connection string.
 
-### Configuring a Cloud Table Client Provider
+### Configuring a Table Service client Provider
 
-A fully preconfigured CloudTableClient can be registered in the container through a custom provider.
+A fully preconfigured TableServiceClient can be registered in the container through a custom provider.
 
 Create a customer provider:
 
@@ -68,7 +70,7 @@ Note that when the default table is set, the table will be created on endpoint-s
 
 snippet: EnableInstallersConfiguration
 
-#### Opting out from table creating when installers are enabled
+#### Opting out from table creation when installers are enabled
 
 In case installers are enabled, but there's a need to opt out from creating the tables, the `DisableTableCreation`-API may be used:
 
