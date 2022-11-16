@@ -5,9 +5,9 @@ reviewed: 2022-11-06
 component: ASP
 related:
 - persistence/azure-table
-  redirects:
-  isUpgradeGuide: true
-  upgradeGuideCoreVersions:
+redirects:
+isUpgradeGuide: true
+upgradeGuideCoreVersions:
 - 8
 ---
 
