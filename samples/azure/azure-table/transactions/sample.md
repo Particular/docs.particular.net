@@ -1,7 +1,7 @@
 ---
 title: Azure Table Persistence Usage with transactions
 summary: Using Azure Table Persistence to store sagas and outbox records atomically
-reviewed: 2020-11-13
+reviewed: 2022-11-17
 component: ASP
 related:
  - nservicebus/sagas
@@ -11,22 +11,21 @@ This sample shows a client/server scenario using saga and outbox persistences to
 
 ## Projects
 
-#### SharedMessages
+### SharedMessages
 
 The shared message contracts used by all endpoints.
 
 ### Client
 
- * Sends the `StartOrder` message to `Server`.
- * Receives and handles the `OrderCompleted` event.
+* Sends the `StartOrder` message to `Server`.
+* Receives and handles the `OrderCompleted` event.
 
 ### Server projects
 
- * Receive the `StartOrder` message and initiate an `OrderSaga`.
- * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
- * Receive the `OrderShipped` message with a custom header.
- * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
-
+* Receive the `StartOrder` message and initiate an `OrderSaga`.
+* `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
+* Receive the `OrderShipped` message with a custom header.
+* `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
 
 ### Persistence config
 

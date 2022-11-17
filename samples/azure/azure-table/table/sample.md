@@ -1,7 +1,7 @@
 ---
 title: AzureTable Persistence Usage with non-default table
 summary: Using Azure Table Persistence to store sagas providing a non-default table dynamically
-reviewed: 2020-11-13
+reviewed: 2022-11-17
 component: ASP
 related:
  - nservicebus/sagas
@@ -15,23 +15,22 @@ Ensure that an instance of the latest [Azure Storage Emulator](https://docs.micr
 
 ## Projects
 
-#### SharedMessages
+### SharedMessages
 
 The shared message contracts used by all endpoints.
 
 ### Client
 
- * Sends the `StartOrder` message to `Server`.
- * Receives and handles the `OrderCompleted` event.
+* Sends the `StartOrder` message to `Server`.
+* Receives and handles the `OrderCompleted` event.
 
 ### Server projects
- 
- * Receive the `StartOrder` message and initiate an `OrderSaga`.
- * `OrderSaga` sends a `ShipOrder` command to `ShipOrderSaga`
- * `ShipOrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
- * `ShipOrderSaga` replies with `CompleteOrder` when the `CompleteOrder` timeout fires.
- * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` message arrives.
 
+* Receive the `StartOrder` message and initiate an `OrderSaga`.
+* `OrderSaga` sends a `ShipOrder` command to `ShipOrderSaga`
+* `ShipOrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
+* `ShipOrderSaga` replies with `CompleteOrder` when the `CompleteOrder` timeout fires.
+* `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` message arrives.
 
 ### Persistence config
 
