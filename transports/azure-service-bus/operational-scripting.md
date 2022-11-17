@@ -2,7 +2,7 @@
 title: Operational Scripting
 summary: Explains how to create queues and topics with the Azure Service Bus transport using scripting
 component: ASBS
-reviewed: 2021-07-29
+reviewed: 2022-11-15
 ---
 
 ## Operational Scripting
@@ -36,6 +36,7 @@ asb-transport endpoint create name
                               [--size]
                               [--partitioned]
                               [--topic]
+                              [--topic-to-publish-to] [--topic-to-subscribe-on]
                               [--subscription]
 ```
 
@@ -43,11 +44,17 @@ asb-transport endpoint create name
 
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+
 `-s` | `--size` : Queue size in GB (defaults to 5)
 
 `-p` | `--partitioned`: Enable partitioning
 
 `-t` | `--topic`: Topic name (defaults to 'bundle-1')
+
+`-tp` | `--topic-to-publish-to`: The topic name to publish to.
+
+`-ts` | `--topic-to-subscribe-on`: The topic name to subscribe on.
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
@@ -66,7 +73,9 @@ asb-transport endpoint subscribe name event-type
 
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
-`-t` | `--topic`: Topic name (defaults to 'bundle-1')
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+
+`-t` | `--topic`: Topic name to subscribe on (defaults to 'bundle-1')
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
@@ -87,7 +96,9 @@ asb-transport endpoint unsubscribe name event-type
 
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
-`-t` | `--topic`: Topic name (defaults to 'bundle-1')
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+
+`-t` | `--topic`: Topic name to unsubscribe from (defaults to 'bundle-1')
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
@@ -107,6 +118,8 @@ asb-transport queue create name
 
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+
 `-s` | `--size`: Queue size in GB (defaults to 5)
 
 `-p` | `--partitioned`: Enable partitioning
@@ -124,6 +137,8 @@ asb-transport queue delete name
 
 `-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
 
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+
 ### Examples
 
 #### Provisioning the audit and the error queues
@@ -131,6 +146,18 @@ asb-transport queue delete name
 ```
 asb-transport queue create audit -c "<connection-string>"
 asb-transport queue create error -c "<connection-string>"
+```
+
+#### Using connection strings
+
+```
+asb-transport [command] [subcommand] -c "<connection-string>"
+```
+
+#### Using cached credentials
+
+```
+asb-transport [command] [subcommand] -n "somenamespace.servicebus.windows.net"
 ```
 
 #### Provisioning endpoints
@@ -145,6 +172,12 @@ Create the topology for an endpoint named `MyEndpoint` and override the topic na
 
 ```
 asb-transport endpoint create MyEndpoint -t custom-topic -s my-endpoint -c "<connection-string>"
+```
+
+Create the topology for an endpoint named `MyEndpoint` and override the publish topic name to be `custom-publish-topic` and the subscription topic name to be `custom-subscribe-topic`:
+
+```
+asb-transport endpoint create MyEndpoint -tp custom-publish-topic -ts custom-subscribe-topic -c "<connection-string>"
 ```
 
 #### Subscribing to events

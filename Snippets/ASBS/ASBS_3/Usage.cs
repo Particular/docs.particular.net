@@ -40,6 +40,24 @@ class Usage
 
         #endregion
 
+        #region custom-single-topology
+
+        transport.Topology = TopicTopology.Single(topicName: "custom-bundle");
+
+        #endregion
+
+        #region custom-topology-hierarchy
+
+        transport.Topology = TopicTopology.Hierarchy(topicToPublishTo: "custom-publish-bundle", topicToSubscribeOn: "custom-subscribe-bundle");
+
+        #endregion
+
+        #region custom-topology-hierarchy-bundle
+
+        transport.Topology = TopicTopology.Hierarchy(topicToPublishTo: "bundle-1", topicToSubscribeOn: "bundle-2");
+
+        #endregion
+
         #region asb-sanitization-compatibility
 
         string HashName(string input)

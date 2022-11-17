@@ -4,6 +4,6 @@
  * `RuleNameShortener(Func<string, string>)`: Shortens rule names that exceed the maximum length. The shortener is invoked only when a rule name exceeds the maximum length.
 
 
-### Combining shorteners and naming conventions
+#### Combining shorteners and naming conventions
 
 When both a shortener and a naming convention are provided for a subscription or subscription rule, the naming convention is applied first, and the result is then passed into the shortener.
