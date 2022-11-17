@@ -18,6 +18,6 @@ For custom types that require access to the shared `List<TableTransactionAction>
 
 snippet: TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
 
-And alternatively to using the the extension method `IMessageHandlerContext.SynchronizedStorageSession.GetSharedTransactionalBatch()`:
+And alternatively to using the the extension method `IMessageHandlerContext.SynchronizedStorageSession.AzureTablePersistenceSession()`:
 
 snippet: TransactionalBatchRegisteredWithDependencyInjectionResolvedInHandler
