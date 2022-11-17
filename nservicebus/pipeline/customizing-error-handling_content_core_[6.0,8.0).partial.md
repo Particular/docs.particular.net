@@ -2,13 +2,11 @@ Custom exception handling can be implemented using pipeline behaviors. To learn 
 
 NOTE: Behaviors are meant to customize recoverability. For example, how many times and under which conditions a message should be re-tried. To read more about customizing recoverability refer to the [recoverability documentation](/nservicebus/recoverability/).
 
-
 ### Create a new behavior
 
 Implement a new behavior, which extends the `ITransportReceiveContext` context interface. This context provides details about the message at the transport level. Calling `next()` in the pipeline will invoke the subsequent pipeline processing steps.
 
 snippet: ErrorHandlingBehavior
-
 
 #### Handling deserialization errors
 
@@ -16,7 +14,7 @@ To handle deserialization errors, wrap the `next()` operation in a try-catch blo
 
 snippet: DeserializationCustomization
 
-WARNING: Throwing the exception in the catch block will immediately forward the message to the error queue. If a message fails due to a `MessageDeserializationException` the message won't be retried. If that's not desired, remove the `throw` from the catch block to indicate that the message has been successfully processed.
+WARNING: Throwing the `MessageDeserializationException` in the catch block will immediately forward the message to the error queue. A message that fails due to a `MessageDeserializationException` will not be retried. If the message must be consumed and removed from the queue then remove the `throw` from the catch block to indicate that the message has been successfully processed. 
 
 #### Handling other errors
 
@@ -24,15 +22,13 @@ To handle other errors, wrap the `next()` operation in a try-catch block and han
 
 snippet: AllErrorsCustomization
 
-WARNING: Throwing the exception in the catch block will forward the message to the error queue after all the configured retry attempts. If that's not desired, remove the `throw` from the catch block to indicate that the message has been successfully processed.
-
+WARNING: Throwing the exception in the catch block will forward the message to the error queue after all the configured retry attempts. If the message must be consumed and removed from the queue then remove the `throw` from the catch block to indicate that the message has been successfully processed.
 
 #### Rolling back
 
 To rollback the receive operation instead of handling the message or to forward it to the error queue, invoke `AbortReceiveOperation` as shown below:
 
 snippet: RollbackMessage
-
 
 ### Registering the behavior
 
