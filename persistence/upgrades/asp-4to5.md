@@ -45,6 +45,15 @@ Previously, a custom Cloud table client provider could be created by implementin
 
 See the configuration section for [additional guidance](/persistence/azure-table/configuration.md#configuring-a-cloud-table-client-provider).
 
-### Secondary key lookup placeholder
+### Compatibility mode
 
-TODO
+This package continues to be fully compatible with the NServiceBus.Persistence.AzureStorage version 1 and 2. It supports both sagas that use secondary index entries as well as sagas that don't have a secondary index entries.
+It's important to note that the compatibility mode does need to be manually enabled. It has been disabled by default in favor of performance.
+
+To opt-in for the compatibility mode, use:
+
+```csharp
+var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence>();
+var compatibility = persistence.Compatibility();
+compatibility.EnableSecondaryKeyLookupForSagasCorrelatedByProperties();
+```
