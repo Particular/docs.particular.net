@@ -58,7 +58,7 @@ https://docs.particular.net/nservicebus/upgrades/support-policy#extended-support
 |          Version           |  Released               | Current Support | Mainstream <nobr>Support Expires</nobr> | Extended <nobr>Support Expires</nobr> |
 | :------------------------: | :---------------------: | :-------------: | :-------------------------------------: | :-----------------------------------: |
 | <nobr>NServiceBus 8</nobr> | <nobr>2022-11-17</nobr> |   Mainstream    |             Current Version             |            Current Version            |
-| <nobr>NServiceBus 7</nobr> | <nobr>2018-03-30</nobr> |   Mainstream    |               2025-11-17                |              2027-11-17               |
+| <nobr>NServiceBus 7</nobr> | <nobr>2018-03-30</nobr> |   Mainstream    |               2024-11-17                |              2026-11-17               |
 | <nobr>NServiceBus 6</nobr> | <nobr>2016-10-11</nobr> |   Unsupported   |               2020-05-29                |              2022-05-29               |
 | <nobr>NServiceBus 5</nobr> | <nobr>2014-09-29</nobr> |   Unsupported   |               2018-10-11                |              2020-10-12               |
 | <nobr>NServiceBus 4</nobr> | <nobr>2013-07-11</nobr> |   Unsupported   |               2016-09-29                |              2018-09-29               |
