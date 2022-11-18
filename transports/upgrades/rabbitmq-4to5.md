@@ -54,7 +54,7 @@ The `ISupportDelayedDelivery` interface added in Version 4.3 has been removed. T
 
 ## Exchange and queue durability
 
-Exchange and queue durability is no longer controlled by the [global message durability settings](/nservicebus/messaging/non-durable-messaging.md#enabling-non-durable-messaging-global-for-the-endpoint) specified for the endpoint. The routing topologies provided by the transport now create durable exchanges and queues by default. The `UseDurableExchangesAndQueues` setting has been introduced to control durability:
+Exchange and queue durability is no longer controlled by the [global message durability settings](/nservicebus/messaging/non-durable-messaging.md?version=core_7.7#enabling-non-durable-messaging-global-for-the-endpoint) specified for the endpoint. The routing topologies provided by the transport now create durable exchanges and queues by default. The `UseDurableExchangesAndQueues` setting has been introduced to control durability:
 
 ```csharp
 // For RabbitMQ Transport version 8.x
