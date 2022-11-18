@@ -703,7 +703,7 @@
     - Title: Azure Storage Queues
       Articles:
       - Url: transports/upgrades/asq-11to12
-        Title: Version 11 to 12      
+        Title: Version 11 to 12
       - Url: transports/upgrades/asq-10to11
         Title: Version 10 to 11
       - Url: transports/upgrades/asq-9to10
@@ -967,6 +967,8 @@
     Articles:
     - Title: Azure Table
       Articles:
+      - Url: persistence/upgrades/asp-4to5
+        Title: Version 4 to 5
       - Url: persistence/upgrades/asp-2to3
         Title: Version 2 to 3
       - Url: persistence/upgrades/asp-1to2
