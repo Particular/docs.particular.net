@@ -8,8 +8,8 @@
     <Compile Include="..\Consumer1\Contracts\Consumer1Contract.cs" />
     <Compile Include="..\Consumer2\Contracts\Consumer2Contract.cs" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-rc.3" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-rc.3" />
-    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-rc.2" />
+    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
+    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.*" />
   </ItemGroup>
 </Project>

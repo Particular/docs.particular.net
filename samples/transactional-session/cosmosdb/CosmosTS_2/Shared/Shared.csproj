@@ -6,8 +6,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="2.0.0-rc.2" />
-		<PackageReference Include="NServiceBus" Version="8.0.0-rc.3" />
+		<PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="2.*" />
+		<PackageReference Include="NServiceBus" Version="8.*" />
 	</ItemGroup>
 
 </Project>

@@ -4,6 +4,6 @@
 		<LangVersion>10.0</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="NServiceBus.Persistence.Sql.TransactionalSession" Version="7.0.0-rc.2" />
+		<PackageReference Include="NServiceBus.Persistence.Sql.TransactionalSession" Version="7.*" />
 	</ItemGroup>
 </Project>

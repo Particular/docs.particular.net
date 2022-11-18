@@ -4,6 +4,6 @@
 		<LangVersion>10.0</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="NServiceBus.TransactionalSession" Version="2.0.0-rc.1" />
+		<PackageReference Include="NServiceBus.TransactionalSession" Version="2.*" />
 	</ItemGroup>
 </Project>
