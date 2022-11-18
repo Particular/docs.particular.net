@@ -30,9 +30,8 @@ Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to captu
 
 ## Options
 
-All options for collecting SQS metrics are optional:
-
 | Option | Description |
 |-|-|
 | <nobr>`--profile`</nobr> | The name of a local [AWS credentials profile](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/keys-profiles-credentials.html). If not included, credentials can be read from the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. |
 | <nobr>`--region`</nobr> | The AWS region to use when accessing AWS services. If not provided, the default profile value or `AWS_REGION` environment variable will be used. |
+include: throughput-tool-global-options

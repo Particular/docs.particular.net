@@ -24,8 +24,7 @@ The tool will prompt for the username and password to access the RabbitMQ manage
 
 ### Options
 
-All options are required:
-
 | Option | Description |
 |-|-|
-| <nobr>`--apiUrl`</nobr> | The URL for the RabbitMQ management site. |
+| <nobr>`--apiUrl`</nobr> | **Required** – The URL for the RabbitMQ management site. |
+include: throughput-tool-global-options

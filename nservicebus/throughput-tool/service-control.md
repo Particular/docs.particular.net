@@ -24,12 +24,11 @@ For endpoints that do not have monitoring enabled, the tool will fall back to qu
 
 ## Options
 
-All options are required:
-
 | Option | Description |
 |-|-|
-| <nobr>`--serviceControlApiUrl`</nobr> | The URL of the ServiceControl API. In the [ServiceControl Management Utility](/servicecontrol/installation.md), find the instance identified as a **ServiceControl Instance** and use the value of the **URL** field, as shown in the screenshot below. |
-| <nobr>`--monitoringApiUrl`</nobr> | The URL of the Monitoring API. In the [ServiceControl Management Utility](/servicecontrol/installation.md), find the instance identified as a **Monitoring Instance** and use the value of the **URL** field, as shown in the screenshot below. |
+| <nobr>`--serviceControlApiUrl`</nobr> | **Required** – The URL of the ServiceControl API. In the [ServiceControl Management Utility](/servicecontrol/installation.md), find the instance identified as a **ServiceControl Instance** and use the value of the **URL** field, as shown in the screenshot below. |
+| <nobr>`--monitoringApiUrl`</nobr> | **Required** – The URL of the Monitoring API. In the [ServiceControl Management Utility](/servicecontrol/installation.md), find the instance identified as a **Monitoring Instance** and use the value of the **URL** field, as shown in the screenshot below. |
+include: throughput-tool-global-options
 
 This screenshot shows how to identify the instance types and locate the required URLs:
 
