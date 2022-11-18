@@ -36,8 +36,7 @@ Unlike ServiceControl, using Azure Service Bus metrics allows the tool to captur
 
 ## Options
 
-All options are required:
-
 | Option | Description |
 |-|-|
-| <nobr>`--resourceId`</nobr> | The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above. |
+| <nobr>`--resourceId`</nobr> | **Required** – The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above. |
+include: throughput-tool-global-options
