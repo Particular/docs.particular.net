@@ -8,6 +8,6 @@
   <ItemGroup>
     <PackageReference Include="Particular.PlatformSample" Version="2.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-rc.3" />
+    <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
 </Project>

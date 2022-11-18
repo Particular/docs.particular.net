@@ -6,7 +6,7 @@
     <Platforms>x64</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Gateway" Version="4.0.0-rc.2" />
+    <PackageReference Include="NServiceBus.Gateway" Version="4.*" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.*" />
     <Reference Include="System.Configuration" />
   </ItemGroup>

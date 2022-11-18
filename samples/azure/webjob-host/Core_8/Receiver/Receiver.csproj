@@ -7,15 +7,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.*" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.0.0-rc.2" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0-rc.3" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
   </ItemGroup>
   <ItemGroup Label="To disable Dashboard logging (https://docs.microsoft.com/en-us/azure/app-service/webjobs-sdk-get-started#enable-console-logging)">
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.*" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.*" />
-    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.0.0-rc.2" />
-    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.0.0-rc.3" />
-    <PackageReference Include="NServiceBus" Version="8.0.0-rc.3" />
+    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.*" />
+    <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.development.json">
