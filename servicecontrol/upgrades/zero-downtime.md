@@ -59,7 +59,7 @@ $auditInstance = New-ServiceControlAuditInstance `
   -DatabaseMaintenancePort 44447 `
   -Transport MSMQ `
   -AuditQueue audit `
-  -AuditRetentionPersion 10:00:00:00 `
+  -AuditRetentionPeriod 10:00:00:00 `
   -ForwardAuditMessages:$false `
   -ServiceControlQueueAddress "Particular.ServiceControl"
 ```
