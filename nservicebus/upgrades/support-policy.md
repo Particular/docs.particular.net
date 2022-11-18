@@ -54,7 +54,6 @@ During the extended support period:
 
 The following table describes the extended support status for all major versions:
 
-https://docs.particular.net/nservicebus/upgrades/support-policy#extended-support
 |          Version           |  Released               | Current Support | Mainstream <nobr>Support Expires</nobr> | Extended <nobr>Support Expires</nobr> |
 | :------------------------: | :---------------------: | :-------------: | :-------------------------------------: | :-----------------------------------: |
 | <nobr>NServiceBus 8</nobr> | <nobr>2022-11-17</nobr> |   Mainstream    |             Current Version             |            Current Version            |
