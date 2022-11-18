@@ -11,7 +11,11 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Transport.Bridge.MsmqEndpoint");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UsePersistence<NonDurablePersistence>();    
+        endpointConfiguration.UsePersistence<NonDurablePersistence>();
+
+        var c = endpointConfiguration.Conventions();
+        c.DefiningCommandsAs(Conventions.Commands);
+        c.DefiningEventsAs(Conventions.Events);
 
         var routingConfig = endpointConfiguration.UseTransport(new MsmqTransport());
         routingConfig.RegisterPublisher(typeof(OtherEvent), "Samples.Transport.Bridge.AsbEndpoint");

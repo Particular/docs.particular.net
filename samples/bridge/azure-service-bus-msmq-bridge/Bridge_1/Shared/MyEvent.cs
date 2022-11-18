@@ -1,7 +1,4 @@
-using NServiceBus;
-
-public interface MyEvent :
-    IEvent
+public interface MyEvent
 {
     string Property { get; set; }
 }

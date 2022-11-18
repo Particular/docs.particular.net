@@ -1,7 +1,4 @@
-using NServiceBus;
-
-public class MyCommand :
-    IMessage
+public class MyCommand
 {
     public string Property { get; set; }
 }
