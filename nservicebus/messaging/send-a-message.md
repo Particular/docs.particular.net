@@ -96,7 +96,7 @@ This can be done by using the immediate dispatch API:
 
 snippet: RequestImmediateDispatch
 
-NOTE: The API does not impact sending outside a incoming message context like when invoking message operations on `IMessageSession` for example send-only endpoints.
+NOTE: The API behaves the same for `ITransactionalSession` but differently for `IMessageSession`. When invoking message operations on `IMessageSession` the `RequestImmediateDispatch` does not have any effect as messages will always be immediately dispatched.
 
 ### More-than-once side effects
 
