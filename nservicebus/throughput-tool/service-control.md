@@ -10,7 +10,7 @@ The Particular throughput tool can be installed locally and run against a produc
 
 This article details how to collect endpoint and throughput data using data from [ServiceControl](/servicecontrol/). Refer to the [throughput counter main page](./) for information how to install/uninstall the tool or for other data collection options.
 
-The tool should be used against [supporte version of ServiceControl](/servicecontrol/upgrades/supported-versions#servicecontrol).
+The tool should be used with a [supported version of ServiceControl](/servicecontrol/upgrades/supported-versions.md).
 
 ## Running the tool
 
