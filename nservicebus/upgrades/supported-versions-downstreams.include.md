@@ -54,7 +54,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.4) | 2021-06-23     | 2024-11-17        | Bounded by NServiceBus 7.8.x      |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.0) | 2022-11-20     | -                 | -                                 |
+| [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.4) | 2021-06-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 ### Persistence packages
 

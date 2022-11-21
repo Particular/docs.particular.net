@@ -193,7 +193,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.4) | 2021-06-23     | 2024-11-17        | Bounded by NServiceBus 7.8.x      |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.0) | 2022-11-20     | -                 | -                                 |
+| [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.4) | 2021-06-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.2.0) | ~~2020-11-19~~ | ~~2021-09-23~~    | ~~Superseded by 6.3.x~~           |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.1.2) | ~~2020-06-24~~ | ~~2021-02-19~~    | ~~Superseded by 6.2.x~~           |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.0.1) | ~~2020-02-07~~ | ~~2020-09-24~~    | ~~Superseded by 6.1.x~~           |
