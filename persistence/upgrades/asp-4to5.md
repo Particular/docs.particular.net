@@ -18,7 +18,7 @@ This version introduces support for [`Azure.Data.Tables`](https://www.nuget.org/
 
 For an overview of the SDK changes, refer to the official Azure [migration guide](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/tables/Azure.Data.Tables/MigrationGuide.md).
 
-In brief though, instances of `CloudTableClient` need to be replaced with `TableServiceClient` and `TableEntity` needs to be replaced with `ITableEntity` when declaring saga entities.
+In brief though, instances of `CloudTableClient` need to be replaced with `TableServiceClient` and `TableEntity` needs to be replaced with `ITableEntity` when declaring saga entities. Any properties that should be excluded from storage, use the `IgnoreDataMember`-attribute instead of `IgnoreProperty`.
 
 ### Passing an instance of the client
 
