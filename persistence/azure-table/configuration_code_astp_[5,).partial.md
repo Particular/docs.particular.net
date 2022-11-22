@@ -32,7 +32,7 @@ The following settings are available for changing the behavior of subscription p
 
 ### Configuring a Table Service Client Provider
 
-A fully preconfigured TableServiceClient can be registered in the container through a custom provider.
+A fully preconfigured `TableServiceClient` can be registered in the container through a custom provider.
 
 Create a customer provider:
 
