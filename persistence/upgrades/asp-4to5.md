@@ -1,6 +1,6 @@
 ---
-title: Azure Storage Persistence Upgrade Version  to 5
-summary: Instructions on how to migrate from Azure Table Persistence v4 to Azure Table Persistence version 5
+title: Azure Storage Persistence Upgrade Version 4 to 5
+summary: Instructions on how to migrate from Azure Table Persistence version 4 to 5
 reviewed: 2022-11-06
 component: ASP
 related:
