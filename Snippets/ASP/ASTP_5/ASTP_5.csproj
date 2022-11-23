@@ -5,7 +5,7 @@
     <RootNamespace>ASTP_5</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Persistence.AzureTable" Version="5.0.0-rc.1" />
+    <PackageReference Include="NServiceBus.Persistence.AzureTable" Version="5.*" />
     <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
 </Project>

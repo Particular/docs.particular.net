@@ -43,7 +43,7 @@ persistence.UseTableServiceClient(tableServiceClient);
 
 Previously, a custom Cloud table client provider could be created by implementing `IProvideCloudTableClient` which is now replaced with `IProvideTableServiceClient` to reflect the new client type.
 
-See the configuration section for [additional guidance](/persistence/azure-table/configuration.md#configuring-a-cloud-table-client-provider).
+See the configuration section for [additional guidance](/persistence/azure-table/configuration.md#configuring-a-table-service-client-provider).
 
 ### Compatibility mode
 
