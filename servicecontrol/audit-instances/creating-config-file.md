@@ -54,14 +54,6 @@ Type: string
 
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\indexes`
 
-#### Raven/Esent/LogsPath
-
-The path for the Esent logs on disk.
-
-Type: string
-
-Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs`
-
 #### ServiceControl.Audit/LogPath
 
 The path for the ServiceControl logs.
@@ -302,3 +294,11 @@ The percentage threshold for the [Message database storage space](/servicecontro
 Type: int
 
 Default: 20
+
+#### Raven/Esent/LogsPath
+
+The path for the Esent logs on disk.
+
+Type: string
+
+Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs`
