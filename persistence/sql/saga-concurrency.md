@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence saga concurrency
 component: SqlPersistence
-reviewed: 2020-03-10
+reviewed: 2022-11-24
 related:
  - nservicebus/sagas/concurrency
 redirects:
@@ -10,7 +10,7 @@ redirects:
 
 ## Default behavior
 
-When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
+When simultaneously handling messages, conflicts may occur. See below for excaeptions examples. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
 ### Starting a saga
 
