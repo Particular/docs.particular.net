@@ -33,71 +33,45 @@ static class Program
         Console.ReadLine();
 
         // Makes sure the new subscription bundle is there
-        try
-        {
-            await adminClient.CreateTopicAsync(new CreateTopicOptions(SubscriptionBundleName)
+
+        await CreateEntityGracefully(async () => await adminClient.CreateTopicAsync(
+            new CreateTopicOptions(SubscriptionBundleName)
             {
                 EnableBatchedOperations = true,
                 MaxSizeInMegabytes = 5120
-            });
-        }
-        catch (ServiceBusException e) when (e.Reason == ServiceBusFailureReason.MessagingEntityAlreadyExists)
-        {
-        }
+            }));
 
-        var subscription = new CreateSubscriptionOptions(PublishBundleName, $"forwardTo-{SubscriptionBundleName}")
-        {
-            LockDuration = TimeSpan.FromMinutes(5),
-            ForwardTo = SubscriptionBundleName,
-            EnableDeadLetteringOnFilterEvaluationExceptions = false,
-            MaxDeliveryCount = int.MaxValue,
-            EnableBatchedOperations = true,
-            UserMetadata = SubscriptionBundleName
-        };
+        await CreateEntityGracefully(async () =>
+            await adminClient.CreateSubscriptionAsync(
+                new CreateSubscriptionOptions(PublishBundleName, $"forwardTo-{SubscriptionBundleName}")
+                {
+                    LockDuration = TimeSpan.FromMinutes(5),
+                    ForwardTo = SubscriptionBundleName,
+                    EnableDeadLetteringOnFilterEvaluationExceptions = false,
+                    MaxDeliveryCount = int.MaxValue,
+                    EnableBatchedOperations = true,
+                    UserMetadata = SubscriptionBundleName
+                },
+                new CreateRuleOptions("$default", new TrueRuleFilter())));
 
-        try
-        {
-            await adminClient.CreateSubscriptionAsync(subscription,
-                new CreateRuleOptions("$default", new TrueRuleFilter()));
-        }
-        catch (ServiceBusException sbe) when (sbe.Reason == ServiceBusFailureReason.MessagingEntityAlreadyExists)
-        {
-        }
-        catch (ServiceBusException sbe) when (sbe.IsTransient)// An operation is in progress.
-        {
-        }
-
-        try
-        {
-            var createQueueOptions = new CreateQueueOptions(Endpoint2MigrationQueueName)
-            {
-                RequiresDuplicateDetection = true,
-                DuplicateDetectionHistoryTimeWindow = TimeSpan.FromMinutes(5),
-            };
-            await adminClient.CreateQueueAsync(createQueueOptions);
-        }
-        catch (ServiceBusException sbe) when (sbe.Reason == ServiceBusFailureReason.MessagingEntityAlreadyExists)
-        {
-        }
-        catch (ServiceBusException sbe) when (sbe.IsTransient)// An operation is in progress.
-        {
-        }
+        await CreateEntityGracefully(async () =>
+            await adminClient.CreateQueueAsync(
+                new CreateQueueOptions(Endpoint2MigrationQueueName)
+                {
+                    RequiresDuplicateDetection = true,
+                    DuplicateDetectionHistoryTimeWindow = TimeSpan.FromMinutes(5),
+                }));
 
         SubscriptionProperties publishBundleEndpoint2Subscription = await adminClient.GetSubscriptionAsync(PublishBundleName, Endpoint2SubscriptionName);
 
-        try
-        {
-            var subscriptionBundleEndpoint2SubscriptionCreationOptions = new CreateSubscriptionOptions(publishBundleEndpoint2Subscription)
-            {
-                TopicName = SubscriptionBundleName,
-                ForwardTo = Endpoint2MigrationQueueName
-            };
-            await adminClient.CreateSubscriptionAsync(subscriptionBundleEndpoint2SubscriptionCreationOptions,
-                new CreateRuleOptions("$default", new FalseRuleFilter()));
-        }
-        catch (ServiceBusException e) when (e.Reason == ServiceBusFailureReason.MessagingEntityAlreadyExists)
-        {
-        }
+        await CreateEntityGracefully(async () =>
+            await adminClient.CreateSubscriptionAsync(
+                new CreateSubscriptionOptions(publishBundleEndpoint2Subscription)
+                {
+                    TopicName = SubscriptionBundleName,
+                    ForwardTo = Endpoint2MigrationQueueName
+                },
+                new CreateRuleOptions("$default", new FalseRuleFilter())));
 
         publishBundleEndpoint2Subscription.ForwardTo = Endpoint2MigrationQueueName;
         await adminClient.UpdateSubscriptionAsync(publishBundleEndpoint2Subscription);
@@ -112,14 +86,14 @@ static class Program
             {
                 continue;
             }
-            var createRuleOptions = new CreateRuleOptions
-            {
-                Action = rule.Action,
-                Filter = rule.Filter,
-                Name = rule.Name
-            };
+
             await adminClient.CreateRuleAsync(SubscriptionBundleName, Endpoint2SubscriptionName,
-                createRuleOptions);
+                new CreateRuleOptions
+                {
+                    Action = rule.Action,
+                    Filter = rule.Filter,
+                    Name = rule.Name
+                });
         }
 
         Console.WriteLine("New subscription setup with all the necessary rules of the original one");
