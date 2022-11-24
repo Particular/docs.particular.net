@@ -1,7 +1,7 @@
 ---
 title: Migrating from NHibernate to SQL persister
 summary: Highlights differences in the database schema between the two persisters and migration options
-reviewed: 2020-03-04
+reviewed: 2022-11-24
 component: SqlPersistence
 ---
 
@@ -21,7 +21,7 @@ NHibernate stores sagas as a table structure while SQL Persistence stores saga s
 
 ### Subscriptions
 
-NHibernate has a single table named `Subscription` where subscriptions are stored while with SQL Persistence, each logical publisher endpoint has its own subscription table, `<endpoint_name>_SubscriptionData`.
+NHibernate stores subscriptions in a single `Subscription` table. In SQL Persistence, each logical publisher endpoint has its own subscription table, `<endpoint_name>_SubscriptionData`.
 
 ### Timeouts
 
