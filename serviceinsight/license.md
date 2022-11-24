@@ -1,6 +1,6 @@
 ---
 title: Install the license in ServiceInsight
-reviewed: 2020-03-09
+reviewed: 2022-11-24
 summary: Install the Particular Platform license in ServiceInsight.
 component: ServiceInsight
 redirects:
