@@ -6,6 +6,7 @@ using NServiceBus;
 
 class Program
 {
+    [Obsolete]
     static async Task Main()
     {
         Console.Title = "Samples.Logging.CommonLogging";
