@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
+using NuGet.Versioning;
 using NUnit.Framework;
 
 namespace IntegrityTests
@@ -18,14 +17,14 @@ namespace IntegrityTests
             new TestRunner("*.csproj", "Found alias version not matching package reference version.")
                 .Run(projPath =>
                 {
-                    var (versionedPath, aliasName, aliasVersion) = GetVersionedAliasPath(projPath);
+                    var (versionedPath, aliasName, aliasVersionSuffix) = GetVersionedAliasPath(projPath);
 
                     if (versionedPath == null)
                     {
                         return true;
                     }
 
-                    if (aliasVersion == "All")
+                    if (aliasVersionSuffix == "All")
                     {
                         return true;
                     }
@@ -35,15 +34,23 @@ namespace IntegrityTests
                     {
                         return true;
                     }
-
                     foreach (var packageRef in QueryPackageRefs(projPath))
                     {
                         var packageId = packageRef.Attribute("Include")!.Value;
                         var packageVersion = packageRef.Attribute("Version")!.Value;
+
                         if (packageId == folderPackageId)
                         {
-                            if (aliasVersion == "1" && packageVersion.StartsWith("0.")) continue; // Valid for previews
-                            if (!packageVersion.StartsWith(aliasVersion))
+                            if (aliasVersionSuffix == "1" && packageVersion.StartsWith("0.")) continue; // Valid for previews
+
+                            var i = packageVersion.IndexOf('*');
+
+                            if (i >= 0)
+                            {
+                                packageVersion = packageVersion.Substring(0, i - 1);
+                            }
+
+                            if (packageVersion != aliasVersionSuffix)
                             {
                                 return false; // TODO: Would be nice if could return `aliasVersion` and `packageVersion`
                             }
