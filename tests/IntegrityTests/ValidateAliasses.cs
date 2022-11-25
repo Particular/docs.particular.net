@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -14,6 +15,7 @@ namespace IntegrityTests
         [Test]
         public void ValidateAliassesVersionMatchesPackageReferenceVersion()
         {
+
             new TestRunner("*.csproj", "Found alias version not matching package reference version.")
                 .Run(projPath =>
                 {
@@ -34,6 +36,7 @@ namespace IntegrityTests
                     {
                         return true;
                     }
+
                     foreach (var packageRef in QueryPackageRefs(projPath))
                     {
                         var packageId = packageRef.Attribute("Include")!.Value;
@@ -43,16 +46,16 @@ namespace IntegrityTests
                         {
                             if (aliasVersionSuffix == "1" && packageVersion.StartsWith("0.")) continue; // Valid for previews
 
-                            var i = packageVersion.IndexOf('*');
-
+                            var packageVersionPrefix = packageVersion;
+                            var i = packageVersionPrefix.IndexOf('*');
                             if (i >= 0)
                             {
-                                packageVersion = packageVersion.Substring(0, i - 1);
+                                packageVersionPrefix = packageVersionPrefix[..(i - 1)];
                             }
 
-                            if (packageVersion != aliasVersionSuffix)
+                            if (packageVersionPrefix != aliasVersionSuffix)
                             {
-                                return false; // TODO: Would be nice if could return `aliasVersion` and `packageVersion`
+                                throw new Exception($"Suffix: {aliasVersionSuffix}, Version: {packageVersion}");
                             }
                         }
                     }

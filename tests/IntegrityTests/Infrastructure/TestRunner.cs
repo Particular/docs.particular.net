@@ -37,11 +37,18 @@ namespace IntegrityTests
                         continue;
                     }
 
-                    var success = testDelegate(projectFilePath);
-
-                    if (!success)
+                    try
                     {
-                        badProjects.Add(projectFilePath);
+                        var success = testDelegate(projectFilePath);
+
+                        if (!success)
+                        {
+                            badProjects.Add(projectFilePath.Substring(rootPath.Length));
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        badProjects.Add(projectFilePath.Substring(rootPath.Length) + " : " + e.Message);
                     }
                 }
             }

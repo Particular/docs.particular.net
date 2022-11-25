@@ -82,7 +82,7 @@ namespace IntegrityTests
                             version.Contains(')') ||
                             version.Contains(']'))
                         {
-                            return false;
+                            throw new Exception(version);
                         }
                     }
 

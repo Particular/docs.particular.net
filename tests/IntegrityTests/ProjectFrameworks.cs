@@ -66,7 +66,7 @@ namespace IntegrityTests
                         {
                             if (!nonSdkProjectAllowedFrameworkList.Contains(node.Value))
                             {
-                                return false;
+                                throw new Exception($"{node.Value} non allowed non-sdk target framework version ({string.Join(" ,", nonSdkProjectAllowedFrameworkList)})");
                             }
                         }
                     }
@@ -76,7 +76,7 @@ namespace IntegrityTests
                         {
                             if (!sdkProjectAllowedTfmList.Contains(node.Value))
                             {
-                                return false;
+                                throw new Exception($"{node.Value} non allowed sdk target framework version ({string.Join(" ,", sdkProjectAllowedTfmList)})");
                             }
                         }
                         foreach (var node in xdoc.XPathSelectElements("/Project/PropertyGroup/TargetFrameworks"))
@@ -85,7 +85,7 @@ namespace IntegrityTests
                             {
                                 if (!sdkProjectAllowedTfmList.Contains(tfm))
                                 {
-                                    return false;
+                                    throw new Exception($"{node.Value} non allowed sdk target framework version ({string.Join(" ,", sdkProjectAllowedTfmList)})");
                                 }
                             }
                         }

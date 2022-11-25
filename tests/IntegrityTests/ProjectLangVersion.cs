@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using System.Xml.XPath;
 using NUnit.Framework;
 
@@ -6,7 +7,7 @@ namespace IntegrityTests
 {
     public class ProjectLangVersion
     {
-       [Test]
+        [Test]
         public void ShouldUseLangVersionLatest()
         {
             // Also reflected in https://docs.particular.net/samples/#technology-choices-c-language-level
@@ -37,7 +38,14 @@ namespace IntegrityTests
                     var firstTargetFrameworksElement = xdoc.XPathSelectElement("/Project/PropertyGroup/LangVersion");
                     var value = firstTargetFrameworksElement?.Value;
 
-                    return value == "7.3";
+                    string LangVersion = "7.3";
+
+                    if (value != LangVersion)
+                    {
+                        throw new Exception($"LangVersion is not equal to {LangVersion} but {value}");
+                    }
+
+                    return true;
                 });
         }
     }
