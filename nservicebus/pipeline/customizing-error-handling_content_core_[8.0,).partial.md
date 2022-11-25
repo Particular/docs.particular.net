@@ -12,7 +12,7 @@ To handle any deserialization errors, wrap the `next()` operation in a try-catch
 
 snippet: DeserializationCustomization
 
-WARNING: Throwing the exception in the catch block will immediately forward the message to the error queue. If a message fails due to a `MessageDeserializationException` the message won't be retried. If that's not desired, remove the `throw` from the catch block to indicate that the message has been successfully processed.
+WARNING: Throwing a `MessageDeserializationException` exception in the catch block will immediately forward the message to the error queue. A message that fails due to a `MessageDeserializationException` will not be retried. If the message must be consumed and removed from the queue, remove the `throw` from the catch block to indicate that the message has been successfully processed. 
 
 #### Handling other errors
 
@@ -20,7 +20,7 @@ To handle other errors, wrap the `next()` operation in a try-catch block and han
 
 snippet: AllErrorsCustomization
 
-WARNING: Throwing the exception in the catch block will forward the message to the error queue after all the configured retry attempts. If that's not desired, remove the `throw` from the catch block to indicate that the message has been successfully processed.
+WARNING: Throwing the exception in the catch block will forward the message to the error queue after all the configured retry attempts. If the message must be consumed and removed from the queue then remove the `throw` from the catch block to indicate that the message has been successfully processed.
 
 ### Registering the behavior
 
