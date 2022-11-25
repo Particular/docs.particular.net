@@ -4,6 +4,6 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.CommonLogging" Version="5.0.*" />
+    <PackageReference Include="NServiceBus.CommonLogging" Version="5.*" />
   </ItemGroup>
 </Project>

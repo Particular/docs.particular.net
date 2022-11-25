@@ -6,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_All", "Raven_All\Rave
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_5", "Raven_5\Raven_5.csproj", "{A5FA02A8-8FB0-4FCA-A8A7-57E2303962B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_6", "Raven_6\Raven_6.csproj", "{495186E6-37F3-4F3C-BFC7-12C3478113D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_6.0", "Raven_6.0\Raven_6.0.csproj", "{495186E6-37F3-4F3C-BFC7-12C3478113D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_6.1", "Raven_6.1\Raven_6.1.csproj", "{A34F6A59-E929-4D5D-B407-21FA974086CE}"
 EndProject

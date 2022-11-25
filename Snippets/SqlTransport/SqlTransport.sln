@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransportLegacySystemCli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransportLegacySystemClient_5", "SqlTransportLegacySystemClient_5\SqlTransportLegacySystemClient_5.csproj", "{F338519C-046F-4CEC-B2C1-85A78E5664C3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_6", "SqlTransport_6\SqlTransport_6.csproj", "{76A81F9A-0CE8-47D7-8F34-47E8A3855A3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_6.0", "SqlTransport_6.0\SqlTransport_6.0.csproj", "{76A81F9A-0CE8-47D7-8F34-47E8A3855A3F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_6.1", "SqlTransport_6.1\SqlTransport_6.1.csproj", "{BA286604-D333-4921-BCDB-6D6750CC5E28}"
 EndProject

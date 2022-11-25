@@ -5,7 +5,7 @@
     <Platforms>x64</Platforms>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Gateway" Version="3.1.0" />
+    <PackageReference Include="NServiceBus.Gateway" Version="3.1.*" />
     <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>
