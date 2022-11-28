@@ -34,7 +34,7 @@ class Program
             outbox.SetTimeToKeepDeduplicationData(TimeSpan.FromMinutes(5));
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
-            transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+            transport.Transactions(TransportTransactionMode.ReceiveOnly);
             endpointConfiguration.EnableInstallers();
 
             await EnsureDatabaseExistsAndExpirationEnabled(documentStore);

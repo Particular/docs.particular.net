@@ -35,9 +35,9 @@ class Program
 
             var transport = new LearningTransport
             {
-                TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
+                TransportTransactionMode = TransportTransactionMode.ReceiveOnly
             };
-            var routing = endpointConfiguration.UseTransport(transport);
+            endpointConfiguration.UseTransport(transport);
             endpointConfiguration.EnableInstallers();
 
             await EnsureDatabaseExistsAndExpirationEnabled(documentStore);
