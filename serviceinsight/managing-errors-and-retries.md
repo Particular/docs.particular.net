@@ -25,6 +25,10 @@ The status of an errant message is illustrated in the message window. A message 
 
 **Resolved successfully**: The message was successfully processed after failure(s). ![Retry icon](images/status-resolved-successfully.png)
 
+## Clock drift
+
+If the status icon has an exclamation sign overlay (⚠) is shown when the calculated [critical time](/monitoring/metrics/definitions.md#metrics-captured-critical-time) is *negative* usually caused by [clock drift](https://en.wikipedia.org/wiki/Clock_drift). Clock drift can be migitated by frequently syncing against the same shared time source via NTP.
+
 ## The flow diagram
 
 The flow diagram highlights errors in red and provides details with access to the stack trace.

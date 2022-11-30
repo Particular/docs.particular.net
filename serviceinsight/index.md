@@ -38,7 +38,7 @@ Note: In versions of ServiceControl prior to version 4.13.0, saga state change (
 
 ## The Messages window
 
-The Messages window is a detailed grid view indicating message status, type, time stamp, and service level information. Filter the list based on specific message content, searching for all message data, not just commonly displayed fields.
+The Messages window is a detailed grid view indicating message [status](managing-errors-and-retries.md), type, time stamp, and service level information. Filter the list based on specific message content, searching for all message data, not just commonly displayed fields.
 
 ![Message List View](images/overview-messagedetailwindow.png 'width=500')
 
