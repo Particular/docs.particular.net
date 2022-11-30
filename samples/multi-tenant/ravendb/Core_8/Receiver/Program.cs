@@ -35,7 +35,7 @@ class Program
             var transport = new LearningTransport
             {
                 TransportTransactionMode = TransportTransactionMode.ReceiveOnly
-            }
+            };
             endpointConfiguration.UseTransport(transport);
             var outbox = endpointConfiguration.EnableOutbox();
 

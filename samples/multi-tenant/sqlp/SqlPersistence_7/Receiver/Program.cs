@@ -19,7 +19,7 @@ class Program
         var transport = new LearningTransport
         {
             TransportTransactionMode = TransportTransactionMode.ReceiveOnly
-        }
+        };
         endpointConfiguration.UseTransport(transport);
 
         #region DisablingOutboxCleanup
