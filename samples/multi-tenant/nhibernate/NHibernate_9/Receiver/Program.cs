@@ -19,13 +19,14 @@ class Program
         var mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
         config.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
-        
+
         #endregion
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseTransport(new LearningTransport());
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        transport.Transactions(TransportTransactionMode.ReceiveOnly);
         endpointConfiguration.EnableOutbox();
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
