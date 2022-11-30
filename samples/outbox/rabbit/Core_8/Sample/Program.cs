@@ -13,7 +13,10 @@ class Program
         #region ConfigureTransport
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Outbox");
 
-        var rabbitMqTransport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Classic), "host=localhost;username=rabbitmq;password=rabbitmq");
+        var rabbitMqTransport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Classic), "host=localhost;username=rabbitmq;password=rabbitmq")
+        {
+            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+        };
         endpointConfiguration.UseTransport(rabbitMqTransport);
         #endregion
 

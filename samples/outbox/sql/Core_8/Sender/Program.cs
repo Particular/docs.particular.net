@@ -21,7 +21,8 @@ class Program
 
         var transport = new SqlServerTransport(connection)
         {
-            DefaultSchema = "sender"
+            DefaultSchema = "sender",
+            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
         };
         transport.SchemaAndCatalog.UseSchemaForQueue("error", "dbo");
         transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
@@ -40,7 +41,7 @@ class Program
 
         transport.Subscriptions.DisableCaching = true;
         transport.Subscriptions.SubscriptionTableName = new SubscriptionTableName(
-            table: "Subscriptions", 
+            table: "Subscriptions",
             schema: "dbo");
 
         endpointConfiguration.EnableOutbox();
