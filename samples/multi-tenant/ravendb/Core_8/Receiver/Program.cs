@@ -32,8 +32,11 @@ class Program
             var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
             persistence.SetDefaultDocumentStore(documentStore);
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
-            transport.Transactions(TransportTransactionMode.ReceiveOnly);
+            var transport = new LearningTransport
+            {
+                TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+            }
+            endpointConfiguration.UseTransport(transport);
             var outbox = endpointConfiguration.EnableOutbox();
 
             #region DetermineDatabase

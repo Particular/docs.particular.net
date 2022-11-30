@@ -16,8 +16,11 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
-        var transport = endpointConfiguration.UseTransport<LearningTransport>();
-        transport.Transactions(TransportTransactionMode.ReceiveOnly);
+        var transport = new LearningTransport
+        {
+            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+        }
+        endpointConfiguration.UseTransport(transport);
 
         #region DisablingOutboxCleanup
 
