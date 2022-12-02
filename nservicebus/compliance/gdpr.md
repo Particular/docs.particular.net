@@ -1,15 +1,15 @@
 ---
-title: GDPR compliance document
+title: GDPR Compliance
 summary: Information about PII stored by NServiceBus
 versions: "[5,)"
 component: core
 isLearningPath: true
-reviewed: 2020-03-30
+reviewed: 2022-12-02
 ---
 
-When operating an NServiceBus-based application, the platform will collect various pieces of information that are necessary to fulfill its operations. It is possible that some of this information will need to be considered when evaluating the application for GDPR compliance.
+The [General Data Protection Regulation](https://en.wikipedia.org/wiki/General_Data_Protection_Regulation) is a data protection and privacy regulation of the European Union. The regulation contains provisions and requirements related to the processing of [personally identifiable information (PII)](https://en.wikipedia.org/wiki/Personal_data) of individuals located in the European Economic Area.
 
-PII stands for personally identifiable information (also know as personal data) which means any information relating to an identifiable person who can be directly or indirectly identified. 
+When operating an NServiceBus-based application, the platform will collect various pieces of information that are necessary to fulfill its operations. It is possible that some of this information will need to be considered when evaluating the application for GDPR compliance.
 
 ## Headers
 
