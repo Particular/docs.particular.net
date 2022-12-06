@@ -4,7 +4,7 @@ internal static class Visualize
 {
     public static void DeletedInfrastructure()
     {
-        var sectionDescription = new Rule("Deleted infrastructure")
+        var sectionDescription = new Rule("Infrastructure deleted")
         {
             Alignment = Justify.Center,
             Border = BoxBorder.Ascii
