@@ -4,6 +4,8 @@ reviewed: 2022-12-05
 suppressRelated: true
 ---
 
+* [Security Advisory 2022-12-06](cryptography-xml-vulnerability.md)
+  * System.Security.Cryptography.Xml vulnerability (CVE-2022-34716) in NServiceBus
 * [Security Advisory 2020-03-11](servicepulse-directorytraversal.md)
   * ServicePulse Directory Traversal vulnerability.
 * [Security Advisory 2018-01-19](asq-alias-for-default-connectionstring.md)
