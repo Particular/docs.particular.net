@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.11.1" />
+      <PackageReference Include="Spectre.Console" Version="0.45.0" />
     </ItemGroup>
 
 </Project>
