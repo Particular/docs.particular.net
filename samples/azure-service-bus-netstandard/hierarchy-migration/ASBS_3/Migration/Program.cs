@@ -2,13 +2,10 @@
 using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Azure.Messaging.ServiceBus.Administration;
-using Migration;
 using Spectre.Console;
 
 static class Program
 {
-
-
     static async Task Main()
     {
         Console.Title = "Samples.ASBS.HierarchyMigration.Migration";
