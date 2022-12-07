@@ -59,6 +59,10 @@ partial: sns-permissions
  * GetLifecycleConfiguration
  * ListAllMyBuckets
 
+#### Other permissions
+
+* If using server-side encryption of SQS queues, all NServiceBus endpoints (as well as [ServiceControl](/servicecontrol)) will also require the `kms:GenerateDataKey` in order to support [key management](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-key-management.html).
+
 ## Configuration
 
 partial: basic-config
