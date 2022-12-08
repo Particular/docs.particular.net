@@ -355,7 +355,7 @@
 | [8.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB/8.0.1) | 2022-11-17     | -                 | -                                 |
 | [7.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB/7.1.1) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB/7.0.1) | 2021-12-09     | 2022-12-19        | Superseded by 7.1.x               |
-| [6.5.x](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.1) | 2021-03-04     | 2022-12-09        | Superseded by 7.0.x               |
+| [~~6.5.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.1) | ~~2021-03-04~~ | ~~2022-12-09~~    | ~~Superseded by 7.0.x~~           |
 | [~~6.4.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.4.1) | ~~2020-07-29~~ | ~~2021-06-04~~    | ~~Superseded by 6.5.x~~           |
 | [~~6.3.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.3.2) | ~~2020-05-28~~ | ~~2020-10-29~~    | ~~Superseded by 6.4.x~~           |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.2.0) | ~~2020-02-12~~ | ~~2020-08-28~~    | ~~Superseded by 6.3.x~~           |
@@ -776,7 +776,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/3.0.0) | 2022-11-17     | -                 | -                                 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/2.0.0) | 2021-12-09     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
-| [1.1.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.1.1) | 2021-11-30     | 2022-12-09        | Superseded by 2.0.x               |
+| [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.1.1) | ~~2021-11-30~~ | ~~2022-12-09~~    | ~~Superseded by 2.0.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.0.0) | ~~2020-02-07~~ | ~~2022-02-28~~    | ~~Superseded by 1.1.x~~           |
 
 #### [NServiceBus.Gateway.Sql](/nuget/NServiceBus.Gateway.Sql)
@@ -883,8 +883,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.Testing/8.0.0) | 2022-11-17     | -                 | -                                 |
-| [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.1) | 2022-03-11     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.Testing/8.0.1) | 2022-11-17     | -                 | -                                 |
+| [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.2) | 2022-03-11     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~7.3.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.3.0) | ~~2021-09-07~~ | ~~2022-06-11~~    | ~~Superseded by 7.4.x~~           |
 | [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.2.0) | ~~2019-09-10~~ | ~~2021-12-07~~    | ~~Superseded by 7.3.x~~           |
 | [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.1.0) | ~~2019-03-21~~ | ~~2019-12-10~~    | ~~Superseded by 7.2.x~~           |

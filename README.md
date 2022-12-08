@@ -891,9 +891,7 @@ A [number of integrity tests](tests/IntegrityTests) validate that samples and sn
 
 The integrity tests include:
 
-* [Samples should not be multi-targeted](tests/IntegrityTests/ProjectFrameworks.cs) using the `<TargetFrameworks>` (plural) element. This is because a visitor who downloads the solution without .NET Core installed will not be able to run a multi-targeted project even on the .NET Framework. Instead a sample should have separate solutions and projects to support .NET Framework and .NET Core, all using the same underlying code, i.e.:
-  * `SampleName.sln` references `ProjectName.csproj` targeting `net462`
-  * `SampleName.Core.sln` references `ProjectName.Core.csproj` targeting `netcoreapp2.0`
+* [Samples should only use the `<TargetFrameworks>` (plural) element if they are multi-targeted](tests/IntegrityTests/ProjectFrameworks.cs).
 * [Package references cannot use a wildcard-only version](tests/IntegrityTests/ReferenceVersions.cs) using `Version="*"` as this can cause a package restore operation to sometimes fail and yield old, incorrect, or mismatched versions.
 * [Package references cannot use a ranged version](tests/IntegrityTests/ReferenceVersions.cs#L48) using [ranged version format](https://learn.microsoft.com/en-us/nuget/concepts/package-versioning#version-ranges) as this can cause a package restore operation to sometimes fail and yield old, incorrect, or mismatched versions.
 * [Versioned sample/snippet directories (i.e. `Core_7`) must contain a `prerelease.txt` file](tests/IntegrityTests/ValidatePrereleaseTxt.cs) **only** when the contained projects use a prerelease version of that component's NuGet package. This is verified in two ways:
