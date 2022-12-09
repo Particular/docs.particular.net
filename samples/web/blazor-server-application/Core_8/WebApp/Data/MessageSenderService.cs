@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.Data
 {
-    #region InjectingMessageSession
+    //#region InjectingMessageSession
     public class MessageSenderService
     {
         private readonly IMessageSession messageSession;
@@ -19,5 +19,5 @@ namespace WebApp.Data
             return messageSession.SendLocal(myMessage);
         }
     }
-    #endregion
+    //#endregion
 }

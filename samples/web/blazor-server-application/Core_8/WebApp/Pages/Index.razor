@@ -5,7 +5,7 @@
 @inject IMessageSession messageSession;
 @inject MessageSenderService messageSender;
 
-<PageTitle>NServiceBus Blazor</PageTitle>
+<PageTitle>NServiceBus Blazor server</PageTitle>
 
 <div>
     Enter a number below and click "Go".<br />
@@ -13,6 +13,7 @@
     <br /><br />
     <input type="text" @bind="userInput" />
     <input type="submit" value="Go" @onclick="HandleValidSubmit" />
+    <br />
     @ResponseText
     <br />
 </div>

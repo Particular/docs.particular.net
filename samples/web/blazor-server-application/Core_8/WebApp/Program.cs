@@ -1,6 +1,8 @@
 using NServiceBus;
 using WebApp.Data;
 
+#region ApplicationStart
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseNServiceBus(context =>
@@ -10,18 +12,16 @@ builder.Host.UseNServiceBus(context =>
     endpointConfiguration.EnableCallbacks();
     endpointConfiguration.UseTransport(new LearningTransport());
 
-    #region ContainerConfiguration
-
     endpointConfiguration.RegisterComponents(registration: s =>
     {
         s.AddSingleton<MyService>();
         s.AddSingleton<MessageSenderService>();
-    });
-
-    #endregion
+    }); 
 
     return endpointConfiguration;
 });
+
+#endregion
 
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
