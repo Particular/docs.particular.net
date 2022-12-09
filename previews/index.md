@@ -21,7 +21,6 @@ User feedback is central to the Preview Program, so the more feedback is receive
 | Name                       | Status | Notes  |
 |----------------------------|:------------:|--------|
 | [NServiceBus.AwsLambda.Sqs](/previews/aws-lambda-simple-queue-service.md)| :white_check_mark: **Public preview** | [Forum discussion](https://discuss.particular.net/t/nservicebus-awslambda-sqs-public-preview-release-available/2158) |
-| [NServiceBus.Transport.Bridge](/nservicebus/bridge)| :white_check_mark: **Public preview** | [Forum discussion](https://discuss.particular.net/t/nservicebus-transport-bridge-0-1-0-preview-release-available/3059) |
 
 ## Completed Previews
 
