@@ -1,9 +1,7 @@
 ﻿@page "/"
 @using Microsoft.Extensions.Logging
-@using WebApp.Data;
 @inject ILogger<Index> Logger;
 @inject IMessageSession messageSession;
-@inject MessageSenderService messageSender;
 
 <PageTitle>NServiceBus Blazor server</PageTitle>
 
@@ -18,15 +16,9 @@
     <br />
 </div>
 
-
 @code {
     private string? userInput;
     private string? ResponseText;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await messageSender.SendMessage();
-    }
 
     protected async Task HandleValidSubmit()
     {

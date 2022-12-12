@@ -1,5 +1,4 @@
 using NServiceBus;
-using WebApp.Data;
 
 #region ApplicationStart
 
@@ -11,13 +10,6 @@ builder.Host.UseNServiceBus(context =>
     endpointConfiguration.MakeInstanceUniquelyAddressable("1");
     endpointConfiguration.EnableCallbacks();
     endpointConfiguration.UseTransport(new LearningTransport());
-
-    endpointConfiguration.RegisterComponents(registration: s =>
-    {
-        s.AddSingleton<MyService>();
-        s.AddSingleton<MessageSenderService>();
-    }); 
-
     return endpointConfiguration;
 });
 

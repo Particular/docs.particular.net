@@ -23,7 +23,7 @@ The web page renders synchronously; from the user's perspective, the interaction
 
 ## Configuration
 
-This sample has three projects: `Shared`, `Server`, and `WebApp`. `WebApp` is an ASP.NET Core web application that sends messages (found in the `Shared` project) to the `Server` project, which is hosted as a console application.
+This sample has three projects: `Shared`, `Server`, and `WebApp`. `WebApp` is a Blazor server application that sends messages (found in the `Shared` project) to the `Server` project, which is hosted as a console application.
 
 ### Initializing NServiceBus
 
@@ -33,7 +33,7 @@ snippet: ApplicationStart
 
 ### Sending a message
 
-Open `Index.cshtml.cs` in `WebApp` to see the `OnPostAsync` method:
+Open `Index.razor` in `WebApp` to see the `HandleValidSubmit` method:
 
 snippet: ActionHandling
 
@@ -43,7 +43,7 @@ Open the class definition for the `Command` type in the `Shared` project:
 
 snippet: Message
 
-Return to `Index.cshtml.cs` and look at the code `messageSession.Request`. The message session offers methods to send messages via NServiceBus. Skip the rest of the code and see what happens to the message just sent.
+Return to `Index.razor` and look at the code `messageSession.Request`. The `messageSession` interface is resolved through [depenency injection](/nservicebus/hosting/extensions-hosting.md#dependency-injection-integration) as part of the generic host that configures the NServiceBus endpoint.  The message session offers methods to send messages via NServiceBus. Skip the rest of the code and see what happens to the message just sent.
 
 ### Handling the message
 
