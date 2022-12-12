@@ -15,7 +15,7 @@ When running the solution a new browser window/tab opens, as well as a console a
 
 Enter the number "1" into the text box in the browser and click "Go". Notice the result "None" appears, as shown:
 
-![Blazor server sample running](blazor-server-running2.png "Blazor server sample running")
+![Blazor server sample running](blazor-server-running.png "Blazor server sample running")
 
 Changing the number in the text box from even to odd numbers changes the result in the Server console.
 
