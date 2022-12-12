@@ -1,5 +1,4 @@
 ﻿using NServiceBus;
-using System.Threading.Tasks;
 using NServiceBus.Logging;
 
 #region Handler
