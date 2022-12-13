@@ -32,8 +32,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.1.1) | 2022-11-24     | -                 | -                                 |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.0.2) | 2022-11-17     | 2023-02-24        | Superseded by 3.1.x               |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.1.2) | 2022-11-24     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.0.3) | 2022-11-17     | 2023-02-24        | Superseded by 3.1.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.4) | 2021-10-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.9.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.9.0) | ~~2021-03-01~~ | ~~2022-10-19~~    | ~~Superseded by 2.0.x~~           |
 
