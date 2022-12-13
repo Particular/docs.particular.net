@@ -12,7 +12,7 @@ The tool can be installed as a .NET tool for Windows/Linux or as a self-containe
 
 ### .NET tool install (preferred)
 
-1. Install either [.NET Core 3.1 or .NET 6.0](https://dotnet.microsoft.com/en-us/download).
+1. Install [.NET 6.0](https://dotnet.microsoft.com/en-us/download).
 2. From a terminal window, use the following command to install the throughput counter from MyGet:
     ```shell
     dotnet tool install -g Particular.EndpointThroughputCounter --add-source=https://www.myget.org/F/particular/api/v3/index.json
@@ -37,12 +37,11 @@ In this mode, the target system does not need any version of .NET preinstalled:
 
 The tool can collect data using a variety of methods depending upon the system's configuration. To run the tool, refer to the article based on the system configuration:
 
-1. Use [**ServiceControl data collection**](service-control.md) when the system is monitored by ServiceControl. **This is the preferred method** becuase ServiceControl already understands NServiceBus logical message endpoints.
-2. If ServiceControl is unavailable, use the data collection method based on the message transport being used:
-    * [Azure Service Bus](azure-service-bus.md)
-    * [Amazon SQS](amazon-sqs.md)
-    * [RabbitMQ](rabbitmq.md)
-    * [SQL Transport](sql-transport.md)
+* [Azure Service Bus](azure-service-bus.md)
+* [Amazon SQS](amazon-sqs.md)
+* [RabbitMQ](rabbitmq.md)
+* [SQL Transport](sql-transport.md)
+* [ServiceControl data collection](service-control.md) when using a message transport not supported above
 
 ## Masking private data
 

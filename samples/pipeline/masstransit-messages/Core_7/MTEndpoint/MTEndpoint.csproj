@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;net7.0;net6.0</TargetFrameworks>
     <UserSecretsId>dotnet-MTEndpoint-0796FBA1-1278-479A-94F8-C8918B42B338</UserSecretsId>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MassTransit.AspNetCore" Version="7.*" />
