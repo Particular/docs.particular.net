@@ -271,7 +271,7 @@ Samples can be targeted to multiple [target frameworks](https://docs.microsoft.c
 The currently recommended set of frameworks is:
 
 ```xml
-<TargetFrameworks>net6.0;net48</TargetFrameworks>
+<TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
 ```
 
 Some things to keep in mind:
