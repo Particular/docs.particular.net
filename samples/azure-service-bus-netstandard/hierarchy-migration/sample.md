@@ -19,7 +19,7 @@ This sample demonstrates how an endpoint can be "life" migrated from one topic t
 
 * `Endpoint1` publishes `Event1` messages and subscribes to `Event2` messages.
 * `Endpoint2` subscribes to `Event1` messages and publishes `Event2` messages.
-* `Migration` does a step by step life migration of `Endpoint2` while the endpoints are running and exchanging messages with each other. 
+* `Migration` does a step by step live migration of `Endpoint2` while the endpoints are running and exchanging messages with each other. 
 
 ### Sample output
 
