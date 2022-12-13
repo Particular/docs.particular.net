@@ -42,7 +42,7 @@ Most samples are made available for multiple frameworks, available through a dro
 
 ### C# language level
 
-All samples target **C# 7.3** to take advantage of the new language features. If any help is required in converting to earlier versions of C#, [raise an issue](https://github.com/Particular/docs.particular.net/issues).
+All samples target **C# 8.0** to take advantage of the new language features. If any help is required in converting to earlier versions of C#, [raise an issue](https://github.com/Particular/docs.particular.net/issues).
 
 ### ConfigureAwait
 
