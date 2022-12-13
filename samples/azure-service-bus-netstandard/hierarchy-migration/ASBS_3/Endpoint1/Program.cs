@@ -8,8 +8,6 @@ class Program
     {
         Console.Title = "Samples.ASBS.HierarchyMigration.Endpoint1";
 
-        #region config
-
         var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyMigration.Endpoint1");
         endpointConfiguration.EnableInstallers();
 
@@ -23,8 +21,6 @@ class Program
         endpointConfiguration.UseTransport(transport);
 
         transport.Topology = TopicTopology.Single("bundle-to-publish-to");
-
-        #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press 'enter' to send a message");
