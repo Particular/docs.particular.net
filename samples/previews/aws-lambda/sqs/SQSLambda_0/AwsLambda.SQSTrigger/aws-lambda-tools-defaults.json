@@ -8,7 +8,7 @@
   "profile": "default",
   "region": "",
   "configuration": "Release",
-  "framework": "netcoreapp3.1",
+  "framework": "net6.0",
   "template": "serverless.template",
   "template-parameters": ""
 }
