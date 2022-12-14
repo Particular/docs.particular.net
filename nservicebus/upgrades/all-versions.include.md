@@ -651,7 +651,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.0.0) | 2022-11-17     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.0.1) | 2022-11-17     | -                 | -                                 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/3.0.0) | 2022-01-12     | 2023-11-17        | Superseded by 4.0.x               |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/2.1.0) | 2021-12-20     | 2023-01-12        | Superseded by 3.0.x               |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/2.0.2) | ~~2021-10-19~~ | ~~2022-03-20~~    | ~~Superseded by 2.1.x~~           |
