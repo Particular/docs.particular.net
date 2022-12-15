@@ -10,56 +10,7 @@ static class Program
     {
         Console.Title = "Samples.ASBS.HierarchyMigration.Migration";
 
-        AnsiConsole.Write(
-            new FigletText("Endpoint 2 Migration")
-                .Centered()
-                .Color(Color.Green));
-
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
-        if (string.IsNullOrWhiteSpace(connectionString))
-        {
-            throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
-        }
-
-        // Endpoint 2 will be gradually migrated
-        var adminClient = new ServiceBusAdministrationClient(connectionString);
-
-        var endpointsShouldBeStopped = new Rule($"Endpoints should be stopped")
-        {
-            Alignment = Justify.Center,
-            Border = BoxBorder.Ascii
-        };
-        AnsiConsole.Write(endpointsShouldBeStopped);
-        AnsiConsole.MarkupLine(":warning: Make sure Endpoint1 and Endpoint2 are not running");
-        AnsiConsole.WriteLine();
-
-        var infrastructureCleanup = new Rule($"Infrastructure cleanup")
-        {
-            Alignment = Justify.Center,
-            Border = BoxBorder.Ascii
-        };
-        AnsiConsole.Write(infrastructureCleanup);
-        if (AnsiConsole.Confirm("Cleanup infrastructure from previous runs of this sample?"))
-        {
-            await DeleteExistingInfrastructure(adminClient);
-
-            Visualize.DeletedInfrastructure();
-        }
-        AnsiConsole.WriteLine();
-
-        var endpointsShouldBeRunning = new Rule($"Endpoints should be running")
-        {
-            Alignment = Justify.Center,
-            Border = BoxBorder.Ascii
-        };
-        AnsiConsole.Write(endpointsShouldBeRunning);
-        AnsiConsole.MarkupLine(":warning: Start Endpoint1 and Endpoint2 and wait a bit until some messages are published.");
-        AnsiConsole.WriteLine();
-
-        Visualize.TopologyBeforeMigration();
-
-        AnsiConsole.WriteLine(":: Press any key to setup the sample topology");
-        Console.ReadLine();
+        var adminClient = await PreMigrationStepsForTheDemoPurpose();
 
         await CreateEntityGracefully(async () => await adminClient.CreateTopicAsync(
             new CreateTopicOptions(Hierarchy.SubscriptionBundleName)
@@ -144,7 +95,7 @@ static class Program
             Border = BoxBorder.Ascii
         };
         AnsiConsole.Write(messagesInTheQueue);
-        AnsiConsole.MarkupLineInterpolated($":warning: There are currently {migrationQueueRuntimeProperties.ActiveMessageCount} messages in the migration queue.");
+        AnsiConsole.MarkupLineInterpolated($":warning: There are currently '{migrationQueueRuntimeProperties.ActiveMessageCount}' messages in the migration queue.");
         AnsiConsole.WriteLine();
 
         QueueProperties migrationQueueProperties = await adminClient.GetQueueAsync(Hierarchy.Endpoint2MigrationQueueName);
@@ -165,7 +116,7 @@ static class Program
             migrationQueueRuntimeProperties = await adminClient.GetQueueRuntimePropertiesAsync(Hierarchy.Endpoint2MigrationQueueName);
             if(migrationQueueRuntimeProperties.ActiveMessageCount > 0)
             {
-                AnsiConsole.MarkupLineInterpolated($":hourglass_not_done: There are still {migrationQueueRuntimeProperties.ActiveMessageCount} messages in the migration queue.");
+                AnsiConsole.MarkupLineInterpolated($":hourglass_not_done: There are still '{migrationQueueRuntimeProperties.ActiveMessageCount}' messages in the migration queue.");
                 await Task.Delay(500);
             }
             else
@@ -191,15 +142,73 @@ static class Program
         AnsiConsole.MarkupLine(":sports_medal: Migration done.");
 
         AnsiConsole.WriteLine();
-        AnsiConsole.WriteLine($@"Stop Endpoint 2 and change:
+        AnsiConsole.WriteLine($@"Stop 'Endpoint2' and change:
 transport.Topology = TopicTopology.Single(""{Hierarchy.PublishBundleName}"");
 
 to
 
 transport.Topology = TopicTopology.Hierarchy(""{Hierarchy.PublishBundleName}"", ""{Hierarchy.SubscriptionBundleName}"");
 
-and then start Endpoint 2.
+and then start 'Endpoint2'.
 ");
+    }
+
+    private static async Task<ServiceBusAdministrationClient> PreMigrationStepsForTheDemoPurpose()
+    {
+        AnsiConsole.Write(
+            new FigletText("Endpoint 2 Migration")
+                .Centered()
+                .Color(Color.Green));
+
+        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new Exception(
+                "Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
+        }
+
+        // Endpoint 2 will be gradually migrated
+        var adminClient = new ServiceBusAdministrationClient(connectionString);
+
+        var endpointsShouldBeStopped = new Rule($"Endpoints should be stopped")
+        {
+            Alignment = Justify.Center,
+            Border = BoxBorder.Ascii
+        };
+        AnsiConsole.Write(endpointsShouldBeStopped);
+        AnsiConsole.MarkupLine(":warning: Make sure 'Endpoint1' and 'Endpoint2' are not running");
+        AnsiConsole.WriteLine();
+
+        var infrastructureCleanup = new Rule($"Infrastructure cleanup")
+        {
+            Alignment = Justify.Center,
+            Border = BoxBorder.Ascii
+        };
+        AnsiConsole.Write(infrastructureCleanup);
+        if (AnsiConsole.Confirm("Cleanup infrastructure from previous runs of this sample?"))
+        {
+            await DeleteExistingInfrastructure(adminClient);
+
+            Visualize.DeletedInfrastructure();
+        }
+
+        AnsiConsole.WriteLine();
+
+        var endpointsShouldBeRunning = new Rule($"Endpoints should be running")
+        {
+            Alignment = Justify.Center,
+            Border = BoxBorder.Ascii
+        };
+        AnsiConsole.Write(endpointsShouldBeRunning);
+        AnsiConsole.MarkupLine(
+            ":warning: Start 'Endpoint1' and 'Endpoint2' and wait a bit until some messages are published.");
+        AnsiConsole.WriteLine();
+
+        Visualize.TopologyBeforeMigration();
+
+        AnsiConsole.WriteLine(":: Press any key to setup the sample topology");
+        Console.ReadLine();
+        return adminClient;
     }
 
     static async Task DeleteExistingInfrastructure(ServiceBusAdministrationClient adminClient)

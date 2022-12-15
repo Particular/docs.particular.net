@@ -85,7 +85,7 @@ internal static class Visualize
      */
     public static void SubscriptionBundleSetup()
     {
-        var sectionDescription = new Rule($"The {Hierarchy.SubscriptionBundleName} topic has been setup")
+        var sectionDescription = new Rule($"The '{Hierarchy.SubscriptionBundleName}' topic has been setup")
         {
             Alignment = Justify.Center,
             Border = BoxBorder.Ascii
