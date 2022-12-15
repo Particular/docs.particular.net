@@ -19,7 +19,7 @@ This sample demonstrates how an endpoint can be migrated live and without any do
 
 * `Endpoint1` publishes `Event1` messages and subscribes to `Event2` messages.
 * `Endpoint2` subscribes to `Event1` messages and publishes `Event2` messages.
-* `Migration` does a step by step live migration of `Endpoint2` while the endpoints are running and exchanging messages with each other. 
+* `Migration` does a step by step live migration of `Endpoint2` while the endpoints are running and exchanging messages with each other.
 
 ### Sample output
 
@@ -27,7 +27,7 @@ The migration program creates self-explanatory output during the migration proce
 
 ```text
 ----- Endpoints should be stopped ------
-⚠ Make sure Endpoint1 and Endpoint2 are not running
+⚠ Make sure 'Endpoint1' and 'Endpoint2' are not running
 
 ------ Infrastructure cleanup ------
 Cleanup infrastructure from previous runs of this sample? [y/n] (y): y
@@ -47,7 +47,7 @@ Cleanup infrastructure from previous runs of this sample? [y/n] (y): y
 └─────────────────────────────────────────────────────┘
 
 ----- Endpoints should be running ------
-⚠ Start Endpoint1 and Endpoint2 and wait a bit until some messages are published.
+⚠ Start 'Endpoint1' and 'Endpoint2' and wait a bit until some messages are published.
 
 ------ Topology before migration -----
 Topics
@@ -65,7 +65,7 @@ Queues
 └── samples.asbs.hierarchymigration.endpoint2
 :: Press any key to setup the sample topology
 
------ The bundle-to-subscribe-to topic has been setup ------
+----- The 'bundle-to-subscribe-to' topic has been setup ------
 Topics
 ├── bundle-to-publish-to
 │   ├── Samples.ASBS.HierarchyMigration.Endpoint1
@@ -80,7 +80,7 @@ Topics
 Queues
 ├── samples.asbs.hierarchymigration.endpoint1
 └── samples.asbs.hierarchymigration.endpoint2
------ The forward rule on topic bundle-to-publish-to has been setup ------
+----- The forward rule on topic 'bundle-to-publish-to' has been setup ------
 Topics
 ├── bundle-to-publish-to
 │   ├── Samples.ASBS.HierarchyMigration.Endpoint1
@@ -98,7 +98,7 @@ Topics
 Queues
 ├── samples.asbs.hierarchymigration.endpoint1
 └── samples.asbs.hierarchymigration.endpoint2
------ The migration queue samples.asbs.hierarchymigration.endpoint2.migration has been setup -----
+----- The migration queue 'samples.asbs.hierarchymigration.endpoint2.migration' has been setup -----
 Topics
 ├── bundle-to-publish-to
 │   ├── Samples.ASBS.HierarchyMigration.Endpoint1
@@ -117,7 +117,7 @@ Queues
 ├── samples.asbs.hierarchymigration.endpoint1
 ├── samples.asbs.hierarchymigration.endpoint2
 └── samples.asbs.hierarchymigration.endpoint2.migration
------ The subscription Samples.ASBS.HierarchyMigration.Endpoint2 on topic bundle-to-subscribe-to has been setup ------
+----- The subscription 'Samples.ASBS.HierarchyMigration.Endpoint2' on 'topic bundle-to-subscribe-to' has been setup ------
 Topics
 ├── bundle-to-publish-to
 │   ├── Samples.ASBS.HierarchyMigration.Endpoint1
@@ -139,7 +139,7 @@ Queues
 ├── samples.asbs.hierarchymigration.endpoint1
 ├── samples.asbs.hierarchymigration.endpoint2
 └── samples.asbs.hierarchymigration.endpoint2.migration
------ The subscription Samples.ASBS.HierarchyMigration.Endpoint2 on topic bundle-to-subscribe-to with the necessary rules ------
+----- The subscription 'Samples.ASBS.HierarchyMigration.Endpoint2' on topic 'bundle-to-subscribe-to' with the necessary rules ------
 Topics
 ├── bundle-to-publish-to
 │   ├── Samples.ASBS.HierarchyMigration.Endpoint1
@@ -164,7 +164,7 @@ Queues
 └── samples.asbs.hierarchymigration.endpoint2.migration
 Press any key to continue with the migration
 
------ The subscription Samples.ASBS.HierarchyMigration.Endpoint2 on topic bundle-to-publish-to has been deleted ------
+----- The subscription 'Samples.ASBS.HierarchyMigration.Endpoint2' on topic 'bundle-to-publish-to' has been deleted ------
 Topics
 ├── bundle-to-publish-to
 │   ├── Samples.ASBS.HierarchyMigration.Endpoint1
@@ -186,7 +186,7 @@ Queues
 ----- Checking migration queue status ------
 ⚠ There are currently 3 messages in the migration queue.
 
------ The queue samples.asbs.hierarchymigration.endpoint2.migration forwarding to samples.asbs.hierarchymigration.endpoint2 has been setup -----
+----- The queue 'samples.asbs.hierarchymigration.endpoint2.migration' forwarding to 'samples.asbs.hierarchymigration.endpoint2' has been setup -----
 Topics
 ├── bundle-to-publish-to
 │   ├── Samples.ASBS.HierarchyMigration.Endpoint1
@@ -208,7 +208,7 @@ Queues
     └── samples.asbs.hierarchymigration.endpoint2
 ----- Checking forwarding progress in the migration queue ------
 ⌛ Everything forwarded. Moving on
------- The subscription Samples.ASBS.HierarchyMigration.Endpoint2 on topic bundle-to-subscribe-to has been changed to forward to… ------
+------ The subscription 'Samples.ASBS.HierarchyMigration.Endpoint2' on topic 'bundle-to-subscribe-to' has been changed to forward to… ------
 Topics
 ├── bundle-to-publish-to
 │   ├── Samples.ASBS.HierarchyMigration.Endpoint1
@@ -230,7 +230,7 @@ Queues
     └── samples.asbs.hierarchymigration.endpoint2
 Press any key to continue with the migration
 
------- The queue samples.asbs.hierarchymigration.endpoint2.migration was removed ------
+------ The queue 'samples.asbs.hierarchymigration.endpoint2.migration' was removed ------
 Topics
 ├── bundle-to-publish-to
 │   ├── Samples.ASBS.HierarchyMigration.Endpoint1
@@ -249,14 +249,14 @@ Queues
 ├── samples.asbs.hierarchymigration.endpoint1
 └── samples.asbs.hierarchymigration.endpoint2
 🏅 Migration done.
-Stop Endpoint 2 and change:
+Stop 'Endpoint2' and change:
 `transport.Topology = TopicTopology.Single("bundle-to-publish-to");`
 
 to
 
 `transport.Topology = TopicTopology.Hierarchy("bundle-to-publish-to", "bundle-to-subscribe-to");`
 
-and then start Endpoint 2.
+and then start 'Endpoint2'.
 ```
 
 ## Viewing in-flight messages

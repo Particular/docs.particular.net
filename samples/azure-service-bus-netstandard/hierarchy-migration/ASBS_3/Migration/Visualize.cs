@@ -133,7 +133,7 @@ internal static class Visualize
      */
     public static void ForwardRuleSetup()
     {
-        var sectionDescription = new Rule($"The forward rule on topic {Hierarchy.PublishBundleName} has been setup")
+        var sectionDescription = new Rule($"The forward rule on topic '{Hierarchy.PublishBundleName}' has been setup")
         {
             Alignment = Justify.Center,
             Border = BoxBorder.Ascii
@@ -185,7 +185,7 @@ internal static class Visualize
      */
     public static void MigrationQueueSetup()
     {
-        var sectionDescription = new Rule($"The migration queue {Hierarchy.Endpoint2MigrationQueueName} has been setup")
+        var sectionDescription = new Rule($"The migration queue '{Hierarchy.Endpoint2MigrationQueueName}' has been setup")
         {
             Alignment = Justify.Center,
             Border = BoxBorder.Ascii
@@ -241,7 +241,7 @@ internal static class Visualize
     public static void Endpoint2SubscriptionUnderSubscriptionBundleSetup()
     {
         var sectionDescription =
-            new Rule($"The subscription {Hierarchy.Endpoint2SubscriptionName} on topic {Hierarchy.SubscriptionBundleName} has been setup")
+            new Rule($"The subscription '{Hierarchy.Endpoint2SubscriptionName}' on topic '{Hierarchy.SubscriptionBundleName}' has been setup")
             {
                 Alignment = Justify.Center,
                 Border = BoxBorder.Ascii
@@ -300,7 +300,7 @@ internal static class Visualize
     public static void Endpoint2SubscriptionUnderSubscriptionBundleWithRulesSetup()
     {
         var sectionDescription =
-            new Rule($"The subscription {Hierarchy.Endpoint2SubscriptionName} on topic {Hierarchy.SubscriptionBundleName} with the necessary rules")
+            new Rule($"The subscription '{Hierarchy.Endpoint2SubscriptionName}' on topic '{Hierarchy.SubscriptionBundleName}' with the necessary rules")
             {
                 Alignment = Justify.Center,
                 Border = BoxBorder.Ascii
@@ -356,7 +356,7 @@ internal static class Visualize
     public static void Endpoint2SubscriptionOnPublishBundleDeleted()
     {
         var sectionDescription =
-            new Rule($"The subscription {Hierarchy.Endpoint2SubscriptionName} on topic {Hierarchy.PublishBundleName} has been deleted")
+            new Rule($"The subscription '{Hierarchy.Endpoint2SubscriptionName}' on topic '{Hierarchy.PublishBundleName}' has been deleted")
             {
                 Alignment = Justify.Center,
                 Border = BoxBorder.Ascii
@@ -409,7 +409,7 @@ internal static class Visualize
     public static void Endpoint2MigrationQueueToEndpoint2QueueForwardingSetup()
     {
         var sectionDescription =
-            new Rule($"The queue {Hierarchy.Endpoint2MigrationQueueName} forwarding to {Hierarchy.Endpoint2QueueName} has been setup")
+            new Rule($"The queue '{Hierarchy.Endpoint2MigrationQueueName}' forwarding to '{Hierarchy.Endpoint2QueueName}' has been setup")
             {
                 Alignment = Justify.Center,
                 Border = BoxBorder.Ascii
@@ -463,7 +463,7 @@ internal static class Visualize
     public static void Endpoint2SubscriptionOnSubscriptionBundleFowardingChanged()
     {
         var sectionDescription =
-            new Rule($"The subscription {Hierarchy.Endpoint2SubscriptionName} on topic {Hierarchy.SubscriptionBundleName} has been changed to forward to {Hierarchy.Endpoint2QueueName}")
+            new Rule($"The subscription '{Hierarchy.Endpoint2SubscriptionName}' on topic '{Hierarchy.SubscriptionBundleName}' has been changed to forward to '{Hierarchy.Endpoint2QueueName}'")
             {
                 Alignment = Justify.Center,
                 Border = BoxBorder.Ascii
@@ -515,7 +515,7 @@ internal static class Visualize
     public static void Endpoint2MigrationQueueDeleted()
     {
         var sectionDescription =
-            new Rule($"The queue {Hierarchy.Endpoint2MigrationQueueName} was removed")
+            new Rule($"The queue '{Hierarchy.Endpoint2MigrationQueueName}' was removed")
             {
                 Alignment = Justify.Center,
                 Border = BoxBorder.Ascii
