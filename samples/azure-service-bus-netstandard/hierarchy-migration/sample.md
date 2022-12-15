@@ -7,7 +7,7 @@ related:
 - transports/azure-service-bus
 ---
 
-NOTE: This sample is provided to find out whether there is interest in this approach. Depending on the feedback the functionality of migrating an endpoint could be built into the [operational scripting tool](/transports/azure-service-bus/operational-scripting.md) of the Azure Service Bus transport. Comment on [the issue](https://github.com/Particular/NServiceBus.Transport.AzureServiceBus/issues/718) or reach out using the [support options available](https://particular.net/support).
+NOTE: This sample is available to aid and gauge interest in this migration approach. Depending on the feedback, the functionality of migrating an endpoint could be built into the [operational scripting tool](/transports/azure-service-bus/operational-scripting.md) of the Azure Service Bus transport. Comment on [the issue](https://github.com/Particular/NServiceBus.Transport.AzureServiceBus/issues/718) or reach out using the [support options available](https://particular.net/support).
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ include: asb-connectionstring-xplat
 
 ## Code walk-through
 
-This sample demonstrates how an endpoint can be "life" migrated from one topic to another:
+This sample demonstrates how an endpoint can be migrated live and without any downtime from one topic to another:
 
 * `Endpoint1` publishes `Event1` messages and subscribes to `Event2` messages.
 * `Endpoint2` subscribes to `Event1` messages and publishes `Event2` messages.
@@ -230,7 +230,7 @@ Queues
     └── samples.asbs.hierarchymigration.endpoint2
 Press any key to continue with the migration
 
------- he queue samples.asbs.hierarchymigration.endpoint2.migration was removed ------
+------ The queue samples.asbs.hierarchymigration.endpoint2.migration was removed ------
 Topics
 ├── bundle-to-publish-to
 │   ├── Samples.ASBS.HierarchyMigration.Endpoint1
@@ -259,11 +259,11 @@ to
 and then start Endpoint 2.
 ```
 
-## Viewing messages in-flight
+## Viewing in-flight messages
 
-For every supported migration step the migration console will wait for any key to continue which allows inspecting the queues, topics and subscriptions on the Azure Portal or a third-party tool during the migration process.
+For every supported migration step, the migration console will wait for any key to continue, which allows for inspecting the queues, topics, and subscriptions on the Azure Portal or a third-party tool during the migration process.
 
-The following queues for the two endpoints can be seen in the Azure Portal or a third-party tool:
+The following queues for the two endpoints can be viewed in the Azure Portal or a third-party tool:
 
 * `samples.asbs.hierarchymigration.endpoint1`
 * `samples.asbs.hierarchymigration.endpoint2`
