@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net6.0;net48</TargetFrameworks>
+        <OutputType>Exe</OutputType>
+        <LangVersion>8.0</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.11.1" />
+      <PackageReference Include="Spectre.Console" Version="0.45.0" />
+    </ItemGroup>
+
+</Project>
