@@ -515,7 +515,7 @@ internal static class Visualize
     public static void Endpoint2MigrationQueueDeleted()
     {
         var sectionDescription =
-            new Rule($"he queue {Hierarchy.Endpoint2MigrationQueueName} was removed")
+            new Rule($"The queue {Hierarchy.Endpoint2MigrationQueueName} was removed")
             {
                 Alignment = Justify.Center,
                 Border = BoxBorder.Ascii
