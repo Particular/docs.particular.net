@@ -1,7 +1,7 @@
 ---
 title: NServiceBus.Extensions.Logging
 summary: Logging with Microsoft.Extensions.Logging
-reviewed: 2020-03-20
+reviewed: 2022-12-16
 component: Extensions.Logging
 related:
 - samples/logging/extensions-logging
@@ -15,7 +15,7 @@ NOTE: This package should only be used when configuring logging in a self-host m
 
 ## Compatibility
 
-Although NServiceBus has native support for logging frameworks like log4net, NLog, and CommonLogging, it is recommended to use Microsoft.Extensions.Logging with these frameworks for new projects.
+It is recommended to use Microsoft.Extensions.Logging for logging.
 
 Microsoft.Extensions.Logging can be used to replace the following providers:
 
