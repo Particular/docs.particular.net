@@ -16,8 +16,6 @@ include: asb-connectionstring-xplat
 
 ## Important information about lock renewal
 
-partial: transactionmode
-
 partial: maxtimeoutinformation
 
 1. The client initiates message lock renewal, not the broker. If the request to renew the lock fails after all the SDK built-in retries (.e.g, due to connection loss), the lock won't be renewed, and the message will be made available for processing by competing consumers. Lock renewal should be treated as a best effort, not as a guaranteed operation.

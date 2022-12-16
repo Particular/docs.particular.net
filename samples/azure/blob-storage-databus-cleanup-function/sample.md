@@ -98,5 +98,3 @@ This function does not require downtime as the implemented [singleton orchestrat
 ### SenderAndReceiver project
 
 The project sends the `MessageWithLargePayload` message to itself, utilizing the NServiceBus attachment mechanism.
-
-partial: cleanup
