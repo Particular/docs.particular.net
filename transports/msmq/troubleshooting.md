@@ -24,7 +24,7 @@ The primary reason for machines ending up with duplicate QMIds is the cloning of
 
 If there are two or more machines with the same QMId, reinstall the MSMQ feature to generate a new QMId.
 
-See [this blog post](https://blogs.msdn.microsoft.com/johnbreakwell/2007/02/06/msmq-prefers-to-be-unique/) for more details.
+See the [MSMQ prefers to be unique blog post by John Breakwell](https://blogs.msdn.microsoft.com/johnbreakwell/2007/02/06/msmq-prefers-to-be-unique/) for more details.
 
 
 ## Messages stuck or not arriving
@@ -37,6 +37,7 @@ Approaches for diagnosing messages stuck in the outgoing queue:
 * Ensure [no optional MSMQ components](/transports/msmq/#msmq-configuration) are installed.
 * Check the Microsoft support article [MSMQ service might not send or receive messages after a restart](https://support.microsoft.com/en-us/kb/2554746). This details how an error in MSMQ's binding process for IP addresses and ports can cause one server to be unable to validate messages coming from another, causing them to be rejected.
 * If servers are cloned from the same virtual machine image, this causes them to have the same `QMId` in the registry key `HKEY_LOCAL_MACHINE\Software\Microsoft\MSMQ\Parameters\Machine Cache`, which interferes with message delivery. Use the workaround described in [MSMQ prefers to be unique](https://blogs.msdn.microsoft.com/johnbreakwell/2007/02/06/msmq-prefers-to-be-unique/) to reset the `QMId` on an existing machine, but it is preferable to use [Microsoft's Sysprep tool](https://support.microsoft.com/en-us/kb/314828) before capturing the virtual machine image.
+* Check if server or network firewalls are not blocking MSMQ or Microsoft Distributed Transaction Coordinator (MSDTC) ports.
 
 ## MessageQueueException: Insufficient resources to perform operation
 
