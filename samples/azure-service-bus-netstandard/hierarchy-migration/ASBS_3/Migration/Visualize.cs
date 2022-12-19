@@ -54,7 +54,7 @@ internal static class Visualize
         endpoint1Subscription.AddNode("$default: 1=0");
         endpoint1Subscription.AddNode("Event2: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event2%'");
         endpoint1Subscription.AddNode(Hierarchy.Endpoint1QueueName);
-        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint1SubscriptionName);
+        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint2SubscriptionName);
         endpoint2Subscription.AddNode("$default: 1=0");
         endpoint2Subscription.AddNode("Event1: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event1%'");
         endpoint2Subscription.AddNode(Hierarchy.Endpoint2QueueName);
@@ -98,7 +98,7 @@ internal static class Visualize
         endpoint1Subscription.AddNode("$default: 1=0");
         endpoint1Subscription.AddNode("Event2: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event2%'");
         endpoint1Subscription.AddNode(Hierarchy.Endpoint1QueueName);
-        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint1SubscriptionName);
+        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint2SubscriptionName);
         endpoint2Subscription.AddNode("$default: 1=0");
         endpoint2Subscription.AddNode("Event1: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event1%'");
         endpoint2Subscription.AddNode(Hierarchy.Endpoint2QueueName);
@@ -146,7 +146,7 @@ internal static class Visualize
         endpoint1Subscription.AddNode("$default: 1=0");
         endpoint1Subscription.AddNode("Event2: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event2%'");
         endpoint1Subscription.AddNode(Hierarchy.Endpoint1QueueName);
-        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint1SubscriptionName);
+        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint2SubscriptionName);
         endpoint2Subscription.AddNode("$default: 1=0");
         endpoint2Subscription.AddNode("Event1: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event1%'");
         endpoint2Subscription.AddNode(Hierarchy.Endpoint2QueueName);
@@ -198,7 +198,7 @@ internal static class Visualize
         endpoint1Subscription.AddNode("$default: 1=0");
         endpoint1Subscription.AddNode("Event2: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event2%'");
         endpoint1Subscription.AddNode(Hierarchy.Endpoint1QueueName);
-        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint1SubscriptionName);
+        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint2SubscriptionName);
         endpoint2Subscription.AddNode("$default: 1=0");
         endpoint2Subscription.AddNode("Event1: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event1%'");
         endpoint2Subscription.AddNode(Hierarchy.Endpoint2QueueName);
@@ -254,7 +254,7 @@ internal static class Visualize
         endpoint1Subscription.AddNode("$default: 1=0");
         endpoint1Subscription.AddNode("Event2: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event2%'");
         endpoint1Subscription.AddNode(Hierarchy.Endpoint1QueueName);
-        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint1SubscriptionName);
+        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint2SubscriptionName);
         endpoint2Subscription.AddNode("$default: 1=0");
         endpoint2Subscription.AddNode("Event1: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event1%'");
         endpoint2Subscription.AddNode(Hierarchy.Endpoint2QueueName);
@@ -313,7 +313,7 @@ internal static class Visualize
         endpoint1Subscription.AddNode("$default: 1=0");
         endpoint1Subscription.AddNode("Event2: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event2%'");
         endpoint1Subscription.AddNode(Hierarchy.Endpoint1QueueName);
-        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint1SubscriptionName);
+        var endpoint2Subscription = publishBundle.AddNode(Hierarchy.Endpoint2SubscriptionName);
         endpoint2Subscription.AddNode("$default: 1=0");
         endpoint2Subscription.AddNode("Event1: [[NServiceBus.EnclosedMessageTypes]] LIKE '%Event1%'");
         endpoint2Subscription.AddNode(Hierarchy.Endpoint2QueueName);
