@@ -56,7 +56,7 @@ Topics
     │   ├── $default: 1=0
     │   ├── Event2: [NServiceBus.EnclosedMessageTypes] LIKE '%Event2%'
     │   └── samples.asbs.hierarchymigration.endpoint1
-    └── Samples.ASBS.HierarchyMigration.Endpoint1
+    └── Samples.ASBS.HierarchyMigration.Endpoint2
         ├── $default: 1=0
         ├── Event1: [NServiceBus.EnclosedMessageTypes] LIKE '%Event1%'
         └── samples.asbs.hierarchymigration.endpoint2
@@ -72,7 +72,7 @@ Topics
 │   │   ├── $default: 1=0
 │   │   ├── Event2: [NServiceBus.EnclosedMessageTypes] LIKE '%Event2%'
 │   │   └── samples.asbs.hierarchymigration.endpoint1
-│   └── Samples.ASBS.HierarchyMigration.Endpoint1
+│   └── Samples.ASBS.HierarchyMigration.Endpoint2
 │       ├── $default: 1=0
 │       ├── Event1: [NServiceBus.EnclosedMessageTypes] LIKE '%Event1%'
 │       └── samples.asbs.hierarchymigration.endpoint2
@@ -87,7 +87,7 @@ Topics
 │   │   ├── $default: 1=0
 │   │   ├── Event2: [NServiceBus.EnclosedMessageTypes] LIKE '%Event2%'
 │   │   └── samples.asbs.hierarchymigration.endpoint1
-│   ├── Samples.ASBS.HierarchyMigration.Endpoint1
+│   ├── Samples.ASBS.HierarchyMigration.Endpoint2
 │   │   ├── $default: 1=0
 │   │   ├── Event1: [NServiceBus.EnclosedMessageTypes] LIKE '%Event1%'
 │   │   └── samples.asbs.hierarchymigration.endpoint2
@@ -105,7 +105,7 @@ Topics
 │   │   ├── $default: 1=0
 │   │   ├── Event2: [NServiceBus.EnclosedMessageTypes] LIKE '%Event2%'
 │   │   └── samples.asbs.hierarchymigration.endpoint1
-│   ├── Samples.ASBS.HierarchyMigration.Endpoint1
+│   ├── Samples.ASBS.HierarchyMigration.Endpoint2
 │   │   ├── $default: 1=0
 │   │   ├── Event1: [NServiceBus.EnclosedMessageTypes] LIKE '%Event1%'
 │   │   └── samples.asbs.hierarchymigration.endpoint2
@@ -124,7 +124,7 @@ Topics
 │   │   ├── $default: 1=0
 │   │   ├── Event2: [NServiceBus.EnclosedMessageTypes] LIKE '%Event2%'
 │   │   └── samples.asbs.hierarchymigration.endpoint1
-│   ├── Samples.ASBS.HierarchyMigration.Endpoint1
+│   ├── Samples.ASBS.HierarchyMigration.Endpoint2
 │   │   ├── $default: 1=0
 │   │   ├── Event1: [NServiceBus.EnclosedMessageTypes] LIKE '%Event1%'
 │   │   └── samples.asbs.hierarchymigration.endpoint2
@@ -146,7 +146,7 @@ Topics
 │   │   ├── $default: 1=0
 │   │   ├── Event2: [NServiceBus.EnclosedMessageTypes] LIKE '%Event2%'
 │   │   └── samples.asbs.hierarchymigration.endpoint1
-│   ├── Samples.ASBS.HierarchyMigration.Endpoint1
+│   ├── Samples.ASBS.HierarchyMigration.Endpoint2
 │   │   ├── $default: 1=0
 │   │   ├── Event1: [NServiceBus.EnclosedMessageTypes] LIKE '%Event1%'
 │   │   └── samples.asbs.hierarchymigration.endpoint2
