@@ -86,7 +86,6 @@
   DocsUrl: /nservicebus/bridge
   GitHubOwner: Particular
   Category: Other
-  SupportLevel: Preview
   LicenseUrl: https://github.com/Particular/NServiceBus.Transport.Bridge/blob/master/LICENSE.md
   ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Bridge
   NugetOrder:
