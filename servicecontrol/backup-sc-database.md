@@ -7,11 +7,11 @@ ServiceControl uses an embedded RavenDB for data storage. To backup or restore t
 
 ### Backup and restore ServiceControl primary or audit instances using RavenDB 5
 
-If the ServiceControl instance to backup uses RavenDB 5 to persist data, refer to the [official RavenDB documentation on how to perform a backup and restore data](https://ravendb.net/docs/article-page/5.4/csharp/server/ongoing-tasks/backup-overview).
+For ServiceControl instances using RavenDB 5, refer to the [official RavenDB documentation on how to perform a backup and restore data](https://ravendb.net/docs/article-page/5.4/csharp/server/ongoing-tasks/backup-overview).
 
 ### Backup ServiceControl primary or audit instances using RavenDB 3.5
 
-If the ServiceControl instance to backup uses RavenDB 3.5 to persist data, the following steps outline how to perform a data backup:
+For ServiceControl instances using RavenDB 3.5, the following steps outline how to perform a data backup:
 
  1. Open ServiceControl Management to view the list of ServiceControl service instances
  1. Stop the service using the action icons

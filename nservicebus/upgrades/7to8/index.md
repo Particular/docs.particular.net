@@ -355,4 +355,4 @@ See the [OpenTelemetry samples](/samples/open-telemetry/) for more guidance on i
 
 ## Raw messaging
 
-NServiceBus version 8 supports [raw messaging](/nservicebus/rawmessaging/?version=core_8). Raw messaging allows the transport infrastructure to be used directly without the need to spin up a full NServiceBus endpoint. Raw messaging is useful when integrating with third-party systems and when building message gateways or bridges and allows for low-level sending and receiving byte arrays and completely skip the incoming/outgoing pipeline.
+NServiceBus version 8 supports [raw messaging](/nservicebus/rawmessaging/?version=core_8). Raw messaging allows the transport infrastructure to be used directly without the need to spin up a full NServiceBus endpoint. Raw messaging is useful when integrating with third-party systems, building message gateways or bridges, or performing other low-level sending and receiving tasks.

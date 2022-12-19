@@ -6,6 +6,8 @@ related:
  - samples/azure-service-bus-netstandard/native-integration
  - samples/azure-service-bus-netstandard/lock-renewal
  - samples/azure-service-bus-netstandard/native-integration-pub-sub
+ - samples/azure-service-bus-netstandard/hierarchy-migration
+ - samples/azure-service-bus-netstandard/send-receive-with-nservicebus
 reviewed: 2021-05-18
 ---
 
