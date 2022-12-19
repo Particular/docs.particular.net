@@ -41,6 +41,9 @@ namespace Bridge
                     bridgeConfiguration.AddTransport(receiverTransport);
                     bridgeConfiguration.AddTransport(senderTransport);
 
+                    // .NET 6 does not support distributed transactions
+                    bridgeConfiguration.RunInReceiveOnlyTransactionMode();
+
                     #endregion
 
                     // more configuration...
