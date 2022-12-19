@@ -1,7 +1,7 @@
 ---
 title: Gateway Troubleshooting
 summary: How to solve common issues that arise with the gateway
-reviewed: 2020-03-17
+reviewed: 2022-12-16
 redirects:
  - nservicebus/gateway-trouble-shooting
  - nservicebus/gateway-service-point-manager
@@ -10,7 +10,7 @@ redirects:
 
 ## Persistence support
 
-The gateway requires NServiceBus persistence to operate though not all persisters support it. Currently, the gateway is supported only by InMemory, RavenDB and NHibernate persisters. If the configured persister doesn't support gateway, an exception will be thrown at endpoint startup.
+The gateway requires an NServiceBus persistence to operate although not all persisters support it. Currently, the gateway is supported only by InMemory, RavenDB, and NHibernate persisters. If the configured persister doesn't support gateway, an exception will be thrown at endpoint startup.
 
 
 ## Corrupted urlacls
@@ -38,7 +38,7 @@ EndpointName:MyEndpoint - Status: Ok
 
 If the gateway is not listening no response will be received.
 
-To clean an recreate the url acl manually from an admin console run the following commands
+To clean and recreate the url acl manually run the following commands from an admin console:
 
 ```dos
 netsh http delete urlacl YourUrl

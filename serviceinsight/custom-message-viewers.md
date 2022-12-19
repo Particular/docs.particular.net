@@ -1,6 +1,6 @@
 ---
 title: Custom message viewer plugin model in ServiceInsight
-reviewed: 2020-03-16
+reviewed: 2022-12-16
 summary: How to create custom viewers via an external plugin
 component: ServiceInsight
 ---

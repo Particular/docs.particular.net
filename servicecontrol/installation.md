@@ -1,7 +1,7 @@
 ---
 title: Installing ServiceControl
 summary: How to install different types of ServiceControl instances
-reviewed: 2020-03-16
+reviewed: 2022-12-16
 redirects:
  - servicecontrol/multi-transport-support
 ---
