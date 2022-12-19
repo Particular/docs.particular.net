@@ -16,9 +16,9 @@ downloadbutton
 
 This sample requires that the following tools are installed:
 
-* [.NET Core 3.1 SDK](https://www.microsoft.com/net/download/core)
-* [Docker Community Edition](https://www.docker.com/community-edition) or higher
-* If using Windows, [configure Docker to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers) to support the Linux-based RabbitMQ container
+* [.NET Core 7.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
+* [Docker Personal](https://www.docker.com/products/personal/) or higher
+* If using Windows, [configure Docker to use Linux containers](https://docs.docker.com/desktop/faqs/windowsfaqs/#how-do-i-switch-between-windows-and-linux-containers) to support the Linux-based RabbitMQ container
 
 ## Running the sample
 
@@ -63,7 +63,7 @@ This sample consists of `Sender` and `Receiver` endpoints exchanging messages us
 
 ### Endpoint Docker image
 
-Each endpoint is a container built on top of the official `mcr.microsoft.com/dotnet/core/runtime:3.1` image from [Docker Hub](https://hub.docker.com/). The container image builds and publishes the endpoint binaries and then uses those artifacts to build the final container image:
+Each endpoint is a container built on top of the official `mcr.microsoft.com/dotnet/runtime:7.0` image from [Docker Hub](https://hub.docker.com/). The container image builds and publishes the endpoint binaries and then uses those artifacts to build the final container image:
 
 snippet: receiver
 

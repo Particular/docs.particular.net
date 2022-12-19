@@ -29,7 +29,7 @@ namespace Sender
 
                     var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
                     transport.ConnectionString("host=rabbitmq");
-                    transport.UseConventionalRoutingTopology();
+                    transport.UseConventionalRoutingTopology(QueueType.Quorum);
 
                     var routing = transport.Routing();
                     routing.RouteToEndpoint(typeof(RequestMessage), "Samples.Docker.Receiver");
