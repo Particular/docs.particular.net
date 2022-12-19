@@ -67,8 +67,6 @@ Notice how storing the shipment retrieves the `Order` from the session cache of 
 
 The integration with Entity Framework allows users to take advantage of *Unit of Work* semantics of Entity Framework's `DataContext`. A single instance of the context is shared among all handlers and the `SaveChanges` method is called after all handlers do their work.
 
-partial: behavior
-
 #### Creating data context
 
 The data context is created only once, before it is first accessed from a handler. To maintain consistency, the business data has to reuse the same connection context as NServiceBus persistence. With SQL persistence, this is achieved by using the same ADO.NET connection and transaction objects in both NServiceBus and Entity Framework.
