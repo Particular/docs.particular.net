@@ -30,7 +30,7 @@ namespace Receiver
 
                     var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
                     transport.ConnectionString("host=rabbitmq");
-                    transport.UseConventionalRoutingTopology();
+                    transport.UseConventionalRoutingTopology(QueueType.Quorum);
 
                     #endregion
 

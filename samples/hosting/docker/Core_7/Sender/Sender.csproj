@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -10,12 +10,12 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="5.*" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="7.*" />
   </ItemGroup>
   <ItemGroup Label="Transitive references">
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.*" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="RabbitMQ.Client" Version="5.*" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="license.xml" CopyToOutputDirectory="PreserveNewest" />
