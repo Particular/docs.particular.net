@@ -1,1 +1,1 @@
-NOTE: [The NServiceBus Transport Bridge](/nservicebus/bridge) offers similar functionality to the Router community package and should be considered for multi-transport operations.
+NOTE: Particular Software's [NServiceBus.Transport.Bridge](/nservicebus/bridge) package offers similar functionality to the `NService.Router` community package and should be considered for multi-transport operations.
