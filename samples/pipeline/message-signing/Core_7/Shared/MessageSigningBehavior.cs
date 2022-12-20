@@ -10,7 +10,7 @@ class MessageSigningBehavior :
 {
     public override Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
     {
-        using (var hmac = HMAC.Create("hmacsha256"))
+        using (var hmac = new HMACSHA256())
         {
             hmac.Key = SharedKeys.SigningKey;
 

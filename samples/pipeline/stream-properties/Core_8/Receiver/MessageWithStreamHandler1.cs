@@ -15,8 +15,13 @@ public class MessageWithStreamHandler1 :
         log.Info($"Message received, size of stream property: {stream.Length} Bytes");
         using (var streamReader =  new StreamReader(stream))
         {
-            var streamContents = await streamReader.ReadToEndAsync()
-                .ConfigureAwait(false);
+            string streamContents;
+
+#if NET7_0
+            streamContents = await streamReader.ReadToEndAsync(context.CancellationToken).ConfigureAwait(false);
+#else
+            streamContents = await streamReader.ReadToEndAsync().ConfigureAwait(false);
+#endif
             log.Info($"Stream content: {streamContents.Substring(0, 20)}...");
         }
     }

@@ -36,9 +36,9 @@ namespace Tracing
             {
                 activity = new Activity(MessageTracing.SendMessage);
 
-                foreach (var (key, value) in context.Headers)
+                foreach (var item in context.Headers)
                 {
-                    activity.AddTag(key, value);
+                    activity.AddTag(item.Key, item.Value);
                 }
 
                 diagnosticSource.StartActivity(activity, context.Headers);
@@ -90,9 +90,9 @@ namespace Tracing
                     activity.SetParentId(activityId);
                 }
 
-                foreach (var (key, value) in context.MessageHeaders)
+                foreach (var item in context.MessageHeaders)
                 {
-                    activity.AddTag(key, value);
+                    activity.AddTag(item.Key, item.Value);
                 }
 
                 diagnosticSource.StartActivity(activity, context.MessageHeaders);
