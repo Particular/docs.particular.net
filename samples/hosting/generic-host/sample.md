@@ -15,7 +15,7 @@ downloadbutton
 
 The sample has the following prerequisites:
 
-- [.NET Core 3.1 SDK](https://www.microsoft.com/net/download/core)
+- [.NET 4.8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
 - [PowerShell Core for Windows](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows) in case the sample is to be installed as a Windows Service
 
 ## Running the sample as a console
@@ -27,7 +27,7 @@ In Visual Studio, press <kbd>F5</kbd> to start the sample as a console applicati
 - [Install PowerShell Core on Windows](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows)
 - Start PowerShell core with elevated permissions
 - Run `dotnet publish` in the directory of the sample; for example: `C:\samples\generic-host`
-- Run `New-Service -Name WorkerTest -BinaryPathName "C:\samples\generic-host\bin\Debug\netcoreapp3.1\publish\GenericHost.exe"`
+- Run `New-Service -Name WorkerTest -BinaryPathName "C:\samples\generic-host\bin\Debug\net48\publish\GenericHost.exe"`
 - Run `Start-Service WorkerTest`
 - Go to the Event Viewer under `Windows Logs\Applications` and observe event log entries from source `GenericHost` with the following content
 ```
