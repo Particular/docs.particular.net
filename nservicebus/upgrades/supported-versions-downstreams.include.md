@@ -445,6 +445,13 @@
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/2.0.0) | 2022-11-17     | -                 | -                                 |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/1.0.1) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
+#### [NServiceBus.Transport.Bridge](/nuget/NServiceBus.Transport.Bridge)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/1.0.1) | 2022-12-19     | -                 | -                                 |
+| [0.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/0.1.1) | 2022-11-17     | 2023-12-19        | Superseded by 1.0.x               |
+
 #### [NServiceBus.UniformSession](/nuget/NServiceBus.UniformSession)
 
 | Version   | Released       | Supported until   | Notes                             |
