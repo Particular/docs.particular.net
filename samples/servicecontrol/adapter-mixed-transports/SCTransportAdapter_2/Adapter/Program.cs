@@ -11,7 +11,7 @@ class Program
         #region AdapterTransport
 
         var transportAdapterConfig = new TransportAdapterConfig<SqlServerTransport, LearningTransport>("Samples.ServiceControl.Adapter");
-
+        
         #endregion
 
 #pragma warning disable 618
