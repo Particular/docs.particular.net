@@ -84,7 +84,7 @@ The default commit delay increment is set to `Timespan.FromSeconds(2)`and cannot
 
 #### Metadata
 
-It is possible to add meta data via custom headers to the transactional session control message that gets send. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) when the control message is received in the `TransportReceive` part of the pipeline.
+It is possible to add metadata via custom headers to the transactional session control message sent. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) when the control message is received in the `TransportReceive` part of the pipeline.
 
 Meta data passed via customer headers can useful to do XXX, XXXX
 
