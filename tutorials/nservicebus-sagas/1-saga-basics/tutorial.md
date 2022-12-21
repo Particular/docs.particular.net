@@ -192,7 +192,7 @@ Next, let's add a `ProcessOrder` method to the saga to handle the order delivery
 
 snippet: ShippingPolicyProcessOrder
 
-NOTE: Here we're using `SendLocal()` to send the `ShipOrder` command to the same endpoint that is processing the saga message. This means we don't have to specify any routing rules for the `ShipOrder` command. We could also use `Send()`, but then we would need to define routing rules just as we did in the [step-by-step tutorial on multiple endpoints](/tutorials/nservicebus-step-by-step/3-multiple-endpoints/#exercise-sending-to-another-endpoint), where we defined a route in the **ClientUI** endpoint to send `PlaceOrder` commands to the **Sales** endpoint.
+NOTE: While the more architecturally-clean approach would have been to `Send()` the `ShipOrder` command in this case, rather than use `SendLocal()`, that would have required us to add a routing rule to define where the message would be sent to, just as we did in the [step-by-step tutorial on multiple endpoints](/tutorials/nservicebus-step-by-step/3-multiple-endpoints/#exercise-sending-to-another-endpoint). The use of `SendLocal()` in this case was just to simplify the sample.
 
 In the `ProcessOrder` method we check if both messages have been received. In such a case the saga will send a message to deliver the order. For this specific `OrderId` the shipment process is now complete. We don't need that saga instance anymore, so it can be safely deleted by invoking the `MarkAsComplete` method.
 
