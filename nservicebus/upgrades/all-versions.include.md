@@ -651,7 +651,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.0.1) | 2022-11-17     | -                 | -                                 |
+| [4.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.1.0) | 2022-12-21     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.0.1) | 2022-11-17     | 2023-03-21        | Superseded by 4.1.x               |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/3.0.0) | 2022-01-12     | 2023-11-17        | Superseded by 4.0.x               |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/2.1.0) | 2021-12-20     | 2023-01-12        | Superseded by 3.0.x               |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/2.0.2) | ~~2021-10-19~~ | ~~2022-03-20~~    | ~~Superseded by 2.1.x~~           |
@@ -664,7 +665,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.0.0) | 2022-11-17     | -                 | -                                 |
+| [4.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.1.0) | 2022-12-21     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.0.0) | 2022-11-17     | 2023-03-21        | Superseded by 4.1.x               |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.1.0) | 2022-08-31     | 2023-11-17        | Superseded by 4.0.x               |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.0.0) | ~~2021-12-20~~ | ~~2022-11-30~~    | ~~Superseded by 3.1.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/2.0.2) | ~~2021-10-19~~ | ~~2022-05-08~~    | ~~Targets .NET 5 which is not supported after May 8, 2022~~ |
@@ -951,7 +953,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.18.x](https://www.nuget.org/packages/Particular.PlatformSample/2.18.0) | 2022-12-01     | -                 | -                                 |
+| [2.19.x](https://www.nuget.org/packages/Particular.PlatformSample/2.19.0) | 2022-12-21     | -                 | -                                 |
+| [2.18.x](https://www.nuget.org/packages/Particular.PlatformSample/2.18.0) | 2022-12-01     | 2023-03-21        | Superseded by 2.19.x              |
 | [2.17.x](https://www.nuget.org/packages/Particular.PlatformSample/2.17.0) | 2022-11-29     | 2023-03-01        | Superseded by 2.18.x              |
 | [2.16.x](https://www.nuget.org/packages/Particular.PlatformSample/2.16.0) | 2022-09-08     | 2023-02-28        | Superseded by 2.17.x              |
 | [~~2.14.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.14.0) | ~~2022-08-12~~ | ~~2022-12-08~~    | ~~Superseded by 2.16.x~~          |
