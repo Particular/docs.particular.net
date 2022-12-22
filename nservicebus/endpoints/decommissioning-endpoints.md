@@ -1,15 +1,15 @@
 ---
 title: Decommissioning Endpoints
 summary: Describes the process of permanently shutting down endpoints
-reviewed: 2020-03-23
+reviewed: 2022-12-22
 related:
  - samples/endpoint-configuration
 
 ---
 
-Endpoint decommission is a process of permanent endpoint instance shut down. It can happen for various reasons, such as:
+Endpoint decommissioning is the process of permanently shutting down an endpoint instance. This can be done for various reasons, such as:
 
- * Dividing endpoint responsibility among other endpoints
+ * Dividing the endpoint's responsibility among other endpoints
  * Scaling down endpoint instances
  * Other (like removing certain functionality from the system)
 
