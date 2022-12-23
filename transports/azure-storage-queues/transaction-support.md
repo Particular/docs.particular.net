@@ -3,7 +3,7 @@ title: Transaction Support
 summary: A description of the transaction modes supported by the Azure Storage Queues transport
 component: ASQ
 versions: '[6,]'
-reviewed: 2020-03-23
+reviewed: 2022-12-23
 redirects:
  - nservicebus/azure-storage-queues/transaction-support
  ---
