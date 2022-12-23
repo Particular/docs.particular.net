@@ -12,7 +12,7 @@ class Program
     {
         Console.Title = "Samples.Logging.ExtensionsLogging";
 
-        #region NLogConfiguragion
+        #region NLogConfiguration
         var config = new LoggingConfiguration();
 
         var consoleTarget = new ColoredConsoleTarget

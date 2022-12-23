@@ -2,7 +2,7 @@
 title: NServiceBus.Extensions.Logging Usage
 summary: A sample that uses Microsoft.Extensions.Logging with NLog
 component: Extensions.Logging
-reviewed: 2020-03-26
+reviewed: 2022-12-23
 related:
  - nservicebus/logging
 ---
@@ -26,7 +26,7 @@ The following logging chain is created:
 
 NLog in this example is configured in code:
 
-snippet: NLogConfiguragion
+snippet: NLogConfiguration
 
 INFO: There is no preference on how NLog is configured. Based on the NLog documentation the most used method is with an [NLog configuration file](https://github.com/nlog/nlog/wiki/Configuration-file#configuration).
 
