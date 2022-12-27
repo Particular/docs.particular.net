@@ -65,7 +65,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/9.0.0) | 2022-11-17     | -                 | -                                 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/9.0.1) | 2022-11-17     | -                 | -                                 |
 | [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.6.2) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~8.5.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/8.5.0) | ~~2021-07-13~~ | ~~2022-12-19~~    | ~~Superseded by 8.6.x~~           |
 
@@ -73,7 +73,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/9.0.0) | 2022-11-17     | -                 | -                                 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/9.0.1) | 2022-11-17     | -                 | -                                 |
 | [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/8.6.2) | 2022-09-19     | 2023-11-17        | Superseded by 9.0.x               |
 
 #### [NServiceBus.Persistence.AzureTable](/nuget/NServiceBus.Persistence.AzureTable)
