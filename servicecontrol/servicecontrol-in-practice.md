@@ -1,7 +1,7 @@
 ---
 title: Optimizing ServiceControl for use in different environments
 summary: Tips for running ServiceControl efficiently
-reviewed: 2020-03-26
+reviewed: 2023-01-03
 isLearningPath: true
 ---
 
@@ -55,7 +55,7 @@ Once this baseline has been established, follow these steps:
 * Turn on auditing for each endpoint that needs it and re-run the performance tests to assess impact.
 * For each endpoint, turn on any required custom checks and re-run the performance tests to assess impact.
 
-When an infrastructure outage occurs in a production environment it's possible that every message processed on every endpoint may end up in the error queue. It can take ServiceControl some time to ingest all of these messages. Once ingested, a bulk retry operation will consume additional network and disk I/O above the usual requirements. It is important to simulate these conditions as a part of performance testing to ensure that these times and resources are accounted for in recovery plans.
+When an infrastructure outage occurs in a production environment it's possible that every message processed on every endpoint may end up in the error queue. It can take ServiceControl some time to ingest all of these messages. Once ingested, a bulk retry operation will consume additional network and disk I/O above the usual requirements. It is important to simulate these conditions as part of performance testing to ensure that these times and resources are accounted for in recovery plans.
 
 ## Anti-virus checks
 
