@@ -480,7 +480,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.DependencyInjection/2.0.0) | 2022-11-17     | -                 | -                                 |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.Extensions.DependencyInjection/1.1.0) | 2022-10-04     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.DependencyInjection/1.0.1) | 2020-02-26     | 2023-01-04        | Superseded by 1.1.x               |
+| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Extensions.DependencyInjection/1.0.1) | ~~2020-02-26~~ | ~~2023-01-04~~    | ~~Superseded by 1.1.x~~           |
 
 #### [NServiceBus.Ninject](/nuget/NServiceBus.Ninject)
 
