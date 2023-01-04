@@ -109,8 +109,6 @@
         Title: Supported frameworks and platforms
     - Url: nservicebus/upgrades/release-policy
       Title: Release Policy
-    - Url: nservicebus/throughput-tool
-      Title: Measuring system throughput
     - Url: nservicebus/upgrades/third-party-licenses
       Title: Third-party licenses
     - Url: security-advisories
@@ -682,6 +680,19 @@
     Articles:
     - Url: nservicebus/tools/migrate-to-native-delivery
       Title: Migrating timeouts
+    - Url: nservicebus/throughput-tool
+      Title: Measuring system throughput
+      Articles:
+      - Url: nservicebus/throughput-tool/azure-service-bus
+        Title: using Azure Service Bus
+      - Url: nservicebus/throughput-tool/amazon-sqs
+        Title: using Amazon SQS
+      - Url: nservicebus/throughput-tool/rabbitmq
+        Title: using RabbitMQ
+      - Url: nservicebus/throughput-tool/sql-transport
+        Title: using SQL Transport
+      - Url: nservicebus/throughput-tool/service-control
+        Title: using ServiceControl
   - Title: Troubleshooting
     Articles:
     - Url: nservicebus/troubleshooting/message-loss
