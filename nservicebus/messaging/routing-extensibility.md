@@ -1,7 +1,7 @@
 ---
 title: Routing system extensibility points
 summary: How NServiceBus routing can be extended
-reviewed: 2020-03-30
+reviewed: 2023-01-05
 component: Core
 related:
  - nservicebus/messaging/routing
