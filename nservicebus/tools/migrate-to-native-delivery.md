@@ -179,6 +179,20 @@ For MSMQ (`msmq`) transport:
 - `--target`: The SQL Server connection string, including the catalog
 - `--schema`: The schema in which to the timeout tables are stored, defaults to `dbo`
 
+## Examples
+
+```
+migrate-timeouts preview sqlp --source "Data Source=localhost;Initial Catalog=myTestDB;User=sa;Password=mypassword;" --dialect MsSqlServer asq --target "UseDevelopmentStorage=true"
+```
+
+```
+migrate-timeouts preview ravendb --serverUrl http://localhost:8080 --databaseName raven-timeout-test --prefix TimeoutDatas --ravenVersion 4 rabbitmq --target amqp://guest:guest@localhost:5672
+```
+
+```
+migrate-timeouts preview nhb --source "Data Source=localhost;Initial Catalog=myTestDB;User=sa;Password=mypassword;" --dialect MsSqlDatabaseDialect rabbitmq --target amqp://guest:guest@localhost:5672
+```
+
 ## How the tool works
 
 The migration tool will first perform a few health checks:
