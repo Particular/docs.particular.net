@@ -12,15 +12,13 @@ This article details how to collect endpoint and throughput data when the system
 
 ## Prerequisites
 
-Collecting metrics from Azure Service Bus relies upon an existing set of Azure credentials via the [`DefaultAzureCredential` class](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet).
-
-The easiest way to create these credentials is via the Azure Command Line Interface (CLI), which must be installed first.
+Collecting metrics from Azure Service Bus relies upon an existing set of Azure credentials set using the Azure Command Line Interface (CLI), which must be installed first:
 
 1. Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
 2. From a command line, execute `az login`, which will open a browser to complete the authentication to Azure. The Azure login must have access to view metrics data for the Azure Service Bus namespace.
 3. Execute `az account set --subscription {SubscriptionId}`, where `{SubscriptionId}` is a Guid matching the subscription id that contains the Azure Service Bus namespace.
 
-Completing these steps stores an `AzureCliCredential` that can be used by the tool.
+Completing these steps stores credentials that can be used by the tool.
 
 ## Running the tool
 
