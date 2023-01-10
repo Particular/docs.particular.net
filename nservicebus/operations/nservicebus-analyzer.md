@@ -1,12 +1,12 @@
 ---
 title: NServiceBus Analyzer
 summary: How to use the NServiceBus analyzer to avoid missing awaits
-reviewed: 2020-03-30
+reviewed: 2023-01-10
 component: Core
 versions: '[6,]'
 ---
 
-Asynchronous APIs bring great performance improvements. However they introduce new risks for bugs due to missing `await` operators. Starting with versions 6.5 and 7.1, NServiceBus comes with a built-in Roslyn analyzer to detect missing awaits on NServiceBus APIs.
+[Asynchronous](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) APIs bring great performance improvements. However they introduce new risks for bugs due to missing `await` operators. Starting with versions 6.5 and 7.1, NServiceBus comes with a built-in [Roslyn](https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/) analyzer to detect missing awaits on NServiceBus APIs.
 
 ## Functionality
 
