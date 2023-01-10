@@ -917,6 +917,8 @@
       Articles:
       - Url: transports/msmq/discard-expired-messages
         Title: Discarding expired messages
+      - Url: transports/msmq/delayed-delivery
+        Title: Delayed delivery
     - Url: transports/msmq/troubleshooting
       Title: Troubleshooting
     - Url: transports/msmq/subscription-authorisation
