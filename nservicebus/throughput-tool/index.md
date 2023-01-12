@@ -35,13 +35,14 @@ In this mode, the target system does not need any version of .NET preinstalled:
 
 ## Running
 
-The tool can collect data using a variety of methods depending upon the system's configuration. To run the tool, refer to the article based on the system configuration:
+The tool can collect data using a variety of methods depending upon the system's configuration. To run the tool, select the relevant article based on the [message transport](/transports/) used in the system to be measured:
 
 * [Azure Service Bus](azure-service-bus.md)
 * [Amazon SQS](amazon-sqs.md)
 * [RabbitMQ](rabbitmq.md)
 * [SQL Transport](sql-transport.md)
-* [ServiceControl data collection](service-control.md) when using a message transport not supported above
+* Microsoft Message Queueing (MSMQ) – Use [ServiceControl data collection](service-control.md)
+* Azure Storage Queues – Use [ServiceControl data collection](service-control.md)
 
 ## Masking private data
 
