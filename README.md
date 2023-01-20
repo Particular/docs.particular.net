@@ -651,6 +651,8 @@ File extensions scanned for snippets include:
 
 **Always use fenced code blocks with a language.** If no language is defined then highlightjs will guess the language and it regularly gets it wrong.
 
+> **_NOTE:_** For `.razor` files, since the `#region` keyword that is used to identify snippets can only be used inside of a razor code block, the language of the snippet will be changed from `razor` to `cs`, due to the current limitations of highlightjs for `.razor` files.
+
 ##### Using comments
 
 Any code wrapped in a convention-based comment will be picked up. The comment needs to start with `startcode` which is followed by the key.
