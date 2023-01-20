@@ -34,7 +34,7 @@
 
         if (!int.TryParse(userInput, out var number))
         {
-            await Task.CompletedTask;
+            return;
         }
         var command = new Command
         {
