@@ -43,7 +43,7 @@ Open the class definition for the `Command` type in the `Shared` project:
 
 snippet: Message
 
-Return to `Index.razor` and look at the code `messageSession.Request`. The `messageSession` interface is resolved through [depenency injection](/nservicebus/hosting/extensions-hosting.md#dependency-injection-integration) as part of the generic host that configures the NServiceBus endpoint.  The message session offers methods to send messages via NServiceBus. Skip the rest of the code and see what happens to the message just sent.
+Return to `Index.razor` and look at the code `messageSession.Request`. The `messageSession` interface is resolved through [dependency injection](/nservicebus/hosting/extensions-hosting.md#dependency-injection-integration) as part of the generic host that configures the NServiceBus endpoint.  The message session offers methods to send messages via NServiceBus. Skip the rest of the code and see what happens to the message just sent.
 
 ### Handling the message
 
