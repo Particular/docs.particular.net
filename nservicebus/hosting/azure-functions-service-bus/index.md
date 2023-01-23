@@ -43,6 +43,8 @@ Any setting that is related to the configuration of the transport (e.g. the conc
 
 Concurrency-related settings are controlled via the Azure Function `host.json` configuration file. See [Concurrency in Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-concurrency#service-bus) for details.
 
+partial: no-use-transport
+
 ## Message consistency
 
 partial: message-consistency

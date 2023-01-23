@@ -67,6 +67,8 @@ snippet: asb-function-isolated-configure-error-queue
 
 The configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization. However, not all of the options will be applicable to execution within Azure Functions.
 
+partial: no-use-transport
+
 ## Preparing the Azure Service Bus namespace
 
 Function endpoints cannot create their own queues or other infrastructure in the Azure Service Bus namespace.
