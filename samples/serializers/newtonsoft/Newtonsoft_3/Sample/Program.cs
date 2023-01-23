@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using NServiceBus;
+using NServiceBus.MessageMutator;
 
 static class Program
 {
@@ -23,19 +24,15 @@ static class Program
 
         #endregion
 
-        #region registermutator
-        
-        endpointConfiguration.RegisterComponents(
-            registration: components =>
-            {
-                components.AddTransient<MessageBodyWriter>();
-            });
-
-        #endregion
-
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
+        #region registermutator
+
+        endpointConfiguration.RegisterMessageMutator(new MessageBodyWriter());
+
+        #endregion
+        
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
