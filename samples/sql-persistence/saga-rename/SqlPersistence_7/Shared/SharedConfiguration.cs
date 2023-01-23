@@ -13,18 +13,16 @@ public static class SharedConfiguration
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
-        var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;Integrated Security=True";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
         persistence.ConnectionBuilder(
-            connectionBuilder: () =>
-            {
-                return new SqlConnection(connection);
-            });
+            connectionBuilder: () => new SqlConnection(connectionString));
 
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #endregion
 
-        SqlHelper.EnsureDatabaseExists(connection);
+        SqlHelper.EnsureDatabaseExists(connectionString);
     }
 }
