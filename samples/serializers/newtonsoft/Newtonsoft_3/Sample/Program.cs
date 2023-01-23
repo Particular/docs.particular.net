@@ -28,7 +28,7 @@ static class Program
         endpointConfiguration.RegisterComponents(
             registration: components =>
             {
-                components.AddTransient<MessageBodyWriter>();
+                components.AddTransient<IMutateIncomingTransportMessages, MessageBodyWriter>();
             });
 
         #endregion
