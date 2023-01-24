@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-	<TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+	<TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+	  <LangVersion>7.3</LangVersion>
+    <!--<Nullable>enable</Nullable>-->
+    <!--<ImplicitUsings>enable</ImplicitUsings>-->
   </PropertyGroup>
 
   <ItemGroup>
 	<PackageReference Include="NServiceBus.Callbacks" Version="4.*" />
-	<PackageReference Include="NServiceBus.Extensions.DependencyInjection" Version="2.*" />
 	<PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*" />
   </ItemGroup>
 

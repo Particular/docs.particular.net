@@ -1,33 +1,38 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
-#region ApplicationStart
-
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Host.UseNServiceBus(context =>
+class Program
 {
-    var endpointConfiguration = new EndpointConfiguration("Samples.Blazor.WebApplication");
-    endpointConfiguration.MakeInstanceUniquelyAddressable("1");
-    endpointConfiguration.EnableCallbacks();
-    endpointConfiguration.UseTransport(new LearningTransport());
-    return endpointConfiguration;
-});
+    public static void Main()
+    {
+        #region ApplicationStart
 
-#endregion
+        var builder = WebApplication.CreateBuilder();
 
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
+        builder.Host.UseNServiceBus(context =>
+        {
+            var endpointConfiguration = new EndpointConfiguration("Samples.Blazor.WebApplication");
+            endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+            endpointConfiguration.EnableCallbacks();
+            endpointConfiguration.UseTransport(new LearningTransport());
+            return endpointConfiguration;
+        });
 
-var app = builder.Build();
+        #endregion
 
+        builder.Services.AddRazorPages();
+        builder.Services.AddServerSideBlazor();
 
-app.UseHttpsRedirection();
+        var app = builder.Build();
 
-app.UseStaticFiles();
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+        app.UseRouting();
+        app.MapBlazorHub();
+        app.MapFallbackToPage("/_Host");
 
-app.UseRouting();
+        app.Run();
 
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
-
-app.Run();
+    }
+}
