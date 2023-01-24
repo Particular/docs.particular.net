@@ -1,6 +1,7 @@
 ---
 title: Running ServiceControl in containers
 reviewed: 2020-12-10
+hidden: true
 ---
 
 Docker images for ServiceControl exist on Dockerhub under the [Particular organization](https://hub.docker.com/u/particular). These can be used to run ServiceControl in docker containers. These docker images are only available for Windows due to ServiceControl's current dependency on Windows ESENT storage.
