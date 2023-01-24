@@ -92,4 +92,6 @@ partial: fullconfig
 
 Note that the `RecoverabilityConfig` will be passed into the custom policy so the code can be fine-tuned based on the configured values. 
 
+WARNING: Messages discarded with recoverability action `Discard` will not be sent to the error queue. The incoming message will not be audited. Without the two, it might appear as if the incoming message hasn't been proceseed by the endpoint where in fact it was.
+
 NOTE: The custom error queue specified by `MoveToError` will not be created by NServiceBus and must be manually created.
