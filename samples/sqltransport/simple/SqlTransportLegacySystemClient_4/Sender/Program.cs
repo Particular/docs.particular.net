@@ -16,14 +16,15 @@ class Program
         #region TransportConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        var connection = @"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True;Max Pool Size=100";
-        transport.ConnectionString(connection);
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=SqlServerSimple;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+        transport.ConnectionString(connectionString);
         #endregion
 
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
         transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
-        SqlHelper.EnsureDatabaseExists(connection);
+        await SqlHelper.EnsureDatabaseExists(connectionString);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         await endpointInstance.Send("Samples.SqlServer.SimpleReceiver", new MyMessage())

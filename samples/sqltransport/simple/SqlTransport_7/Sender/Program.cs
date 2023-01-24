@@ -11,17 +11,18 @@ class Program
         endpointConfiguration.EnableInstallers();
 
         #region TransportConfiguration
-        var connection = @"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True;Max Pool Size=100";
-        var routing = endpointConfiguration.UseTransport(new SqlServerTransport(connection)
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=SqlServerSimple;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+        var routing = endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
         {
             TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
         });
-        
+
         routing.RouteToEndpoint(typeof(MyCommand), "Samples.SqlServer.SimpleReceiver");
 
         #endregion
 
-        SqlHelper.EnsureDatabaseExists(connection);
+        await SqlHelper.EnsureDatabaseExists(connectionString);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         await SendMessages(endpointInstance);

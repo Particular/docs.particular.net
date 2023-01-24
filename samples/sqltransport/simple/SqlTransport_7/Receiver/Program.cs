@@ -9,16 +9,17 @@ class Program
         Console.Title = "Samples.SqlServer.SimpleReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleReceiver");
 
-        var connection = @"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True;Max Pool Size=100";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=SqlServerSimple;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
-        endpointConfiguration.UseTransport(new SqlServerTransport(connection)
+        endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
         {
             TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
         });
 
         endpointConfiguration.EnableInstallers();
 
-        SqlHelper.EnsureDatabaseExists(connection);
+        await SqlHelper.EnsureDatabaseExists(connectionString);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
