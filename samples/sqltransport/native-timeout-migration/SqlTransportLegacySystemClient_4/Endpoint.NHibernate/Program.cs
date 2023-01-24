@@ -6,7 +6,8 @@ using NServiceBus.Transport.SQLServer;
 
 class Program
 {
-    const string ConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesNativeTimeoutMigration;Integrated Security=True";
+    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesNativeTimeoutMigration;Integrated Security=True;Encrypt=false
+    const string ConnectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesNativeTimeoutMigration;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
     static async Task Main()
     {
@@ -19,7 +20,7 @@ class Program
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.ConnectionString(ConnectionString);
         endpointConfiguration.EnableInstallers();
-        SqlHelper.EnsureDatabaseExists(ConnectionString);
+        await SqlHelper.EnsureDatabaseExists(ConnectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
