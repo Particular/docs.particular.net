@@ -1,6 +1,6 @@
-﻿#region Message
-using NServiceBus;
+﻿using NServiceBus;
 
+#region Message
 public class Command : IMessage
 {
     public int Id { get; set; }

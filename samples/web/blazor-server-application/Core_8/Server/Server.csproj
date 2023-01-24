@@ -4,8 +4,6 @@
     <OutputType>Exe</OutputType>
 	<TargetFrameworks>net7.0;net6.0</TargetFrameworks>
 	<LangVersion>8.0</LangVersion>
-    <!--<ImplicitUsings>enable</ImplicitUsings>-->
-    <!--<Nullable>enable</Nullable>-->
   </PropertyGroup>
 
   <ItemGroup>
