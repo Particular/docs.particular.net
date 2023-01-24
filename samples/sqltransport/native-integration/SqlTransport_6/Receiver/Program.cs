@@ -10,7 +10,8 @@ using NServiceBus;
 
 class Program
 {
-    static string connectionString = @"Server=127.0.0.1,1401;Database=nservicebustests;User Id=sa;Password=yourStrong(!)Password";
+    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlNativeIntegration;Integrated Security=True;Encrypt=false
+    static string connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlNativeIntegration;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
     static async Task Main()
     {
@@ -32,7 +33,7 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        SqlHelper.EnsureDatabaseExists(connectionString);
+        await SqlHelper.EnsureDatabaseExists(connectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

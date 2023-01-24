@@ -11,7 +11,8 @@ using NServiceBus.Transport.SQLServer;
 
 class Program
 {
-    static string connectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlNativeIntegration;Integrated Security=True;Max Pool Size=100";
+    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlNativeIntegration;Integrated Security=True;Encrypt=false
+    static string connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlNativeIntegration;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
     static async Task Main()
     {
@@ -34,7 +35,7 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        SqlHelper.EnsureDatabaseExists(connectionString);
+        await SqlHelper.EnsureDatabaseExists(connectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
