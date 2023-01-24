@@ -14,19 +14,17 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.EndpointSqlServer");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistence;Integrated Security=True";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistence;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlPersistence;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(
-            connectionBuilder: () =>
-            {
-                return new SqlConnection(connection);
-            });
+            connectionBuilder: () => new SqlConnection(connectionString));
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
         #endregion
 
-        SqlHelper.EnsureDatabaseExists(connection);
+        SqlHelper.EnsureDatabaseExists(connectionString);
 
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();

@@ -7,6 +7,6 @@
     <PackageReference Include="NServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus.Gateway" Version="4.*" />
     <PackageReference Include="NServiceBus.Gateway.Sql" Version="2.*" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.*" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 
 ### MS SQL Server
 
- 1. Ensure an instance of SQL Server Express (Version 2016 or above for custom saga finders sample, or Version 2012 or above for other samples) is installed and accessible as `.\SqlExpress`.
+ 1. Ensure an instance of SQL Server (Version 2016 or above for custom saga finders sample, or Version 2012 or above for other samples) is installed and accessible on `localhost` and port `1433`. For example use `docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=yourStrong(!)Password" -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest`.
  
 Or, alternatively, change the connection string to point to different SQL Server instance.
 

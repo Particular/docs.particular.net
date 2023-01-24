@@ -14,15 +14,13 @@ partial class Program
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 
-        var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceTransition;Integrated Security=True";
-        SqlHelper.EnsureDatabaseExists(connection);
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceTransition;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlPersistenceTransition;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+        SqlHelper.EnsureDatabaseExists(connectionString);
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(
-            connectionBuilder: () =>
-            {
-                return new SqlConnection(connection);
-            });
+            connectionBuilder: () => new SqlConnection(connectionString));
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

@@ -13,7 +13,8 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.InjectingServices");
         endpointConfiguration.EnableInstallers();
 
-        var connectionString = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesInjectedServices;Integrated Security=True";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesInjectedServices;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesInjectedServices;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connectionString);
@@ -22,10 +23,7 @@ class Program
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(
-            connectionBuilder: () =>
-            {
-                return new SqlConnection(connectionString);
-            });
+            connectionBuilder: () => new SqlConnection(connectionString));
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 

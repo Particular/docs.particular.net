@@ -21,9 +21,9 @@ downloadbutton
 
 This sample requires:
 
-* An instance of SQL Server Express, accessible as `.\SqlExpress`.
-* At startup, the endpoint creates its required SQL assets, including databases, tables, and schemas.
-* The database created by this sample is `NsbSamplesInjectedServices`.
+include: sql-prereq
+
+The database created by this sample is `NsbSamplesInjectedServices`.
 
 ## Dependency injection relationships
 
