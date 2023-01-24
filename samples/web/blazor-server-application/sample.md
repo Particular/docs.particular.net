@@ -4,6 +4,8 @@ summary: NServiceBus sample that demonstrates how to send messages with a Blazor
 reviewed: 2022-12-08
 component: Core
 related:
+- nservicebus/hosting
+- nservicebus/hosting/publishing-from-web-applications
 ---
 
 
