@@ -1,7 +1,7 @@
 ---
 title: ServicePulse events
 summary: Introduction to ServicePulse monitoring events
-reviewed: 2020-03-30
+reviewed: 2022-01-25
 component: ServicePulse
 related:
 - monitoring/custom-checks/in-servicepulse
