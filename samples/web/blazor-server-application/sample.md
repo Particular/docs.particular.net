@@ -57,7 +57,6 @@ This class implements the NServiceBus interface `IHandleMessages<T>` where `T` i
 
 In the method body notice the response being returned to the originating endpoint. This will result in a message being added to the input queue for `MyWebClient` endpoint.
 
-
 ## Handling the response
 
 When the response arrives back at `WebApp`, NServiceBus invokes the callback that was registered when the request was sent.
