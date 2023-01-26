@@ -2,10 +2,11 @@
 title: Capture and visualize metrics using Prometheus and Grafana
 summary: Illustrates using Prometheus and Grafana to capture and visualize NServiceBus metrics.
 component: Metrics
-isLearningPath: true
 reviewed: 2021-09-08
 previewImage: grafana-graph.png
 ---
+
+INFO: Monitor endpoints, detect errors, and recover from failed messages with minimal configuration. **[See how](https://particular.net/servicepulse?utm_campaign=grafana-prometheus) →**
 
 INFO: NServiceBus version 8 and above can export metric data to Prometheus and Grafana via OpenTelemetry without the metrics package. See [this sample](/samples/open-telemetry/prometheus-grafana/) for more details.
 
