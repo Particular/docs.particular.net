@@ -5,7 +5,7 @@ component: Core
 versions: '[4.0,)'
 redirects:
  - nservicebus/override-hostid
-reviewed: 2020-04-07
+reviewed: 2022-01-26
 ---
 
 ## Host identifier

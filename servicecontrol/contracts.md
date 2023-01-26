@@ -1,7 +1,7 @@
 ---
 title: Using ServiceControl Events
 summary: Build custom notifications by subscribing to ServiceControl events
-reviewed: 2020-03-30
+reviewed: 2022-01-25
 component: ServiceControlContracts
 isLearningPath: true
 redirects:
@@ -14,29 +14,25 @@ related:
  - monitoring/custom-checks/notification-events
 ---
 
+ServiceControl events enable the construction of custom notifications and integration that will alert when something goes wrong in the system. In addition to [monitoring the error queue](/nservicebus/recoverability/configure-error-handling.md), ServiceControl receives information from the [NServiceBus.Heartbeat](/monitoring/heartbeats/) and [NServiceBus.CustomChecks](/monitoring/custom-checks/) packages. When messages fail, heartbeats fail to arrive, or custom checks are reported, events published by ServiceControl enable a subscribing endpoint to notify operations personnel however the developer wishes.
 
-## Custom notification and alerting using ServiceControl events
+See [Monitor with ServiceControl events](/samples/servicecontrol/events-subscription/) for a sample.
 
-ServiceControl events enable the construction of custom notifications and integration that will alert when something goes wrong in the system.
-
-WARNING: External notification events are sent in batches. If a problem is encountered part way through a batch, the entire batch will be re-sent. This can result in receiving multiple events for a single notification.
-
-[ServiceControl endpoint plugins](/servicecontrol/plugins/) collect information from monitored NServiceBus endpoints.
-
+NOTE: External notification events are sent in batches. If a problem is encountered part way through a batch, the entire batch will be re-sent. This can result in receiving multiple events for a single notification.
 
 ### Alerting on FailedMessages events
 
 Once a message ends up in the error queue, ServiceControl will publish a `MessageFailed` event. The message contains:
 
- * the processing of the message (i.e. the endpoint that sent and received the message)
+ * the endpoint that sent and received the message
  * the failure cause (i.e. the exception type and message)
  * the message headers
- * the message body (if it is non-binary, smaller than 85 KB and the full-text body indexing is enabled)
+ * the message body (if it is non-binary, smaller than 85 KB and full-text body indexing is enabled)
 
 
 ### Subscribing to ServiceControl events
 
-ServiceControl publishes a `MessageFailed` event when a message gets to the error queue. It is possible to subscribe to these events and act on them (e.g. send an email, trigger a text message, etc.).
+ServiceControl publishes a `MessageFailed` event when a message arrives at the error queue. It is possible to subscribe to these events and act on them (e.g. send an email, trigger a text message, etc.).
 
 To subscribe to the `MessageFailed` event:
 
@@ -81,7 +77,7 @@ See [Heartbeat Notification Events](/monitoring/heartbeats/notification-events.m
 
 NOTE: Events described in this section are published by ServiceControl starting with version 4.17.
 
-ServiceControl will also publish events related to archiving and retrying messages
+ServiceControl will also publish events related to archiving and retrying messages:
 - `FailedMessagesArchived`: Event emitted for failed messages that were archived
 - `FailedMessagesUnArchived`: Event emitted for failed messages that were un-archived
 - `MessageFailureResolvedByRetry`: Event emitted by ServiceControl for each failed message that was resolved by retry

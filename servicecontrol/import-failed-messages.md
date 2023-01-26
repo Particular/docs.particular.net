@@ -1,7 +1,7 @@
 ---
 title: Re-processing messages that failed to be imported
 summary: How to attempt to re-process messages that failed to be imported
-reviewed: 2020-03-31
+reviewed: 2022-01-26
 redirects:
 - servicecontrol/import-failed-audit-messages
 - servicecontrol/import-failed-audits
