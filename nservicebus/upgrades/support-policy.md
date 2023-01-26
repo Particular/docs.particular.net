@@ -1,7 +1,7 @@
 ---
 title: Support Policy
 summary: Versions of NServiceBus and component packages that are currently supported
-reviewed: 2020-04-01
+reviewed: 2022-01-26
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
