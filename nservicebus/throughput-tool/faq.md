@@ -29,7 +29,7 @@ See [How does the tool measure throughput](#how-does-the-tool-measure-throughput
 
 ## How do I decide which data collection option to use
 
-Refer to the [Running the tool](./#running-the-tool) section of the documentation to select the correct data collection option based on the message transport used by the system.
+Refer to the [Running the tool](/nservicebus/throughput-tool/#running-the-tool) section of the documentation to select the correct data collection option based on the message transport used by the system.
 
 ## What if I have a hybrid system with multiple message transports
 
@@ -88,7 +88,7 @@ For endpoints not configured to [send metrics data to ServiceControl](/monitorin
 
 ## Some queue names contain proprietary information
 
-These names can be masked in the report file. See [Masking private data](./#masking-private-data).
+These names can be masked in the report file. See [Masking private data](/nservicebus/throughput-tool/#masking-private-data).
 
 ## Can I inspect the tool's source code
 
