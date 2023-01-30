@@ -7,7 +7,6 @@ extensions:
 - !!tutorial
   nextText: "Next: Recovering from failure"
   nextUrl: tutorials/quickstart/tutorial-reliability
-previewImage: add-shipping-endpoint-2.png
 ---
 
 Want to learn what NServiceBus is all about? You're in the right place.

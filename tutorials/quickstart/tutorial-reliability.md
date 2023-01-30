@@ -7,7 +7,6 @@ extensions:
 - !!tutorial
   nextText: "Next: Extending the system"
   nextUrl: tutorials/quickstart/tutorial-extending-the-system
-previewImage: add-shipping-endpoint.png
 ---
 
 ## Recovering from failure
