@@ -13,8 +13,8 @@ class Program
         #region TransportConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Encrypt=false
-        var connectionString = @"Server=localhost,1433;Initial Catalog=SqlServerSimple;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=SqlServerSimple;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
         transport.ConnectionString(connectionString);
         transport.Routing().RouteToEndpoint(typeof(MyCommand), "Samples.SqlServer.SimpleReceiver");
 
