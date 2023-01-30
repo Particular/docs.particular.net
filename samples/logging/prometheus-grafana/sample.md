@@ -6,7 +6,7 @@ reviewed: 2021-09-08
 previewImage: grafana-graph.png
 ---
 See how using ServicePulse →
-INFO: Monitor messaging consumers, detect failures, automatic retries in real-time and replay dead lettered messages with minimal configuration. **[See how using our ServicePulse](https://particular.net/servicepulse?utm_campaign=grafana-prometheus) →**
+INFO: Monitor messaging consumers, detect failures, automatic retries in real-time and replay dead lettered messages with minimal configuration. **[See the amazing benefits of using ServicePulse](https://particular.net/servicepulse?utm_campaign=grafana-prometheus) →**
 
 INFO: NServiceBus version 8 and above can export metric data to Prometheus and Grafana via OpenTelemetry without the metrics package. See [this sample](/samples/open-telemetry/prometheus-grafana/) for more details.
 
