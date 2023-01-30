@@ -693,6 +693,8 @@
         Title: using SQL Transport
       - Url: nservicebus/throughput-tool/service-control
         Title: using ServiceControl
+      - Url: nservicebus/throughput-tool/faq
+        Title: FAQ
   - Title: Troubleshooting
     Articles:
     - Url: nservicebus/troubleshooting/message-loss

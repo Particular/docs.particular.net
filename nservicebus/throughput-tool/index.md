@@ -33,7 +33,7 @@ In this mode, the target system does not need any version of .NET preinstalled:
     Particular.EndpointThroughputCounter.exe <arguments>
     ```
 
-## Running
+## Running the tool
 
 The tool can collect data using a variety of methods depending upon the system's configuration. To run the tool, select the relevant article based on the [message transport](/transports/) used in the system to be measured:
 
@@ -76,3 +76,7 @@ To uninstall the tool, execute the following command in a terminal window:
 ```shell
 dotnet tool uninstall -g Particular.EndpointThroughputCounter
 ```
+
+## Questions
+
+Check out the [frequently asked questions](faq.md).
