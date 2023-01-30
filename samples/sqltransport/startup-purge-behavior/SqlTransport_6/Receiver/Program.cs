@@ -9,13 +9,14 @@ class Program
         Console.Title = "Samples.SqlServer.TruncateReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.TruncateReceiver");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        var connection = @"Data Source=.\SqlExpress;Database=SQLServerTruncate;Integrated Security=True;Max Pool Size=100";
-        transport.ConnectionString(connection);
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SQLServerTruncate;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=SQLServerTruncate;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+        transport.ConnectionString(connectionString);
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
 
         endpointConfiguration.EnableInstallers();
 
-        SqlHelper.EnsureDatabaseExists(connection);
+        await SqlHelper.EnsureDatabaseExists(connectionString);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");

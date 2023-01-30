@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport Startup Purge Behavior
 summary: A sample showing how to truncate large transport tables at startup for SQL Server Transport.
-reviewed: 2020-11-13
+reviewed: 2023-01-30
 component: SqlTransport
 related:
 - transports/sql
@@ -21,7 +21,7 @@ partial: running-the-project
 
 ## Code walk-through
 
-When the endpoint starts up, it runs all `INeedInitialization` instances. In this sample, the `TruncateTableAtStartup` class is used to truncate the table if it exists at startup.
+When the endpoint starts up, it runs all startup task instances. In this sample, the `TruncateTableAtStartup` class is used to truncate the table if it exists at startup.
 
 snippet: TruncateTableAtStartup
 
