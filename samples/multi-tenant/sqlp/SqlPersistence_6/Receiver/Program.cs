@@ -49,6 +49,9 @@ class Program
         var startableEndpoint = await Endpoint.Create(endpointConfiguration)
             .ConfigureAwait(false);
 
+        await SqlHelper.EnsureDatabaseExists(Connections.TenantA);
+        await SqlHelper.EnsureDatabaseExists(Connections.TenantB);
+
         using (var connection = new SqlConnection(Connections.TenantA))
         using (var receiverDataContext = new ReceiverDataContext(connection))
         {

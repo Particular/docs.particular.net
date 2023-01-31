@@ -18,16 +18,18 @@ public static class Program
 
         #region SenderConfiguration
 
-        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSql;Integrated Security=True;Max Pool Size=100";
-        var transport = new SqlServerTransport(connection)
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSql;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSql;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+        var transport = new SqlServerTransport(connectionString)
         {
             DefaultSchema = "sender",
-            Subscriptions = 
+            Subscriptions =
             {
                 SubscriptionTableName = new SubscriptionTableName(
-                        table: "Subscriptions", 
+                        table: "Subscriptions",
                         schema: "dbo")
-            }
+            },
+            TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
         };
         transport.SchemaAndCatalog.UseSchemaForQueue("error", "dbo");
         transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
@@ -38,7 +40,7 @@ public static class Program
 
         #endregion
 
-        SqlHelper.CreateSchema(connection, "sender");
+        await SqlHelper.CreateSchema(connectionString, "sender");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

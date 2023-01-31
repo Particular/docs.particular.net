@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
@@ -10,6 +10,6 @@
     <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="9.*" />
     <PackageReference Include="NServiceBus.Transport.SqlServer" Version="7.*" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="3.*" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
   </ItemGroup>
 </Project>
