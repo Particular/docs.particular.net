@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
+using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Tool.hbm2ddl;
 using NServiceBus;
@@ -12,12 +13,14 @@ class Program
     static async Task Main()
     {
         Console.Title = "Samples.SqlNHibernate.Receiver";
-        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlNHibernate;Integrated Security=True; Max Pool Size=100";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlNHibernate;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
-            x.ConnectionString = connection;
+            x.ConnectionString = connectionString;
             x.Dialect<MsSql2012Dialect>();
+            x.Driver<MicrosoftDataSqlClientDriver>();
         });
 
         #region NHibernate
@@ -26,12 +29,12 @@ class Program
 
         #endregion
 
-        SqlHelper.CreateSchema(connection, "receiver");
+        await SqlHelper.CreateSchema(connectionString, "receiver");
         var mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
         hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
-        new SchemaExport(hibernateConfig).Execute(false, true, false);
+        await new SchemaExport(hibernateConfig).ExecuteAsync(false, true, false);
 
         #region ReceiverConfiguration
 
@@ -40,7 +43,7 @@ class Program
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(connection);
+        transport.ConnectionString(connectionString);
         transport.DefaultSchema("receiver");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");

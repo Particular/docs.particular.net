@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
+using NHibernate.Driver;
 using NServiceBus.Persistence;
 
 class Program
@@ -13,7 +14,8 @@ class Program
     {
         random = new Random();
         Console.Title = "Samples.SqlNHibernate.Sender";
-        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlNHibernate;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Sender");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
@@ -21,15 +23,17 @@ class Program
         var hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
-            x.ConnectionString = connection;
+            x.ConnectionString = connectionString;
             x.Dialect<MsSql2012Dialect>();
+            x.Driver<MicrosoftDataSqlClientDriver>();
         });
         hibernateConfig.SetProperty("default_schema", "sender");
 
         #region SenderConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(connection);
+        transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+        transport.ConnectionString(connectionString);
         transport.DefaultSchema("sender");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
@@ -47,8 +51,7 @@ class Program
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlNHibernate.Sender");
 
-
-        SqlHelper.CreateSchema(connection, "sender");
+        await SqlHelper.CreateSchema(connectionString, "sender");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
