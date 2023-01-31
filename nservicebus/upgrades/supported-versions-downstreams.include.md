@@ -32,9 +32,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.1.2) | 2022-11-24     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.1.3) | 2022-11-24     | -                 | -                                 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.0.3) | 2022-11-17     | 2023-02-24        | Superseded by 3.1.x               |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.4) | 2021-10-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.5) | 2021-10-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.9.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.9.0) | ~~2021-03-01~~ | ~~2022-10-19~~    | ~~Superseded by 2.0.x~~           |
 
 #### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
@@ -503,7 +503,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/4.0.0) | 2022-02-01     | -                 | -                                 |
-| [3.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/3.0.0) | 2021-04-16     | 2023-02-01        | Superseded by 4.0.x               |
+| [~~3.0.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/3.0.0) | ~~2021-04-16~~ | ~~2023-02-01~~    | ~~Superseded by 4.0.x~~           |
 
 #### [ServiceControl.TransportAdapter](/nuget/ServiceControl.TransportAdapter)
 
