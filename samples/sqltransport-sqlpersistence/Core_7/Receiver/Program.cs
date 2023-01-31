@@ -16,10 +16,11 @@ public static class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
-        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSql;Integrated Security=True;Max Pool Size=100";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSql;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSql;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(connection);
+        transport.ConnectionString(connectionString);
         transport.DefaultSchema("receiver");
         transport.UseSchemaForQueue("error", "dbo");
         transport.UseSchemaForQueue("audit", "dbo");
@@ -36,14 +37,14 @@ public static class Program
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
         dialect.Schema("receiver");
-        persistence.ConnectionBuilder(() => new SqlConnection(connection));
+        persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
         persistence.TablePrefix("");
 
         #endregion
 
-        SqlHelper.CreateSchema(connection, "receiver");
+        await SqlHelper.CreateSchema(connectionString, "receiver");
         var allText = File.ReadAllText("Startup.sql");
-        SqlHelper.ExecuteSql(connection, allText);
+        await SqlHelper.ExecuteSql(connectionString, allText);
         var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
