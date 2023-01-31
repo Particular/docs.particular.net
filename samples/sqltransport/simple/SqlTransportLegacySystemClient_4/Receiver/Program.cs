@@ -11,15 +11,16 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleReceiver");
         endpointConfiguration.SendFailedMessagesTo("error");
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        var connection = @"Data Source=.\SqlExpress;Database=SqlServerSimple;Integrated Security=True;Max Pool Size=100";
-        transport.ConnectionString(connection);
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=SqlServerSimple;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+        transport.ConnectionString(connectionString);
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
         transport.UseNativeDelayedDelivery().DisableTimeoutManagerCompatibility();
 
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
 
-        SqlHelper.EnsureDatabaseExists(connection);
+        await SqlHelper.EnsureDatabaseExists(connectionString);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");

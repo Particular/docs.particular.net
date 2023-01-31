@@ -12,8 +12,9 @@ class Program
 
         #region TransportConfiguration
 
-        var connection = @"Data Source=.\sqlexpress;Database=SQLServerTruncate;Integrated Security=True;Max Pool Size=100";
-        var routing = endpointConfiguration.UseTransport(new SqlServerTransport(connection)
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SQLServerTruncate;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=SQLServerTruncate;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+        var routing = endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
         {
             TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
         });
@@ -21,7 +22,7 @@ class Program
 
         #endregion
 
-        SqlHelper.EnsureDatabaseExists(connection);
+        await SqlHelper.EnsureDatabaseExists(connectionString);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         await SendMessages(endpointInstance);
