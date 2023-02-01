@@ -11,6 +11,7 @@ component: ServicePulse
 These instructions assume the following:
 
 * ServiceControl has been installed and is listening on `http://localhost:33333/api`.
+* ServiceControl Monitoring has been installed and is listening on `http://localhost:33633`.
 * ServicePulse has been installed.
 
 
@@ -56,9 +57,9 @@ NOTE: If TLS is to be applied to ServicePulse then ServiceControl also must be c
 
 ## Advanced configuration
 
-ServicePulse relies on the ServiceControl REST API. It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServiceControl website using the Microsoft [URL Rewrite IIS extenstion](https://www.iis.net/downloads/microsoft/url-rewrite).
+ServicePulse relies on the ServiceControl and ServiceControl Monitoring REST APIs. Both can be exposed It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServicePulse website using the Microsoft [URL Rewrite IIS extenstion](https://www.iis.net/downloads/microsoft/url-rewrite).
 
-This is useful to lock down access to ServicePulse or to expose the website over a single port.
+### ServiceControl 
 
 NOTE: If ServiceControl is configured with a hostname other than `localhost` then change the hostname value back to `localhost`.
 
@@ -66,18 +67,11 @@ Installation Steps:
 
  1. Install IIS [URL Rewrite extension](https://www.iis.net/downloads/microsoft/url-rewrite).
  1. Go to the root directory for the website created in the basic configuration.
- 1. Create a new subdirectory called `api`.
- 1. Edit `app\js\app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`.
+ 1. Edit `app\js\app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `api/`.
  1. Open the IIS management tool.
- 1. Select the `api` subdirectory from within the IIS management tool.
- 1. Click `URL Rewrite`.
- 1. Add a new URL Rewrite Rule.
- 1. Choose `Reverse Proxy` from the list of rule templates.
- 1. Enter `localhost:33333/api` into the inbound field and leave SSL offload enabled then click OK to add the rule.
- 1. The website will now answer on `/api` as though it were directly accessing ServiceControl. Verify this by opening the reverse proxy url in a browser `http://localhost:9090/api/` (9090 is the port chosen for the ServicePulse website).
- 1. Restrict access to the website.
-
-The procedure above should result in a `web.config` file in the newly created `/api` directory similar to this:
+ 1. Select the root directory from within the IIS management tool.
+ 1. Open or create `web.config` file
+ 1. Add following rewrite rules to the top of the file
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -85,11 +79,13 @@ The procedure above should result in a `web.config` file in the newly created `/
     <system.webServer>
         <rewrite>
             <rules>
-                <rule name="ReverseProxyInboundRule1"
-                      stopProcessing="true">
-                    <match url="(.*)" />
-                    <action type="Rewrite"
-                            url="http://localhost:33333/api/{R:1}" />
+                 <rule name="Rewrite main instance api url" stopProcessing="true">
+                    <match url="^api/(.*)" />
+                    <action type="Rewrite" url="http://localhost:33333/api/{R:1}" />
+                </rule>
+                <rule name="Legacy rewrite main instance api url" stopProcessing="true">
+                    <match url="^a/api(.*)" />
+                    <action type="Rewrite" url="http://localhost:33333/api/{R:1}" />
                 </rule>
             </rules>
         </rewrite>
@@ -97,63 +93,13 @@ The procedure above should result in a `web.config` file in the newly created `/
 </configuration>
 ```
 
-WARNING: The default configuration for ServiceControl only allows access to the REST API via localhost. By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it is recommended that the IIS website be configured with one of the IIS authentication providers, such as Windows integration authentication.
+WARNING: By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it is recommended that the IIS website be configured with one of the IIS authentication providers, such as Windows integration authentication.
 
 It is also recommended that the IIS website be configured to use TLS if an authorization provider is used.
 
+#### Configuring SignalR rewrite rules
 
-### Role-based security
-
-After executing the steps outlined above, ServicePulse requires authentication before accessing any functionality. It does not check authorization rules though, so every authenticated user can do anything. The `IIS URL Authorization` feature can be used to restrict access to specific features. The following snippet can be placed in the `web.config` file in the root of the website to restrict access based on roles:
-
-snippet: RoleBasedSecurity
-
-There are three roles defined:
-
- * `SPReaders` members can read all the content but cannot trigger any actions.
- * `SPFailedMessages` members can manage the failed messages (retry, delete, groups etc.).
- * `SPMonitoring` members can manage monitoring (e.g. enabling/disabling heartbeat monitoring for a particular endpoint).
-
-### ServiceControl monitoring
-
-When using [monitoring capabilities](/monitoring) the following steps should be followed to create a reverse proxy to access the monitoring API from IIS.
-
-Installation steps:
-
- 1. Install the IIS [Application Request Routing extension](https://www.iis.net/downloads/microsoft/application-request-routing).
- 1. Go to the root directory for the website created in the basic configuration.
- 1. Create a new subdirectory called `monitoring`.
- 1. Edit `app\js\app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `/monitoring`.
- 1. Open the IIS management tool.
- 1. Select the `monitoring` subdirectory from within IIS management tool.
- 1. Click the `URL Rewrite`.
- 1. Add a new URL Rewrite Rule.
- 1. Choose `Reverse Proxy` from the list of rule templates.
- 1. Enter `localhost:33633/` into the inbound field and leave SSL offload enabled then click OK to add the rule.
- 1. The website will now answer on `/monitoring` as though it were directly accessing ServiceControl monitoring. Verify this by opening the reverse proxy url in a browser `http://localhost:9090/monitoring/` (9090 is the port chosen for the ServicePulse website).
- 1. Restrict access to the website.
-
-The procedure above should result in a `web.config` file in the newly created `/monitoring` directory similar to this:
-
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <system.webServer>
-        <rewrite>
-            <rules>
-                <rule name="ReverseProxyInboundRule1" stopProcessing="true">
-                    <match url="(.*)" />
-                    <action type="Rewrite" url="http://localhost:33633/{R:1}" />
-                </rule>
-            </rules>
-        </rewrite>
-    </system.webServer>
-</configuration>
-```
-
-### Configuring reverse proxy in a non-root directory
-
-Due to a [bug in SignalR](https://github.com/SignalR/SignalR/issues/3649) in Microsoft.AspNet.SignalR.JS version 2.2.0, usage of IIS as a reverse proxy in a virtual directory requires an additional URL Rewrite Rule on the `/api/` subdirectory. This rule makes sure that SignalR uses the correct path when hosted within a virtual directory. This rule should look as follows:
+Due to a [bug in SignalR](https://github.com/SignalR/SignalR/issues/3649) in Microsoft.AspNet.SignalR.JS version 2.2.0, usage of IIS as a reverse proxy requires an additional URL Rewrite Rule on the `/api/` subdirectory. This rule makes sure that SignalR uses the correct path when hosted within a virtual directory. This rule should look as follows:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -179,6 +125,52 @@ Due to a [bug in SignalR](https://github.com/SignalR/SignalR/issues/3649) in Mic
     </system.webServer>
 </configuration>
 ```
+
+### ServiceControl monitoring
+
+When using [monitoring capabilities](/monitoring) the following steps should be followed to create a reverse proxy to access the monitoring API from IIS.
+
+Installation steps:
+
+ 1. Install the IIS [Application Request Routing extension](https://www.iis.net/downloads/microsoft/application-request-routing).
+ 1. Go to the root directory for the website created in the basic configuration.
+ 1. Edit `app\js\app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `monitoring/`.
+ 1. Open the IIS management tool.
+ 1. Select the root directory from within the IIS management tool.
+ 1. Open or create `web.config` file
+ 1. Add following rewrite rules to the top of the file
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <system.webServer>
+        <rewrite>
+            <rules>
+                <rule name="Rewrite monitoring api url" stopProcessing="true">
+                    <match url="^monitoring/(.*)" />
+                    <action type="Rewrite" url="http://localhost:33633/{R:1}" />
+                </rule>
+                <rule name="Legacy rewrite monitoring api url" stopProcessing="true">
+                    <match url="^a/monitoring/(.*)" />
+                    <action type="Rewrite" url="http://localhost:33633/{R:1}" />
+                </rule>
+            </rules>
+        </rewrite>
+    </system.webServer>
+</configuration>
+```
+
+### Role-based security
+
+After executing the steps outlined above, ServicePulse requires authentication before accessing any functionality. It does not check authorization rules though, so every authenticated user can do anything. The `IIS URL Authorization` feature can be used to restrict access to specific features. The following snippet can be placed in the `web.config` file in the root of the website to restrict access based on roles:
+
+snippet: RoleBasedSecurity
+
+There are three roles defined:
+
+ * `SPReaders` members can read all the content but cannot trigger any actions.
+ * `SPFailedMessages` members can manage the failed messages (retry, delete, groups etc.).
+ * `SPMonitoring` members can manage monitoring (e.g. enabling/disabling heartbeat monitoring for a particular endpoint).
 
 
 ### Limitations
