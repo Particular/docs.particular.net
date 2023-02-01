@@ -54,6 +54,31 @@ NOTE: Make sure that the ServicePulse Windows Service is not running and that th
 
 NOTE: If TLS is to be applied to ServicePulse then ServiceControl also must be configured for TLS. This can be achieved by reverse proxying ServiceControl through IIS as outlined below.
 
+5. Install [URL Rewrite](https://www.iis.net/downloads/microsoft/url-rewrite) module and in the root directory of the IIS website create `web.config` file with the following content:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <system.webServer>
+    <rewrite>
+      <rules>
+        <rule name="Handle app.constants.js requests from AngularJs" stopProcessing="true">
+          <match url="^a/js/app.constants.js(.*)" />
+          <action type="Rewrite" url="/js/app.constants.js{R:1}" />
+        </rule>
+        <rule name="Handle Vue.js routing paths" stopProcessing="true">
+          <match url="(.*)" />
+          <conditions logicalGrouping="MatchAll">
+            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+          </conditions>
+          <action type="Rewrite" url="/" />
+        </rule>
+      </rules>
+    </rewrite>
+  </system.webServer>
+</configuration>
+```
 
 ## Advanced configuration
 
@@ -67,7 +92,7 @@ Installation Steps:
 
  1. Install IIS [URL Rewrite extension](https://www.iis.net/downloads/microsoft/url-rewrite).
  1. Go to the root directory for the website created in the basic configuration.
- 1. Edit `app\js\app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `api/`.
+ 1. Edit `js\app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `api/`.
  1. Open the IIS management tool.
  1. Select the root directory from within the IIS management tool.
  1. Open or create `web.config` file
@@ -99,7 +124,7 @@ It is also recommended that the IIS website be configured to use TLS if an autho
 
 #### Configuring SignalR rewrite rules
 
-Due to a [bug in SignalR](https://github.com/SignalR/SignalR/issues/3649) in Microsoft.AspNet.SignalR.JS version 2.2.0, usage of IIS as a reverse proxy requires an additional URL Rewrite Rule on the `/api/` subdirectory. This rule makes sure that SignalR uses the correct path when hosted within a virtual directory. This rule should look as follows:
+Due to a [bug in SignalR](https://github.com/SignalR/SignalR/issues/3649) in Microsoft.AspNet.SignalR.JS version 2.2.0, usage of IIS as a reverse proxy requires an additional URL Rewrite Rule. This rule should look as follows:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -134,7 +159,7 @@ Installation steps:
 
  1. Install the IIS [Application Request Routing extension](https://www.iis.net/downloads/microsoft/application-request-routing).
  1. Go to the root directory for the website created in the basic configuration.
- 1. Edit `app\js\app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `monitoring/`.
+ 1. Edit `js\app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `monitoring/`.
  1. Open the IIS management tool.
  1. Select the root directory from within the IIS management tool.
  1. Open or create `web.config` file
@@ -172,23 +197,21 @@ There are three roles defined:
  * `SPFailedMessages` members can manage the failed messages (retry, delete, groups etc.).
  * `SPMonitoring` members can manage monitoring (e.g. enabling/disabling heartbeat monitoring for a particular endpoint).
 
-
 ### Limitations
 
 If ServiceControl is secured with an authentication module other that Windows authentication, ServiceInsight will not be able to connect to the REST API exposed via IIS. ServiceInsight version 1.4 or greater is required to use Windows authentication.
 
 Older versions of ServiceInsight can still be used locally, bypassing the security by connecting to the ServiceControl port directly using the `http://localhost:33333/api` URL.
 
-
 ## Upgrading ServicePulse hosted in IIS
 
 When ServicePulse is hosted in IIS the upgrade process is as follows:
 
  1. Go to the root directory of the IIS website,
- 1. View and record the current ServicePulse configuration, specifically the value of `serviceControlUrl`. Prior to version 1.3 this was set in `config.js`. For version 1.3 and above the `app\js\app.constants.js` contains this configuration.
- 1. In the advanced config above, the `api` directory is configured to be created. In the upgrade remove everything except that `api` directory or manually create it again.
+ 1. View and record the current ServicePulse configuration, specifically the value of `serviceControlUrl`. Prior to version 1.3 this was set in `config.js`. Prior to version 1.31.1 this was set in `app\js\app.constants.js`. For version 1.31.1 and above the `js\app.constants.js` contains this configuration.
+ 1. Remove everything from the root folder.
  1. Install the new version of ServicePulse using the standard instructions.
- 1. Extract the files from the `ServicePulse.Host.exe` using the following command, replacing the recorded values from step 2 with the values from the `app\js\app.constants.js` and `<webroot>` with the path to the root directory of the IIS website.
+ 1. Extract the files from the `ServicePulse.Host.exe` using the following command, replacing the recorded values from step 2 with the values from the `js\app.constants.js` and `<webroot>` with the path to the root directory of the IIS website.
 ```dos
 ServicePulse.Host.exe --extract --serviceControlUrl="<recordedvalue>" --outPath="<webroot>"
 ```
