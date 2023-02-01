@@ -11,7 +11,7 @@ related:
  - persistence/sql/sqlsaga
 redirects:
  - nservicebus/sql-persistence/saga
-reviewed: 2020-04-15
+reviewed: 2023-02-01
 ---
 
 SQL persistence supports sagas using the core [NServiceBus.Saga](/nservicebus/sagas/) API or an [experimental API unique to SQL persistence](sqlsaga.md) that provides a simpler mapping API.
