@@ -43,26 +43,20 @@ The tool uses this query to discover what tables in a SQL database catalog have 
 
 ```sql
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
-
-SELECT DISTINCT t.TABLE_SCHEMA AS TableSchema, t.TABLE_NAME as TableName
-FROM [INFORMATION_SCHEMA].[TABLES] t WITH (NOLOCK)
-INNER JOIN [INFORMATION_SCHEMA].[COLUMNS] cId WITH (NOLOCK)
-    ON t.TABLE_NAME = cId.TABLE_NAME AND cId.COLUMN_NAME = 'Id' AND cId.DATA_TYPE = 'uniqueidentifier'
-INNER JOIN [INFORMATION_SCHEMA].[COLUMNS] cCorrelationId WITH (NOLOCK)
-    ON t.TABLE_NAME = cCorrelationId.TABLE_NAME AND cCorrelationId.COLUMN_NAME = 'CorrelationId' AND cCorrelationId.DATA_TYPE = 'varchar'
-INNER JOIN [INFORMATION_SCHEMA].[COLUMNS] cReplyToAddress WITH (NOLOCK)
-    ON t.TABLE_NAME = cReplyToAddress.TABLE_NAME AND cReplyToAddress.COLUMN_NAME = 'ReplyToAddress' AND cReplyToAddress.DATA_TYPE = 'varchar'
-INNER JOIN [INFORMATION_SCHEMA].[COLUMNS] cRecoverable WITH (NOLOCK)
-    ON t.TABLE_NAME = cRecoverable.TABLE_NAME AND cRecoverable.COLUMN_NAME = 'Recoverable' AND cRecoverable.DATA_TYPE = 'bit'
-INNER JOIN [INFORMATION_SCHEMA].[COLUMNS] cExpires WITH (NOLOCK)
-    ON t.TABLE_NAME = cExpires.TABLE_NAME AND cExpires.COLUMN_NAME = 'Expires' AND cExpires.DATA_TYPE = 'datetime'
-INNER JOIN [INFORMATION_SCHEMA].[COLUMNS] cHeaders WITH (NOLOCK)
-    ON t.TABLE_NAME = cHeaders.TABLE_NAME AND cHeaders.COLUMN_NAME = 'Headers'
-INNER JOIN [INFORMATION_SCHEMA].[COLUMNS] cBody WITH (NOLOCK)
-    ON t.TABLE_NAME = cBody.TABLE_NAME AND cBody.COLUMN_NAME = 'Body' AND cBody.DATA_TYPE = 'varbinary'
-INNER JOIN [INFORMATION_SCHEMA].[COLUMNS] cRowVersion WITH (NOLOCK)
-    ON t.TABLE_NAME = cRowVersion.TABLE_NAME AND cRowVersion.COLUMN_NAME = 'RowVersion' AND cRowVersion.DATA_TYPE = 'bigint'
-WHERE t.TABLE_TYPE = 'BASE TABLE'
+  
+SELECT C.TABLE_SCHEMA as TableSchema, C.TABLE_NAME as TableName
+FROM [INFORMATION_SCHEMA].[COLUMNS] C
+WHERE
+	(C.COLUMN_NAME = 'Id' AND C.DATA_TYPE = 'uniqueidentifier') OR
+	(C.COLUMN_NAME = 'CorrelationId' AND C.DATA_TYPE = 'varchar') OR
+	(C.COLUMN_NAME = 'ReplyToAddress' AND C.DATA_TYPE = 'varchar') OR
+	(C.COLUMN_NAME = 'Recoverable' AND C.DATA_TYPE = 'bit') OR
+	(C.COLUMN_NAME = 'Expires' AND C.DATA_TYPE = 'datetime') OR
+	(C.COLUMN_NAME = 'Headers') OR
+	(C.COLUMN_NAME = 'Body' AND C.DATA_TYPE = 'varbinary') OR
+	(C.COLUMN_NAME = 'RowVersion' AND C.DATA_TYPE = 'bigint')
+GROUP BY C.TABLE_SCHEMA, C.TABLE_NAME
+HAVING COUNT(*) = 8
 ```
 
 ### Get ROWVERSION
