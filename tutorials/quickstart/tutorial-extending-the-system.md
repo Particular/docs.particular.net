@@ -36,7 +36,7 @@ First let's make sure both browser windows and all console applications are clos
 Next, we'll create a new Console Application project named **Shipping** and add it to the solution:
 
 ```shell
-> dotnet new console --name Shipping --framework netcoreapp3.1
+> dotnet new console --name Shipping --framework net6.0
 > dotnet sln add Shipping
 ```
 
