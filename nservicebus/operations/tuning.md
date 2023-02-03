@@ -13,8 +13,6 @@ reviewed: 2021-11-01
 
 NServiceBus uses defaults that ensure good performance in common cases. While this is usually the preferred mode of operation there are situations where tuning might be desired.
 
-## Tuning concurrency
-
 Examples where concurrency tuning might be relevant are:
 
 * Non-thread-safe code that needs to run sequentially
@@ -22,6 +20,9 @@ Examples where concurrency tuning might be relevant are:
 
 ## Configuring concurrency limit
 
+The default concurrency settings of an endpoint can be changed via code:
+
+snippet: TuningFromCode
 
 NOTE: The default concurrency limit is `max(Number of logical processors, 2)`.
 
@@ -41,6 +42,4 @@ NOTE: Sequential processing on the endpoint (logical) level is not possible when
 
 Throughput throttling options have been deprecated. To enable throttling on Version 6 and higher, a custom behavior should be used. The [throttling sample](/samples/throttling/) demonstrates how such a behavior can be implemented.
 
-## Configuration
-
-partial: configuration
+partial: timeoutmanager
