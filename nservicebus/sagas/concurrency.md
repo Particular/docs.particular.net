@@ -11,7 +11,7 @@ related:
 - persistence/sql/saga-concurrency
 ---
 
-An [endpoint](/nservicebus/concepts/glossary.md#endpoint) may be configured to allow [concurrent handling of messages](/nservicebus/operations/tuning.md#tuning-concurrency). An endpoint may also be [scaled out](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes) to multiple nodes. In these scenarios, multiple messages may be received simultaneously which correlate to a single saga instance. Handling those messages may cause saga state to be created, updated, or deleted, and may cause new messages to be sent.
+An [endpoint](/nservicebus/concepts/glossary.md#endpoint) may be configured to allow [concurrent handling of messages](/nservicebus/operations/tuning.md). An endpoint may also be [scaled out](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes) to multiple nodes. In these scenarios, multiple messages may be received simultaneously which correlate to a single saga instance. Handling those messages may cause saga state to be created, updated, or deleted, and may cause new messages to be sent.
 
 NOTE: With respect to sagas, "handling" a message refers to the invocation of any saga method that processes a message, such as `IAmStartedByMessages<T>.Handle()`, `IHandleTimeouts<T>.Timeout()`, etc.
 
@@ -105,7 +105,7 @@ To avoid impacting the processing of messages which are not related to the saga,
 
 ### Decrease the endpoint concurrency limit
 
-The number of OCC conflicts can be reduced by [decreasing the concurrency limit](/nservicebus/operations/tuning.md#tuning-concurrency). Message handling can even be made sequential by setting the concurrency limit to 1.
+The number of OCC conflicts can be reduced by [decreasing the concurrency limit](/nservicebus/operations/tuning.md). Message handling can even be made sequential by setting the concurrency limit to 1.
 
 NOTE: Sequential messaging handling when using OCC is only possible for a single endpoint instance. When an endpoint is [scaled out](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes), message handling cannot be made sequential when all instances are running. An alternative is to have only one instance running at a time, in an active/passive configuration.
 

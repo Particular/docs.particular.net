@@ -98,7 +98,7 @@ partial: add-cluster-node
 ## Controlling the prefetch count
 
 When consuming messages from the broker, throughput can be improved by having the consumer [prefetch](https://www.rabbitmq.com/consumer-prefetch.html) additional messages.
-The prefetch count is calculated by multiplying the [maximum concurrency](/nservicebus/operations/tuning.md#tuning-concurrency) by the prefetch multiplier. The default value of the multiplier is 3, but it can be changed as follows:
+The prefetch count is calculated by multiplying the [maximum concurrency](/nservicebus/operations/tuning.md) by the prefetch multiplier. The default value of the multiplier is 3, but it can be changed as follows:
 
 snippet: rabbitmq-config-prefetch-multiplier
 

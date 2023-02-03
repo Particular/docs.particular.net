@@ -35,7 +35,7 @@ partial: subscription-rule-customization
 
 ## Controlling the prefetch count
 
-When consuming messages from the broker, throughput can be improved by having the consumer prefetch additional messages. The prefetch count is calculated by multiplying [maximum concurrency](/nservicebus/operations/tuning.md#tuning-concurrency) by the prefetch multiplier. The default value of the multiplier is 10, but it can be changed by using the following:
+When consuming messages from the broker, throughput can be improved by having the consumer prefetch additional messages. The prefetch count is calculated by multiplying [maximum concurrency](/nservicebus/operations/tuning.md) by the prefetch multiplier. The default value of the multiplier is 10, but it can be changed by using the following:
 
 snippet: custom-prefetch-multiplier
 
