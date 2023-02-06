@@ -122,7 +122,6 @@
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/3.0.0) | 2022-11-17     | -                 | -                                 |
 | [2.7.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.7.0) | 2022-11-15     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [2.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.6.0) | 2022-05-06     | 2023-02-15        | Superseded by 2.7.x               |
-| [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.5.0) | ~~2021-03-25~~ | ~~2022-08-06~~    | ~~Superseded by 2.6.x~~           |
 
 #### [NServiceBus.Persistence.Sql](/nuget/NServiceBus.Persistence.Sql)
 
@@ -483,7 +482,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.20.x](https://www.nuget.org/packages/Particular.PlatformSample/2.20.0) | 2023-01-18     | -                 | -                                 |
+| [2.22.x](https://www.nuget.org/packages/Particular.PlatformSample/2.22.0) | 2023-02-03     | -                 | -                                 |
+| [2.20.x](https://www.nuget.org/packages/Particular.PlatformSample/2.20.0) | 2023-01-18     | 2023-05-03        | Superseded by 2.22.x              |
 | [2.19.x](https://www.nuget.org/packages/Particular.PlatformSample/2.19.0) | 2022-12-21     | 2023-04-18        | Superseded by 2.20.x              |
 | [2.18.x](https://www.nuget.org/packages/Particular.PlatformSample/2.18.0) | 2022-12-01     | 2023-03-21        | Superseded by 2.19.x              |
 | [2.17.x](https://www.nuget.org/packages/Particular.PlatformSample/2.17.0) | 2022-11-29     | 2023-03-01        | Superseded by 2.18.x              |
@@ -495,7 +495,6 @@
 | [~~2.8.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.8.1) | ~~2022-06-22~~ | ~~2022-11-03~~    | ~~Superseded by 2.11.x~~          |
 | [~~2.7.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.7.0) | ~~2022-05-20~~ | ~~2022-09-22~~    | ~~Superseded by 2.8.x~~           |
 | [~~2.6.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.6.0) | ~~2022-05-04~~ | ~~2022-08-20~~    | ~~Superseded by 2.7.x~~           |
-| [~~2.5.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.5.0) | ~~2022-03-04~~ | ~~2022-08-04~~    | ~~Superseded by 2.6.x~~           |
 | [~~1.31.x~~](https://www.nuget.org/packages/Particular.PlatformSample/1.31.0) | ~~2021-09-16~~ | ~~2022-09-16~~    | ~~Superseded by 2.0.x~~           |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
