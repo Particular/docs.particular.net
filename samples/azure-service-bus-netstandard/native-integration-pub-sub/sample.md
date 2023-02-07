@@ -21,6 +21,14 @@ The sample contains three executable projects:
  * `Publisher` - an NServiceBus endpoint that publishes `EventOne` and `EventTwo` events.
  * `NativeSubscriberA` - subscribes to `EventOne` event published by the `Publisher`.
  * `NativeSubscriberB` - subscribes to both events published by the `Publisher`.
+
+## Running the sample
+
+1. First, run the `Publisher` project by itself. This will create all the necessary publish/subscribe infrastructure in Azure Service Bus, including the default `bundle-1` topic.
+2. Run the project normally so that all endpoints start.
+3. In the `Publisher` window, press any key to publish an event.
+    * The endpoint in the `NativeSubscriberA` window will receive `EventOne`.
+    * The endpoint in the `NativeSubscriberB` window will receive both `EventOne` and `EventTwo`.
  
 ## Setting up namespace entities
 
@@ -35,8 +43,3 @@ Subscriptions created by `NativeSubscriberA` and `NativeSubscriberB` both contai
 snippet: EventOneSubscription
 
 The other subscriber uses [`TrueFilter`](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.messaging.truefilter?view=azure-dotnet) in the `all-events` rule which ensures that both `EventOne` and `EventTwo` events are routed to its subscription.
-
-## Things to note
-
- * The use of the `AzureServiceBus_ConnectionString` environment variable mentioned above
- * Execute `Publisher` first to ensure that the topic is created
