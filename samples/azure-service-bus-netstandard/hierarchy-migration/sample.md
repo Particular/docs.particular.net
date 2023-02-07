@@ -1,6 +1,6 @@
 ---
 title: Azure Service Bus Hierarchy Migration Sample
-summary: Demonstrates how to life migrate an endpoint from one topic to another
+summary: Demonstrates how to migrate an endpoint from one topic to another with no downtime
 reviewed: 2022-12-06
 component: ASBS
 related:
@@ -15,7 +15,7 @@ include: asb-connectionstring-xplat
 
 ## Code walk-through
 
-This sample demonstrates how an endpoint can be migrated live and without any downtime from one topic to another:
+This sample demonstrates how an endpoint can be migrated without any downtime from one topic to another:
 
 * `Endpoint1` publishes `Event1` messages and subscribes to `Event2` messages.
 * `Endpoint2` subscribes to `Event1` messages and publishes `Event2` messages.
