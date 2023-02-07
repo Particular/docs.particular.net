@@ -5,7 +5,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.0.0) | 2022-11-17     | -                 | -                                 |
-| [5.6.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.6.1) | 2022-01-14     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [5.6.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.6.2) | 2022-01-14     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Azure.Transports.WindowsAzureServiceBus](/nuget/NServiceBus.Azure.Transports.WindowsAzureServiceBus)
 
