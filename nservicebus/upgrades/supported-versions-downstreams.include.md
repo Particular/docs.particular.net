@@ -4,8 +4,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.0.0) | 2022-11-17     | -                 | -                                 |
-| [5.6.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.6.2) | 2022-01-14     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.0.1) | 2022-11-17     | -                 | -                                 |
+| [5.6.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.6.3) | 2022-01-14     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Azure.Transports.WindowsAzureServiceBus](/nuget/NServiceBus.Azure.Transports.WindowsAzureServiceBus)
 
@@ -100,7 +100,6 @@
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/2.0.0) | 2022-11-17     | -                 | -                                 |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.2.1) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.1.1) | ~~2022-01-20~~ | ~~2022-12-19~~    | ~~Superseded by 1.2.x~~           |
-| [~~0.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/0.2.1) | ~~2021-03-04~~ | ~~2022-08-09~~    | ~~Superseded by 1.0.x~~           |
 
 #### [NServiceBus.Persistence.CosmosDB.TransactionalSession](/nuget/NServiceBus.Persistence.CosmosDB.TransactionalSession)
 
