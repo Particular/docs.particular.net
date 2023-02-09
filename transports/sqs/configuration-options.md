@@ -13,6 +13,10 @@ partial: source
 
 partial: clientfactory
 
+partial: base64encoding
+
+partial: messageextractor
+
 ## MaxTTLDays
 
 **Optional**

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Amazon;
@@ -9,6 +10,7 @@ using Amazon.SQS;
 using Amazon.SQS.Model;
 using NServiceBus;
 using NServiceBus.Pipeline;
+using NServiceBus.Transport.SQS;
 
 
 class Usage
@@ -436,6 +438,30 @@ class Usage
 #pragma warning restore 618
     }
 
+    void DoNotBase64EncodeOutgoingMessages(EndpointConfiguration endpointConfiguration)
+    {
+        #region DoNotBase64EncodeOutgoingMessages [6.1,)
+        var transport = new SqsTransport
+        {
+            DoNotBase64EncodeOutgoingMessages = true
+        };
+
+        endpointConfiguration.UseTransport(transport);
+        #endregion
+    }
+
+    void MessageExtractor(EndpointConfiguration endpointConfiguration)
+    {
+        #region MessageExtractorConfig [6.1,)
+        var transport = new SqsTransport
+        {
+            MessageExtractor = new CustomMessageExtractor()
+        };
+
+        endpointConfiguration.UseTransport(transport);
+        #endregion
+    }
+
     class SubscribedEvent { }
 
     class PublishedEvent { }
@@ -444,6 +470,40 @@ class Usage
 
     class OrderAccepted : IOrderAccepted { }
 }
+
+class CustomMessageType { }
+
+#region CustomMessageExtractor [6.1,)
+class CustomMessageExtractor : IMessageExtractor
+{
+    public bool TryExtractIncomingMessage(
+        Message receivedMessage,
+        string messageId,
+        out Dictionary<string, string> headers,
+        out string s3BodyKey,
+        out string body)
+    {
+        if (receivedMessage.MessageAttributes.TryGetValue(
+                "MyCustomMessageAttribute",
+                out var customMessageAttribute))
+        {
+            headers = new Dictionary<string, string>
+            {
+                [Headers.MessageId] = messageId,
+                [Headers.EnclosedMessageTypes] = typeof(CustomMessageType).FullName
+            };
+            body = receivedMessage.Body;
+            s3BodyKey = default;
+            return true;
+        }
+
+        headers = default;
+        body = default;
+        s3BodyKey = default;
+        return false;
+    }
+}
+#endregion
 
 #region sqs-access-to-native-message
 class AccessToAmazonSqsNativeMessage : Behavior<IIncomingContext>
