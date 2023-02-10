@@ -3,7 +3,7 @@ title: Upgrade AmazonSQS Transport Version 4 to 5
 summary: Instructions on how to upgrade the AmazonSQS transport from version 4 to 5
 component: SQS
 isUpgradeGuide: true
-reviewed: 2020-04-27
+reviewed: 2023-02-10
 upgradeGuideCoreVersions:
  - 7
 ---
@@ -22,12 +22,12 @@ NOTE: In version 5.4 a [mechanism was introduced](/transports/sqs/topology.md?ve
 
 ### Required [SNS permissions](https://docs.aws.amazon.com/sns/latest/dg/sns-access-policy-language-api-permissions-reference.html)
 
- * ListTopics
- * Unsubscribe
- * SetEndpointAttributes
- * ListSubscriptions
- * GetSubscriptionAttributes
- * SetSubscriptionAttributes
+* ListTopics
+* Unsubscribe
+* SetEndpointAttributes
+* ListSubscriptions
+* GetSubscriptionAttributes
+* SetSubscriptionAttributes
 
 In addition to the above permissions the queue subscribing to a topic needs `sqs:SendMessage` permission to enable the topics delivering messages to the subscribing queue.
 
@@ -55,7 +55,7 @@ In addition to the above permissions the queue subscribing to a topic needs `sqs
 
 ### Upgrading
 
-Upgrade a single endpoint to version 5 at a time. Each upgraded endpoint should be configured to run in backwards compatibility mode and be deployed into production before upgrading the next endpoint. At startup, the upgraded endpoint will create the necessary topics on SNS and subscribe to them. It will also send subscribe control messages to each of it's configured publishers.
+Upgrade only endpoint at a time to version 5. Each upgraded endpoint should be configured to run in backwards compatibility mode and should be deployed into production before upgrading the next endpoint. At startup, the upgraded endpoint will create the necessary topics on SNS and subscribe to them. It will also send subscribe control messages to each of it's configured publishers.
 
 Once all endpoints in the system have been upgraded to version 5, the code that enables compatibility mode can be safely removed from each endpoint. It is recommended to run the entire system in backwards compatibility mode for a day or two before beginning to remove backwards compatibility mode. This allows all of the subscription control messages sent at endpoint startup to reach their destination and be fully processed.
 

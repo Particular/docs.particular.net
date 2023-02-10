@@ -2,7 +2,7 @@
 title: Amazon SQS Transport
 summary: A transport for Amazon Web Services Simple Queue Service.
 component: SQS
-reviewed: 2020-04-27
+reviewed: 2023-02-10
 related:
  - samples/sqs/simple
 redirects:
@@ -16,15 +16,15 @@ partial: transport-at-a-glance
 
 ## Advantages
 
- * Fully managed turn-key messaging infrastructure. SQS queues requires very little effort to set up, maintain and manage over time.
- * Integrates seamlessly with other services provided by AWS, such as [IAM](https://docs.aws.amazon.com/iam/index.html), [CloudWatch](https://aws.amazon.com/cloudwatch/), and [Lambda](https://aws.amazon.com/lambda/). For organizations already committed to AWS, SQS is a natural choice.
- * Can be used as a gateway between endpoints that may not have direct connectivity to each-other.
- * Can send and receive large messages that exceed the queue limitations by storing large payloads in S3. For more information review the documentation for the transport [topology](topology.md#s3) and [configuration options](configuration-options.md).
+* Fully managed turn-key messaging infrastructure. SQS queues requires little effort to set up, maintain, and manage over time.
+* Integrates seamlessly with other services provided by AWS, such as [IAM](https://docs.aws.amazon.com/iam/index.html), [CloudWatch](https://aws.amazon.com/cloudwatch/), and [Lambda](https://aws.amazon.com/lambda/). For organizations already committed to AWS, SQS is a natural choice.
+* Can be used as a gateway between endpoints that may not have direct connectivity to each other.
+* Can send and receive large messages that exceed the queue limitations by storing large payloads in S3. For more information review the documentation for the transport [topology](topology.md#s3) and [configuration options](configuration-options.md).
 
 ## Disadvantages
 
- * Like other message brokers, there is no local store-and-forward mechanism available. If an endpoint cannot reach SQS, either due to network problems or if SQS is unavailable, the endpoint will not be able to send nor receive messages.
- * Can be relatively expensive when using larger volumes of messages.
+* Like other message brokers, there is no local store-and-forward mechanism available. If an endpoint cannot reach SQS, either due to network problems or if SQS is unavailable, the endpoint will not be able to send nor receive messages.
+* Can be expensive with large volumes of messages.
 
 ## Prerequisites
 
@@ -34,34 +34,34 @@ The IAM account requires the following permissions:
 
 #### [SQS permissions](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html)
 
- * CreateQueue
- * DeleteMessage
- * DeleteMessageBatch
- * GetQueueUrl
- * ReceiveMessage
- * SendMessage
- * SendMessageBatch
- * SetQueueAttributes
- * GetQueueAttributes
- * ChangeMessageVisibility
- * ChangeMessageVisibilityBatch
- * PurgeQueue
+* CreateQueue
+* DeleteMessage
+* DeleteMessageBatch
+* GetQueueUrl
+* ReceiveMessage
+* SendMessage
+* SendMessageBatch
+* SetQueueAttributes
+* GetQueueAttributes
+* ChangeMessageVisibility
+* ChangeMessageVisibilityBatch
+* PurgeQueue
 
 partial: sns-permissions
 
 #### [S3 permissions](https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html)
 
- * CreateBucket
- * DeleteObject
- * GetObject
- * PutObject
- * PutLifecycleConfiguration
- * GetLifecycleConfiguration
- * ListAllMyBuckets
+* CreateBucket
+* DeleteObject
+* GetObject
+* PutObject
+* PutLifecycleConfiguration
+* GetLifecycleConfiguration
+* ListAllMyBuckets
 
 #### Other permissions
 
-* If using server-side encryption of SQS queues, all NServiceBus endpoints (as well as [ServiceControl](/servicecontrol)) will also require the `kms:GenerateDataKey` in order to support [key management](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-key-management.html).
+* If using server-side encryption of SQS queues, all NServiceBus endpoints (as well as [ServiceControl](/servicecontrol)) will require the `kms:GenerateDataKey` permission in order to support [key management](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-key-management.html).
 
 ## Configuration
 

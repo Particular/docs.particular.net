@@ -1,7 +1,7 @@
 ---
 title: Azure Blob Storage Data Bus
 summary: The Azure Blob Storage implementation of databus
-reviewed: 2020-11-08
+reviewed: 2023-02-10
 component: ABSDataBus
 related:
  - samples/azure/blob-storage-databus
