@@ -120,7 +120,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/3.0.0) | 2022-11-17     | -                 | -                                 |
 | [2.7.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.7.0) | 2022-11-15     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
-| [2.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.6.0) | 2022-05-06     | 2023-02-15        | Superseded by 2.7.x               |
+| [~~2.6.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.ServiceFabric/2.6.0) | ~~2022-05-06~~ | ~~2023-02-15~~    | ~~Superseded by 2.7.x~~           |
 
 #### [NServiceBus.Persistence.Sql](/nuget/NServiceBus.Persistence.Sql)
 
