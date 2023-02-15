@@ -163,6 +163,7 @@ migrate-timeouts <command> <source>
 For RabbitMQ (`rabbitmq`) transport:
 
 - `--target`: The RabbitMQ connection string
+- `--useV1` : Use RabbitMQ version 1 Delay Infrastructure
 
 For SQL Server (`sqlt`) transport:
 
