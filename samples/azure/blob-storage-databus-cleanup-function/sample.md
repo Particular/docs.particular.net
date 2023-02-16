@@ -2,58 +2,66 @@
 title: Azure Blob Storage Data Bus Cleanup with Azure Functions
 summary: Using an Azure Function instead of the built in blob cleanup capabilities.
 component: ABSDataBus
-reviewed: 2023-02-15
+reviewed: 2023-02-16
 related:
 - nservicebus/messaging/databus
 ---
 
-This sample shows how to use [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) to automatically trigger blob cleanup. 
+This sample shows how to use [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) to automatically trigger blob cleanup.
 
 downloadbutton
 
 ## Prerequisites
 
- 1. Make sure [Azure Functions Tools for Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs#prerequisites) are setup correctly.
- 1. Start [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator). Ensure the [latest version](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409) is installed.
- 1. Run the solution. Two console applications start.
- 1. Find the `SenderAndReceiver` application by looking for the one with `SenderAndReceiver` in its path and press <kdb>enter</kbd> to send a large message. NServiceBus sends it as an attachment via Azure storage. The `DataBusBlobCreated` trigger function runs in the Function window, followed by the `DataBusCleanupOrchestrator` orchestrator function, invoking the `DeleteBlob` activity function, deleting the blob when the time-to-live for the message is reached.
+1. [Azure Functions Tools for Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs#prerequisites)
+1. [Azure Storage Emulator](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)
+
+## Running the sample
+
+1. Start [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator).
+1. Run the solution—two console applications will start.
+1. Switch to the console window with `SenderAndReceiver` in its path, and press <kbd>enter</kbd> to send a large message.
 
 ## Code walk-through
 
 This sample contains two projects:
 
- * DataBusBlobCleanupFunctions - An Azure Function project that contains the three Azure Functions that perform the cleanup. 
- * SenderAndReceiver - A console application responsible for sending and receiving the large message.
+- SenderAndReceiver—a console application which sends and receives a large message.
+- DataBusBlobCleanupFunctions—an Azure Functions project with three Azure Functions that perform cleanup.
+
+### SenderAndReceiver
+
+This project sends a `MessageWithLargePayload` to itself. The message is sent using an attachment stored in Azure Storage.
 
 ### DatabusBlobCleanupFunctions
 
 #### DataBusBlobCreated
 
-The following Azure Function is included in this project that is triggered when a blob is created or updated in the data bus path in the storage account.
+This Azure Function is triggered when a blob is created or updated in the data bus path in the storage account.
 
 snippet: DataBusBlobCreatedFunction
 
-The execution uses a [singleton orchestration](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-singletons) pattern using the blob name when starting the `DataBusCleanupOrchestrator` function. This prevents multiple timeouts from being started.
+To prevent multiple timeouts from starting, the function uses the [singleton orchestration](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-singletons) pattern, using the blob name, when starting the `DataBusCleanupOrchestrator` function.
 
-The `GetValidUntil` method uses logic that reproduces the cleanup functionality of the `NServiceBus.DataBus.AzureBlobStorage` package. 
+The `GetValidUntil` method imitates the behavior of the `NServiceBus.DataBus.AzureBlobStorage` package.
 
 snippet: GetValidUntil
 
-The method evaluates the metadata of the blob looking for previously provided timeout values. If none are found the default time to live is calculated for the blob and returned.
+The method looks for a previously set timeout value in the blob metadata. If none is found, the default time to live (`DateTime.MaxValue`) is returned.
 
-The timeout value is passed in when the `DataBusCleanupOrchestrator` orchestration function is executed.
+The timeout value is passed to the `DataBusCleanupOrchestrator` function.
 
 #### DataBusCleanupOrchestrator
 
 snippet: DataBusCleanupOrchestratorFunction
 
-The function uses a [durable function timer](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-timers) to delay execute deletion of the blob from azure storage.
+The function uses a [durable function timer](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-timers) to delete the blob from Azure Storage after the timeout period has elapsed.
 
 partial: delete
 
 #### Configuring time to live for large binary objects
 
-The default time to live for all large binary objects is configured by setting the `DefaultTimeToLiveInSeconds` environment variable. This can be set during debugging by adding the appropriate `Values` setting in the `local.settings.json` file: 
+The default time to live for all large binary objects is configured by setting the `DefaultTimeToLiveInSeconds` environment variable. This can be set during debugging by adding the appropriate `Values` setting in the `local.settings.json` file:
 
 ```json
 {
@@ -66,11 +74,11 @@ The default time to live for all large binary objects is configured by setting t
 
 In production this is set using an [applications settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings#settings) value named `DefaultTimeToLiveInSeconds` in the [Azure portal](https://portal.azure.com).
 
-A message with a set [time to be received](/nservicebus/messaging/discard-old-messages.md) will override the default time to live for the large binary object and instead use this value when determining the time to clean up the blob.
+If a message has a specific [time to be received](/nservicebus/messaging/discard-old-messages.md), that value overrides the default time to live, and it will be used to determine when to clean up the blob.
 
 #### Configuring the data bus location
 
-The `DataBusBlobCleanupFunctions` project needs to access the large binary objects. This is done by specifying an Azure storage connection string in the `DataBusStorageAccount` environment variable. This can be set during debugging by adding the appropriate `Values` setting in the `local.settings.json` file: 
+The `DataBusBlobCleanupFunctions` project requires access to the large binary objects. This is provided by an Azure Storage connection string in the `DataBusStorageAccount` environment variable. This can be set during debugging by adding the appropriate `Values` setting in the `local.settings.json` file:
 
 ```json
 {
@@ -85,16 +93,12 @@ In production this is set using an [applications settings](https://docs.microsof
 
 #### Migrating existing projects
 
-In environments where `NServiceBus.DataBus.AzureBlobStorage` is already in use the timeout function will need to be triggered for the existing attachments.
+In environments where `NServiceBus.DataBus.AzureBlobStorage` is already in use, the timeout function must be triggered for the existing attachments.
 
-A manually-triggered function called `DataBusOrchestrateExistingBlobs` is included to trigger orchestration for every existing blob in the container. It's an HTTP triggered function that can be invoked using a browser.
+`DataBusOrchestrateExistingBlobs` is used to trigger orchestration for every existing blob in the container. It's an HTTP triggered function that can be invoked manually using a browser.
 
 snippet: DataBusOrchestrateExistingBlobsFunction
 
-The function is very similar to the [`DataBusBlobCreated`](#code-walk-through-databusblobcleanupfunctions-databusblobcreated) function, but instead of working on a single blob at a time it will iterate over every existing blob in the container.
+The function is very similar to the [`DataBusBlobCreated`](#code-walk-through-databusblobcleanupfunctions-databusblobcreated) function, but instead of working on a single blob, it iterates over every blob in the container.
 
-This function does not require downtime as the implemented [singleton orchestration](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-singletons) pattern will prevent existing timeouts from being duplicated.
-
-### SenderAndReceiver project
-
-The project sends the `MessageWithLargePayload` message to itself, utilizing the NServiceBus attachment mechanism.
+This function does not require downtime as the implemented [singleton orchestration](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-singletons) pattern prevents existing timeouts from being duplicated.
