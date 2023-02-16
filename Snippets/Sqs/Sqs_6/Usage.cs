@@ -308,10 +308,12 @@ class Usage
     {
         #region V1BackwardsCompatibility
 
+#pragma warning disable CS0618 // Type or member is obsolete
         var transport = new SqsTransport
         {
             EnableV1CompatibilityMode = true
         };
+#pragma warning restore CS0618 // Type or member is obsolete
 
         endpointConfiguration.UseTransport(transport);
 
@@ -438,30 +440,18 @@ class Usage
 #pragma warning restore 618
     }
 
-    void DoNotBase64EncodeOutgoingMessages(EndpointConfiguration endpointConfiguration)
+    void DoNotWrapOutgoingMessages(EndpointConfiguration endpointConfiguration)
     {
-        #region DoNotBase64EncodeOutgoingMessages [6.1,)
+        #region DoNotWrapOutgoingMessages [6.1,)
         var transport = new SqsTransport
         {
-            DoNotBase64EncodeOutgoingMessages = true
+            DoNotWrapOutgoingMessages = true
         };
 
         endpointConfiguration.UseTransport(transport);
         #endregion
     }
-
-    void MessageExtractor(EndpointConfiguration endpointConfiguration)
-    {
-        #region MessageExtractorConfig [6.1,)
-        var transport = new SqsTransport
-        {
-            MessageExtractor = new CustomMessageExtractor()
-        };
-
-        endpointConfiguration.UseTransport(transport);
-        #endregion
-    }
-
+    
     class SubscribedEvent { }
 
     class PublishedEvent { }
@@ -470,40 +460,6 @@ class Usage
 
     class OrderAccepted : IOrderAccepted { }
 }
-
-class CustomMessageType { }
-
-#region CustomMessageExtractor [6.1,)
-class CustomMessageExtractor : IMessageExtractor
-{
-    public bool TryExtractIncomingMessage(
-        Message receivedMessage,
-        string messageId,
-        out Dictionary<string, string> headers,
-        out string s3BodyKey,
-        out string body)
-    {
-        if (receivedMessage.MessageAttributes.TryGetValue(
-                "MyCustomMessageAttribute",
-                out var customMessageAttribute))
-        {
-            headers = new Dictionary<string, string>
-            {
-                [Headers.MessageId] = messageId,
-                [Headers.EnclosedMessageTypes] = typeof(CustomMessageType).FullName
-            };
-            body = receivedMessage.Body;
-            s3BodyKey = default;
-            return true;
-        }
-
-        headers = default;
-        body = default;
-        s3BodyKey = default;
-        return false;
-    }
-}
-#endregion
 
 #region sqs-access-to-native-message
 class AccessToAmazonSqsNativeMessage : Behavior<IIncomingContext>
