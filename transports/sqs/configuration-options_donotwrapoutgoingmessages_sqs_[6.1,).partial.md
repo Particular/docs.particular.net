@@ -12,9 +12,9 @@ snippet: DoNotWrapOutgoingMessages
 
 WARN: This setting should only be enabled if all endpoints are running version 6.1 or above of the transport.
 
-NOTE: When sending messages from a non NServiceBus endpoint to a NServiceServiceBus endpoint, use UTF8 encoding to ensure compatibility.
-
 ### Message Attributes
 
 When the `DoNotWrapOutgoingMessages` setting is enabled, all NServiceBus headers will be stored in the `NServiceBus.AmazonSQS.Headers` message attribute.
 If the message is being sent to a non NServiceBus endpoint, the consumer can use message attributes to handle a message in a particular way without having to process the message body first.
+
+NOTE: When sending messages from a non NServiceBus endpoint to a NServiceServiceBus endpoint, use UTF8 encoding and add the `NServiceBus.AmazonSQS.Headers` message attribute to ensure compatibility.

@@ -5,7 +5,7 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
 
-#region BehaviorPopulatingNativeReplyToAddress
+#region PopulatingNativeReplyToAddress
 
 class PopulateReplyToAddressBehavior : Behavior<ITransportReceiveContext>
 {

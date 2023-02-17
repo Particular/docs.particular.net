@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Amazon.SQS;
 using Amazon.SQS.Model;
+using Newtonsoft.Json;
 
 class Program
 {
-    static readonly string MessageToSend = new XDocument(new XElement("SomeNativeMessage", new XElement("ThisIsTheMessage", "Hello!"))).ToString();
+    static readonly string MessageToSend = new XDocument(new XElement("NativeIntegration.Receiver.SomeNativeMessage", new XElement("ThisIsTheMessage", "Hello!"))).ToString();    
 
     static async Task Main()
     {
@@ -23,21 +23,18 @@ class Program
                     return;
                 case "s":
 
-                    #region SendingANativeMessage
+                    #region SendingANativeMessage                   
                     await SendTo(new Dictionary<string, MessageAttributeValue>
-                    {
-                        {"MessageTypeFullName", new MessageAttributeValue {DataType = "String", StringValue = "NativeIntegration.Receiver.SomeNativeMessage"}}, // required for native integration
-                        //{"S3BodyKey", new MessageAttributeValue {DataType = "String", StringValue = "s3bodykey"}}, // optional for native integration
-                        {"SomeRandomKey", new MessageAttributeValue {DataType = "String", StringValue = "something-random"}},
-                        {"AnotherRandomKey", new MessageAttributeValue {DataType = "String", StringValue = "something-else-thats-random"}},
-                        //{"ReplyToAddress", new MessageAttributeValue {DataType = "String", StringValue = "my-native-endpoint"}}, //optional but used to demo replying back to the native endpoint
+                    {                        
+                        {"NServiceBus.AmazonSQS.Headers", new MessageAttributeValue {DataType = "String", StringValue = "{}"}}, //required for native integration
+                        {"SomeRandomKey", new MessageAttributeValue {DataType = "String", StringValue = "something-random"}}, //other optional attributes that the receiver might need
                     }, MessageToSend);
                     #endregion
                     Console.WriteLine("Message was sent.");
                     break;
             }
         }
-    }
+    }    
 
     static async Task SendTo(Dictionary<string, MessageAttributeValue> messageAttributeValues, string message)
     {
@@ -46,18 +43,28 @@ class Program
             var getQueueUrlResponse = await sqsClient.GetQueueUrlAsync(new GetQueueUrlRequest
             {
                 QueueName = "Samples-Sqs-SimpleReceiver" // sanitized queue name
-            }).ConfigureAwait(false);
-
-            var body = Convert.ToBase64String(Encoding.Unicode.GetBytes(message));
+            }).ConfigureAwait(false);            
 
             var sendMessageRequest = new SendMessageRequest
-            {
+            {                
                 QueueUrl = getQueueUrlResponse.QueueUrl,
                 MessageAttributes = messageAttributeValues,
-                MessageBody = body
+                MessageBody = message
             };
 
             await sqsClient.SendMessageAsync(sendMessageRequest).ConfigureAwait(false);
         }
     }
+
+    #region PopulatingNativeReplyToAddress
+    static string CreateHeadersWithReply()
+    {
+        var nsbHeaders = new Dictionary<string, string>
+        {
+            { "NServiceBus.ReplyToAddress", "my-native-endpoint" }, //optional - used to demo replying back to the native endpoint         
+        };
+
+        return JsonConvert.SerializeObject(nsbHeaders, Formatting.None);
+    }
+    #endregion
 }
