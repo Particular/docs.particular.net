@@ -17,6 +17,7 @@
 | <a href="https://www.nuget.org/packages/AWSSDK.S3/" target="_blank">AWSSDK.S3</a> | <a href="http://aws.amazon.com/apache2.0/" target="_blank">View License</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SQS/" target="_blank">AWSSDK.SQS</a> | <a href="http://aws.amazon.com/apache2.0/" target="_blank">View License</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="http://aws.amazon.com/apache2.0/" target="_blank">View License</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/BitFaster.Caching/" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.1.1/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### [NServiceBus.Azure.Transports.WindowsAzureServiceBus](/nuget/NServiceBus.Azure.Transports.WindowsAzureServiceBus)
 
@@ -47,13 +48,13 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus/" target="_blank">Azure.Messaging.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.11.1/sdk/servicebus/Azure.Messaging.ServiceBus/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus/" target="_blank">Azure.Messaging.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.12.0/sdk/servicebus/Azure.Messaging.ServiceBus/README.md" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Data.Tables/" target="_blank">Azure.Data.Tables</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.7.1/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Data.Tables/" target="_blank">Azure.Data.Tables</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.8.0/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/" target="_blank">Azure.Storage.Blobs</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.14.1/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Storage.Queues/" target="_blank">Azure.Storage.Queues</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Queues_12.12.0/sdk/storage/Azure.Storage.Queues/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Linq.Async/" target="_blank">System.Linq.Async</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/dotnet/reactive" target="_blank">Project Site</a> |
@@ -88,7 +89,9 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos.Table/" target="_blank">Microsoft.Azure.Cosmos.Table</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos.Table/1.0.8/license" target="_blank">View License</a> | <a href="http://go.microsoft.com/fwlink/?LinkId=848761" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Data.Tables/" target="_blank">Azure.Data.Tables</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.8.0/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Newtonsoft.Json/" target="_blank">Newtonsoft.Json</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/System.Linq.Async/" target="_blank">System.Linq.Async</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/dotnet/reactive" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Persistence.CosmosDB](/nuget/NServiceBus.Persistence.CosmosDB)
 
@@ -120,7 +123,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/MongoDB.Driver/" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/2.18.0/license" target="_blank">View License</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/MongoDB.Driver/" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/2.19.0/license" target="_blank">View License</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
 
