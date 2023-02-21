@@ -439,18 +439,6 @@ class Usage
         #endregion
 #pragma warning restore 618
     }
-
-    void DoNotWrapOutgoingMessages(EndpointConfiguration endpointConfiguration)
-    {
-        #region DoNotWrapOutgoingMessages [6.1,)
-        var transport = new SqsTransport
-        {
-            DoNotWrapOutgoingMessages = true
-        };
-
-        endpointConfiguration.UseTransport(transport);
-        #endregion
-    }
     
     class SubscribedEvent { }
 

@@ -2,7 +2,7 @@
 
 include: native-integration-messagetypedetection-intro
 
-During message processing, the SQS transport inspects the native message attributes for an attribute with the name `NServiceBus.AmazonSQS.Headers`. This attribute's value should be a serialized `Dictionary<string, string>`. If the attribute is present, the message is treated as a native message, and the body is deserialized into the target type [inferred from the payload](/nservicebus/messaging/message-type-detection#serializers-that-support-message-type-inference).
+During message processing, the SQS transport inspects the native message attributes for an attribute with the name `NServiceBus.AmazonSQS.Headers`. This attribute's value should be a serialized `Dictionary<string, string>`. If the attribute is present, the message is treated as a native message, and the body is deserialized into the target type [inferred from the payload](/nservicebus/messaging/message-type-detection.md#serializers-that-support-message-type-inference).
 
 NOTE: To represent an empty `NServiceBus.AmazonSQS.Headers` message attribute, the value should be `"{}"`
 
