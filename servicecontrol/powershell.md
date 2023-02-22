@@ -3,23 +3,29 @@ title: Managing ServiceControl via PowerShell
 reviewed: 2021-08-23
 ---
 
-## ServiceControl PowerShell
+## ServiceControl PowerShell module
 
-Before the graphical management utility existed to set up ServiceControl, PowerShell actions were used to add, remove, update and delete instances of ServiceControl.
+The `Particular.ServiceControl.Management` module can be installed from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management), and is used to add, remove, update and delete instances of ServiceControl.
 
-## Prerequisites
+## Installing and using the PowerShell module
 
-The ServiceControlMgmt PowerShell module is called `ServiceControlMgmt` and is compatible with PowerShell 5. Versions of PowerShell later than 5 (including PowerShell Core) are not supported and might not work as expected.
+In order to use the PowerShell module, the PowerShell execution policy needs to be set to `RemoteSigned`. Refer to the [PowerShell documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy) on how to change the execution policy.
 
-NOTE: In order to run PowerShell cmdlets, the PowerShell execution policy needs to be set to `Unrestricted` or a bypass needs to be granted to the module file. Refer to the PowerShell documentation on how to change the execution policy.
-
-## Loading and running the PowerShell module
-
-The majority of the cmdlets will only work if the PowerShell session is running with administrator privileges. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module automatically loaded. Alternatively, the module can be loaded directly into an an existing PowerShell session by loading `ServiceControlMgmt.psd1` using the `Import-Module` cmdlet as show below:
+The module can be installed from the PowerShell Gallery with the following command:
 
 ```ps
-Import-Module "C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt\ServiceControlMgmt.psd1"
+Install-Module -Name Particular.ServiceControl.Management
 ```
+
+Once the module is installed, it can be used by importing the module into the PowerShell session with the following command:
+
+```ps
+Import-Module Particular.ServiceControl.Management
+```
+
+NOTE: The majority of the cmdlets will only work if the PowerShell session is running with administrator privileges.
+
+INFO: The ServiceControl installer currently includes a legacy version of the PowerShell module called `ServiceControlMgmt` that is only supported on Windows PowerShell 5.1. It does not work with newer versions of PowerShell. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with this legacy module automatically loaded. The legacy module is not signed, so the PowerShell execution policy needs to be set to `Unrestricted` to use it.
 
 ## Powershell Commands
 
