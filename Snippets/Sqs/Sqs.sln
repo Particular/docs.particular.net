@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sqs_All", "Sqs_All\Sqs_All.csproj", "{3C0CD36F-ECD1-4649-95C6-7011BC5F0EEE}"
 EndProject
@@ -12,7 +12,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sqs_5", "Sqs_5\Sqs_5.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sqs_5.3", "Sqs_5.3\Sqs_5.3.csproj", "{976BDB47-1A24-461F-AD0C-48D553A9E185}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqs_6", "Sqs_6\Sqs_6.csproj", "{32A7FEF6-82F8-4BA5-A034-2BC9725F9449}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sqs_6", "Sqs_6\Sqs_6.csproj", "{32A7FEF6-82F8-4BA5-A034-2BC9725F9449}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sqs_6.1", "Sqs_6.1\Sqs_6.1.csproj", "{399BBB5C-C739-4FAA-B60B-10AD9D1C3045}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{32A7FEF6-82F8-4BA5-A034-2BC9725F9449}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32A7FEF6-82F8-4BA5-A034-2BC9725F9449}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32A7FEF6-82F8-4BA5-A034-2BC9725F9449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{399BBB5C-C739-4FAA-B60B-10AD9D1C3045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{399BBB5C-C739-4FAA-B60B-10AD9D1C3045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{399BBB5C-C739-4FAA-B60B-10AD9D1C3045}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{399BBB5C-C739-4FAA-B60B-10AD9D1C3045}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
