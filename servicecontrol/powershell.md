@@ -5,11 +5,11 @@ reviewed: 2021-08-23
 
 ## ServiceControl PowerShell module
 
-The `Particular.ServiceControl.Management` module can be installed from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management) to add, remove, update and delete instances of ServiceControl.
+The `Particular.ServiceControl.Management` module can be installed from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management), and is used to add, remove, update and delete instances of ServiceControl.
 
 ## Installing and using the PowerShell module
 
-In order to use the PowerShell module, the PowerShell execution policy needs to be set to `RemoteSigned`. Refer to the PowerShell documentation on how to change the execution policy.
+In order to use the PowerShell module, the PowerShell execution policy needs to be set to `RemoteSigned`. Refer to the [PowerShell documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy) on how to change the execution policy.
 
 The module can be installed from the PowerShell Gallery with the following command:
 
@@ -25,7 +25,7 @@ Import-Module Particular.ServiceControl.Management
 
 NOTE: The majority of the cmdlets will only work if the PowerShell session is running with administrator privileges.
 
-WARN: The installer currently includes a legacy version of the PowerShell module called `ServiceControlMgmt` that is only supported on Windows PowerShell 5.1. It does not work with newer versions of PowerShell. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with this legacy module automatically loaded. The legacy module is not signed, so the PowerShell execution policy needs to be set to `Unrestricted` to use it.
+INFO: The ServiceControl installer currently includes a legacy version of the PowerShell module called `ServiceControlMgmt` that is only supported on Windows PowerShell 5.1. It does not work with newer versions of PowerShell. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with this legacy module automatically loaded. The legacy module is not signed, so the PowerShell execution policy needs to be set to `Unrestricted` to use it.
 
 ## Powershell Commands
 
