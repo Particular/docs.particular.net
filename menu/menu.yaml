@@ -888,7 +888,7 @@
     - Url: transports/sql/deployment-options
       Title: Deployment options
     - Url: transports/sql/operations-scripting
-      Title: Troubleshooting and scripting
+      Title: Transport scripting
     - Url: transports/sql/sql-statements
       Title: SQL statements
     - Url: transports/sql/entity-framework
