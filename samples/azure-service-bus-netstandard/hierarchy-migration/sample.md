@@ -26,10 +26,10 @@ This sample demonstrates how an endpoint can be migrated without any downtime fr
 The migration program creates self-explanatory output during the migration process.
 
 ```text
------ Endpoints should be stopped ------
-⚠ Make sure 'Endpoint1' and 'Endpoint2' are not running
-
 ------ Infrastructure cleanup ------
+
+⚠ Make sure 'Endpoint1' and 'Endpoint2' are not running for the infrastructure cleanup to succeed.
+
 Cleanup infrastructure from previous runs of this sample? [y/n] (y): y
 ------ Deleted infrastructure ------
 ┌────────────────────────┐
@@ -46,9 +46,6 @@ Cleanup infrastructure from previous runs of this sample? [y/n] (y): y
 │ samples.asbs.hierarchymigration.endpoint2.migration │
 └─────────────────────────────────────────────────────┘
 
------ Endpoints should be running ------
-⚠ Start 'Endpoint1' and 'Endpoint2' and wait a bit until some messages are published.
-
 ------ Topology before migration -----
 Topics
 └── bundle-to-publish-to
@@ -63,6 +60,10 @@ Topics
 Queues
 ├── samples.asbs.hierarchymigration.endpoint1
 └── samples.asbs.hierarchymigration.endpoint2
+
+----- Endpoints should be running ------
+
+⚠ Start 'Endpoint1' and 'Endpoint2' and wait a bit until some messages are published. After some time...
 :: Press any key to setup the sample topology
 
 ----- The 'bundle-to-subscribe-to' topic has been setup ------
@@ -162,7 +163,10 @@ Queues
 ├── samples.asbs.hierarchymigration.endpoint1
 ├── samples.asbs.hierarchymigration.endpoint2
 └── samples.asbs.hierarchymigration.endpoint2.migration
-Press any key to continue with the migration
+
+🔎 Notice how Endpoint2 temporarily stops receiving events
+
+:: Press any key to continue with the migration
 
 ----- The subscription 'Samples.ASBS.HierarchyMigration.Endpoint2' on topic 'bundle-to-publish-to' has been deleted ------
 Topics
@@ -228,7 +232,7 @@ Queues
 ├── samples.asbs.hierarchymigration.endpoint2
 └── samples.asbs.hierarchymigration.endpoint2.migration
     └── samples.asbs.hierarchymigration.endpoint2
-Press any key to continue with the migration
+:: Press any key to continue with the migration
 
 ------ The queue 'samples.asbs.hierarchymigration.endpoint2.migration' was removed ------
 Topics

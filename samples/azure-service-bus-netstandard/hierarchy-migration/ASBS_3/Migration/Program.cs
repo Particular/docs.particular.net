@@ -80,7 +80,7 @@ static class Program
 
         Visualize.Endpoint2SubscriptionUnderSubscriptionBundleWithRulesSetup();
 
-        AnsiConsole.WriteLine("Press any key to continue with the migration");
+        AnsiConsole.WriteLine(":: Press any key to continue with the migration");
         Console.ReadLine();
 
         await adminClient.DeleteSubscriptionAsync(Hierarchy.PublishBundleName, Hierarchy.Endpoint2SubscriptionName);
@@ -131,7 +131,7 @@ static class Program
 
         Visualize.Endpoint2SubscriptionOnSubscriptionBundleFowardingChanged();
 
-        AnsiConsole.WriteLine("Press any key to continue with the migration");
+        AnsiConsole.WriteLine(":: Press any key to continue with the migration");
         Console.ReadLine();
 
         await adminClient.DeleteQueueAsync(Hierarchy.Endpoint2MigrationQueueName);
@@ -167,17 +167,7 @@ and then start 'Endpoint2'.
                 "Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
-        // Endpoint 2 will be gradually migrated
         var adminClient = new ServiceBusAdministrationClient(connectionString);
-
-        var endpointsShouldBeStopped = new Rule($"Endpoints should be stopped")
-        {
-            Alignment = Justify.Center,
-            Border = BoxBorder.Ascii
-        };
-        AnsiConsole.Write(endpointsShouldBeStopped);
-        AnsiConsole.MarkupLine(":warning: Make sure 'Endpoint1' and 'Endpoint2' are not running");
-        AnsiConsole.WriteLine();
 
         var infrastructureCleanup = new Rule($"Infrastructure cleanup")
         {
@@ -185,12 +175,19 @@ and then start 'Endpoint2'.
             Border = BoxBorder.Ascii
         };
         AnsiConsole.Write(infrastructureCleanup);
-        if (AnsiConsole.Confirm("Cleanup infrastructure from previous runs of this sample?"))
+        AnsiConsole.WriteLine();
+        AnsiConsole.MarkupLine(":warning: Make sure 'Endpoint1' and 'Endpoint2' are not running for the infrastructure cleanup to succeed.");
+        AnsiConsole.WriteLine();
+        if (AnsiConsole.Confirm("Cleanup infrastructure from previous runs of this sample (recommended)?"))
         {
             await DeleteExistingInfrastructure(adminClient);
 
             Visualize.DeletedInfrastructure();
         }
+
+        AnsiConsole.WriteLine();
+
+        Visualize.TopologyBeforeMigration();
 
         AnsiConsole.WriteLine();
 
@@ -200,11 +197,9 @@ and then start 'Endpoint2'.
             Border = BoxBorder.Ascii
         };
         AnsiConsole.Write(endpointsShouldBeRunning);
-        AnsiConsole.MarkupLine(
-            ":warning: Start 'Endpoint1' and 'Endpoint2' and wait a bit until some messages are published.");
         AnsiConsole.WriteLine();
-
-        Visualize.TopologyBeforeMigration();
+        AnsiConsole.MarkupLine(
+            ":warning: Start 'Endpoint1' and 'Endpoint2' and wait a bit until some messages are published. After some time...");
 
         AnsiConsole.WriteLine(":: Press any key to setup the sample topology");
         Console.ReadLine();
