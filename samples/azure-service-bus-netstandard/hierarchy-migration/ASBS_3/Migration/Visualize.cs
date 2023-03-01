@@ -332,6 +332,9 @@ internal static class Visualize
         queues.AddNode(Hierarchy.Endpoint2QueueName);
         queues.AddNode(Hierarchy.Endpoint2MigrationQueueName);
         AnsiConsole.Write(queues);
+        AnsiConsole.WriteLine();
+        AnsiConsole.MarkupLine(":magnifying_glass_tilted_right: Notice how Endpoint2 temporarily stops receiving events");
+        AnsiConsole.WriteLine();
     }
 
     /**

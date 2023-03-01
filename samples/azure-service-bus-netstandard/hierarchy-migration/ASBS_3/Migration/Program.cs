@@ -80,7 +80,7 @@ static class Program
 
         Visualize.Endpoint2SubscriptionUnderSubscriptionBundleWithRulesSetup();
 
-        AnsiConsole.WriteLine("Press any key to continue with the migration");
+        AnsiConsole.WriteLine(":: Press any key to continue with the migration");
         Console.ReadLine();
 
         await adminClient.DeleteSubscriptionAsync(Hierarchy.PublishBundleName, Hierarchy.Endpoint2SubscriptionName);
@@ -131,7 +131,7 @@ static class Program
 
         Visualize.Endpoint2SubscriptionOnSubscriptionBundleFowardingChanged();
 
-        AnsiConsole.WriteLine("Press any key to continue with the migration");
+        AnsiConsole.WriteLine(":: Press any key to continue with the migration");
         Console.ReadLine();
 
         await adminClient.DeleteQueueAsync(Hierarchy.Endpoint2MigrationQueueName);

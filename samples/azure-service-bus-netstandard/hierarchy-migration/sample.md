@@ -163,7 +163,10 @@ Queues
 ├── samples.asbs.hierarchymigration.endpoint1
 ├── samples.asbs.hierarchymigration.endpoint2
 └── samples.asbs.hierarchymigration.endpoint2.migration
-Press any key to continue with the migration
+
+🔎 Notice how Endpoint2 temporarily stops receiving events
+
+:: Press any key to continue with the migration
 
 ----- The subscription 'Samples.ASBS.HierarchyMigration.Endpoint2' on topic 'bundle-to-publish-to' has been deleted ------
 Topics
@@ -229,7 +232,7 @@ Queues
 ├── samples.asbs.hierarchymigration.endpoint2
 └── samples.asbs.hierarchymigration.endpoint2.migration
     └── samples.asbs.hierarchymigration.endpoint2
-Press any key to continue with the migration
+:: Press any key to continue with the migration
 
 ------ The queue 'samples.asbs.hierarchymigration.endpoint2.migration' was removed ------
 Topics
