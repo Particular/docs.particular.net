@@ -66,4 +66,8 @@ The following ServiceControl connection string options are available in versions
 * `QueueNamePrefix=<value>` - Queue name prefix transport [option](/transports/sqs/configuration-options.md#queuenameprefix),
 * `TopicNamePrefix=<value>` - Topic name prefix transport [option](/transports/sqs/configuration-options.md#topicnameprefix)
 * `S3BucketForLargeMessages=<value>` - S3 bucket for large messages [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages),
-* `S3KeyPrefix=<value>` - S3 key prefic [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages-s3keyprefix).
+* `S3KeyPrefix=<value>` - S3 key prefix [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages-s3keyprefix).
+
+The following ServiceControl connection string options are available in versions 5.7.1 and above:
+
+* `DoNotWrapOutgoingMessages=<value>` - Do not wrap outgoing messages [option](/transports/sqs/configuration-options.md#donotwrapoutgoingmessages).
