@@ -9,9 +9,9 @@ related:
  - nservicebus/security/property-encryption
 ---
 
-.NET 8 has depracated the `RijndaelManaged` class used by previous versions of this package. The replacement class, `AesManaged` is backwards compatible with the old class in the sense that messages encrypted with `RijdaelManaged` can be decrypted by `AesManaged` and vice versa. The `AesManaged` is, however, limited to 128 bit block size (as the AES standard defines) while the `RijndaelManaged` allos 128, 192 and 256 bit blocks. The lower block size has no effect on the strenght of the encryption.
+As of .NET 7, the [`RijndaelManaged` class](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.rijndaelmanaged) is obsolete and not recommended. The replacement class, [`AesManaged`](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aesmanaged) is backward-compatible with the old class in that messages encrypted with `RijdaelManaged` can be decrypted by `AesManaged` and vice versa. However, `AesManaged` is limited to a block size of 128 bits (as defined by the AES standard) while the `RijndaelManaged` allows 128-, 192-, and 256-bit block sizes. The lower block size has no effect on the strenght of the encryption.
 
-NOTE: If the system used non default block size, make sure to follow the upgrade guide from version 3 to version 3.1 prior to upgrading to version 4.
+NOTE: If a system uses non-default block size, follow the upgrade guide from [version 3 to version 3.1](./message-property-encryption-3to3.1) prior to upgrading to version 4.
 
 ## RijdaelEncryptionService
 
