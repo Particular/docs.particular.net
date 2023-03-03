@@ -7,10 +7,12 @@ class Program
     static async Task Main()
     {
         Console.Title = "Samples.Sqs.SimpleReceiver";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.SimpleReceiver");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.SimpleReceiver");        
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseTransport(new SqsTransport());
 
+        var transport = new SqsTransport();
+        transport.DoNotWrapOutgoingMessages = true;
+        endpointConfiguration.UseTransport(transport);
 
         #region RegisterBehaviorInPipeline
         endpointConfiguration.Pipeline.Register(new AccessToAmazonSqsNativeMessageBehavior(), "Demonstrates how to access the native message from a pipeline behavior");

@@ -10,7 +10,7 @@ By default the transport wraps and base64 encodes outgoing messages to ensure co
 
 snippet: DoNotWrapOutgoingMessages
 
-WARN: This setting should only be enabled if all endpoints are running a version of the transport that contains this setting. ServiceControl should be on version 4.29.2 or above.
+WARN: This setting should only be enabled if all endpoints are running a version of the transport that contains this setting. ServiceControl should be on version 4.29.3 or above.
 
 ### Message Attributes
 
