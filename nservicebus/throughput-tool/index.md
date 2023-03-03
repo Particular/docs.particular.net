@@ -1,34 +1,39 @@
 ---
 title: Measuring system throughput
-summary: Use the Particular throughput tool to measure the throughput of an NServiceBus system.
+summary: Use the Particular endpoint throughput counter tool to measure the throughput of an NServiceBus system.
 reviewed: 2022-11-09
 ---
 
-The Particular throughput tool can be installed locally and run against a production system to discover the throughput of each endpoint in a system over a period of time.
+The Particular endpoint throughput counter tool can be installed locally and run against a production system to measure the throughput of each endpoint over a period of time.
 
 ## Installation
 
 The tool can be installed as a .NET tool for Windows/Linux or as a self-contained Windows executable.
 
-### .NET tool install (preferred)
+### .NET tool (recommended)
 
 1. Install [.NET 6.0](https://dotnet.microsoft.com/en-us/download).
-2. From a terminal window, use the following command to install the throughput counter from MyGet:
+1. From a terminal window, use the following command to install the throughput counter from MyGet:
+
     ```shell
     dotnet tool install -g Particular.EndpointThroughputCounter --add-source=https://www.myget.org/F/particular/api/v3/index.json
     ```
-3. Run the tool by executing `throughput-counter`:
+
+1. Run the tool by executing `throughput-counter`:
+
     ```shell
     throughput-counter <arguments>
     ```
 
 ### Self-contained executable
 
-In this mode, the target system does not need any version of .NET preinstalled:
+In this mode, the target system does not need any version of .NET preinstalled.
 
-1. [Download the self-contained Windows executable](https://s3.amazonaws.com/particular.downloads/EndpointThroughputCounter/Particular.EndpointThroughputCounter.zip)
-2. Unzip the downloaded file.
-3. Execute the tool using its full name from the folder in which it was downloaded:
+1. Download the [self-contained Windows executable](https://s3.amazonaws.com/particular.downloads/EndpointThroughputCounter/Particular.EndpointThroughputCounter.zip).
+1. Unzip the downloaded file.
+1. Open a terminal window and navigate to folder to which it was downloaded.
+1. Execute the tool from the terminal by using its full name:
+
     ```shell
     Particular.EndpointThroughputCounter.exe <arguments>
     ```
@@ -44,7 +49,7 @@ The tool can collect data using a variety of methods depending upon the system's
 * Microsoft Message Queueing (MSMQ) – Use [ServiceControl data collection](service-control.md)
 * Azure Storage Queues – Use [ServiceControl data collection](service-control.md)
 
-If the system uses MSMQ or Azure Storage Queues but does not use ServiceControl, this tool cannot be used to measure throughput. [Contact Particular Software](https://particular.net/contact) for instructions on estimating system throughput.
+If the system uses MSMQ or Azure Storage Queues but does not use ServiceControl, this tool cannot be used to measure throughput. Open a [non-critical support case](https://particular.net/support) for instructions on estimating system throughput.
 
 ## Masking private data
 
@@ -81,4 +86,4 @@ dotnet tool uninstall -g Particular.EndpointThroughputCounter
 
 ## Questions
 
-Check out the [frequently asked questions](faq.md).
+Check out [frequently asked questions (FAQ)](faq.md) about the endpoint throughput counter tool.
