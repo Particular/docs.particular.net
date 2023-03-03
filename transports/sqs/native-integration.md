@@ -1,7 +1,7 @@
 ---
 title: AmazonSQS native integration
 summary: Considerations when integrating NServiceBus endpoints with native Amazon SQS publishers and consumers.
-reviewed: 2023-02-17
+reviewed: 2023-03-03
 component: sqs
 versions: '[5.3,]'
 related:
