@@ -10,6 +10,10 @@ By default the transport uses a parameterless constructor to build the S3 client
 
 snippet: S3ClientFactory
 
+#if-version [6.1,)
+NOTE: If a custom S3 client is provided, it will not be disposed of when the endpoint is stopped.
+#end-if
+
 ### ServerSideEncryption
 
 **Optional**
