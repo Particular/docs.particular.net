@@ -10,8 +10,10 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.SimpleReceiver");
         endpointConfiguration.EnableInstallers();
 
-        var transport = new SqsTransport();
-        transport.DoNotWrapOutgoingMessages = true;
+        var transport = new SqsTransport
+        {
+            DoNotWrapOutgoingMessages = true
+        };
         endpointConfiguration.UseTransport(transport);
 
         #region RegisterBehaviorInPipeline
