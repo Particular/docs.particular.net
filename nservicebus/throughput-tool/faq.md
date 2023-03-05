@@ -36,7 +36,7 @@ The tool should be run for each environment, using the data collection method ap
 
 ## How will running the tool affect my system
 
-The tool was designed to be as lightweight and unintrusive as possible. Even in system configurations that require an extended runtime, queries are infrequent and most of the tool runtime is spent waiting. Thus, load from running the tool on a production system should be insignificant and likely to go unnoticed.
+The tool was designed to be as lightweight and unintrusive as possible. Even in system configurations that require a longer execution time, queries are infrequent and most of the tool runtime is spent waiting. Thus, load from running the tool on a production system should be insignificant and likely to go unnoticed.
 
 ## How long will it take to run the tool
 
