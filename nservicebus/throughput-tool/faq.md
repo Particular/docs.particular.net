@@ -18,7 +18,7 @@ The tool assists in gathering the information needed for licensing NServiceBus a
 
 ## Does the tool automatically submit the report to Particular Software
 
-No, the tool does not automatically submit report data to Particular Software or any other party. The collected data is only used to generate a local report which can be sent to Particular Software as needed.
+No, the tool does not automatically submit report data to Particular Software or any other party. The collected data is only used to generate a local report. That report can then be sent to Particular Software as needed.
 
 ## How do I choose a data collection method from all of the options
 
