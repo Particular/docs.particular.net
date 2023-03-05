@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 class Program
 {
-    static readonly string MessageToSend = new XDocument(new XElement("NativeIntegration.Receiver.SomeNativeMessage", new XElement("ThisIsTheMessage", "Hello!"))).ToString();    
+    static readonly string MessageToSend = new XDocument(new XElement("NativeIntegration.Receiver.SomeNativeMessage", new XElement("ThisIsTheMessage", "Hello!"))).ToString();
 
     static async Task Main()
     {
@@ -34,7 +34,7 @@ class Program
                     break;
             }
         }
-    }    
+    }
 
     static async Task SendTo(Dictionary<string, MessageAttributeValue> messageAttributeValues, string message)
     {
@@ -46,7 +46,7 @@ class Program
             }).ConfigureAwait(false);            
 
             var sendMessageRequest = new SendMessageRequest
-            {                
+            {
                 QueueUrl = getQueueUrlResponse.QueueUrl,
                 MessageAttributes = messageAttributeValues,
                 MessageBody = message

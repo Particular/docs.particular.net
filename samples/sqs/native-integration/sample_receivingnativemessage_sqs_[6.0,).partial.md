@@ -1,6 +1,6 @@
 On the receiving end, an NServiceBus endpoint is listening to the queue and has a handler in place to handle messages of type `SomeNativeMessage`.
 
-NOTE: For the message to be successfully deserialized by NServiceBus the sender must include the full name of the message class, including the namespace.
+NOTE: For the message to be successfully deserialized by NServiceBus the sender must include the full name of the message class.
 
 First, the message will be intercepted in the incoming logical message context as there is a behavior in place:
 

@@ -439,7 +439,7 @@ class Usage
         #endregion
 #pragma warning restore 618
     }
-    
+
     class SubscribedEvent { }
 
     class PublishedEvent { }

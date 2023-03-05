@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="8.*" />
-    <PackageReference Include="NServiceBus.AmazonSQS" Version="6.1" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="6.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sender\Sender.csproj" />
