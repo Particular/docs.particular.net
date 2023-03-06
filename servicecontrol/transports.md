@@ -58,7 +58,7 @@ In addition to the [connection string options of the transport](/transports/sql/
 
 #### Amazon SQS
 
-The following ServiceControl connection string options are available in versions 4.4 and above:
+The following ServiceControl connection string options are available:
 
 * `AccessKeyId=<value>` - AssessKeyId value,
 * `SecretAccessKey=<value>` - SecretAccessKey value,
@@ -66,4 +66,5 @@ The following ServiceControl connection string options are available in versions
 * `QueueNamePrefix=<value>` - Queue name prefix transport [option](/transports/sqs/configuration-options.md#queuenameprefix),
 * `TopicNamePrefix=<value>` - Topic name prefix transport [option](/transports/sqs/configuration-options.md#topicnameprefix)
 * `S3BucketForLargeMessages=<value>` - S3 bucket for large messages [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages),
-* `S3KeyPrefix=<value>` - S3 key prefic [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages-s3keyprefix).
+* `S3KeyPrefix=<value>` - S3 key prefix [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages-s3keyprefix).
+* `DoNotWrapOutgoingMessages=true` - Do not wrap outgoing messages [option](/transports/sqs/configuration-options.md#donotwrapoutgoingmessages).

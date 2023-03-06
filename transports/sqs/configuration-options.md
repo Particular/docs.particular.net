@@ -13,6 +13,8 @@ partial: source
 
 partial: clientfactory
 
+partial: donotwrapoutgoingmessages
+
 ## MaxTTLDays
 
 **Optional**

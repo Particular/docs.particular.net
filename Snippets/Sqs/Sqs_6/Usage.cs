@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Amazon;
@@ -9,6 +10,7 @@ using Amazon.SQS;
 using Amazon.SQS.Model;
 using NServiceBus;
 using NServiceBus.Pipeline;
+using NServiceBus.Transport.SQS;
 
 
 class Usage
@@ -306,10 +308,12 @@ class Usage
     {
         #region V1BackwardsCompatibility
 
+#pragma warning disable CS0618 // Type or member is obsolete
         var transport = new SqsTransport
         {
             EnableV1CompatibilityMode = true
         };
+#pragma warning restore CS0618 // Type or member is obsolete
 
         endpointConfiguration.UseTransport(transport);
 
