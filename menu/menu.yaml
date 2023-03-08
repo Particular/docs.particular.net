@@ -259,6 +259,10 @@
         Title: Version 5 to 6
     - Title: Message Property Encryption
       Articles:
+      - Url: nservicebus/upgrades/message-property-encryption-3.1to4
+        Title: Version 3.1 to 4
+      - Url: nservicebus/upgrades/message-property-encryption-3to3.1
+        Title: Version 3 to 3.1
       - Url: nservicebus/upgrades/externalize-encryption
         Title: Migrate To External Nuget
     - Title: Performance Counters
