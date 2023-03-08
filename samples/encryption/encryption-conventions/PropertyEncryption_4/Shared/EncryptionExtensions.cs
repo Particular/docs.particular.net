@@ -10,12 +10,9 @@ public static class EncryptionExtensions
     {
         var encryptionService = new AesEncryptionService(
             encryptionKeyIdentifier: "2015-10",
-            key: Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+            key: Convert.FromBase64String("v96c7+e1aqFeNhMdZneHAQITEcgJu1z3ENSFUIr+FoM="));
         endpointConfiguration.EnableMessagePropertyEncryption(encryptionService,
-            encryptedPropertyConvention: info =>
-            {
-                return info.Name.StartsWith("Encrypted");
-            });
+            encryptedPropertyConvention: info => info.Name.StartsWith("Encrypted"));
     }
 
     #endregion
