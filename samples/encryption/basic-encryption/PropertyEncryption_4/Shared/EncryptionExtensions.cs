@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using NServiceBus;
 using NServiceBus.Encryption.MessageProperty;
 
