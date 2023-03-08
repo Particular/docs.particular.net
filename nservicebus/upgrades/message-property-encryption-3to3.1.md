@@ -13,4 +13,4 @@ As of .NET 7, the [`RijndaelManaged` class](https://learn.microsoft.com/en-us/do
 
 ## AesEncryptionService
 
-`NServiceBus.Encryption.MessageProperty` version 3.1 includes the `AesEncryptionService` class that replaces the deprecated `RijndaelEncryptionService`.
+`NServiceBus.Encryption.MessageProperty` version 3.1 includes the `AesEncryptionService` class that replaces the deprecated `RijndaelEncryptionService`. In most cases, upgrading involves replacing all instances of `RijndaelEncryptionService` with `AesEncryptionService`. No further code changes are necessary.

@@ -13,4 +13,4 @@ As of .NET 7, the [`RijndaelManaged` class](https://learn.microsoft.com/en-us/do
 
 ## RijdaelEncryptionService
 
-The `RijdaelEncryptionService` has been removed. Use `AesEncryptionService` instead.
+The `RijdaelEncryptionService` has been removed. Use `AesEncryptionService` instead. In most cases, upgrading involves replacing all instances of `RijndaelEncryptionService` with `AesEncryptionService`. No further code changes are necessary.
