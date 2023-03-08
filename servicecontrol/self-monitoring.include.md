@@ -6,7 +6,7 @@ A machine running MSMQ has a single transactional dead letter queue. Messages th
 
 #### Azure Service Bus staging dead letter queue
 
-Every Azure Service Bus queue has an associated dead letter queue. When ServiceControl sends a message for retry it uses a staging queue. ServiceControl monitors the dead letter queue associated with the staging queue. The presence of messages in the dead letter queue indicates problems delivering messages for retries.
+Every Azure Service Bus queue has an associated dead letter queue. When ServiceControl sends a message for retry, it uses a staging queue. ServiceControl monitors the dead letter queue associated with the staging queue. The presence of messages in the dead letter queue indicates problems delivering messages for retries.
 
 #### Failed imports
 
@@ -22,4 +22,4 @@ ServiceControl stores messages in an embedded database. If the drive containing 
 
 #### Critical message database storage space
 
-This is similar to the [Message database storage space check](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-message-database-storage-space) however in this case if the drive containing the database has less than 5% remaining of its total capacity, message ingestion on the ServiceControl instance is stopped to prevent data loss, and a failure is reported. This threshold is controlled by the [ServiceControl/MinimumStorageLeftRequiredForIngestion](/servicecontrol/creating-config-file.md#troubleshooting-servicecontrolminimumstorageleftrequiredforingestion) (for the error instance) and [ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion](/servicecontrol/audit-instances/creating-config-file.md#troubleshooting-ravendb-3-5-servicecontrol-auditminimumstorageleftrequiredforingestion) (for the audit instance) settings.
+This is similar to the [Message database storage space check](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-message-database-storage-space). However, in this case, if the drive containing the database has less than 5% remaining of its total capacity, message ingestion on the ServiceControl instance is stopped to prevent data loss, and a failure is reported. This threshold is controlled by the [ServiceControl/MinimumStorageLeftRequiredForIngestion](/servicecontrol/creating-config-file.md#troubleshooting-servicecontrolminimumstorageleftrequiredforingestion) (for the error instance) and [ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion](/servicecontrol/audit-instances/creating-config-file.md#troubleshooting-ravendb-3-5-servicecontrol-auditminimumstorageleftrequiredforingestion) (for the audit instance) settings.

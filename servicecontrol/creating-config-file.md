@@ -14,7 +14,7 @@ The following documents should be reviewed prior to modifying configuration sett
 * [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
 * [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
-#### ServiceControl/HostName
+### ServiceControl/HostName
 
 The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, e.g. `sc.mydomain.com`.
 
@@ -24,8 +24,7 @@ Default: `localhost`
 
 Warning: If the `ServiceControl/HostName` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
 
-
-#### ServiceControl/Port
+### ServiceControl/Port
 
 The port to bind the embedded HTTP server.
 
@@ -35,8 +34,7 @@ Default: `33333`.
 
 Warning: If the `ServiceControl/Port` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
 
-
-#### ServiceControl/DatabaseMaintenancePort
+### ServiceControl/DatabaseMaintenancePort
 
 The port to bind the RavenDB when in maintenance mode or [RavenDB is exposed](creating-config-file.md#troubleshooting-servicecontrolexposeravendb). This setting is only applicable from version 2 and above.
 
@@ -44,8 +42,7 @@ Type: int
 
 Default: `33334`.
 
-
-#### ServiceControl/VirtualDirectory
+### ServiceControl/VirtualDirectory
 
 The virtual directory to bind the embedded HTTP server to; modify this setting to bind to a specific virtual directory.
 
@@ -55,8 +52,7 @@ Default: `empty`
 
 Note: This setting is provided for backward compatibility and should be considered obsolete.
 
-
-#### ServiceControl/DbPath
+### ServiceControl/DbPath
 
 The path where the internal RavenDB is located.
 
@@ -66,7 +62,7 @@ Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB
 
 The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
 
-#### Raven/IndexStoragePath
+### Raven/IndexStoragePath
 
 The path for the indexes on disk.
 
@@ -74,7 +70,7 @@ Type: string
 
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\indexes`
 
-#### Raven/Esent/LogsPath
+### Raven/Esent/LogsPath
 
 The path for the Esent logs on disk.
 
@@ -82,7 +78,7 @@ Type: string
 
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs`
 
-#### ServiceControl/LogPath
+### ServiceControl/LogPath
 
 The path for the ServiceControl logs.
 
@@ -92,8 +88,7 @@ Default: `%LOCALAPPDATA%\Particular\ServiceControl\logs`
 
 Note: %LOCALAPPDATA% is a user-specific environment variable.
 
-
-#### ServiceControl/LogLevel
+### ServiceControl/LogLevel
 
 Controls the LogLevel of the ServiceControl logs.
 
@@ -107,8 +102,7 @@ This setting will default to `Info` if an invalid value is assigned.
 
 In version 1.8 and below, the log level is `Info` and can not be changed.
 
-
-#### ServiceControl/RavenDBLogLevel
+### ServiceControl/RavenDBLogLevel
 
 Controls the LogLevel of the RavenDB logs.
 This setting was introduced in ServiceControl version 1.10. See [Logging](logging.md)
@@ -121,8 +115,7 @@ Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
 This setting will default to `Warn` if an invalid value is assigned.
 
-
-#### ServiceControl/TimeToRestartErrorIngestionAfterFailure
+### ServiceControl/TimeToRestartErrorIngestionAfterFailure
 
 Controls the maximum time delay to wait before restarting the error ingestion pipeline after detecting a connection problem.
 This setting was introduced in ServiceControl version 4.4.1.
@@ -133,7 +126,7 @@ Default: 60 seconds
 
 Valid settings are between 5 seconds and 1 hour.
 
-#### ServiceControl/InternalQueueName
+### ServiceControl/InternalQueueName
 
 Controls the name of the internal queue that ServiceControl uses for internal control messages.
 
@@ -143,11 +136,9 @@ Type: string
 
 Default: The Service Name
 
-
 ## Data retention
 
-
-#### ServiceControl/ExpirationProcessTimerInSeconds
+### ServiceControl/ExpirationProcessTimerInSeconds
 
 The number of seconds to wait between checking for expired messages.
 
@@ -155,8 +146,7 @@ Type: int
 
 Default: `600` (10 minutes). The default for ServiceControl version 1.3 and below is `60` (1 minute), Starting in version 1.4, the default is `600` (10 minutes). Setting the value to `0` will disable the expiration process. This is not recommended and it is only provided for fault finding. Valid range is `0` to `10800` (3 Hours).
 
-
-#### ServiceControl/ExpirationProcessBatchSize
+### ServiceControl/ExpirationProcessBatchSize
 
 This setting was introduced in version 1.4. The minimum allowed value for this setting is `10240`; there is no hard-coded maximum as this is dependent on system performance.
 
@@ -164,8 +154,7 @@ Type: int
 
 Default: `65512`.
 
-
-#### ServiceControl/HoursToKeepMessagesBeforeExpiring
+### ServiceControl/HoursToKeepMessagesBeforeExpiring
 
 This setting is only applicable in version 1.11.1 and below.
 
@@ -181,8 +170,7 @@ In ServiceControl versions, 1.8.2 and below, the valid range for this setting is
 
 Starting in versions 1.8.3, the upper limit has been removed to allow for longer retention. This was done to allow scenarios with low volumes of messages to retain them longer. Setting this value too high can cause the embedded RavenDB to become large and unresponsive when indexing. See [Capacity and Planning](capacity-and-planning.md).
 
-
-#### ServiceControl/AuditRetentionPeriod
+### ServiceControl/AuditRetentionPeriod
 
 This setting is only applicable, starting from versions 1.12.
 
@@ -196,8 +184,7 @@ Default: There is no default; this setting is required.
 
 Valid range for this setting is from 1 hour to 364 days.
 
-
-#### ServiceControl/ErrorRetentionPeriod
+### ServiceControl/ErrorRetentionPeriod
 
 This setting is only applicable, starting from version 1.12.
 
@@ -211,8 +198,7 @@ Default: There is no default; this setting is required.
 
 Valid range for this setting is between 10 days and 45 days.
 
-
-#### ServiceControl/EventRetentionPeriod
+### ServiceControl/EventRetentionPeriod
 
 This setting is only applicable, starting from version 1.25.
 
@@ -226,7 +212,7 @@ Valid range for this setting is from 1 hour to 200 days.
 
 ## Performance tuning
 
-#### ServiceControl/MaximumConcurrencyLevel
+### ServiceControl/MaximumConcurrencyLevel
 
 This setting controls how many messages can be processed concurrently (in parallel) by ServiceControl. The default value is 10.
 
@@ -234,7 +220,7 @@ In some cases, the ingestion rate can be too high and the underlying database ca
 
 Warning: The maximum concurrency level should be incremented only if there are no verified bottlenecks in CPU, RAM, network I/O, storage I/O, and storage index lag.
 
-#### ServiceControl/MaximumMessageThroughputPerSecond
+### ServiceControl/MaximumMessageThroughputPerSecond
 
 NOTE: This setting was removed in version 2.0.
 
@@ -244,8 +230,7 @@ Type: int
 
 Default: `350`.
 
-
-#### ServiceControl/MaxBodySizeToStore
+### ServiceControl/MaxBodySizeToStore
 
 This setting was introduced in version 1.6. It allows the upper limit on body size to be configured.
 
@@ -257,8 +242,7 @@ Type: int
 
 Default: `102400` (100Kb)
 
-
-#### ServiceControl/HttpDefaultConnectionLimit
+### ServiceControl/HttpDefaultConnectionLimit
 
 This setting was introduced in version 1.6.2. The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, the number of concurrent connections can be increased to meet transport concurrency settings.
 
@@ -266,7 +250,7 @@ Type: string
 
 Default: `100`
 
-#### ServiceControl/EnableFullTextSearchOnBodies
+### ServiceControl/EnableFullTextSearchOnBodies
 
 This setting is only applicable starting from version 4.17.0.
 
@@ -278,7 +262,7 @@ Default: `true`.
 
 ## Transport
 
-#### ServiceControl/TransportType
+### ServiceControl/TransportType
 
 The transport type to run ServiceControl with.
 
@@ -288,13 +272,13 @@ Default: `ServiceControl.Transports.Msmq.MsmqTransportCustomization, ServiceCont
 
 The assembly containing the transport type needs to be present in the ServiceControl directory for ServiceControl being able to instantiate the transport type.
 
-#### NServiceBus/Transport
+### NServiceBus/Transport
 
 The connection string for the transport. This setting should be placed in the `connectionStrings` section of the configuration file.
 
 Type: string
 
-#### ServiceBus/AuditQueue
+### ServiceBus/AuditQueue
 
 This setting is only applicable in versions 3.8.2 and below. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/creating-config-file.md).
 
@@ -304,8 +288,7 @@ Type: string
 
 Default: `audit`
 
-
-#### ServiceBus/ErrorQueue
+### ServiceBus/ErrorQueue
 
 The error queue name.
 
@@ -313,8 +296,7 @@ Type: string
 
 Default: `error`
 
-
-#### ServiceBus/ErrorLogQueue
+### ServiceBus/ErrorLogQueue
 
 The error queue name to use for forwarding error messages.
 
@@ -326,7 +308,7 @@ Starting in version 1.29, ServiceControl creates the queue specified by this set
 
 NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
 
-#### ServiceBus/AuditLogQueue
+### ServiceBus/AuditLogQueue
 
 This setting is only applicable in versions 3.8.2 and below. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/creating-config-file.md).
 
@@ -338,10 +320,9 @@ Default: `<AuditQueue>.log`
 
 Starting in version 1.29, ServiceControl creates the queue specified by this setting only if `ServiceControl/ForwardAuditMessages` is enabled. In previous versions, the queue specified by this setting is created when the service instance is installed regardless of the value of `ServiceControl/ForwardAuditMessages`.
 
-
 NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
 
-#### ServiceControl/ForwardAuditMessages
+### ServiceControl/ForwardAuditMessages
 
 This setting is only applicable in versions 3.8.2 and below. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/creating-config-file.md).
 
@@ -357,8 +338,7 @@ In version 1.12.0 and above, there is no default for this setting. This setting 
 
 See [Installation](installation.md) for details on how to set this at install time.
 
-
-#### ServiceControl/ForwardErrorMessages
+### ServiceControl/ForwardErrorMessages
 
 This setting is only applicable from version 1.12.0 and above.
 
@@ -372,11 +352,9 @@ This entry should be set to `false` if there is no external process reading mess
 
 See [Installation](installation.md) for details on how to set this at install time.
 
-
 ## Plugin-specific
 
-
-#### ServiceControl/HeartbeatGracePeriod
+### ServiceControl/HeartbeatGracePeriod
 
 The period that defines whether an endpoint is considered alive or not since the last received heartbeat.
 
@@ -390,7 +368,7 @@ Note: When monitoring multiple endpoints, ensure that the heartbeat grace period
 
 ## Troubleshooting
 
-#### ServiceControl/ExposeRavenDB
+### ServiceControl/ExposeRavenDB
 
 ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio.
 
@@ -410,8 +388,7 @@ http://localhost:{configured ServiceControl instance maintenance port}/studio/in
 
 NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).
 
-
-#### ServiceControl/DataSpaceRemainingThreshold
+### ServiceControl/DataSpaceRemainingThreshold
 
 This setting was introduced in version 3.8. The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user.
 
@@ -419,9 +396,9 @@ Type: int
 
 Default: 20
 
-#### ServiceControl/MinimumStorageLeftRequiredForIngestion
+### ServiceControl/MinimumStorageLeftRequiredForIngestion
 
-This setting was introduced in version 4.28. The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. This will resume once more disk space is made available.
+This setting was introduced in version 4.28. The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. Message ingestion will resume once more disk space is made available.
 
 Type: int
 

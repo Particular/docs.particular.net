@@ -1,14 +1,12 @@
 ## Prerequisites
 
-
 ### MS SQL Server
 
- 1. Ensure an instance of SQL Server (Version 2016 or above for custom saga finders sample, or Version 2012 or above for other samples) is installed and accessible on `localhost` and port `1433`. For example use `docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=yourStrong(!)Password' -p 1433:1433 -d mcr.microsoft.com/mssql/server:latest`.
- 
-Or, alternatively, change the connection string to point to different SQL Server instance.
+ 1. Ensure an instance of SQL Server (Version 2016 or above for custom saga finders sample, or Version 2012 or above for other samples) is installed and accessible on `localhost` and port `1433`.
 
-At startup each endpoint will create its required SQL assets including databases, tables and schemas.
+Alternatively, change the connection string to point to different SQL Server instance.
 
+At startup each endpoint will create the required SQL assets including databases, tables, and schemas.
 
 ### MySQL
 
@@ -16,8 +14,9 @@ At startup each endpoint will create its required SQL assets including databases
  1. Add the username to access the instance to an environment variable named `MySqlUserName`.
  1. Add the password to access the instance to an environment variable named `MySqlPassword`.
 
-Or, alternatively, change the connection string to point to different MySQL instance.
+Alternatively, change the connection string to point to different MySQL instance.
 
+At startup each endpoint will create the required SQL assets including databases, tables, and schemas.
 
 ### Oracle
 
@@ -25,8 +24,9 @@ Or, alternatively, change the connection string to point to different MySQL inst
  1. Add the username to access the instance to an environment variable named `OracleUserName`.
  1. Add the password to access the instance to an environment variable named `OraclePassword`.
 
-Or, alternatively, change the connection string to point to different Oracle instance.
+Alternatively, change the connection string to point to different Oracle instance.
 
+At startup each endpoint will create the required SQL assets including databases, tables, and schemas.
 
 ### PostgreSQL
 
@@ -34,4 +34,6 @@ Or, alternatively, change the connection string to point to different Oracle ins
  1. Add the username to access the instance to an environment variable named `PostgreSqlUserName`.
  1. Add the password to access the instance to an environment variable named `PostgreSqlPassword`.
 
-Or, alternatively, change the connection string to point to different PostgreSQL instance.
+Alternatively, change the connection string to point to different PostgreSQL instance.
+
+At startup each endpoint will create the required SQL assets including databases, tables, and schemas.
