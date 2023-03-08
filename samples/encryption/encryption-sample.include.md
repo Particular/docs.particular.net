@@ -43,24 +43,44 @@ snippet: ConfigureEncryption
 
 The serialized message content can be seen by running `Endpoint1` without running `Endpoint2`.
 
-Messages are queued in the `.learningtransport` folder next to the solution. The message will be [contained in a file](/transports/learning/viewing-messages.md) in the `Samples.Encryption.Endpoint2` sub-folder with the following content:
+Messages are queued in the `.learningtransport` folder next to the solution. The message will be [contained in a file](/transports/learning/viewing-messages.md) in the `Samples.Encryption.Endpoint2` sub-folder with the following content (XML namespaces removed for clarity):
 
 ```xml
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <MessageWithSecretData>
-  <EncryptedSecret>zoksP3QrtMqMmnXyShnvaLEq3n/6DA2f/7d6DDtwzXo=@u5THG1mtftg6+QAEsRh21g==</EncryptedSecret>
-  <SubProperty>
-    <EncryptedSecret>bmWpBtnYu0ira0Ke6+4YEQ==@zhLAqIx+qjwLFD1VGg78Bw==</EncryptedSecret>
-  </SubProperty>
-  <CreditCards>
-    <CreditCardDetails>
-      <ValidTo>2018-07-28T13:52:10.9062784Z</ValidTo>
-      <EncryptedNumber>FMApSVh9UEIYcE75VWvYUw==@7z6A1A/I/w5lACPbMwxoKg==</EncryptedNumber>
-    </CreditCardDetails>
-    <CreditCardDetails>
-      <ValidTo>2019-07-28T13:52:10.9072791Z</ValidTo>
-      <EncryptedNumber>KLWeyjogoNfZS1mblvcOMw==@St/nXNacedk5rW4GOwzg/A==</EncryptedNumber>
-    </CreditCardDetails>
-  </CreditCards>
+   <Secret>
+      <EncryptedValue>
+         <EncryptedBase64Value>VOQk8pvlMdpdAgQiJldg2WZQCL86FxFMEd0VsTydOSw=</EncryptedBase64Value>
+         <Base64Iv>4OnlFC1WyhTmkDLyfOdnYQ==</Base64Iv>
+      </EncryptedValue>
+   </Secret>
+   <SubProperty>
+      <Secret>
+         <EncryptedValue>
+            <EncryptedBase64Value>uEjQePtNlhkWEr5QHgiLbA==</EncryptedBase64Value>
+            <Base64Iv>kh5C9W9picaOZ5dhz4adlA==</Base64Iv>
+         </EncryptedValue>
+      </Secret>
+   </SubProperty>
+   <CreditCards>
+      <CreditCardDetails>
+         <ValidTo>2024-03-08T21:08:34.091063Z</ValidTo>
+         <Number>
+            <EncryptedValue>
+               <EncryptedBase64Value>Iv621YNDox3pd1zIbkeRrA==</EncryptedBase64Value>
+               <Base64Iv>VPrVGB888YmKhi8lgkNFtg==</Base64Iv>
+            </EncryptedValue>
+         </Number>
+      </CreditCardDetails>
+      <CreditCardDetails>
+         <ValidTo>2025-03-08T21:08:34.093907Z</ValidTo>
+         <Number>
+            <EncryptedValue>
+               <EncryptedBase64Value>WY69+QzkqqKJ6UYCemShUg==</EncryptedBase64Value>
+               <Base64Iv>BFLz5jz0DdhJNK01MFrMmA==</Base64Iv>
+            </EncryptedValue>
+         </Number>
+      </CreditCardDetails>
+   </CreditCards>
 </MessageWithSecretData>
 ```
