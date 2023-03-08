@@ -263,7 +263,7 @@ http://localhost:{configured ServiceControl instance maintenance port}/studio/in
 
 NOTE: The ServiceControl Audit embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](/servicecontrol/setting-custom-hostname.md).
 
-### ServiceControl.Audit/DataSpaceRemainingThreshold
+#### ServiceControl.Audit/DataSpaceRemainingThreshold
 
 The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive) then the check will fail, alerting the user.
 
@@ -271,7 +271,7 @@ Type: int
 
 Default: 20
 
-### ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion
+#### ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion
 
 The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. Message ingestion will resume once more disk space is made available.
 
@@ -279,7 +279,7 @@ Type: int
 
 Default: 5
 
-### Raven/Esent/LogsPath
+#### Raven/Esent/LogsPath
 
 The path for the Esent logs on disk.
 
