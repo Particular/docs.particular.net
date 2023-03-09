@@ -21,7 +21,7 @@
         public async Task Write()
         {
             var endpointConfiguration = new EndpointConfiguration(endpointName);
-            var encryptionService = new RijndaelEncryptionService(
+            var encryptionService = new AesEncryptionService(
                 encryptionKeyIdentifier: "2015-10",
                 key: Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
 

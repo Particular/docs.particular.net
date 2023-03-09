@@ -33,7 +33,7 @@
                 {"2015-09", Convert.FromBase64String("abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6")},
                 {"2015-08", Convert.FromBase64String("cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6")},
             };
-            var encryptionService = new RijndaelEncryptionService(defaultKey, keys);
+            var encryptionService = new AesEncryptionService(defaultKey, keys);
 
             endpointConfiguration.EnableMessagePropertyEncryption(encryptionService);
 
