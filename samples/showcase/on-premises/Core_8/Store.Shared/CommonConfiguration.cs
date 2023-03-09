@@ -14,7 +14,7 @@ public static class CommonConfiguration
         endpointConfiguration.UsePersistence<LearningPersistence>();
         var defaultKey = "2015-10";
         var ascii = Encoding.ASCII;
-        var encryptionService = new RijndaelEncryptionService(
+        var encryptionService = new AesEncryptionService(
             encryptionKeyIdentifier: defaultKey,
             key: ascii.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
         endpointConfiguration.EnableMessagePropertyEncryption(encryptionService);
