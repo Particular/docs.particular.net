@@ -9,11 +9,11 @@ related:
 - samples/encryption
 ---
 
-WARNING: Message property encryption is available as a [dedicated NuGet package](/nservicebus/security/property-encryption.md). The API documented on this page will continue to work for NServiceBus Version 6 but it will hint about its upcoming obsoletion with the following warning: *Message property encryption is released as a dedicated 'NServiceBus.Encryption.MessageProperty' package.*.
+INFO: Message property encryption is available as a [dedicated NuGet package](/nservicebus/security/property-encryption.md). The API documented on this page will continue to work for NServiceBus Version 6 but it will hint about its upcoming obsoletion with the following warning: *Message property encryption is released as a dedicated 'NServiceBus.Encryption.MessageProperty' package.*.
 
 Property encryption operates on specific properties of a message. The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible.
 
-The encryption algorithm used is [Rijndael](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.rijndael) up to `NServiceBus.Encryption.MessageProperty` version 3.0 and [AES](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes) for later versions. Both algorithms are based on a key shared between the sender and receiver which is known as symmetric encryption.
+partial: algorithm
 
 Keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decrypt the information. Encryption keys should not be stored on the client (if deployed remotely) or even on a web server in the DMZ.
 

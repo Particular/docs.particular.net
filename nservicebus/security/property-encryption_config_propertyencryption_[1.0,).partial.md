@@ -1,3 +1,3 @@
 ### Via App.config or IProvideConfiguration
 
-Configuring by `app.config` or `IProvideConfiguration` has been deprecated. Move over to code based configuration.
+Configuring via an `app.config` file or with `IProvideConfiguration` is not available. Move to code-based configuration.

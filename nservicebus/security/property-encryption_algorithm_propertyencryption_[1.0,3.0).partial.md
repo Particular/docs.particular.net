@@ -1,0 +1,1 @@
+The encryption algorithm used is [Rijndael](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.rijndael). This algorithm is based on a key shared between the sender and receiver which is known as symmetric encryption.

@@ -1,0 +1,1 @@
+The encryption algorithm used is [AES](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes). This algorithm is based on a key shared between the sender and receiver which is known as symmetric encryption.
