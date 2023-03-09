@@ -762,7 +762,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/3.0.0) | 2022-11-17     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/4.0.1) | 2023-03-08     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/3.1.1) | 2023-03-08     | 2024-03-08        | Superseded by 4.0.x               |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/3.0.0) | 2022-11-17     | 2023-06-08        | Superseded by 3.1.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/2.0.1) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/1.0.0) | ~~2017-02-09~~ | ~~2020-05-29~~    | ~~Extended by NServiceBus 6.5.x~~ |
 
@@ -959,7 +961,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.25.x](https://www.nuget.org/packages/Particular.PlatformSample/2.25.0) | 2023-02-28     | -                 | -                                 |
+| [2.26.x](https://www.nuget.org/packages/Particular.PlatformSample/2.26.0) | 2023-03-08     | -                 | -                                 |
+| [2.25.x](https://www.nuget.org/packages/Particular.PlatformSample/2.25.0) | 2023-02-28     | 2023-06-08        | Superseded by 2.26.x              |
 | [2.24.x](https://www.nuget.org/packages/Particular.PlatformSample/2.24.0) | 2023-02-23     | 2023-05-28        | Superseded by 2.25.x              |
 | [2.22.x](https://www.nuget.org/packages/Particular.PlatformSample/2.22.1) | 2023-02-03     | 2023-05-23        | Superseded by 2.24.x              |
 | [2.20.x](https://www.nuget.org/packages/Particular.PlatformSample/2.20.0) | 2023-01-18     | 2023-05-03        | Superseded by 2.22.x              |
