@@ -2,7 +2,7 @@
 title: Debugging NServiceBus in Visual Studio Code
 summary: How to configure Visual Studio Code to build and debug multiple NServiceBus endpoints simultaneously
 component: Core
-reviewed: 2020-04-29
+reviewed: 2023-03-12
 ---
 
 This article describes how to configure [Visual Studio Code](https://code.visualstudio.com/) (or "VS Code") to build an NServiceBus solution with multiple projects and debug multiple endpoints simultaneously.
