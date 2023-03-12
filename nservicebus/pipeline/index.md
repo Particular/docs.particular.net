@@ -1,7 +1,7 @@
 ---
 title: Message Handling Pipeline
 summary: Overview of the message handling pipeline
-reviewed: 2020-05-07
+reviewed: 2023-03-12
 component: Core
 redirects:
 - nservicebus/nservicebus-pipeline-intro
