@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Step-by-step: Sending a command"
-reviewed: 2020-04-29
+reviewed: 2023-03-12
 summary: In this 15-20 minute tutorial, you'll learn how to define NServiceBus messages and handlers, and send and receive a message.
 redirects:
 - tutorials/intro-to-nservicebus/2-sending-a-command
@@ -80,7 +80,7 @@ When NServiceBus starts up, it scans the types in all available assemblies, find
 
 ## Exercise
 
-Now let's take the solution we started in the last lesson and modify it to send a message. When we're done, the ClientUI endpoint will send a PlaceOrder message to itself and then process that message, as depicted in the following diagram:
+Now let's take the solution we started in the [last lesson](../nservicebus-step-by-step) and modify it to send a message. When we're done, the ClientUI endpoint will send a PlaceOrder message to itself and then process that message, as depicted in the following diagram:
 
 ![Exercise 2 Diagram](diagram.svg)
 
