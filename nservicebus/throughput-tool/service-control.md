@@ -35,3 +35,23 @@ include: throughput-tool-global-options
 This screenshot shows how to identify the instance types and locate the required URLs:
 
 ![ServiceControl instances showing tool inputs](servicecontrol.png)
+
+## What does the tool do
+
+The tool will send HTTP requests to both the [ServiceControl primary instance]() and the [ServiceControl monitoring instance]().
+
+### Primary instance
+
+The following requests will be sent to the primary instance:
+
+* `<PrimaryUrl>`: Makes sure the URL is valid and that the ServiceControl version is compatible with the tool.
+* `<PrimaryUrl>/endpoints`: Discovers endpoint names.
+* `<PrimaryUrl>/configuration/remotes`: Discovers information about connected audit instances, and verifies that their versions are compatible with the tool.
+* `<PrimaryUrl>/endpoints/{EndpointName}/audit-count`: Requested only once per endpoint, and retrieves throughput information for endpoints with auditing enabled.
+
+### Monitoring instance
+
+The following requests will be sent to the monitoring instance:
+
+* `<MonitoringUrl>`: Makes sure the URL is valid and that the ServiceControl version is compatible with the tool.
+* `<MonitoringUrl>/monitored-endpoints?history=60`: Retrieved once per hour to get throughput data for endpoints with monitoring enabled.

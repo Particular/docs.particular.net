@@ -33,7 +33,7 @@ include: throughput-tool-global-options
   
 NOTE: In recent versions of Microsoft's Sql Server drivers encryption has been enabled by default. When trying to connect to a Sql Server instance that uses a self-signed cerftificate, the tool may display an exception stating *[The certificate chain was issued by an authority that is not trusted](https://learn.microsoft.com/en-us/troubleshoot/sql/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19)*. To bypass this exception update the connection string to include `;Trust Server Certificate=true`.
 
-## SQL queries
+## What does the tool do
 
 The tool executes the following SQL queries on the database connection strings provided.
 
@@ -59,20 +59,10 @@ GROUP BY C.TABLE_SCHEMA, C.TABLE_NAME
 HAVING COUNT(*) = 8
 ```
 
-### Get ROWVERSION
+### Get snapshot
 
-The tool uses these queries to discover the current `ROWVERSION` in each queue table. The start query is used at the beginning of tool execution, and the end query is used at the end of tool execution roughly 24 hours later.
-
-These queries will be executed at minimum once per queue table. Because it is impossible to get a value if the queue is empty (there are no rows in the table) the tool may need to retry several times in order to get a value for each queue. The retries are time-limited to a 15 minute collection window at the beginning and end of the tool execution, and uses a backoff mechanism to avoid putting any undue stress on the SQL Server instance.
-
-#### Start query
+The tool uses this query to get a snapshot of the identity value for each queue table. It is executed once per queue table when the tool is first run, then again at the end of the tool execution. The snapshots are compared to determine how many messages were processed in that table while the tool was running.
 
 ```sql
-select min(RowVersion) from [SCHEMA_NAME].[TABLE_NAME] with (nolock);
-```
-
-#### End query
-
-```sql
-select max(RowVersion) from [SCHEMA_NAME].[TABLE_NAME] with (nolock);
+select IDENT_CURRENT('[SCHEMA_NAME].[TABLE_NAME]')
 ```
