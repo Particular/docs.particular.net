@@ -53,7 +53,7 @@ Messages are data contracts and as such, they are shared between multiple endpoi
 
 INFO: It is technically possible to embed messages within the endpoint assembly, but those messages can't be exchanged with other endpoints. Some of the samples in our documentation break this rule and embed the messages in the endpoint assembly in order to make the sample easier to understand. In this tutorial, we'll stick to keeping them in dedicated message assemblies.
 
-Additionally, message assemblies should have no dependencies other than libraries included with the .NET Framework, and the NServiceBus core assembly, which is required to reference the `ICommand` interface. 
+Additionally, message assemblies should have no dependencies other than libraries included with the .NET Framework, and the NServiceBus core assembly, which is required to reference the `ICommand` interface.
 
 Following these guidelines will make your message contracts easy to evolve in the future.
 
@@ -80,7 +80,7 @@ When NServiceBus starts up, it scans the types in all available assemblies, find
 
 ## Exercise
 
-Now let's take the solution we started in the [last lesson](../nservicebus-step-by-step/1-getting-started/) and modify it to send a message. When we're done, the ClientUI endpoint will send a PlaceOrder message to itself and then process that message, as depicted in the following diagram:
+Now let's take the solution we started in the [last lesson](../1-getting-started/) and modify it to send a message. When we're done, the ClientUI endpoint will send a PlaceOrder message to itself and then process that message, as depicted in the following diagram:
 
 ![Exercise 2 Diagram](diagram.svg)
 
@@ -143,7 +143,7 @@ In the **ClientUI** project, we are currently stopping the endpoint when we pres
 Add the following method to the **Program.cs** file:
 
 snippet: RunLoop
- 
+
 Let's take a closer look at the case when we want to place an order. In order to create the `PlaceOrder` command, create an instance of the `PlaceOrder` class and supply a unique value for the `OrderId`. Then, after logging the details, we can send it with the `SendLocal` method.
 
 `SendLocal(object message)` is a method that is available on the `IEndpointInstance` interface, as we are using here, and also on the `IMessageHandlerContext` interface, which we saw when we were defining our message handler. The *Local* part means that we are not sending to an external endpoint (in a different process) so we intend to handle the message in the same endpoint that sent it. Using `SendLocal()`, we don't have to do anything special to tell the message where to go.
