@@ -35,6 +35,6 @@ include: throughput-tool-global-options
 
 ## What does the tool do
 
-The tool first queries the SQS API to fetch all queue names. Then, for each queue that is discovered, the tool queries the CloudWatch API for the `NumberOfMessagesDeleted` metrics for the past 30 days.
+The tool first queries the SQS API to [fetch all queue names](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html). Then, for each queue that is discovered, the tool queries the [CloudWatch API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html) for the `NumberOfMessagesDeleted` metrics for the past 30 days.
 
 Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 30 days worth of data at once, which means that the report will be generated without delay. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
