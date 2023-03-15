@@ -28,3 +28,11 @@ The tool will prompt for the username and password to access the RabbitMQ manage
 |-|-|
 | <nobr>`--apiUrl`</nobr> | **Required** – The URL for the RabbitMQ management site. |
 include: throughput-tool-global-options
+
+## What does the tool do
+
+After performing an interactive login to the RabbitMQ Management API, the tool will:
+
+1. Query `/api/overview` to get basic information about the system, ensure that the current version of RabbitMQ is compatible with the tool, and that the necessary plugins are installed to be able to get queue throughput details.
+2. Query `/api/queues?page=1&page_size=500&name=&use_regex=false&pagination=true` to discover queue names and to get the message stats for each queue. If more than 500 queues are present, the additional pages of data will be requested as well.
+3. The queries to `/api/queues` will be repeated every 5 minutes over the 24-hour tool runtime. This way, the tool can continue counting if a restart of a RabbitMQ server instance causes the message stats to reset.

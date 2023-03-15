@@ -30,13 +30,25 @@ No, in most cases, the tool does not need to be run on a production server. Ofte
 
 See [How does the tool measure throughput](#how-does-the-tool-measure-throughput) below for details on how the tool behaves when analyzing data from each collection method.
 
+## How do I decide which data collection option to use
+
+Refer to the [Running the tool](/nservicebus/throughput-tool/#running-the-tool) section of the documentation to select the correct data collection option based on the message transport used by the system.
+
 ## What if I have a hybrid system with multiple message transports
 
 The tool should be run for each environment, using the data collection method appropriate for that environment.
 
 ## How will running the tool affect my system
 
-The tool was designed to be as lightweight and unintrusive as possible. Even in system configurations that require a longer execution time, queries are infrequent and most of the tool runtime is spent waiting. Thus, load from running the tool on a production system should be insignificant and likely to go unnoticed.
+The tool was designed to be lightweight and non-intrusive. The load from running the tool on a production system is insignificant and unnoticeable. Even in system configurations that require a longer execution time, queries are infrequent and most of the tool runtime is spent waiting.
+
+The technical details of how the tool will interact with a running system are documented on the respective pages for each data collection mechanism:
+
+* [Azure Service Bus](azure-service-bus.md?what-does-the-tool-do)
+* [Amazon SQS](amazon-sqs.md?what-does-the-tool-do)
+* [RabbitMQ](rabbitmq.md?what-does-the-tool-do)
+* [SQL Transport](sql-transport.md?what-does-the-tool-do)
+* [ServiceControl](service-control.md?what-does-the-tool-do)
 
 ## How long will it take to run the tool
 
@@ -54,11 +66,15 @@ The tool queries Azure Service Bus to get the queue names in the namespace. Then
 
 The tool can be run from any workstation that can access the Azure Service Bus namespace.
 
+See the [technical details](azure-service-bus.md#what-does-the-tool-do) for more information.
+
 ### [Amazon SQS](amazon-sqs.md)
 
 The tool queries AWS using the [ListQueues API](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html) to get the queue names in the namespace. Then, it queries the [AWS Cloudwatch GetMetricStatistics API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html) to gather daily throughput measurements for each queue.
 
 The tool can be run from any workstation that can access AWS services.
+
+See the [technical details](amazon-sqs.md#what-does-the-tool-do) for more information.
 
 ### [RabbitMQ](rabbitmq.md)
 
@@ -66,13 +82,15 @@ The tool queries the [Management API](https://www.rabbitmq.com/management.html#h
 
 The tool can be run from any workstation that can access the RabbitMQ Management interface.
 
+See the [technical details](rabbitmq.md#what-does-the-tool-do) for more information.
+
 ### [SQL Transport](sql-transport.md)
 
 The tool queries SQL Server to find tables that look like queues based on their column structure, and gathers the throughput for each table. This process happens once when first executing the tool then again after 24 hours. Measurements are based on the differences in throughput between these first and second data gathers.
 
-See the fully documented [SQL queries used by the tool](sql-transport.md#sql-queries) for review.
-
 The tool can be run from any workstation with access to the database containing the queue tables.
+
+See the [technical details](sql-transport.md#what-does-the-tool-do) for more information, including the exact SQL queries used by the tool.
 
 ### [ServiceControl](service-control.md)
 
@@ -80,7 +98,9 @@ The tool requires a [ServiceControl Monitoring](/servicecontrol/monitoring-insta
 
 The tool queries the monitoring instance once every hour to get the per-endpoint throughput information for the last hour. It repeats this query 23 additional times to gather information for a 24-hour period.
 
-For endpoints not configured to [send metrics data to ServiceControl](/monitoring/metrics/install-plugin.md), the tool will attempt to inspect audit information to find how many messages have been successfully processed each hour. However, this fallback mechanism is much more resource-intensive, so enabling metrics reporting on all endpoints is highly recommended.
+For endpoints not configured to [send metrics data to ServiceControl](/monitoring/metrics/install-plugin.md), the tool inspect Audit information to find how many messages have been successfully processed.
+
+See the [technical details](service-control.md#what-does-the-tool-do) for more information.
 
 ## What if my system's queue names contain proprietary information I don't want on the report
 
