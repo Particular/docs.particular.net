@@ -1200,6 +1200,10 @@
       Title: Migrating from NServicebus.MongoDB
     - Url: persistence/mongodb/migrating-from-tekmaven
       Title: Migrating from NServiceBus.Persistence.MongoDB
+  - Title: DynamoDB
+    Articles:
+    - Url: persistence/dynamodb
+      Title: DynamoDB persistence
 
 - Name: ServiceInsight
   Topics:
