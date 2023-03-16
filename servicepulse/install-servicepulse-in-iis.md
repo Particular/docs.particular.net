@@ -1,7 +1,7 @@
 ---
 title: Install ServicePulse in IIS
 summary: Describes how to manually install ServicePulse in IIS
-reviewed: 2023-03-16
+reviewed: 2022-09-29
 component: ServicePulse
 ---
 
@@ -79,54 +79,6 @@ NOTE: If TLS is to be applied to ServicePulse then ServiceControl also must be c
     </rewrite>
   </system.webServer>
 </configuration>
-```
-
-###  Hosting ServicePulse within a subfolder
-
-It is possible to host ServicePulse within a subfolder, but this requires changes to the configuration.  The first change is that the URL Rewrite configuration must be aware of the subfolder. The rewrite must include the SubFolder name in both the match as well as the rewrite action.
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-  <system.webServer>
-    <rewrite>
-      <rules>
-        <rule name="Handle app.constants.js requests from AngularJs" stopProcessing="true">
-          <match url="^SubFolder/a/js/app.constants.js(.*)" />
-          <action type="Rewrite" url="/SubFolder/js/app.constants.js{R:1}" />
-        </rule>
-        <rule name="Handle Vue.js routing paths" stopProcessing="true">
-          <match url="(.*)" />
-          <conditions logicalGrouping="MatchAll">
-            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
-          </conditions>
-          <action type="Rewrite" url="/" />
-        </rule>
-      </rules>
-    </rewrite>
-  </system.webServer>
-</configuration>
-```
-
-The second required configuration change is to specify the name of the subfolder in the `base_url`. This is done by:
-
-1. Go to the root directory for the website created in the basic configuration.
-1. Edit `js\app.constants.js` file and set the `base_url` variable to be the name of the subfolder.
-
-NOTE: the `base_url` variable must have a `/` character both before and after the name of the subfolder. E.g. `/SubFolder`.
-
-e.g.
-
-```JavaScript
-window.defaultConfig = {
-    default_route: '/dashboard',
-    base_url: '/SubFolder/',
-    version: '1.34.0',
-    service_control_url: 'http://localhost:33333/api/',
-    monitoring_urls: [''],
-    showPendingRetry: false
-};
 ```
 
 ## Advanced configuration
