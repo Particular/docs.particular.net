@@ -196,7 +196,7 @@ Type: timespan
 
 Default: There is no default; this setting is required.
 
-Valid range for this setting is between 10 days and 45 days.
+Valid range for this setting is between 5 days and 45 days.
 
 ### ServiceControl/EventRetentionPeriod
 
