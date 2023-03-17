@@ -182,7 +182,7 @@ Type: timespan
 
 Default: There is no default; this setting is required.
 
-Valid range for this setting is from 1 hour to 364 days.
+Valid range for this setting is from 1 hour to 365 days.
 
 ### ServiceControl/ErrorRetentionPeriod
 
