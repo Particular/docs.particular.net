@@ -99,3 +99,12 @@ The maximum concurrency that will be used for ingesting metric messages.
 Type: int
 
 Default: `32`
+
+### Monitoring/EndpointUptimeGracePeriod
+
+The time period after which the endpoint is considered stale if it stops sending messages.
+
+Type: timespan
+
+Default: 40 seconds
+
