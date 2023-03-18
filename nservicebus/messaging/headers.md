@@ -1,7 +1,7 @@
 ---
 title: Message Headers
 summary: List of built-in NServiceBus message headers.
-reviewed: 2021-12-22
+reviewed: 2023-13-18
 component: Core
 versions: '[5.0,)'
 redirects:
@@ -130,10 +130,13 @@ Message intent can have one of the following values:
 | ------------- |-------------|
 | Send |Regular point-to-point send. Note that messages sent to the error queue will also have a `Send` intent|
 | Publish |The message is an event that has been published and will be sent to all subscribers.|
-| Subscribe |A control message indicating that the source endpoint would like to subscribe to a specific message.|
-| Unsubscribe |A control message indicating that the source endpoint would like to unsubscribe to a specific message.|
+| Subscribe |A [control message](#messaging-interaction-headers-nservicebus-messageintent) indicating that the source endpoint would like to subscribe to a specific message.|
+| Unsubscribe |A [control message](#messaging-interaction-headers-nservicebus-messageintent) indicating that the source endpoint would like to unsubscribe to a specific message.|
 | Reply | The message has been initiated by doing a Reply or a Return from within a Handler or a Saga. |
 
+### NServiceBus.ControlMessage
+
+Indicates that the message is a control message, ie has no body and the intent of the message and any data is transmitted in the message headers.
 
 ### NServiceBus.ReplyToAddress
 
@@ -201,7 +204,7 @@ snippet: HeaderWriterReturnReturning
 
 ### NServiceBus.ClearTimeouts
 
-A header to indicate that the contained control message is requesting that timeouts be cleared for a given saga.
+A header to indicate that the contained [control message](#messaging-interaction-headers-nservicebus-messageintent) is requesting that timeouts be cleared for a given saga.
 
 
 ### NServiceBus.Timeout.Expire
