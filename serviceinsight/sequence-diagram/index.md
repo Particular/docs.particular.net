@@ -1,11 +1,11 @@
 ---
 title: Sequence Diagram
 summary: The ServiceInsight sequence diagram view
-reviewed: 2020-04-29
+reviewed: 2023-03-20
 component: ServiceInsight
 ---
 
-The sequence diagram shows when messages in the same conversation as the selected message were sent and handled relative to each other. It shows the interaction of endpoints involved in the conversation to give an understanding of the sequence of messages that occured during that conversation.
+The sequence diagram shows when messages in the same conversation as the selected message were sent and handled relative to each other. It shows the interaction of endpoints involved in the conversation to give an understanding of the sequence of messages that occurred during that conversation.
 
 ![Sequence Diagram](sequence-diagram.png 'width=500')
 
@@ -17,7 +17,7 @@ If handling an incoming message results in outgoing messages, those messages are
 
 Additional headers are used to determine endpoint names, message intent, and other factors. [Read more about headers](/nservicebus/messaging/headers.md).
 
-Note: The order of operations is critical to the correctness of the sequence diagram. When endpoints are running on more than one machine, it is crucial that those machines have synchronised clocks. This can be done using an NTP server.
+Note: The order of operations is critical to the correctness of the sequence diagram. When endpoints are running on more than one machine, it is crucial that those machines have synchronized clocks. This can be done using an NTP server.
 
 Note: Due to performance reasons, only the last 200 messages in a conversation are loaded. This limit can be controlled from ServiceInsight's application configuration file.
 
@@ -28,23 +28,23 @@ Note: Due to performance reasons, only the last 200 messages in a conversation a
 
 ![Endpoint](endpoint.png)
 
-Each endpoint involved in the conversation is represented by a gray box along the top of the diagram. Hover on the endpoint to get more information such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a lifeline that shows time flowing from top to bottom.
+Each endpoint involved in the conversation is represented by a gray box along the top of the diagram. Hover on the endpoint to get additional information, such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a lifeline that shows time flowing from top to bottom.
 
 
 ### Start of conversation
 
 ![Start of conversation marker](start-of-conversation.png)
 
-Each conversation starts with a single command or event. This message is often triggered by some action external to the system (for example, a user clicking a Submit Order button on a website). The metadata used to generate the diagram does not include the trigger in these cases but it does include the endpoint that sent or published the message, represented by a Start of Conversation marker on the endpoint lifeline.
+Each conversation starts with a single command or event. This message is often triggered by some action external to the system (for example, a user clicking a Submit Order button on a website). The metadata used to generate the diagram does not include the trigger in these cases, but it does include the endpoint that sent or published the message, represented by a Start of Conversation marker on the endpoint lifeline.
 
-NOTE: The Start of Conversation marker may not always be visible. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. The diagram will show only the last 50 messages from the conversation and this may not include the initiating message.
+NOTE: The Start of Conversation marker may not always be visible. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. The diagram will show only the last 50 messages from the conversation, and this may not include the initiating message.
 
 
 ### Messages
 
 ![Send message](send.png 'width=500')
 
-When a message is sent, a solid arrow is drawn from the lifeline of the sending endpoint to the lifeline of the receiving endpoint labelled with the message type. The arrow always points from the sending endpoint to the receiving endpoint.
+When a message is sent, a solid arrow is drawn from the lifeline of the sending endpoint to the lifeline of the receiving endpoint, labelled with the message type. The arrow always points from the sending endpoint to the receiving endpoint.
 
 ![Message context menu](context-menu.png)
 
@@ -56,7 +56,7 @@ Some time after a message is received, it is processed by the receiving endpoint
 
 A message arrow shown leaving a processing box represents an outgoing message that was sent or published while processing the incoming message. These arrows are shown in the order in which those messages were sent or published.
 
-NOTE: A processing box appearing further down the diagram indicates that the processing occurred later. This means other messages sent by other endpoints may have been processed in the meantime. The size of a processing box and the distance between them is not important.
+NOTE: A processing box appearing further down the diagram indicates that the processing occurred later. This means other messages sent by other endpoints may have been processed meanwhile. The size of a processing box and the distance between them is not essential.
 
 ![Failed processing](failing-handler.png)
 
@@ -67,7 +67,7 @@ If the processing of a message failed, the processing box is displayed in red wi
 
 ![Event](event.png 'width=500')
 
-Events are represented similarly to other messages but with dashed lines and a different icon.
+Events are represented similarly to other messages, but with dashed lines and a different icon.
 
 NOTE: Each event published will appear once for each subscriber, as if individual messages were sent to each subscriber by the sender, regardless of whether unicast or multicast routing is used. [Learn more about message routing](/nservicebus/messaging/routing.md).
 
@@ -85,7 +85,7 @@ A loopback message is a message that an endpoint sends to itself and is represen
 
 A timeout message is a special type of loopback message where handling is deferred until later. It is represented as a loopback message with a clock icon.
 
-NOTE: The time of processing may not correspond to the time at which a timeout message was sent back for processing by the timeout message scheduler. The sequence diagram does not currently support visualization of the time at which the timeout message was sent back and will only indicate when it was processed.
+NOTE: The time of processing may not correspond to the time at which a timeout message was sent back for processing by the timeout message scheduler. The sequence diagram does not currently support visualization of the time at which the timeout message was sent back, and will only indicate when it was processed.
 
 
 ### Differences from UML sequence diagrams
@@ -111,4 +111,4 @@ The language used in the sequence diagram is largely modeled after the standard 
 | **Handlers** | - | ![UML handler](uml-handler.png) |
 | | N/A - currently it's not possible to collect telemetry data to visualize message handlers. | Represented by rectangles directly attached to arrow heads. |
 | **Message Processing** | ![Message processing](processing.png) | - |
-| | Represented by a labeled rectangle not connected with the arrows of its parent messages. This representation was chosen to reflect that the execution/processing of incoming messages may occur only after several other messages were sent and also to reflect the default asynchronous nature of any associated response messages. | N/A |
+| | Represented by a labelled rectangle not connected with the arrows of its parent messages. This representation was chosen to reflect that the execution/processing of incoming messages may occur only after several other messages were sent, and also to reflect the default asynchronous nature of any associated response messages. | N/A |
