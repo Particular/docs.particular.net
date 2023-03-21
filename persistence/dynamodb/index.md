@@ -4,7 +4,6 @@ summary: How to use NServiceBus with AWS DynamoDB
 component: DynamoDB
 reviewed: 2023-03-16
 related:
-- samples/dynamo/simple
 ---
 
 Uses the [AWS DynamoDB](https://aws.amazon.com/pm/dynamodb/) NoSQL database service for storage.
@@ -13,7 +12,13 @@ Uses the [AWS DynamoDB](https://aws.amazon.com/pm/dynamodb/) NoSQL database serv
 
 For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
 
-partial: glance
+|Feature                    |   |
+|:---                       |---
+|Supported storage types    |Sagas, Outbox
+|Transactions               |Using `TransactWriteItems`
+|Concurrency control        |Optimistic concurrency, optional pessimistic concurrency
+|Scripted deployment        |Not supported
+|Installers                 |Table is created by installers.
 
 ## Usage
 
@@ -25,10 +30,13 @@ snippet: DynamoDBUsage
 
 By default, the persister will store records in a table named `NServiceBus.Storage`.
 
-Customize the database name using the following configuration API:
+Customize the table name and other table attributes using the following configuration API:
 
-snippet: DynamoDBTableCustomization
+snippet: DynamoDBTableCustomizationShared
 
+This configures the table settings for both Saga and Outbox persistence. Each storage type can be configured individually too:
+
+snippet: DynamoDBTableCustomizationSplit
 
 ## Transactions
 
