@@ -1,8 +1,8 @@
 ### Access rights
 
-By default the transport currently require elevated privileges to manage subscriptions at runtime. If using a [shared access policy](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-sas) make sure to include `Manage` rights and the [Azure Service Bus Data Owner](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#azure-service-bus-data-owner) role if authenticating using [Managed Identities](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-managed-service-identity).
+By default the transport requires elevated privileges to manage subscriptions at runtime. If using a [shared access policy](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-sas) make sure to include `Manage` rights and the [Azure Service Bus Data Owner](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#azure-service-bus-data-owner) role if authenticating using [Managed Identities](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-managed-service-identity).
 
-To avoid running with managed rights the following is needed:
+To avoid running with managed rights:
 
 - Make sure that [installers are not configured to run](/nservicebus/operations/installers.md)
 - [Turn off automatic subscriptions](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription)
