@@ -4,6 +4,6 @@ namespace Core7.Sagas.ReverseMapping
 
     public class MySecondMessage : IMessage
     {
-        public int SomeOtherId { get; set; }
+        public string SomeOtherId { get; set; }
     }
 }
