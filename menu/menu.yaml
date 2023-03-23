@@ -1204,6 +1204,10 @@
     Articles:
     - Url: persistence/dynamodb
       Title: DynamoDB persistence
+    - Url: persistence/dynamodb/sagas
+      Title: Sagas
+    - Url: persistence/dynamodb/outbox
+      Title: Outbox
 
 - Name: ServiceInsight
   Topics:

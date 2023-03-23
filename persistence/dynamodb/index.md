@@ -28,24 +28,24 @@ snippet: DynamoDBUsage
 
 ### Customizing the table used
 
-By default, the persister will store records in a table named `NServiceBus.Storage`.
+By default, the persister will store outbox and saga records in a shared table named `NServiceBus.Storage`.
 
 Customize the table name and other table attributes using the following configuration API:
 
 snippet: DynamoDBTableCustomizationShared
 
-This configures the table settings for both Saga and Outbox persistence. Each storage type can be configured individually too:
+Outbox and Saga data can be stored in separate tables, see the [Saga](/persistence/dynamodb/sagas.md) and [Outbox](/persistence/dynamodb/outbox.md) configuration documentation for further details.
 
-snippet: DynamoDBTableCustomizationSplit
+#### Table creation
+
+When [installers](/nservicebus/operations/installers.md) are enabled, NServiceBus will try to create the configured tables if they do not exist. Table creation can explicitly be disabled even with installers remaining enabled using the `DisableTablesCreation`setting:
+
+snippet: DynamoDBDisableTableCreation
 
 ## Transactions
 
-TODO
+Outbox and Saga persistence commit their changes transactionally, using the [DynamoDB TransactWriteItems](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transactions.html) API. Message handlers can add further operations to this transaction via the synchronized session:
 
-## Outbox cleanup
+snippet: DynamoDBSynchronizedSession
 
-When the outbox is enabled, the deduplication data is kept for seven days by default. To customize this time frame, use the following API:
-
-snippet: DynamoDBOutboxCleanup
-
-Outbox cleanup depends on the DynamoDB time-to-live feature.
+Transactions can contain a maximum of 100 operations. This limit is shared with operations enlisted by NServiceBus. Each saga will use one operation. Outbox will use `1 + <amount of outgoing messages>` operations.

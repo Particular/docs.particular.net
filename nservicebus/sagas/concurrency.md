@@ -69,13 +69,15 @@ When a persister uses pessimistic locking it will start a transaction which atte
 
 NOTE: The transaction timeout is usually set between 1 and 10 minutes. Consult the DBA or operations for system- or environment-wide transactions settings.
 
-The following saga persisters use pessimistic locking:
+The following saga persisters support pessimistic locking:
 
 - [NHibernate](/persistence/nhibernate/)
 - [MongoDB](/persistence/mongodb/) (since version 2.2.0)
 - [Service Fabric](/persistence/service-fabric/) (since version 2.2.0)
 - [SQL](/persistence/sql/) (since version 4.1.1)
 - [RavenDB](/persistence/ravendb/) (available since version 6.4.0, default since version 7.0.0)
+- [CosmosDB](/persistence/cosmosdb/)
+- [DynamoDB](/persistence/dynamodb/)
 
 #### Optimistic concurrency control
 
@@ -83,7 +85,7 @@ When a persister uses optimistic concurrency control (OCC), unlike pessimistic l
 
 Due to recoverability, OCC conflicts in high data contention scenarios may result in multiple attempts to ingest a message from a queue, and multiple attempts to update saga instance data. However, messages in the queue that are not related to that saga instance may be processed faster than with pessimistic locking because they can be ingested while the messages in recoverability are scheduled for delayed retry.
 
-The following saga persisters use OCC:
+The following saga persisters support OCC:
 
 - [Azure Table](/persistence/azure-table/)
 - [Azure Cosmos DB](/persistence/cosmosdb)
@@ -92,6 +94,8 @@ The following saga persisters use OCC:
 - [RavenDB](/persistence/ravendb/) (prior to 7.0.0)
 - [Service Fabric](/persistence/service-fabric/) (prior to 2.2.0)
 - [SQL](/persistence/sql/) (prior to 4.1.1)
+- [CosmosDB](/persistence/cosmosdb/)
+- [DynamoDB](/persistence/dynamodb/)
 
 ### Use custom recoverability for OCC conflicts
 

@@ -19,24 +19,11 @@ public class Customization
         #endregion
     }
 
-    void SplitTableConfig(PersistenceExtensions<DynamoDBPersistence> dynamoConfig)
+    void DisableTableCreation(PersistenceExtensions<DynamoDBPersistence> dynamoConfig)
     {
-        #region DynamoDBTableCustomizationSplit
+        #region DynamoDBDisableTableCreation
 
-        dynamoConfig.Sagas().Table = new TableConfiguration
-        {
-            TableName = "MySagaTable",
-            PartitionKeyName = "MySagaPartitionKey",
-            SortKeyName = "MySagaSortKey"
-        };
-
-        dynamoConfig.Outbox().Table = new TableConfiguration
-        {
-            TableName = "MyOutboxTable",
-            PartitionKeyName = "MyOutboxPartitionKey",
-            SortKeyName = "MyOutboxSortKey",
-            TimeToLiveAttributeName = "MyOutboxTtlAttribute"
-        };
+        dynamoConfig.DisableTablesCreation();
 
         #endregion
     }
