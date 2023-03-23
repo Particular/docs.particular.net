@@ -88,5 +88,17 @@ namespace Core7.Scanning
 
             #endregion
         }
+
+        void ScanningAdditionalPath(EndpointConfiguration endpointConfiguration)
+        {
+            var additionalPathToScanAssemblies = "";
+
+            #region AdditionalAssemblyScanningPath
+
+            var scanner = endpointConfiguration.AssemblyScanner();
+            scanner.AdditionalAssemblyScanningPath = additionalPathToScanAssemblies;
+
+            #endregion
+        }
     }
 }

@@ -17,7 +17,7 @@ WARNING: When running with [transport transactions disabled](/transports/transac
 
 WARNING: When running with [transport transactions disabled](/transports/transactions.md#transactions-unreliable-transactions-disabled). Both [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries) will be disabled automatically when transactions are turned off.
 
-partial: ErrorQueueDefault
+The default error queue name is `error` but some transports require it to be explicitly configured.
 
 ### Using code
 

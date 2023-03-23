@@ -10,8 +10,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsmqTransport_All", "..\Msm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_7", "Core_7\Core_7.csproj", "{54784406-19E1-4211-B394-AC5CFC8C313B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_7.8", "Core_7.8\Core_7.8.csproj", "{F6FC484C-05FD-4C90-9427-39313FCD394A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_8", "Core_8\Core_8.csproj", "{8A925B42-05C6-46B8-AA36-8872879CDF5C}"
 EndProject
 
@@ -41,10 +39,6 @@ Global
 		{8A925B42-05C6-46B8-AA36-8872879CDF5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A925B42-05C6-46B8-AA36-8872879CDF5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A925B42-05C6-46B8-AA36-8872879CDF5C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6FC484C-05FD-4C90-9427-39313FCD394A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6FC484C-05FD-4C90-9427-39313FCD394A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6FC484C-05FD-4C90-9427-39313FCD394A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6FC484C-05FD-4C90-9427-39313FCD394A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -26,10 +26,9 @@ snippet: Recoverability-pseudo-code
 
 The reality is more complex. Depending on the transports capabilities, the transactionality mode of the endpoint and user customizations recoverability tries to recover from message failures. For example on a transactional endpoint it will roll back receive transaction when an exception bubbles through to the NServiceBus infrastructure. The message is then returned to the input queue, and any messages that the user code tried to send or publish won't be sent out. The very least that recoverability will ensure is that messages which failed multiple times get moved to the configured error queue. The part of recoverability which is responsible to move failed messages to the error queue is called fault handling.
 
-partial: consecutive-failures-header
+To prevent sending all incoming messages to the error queue during a major system outage (e.g. when a database or a third-party service is down), the recoverability mechanism allows enabling [automatic rate-limiting](#automatic-rate-limiting). When enabled, NServiceBus detects the outage after a configured number of consecutive failures and automatically switches to rate-limiting mode. In this mode, only one message is attempted to probe if the problem persists. Once a message can be processed correctly, the system automatically switches to regular mode.
 
 NOTE: When a message cannot be deserialized all retry mechanisms will be bypassed and the message will be moved directly to the error queue.
-
 
 ## Immediate retries
 
@@ -62,7 +61,20 @@ NOTE: Retrying messages for extended periods of time would hide failures from op
 
 The delayed retries mechanism is implemented by rolling back the [transport transaction](/transports/transactions.md) and scheduling the message for [delayed-delivery](/nservicebus/messaging/delayed-delivery.md). Aborting the receive operation when transactions are turned off would result in a message loss. Therefore delayed retries cannot be used when transport transactions are disabled and delayed-delivery is not supported.
 
-partial: consecutive-failures
+## Automatic rate limiting
+
+The automatic rate limiting in response to consecutive message processing failures is designed to act as an [automatic circuit breaker](https://en.wikipedia.org/wiki/Circuit_breaker) preventing a large number of messages from being redirected to the `error` queue in the case of an outage of a resource required for processing of all messages (e.g. a database or a third-party service).
+
+The following code enables the detection of consecutive failures.
+
+snippet: configure-consecutive-failures
+
+When the endpoint detects a configured number of consecutive failures, it reacts by switching to a processing mode in which one message is attempted at a time. If processing fails, the endpoint waits for configured time and attempts to process the next message. The endpoint continues running in this mode until at least one message is processed successfully.
+
+### Considerations when configuring automatic rate limiting
+
+1. The number of consecutive failures must be big enough so that it doesn't trigger rate-limiting when only a few failed messages are processed by the endpoint.
+2. Endpoints that process many different message types may not be a good candidates for this feature. When rate limiting is active, it affects the entire endpoint. Endpoints that are rate limited due to a failure for one message type will slow down processing of all message types handled by the endpoint.
 
 ## Fault handling
 
