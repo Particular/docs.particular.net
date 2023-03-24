@@ -16,13 +16,23 @@ There are some cases where finer control over which assemblies are loaded is req
 
 NOTE: NServiceBus extensions such as `NServiceBus.RavenDB.dll` are not considered a core assembly but still must be included when customizing the assembly scanning.
 
-partial: appdomain
+## AppDomain assemblies
+
+By default, the assemblies that are aleady loaded into the AppDomain are scanned. The endpoint can also be configured to disable AppDomain assembly scanning:
+
+snippet: ScanningApDomainAssemblies
 
 ## Assembly files
 
 By default all assemblies in the endpoint's `bin` directory are scanned in search of related interfaces so that the endpoint can configure them automatically.
 
-partial: additional-path
+### Additional assembly scanning path
+
+NOTE: This configuration option is available only in NServiceBus version 7.4 and above.
+
+Assembly scanning can be configured to scan an additional path for assemblies located outside of the default scanning path.
+
+snippet: AdditionalAssemblyScanningPath
 
 ### Nested directories
 
@@ -30,7 +40,13 @@ Nested directories are **not** scanned for assemblies by default. Nested directo
 
 snippet: ScanningNestedAssebliesEnabled
 
-partial: disable-file-scanning
+### Disable assembly files scanning
+
+Scanning of assemblies deployed to the `bin` folder (and other configured scanning locations) can be disabled:
+
+snippet: disable-file-scanning
+
+Warn: When disabling scanning of assembly files, ensure that all required assemblies are correctly loaded into the AppDomain at endpoint startup and that AppDomain assembly scanning is enabled.
 
 ## Assemblies to scan
 
@@ -40,8 +56,7 @@ The assemblies being scanned can be further controlled via user-defined exclusio
 
 snippet: ScanningExcludeByName
 
-
-### Exclude assemblies by wildcard:
+### Exclude assemblies by wildcard
 
 Multiple assemblies can be excluded by wildcards using the following approach:
 
@@ -50,8 +65,6 @@ snippet: ScanningAssembliesWildcard
 ### Exclude specific types
 
 snippet: ScanningExcludeTypes
-
-
 
 ## Suppress scanning exceptions
 

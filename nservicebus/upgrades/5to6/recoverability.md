@@ -96,7 +96,6 @@ In NServiceBus version 5, the `MaxRetries` parameter for first level retries def
 
 In order to get the same behavior in NServiceBus version 6 as in the previous version, the value configured in version 6 should be one less than in version 5.
 
-
 ## [Custom retry policy](/nservicebus/recoverability/custom-recoverability-policy.md)
 
 In NServiceBus version 5, custom retry policies provided the ability to control second level retries. In NServiceBus version 6, the custom retry policy concept has been substituted by a recoverability policy which enables control over every stage of automatic retries as well as error handling.

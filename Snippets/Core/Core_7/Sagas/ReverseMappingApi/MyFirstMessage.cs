@@ -4,6 +4,6 @@
 
     public class MyFirstMessage : IMessage
     {
-        public int SomeId { get; set; }
+        public string SomeId { get; set; }
     }
 }

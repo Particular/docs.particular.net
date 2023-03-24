@@ -8,7 +8,7 @@
     {
         FullyCustomizedPolicy(EndpointConfiguration endpointConfiguration)
         {
-            #region FullyCustomizedPolicyRecoverabilityConfiguration
+            #region FullyCustomizedPolicyRecoverabilityConfigurationWithDiscard
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.AddUnrecoverableException<MyBusinessException>();
@@ -29,7 +29,7 @@
             #endregion
         }
 
-        #region FullyCustomizedPolicy
+        #region FullyCustomizedPolicyWithDiscard
 
         RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
         {
@@ -41,6 +41,13 @@
                 {
                     return RecoverabilityAction.MoveToError("customErrorQueue");
                 }
+            }
+
+            // If it does not make sense to have this message around anymore
+            // it can be discarded with a reason.
+            if (context.Exception is MyBusinessTimedOutException)
+            {
+                return RecoverabilityAction.Discard("Business operation timed out.");
             }
 
             // override delayed retry decision for custom exception
@@ -58,6 +65,11 @@
         #endregion
 
         class MyOtherBusinessException :
+            Exception
+        {
+        }
+
+        class MyBusinessTimedOutException :
             Exception
         {
         }
