@@ -1051,17 +1051,17 @@
   - Title: Learning
     Articles:
     - Url: persistence/learning
-      Title: Learning persistence
+      Title: Overview
   - Title: Non-Durable
     Articles:
     - Url: persistence/non-durable
-      Title: Non-durable persistence
+      Title: Overview
     - Url: persistence/non-durable/gateway-deduplication
       Title: Gateway Deduplication
   - Title: SQL
     Articles:
     - Url: persistence/sql
-      Title: SQL persistence
+      Title: Overview
     - Url: persistence/sql/dialect-mssql
       Title: SQL Server
       Articles:
@@ -1116,7 +1116,7 @@
       Title: Troubleshooting
   - Title: Cosmos DB
     Articles:
-    - Title: Azure Cosmos DB Persistence
+    - Title: Overiew
       Url: persistence/cosmosdb
     - Title: Saga concurrency
       Url: persistence/cosmosdb/saga-concurrency
@@ -1127,7 +1127,7 @@
   - Title: Azure Table
     Articles:
     - Url: persistence/azure-table
-      Title: Azure Table Persistence
+      Title: Overview
     - Url: persistence/azure-table/configuration
       Title: Configuration
     - Url: persistence/azure-table/transactions
@@ -1143,7 +1143,7 @@
   - Title: RavenDB
     Articles:
     - Url: persistence/ravendb
-      Title: RavenDB persistence
+      Title: Overview
     - Url: persistence/ravendb/connection
       Title: Connection options
     - Url: persistence/ravendb/saga-concurrency
@@ -1165,7 +1165,7 @@
   - Title: Service Fabric
     Articles:
     - Url: persistence/service-fabric
-      Title: Service Fabric persistence
+      Title: Overview
     - Url: persistence/service-fabric/sagas
       Title: Sagas
     - Url: persistence/service-fabric/outbox
@@ -1175,7 +1175,7 @@
   - Title: NHibernate
     Articles:
     - Url: persistence/nhibernate
-      Title: NHibernate persistence
+      Title: Overview
     - Url: persistence/nhibernate/accessing-data
       Title: Business data
     - Url: persistence/nhibernate/saga-concurrency
@@ -1189,11 +1189,11 @@
   - Title: MSMQ Subscription
     Articles:
     - Url: persistence/msmq
-      Title: MSMQ Subscription persistence
+      Title: Overview
   - Title: MongoDB
     Articles:
     - Url: persistence/mongodb
-      Title: MongoDB persistence
+      Title: Overview
     - Url: persistence/mongodb/document-version
       Title: How document versioning works
     - Url: persistence/mongodb/migrating-from-sbmako
