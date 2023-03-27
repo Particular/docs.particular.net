@@ -18,7 +18,7 @@ NOTE: NServiceBus extensions such as `NServiceBus.RavenDB.dll` are not considere
 
 ## AppDomain assemblies
 
-By default, the assemblies that are aleady loaded into the AppDomain are scanned. The endpoint can also be configured to disable AppDomain assembly scanning:
+By default, the assemblies that are already loaded into the AppDomain are scanned. The endpoint can also be configured to disable AppDomain assembly scanning:
 
 snippet: ScanningApDomainAssemblies
 
