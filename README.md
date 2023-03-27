@@ -30,6 +30,12 @@ For more complex changes you should fork and then submit a pull request. This is
 
 For more information, see [Collaborating on GitHub](https://help.github.com/categories/63/articles) especially [using GitHub pull requests](https://help.github.com/articles/using-pull-requests).
 
+### Running locally
+
+The repository contains a devcontainer that has all the necessary tools to develop content for the documentation. The content is automatically rendered on http://localhost:5000.
+
+For more information about devcontainers visit the [official documentation ](https://code.visualstudio.com/docs/devcontainers/containers). Install the pre-requirements mentioned in the [getting started guide](https://code.visualstudio.com/docs/devcontainers/containers#_getting-started) and open the repository in Code (`> code .`).
+
 ### Reviewing a page
 
 If, as part of editing a page, a full review of the content is done, the [reviewed header](#reviewed) should be updated. This date is used to render the [last reviewed page](https://docs.particular.net/review).
