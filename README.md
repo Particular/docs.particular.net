@@ -36,6 +36,8 @@ The repository contains a devcontainer that has all the necessary tools to devel
 
 For more information about devcontainers visit the [official documentation ](https://code.visualstudio.com/docs/devcontainers/containers). Install the pre-requirements mentioned in the [getting started guide](https://code.visualstudio.com/docs/devcontainers/containers#_getting-started) and open the repository in Code (`> code .`).
 
+Note: The docstool is currently started in the foreground. While it is possible to run it in the background with `&` or the parallel execution feature of devcontainer it might be more cumbersome to inspect the log output of the tool. The downside of starting in the foreground is that Code will continuously show a spinner with "Configuring container".
+
 ### Reviewing a page
 
 If, as part of editing a page, a full review of the content is done, the [reviewed header](#reviewed) should be updated. This date is used to render the [last reviewed page](https://docs.particular.net/review).
