@@ -27,6 +27,13 @@ NOTE: The majority of the cmdlets will only work if the PowerShell session is ru
 
 INFO: The ServiceControl installer currently includes a legacy version of the PowerShell module called `ServiceControlMgmt` that is only supported on Windows PowerShell 5.1. It does not work with newer versions of PowerShell. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with this legacy module automatically loaded. The legacy module is not signed, so the PowerShell execution policy needs to be set to `Unrestricted` to use it.
 
+### Troubleshooting 
+
+```
+Method not found: 'System.Security.AccessControl.DirectorySecurity System.IO.DirectoryInfo.GetAccessControl(System.Security.AccessControl.AccessControlSections)'
+``` 
+This indicates that TBD is not installed our outdated, make sure to TBD.
+
 ## Powershell Commands
 
 For a complete overview of all cmdlets, visit the [Managing ServiceControl via PowerShell](/servicecontrol/installation-powershell.md) page.
