@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
@@ -16,7 +17,8 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.DisableFeature<AutoSubscribe>();
 
-        endpointConfiguration.UseTransport(new SqlServerTransport(@"Data Source=.\SqlExpress;Database=PersistenceForSqlTransport;Integrated Security=True"));
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True;Encrypt=false
+        endpointConfiguration.UseTransport(new SqlServerTransport(@"Server=localhost,1433;Initial Catalog=PersistenceForSqlTransport;User Id=SA;Password=yourStrong(!)Password;Encrypt=false"));
         #endregion
 
 

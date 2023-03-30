@@ -15,8 +15,9 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseTransport(new MsmqTransport());
         endpointConfiguration.EnableInstallers();
-        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.ConnectionString(@"Data Source=.\SqlExpress;Database=PersistenceForMsmqTransport;Integrated Security=True");
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();        
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=PersistenceForMsmqTransport;Integrated Security=True;Encrypt=false
+        persistence.ConnectionString(@"Server=localhost,1433;Initial Catalog=PersistenceForMsmqTransport;User Id=SA;Password=yourStrong(!)Password;Encrypt=false");
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
