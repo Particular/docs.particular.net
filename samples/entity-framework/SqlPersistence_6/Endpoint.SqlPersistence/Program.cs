@@ -10,7 +10,8 @@ class Program
 {
     static async Task Main()
     {
-        var connectionString = @"Data Source=.\sqlexpress;Database=NsbSamplesEfUowSql;Integrated Security=True;Max Pool Size=100";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesEfUowSql;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesEfUowSql;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";        
         Console.Title = "Samples.EntityFrameworkUnitOfWork.SQL";
         using (var connection = new SqlConnection(connectionString))
         {
