@@ -101,4 +101,4 @@ The following configuration operations are obsolete in NServiceBus version 8. Se
 * `EndpointConfiguration.DoNotCreateQueues`
 * `TransportExtensions.ConnectionString`
 
-Note: Queue creation can be controlled using the [installer configuration](/nservicebus/operations/installersmd).
+Note: Queue creation can be controlled using the [installer configuration](/nservicebus/operations/installers.md).
