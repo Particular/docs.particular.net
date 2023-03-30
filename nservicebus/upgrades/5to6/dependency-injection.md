@@ -1,6 +1,6 @@
 ---
 title: Dependency Injection Changes in NServiceBus Version 6
-reviewed: 2020-05-07
+reviewed: 2023-03-30
 component: Core
 related:
  - nservicebus/dependency-injection
