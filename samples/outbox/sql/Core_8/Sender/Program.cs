@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Transport.SqlServer;
@@ -17,9 +17,10 @@ class Program
 
         #region SenderConfiguration
 
-        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlOutbox;Integrated Security=True;Max Pool Size=100";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlOutbox;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
-        var transport = new SqlServerTransport(connection)
+        var transport = new SqlServerTransport(connectionString)
         {
             DefaultSchema = "sender",
             TransportTransactionMode = TransportTransactionMode.ReceiveOnly
@@ -33,7 +34,7 @@ class Program
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
-                return new SqlConnection(connection);
+                return new SqlConnection(connectionString);
             });
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
         dialect.Schema("sender");
@@ -48,7 +49,7 @@ class Program
 
         #endregion
 
-        SqlHelper.CreateSchema(connection, "sender");
+        SqlHelper.CreateSchema(connectionString, "sender");
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
