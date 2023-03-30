@@ -32,7 +32,7 @@ Each ServiceControl Audit instance stores data in an embedded database. Audit da
 
 When using ServiceControl Management to create a new ServiceControl instance, a connected ServiceControl Audit instance is automatically created. Using PowerShell, create the ServiceControl instance first, then the ServiceControl Audit instance.
 
-When auditing messages in your NServiceBus applicaton, a single ServiceControl instance must have at least one ServiceControl audit instance. ServiceInsight connects directly to the primary ServiceControl instance, which will aggregate the data stored in all connected ServiceControl Audit instances.
+When [auditing](/nservicebus/operations/auditing.md) NServiceBus messages there must be at least one ServiceControl audit instance. ServiceInsight connects directly to the primary ServiceControl instance, which will aggregate the data stored in all connected ServiceControl Audit instances.
 
 Connecting ServiceInsight directly to a ServiceControl Audit instance is not supported.
 
