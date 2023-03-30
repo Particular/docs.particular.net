@@ -1,6 +1,6 @@
 ---
 title: Callback Changes in NServiceBus Version 6
-reviewed: 2020-05-07
+reviewed: 2023-03-30
 component: Callbacks
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
