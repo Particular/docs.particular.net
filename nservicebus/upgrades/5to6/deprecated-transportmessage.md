@@ -1,7 +1,7 @@
 ---
 title: Deprecated TransportMessage in NServiceBus Version 6
 summary: How to migrate away from TransportMessage in NServiceBus 6
-reviewed: 2020-05-07
+reviewed: 2023-03-30
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -14,14 +14,14 @@ Previous versions used `TransportMessage` as a generic holder both for outgoing 
 
 ## Body
 
-Both `IncomingMessage` and `OutgoingMessage` provide a body byte array to access the underlying payload of the property `Body`.
+Both `IncomingMessage` and `OutgoingMessage` provide a byte array to access the underlying payload of the property `Body`.
 
 When setting the body, raw sending is the most likely scenario. See [Raw sending](#raw-sending) below.
 
 
 ## Headers
 
-Both `IncomingMessage` and `OutgoingMessage` provide a headers dictionary to get or set headers of the property `Headers`.
+Both `IncomingMessage` and `OutgoingMessage` provide a dictionary to get or set headers of the property `Headers`.
 
 
 ## ID
