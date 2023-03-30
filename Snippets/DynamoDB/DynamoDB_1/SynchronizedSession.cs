@@ -1,9 +1,11 @@
 ﻿using Amazon.DynamoDBv2.Model;
 using NServiceBus;
+using NServiceBus.Testing;
+using NUnit.Framework;
 
 namespace DynamoDB_1;
 
-class SynchronizedSession : IHandleMessages<MyMessage>
+class MyMessageHandler : IHandleMessages<MyMessage>
 {
 #pragma warning disable CS1998
 #region DynamoDBSynchronizedSession
@@ -23,6 +25,27 @@ class SynchronizedSession : IHandleMessages<MyMessage>
     }
 #endregion
 #pragma warning restore CS1998
+}
+
+class SynchronizedSessionTest
+{
+    #region DynamoDBTestingSessionUsage
+    [Test]
+    public async Task UnitTest()
+    {
+        var testableSession = new TestableDynamoDBSynchronizedStorageSession();
+        var testableContext = new TestableMessageHandlerContext
+        {
+            SynchronizedStorageSession = testableSession
+        };
+
+        var handler = new MyMessageHandler();
+        await handler.Handle(new MyMessage(), testableContext);
+
+        // assert on transaction items:
+        Assert.That(testableSession.TransactWriteItems, Has.Count.EqualTo(1));
+    }
+    #endregion
 }
 
 class MyMessage

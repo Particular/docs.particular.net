@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="0.1.0-beta.1" />
+    <PackageReference Include="NServiceBus.Testing" Version="8.0.1" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
   </ItemGroup>
 
 </Project>

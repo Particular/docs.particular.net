@@ -1,5 +1,4 @@
 ﻿using Amazon.DynamoDBv2;
-using Amazon.Runtime;
 using NServiceBus;
 
 namespace DynamoDB_1;

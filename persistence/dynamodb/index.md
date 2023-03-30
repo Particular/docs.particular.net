@@ -41,11 +41,3 @@ Outbox and Saga data can be stored in separate tables, see the [Saga](/persisten
 When [installers](/nservicebus/operations/installers.md) are enabled, NServiceBus will try to create the configured tables if they do not exist. Table creation can explicitly be disabled even with installers remaining enabled using the `DisableTablesCreation`setting:
 
 snippet: DynamoDBDisableTableCreation
-
-## Transactions
-
-Outbox and Saga persistence commit their changes transactionally, using the [DynamoDB TransactWriteItems](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transactions.html) API. Message handlers can add further operations to this transaction via the synchronized session:
-
-snippet: DynamoDBSynchronizedSession
-
-Transactions can contain a maximum of 100 operations. This limit is shared with operations enlisted by NServiceBus. Each saga will use one operation. Outbox will use `1 + <amount of outgoing messages>` operations.
