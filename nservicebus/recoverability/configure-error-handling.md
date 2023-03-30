@@ -1,8 +1,8 @@
 ---
 title: Configure error handling
-summary: Error handler configuration when messages are forwarded to the error queue after failing a certain number of times
+summary: Configure handling of failed messages
 component: Core
-reviewed: 2020-05-05
+reviewed: 2023-03-30
 redirects:
 - nservicebus/configure-error-queue
 related:
