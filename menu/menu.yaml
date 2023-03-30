@@ -1203,7 +1203,7 @@
   - Title: DynamoDB
     Articles:
     - Url: persistence/dynamodb
-      Title: DynamoDB persistence
+      Title: Overview
     - Url: persistence/dynamodb/sagas
       Title: Sagas
     - Url: persistence/dynamodb/outbox
