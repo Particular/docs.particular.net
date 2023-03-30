@@ -4,8 +4,9 @@ using NServiceBus;
 #pragma warning disable 618
 
 class Program
-{
-    const string ConnectionString = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlMultiInstanceReceiver;Integrated Security=True;Max Pool Size=100";
+{    
+    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlMultiInstanceReceiver;Integrated Security=True;Encrypt=false
+    const string ConnectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlMultiInstanceReceiver;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
     static async Task Main()
     {
