@@ -20,9 +20,11 @@ class Program
 
         transportAdapterConfig.CustomizeEndpointTransport(
             customization: transport =>
-            {
-                var connection = @"Data Source=.\SqlExpress;Initial Catalog=transport_adapter;Integrated Security=True;Max Pool Size=100;Min Pool Size=10";
-                transport.ConnectionString(connection);
+            {              
+                // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=transport_adapter;Integrated Security=True;Encrypt=false;Max Pool Size=100;Min Pool Size=10
+                var connectionString = @"Server=localhost,1433;Initial Catalog=transport_adapter;User Id=SA;Password=yourStrong(!)Password;Encrypt=false;Max Pool Size=100;Min Pool Size=10";
+
+                transport.ConnectionString(connectionString);
             });
 
         #endregion
