@@ -11,6 +11,8 @@ The prerequisites for ServiceControl can be found [here](/installer/offline.md#n
 
 Use a Monitoring instance to vizualize [endpoint performance metrics](/monitoring.md#endpoint-performance) in ServicePulse.
 
+Monitoring instances are not as [resource intensive as the primary and audit instances](/servicecontrol/servicecontrol-instances/hardware.md) and can be run on the same machine as the primary instance.
+
 ## Transport support
 
 Monitoring supports the same transports as [ServiceControl](/servicecontrol/transports.md).
