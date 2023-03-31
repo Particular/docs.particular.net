@@ -1,6 +1,6 @@
 ---
 title: Extension Seam Changes in NServiceBus Version 6
-reviewed: 2020-05-07
+reviewed: 2023-03-31
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
