@@ -7,7 +7,7 @@ The ServiceControl installation package includes a utility to manage the install
 
 ## Usage
 
-Use a Monitoring instance to vizualize [endpoint performance metrics](/monitoring.md#endpoint-performance) in ServicePulse.
+Use a Monitoring instance to vizualize [endpoint performance metrics](/monitoring/index.md#endpoint-performance) in ServicePulse.
 
 Monitoring instances are not as [resource intensive as the primary and audit instances](/servicecontrol/servicecontrol-instances/hardware.md) and can be run on the same machine as the primary instance.
 
