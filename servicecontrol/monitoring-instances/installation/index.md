@@ -5,8 +5,6 @@ reviewed: 2023-03-31
 
 The ServiceControl installation package includes a utility to manage the installation, upgrade, and removal of ServiceControl instances, including monitoring instances. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
 
-The prerequisites for ServiceControl can be found [here](/installer/offline.md#net-and-redistributable-packages-prerequisite-version).
-
 ## Usage
 
 Use a Monitoring instance to vizualize [endpoint performance metrics](/monitoring.md#endpoint-performance) in ServicePulse.
