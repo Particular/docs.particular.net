@@ -9,9 +9,9 @@ using NServiceBus.Persistence.Sql;
 using NServiceBus.TransactionalSession;
 
 public class Program
-{
-    //const string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=True;";
-    const string ConnectionString = @"Server=192.168.1.188;Database=nservicebus;User=sa;Password=NServiceBus!;Encrypt=false";
+{    
+    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Encrypt=false
+    const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
     public static void Main()
     {
