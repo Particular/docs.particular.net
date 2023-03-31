@@ -1,4 +1,4 @@
-﻿using System.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,8 @@ using NServiceBus.TransactionalSession;
 
 public class Program
 {
-    const string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=True;";
+    //const string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=True;";
+    const string ConnectionString = @"Server=192.168.1.188;Database=nservicebus;User=sa;Password=NServiceBus!;Encrypt=false";
 
     public static void Main()
     {
