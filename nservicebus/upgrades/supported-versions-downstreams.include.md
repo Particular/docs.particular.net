@@ -190,7 +190,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/3.0.0) | 2022-11-17     | -                 | -                                 |
 | [2.4.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.4.0) | 2022-06-30     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
-| [~~2.3.x~~](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.3.0) | ~~2021-03-25~~ | ~~2022-09-30~~    | ~~Superseded by 2.4.x~~           |
 
 ### DependencyInjection packages
 
