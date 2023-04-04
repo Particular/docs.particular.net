@@ -8,8 +8,10 @@ ServiceControl as an application can be used to process the entire message load 
 
 ## General recommendations
 
-* Install ServiceControl on a dedicated server in production.
-* Hosting ServiceControl and ServiceControl.Audit is preferred on separate servers.
+Mike: Should we recommend audit on a separate disk as the first step if limits are reached on a single server
+
+* Install ServiceControl on a dedicated server in production. Mike: Yea we should start with a single server
+* Hosting ServiceControl and ServiceControl.Audit is preferred on separate servers. Mike: Yea this is not right
 * A minimum of 12 GB of RAM per instance (excluding RAM for OS and other services).
 * 2 GHz quad core CPU or better
 * [Database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) located on disks suitable for low latency write operations (fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
