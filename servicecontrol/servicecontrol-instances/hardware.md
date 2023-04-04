@@ -11,9 +11,7 @@ This article provides general guidelines, recommendations, and performance bench
 * Install ServiceControl (Primary, Audit and Monitoring), on a dedicated server in production.
 * A minimum of 16 GB of RAM (excluding RAM for OS and other services).
 * 2 GHz quad core CPU or better
-* Databases on a [separate disc from the operating system](#storage)
-
-NOTE: Use a storage benchmark tool to measure disk performance, such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
+* Databases on a separate disc from the operating system
 
 ### Scale out
 
@@ -38,6 +36,7 @@ It is recommended to:
 - Disable disk write caching (read caching is fine) to prevent data corruption if the (virtual) server or disk controler fails. This is a general best practice for databases.
 - [Database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) located on disks suitable for low latency write operations (fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
 
+NOTE: Use a storage benchmark tool to measure disk performance, such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
 
 Note: Do not use an ephemeral AWS or Azure disk for ServiceControl data because these disks will be erased when the virtual machine reboots.
 
@@ -63,7 +62,7 @@ Additionally, it is possible to store the embedded database index files on a sep
 
 ### Azure disk limitations
 
-Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#suggestions-to-improve-performance-scale-out).
+Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#general-recommendations-scale-out).
 
 ### Turn off full-text search
 
