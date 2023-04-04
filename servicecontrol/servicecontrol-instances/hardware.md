@@ -1,10 +1,10 @@
 ---
 title: ServiceControl Hardware Considerations
-summary: Hardware recommendations for running ServiceControl
-reviewed: 2021-06-23
+summary: Hardware recommendations for running ServiceControl instances
+reviewed: 2023-04-04
 ---
 
-ServiceControl as an application can be used to process the entire message load of a system. This article provides general guidelines, recommendations, and performance benchmarks to help determine the resources to provide for a production environment. To identify the hardware specifications for any system environment, a combination of testing with the system and the information provided below will need to be used.
+This article provides general guidelines, recommendations, and performance benchmarks to help determine the resources to provide for a ServiceControl production environment. To identify the hardware specifications for any system environment, a combination of testing with the system and the information provided below will need to be used.
 
 ## General recommendations
 
@@ -64,7 +64,7 @@ Using multiple 7500 IOPS disks in striped mode in Azure may not improve performa
 
 ### Scale out
 
-If it is not possible to scale up ServiceControl to handle system volume, partition audit processing between multiple instances of ServiceControl. See [Multiple ServiceControl Instances](remotes.md) for more details.
+If it is not possible to scale up a single machine to handle the system load, partition audit processing between multiple instances of ServiceControl. See [Multiple ServiceControl Instances](remotes.md) for more details.
 
 ### Turn off full-text search
 
