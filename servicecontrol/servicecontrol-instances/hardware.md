@@ -11,7 +11,7 @@ This article provides general guidelines, recommendations, and performance bench
 * Install ServiceControl (Primary, Audit and Monitoring), on a dedicated server in production.
 * A minimum of 16 GB of RAM (excluding RAM for OS and other services).
 * 2 GHz quad core CPU or better
-* Databases on a separate disc from the operating system
+* Databases on a separate disk from the operating system
 
 ### Scale out
 
