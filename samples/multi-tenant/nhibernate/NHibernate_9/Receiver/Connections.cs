@@ -8,9 +8,13 @@ public static class Connections
         SqlHelper.EnsureDatabaseExists(TenantA);
         SqlHelper.EnsureDatabaseExists(TenantB);
     }
-    public static string Shared = @"Data Source=.\SqlExpress;Database=NHibernateMultiTenantReceiver;Integrated Security=True";
-    public static string TenantA = @"Data Source=.\SqlExpress;Database=NHibernateMultiTenantA;Integrated Security=True";
-    public static string TenantB = @"Data Source=.\SqlExpress;Database=NHibernateMultiTenantB;Integrated Security=True";
+
+    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NHibernateMultiTenantReceiver;Integrated Security=True;Encrypt=false
+    public static string Shared = @"Server=localhost,1433;Initial Catalog=NHibernateMultiTenantReceiver;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NHibernateMultiTenantA;Integrated Security=True;Encrypt=false
+    public static string TenantA = @"Server=localhost,1433;Initial Catalog=NHibernateMultiTenantA;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NHibernateMultiTenantB;Integrated Security=True;Encrypt=false
+    public static string TenantB = @"Server=localhost,1433;Initial Catalog=NHibernateMultiTenantB;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
     public static string GetTenant(string id)
     {

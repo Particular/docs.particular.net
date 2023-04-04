@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NHibernate.Dialect;
+using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 using NServiceBus;
 using NServiceBus.NHibernate;
@@ -105,6 +106,7 @@ create synonym OutboxRecord FOR [NHibernateMultiTenantReceiver].[dbo].[OutboxRec
             #endregion
 
             x.Dialect<MsSql2012Dialect>();
+            x.Driver<MicrosoftDataSqlClientDriver>();
             x.ConnectionString = Connections.Shared;
         });
         return hibernateConfig;
