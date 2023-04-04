@@ -9,7 +9,7 @@ class Program
         Console.Title = "Samples.NHibernate.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.NHibernate.Client");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        //endpointConfiguration.UsePersistence<NHibernatePersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
