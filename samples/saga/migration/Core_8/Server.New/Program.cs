@@ -1,7 +1,7 @@
 ﻿//#define POST_MIGRATION
 
 using System;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -20,15 +20,18 @@ class Program
         endpointConfiguration.UseTransport(new LearningTransport());
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
-        var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSagaMigration;Integrated Security=True;";
+
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesEfUowSql;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSagaMigration;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
-                return new SqlConnection(connection);
+                return new SqlConnection(connectionString);
             });
         persistence.TablePrefix("New");
 
-        SqlHelper.EnsureDatabaseExists(connection);
+        SqlHelper.EnsureDatabaseExists(connectionString);
         var endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 

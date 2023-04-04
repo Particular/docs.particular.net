@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence;
-
+using NHibernate.Cfg;
+using NHibernate.Dialect;
+using NHibernate.Driver;
 class Program
 {
     static async Task Main()
@@ -13,10 +15,20 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-        var connection = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSagaMigration;Integrated Security=True;";
-        persistence.ConnectionString(connection);
 
-        SqlHelper.EnsureDatabaseExists(connection);
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSagaMigration;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSagaMigration;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+        var hibernateConfig = new Configuration();
+        hibernateConfig.DataBaseIntegration(x =>
+        {
+            x.ConnectionString = connectionString;
+            x.Dialect<MsSql2012Dialect>();
+            x.Driver<MicrosoftDataSqlClientDriver>();
+        });       
+
+        persistence.UseConfiguration(hibernateConfig);        
+
+        SqlHelper.EnsureDatabaseExists(connectionString);
         var endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
