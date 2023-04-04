@@ -4,7 +4,7 @@ component: SQSLambda
 summary: Hosting NServiceBus endpoints with AWS Lambda triggered by Simple Queue Service
 related:
  - samples/previews/aws-lambda/sqs
-reviewed: 2020-09-08
+reviewed: 2023-04-04
 ---
 
 Host NServiceBus endpoints with [AWS Lambda](https://aws.amazon.com/lambda/) using the [Simple Queue Service](https://aws.amazon.com/sqs/) as a trigger.
@@ -15,7 +15,7 @@ An NServiceBus endpoint is hosted in AWS Lambda by creating an `AwsLambdaSQSEndp
 
 ### `AwsLambdaSQSEndpoint` creation
 
-The endpoint should be instantiated only once, when the lambda is first called, and assigned to a `static` field:
+The endpoint instance should be a `static` field and instantiated only once when the lambda function is called for the first time.
 
 snippet: aws-endpoint-creation
 
@@ -47,15 +47,9 @@ snippet: aws-custom-diagnostics
 
 ### Delayed Retries
 
-[Delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) are disabled by default when using AWS Lambdas. Delayed retries may be enabled as follows:
+[Delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) are enabled by default when using AWS Lambdas. Delayed retries may be configured as follows:
 
 snippet: aws-delayed-retries
-
-If the accumulated time increase is expected to be greater than [15 minutes](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery), `UnrestrictedDurationDelayedDelivery` must be enabled:
-
-snippet: aws-unrestricted-delayed-delivery
-
-Note: Automatic creation of the required queues for unrestricted delayed delivery is not supported. The creation of the required queues may be scripted using the [CLI](/transports/sqs/delayed-delivery.md#enable-unrestricted-delayed-delivery-manual-fifo-queue-creation).
 
 ### Error queue
 
