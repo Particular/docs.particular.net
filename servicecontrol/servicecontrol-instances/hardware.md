@@ -1,20 +1,21 @@
 ---
 title: ServiceControl Hardware Considerations
-summary: Hardware recommendations for running ServiceControl
-reviewed: 2021-06-23
+summary: Hardware recommendations for running ServiceControl instances
+reviewed: 2023-04-04
 ---
 
-ServiceControl as an application can be used to process the entire message load of a system. This article provides general guidelines, recommendations, and performance benchmarks to help determine the resources to provide for a production environment. To identify the hardware specifications for any system environment, a combination of testing with the system and the information provided below will need to be used.
+This article provides general guidelines, recommendations, and performance benchmarks to help determine the resources to provide for a ServiceControl production environment. To identify the hardware specifications for any system environment, a combination of testing with the system and the information provided below will need to be used.
 
 ## General recommendations
 
-* Install ServiceControl on a dedicated server in production.
-* Hosting ServiceControl and ServiceControl.Audit is preferred on separate servers.
-* A minimum of 12 GB of RAM per instance (excluding RAM for OS and other services).
+* Install ServiceControl (Primary, Audit and Monitoring), on a dedicated server in production.
+* A minimum of 16 GB of RAM (excluding RAM for OS and other services).
 * 2 GHz quad core CPU or better
-* [Database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) located on disks suitable for low latency write operations (fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
+* Databases on a separate disk from the operating system
 
-NOTE: Use a storage benchmark tool to measure disk performance, such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
+### Scale out
+
+If it is not possible to scale up a single machine to handle the system load, partition audit processing between multiple instances of ServiceControl. See [Multiple ServiceControl Instances](remotes.md) for more details.
 
 ### Hosting in the cloud
 
@@ -33,6 +34,9 @@ It is recommended to:
 - Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easy and ensures different applications are not competing for storage IOPS.
 - Store multiple ServiceControl databases on seperate physical disks to prevent multiple instances to compete for the same disk resources.
 - Disable disk write caching (read caching is fine) to prevent data corruption if the (virtual) server or disk controler fails. This is a general best practice for databases.
+- [Database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) located on disks suitable for low latency write operations (fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
+
+NOTE: Use a storage benchmark tool to measure disk performance, such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
 
 Note: Do not use an ephemeral AWS or Azure disk for ServiceControl data because these disks will be erased when the virtual machine reboots.
 
@@ -58,11 +62,7 @@ Additionally, it is possible to store the embedded database index files on a sep
 
 ### Azure disk limitations
 
-Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#suggestions-to-improve-performance-scale-out).
-
-### Scale out
-
-If it is not possible to scale up ServiceControl to handle system volume, partition audit processing between multiple instances of ServiceControl. See [Multiple ServiceControl Instances](remotes.md) for more details.
+Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#general-recommendations-scale-out).
 
 ### Turn off full-text search
 
