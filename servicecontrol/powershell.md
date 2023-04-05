@@ -23,6 +23,12 @@ Once the module is installed, it can be used by importing the module into the Po
 Import-Module Particular.ServiceControl.Management
 ```
 
+To obtain the version of the installed management module the following command can be used:
+
+```ps
+Get-Module Particular.ServiceControl.Management | Select-Object -ExpandProperty Version
+```
+
 NOTE: The majority of the cmdlets will only work if the PowerShell session is running with administrator privileges.
 
 INFO: The ServiceControl installer currently includes a legacy version of the PowerShell module called `ServiceControlMgmt` that is only supported on Windows PowerShell 5.1. It does not work with newer versions of PowerShell. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with this legacy module automatically loaded. The legacy module is not signed, so the PowerShell execution policy needs to be set to `Unrestricted` to use it.
