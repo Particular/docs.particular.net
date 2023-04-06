@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
+using NHibernate.Dialect;
+using NHibernate.Driver;
 using NServiceBus;
 using NServiceBus.Persistence;
 using Environment = NHibernate.Cfg.Environment;
@@ -10,19 +12,23 @@ class Program
     static async Task Main()
     {
         Console.Title = "Samples.CustomNhMappings.Default";
-        var nhConfiguration = new Configuration();
-
-        nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
-        nhConfiguration.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
-        nhConfiguration.SetProperty(Environment.Dialect, "NHibernate.Dialect.MsSql2008Dialect");
-        nhConfiguration.SetProperty(Environment.ConnectionStringName, "NServiceBus/Persistence");
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Default");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseTransport(new LearningTransport());        
+
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=Samples.CustomNhMappings;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=Samples.CustomNhMappings;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+        var hibernateConfig = new Configuration();
+        hibernateConfig.DataBaseIntegration(x =>
+        {
+            x.ConnectionString = connectionString;
+            x.Dialect<MsSql2012Dialect>();
+            x.Driver<MicrosoftDataSqlClientDriver>();
+        });        
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.UseConfiguration(nhConfiguration);
+        persistence.UseConfiguration(hibernateConfig);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

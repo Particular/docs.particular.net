@@ -9,6 +9,7 @@
     <PackageReference Include="Iesi.Collections" Version="4.*" />
     <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="9.*" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.*" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
+	<PackageReference Include="Microsoft.NETCore.Targets" Version="5.*" PrivateAssets="all" />
   </ItemGroup>
 </Project>

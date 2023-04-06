@@ -1,4 +1,4 @@
-﻿using System.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,8 +9,9 @@ using NServiceBus.Persistence.Sql;
 using NServiceBus.TransactionalSession;
 
 public class Program
-{
-    const string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Integrated Security=True;";
+{    
+    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Encrypt=false
+    const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
     public static void Main()
     {

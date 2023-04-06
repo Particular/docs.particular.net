@@ -9,5 +9,6 @@
     <PackageReference Include="Iesi.Collections" Version="4.*" />
     <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="9.*" />
+    <PackageReference Include="Microsoft.NETCore.Targets" Version="5.*" PrivateAssets="all" />
   </ItemGroup>
 </Project>

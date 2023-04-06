@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
@@ -20,8 +20,10 @@ class Program
         endpointConfiguration.UseTransport(rabbitMqTransport);
         #endregion
 
-        #region ConfigurePersistence
-        var connectionString = @"Data Source=localhost,11433;Initial Catalog=NsbRabbitMqOutbox;User=sa;Password=NServiceBus!;TrustServerCertificate=true";
+        #region ConfigurePersistence        
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbRabbitMqOutbox;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbRabbitMqOutbox;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(() => new SqlConnection(connectionString));

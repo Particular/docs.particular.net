@@ -12,7 +12,7 @@ When a message delay time lapses, SQL Server transport moves a batch of messages
 
 NOTE: The native delayed delivery feature of the SQL Server transport is not available to [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoints.
 
-partial: enable
+From version 5 of the transport, [native delayed delivery is always enabled](/transports/upgrades/sqlserver-4to5.md#native-delayed-delivery).
 
 ## Configuration
 

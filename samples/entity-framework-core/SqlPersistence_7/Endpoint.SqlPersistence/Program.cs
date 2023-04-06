@@ -3,18 +3,19 @@ using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
 using System;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 
 class Program
 {
     static async Task Main()
     {
-        var connection = @"server=.;database=nservicebus;Integrated Security=True;Max Pool Size=100";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
         Console.Title = "Samples.EntityFrameworkUnitOfWork.SQL";
 
         using (var receiverDataContext = new ReceiverDataContext(new DbContextOptionsBuilder<ReceiverDataContext>()
-            .UseSqlServer(new SqlConnection(connection))
+            .UseSqlServer(new SqlConnection(connectionString))
             .Options))
         {
             await receiverDataContext.Database.EnsureCreatedAsync().ConfigureAwait(false);
@@ -25,13 +26,14 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.ExecuteTheseHandlersFirst(typeof(CreateOrderHandler), typeof(OrderLifecycleSaga), typeof(CreateShipmentHandler));
 
-        endpointConfiguration.UseTransport(new SqlServerTransport(connection)
+        endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
         {
-            Subscriptions = { DisableCaching = true }
+            Subscriptions = { DisableCaching = true },
+            TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
         });
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.ConnectionBuilder(() => new SqlConnection(connection));
+        persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
         #region UnitOfWork_SQL

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
+using NHibernate.Dialect;
+using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 using NServiceBus;
 using NServiceBus.Persistence;
@@ -17,15 +19,19 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.NHibernate.Server");
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
 
-        var nhConfig = new Configuration();
-        nhConfig.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
-        nhConfig.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
-        nhConfig.SetProperty(Environment.Dialect, "NHibernate.Dialect.MsSql2008Dialect");
-        nhConfig.SetProperty(Environment.ConnectionStringName, "NServiceBus/Persistence");
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=Samples.NHibernate;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=Samples.NHibernate;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+        var hibernateConfig = new Configuration();
+        hibernateConfig.DataBaseIntegration(x =>
+        {
+            x.ConnectionString = connectionString;
+            x.Dialect<MsSql2012Dialect>();
+            x.Driver<MicrosoftDataSqlClientDriver>();
+        });
 
-        AddMappings(nhConfig);
+       AddMappings(hibernateConfig);
 
-        persistence.UseConfiguration(nhConfig);
+        persistence.UseConfiguration(hibernateConfig);
 
         #endregion
 

@@ -4,13 +4,9 @@ using NServiceBus;
 class DelayedDelivery
 {
     void Configure(EndpointConfiguration endpointConfiguration)
-    {
-        #region EnableNativeDelayedDelivery
-
+    {        
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         var delayedDeliverySettings = transport.NativeDelayedDelivery();
-
-        #endregion
 
         #region DelayedDeliveryTableSuffix
 

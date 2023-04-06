@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
 using NServiceBus;
@@ -12,7 +12,8 @@ class Program
     {
         Console.Title = "Samples.SQLOutboxEF.Receiver";
 
-        var connection = @"Data Source=.\SqlExpress;Database=NsbSamplesSqlOutbox;Integrated Security=True;Max Pool Size=100";
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlOutbox;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Receiver");
         endpointConfiguration.EnableInstallers();
@@ -21,7 +22,7 @@ class Program
         #region ReceiverConfiguration
 
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(connection);
+        transport.ConnectionString(connectionString);
         transport.DefaultSchema("receiver");
         transport.UseSchemaForEndpoint("Samples.SqlOutbox.Sender", "sender");
         transport.UseSchemaForQueue("error", "dbo");
@@ -31,7 +32,7 @@ class Program
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
-                return new SqlConnection(connection);
+                return new SqlConnection(connectionString);
             });
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
         dialect.Schema("receiver");
@@ -47,9 +48,9 @@ class Program
         endpointConfiguration.EnableOutbox();
 
         #endregion
-        SqlHelper.CreateSchema(connection, "receiver");
+        SqlHelper.CreateSchema(connectionString, "receiver");
 
-        SqlHelper.ExecuteSql(connection, File.ReadAllText("Startup.sql"));
+        SqlHelper.ExecuteSql(connectionString, File.ReadAllText("Startup.sql"));
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

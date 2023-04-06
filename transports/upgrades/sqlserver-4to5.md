@@ -14,8 +14,25 @@ Upgrading from SQL Server transport version 4 to version 5 is a major upgrade an
 
 In version 5, native delayed delivery is always enabled. The configuration APIs for native delayed delivery have moved:
 
-snippet: 4to5-configure-native-delayed-delivery
+```csharp
+//For SQL Transport version 5.x
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+var delayedDelivery = transport.NativeDelayedDelivery();
 
+delayedDelivery.BatchSize(100);
+delayedDelivery.DisableTimeoutManagerCompatibility();
+delayedDelivery.ProcessingInterval(TimeSpan.FromSeconds(5));
+delayedDelivery.TableSuffix("Delayed");
+
+//For SQL Transport version 4.x
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+var delayedDelivery = transport.UseNativeDelayedDelivery();
+
+delayedDelivery.BatchSize(100);
+delayedDelivery.DisableTimeoutManagerCompatibility();
+delayedDelivery.ProcessingInterval(TimeSpan.FromSeconds(5));
+delayedDelivery.TableSuffix("Delayed");
+```
 
 ## Native publish subscribe
 
@@ -39,13 +56,30 @@ Once all endpoints in the system have been upgraded to version 5, the code that 
 
 The native publish-subscribe feature can be configured with a cache duration for subscription information or have the cache explicitly disabled. 
 
-snippet: 4to5-subscription-caching
+```csharp
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+var subscriptions = transport.SubscriptionSettings();
+
+subscriptions.CacheSubscriptionInformationFor(TimeSpan.FromMinutes(1));
+
+// OR
+
+subscriptions.DisableSubscriptionCache();
+```
 
 If the endpoint before the upgrade used [SQL persistence](/persistence/sql/) configure the subscription caching the same way as it was configured in the persistence. If the endpoint used [NHibernate persistence](/persistence/nhibernate/) it is best to rely on default settings of subscription caching.
 
 The native publish-susbcribe feature relies on a subscriptions table shared across all endpoints. The name, schema, and catalog for this table can be configured.
 
-snippet: 4to5-subscription-table
+```csharp
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+var subscriptions = transport.SubscriptionSettings();
+
+subscriptions.SubscriptionTableName(
+	tableName: "Subscriptions", 
+	schemaName: "OptionalSchema",
+	catalogName: "OptionalCatalog");
+```
 
 WARNING: To prevent message-loss, all endpoints must be configured to use the same subscriptions table.
 
@@ -53,19 +87,61 @@ If the endpoints use different schemas and/or catalogs, the subscription table n
 
 #### Backwards compatibility configuration
 
-snippet: 4to5-enable-message-driven-pub-sub-compatibility-mode
+```csharp
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+var pubSubCompatibilityMode = transport.EnableMessageDrivenPubSubCompatibilityMode();
+```
 
 Message-driven publish-subscribe works by having the subscriber send control messages to the publisher to subscribe (or unsubscribe) from a type of event. When the publisher receives one of these subscription related control messages, it updates its private subscription persistence. When a publisher publishes an event, it checks its private subscription storage for a list of subscribers for that event type and sends a copy of the event to each subscriber.
 
 A subscriber endpoint running in backwards compatibility mode will send subscription related control messages when subscribing to or unsubscribing from event types. The feature must be configured to associate each event type with the endpoint that publishes it. The configuration APIs to do this have been moved from the routing component to the compatibility component.
 
-snippet: 4to5-configure-message-driven-pub-sub-routing
+```csharp
+//For SQL Transport version 5.x
+pubSubCompatibilityMode.RegisterPublisher(
+	eventType: typeof(SomeEvent), 
+	publisherEndpoint: "PublisherEndpoint");
+
+pubSubCompatibilityMode.RegisterPublisher(
+	assembly: typeof(SomeEvent).Assembly, 
+	publisherEndpoint: "PublisherEndpoint");
+
+pubSubCompatibilityMode.RegisterPublisher(
+	assembly: typeof(SomeEvent).Assembly, 
+	@namespace: "Namespace", 
+	publisherEndpoint: "PublisherEndpoint");
+
+//For SQL Transport version 4.x
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+var routing = transport.Routing();
+
+routing.RegisterPublisher(
+	eventType: typeof(SomeEvent), 
+	publisherEndpoint: "PublisherEndpoint");
+
+routing.RegisterPublisher(
+	assembly: typeof(SomeEvent).Assembly, 
+	publisherEndpoint: "PublisherEndpoint");
+
+routing.RegisterPublisher(
+	assembly: typeof(SomeEvent).Assembly, 
+	@namespace: "Namespace", 
+	publisherEndpoint: "PublisherEndpoint");
+```
 
 NOTE: Once the publishing endpoint has been upgraded, this configuration can optionally be removed. 
 
 A publisher endpoint running backwards compatibility mode will also handle incoming subscription related control messages to update both the native subscription table and the private subscription persistence. Incoming subscription related control messages can be authorized using an API that has moved from the transport component to the compatibility component.
 
-snippet: 4to5-configure-message-driven-pub-sub-auth
+```csharp
+//For SQL Transport version 5.x
+pubSubCompatibilityMode.SubscriptionAuthorizer(
+incomingMessageContext => true);
+
+//For SQL Transport version 4.x
+transport.SubscriptionAuthorizer(
+incomingMessageContext => true);
+```
 
 WARNING: This API only applies to subscribe messages sent by endpoints which still use message-driven publish-subscribe. Under native subscription management, each endpoint writes it's own subscription data into the shared subscription table directly. 
 
@@ -76,7 +152,38 @@ NOTE: The `routing.DisablePublishing()` API has been deprecated and should be re
 
 The snippet below shows the T-SQL script that creates the subscriptions table:
 
-snippet: 4to5-CreateSubscriptionTableTextSql
+```sql
+IF EXISTS (
+    SELECT *
+    FROM {1}.sys.objects
+    WHERE object_id = OBJECT_ID(N'{0}')
+        AND type in (N'U'))
+RETURN
+
+EXEC sp_getapplock @Resource = '{0}_lock', @LockMode = 'Exclusive'
+
+IF EXISTS (
+    SELECT *
+    FROM {1}.sys.objects
+    WHERE object_id = OBJECT_ID(N'{0}')
+        AND type in (N'U'))
+BEGIN
+    EXEC sp_releaseapplock @Resource = '{0}_lock'
+    RETURN
+END
+
+CREATE TABLE {0} (
+    QueueAddress NVARCHAR(200) NOT NULL,
+    Endpoint NVARCHAR(200) NOT NULL,
+    Topic NVARCHAR(200) NOT NULL,
+    PRIMARY KEY CLUSTERED
+    (
+        Endpoint,
+        Topic
+    )
+)
+EXEC sp_releaseapplock @Resource = '{0}_lock'
+```
 
 ### ServiceControl Transport Adapter
 
