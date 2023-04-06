@@ -9,5 +9,6 @@
     <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="9.*" />
+	<PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
   </ItemGroup>
 </Project>

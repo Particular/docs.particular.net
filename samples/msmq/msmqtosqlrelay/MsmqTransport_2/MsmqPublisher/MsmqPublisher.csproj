@@ -11,6 +11,7 @@
     <PackageReference Include="NServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="9.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.*" />
+	<PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="*.sql" CopyToOutputDirectory="PreserveNewest" />

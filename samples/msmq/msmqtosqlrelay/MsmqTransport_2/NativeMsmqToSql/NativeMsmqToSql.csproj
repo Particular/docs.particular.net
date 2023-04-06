@@ -7,6 +7,7 @@
   <ItemGroup>
     <Reference Include="System.Messaging" />
     <Reference Include="System.Transactions" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+	<PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
   </ItemGroup>
 </Project>
