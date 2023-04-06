@@ -22,7 +22,7 @@ class Program
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
-        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesEfUowSql;Integrated Security=True;Encrypt=false
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSagaMigration;Integrated Security=True;Encrypt=false
         var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSagaMigration;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
         persistence.ConnectionBuilder(
