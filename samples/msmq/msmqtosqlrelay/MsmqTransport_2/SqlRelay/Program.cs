@@ -17,8 +17,8 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.DisableFeature<AutoSubscribe>();
 
-        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True;Encrypt=false
-        endpointConfiguration.UseTransport(new SqlServerTransport(@"Server=localhost,1433;Initial Catalog=PersistenceForSqlTransport;User Id=SA;Password=yourStrong(!)Password;Encrypt=false"));
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        endpointConfiguration.UseTransport(new SqlServerTransport(@"Server=localhost,1433;Initial Catalog=PersistenceForSqlTransport;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false"));
         #endregion
 
 
