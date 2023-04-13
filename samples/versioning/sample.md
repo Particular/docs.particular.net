@@ -7,7 +7,7 @@ redirects:
  - nservicebus/versioning-sample
 ---
 
-This sample shows how to handle message schema evolution in a backward-compatible manner. The project consists of a publishing endpoint that has evolved from one version of the schema to the next. The newer subscriber has access to the additional information in the newest version of the scheam while the older keeps operating without interruptions.
+This sample shows how to handle message schema evolution in a backward-compatible manner. The project consists of a publishing endpoint that has evolved from one version of the schema to the next. The newer subscriber has access to the additional information in the newest version of the schema while the older keeps operating without interruptions.
 
 In this sample there are two message projects: `V1.Messages` and `V2.Messages`:
 
