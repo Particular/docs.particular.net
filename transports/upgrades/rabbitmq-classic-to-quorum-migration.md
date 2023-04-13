@@ -21,10 +21,10 @@ The broker requirements can be verified with the [delays verify](/transports/rab
 
 ### Step 2: Verify current transport version
 
-Before starting the migration progress, all endpoints should be using version 6.1.1 of the RabbitMQ transport. This specific version allows endpoints which have not yet been migrated to quorum queues to continue to work whether or not the error and audit queues have been migrated.
+Before starting the migration progress, all endpoints should be using version 6.1.X of the RabbitMQ transport. This specific version allows endpoints which have not yet been migrated to quorum queues to continue to work whether or not the error and audit queues have been migrated.
 
 {{WARN:
-Do not update endpoints to version 7.0.0 or higher of the transport at this time. Version 6.1.1 will allow error and audit queues to be either classic or quorum queues, which allows updating one endpoint at a time.
+Do not update endpoints to version 7.0.0 or higher of the transport at this time. Version 6.1.X will allow error and audit queues to be either classic or quorum queues, which allows updating one endpoint at a time.
 
 If endpoints have already been updated to version 7.0.0 while using classic queues, [disable installers](/nservicebus/operations/installers.md) on all endpoints before continuing the migration to prevent endpoints from failing to start after Step 4.
 }}
