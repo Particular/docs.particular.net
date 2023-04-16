@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence Upgrade Version 4.0.0 to 4.1.1
 summary: Recommendations on the upgrade to SQL Persistence version 4.1.1
-reviewed: 2020-05-12
+reviewed: 2023-04-14
 component: SqlPersistence
 isUpgradeGuide: true
 upgradeGuideCoreVersions:

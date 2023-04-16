@@ -3,7 +3,7 @@ title: Azure Service Bus transport native integration sample
 summary: How to consume messages published by non-NServiceBus endpoints.
 component: ASBS
 isLearningPath: true
-reviewed: 2020-05-18
+reviewed: 2023-04-14
 related:
  - transports/azure-service-bus
 ---

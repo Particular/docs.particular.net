@@ -1,7 +1,7 @@
 ---
 title: Monitoring instances
 summary: Information about monitoring instances in ServiceControl
-reviewed: 2020-05-15
+reviewed: 2023-04-14
 component: ServiceControl
 ---
 

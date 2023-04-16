@@ -1,6 +1,6 @@
 ---
 title: Transaction Configuration Changes in NServiceBus Version 6
-reviewed: 2020-05-11
+reviewed: 2023-04-14
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
