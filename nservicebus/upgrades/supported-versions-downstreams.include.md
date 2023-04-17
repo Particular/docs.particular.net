@@ -19,9 +19,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.1) | 2022-11-17     | -                 | -                                 |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.4) | 2022-07-14     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
-| [6.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.5) | 2021-05-07     | 2023-07-14        | Superseded by 7.0.x               |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.2) | 2022-11-17     | -                 | -                                 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.5) | 2022-07-14     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [6.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.6) | 2021-05-07     | 2023-07-14        | Superseded by 7.0.x               |
 
 #### [NServiceBus.SqlServer](/nuget/NServiceBus.SqlServer)
 
@@ -146,9 +146,9 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/8.2.0) | 2023-04-05     | -                 | -                                 |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB/8.1.0) | 2023-01-17     | 2023-07-05        | Superseded by 8.2.x               |
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB/8.0.1) | 2022-11-17     | 2023-04-17        | Superseded by 8.1.x               |
+| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/8.0.1) | ~~2022-11-17~~ | ~~2023-04-17~~    | ~~Superseded by 8.1.x~~           |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/7.2.0) | 2023-01-17     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
-| [7.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB/7.1.1) | 2022-09-19     | 2023-04-17        | Superseded by 7.2.x               |
+| [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/7.1.1) | ~~2022-09-19~~ | ~~2023-04-17~~    | ~~Superseded by 7.2.x~~           |
 | [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/7.0.1) | ~~2021-12-09~~ | ~~2022-12-19~~    | ~~Superseded by 7.1.x~~           |
 | [~~6.5.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.1) | ~~2021-03-04~~ | ~~2022-12-09~~    | ~~Superseded by 7.0.x~~           |
 
@@ -158,9 +158,9 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.2.0) | 2023-04-05     | -                 | -                                 |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.1.0) | 2023-01-17     | 2023-07-05        | Superseded by 8.2.x               |
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.0.1) | 2022-11-17     | 2023-04-17        | Superseded by 8.1.x               |
+| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.0.1) | ~~2022-11-17~~ | ~~2023-04-17~~    | ~~Superseded by 8.1.x~~           |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/7.2.0) | 2023-01-17     | 2023-11-17        | Superseded by 8.0.x               |
-| [7.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/7.1.1) | 2022-09-19     | 2023-04-17        | Superseded by 7.2.x               |
+| [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/7.1.1) | ~~2022-09-19~~ | ~~2023-04-17~~    | ~~Superseded by 7.2.x~~           |
 
 #### [NServiceBus.Storage.MongoDB](/nuget/NServiceBus.Storage.MongoDB)
 
@@ -487,14 +487,15 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.28.x](https://www.nuget.org/packages/Particular.PlatformSample/2.28.0) | 2023-04-04     | -                 | -                                 |
+| [2.30.x](https://www.nuget.org/packages/Particular.PlatformSample/2.30.0) | 2023-04-14     | -                 | -                                 |
+| [2.28.x](https://www.nuget.org/packages/Particular.PlatformSample/2.28.0) | 2023-04-04     | 2023-07-14        | Superseded by 2.30.x              |
 | [2.27.x](https://www.nuget.org/packages/Particular.PlatformSample/2.27.0) | 2023-03-28     | 2023-07-04        | Superseded by 2.28.x              |
 | [2.26.x](https://www.nuget.org/packages/Particular.PlatformSample/2.26.0) | 2023-03-08     | 2023-06-28        | Superseded by 2.27.x              |
 | [2.25.x](https://www.nuget.org/packages/Particular.PlatformSample/2.25.0) | 2023-02-28     | 2023-06-08        | Superseded by 2.26.x              |
 | [2.24.x](https://www.nuget.org/packages/Particular.PlatformSample/2.24.0) | 2023-02-23     | 2023-05-28        | Superseded by 2.25.x              |
 | [2.22.x](https://www.nuget.org/packages/Particular.PlatformSample/2.22.1) | 2023-02-03     | 2023-05-23        | Superseded by 2.24.x              |
 | [2.20.x](https://www.nuget.org/packages/Particular.PlatformSample/2.20.0) | 2023-01-18     | 2023-05-03        | Superseded by 2.22.x              |
-| [2.19.x](https://www.nuget.org/packages/Particular.PlatformSample/2.19.0) | 2022-12-21     | 2023-04-18        | Superseded by 2.20.x              |
+| [~~2.19.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.19.0) | ~~2022-12-21~~ | ~~2023-04-18~~    | ~~Superseded by 2.20.x~~          |
 | [~~2.18.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.18.0) | ~~2022-12-01~~ | ~~2023-03-21~~    | ~~Superseded by 2.19.x~~          |
 | [~~2.17.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.17.0) | ~~2022-11-29~~ | ~~2023-03-01~~    | ~~Superseded by 2.18.x~~          |
 | [~~2.16.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.16.0) | ~~2022-09-08~~ | ~~2023-02-28~~    | ~~Superseded by 2.17.x~~          |
