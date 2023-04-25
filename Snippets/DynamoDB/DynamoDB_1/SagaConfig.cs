@@ -22,6 +22,19 @@ public class SagaConfig
         #region DynamoDBSagaPessimisticLocking
 
         dynamoConfig.Sagas().UsePessimisticLocking = true;
+
+        #endregion
+
+        #region DynamoDBLeaseDuration
+
+        dynamoConfig.Sagas().LeaseDuration = TimeSpan.FromSeconds(15);
+
+        #endregion
+
+        #region DynamoDBLeaseAcquisitionTimeout
+
+        dynamoConfig.Sagas().LeaseAcquisitionTimeout = TimeSpan.FromSeconds(5);
+
         #endregion
     }
 }

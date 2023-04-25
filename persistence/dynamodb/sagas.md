@@ -23,3 +23,15 @@ The DynamoDB saga persister uses optimistic concurrency control by default. Conc
 snippet: DynamoDBSagaPessimisticLocking
 
 For more information, refer to the [Saga concurrency documentation](/nservicebus/sagas/concurrency.md).
+
+### Pessimistic locking configuration
+
+NOTE: The lease configuration options are advanced configuration options. It is recommended to change the default settings only when special requirements need to be met.
+
+Pessimistic locking is implemented using [leases](https://en.wikipedia.org/wiki/Lease_(computer_science)). The lease duration determines the time exclusive access will be guaranteed for before other readers are able to acquire a lease again. The default duration is 30 seconds. To change the lease duration:
+
+snippet: DynamoDBLeaseDuration
+
+If a saga data is already beinig locked via an active lease, the client will continue to acquire the lease for some time in case the lease will be released shortly. The default retry duration is 10 seconds and can be changed via:
+
+snippet: DynamoDBLeaseAcquisitionTimeout
