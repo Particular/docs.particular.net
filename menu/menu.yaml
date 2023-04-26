@@ -394,6 +394,8 @@
           Title: CosmosDB Persistence
         - Url: nservicebus/transactional-session/persistences/mongodb
           Title: MongoDB Persistence
+        - Url: nservicebus/transactional-session/persistences/dynamodb
+          Title: DynamoDB Persistence
         - Url: nservicebus/transactional-session/persistences/sql-persistence
           Title: SQL Persistence
         - Url: nservicebus/transactional-session/persistences/nhibernate
