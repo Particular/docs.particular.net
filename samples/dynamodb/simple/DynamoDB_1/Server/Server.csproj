@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="0.1.0-beta.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
+  </ItemGroup>
+</Project>
