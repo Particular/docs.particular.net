@@ -1,7 +1,8 @@
-﻿using NServiceBus;
-using NServiceBus.ObjectBuilder;
+﻿using System;
+using NServiceBus;
 using NServiceBus.TransactionalSession;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 public class DynamoDBConfig
 {
@@ -15,12 +16,12 @@ public class DynamoDBConfig
         #endregion
     }
 
-    public async Task OpenDefault(IBuilder builder)
+    public async Task OpenDefault(IServiceProvider serviceProvider)
     {
         #region open-transactional-session-dynamo
 
-        using var childBuilder = builder.CreateChildBuilder();
-        var session = childBuilder.Build<ITransactionalSession>();
+        using var childScope = serviceProvider.CreateScope();
+        var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
         await session.Open(new DynamoOpenSessionOptions())
             .ConfigureAwait(false);
 
