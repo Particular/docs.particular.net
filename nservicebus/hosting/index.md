@@ -108,7 +108,7 @@ Most usages of the bus will occur where the NServiceBus APIs are used, for examp
 
 #### Static variable
 
-For many scenarios, dependency injection is not required. In these cases, a simple public static variable on the startup class will suffice. This variable can then be access globally in the application. For example:
+For many scenarios, dependency injection is not required. In these cases, a simple public static variable on the startup class will suffice. This variable can then be accessed globally within the application. For example:
 
  * In a Windows service or console the variable could be placed in `Program.cs`
  * In a website the variable could be placed in `Global.asax.cs`.
