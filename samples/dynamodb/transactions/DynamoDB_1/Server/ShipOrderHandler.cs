@@ -9,6 +9,8 @@ public class ShipOrderHandler :
 {
     public async Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
+        #region DynamoDBStorageSession
+
         var orderShippingInformation = new OrderShippingInformation
         {
             Id = Guid.NewGuid(),
@@ -16,19 +18,6 @@ public class ShipOrderHandler :
             ShippedAt = DateTimeOffset.UtcNow,
         };
 
-        Store(orderShippingInformation, context);
-
-        Log.Info($"Order Shipped. OrderId {message.OrderId}");
-
-        await context.Publish(new OrderShipped
-        {
-            OrderId = orderShippingInformation.OrderId,
-            ShippingDate = orderShippingInformation.ShippedAt
-        });
-    }
-
-    private static void Store(OrderShippingInformation orderShippingInformation, IMessageHandlerContext context)
-    {
         var session = context.SynchronizedStorageSession.DynamoDBPersistenceSession();
 
         session.Add(new TransactWriteItem
@@ -38,6 +27,16 @@ public class ShipOrderHandler :
                 TableName = "Samples.DynamoDB.Transactions",
                 Item = orderShippingInformation.ToMap()
             }
+        });
+
+        #endregion
+
+        Log.Info($"Order Shipped. OrderId {message.OrderId}");
+
+        await context.Publish(new OrderShipped
+        {
+            OrderId = orderShippingInformation.OrderId,
+            ShippingDate = orderShippingInformation.ShippedAt
         });
     }
 
