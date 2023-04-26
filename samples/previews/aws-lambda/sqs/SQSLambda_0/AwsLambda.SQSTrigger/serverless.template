@@ -4,25 +4,38 @@
   "Description" : "Template that creates an SQS queue and a function that is invoked when a new message arrives.",
   "Resources" : {
 
-	"ErrorQueue": {
+  "ErrorQueue": {
       "Properties": {
         "QueueName": "ErrorAwsLambdaSQSTrigger"
       },
       "Type": "AWS::SQS::Queue"
     },
 
-	"SenderQueue": {
+  "SenderQueue": {
       "Properties": {
         "QueueName": "AwsLambda-Sender"
       },
       "Type": "AWS::SQS::Queue"
     },
-
-	"InputQueue": {
+  "SenderDelayQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "AwsLambda-Sender-delay.fifo",
+        "FifoQueue": "true"
+      }
+    },
+  "InputQueue": {
       "Properties": {
         "QueueName": "AwsLambdaSQSTrigger"
       },
       "Type": "AWS::SQS::Queue"
+    },
+   "InputDelayQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "AwsLambdaSQSTrigger-delay.fifo",
+        "FifoQueue": "true"
+      }
     },
 
     "SQSTriggerFunction" : {
@@ -36,12 +49,12 @@
         "Timeout": 30,
         "Role": null,
         "Policies": [ "AWSLambda_FullAccess", "AmazonSQSFullAccess" ],
-		"Events": {
+    "Events": {
             "SqsEvent" : {
                 "Type" : "SQS",
                 "Properties" : {
                     "BatchSize" : 10,
-					"Queue": { "Fn::GetAtt" : ["InputQueue", "Arn"] }
+          "Queue": { "Fn::GetAtt" : ["InputQueue", "Arn"] }
                 }
             }
         }
@@ -49,19 +62,19 @@
     }
   },
   "Outputs" : {
-	"ErrorQueueQueueURL": {
+  "ErrorQueueQueueURL": {
       "Description": "The URL of the queue",
       "Value": {
         "Ref": "ErrorQueue"
       }
     },
-	"InputQueueQueueURL": {
+  "InputQueueQueueURL": {
       "Description": "The URL of the input queue",
       "Value": {
         "Ref": "InputQueue"
       }
     },
-	"SenderQueueQueueURL": {
+  "SenderQueueQueueURL": {
       "Description": "The URL of the input queue",
       "Value": {
         "Ref": "SenderQueue"
