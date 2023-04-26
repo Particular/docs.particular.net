@@ -5,10 +5,10 @@ namespace DynamoDB_1;
 
 public class SagaConfig
 {
-    void ConfigureSagaTable(PersistenceExtensions<DynamoDBPersistence> dynamoConfig)
+    void ConfigureSagaTable(PersistenceExtensions<DynamoDBPersistence> persistence)
     {
         #region DynamoSagaTableConfiguration
-        dynamoConfig.Sagas().Table = new TableConfiguration
+        persistence.Sagas().Table = new TableConfiguration
         {
             TableName = "MySagaTable",
             PartitionKeyName = "MySagaPartitionKey",
@@ -17,23 +17,23 @@ public class SagaConfig
         #endregion
     }
 
-    void PessimisticLocking(PersistenceExtensions<DynamoDBPersistence> dynamoConfig)
+    void PessimisticLocking(PersistenceExtensions<DynamoDBPersistence> persistence)
     {
         #region DynamoDBSagaPessimisticLocking
 
-        dynamoConfig.Sagas().UsePessimisticLocking = true;
+        persistence.Sagas().UsePessimisticLocking = true;
 
         #endregion
 
         #region DynamoDBLeaseDuration
 
-        dynamoConfig.Sagas().LeaseDuration = TimeSpan.FromSeconds(15);
+        persistence.Sagas().LeaseDuration = TimeSpan.FromSeconds(15);
 
         #endregion
 
         #region DynamoDBLeaseAcquisitionTimeout
 
-        dynamoConfig.Sagas().LeaseAcquisitionTimeout = TimeSpan.FromSeconds(5);
+        persistence.Sagas().LeaseAcquisitionTimeout = TimeSpan.FromSeconds(5);
 
         #endregion
     }

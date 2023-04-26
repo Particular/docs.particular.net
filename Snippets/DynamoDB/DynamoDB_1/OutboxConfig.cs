@@ -5,10 +5,10 @@ namespace DynamoDB_1;
 
 public class OutboxConfig
 {
-    void ConfigureSagaTable(PersistenceExtensions<DynamoDBPersistence> dynamoConfig)
+    void ConfigureSagaTable(PersistenceExtensions<DynamoDBPersistence> persistence)
     {
         #region DynamoOutboxTableConfiguration
-        dynamoConfig.Outbox().Table = new TableConfiguration
+        persistence.Outbox().Table = new TableConfiguration
         {
             TableName = "MyOutboxTable",
             PartitionKeyName = "MyOutboxPartitionKey",
@@ -18,11 +18,11 @@ public class OutboxConfig
         #endregion
     }
 
-    void CleanupConfig(PersistenceExtensions<DynamoDBPersistence> dynamoConfig)
+    void CleanupConfig(PersistenceExtensions<DynamoDBPersistence> persistence)
     {
         #region DynamoDBOutboxCleanup
 
-        dynamoConfig.Outbox().TimeToLive = TimeSpan.FromDays(14);
+        persistence.Outbox().TimeToLive = TimeSpan.FromDays(14);
 
         #endregion
     }

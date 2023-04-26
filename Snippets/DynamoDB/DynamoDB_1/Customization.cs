@@ -5,11 +5,11 @@ namespace DynamoDB_1;
 
 public class Customization
 {
-    void SharedTableConfig(PersistenceExtensions<DynamoDBPersistence> dynamoConfig)
+    void SharedTableConfig(PersistenceExtensions<DynamoDBPersistence> persistence)
     {
         #region DynamoDBTableCustomizationShared
 
-        dynamoConfig.UseSharedTable(new TableConfiguration
+        persistence.UseSharedTable(new TableConfiguration
         {
             TableName = "MyTable",
             PartitionKeyName = "MyPartitionKey",
@@ -19,11 +19,11 @@ public class Customization
         #endregion
     }
 
-    void DisableTableCreation(PersistenceExtensions<DynamoDBPersistence> dynamoConfig)
+    void DisableTableCreation(PersistenceExtensions<DynamoDBPersistence> persistence)
     {
         #region DynamoDBDisableTableCreation
 
-        dynamoConfig.DisableTablesCreation();
+        persistence.DisableTablesCreation();
 
         #endregion
     }
