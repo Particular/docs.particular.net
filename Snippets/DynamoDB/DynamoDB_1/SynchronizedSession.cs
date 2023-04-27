@@ -14,7 +14,7 @@ class MyMessageHandler : IHandleMessages<MyMessage>
     {
         //...
 
-        var dynamoSession = context.SynchronizedStorageSession.DynamoDBPersistenceSession();
+        var dynamoSession = context.SynchronizedStorageSession.DynamoPersistenceSession();
         dynamoSession.Add(new TransactWriteItem
         {
             // add database operations here
@@ -33,7 +33,7 @@ class SynchronizedSessionTest
     [Test]
     public async Task UnitTest()
     {
-        var testableSession = new TestableDynamoDBSynchronizedStorageSession();
+        var testableSession = new TestableDynamoSynchronizedStorageSession();
         var testableContext = new TestableMessageHandlerContext
         {
             SynchronizedStorageSession = testableSession

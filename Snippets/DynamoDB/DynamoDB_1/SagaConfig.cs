@@ -5,7 +5,7 @@ namespace DynamoDB_1;
 
 public class SagaConfig
 {
-    void ConfigureSagaTable(PersistenceExtensions<DynamoDBPersistence> persistence)
+    void ConfigureSagaTable(PersistenceExtensions<DynamoPersistence> persistence)
     {
         #region DynamoSagaTableConfiguration
         persistence.Sagas().Table = new TableConfiguration
@@ -17,7 +17,7 @@ public class SagaConfig
         #endregion
     }
 
-    void PessimisticLocking(PersistenceExtensions<DynamoDBPersistence> persistence)
+    void PessimisticLocking(PersistenceExtensions<DynamoPersistence> persistence)
     {
         #region DynamoDBSagaPessimisticLocking
 

@@ -5,7 +5,7 @@ namespace DynamoDB_1;
 
 public class OutboxConfig
 {
-    void ConfigureSagaTable(PersistenceExtensions<DynamoDBPersistence> persistence)
+    void ConfigureSagaTable(PersistenceExtensions<DynamoPersistence> persistence)
     {
         #region DynamoOutboxTableConfiguration
         persistence.Outbox().Table = new TableConfiguration
@@ -18,7 +18,7 @@ public class OutboxConfig
         #endregion
     }
 
-    void CleanupConfig(PersistenceExtensions<DynamoDBPersistence> persistence)
+    void CleanupConfig(PersistenceExtensions<DynamoPersistence> persistence)
     {
         #region DynamoDBOutboxCleanup
 

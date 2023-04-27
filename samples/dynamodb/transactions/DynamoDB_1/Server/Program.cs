@@ -17,9 +17,9 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Transactions.Server");
         endpointConfiguration.EnableOutbox();
 
-        var persistence = endpointConfiguration.UsePersistence<DynamoDBPersistence>();
+        var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
         var credentials = new BasicAWSCredentials("test","test");
-        persistence.DynamoDBClient(new AmazonDynamoDBClient(credentials, new AmazonDynamoDBConfig
+        persistence.DynamoClient(new AmazonDynamoDBClient(credentials, new AmazonDynamoDBConfig
         {
             ServiceURL = "http://localhost:4566",
             AuthenticationRegion = "eu-central-1"

@@ -8,9 +8,9 @@ public class Usage
     void Configuration(EndpointConfiguration endpointConfiguration)
     {
         #region DynamoDBUsage
-        var persistence = endpointConfiguration.UsePersistence<DynamoDBPersistence>();
+        var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
         // optional client
-        persistence.DynamoDBClient(new AmazonDynamoDBClient());
+        persistence.DynamoClient(new AmazonDynamoDBClient());
         #endregion
     }
 }

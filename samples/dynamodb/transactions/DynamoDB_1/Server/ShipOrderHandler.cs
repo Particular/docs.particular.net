@@ -18,7 +18,7 @@ public class ShipOrderHandler :
             ShippedAt = DateTimeOffset.UtcNow,
         };
 
-        var session = context.SynchronizedStorageSession.DynamoDBPersistenceSession();
+        var session = context.SynchronizedStorageSession.DynamoPersistenceSession();
 
         session.Add(new TransactWriteItem
         {

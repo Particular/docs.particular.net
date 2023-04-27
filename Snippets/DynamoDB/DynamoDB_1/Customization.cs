@@ -5,7 +5,7 @@ namespace DynamoDB_1;
 
 public class Customization
 {
-    void SharedTableConfig(PersistenceExtensions<DynamoDBPersistence> persistence)
+    void SharedTableConfig(PersistenceExtensions<DynamoPersistence> persistence)
     {
         #region DynamoDBTableCustomizationShared
 
@@ -19,7 +19,7 @@ public class Customization
         #endregion
     }
 
-    void DisableTableCreation(PersistenceExtensions<DynamoDBPersistence> persistence)
+    void DisableTableCreation(PersistenceExtensions<DynamoPersistence> persistence)
     {
         #region DynamoDBDisableTableCreation
 

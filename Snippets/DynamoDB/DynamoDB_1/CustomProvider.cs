@@ -6,14 +6,14 @@ using NServiceBus.Persistence.DynamoDB;
 #region DynamoDBCustomClientProvider
 
 class CustomDynamoClientProvider
-    : IProvideDynamoClient
+    : IDynamoClientProvider
 {
     // get fully configured via DI
     public CustomDynamoClientProvider(AmazonDynamoDBClient dynamoClient)
     {
         Client = dynamoClient;
     }
-    public AmazonDynamoDBClient Client { get; }
+    public IAmazonDynamoDB Client { get; }
 }
 #endregion
 
