@@ -1,4 +1,6 @@
-﻿using NServiceBus;
+﻿using Amazon.DynamoDBv2;
+using Amazon.Runtime;
+using NServiceBus;
 using NServiceBus.Persistence.DynamoDB;
 
 namespace DynamoDB_1;
@@ -24,6 +26,22 @@ public class Customization
         #region DynamoDBDisableTableCreation
 
         persistence.DisableTablesCreation();
+
+        #endregion
+    }
+
+    void ThrottlingConfig(PersistenceExtensions<DynamoPersistence> persistence)
+    {
+        #region DynamoDBConfigureThrottlingWithClientConfig
+
+        var dynamoDbClient = new AmazonDynamoDBClient(
+            new AmazonDynamoDBConfig
+            {
+                Timeout = TimeSpan.FromSeconds(10),
+                RetryMode = RequestRetryMode.Adaptive,
+                MaxErrorRetry = 3
+            });
+        persistence.DynamoClient(dynamoDbClient);
 
         #endregion
     }

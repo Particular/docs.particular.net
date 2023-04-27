@@ -9,7 +9,7 @@ class CustomDynamoClientProvider
     : IDynamoClientProvider
 {
     // get fully configured via DI
-    public CustomDynamoClientProvider(AmazonDynamoDBClient dynamoClient)
+    public CustomDynamoClientProvider(IAmazonDynamoDB dynamoClient)
     {
         Client = dynamoClient;
     }

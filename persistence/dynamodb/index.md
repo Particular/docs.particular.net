@@ -51,3 +51,17 @@ snippet: DynamoDBCustomClientProvider
 and registered on the container
 
 snippet: DynamoDBCustomClientProviderRegistration
+
+## Provisioned throughput rate-limiting
+
+When using [provisioned throughput](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html) it is possible for the DynamoDB service to rate-limit usage, resulting in "provisioned throughput exceeded" exceptions indicated by the 429 status code.
+
+WARN: When using the Dynamo DB persistence with the outbox enabled, "provisioned throughput exceeded" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
+
+INFO: AWS provides [guidance](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html#ProvisionedThroughput.Troubleshooting) on how to diagnose and troubleshoot provisioned throughput exceeded exceptions.
+
+The Dynamo DB SDK provides a mechanism to automatically retry operations when rate-limiting occurs. Besides changing the provisioned capacity or switching to autoscaling or the on-demand capacity mode, those settings can be adjusted to help prevent messages from failing during spikes in message volume.
+
+These settings may be set when initializing the `AmazonDynamoDBClient` via the [`AmazonDynamoDBConfig`](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/retries-timeouts.html) properties:
+
+snippet: DynamoDBConfigureThrottlingWithClientConfig
