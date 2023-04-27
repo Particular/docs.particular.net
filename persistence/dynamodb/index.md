@@ -41,3 +41,13 @@ Outbox and Saga data can be stored in separate tables, see the [Saga](/persisten
 When [installers](/nservicebus/operations/installers.md) are enabled, NServiceBus will try to create the configured tables if they do not exist. Table creation can explicitly be disabled even with installers remaining enabled using the `DisableTablesCreation` setting:
 
 snippet: DynamoDBDisableTableCreation
+
+### Customizing the AmazonDynamoDBClient provider
+
+In cases when the AmazonDynamoDBClient is configured and used via dependency injection a custom provider can be implemented
+
+snippet: DynamoDBCustomClientProvider
+
+and registered on the container
+
+snippet: DynamoDBCustomClientProviderRegistration
