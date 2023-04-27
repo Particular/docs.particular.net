@@ -1,7 +1,7 @@
 ﻿window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-GMZ1FS541B');
+gtag('config', 'G-PNDPJB418R', { 'debug_mode':true });
 
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -34,18 +34,20 @@ _kms('//scripts.kissmetrics.io/' + _kmk + '.2.js');
 
         var gaEvt = function (category, action, label) {
             console.log('GA', category, action, label);
-            window.ga('send', 'event', category, action, label);
-            gtag('event', category, {
-                'event_action': action,
-                'event_label': label
-            });
+            window.ga('send', 'event', category, action, label);            
         };
        
         gaEvt('QuickStart', 'Running', SOLUTION_VERSION); 
+        gtag('event', 'quick_start', {
+            'area': 'running',
+        });
         _kmq.push(['record', 'QuickStart-Running-Control']);
 
         window.sentMessage = function () {
-            gaEvt('QuickStart', 'SentMessage', SOLUTION_VERSION); 
+            gaEvt('QuickStart', 'SentMessage', SOLUTION_VERSION);
+            gtag('event', 'quick_start', {
+                'area': 'message sent',
+            }); 
             _kmq.push(['record', 'QuickStart-SentMessage-Control']);
         };
 
@@ -56,11 +58,16 @@ _kms('//scripts.kissmetrics.io/' + _kmk + '.2.js');
         }
 
         gaEvt('QuickStart', 'DisplayedLicenseButton', SOLUTION_VERSION);
+        gtag('event', 'quick_start', {
+            'area': 'display license button',
+        }); 
 
         licenseBtn.attr('href', 'https://particular.net/license/nservicebus?v=' + window.NSB_VERSION + '&t=0').click(function (e) {
 
             gaEvt('QuickStart', 'ClickedLicenseButton', SOLUTION_VERSION);
-
+            gtag('event', 'quick_start', {
+                'area': 'clicked license button',
+            }); 
         });
 
     });
