@@ -27,7 +27,7 @@ snippet: DynamoDBMapperUsageWithoutKeyMapping
 
 It is possible to also map the partition and the sort key by annotating a property with the corresponding partition and sort key name expressed with a `JsonPropertyName` attribute.
 
-snippet: DynamoDBMapperUsageWithoutKeyMappingCustomType
+snippet: DynamoDBMapperUsageWithKeyMappingCustomType
 
 with that in place the custom types can be mapped without further modification
 
