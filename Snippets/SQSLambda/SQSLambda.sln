@@ -1,9 +1,11 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQSLambda", "SQSLambda_0\SQSLambda_0.csproj", "{EE9BFF4F-158A-4DFE-ABAC-60959DD8DCC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQSLambda_1", "SQSLambda_1\SQSLambda_1.csproj", "{CB0C031E-9860-4ABA-BE91-AE962FDE22D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,6 +14,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EE9BFF4F-158A-4DFE-ABAC-60959DD8DCC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE9BFF4F-158A-4DFE-ABAC-60959DD8DCC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB0C031E-9860-4ABA-BE91-AE962FDE22D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB0C031E-9860-4ABA-BE91-AE962FDE22D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
