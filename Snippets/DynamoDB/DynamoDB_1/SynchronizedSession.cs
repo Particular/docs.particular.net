@@ -87,7 +87,7 @@ class MapperUsageWithoutKeyMapping
 
 class MapperUsageWithKeyMapping
 {
-    #region DynamoDBMapperUsageWithoutKeyMappingCustomType
+    #region DynamoDBMapperUsageWithKeyMappingCustomType
     class Customer
     {
         [JsonPropertyName("PK")]
