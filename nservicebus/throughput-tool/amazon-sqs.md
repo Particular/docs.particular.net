@@ -18,10 +18,16 @@ Authentication to AWS requires a [AWS credentials profile](https://docs.aws.amaz
 
 The AWS region can be specified either by command-line parameter or by the `AWS_REGION` environment variable.
 
-Execute the tool as shown in this example:
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended), execute the tool as shown:
 
 ```shell
 throughput-counter sqs
+```
+
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+
+```shell
+Particular.EndpointThroughputCounter.exe sqs
 ```
 
 ## Options

@@ -30,11 +30,20 @@ This screenshot shows how to copy the Service Bus Namespace's `Id` value:
 
 ![How to collect the Service Bus Namespace Id](azure-service-bus.png)
 
-Execute the tool with the resource ID of the Azure Service Bus namespace, as in this example:
+Execute the tool with the resource ID of the Azure Service Bus namespace.
+
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
 throughput-counter azureservicebus --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
 ```
+
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+
+```shell
+Particular.EndpointThroughputCounter.exe azureservicebus --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
+```
+
 
 ## Options
 

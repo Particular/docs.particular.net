@@ -12,13 +12,21 @@ This article details how to collect endpoint and throughput data when the system
 
 ## Running the tool
 
-Once installed, execute the tool with the database connection string used by SQL Server endpoints, as in this example:
+Once installed, execute the tool with the database connection string used by SQL Server endpoints.
+
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
-throughput-counter sqlserver --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;Trust Server Certificate=true;"
+throughput-counter sqlserver --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;"
 ```
 
-The tool will run for slightly longer than 24 hours in order to capture a beginning and ending `RowVersion` value for each queue table. A value can only be detected when a message is waiting in the queue to be processed, and not from an empty queue, so the tool may execute multiple SQL queries for each table. The tool will use a backoff mechanism to avoid putting undue pressure on the SQL Server instance.
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+
+```shell
+Particular.EndpointThroughputCounter.exe sqlserver --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;"
+```
+
+The tool will run for slightly longer than 24 hours in order to capture a beginning and ending identity value for each queue table.
 
 ## Options
 
