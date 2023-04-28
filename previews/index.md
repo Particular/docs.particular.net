@@ -16,18 +16,13 @@ Leading up to the launch of a new preview component, in order to help ensure ado
 
 User feedback is central to the Preview Program, so the more feedback is received, the better the end result will be.
 
-## Active Previews
-
-| Name                       | Status | Notes  |
-|----------------------------|:------------:|--------|
-| [NServiceBus.AwsLambda.Sqs](/previews/aws-lambda-simple-queue-service.md)| :white_check_mark: **Public preview** | [Forum discussion](https://discuss.particular.net/t/nservicebus-awslambda-sqs-public-preview-release-available/2158) |
-
 ## Completed Previews
 
 | Name | Notes |
 |------|-------|
 | [NServiceBus.AzureFunctions.ServiceBus](/nservicebus/hosting/azure-functions-service-bus) | General Availability |
 | [NServiceBus.Persistence.CosmosDB](/persistence/cosmosdb) | General Availability |
+| [NServiceBus.AwsLambda.Sqs](/nservicebus/hosting/aws-lambda-simple-queue-service.md)| General Availability |
 
 ## Retired Previews
 
