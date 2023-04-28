@@ -14,10 +14,18 @@ The tool should be used with a [supported version of ServiceControl](/servicecon
 
 ## Running the tool
 
-Once installed, execute the tool with the URLs for the ServiceControl and monitoring APIs, as in this example:
+Once installed, execute the tool with the URLs for the ServiceControl and monitoring APIs.
+
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
 throughput-counter servicecontrol --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/
+```
+
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+
+```shell
+Particular.EndpointThroughputCounter.exe servicecontrol --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/
 ```
 
 Because ServiceControl contains, at maximum, the previous 1 hour of monitoring data, the tool will query the ServiceControl API 24 times with a one-hour sleep period between each attempt in order to capture a total of 24 hours worth of data.

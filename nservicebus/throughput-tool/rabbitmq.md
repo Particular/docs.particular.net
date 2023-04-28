@@ -14,10 +14,18 @@ This article details how to collect endpoint and throughput data when the system
 
 To collect data from RabbitMQ, the [management plugin](https://www.rabbitmq.com/management.html) must be enabled on the RabbitMQ broker. The tool will also require a login that can access the management UI.
 
-Execute the tool with the RabbitMQ management URL, as in this example where the RabbitMQ broker is running on localhost:
+Execute the tool, providing the RabbitMQ management URL, as in this example where the RabbitMQ broker is running on localhost.
+
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
 throughput-counter rabbitmq --apiUrl http://localhost:15672
+```
+
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+
+```shell
+Particular.EndpointThroughputCounter.exe rabbitmq --apiUrl http://localhost:15672
 ```
 
 The tool will prompt for the username and password to access the RabbitMQ management interface. After that, it will take its initial reading, then sleep for 24 hours before taking its final reading and generating a report.
@@ -26,7 +34,7 @@ The tool will prompt for the username and password to access the RabbitMQ manage
 
 | Option | Description |
 |-|-|
-| <nobr>`--apiUrl`</nobr> | **Required** – The URL for the RabbitMQ management site. |
+| <nobr>`--apiUrl`</nobr> | **Required** – The URL for the RabbitMQ management site. Generally this will be `http://<rabbitmq-hostname>:15672` |
 include: throughput-tool-global-options
 
 ## What does the tool do
