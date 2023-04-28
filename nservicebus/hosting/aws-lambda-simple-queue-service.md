@@ -5,6 +5,8 @@ summary: Hosting NServiceBus endpoints with AWS Lambda triggered by Simple Queue
 related:
  - samples/previews/aws-lambda/sqs
 reviewed: 2023-04-28
+redirects:
+ - previews/aws-lambda-simple-queue-service
 ---
 
 Host NServiceBus endpoints with [AWS Lambda](https://aws.amazon.com/lambda/) using the [Simple Queue Service](https://aws.amazon.com/sqs/) as a trigger.
