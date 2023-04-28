@@ -19,7 +19,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.2) | 2022-11-17     | -                 | -                                 |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.3) | 2022-11-17     | -                 | -                                 |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.5) | 2022-07-14     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.6) | 2021-05-07     | 2023-07-14        | Superseded by 7.0.x               |
 
