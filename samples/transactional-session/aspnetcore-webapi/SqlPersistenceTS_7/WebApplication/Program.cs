@@ -10,8 +10,7 @@ using NServiceBus.TransactionalSession;
 
 public class Program
 {    
-    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Encrypt=false
-    const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+    const string ConnectionString = @"Server=(localdb)\MSSQLLocalDB;Initial Catalog=nservicebus2;Integrated Security=true";
 
     public static void Main()
     {
