@@ -7,6 +7,7 @@ redirects:
 related:
 - persistence/cosmosdb
 - nservicebus/transactional-session
+- samples/transactional-session/cosmosdb
 ---
 
 In order to use the [transactional session feature](/nservicebus/transactional-session/) with CosmosDB Persistence, add a reference to the `NServiceBus.Persistence.CosmosDB.TransactionalSession` NuGet package.
