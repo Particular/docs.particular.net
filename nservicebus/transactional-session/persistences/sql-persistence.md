@@ -7,6 +7,7 @@ redirects:
 related:
 - persistence/sql
 - nservicebus/transactional-session
+- samples/transactional-session/aspnetcore-webapi
 ---
 
 In order to use the [transactional session feature](/nservicebus/transactional-session/) with SQL Persistence, add a reference to the `NServiceBus.Persistence.Sql.TransactionalSession` NuGet package.

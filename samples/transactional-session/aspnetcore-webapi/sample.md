@@ -15,8 +15,11 @@ This sample shows how to send messages and modify data in a database atomically 
 
 ## Prerequisites
 
-- Visual Studio 2019
-- LocalDB support. Alternatively, a custom connection string can be provided
+Ensure an instance of SQL Server (Version 2012 or above) is installed and accessible on `localhost` and port `1433`.
+
+Alternatively, change the connection string to point to different SQL Server instance.
+
+At startup each endpoint will create the required SQL assets including databases, tables, and schemas.
 
 ## Running the solution
 
