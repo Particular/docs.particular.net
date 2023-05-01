@@ -8,7 +8,7 @@ related:
 - nservicebus/sagas
 ---
 
-## Configure Saga table
+## Configure the Saga table
 
 The Saga data table can be configured via:
 

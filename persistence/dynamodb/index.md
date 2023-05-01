@@ -44,7 +44,7 @@ snippet: DynamoDBDisableTableCreation
 
 ### Customizing the AmazonDynamoDBClient provider
 
-In cases when the AmazonDynamoDBClient is configured and used via dependency injection a custom provider can be implemented
+In cases when the `AmazonDynamoDBClient` is configured and used via dependency injection a custom provider can be implemented
 
 snippet: DynamoDBCustomClientProvider
 

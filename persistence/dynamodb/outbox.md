@@ -8,7 +8,7 @@ related:
 - nservicebus/outbox
 ---
 
-## Configure Outbox table
+## Configure the Outbox table
 
 The Outbox data table can be configured via:
 
