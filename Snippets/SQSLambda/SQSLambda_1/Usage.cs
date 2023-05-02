@@ -27,10 +27,9 @@ class Usage
   public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
   {
     var cancellationDelay = context.RemainingTime.Subtract(TimeSpan.FromSeconds(10));
-    using (var cancellationTokenSource = new CancellationTokenSource(cancellationDelay))
-    {
-      await endpoint.Process(evnt, context, cancellationTokenSource.Token);
-    }
+    using var cancellationTokenSource = new CancellationTokenSource(cancellationDelay);
+
+    await endpoint.Process(evnt, context, cancellationTokenSource.Token);
   }
 
   #endregion
