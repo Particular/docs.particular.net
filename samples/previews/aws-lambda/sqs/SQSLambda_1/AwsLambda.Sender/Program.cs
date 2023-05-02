@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 
 using NServiceBus;
+using NServiceBus.Logging;
 
 class Program
 {
@@ -9,8 +10,18 @@ class Program
   {
     Console.Title = "AwsLambda.Sender";
 
+    var endpointConfiguration = new EndpointConfiguration("AwsLambda.Sender");
+    endpointConfiguration.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
+    endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+
+    _ = endpointConfiguration.UseTransport<SqsTransport>();
+
+    sqsEndpoint = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+
+    Console.WriteLine("");
     Console.WriteLine("Press [ENTER] to send a message to the SQS trigger queue.");
     Console.WriteLine("Press [Esc] to exit.");
+
     while (true)
     {
       var key = Console.ReadKey();
@@ -21,28 +32,20 @@ class Program
           await SendMessage().ConfigureAwait(false);
           break;
         case ConsoleKey.Escape:
-          await (sqsEndpoint?.Stop() ?? Task.CompletedTask).ConfigureAwait(false);
+          await sqsEndpoint.Stop().ConfigureAwait(false);
           return;
       }
     }
   }
 
   private static IEndpointInstance sqsEndpoint;
+  static readonly ILog Log = LogManager.GetLogger<Program>();
 
   static async Task SendMessage()
   {
-    if (sqsEndpoint == null)
-    {
-      var endpointConfiguration = new EndpointConfiguration("AwsLambda.Sender");
-      endpointConfiguration.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
-      endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-
-      var transport = endpointConfiguration.UseTransport<SqsTransport>();
-
-      sqsEndpoint = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
-    }
-
     await sqsEndpoint.Send("AwsLambdaSQSTrigger", new TriggerMessage())
         .ConfigureAwait(false);
+
+    Log.Info("Message sent to the SQS trigger queue.");
   }
 }
