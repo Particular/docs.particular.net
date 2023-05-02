@@ -8,10 +8,10 @@ public class FollowupMessageHandler : IHandleMessages<FollowupMessage>
 {
     static readonly ILog Log = LogManager.GetLogger<FollowupMessageHandler>();
 
-    public Task Handle(FollowupMessage message, IMessageHandlerContext context)
+    public async Task Handle(FollowupMessage message, IMessageHandlerContext context)
     {
         Log.Info($"Handling {nameof(FollowupMessage)}.");
-        return context.Send(new BackToSenderMessage());
+        await context.Send(new BackToSenderMessage());
     }
 }
 
