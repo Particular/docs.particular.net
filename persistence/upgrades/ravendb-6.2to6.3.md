@@ -4,13 +4,13 @@ summary: Instructions on how to upgrade NServiceBus.RavenDB 6.2 to 6.3
 component: Raven
 related:
  - nservicebus/upgrades/7to8
-reviewed: 2020-05-25
+reviewed: 2023-05-02
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
 ---
 
-Starting with NServiceBus.RavenDB version 6.3.0, outbox-related extension methods for `EndpointConfiguration` are obsolete. Using them will produce the following messages
+Starting with NServiceBus.RavenDB version 6.3.0, outbox-related extension methods for `EndpointConfiguration` are obsolete. Using them will produce the following messages:
 
 > 'RavenDBOutboxExtensions.SetTimeToKeepDeduplicationData(EndpointConfiguration, TimeSpan)' is obsolete: 'Use `SetTimeToKeepDeduplicationData` available on the `OutboxSettings` instead. Will be removed in version 7.0.0.'
 
