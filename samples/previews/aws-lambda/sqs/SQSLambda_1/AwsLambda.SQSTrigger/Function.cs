@@ -19,10 +19,10 @@ public class Function
   #region FunctionHandler
   public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
   {
-    using (var cancellationTokenSource = new CancellationTokenSource(context.RemainingTime.Subtract(DefaultRemainingTimeGracePeriod)))
-    {
-      await serverlessEndpoint.Process(evnt, context, cancellationTokenSource.Token);
-    }
+    using var cancellationTokenSource = new CancellationTokenSource(context.RemainingTime.Subtract(DefaultRemainingTimeGracePeriod));
+
+    await serverlessEndpoint.Process(evnt, context, cancellationTokenSource.Token);
+
   }
   #endregion
 
