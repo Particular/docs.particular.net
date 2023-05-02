@@ -2,7 +2,7 @@
 title: Performance Tuning
 summary: Guidance to tweak the performance of the SQS transport
 component: SQS
-reviewed: 2020-05-25
+reviewed: 2023-05-02
 ---
 
 NOTE: It is difficult to give performance tuning guidelines that will be generally applicable. Results may vary greatly depending on many factors such as bandwidth, latency, client version, and much more. As always with performance tuning: Measure, don't assume.
@@ -53,16 +53,14 @@ include: servicepoint-manager-connection-limit
 
 If the endpoint is sending a lot of small messages (http message size < 1460 bytes) it might be beneficial to turn off the [NagleAlgorithm](https://en.wikipedia.org/wiki/Nagle's_algorithm).
 
-To disable Nagle for a specific endpoint URI use
+To disable Nagle for a specific endpoint URI use:
 
 ```
 var servicePoint = ServicePointManager.FindServicePoint(new Uri("sqs-endpoint-uri"));
 servicePoint.UseNagleAlgorithm = false;
 ```
 
-to find the endpoint URIs used, consult the [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) documentation
-
-it is also possible to disable Nagle globally for the Application Domain by applying
+to find the endpoint URIs used, consult the [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) documentation. It is also possible to disable Nagle globally for the Application Domain by applying:
 
 ```
 ServicePointManager.UseNagleAlgorithm = false;
