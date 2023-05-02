@@ -33,6 +33,27 @@ with that in place the custom types can be mapped without further modification
 
 snippet: DynamoDBMapperUsageWithKeyMapping
 
+### Supported data types
+
+The mapper supports the following [data types](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html#HowItWorks.DataTypes):
+
+- Number
+- String
+- Binary
+- Boolean
+- Null
+- List
+- Map
+- Sets
+
+The mapper is closely aligned with the DynamoDB v2 type mapping behavior in the AWS .NET SDK.
+
+Binaries need to be expressed as `MemoryStream`. For efficiency reasons the mapper does not copy the memory stream but directly adds a reference to the original `MemoryStream` into the attribute value dictionary and vice versa.
+
+Sets are automatically used when the type has properties of type `ISet<>`.
+
+Hierarchical objects are serialized into maps.
+
 ## DynamoDBContext
 
 It is possible to combine [`DynamoDBContext`](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DotNetDynamoDBContext.html) usage together with the synchronized storage but there are a number of things that need to be taken into account.
