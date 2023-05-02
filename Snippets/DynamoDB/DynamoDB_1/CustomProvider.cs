@@ -23,7 +23,7 @@ class DynamoDBCustomClientProviderRegistration
     {
         #region DynamoDBCustomClientProviderRegistration
 
-        endpointConfiguration.RegisterComponents(c => c.AddTransient<CustomDynamoClientProvider>());
+        endpointConfiguration.RegisterComponents(c => c.AddTransient<IDynamoClientProvider, CustomDynamoClientProvider>());
 
         #endregion
     }
