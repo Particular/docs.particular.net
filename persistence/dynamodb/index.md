@@ -4,6 +4,8 @@ summary: How to use NServiceBus with AWS DynamoDB
 component: DynamoDB
 reviewed: 2023-03-16
 related:
+- samples/dynamodb/simple
+- samples/dynamodb/transactions
 ---
 
 Uses the [AWS DynamoDB](https://aws.amazon.com/pm/dynamodb/) NoSQL database service for storage.
