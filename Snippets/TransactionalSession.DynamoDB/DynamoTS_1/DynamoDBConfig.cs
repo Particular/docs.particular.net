@@ -10,7 +10,7 @@ public class DynamoDBConfig
     {
         #region enabling-transactional-session-dynamo
 
-        var persistence = config.UsePersistence<DynamoDBPersistence>();
+        var persistence = config.UsePersistence<DynamoPersistence>();
         persistence.EnableTransactionalSession();
 
         #endregion
@@ -44,7 +44,7 @@ public class DynamoDBConfig
             .ConfigureAwait(false);
 
         // access the database:
-        var dynamoSession = session.SynchronizedStorageSession.DynamoDBPersistenceSession();
+        var dynamoSession = session.SynchronizedStorageSession.DynamoPersistenceSession();
 
         await session.Commit()
             .ConfigureAwait(false);
