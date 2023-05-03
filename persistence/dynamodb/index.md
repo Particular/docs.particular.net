@@ -6,6 +6,7 @@ reviewed: 2023-03-16
 related:
 - samples/dynamodb/simple
 - samples/dynamodb/transactions
+- nservicebus/transactional-session/persistences/dynamodb
 ---
 
 Uses the [AWS DynamoDB](https://aws.amazon.com/pm/dynamodb/) NoSQL database service for storage.
