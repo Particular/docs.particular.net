@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
 using Amazon.Runtime;
@@ -14,20 +15,23 @@ class Program
 
         #region DynamoDBConfig
 
+        var amazonDynamoDbClient = new AmazonDynamoDBClient(
+            new BasicAWSCredentials("localdb", "localdb"),
+            new AmazonDynamoDBConfig
+            {
+                ServiceURL = "http://localhost:8000"
+            });
+
         var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Transactions.Server");
-        endpointConfiguration.EnableOutbox();
 
         var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
-        var credentials = new BasicAWSCredentials("test","test");
-        persistence.DynamoClient(new AmazonDynamoDBClient(credentials, new AmazonDynamoDBConfig
-        {
-            ServiceURL = "http://localhost:4566",
-            AuthenticationRegion = "eu-central-1"
-        }));
+        persistence.DynamoClient(amazonDynamoDbClient);
         persistence.UseSharedTable(new TableConfiguration
         {
             TableName = "Samples.DynamoDB.Transactions"
         });
+
+        endpointConfiguration.EnableOutbox();
 
         #endregion
 

@@ -11,13 +11,9 @@ This sample shows a client/server scenario using saga persistence.
 
 ## Prerequisites
 
-Ensure that an instance of the latest [LocalStack](https://localstack.cloud/) is running.
+This sample uses a [DynamoDB local instance](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html) by default. See the [AWS guidance on deploying DynamoDB local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html#docker).
 
 ## Projects
-
-### SharedMessages
-
-The shared message contracts used by all endpoints.
 
 ### Client
 
@@ -30,7 +26,11 @@ The shared message contracts used by all endpoints.
 * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
 * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
 
-### Persistence config
+### SharedMessages
+
+Contains the shared message contracts used by all endpoints.
+
+## Persistence config
 
 Configure the endpoint to use DynamoDB Persistence.
 
