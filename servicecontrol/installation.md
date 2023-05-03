@@ -6,6 +6,8 @@ redirects:
  - servicecontrol/multi-transport-support
 ---
 
+NOTE: Internet access is required for the installation.
+
 NOTE: Scripted installments and upgrades can be done via the [ServiceControl Management PowerShell module](installation-powershell.md).
 
 NOTE: Advanced installation guidance to support high-load and high-availability is available on [active/active remote setups](./servicecontrol-instances/remotes.md) and  [active/passive clustering](deploying-servicecontrol-in-a-cluster.md).
