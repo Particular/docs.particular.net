@@ -1,0 +1,69 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "Template that creates an SQS queue and a function that is invoked when a new message arrives.",
+  "Resources" : {
+    "ErrorQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-DynamoDB-Lambda-Error"
+      }
+    },
+    "SalesQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-DynamoDB-Lambda-Sales"
+      }
+    },
+    "SalesDelayQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-DynamoDB-Lambda-Sales-delay.fifo",
+        "FifoQueue": "true",
+        "DelaySeconds": 900
+      }
+    },
+    "SQSTriggerFunction" : {
+      "Type" : "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "Sales::Sales.OrderProcessor::ProcessOrder",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Process an order",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [ "AWSLambda_FullAccess", "AmazonSQSFullAccess", "AmazonDynamoDBFullAccess"],
+        "Events": {
+          "SqsEvent" : {
+            "Type" : "SQS",
+            "Properties" : {
+              "BatchSize" : 10,
+              "Queue": { "Fn::GetAtt" : ["SalesQueue", "Arn"] }
+            }
+          }
+        }
+      }
+    }
+  },
+  "Outputs" : {
+    "ErrorQueueQueueURL": {
+      "Description": "The URL of the queue",
+      "Value": {
+        "Ref": "ErrorQueue"
+      }
+    },
+    "SalesQueueQueueURL": {
+      "Description": "The URL of the input queue",
+      "Value": {
+        "Ref": "SalesQueue"
+      }
+    },
+    "SalesDelayQueueQueueURL": {
+      "Description": "The URL of the input queue",
+      "Value": {
+        "Ref": "SalesDelayQueue"
+      }
+    }
+  }
+}
