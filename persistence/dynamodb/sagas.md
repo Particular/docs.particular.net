@@ -32,7 +32,7 @@ For more information, refer to the [Saga concurrency documentation](/nservicebus
 
 NOTE: The lease configuration options are advanced configuration options. It is recommended to change the default settings only when special requirements need to be met.
 
-Pessimistic locking is implemented using [leases](https://en.wikipedia.org/wiki/Lease_(computer_science)). The lease duration determines the time exclusive access will be guaranteed for before other readers are able to acquire a lease again. The default duration is 30 seconds. To change the lease duration:
+Pessimistic locking is implemented using [leases](https://en.wikipedia.org/wiki/Lease_(computer_science)). The lease duration determines the amount of time exclusive access is guaranteed before other readers are able to acquire a lease again. The default duration is 30 seconds. To change the lease duration:
 
 snippet: DynamoDBLeaseDuration
 
