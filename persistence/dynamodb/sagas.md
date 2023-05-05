@@ -36,6 +36,6 @@ Pessimistic locking is implemented using [leases](https://en.wikipedia.org/wiki/
 
 snippet: DynamoDBLeaseDuration
 
-If a saga data is already beinig locked via an active lease, the client will continue to acquire the lease for some time in case the lease will be released shortly. The default retry duration is 10 seconds and can be changed via:
+When a client attempts to acquire a lease on a saga data record that is locked, it will retry acquiring a lease for a configurable amount of time before timing out.  The default retry duration is 10 seconds and can be changed via:
 
 snippet: DynamoDBLeaseAcquisitionTimeout
