@@ -8,7 +8,6 @@ class Program
     {
         Console.Title = "Samples.DynamoDB.Simple.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Simple.Client");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
