@@ -14,7 +14,7 @@ class Program
     endpointConfiguration.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
     endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
-    _ = endpointConfiguration.UseTransport<SqsTransport>();
+   endpointConfiguration.UseTransport<SqsTransport>();
 
     sqsEndpoint = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 

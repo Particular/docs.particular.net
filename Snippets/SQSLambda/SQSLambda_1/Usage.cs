@@ -95,7 +95,6 @@ class Usage
   {
     #region aws-configure-routing
 
-    var transport = endpointConfiguration.Transport;
     var routing = endpointConfiguration.RoutingSettings;
     routing.RouteToEndpoint(typeof(ACommand), "<destination>");
 
