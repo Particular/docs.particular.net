@@ -43,13 +43,6 @@ public class Function
     var advanced = endpointConfiguration.AdvancedConfiguration;
     advanced.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
 
-    // shows how to write diagnostics to file
-    advanced.CustomDiagnosticsWriter((diagnostics, token) =>
-      {
-        context.Logger.LogLine(diagnostics);
-        return Task.CompletedTask;
-      });
-
     return endpointConfiguration;
   });
   #endregion
