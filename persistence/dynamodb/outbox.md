@@ -20,7 +20,7 @@ The Outbox uses [time-to-live](https://docs.aws.amazon.com/amazondynamodb/latest
 
 ## Outbox cleanup
 
-When the Outbox processed a message, messages with the same message ID will be deduplicated for 7 days by default. To customize the deduplication timespan, use the following API:
+When the Outbox successfully processes a message, messages with the same message ID will be ignored (deduplicated) for 7 days by default. To customize the deduplication timespan, use the following API:
 
 snippet: DynamoDBOutboxCleanup
 
