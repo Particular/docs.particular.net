@@ -2,7 +2,7 @@
 title: Azure Blob Storage Data Bus Cleanup with Azure Functions
 summary: Using an Azure Function instead of the built in blob cleanup capabilities.
 component: ABSDataBus
-reviewed: 2023-02-16
+reviewed: 2023-05-07
 related:
 - nservicebus/messaging/databus
 ---
@@ -14,11 +14,11 @@ downloadbutton
 ## Prerequisites
 
 1. [Azure Functions Tools for Visual Studio](https://docs.microsoft.com/en-us/azure/azure-functions/functions-develop-vs#prerequisites)
-1. [Azure Storage Emulator](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)
+1. [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio)
 
 ## Running the sample
 
-1. Start [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator).
+1. Start [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio). 
 1. Run the solution—two console applications will start.
 1. Switch to the console window with `SenderAndReceiver` in its path, and press <kbd>enter</kbd> to send a large message.
 
