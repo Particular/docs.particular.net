@@ -8,7 +8,7 @@ related:
 - samples/azure/blob-storage-databus-cleanup-function
 ---
 
- 1. Start [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator). Ensure [latest version](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409) is installed.
+ 1. Start [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio). 
  1. Run the solution. Two console applications start.
  1. Find the `Sender` application by looking for the one with `Sender` in its path and press Enter in the window to send a message. A message has been sent is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment via Azure storage, allowing it to reach the `Receiver` application.
 
