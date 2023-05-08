@@ -29,6 +29,8 @@ The polices can also be edited through the code view
 
 Th lifecycle policy runs only once a day. The newly configured or updated policy can take up to 24 hours to go into effect. Once the policy is in effect, it could take up to 24 hours for some actions to run for the first time.
 
+For additional information on policy configuration, please (click here](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure?source=recommendations&tabs=azure-portal)
+
 #### Manage the Blob Lifecycle policy via powershell command
 
 
