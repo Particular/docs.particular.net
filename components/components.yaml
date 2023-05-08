@@ -763,3 +763,23 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.RavenDB
   NugetOrder:
     - NServiceBus.RavenDB.TransactionalSession
+
+- Key: DynamoDB
+  Name: NServiceBus.Persistence.DynamoDB
+  DocsUrl: /persistence/dynamodb
+  GitHubOwner: Particular
+  Category: Persistence
+  LicenseUrl: https://github.com/Particular/NServiceBus.Persistence.DynamoDB/main/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.DynamoDB
+  NugetOrder:
+    - NServiceBus.Persistence.DynamoDB
+
+- Key: TransactionalSession.DynamoDB
+  Name: NServiceBus.Persistence.DynamoDB
+  DocsUrl: /nservicebus/transactional-session/persistences/dynamodb
+  GitHubOwner: Particular
+  Category: Persistence
+  LicenseUrl: https://github.com/Particular/NServiceBus.Persistence.DynamoDB/main/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.DynamoDB
+  NugetOrder:
+    - NServiceBus.Persistence.DynamoDB.TransactionalSession

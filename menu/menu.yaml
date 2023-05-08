@@ -394,6 +394,8 @@
           Title: CosmosDB Persistence
         - Url: nservicebus/transactional-session/persistences/mongodb
           Title: MongoDB Persistence
+        - Url: nservicebus/transactional-session/persistences/dynamodb
+          Title: DynamoDB Persistence
         - Url: nservicebus/transactional-session/persistences/sql-persistence
           Title: SQL Persistence
         - Url: nservicebus/transactional-session/persistences/nhibernate
@@ -1200,7 +1202,17 @@
       Title: Migrating from NServicebus.MongoDB
     - Url: persistence/mongodb/migrating-from-tekmaven
       Title: Migrating from NServiceBus.Persistence.MongoDB
-
+  - Title: DynamoDB
+    Articles:
+    - Url: persistence/dynamodb
+      Title: Overview
+    - Url: persistence/dynamodb/sagas
+      Title: Sagas
+    - Url: persistence/dynamodb/outbox
+      Title: Outbox
+    - Url: persistence/dynamodb/transactions
+      Title: Transactions
+      
 - Name: ServiceInsight
   Topics:
   - Title: Introduction

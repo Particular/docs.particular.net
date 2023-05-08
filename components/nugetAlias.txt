@@ -93,3 +93,5 @@ AzureTableTS: NServiceBus.Persistence.AzureTable.TransactionalSession
 CosmosTS: NServiceBus.Persistence.CosmosDB.TransactionalSession
 MongoTS: NServiceBus.Storage.MongoDB.TransactionalSession
 RavenTS: NServiceBus.RavenDB.TransactionalSession
+DynamoDB: NServiceBus.Persistence.DynamoDB
+DynamoTS: NServiceBus.Persistence.DynamoDB.TransactionalSession

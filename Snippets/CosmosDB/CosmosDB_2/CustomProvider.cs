@@ -23,7 +23,7 @@ class CosmosDBCustomClientProviderRegistration
     {
         #region CosmosDBCustomClientProviderRegistration
 
-        endpointConfiguration.RegisterComponents(c => c.AddTransient<CustomCosmosClientProvider>());
+        endpointConfiguration.RegisterComponents(c => c.AddTransient<IProvideCosmosClient, CustomCosmosClientProvider>());
 
         #endregion
     }
