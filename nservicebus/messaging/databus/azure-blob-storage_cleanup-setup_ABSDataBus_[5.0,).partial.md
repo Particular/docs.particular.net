@@ -24,7 +24,7 @@ Optional filters can be applied to the blobs inside a container
 Clicking on add creates the new policy on the storage account.
 ![newrule_listview](https://user-images.githubusercontent.com/88632084/236739750-518bf147-bcee-40fa-9d5c-148dd42b1c9b.png)
 
-New rule created - code view which can be edited.
+The polices can also be edited through the code view
 ![newrule_codeview](https://user-images.githubusercontent.com/88632084/236739819-163143b1-b23b-47bb-8123-26d0a8ef9e0d.png)
 
 Th lifecycle policy runs only once a day. The newly configured or updated policy can take up to 24 hours to go into effect. Once the policy is in effect, it could take up to 24 hours for some actions to run for the first time.
@@ -73,9 +73,8 @@ A lifecycle management policy is a collection of rules in a JSON document.
   ]
 }
 ```
-The data policy rules associated with the specified storage account can be created as follows:
+The data policy rules associated with the specified storage account can be created as follows. 
 ```
-
 az storage account management-policy create --account-name myaccount --policy @policy.json --resource-group myresourcegroup
-
 ```
+For additional commands on the policy management please click [here](https://learn.microsoft.com/en-us/cli/azure/storage/account/management-policy?view=azure-cli-latest)
