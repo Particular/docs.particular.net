@@ -5,6 +5,9 @@ using Messages;
 
 namespace SagaSample;
 
+
+#region OrderSaga
+
 public class OrderSaga : Saga<OrderSagaData>,
   IAmStartedByMessages<PlaceOrder>,
   IHandleMessages<CustomerBilled>,
@@ -77,3 +80,5 @@ public class OrderSaga : Saga<OrderSagaData>,
     MarkAsComplete();
   }
 }
+
+#endregion

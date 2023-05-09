@@ -11,13 +11,6 @@ var routing = transport.Routing();
 
 routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.DynamoDB.Lambda.Sales");
 
-var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
-
-persistence.UseSharedTable(new TableConfiguration()
-{
-  TableName = "Samples.DynamoDB.Lambda",
-});
-
 var endpoint = await Endpoint.Start(endpointConfiguration);
 
 

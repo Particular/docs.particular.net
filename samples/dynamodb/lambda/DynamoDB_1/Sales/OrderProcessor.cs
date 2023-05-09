@@ -7,6 +7,9 @@ namespace Sales;
 
 public class OrderProcessor
 {
+
+  #region EndpointSetup
+
   static readonly AwsLambdaSQSEndpoint endpoint = new AwsLambdaSQSEndpoint(context =>
   {
     var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("Samples.DynamoDB.Lambda.Sales");
@@ -27,10 +30,15 @@ public class OrderProcessor
 
   });
 
+  #endregion
+
+  #region FunctionHandler
+
   public async Task ProcessOrder(SQSEvent eventData, ILambdaContext context)
   {
     context.Logger.Log("ProcessOrder was called");
 
     await endpoint.Process(eventData, context, CancellationToken.None);
   }
+  #endregion
 }
