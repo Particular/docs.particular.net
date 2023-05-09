@@ -1,8 +1,6 @@
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
 
-using Messages;
-
 using NServiceBus;
 
 namespace Sales;
@@ -13,18 +11,10 @@ public class OrderProcessor
   {
     var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("Samples.DynamoDB.Lambda.Sales");
 
-    var advanced = endpointConfiguration.AdvancedConfiguration;
-    advanced.CustomDiagnosticsWriter((diagnostics, token) =>
-    {
-      context.Logger.LogLine(diagnostics);
-      return Task.CompletedTask;
-    });
 
+    var advanced = endpointConfiguration.AdvancedConfiguration;
     advanced.SendFailedMessagesTo("Samples.DynamoDB.Lambda.Error");
     advanced.EnableInstallers();
-    _ = advanced.EnableOutbox();
-
-    endpointConfiguration.RoutingSettings.RouteToEndpoint(typeof(PlaceOrder), "Samples.DynamoDB.Lambda.Shipping");
 
     var persistence = advanced.UsePersistence<DynamoPersistence>();
 
@@ -32,9 +22,6 @@ public class OrderProcessor
     {
       TableName = "Samples.DynamoDB.Lambda",
     });
-
-    // var scanner = advanced.AssemblyScanner();
-    // scanner.ExcludeAssemblies("AWSSDK.Core.dll", "AWSSDK.SQS.dll");
 
     return endpointConfiguration;
 

@@ -7,11 +7,9 @@ namespace SagaSample;
 
 public class OrderSaga : Saga<OrderSagaData>,
   IAmStartedByMessages<PlaceOrder>,
-  IHandleMessages<CancelOrder>,
-  IHandleTimeouts<OrderReceived>,
   IHandleMessages<CustomerBilled>,
   IHandleMessages<InventoryStaged>,
-  IHandleMessages<OrderShipped>
+  IHandleTimeouts<CancelOrder>
 {
   static ILog log = LogManager.GetLogger(typeof(OrderSagaData));
 
@@ -19,32 +17,33 @@ public class OrderSaga : Saga<OrderSagaData>,
   {
     mapper.MapSaga(sagaData => sagaData.OrderId)
      .ToMessage<PlaceOrder>(s => s.OrderId)
-     .ToMessage<CancelOrder>(s => s.OrderId)
-     .ToMessage<InventoryStaged>(s => s.OrderId)
      .ToMessage<CustomerBilled>(s => s.OrderId)
-     .ToMessage<OrderShipped>(s => s.OrderId);
+     .ToMessage<InventoryStaged>(s => s.OrderId)
+     .ToMessage<CancelOrder>(s => s.OrderId);
   }
 
   public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
   {
     log.Info($"Placing order: {Data.OrderId}");
 
-    // Delay 20 seconds to allow time for order cancellation
-    await RequestTimeout<OrderReceived>(context, DateTimeOffset.UtcNow.AddSeconds(20));
+    var sendOptions = new SendOptions();
+    sendOptions.RouteToThisEndpoint();
+
+    await context.Publish(new OrderReceived()
+    {
+      OrderId = message.OrderId
+    });
+
+    // Delay 10 seconds to allow time for order cancellation
+    await RequestTimeout<CancelOrder>(context, DateTimeOffset.UtcNow.AddSeconds(15));
   }
 
-  public async Task Timeout(OrderReceived message, IMessageHandlerContext context)
+  public async Task Timeout(CancelOrder message, IMessageHandlerContext context)
   {
-    log.Info($"Order {Data.OrderId} has been received.");
+    log.Info($"Order {Data.OrderId} has been cancelled.");
 
-    Data.OrderProcessing = true;
-
-    await context.Publish(new OrderReceived { OrderId = Data.OrderId });
-  }
-
-  public Task Handle(CancelOrder message, IMessageHandlerContext context)
-  {
-    return CancelOrder();
+    await context.Publish(new OrderCancelled { OrderId = Data.OrderId });
+    MarkAsComplete();
   }
 
   public async Task Handle(CustomerBilled message, IMessageHandlerContext context)
@@ -69,33 +68,12 @@ public class OrderSaga : Saga<OrderSagaData>,
     }
   }
 
-  public Task Handle(OrderShipped message, IMessageHandlerContext context)
-  {
-    log.Info($"{Data.OrderId} has been shipped.");
-
-    MarkAsComplete();
-
-    return Task.CompletedTask;
-  }
-
-  Task CancelOrder()
-  {
-    log.Info($"Order {Data.OrderId} has been cancelled");
-    MarkAsComplete();
-    return Task.CompletedTask;
-  }
-
   async Task ShipIt(IMessageHandlerContext context)
   {
-    log.Info($"Order {Data.OrderId} is ready to be shipped.");
-
-    var messageId = Guid.NewGuid().ToString("N");
-
-    var sendOptions = new SendOptions();
-    sendOptions.SetMessageId(messageId);
+    log.Info($"Order {Data.OrderId} has been shipped.");
 
     // Send duplicate message for outbox test.
-    await context.Send(new ShipOrder { OrderId = Data.OrderId }, sendOptions);
-    await context.Send(new ShipOrder { OrderId = Data.OrderId, IsDuplicate = true }, sendOptions);
+    await context.Publish(new OrderShipped { OrderId = Data.OrderId });
+    MarkAsComplete();
   }
 }

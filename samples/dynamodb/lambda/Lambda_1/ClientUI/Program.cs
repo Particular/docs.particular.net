@@ -20,14 +20,11 @@ persistence.UseSharedTable(new TableConfiguration()
 
 var endpoint = await Endpoint.Start(endpointConfiguration);
 
-bool running = true;
 
 Console.WriteLine();
-Console.WriteLine("Press Enter to place an order. Press C to cancel the last order sent. Press Q to quit.");
+Console.WriteLine("Press Enter to place an order. Press Q to quit.");
 
-string? lastOrderSent = null;
-
-while (running)
+while (true)
 {
   var pressedKey = Console.ReadKey(true);
 
@@ -35,29 +32,16 @@ while (running)
   {
     case ConsoleKey.Enter:
       {
-        lastOrderSent = Guid.NewGuid().ToString("N");
-        await endpoint.Send(new PlaceOrder() { OrderId = lastOrderSent });
-        Console.WriteLine($"Order {lastOrderSent} was placed.");
+        var orderId = Guid.NewGuid().ToString("N");
+        await endpoint.Send(new PlaceOrder() { OrderId = orderId }).ConfigureAwait(false);
+        Console.WriteLine($"Order {orderId} was placed.");
 
-        break;
-      }
-    case ConsoleKey.C:
-      {
-        if (lastOrderSent == null)
-        {
-          Console.WriteLine("No orders to cancel, press Enter to place an order.");
-          break;
-        }
-
-        await endpoint.Send(new CancelOrder() { OrderId = lastOrderSent });
-        Console.WriteLine($"Cancelling order {lastOrderSent}");
         break;
       }
     case ConsoleKey.Q:
       {
         await endpoint.Stop();
-        running = false;
-        break;
+        return;
       }
   }
 }
