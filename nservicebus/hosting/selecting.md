@@ -61,9 +61,7 @@ Within AppServices, [WebJobs](https://docs.microsoft.com/en-us/azure/app-service
 
 ### Azure Functions
 
-Azure Functions can be used to run short-lived NServiceBus endpoints triggered by Azure Service Bus messages. When a message triggers a function, an NServiceBus endpoint can be started to handle the message.
-
-See [Azure Functions with Azure Service Bus](/nservicebus/hosting/azure-functions-service-bus/) for more details.
+Azure Functions can be used to run NServiceBus endpoints in a serverless and dynamically scaled environment. See [Azure Functions with Azure Service Bus](/nservicebus/hosting/azure-functions-service-bus/) for more details.
 
 ### Service Fabric
 
@@ -72,6 +70,10 @@ Service Fabric works on top of Virtual Machine Scale Sets to provide clustered, 
 ## Amazon Web Services
 
 Although there is a [comparison chart](https://docs.microsoft.com/en-us/azure/architecture/aws-professional/services#miscellaneous) that compares Amazon Web Services (AWS) to Microsoft Azure, AWS does not provide any comparable alternatives for hosting background processes. That leaves the following options for Amazon Web Services:
+
+### AWS Lambda
+
+AWS Lambda can be used to run NServiceBus endpoints in a serverless and dynamically scaled environment. See [AWS Lambda with SQS](/nservicebus/hosting/aws-lambda-simple-queue-service.md) for more details.
 
 ### Virtual Machines
 
