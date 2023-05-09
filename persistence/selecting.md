@@ -35,9 +35,12 @@ B --> |MongoDB|M[MongoDB]
 B --> |"Service Fabric<br/>(stateful services)"|C[Service Fabric]
 B --> |RavenDB|E[RavenDB]
 B --> |Azure|Q{PaaS/IaaS ?}
+B --> |AWS|P{PaaS/IaaS ?}
 B --> |No|L
 Q --> |PaaS|G[Cosmos DB]
 Q --> |IaaS|L
+P --> |PaaS|H[DynamoDB]
+P --> |IaaS|L
 ```
 
 ## Making the decision
@@ -82,6 +85,29 @@ Alternatively, some organizations are more comfortable managing SQL Server and m
 **Azure Storage**
 
 - Usually cheaper
+- Automatically scales
+- A turn-key solution, meaning no maintenance
+
+### AWS
+
+There are several options available when endpoints are hosted in AWS. The most commonly used persisters are DynamoDB and Amazon RDS for SQL Server, the fully managed SQL Server solution in AWS.
+
+One factor in the decision is whether the system is fully platform-as-a-service-enabled and whether it is designed to run fully on AWS in which case, DynamoDB persistence may be appropriate.
+
+Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL persister with SQL Server on a EC2 instances).
+
+**Amazon RDS for SQL Server**
+
+- Supports local transactions
+- Supports outbox
+- Better tooling support with SQL Server Management Studio
+
+**DynamoDB**
+
+- Supports transactions
+- Supports outbox
+- Optional geo redundancy
+- Lower latency
 - Automatically scales
 - A turn-key solution, meaning no maintenance
 

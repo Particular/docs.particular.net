@@ -1,7 +1,7 @@
 ---
 title: Persistence
 summary: Features of NServiceBus requiring persistence include timeouts, sagas, and subscription storage.
-reviewed: 2021-01-04
+reviewed: 2023-05-09
 redirects:
 - nservicebus/persistence-in-nservicebus
 - nservicebus/persistence
@@ -25,20 +25,19 @@ NServiceBus needs to store data for various purposes, such as persisting the sta
 
 It can be a challenge to decide whether or not a persister is needed and which one is the best option for a specific scenario. See the [guide to selecting a persister](selecting.md) for help in making that decision.
 
-
 ## Supported persisters
 
 - [SQL](/persistence/sql/)
-- [NHibernate](/persistence/nhibernate/)
 - [Cosmos DB](/persistence/cosmosdb/)
+- [DynamoDB](/persistence/dynamodb/)
 - [MongoDB](/persistence/mongodb/)
 - [Azure Table](/persistence/azure-table/)
+- [NHibernate](/persistence/nhibernate/)
 - [RavenDB](/persistence/ravendb/)
 - [Service Fabric](/persistence/service-fabric/)
 - [MSMQ](/persistence/msmq/)
 - [Learning](/persistence/learning/)
 - [Non-Durable](/persistence/non-durable/)
-
 
 ## Persistence at a glance
 
