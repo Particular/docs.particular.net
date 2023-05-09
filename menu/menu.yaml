@@ -454,7 +454,7 @@
         Title: Custom triggers
       - Url: nservicebus/hosting/azure-functions-service-bus/isolated-worker
         Title: Isolated worker
-    - Url: previews/aws-lambda-simple-queue-service
+    - Url: nservicebus/hosting/aws-lambda-simple-queue-service
       Title: AWS Lambda with SQS
     - Url: nservicebus/hosting/service-fabric-hosting
       Title: Service Fabric
@@ -1461,7 +1461,3 @@
       Url: previews
     - Title: Support Policy
       Url: previews/support-policy
-  - Title: AWS Lambda
-    Articles:
-    - Title: NServiceBus.AwsLambda.Sqs
-      Url: previews/aws-lambda-simple-queue-service

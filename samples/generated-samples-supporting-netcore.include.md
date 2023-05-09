@@ -124,4 +124,4 @@
 * [Cosmos DB Persistence Usage with transactions](/samples/cosmosdb/transactions/)
 * [Simple Azure Table Persistence Usage](/samples/azure/azure-table/simple/)
 * [Simple Cosmos DB Persistence Usage](/samples/cosmosdb/simple/)
-* [Using NServiceBus in AWS Lambda with SQS](/samples/previews/aws-lambda/sqs/)
+* [Using NServiceBus in AWS Lambda with SQS](/samples/hosting/aws-lambda-sqs/)
