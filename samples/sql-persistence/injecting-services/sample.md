@@ -19,8 +19,6 @@ downloadbutton
 
 ## Prerequisites
 
-This sample requires:
-
 include: sql-prereq
 
 The database created by this sample is `NsbSamplesInjectedServices`.
