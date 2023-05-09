@@ -29,7 +29,7 @@ The collection of rules of  lifecycle management policy can be set in a JSON doc
   "rules": [
     {
       "enabled": true,
-      "name": "sample-databus-rule",
+      "name": "delete-databus-files",
       "type": "Lifecycle",
       "definition": {
         "actions": {
@@ -56,7 +56,7 @@ The collection of rules of  lifecycle management policy can be set in a JSON doc
             "blockBlob"
           ],
           "prefixMatch": [
-            "sample-databus-container/"
+            "databus/"
           ]
         }
       }
