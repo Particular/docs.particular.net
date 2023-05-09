@@ -4,4 +4,62 @@ Review the [sample](/samples/azure/blob-storage-databus-cleanup-function/) to se
 
 ### Using the Blob Lifecycle Management policy
 
-Attachment blobs can be cleaned up using the [Blob Storage Lifecycle feature](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts). This method allows configuring a single policy for all data bus-related blobs. Those blobs can be either deleted or archived. The policy does not require custom code and is deployed directly to the storage account. This feature can only be used on GPv2 and Blob storage accounts, not on GPv1 accounts. 
+Attachment blobs can be cleaned up using the [Blob Storage Lifecycle feature](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts). This method allows configuring a single policy for all data bus-related blobs. Those blobs can be either deleted or archived. The policy does not require custom code and is deployed directly to the storage account. This feature can only be used on GPv2 and Blob storage accounts, not on GPv1 accounts.
+
+The policy can be set on the storage account via the Azure portal or through a powershell command. The lifecycle policy runs only once a day. The newly configured or updated policy can take up to 24 hours to go into effect. Once the policy is in effect, it could take up to 24 hours for some actions to run for the first time.
+
+
+#### Manage the Blob Lifecycle policy via Azure portal
+
+A lifecycle management policy is a collection of rules and can be set directly on the azure storage account via the portal.
+
+For additional information on policy configuration, please [click here](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure?source=recommendations&tabs=azure-portal)
+
+#### Manage the Blob Lifecycle policy via powershell command
+
+The collection of rules of  lifecycle management policy can be set in a JSON document. 
+```
+{
+  "rules": [
+    {
+      "enabled": true,
+      "name": "sample-databus-rule",
+      "type": "Lifecycle",
+      "definition": {
+        "actions": {
+          "version": {
+            "delete": {
+              "daysAfterCreationGreaterThan": 90
+            }
+          },
+          "baseBlob": {
+            "tierToCool": {
+              "daysAfterModificationGreaterThan": 30
+            },
+            "tierToArchive": {
+              "daysAfterModificationGreaterThan": 90,
+              "daysAfterLastTierChangeGreaterThan": 7
+            },
+            "delete": {
+              "daysAfterModificationGreaterThan": 2555
+            }
+          }
+        },
+        "filters": {
+          "blobTypes": [
+            "blockBlob"
+          ],
+          "prefixMatch": [
+            "sample-databus-container/"
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+The data policy rules associated with the specified storage account can be created as follows. 
+```
+az storage account management-policy create --account-name myaccount --policy @policy.json --resource-group myresourcegroup
+```
+For additional commands on the policy management please click [here](https://learn.microsoft.com/en-us/cli/azure/storage/account/management-policy?view=azure-cli-latest)
