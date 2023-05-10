@@ -110,6 +110,18 @@
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.1) | 2022-11-17     | -                 | -                                 |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | 2022-09-19     | 2023-11-17        | Superseded by 2.0.x               |
 
+#### [NServiceBus.Persistence.DynamoDB](/nuget/NServiceBus.Persistence.DynamoDB)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/1.0.0) | 2023-05-09     | -                 | -                                 |
+
+#### [NServiceBus.Persistence.DynamoDB.TransactionalSession](/nuget/NServiceBus.Persistence.DynamoDB.TransactionalSession)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/1.0.0) | 2023-05-09     | -                 | -                                 |
+
 #### [NServiceBus.Persistence.NonDurable](/nuget/NServiceBus.Persistence.NonDurable)
 
 | Version   | Released       | Supported until   | Notes                             |
@@ -500,7 +512,6 @@
 | [~~2.16.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.16.0) | ~~2022-09-08~~ | ~~2023-02-28~~    | ~~Superseded by 2.17.x~~          |
 | [~~2.14.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.14.0) | ~~2022-08-12~~ | ~~2022-12-08~~    | ~~Superseded by 2.16.x~~          |
 | [~~2.13.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.13.0) | ~~2022-08-10~~ | ~~2022-11-12~~    | ~~Superseded by 2.14.x~~          |
-| [~~2.12.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.12.0) | ~~2022-08-05~~ | ~~2022-11-10~~    | ~~Superseded by 2.13.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
