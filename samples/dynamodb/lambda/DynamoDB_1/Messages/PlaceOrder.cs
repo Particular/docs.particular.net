@@ -1,9 +1,6 @@
 ﻿using NServiceBus;
 
-namespace Messages
+public class PlaceOrder : IMessage
 {
-  public class PlaceOrder : IMessage
-  {
-    public string? OrderId { get; set; }
-  }
+  public string? OrderId { get; set; }
 }

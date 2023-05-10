@@ -1,9 +1,6 @@
 ﻿using NServiceBus;
 
-namespace Messages
+public class OrderShipped : IEvent
 {
-  public class OrderShipped : IEvent
-  {
-    public string? OrderId { get; set; }
-  }
+  public string? OrderId { get; set; }
 }
