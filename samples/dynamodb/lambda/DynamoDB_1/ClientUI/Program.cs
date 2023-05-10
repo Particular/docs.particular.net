@@ -1,43 +1,52 @@
-﻿using Messages;
-
+﻿using System.Threading.Tasks;
 using NServiceBus;
-
-var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Lambda.ClientUI");
-endpointConfiguration.EnableInstallers();
-endpointConfiguration.SendFailedMessagesTo("Samples.DynamoDB.Lambda.Error");
-
-var transport = endpointConfiguration.UseTransport<SqsTransport>();
-var routing = transport.Routing();
-
-routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.DynamoDB.Lambda.Sales");
-
-var endpoint = await Endpoint.Start(endpointConfiguration);
+using Messages;
+using System;
 
 
-Console.WriteLine();
-Console.WriteLine("Press Enter to place an order. Press Q to quit.");
-
-while (true)
+class Program
 {
-  var pressedKey = Console.ReadKey(true);
-
-  switch (pressedKey.Key)
+  public static async Task Main(string[] args)
   {
-    case ConsoleKey.Enter:
-      {
-        var orderId = Guid.NewGuid().ToString("N");
-        await endpoint.Send(new PlaceOrder() { OrderId = orderId }).ConfigureAwait(false);
-        Console.WriteLine($"Order {orderId} was placed.");
+    var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Lambda.ClientUI");
+    endpointConfiguration.EnableInstallers();
+    endpointConfiguration.SendFailedMessagesTo("Samples.DynamoDB.Lambda.Error");
 
-        break;
-      }
-    case ConsoleKey.Q:
+    var transport = endpointConfiguration.UseTransport<SqsTransport>();
+    var routing = transport.Routing();
+
+    routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.DynamoDB.Lambda.Sales");
+
+    var endpoint = await Endpoint.Start(endpointConfiguration);
+
+
+    Console.WriteLine();
+    Console.WriteLine("Press Enter to place an order. Press Q to quit.");
+
+    while (true)
+    {
+      var pressedKey = Console.ReadKey(true);
+
+      switch (pressedKey.Key)
       {
-        await endpoint.Stop();
-        return;
+        case ConsoleKey.Enter:
+          {
+            var orderId = Guid.NewGuid().ToString("N");
+            await endpoint.Send(new PlaceOrder() { OrderId = orderId }).ConfigureAwait(false);
+            Console.WriteLine($"Order {orderId} was placed.");
+
+            break;
+          }
+        case ConsoleKey.Q:
+          {
+            await endpoint.Stop();
+            return;
+          }
       }
+    }
   }
 }
+
 
 
 

@@ -1,6 +1,9 @@
-﻿namespace Messages;
+﻿using NServiceBus;
 
-public class OrderShipped : IEvent
+namespace Messages
 {
-  public string? OrderId { get; set; }
+  public class OrderShipped : IEvent
+  {
+    public string? OrderId { get; set; }
+  }
 }

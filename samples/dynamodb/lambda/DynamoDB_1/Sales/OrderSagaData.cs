@@ -1,10 +1,12 @@
 ﻿using NServiceBus;
 
-namespace SagaSample;
-public class OrderSagaData : ContainSagaData
+namespace SagaSample
 {
-  public string? OrderId { get; set; }
+  public class OrderSagaData : ContainSagaData
+  {
+    public string? OrderId { get; set; }
 
-  public bool CustomerBilled { get; set; }
-  public bool InventoryStaged { get; set; }
+    public bool CustomerBilled { get; set; }
+    public bool InventoryStaged { get; set; }
+  }
 }

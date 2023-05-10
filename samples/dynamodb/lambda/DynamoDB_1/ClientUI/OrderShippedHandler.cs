@@ -1,18 +1,21 @@
-﻿using Messages;
+﻿using System.Threading.Tasks;
 
 using NServiceBus;
 using NServiceBus.Logging;
 
-namespace ClientUI;
+using Messages;
 
-public class OrderShippedHandler : IHandleMessages<OrderShipped>
+namespace ClientUI
 {
-  static readonly ILog Log = LogManager.GetLogger<OrderShippedHandler>();
-
-  public Task Handle(OrderShipped message, IMessageHandlerContext context)
+  public class OrderShippedHandler : IHandleMessages<OrderShipped>
   {
-    Log.Info($"Order {message.OrderId} has shipped.");
+    static readonly ILog Log = LogManager.GetLogger<OrderShippedHandler>();
 
-    return Task.CompletedTask;
+    public Task Handle(OrderShipped message, IMessageHandlerContext context)
+    {
+      Log.Info($"Order {message.OrderId} has shipped.");
+
+      return Task.CompletedTask;
+    }
   }
 }

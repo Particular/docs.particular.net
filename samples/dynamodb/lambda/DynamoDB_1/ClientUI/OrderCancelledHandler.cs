@@ -1,7 +1,9 @@
-﻿using Messages;
+﻿using System.Threading.Tasks;
 
 using NServiceBus;
 using NServiceBus.Logging;
+
+using Messages;
 
 namespace ClientUI
 {

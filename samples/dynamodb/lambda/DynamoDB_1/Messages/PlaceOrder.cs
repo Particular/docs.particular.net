@@ -1,6 +1,9 @@
-﻿namespace Messages;
+﻿using NServiceBus;
 
-public class PlaceOrder : IMessage
+namespace Messages
 {
-  public string? OrderId { get; set; }
+  public class PlaceOrder : IMessage
+  {
+    public string? OrderId { get; set; }
+  }
 }

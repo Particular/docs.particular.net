@@ -1,6 +1,9 @@
-﻿namespace Messages;
+﻿using NServiceBus;
 
-public class OrderCancelled : IEvent
+namespace Messages
 {
-  public string? OrderId { get; set; }
+  public class OrderCancelled : IEvent
+  {
+    public string? OrderId { get; set; }
+  }
 }

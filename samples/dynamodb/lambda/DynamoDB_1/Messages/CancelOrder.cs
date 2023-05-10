@@ -1,6 +1,9 @@
-﻿namespace Messages;
+﻿using NServiceBus;
 
-public class CancelOrder : ICommand
+namespace Messages
 {
-  public string? OrderId { get; set; }
+  public class CancelOrder : ICommand
+  {
+    public string? OrderId { get; set; }
+  }
 }
