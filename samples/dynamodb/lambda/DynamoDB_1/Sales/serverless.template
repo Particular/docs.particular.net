@@ -26,7 +26,7 @@
     "SQSTriggerFunction" : {
       "Type" : "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "Sales::Sales.OrderProcessor::ProcessOrder",
+        "Handler": "Sales::OrderProcessor::ProcessOrder",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Process an order",

@@ -3,19 +3,15 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-using Messages;
-
-namespace ClientUI
+public class OrderCancelledHandler : IHandleMessages<OrderCancelled>
 {
-  public class OrderCancelledHandler : IHandleMessages<OrderCancelled>
+  static readonly ILog Log = LogManager.GetLogger<OrderCancelledHandler>();
+
+  public Task Handle(OrderCancelled message, IMessageHandlerContext context)
   {
-    static readonly ILog Log = LogManager.GetLogger<OrderCancelledHandler>();
+    Log.Info($"Order {message.OrderId} was cancelled.");
 
-    public Task Handle(OrderCancelled message, IMessageHandlerContext context)
-    {
-      Log.Info($"Order {message.OrderId} was cancelled.");
-
-      return Task.CompletedTask;
-    }
+    return Task.CompletedTask;
   }
 }
+

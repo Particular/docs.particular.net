@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
-using NServiceBus;
-using Messages;
 using System;
-
+using NServiceBus;
 
 class Program
 {
@@ -14,11 +12,9 @@ class Program
 
     var transport = endpointConfiguration.UseTransport<SqsTransport>();
     var routing = transport.Routing();
-
     routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.DynamoDB.Lambda.Sales");
 
     var endpoint = await Endpoint.Start(endpointConfiguration);
-
 
     Console.WriteLine();
     Console.WriteLine("Press Enter to place an order. Press Q to quit.");

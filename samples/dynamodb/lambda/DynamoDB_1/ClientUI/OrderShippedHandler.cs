@@ -3,19 +3,14 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-using Messages;
-
-namespace ClientUI
+public class OrderShippedHandler : IHandleMessages<OrderShipped>
 {
-  public class OrderShippedHandler : IHandleMessages<OrderShipped>
+  static readonly ILog Log = LogManager.GetLogger<OrderShippedHandler>();
+
+  public Task Handle(OrderShipped message, IMessageHandlerContext context)
   {
-    static readonly ILog Log = LogManager.GetLogger<OrderShippedHandler>();
+    Log.Info($"Order {message.OrderId} has shipped.");
 
-    public Task Handle(OrderShipped message, IMessageHandlerContext context)
-    {
-      Log.Info($"Order {message.OrderId} has shipped.");
-
-      return Task.CompletedTask;
-    }
+    return Task.CompletedTask;
   }
 }
