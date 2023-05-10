@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Queues Transport
-reviewed: 2020-11-16
+reviewed: 2023-05-10
 component: ASQ
 related:
 - nservicebus/azure
@@ -9,7 +9,7 @@ related:
 
 ## Prerequisites
 
-Ensure an instance of the [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator) is running.
+Ensure an instance of the [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio) is running. 
 
 
 ## Azure Storage Queues Transport
