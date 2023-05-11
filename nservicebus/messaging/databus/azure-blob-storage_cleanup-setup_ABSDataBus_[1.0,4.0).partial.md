@@ -16,7 +16,7 @@ NOTE: The lifecycle policy runs only once a day. The newly configured or updated
 
 #### Manage the Blob Lifecycle policy via Azure portal
 
-A lifecycle management policy is a collection of rules and can be set directly on the azure storage account via the portal.
+A lifecycle management policy can be set directly on the azure storage account via the portal.
 
 For additional information on policy configuration, please [click here](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure?source=recommendations&tabs=azure-portal)
 
