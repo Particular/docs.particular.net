@@ -13,7 +13,7 @@ public class StageInventoryHandler : IHandleMessages<OrderReceived>
   {
     log.Info($"Staging inventory for order {message.OrderId}.");
 
-    await Task.Delay(TimeSpan.FromSeconds(Random.Shared.Next(1, 5)), CancellationToken.None);
+    await Task.Delay(TimeSpan.FromSeconds(Random.Shared.Next(0, 4)), CancellationToken.None);
 
     await context.Publish(new InventoryStaged() { OrderId = message.OrderId });
   }

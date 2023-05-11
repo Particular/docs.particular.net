@@ -7,8 +7,7 @@ class Program
   public static async Task Main(string[] args)
   {
     var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Lambda.ClientUI");
-    endpointConfiguration.EnableInstallers();
-    endpointConfiguration.SendFailedMessagesTo("Samples.DynamoDB.Lambda.Error");
+    endpointConfiguration.SendFailedMessagesTo("Samples-DynamoDB-Lambda-Error");
 
     var transport = endpointConfiguration.UseTransport<SqsTransport>();
     var routing = transport.Routing();
@@ -17,7 +16,7 @@ class Program
     var endpoint = await Endpoint.Start(endpointConfiguration);
 
     Console.WriteLine();
-    Console.WriteLine("Press Enter to place an order. Press Q to quit.");
+    Console.WriteLine("Press [Enter] to place an order. Press [Esc] to quit.");
 
     while (true)
     {
@@ -33,7 +32,7 @@ class Program
 
             break;
           }
-        case ConsoleKey.Q:
+        case ConsoleKey.Escape:
           {
             await endpoint.Stop();
             return;
