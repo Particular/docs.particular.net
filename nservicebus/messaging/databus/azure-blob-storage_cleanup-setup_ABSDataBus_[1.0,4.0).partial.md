@@ -14,7 +14,6 @@ Attachment blobs can be cleaned up using the [Blob Storage Lifecycle feature](ht
 
 The policy can be set on the storage account via the Azure portal or through a powershell command. The lifecycle policy runs only once a day. The newly configured or updated policy can take up to 24 hours to go into effect. Once the policy is in effect, it could take up to 24 hours for some actions to run for the first time.
 
-
 #### Manage the Blob Lifecycle policy via Azure portal
 
 A lifecycle management policy is a collection of rules and can be set directly on the azure storage account via the portal.
