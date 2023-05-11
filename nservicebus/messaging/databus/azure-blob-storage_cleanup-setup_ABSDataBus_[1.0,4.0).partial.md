@@ -12,7 +12,7 @@ Review the [sample](/samples/azure/blob-storage-databus-cleanup-function/) to se
 
 Attachment blobs can be cleaned up using the [Blob Storage Lifecycle feature](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts). This method allows configuring a single policy for all data bus-related blobs. Those blobs can be either deleted or archived. The policy does not require custom code and is deployed directly to the storage account. This feature can only be used on GPv2 and Blob storage accounts, not on GPv1 accounts.
 
-The policy can be set on the storage account via the Azure portal or through a powershell command. The lifecycle policy runs only once a day. The newly configured or updated policy can take up to 24 hours to go into effect. Once the policy is in effect, it could take up to 24 hours for some actions to run for the first time.
+NOTE: The lifecycle policy runs only once a day. The newly configured or updated policy can take up to 24 hours to go into effect. Once the policy is in effect, it could take up to 24 hours for some actions to run for the first time.
 
 #### Manage the Blob Lifecycle policy via Azure portal
 
