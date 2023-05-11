@@ -9,8 +9,7 @@ using NServiceBus.Logging;
 public class OrderSaga : Saga<OrderSagaData>,
   IAmStartedByMessages<PlaceOrder>,
   IHandleMessages<CustomerBilled>,
-  IHandleMessages<InventoryStaged>,
-  IHandleTimeouts<CancelOrder>
+  IHandleMessages<InventoryStaged>
 {
   static ILog log = LogManager.GetLogger(typeof(OrderSagaData));
 
@@ -19,8 +18,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     mapper.MapSaga(sagaData => sagaData.OrderId)
      .ToMessage<PlaceOrder>(s => s.OrderId)
      .ToMessage<CustomerBilled>(s => s.OrderId)
-     .ToMessage<InventoryStaged>(s => s.OrderId)
-     .ToMessage<CancelOrder>(s => s.OrderId);
+     .ToMessage<InventoryStaged>(s => s.OrderId);
   }
 
   public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
@@ -31,17 +29,6 @@ public class OrderSaga : Saga<OrderSagaData>,
     {
       OrderId = message.OrderId
     });
-
-    // Delay 5 seconds to allow time for order cancellation
-    await RequestTimeout<CancelOrder>(context, DateTimeOffset.UtcNow.AddSeconds(5));
-  }
-
-  public async Task Timeout(CancelOrder message, IMessageHandlerContext context)
-  {
-    log.Info($"Order {Data.OrderId} has been cancelled.");
-
-    await context.Publish(new OrderCancelled { OrderId = Data.OrderId });
-    MarkAsComplete();
   }
 
   public async Task Handle(CustomerBilled message, IMessageHandlerContext context)

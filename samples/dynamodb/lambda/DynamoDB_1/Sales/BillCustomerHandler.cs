@@ -13,7 +13,7 @@ public class BillCustomerHandler : IHandleMessages<OrderReceived>
   {
     log.Info($"Billing customer for order {message.OrderId}.");
 
-    await Task.Delay(TimeSpan.FromSeconds(Random.Shared.Next(0, 4)), CancellationToken.None);
+    await Task.Delay(TimeSpan.FromSeconds(Random.Shared.Next(0, 2)), CancellationToken.None);
 
     await context.Publish(new CustomerBilled() { OrderId = message.OrderId });
   }
