@@ -24,7 +24,7 @@ For additional information on policy configuration, please [click here](https://
 
 #### Manage the Blob Lifecycle policy via the Azure Command-Line Interface (CLI)
 
-The collection of rules of  lifecycle management policy can be set in a JSON document. 
+The lifecycle management policy can be set in a JSON document via the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/storage/account/management-policy?view=azure-cli-latest).
 ```
 {
   "rules": [
