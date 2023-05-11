@@ -65,7 +65,9 @@ The lifecycle management policy can be set in a JSON document via the [Azure CLI
   ]
 }
 ```
+
 The data policy rules associated with the specified storage account can be created as follows. 
+
 ```
 az storage account management-policy create --account-name myaccount --policy @policy.json --resource-group myresourcegroup
 ```
