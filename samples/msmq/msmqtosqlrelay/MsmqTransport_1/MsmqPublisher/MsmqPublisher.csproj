@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <OutputType>Exe</OutputType>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
@@ -10,7 +10,7 @@
     <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
-	<PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />  
+	<PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="*.sql" CopyToOutputDirectory="PreserveNewest" />

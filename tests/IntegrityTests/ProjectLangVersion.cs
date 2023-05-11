@@ -37,7 +37,7 @@ namespace IntegrityTests
                     var firstTargetFrameworksElement = xdoc.XPathSelectElement("/Project/PropertyGroup/LangVersion");
                     var value = firstTargetFrameworksElement?.Value;
 
-                    return value == "8.0";
+                    return value == "10.0";
                 });
         }
     }
