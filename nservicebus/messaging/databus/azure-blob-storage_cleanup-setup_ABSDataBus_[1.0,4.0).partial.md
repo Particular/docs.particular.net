@@ -20,7 +20,7 @@ NOTE: The lifecycle policy runs only once a day. The newly configured or updated
 
 A lifecycle management policy can be set directly on the azure storage account via the portal.
 
-For additional information on policy configuration, please [click here](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure?source=recommendations&tabs=azure-portal)
+Additional information on the configuration, can be found in [azure blob lifecycle management policy](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure?source=recommendations&tabs=azure-portal)
 
 #### Manage the Blob Lifecycle policy via the Azure Command-Line Interface (CLI)
 
@@ -67,7 +67,7 @@ The lifecycle management policy can be set in a JSON document via the [Azure CLI
 }
 ```
 
-The data policy rules associated with the specified storage account can be created as follows. 
+The data policy rules associated with the specified storage account can be created as follows.
 
 ```
 az storage account management-policy create --account-name myaccount --policy @policy.json --resource-group myresourcegroup
