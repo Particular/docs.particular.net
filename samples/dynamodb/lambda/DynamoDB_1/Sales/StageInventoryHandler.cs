@@ -11,7 +11,7 @@ public class StageInventoryHandler : IHandleMessages<OrderReceived>
 
   public async Task Handle(OrderReceived message, IMessageHandlerContext context)
   {
-    log.Info("Staging inventory.");
+    log.Info($"Staging inventory for order {message.OrderId}.");
 
     await Task.Delay(TimeSpan.FromSeconds(Random.Shared.Next(1, 5)), CancellationToken.None);
 
