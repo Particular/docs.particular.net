@@ -22,7 +22,7 @@ A lifecycle management policy can be set directly on the azure storage account v
 
 For additional information on policy configuration, please [click here](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure?source=recommendations&tabs=azure-portal)
 
-#### Manage the Blob Lifecycle policy via powershell command
+#### Manage the Blob Lifecycle policy via the Azure Command-Line Interface (CLI)
 
 The collection of rules of  lifecycle management policy can be set in a JSON document. 
 ```
