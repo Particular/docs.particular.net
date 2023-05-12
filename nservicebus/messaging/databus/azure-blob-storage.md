@@ -20,6 +20,8 @@ partial: cleanup-options
 
 partial: cleanup-setup
 
+include: azure-blob-storage-management-policy
+
 ## Configuration
 
 partial: config

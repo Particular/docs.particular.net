@@ -6,15 +6,12 @@ Review the [sample](/samples/azure/blob-storage-databus-cleanup-function/) to se
 
 Attachment blobs can be cleaned up using the [Blob Storage Lifecycle feature](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts). This method allows configuring a single policy for all data bus-related blobs. Those blobs can be either deleted or archived. The policy does not require custom code and is deployed directly to the storage account. This feature can only be used on GPv2 and Blob storage accounts, not on GPv1 accounts.
 
-NOTE: The `prefixMatch` setting should be set to the value of `databus/` by default. If [the `Container()` or `BasePath()` configuration options](#behavior) have been specified when configuring the data bus the `prefixMatch` setting must be modified to take into account the configured container and/or base path values.
 
 NOTE: The lifecycle policy runs only once a day. The newly configured or updated policy can take up to 24 hours to go into effect. Once the policy is in effect, it could take up to 24 hours for some actions to run for the first time.
 
 #### Manage the Blob Lifecycle policy via Azure portal
 
-A lifecycle management policy can be set directly on the azure storage account via the portal.
-
-Additional information on the configuration, can be found in [azure blob lifecycle management policy](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure?source=recommendations&tabs=azure-portal)
+A lifecycle management policy can be set directly on the azure storage account via the portal. Additional information on the configuration, can be found in [azure blob lifecycle management policy](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure?source=recommendations&tabs=azure-portal)
 
 #### Manage the Blob Lifecycle policy via the Azure Command-Line Interface (CLI)
 
@@ -66,3 +63,4 @@ The data policy rules associated with the specified storage account can be creat
 ```
 az storage account management-policy create --account-name myaccount --policy @policy.json --resource-group myresourcegroup
 ```
+NOTE: The `prefixMatch` setting should be set to the value of `databus/` by default. If [the `Container()` or `BasePath()` configuration options](#behavior) have been specified when configuring the data bus the `prefixMatch` setting must be modified to take into account the configured container and/or base path values.
