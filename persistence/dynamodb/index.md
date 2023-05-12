@@ -69,7 +69,7 @@ Below is the list of minimum required [IAM policies for operating the DynamoDB p
   - `dynamodb:PutItem`,
   - `dynamodb:DeleteItem`
 
-If installers are disabled, or if `DisableTableCreation` is called, the `dynamodb:CreateTable` and `dynamodb:UpdateTimeToLive` policies are not required. 
+If installers are disabled, or if `DisableTableCreation` is called, the `dynamodb:CreateTable`, `dynamodb:DescribeTable` and `dynamodb:UpdateTimeToLive` policies are not required. 
 
 ## Provisioned throughput rate-limiting
 
