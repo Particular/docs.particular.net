@@ -6,14 +6,13 @@ namespace IntegrityTests
 {
     public class ProjectLangVersion
     {
-       [Test]
-        public void ShouldUseLangVersionLatest()
+        [Test]
+        public void ShouldUseLangVersion10()
         {
             // Also reflected in https://docs.particular.net/samples/#technology-choices-c-language-level
             // And in /tools/projectStandards.linq
 
-            new TestRunner("*.csproj", "SDK-style project files (VS2017+) must specify LangVersion=8.0 - Provides the best balance between users between samples for net48 and net6 and samples built by the user likely without LangVersion element.")
-                .IgnoreSnippets()
+            new TestRunner("*.csproj", "SDK-style project files must specify LangVersion=10.0")
                 .Run(projectFilePath =>
                 {
                     XDocument xdoc = default;
@@ -27,15 +26,15 @@ namespace IntegrityTests
                         return false;
                     }
 
-                    // Ignore non-Sdk (VS2015 and previous) style projects
+                    // Ignore if not an Sdk-style project
                     var sdk = xdoc.Root.Attribute("Sdk");
                     if (sdk == null)
                     {
                         return true;
                     }
 
-                    var firstTargetFrameworksElement = xdoc.XPathSelectElement("/Project/PropertyGroup/LangVersion");
-                    var value = firstTargetFrameworksElement?.Value;
+                    var firstLangVersionElement = xdoc.XPathSelectElement("/Project/PropertyGroup/LangVersion");
+                    var value = firstLangVersionElement?.Value;
 
                     return value == "10.0";
                 });
