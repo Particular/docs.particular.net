@@ -55,6 +55,22 @@ and registered on the container
 
 snippet: DynamoDBCustomClientProviderRegistration
 
+## Permissions
+
+Below is the list of minimum required [IAM policies for operating the DynamoDB persistence](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/security_iam_service-with-iam.html) with installers enabled: 
+
+  - `dynamodb:CreateTable`,
+  - `dynamodb:DescribeTable`,
+  - `dynamodb:DescribeTimeToLive`,
+  - `dynamodb:UpdateTimeToLive`,
+  - `dynamodb:Query`,
+  - `dynamodb:GetItem`,
+  - `dynamodb:BatchWriteItem`,
+  - `dynamodb:PutItem`,
+  - `dynamodb:DeleteItem`
+
+If installers are disabled, or if `DisableTableCreation` is called, the `dynamodb:CreateTable` and `dynamodb:UpdateTimeToLive` policies are not required. 
+
 ## Provisioned throughput rate-limiting
 
 When using [provisioned throughput](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html) it is possible for the DynamoDB service to rate-limit usage, resulting in "provisioned throughput exceeded" exceptions indicated by the 429 status code.
