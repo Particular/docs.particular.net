@@ -61,6 +61,9 @@ Meanwhile, the `OrderSaga`, hosted within the AWS Lambda project, is a regular N
 
 snippet: OrderSaga
 
+The saga data is stored in the `Samples.DynamoDB.Lambda` table and can be inspected via the AWS web portal:
+
+![](saga-data.png)
 
 ## Removing the sample stack
 
