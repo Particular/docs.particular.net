@@ -15,7 +15,7 @@ public class OrderProcessor
     var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("Samples.DynamoDB.Lambda.Sales");
 
     var advanced = endpointConfiguration.AdvancedConfiguration;
-    advanced.SendFailedMessagesTo("Samples.DynamoDB.Lambda.Error");
+    advanced.SendFailedMessagesTo("Samples-DynamoDB-Lambda-Error");
 
     var persistence = advanced.UsePersistence<DynamoPersistence>();
 
