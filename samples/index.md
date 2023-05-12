@@ -36,7 +36,7 @@ Unless otherwise specified (by an individual sample) the following are the defau
 
 ### Visual Studio and .NET
 
-[Visual Studio 2022 Update 3](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes). If any help is required upgrading to a new version of Visual Studio, [raise an issue](https://github.com/Particular/docs.particular.net/issues).
+[Visual Studio 2022](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes). If any help is required upgrading to a new version of Visual Studio, [raise an issue](https://github.com/Particular/docs.particular.net/issues).
 
 Most samples are made available for multiple frameworks, available through a dropdown menu on the download button. Each framework has its own requirements for what version of Visual Studio is supported. For instance, .NET 6 requires at least Visual Studio 2022.
 
