@@ -40,14 +40,14 @@ To try the AWS Lambda:
 
 1. From the **ClientUI** window, press <kbd>Enter</kbd> to send a `PlaceOrder` message to the trigger queue.
 2. The AWS Lambda will receive the `PlaceOrder` message and will start the `OrderSaga`.
-3. The `OrderSaga` will publish an `OrderReceived` event and request a 15 second timeout.
+3. The `OrderSaga` will publish an `OrderReceived` event.
 4. The AWS Lambda receives the `OrderReceived` event which is handled by the `BillCustomerHandler` and the `StageInventoryHandler`. After a delay, each handler publishes an event, `CustomerBilled` and `InventoryStaged` respectively.
-5. The AWS Lambda will receive the events. Once both events are received, the `OrderSaga` publishes an `OrderShipped` event.  If both events are not received before the 15 second timeout, the `OrderSaga` publishes an `OrderCancelled` event.
-6. The **ClientUI** will handle the `OrderShipped` or `OrderCancelled` event and log to the console.
+5. The AWS Lambda will receive the events. Once both events are received, the `OrderSaga` publishes an `OrderShipped` event.
+6. The **ClientUI** will handle the `OrderShipped` event and log to the console.
 
 ## Code walk-through
 
-The **ClientUI** console application is an Amazon SQS endpoint that sends `PlaceOrder` commands and handles `OrderShipped` and `OrderCancelled` events.
+The **ClientUI** console application is an Amazon SQS endpoint that sends `PlaceOrder` commands and handles the `OrderShipped` event.
 
 The **Sales** project is hosted using AWS Lambda. The static NServiceBus endpoint must be configured using details that come from the AWS Lambda `ILambdaContext`. Since that is not available until a message is handled by the function, the NServiceBus endpoint instance is deferred until the first message is processed, using a lambda expression such as:
 
