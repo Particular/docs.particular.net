@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net48;net7.0;net6.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />

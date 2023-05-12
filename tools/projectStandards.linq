@@ -76,11 +76,11 @@ void CleanUpProjects()
 
 			if (langVersion == null)
 			{
-				propertyGroup.Add(new XElement("LangVersion", "8.0"));
+				propertyGroup.Add(new XElement("LangVersion", "10.0"));
 			}
 			else
 			{
-				langVersion.Value = "8.0";
+				langVersion.Value = "10.0";
 			}
 
             var targetFrameworks = propertyGroup.Element("TargetFrameworks");

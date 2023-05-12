@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
@@ -10,6 +10,6 @@
     <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
-	<PackageReference Include="Microsoft.NETCore.Targets" Version="5.*" PrivateAssets="all" />  
+	<PackageReference Include="Microsoft.NETCore.Targets" Version="5.*" PrivateAssets="all" />
   </ItemGroup>
 </Project>

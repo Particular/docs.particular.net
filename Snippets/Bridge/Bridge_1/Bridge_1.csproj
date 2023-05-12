@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>10.0</LangVersion>
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
   <ItemGroup>

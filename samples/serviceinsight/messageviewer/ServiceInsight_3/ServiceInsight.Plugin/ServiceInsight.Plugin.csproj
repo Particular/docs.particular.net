@@ -6,7 +6,7 @@
 		<IsPackable>false</IsPackable>
 		<GenerateDocumentationFile>false</GenerateDocumentationFile>
 		<RootNamespace>ServiceInsight.CustomViewer.Plugin</RootNamespace>
-		<LangVersion>8.0</LangVersion>
+		<LangVersion>10.0</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

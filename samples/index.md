@@ -36,13 +36,13 @@ Unless otherwise specified (by an individual sample) the following are the defau
 
 ### Visual Studio and .NET
 
-[Visual Studio 2017 Update 3](https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes). If any help is required upgrading to a new version of Visual Studio, [raise an issue](https://github.com/Particular/docs.particular.net/issues).
+[Visual Studio 2022 Update 3](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-notes). If any help is required upgrading to a new version of Visual Studio, [raise an issue](https://github.com/Particular/docs.particular.net/issues).
 
-Most samples are made available for multiple frameworks, available through a dropdown menu on the download button. Each framework has its own requirements for what version of Visual Studio is supported. For instance, .NET Core 3.1 requires at least Visual Studio 2019.
+Most samples are made available for multiple frameworks, available through a dropdown menu on the download button. Each framework has its own requirements for what version of Visual Studio is supported. For instance, .NET 6 requires at least Visual Studio 2022.
 
 ### C# language level
 
-All samples target **C# 8.0** to take advantage of the new language features. If any help is required in converting to earlier versions of C#, [raise an issue](https://github.com/Particular/docs.particular.net/issues).
+All samples target **C# 10.0** to take advantage of the new language features. If any help is required in converting to earlier versions of C#, [raise an issue](https://github.com/Particular/docs.particular.net/issues).
 
 ### ConfigureAwait
 
