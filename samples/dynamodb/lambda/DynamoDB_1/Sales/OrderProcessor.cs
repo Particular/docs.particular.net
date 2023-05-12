@@ -16,7 +16,6 @@ public class OrderProcessor
 
     var advanced = endpointConfiguration.AdvancedConfiguration;
     advanced.SendFailedMessagesTo("Samples.DynamoDB.Lambda.Error");
-    advanced.EnableInstallers();
 
     var persistence = advanced.UsePersistence<DynamoPersistence>();
 
