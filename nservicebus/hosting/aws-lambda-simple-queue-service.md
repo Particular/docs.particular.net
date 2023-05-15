@@ -71,6 +71,13 @@ snippet: aws-custom-serializer
 
 The license is provided via the `NSERVICEBUS_LICENSE` environment variable, which can be set via the Function settings in the [Lambda console](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).
 
+## Native integration
+
+It is sometimes useful to access the native Amazon SQS message from behaviors and handlers. In addition to `SqsTransport`'s support for [Amazon SQS Native Integration](/transports/sqs/native-integration.md), `AwsLambdaSQSEndpoint` also provides access to an instance of the native Lambda message type `SQSEvent.SQSMessage` from the message processing context.
+
+snippet: native-lambda-sqs-message
+
+
 ## Supported features
 
 The `AwsLambdaSQSEndpoint` class supports the full feature set of NServiceBus including:
