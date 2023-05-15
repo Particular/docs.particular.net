@@ -6,7 +6,7 @@ redirects:
  - nservicebus/more-on-profiles
  - nservicebus/nservicebus/hosting/nservicebus-host/more-on-profiles
 component: Host
-reviewed: 2020-05-26
+reviewed: 2023-05-14
 ---
 
 include: host-deprecated-warning
