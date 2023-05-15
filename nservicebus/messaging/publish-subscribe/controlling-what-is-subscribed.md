@@ -2,7 +2,7 @@
 title: Controlling What Is Subscribed
 summary: When applying the publish-subscribe pattern, there are several ways to control what messages are subscribed to
 component: Core
-reviewed: 2020-05-27
+reviewed: 2023-05-14
 ---
 
 
