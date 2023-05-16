@@ -11,8 +11,6 @@ public static class LearningTransportInfrastructure
 
         while (true)
         {
-
-
             var learningTransportDirectory = Path.Combine(directory, DefaultLearningTransportDirectory);
             if (Directory.Exists(learningTransportDirectory))
             {
