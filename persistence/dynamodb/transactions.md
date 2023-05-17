@@ -15,7 +15,7 @@ Transactions can contain a maximum of 100 operations. This limit is shared with 
 
 ## Mapping
 
-The AWS SDK provides a built-in mechanism to map attribute values to custom types and vice-versa when using the [`DynamoDBContext`](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DotNetDynamoDBContext.html). Unfortunately the `DynamoDBContext` class does not support transactional writes and comes with built-in assumptions on how classes should be annotated. On top of that, it tries to validate table structures in a synchronous and blocking way that can degrade the systems throughput. Additionally, the validation logic can make it difficult to use custom types stored together with the saga types in the same table when the single table design is preferred. To circumvent some of these issues, the persistence provides a custom mapper that supports all built-in data types and uses `System.Text.Json` under the covers.
+The AWS SDK provides a built-in mechanism to map attribute values to custom types and vice-versa when using the [`DynamoDBContext`](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DotNetDynamoDBContext.html). Unfortunately the `DynamoDBContext` comes with built-in assumptions on how classes should be annotated. On top of that, it tries to validate table structures in a synchronous and blocking way that can degrade the systems throughput. Additionally, the validation logic can make it difficult to use custom types stored together with the saga types in the same table when the single table design is preferred. To circumvent some of these issues, the persistence provides a custom mapper that supports all built-in data types and uses `System.Text.Json` under the covers.
 
 The following snippets shows how to use the mapper function together with the synchronized storage to map attribute values to custom types and back.
 
@@ -60,6 +60,7 @@ It is possible to combine [`DynamoDBContext`](https://docs.aws.amazon.com/amazon
 
 - Custom types that use renamed attribute names need to have a corresponding `JsonPropertyName` attribute
 - In order to participate in the synchronized storage transaction `SaveChangesAsync` **must not be called**
+- The in [AWSSDK.DynamoDBv2 3.7.103](https://www.nuget.org/packages/AWSSDK.DynamoDBv2/3.7.103) introduced transactional operations on the context are [currently not yet supported](https://github.com/Particular/NServiceBus.Persistence.DynamoDB/issues/328)
 
 Following up on the previous example, when mapping the `Customer` type with the `DynamoDBContext`, the `CustomerId` and the `CustomerPreferred` properties would need the `DynamoDBHashKey` or `DynamoDBProperty` attributes, and the `JsonPropertyName` attribute.
 
