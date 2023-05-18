@@ -66,4 +66,3 @@ The data policy rules associated with the specified storage account can be creat
 ```
 az storage account management-policy create --account-name myaccount --policy @policy.json --resource-group myresourcegroup
 ```
-NOTE: The `prefixMatch` setting should be set to the value of `databus/` by default. If [the `Container()` or `BasePath()` configuration options](#behavior) have been specified when configuring the data bus the `prefixMatch` setting must be modified to take into account the configured container and/or base path values.
