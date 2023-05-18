@@ -1,6 +1,6 @@
 ---
 title: Sagas (DynamoDB)
-summary: How to configure Saga persistence in DynamoDB
+summary: How to configure saga persistence in DynamoDB
 component: DynamoDB
 reviewed: 2023-03-16
 related:
@@ -8,9 +8,11 @@ related:
 - nservicebus/sagas
 ---
 
-## Configure the Saga table
+This article describes how to configure [NServiceBus sagas](/nservicebus/sagas/) for use with DynamoDB
 
-The Saga data table can be configured via:
+## Configure the saga table
+
+The saga data table can be configured as follows:
 
 snippet: DynamoSagaTableConfiguration
 
@@ -26,7 +28,7 @@ The DynamoDB saga persister uses optimistic concurrency control by default. Conc
 
 snippet: DynamoDBSagaPessimisticLocking
 
-For more information, refer to the [Saga concurrency documentation](/nservicebus/sagas/concurrency.md).
+For more information, refer to the [saga concurrency documentation](/nservicebus/sagas/concurrency.md).
 
 ### Pessimistic locking configuration
 
@@ -36,6 +38,6 @@ Pessimistic locking is implemented using [leases](https://en.wikipedia.org/wiki/
 
 snippet: DynamoDBLeaseDuration
 
-When a client attempts to acquire a lease on a saga data record that is locked, it will retry acquiring a lease for a configurable amount of time before timing out.  The default retry duration is 10 seconds and can be changed via:
+When a client attempts to acquire a lease on a saga data record that is locked, it will retry acquiring a lease for a configurable amount of time before timing out. The default retry duration is 10 seconds and can be changed with the following code:
 
 snippet: DynamoDBLeaseAcquisitionTimeout

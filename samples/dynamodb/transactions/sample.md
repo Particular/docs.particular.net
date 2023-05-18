@@ -1,17 +1,17 @@
 ---
 title: DynamoDB Persistence Usage with transactions
-summary: Using DynamoDB Persistence to store sagas and outbox records atomically
+summary: Using DynamoDB persistence to store sagas and outbox records atomically
 reviewed: 2023-04-26
 component: DynamoDB
 related:
  - nservicebus/sagas
 ---
 
-This sample shows a client/server scenario using saga and outbox persistences to store records atomically by leveraging transactions.
+This sample shows a client/server scenario using saga and outbox persistence to store records atomically by leveraging transactions.
 
 ## Prerequisites
 
-This sample uses a [DynamoDB local instance](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html) by default. See the [AWS guidance on deploying DynamoDB local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html#docker).
+The sample uses a [DynamoDB local instance](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html) by default. See the [AWS guidance on deploying DynamoDB local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html#docker).
 
 ## Projects
 
