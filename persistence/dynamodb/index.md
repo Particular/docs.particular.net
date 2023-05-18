@@ -57,7 +57,7 @@ snippet: DynamoDBCustomClientProviderRegistration
 
 ## Permissions
 
-Below is the list of minimum required [IAM policies for operating the DynamoDB persistence](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/security_iam_service-with-iam.html) with installers enabled: 
+Below is the list of minimum required [IAM policies for operating the DynamoDB persistence](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/security_iam_service-with-iam.html) with [installers](/nservicebus/operations/installers.md) enabled:
 
   - `dynamodb:CreateTable`,
   - `dynamodb:DescribeTable`,
@@ -69,7 +69,7 @@ Below is the list of minimum required [IAM policies for operating the DynamoDB p
   - `dynamodb:PutItem`,
   - `dynamodb:DeleteItem`
 
-If installers are disabled, or if `DisableTableCreation` is called, the `dynamodb:CreateTable`, `dynamodb:DescribeTable` and `dynamodb:UpdateTimeToLive` policies are not required. 
+If installers are disabled, or if `DisableTableCreation` is called, the `dynamodb:CreateTable`, `dynamodb:DescribeTable` and `dynamodb:UpdateTimeToLive` policies are not required.
 
 ## Provisioned throughput rate-limiting
 

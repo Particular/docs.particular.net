@@ -94,7 +94,7 @@ There are several options available when endpoints are hosted in AWS. The most c
 
 One factor in the decision is whether the system is fully platform-as-a-service-enabled and whether it is designed to run fully on AWS in which case, DynamoDB persistence may be appropriate.
 
-Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL persister with SQL Server on a EC2 instances).
+Alternatively, some organizations are more comfortable managing SQL Server and may choose an infrastructure-as-a-service solution (using the SQL persister with SQL Server on one or more EC2 instances).
 
 **Amazon RDS for SQL Server**
 
@@ -109,7 +109,7 @@ Alternatively, some organizations are more comfortable managing SQL Server and m
 - Optional geo redundancy
 - Lower latency
 - Automatically scales
-- A turn-key solution, meaning no maintenance
+- A turn-key solution, which may lead to lower cost of maintenance
 
 ### SQL persistence
 

@@ -1,5 +1,6 @@
 ---
 title: Using NServiceBus Sagas with AWS Lambda, SQS, and DynamoDB
+summary: A sample demonstrating the AWS DynamoDB persistence, AWS Lambda, and AWS SQS with NServiceBus sagas
 reviewed: 2023-05-09
 component: DynamoDB
 related:
@@ -8,13 +9,13 @@ related:
  - samples/hosting/aws-lambda-sqs
 ---
 
-This sample shows a basic Saga using AWS Lambda with SQS and DynamoDB.
+This sample shows a basic saga using AWS Lambda with SQS and DynamoDB.
 
 downloadbutton
 
 ## Prerequisites
 
-The sample includes a [`CloudFormation`](https://aws.amazon.com/cloudformation/aws-cloudformation-templates/) template, which will deploy the Lambda function and create the necessary queues to run the sample.
+The sample includes a [`CloudFormation`](https://aws.amazon.com/cloudformation/aws-cloudformation-templates/) template, which will deploy the Lambda function and create the necessary queues to run the code.
 
 The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be used to deploy the template to an AWS account.
 
@@ -29,9 +30,7 @@ Run the following command from the `Sales` directory to deploy the Lambda projec
 
 `dotnet lambda deploy-serverless`
 
-The deployment will ask for a stack name and an S3 bucket name to deploy the serverless stack.
-
-After that, running the sample will launch a single console window:
+The deployment will ask for a stack name and an S3 bucket name to deploy the serverless stack. After that, running the sample will launch a single console window:
 
 * **ClientUI** is a console application that will send a `PlaceOrder` command to the `Samples.DynamoDB.Lambda.Sales` endpoint, which is monitored by the AWS Lambda.
 * The deployed **Sales** project will receive messages from the `Samples.DynamoDB.Lambda.Sales` queue and process them using the AWS Lambda runtime.
@@ -41,9 +40,9 @@ To try the AWS Lambda:
 1. From the **ClientUI** window, press <kbd>Enter</kbd> to send a `PlaceOrder` message to the trigger queue.
 2. The AWS Lambda will receive the `PlaceOrder` message and will start the `OrderSaga`.
 3. The `OrderSaga` will publish an `OrderReceived` event.
-4. The AWS Lambda receives the `OrderReceived` event which is handled by the `BillCustomerHandler` and the `StageInventoryHandler`. After a delay, each handler publishes an event, `CustomerBilled` and `InventoryStaged` respectively.
+4. The AWS Lambda receives the `OrderReceived` event which is handled by the `BillCustomerHandler` and the `StageInventoryHandler`. After a delay, each handler publishes an event, `CustomerBilled` and `InventoryStaged`, respectively.
 5. The AWS Lambda will receive the events. Once both events are received, the `OrderSaga` publishes an `OrderShipped` event.
-6. The **ClientUI** will handle the `OrderShipped` event and log to the console.
+6. The **ClientUI** will handle the `OrderShipped` event and log a message to the console.
 
 ## Code walk-through
 
@@ -57,17 +56,17 @@ The same class defines the AWS Lambda, which hosts the NServiceBus endpoint. The
 
 snippet: FunctionHandler
 
-Meanwhile, the `OrderSaga`, hosted within the AWS Lambda project, is a regular NServiceBus Saga which is also capable of sending messages receiving messages itself.
+Meanwhile, the `OrderSaga` hosted within the AWS Lambda project, is a regular NServiceBus saga which is also capable of sending messages receiving messages itself.
 
 snippet: OrderSaga
 
-The saga data is stored in the `Samples.DynamoDB.Lambda` table and can be inspected via the AWS web portal:
+The saga data is stored in the `Samples.DynamoDB.Lambda` table and can be viewed in the AWS web portal:
 
-![](saga-data.png)
+![Saga data in the AWS web portal](saga-data.png)
 
 ## Removing the sample stack
 
-To remove the deployed stack enter:
+Remove the deployed stack with the following command:
 
 `dotnet lambda delete-serverless`
 
