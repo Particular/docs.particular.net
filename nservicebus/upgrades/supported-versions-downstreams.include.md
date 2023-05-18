@@ -27,7 +27,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.SqlServer/7.0.0) | 2022-11-17     | -                 | -                                 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.SqlServer/7.0.1) | 2022-11-17     | -                 | -                                 |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.3.4) | 2021-06-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Transport.AzureServiceBus](/nuget/NServiceBus.Transport.AzureServiceBus)
@@ -58,7 +58,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.0) | 2022-11-20     | -                 | -                                 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.1) | 2022-11-20     | -                 | -                                 |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.4) | 2021-06-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 ### Persistence packages
@@ -140,16 +140,16 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.1) | 2022-11-17     | -                 | -                                 |
-| [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.6.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.2) | 2022-11-17     | -                 | -                                 |
+| [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.6.4) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~6.5.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.5.1) | ~~2022-02-01~~ | ~~2022-12-19~~    | ~~Superseded by 6.6.x~~           |
 
 #### [NServiceBus.Persistence.Sql.TransactionalSession](/nuget/NServiceBus.Persistence.Sql.TransactionalSession)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.1) | 2022-11-17     | -                 | -                                 |
-| [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.3) | 2022-09-19     | 2023-11-17        | Superseded by 7.0.x               |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.2) | 2022-11-17     | -                 | -                                 |
+| [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.4) | 2022-09-19     | 2023-11-17        | Superseded by 7.0.x               |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
 
