@@ -25,7 +25,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 ## Usage
 
-Add a NuGet package reference to `NServiceBus.Persistence.DynamoDB`. Configure the endpoint to use the persistence through the following configuration API:
+Add a NuGet package reference to `NServiceBus.Persistence.DynamoDB`. Configure the endpoint to use the persistence with the following configuration API:
 
 snippet: DynamoDBUsage
 
@@ -37,7 +37,7 @@ Customize the table name and other table attributes using the following configur
 
 snippet: DynamoDBTableCustomizationShared
 
-Outbox and Saga data can be stored in separate tables, see the [Saga](/persistence/dynamodb/sagas.md) and [Outbox](/persistence/dynamodb/outbox.md) configuration documentation for further details.
+Outbox and saga data can be stored in separate tables; see the [saga](/persistence/dynamodb/sagas.md) and [outbox](/persistence/dynamodb/outbox.md) configuration documentation for further details.
 
 #### Table creation
 
@@ -47,11 +47,11 @@ snippet: DynamoDBDisableTableCreation
 
 ### Customizing the AmazonDynamoDBClient provider
 
-In cases when the `AmazonDynamoDBClient` is configured and used via dependency injection a custom provider can be implemented
+In cases when the `AmazonDynamoDBClient` is configured and used via dependency injection, a custom provider can be implemented:
 
 snippet: DynamoDBCustomClientProvider
 
-and registered on the container
+and then registered on the container
 
 snippet: DynamoDBCustomClientProviderRegistration
 

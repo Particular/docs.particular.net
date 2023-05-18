@@ -1,6 +1,6 @@
 ---
 title: Transactional Session with DynamoDB Persistence
-summary: How to configure a transactional session with DynamoDB Persistence
+summary: How to configure a transactional session with DynamoDB persistence
 component: TransactionalSession.DynamoDB
 reviewed: 2022-09-12
 redirects:
@@ -9,7 +9,7 @@ related:
 - nservicebus/transactional-session
 ---
 
-In order to use the [transactional session feature](/nservicebus/transactional-session/) with DynamoDB Persistence, add a reference to the `NServiceBus.Persistence.DynamoDB.TransactionalSession` NuGet package.
+In order to use the [transactional session feature](/nservicebus/transactional-session/) with DynamoDB persistence, add a reference to the `NServiceBus.Persistence.DynamoDB.TransactionalSession` NuGet package.
 
 ## Configuration
 
@@ -25,7 +25,7 @@ snippet: open-transactional-session-dynamo
 
 ## Transaction usage
 
-Message and database operations made via the the transactional session are committed together once the session is committed:
+Message and database operations made with the transactional session are committed together once the session is committed:
 
 snippet: use-transactional-session-dynamo
 
