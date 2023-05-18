@@ -8,6 +8,10 @@ Attachment blobs can be cleaned up using the [Blob Storage Lifecycle feature](ht
 
 NOTE: The lifecycle policy runs only once a day. The newly configured or updated policy can take up to 24 hours to go into effect. Once the policy is in effect, it could take up to 24 hours for some actions to run for the first time.
 
+#### How lifecycle rules relate to Azure Blob Storage Databus settings.
+
+When creating a rule the blob prefix match filter setting should be set to the value of `databus/` by default. If [the `Container()` or `BasePath()` configuration options](#behavior) have been specified when configuring the data bus the blob prefix match filter setting must be modified to take into account the configured container and/or base path values.
+
 #### Manage the Blob Lifecycle policy via Azure portal
 
 A lifecycle management policy can be set directly on the azure storage account via the portal. Additional information on the configuration, can be found in [azure blob lifecycle management policy](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-policy-configure?source=recommendations&tabs=azure-portal)
