@@ -118,6 +118,6 @@ If there is any question about the number of endpoints based on the report data,
 
 Yes, just like NServiceBus and all the Particular Service Platform tools, the [EndpointThroughputCounter source code](https://github.com/Particular/Particular.EndpointThroughputCounter) is available on GitHub.
 
-## What should I do if I have problems running the tool
+## The tool threw an error
 
-Particular Software can help. Open a [non-critical support case](https://particular.net/support) for assistance with running the tool.
+Particular Software can help. Open a [non-critical support case](https://particular.net/support) and include the output of the application as well as the stack trace for the exception.
