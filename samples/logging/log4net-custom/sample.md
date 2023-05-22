@@ -7,6 +7,7 @@ related:
 - nservicebus/logging
 ---
 
+WARNING: This sample is obsolete and incompatible with NServiceBus 8+. If you you still want to use log4net with NServiceBus migrate to the Microsoft hosting and logging extensions and use the package [Microsoft.Extensions.Logging.Log4Net.AspNetCore](https://github.com/huorswords/Microsoft.Extensions.Logging.Log4Net.AspNetCore) but it is recommended to migrate away from log4net to a modern logging framework.
 
 ## Introduction
 
