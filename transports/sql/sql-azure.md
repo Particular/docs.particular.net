@@ -2,7 +2,7 @@
 title: SQL Server transport in Azure SQL
 summary: Overview of the SQL Server transport performance in Azure SQL
 component: SqlTransport
-reviewed: 2020-06-12
+reviewed: 2023-05-23
 versions: '[6.0.1,)'
 ---
 

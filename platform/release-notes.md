@@ -1,12 +1,12 @@
 ---
 title: Platform Releases
 summary: Links to current and previous releases as well as release notes for the Particular Service Platform applications
-reviewed: 2020-06-15
+reviewed: 2023-05-23
 ---
 
 ### Applications and tools
 
-The Particular Service Platform source code, current and previous releases, and release notes are available as public repositories in [GitHub](https://github.com/particular).
+The Particular Service Platform source code, current and previous releases, and release notes are available as public repositories on [GitHub](https://github.com/particular).
 
 
 | | | |

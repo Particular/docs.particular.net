@@ -8,7 +8,7 @@ redirects:
 related:
  - nservicebus/messaging/callbacks
  - samples/wcf
-reviewed: 2020-06-08
+reviewed: 2023-05-23
 ---
 
 It is possible to expose the message send+receive action as a WCF service. In effect, this allows a WCF service call to be "proxied" through to a message being sent, and then wait for the response to return the WCF result.
@@ -114,7 +114,7 @@ NOTE: The receiving endpoint does not require a reference to `NServiceBus.Callba
 
 #### The Response message
 
-This feature leverages the message Reply mechanism of the bus and hence the response need to be a message.
+This feature leverages the message Reply mechanism of the bus and hence the response needs to be a message.
 
 snippet: WcfCallbackResponseMessage
 
@@ -131,7 +131,7 @@ snippet: WcfObjectCallbackResponse
 
 ## Cancellation
 
-By default a request is canceled after 60 seconds. It is possible to override the cancellation behavior with:
+By default, a request is canceled after 60 seconds. It is possible to override the cancellation behavior with:
 
 snippet: WcfCancelRequest
 
@@ -140,7 +140,7 @@ The delegate is invoked for each service type discovered. The delegate needs to 
 
 ## Routing
 
-By default a request is routed to the local endpoint instance. It is possible to override the routing behavior with:
+By default, a request is routed to the local endpoint instance. It is possible to override the routing behavior with:
 
 snippet: WcfRouting
 
@@ -155,7 +155,7 @@ The delegate is invoked for each service type discovered. The delegate needs to 
 
 To allow clients to perform queries, it is best not to use NServiceBus. Messaging is designed for non-blocking operations and queries are operations for which the user usually must wait.
 
-When performing operations that aren't as straightforward as a simple query to return a value, for example a long calculation, consider invoking the operation locally where possible by referencing the DLL on the client.
+When performing operations that aren't as straightforward as a simple query to return a value, for example, a long calculation, consider invoking the operation locally where possible by referencing the DLL on the client.
 
 
 ## Calling Web/WCF services

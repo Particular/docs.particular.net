@@ -1,7 +1,7 @@
 ---
 title: Mapping Endpoint Instances With a Shared File
 summary: Mapping logical endpoints to physical instances with a shared file
-reviewed: 2020-05-27
+reviewed: 2023-05-23
 component: Core
 ---
 
