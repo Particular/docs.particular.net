@@ -4,6 +4,6 @@ The target framework for the project.
 
 `-f|--framework`
 
-Default: `net462`
+Default: `net7.0`
 
-Supported: `net6.0`, `net48`, `net472`
+Supported: `net7.0`, `net6.0`, `net48`, `net472`
