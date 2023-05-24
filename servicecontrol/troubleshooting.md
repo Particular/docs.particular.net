@@ -186,12 +186,7 @@ To resolve these errors, the affected indexes must be rebuilt:
 - In RavenDB Management Studio, navigate to the Indexes view
 - [Reset the relevant index(es)](https://ravendb.net/docs/article-page/3.5/csharp/server/administration/index-administration)
 
-If many indexes are affected it may be easier to rebuild all indexes, although this can take a very long time if the database is large, and it will use a lot of CPU and storage IO capacity:
-
-- Stop the ServiceControl (audit or error) instance
-- Navigate to the [database folder](configure-ravendb-location.md) on disk
-- Delete the `Indexes` folder
-- Start the ServiceControl instance
+WARNING: In the past a quick remedy was to purge the contents of the Indexes folder. This guidance no longer applies to since version ServiceControl 4.26.0
 
 ## High CPU utilization
 
