@@ -32,7 +32,7 @@ $env:AZURE_STORAGE_CONNECTION_STRING = $connectionString
 
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
 
-Note: The Azure Storage Queues Transport will fail to start if a queue name is longer than 63 characters. Refer to the [sanitization document](/transports/azure-storage-queues/sanitization) for more details.
+Note: The Azure Storage Queues Transport will fail to start if a queue name is longer than 63 characters. Refer to the [sanitization document](/transports/azure-storage-queues/sanitization.md) for more details.
 
 ```
 #check if queue exists
@@ -90,7 +90,7 @@ az storage table create -n "delayssamplepubsubsubscriber"
 
 ```
 To ensure a single copy of delayed messages is dispatched by any endpoint instance, a blob container is used for leasing access to the delayed messages table.
-For more infomation see [Azure Storage Queues Delayed Delivery](/transports/azure-storage-queues/delayed-delivery)
+For more infomation see [Azure Storage Queues Delayed Delivery](/transports/azure-storage-queues/delayed-delivery.md)
 
 ```
 #create container
