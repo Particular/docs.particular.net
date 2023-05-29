@@ -32,7 +32,7 @@ $env:AZURE_STORAGE_CONNECTION_STRING = $connectionString
 
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
 
-Note: The Azure Storage Queues Transport will fail to start if a queue name is longer than 63 characters. Please refer to the [sanitization document](https://docs.particular.net/transports/azure-storage-queues/sanitization) for more details.
+Note: The Azure Storage Queues Transport will fail to start if a queue name is longer than 63 characters. Refer to the [sanitization document](https://docs.particular.net/transports/azure-storage-queues/sanitization) for more details.
 
 ```
 #check if queue exists
@@ -50,7 +50,7 @@ az storage queue delete -n $queueName
 ```
 
 ## Publish/Subscribe
-Azure Storage Queue transport implements the publish/subscribe (pub/sub) pattern. Consider a scenario where we have two endpoints 
+Azure Storage Queue transport implements the publish/subscribe (pub/sub) pattern. Consider a scenario where there are two endpoints 
  - "sample-pubsub-publisher" : This endpoint publishes an event
  - "sample-pubsub-subscriber" : This endpoint subscribes to an event 
 
