@@ -27,7 +27,7 @@ Operational documentation is best reviewed from the perspective of the selected 
 
  * [Performance Tuning](/transports/azure-storage-queues/performance-tuning.md)
  * [Use multiple accounts for scale out](/transports/azure-storage-queues/multi-storageaccount-support.md)
-
+ * [Scripting](/transports/azure-storage-queues/operations-scripting.md)
 
 ### [SQL Server Transport](/transports/sql/)
 

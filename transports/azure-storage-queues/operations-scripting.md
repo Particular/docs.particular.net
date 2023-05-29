@@ -16,7 +16,7 @@ The following are example scripts to facilitate operations against the Azure Sto
 
 These scripts require the Azure command line (Azure CLI) to be installed. For more information refer to the [Azure CLI installation guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).
 
-For the scripts to be run against the Azure Storage Queue transport, a  valid connectionstring to the Azure Storage account must be present. For more information refer to the document on how to [create a storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) 
+For the scripts to be run against the Azure Storage Queue transport, a  valid connection string to the Azure Storage account must be present. For more information, refer to the document on how to [create a storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) 
 
 For easier access, the connection string can be stored as an environment variable.
 
