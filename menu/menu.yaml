@@ -1214,7 +1214,6 @@
       Title: Outbox
     - Url: persistence/dynamodb/transactions
       Title: Transactions
-
 - Name: ServiceInsight
   Topics:
   - Title: Introduction
@@ -1239,7 +1238,6 @@
       Title: Data not available
     - Url: serviceinsight/logging
       Title: Logging
-
 - Name: ServicePulse
   Topics:
   - Title: Introduction
