@@ -25,7 +25,6 @@ var GA4 = function() {
         quickStartRunning: function () {
             var parameters = {
                 'solution_version': window.SOLUTION_VERSION,
-
             }
             _sendGA4Event('quick_start_running', parameters);
         },
@@ -33,15 +32,13 @@ var GA4 = function() {
         quickStartMessageSent: function () {
             var parameters = {
                 'solution_version': window.SOLUTION_VERSION,
-
             }
-            _sendGA4Event('quick_start_set_message', parameters);
+            _sendGA4Event('quick_start_sent_message', parameters);
         },
 
         quickStartDisplayedLicenseButton: function () {
             var parameters = {
                 'solution_version': window.SOLUTION_VERSION,
-
             }
             _sendGA4Event('quick_start_display_get_free_license', parameters);
         },
@@ -49,7 +46,6 @@ var GA4 = function() {
         quickStartClickedLicenseButton: function () {
             var parameters = {
                 'solution_version': window.SOLUTION_VERSION,
-
             }
             _sendGA4Event('quick_start_license_btn_click', parameters);
         },
