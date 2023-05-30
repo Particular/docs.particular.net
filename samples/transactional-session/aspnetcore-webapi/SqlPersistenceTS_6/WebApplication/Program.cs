@@ -6,11 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Persistence;
-using NServiceBus.Persistence.Sql;
 using NServiceBus.TransactionalSession;
 
 public class Program
-{    
+{
     // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Encrypt=false
     const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
@@ -48,33 +47,47 @@ public class Program
             #region txsession-ef-configuration
             .ConfigureServices(c =>
             {
-                // Configure Entity Framework to attach to the synchronized storage session
+                // Configure Entity Framework to attach to the synchronized storage session when required
                 c.AddScoped(b =>
                 {
-                    var session = b.GetRequiredService<ISqlStorageSession>();
-                    var context = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
-                        .UseSqlServer(session.Connection)
-                        .Options);
+                    var synchronizedStorageSession = b.GetService<SynchronizedStorageSession>();
+                    if (synchronizedStorageSession != null)
+                    {
+                        var session = synchronizedStorageSession.SqlPersistenceSession();
+                        var context = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
+                            .UseSqlServer(session.Connection)
+                            .Options);
 
-                    //Use the same underlying ADO.NET transaction
-                    context.Database.UseTransaction(session.Transaction);
+                        //Use the same underlying ADO.NET transaction
+                        context.Database.UseTransaction(session.Transaction);
 
-                    //Ensure context is flushed before the transaction is committed
-                    session.OnSaveChanges((s) => context.SaveChangesAsync());
+                        //Ensure context is flushed before the transaction is committed
+                        session.OnSaveChanges((s) => context.SaveChangesAsync());
 
-                    return context;
+                        return context;
+                    }
+                    else
+                    {
+                        var context = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
+                            .UseSqlServer(ConnectionString)
+                            .Options);
+                        return context;
+                    }
                 });
             })
             #endregion
 
             .ConfigureWebHostDefaults(c =>
             {
-                c.ConfigureServices(s => s.AddControllers());
-                c.Configure(app =>
+                c.ConfigureServices(s =>
                 {
                     #region txsession-web-configuration
-                    app.UseMiddleware<MessageSessionMiddleware>();
+                    s.AddScoped<MessageSessionFilter>();
+                    s.AddControllers(o => o.Filters.AddService<MessageSessionFilter>());
                     #endregion
+                });
+                c.Configure(app =>
+                {
                     app.UseRouting();
                     app.UseEndpoints(r => r.MapControllers());
                 });

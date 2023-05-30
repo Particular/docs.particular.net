@@ -1,24 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NServiceBus.TransactionalSession;
 
 [ApiController]
 [Route("")]
 public class SendMessageController : Controller
 {
-    readonly ITransactionalSession messageSession;
     readonly MyDataContext dataContext;
 
-    public SendMessageController(ITransactionalSession messageSession, MyDataContext dataContext)
+    public SendMessageController(MyDataContext dataContext)
     {
-        this.messageSession = messageSession;
         this.dataContext = dataContext;
     }
 
     #region txsession-controller
     [HttpGet]
-    public async Task<string> Get()
+    public async Task<string> Get([FromServices] ITransactionalSession messageSession)
     {
         var id = Guid.NewGuid().ToString();
 
@@ -29,6 +29,14 @@ public class SendMessageController : Controller
             .ConfigureAwait(false);
 
         return $"Message with entity ID '{id}' sent to endpoint";
+    }
+    #endregion
+
+    #region txsession-controller-query
+    [HttpGet("/all")]
+    public async Task<List<MyEntity>> GetAll()
+    {
+        return await dataContext.MyEntities.ToListAsync();
     }
     #endregion
 }
