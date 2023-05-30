@@ -6,8 +6,7 @@ reviewed: 2023-05-28
 related:
  - nservicebus/operations
 redirects:
- - nservicebus/asq/operations-scripting
- - transports/asq/operations-scripting
+ - nservicebus/azure-storage-queues/operations-scripting
 ---
 
 The following are example scripts to facilitate operations against the Azure Storage Queue Transport.
