@@ -14,6 +14,8 @@ Click this icon to go to the endpoints overview. This page shows a list of activ
 
 ![Endpoints overview page](endpoints-overview.png)
 
+Heartbeats can be shown for each [endpoint instance](/nservicebus/endpoints/#endpoint-instance), or it can be shown for each [logical endpoint](/nservicebus/endpoints/#logical-endpoints). Use the "Display" dropdown to change between displaying endpoint instances and logical endpoints.
+
 The list of endpoints can be sorted or filtered using the sort dropdown and the filter textbox on the right side of the page.
 
 ![Sort and filter Entpoinds](sort-endpoints.png)
@@ -32,7 +34,7 @@ NOTE: This is a configuration setting only and the endpoint itself may still be 
 
 ## Removing endpoints
 
-When an endpoint has been decommissioned and should no longer be displayed in ServicePulse it can be removed. From the Endpoint Heartbeats screen, click the trash bin icon next to an endpoint's name to remove it from ServicePulse.
+When an endpoint has been decommissioned and should no longer be displayed in ServicePulse it can be removed. From the Endpoint Heartbeats screen, click the trash bin icon next to an endpoint's name to remove it from ServicePulse. The trash icon is only visible when displaying endpoint instances and not logical endpoints.
 
 NOTE: This feature requires ServicePulse version 1.23 or higher and ServiceControl version 4.4 or higher.
 
