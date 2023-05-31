@@ -35,34 +35,26 @@ Note: The Azure Storage Queues Transport will fail to start if a queue name is l
 
 ```
 #check if queue exists
-az storage queue exists -n $queueName
+az storage queue exists -n "endpoiname"
 
 #create a queue
-az storage queue create -n $queueName
+az storage queue create -n "endpointname"
+
+#create a error queue
+az storage queue create -n "error"
 ```
 
 ## Delete Queues
 
 ```
-az storage queue delete -n $queueName
+az storage queue delete -n "endpointname"
 ```
 
 ## Publish/Subscribe
 
-Azure Storage Queue transport implements the publish/subscribe (pub/sub) pattern. Consider a scenario where there are two endpoints where one endpoint publishes an event and the other endpoint subscribes to this event.
- 
- - "sample-pubsub-publisher" : This endpoint publishes an event
- - "sample-pubsub-subscriber" : This endpoint subscribes to an event 
+Azure Storage Queue transport implements the publish/subscribe (pub/sub) pattern. 
 
-Implementaion of the pub/sub pattern via Azure CLI, involves creation of the endpoint queues, followed by the subscription table and then the subscription entity in that table
-
-#### Create queues for publisher and subscriber endpoints and the error queue
-
-```
-az storage queue create -n "sample-pubsub-publisher"
-az storage queue create -n "sample-pubsub-subscriber"
-az storage queue create -n "error"
-```
+Implementaion of the pub/sub pattern via Azure CLI, involves creation of the endpoint queues( publisher and subscriber), followed by the subscription table and then the subscription entity in that table
 
 #### Create the subscription routing table
 
@@ -74,11 +66,11 @@ az storage table create -n "subscriptions"
 
 #### Create a subscription
 
-When the "sample-pubsub-subscriber" endpoint subscribes to an event ( say "OrderReceived"), an entity is created in the subscription routing table.
-When the "sample-pubsub-publisher"  endpoint publishes an event, the subscription routing table is queried to find all of the subscribing endpoints.
+When the subscriber endpoint subscribes to an event, an entity is created in the subscription routing table.
+When the publisher endpoint publishes an event, the subscription routing table is queried to find all of the subscribing endpoints.
 
 ```
-az storage entity insert --entity PartitionKey=OrderReceived RowKey=Sample-PubSub-Subscriber  Address=sample-pubsub-subscriber Endpoint=Sample-PubSub-Subscriber Topic=OrderReceived --if-exists fail --table-name subscriptions
+az storage entity insert --entity PartitionKey=MyEvent RowKey=Subscriber  Address=subscriber Endpoint=Subscriber Topic=MyEvent --if-exists fail --table-name subscriptions
 ```
 
 ## Unsubscribe
@@ -86,7 +78,7 @@ az storage entity insert --entity PartitionKey=OrderReceived RowKey=Sample-PubSu
 To unsubscribe, delete the entity from the subscriptions table
 
 ```
-az storage entity delete --partition-key  OrderReceived  --row-key  Sample-PubSub-Subscriber  --table-name subscriptions  --if-match *
+az storage entity delete --partition-key  MyEvent  --row-key  Subscriber  --table-name subscriptions  --if-match *
 ```
 
 ## Delayed delivery
