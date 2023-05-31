@@ -74,7 +74,7 @@ az storage table create -n "subscriptions"
 
 ### Create a subscription
 
-When the "sample-pubsub-subscriber" endpoint subscribes to an event ( say "OrderReceived"), an entry is created in the subscription routing table.
+When the "sample-pubsub-subscriber" endpoint subscribes to an event ( say "OrderReceived"), an entity is created in the subscription routing table.
 When the "sample-pubsub-publisher"  endpoint publishes an event, the subscription routing table is queried to find all of the subscribing endpoints.
 
 ```
@@ -107,10 +107,6 @@ For more infomation see [Azure Storage Queues Delayed Delivery](/transports/azur
 #create container
 az storage container create -n "delayssamplepubsubpublisher" --public-access off
 az storage container create -n "delayssamplepubsubsubscriber" --public-access off
-
-#acquire lease
-az storage container lease acquire --container-name delayssamplepubsubpublisher
-az storage container lease acquire --container-name delayssamplepubsubsubscriber
 ```
 
 
