@@ -15,7 +15,7 @@ The following are example scripts to facilitate operations against the Azure Sto
 
 These scripts require the Azure command line (Azure CLI) to be installed. For more information refer to the [Azure CLI installation guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).
 
-For the scripts to be run against the Azure Storage Queue transport, a  valid connection string to the Azure Storage account must be present. For more information, refer to the document on how to [create a storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) 
+For the scripts to be run against the Azure Storage Queue transport, a  valid connection string to the Azure Storage account must be present. For additional information, refer to the document on how to [create a storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) 
 
 For easier access, the connection string can be stored as an environment variable.
 
@@ -44,18 +44,19 @@ az storage queue create -n $queueName
 ## Delete Queues
 
 ```
-#delete a queue
 az storage queue delete -n $queueName
 ```
 
 ## Publish/Subscribe
 
-Azure Storage Queue transport implements the publish/subscribe (pub/sub) pattern. Consider a scenario where there are two endpoints 
+Azure Storage Queue transport implements the publish/subscribe (pub/sub) pattern. Consider a scenario where there are two endpoints where one endpoint publishes an event and the other endpoint subscribes to this event.
  
  - "sample-pubsub-publisher" : This endpoint publishes an event
  - "sample-pubsub-subscriber" : This endpoint subscribes to an event 
 
-### Create queues for publisher and subscriber endpoints and the error queue
+Implementaion of the pub/sub pattern via Azure CLI, involves creation of the endpoint queues, followed by the subscription table and then the subscription entity in that table
+
+#### Create queues for publisher and subscriber endpoints and the error queue
 
 ```
 az storage queue create -n "sample-pubsub-publisher"
@@ -63,28 +64,26 @@ az storage queue create -n "sample-pubsub-subscriber"
 az storage queue create -n "error"
 ```
 
-### Create the subscription routing table
+#### Create the subscription routing table
 
 In a pub/sub pattern, the transport creates a dedicated subscription routing table shared by all endpoints, which holds subscription information for each event type.
 
 ```
-#create table
 az storage table create -n "subscriptions"
 ```
 
-### Create a subscription
+#### Create a subscription
 
 When the "sample-pubsub-subscriber" endpoint subscribes to an event ( say "OrderReceived"), an entity is created in the subscription routing table.
 When the "sample-pubsub-publisher"  endpoint publishes an event, the subscription routing table is queried to find all of the subscribing endpoints.
 
 ```
-#create entity in the table
 az storage entity insert --entity PartitionKey=OrderReceived RowKey=Sample-PubSub-Subscriber  Address=sample-pubsub-subscriber Endpoint=Sample-PubSub-Subscriber Topic=OrderReceived --if-exists fail --table-name subscriptions
 ```
 
 ## Unsubscribe
 
-In order to unsubscribe, delete the entity from the subscriptions table
+To unsubscribe, delete the entity from the subscriptions table
 
 ```
 az storage entity delete --partition-key  OrderReceived  --row-key  Sample-PubSub-Subscriber  --table-name subscriptions  --if-match *
@@ -96,10 +95,10 @@ When delayed delivery is enabled at an endpoint, the transport creates a storage
 By default, the storage table name is constructed using a naming scheme that starts with the word delays followed by SHA-1 hash of the endpoint's name.
 
 ```
-#create delayed delivery table for publisher with SHA-1 hash of 11f9578d05e6f7bb58a3cdd00107e9f4e3882671
+#table for publisher with SHA-1 hash of 11f9578d05e6f7bb58a3cdd00107e9f4e3882671
 az storage table create -n "delays11f9578d05e6f7bb58a3cdd00107e9f4e3882671"
 
-#create delayed delivery table for subscriber with SHA-1 hash of 17b874d289117b1353bc5080960074585aed4227
+#table for subscriber with SHA-1 hash of 17b874d289117b1353bc5080960074585aed4227
 az storage table create -n "delays17b874d289117b1353bc5080960074585aed4227" 
 ```
 
@@ -107,13 +106,13 @@ To ensure a single copy of delayed messages is dispatched by any endpoint instan
 Similar to  the storage table, the blob container names are also constructed using a naming scheme that starts with the word delays followed by SHA-1 hash of the endpoint's name.
 
 ```
-#create container for publisher with SHA-1 hash of 11f9578d05e6f7bb58a3cdd00107e9f4e3882671
+#container for publisher with SHA-1 hash of 11f9578d05e6f7bb58a3cdd00107e9f4e3882671
 az storage container create -n "delays11f9578d05e6f7bb58a3cdd00107e9f4e3882671" --public-access off
 
-#create container for subscriber with SHA-1 hash of 17b874d289117b1353bc5080960074585aed4227
+#container for subscriber with SHA-1 hash of 17b874d289117b1353bc5080960074585aed4227
 az storage container create -n "delays17b874d289117b1353bc5080960074585aed4227" --public-access off
 ```
 
-Delayed messages storage table and container names can be overridden with a custom name. For more infomation see [Azure Storage Queues Delayed Delivery](/transports/azure-storage-queues/delayed-delivery#how-it-works-overriding-tablecontainer-name)
+Delayed messages storage table and container names can be overridden with a custom name. For more infomation see [Azure Storage Queues Delayed Delivery](/transports/azure-storage-queues/delayed-delivery.md#how-it-works-overriding-tablecontainer-name)
 
 
