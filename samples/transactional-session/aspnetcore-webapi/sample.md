@@ -39,7 +39,7 @@ snippet: txsession-nsb-configuration
 
 The transactional session is enabled via the `endpointConfiguration.EnableTransactionalSession()` method call. Note that the transactional session feature requires [the outbox](/nservicebus/outbox/) to be configured to ensure that operations across the storage and the message broker are atomic.
 
-ASP.NET Core uses `ConfigureWebHostDefaults` for configuration and a custom middleware is registered for the `ITransactionalSession` lifetime management:
+ASP.NET Core uses `ConfigureWebHostDefaults` for configuration and a custom result filter is registered for the `ITransactionalSession` lifetime management:
 
 snippet: txsession-web-configuration
 
@@ -67,7 +67,7 @@ snippet: txsession-controller-query
 
 NOTE: The sample uses method injection as an opinionated way of expressing the need for having the transactional boundaries managed by the infrastructure. For cases when constructor injection is preferred, it would be required to introduce an [action attribute](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?#action-filters) and annotate the controllers or the actions accordingly.
 
-This diagram visualizes the interaction between the middleware, `ITransactionalSession`, and the Web API controller:
+This diagram visualizes the interaction between the result filter, `ITransactionalSession`, and the Web API controller:
 
 ```mermaid
 sequenceDiagram

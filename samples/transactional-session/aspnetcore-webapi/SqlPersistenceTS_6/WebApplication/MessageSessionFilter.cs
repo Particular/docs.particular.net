@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NServiceBus.TransactionalSession;
 
 #region txsession-filter
-public sealed class MessageSessionFilter : IAsyncResourceFilter
+public class MessageSessionFilter : IAsyncResourceFilter
 {
     public async Task OnResourceExecutionAsync(ResourceExecutingContext context, ResourceExecutionDelegate next)
     {
