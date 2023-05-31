@@ -22,31 +22,6 @@ Install using the following command:
 snippet: install
 
 
-## NServiceBus Windows Service
-
-This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for an NServiceBus endpoint.
-
-The template can be used via the following command:
-
-snippet: nsbservice-usage
-
-This will create a new directory named `MyWindowsService` containing a Windows Service `.csproj` also named `MyWindowsService`.
-
-To add to an existing solution:
-
-snippet: nsbservice-addToSolution
-
-
-### Options
-
-snippet: nsbservice-options
-
-partial: target-framework
-
-NOTE: When installing an endpoint created from this template as a service, the `--run-as-service` parameter must be set on the command line. See [Windows Service Installation](/nservicebus/hosting/windows-service.md) for details.
-
-
+partial: winservice
 partial: sc-transport-adapter
-
-
 partial: dockercontainer
