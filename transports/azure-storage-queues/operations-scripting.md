@@ -102,9 +102,6 @@ Similar to  the storage table, the blob container names are also constructed usi
 ```
 #container for publisher with SHA-1 hash of 11f9578d05e6f7bb58a3cdd00107e9f4e3882671
 az storage container create -n "delays11f9578d05e6f7bb58a3cdd00107e9f4e3882671" --public-access off
-
-#container for subscriber with SHA-1 hash of 17b874d289117b1353bc5080960074585aed4227
-az storage container create -n "delays17b874d289117b1353bc5080960074585aed4227" --public-access off
 ```
 
 Delayed messages storage table and container names can be overridden with a custom name. For more information see [Azure Storage Queues Delayed Delivery](/transports/azure-storage-queues/delayed-delivery.md#how-it-works-overriding-tablecontainer-name)
