@@ -49,13 +49,13 @@ az storage queue delete -n $queueName
 ```
 
 ## Publish/Subscribe
+
 Azure Storage Queue transport implements the publish/subscribe (pub/sub) pattern. Consider a scenario where there are two endpoints 
  - "sample-pubsub-publisher" : This endpoint publishes an event
  - "sample-pubsub-subscriber" : This endpoint subscribes to an event 
 
-
-
 ### Create queues for publisher and subscriber endpoints and the error queue
+
 ```
 az storage queue create -n "sample-pubsub-publisher"
 az storage queue create -n "sample-pubsub-subscriber"
@@ -63,6 +63,7 @@ az storage queue create -n "error"
 ```
 
 ### Create the subscription routing table
+
 In a pub/sub pattern, the transport creates a dedicated subscription routing table shared by all endpoints, which holds subscription information for each event type.
 
 ```
@@ -71,6 +72,7 @@ az storage table create -n "subscriptions"
 ```
 
 ### Create a subscription
+
 When the "sample-pubsub-subscriber" endpoint subscribes to an event ( say "OrderReceived"), an entry is created in the subscription routing table.
 When the "sample-pubsub-publisher"  endpoint publishes an event, the subscription routing table is queried to find all of the subscribing endpoints.
 
@@ -80,14 +82,15 @@ az storage entity insert --entity PartitionKey=OrderReceived RowKey=Sample-PubSu
 ```
 
 ### Delayed delivery
+
 When delayed delivery is enabled at an endpoint, the transport creates a storage table to store the delayed messages. 
+
 ```
 #create delayed delivery table
 az storage table create -n "delayssamplepubsubpublisher" 
 az storage table create -n "delayssamplepubsubsubscriber" 
-
-
 ```
+
 To ensure a single copy of delayed messages is dispatched by any endpoint instance, a blob container is used for leasing access to the delayed messages table.
 For more infomation see [Azure Storage Queues Delayed Delivery](/transports/azure-storage-queues/delayed-delivery.md)
 
@@ -99,8 +102,8 @@ az storage container create -n "delayssamplepubsubsubscriber" --public-access of
 #acquire lease
 az storage container lease acquire --container-name delayssamplepubsubpublisher
 az storage container lease acquire --container-name delayssamplepubsubsubscriber
-
 ```
+
 ## Unsubscribe
 
 In order to unsubscribe, delete the entity from the subscriptions table
