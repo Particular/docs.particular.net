@@ -51,6 +51,7 @@ az storage queue delete -n $queueName
 ## Publish/Subscribe
 
 Azure Storage Queue transport implements the publish/subscribe (pub/sub) pattern. Consider a scenario where there are two endpoints 
+ 
  - "sample-pubsub-publisher" : This endpoint publishes an event
  - "sample-pubsub-subscriber" : This endpoint subscribes to an event 
 
@@ -81,7 +82,15 @@ When the "sample-pubsub-publisher"  endpoint publishes an event, the subscriptio
 az storage entity insert --entity PartitionKey=OrderReceived RowKey=Sample-PubSub-Subscriber  Address=sample-pubsub-subscriber Endpoint=Sample-PubSub-Subscriber Topic=OrderReceived --if-exists fail --table-name subscriptions
 ```
 
-### Delayed delivery
+## Unsubscribe
+
+In order to unsubscribe, delete the entity from the subscriptions table
+
+```
+az storage entity delete --partition-key  OrderReceived  --row-key  Sample-PubSub-Subscriber  --table-name subscriptions  --if-match *
+```
+
+## Delayed delivery
 
 When delayed delivery is enabled at an endpoint, the transport creates a storage table to store the delayed messages. 
 
@@ -104,10 +113,4 @@ az storage container lease acquire --container-name delayssamplepubsubpublisher
 az storage container lease acquire --container-name delayssamplepubsubsubscriber
 ```
 
-## Unsubscribe
 
-In order to unsubscribe, delete the entity from the subscriptions table
-
-```
-az storage entity delete --partition-key  OrderReceived  --row-key  Sample-PubSub-Subscriber  --table-name subscriptions  --if-match *
-```
