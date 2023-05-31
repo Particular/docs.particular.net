@@ -84,6 +84,7 @@ az storage entity delete --partition-key  MyEvent.Full.Type.Name  --row-key  Sub
 ## Delayed delivery
 
 When delayed delivery is enabled at an endpoint, the transport creates a storage table to store the delayed messages. 
+
 By default, the storage table name is constructed using a naming scheme that starts with the word delays followed by SHA-1 hash of the endpoint's name.
 
 ```
