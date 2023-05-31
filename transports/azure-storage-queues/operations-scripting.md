@@ -78,7 +78,7 @@ az storage entity insert --entity PartitionKey=MyEvent.Full.Type.Name RowKey=Sub
 To unsubscribe, delete the entity from the subscriptions table
 
 ```
-az storage entity delete --partition-key  MyEvent  --row-key  Subscriber  --table-name subscriptions  --if-match *
+az storage entity delete --partition-key  MyEvent.Full.Type.Name  --row-key  Subscriber  --table-name subscriptions  --if-match *
 ```
 
 ## Delayed delivery
