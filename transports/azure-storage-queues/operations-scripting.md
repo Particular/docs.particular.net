@@ -89,9 +89,6 @@ By default, the storage table name is constructed using a naming scheme that sta
 
 ```
 az storage table create -n "delays11f9578d05e6f7bb58a3cdd00107e9f4e3882671"
-
-#table for subscriber with SHA-1 hash of 17b874d289117b1353bc5080960074585aed4227
-az storage table create -n "delays17b874d289117b1353bc5080960074585aed4227" 
 ```
 
 To ensure a single copy of delayed messages is dispatched by any endpoint instance, a blob container is used for leasing access to the delayed messages table.
