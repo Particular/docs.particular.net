@@ -96,6 +96,7 @@ az storage table create -n "delays17b874d289117b1353bc5080960074585aed4227"
 ```
 
 To ensure a single copy of delayed messages is dispatched by any endpoint instance, a blob container is used for leasing access to the delayed messages table.
+
 Similar to  the storage table, the blob container names are also constructed using a naming scheme that starts with the word delays followed by SHA-1 hash of the endpoint's name.
 
 ```
