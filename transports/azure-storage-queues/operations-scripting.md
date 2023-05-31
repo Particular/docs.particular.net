@@ -70,7 +70,7 @@ When the subscriber endpoint subscribes to an event, an entity is created in the
 When the publisher endpoint publishes an event, the subscription routing table is queried to find all of the subscribing endpoints.
 
 ```
-az storage entity insert --entity PartitionKey=MyEvent RowKey=Subscriber  Address=subscriber Endpoint=Subscriber Topic=MyEvent --if-exists fail --table-name subscriptions
+az storage entity insert --entity PartitionKey=MyEvent.Full.Type.Name RowKey=SubscriberEndpointName  Address=subscriber Endpoint=SubscriberEndpointName  Topic=MyEvent.Full.Type.Name --if-exists fail --table-name subscriptions
 ```
 
 ## Unsubscribe
