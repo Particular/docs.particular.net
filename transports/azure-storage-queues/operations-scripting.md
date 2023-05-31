@@ -99,7 +99,6 @@ To ensure a single copy of delayed messages is dispatched by any endpoint instan
 Similar to  the storage table, the blob container names are also constructed using a naming scheme that starts with the word delays followed by SHA-1 hash of the endpoint's name.
 
 ```
-#container for publisher with SHA-1 hash of 11f9578d05e6f7bb58a3cdd00107e9f4e3882671
 az storage container create -n "delays11f9578d05e6f7bb58a3cdd00107e9f4e3882671" --public-access off
 ```
 
