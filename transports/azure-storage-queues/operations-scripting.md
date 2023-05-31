@@ -54,7 +54,6 @@ az storage queue delete -n "endpointname"
 
 Azure Storage Queue transport implements the publish/subscribe (pub/sub) pattern. 
 
-Implementaion of the pub/sub pattern via Azure CLI, involves [creation of the endpoint queues](/transports/azure-storage-queues/operations-scripting.md#create-queues) (publisher and subscriber), followed by the subscription table and then the subscription entity in that table
 
 #### Create the subscription routing table
 
