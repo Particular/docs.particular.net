@@ -2,7 +2,7 @@
 title: Using TransactionalSession with Entity Framework and ASP.NET Core
 summary: Transactional Session sample that illustrates how to send messages and modify data with Entity Framework in an atomic manner using ASP.NET Core.
 component: TransactionalSession.SqlPersistence
-reviewed: 2022-08-12
+reviewed: 2023-05-31
 related:
 - nservicebus/transactional-session
 - nservicebus/transactional-session/persistences/sql-persistence
@@ -11,7 +11,7 @@ related:
 
 include: webhost-warning
 
-This sample shows how to send messages and modify data in a database atomically within the scope of a web request using the `NServiceBus.TransactionalSession` package in conjunction with ASP.NET Core. The operations are triggered by an incoming HTTP request to ASP.NET Core which will manage the `ITransactionalSession` lifetime inside a request middleware.
+This sample shows how to send messages and modify data in a database atomically within the scope of a web request using the `NServiceBus.TransactionalSession` package with ASP.NET Core. The operations are triggered by an incoming HTTP request to ASP.NET Core which will manage the `ITransactionalSession` lifetime inside a request middleware.
 
 ## Prerequisites
 
@@ -29,13 +29,15 @@ An async [WebAPI](https://dotnet.microsoft.com/apps/aspnet/apis) controller hand
 
 The message will be processed by the NServiceBus message handler and result in `"Message received at endpoint"`-message printed to the console. In addition, the handler will update the previously created entity.
 
+For querying all the stored entities, navigate to `http://localhost:58118/all`.
+
 ## Configuration
 
 The endpoint is configured using the `UseNServiceBus` extension method:
 
 snippet: txsession-nsb-configuration
 
-The transactional session is enabled via the `endpointConfiguration.EnableTransactionalSession()` method call. Note that the transactional session feature requires [the outbox](/nservicebus/outbox/) to be configured in order to ensure that operations across the storage and the message broker are atomic.
+The transactional session is enabled via the `endpointConfiguration.EnableTransactionalSession()` method call. Note that the transactional session feature requires [the outbox](/nservicebus/outbox/) to be configured to ensure that operations across the storage and the message broker are atomic.
 
 ASP.NET Core uses `ConfigureWebHostDefaults` for configuration and a custom middleware is registered for the `ITransactionalSession` lifetime management:
 
@@ -45,37 +47,45 @@ Entity Framework support is configured by registering the `DbContext`:
 
 snippet: txsession-ef-configuration
 
-The registration ensures that the `MyDataContext` type is built using the same session and transaction that is used by the `ITransactionalSession`. Once the transactional session is committed, it notifies the Entity Framework context to call `SaveChangesAsync`.
+The registration ensures that the `MyDataContext` type is built using the same session and transaction that is used by the `ITransactionalSession`. Once the transactional session is committed, it notifies the Entity Framework context to call `SaveChangesAsync`. For cases where the transactional session is not in play, a data context with a dedicated connection is returned.
 
 ## Using the session
 
-The message session is injected into `SendMessageController` via constructor injection along with the Entity Framework database context. Message operations executed on the `ITransactionalSession` API are transactionally consistent with the database operations performed on the `MyDataContext`.
+The message session is injected into `SendMessageController` via method injection. Message operations executed on the `ITransactionalSession` API are transactionally consistent with the database operations performed on the `MyDataContext`.
 
 snippet: txsession-controller
 
-The lifecycle of the session is managed by the `MessageSessionMiddleware`. It opens the session when an HTTP request arrives and takes care of committing the session once the ASP.NET pipeline completes:
+The lifecycle of the session is managed by the `MessageSessionFilter` which hooks into the [result filter part](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-7.0#iresultfilter-and-iasyncresultfilter) of the ASP.NET pipeline. It opens the session when a controller action is called that takes a dependency to the `ITransactionalSession` interface, committing the session once the action completes:
 
-snippet: txsession-middleware
+snippet: txsession-filter
+
+NOTE: The result filter could be extended to return problem details (for example, with `context.Result = new ObjectResult(new ProblemDetails())`) in cases when the transactional session cannot be committed. This part has been left out in the sample.
+
+For controller actions that do not take a dependency to `ITransactionalSession` a data context with a dedicated connection is used.
+
+snippet: txsession-controller-query
+
+NOTE: The sample uses method injection as an opinionated way of expressing the need for having the transactional boundaries managed by the infrastructure. For cases when constructor injection is preferred, it would be required to introduce an [action attribute](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?#action-filters) and annotate the controllers or the actions accordingly.
 
 This diagram visualizes the interaction between the middleware, `ITransactionalSession`, and the Web API controller:
 
 ```mermaid
 sequenceDiagram
     autonumber
-    User->>Middleware: Http Request
-    activate Middleware
-    Middleware->>TransactionalSession: Open
+    User->>Filter: Http Request
+    activate Filter
+    Filter->>TransactionalSession: Open
     activate TransactionalSession
-    TransactionalSession-->>Middleware: Reply
-    Middleware->>Controller: next()
+    TransactionalSession-->>Filter: Reply
+    Filter->>Controller: next()
     activate Controller
     Controller->>TransactionalSession: Send/Publish...
     Controller->>TransactionalSession: Use SynchronizedStorageSession
     deactivate Controller
-    Middleware->>TransactionalSession: Commit
+    Filter->>TransactionalSession: Commit
     deactivate TransactionalSession
-    Middleware-->>User: Reply
-    deactivate Middleware
+    Filter-->>User: Reply
+    deactivate Filter
 ```
 
 ## Handling the message
