@@ -93,20 +93,27 @@ az storage entity delete --partition-key  OrderReceived  --row-key  Sample-PubSu
 ## Delayed delivery
 
 When delayed delivery is enabled at an endpoint, the transport creates a storage table to store the delayed messages. 
+By default, the storage table name is constructed using a naming scheme that starts with the word delays followed by SHA-1 hash of the endpoint's name.
 
 ```
-#create delayed delivery table
-az storage table create -n "delayssamplepubsubpublisher" 
-az storage table create -n "delayssamplepubsubsubscriber" 
+#create delayed delivery table for publisher with SHA-1 hash of 11f9578d05e6f7bb58a3cdd00107e9f4e3882671
+az storage table create -n "delays11f9578d05e6f7bb58a3cdd00107e9f4e3882671"
+
+#create delayed delivery table for subscriber with SHA-1 hash of 17b874d289117b1353bc5080960074585aed4227
+az storage table create -n "delays17b874d289117b1353bc5080960074585aed4227" 
 ```
 
 To ensure a single copy of delayed messages is dispatched by any endpoint instance, a blob container is used for leasing access to the delayed messages table.
-For more infomation see [Azure Storage Queues Delayed Delivery](/transports/azure-storage-queues/delayed-delivery.md)
+Similar to  the storage table, the blob container names are also constructed using a naming scheme that starts with the word delays followed by SHA-1 hash of the endpoint's name.
 
 ```
-#create container
-az storage container create -n "delayssamplepubsubpublisher" --public-access off
-az storage container create -n "delayssamplepubsubsubscriber" --public-access off
+#create container for publisher with SHA-1 hash of 11f9578d05e6f7bb58a3cdd00107e9f4e3882671
+az storage container create -n "delays11f9578d05e6f7bb58a3cdd00107e9f4e3882671" --public-access off
+
+#create container for subscriber with SHA-1 hash of 17b874d289117b1353bc5080960074585aed4227
+az storage container create -n "delays17b874d289117b1353bc5080960074585aed4227" --public-access off
 ```
+
+Delayed messages storage table and container names can be overridden with a custom name. For more infomation see [Azure Storage Queues Delayed Delivery](/transports/azure-storage-queues/delayed-delivery#how-it-works-overriding-tablecontainer-name)
 
 
