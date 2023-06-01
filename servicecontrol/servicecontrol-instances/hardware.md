@@ -58,7 +58,7 @@ Besides using a dedicated disk for the ServiceControl [database paths](/servicec
 
 ### Azure disk limitations
 
-Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#general-recommendations-scaling-service-control).
+Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#general-recommendations-scaling-servicecontrol).
 
 ### Turn off full-text search
 
