@@ -4,66 +4,62 @@ summary: Hardware recommendations for running ServiceControl instances
 reviewed: 2023-04-04
 ---
 
-This article provides general guidelines, recommendations, and performance benchmarks to help determine the resources to provide for a ServiceControl production environment. To identify the hardware specifications for any system environment, a combination of testing with the system and the information provided below will need to be used.
+This article provides recommendations and performance benchmarks to help determine resource selection for a ServiceControl production environment.
 
 ## General recommendations
 
-* Install ServiceControl (Primary, Audit and Monitoring), on a dedicated server in production.
+* A dedicated production server for installing ServiceControl instances (Primary, Audit, and Monitoring).
 * A minimum of 16 GB of RAM (excluding RAM for OS and other services).
-* 2 GHz quad core CPU or better
-* Databases on a separate disk from the operating system
+* 2 GHz quad core CPU or better.
+* A dedicated disk for ServiceControl databases that is separate from the operating system.
 
-### Scale out
+### Scaling ServiceControl
 
-If it is not possible to scale up a single machine to handle the system load, partition audit processing between multiple instances of ServiceControl. See [Multiple ServiceControl Instances](remotes.md) for more details.
+When possible, scaling *up* a single machine to handle system load is recommended. When scaling up is not an option, ServiceControl can be scaled *out* by partitioning audit processing between multiple instances. See [Multiple ServiceControl Instances](remotes.md) for more details.
 
-### Hosting in the cloud
+### Ongoing server performance monitoring
 
-The only way to host ServiceControl in the cloud is to use a virtual machine.
-
-### Server performance monitoring
-
-Due to changes in the system it supports, the requirements for a server hosting ServiceControl can change over time. It is highly recommended that monitoring of the CPU, RAM, disk I/O, and network I/O for the server running ServiceControl be included.
+The requirements for a server hosting ServiceControl can change over time as the system evolves. It's important to continuously monitor the CPU, RAM, disk I/O, and network I/O for the server running ServiceControl to ensure adequate resources are available for overall system health.
 
 Real disk, CPU, RAM, and network performance can be monitored with the Windows Resource Monitor and/or Windows Performance counters.
 
-### Storage
+### Storage recommendations
 
-It is recommended to:
+* Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easier and ensures different applications are not competing for storage IOPS.
+* Store multiple ServiceControl databases on separate physical disks to prevent multiple instances competing for the same disk resources.
+* Disable disk write caching (read caching can remain enabled) to prevent data corruption if the (virtual) server or disk controller fails. This is a general best practice for databases.
+* [Database paths](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) should be located on disks suitable for low latency write operations (e.g. fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
 
-- Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easy and ensures different applications are not competing for storage IOPS.
-- Store multiple ServiceControl databases on seperate physical disks to prevent multiple instances to compete for the same disk resources.
-- Disable disk write caching (read caching is fine) to prevent data corruption if the (virtual) server or disk controler fails. This is a general best practice for databases.
-- [Database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) located on disks suitable for low latency write operations (fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
-
-NOTE: Use a storage benchmark tool to measure disk performance, such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
+NOTE: To measure disk performance, use a storage benchmark tool such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
 
 Note: Do not use an ephemeral AWS or Azure disk for ServiceControl data because these disks will be erased when the virtual machine reboots.
 
-## Suggestions to improve performance
+### Hosting in the cloud
 
-### More RAM
+At this time, the only way to host ServiceControl in the cloud is to use a virtual machine.
 
-The embedded RavenDB will utilize additional RAM to improve indexing performance. During load ServiceControl can easily peak to 12GB
+## Improving performance
+
+### Increase RAM
+
+The embedded RavenDB will use additional RAM to improve indexing performance. During times of high load, ServiceControl can peak to 12GB or more.
 
 ### Message size / MaxBodySizeToStore
 
-In general, the smaller the message, the quicker ServiceControl will be able to process audit records. Consider [using smaller messages](https://particular.net/blog/putting-your-events-on-a-diet). For larger message payloads, consider using the [data bus feature](/nservicebus/messaging/databus/).
+In general, the smaller the messages, the faster ServiceControl will be able to process audit records. Thus, [put events on a diet](https://particular.net/blog/putting-your-events-on-a-diet) if optimizing for performance. For larger message payloads, consider using the [data bus feature](/nservicebus/messaging/databus/).
 
 In addition, for audit messages, lower the [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/creating-config-file.md#performance-tuning-servicecontrolmaxbodysizetostore) setting to skip storage of larger audit messages. This setting will only reduce load if a non-binary [serialization](/nservicebus/serialization/) is used.
 
 WARNING: When using ServiceInsight, the message body will not be viewable for messages that exceed the `ServiceControl/MaxBodySizeToStore` limit.
 
-### Use a dedicated disk for the database
+### Separate disks for database and index files
 
-Use a dedicated disk for the ServiceControl [database path](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath).
-
-Additionally, it is possible to store the embedded database index files on a separate disk. Use the [`Raven/IndexStoragePath`](/servicecontrol/creating-config-file.md#host-settings-ravenindexstoragepath) setting to change the index storage location.
+Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath), it's possible to store the embedded database index files on a separate disk. Use the [`Raven/IndexStoragePath`](/servicecontrol/creating-config-file.md#host-settings-ravenindexstoragepath) setting to change the index storage location.
 
 ### Azure disk limitations
 
-Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#general-recommendations-scale-out).
+Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#general-recommendations-scaling-servicecontrol).
 
 ### Turn off full-text search
 
-Even though it can be extremely valuable to search for specific messages based on their content, updating the full-text index requires a considerable amount of CPU as well as disk space. The ability to turn off the full-text search is available in the ServiceControl Management Utility.
+Updating the full-text index requires a considerable amount of CPU and disk space. If the ability to search for specific messages based on their content is not required, consider turning off full-text search in the ServiceControl Management Utility.
