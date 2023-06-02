@@ -1,7 +1,7 @@
 ---
 title: NServiceBus.Extensions.DependencyInjection
-summary: Provides integration with the Microsoft.Extensions.DependencyInjection abstraction
-reviewed: 2020-06-18
+summary: Integration with Microsoft.Extensions.DependencyInjection
+reviewed: 2023-06-02
 component: Extensions.DependencyInjection
 related:
  - samples/dependency-injection/extensions-dependency-injection
@@ -16,7 +16,7 @@ WARN: Starting with NServiceBus version 8, the `NServiceBus.Extensions.Dependenc
 
 The `NServiceBus.Extensions.DependencyInjection` package provides integration with the `Microsoft.Extensions.DependencyInjection` dependency injection abstraction.
 
-NOTE: It's recommended to use [Microsoft's generic host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) to manage application and dependency injection container lifecycle. Use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package to host an NServiceBus endpoint with the generic host.
+NOTE: It's recommended to use [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) to manage application and dependency injection container lifecycle. Use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package to host an NServiceBus endpoint with the generic host.
 
 
 ## Usage with ServiceCollection
