@@ -1,7 +1,7 @@
 ---
 title: ServiceControl capacity planning
 summary: Outlines the ServiceControl capacity, throughput, and storage considerations for planning and supporting production environments
-reviewed: 2020-06-21
+reviewed: 2023-06-02
 isLearningPath: true
 ---
 
@@ -9,16 +9,14 @@ ServiceControl is a monitoring tool for production environments. As with other p
 
 The primary job of ServiceControl is to collect information on system behavior in production. It does so by collecting error, audit, and health messages from dedicated queues. ServiceControl reads messages flowing into those queues and stores them in its embedded database. In a production environment (and to a lesser degree in development, staging, and testing environments), ServiceControl may have significant impact on the performance and capacity of the disk where its data is stored, and its throughput capacity must be considered with regard to the overall system load and throughput.
 
+## Storage
 
-### Storage
+### Location
 
-
-#### Location
-
-Each ServiceControl instance stores its data in a [RavenDB embedded](https://ravendb.net/docs/search/3.0/csharp?searchTerm=RavenDB%20embedded) instance. The location of the database has a significant impact on overall system performance and throughput. The embedded database files should be located on a high-performance storage device with a high-throughput connection to the machine hosting ServiceControl.
+Each ServiceControl instance stores its data in a [RavenDB embedded](https://ravendb.net/docs/article-page/5.3/csharp/server/embedded) instance. The location of the database has a significant impact on overall system performance and throughput. The embedded database files should be located on a high-performance storage device with a high-throughput connection to the machine hosting ServiceControl.
 
 
-#### Size
+### Size
 
 The storage size that ServiceControl requires depends on the production load and is directly related to the quantity and size of messages that flow into the system.
 
@@ -36,7 +34,7 @@ See also: [Automatic Expiration of ServiceControl Data](how-purge-expired-data.m
  * Failed messages *never* expire and are retained indefinitely in the ServiceControl database.
 
 
-#### Performance
+### Performance
 
 From a performance perspective, ServiceControl is similar to a database installation. It requires a significant amount of disk and network I/O due to process audit, error and monitoring messages. Each of these message-processing operations requires disk I/O. The higher the message throughput of an environment, the higher the required disk I/O.
 
@@ -45,36 +43,36 @@ For this reason, it is best to store ServiceControl data on a disk with low late
 For more details, see [Hardware Considerations](servicecontrol-instances/hardware.md).
 
 
-### Accessing data and audited messages
+## Accessing data and audited messages
 
 
-#### Forwarding queues
+### Forwarding queues
 
 ServiceControl may be configured to forward consumed messages to other queues for further consumption by third party systems.
 
 See also: [Forwarding Queues](errorlog-auditlog-behavior.md).
 
 
-#### HTTP API
+### HTTP API
 
 The ServiceControl HTTP API provides a JSON stream of audited and error messages (headers, body, and context) that can be imported into another database.
 
 NOTE: The ServiceControl HTTP API is subject to changes and enhancements that may not be backward compatible. Use of the HTTP API by third parties is discouraged at this time.
 
 
-### Throughput
+## Throughput
 
 ServiceControl consumes audit, error, and control messages from all endpoints configured to forward those messages to it. This means the throughput (measured in received and processed messages per second) required by ServiceControl is the aggregate throughput of all endpoints forwarding messages to its queues.
 
 The throughput of ServiceControl depends on multiple factors. Message size and network bandwidth have a significant effect. Another factor is the transport type used by the system.
 
 
-#### Transport type
+### Transport type
 
 Different transport types have different throughput capabilities.
 
-The transports supported by ServiceControl out-of-the-box (MSMQ, RabbitMQ, SQL Server, Azure Storage Queues, and Azure Service Bus) provide varying levels of throughput. MSMQ and SQL Server typically provide the highest.
+The transports supported by ServiceControl provide varying levels of throughput. MSMQ and SQL Server typically provide the highest.
 
 The throughput provided by Azure Storage Queues and Azure Service Bus varies significantly depending on which deployment options are chosen and various other factors inherent to cloud deployment scenarios.
 
-It is recommended to perform realistic throughput tests on ServiceControl using the chosen transport, and using deployment options that are as close as possible to those planned for production. For additional questions or information, [contact support](https://particular.net/contactus).
+It is recommended to perform realistic throughput tests on ServiceControl using the chosen transport, and using deployment options that are as close as possible to those planned for production.
