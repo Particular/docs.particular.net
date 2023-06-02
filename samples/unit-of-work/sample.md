@@ -1,7 +1,7 @@
 ---
 title: Unit of Work Usage
 summary: How to create a custom unit of work
-reviewed: 2020-06-18
+reviewed: 2023-06-02
 component: Core
 related:
  - nservicebus/pipeline/unit-of-work
@@ -23,7 +23,7 @@ include: uow-access-to-context
 
 ### CustomManageUnitOfWork
 
-The unit of work logs both the begin and end.
+The unit of work logs both the begining and end.
 
 
 snippet: CustomManageUnitOfWork
