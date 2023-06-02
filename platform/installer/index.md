@@ -19,7 +19,7 @@ For testing and production environments it is recommended to:
 
 ## What to expect
 
-The Platform Installer is a [Microsoft Click-Once](https://docs.microsoft.com/en-us/visualstudio/deployment/clickonce-security-and-deployment) application, which means it has a built-in self-updating mechanism. Click-Once applications are sometimes blocked by corporate firewalls or software restriction policies. If the Platform Installer fails, review the [offline install](offline.md) page for installation instructions.
+The Platform Installer is a [Microsoft Click-Once](https://docs.microsoft.com/en-us/visualstudio/deployment/clickonce-security-and-deployment) application, which means it has a built-in self-updating mechanism. Click-Once applications are sometimes blocked by corporate firewalls or software restriction policies.
 
 
 ### Dependencies
