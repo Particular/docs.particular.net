@@ -1,7 +1,7 @@
 ---
 title: Evolving message contracts
 summary: Guidelines for choosing a strategy for evolving message contracts
-reviewed: 2020-06-16
+reviewed: 2023-06-02
 component: Core
 isLearningPath: true
 ---
