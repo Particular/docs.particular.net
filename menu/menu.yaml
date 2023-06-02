@@ -631,10 +631,6 @@
       Title: Generating secure random strong encryption keys
   - Title: Operations
     Articles:
-    - Url: platform/installer/offline
-      Title: About operations and NServiceBus
-    - Url: platform/installer/offline
-      Title: Particular Service Platform Installation
     - Url: nservicebus/hosting/startup-diagnostics
       Title: Startup diagnostics
     - Url: nservicebus/operations/opentelemetry
