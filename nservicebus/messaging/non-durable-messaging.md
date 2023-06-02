@@ -2,7 +2,7 @@
 title: Non-Durable Messaging
 summary: Information on how non-durable messaging affects the behaviors of endpoints and message delivery.
 component: Core
-reviewed: 2020-06-17
+reviewed: 2020-06-02
 redirects:
  - nservicebus/messaging/express-messages
  - samples/non-durable-messaging
@@ -40,6 +40,14 @@ partial: rabbitmq
 The SQL Server transport has no support for this setting and it is ignored.
 
 
-### Azure
+### Azure Service Bus
 
-The Azure transports have no support for this setting and it is ignored.
+The Azure Service Bus transport have no support for this setting and it is ignored.
+
+### Azure Storage Queues
+
+The Azure Storage Queues transport have no support for this setting and it is ignored.
+
+### Amazon SQS
+
+The Amazon SQS transport have no support for this setting and it is ignored.
