@@ -6,8 +6,6 @@ redirects:
  - servicecontrol/multi-transport-support
 ---
 
-NOTE: Internet access is required for the installation.
-
 NOTE: Scripted installments and upgrades can be done via the [ServiceControl Management PowerShell module](installation-powershell.md).
 
 NOTE: Advanced installation guidance to support high-load and high-availability is available on [active/active remote setups](./servicecontrol-instances/remotes.md) and  [active/passive clustering](deploying-servicecontrol-in-a-cluster.md).
@@ -22,7 +20,12 @@ NOTE: A [community managed puppet module](https://forge.puppet.com/tragiccode/ns
 
 The ServiceControl installation has the following prerequisites:
 
-* [Microsoft .NET 4.7.2 Runtime](https://dotnet.microsoft.com/download/dotnet-framework/net472)
+* [.NET Framework Runtime 4.7.2 or later](https://dotnet.microsoft.com/download/dotnet-framework/net472).
+* [.NET Runtime 7.0.4 or later](https://dotnet.microsoft.com/en-us/download/dotnet/7.0).
+* [ASP.NET Core Runtime 7.0.4, or later](https://dotnet.microsoft.com/en-us/download/dotnet/7.0).
+* [Visual C++ 2015 Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=53840).
+
+These prerequisites will be installed automatically if internet access is available when installing ServiceControl. However, if the machine does not have internet access, these must be installed manually.
 
 ## Planning
 

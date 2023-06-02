@@ -22,7 +22,7 @@ Configuring third-party transports through the ServiceControl Management applica
 
 #### MSMQ
 
-To configure MSMQ as the transport, ensure the MSMQ service has been installed and configured as outlined in [Installing The Platform Components](/platform/installer/offline.md#msmq-prerequisites).
+To configure MSMQ as the transport, ensure the MSMQ service has been installed and configured as outlined in [MSMQ configuration](/transports/msmq/#msmq-configuration).
 
 #### RabbitMQ
 
