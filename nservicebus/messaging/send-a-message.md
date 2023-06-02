@@ -1,6 +1,6 @@
 ---
 title: Sending messages
-reviewed: 2020-06-18
+reviewed: 2023-06-02
 component: Core
 redirects:
  - nservicebus/how-do-i-send-a-message
@@ -27,7 +27,7 @@ Unit testing the process of sending a message is supported by [the `NServiceBus.
 
 ## Inside the incoming message processing pipeline
 
-Messages often must be sent as part of handling an incoming message. When running in a [transaction mode](/transports/transactions.md) that supports it, these send operations take part in the same transaction as that of the message handler, thereby ensuring that the send operation rolls back if the handling of the message fails at any stage of the message processing pipeline.
+Messages are often sent as part of handling an incoming message. When running in a [transaction mode](/transports/transactions.md) that supports it, these send operations take part in the same transaction as that of the message handler, thereby ensuring that the send operation rolls back if the handling of the message fails at any stage of the message processing pipeline.
 
 To send a message from inside a message handler:
 
