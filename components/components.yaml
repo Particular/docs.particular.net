@@ -482,11 +482,11 @@
     - ServiceControl.TransportAdapter
 
 - Key: Templates
-  Name: dotnet new Templates
+  Name: ParticularTemplates
   DocsUrl: /nservicebus/dotnet-templates
   GitHubOwner: Particular
   Category: Host
-  ProjectUrl: https://github.com/Particular/dotnetTemplates
+  ProjectUrl: https://github.com/Particular/ParticularTemplates
   NugetOrder:
     - ParticularTemplates
 
