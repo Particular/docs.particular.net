@@ -43,7 +43,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [12.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/12.0.0) | 2022-11-23     | -                 | -                                 |
+| [12.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/12.0.1) | 2022-11-23     | -                 | -                                 |
 | [11.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/11.0.0) | 2022-11-17     | 2023-11-23        | Superseded by 12.0.x              |
 | [10.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/10.0.4) | 2021-03-16     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
