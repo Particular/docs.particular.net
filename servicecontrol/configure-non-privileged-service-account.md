@@ -1,15 +1,15 @@
 ---
 title: Configuring a Non-Privileged Account
 summary: Using a low privilege account for ServiceControl
-reviewed: 2020-06-18
+reviewed: 2023-06-02
 ---
 
-To allow a low-privileged account to function as the service account for ServiceControl, the following should be considered:
+To use a low-privileged account as the service account for ServiceControl, the following should be considered:
 
 
 ### Access control on queues
 
-The connection string used by ServiceControl must enable access to the following ServicControl queues: 
+The transport connection string used by ServiceControl must enable access to the following ServicControl queues: 
 
  * `particular.servicecontrol`
  * `particular.servicecontrol.errors`
@@ -17,12 +17,12 @@ The connection string used by ServiceControl must enable access to the following
  * `particular.servicecontrol.timeouts`
  * `particular.servicecontrol.timeoutsdispatcher`
 
-In addition, connection string must enable access to the configured audit and error queues and the corresponding forwarding queues. These are typical:
+In addition, the connection string must enable access to the configured audit and error queues and the corresponding forwarding queues. These are typical:
 
  * `audit`
  * `error`
- * `error.log`
- * `audit.log`
+ * `error.log` (optional)
+ * `audit.log` (optional)
 
 If the connection string does not provide appropriate rights, the service will fail to start.
 
@@ -30,7 +30,7 @@ NOTE: For MSMQ, the ACL default for a queue allows Administrators full access. S
 
 ### Url namespace reservations
 
-The account under which the ServiceControl instance is running requires url namespace reservations for the hostname and ports used by the instance. The reservations can be managed from the command using [netsh.exe](https://docs.microsoft.com/en-us/windows/desktop/http/add-urlacl). For example, to add url reservation for `http:\\localhost:33333\` to `LocalService` account the following command can be used `netsh http add urlacl url=http://localhost:33333/ user=LocalService listen=yes delegate=no`. 
+The account under which the ServiceControl instance is running requires url namespace reservations for the hostname and ports used by the instance. The reservations can be managed via the [ServiceControl Powershell commands](/servicecontrol/powershell.md#troubleshooting-via-powershell-checking-and-manipulating-urlacls) or from the command using [netsh.exe](https://docs.microsoft.com/en-us/windows/desktop/http/add-urlacl). For example, to add url reservation for `http:\\localhost:33333\` to `LocalService` account the following command can be used `netsh http add urlacl url=http://localhost:33333/ user=LocalService listen=yes delegate=no`. 
 
 For instructions on how to review and change the urls used by ServiceControl instance, refer to [Changing the ServiceControl URI](setting-custom-hostname.md).
 
@@ -50,6 +50,7 @@ The service account running ServiceControl instance requires following filesyste
 NOTE: The database volume `Read attributes` access right is needed by ServiceControl to query for total and total free space on the volume.
 
 ### Performance counters
+
 ServiceControl requires access to Windows performance counter infrastructure. As a result the service account needs to be a member of [Performance Monitor Users](https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups#a-href-idbkmk-perfmonitorusersaperformance-monitor-users) group.
 
 
@@ -60,8 +61,7 @@ These methods confirm that the service account has sufficient rights:
  * Configure the ServiceControl Windows service to run under the custom service account, start it and check the log files.
  * Interactively run ServiceControl under the custom service account.
 
-Note: When running the ServiceControl.exe from the command line, it is important to use the same command line switches that are used when running the Windows service. The command line is visible from within the standard Windows Services user interface.  
-
+Note: When running `ServiceControl.exe` from the command line, it is important to use the same command line switches that are used when running the Windows service. The command line is visible from within the standard Windows Services user interface.  
 
 ![](servicedetailsview.png 'width=500')
 
