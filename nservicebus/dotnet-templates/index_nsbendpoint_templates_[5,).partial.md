@@ -4,7 +4,11 @@ The `nsbendpoint` template will create a C# project for an NServiceBus endpoint,
 
 Once the package is installed, the template can be found in the Visual Studio **New Project** dialog:
 
-TODO: Images
+![NServiceBus endpoint template in the Visual Studio New Project dialog](new-project.png)
+
+After naming the project and selecting a location for it on disk, the **Additional information** screen will allow customizing the template:
+
+![Customing endpoint properties in the additional information dialog](endpoint-additional-info.png)
 
 ### Command-line usage
 
