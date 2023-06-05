@@ -48,7 +48,7 @@ A [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-se
 
 Related:
  * [Generic host as Windows Service](/samples/hosting/generic-host)
- * [Generate a Windows Service project using `dotnet new`](/nservicebus/dotnet-templates.md)
+ * [Generate a Windows Service project using `dotnet new`](/nservicebus/dotnet-templates/)
  * [Windows Service installation](windows-service.md)
  * [Endpoint configuration choices](/samples/endpoint-configuration/)
 
@@ -60,7 +60,7 @@ An endpoint can be hosted inside a [Docker](https://www.docker.com/) container.
 
 Related:
  * [Docker container host](/nservicebus/hosting/docker-host/)
- * [Generate a Docker-hosted endpoint project with `dotnet new`](/nservicebus/dotnet-templates.md)
+ * [Generate a Docker-hosted endpoint project with `dotnet new`](/nservicebus/dotnet-templates/)
  * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/)
  * [Generic host](/samples/hosting/generic-host)
 

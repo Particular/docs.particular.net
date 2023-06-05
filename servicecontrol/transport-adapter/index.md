@@ -74,14 +74,14 @@ If the adapter still cannot forward the message, it will be dropped.
 
 ### Audits
 
-The audit messages arrive at adapter's audit queue. They are then moved to the audit queue of the ServiceControl instance. 
+The audit messages arrive at adapter's audit queue. They are then moved to the audit queue of the ServiceControl instance.
 
 Audit messages are subject to a *retry forever* policy; the adapter will retry forwarding audit messages to ServiceControl until they succeed.
 
 
 ### Retries
 
-If a message fails all recoverability attempts in a business endpoint, it is moved to the error queue of the adapter. The adapter enriches the message by adding a `ServiceControl.RetryTo` header pointing to the adapter's retry queue. Then the message is moved to the error queue of ServiceControl and ingested into the ServiceControl RavenDB store. 
+If a message fails all recoverability attempts in a business endpoint, it is moved to the error queue of the adapter. The adapter enriches the message by adding a `ServiceControl.RetryTo` header pointing to the adapter's retry queue. Then the message is moved to the error queue of ServiceControl and ingested into the ServiceControl RavenDB store.
 
 When retrying, ServiceControl looks for a `ServiceControl.RetryTo` header. If the header exists, ServiceControl sends the message to the queue from that header instead of the ultimate destination.
 
@@ -141,7 +141,7 @@ These messages cannot be forwarded to the error queue because ServiceControl won
 
 Transport Adapter is a library package that is hosting-agnostic. In a production scenario, the adapter should be hosted either as a Windows Service or via a cloud-specific hosting mechanism (e.g. Azure Worker Role).
 
-The [Transport Adapter `dotnet new` template](/nservicebus/dotnet-templates.md) makes it easier to create a Windows Service host for the transport adapter. Details on how to install the adapter as a service are outlined in [Windows Service Installation](/nservicebus/hosting/windows-service.md).
+The [Transport Adapter `dotnet new` template](/nservicebus/dotnet-templates/) makes it easier to create a Windows Service host for the transport adapter. Details on how to install the adapter as a service are outlined in [Windows Service Installation](/nservicebus/hosting/windows-service.md).
 
 Regardless of the hosting mechanism, Transport Adapter follows the same life cycle, which the following snippet demonstrates. The `Start` and `Stop` methods must be bound to host-specific events (e.g. Windows Service start up callback).
 

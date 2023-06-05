@@ -18,7 +18,7 @@ include: host-deprecate
 
 ## Migrating procedure
 
-Switching to self-hosting can be done by using the [generic host](/nservicebus/hosting/extensions-hosting.md), Create a project that supports [Windows Service hosting](/nservicebus/hosting/#self-hosting-windows-service-hosting) or [Docker container hosting](/nservicebus/hosting/#self-hosting-docker-container-hosting) with `dotnet new` using the [ParticularTemplates package](/nservicebus/dotnet-templates.md), then move the relevant code and configuration to the new project.
+Switching to self-hosting can be done by using the [generic host](/nservicebus/hosting/extensions-hosting.md), Create a project that supports [Windows Service hosting](/nservicebus/hosting/#self-hosting-windows-service-hosting) or [Docker container hosting](/nservicebus/hosting/#self-hosting-docker-container-hosting) with `dotnet new` using the [ParticularTemplates package](/nservicebus/dotnet-templates/), then move the relevant code and configuration to the new project.
 
 
 ### Configuration
