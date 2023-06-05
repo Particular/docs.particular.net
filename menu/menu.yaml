@@ -78,6 +78,8 @@
       Title: Configuration choices Sample
     - Url: nservicebus/dotnet-templates
       Title: dotnet new Templates
+    - Url: nservicebus/platform-nuget-packages
+      Title: Platform NuGet packages
     - Url: nservicebus/vscode
       Title: Debugging in VS Code
     - Url: nservicebus/licensing
