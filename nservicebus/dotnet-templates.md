@@ -21,6 +21,9 @@ Install using the following command:
 
 snippet: install
 
+partial: nsbendpoint
+partial: nsbhandler
+partial: nsbsaga
 
 partial: winservice
 partial: sc-transport-adapter
