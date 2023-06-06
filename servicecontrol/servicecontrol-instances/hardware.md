@@ -4,28 +4,28 @@ summary: Hardware recommendations for running ServiceControl instances
 reviewed: 2023-04-04
 ---
 
-This article provides recommendations and performance benchmarks to help determine resource selection for a ServiceControl production environment.
+This article provides recommendations and performance benchmarks to help select resources for a ServiceControl production environment.
 
 ## General recommendations
 
 * A dedicated production server for installing ServiceControl instances (Primary, Audit, and Monitoring).
 * A minimum of 16 GB of RAM (excluding RAM for OS and other services).
 * 2 GHz quad core CPU or better.
-* A dedicated disk for ServiceControl databases that is separate from the operating system.
+* A dedicated disk for ServiceControl databases (not the disk where the operating system is installed).
 
 ### Scaling ServiceControl
 
-When possible, scaling *up* a single machine to handle system load is recommended. When scaling up is not an option, ServiceControl can be scaled *out* by partitioning audit processing between multiple instances. See [Multiple ServiceControl Instances](remotes.md) for more details.
+When possible, scaling *up* a single machine to handle system load is recommended. When scaling up is not an option, ServiceControl may be scaled *out* by partitioning audit processing between multiple instances. See [Multiple ServiceControl Instances](remotes.md) for more details.
 
 ### Ongoing server performance monitoring
 
-The requirements for a server hosting ServiceControl can change over time as the system evolves. It's important to continuously monitor the CPU, RAM, disk I/O, and network I/O for the server running ServiceControl to ensure adequate resources are available for overall system health.
+The requirements for a server hosting ServiceControl may change over time as the system evolves. It's important to continuously monitor the CPU, RAM, disk I/O, and network I/O for the server running ServiceControl to ensure adequate resources are available for overall system health.
 
-Real disk, CPU, RAM, and network performance can be monitored with the Windows Resource Monitor and/or Windows Performance counters.
+Disk, CPU, RAM, and network performance may be monitored using the Windows Resource Monitor and/or Windows Performance counters.
 
 ### Storage recommendations
 
-* Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easier and ensures different applications are not competing for storage IOPS.
+* Store ServiceControl data on a dedicated disk. This makes low-level resource monitoring easier and ensures applications are not competing for storage IOPS.
 * Store multiple ServiceControl databases on separate physical disks to prevent multiple instances competing for the same disk resources.
 * Disable disk write caching (read caching can remain enabled) to prevent data corruption if the (virtual) server or disk controller fails. This is a general best practice for databases.
 * [Database paths](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) should be located on disks suitable for low latency write operations (e.g. fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
@@ -46,11 +46,11 @@ The embedded RavenDB will use additional RAM to improve indexing performance. Du
 
 ### Message size / MaxBodySizeToStore
 
-In general, the smaller the messages, the faster ServiceControl will be able to process audit records. Thus, [put events on a diet](https://particular.net/blog/putting-your-events-on-a-diet) if optimizing for performance. For larger message payloads, consider using the [data bus feature](/nservicebus/messaging/databus/).
+In general, the smaller the messages, the faster ServiceControl will process audit records. See [_Putting your events on a diet_](https://particular.net/blog/putting-your-events-on-a-diet) to optimize for performance. For larger message payloads, consider using the [data bus feature](/nservicebus/messaging/databus/).
 
-In addition, for audit messages, lower the [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/creating-config-file.md#performance-tuning-servicecontrolmaxbodysizetostore) setting to skip storage of larger audit messages. This setting will only reduce load if a non-binary [serialization](/nservicebus/serialization/) is used.
+For audit messages, lower the [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/creating-config-file.md#performance-tuning-servicecontrolmaxbodysizetostore) setting to skip storage of larger audit messages. This setting will only reduce load if non-binary [serialization](/nservicebus/serialization/) is used.
 
-WARNING: When using ServiceInsight, the message body will not be viewable for messages that exceed the `ServiceControl/MaxBodySizeToStore` limit.
+WARNING: When using ServiceInsight, the message body is not viewable for messages that exceed the `ServiceControl/MaxBodySizeToStore` limit.
 
 ### Separate disks for database and index files
 
@@ -58,7 +58,7 @@ Besides using a dedicated disk for the ServiceControl [database paths](/servicec
 
 ### Azure disk limitations
 
-Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#general-recommendations-scaling-servicecontrol).
+Using multiple 7500 IOPS disks in striped mode in Azure may not improve performance due to increased latency; consider [scaling out ServiceControl to multiple instances](#general-recommendations-scaling-servicecontrol) instead.
 
 ### Turn off full-text search
 
