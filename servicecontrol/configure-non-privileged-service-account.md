@@ -30,7 +30,7 @@ NOTE: For MSMQ, the ACL default for a queue allows Administrators full access. S
 
 ### Url namespace reservations
 
-The account under which the ServiceControl instance is running requires url namespace reservations for the hostname and ports used by the instance. The reservations can be managed via the [ServiceControl Powershell commands](/servicecontrol/powershell.md#troubleshooting-via-powershell-checking-and-manipulating-urlacls) or from the command using [netsh.exe](https://docs.microsoft.com/en-us/windows/desktop/http/add-urlacl). For example, to add url reservation for `http:\\localhost:33333\` to `LocalService` account the following command can be used `netsh http add urlacl url=http://localhost:33333/ user=LocalService listen=yes delegate=no`. 
+The account under which the ServiceControl instance is running requires URL namespace reservations for the hostname and ports used by the instance. The reservations can be managed using the [ServiceControl Powershell commands](/servicecontrol/powershell.md#troubleshooting-via-powershell-checking-and-manipulating-urlacls) or from the command line using [netsh.exe](https://docs.microsoft.com/en-us/windows/desktop/http/add-urlacl). For example, to add url reservation for `http:\\localhost:33333\` to `LocalService` account the following command can be used `netsh http add urlacl url=http://localhost:33333/ user=LocalService listen=yes delegate=no`. 
 
 For instructions on how to review and change the urls used by ServiceControl instance, refer to [Changing the ServiceControl URI](setting-custom-hostname.md).
 
