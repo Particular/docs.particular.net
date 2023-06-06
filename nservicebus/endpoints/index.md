@@ -17,7 +17,7 @@ An _endpoint instance_ is a physical deployment of an endpoint. Each endpoint in
 
 ## Logical endpoints
 
-A collection of endpoint instances represents a single endpoint if and only if:
+A collection of endpoint instances represents a single logical endpoint if and only if:
 
 - The endpoint instances have the same name.
 - The endpoint instances contain the same collection of handlers and/or sagas.
