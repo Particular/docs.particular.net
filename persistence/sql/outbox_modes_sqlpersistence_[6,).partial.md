@@ -38,6 +38,8 @@ In addition to that connection managed by NServiceBus, users can open their own 
 
 The `TransactionScope` mode is most useful in legacy scenarios such as when migrating from the MSMQ transport to a messaging infrastructure that does not support MSDTC. In this scenario, it is no longer possible to use a distributed transaction which includes the transport and the database. To maintain consistency, the outbox must be used instead. If the outbox table cannot be added to the legacy database, it may be placed in a separate database, but access to both databases must be included in distributed transactions.
 
+#### Transaction Isolation Level
+
 If required, the outbox transaction isolation level may be adjusted:
 
 snippet: SqlPersistenceOutboxIsolationLevel
