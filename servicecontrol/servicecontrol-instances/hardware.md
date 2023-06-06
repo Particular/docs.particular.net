@@ -46,7 +46,7 @@ The embedded RavenDB will use additional RAM to improve indexing performance. Du
 
 ### Message size / MaxBodySizeToStore
 
-In general, the smaller the messages, the faster ServiceControl will process audit records. See [_Putting your events on a diet_](https://particular.net/blog/putting-your-events-on-a-diet) to optimize for performance. For larger message payloads, consider using the [data bus feature](/nservicebus/messaging/databus/).
+In general, the smaller the messages, the faster ServiceControl will process audit records (see [this blog post](https://particular.net/blog/putting-your-events-on-a-diet)). For larger message payloads, consider using the [data bus feature](/nservicebus/messaging/databus/).
 
 For audit messages, lower the [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/creating-config-file.md#performance-tuning-servicecontrolmaxbodysizetostore) setting to skip storage of larger audit messages. This setting will only reduce load if non-binary [serialization](/nservicebus/serialization/) is used.
 
