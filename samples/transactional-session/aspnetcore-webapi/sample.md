@@ -29,7 +29,7 @@ An async [WebAPI](https://dotnet.microsoft.com/apps/aspnet/apis) controller hand
 
 The message will be processed by the NServiceBus message handler and result in `"Message received at endpoint"`-message printed to the console. In addition, the handler will update the previously created entity.
 
-For querying all the stored entities, navigate to `http://localhost:58118/all`.
+To query all the stored entities, navigate to `http://localhost:58118/all`.
 
 ## Configuration
 
@@ -47,7 +47,7 @@ Entity Framework support is configured by registering the `DbContext`:
 
 snippet: txsession-ef-configuration
 
-The registration ensures that the `MyDataContext` type is built using the same session and transaction that is used by the `ITransactionalSession`. Once the transactional session is committed, it notifies the Entity Framework context to call `SaveChangesAsync`. For cases where the transactional session is not in play, a data context with a dedicated connection is returned.
+The registration ensures that the `MyDataContext` type is built using the same session and transaction that is used by the `ITransactionalSession`. Once the transactional session is committed, it notifies the Entity Framework context to call `SaveChangesAsync`. When the transactional session is not used, a data context with a dedicated connection is returned.
 
 ## Using the session
 
@@ -55,17 +55,17 @@ The message session is injected into `SendMessageController` via method injectio
 
 snippet: txsession-controller
 
-The lifecycle of the session is managed by the `MessageSessionFilter` which hooks into the [result filter part](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-7.0#iresultfilter-and-iasyncresultfilter) of the ASP.NET pipeline. It opens the session when a controller action is called that takes a dependency to the `ITransactionalSession` interface, committing the session once the action completes:
+The lifecycle of the session is managed by the `MessageSessionFilter` which hooks into the [result filter](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-7.0#iresultfilter-and-iasyncresultfilter) of the ASP.NET pipeline. When a controller action with an `ITransactionalSession` parameter is called, the filter opens the session, performs the next action, and then commits the session:
 
 snippet: txsession-filter
 
-NOTE: The result filter could be extended to return problem details (for example, with `context.Result = new ObjectResult(new ProblemDetails())`) in cases when the transactional session cannot be committed. This part has been left out in the sample.
+NOTE: The result filter could be extended to return problem details (for example, with `context.Result = new ObjectResult(new ProblemDetails())`) in cases where the transactional session cannot be committed. This is omitted from the sample.
 
-For controller actions that do not take a dependency to `ITransactionalSession` a data context with a dedicated connection is used.
+For controller actions that do not have `ITransactionalSession` parameter, a data context with a dedicated connection is used.
 
 snippet: txsession-controller-query
 
-NOTE: The sample uses method injection as an opinionated way of expressing the need for having the transactional boundaries managed by the infrastructure. For cases when constructor injection is preferred, it would be required to introduce an [action attribute](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?#action-filters) and annotate the controllers or the actions accordingly.
+NOTE: The sample uses method injection as an opinionated way of expressing the need for having the transactional boundaries managed by the infrastructure. If constructor injection is preferred, an [action attribute](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?#action-filters) must be used to annotate controllers or actions.
 
 This diagram visualizes the interaction between the result filter, `ITransactionalSession`, and the Web API controller:
 
