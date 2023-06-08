@@ -82,14 +82,14 @@
     - NServiceBus.Autofac
 
 - Key: Bridge
-  Name: Transport Bridge
+  Name: Messaging Bridge
   DocsUrl: /nservicebus/bridge
   GitHubOwner: Particular
   Category: Other
-  LicenseUrl: https://github.com/Particular/NServiceBus.Transport.Bridge/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/Particular/NServiceBus.Transport.Bridge
+  LicenseUrl: https://github.com/Particular/NServiceBus.MessagingBridge/blob/master/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.MessagingBridge
   NugetOrder:
-    - NServiceBus.Transport.Bridge
+    - NServiceBus.MessagingBridge
 
 - Key: Callbacks
   Name: Callbacks

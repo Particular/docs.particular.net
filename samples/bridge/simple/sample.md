@@ -1,6 +1,6 @@
 ---
 title: Simple Bridge Usage
-summary: How to use the transport bridge to connect endpoints on different transports
+summary: How to use the NServiceBus messaging bridge to connect endpoints on different transports
 reviewed: 2022-05-13
 component: Bridge
 related:
@@ -39,7 +39,7 @@ Here is a description of each project.
 
 ### Bridge
 
-The project that references `NServiceBus.Transport.Bridge` and contains configuration to bridge the two transports.
+The project that references `NServiceBus.MessagingBridge` and contains configuration to bridge the two transports.
 
 ### SharedMessages
 

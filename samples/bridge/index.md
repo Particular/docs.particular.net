@@ -5,4 +5,4 @@ related:
  - nservicebus/bridge
 ---
 
-These samples show how to bridge transports with the `NServiceBus.Transport.Bridge` component.
+These samples show how to bridge transports with the `NServiceBus.MessagingBridge` component.

@@ -11,7 +11,7 @@ redirects:
 - samples/bridge/azure-service-bus-msmq-bridge
 ---
 
-Endpoints running on different transports can not exchange messages directly and must use the `NServiceBus.Transport.Bridge` component to communicate.
+Endpoints running on different transports can not exchange messages directly and must use the `NServiceBus.MessagingBridge` component to communicate.
 
 Common examples include:
 
@@ -34,11 +34,11 @@ The scenarios covered by the sample include:
 * Publishing events from an MSMQ endpoint and subscribing to those events from an Azure Service Bus endpoint.
 * Publishing events from Azure Service Bus and subscribing to those events from an MSMQ endpoint.
 
-![msmq to azure service bus transport bridge sample](msmq-to-azure-service-bus-transport-bridge-sample.png 'width=500')
+![msmq to azure service bus messaging bridge sample](msmq-to-azure-service-bus-transport-bridge-sample.png 'width=500')
 
 ### Bridging
 
-Endpoints are bridged using [NServiceBus.Transport.Bridge](/nservicebus/bridge/), which is a standalone process that runs side-by-side with the bridged endpoints, `MsmqEndpoint` and `AsbEndpoint`.  These endpoints are not aware that there is a bridge involved in the sending and receiving of messages.  They send/publish messages as if entire system uses the same transport.  All of the configuration to bridge different transports is handled in the bridge code.
+Endpoints are bridged using [NServiceBus.MessagingBridge](/nservicebus/bridge/), which is a standalone process that runs side-by-side with the bridged endpoints, `MsmqEndpoint` and `AsbEndpoint`.  These endpoints are not aware that there is a bridge involved in the sending and receiving of messages.  They send/publish messages as if entire system uses the same transport.  All of the configuration to bridge different transports is handled in the bridge code.
 
 The bridge is connecting the MSMQ and Azure Service Bus endpoints and providing the configuration settings required by each transport. For example, Azure Service Bus requires a connection string and the topology to be set.
 
@@ -60,7 +60,7 @@ snippet: asb-bridge-configuration
 
 The MSMQ bridge endpoint is configured by using the name of the actual MSMQ endpoint where the message needs to be routed to:
 
-NOTE: The `QueueAddress` parameter is needed to create an MSMQ bridge endpoint when the actual MSMQ endpoint and the bridge are running on separate servers 
+NOTE: The `QueueAddress` parameter is needed to create an MSMQ bridge endpoint when the actual MSMQ endpoint and the bridge are running on separate servers
 
 snippet: create-msmq-endpoint-of-bridge
 
@@ -72,7 +72,7 @@ When the bridge endpoint has been created and the publisher has been registered,
 
 snippet: msmq-bridge-configuration
 
- 
+
 
 
 

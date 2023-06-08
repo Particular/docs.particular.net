@@ -1,10 +1,10 @@
 ---
 title: Usage scenarios
-summary: Scenarios in which the bridge can be used in a system
+summary: Scenarios in which the NServiceBus Messaging Bridge can be used in a system
 reviewed: 2022-04-20
 component: Bridge
 ---
-Several scenarios can be achieved when using the `NServiceBus.Transport.Bridge` component, including:
+Several scenarios can be achieved when using the `NServiceBus.MessagingBridge` component, including:
 
 - Migrating a system from one transport to another transport
 - Using different transports in a microservices environment where each service uses the transport that provides the most benefit for it
@@ -20,7 +20,7 @@ Migrating from one transport to another can be a complex task. In-flight message
 
 When a plan is created to move or sunset an endpoint, re-configuring the routing for any endpoint is straightforward and NServiceBus takes care of new messages sent after the endpoint is re-deployed on the new transport. However in-flight messages must be carefully considered and action must be taken to ensure these messages arrive at the correct destination, which is not always the place where these messages were originally sent to.
 
-Take the scenario where a system migrates from the MSMQ transport to the SQL Server transport. Converting the endpoints to use SQL Server all at once would be difficult, as all in-flight messages would be stuck in MSMQ. Instead, the NServiceBus transport bridge can provide a way to migrate these endpoints one-by-one.
+Take the scenario where a system migrates from the MSMQ transport to the SQL Server transport. Converting the endpoints to use SQL Server all at once would be difficult, as all in-flight messages would be stuck in MSMQ. Instead, the NServiceBus messaging bridge can provide a way to migrate these endpoints one-by-one.
 
 ### Initial situation
 
@@ -65,7 +65,7 @@ Eventually the last endpoints can be moved over. It is then possible to configur
 
 Every transport has [pros and cons](/transports/selecting.md). Some transports have higher throughput, others have higher reliability and consistency. Sometimes some messages are better handled in the cloud where hosting is taken care off by the cloud provider, but other messages must be on-premise and not leave the network.
 
-Each endpoint of a distributed system should be free to choose the transport that best suits its needs. In fact, this is encouraged in a microservices architecture. The `NServiceBus.Transport.Bridge` can be used to set up endpoints on different transports, just like in the migration scenario above. Except in this scenario, there is no migration; the different transports might remain in place for the life of the system. This is a perfectly viable scenario and easily achieved using the bridge.
+Each endpoint of a distributed system should be free to choose the transport that best suits its needs. In fact, this is encouraged in a microservices architecture. The `NServiceBus.MessagingBridge` can be used to set up endpoints on different transports, just like in the migration scenario above. Except in this scenario, there is no migration; the different transports might remain in place for the life of the system. This is a perfectly viable scenario and easily achieved using the bridge.
 
 ### Particular Platform
 
@@ -79,4 +79,4 @@ Another possible scenario is where there are multiple instances of the same tran
 
 An example of this scenario is using different namespaces in Azure Service Bus, or different SQL Server database instances, or even different SQL Server instances.
 
-The [bridge sample](/samples/bridge/simple) shows how this is achieved by using the LearningTransport on each side of the bridge. The second instance of the LearningTransport is stored in a different location than the first instance. This simulates endpoints that cannot communicate with each other directly and need the `NServiceBus.Transport.Bridge` to bridge the two instances of the LearningTransport.
+The [bridge sample](/samples/bridge/simple) shows how this is achieved by using the LearningTransport on each side of the bridge. The second instance of the LearningTransport is stored in a different location than the first instance. This simulates endpoints that cannot communicate with each other directly and need the `NServiceBus.MessagingBridge` to bridge the two instances of the LearningTransport.

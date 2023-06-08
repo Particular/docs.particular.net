@@ -13,11 +13,11 @@ upgradeGuideCoreVersions:
 
 ## TransactionScope
 
-[TransactionScope transaction mode](/transports/sql/transactions.md#transaction-scope) is not available in .NET Core 2.0 because the implementation of `SqlConnection` does not support enlisting in an ambient transaction. 
+[TransactionScope transaction mode](/transports/sql/transactions.md#transaction-scope) is not available in .NET Core 2.0 because the implementation of `SqlConnection` does not support enlisting in an ambient transaction.
 
 To run the upgraded project on .NET Core the transport needs to be switched to one of the native transactions modes. Consider using the [Outbox](/nservicebus/outbox) to maintain the same *exactly-once processing* guarantees.
 
-NOTE: Transaction scope is supposed to be supported by `SqlConnection` in future versions of .NET Core. 
+NOTE: Transaction scope is supposed to be supported by `SqlConnection` in future versions of .NET Core.
 
 
 ## Multi-instance mode
@@ -48,4 +48,4 @@ transport.UseCatalogForEndpoint(
     catalog: "RemoteEndpoint");
 ```
 
-If catalogs are hosted in different instances of SQL Server, use [NServiceBus.Transport.Bridge](/nservicebus/bridge/) to construct a bridge. The [multi-instance sample](/samples/bridge/sql-multi-instance) demonstrates this approach.
+If catalogs are hosted in different instances of SQL Server, use [NServiceBus.MessagingBridge](/nservicebus/bridge/) to construct a bridge. The [multi-instance sample](/samples/bridge/sql-multi-instance) demonstrates this approach.

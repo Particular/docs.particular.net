@@ -6,7 +6,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.*" />
-		<PackageReference Include="NServiceBus.Transport.Bridge" Version="1.*" />
+		<PackageReference Include="NServiceBus.MessagingBridge" Version="1.*" />
 		<PackageReference Include="NServiceBus.Transport.Msmq" Version="2.*" />
 	</ItemGroup>
 	<ItemGroup>
