@@ -161,7 +161,6 @@
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/7.2.0) | 2023-01-17     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/7.1.1) | ~~2022-09-19~~ | ~~2023-04-17~~    | ~~Superseded by 7.2.x~~           |
 | [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/7.0.1) | ~~2021-12-09~~ | ~~2022-12-19~~    | ~~Superseded by 7.1.x~~           |
-| [~~6.5.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/6.5.1) | ~~2021-03-04~~ | ~~2022-12-09~~    | ~~Superseded by 7.0.x~~           |
 
 #### [NServiceBus.RavenDB.TransactionalSession](/nuget/NServiceBus.RavenDB.TransactionalSession)
 
@@ -385,7 +384,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/3.0.0) | 2022-11-17     | -                 | -                                 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/2.0.0) | 2021-12-09     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
-| [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.1.1) | ~~2021-11-30~~ | ~~2022-12-09~~    | ~~Superseded by 2.0.x~~           |
 
 #### [NServiceBus.Gateway.Sql](/nuget/NServiceBus.Gateway.Sql)
 
