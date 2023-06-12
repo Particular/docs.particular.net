@@ -13,10 +13,9 @@ snippet: SystemJsonSerialization
 
 ## Caveats
 
-### Interfaces not supported
-
 include: interface-not-supported
 
 ### Unsupported types
 
 * [System.Type](https://learn.microsoft.com/en-us/dotnet/api/system.type)
+* Not all [collection types are supported](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/supported-collection-types)
