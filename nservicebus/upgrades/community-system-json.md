@@ -12,8 +12,6 @@ isUpgradeGuide: true
 
 TODO: Flesh out
 
-TODO: Where do we put this in the menu?
-
 Instead of:
 
 ```csharp
