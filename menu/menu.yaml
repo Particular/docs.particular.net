@@ -581,6 +581,8 @@
     Articles:
     - Url: nservicebus/serialization
       Title: About serialization with NServiceBus
+    - Url: nservicebus/serialization/system.json
+      Title: System.Text.Json
     - Url: nservicebus/serialization/newtonsoft
       Title: Json.NET
     - Url: nservicebus/serialization/xml
