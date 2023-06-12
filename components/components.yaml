@@ -584,6 +584,15 @@
   NugetOrder:
     - NServiceBus
 
+- Key: SystemJson
+  Name: System.Text.Json Serializer
+  DocsUrl: /nservicebus/serialization/system-json
+  Category: Serializer
+  GitHubOwner: Particular
+  ProjectUrl: https://github.com/Particular/NServiceBus
+  NugetOrder:
+    - NServiceBus
+
 - Key: Wormhole
   Name: Wormhole Gateway
   DocsUrl: /nservicebus/upgrades/wormhole-router
