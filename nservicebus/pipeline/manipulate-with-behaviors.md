@@ -85,14 +85,13 @@ snippet: SharingBehaviorData
 
 Note: Contexts are not concurrency-safe.
 
+Note: In NServiceBus version 6 and above, the context respects the stage hierarchy and only allows adding new entries in the scope of the current context. A child behavior (later in the pipeline chain) can read and even modify entries set by a parent behavior (earlier in the pipeline chain) but entries added by the child cannot be accessed from the parent.
+
 ## Injecting dependencies into behaviors
 
 snippet: InjectingDependencies
 
-TBD
-
-
-Note: In NServiceBus version 6 and above, the context respects the stage hierarchy and only allows adding new entries in the scope of the current context. A child behavior (later in the pipeline chain) can read and even modify entries set by a parent behavior (earlier in the pipeline chain) but entries added by the child cannot be accessed from the parent.
+Dependencies injected into the constructor of a behavior become singletons regardless of their actual scope on the dependency injection container. In order to create instances per request or scoped dependencies it is required to use the builder that is available on the context.
 
 partial: options
 
