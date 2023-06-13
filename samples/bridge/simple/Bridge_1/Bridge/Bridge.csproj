@@ -10,6 +10,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.*" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.*" />
-    <PackageReference Include="NServiceBus.MessagingBridge" Version="1.*" />
+    <PackageReference Include="NServiceBus.MessagingBridge" Version="2.*" />
   </ItemGroup>
 </Project>
