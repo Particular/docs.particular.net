@@ -10,17 +10,16 @@ isUpgradeGuide: true
 
 ## Community serializer now bundled into NServiceBus Core 8.1
 
-TODO: Flesh out
+The built-in serializer is fully compatible with the community version.
 
 Instead of:
 
 ```csharp
-var serialization = endpointConfiguration.UseSerialization<TODO>();
+var serialization = endpointConfiguration.UseSerialization<NServiceBus.Json.SystemJsonSerializer>();
 ```
-
-Use:
+Remove the reference to https://www.nuget.org/packages/NServiceBus.Json and use:
 
 ```csharp
-var serialization = endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+var serialization = endpointConfiguration.UseSerialization<NServiceBus.SystemJsonSerializer>();
 ```
 
