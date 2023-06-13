@@ -31,6 +31,12 @@ The result is duplicate subscriptions for any endpoint that subscribes to an eve
 
 snippet: register-publisher
 
+Legacy transports versions that use message driven pubsub require the fully assembly qualified type name value to be passed.
+
+snippet: register-publisher-legacy
+
+INFO: It is recommended to use the overloads that accept a type instead of a string value. Passing types can be problematic when not using [naming conventions for message via unobtrusive mode](https://docs.particular.net/nservicebus/messaging/conventions).
+
 ### Referencing event types
 
 When an assembly containing message types is referenced, either `typeof()` or a type argument may be used for type-safety when registering publishers. Sometimes it is not possible to reference an assembly containing message types. For example, the assembly may reference a different version of NServiceBus than the bridge. In these cases, the fully-qualified name of an event may be used instead. This may even be preferable to referencing message assemblies, to reduce the chance of compile-time conflicts.
