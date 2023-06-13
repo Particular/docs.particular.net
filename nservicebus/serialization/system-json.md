@@ -15,11 +15,7 @@ snippet: SystemJsonSerialization
 
 The System.Text.Json serializer is more limited compared to Newtonsoft.Json, see the [upgrade guide](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft) for more details.
 
-## Caveats
-
-include: interface-not-supported
-
-### Unsupported types
+## Unsupported types
 
 * [System.Type](https://learn.microsoft.com/en-us/dotnet/api/system.type)
 * Not all [collection types are supported](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/supported-collection-types)
