@@ -8,7 +8,7 @@ related:
 component: Templates
 isLearningPath: true
 versions: '[2,]'
-reviewed: 2022-05-09
+reviewed: 2023-06-14
 ---
 
 Docker containers provide the ability to deploy endpoints in a self-contained manner. To create and host an endpoint in a Docker container, use the `dotnet new` template in the [ParticularTemplates package](/nservicebus/dotnet-templates/). The project that is created will have the required endpoint setup infrastructure in addition to the `Dockerfile` needed to create and deploy a container hosting one endpoint.
