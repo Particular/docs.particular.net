@@ -4,14 +4,14 @@ summary: A json serializer using System.Text.Json
 reviewed: 2023-06-12
 component: SystemJson
 related:
- - samples/serializers/xml
+ - samples/serializers/newtonsoft
 ---
-
-Note: Thanks to [Simon Cropp](https://github.com/SimonCropp) who built [the community version of the serializer](https://github.com/NServiceBusExtensions/NServiceBus.Json) and donated it to Particular Software.
 
 ## Usage
 
 snippet: SystemJsonSerialization
+
+Note: Thanks to [Simon Cropp](https://github.com/SimonCropp) who built [the community version of the serializer](https://github.com/NServiceBusExtensions/NServiceBus.Json) and donated it to Particular Software.
 
 ## Compatibility with Newtonsoft.Json
 
