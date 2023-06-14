@@ -11,12 +11,12 @@ versions: '[2,]'
 reviewed: 2022-05-09
 ---
 
-Docker containers provide the ability to deploy endpoints in a self-contained manner. To create and host an endpoint in a Docker container, use the `dotnet new` template in the [ParticularTemplates package](/nservicebus/dotnet-templates/) and create a new project using `dotnet new nsbdockercontainer`. The project that is created will have the required endpoint setup infrastructure in addition to the `Dockerfile` needed to create and deploy a container hosting one endpoint.
+Docker containers provide the ability to deploy endpoints in a self-contained manner. To create and host an endpoint in a Docker container, use the `dotnet new` template in the [ParticularTemplates package](/nservicebus/dotnet-templates/). The project that is created will have the required endpoint setup infrastructure in addition to the `Dockerfile` needed to create and deploy a container hosting one endpoint.
 
 
 ## Template overview
 
-The `nsbdockercontainer` template creates a project that contains all of the files necessary to build an endpoint that can be deployed to Docker.
+partial: overview
 
 
 partial: host
@@ -26,7 +26,7 @@ partial: host
 
 Each Docker container must have a `license.xml` file included in it. A placeholder for this file is created when the template is used to create a new endpoint. This file must be replaced with a valid `license.xml` file prior to building the Docker container.
 
-An endpoint running in Docker will look for the `license.xml` file in [the same locations](/nservicebus/licensing/#license-management) as it would in any other hosting situation. By default, a project created using the `nsbdockercontainer` template will put the `license.xml` file in the correct location in a Docker image.
+An endpoint running in Docker will look for the `license.xml` file in [the same locations](/nservicebus/licensing/#license-management) as it would in any other hosting situation. By default, a project created using the `dotnet new` templates will put the `license.xml` file in the correct location in a Docker image.
 
 
 ### Dockerfile

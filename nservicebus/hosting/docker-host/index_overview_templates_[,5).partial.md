@@ -1,0 +1,1 @@
+The `nsbdockercontainer` template creates a project that contains all of the files necessary to build an endpoint that can be deployed to Docker.

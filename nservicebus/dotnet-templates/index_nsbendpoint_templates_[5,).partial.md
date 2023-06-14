@@ -1,6 +1,14 @@
 ## NServiceBus Endpoint
 
-The `nsbendpoint` template will create a C# project for an NServiceBus endpoint, preconfigured with a choice of target framework, message transport, data persistence, and hosting model.
+The `nsbendpoint` template will create a C# project for an NServiceBus endpoint. By selecting options, the endpoint is preconfigured with choices of:
+
+*  Target framework
+*  [Message transport](/transports/)
+*  [Data persistence](/persistence/)
+*  [Hosting model](/nservicebus/hosting/), which can be one of:
+   * Console Application
+   * [Windows service hosting](/nservicebus/hosting/#self-hosting-windows-service-hosting)
+   * [Docker container hosing](/nservicebus/hosting/docker-host)
 
 Once the package is installed, the template can be found in the Visual Studio **New Project** dialog:
 
