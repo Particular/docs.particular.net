@@ -31,7 +31,7 @@ The result is duplicate subscriptions for any endpoint that subscribes to an eve
 
 snippet: register-publisher
 
-Legacy transports versions that use [message-driven pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) require the fully qualified assembly type name value to be passed. Note that it is not required to pass the culture and public key as only the type name, assembly name, and assembly version are used in filtering subscribers by the message drive pub/sub feature.
+Legacy transports versions that use [message-driven pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) require the fully qualified assembly type name value to be passed. Note that passing the culture and public key is not needed as only the type name, assembly name, and assembly version are used in filtering subscribers by the message-driven pub/sub-feature.
 
 snippet: register-publisher-legacy
 
