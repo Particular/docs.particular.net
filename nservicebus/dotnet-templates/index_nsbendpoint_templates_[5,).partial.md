@@ -22,11 +22,12 @@ Parameters allow the selection of message transport, data persistence, and hosti
 
 | Option | Description |
 |-|-|
+| `-n`,<br/>`--name` | The name of the endpoint to create. |
 | `-f`,<br/>`--framework` | The target framework for the project.<br/>One of: `net7.0` (default), `net6.0`, `net48`, `net472` |
 | `-t`,<br/>`--transport` | The message queue (transport) to use.<br/>One of `LearningTransport` (default), `AzureServiceBus`, `AzureStorageQueues`, `SQS`, `RabbitMQ`, `SQL`. |
 | `-p`,<br/>`--persistence` | Where to store data. This should be the same place business data is stored.<br/>One of `LearningPersistence` (default), `MSSQL`, `MySQL`, `PostgreSQL`, `Oracle`, `CosmosDB`, `AzureTable`, `RavenDB`, `MongoDB`, `DynamoDB` |
 | `-hm`,<br/>`--hosting` | The hosting model to use.<br/>One of: `ConsoleApp`, `WindowsService`, `Docker`|
 
-For more details on available options and choices, use this command to get help for the command:
+For more details on available options and choices, use this command to get help:
 
 snippet: endpointhelp

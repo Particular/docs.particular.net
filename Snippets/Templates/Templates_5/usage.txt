@@ -11,7 +11,21 @@ dotnet sln add "MyEndpoint/MyEndpoint.csproj"
 dotnet new nsbendpoint --help
 # endcode
 
+# startcode handlerdefault
+dotnet new nsbhandler --name ClassName --messagetype MyMessage
+# endcode
 
+# startcode handlerhelp
+dotnet new nsbhandler --help
+# endcode
+
+# startcode sagadefault
+dotnet new nsbsaga --name ClassName --messagetype1 Message1 --messagetype2 Message2
+# endcode
+
+# startcode sagahelp
+dotnet new nsbsaga --help
+# endcode
 
 # startcode docker-build
 docker build -f Dockerfile -t MyEndpoint ./..
