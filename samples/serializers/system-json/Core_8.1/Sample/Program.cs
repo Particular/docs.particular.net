@@ -9,7 +9,7 @@ static class Program
     {
         Console.Title = "Samples.Serialization.SystemJson";
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalJson");
+        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.SystemJson");
         #region config
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
