@@ -1,6 +1,6 @@
 ---
 title: Logging
-reviewed: 2020-06-26
+reviewed: 2023-06-11
 redirects:
 - servicecontrol/setting-custom-log-location
 ---

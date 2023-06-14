@@ -2,7 +2,7 @@
 title: Replying to a Message
 summary: Answer a message using the Reply method on IMessageHandlerContext/IBus.
 component: Core
-reviewed: 2020-06-26
+reviewed: 2023-06-11
 redirects:
 - nservicebus/how-do-i-reply-to-a-message
 ---
