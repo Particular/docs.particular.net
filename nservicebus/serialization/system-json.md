@@ -16,3 +16,7 @@ Note: Thanks to [Simon Cropp](https://github.com/SimonCropp) who built [the comm
 ## Compatibility with Newtonsoft.Json
 
 The System.Text.Json serializer is more limited compared to Newtonsoft.Json, see the [upgrade guide](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft) for more details.
+
+## Migration from the community version
+
+The serializer is mostly compatible with the community version, see the [upgrade guide](/nservicebus/upgrades/community-system-json.md) for more details.
