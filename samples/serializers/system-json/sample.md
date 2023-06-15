@@ -4,11 +4,11 @@ summary: NServiceBus sample that shows how to use the builtin System.Text.Json s
 reviewed: 2023-06-12
 component: SystemJson
 related:
+ - nservicebus/serialization/system-json
  - nservicebus/serialization
 ---
 
-
-This sample uses the [System.Text.Json](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json) serializer builtin to NServiceBus to serialize message payloads.
+This sample uses the [System.Text.Json](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json) serializer built in to NServiceBus to serialize message payloads.
 
 ## Configuring to use NServiceBus.Newtonsoft.Json
 
