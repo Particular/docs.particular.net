@@ -16,7 +16,7 @@ related:
 
 This sample leverages the logging and recoverability APIs to remove some of the noise from exception information written to both the error queue and the log output. This is especially useful when dealing with async stack traces.
 
-NOTE: .NET Core 2.1 [already makes async stack traces more readable](https://github.com/dotnet/corefx/issues/24627). This sample is only meant to be used on the .NET Framework or on .NET Core 2.0 and below.
+NOTE: .NET Core 2.1 and newer [already make async stack traces more readable](https://github.com/dotnet/corefx/issues/24627). This sample is only meant to be used on the .NET Framework.
 
 
 ## Solution Layout
