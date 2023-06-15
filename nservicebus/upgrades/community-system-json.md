@@ -1,5 +1,5 @@
 ---
-title: Upgrading from community System.Text.Json serialiser
+title: Upgrading from community System.Text.Json serializer
 summary: Instructions on how to migrate from the community System.Text.Json serializer to the supported version.
 reviewed: 2023-06-12
 component: SystemJson
@@ -28,7 +28,7 @@ var serialization = endpointConfiguration.UseSerialization<NServiceBus.SystemJso
 
 If full namespaces are not used, this code change may not be necessary, and instead, the `using NServiceBus.Json;` statement can be removed.
 
-## API Differeces
+## API differences
 
 ### Specifying content type
 
