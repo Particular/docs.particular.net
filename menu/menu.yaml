@@ -247,6 +247,10 @@
         Title: Version 2 to 3
       - Url: nservicebus/upgrades/gateway-3to4
         Title: Version 3 to 4
+    - Title: System.Text.Json Serializer
+      Articles:
+      - Url: nservicebus/upgrades/community-system-json
+        Title: From community package
     - Title: Newtonsoft Serializer
       Articles:
       - Url: nservicebus/upgrades/newtonsoft-2to3
@@ -581,6 +585,8 @@
     Articles:
     - Url: nservicebus/serialization
       Title: About serialization with NServiceBus
+    - Url: nservicebus/serialization/system-json
+      Title: System.Text.Json
     - Url: nservicebus/serialization/newtonsoft
       Title: Json.NET
     - Url: nservicebus/serialization/xml
