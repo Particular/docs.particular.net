@@ -15,10 +15,13 @@ NOTE: When transitioning to a new serializer, messages that are currently 'in-fl
 
 It's possible to transition to another serialization format while still remaining compatible with messages in-flight that used the previous serialization format. This is accomplished by adding the previous serialization format as an [additional deserializer](#specifying-additional-deserializers), which is supported in NServiceBus versions 6 and above.
 
-The [Newtonsoft JSON Serializer](newtonsoft.md) provides an effective general-purpose serializer appropriate for most use cases based on the ubiquitous [Json.NET package](https://www.newtonsoft.com/json). The Newtonsoft package provides a good combination of compactness, human readability, and performance. Other serializers are supported in order to enable specific performance or integration requirements.
+The [System.Text.Json serializer](system-json.md) provides an effective general-purpose serializer appropriate for most use cases based on the [JSON serialization built into .NET](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to). JSON provides a good combination of compactness, human readability, and performance.
+
+Other serializers are supported in order to enable specific performance or integration requirements.
 
 ## Supported serializers
 
+* [System.Text.Json](system-json.md)
 * [Newtonsoft](newtonsoft.md)
 * [XML](xml.md)
 
@@ -31,6 +34,8 @@ NOTE: The same serializer must be used by the sending endpoint to serialize mess
 ## Using the default serializer
 
 The default serializer used in NServiceBus projects is the custom [XmlSerializer](xml.md). Unless explicitly configured otherwise, NServiceBus will use [XmlSerializer](xml.md) for serializing and deserializing all messages.
+
+WARN: In NServiceBus 8.1 and above, a runtime warning will encourage explicitly selecting a serializer. In a future version of NServiceBus, the XmlSerializer will no longer be selected by default.
 
 ## Using a custom serializer
 
