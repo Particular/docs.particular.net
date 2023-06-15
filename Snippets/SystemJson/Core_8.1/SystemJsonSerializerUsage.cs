@@ -11,6 +11,14 @@
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             #endregion
+
+
+            #region SystemJsonContentType
+
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>()
+                .ContentType("application/json; systemjson");
+
+            #endregion
         }
     }
 }
