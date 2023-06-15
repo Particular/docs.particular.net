@@ -1,5 +1,5 @@
 ---
-title: System.Text.Json Serializer
+title: System.Text.Json serializer
 summary: A json serializer using System.Text.Json
 reviewed: 2023-06-12
 component: SystemJson
@@ -7,11 +7,11 @@ related:
  - samples/serializers/newtonsoft
 ---
 
+The System.Text.Json message serializer uses the JSON serialization built in to .NET to serialize and deserialize messages. This serializer should be the default choice for serialization for new projects.
+
 ## Usage
 
 snippet: SystemJsonSerialization
-
-Note: Thanks to [Simon Cropp](https://github.com/SimonCropp) who built [the community version of the serializer](https://github.com/NServiceBusExtensions/NServiceBus.Json) and donated it to Particular Software.
 
 ### Specifying content type
 
@@ -29,8 +29,10 @@ snippet: SystemJsonOptions
 
 The System.Text.Json serializer is more limited compared to Newtonsoft.Json, see the [upgrade guide](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft) for more details.
 
-Note: If needed both serializers can be used side-by-side during a transition period by using [multiple deserializers](/nservicebus/serialization/#specifying-additional-deserializers). For this to work a custom content type need to be specified as shown above.
+Note: If needed both serializers can be used side-by-side during a transition period by using [multiple deserializers](/nservicebus/serialization/#specifying-additional-deserializers). For this to work, a custom content type needs to be specified as shown above.
 
 ## Migration from the community version
+
+Note: Thanks to [Simon Cropp](https://github.com/SimonCropp) who built [the community version of the serializer](https://github.com/NServiceBusExtensions/NServiceBus.Json) and donated it to Particular Software.
 
 The serializer is mostly compatible with the community version, see the [upgrade guide](/nservicebus/upgrades/community-system-json.md) for more details.
