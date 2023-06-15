@@ -1,10 +1,10 @@
 ---
 title: System.Text.Json serializer
 summary: A json serializer using System.Text.Json
-reviewed: 2023-06-12
+reviewed: 2023-06-15
 component: SystemJson
 related:
- - samples/serializers/newtonsoft
+ - samples/serializers/system-json
 ---
 
 The System.Text.Json message serializer uses the JSON serialization built in to .NET to serialize and deserialize messages. This serializer should be the default choice for serialization for new projects.
