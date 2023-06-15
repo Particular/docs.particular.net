@@ -2,6 +2,7 @@ namespace Core8.Pipeline
 {
     using System;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.DependencyInjection;
     using NServiceBus.Pipeline;
 
     #region InjectingDependencies
