@@ -1,6 +1,7 @@
 ﻿namespace Core8
 {
     using NServiceBus;
+    using System.Text.Json;
 
     class SystemJsonSerializerUsage
     {
@@ -17,6 +18,18 @@
 
             endpointConfiguration.UseSerialization<SystemJsonSerializer>()
                 .ContentType("application/json; systemjson");
+
+            #endregion
+
+            #region SystemJsonOptions
+
+            var jsonSerializerOptions = new JsonSerializerOptions
+            {
+                WriteIndented = true
+            };
+
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>()
+                .Options(jsonSerializerOptions);
 
             #endregion
         }

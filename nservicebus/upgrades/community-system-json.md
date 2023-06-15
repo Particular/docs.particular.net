@@ -31,4 +31,4 @@ The `ContentTypeKey(...)` method has been renamed to `ContentType(...)`.
 
 ### Options
 
-The low level `.ReaderOptions(...)` and `WriterOptions(...)` is no longer available and it's recommended to use the [JsonSerializerOptions](https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializeroptions) to control serialization and deserialization behavior.
+The low level `.ReaderOptions(...)` and `WriterOptions(...)` is no longer available and it's recommended to use the [JsonSerializerOptions](https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializeroptions) to [control serialization and deserialization behavior](/nservicebus/serialization/system-json.md#customizing-serialization-options).

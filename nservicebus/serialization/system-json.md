@@ -19,6 +19,12 @@ The default content type used is `application/json` but can be changed using:
 
 snippet: SystemJsonContentType
 
+### Customizing serialization options
+
+To control how the serialization and deserialzation is performed [JsonSerializerOptions](https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializeroptions) can be passed in:
+
+snippet: SystemJsonOptions
+
 ## Compatibility with Newtonsoft.Json
 
 The System.Text.Json serializer is more limited compared to Newtonsoft.Json, see the [upgrade guide](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/migrate-from-newtonsoft) for more details.
