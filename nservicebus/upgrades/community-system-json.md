@@ -8,20 +8,25 @@ related:
 isUpgradeGuide: true
 ---
 
-## Community serializer now bundled into NServiceBus Core 8.1
+Message serialization with System.Text.Json is bundled into NServiceBus version 8.1 and above. The built-in serializer is fully compatible with the community-created [NServiceBus.Json](https://github.com/NServiceBusExtensions/NServiceBus.Json) package.
 
-The built-in serializer is fully compatible with the community version.
+## Conversion from community package
 
-Instead of:
+First, upgrade to NServiceBus 8.1.0 or newer.
+
+Then, instead of:
 
 ```csharp
 var serialization = endpointConfiguration.UseSerialization<NServiceBus.Json.SystemJsonSerializer>();
 ```
-Remove the reference to https://www.nuget.org/packages/NServiceBus.Json and use:
+
+Remove the reference to the [NServiceBus.Json NuGet package](https://www.nuget.org/packages/NServiceBus.Json) and use:
 
 ```csharp
 var serialization = endpointConfiguration.UseSerialization<NServiceBus.SystemJsonSerializer>();
 ```
+
+If full namespaces are not used, this code change may not be necessary, and instead, the `using NServiceBus.Json;` statement can be removed.
 
 ## API Differeces
 
