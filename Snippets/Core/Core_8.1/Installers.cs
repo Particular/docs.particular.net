@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using NServiceBus.Installation;
-
-namespace Core_8._1
+﻿namespace Core_8._1
 {
+    using Microsoft.Extensions.DependencyInjection;
+    using NServiceBus.Installation;
+    using System.Threading.Tasks;
+    using NServiceBus;
+
     public class InstallerSetup
     {
         #region installer-setup
