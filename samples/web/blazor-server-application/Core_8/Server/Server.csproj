@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-	  <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
-	  <LangVersion>10.0</LangVersion>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="NServiceBus.Callbacks" Version="4.*" />
+    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="4.*" />
   </ItemGroup>
 
   <ItemGroup>
