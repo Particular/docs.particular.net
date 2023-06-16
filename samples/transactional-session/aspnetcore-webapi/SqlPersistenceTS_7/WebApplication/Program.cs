@@ -50,7 +50,7 @@ public class Program
                 // Configure Entity Framework to attach to the synchronized storage session when required
                 c.AddScoped(b =>
                 {
-                    if (b.GetRequiredService<ISynchronizedStorageSession>() is ISqlStorageSession { Connection: not null } session)
+                    if (b.GetService<ISynchronizedStorageSession>() is ISqlStorageSession { Connection: not null } session)
                     {
                         var context = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
                             .UseSqlServer(session.Connection)
