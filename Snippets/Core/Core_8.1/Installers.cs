@@ -1,4 +1,4 @@
-﻿namespace Core_8._1
+﻿namespace Core_8
 {
     using Microsoft.Extensions.DependencyInjection;
     using NServiceBus.Installation;
