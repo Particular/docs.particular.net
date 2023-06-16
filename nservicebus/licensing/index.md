@@ -27,7 +27,7 @@ Note: Only the Major/Minor part is relevant. Eg. if using NServiceBus 6.1.1 it's
 
 ## Throughput limitations
 
-No limitations are enforced when either no license is found or a license has expired.
+No technical limitations are enforced at runtime when either no license is found or a license has expired.
 
 ## License management
 
