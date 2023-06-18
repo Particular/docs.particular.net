@@ -1,7 +1,7 @@
 ---
 title: Using Outbox with SQL Server
 summary: A sample demonstrating the SQL Server transport with SQL Persistence and ADO.NET user data store using outbox
-reviewed: 2021-03-19
+reviewed: 2023-06-18
 component: Core
 related:
  - transports/sql
@@ -35,7 +35,7 @@ The [outbox](/nservicebus/outbox) feature is designed to provide *exactly once* 
  1. The Receiver displays information that an order was submitted.
  1. The Sender displays information that the order was accepted.
  1. After a few seconds, the Receiver displays confirmation that the timeout message has been received.
- 1. Open SQL Server Management Studio and go to the receiver database. Verify that there is a row in the saga state table (`Samples.SqlOutbox.Receiver.OrderLifecycleSaga`) and in the orders table (`receiver.SubmittedOrder`)
+ 1. Open SQL Server Management Studio and go to the `NsbSamplesSqlOutbox` database. Verify that there is a row in the saga state table (`receiver.OrderLifecycleSaga`) and in the orders table (`receiver.SubmittedOrder`)
 
 ## Code walk-through
 
