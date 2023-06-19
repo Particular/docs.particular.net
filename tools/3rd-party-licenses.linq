@@ -205,7 +205,7 @@ static IEnumerable<SerializationComponent> GetComponents(string path, string cor
     }
 
     return components
-        .Where(component => component.UsesNuget && (component.SupportLevel == SupportLevel.Regular || component.SupportLevel == SupportLevel.Preview));
+        .Where(component => component.UsesNuget && component.SupportLevel == SupportLevel.Regular);
 }
 
 public class NuGetSearcher
@@ -281,7 +281,6 @@ public enum SupportLevel
     Regular,
     Labs,
     Community,
-    Preview,
     Tool
 }
 
