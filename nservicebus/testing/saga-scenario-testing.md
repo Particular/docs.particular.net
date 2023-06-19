@@ -1,7 +1,7 @@
 ---
 title: Saga scenario testing
 summary: Develop service layers and long-running processes using test-driven development.
-reviewed: 2022-04-18
+reviewed: 2023-06-19
 component: Testing
 versions: '[7.4,)'
 related:
