@@ -1,6 +1,6 @@
 ### Program.cs
 
-The endpoint's configuration must be added to the `CreateHostBuilder` method. 
+The endpoint's configuration must be added to the `CreateHostBuilder` method.
 
 snippet: DockerCreateHostBuilder
 
