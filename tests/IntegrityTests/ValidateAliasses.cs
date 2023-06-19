@@ -42,7 +42,6 @@ namespace IntegrityTests
                         var packageVersion = packageRef.Attribute("Version")!.Value;
                         if (packageId == folderPackageId)
                         {
-                            if (aliasVersion == "1" && packageVersion.StartsWith("0.")) continue; // Valid for previews
                             if (!packageVersion.StartsWith(aliasVersion))
                             {
                                 return false; // TODO: Would be nice if could return `aliasVersion` and `packageVersion`
