@@ -84,11 +84,21 @@
             asb.HasEndpoint("Shipping");
 
             var invoicing = new BridgeEndpoint("Finance.Invoicing");
-            invoicing.RegisterPublisher("Messages.OrderPlaced", "Sales");
             invoicing.RegisterPublisher(typeof(OrderBilled), "Finance.Billing");
             invoicing.RegisterPublisher<OrderShipped>("Shipping");
+            invoicing.RegisterPublisher("Messages.OrderPlaced", "Sales");
 
             asb.HasEndpoint(invoicing);
+
+            #endregion
+
+            #region register-publisher-legacy
+
+            // Type.AssemblyQualifiedName Property value
+            invoicing.RegisterPublisher("CreditApproved, CreditScoring.Messages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Sales");
+            // Type.AssemblyQualifiedName Property but trimmed without Culture and PublicKeyToken as these are ignored by the message driven pub/sub feature
+            invoicing.RegisterPublisher("CreditApproved, CreditScoring.Messages, Version=1.0.0.0", "Sales");
+            
 
             #endregion
         }
