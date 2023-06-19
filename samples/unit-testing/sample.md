@@ -1,7 +1,7 @@
 ---
 title: Unit Testing NServiceBus
 summary: Writing unit tests for NServiceBus systems
-reviewed: 2021-04-14
+reviewed: 2023-06-19
 component: Testing
 related:
 - nservicebus/testing
@@ -20,6 +20,8 @@ The following test verifies that the handler received a `Reply`:
 snippet: HandlerTest
 
 ## Testing a saga
+
+NOTE: See [saga scenario testing](/nservicebus/testing/saga-scenario-testing) to see an alternate method of saga testing where an entire scenario consisting of multiple messages can be tested at once. 
 
 Here's an example of a saga that processes an order and gives a 10% discount for orders above 1000:
 
