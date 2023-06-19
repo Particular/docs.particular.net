@@ -39,4 +39,15 @@ public class SendMessageController : Controller
         return await dataContext.MyEntities.ToListAsync();
     }
     #endregion
+
+    #region txsession-controller-attribute
+    [HttpGet("/service")]
+    [RequiresTransactionalSession]
+    public async Task<string> Get([FromServices] ServiceUsingTransactionalSession service)
+    {
+        var id = await service.Execute();
+
+        return $"Message with entity ID '{id}' sent to endpoint";
+    }
+    #endregion
 }

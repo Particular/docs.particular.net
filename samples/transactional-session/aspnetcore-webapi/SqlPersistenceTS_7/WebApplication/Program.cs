@@ -83,6 +83,11 @@ public class Program
                     s.AddScoped<MessageSessionFilter>();
                     s.AddControllers(o => o.Filters.AddService<MessageSessionFilter>());
                     #endregion
+
+                    #region txsession-web-configuration-attribute
+                    s.AddScoped<ServiceUsingTransactionalSession>();
+                    s.AddScoped<RequiresTransactionalSessionAttribute>();
+                    #endregion
                 });
                 c.Configure(app =>
                 {
