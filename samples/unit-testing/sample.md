@@ -21,7 +21,7 @@ snippet: HandlerTest
 
 ## Testing a saga
 
-NOTE: See [saga scenario testing](/nservicebus/testing/saga-scenario-testing) to see an alternate method of saga testing where an entire scenario consisting of multiple messages can be tested at once. 
+NOTE: See [saga scenario testing](/nservicebus/testing/saga-scenario-testing.md) to see an alternate method of saga testing where an entire scenario consisting of multiple messages can be tested at once. 
 
 Here's an example of a saga that processes an order and gives a 10% discount for orders above 1000:
 
