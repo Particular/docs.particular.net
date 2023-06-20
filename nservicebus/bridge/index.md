@@ -1,6 +1,6 @@
 ---
 title: Bridge
-summary: Connect endpoints in a system that use different transports with the transport bridge
+summary: Connect endpoints in a system that use different transports with the messaging bridge
 reviewed: 2022-04-01
 component: Bridge
 related:
@@ -9,23 +9,23 @@ related:
  - samples/bridge/sql-multi-instance
 ---
 
-`NServiceBus.Transport.Bridge` allows NServiceBus endpoints to connect to other endpoints that are not using the same transport.
+`NServiceBus.MessagingBridge` allows NServiceBus endpoints to connect to other endpoints that are not using the same transport using the [Messaging Bridge Pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html).
 
 The bridge is transparent to sending and receiving endpoints. That is, endpoints are not aware of the bridge or that it is transferring messages to a different transport. Endpoints send and receive messages to and from logical endpoints as they normally would if there were no bridge involved.
 
 ## Why use the bridge
 
-The transport bridge enables several scenarios:
+The messaging bridge enables several scenarios:
 
 - Migrating from one transport to another. E.g. migration from MSMQ to a cloud-native transport. The bridge allows endpoints to be migrated one at a time rather than all at once.
 - Using multiple transports because of pricing considerations. Instead of relying only on a cloud-native transport (which may be more expensive), less mission critical endpoints could operating on a cheaper transport.
 - Using a transport that best fits non-functional considerations. E.g. A transport that allows bridging geographical locations, while some endpoints on a more secure transport only process private information.
 
-More details on these scenarios are provided in the [transport bridge scenarios](scenarios.md) article.
+More details on these scenarios are provided in the [messaging bridge scenarios](scenarios.md) article.
 
 ## Bridge configuration
 
-`NServiceBus.Transport.Bridge` is packaged as a host-agnostic library. It can be hosted in a console application, a Windows service, a Docker container, or any service that supports the Microsoft Generic Host, similar to how [endpoints are hosted](/nservicebus/hosting/selecting.md).
+`NServiceBus.MessagingBridge` is packaged as a host-agnostic library. It can be hosted in a console application, a Windows service, a Docker container, or any service that supports the Microsoft Generic Host, similar to how [endpoints are hosted](/nservicebus/hosting/selecting.md).
 
 The following snippet shows a simple MSMQ-to-AzureServiceBus configuration.
 

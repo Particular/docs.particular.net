@@ -6,15 +6,15 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Transport.Bridge.MsmqEndpoint";
+        Console.Title = "Samples.MessagingBridge.MsmqEndpoint";
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Transport.Bridge.MsmqEndpoint");
+        var endpointConfiguration = new EndpointConfiguration("Samples.MessagingBridge.MsmqEndpoint");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.UsePersistence<NonDurablePersistence>();    
+        endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
         var routingConfig = endpointConfiguration.UseTransport(new MsmqTransport());
-        routingConfig.RegisterPublisher(typeof(OtherEvent), "Samples.Transport.Bridge.AsbEndpoint");
+        routingConfig.RegisterPublisher(typeof(OtherEvent), "Samples.MessagingBridge.AsbEndpoint");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -458,7 +458,7 @@
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/2.0.2) | 2022-11-17     | -                 | -                                 |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/1.0.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
-#### [NServiceBus.Transport.Bridge](/nuget/NServiceBus.Transport.Bridge)
+#### [NServiceBus.MessagingBridge](/nuget/NServiceBus.MessagingBridge)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|

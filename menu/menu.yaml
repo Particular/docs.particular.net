@@ -666,7 +666,7 @@
   - Title: Bridge
     Articles:
     - Url: nservicebus/bridge
-      Title: NServiceBus transport bridge
+      Title: NServiceBus messaging bridge
     - Url: nservicebus/bridge/configuration
       Title: Configuration
     - Url: nservicebus/bridge/scenarios

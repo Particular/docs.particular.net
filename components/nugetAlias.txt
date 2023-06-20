@@ -72,7 +72,7 @@ Testing: NServiceBus.Testing
 Templates: ParticularTemplates
 Unity: NServiceBus.Unity
 Wcf: NServiceBus.Wcf
-Bridge: NServiceBus.Transport.Bridge
+Bridge: NServiceBus.MessagingBridge
 Router: NServiceBus.Router
 RouterConnector: NServiceBus.Router.Connector
 Wormhole: NServiceBus.Wormhole

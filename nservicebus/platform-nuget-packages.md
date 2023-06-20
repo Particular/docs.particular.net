@@ -56,7 +56,7 @@ This page contains a curated list of NuGet packages that would commonly be used 
 
 ### Interoperability
 
-- [NServiceBus.Transport.Bridge](https://www.nuget.org/packages/NServiceBus.Transport.Bridge)
+- [NServiceBus.MessagingBridge](https://www.nuget.org/packages/NServiceBus.MessagingBridge)
 - [NServiceBus.Gateway](https://www.nuget.org/packages/NServiceBus.Gateway)
 - [NServiceBus.Gateway.Sql](https://www.nuget.org/packages/NServiceBus.Gateway.Sql)
 - [NServiceBus.Gateway.RavenDB](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB)

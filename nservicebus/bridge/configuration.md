@@ -1,13 +1,13 @@
 ---
 title: Bridge configuration options
-summary: Configuration options for the transport bridge.
+summary: Configuration options for the messaging bridge.
 component: Bridge
 reviewed: 2022-04-01
 ---
 
 ## Hosting
 
-`NServiceBus.Transport.Bridge` is hosted using the [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) which takes care of life cycle management, configuration, logging, and other concerns.
+`NServiceBus.MessagingBridge` is hosted using the [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) which takes care of life cycle management, configuration, logging, and other concerns.
 
 snippet: generic-host
 

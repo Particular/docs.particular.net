@@ -1,5 +1,5 @@
 ---
-title: Use Bridge to connect to ServiceControl running on different transport 
+title: Use Bridge to connect to ServiceControl running on different transport
 summary: Centralize monitoring of mixed transport solution with the Bridge
 component: Bridge
 reviewed: 2023-05-16
@@ -31,7 +31,7 @@ This sample shows how to configure ServiceControl to monitor endpoints and retry
  1. Open ServicePulse and notice a red label next to the heart icon. Click on that icon to open the Endpoints Overview. Notice that the Endpoint is now displayed in the Inactive Endpoints tab.
 
 
-## Code walk-through 
+## Code walk-through
 
 The code base consists of three projects.
 
@@ -45,7 +45,7 @@ The Endpoint has the heartbeats plugin installed to enable uptime monitoring via
 
 ### Bridge
 
-The Bridge project hosts the `NServiceBus.Transport.Bridge`. The bridge has two sides: endpoint-facing and ServiceControl-facing.
+The Bridge project hosts the `NServiceBus.MessagingBridge`. The bridge has two sides: endpoint-facing and ServiceControl-facing.
 
 snippet: ServiceControlTransport
 

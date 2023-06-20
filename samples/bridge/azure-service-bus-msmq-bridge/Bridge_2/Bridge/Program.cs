@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        Console.Title = "Samples.Transport.Bridge.Bridge";
+        Console.Title = "Samples.MessagingBridge.Bridge";
 
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
@@ -19,11 +19,11 @@ class Program
             .UseNServiceBusBridge((ctx, bridgeConfiguration) =>
             {
                 #region create-asb-endpoint-of-bridge
-                var asbBridgeEndpoint = new BridgeEndpoint("Samples.Transport.Bridge.AsbEndpoint");
+                var asbBridgeEndpoint = new BridgeEndpoint("Samples.MessagingBridge.AsbEndpoint");
                 #endregion
 
                 #region asb-subscribe-to-event-via-bridge
-                asbBridgeEndpoint.RegisterPublisher<MyEvent>("Samples.Transport.Bridge.MsmqEndpoint");
+                asbBridgeEndpoint.RegisterPublisher<MyEvent>("Samples.MessagingBridge.MsmqEndpoint");
                 #endregion
 
                 #region asb-bridge-configuration
@@ -34,11 +34,11 @@ class Program
                 #endregion
 
                 #region create-msmq-endpoint-of-bridge
-                var msmqBridgeEndpoint = new BridgeEndpoint("Samples.Transport.Bridge.MsmqEndpoint");
+                var msmqBridgeEndpoint = new BridgeEndpoint("Samples.MessagingBridge.MsmqEndpoint");
                 #endregion
 
                 #region msmq-subscribe-to-event-via-bridge
-                msmqBridgeEndpoint.RegisterPublisher<OtherEvent>("Samples.Transport.Bridge.AsbEndpoint");
+                msmqBridgeEndpoint.RegisterPublisher<OtherEvent>("Samples.MessagingBridge.AsbEndpoint");
                 #endregion
 
                 #region msmq-bridge-configuration

@@ -10,8 +10,8 @@ class Program
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var random = new Random();
 
-        Console.Title = "Samples.Transport.Bridge.AsbEndpoint";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Transport.Bridge.AsbEndpoint");
+        Console.Title = "Samples.MessagingBridge.AsbEndpoint";
+        var endpointConfiguration = new EndpointConfiguration("Samples.MessagingBridge.AsbEndpoint");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
@@ -23,7 +23,7 @@ class Program
         endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
 
         var sendOptions = new SendOptions();
-        sendOptions.SetDestination("Samples.Transport.Bridge.MsmqEndpoint");
+        sendOptions.SetDestination("Samples.MessagingBridge.MsmqEndpoint");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
