@@ -331,7 +331,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/ParticularTemplates/5.0.0) | 2023-06-19     | -                 | -                                 |
+| [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | 2024-06-19        | Superseded by 5.0.x               |
 
 ### Other packages
 
@@ -446,7 +447,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.Testing/8.0.1) | 2022-11-17     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Testing/8.1.0) | 2023-06-19     | -                 | -                                 |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.Testing/8.0.1) | 2022-11-17     | 2023-09-19        | Superseded by 8.1.x               |
 | [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.2) | 2022-03-11     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.TransactionalSession](/nuget/NServiceBus.TransactionalSession)
@@ -460,7 +462,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/1.0.2) | 2022-12-19     | -                 | -                                 |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/1.0.3) | 2022-12-19     | -                 | -                                 |
 | [0.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/0.1.1) | 2022-11-17     | 2023-12-19        | Superseded by 1.0.x               |
 
 #### [NServiceBus.UniformSession](/nuget/NServiceBus.UniformSession)

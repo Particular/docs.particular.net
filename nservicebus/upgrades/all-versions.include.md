@@ -2,7 +2,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.0.x](https://www.nuget.org/packages/NServiceBus/8.0.3) | 2022-11-17     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus/8.1.1) | 2023-06-19     | -                 | -                                 |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus/8.0.3) | 2022-11-17     | 2023-12-19        | Superseded by 8.1.x               |
 | [7.8.x](https://www.nuget.org/packages/NServiceBus/7.8.2) | 2022-09-19     | 2024-11-17        | Superseded by 8.0.x               |
 | [~~7.7.x~~](https://www.nuget.org/packages/NServiceBus/7.7.6) | ~~2022-03-09~~ | ~~2023-03-19~~    | ~~Superseded by 7.8.x~~           |
 | [~~7.6.x~~](https://www.nuget.org/packages/NServiceBus/7.6.3) | ~~2021-12-17~~ | ~~2022-09-09~~    | ~~Superseded by 7.7.x~~           |
@@ -741,7 +742,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/ParticularTemplates/5.0.0) | 2023-06-19     | -                 | -                                 |
+| [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | 2024-06-19        | Superseded by 5.0.x               |
 | [~~4.0.x~~](https://www.nuget.org/packages/ParticularTemplates/4.0.0) | ~~2020-03-05~~ | ~~2020-11-14~~    | ~~Superseded by 4.1.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | ~~2018-11-29~~ | ~~2021-03-05~~    | ~~Superseded by 4.0.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/ParticularTemplates/2.0.0) | ~~2018-05-29~~ | ~~2019-11-29~~    | ~~Superseded by 3.0.x~~           |
@@ -912,7 +914,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.Testing/8.0.1) | 2022-11-17     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Testing/8.1.0) | 2023-06-19     | -                 | -                                 |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.Testing/8.0.1) | 2022-11-17     | 2023-09-19        | Superseded by 8.1.x               |
 | [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.2) | 2022-03-11     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~7.3.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.3.0) | ~~2021-09-07~~ | ~~2022-06-11~~    | ~~Superseded by 7.4.x~~           |
 | [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.2.0) | ~~2019-09-10~~ | ~~2021-12-07~~    | ~~Superseded by 7.3.x~~           |
@@ -948,7 +951,7 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/1.0.2) | 2022-12-19     | -                 | -                                 |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/1.0.3) | 2022-12-19     | -                 | -                                 |
 | [0.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/0.1.1) | 2022-11-17     | 2023-12-19        | Superseded by 1.0.x               |
 
 #### [NServiceBus.UniformSession](/nuget/NServiceBus.UniformSession)
