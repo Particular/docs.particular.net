@@ -11,6 +11,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Pipeline.SigningAndEncryption.UnsignedSender");
         endpointConfiguration.UsePersistence<LearningPersistence>();
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
         routing.RouteToEndpoint(typeof(MyMessage), "Samples.Pipeline.SigningAndEncryption.ReceivingEndpoint");
 

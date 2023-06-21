@@ -13,6 +13,7 @@ class Program
             .Level(LogLevel.Info);
         var endpointConfiguration = new EndpointConfiguration("Samples.Cooperative.Cancellation");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region StartingEndpointWithCancellationToken

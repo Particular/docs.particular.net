@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.MessageMutator;
@@ -11,6 +11,7 @@ static class Program
 
         var endpointConfiguration = new EndpointConfiguration("ChangeMessageIdentity.Phase2");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region RegisterMessageMutator

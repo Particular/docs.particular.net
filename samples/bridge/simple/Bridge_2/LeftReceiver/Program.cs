@@ -9,6 +9,7 @@ static class Program
         Console.Title = "Samples.Bridge.LeftReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.Bridge.LeftReceiver");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Name == "OrderResponse");

@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
@@ -9,6 +9,7 @@ public static class Program
         Console.Title = "Sender";
 
         var endpointConfiguration = new EndpointConfiguration("Sender");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
         transport.Routing().RouteToEndpoint(typeof(ProcessOrder), "Receiver");

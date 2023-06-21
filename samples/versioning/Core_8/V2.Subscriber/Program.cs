@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -12,6 +12,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new MsmqTransport());
 
         #region V2SubscriberMapping

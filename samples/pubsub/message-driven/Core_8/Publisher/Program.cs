@@ -9,6 +9,7 @@ static class Program
         Console.Title = "Samples.PubSub.MessageDrivenPublisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.MessageDrivenPublisher");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new MsmqTransport());
 
         endpointConfiguration.SendFailedMessagesTo("error");

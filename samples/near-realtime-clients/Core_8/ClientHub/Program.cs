@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Hosting;
@@ -14,6 +14,7 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.ClientHub");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new MsmqTransport());
 
         routing.RegisterPublisher(

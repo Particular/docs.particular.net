@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
@@ -15,6 +15,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Default");
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());        
 
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=Samples.CustomNhMappings;Integrated Security=True;Max Pool Size=100;Encrypt=false

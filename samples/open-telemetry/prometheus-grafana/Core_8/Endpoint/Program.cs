@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
@@ -32,6 +32,7 @@ public class Program
         var config = new EndpointConfiguration("Samples.OpenTelemetry.Metrics");
         config.EnableOpenTelemetry();
         #endregion
+        config.UseSerialization<SystemJsonSerializer>();
         config.UseTransport<LearningTransport>();
         config.UsePersistence<LearningPersistence>();
 

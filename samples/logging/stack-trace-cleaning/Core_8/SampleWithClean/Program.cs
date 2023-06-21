@@ -46,6 +46,7 @@ class Program
         #pragma warning restore CS0618 // Type or member is obsolete
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         DisableRetries(endpointConfiguration);
 

@@ -14,6 +14,7 @@ static class Program
         endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Name == "OrderResponse");
         endpointConfiguration.Conventions().DefiningEventsAs(t => t.Name == "OrderReceived");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
         routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.Bridge.RightReceiver");
 

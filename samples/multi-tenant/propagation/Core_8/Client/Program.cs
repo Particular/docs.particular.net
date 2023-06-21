@@ -14,6 +14,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Propagation.Client");
         endpointConfiguration.SendOnly();
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
         routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.MultiTenant.Propagation.Sales");
 

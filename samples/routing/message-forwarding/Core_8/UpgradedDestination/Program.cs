@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -8,6 +8,7 @@ class Program
     {
         Console.Title = "UpgradedDestination";
         var config = new EndpointConfiguration("UpgradedDestination");
+        config.UseSerialization<SystemJsonSerializer>();
         config.UseTransport(new LearningTransport());
 
         var endpoint = await Endpoint.Start(config)

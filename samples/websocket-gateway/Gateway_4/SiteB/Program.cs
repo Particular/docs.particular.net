@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 using NServiceBus.Gateway;
@@ -12,6 +12,7 @@ class Program
         #region WebSocketGateway-EndpointConfig-SiteB
 
         var config = new EndpointConfiguration("Custom Gateway - SiteB");
+        config.UseSerialization<SystemJsonSerializer>();
         var transport = config.UseTransport(new LearningTransport());
         transport.RouteToEndpoint(typeof(SomeMessage), "Custom Gateway - SiteB");
 

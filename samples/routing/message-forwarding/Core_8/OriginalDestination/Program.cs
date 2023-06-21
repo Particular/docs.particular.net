@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -11,6 +11,7 @@ class Program
         #region forward-messages-after-processing
 
         var config = new EndpointConfiguration("OriginalDestination");
+        config.UseSerialization<SystemJsonSerializer>();
         config.UseTransport(new LearningTransport());
 
         config.ForwardMessagesAfterProcessingTo("UpgradedDestination");

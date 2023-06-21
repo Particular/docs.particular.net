@@ -10,6 +10,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Propagation.Billing");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         var pipeline = endpointConfiguration.Pipeline;

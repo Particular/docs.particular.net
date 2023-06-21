@@ -1,4 +1,4 @@
-﻿using Elsa.Persistence.EntityFramework.Core.Extensions;
+using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.Sqlite;
 
 using Messages;
@@ -31,6 +31,7 @@ public static class Program
         {
           var endpointConfiguration = new EndpointConfiguration("Sales");
 
+          endpointConfiguration.UseSerialization<SystemJsonSerializer>();
           var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
           endpointConfiguration.Pipeline.Register(behavior: new CustomElsaHandlerTrigger(() => app.Services),

@@ -15,6 +15,7 @@ class Program
         Console.Title = "Samples.PipelineStream.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineStream.Sender");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region configure-stream-storage

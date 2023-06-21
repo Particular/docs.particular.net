@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Transport.SqlServer;
@@ -36,6 +36,7 @@ public static class Program
 
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(transport);
 
         #endregion

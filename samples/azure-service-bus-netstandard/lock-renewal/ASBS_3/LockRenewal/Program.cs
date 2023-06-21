@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -24,6 +24,7 @@ class Program
         var transport = new AzureServiceBusTransport(connectionString);
         transport.PrefetchCount = 0;
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(transport);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);

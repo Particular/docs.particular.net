@@ -11,6 +11,7 @@ class Program
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
         dataBus.BasePath(@"..\..\..\..\storage");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

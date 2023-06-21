@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -8,6 +8,7 @@ class Program
     {
         Console.Title = "Samples.Unobtrusive.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Server");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>()
             .BasePath(@"..\..\..\..\DataBusShare\");

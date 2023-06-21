@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -10,6 +10,7 @@ class Program
         #region ConfigureMsmqEndpoint
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Msmq.Simple");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new MsmqTransport());
 
         #endregion

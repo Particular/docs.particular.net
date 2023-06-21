@@ -21,6 +21,7 @@ static class Program
             // Set storage directory and add the character '2' to simulate a different transport.
             StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"
         };
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(learningTransportDefinition);
         #endregion
 

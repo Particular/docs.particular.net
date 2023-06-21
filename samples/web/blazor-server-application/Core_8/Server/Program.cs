@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
@@ -8,6 +8,7 @@ class Program
     {
         var endpointConfiguration = new EndpointConfiguration(Console.Title = "Samples.Blazor.Server");
         endpointConfiguration.EnableCallbacks(makesRequests: false);
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);

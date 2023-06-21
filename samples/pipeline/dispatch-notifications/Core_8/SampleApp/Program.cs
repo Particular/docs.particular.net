@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -10,6 +10,7 @@ class Program
 
         #region endpoint-configuration
         var endpointConfiguration = new EndpointConfiguration("Samples.DispatchNotification");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.NotifyDispatch(new SampleDispatchWatcher());
         #endregion

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using System.Configuration;
@@ -18,6 +18,7 @@ class Program
         #endregion
 
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new MsmqTransport());
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

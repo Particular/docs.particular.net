@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
@@ -8,6 +8,7 @@ class Program
     {
         MsmqUtils.SetUpDummyQueue();
         var endpointConfiguration = new EndpointConfiguration("SampleEndpoint");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new MsmqTransport());
         endpointConfiguration.UsePersistence<MsmqPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

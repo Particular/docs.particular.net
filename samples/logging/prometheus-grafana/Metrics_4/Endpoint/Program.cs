@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
@@ -8,6 +8,7 @@ class Program
     {
         Console.Title = "Samples.Metrics.Tracing.Endpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
 

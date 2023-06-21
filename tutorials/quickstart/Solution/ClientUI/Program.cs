@@ -20,6 +20,7 @@ namespace ClientUI
                         .UseNServiceBus(context =>
                         {
                             var endpointConfiguration = new EndpointConfiguration("ClientUI");
+                            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
                             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
                             var routing = transport.Routing();

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Data.SqlClient;
 using NServiceBus;
 
@@ -19,6 +19,7 @@ public static class SharedConfiguration
             connectionBuilder: () => new SqlConnection(connectionString));
 
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #endregion

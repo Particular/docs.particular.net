@@ -55,6 +55,7 @@ class Program
         #region FairDistributionClient
 
         endpointConfiguration.EnableFeature<FairDistribution>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new MsmqTransport());
         var settings = endpointConfiguration.GetSettings();
         var strategy = new FairDistributionStrategy(

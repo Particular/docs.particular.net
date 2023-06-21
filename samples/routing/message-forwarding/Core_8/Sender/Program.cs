@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
@@ -12,6 +12,7 @@ class Program
         #region route-message-to-original-destination
 
         var config = new EndpointConfiguration("Sender");
+        config.UseSerialization<SystemJsonSerializer>();
         var routing = config.UseTransport(new LearningTransport());
 
         routing.RouteToEndpoint(typeof(ImportantMessage), "OriginalDestination");

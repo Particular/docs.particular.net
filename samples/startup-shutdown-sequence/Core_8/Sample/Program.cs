@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -14,6 +14,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.StartupShutdown");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.EnableFeature<MyFeature>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         Logger.WriteLine("Calling Endpoint.Start");

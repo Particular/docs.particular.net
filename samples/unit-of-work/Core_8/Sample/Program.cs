@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
@@ -9,6 +9,7 @@ class Program
     {
         Console.Title = "Samples.UnitOfWork";
         var endpointConfiguration = new EndpointConfiguration("Samples.UnitOfWork");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Immediate(

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -44,6 +44,7 @@ class Program
 
             #endregion
 
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.UseTransport(new LearningTransport());
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 

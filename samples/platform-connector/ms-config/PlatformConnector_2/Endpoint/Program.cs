@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +23,7 @@ public class Program
             {
                 var endpointConfiguration = new EndpointConfiguration("Endpoint");
 
+                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
                 endpointConfiguration.UseTransport<LearningTransport>();
                 endpointConfiguration.UsePersistence<NonDurablePersistence>();
 

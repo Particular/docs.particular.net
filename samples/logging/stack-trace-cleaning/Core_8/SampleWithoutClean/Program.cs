@@ -38,6 +38,7 @@ class Program
         NServiceBus.Logging.LogManager.UseFactory(new ExtensionsLoggerFactory(new NLogLoggerFactory()));
         var endpointConfiguration = new EndpointConfiguration("Samples.SampleWithoutClean");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Immediate(

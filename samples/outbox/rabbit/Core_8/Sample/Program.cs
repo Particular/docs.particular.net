@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
@@ -17,6 +17,7 @@ class Program
         {
             TransportTransactionMode = TransportTransactionMode.ReceiveOnly
         };
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(rabbitMqTransport);
         #endregion
 

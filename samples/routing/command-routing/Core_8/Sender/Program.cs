@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -10,6 +10,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.CommandRouting.Sender");
 
         #region configure-command-route
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
         routing.RouteToEndpoint(

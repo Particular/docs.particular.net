@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 #pragma warning disable 618
@@ -15,6 +15,7 @@ class Program
         #region ReceiverConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionString);
         endpointConfiguration.EnableInstallers();

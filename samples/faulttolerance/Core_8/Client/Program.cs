@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -9,6 +9,7 @@ class Program
         Console.Title = "Samples.FaultTolerance.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.FaultTolerance.Client");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

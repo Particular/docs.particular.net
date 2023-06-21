@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -12,6 +12,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new MsmqTransport());
         var routingTable = routing.InstanceMappingFile();
         routingTable.FilePath(@"..\..\..\..\instance-mapping.xml");

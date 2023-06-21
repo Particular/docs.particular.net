@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -9,6 +9,7 @@ class Program
         Console.Title = "Samples.RavenDB.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Client");
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

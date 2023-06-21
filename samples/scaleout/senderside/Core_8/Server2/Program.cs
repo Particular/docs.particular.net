@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Configuration;
 using System.Threading.Tasks;
 using NServiceBus;
@@ -12,6 +12,7 @@ class Program
         var discriminator = ConfigurationManager.AppSettings["InstanceId"];
         endpointConfiguration.MakeInstanceUniquelyAddressable(discriminator);
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new MsmqTransport());
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

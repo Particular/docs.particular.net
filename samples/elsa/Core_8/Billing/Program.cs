@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using NServiceBus;
@@ -14,6 +14,7 @@ public static class Program
     endpointConfiguration.AuditProcessedMessagesTo("audit");
     endpointConfiguration.SendFailedMessagesTo("error");
 
+    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
     var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
     while (true)

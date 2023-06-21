@@ -11,6 +11,7 @@ static class Program
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
         #region SubscriptionConfiguration
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new MsmqTransport());
         routing.RegisterPublisher(typeof(OrderReceived), "Samples.PubSub.MessageDrivenPublisher");
         #endregion

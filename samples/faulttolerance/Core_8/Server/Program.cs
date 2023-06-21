@@ -9,6 +9,7 @@ class Program
         Console.Title = "Samples.FaultTolerance.Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.FaultTolerance.Server");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region disable

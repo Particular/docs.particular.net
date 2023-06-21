@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -8,6 +8,7 @@ class Program
     {
         Console.Title = "Samples.CommandRouting.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.CommandRouting.Receiver");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

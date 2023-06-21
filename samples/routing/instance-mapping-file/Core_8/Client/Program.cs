@@ -17,6 +17,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region FileInstanceMapping
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new MsmqTransport());
         var routingTable = routing.InstanceMappingFile();
         routingTable.FilePath(@"..\..\..\..\instance-mapping.xml");

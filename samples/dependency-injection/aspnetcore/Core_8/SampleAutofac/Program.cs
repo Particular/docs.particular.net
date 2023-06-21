@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.AspNetCore.Hosting;
 using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
@@ -25,6 +25,7 @@ static class Program
             .UseNServiceBus(c =>
             {
                 var endpointConfiguration = new EndpointConfiguration("Sample.Core");
+                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
                 endpointConfiguration.UseTransport<LearningTransport>();
                 return endpointConfiguration;
             })

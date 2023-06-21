@@ -10,6 +10,7 @@ class Program
         Console.Title = "Samples.Wcf.Endpoint";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Wcf.Endpoint");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 

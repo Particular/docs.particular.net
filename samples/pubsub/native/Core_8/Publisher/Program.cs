@@ -9,6 +9,7 @@ static class Program
         Console.Title = "Samples.PubSub.Publisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Publisher");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         endpointConfiguration.SendFailedMessagesTo("error");

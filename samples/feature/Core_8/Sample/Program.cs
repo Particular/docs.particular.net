@@ -9,6 +9,7 @@ class Program
         Console.Title = "Samples.Features";
         var endpointConfiguration = new EndpointConfiguration("Samples.Features");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

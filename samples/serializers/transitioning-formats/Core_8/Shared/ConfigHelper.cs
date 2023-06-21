@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 
 public static class ConfigHelper
 {
@@ -11,6 +11,7 @@ public static class ConfigHelper
         #endregion
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
     }
 }

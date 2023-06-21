@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -10,6 +10,7 @@ class Program
 
         #region ConfigureRabbitQueueName
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.NativeIntegration");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.UseConventionalRoutingTopology(QueueType.Quorum);
         transport.ConnectionString("host=localhost");

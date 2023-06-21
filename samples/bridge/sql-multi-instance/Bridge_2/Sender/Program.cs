@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
@@ -15,6 +15,7 @@ public class Program
         #region SenderConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionString);
         endpointConfiguration.EnableInstallers();

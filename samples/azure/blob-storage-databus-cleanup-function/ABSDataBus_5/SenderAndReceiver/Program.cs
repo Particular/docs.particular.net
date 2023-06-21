@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
@@ -12,6 +12,7 @@ class Program
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>();
         dataBus.ConnectionString("UseDevelopmentStorage=true");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
 

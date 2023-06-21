@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -10,6 +10,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Sender");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
         routing.RouteToEndpoint(typeof(SimpleMessage), "FixMalformedMessages.Receiver");
 
