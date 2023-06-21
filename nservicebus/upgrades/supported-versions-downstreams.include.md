@@ -401,6 +401,12 @@
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.Host/9.0.0) | 2022-11-17     | -                 | -                                 |
 | [8.0.x](https://www.nuget.org/packages/NServiceBus.Host/8.0.0) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
+#### [NServiceBus.MessagingBridge](/nuget/NServiceBus.MessagingBridge)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.0.0) | 2023-06-20     | -                 | -                                 |
+
 #### [NServiceBus.Metrics](/nuget/NServiceBus.Metrics)
 
 | Version   | Released       | Supported until   | Notes                             |
@@ -458,13 +464,6 @@
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/2.0.2) | 2022-11-17     | -                 | -                                 |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/1.0.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
-#### [NServiceBus.MessagingBridge](/nuget/NServiceBus.MessagingBridge)
-
-| Version   | Released       | Supported until   | Notes                             |
-|:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/1.0.3) | 2022-12-19     | -                 | -                                 |
-| [0.1.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/0.1.1) | 2022-11-17     | 2023-12-19        | Superseded by 1.0.x               |
-
 #### [NServiceBus.UniformSession](/nuget/NServiceBus.UniformSession)
 
 | Version   | Released       | Supported until   | Notes                             |
@@ -490,7 +489,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.33.x](https://www.nuget.org/packages/Particular.PlatformSample/2.33.0) | 2023-06-07     | -                 | -                                 |
+| [2.34.x](https://www.nuget.org/packages/Particular.PlatformSample/2.34.0) | 2023-06-20     | -                 | -                                 |
+| [2.33.x](https://www.nuget.org/packages/Particular.PlatformSample/2.33.0) | 2023-06-07     | 2023-09-20        | Superseded by 2.34.x              |
 | [2.32.x](https://www.nuget.org/packages/Particular.PlatformSample/2.32.0) | 2023-06-02     | 2023-09-07        | Superseded by 2.33.x              |
 | [2.31.x](https://www.nuget.org/packages/Particular.PlatformSample/2.31.0) | 2023-04-19     | 2023-09-02        | Superseded by 2.32.x              |
 | [2.30.x](https://www.nuget.org/packages/Particular.PlatformSample/2.30.0) | 2023-04-14     | 2023-07-19        | Superseded by 2.31.x              |
