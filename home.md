@@ -197,7 +197,7 @@ span.blue {
 <div class="row">
 <div class="block middle">
   <div class="ic col-xs-12 col-sm-6 col-md-3">
-    <a href="/get-started/" onclick="ga('send', 'event', 'Action Performed', 'Clicked Get-Started CTA (Docs Home, Direct to get-started)'); return true">
+    <a href="/get-started/" onclick="trackGetStartedCTAFromHome()">
       <img src="/content/images/menu/getting-started-icon.svg" height="64" width="64" style="margin: 4px 0;" /><br>Getting Started
     </a>
   </div>
