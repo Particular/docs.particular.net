@@ -10,7 +10,7 @@ ga('set', 'allowAdFeatures', false);
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', window.GA4_MEASUREMENT_ID,{ 'debug_mode': true });
+gtag('config', window.GA4_MEASUREMENT_ID);
 
 window.SOLUTION_VERSION = 'VS2019';
 
