@@ -13,11 +13,11 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.InstanceMappingFile.Client");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region FileInstanceMapping
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new MsmqTransport());
         var routingTable = routing.InstanceMappingFile();
         routingTable.FilePath(@"..\..\..\..\instance-mapping.xml");

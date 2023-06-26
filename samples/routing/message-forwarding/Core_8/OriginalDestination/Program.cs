@@ -11,12 +11,13 @@ class Program
         #region forward-messages-after-processing
 
         var config = new EndpointConfiguration("OriginalDestination");
-        config.UseSerialization<SystemJsonSerializer>();
         config.UseTransport(new LearningTransport());
 
         config.ForwardMessagesAfterProcessingTo("UpgradedDestination");
 
         #endregion
+
+        config.UseSerialization<SystemJsonSerializer>();
 
         var endpoint = await Endpoint.Start(config)
             .ConfigureAwait(false);

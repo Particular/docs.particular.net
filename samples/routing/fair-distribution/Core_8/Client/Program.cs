@@ -16,6 +16,7 @@ class Program
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         AddRouting(endpointConfiguration);
 
@@ -55,7 +56,6 @@ class Program
         #region FairDistributionClient
 
         endpointConfiguration.EnableFeature<FairDistribution>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new MsmqTransport());
         var settings = endpointConfiguration.GetSettings();
         var strategy = new FairDistributionStrategy(

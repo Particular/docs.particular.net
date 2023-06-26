@@ -10,12 +10,12 @@ class Program
 
         #region ConfigureRabbitQueueName
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.NativeIntegration");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.UseConventionalRoutingTopology(QueueType.Quorum);
         transport.ConnectionString("host=localhost");
         #endregion
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

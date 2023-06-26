@@ -10,7 +10,6 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.CommandRouting.Sender");
 
         #region configure-command-route
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
         routing.RouteToEndpoint(
@@ -19,6 +18,7 @@ class Program
         );
         #endregion
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

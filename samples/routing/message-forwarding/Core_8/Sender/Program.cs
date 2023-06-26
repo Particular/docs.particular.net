@@ -12,12 +12,13 @@ class Program
         #region route-message-to-original-destination
 
         var config = new EndpointConfiguration("Sender");
-        config.UseSerialization<SystemJsonSerializer>();
         var routing = config.UseTransport(new LearningTransport());
 
         routing.RouteToEndpoint(typeof(ImportantMessage), "OriginalDestination");
 
         #endregion
+        
+        config.UseSerialization<SystemJsonSerializer>();
 
         var endpoint = await Endpoint.Start(config)
             .ConfigureAwait(false);

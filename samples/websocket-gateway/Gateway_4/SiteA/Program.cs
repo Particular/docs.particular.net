@@ -12,7 +12,6 @@ class Program
         #region WebSocketGateway-EndpointConfig-SiteA
 
         var config = new EndpointConfiguration("Custom Gateway - SiteA");
-        config.UseSerialization<SystemJsonSerializer>();
         config.UseTransport(new LearningTransport());
 
         var gatewaySettings = config.Gateway(new NonDurableDeduplicationConfiguration());
@@ -33,6 +32,8 @@ class Program
 
         #endregion
 
+        config.UseSerialization<SystemJsonSerializer>();
+        
         var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
 
         await endpoint.SendToSites(new[] { "SiteB" }, new SomeMessage { Contents = "Hello, World!" }).ConfigureAwait(false);

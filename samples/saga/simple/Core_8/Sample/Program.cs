@@ -12,8 +12,8 @@ class Program
         #region config
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         #endregion
 

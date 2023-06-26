@@ -10,13 +10,13 @@ class Program
         #region ConfigureMsmqEndpoint
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Msmq.Simple");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new MsmqTransport());
 
         #endregion
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.Recoverability().Delayed(d => d.NumberOfRetries(0));
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

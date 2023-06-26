@@ -15,9 +15,9 @@ class Program
         #region ReceiverConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(ConnectionString);
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
         #endregion

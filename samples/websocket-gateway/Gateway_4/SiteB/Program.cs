@@ -12,7 +12,6 @@ class Program
         #region WebSocketGateway-EndpointConfig-SiteB
 
         var config = new EndpointConfiguration("Custom Gateway - SiteB");
-        config.UseSerialization<SystemJsonSerializer>();
         var transport = config.UseTransport(new LearningTransport());
         transport.RouteToEndpoint(typeof(SomeMessage), "Custom Gateway - SiteB");
 
@@ -33,6 +32,8 @@ class Program
             type: "WebSocket");
 
         #endregion
+
+        config.UseSerialization<SystemJsonSerializer>();
 
         var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
 
