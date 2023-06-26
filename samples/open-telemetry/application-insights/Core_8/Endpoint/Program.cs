@@ -1,4 +1,4 @@
-﻿using Azure.Monitor.OpenTelemetry.Exporter;
+using Azure.Monitor.OpenTelemetry.Exporter;
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
@@ -60,6 +60,7 @@ class Program
         endpointConfiguration.EnableOpenTelemetry();
         #endregion
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
         var cancellation = new CancellationTokenSource();
         var endpointInstance = await Endpoint.Start(endpointConfiguration, cancellation.Token);

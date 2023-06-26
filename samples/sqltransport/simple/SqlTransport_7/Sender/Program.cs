@@ -22,6 +22,8 @@ class Program
 
         #endregion
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
         await SqlHelper.EnsureDatabaseExists(connectionString);
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

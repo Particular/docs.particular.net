@@ -15,6 +15,7 @@ class Program
             var endpointConfiguration = new EndpointConfiguration("Samples.Blazor.WebApplication");
             endpointConfiguration.MakeInstanceUniquelyAddressable("1");
             endpointConfiguration.EnableCallbacks();
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.UseTransport(new LearningTransport());
             return endpointConfiguration;
         });

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -9,6 +9,7 @@ static class Program
         Console.Title = "Samples.NearRealTimeClients.Publisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.Publisher");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new MsmqTransport());
 
         endpointConfiguration.SendFailedMessagesTo("error");

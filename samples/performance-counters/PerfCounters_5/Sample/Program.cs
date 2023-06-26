@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -9,6 +9,7 @@ class Program
         Console.Title = "Samples.PerfCounters";
         var endpointConfiguration = new EndpointConfiguration("Samples.PerfCounters");
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

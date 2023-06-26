@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
@@ -17,6 +17,8 @@ class Program
         routing.RouteToEndpoint(typeof(ImportantMessage), "OriginalDestination");
 
         #endregion
+        
+        config.UseSerialization<SystemJsonSerializer>();
 
         var endpoint = await Endpoint.Start(config)
             .ConfigureAwait(false);

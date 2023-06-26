@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +14,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration(
             "Samples.Bridge.Endpoint");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport
         {
             StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"

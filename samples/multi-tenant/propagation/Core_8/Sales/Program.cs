@@ -10,6 +10,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Propagation.Sales");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region configuration

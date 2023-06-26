@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
@@ -35,6 +35,7 @@ public static class Program
         transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
         transport.SchemaAndCatalog.UseSchemaForQueue("Samples.Sql.Sender", "sender");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(transport);
         routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.Sql.Sender");
 

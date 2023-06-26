@@ -9,6 +9,7 @@ class Program
         Console.Title = "Samples.PipelineStream.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineStream.Receiver");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         endpointConfiguration.Pipeline.Register<StreamSendBehavior.Registration>();

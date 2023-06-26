@@ -24,6 +24,8 @@ static class Program
         endpointConfiguration.UseTransport(learningTransportDefinition);
         #endregion
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 

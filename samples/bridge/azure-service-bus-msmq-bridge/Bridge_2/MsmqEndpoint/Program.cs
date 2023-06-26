@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -13,6 +13,7 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routingConfig = endpointConfiguration.UseTransport(new MsmqTransport());
         routingConfig.RegisterPublisher(typeof(OtherEvent), "Samples.MessagingBridge.AsbEndpoint");
 

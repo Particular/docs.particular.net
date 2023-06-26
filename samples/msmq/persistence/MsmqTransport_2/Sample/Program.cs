@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -14,6 +14,7 @@ class Program
         {
             TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
         };
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport(transport);
         routing.RegisterPublisher(typeof(MyEvent), "Samples.Msmq.Persistence");
 

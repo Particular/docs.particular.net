@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
@@ -37,6 +37,7 @@ class Program
             {
                 TransportTransactionMode = TransportTransactionMode.ReceiveOnly
             };
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.UseTransport(transport);
             endpointConfiguration.EnableInstallers();
 

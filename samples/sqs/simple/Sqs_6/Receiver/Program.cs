@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -14,6 +14,7 @@ class Program
         {
             S3 = new S3Settings("bucketname", "my/key/prefix")
         };
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(transport);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);

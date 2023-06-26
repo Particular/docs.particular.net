@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 using NServiceBus.Gateway;
@@ -32,6 +32,8 @@ class Program
             type: "WebSocket");
 
         #endregion
+
+        config.UseSerialization<SystemJsonSerializer>();
 
         var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
 

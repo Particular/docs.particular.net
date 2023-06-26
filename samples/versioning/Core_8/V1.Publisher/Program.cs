@@ -1,4 +1,4 @@
-﻿using Versioning.Contracts;
+using Versioning.Contracts;
 
 namespace V1.Publisher
 {
@@ -13,6 +13,7 @@ namespace V1.Publisher
             Console.Title = "Samples.Versioning.V1.Publisher";
             var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V1.Publisher");
             endpointConfiguration.UsePersistence<NonDurablePersistence>();
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.UseTransport(new MsmqTransport());
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();

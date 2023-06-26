@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos.Table;
 using NServiceBus;
@@ -37,6 +37,7 @@ class Program
         var sagaPersistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Sagas>();
         sagaPersistence.Compatibility().DisableSecondaryKeyLookupForSagasCorrelatedByProperties();
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
         transport.Transactions(TransportTransactionMode.ReceiveOnly);
         endpointConfiguration.EnableInstallers();

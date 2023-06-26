@@ -11,6 +11,7 @@ public static class Program
             .UseNServiceBus(context =>
             {
                 var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.WebSender");
+                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
                 endpointConfiguration.UseTransport<LearningTransport>();
 
                 endpointConfiguration.MakeInstanceUniquelyAddressable("1");

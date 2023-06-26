@@ -9,6 +9,7 @@ static class Program
         Console.Title = "Samples.PubSub.MessageDrivenSubscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.MessageDrivenSubscriber");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         #region SubscriptionConfiguration
         var routing = endpointConfiguration.UseTransport(new MsmqTransport());

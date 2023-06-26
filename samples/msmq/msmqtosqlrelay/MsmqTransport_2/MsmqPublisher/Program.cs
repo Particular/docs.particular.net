@@ -16,6 +16,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("MsmqPublisher");
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new MsmqTransport());
         endpointConfiguration.EnableInstallers();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
@@ -35,6 +35,7 @@ namespace Tracing
                 {
                     var endpointConfiguration = new EndpointConfiguration("Samples.Tracking.AppInsights");
                     endpointConfiguration.UsePersistence<LearningPersistence>();
+                    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
                     endpointConfiguration.UseTransport(new LearningTransport());
 
                     endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);

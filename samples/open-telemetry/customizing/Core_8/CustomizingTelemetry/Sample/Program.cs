@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -29,6 +29,7 @@ public static class Program
             var endpointConfiguration = new EndpointConfiguration("CustomTelemetry");
             endpointConfiguration.EnableOpenTelemetry();
             #endregion
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.UseTransport<LearningTransport>();
 
             endpointConfiguration.Pipeline.Register(

@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
@@ -9,6 +9,7 @@ public static class Program
         Console.Title = "Receiver";
 
         var endpointConfiguration = new EndpointConfiguration("Receiver");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         #region register-behavior

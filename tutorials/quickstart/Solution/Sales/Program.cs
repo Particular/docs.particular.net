@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
@@ -20,6 +20,7 @@ namespace Sales
                        {
                            var endpointConfiguration = new EndpointConfiguration("Sales");
 
+                           endpointConfiguration.UseSerialization<SystemJsonSerializer>();
                            endpointConfiguration.UseTransport<LearningTransport>();
 
                            endpointConfiguration.SendFailedMessagesTo("error");

@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
@@ -9,6 +9,7 @@ class Program
         Console.Title = "Samples.Versioning.V2.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V2.Receiver");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var transport = endpointConfiguration.UseTransport(new MsmqTransport());
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();

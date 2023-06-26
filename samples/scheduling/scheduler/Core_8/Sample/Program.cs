@@ -13,6 +13,7 @@ class Program
         Console.Title = "Samples.Scheduling";
         var endpointConfiguration = new EndpointConfiguration("Samples.Scheduling");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);

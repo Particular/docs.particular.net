@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -11,6 +11,7 @@ class Program
         Console.Title = EndpointName;
         var endpointConfiguration = new EndpointConfiguration(EndpointName);
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         DataDogMetrics.Setup(endpointConfiguration);

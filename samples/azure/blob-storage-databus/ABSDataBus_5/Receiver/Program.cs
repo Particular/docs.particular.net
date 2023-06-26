@@ -1,4 +1,4 @@
-﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs;
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
@@ -15,6 +15,7 @@ class Program
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 

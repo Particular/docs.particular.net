@@ -9,6 +9,7 @@ class Program
         Console.Title = "Samples.PipelineHandlerTimer";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineHandlerTimer");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region pipeline-config

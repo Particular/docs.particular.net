@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -8,6 +8,7 @@ class Program
     {
         Console.Title = "Samples.MessageBodyEncryption.Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageBodyEncryption.Endpoint1");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region RegisterMessageEncryptor

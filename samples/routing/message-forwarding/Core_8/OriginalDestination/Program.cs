@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -16,6 +16,8 @@ class Program
         config.ForwardMessagesAfterProcessingTo("UpgradedDestination");
 
         #endregion
+
+        config.UseSerialization<SystemJsonSerializer>();
 
         var endpoint = await Endpoint.Start(config)
             .ConfigureAwait(false);

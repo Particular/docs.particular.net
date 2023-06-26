@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos.Table;
 using NServiceBus;
@@ -28,6 +28,7 @@ class Program
 
         persistence.Compatibility().DisableSecondaryKeyLookupForSagasCorrelatedByProperties();
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 

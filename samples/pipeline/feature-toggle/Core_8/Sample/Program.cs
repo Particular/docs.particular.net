@@ -9,6 +9,7 @@ class Program
         Console.Title = "Samples.PipelineFeatureToggle";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineFeatureToggle");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region enable-feature

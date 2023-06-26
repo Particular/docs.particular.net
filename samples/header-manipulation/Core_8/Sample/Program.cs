@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.MessageMutator;
@@ -10,6 +10,7 @@ class Program
         Console.Title = "Samples.Headers";
         var endpointConfiguration = new EndpointConfiguration("Samples.Headers");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         endpointConfiguration.RegisterMessageMutator(new MutateIncomingMessages());

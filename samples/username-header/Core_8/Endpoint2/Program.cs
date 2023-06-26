@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
@@ -10,6 +10,7 @@ class Program
     {
         Console.Title = "Samples.UsernameHeader.Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint2");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region component-registration-receiver

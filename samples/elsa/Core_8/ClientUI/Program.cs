@@ -1,4 +1,4 @@
-﻿using ClientUI;
+using ClientUI;
 
 using Elsa;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
@@ -28,6 +28,7 @@ public static class Program
         .UseNServiceBus(ctx =>
         {
           var endpointConfiguration = new EndpointConfiguration("ClientUI");
+          endpointConfiguration.UseSerialization<SystemJsonSerializer>();
           var transport = endpointConfiguration.UseTransport<LearningTransport>();
           return endpointConfiguration;
         });

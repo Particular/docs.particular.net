@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
@@ -62,6 +62,7 @@ internal class Program
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration(EndpointName);
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.UseTransport(new LearningTransport());
 
             endpointConfiguration.EnableOpenTelemetry();

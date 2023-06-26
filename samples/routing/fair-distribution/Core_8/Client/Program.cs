@@ -16,6 +16,7 @@ class Program
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         AddRouting(endpointConfiguration);
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Gateway;
@@ -10,6 +10,7 @@ class Program
         Console.Title = "Samples.Gateway.RemoteSite";
         var endpointConfiguration = new EndpointConfiguration("Samples.Gateway.RemoteSite");
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region RemoteSiteGatewayConfig

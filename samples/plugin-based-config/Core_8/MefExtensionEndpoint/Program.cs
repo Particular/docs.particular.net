@@ -23,6 +23,7 @@ static class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MefExtensionEndpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         await RunCustomizeConfiguration(compositionHost, endpointConfiguration)
             .ConfigureAwait(false);

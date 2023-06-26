@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
@@ -10,6 +10,7 @@ static class Program
         Console.Title = "Samples.NServiceBus.ExternallyManagedContainer";
 
         var endpointConfiguration = new EndpointConfiguration("Sample");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region ContainerConfiguration

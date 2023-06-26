@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using NServiceBus;
 using NServiceBus.Encryption.MessageProperty;
@@ -9,6 +9,7 @@ public static class CommonConfiguration
     public static void ApplyCommonConfiguration(this EndpointConfiguration endpointConfiguration,
         Action<RoutingSettings<LearningTransport>> messageEndpointMappings = null)
     {
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var transport = endpointConfiguration.UseTransport(new LearningTransport());
         messageEndpointMappings?.Invoke(transport);
         endpointConfiguration.UsePersistence<LearningPersistence>();

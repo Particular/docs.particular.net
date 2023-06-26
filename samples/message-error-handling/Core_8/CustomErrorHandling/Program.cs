@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
@@ -13,6 +13,7 @@ static class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomErrorHandling");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         var recoverability = endpointConfiguration.Recoverability();

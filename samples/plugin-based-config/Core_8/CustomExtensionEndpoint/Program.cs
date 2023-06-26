@@ -11,6 +11,7 @@ static class Program
         Console.Title = "Samples.CustomExtensionEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomExtensionEndpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         await RunCustomizeConfiguration(endpointConfiguration)
             .ConfigureAwait(false);

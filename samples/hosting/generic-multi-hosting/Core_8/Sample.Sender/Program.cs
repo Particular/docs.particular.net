@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Sample.Sender
 {
@@ -53,6 +53,7 @@ namespace Sample.Sender
             var scanner = endpointConfiguration.AssemblyScanner();
 
             endpointConfiguration.UsePersistence<LearningPersistence>();
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.UseTransport(new LearningTransport());
 
             return Endpoint.Start(endpointConfiguration);

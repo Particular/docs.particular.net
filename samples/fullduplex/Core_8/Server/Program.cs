@@ -12,6 +12,7 @@ class Program
             .Level(LogLevel.Info);
         var endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Server");
         endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

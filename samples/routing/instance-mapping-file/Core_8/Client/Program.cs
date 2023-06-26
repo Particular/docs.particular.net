@@ -13,6 +13,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.InstanceMappingFile.Client");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 

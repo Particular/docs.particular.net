@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -14,6 +14,7 @@ class Program
         {
             DoNotWrapOutgoingMessages = true
         };
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(transport);
 
         #region RegisterBehaviorInPipeline

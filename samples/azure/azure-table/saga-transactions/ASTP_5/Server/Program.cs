@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Azure.Data.Tables;
 using NServiceBus;
@@ -33,6 +33,7 @@ class Program
 
         #endregion
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
         transport.Transactions(TransportTransactionMode.ReceiveOnly);
         endpointConfiguration.EnableInstallers();
