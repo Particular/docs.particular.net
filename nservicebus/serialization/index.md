@@ -2,7 +2,7 @@
 title: Serialization
 summary: Information about how messages are serialized and deserialized on a transport
 component: Core
-reviewed: 2021-09-28
+reviewed: 2023-06-28
 isLearningPath: true
 related:
  - samples/pipeline/multi-serializer
@@ -11,9 +11,7 @@ related:
 
 NServiceBus takes instances of .NET objects (messages, events, and commands) and sends/receives them over a specified [transport](/transports/). As part of this process, the object must be serialized and deserialized. NServiceBus achieves this using **serializers**.
 
-NOTE: When transitioning to a new serializer, messages that are currently 'in-flight' are formatted using the previous serialization format. **This includes [saga timeout](/nservicebus/sagas/timeouts.md) and [deferred/delayed](/nservicebus/messaging/delayed-delivery.md) messages via timeout persistence.**
-
-It's possible to transition to another serialization format while still remaining compatible with messages in-flight that used the previous serialization format. This is accomplished by adding the previous serialization format as an [additional deserializer](#specifying-additional-deserializers), which is supported in NServiceBus versions 6 and above.
+It's possible to transition to another serialization format while still remaining compatible with messages in-flight that used the previous serialization format. This is accomplished by adding the previous serialization format as an [additional deserializer](#specifying-additional-deserializers), which is supported in NServiceBus versions 6 and above. This way, messages serialized before the transition (including [saga timeouts](/nservicebus/sagas/timeouts.md) and [delayed messages](/nservicebus/messaging/delayed-delivery.md)) can still be understood while new messages use the new serializer.
 
 The [System.Text.Json serializer](system-json.md) provides an effective general-purpose serializer appropriate for most use cases based on the [JSON serialization built into .NET](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/how-to). JSON provides a good combination of compactness, human readability, and performance.
 
@@ -29,7 +27,7 @@ Other serializers are supported in order to enable specific performance or integ
 
 A serializer can be configured using the `endpointConfiguration.UseSerialization` API. Refer to the dedicated documentation pages for each available serializer for more information about the specific configuration.
 
-NOTE: The same serializer must be used by the sending endpoint to serialize messages and by the receiving endpoint to deserialize them, unless additional deserializers are specified.
+The same serializer must be used by the sending endpoint to serialize messages and by the receiving endpoint to deserialize them, unless additional deserializers are specified.
 
 ## Using the default serializer
 
@@ -54,9 +52,9 @@ Note: When using multiple deserializers make sure that there's only one type reg
 
 It is possible to [use immutable types as messages](/nservicebus/messaging/immutable-messages.md). NServiceBus does not restrict this; It depends on the chosen serializer implementation if it supports deserializing to non public properties and/or using non-default constructors to initialize types.
 
-NOTE: On the wire it makes no difference if mutable or immutable message types are used.
+When messages are in serialized form "on the wire" it makes no difference if mutable or immutable message types are used.
 
-For example, the [Newtonsoft JSON Serializer](newtonsoft.md) by default supports immutable messages types.
+The [System.Text.Json serializer](system-json.md) and [Newtonsoft JSON Serializer](newtonsoft.md) by default support immutable messages types.
 
 ## Security
 
