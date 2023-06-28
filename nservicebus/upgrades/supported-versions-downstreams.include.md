@@ -171,14 +171,14 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/3.0.1) | 2022-11-17     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/3.0.2) | 2022-11-17     | -                 | -                                 |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/2.3.2) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Storage.MongoDB.TransactionalSession](/nuget/NServiceBus.Storage.MongoDB.TransactionalSession)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/3.0.1) | 2022-11-17     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/3.0.2) | 2022-11-17     | -                 | -                                 |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/2.3.2) | 2022-09-19     | 2023-11-17        | Superseded by 3.0.x               |
 
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
