@@ -46,7 +46,7 @@ This screenshot shows how to identify the instance types and locate the required
 
 ## What the tool does
 
-The tool will send HTTP requests to both the [ServiceControl primary instance](/servicecontrol/servicecontrol-instances/index.md) and the [ServiceControl monitoring instance](/servicecontrol/monitoring-instances/index.md).
+The tool will send HTTP requests to both the [ServiceControl primary instance](/servicecontrol/servicecontrol-instances/) and the [ServiceControl monitoring instance](/servicecontrol/monitoring-instances/).
 
 ### Primary instance
 
