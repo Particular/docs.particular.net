@@ -22,7 +22,7 @@ The tool can be installed as a .NET tool for Windows/Linux or as a self-containe
 1. Run the tool by executing `throughput-counter`:
 
     ```shell
-    throughput-counter <arguments>
+    throughput-counter <command> <options> 
     ```
 
 ### Self-contained executable
@@ -35,7 +35,7 @@ In this mode, the target system does not need any version of .NET preinstalled.
 1. Execute the tool from the terminal by using its full name:
 
     ```shell
-    Particular.EndpointThroughputCounter.exe <arguments>
+    Particular.EndpointThroughputCounter.exe <command> <options> 
     ```
 
 ## Running the tool
