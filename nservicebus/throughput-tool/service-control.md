@@ -19,13 +19,13 @@ Once installed, execute the tool with the URLs for the ServiceControl and monito
 If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
-throughput-counter servicecontrol --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/
+throughput-counter servicecontrol [options] --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/
 ```
 
 Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
 
 ```shell
-Particular.EndpointThroughputCounter.exe servicecontrol --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/
+Particular.EndpointThroughputCounter.exe servicecontrol [options] --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/
 ```
 
 Because ServiceControl contains, at maximum, the previous 1 hour of monitoring data, the tool will query the ServiceControl API 24 times with a one-hour sleep period between each attempt in order to capture a total of 24 hours worth of data.
@@ -44,9 +44,9 @@ This screenshot shows how to identify the instance types and locate the required
 
 ![ServiceControl instances showing tool inputs](servicecontrol.png)
 
-## What does the tool do
+## What the tool does
 
-The tool will send HTTP requests to both the [ServiceControl primary instance]() and the [ServiceControl monitoring instance]().
+The tool will send HTTP requests to both the [ServiceControl primary instance](/servicecontrol/servicecontrol-instances/index.md) and the [ServiceControl monitoring instance](/servicecontrol/monitoring-instances/index.md).
 
 ### Primary instance
 

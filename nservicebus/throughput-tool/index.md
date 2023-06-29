@@ -22,7 +22,7 @@ The tool can be installed as a .NET tool for Windows/Linux or as a self-containe
 1. Run the tool by executing `throughput-counter`:
 
     ```shell
-    throughput-counter <command> <options> 
+    throughput-counter [command] [options]
     ```
 
 ### Self-contained executable
@@ -35,7 +35,7 @@ In this mode, the target system does not need any version of .NET preinstalled.
 1. Execute the tool from the terminal by using its full name:
 
     ```shell
-    Particular.EndpointThroughputCounter.exe <command> <options> 
+    Particular.EndpointThroughputCounter.exe [command] [options]
     ```
 
 ## Running the tool
@@ -56,7 +56,7 @@ If the system uses MSMQ or Azure Storage Queues but does not use ServiceControl,
 The report that is generated will contain the names of endpoints/queues. If the queue names themselves contain confidential or proprietary information, certain strings can be masked in the report file.
 
 ```shell
-throughput-counter <command> <options> --queueNameMasks Samples
+throughput-counter [command] [options] --queueNameMasks Samples
 ```
 
 This will result in a report file with masked data, such as:

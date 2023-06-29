@@ -35,13 +35,13 @@ Execute the tool with the resource ID of the Azure Service Bus namespace.
 If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
-throughput-counter azureservicebus --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
+throughput-counter azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
 ```
 
 Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
 
 ```shell
-Particular.EndpointThroughputCounter.exe azureservicebus --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
+Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
 ```
 
 
@@ -53,7 +53,7 @@ Particular.EndpointThroughputCounter.exe azureservicebus --resourceId /subscript
 | <nobr>`--serviceBusDomain`</nobr> | The Service Bus domain. Defaults to `servicebus.windows.net`. Only necessary for Azure customers using a [non-public/government cloud](https://learn.microsoft.com/en-us/rest/api/servicebus/). |
 include: throughput-tool-global-options
 
-## What does the tool do
+## What the tool does
 
 First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueueasync?view=azure-dotnet) from the namespace. Next, a `MetricsQueryClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsqueryclient.queryresourceasync?view=azure-dotnet) for the past 30 days from each queue.
 
