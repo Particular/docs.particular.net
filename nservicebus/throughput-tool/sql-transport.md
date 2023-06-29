@@ -17,13 +17,13 @@ Once installed, execute the tool with the database connection string used by SQL
 If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
-throughput-counter sqlserver --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;"
+throughput-counter sqlserver [options] --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;"
 ```
 
 Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
 
 ```shell
-Particular.EndpointThroughputCounter.exe sqlserver --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;"
+Particular.EndpointThroughputCounter.exe sqlserver [options] --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;"
 ```
 
 The tool will run for slightly longer than 24 hours in order to capture a beginning and ending identity value for each queue table.
@@ -41,7 +41,7 @@ include: throughput-tool-global-options
   
 NOTE: In recent versions of Microsoft's Sql Server drivers encryption has been enabled by default. When trying to connect to a Sql Server instance that uses a self-signed cerftificate, the tool may display an exception stating *[The certificate chain was issued by an authority that is not trusted](https://learn.microsoft.com/en-us/troubleshoot/sql/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19)*. To bypass this exception update the connection string to include `;Trust Server Certificate=true`.
 
-## What does the tool do
+## What the tool does
 
 The tool executes the following SQL queries on the database connection strings provided.
 

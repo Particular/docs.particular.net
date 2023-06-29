@@ -19,13 +19,13 @@ Execute the tool, providing the RabbitMQ management URL, as in this example wher
 If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
-throughput-counter rabbitmq --apiUrl http://localhost:15672
+throughput-counter rabbitmq [options] --apiUrl http://localhost:15672
 ```
 
 Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
 
 ```shell
-Particular.EndpointThroughputCounter.exe rabbitmq --apiUrl http://localhost:15672
+Particular.EndpointThroughputCounter.exe rabbitmq [options] --apiUrl http://localhost:15672
 ```
 
 The tool will prompt for the username and password to access the RabbitMQ management interface. After that, it will take its initial reading, then sleep for 24 hours before taking its final reading and generating a report.
@@ -37,7 +37,7 @@ The tool will prompt for the username and password to access the RabbitMQ manage
 | <nobr>`--apiUrl`</nobr> | **Required** – The URL for the RabbitMQ management site. Generally this will be `http://<rabbitmq-hostname>:15672` |
 include: throughput-tool-global-options
 
-## What does the tool do
+## What the tool does
 
 After performing an interactive login to the RabbitMQ Management API, the tool will:
 

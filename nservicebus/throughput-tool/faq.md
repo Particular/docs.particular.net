@@ -66,7 +66,7 @@ The tool queries Azure Service Bus to get the queue names in the namespace. Then
 
 The tool can be run from any workstation that can access the Azure Service Bus namespace.
 
-See the [technical details](azure-service-bus.md#what-does-the-tool-do) for more information.
+See the [technical details](azure-service-bus.md#what-the-tool-does) for more information.
 
 ### [Amazon SQS](amazon-sqs.md)
 
@@ -74,7 +74,7 @@ The tool queries AWS using the [ListQueues API](https://docs.aws.amazon.com/AWSS
 
 The tool can be run from any workstation that can access AWS services.
 
-See the [technical details](amazon-sqs.md#what-does-the-tool-do) for more information.
+See the [technical details](amazon-sqs.md#what-the-tool-does) for more information.
 
 ### [RabbitMQ](rabbitmq.md)
 
@@ -82,7 +82,7 @@ The tool queries the [Management API](https://www.rabbitmq.com/management.html#h
 
 The tool can be run from any workstation that can access the RabbitMQ Management interface.
 
-See the [technical details](rabbitmq.md#what-does-the-tool-do) for more information.
+See the [technical details](rabbitmq.md#what-the-tool-does) for more information.
 
 ### [SQL Transport](sql-transport.md)
 
@@ -90,7 +90,7 @@ The tool queries SQL Server to find tables that look like queues based on their 
 
 The tool can be run from any workstation with access to the database containing the queue tables.
 
-See the [technical details](sql-transport.md#what-does-the-tool-do) for more information, including the exact SQL queries used by the tool.
+See the [technical details](sql-transport.md#what-the-tool-does) for more information, including the exact SQL queries used by the tool.
 
 ### [ServiceControl](service-control.md)
 
@@ -100,7 +100,7 @@ The tool queries the monitoring instance once every hour to get the per-endpoint
 
 For endpoints not configured to [send metrics data to ServiceControl](/monitoring/metrics/install-plugin.md), the tool inspect Audit information to find how many messages have been successfully processed.
 
-See the [technical details](service-control.md#what-does-the-tool-do) for more information.
+See the [technical details](service-control.md#what-the-tool-does) for more information.
 
 ## What if my system's queue names contain proprietary information I don't want on the report
 

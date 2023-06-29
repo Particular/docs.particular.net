@@ -21,13 +21,13 @@ The AWS region can be specified either by command-line parameter or by the `AWS_
 If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended), execute the tool as shown:
 
 ```shell
-throughput-counter sqs
+throughput-counter sqs [options]
 ```
 
 Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
 
 ```shell
-Particular.EndpointThroughputCounter.exe sqs
+Particular.EndpointThroughputCounter.exe sqs [options]
 ```
 
 ## Options
@@ -39,7 +39,7 @@ Particular.EndpointThroughputCounter.exe sqs
 | <nobr>`--prefix`</nobr> | Report only on queues that begin with a specific prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.<br/><br/>Example: `--prefix "prod-"` |
 include: throughput-tool-global-options
 
-## What does the tool do
+## What the tool does
 
 The tool first queries the SQS API to [fetch all queue names](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html). Then, for each queue that is discovered, the tool queries the [CloudWatch API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html) for the `NumberOfMessagesDeleted` metrics for the past 30 days.
 
