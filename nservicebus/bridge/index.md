@@ -33,6 +33,12 @@ snippet: bridgeconfiguration
 
 The life cycle of the bridge is managed by the .NET Generic Host.
 
+## Errors
+
+When the messaging bridge encounters an error while transferring a message between transports it will move the message to the `bridge.error` queue, which is specific to the messaging bridge. An additional header `NServiceBus.MessagingBridge.FailedQ` is added to allow moving a message back to its originating queue, so the messaging bridge can pick them up again. 
+
+NOTE: The messages in the `bridge.error` queue are not compatible with ServiceControl at this moment.
+
 ## Consistency
 
 If the bridge moves messages across different transport types or different brokers of the same type (e.g. Azure ServiceBus namespaces, or RabbitMQ virtual hosts), [`ReceiveOnly`](/transports/transactions.md#transactions-transport-transaction-receive-only) is the only supported transaction mode. In this mode, messages that are moved across the bridge may be duplicated if some infrastructure-related issue prevents the message from being moved to the target transport. To address this either [ensure that handlers are idempotent or enable deduplication of messages using the outbox](/transports/transactions.md#transactions-transport-transaction-receive-only-consistency-guarantees).
