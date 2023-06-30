@@ -39,7 +39,7 @@ This configuration is stored in a Javascript file located in the ServicePulse is
 
 The connections to ServiceControl and ServiceControl Monitoring can be changed using the connections tab in the configuration screen in ServicePulse.
 
-The ServiceControl Monitoring connection URL is optional and can be disabled by either not entering a value or entering a "!" in the URL text box.
+The ServiceControl Monitoring connection URL is optional and can be disabled by either leaving it blank and not entering a value or entering a "!" in the URL text box.
 
 ![Connections configuration](images/connections-configuration.png 'width=500')
 
