@@ -269,7 +269,7 @@ Review if all listed audit instances are running.
 
 ## How to move the database to another location
 
-Move the database to another disk if the disk that isn't following our [ServiceControl storage recommendations](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations-storage-recommendations).
+Move the database to another disk if the disk that isn't following the [ServiceControl storage recommendations](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations-storage-recommendations).
 
 To move the database to another location:
 
