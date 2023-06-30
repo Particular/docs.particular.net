@@ -55,12 +55,13 @@ Returning to the earlier example of a message handler which creates a `User` and
 ```mermaid
 graph TD
   subgraph Phase 1
-  receiveMessage(1. Receive incoming message)
-  createTx(2. Begin transaction)
-  dedupe{3. Deduplication}
+  receiveMessage(1. Receive incoming message)  
+  dedupe{2. Deduplication}
+  createTx(3. Begin transaction)
   messageHandler(4. Execute message handler)
   storeOutbox(5. Store outgoing<br/>messages in outbox)
   commitTx(6. Commit transaction)
+  phase2(7. Go to Phase2)
   end
 
   subgraph Phase 2
@@ -70,16 +71,17 @@ graph TD
   ack(4. Acknowledge incoming message)
   end
 
-  receiveMessage-->createTx
-  createTx-->dedupe
-  dedupe-- No record found -->messageHandler
+  receiveMessage-->dedupe
+  dedupe-- No record found -->createTx
+  createTx-->messageHandler
   messageHandler-->storeOutbox
   storeOutbox-->commitTx
-  commitTx-->areSent
+  commitTx-->phase2
+  phase2-->areSent
   send-->updateOutbox
-  updateOutbox-->ack
+  updateOutbox-->ack 
 
-  dedupe-- Record found -->commitTx
+  dedupe-- Record found -->phase2
   areSent-- No -->send
   areSent-- Yes -->ack
 ```
@@ -90,15 +92,16 @@ There is no single transaction that spans all the operations. The operations occ
 
 1. Receive the incoming message from the queue.
    * Do not acknowledge receipt of the message yet, so that if processing fails, the message will be delivered again.
-2. Begin a transaction in the database.
-3. Check outbox storage in the database to see if the incoming message has already been processed. This is called **deduplication**.
-   * If the message has already been processed, skip to **step 6**.
-   * If the message has not yet been processed, continue to **step 4**.
+2. Check outbox storage in the database to see if the incoming message has already been processed. This is called **deduplication**.
+   * If the message has already been processed, skip to **step 7**.
+   * If the message has not yet been processed, continue to **step 3**.
+3. Begin a transaction in the database.
 4. Execute the message handler for the incoming message
    * Any outgoing messages are not immediately sent.
 5. Store any outgoing messages in outbox storage in the database.
 6. Commit the transaction in the database.
    * This is the operation that ensures consistency between messaging and database operations.
+7. Phase 2
 
 ### Phase 2
 
@@ -106,15 +109,15 @@ There is no single transaction that spans all the operations. The operations occ
    * If the outgoing messages have already been sent, the incoming message is a duplicate, so skip to **step 4**.
    * If the outgoing messages have not yet been sent, continue to **Step 2**.
 2. Send the outgoing messages to the queue.
-   * If processing fails at this point, duplicate messages may be sent to the queue. Any duplicates will have the same `MessageId`, so they will be deduplicated by the outbox feature (in **phase 1, step 3**) in the endpoint that receives them.
+   * If processing fails at this point, duplicate messages may be sent to the queue. Any duplicates will have the same `MessageId`, so they will be deduplicated by the outbox feature (in **phase 1, step 2**) in the endpoint that receives them.
 3. Update outbox storage to show that the outgoing messages have been sent.
 4. Acknowledge (ACK) receipt of the incoming message so that it is removed from the queue and will not be delivered again.
 
-In phase 1, outgoing messages are not immediately sent. They are serialized and persisted in outbox storage. This occurs in a single transaction (steps 2 to 6) which also includes changes to business data made by message handlers. This guarantees that changes to business data are not made without capturing outgoing messages, and vice-versa.
+In phase 1, outgoing messages are not immediately sent. They are serialized and persisted in outbox storage. This occurs in a single transaction (steps 3 to 6) which also includes changes to business data made by message handlers. This guarantees that changes to business data are not made without capturing outgoing messages, and vice-versa.
 
 NOTE: This guarantee does not apply to operations in message handlers that do not enlist in [an outbox transaction](/nservicebus/handlers/accessing-data.md#synchronized-storage-session), such as sending emails, changing the file system, etc.
 
-In phase 2, outgoing messages are sent to the messaging infrastructure and outbox storage is updated to indicate that the outgoing messages have been sent (steps 1 to 3). Due to possible failures, a given message may be sent multiple times. For example, if an exception is thrown in step 3 (failure to update outbox storage) the message will be read from outbox storage again and will be sent again. As long as the receiving endpoints use the outbox feature, these duplicates will be handled by the deduplication in phase 1, step 3.
+In phase 2, outgoing messages are sent to the messaging infrastructure and outbox storage is updated to indicate that the outgoing messages have been sent (steps 1 to 3). Due to possible failures, a given message may be sent multiple times. For example, if an exception is thrown in step 3 (failure to update outbox storage) the message will be read from outbox storage again and will be sent again. As long as the receiving endpoints use the outbox feature, these duplicates will be handled by the deduplication in phase 1, step 2.
 
 ## Important design considerations
 
