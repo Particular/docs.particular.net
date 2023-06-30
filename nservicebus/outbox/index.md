@@ -1,7 +1,7 @@
 ---
 title: Outbox
 summary: Reliable messaging without distributed transactions
-reviewed: 2022-05-12
+reviewed: 2023-06-30
 component: Core
 isLearningPath: true
 versions: "[5,)"
