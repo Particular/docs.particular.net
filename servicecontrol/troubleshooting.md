@@ -267,9 +267,11 @@ Review if the listed hostname in the `ServiceControl/RemoteInstances` setting is
 
 Review if all listed audit instances are running.
 
-## How to move the database to another disk
+## How to move the database to another location
 
-If the database is stored on a disk that isn't following our [ServiceControl storage recommendations](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations-storage-recommendations) the database needs to be moved to a new disk.
+Move the database to another disk if the disk that isn't following our [ServiceControl storage recommendations](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations-storage-recommendations).
+
+To move the database to another location:
 
 1. Open the ServiceControl Management utility (SCMU) (via Windows Start)
 2. Stop the ServiceControl instance
