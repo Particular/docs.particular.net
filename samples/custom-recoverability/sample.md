@@ -57,7 +57,7 @@ Note that the 'Server' processes all those messages and the `Samples.CustomRecov
 
 In the 'Server' application, open `MyHandler.cs`.
 
-snippet: MyHandler
+
 
 Note the commented out `throw new Exception` line. Uncomment that line.
 
@@ -86,7 +86,7 @@ Leave the endpoint running a while longer, and notice that it tries processing t
 
 Turn off Delayed Retries by uncommenting the below line in the Server Program.cs:
 
-snippet: disable
+
 
 Re-run the sample and notice the behavior. After successive retries, the message is sent to the error queue right away.
 
