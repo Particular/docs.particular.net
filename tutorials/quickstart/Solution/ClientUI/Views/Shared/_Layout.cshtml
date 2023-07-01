@@ -29,6 +29,14 @@
     </div>
 
     @Html.OutputNServiceBusInfo()
+    @{
+        const string ga4MeasurementId = "G-GMZ1FS541B";
+    }
+    <script>
+        window.GA4_MEASUREMENT_ID = '@ga4MeasurementId';
+    </script>
+    <!-- Google Analytics GA4 tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@ga4MeasurementId"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha256-98vAGjEDGN79TjHkYWVD4s87rvWkdWLHPs5MC3FvFX4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
