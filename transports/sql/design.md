@@ -37,6 +37,9 @@ The `ReplyToAddress` column contains the value of `NServiceBus.ReplyToAddress` h
 The `Recoverable` column should always contain the value `1` to ensure wire-level compatibility with transport Version 2 and lower.
 
 
+NOTE: The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the transport. When receiving messages sent by endpoints that use later versions, the values of correlation ID and reply-to address should be read from the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`) instead. The value `Recoverable` can be ignored as it is always `true`/`1`.
+
+
 ### Expires
 
 The `Expires` column contains the optional date and time when the message is going to expire. An expired message is dropped by the transport. Depending on version, expired messages might be actively purged from the queue. For details see [discarding expired messages](/transports/sql/discard-expired-messages.md).
