@@ -1,7 +1,7 @@
 ---
 title: Fault Tolerance
 summary: Messaging approaches to help with failure scenarios.
-reviewed: 2022-07-11
+reviewed: 2023-07-01
 component: Core
 redirects:
 - nservicebus/nservicebus-step-by-step-guide-fault-tolerance-code-first
@@ -39,7 +39,7 @@ Message received. Id: 2c9f0f60-7632-43ae-b16e-1688f31b1f53
 
  * Close the 'Server' console (endpoint) but leave the 'Client' console (endpoint) running.
  * Press Enter on the 'Client' console a few times and note that the 'Client' application isn't blocked even when the server application is down. This makes it easier to upgrade the back-end even while the front-end is still running, resulting in a more highly-available system.
- * Leave the 'Client' console running and view the `Samples.FaultTolerance.Server` queue in MSMQ. Note that all the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. Select each message, press F4, and examine its properties, specifically `BodyStream`, where the data is.
+ * Leave the 'Client' console running and view the `Samples.FaultTolerance.Server` queue in LearningTransport. Note that all the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. Select each message, press F4, and examine its properties, specifically `BodyStream`, where the data is.
 
 
 ### Consume those messages
@@ -73,8 +73,6 @@ at NServiceBus.Unicast.Transport.TransportReceiver.ProcessMessage(TransportMessa
 \NServiceBus.Core\Unicast\Transport\TransportReceiver.cs:line 344
 at NServiceBus.Unicast.Transport.TransportReceiver.TryProcess(TransportMessage message) in
 \NServiceBus.Core\Unicast\Transport\TransportReceiver.cs:line 228
-at NServiceBus.Transports.Msmq.MsmqDequeueStrategy.Action() in
-\NServiceBus.Core\Transports\Msmq\MsmqDequeueStrategy.cs:line 266
 2015-04-24 10:59:57.752 WARN  NServiceBus.Faults.Forwarder.FaultManager Message
 with '15f99a26-fc38-4ce4-9bc1-a48400b5184c' ID has failed Immediate Retries and will be handed over to Delayed Retries for retry attempt 3.
 ```
