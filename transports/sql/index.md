@@ -30,6 +30,11 @@ WARNING: Although this transport will run on the free version of the engine, i.e
 |Installers                 |Optional
 |Native integration         |[Supported](native-integration.md)
 
+## Packages
+
+NServiceBus [supports](https://docs.particular.net/nservicebus/upgrades/supported-versions) two SQL transport packages [NServiceBus.Transport.SqlServer](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer) and  [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer). The NServiceBus.Transport.SqlServer package uses Microsoft.Data.SqlClient and the  NServiceBus.SqlServer uses System.Data.SqlClient that was originally part of .NET Framework.
+
+
 ## Usage
 
 A basic use of the SQL Server transport is as follows:
