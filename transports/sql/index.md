@@ -32,7 +32,7 @@ WARNING: Although this transport will run on the free version of the engine, i.e
 
 ## Packages
 
-NServiceBus [supports](/nservicebus/upgrades/supported-versions) two SQL transport packages [NServiceBus.Transport.SqlServer](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer) and  [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer). The NServiceBus.Transport.SqlServer package uses Microsoft.Data.SqlClient and the  NServiceBus.SqlServer uses System.Data.SqlClient that was originally part of .NET Framework.
+NServiceBus [supports](/nservicebus/upgrades/supported-versions.md) two SQL transport packages [NServiceBus.Transport.SqlServer](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer) and  [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer). The NServiceBus.Transport.SqlServer package uses Microsoft.Data.SqlClient and the  NServiceBus.SqlServer uses System.Data.SqlClient that was originally part of .NET Framework.
 
 
 ## Usage
