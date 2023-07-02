@@ -13,12 +13,12 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
         var recoverability = endpointConfiguration.Recoverability();
 
-        //#region disable
+        #region disable
         //recoverability.Delayed(settings =>
         //{
         //    settings.NumberOfRetries(0);
         //});
-        //#endregion
+        #endregion
 
         #region addcustompolicy
         recoverability.CustomPolicy(MyCustomRetryPolicy());
@@ -46,6 +46,7 @@ class Program
             .ConfigureAwait(false);
     }
 
+    #region mycustomretrypolicy
     private static Func<RecoverabilityConfig, ErrorContext, RecoverabilityAction> MyCustomRetryPolicy()
     {
         return (config, errorContext) =>
@@ -53,5 +54,5 @@ class Program
               ? DefaultRecoverabilityPolicy.Invoke(config, errorContext)
               : RecoverabilityAction.MoveToError("error");
     }
-
+    #endregion
 }

@@ -5,6 +5,7 @@ component: Core
 reviewed: 2020-09-02
 related:
  - samples/faulttolerance
+ - samples/custom-recoverability
 ---
 
 NOTE: In order to get full control over Immediate Retries it is possible to override the default [Recoverability Policy](/nservicebus/recoverability/custom-recoverability-policy.md).

@@ -1,5 +1,5 @@
 ---
-title: Custom Recoverability Policy
+title: Custom Recoverability
 summary: Custom Recoverability Messaging Policy approaches to help with failure scenarios.
 reviewed: 2023-07-01
 component: Core
@@ -9,77 +9,95 @@ related:
 - nservicebus/recoverability
 - nservicebus/recoverability/custom-recoverability-policy
 - samples/errorhandling
+- samples/faulttolerance
+
 ---
 
+This sample demonstrates how to use custom recoverability policy. Here the default recoverability is invoked when a specifc exception type happens and at all other times it uses a custom recoverability action.
 
+The sample contains three projects:
 
-Run the solution and press Enter on the 'Client' console a few times to make sure the messages are being processed.
+- Shared - The Shared project is for shared classes including message definitions
+- Client - A console application responsible for sending the messages.
+- Server - A console application responsible for receiving the messages from the client.
+
+Run the solution. Two console applications start, the Client and the Server.
+In the Client console, press "Enter" to send a message.
+In the Server console, this message is received and an entry is logged in the console
+
 
 **Client output**
 
 ```
 Press 'Enter' to send a message.
 Press any key to exit
-Sent a new message with id: 5a1ca67b03ae4b38b99e1fd66ebc97eb
-Sent a new message with id: 30f443c4ce454de5be8541cafb0da332
-Sent a new message with id: 2c9f0f60763243aeb16e1688f31b1f53
+Sent a new message with id: 87283b82a892456d81eb1bfa05fb72e2
 ```
 
 **Server output**
 
 ```
 Press any key to exit
-Message received. Id: 00000000-0000-0000-0000-000000000000
-Message received. Id: 5a1ca67b-03ae-4b38-b99e-1fd66ebc97eb
-Message received. Id: 30f443c4-ce45-4de5-be85-41cafb0da332
-Message received. Id: 2c9f0f60-7632-43ae-b16e-1688f31b1f53
+Message received. Id: 87283b82a892456d81eb1bfa05fb72e2
 ```
 
+## Fault tolerance with custom recoverability
 
-### Queue up multiple messages
+In the 'Server' application, open `Program.cs`. There is a custom policy "MyCustomRetryPolicy" where the default NServivceBus [recoverability policy](/nservicebus/recoverability/) is invoked when an "ArgumentNullException" exception is encountered and at all other times the message is not retried and sent directly to the "error" queue.
 
- * Close the 'Server' console (endpoint) but leave the 'Client' console (endpoint) running.
- * Press Enter on the 'Client' console a few times and note that the 'Client' application isn't blocked even when the server application is down. This makes it easier to upgrade the back-end even while the front-end is still running, resulting in a more highly-available system.
- * Leave the 'Client' console running and view the `Samples.CustomRecoverability.Server` queue in MSMQ. Note that all the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. Select each message, press F4, and examine its properties, specifically `BodyStream`, where the data is.
+snippet: mycustomretrypolicy
 
+The custom policy is added to the recoverability as below
 
-### Consume those messages
+snippet: addcustompolicy
 
-Now bring the 'Server' endpoint back online by right-clicking the project, selecting Debug, then Start new instance.
+Custom headers are added to the message before sending to the "error" queue.
 
-Note that the 'Server' processes all those messages and the `Samples.CustomRecoverability.Server` queue is empty.
-
-
-## Fault tolerance
-
+snippet: addcustomheaders
 
 ### Make the handler fail
 
-In the 'Server' application, open `MyHandler.cs`.
+In the 'Server' application, open `MyHandler.cs`. Uncomment the `throw new ArgumentNullException` line.
 
+snippet: MyHandler
 
+As per the custom recoverability policy, when the solution is run, the exception is thrown and the default [recoverability policy](/nservicebus/recoverability/) will be invoked before finalling moving to the "error" queue.
 
-Note the commented out `throw new Exception` line. Uncomment that line.
-
-Run the solution again, but this time use `Ctrl-F5` so that Visual Studio does not break each time the exception is thrown.
-
-The endpoint should scroll through a bunch of warnings, ultimately outputting an error, and stopping, as follows:
 
 **Server Output**
 
 ```
-at NServiceBus.Unicast.Transport.TransportReceiver.OnTransportMessageReceived(TransportMessage msg) in
-\NServiceBus.Core\Unicast\Transport\TransportReceiver.cs:line 411
+INFO  Message received. Id: 76d8b5c3-c41b-4179-b995-4e68f3c5b7eb
+INFO  Immediate Retry is going to retry message '1e0d3ee9-3ab0-4be9-bf45-b0330060b9e8' because of an exception:
+System.ArgumentNullException: Value cannot be null. (Parameter 'Uh oh - something went wrong....')
+   at MyHandler.Handle(MyMessage message, IMessageHandlerContext context) in C:\Particular\docs.particular.net\samples\custom-recoverability\Core_8\Server\MyHandler.cs:line 15
+   at NServiceBus.Pipeline.MessageHandler.Invoke(Object message, IMessageHandlerContext handlerContext) in /_/src/NServiceBus.Core/Pipeline/Incoming/MessageHandler.cs:line 43
+
+WARN  Delayed Retry will reschedule message '1e0d3ee9-3ab0-4be9-bf45-b0330060b9e8' after a delay of 00:00:30 because of an exception:
+System.ArgumentNullException: Value cannot be null. (Parameter 'Uh oh - something went wrong....')
+   at MyHandler.Handle(MyMessage message, IMessageHandlerContext context) in C:\Particular\docs.particular.net\samples\custom-recoverability\Core_8\Server\MyHandler.cs:line 15
+   at NServiceBus.Pipeline.MessageHandler.Invoke(Object message, IMessageHandlerContext handlerContext) in /_/src/NServiceBus.Core/Pipeline/Incoming/MessageHandler.cs:line 43
+   at NServiceBus.InvokeHandlerTerminator.Terminate(IInvokeHandlerContext context) in /_/src/NServiceBus.Core/Pipeline/Incoming/InvokeHandlerTerminator.cs:line 33
+   at NServiceBus.LoadHandlersConnector.Invoke(IIncomingLogicalMessageContext context, Func`2 stage) in /_/src/NServiceBus.Core/Pipeline/Incoming/LoadHandlersConnector.cs:line 40
+
+INFO  Message received. Id: 76d8b5c3-c41b-4179-b995-4e68f3c5b7eb
+ERROR Moving message '1e0d3ee9-3ab0-4be9-bf45-b0330060b9e8' to the error queue 'error' because processing failed due to an exception:
+System.ArgumentNullException: Value cannot be null. (Parameter 'Uh oh - something went wrong....')
 ```
 
-While the endpoint can now continue processing other incoming messages (which will also fail in this case as the exception is thrown for all cases), the failed message has been diverted and is being held in one of the NServiceBus internal databases.
+Delayed Retries can be turned off by uncommenting the below line in the Server Program.cs:
 
-Leave the endpoint running a while longer, and notice that it tries processing the message again. After three retries, the message ends up in the error queue (in the default configuration this should occur after roughly one minute).
+snippet: disable
 
-Turn off Delayed Retries by uncommenting the below line in the Server Program.cs:
+When the sample is re-run the sample, after successive retries, the message is sent to the error queue without the delayed retries.
 
+Now, in the 'Server' application, open `MyHandler.cs`. Comment out `throw new ArgumentNullException` and uncomment the ` throw new DivideByZeroException` line. When the solution is run, and the exception is thrown  the message is directly moved to the "error" queue without any retries ( as per the custom policy).
 
+```
+ INFO  Message received. Id: 5570fc08-098d-4784-8902-0205ab0ae594
+2023-07-01 23:09:03.270 ERROR Moving message 'e6bd7712-cf5a-4927-923e-b0330065571a' to the error queue 'error' because processing failed due to an exception:
+System.DivideByZeroException: DivideByZeroException - something went wrong....
+   at MyHandler.Handle(MyMessage message, IMessageHandlerContext context) in samples
 
-Re-run the sample and notice the behavior. After successive retries, the message is sent to the error queue right away.
+```
 
-Make sure that the exception code is removed to resume processing of messages.

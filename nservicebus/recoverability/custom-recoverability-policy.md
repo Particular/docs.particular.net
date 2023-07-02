@@ -6,6 +6,7 @@ reviewed: 2022-10-03
 versions: '[6.0,)'
 related:
  - samples/faulttolerance
+ - samples/custom-recoverability
  - samples/recoverabilitypolicytesting
 ---
 

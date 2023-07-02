@@ -12,9 +12,9 @@ public class MyHandler :
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         log.Info($"Message received. Id: {message.Id}");
-       // throw new ArgumentNullException("Uh oh - something went wrong....");
-        // throw new DivideByZeroException("DivideByZeroException - something went wrong....");
-        return Task.CompletedTask;
+        // throw new ArgumentNullException("Uh oh - something went wrong....");
+       // throw new DivideByZeroException("DivideByZeroException - something went wrong....");
+       return Task.CompletedTask;
     }
 }
 #endregion
