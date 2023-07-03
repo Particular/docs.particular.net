@@ -4,7 +4,7 @@ summary: Reliable messaging without distributed transactions
 reviewed: 2023-06-30
 component: Core
 isLearningPath: true
-versions: "[5,)"
+versions: "[6,)"
 redirects:
 - nservicebus/no-dtc
 related:
