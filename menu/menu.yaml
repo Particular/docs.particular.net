@@ -1362,6 +1362,8 @@
         Url: servicecontrol/backup-sc-database
       - Title: Compacting database
         Url: servicecontrol/db-compaction
+      - Title: Move Database Location
+        Url: servicecontrol/move-database-location
     - Title: Troubleshooting
       Articles:
       - Title: ServiceControl troubleshooting
