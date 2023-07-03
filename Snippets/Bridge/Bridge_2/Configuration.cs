@@ -21,9 +21,9 @@ public class Configuration
         #endregion
     }
 
-    public async Task DoNotEnforceBestPractices()
+    public void DoNotEnforceBestPractices()
     {
-        var bridgeConfiguration = new bridgeConfiguration();
+        var bridgeConfiguration = new BridgeConfiguration();
 
         #region do-not-enforce-best-practices
 
@@ -107,7 +107,7 @@ public class Configuration
         invoicing.RegisterPublisher("CreditApproved, CreditScoring.Messages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Sales");
         // Type.AssemblyQualifiedName Property but trimmed without Culture and PublicKeyToken as these are ignored by the message driven pub/sub feature
         invoicing.RegisterPublisher("CreditApproved, CreditScoring.Messages, Version=1.0.0.0", "Sales");
-        
+
 
         #endregion
     }
