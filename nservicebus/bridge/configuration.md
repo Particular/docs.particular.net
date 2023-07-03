@@ -19,6 +19,8 @@ snippet: generic-host-builder-context
 
 If a logical endpoint communicates with other endpoints that use a different transport, it must be registered with the bridge. Endpoints are registered with the bridge on the transport they run on. The bridge then creates a proxy endpoint on each transport that needs to be bridged.
 
+WARNING: Mappings are case-sensitive
+
 snippet: endpoint-registration
 
 ## Registering publishers
@@ -64,6 +66,8 @@ snippet: auto-create-queues
 The bridge provides the ability to change the address of the queue of incoming messages.
 
 NOTE: When forwarding messages to MSMQ endpoints that run on different servers than the bridge, the addresses of the queues that messages should be forwarded to _must_ be provided.
+
+WARNING: Mappings are case-sensitive
 
 snippet: custom-address
 
