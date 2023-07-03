@@ -37,6 +37,14 @@ snippet: register-publisher-legacy
 
 INFO: It is recommended to use the overloads that accept a type instead of a string value. Passing types can be problematic when not using [naming conventions for message via unobtrusive mode](/nservicebus/messaging/conventions.md).
 
+## Registering multiple publishers for the same event
+
+The messaging bridge will not allow to register multiple publishers for the same event as according to our conventions [events should be published by the logical owner](/nservicebus/messaging/messages-events-commands.md) unless [enforcing of best practices is explicitly disabled](#do-not-enforce-best-practices).
+
+If best pratices are not enforces the bridge will log the following warning:
+
+> The following subscriptions with multiple registered publishers are ignored as best practices are not enforced:
+
 ### Referencing event types
 
 When an assembly containing message types is referenced, either `typeof()` or a type argument may be used for type-safety when registering publishers. Sometimes it is not possible to reference an assembly containing message types. For example, the assembly may reference a different version of NServiceBus than the bridge. In these cases, the fully-qualified name of an event may be used instead. This may even be preferable to referencing message assemblies, to reduce the chance of compile-time conflicts.
@@ -105,3 +113,13 @@ snippet: platform-bridging
 ### Audit queue
 
 Special considerations are required for the audit queue due to potentially high message volume. For example, a [dedicated ServiceControl audit instance](/servicecontrol/audit-instances/) could be created for each bridged transport, to make audit ingestion more efficient.
+
+## Do not enforce best practices
+
+The bridge validates the configuration for the following state:
+
+- [Registering multiple publishers for the same event](#registering-multiple-publishers-for-the-same-event)
+
+Enforcing of best practices can be disabled via the following configuration:
+
+snippet: do-not-enforce-best-practices
