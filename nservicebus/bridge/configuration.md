@@ -39,9 +39,9 @@ INFO: It is recommended to use the overloads that accept a type instead of a str
 
 ## Registering multiple publishers for the same event
 
-The messaging bridge will not allow to register multiple publishers for the same event as according to our conventions [events should be published by the logical owner](/nservicebus/messaging/messages-events-commands.md) unless [enforcing of best practices is explicitly disabled](#do-not-enforce-best-practices).
+The messaging bridge will not allow to register multiple publishers for the same event according to the [events should be published by the logical owner](/nservicebus/messaging/messages-events-commands.md) convention, unless [enforcing of best practices is explicitly disabled](#do-not-enforce-best-practices).
 
-If best pratices are not enforces the bridge will log the following warning:
+If best practices are not enforced the bridge will log the following warning:
 
 > The following subscriptions with multiple registered publishers are ignored as best practices are not enforced:
 
