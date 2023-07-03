@@ -4,7 +4,6 @@ summary: Move Database to Another Location
 reviewed: 2023-07-03
 ---
 
-## How to move the database to another location
 
 Move the database to another disk if the disk that isn't following the [ServiceControl storage recommendations](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations-storage-recommendations).
 
