@@ -18,6 +18,9 @@ public class Configuration
             .Build()
             .RunAsync();
 
+        #endregion
+    }
+
     public async Task DoNotEnforceBestPractices()
     {
         var bridgeConfiguration = new bridgeConfiguration();
