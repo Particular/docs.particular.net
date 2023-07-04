@@ -1,11 +1,11 @@
 ---
 title: Bridge performance
 summary: Performance considerations and scaling out the NServiceBus Messaging Bridge
-reviewed: 2022-05-04
+reviewed: 2023-07-04
 component: Bridge
 ---
 
-This is a guide to performance considerations when using the `NServiceBus.MessagingBridge` package and how to scale out. There are several reasons to scale out, such as achieving higher message throughput, or providing high availability.
+This is a guide to performance considerations when using the NServiceBus Messaging Bridge and how to scale out. There are several reasons to scale out, such as achieving higher message throughput, or providing high availability.
 
 ## Performance tuning
 

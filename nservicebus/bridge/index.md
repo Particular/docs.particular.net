@@ -1,7 +1,7 @@
 ---
 title: Bridge
 summary: Connect endpoints in a system that use different transports with the messaging bridge
-reviewed: 2022-04-01
+reviewed: 2023-07-04
 component: Bridge
 related:
  - samples/bridge/simple
@@ -9,7 +9,7 @@ related:
  - samples/bridge/sql-multi-instance
 ---
 
-`NServiceBus.MessagingBridge` allows NServiceBus endpoints to connect to other endpoints that are not using the same transport using the [Messaging Bridge Pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html).
+The NServiceBus Messaging Bridge allows NServiceBus endpoints to connect to other endpoints that are not using the same transport using the [Messaging Bridge Pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html).
 
 The bridge is transparent to sending and receiving endpoints. That is, endpoints are not aware of the bridge or that it is transferring messages to a different transport. Endpoints send and receive messages to and from logical endpoints as they normally would if there were no bridge involved.
 
@@ -25,7 +25,7 @@ More details on these scenarios are provided in the [messaging bridge scenarios]
 
 ## Bridge configuration
 
-`NServiceBus.MessagingBridge` is packaged as a host-agnostic library. It can be hosted in a console application, a Windows service, a Docker container, or any service that supports the Microsoft Generic Host, similar to how [endpoints are hosted](/nservicebus/hosting/selecting.md).
+partial: configuration
 
 The following snippet shows a simple MSMQ-to-AzureServiceBus configuration.
 
@@ -35,7 +35,7 @@ The life cycle of the bridge is managed by the .NET Generic Host.
 
 ## Errors
 
-When the messaging bridge encounters an error while transferring a message between transports it will move the message to the `bridge.error` queue, which is specific to the messaging bridge. An additional header `NServiceBus.MessagingBridge.FailedQ` is added to allow moving a message back to its originating queue, so the messaging bridge can pick them up again. 
+partial: errors
 
 NOTE: The messages in the `bridge.error` queue are not compatible with ServiceControl at this moment.
 

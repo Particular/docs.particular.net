@@ -2,12 +2,12 @@
 title: Bridge configuration options
 summary: Configuration options for the messaging bridge.
 component: Bridge
-reviewed: 2022-04-01
+reviewed: 2023-07-04
 ---
 
 ## Hosting
 
-`NServiceBus.MessagingBridge` is hosted using the [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) which takes care of life cycle management, configuration, logging, and other concerns.
+NServiceBus Messaging Bridge is hosted using the [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) which takes care of life cycle management, configuration, logging, and other concerns.
 
 snippet: generic-host
 
@@ -32,6 +32,8 @@ If an endpoint subscribes to an event, the bridge must be made aware of this sub
 The result is duplicate subscriptions for any endpoint that subscribes to an event. The endpoint that publishes the event must be configured as well.
 
 snippet: register-publisher
+
+NOTE: The endpoint name used when creating a `BridgeEndpoint` is case-sensitive, even if one or both transports don't require it. This is to accommodate all transports, some of which require a case-sensitive endpoint name. More details can be found on [this issue](https://github.com/Particular/NServiceBus.MessagingBridge/issues/175).
 
 Legacy transports versions that use [message-driven pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) require the fully qualified assembly type name value to be passed. Note that passing the culture and public key is not needed as only the type name, assembly name, and assembly version are used in filtering subscribers by the message-driven pub/sub-feature.
 
