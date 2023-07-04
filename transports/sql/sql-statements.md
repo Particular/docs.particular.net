@@ -78,8 +78,9 @@ Retrieves a message from the queue.
 
 snippet: ReceiveTextSql
 
-NOTE: The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the transport. When receiving messages sent by endpoints that use later versions, the values of correlation ID and reply-to address should be read from the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`) instead. The value `Recoverable` can be ignored as it is always `true`/`1`.
+The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) transport
 
+include: backwards-compatibility-receive-message
 
 ### Send message
 
@@ -87,8 +88,9 @@ Places a message on the queue.
 
 snippet: SendTextSql
 
-NOTE: The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the transport. When sending messages to endpoints that use later versions, the values of correlation ID and reply-to address columns could be set to `NULL` and the actual values are provided in the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`). The value `Recoverable` should always be `true`/`1`.
+The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) transport
 
+include: backwards-compatibility-send-message
 
 partial: native-subscriptions
 

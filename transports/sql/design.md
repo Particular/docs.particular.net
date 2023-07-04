@@ -37,8 +37,13 @@ The `ReplyToAddress` column contains the value of `NServiceBus.ReplyToAddress` h
 The `Recoverable` column should always contain the value `1` to ensure wire-level compatibility with transport Version 2 and lower.
 
 
-NOTE: The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the transport. When receiving messages sent by endpoints that use later versions, the values of correlation ID and reply-to address should be read from the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`) instead. The value `Recoverable` can be ignored as it is always `true`/`1`.
+### Backwards Compatibility
 
+The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) transport
+
+include: backwards-compatibility-receive-message
+
+include: backwards-compatibility-send-message
 
 ### Expires
 
