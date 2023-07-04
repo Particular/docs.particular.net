@@ -1,0 +1,13 @@
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>10.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Helpers\Helpers.csproj" />
+    <PackageReference Include="NServiceBus.Transport.Bridge" Version="1.*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="7.*" />
+  </ItemGroup>
+</Project>

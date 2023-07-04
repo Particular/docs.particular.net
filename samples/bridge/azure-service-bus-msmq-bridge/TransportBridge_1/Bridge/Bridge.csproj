@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<LangVersion>10.0</LangVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.*" />
+		<PackageReference Include="NServiceBus.Transport.Bridge" Version="1.*" />
+		<PackageReference Include="NServiceBus.Transport.Msmq" Version="2.*" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Shared\Shared.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="System.Transactions" />
+	</ItemGroup>
+</Project>

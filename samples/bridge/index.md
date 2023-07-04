@@ -1,8 +1,8 @@
 ---
 title: Bridge samples
-reviewed: 2022-04-15
+reviewed: 2023-07-04
 related:
  - nservicebus/bridge
 ---
 
-These samples show how to bridge transports with the `NServiceBus.MessagingBridge` component.
+These samples show how to bridge transports with the NServiceBus Messaging Bridge.

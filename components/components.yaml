@@ -90,6 +90,7 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.MessagingBridge
   NugetOrder:
     - NServiceBus.MessagingBridge
+    - NServiceBus.Transport.Bridge
 
 - Key: Callbacks
   Name: Callbacks

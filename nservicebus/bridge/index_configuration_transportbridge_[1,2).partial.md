@@ -1,0 +1,1 @@
+`NServiceBus.Transport.Bridge` is packaged as a host-agnostic library. It can be hosted in a console application, a Windows service, a Docker container, or any service that supports the Microsoft Generic Host, similar to how [endpoints are hosted](/nservicebus/hosting/selecting.md).
