@@ -19,8 +19,6 @@ snippet: generic-host-builder-context
 
 If a logical endpoint communicates with other endpoints that use a different transport, it must be registered with the bridge. Endpoints are registered with the bridge on the transport they run on. The bridge then creates a proxy endpoint on each transport that needs to be bridged.
 
-WARNING: Mappings are case-sensitive
-
 snippet: endpoint-registration
 
 ## Registering publishers
@@ -33,7 +31,7 @@ The result is duplicate subscriptions for any endpoint that subscribes to an eve
 
 snippet: register-publisher
 
-NOTE: The endpoint name used when creating a `BridgeEndpoint` is case-sensitive, even if one or both transports don't require it. This is to accommodate all transports, some of which require a case-sensitive endpoint name. More details can be found on [this issue](https://github.com/Particular/NServiceBus.MessagingBridge/issues/175).
+WARN: The endpoint name used when creating a `BridgeEndpoint` is case-sensitive, even if one or both transports don't require it. This is to accommodate all transports, some of which require a case-sensitive endpoint name. More details can be found on [this issue](https://github.com/Particular/NServiceBus.MessagingBridge/issues/175).
 
 Legacy transports versions that use [message-driven pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) require the fully qualified assembly type name value to be passed. Note that passing the culture and public key is not needed as only the type name, assembly name, and assembly version are used in filtering subscribers by the message-driven pub/sub-feature.
 
@@ -68,8 +66,6 @@ snippet: auto-create-queues
 The bridge provides the ability to change the address of the queue of incoming messages.
 
 NOTE: When forwarding messages to MSMQ endpoints that run on different servers than the bridge, the addresses of the queues that messages should be forwarded to _must_ be provided.
-
-WARNING: Mappings are case-sensitive
 
 snippet: custom-address
 
@@ -107,6 +103,8 @@ snippet: custom-transport-name
 The bridge can be configured to allow a single ServiceControl installation to manage and monitor endpoints on all bridged transports. For example:
 
 snippet: platform-bridging
+
+WARN: The endpoint name used when creating a `BridgeEndpoint` is case-sensitive, even if one or both transports don't require it. This is to accommodate all transports, some of which require a case-sensitive endpoint name. More details can be found on [this issue](https://github.com/Particular/NServiceBus.MessagingBridge/issues/175).
 
 ### Audit queue
 
