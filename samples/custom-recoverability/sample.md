@@ -43,7 +43,7 @@ Message received. Id: 87283b82a892456d81eb1bfa05fb72e2
 
 ## Fault tolerance with custom recoverability
 
-In the 'Server' application, open `Program.cs`. There is a custom policy "MyCustomRetryPolicy" where the default NServivceBus [recoverability policy](/nservicebus/recoverability/) is invoked when an "ArgumentNullException" exception is encountered and at all other times the message is not retried and sent directly to the "error" queue.
+In the 'Server' application, open `Program.cs`. There is a custom policy `MyCustomRetryPolicy` where the default NServivceBus [recoverability policy](/nservicebus/recoverability/) is invoked when an `ArgumentNullException` exception is encountered and at all other times the message is not retried and sent directly to the "error" queue.
 
 snippet: mycustomretrypolicy
 
