@@ -89,7 +89,7 @@ Delayed Retries can be turned off by uncommenting the below line in the Server P
 
 snippet: disable
 
-When the sample is re-run the sample, after successive retries, the message is sent to the error queue without the delayed retries.
+Now when the sample is re-run, the message is sent to the error queue without the delayed retries after successive immediate retries.
 
 Now, in the 'Server' application, open `MyHandler.cs`. Comment out `throw new ArgumentNullException` and uncomment the ` throw new DivideByZeroException` line. When the solution is run, and the exception is thrown  the message is directly moved to the "error" queue without any retries ( as per the custom policy).
 
