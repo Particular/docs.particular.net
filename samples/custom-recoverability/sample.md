@@ -91,7 +91,7 @@ snippet: disable
 
 Now when the sample is re-run, the message is sent to the error queue without the delayed retries after successive immediate retries.
 
-Now, in the 'Server' application, open `MyHandler.cs`. Comment out `throw new ArgumentNullException` and uncomment the ` throw new DivideByZeroException` line. When the solution is run, and the exception is thrown  the message is directly moved to the "error" queue without any retries ( as per the custom policy).
+Now, in the "Server" application, open `MyHandler.cs`. Comment out `throw new ArgumentNullException` and uncomment the `throw new DivideByZeroException` line. When the solution is run and the exception is thrown, the message is directly moved to the "error" queue without any retries (as per the custom policy).
 
 ```
  INFO  Message received. Id: 5570fc08-098d-4784-8902-0205ab0ae594
