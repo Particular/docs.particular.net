@@ -1,7 +1,7 @@
 ---
 title: Configuring Hosting
 summary: Describes how to configure the ServicePulse host and connections
-reviewed: 2021-07-23
+reviewed: 2023-06-30
 component: ServicePulse
 redirects:
  - servicepulse/servicepulse-host-config
@@ -37,7 +37,9 @@ This configuration is stored in a Javascript file located in the ServicePulse is
 
 ## Configuring connections via the ServicePulse UI
 
-The connections to ServiceControl and ServiceControl Monitoring can be changed using the connections tab in the configuration screen in ServicePulse:
+The connections to ServiceControl and ServiceControl Monitoring can be changed using the connections tab in the configuration screen in ServicePulse.
+
+The ServiceControl Monitoring connection URL is optional and can be disabled by either leaving it blank and not entering a value or entering a "!" in the URL text box.
 
 ![Connections configuration](images/connections-configuration.png 'width=500')
 
