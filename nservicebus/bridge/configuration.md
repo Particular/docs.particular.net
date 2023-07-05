@@ -41,11 +41,7 @@ INFO: It is recommended to use the overloads that accept a type instead of a str
 
 ## Registering multiple publishers for the same event
 
-The messaging bridge will not allow to register multiple publishers for the same event according to the [events should be published by the logical owner](/nservicebus/messaging/messages-events-commands.md) convention, unless [enforcing of best practices is explicitly disabled](#do-not-enforce-best-practices).
-
-If the best practices are not enforced the bridge will log the following warning:
-
-> The following subscriptions with multiple registered publishers are ignored as best practices are not enforced:
+partial: multiple-publishers
 
 ### Referencing event types
 
@@ -117,13 +113,3 @@ WARN: The endpoint name used when creating a `BridgeEndpoint` is case-sensitive,
 ### Audit queue
 
 Special considerations are required for the audit queue due to potentially high message volume. For example, a [dedicated ServiceControl audit instance](/servicecontrol/audit-instances/) could be created for each bridged transport, to make audit ingestion more efficient.
-
-## Do not enforce best practices
-
-The bridge validates the configuration for the following state:
-
-- [Registering multiple publishers for the same event](#registering-multiple-publishers-for-the-same-event)
-
-Enforcing of best practices can be disabled via the following configuration:
-
-snippet: do-not-enforce-best-practices
