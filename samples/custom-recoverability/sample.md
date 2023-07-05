@@ -13,7 +13,7 @@ related:
 
 ---
 
-This sample demonstrates how to use custom recoverability policy. Here the default recoverability is invoked when a specifc exception type happens and at all other times it uses a custom recoverability action.
+This sample demonstrates how to use custom recoverability policy. Here the default recoverability is invoked when a specific exception type happens and at all other times it uses a custom recoverability action.
 
 The sample contains three projects:
 
