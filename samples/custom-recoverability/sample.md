@@ -61,7 +61,7 @@ In the 'Server' application, open `MyHandler.cs`. Uncomment the `throw new Argum
 
 snippet: MyHandler
 
-As per the custom recoverability policy, when the solution is run, the exception is thrown and the default [recoverability policy](/nservicebus/recoverability/) will be invoked before finalling moving to the "error" queue.
+As per the custom recoverability policy, when the solution is run, the exception is thrown and the default [recoverability policy](/nservicebus/recoverability/) will be invoked before finally moving to the "error" queue.
 
 
 **Server Output**
