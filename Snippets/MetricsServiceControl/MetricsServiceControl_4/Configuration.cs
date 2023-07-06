@@ -14,7 +14,7 @@ class Configuration
 
         metrics.SendMetricDataToServiceControl(
             serviceControlMetricsAddress: SERVICE_CONTROL_METRICS_ADDRESS,
-            interval: TimeSpan.FromSeconds(10),
+            interval: TimeSpan.FromMinutes(1),
             instanceId: "INSTANCE_ID_OPTIONAL");
         #endregion
 
@@ -37,7 +37,7 @@ class Configuration
 
         metrics.SendMetricDataToServiceControl(
             serviceControlMetricsAddress: SERVICE_CONTROL_METRICS_ADDRESS,
-            interval: TimeSpan.FromSeconds(10),
+            interval: TimeSpan.FromMinutes(1),
             instanceId: instanceIdentifier);
         #endregion
     }
