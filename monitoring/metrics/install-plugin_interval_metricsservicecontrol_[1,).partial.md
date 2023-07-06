@@ -4,7 +4,7 @@ Specifies the maximum delay between sending metrics report messages.
 
 The metrics plugin has a buffer and when that overflows a metric report message is sent and the buffer is cleared. When an endpoint instance is idle it will send metrics report messages at this interval to indicate it is idle. When the endpoint is under load the interval between metric messages will be much shorter as this buffer fills faster.
 
-The size of this buffer is fixed and cannot be adjusted and uses a value that is compatible with thel maximum message size limits of all supported transports.
+NOTE: The size of this buffer is fixed and cannot be adjusted. The size value chosen that is compatible with the maximum message size limits of all supported transports.
 
 The recommended value is between 10 and 60 seconds.
 
