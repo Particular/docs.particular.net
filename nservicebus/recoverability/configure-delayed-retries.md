@@ -7,6 +7,7 @@ redirects:
  - nservicebus/second-level-retries
 related:
  - samples/faulttolerance
+ - samples/custom-recoverability
 ---
 
 NOTE: Starting from NServiceBus version 6, the delayed retries policy (formerly known as second level retries policy) has been deprecated in favor of the new custom recoverability policy which allows more control over the recoverability behavior. This documentation shows how the previous delayed retries policies can be implemented with the new [recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md).

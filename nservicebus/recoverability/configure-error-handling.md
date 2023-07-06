@@ -7,6 +7,7 @@ redirects:
 - nservicebus/configure-error-queue
 related:
  - samples/faulttolerance
+ - samples/custom-recoverability
 ---
 
 ## Configure the error queue address
