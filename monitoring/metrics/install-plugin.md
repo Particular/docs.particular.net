@@ -8,7 +8,6 @@ redirects:
   - nservicebus/operations/metrics/service-control
 ---
 
-
 The `NServiceBus.Metrics.ServiceControl` component enables sending monitoring data gathered with `NServiceBus.Metrics` to a `ServiceControl.Monitoring` service.
 
 ## Configuration
@@ -20,7 +19,6 @@ It can be enabled via:
 snippet: SendMetricDataToServiceControl
 
 Note: The metrics feature can't be used on send-only endpoints
-
 
 ### Service Control Metrics Address
 
