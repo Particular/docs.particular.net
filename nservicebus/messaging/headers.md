@@ -53,11 +53,11 @@ States what type of body serialization is used. Used only by the legacy Azure Se
 
 The following headers include information for the receiving endpoint on the [message serialization](/nservicebus/serialization/) option that was used.
 
-
 ### NServiceBus.ContentType
 
-The type of serialization used for the message, for example `text/xml` or `text/json`. In some cases, it may be useful to use the `NServiceBus.Version` header to determine how to use the value in this header appropriately.
+The type of serialization used for the message, for example `text/xml`, `text/json`, `application/json`, or `application/json; systemjson`. In some cases, it may be useful to use the `NServiceBus.Version` header to determine how to use the value in this header appropriately.
 
+WARNING: Although this header mimicks the [HTTP Content-Type header](https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type) the values are matches case-sensitive. The header value does not behave like HTTP headers where everything after `;` is used to order and match the best qualified (application/json) serializer. Adding a suffix like `; systemjson` requires **all** endpoint involved to use this full key (for example: `application/json; systemjson`).
 
 ### NServiceBus.EnclosedMessageTypes
 
