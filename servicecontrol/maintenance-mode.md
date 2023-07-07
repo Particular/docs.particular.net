@@ -6,7 +6,7 @@ redirects:
 - servicecontrol/use-ravendb-studio
 ---
 
-NOTE: Requires a currently-supported version of Edge, Chrome, Firefox, or Safari. **Internet Explorer is unsupported!**
+NOTE: Requires a currently-supported version of Edge, Chrome, Firefox, or Safari. **Internet Explorer is not supported by RavenDB Management Studio!**
 
 ServiceControl stores data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If direct access to the RavenDB instance is required for troubleshooting, launch ServiceControl Management and follow these steps:
 
