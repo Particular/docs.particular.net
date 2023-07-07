@@ -60,10 +60,10 @@ If the system is running in containers, the throughput tool can be run from a co
     ls *.json
     ```
 1. Transfer the file to your local system so it can be sent to Particular Software.
-  - Suggestions to transfer the report json file:
-    a. Mount a folder/volume to the container
-    b. Use `cat` to write the report to the console and copy this to a file
-    c. Use an untrusted 3rd party file transfer service like https://transfer.sh or https://www.keep.sh/
+    - Suggestions to transfer the report json file:
+      - Mount a folder/volume to the container
+      - Use `cat` to write the report to the console and copy this to a file
+      - Use an untrusted 3rd party file transfer service like https://transfer.sh or https://www.keep.sh/
 
 ## Running the tool
 
