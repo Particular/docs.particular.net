@@ -10,20 +10,9 @@ The Particular endpoint throughput counter tool can be installed locally and run
 
 The tool can be installed as a .NET tool for Windows/Linux or as a self-contained Windows executable.
 
-### Prerequisites
-
-1. A .NET 6 environment
-
-Install [.NET 6.0](https://dotnet.microsoft.com/en-us/download) or run this tool via a (remote) shell hosted in a container that is based on the [Microsoft .NET SDK `mcr.microsoft.com/dotnet/sdk6.0` image](https://hub.docker.com/_/microsoft-dotnet-sdk/)
-
-#### Docker
-
-```shell
-docker run -it --name=throughputtool mcr.microsoft.com/dotnet/sdk:6.0 bash
-```
-
 ### .NET tool (recommended)
 
+1. Install [.NET 6.0](https://dotnet.microsoft.com/en-us/download).
 1. From a terminal window, use the following command to install the throughput counter from MyGet:
 
     ```shell
@@ -48,6 +37,31 @@ In this mode, the target system does not need any version of .NET preinstalled.
     ```shell
     Particular.EndpointThroughputCounter.exe [command] [options]
     ```
+
+### Docker
+
+If the system is running in Docker containers, the throughput tool can be run from a container that is based on the [Microsoft .NET SDK `mcr.microsoft.com/dotnet/sdk6.0` image](https://hub.docker.com/_/microsoft-dotnet-sdk/). Some systems will have such a container provisioned to access for system administration tasks.
+
+1. Open a remote shell using the following command:
+   ```shell
+   docker run -it --name=throughputtool mcr.microsoft.com/dotnet/sdk:6.0 bash
+   ```
+1. Use the following command to install the throughput counter from MyGet:
+    ```shell
+    dotnet tool install -g Particular.EndpointThroughputCounter --add-source=https://www.myget.org/F/particular/api/v3/index.json
+    ```
+1. Run the tool by executing `throughput-counter`:
+    ```shell
+    throughput-counter [command] [options]
+    ```
+1. When the tool completes, find the JSON report file output by the tool:
+   ```shell
+   ls *.json
+   ```
+1. Transfer the file to your local system so it can be sent to Particular Software.
+   ```shell
+   TODO
+   ```
 
 ## Running the tool
 
