@@ -43,10 +43,10 @@ In this mode, the target system does not need any version of .NET preinstalled.
 If the system is running in containers, the throughput tool can be run from a container that is based on the [Microsoft .NET SDK `mcr.microsoft.com/dotnet/sdk6.0` image](https://hub.docker.com/_/microsoft-dotnet-sdk/). Some systems will have such a container provisioned to access for system administration tasks.
 
 1. Launch a container based on `mcr.microsoft.com/dotnet/sdk6.0` and open a remote bash to this container instance:
-   ```shell
-   // For example, use Docker and launch a bash shell
-   docker run -it --name=throughputtool mcr.microsoft.com/dotnet/sdk:6.0 bash
-   ```
+    ```shell
+    // For example, use Docker and launch a bash shell
+    docker run -it --name=throughputtool mcr.microsoft.com/dotnet/sdk:6.0 bash
+    ```
 1. Use the following command to install the throughput counter from MyGet:
     ```shell
     dotnet tool install -g Particular.EndpointThroughputCounter --add-source=https://www.myget.org/F/particular/api/v3/index.json
@@ -60,10 +60,10 @@ If the system is running in containers, the throughput tool can be run from a co
     ls *.json
     ```
 1. Transfer the file to your local system so it can be sent to Particular Software.
-   ```shell
+    ```shell
     // Write report to console to copy and paste this in a local text file in any editor of choice
     cat customer-name-YYYYMMDD-HHMMSS.json
-   ```
+    ```
 
 ## Running the tool
 
