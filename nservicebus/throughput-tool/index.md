@@ -61,8 +61,11 @@ If the system is running in containers, the throughput tool can be run from a co
     ```
 1. Transfer the file to your local system so it can be sent to Particular Software.
     ```shell
-    // Write report to console to copy and paste this in a local text file in any editor of choice
-    cat customer-name-YYYYMMDD-HHMMSS.json
+    # Example: Use cat to write the report to the console. This might not be ideal when dealing with large reports.
+    cat ./customer-name-YYYYMMDD-HHMMSS.json
+
+    # Example: Upload the via to an intermediary like. For example, use https://transfer.sh to upload the report, navigate to the returned url, download the report, and delete the file from the service.
+    curl --upload-file ./customer-name-YYYYMMDD-HHMMSS.json https://transfer.sh
     ```
 
 ## Running the tool
