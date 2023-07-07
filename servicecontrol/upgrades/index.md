@@ -1,7 +1,7 @@
 ---
 title: Upgrade Tips
 summary: Tips for upgrading to newer versions of ServiceControl.
-reviewed: 2022-12-16
+reviewed: 2023-07-07
 related:
 ---
 
@@ -14,6 +14,7 @@ related:
 1. Account for queue storage size. While ServiceControl is down, messages are not ingested but they will still build up in the queue. If the system has a high message throughput the queues act as a buffer. Ensure queues will not run out of storage (quota) space as when queues are full no new messages can be added which will cause application outage.
 1. Analyze the storage size for each ServiceControl instance and update starting from the smallest to the largest. This helps understand how smaller migrations run and can be used to extrapolate how long updating the larger instances will take which can help decided whether a side-by-side upgrade is necessary.
 
+Note: Upgrading the ServiceControl will not upgrade each of the individual error, monitoring or audit instances. Each of those instances will need to be upgraded separately if desired.
 
 ## Downgrading ServiceControl
 

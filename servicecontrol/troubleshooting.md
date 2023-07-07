@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Troubleshooting
 summary: Troubleshooting ServiceControl installation and common issues
-reviewed: 2021-10-05
+reviewed: 2023-07-07
 ---
 
 INFO: Many issues can be resolved by upgrading to the [latest version of ServiceControl](https://particular.net/downloads) and by ensuring the host meets the minimum [general hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations).
@@ -180,12 +180,14 @@ This risk of these error occurring is mitigated by:
 - [Ensuring enough storage space is available](capacity-and-planning.md#storage-size)
 - [Setting up server monitoring and proactively monitoring free storage space](servicecontrol-in-practice.md#server-monitoring)
 
+#### Reset selected indexes
 To resolve these errors, the affected indexes must be rebuilt:
 
 - Start the [ServiceControl (audit or error) in maintenance mode](maintenance-mode.md)
 - In RavenDB Management Studio, navigate to the Indexes view
 - [Reset the relevant index(es)](https://ravendb.net/docs/article-page/3.5/csharp/server/administration/index-administration)
 
+#### Rebuild all indexes
 If many indexes are affected it may be easier to rebuild all indexes, although this can take a very long time if the database is large, and it will use a lot of CPU and storage IO capacity:
 
 - Stop the ServiceControl (audit or error) instance
