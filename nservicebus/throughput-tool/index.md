@@ -64,8 +64,13 @@ If the system is running in containers, the throughput tool can be run from a co
     # Example: Use cat to write the report to the console. This might not be ideal when dealing with large reports.
     cat ./customer-name-YYYYMMDD-HHMMSS.json
 
-    # Example: Upload the via to an intermediary like. For example, use https://transfer.sh to upload the report, navigate to the returned url, download the report, and delete the file from the service.
+    # IMPORTANT: The following examples use 3rd party services. Review and accept their privacy policies regarding data privacy and removal concerns
+    
+    # Example: Upload the via https://transfer.sh, navigate to the returned url, download the report, and delete the file from the service.
     curl --upload-file ./customer-name-YYYYMMDD-HHMMSS.json https://transfer.sh
+
+    # Example: Upload the via https://www.keep.sh/, navigate to the returned url, download the report, and delete the file from the service.
+    curl --upload-file ./customer-name-YYYYMMDD-HHMMSS.json https://www.keep.sh/
     ```
 
 ## Running the tool
