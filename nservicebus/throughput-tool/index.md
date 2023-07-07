@@ -10,9 +10,20 @@ The Particular endpoint throughput counter tool can be installed locally and run
 
 The tool can be installed as a .NET tool for Windows/Linux or as a self-contained Windows executable.
 
+### Prerequisites
+
+1. A .NET 6 environment
+
+Install [.NET 6.0](https://dotnet.microsoft.com/en-us/download) or run this tool via a (remote) shell hosted in a container that is based on the [Microsoft .NET SDK `mcr.microsoft.com/dotnet/sdk6.0` image](https://hub.docker.com/_/microsoft-dotnet-sdk/)
+
+#### Docker
+
+```shell
+docker run -it --name=throughputtool mcr.microsoft.com/dotnet/sdk:6.0 bash
+```
+
 ### .NET tool (recommended)
 
-1. Install [.NET 6.0](https://dotnet.microsoft.com/en-us/download).
 1. From a terminal window, use the following command to install the throughput counter from MyGet:
 
     ```shell
