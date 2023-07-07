@@ -60,18 +60,10 @@ If the system is running in containers, the throughput tool can be run from a co
     ls *.json
     ```
 1. Transfer the file to your local system so it can be sent to Particular Software.
-    ```shell
-    # Example: Use cat to write the report to the console. This might not be ideal when dealing with large reports.
-    cat ./customer-name-YYYYMMDD-HHMMSS.json
-
-    # IMPORTANT: The following examples use 3rd party services. Review and accept their privacy policies regarding data privacy and removal concerns
-    
-    # Example: Upload the via https://transfer.sh, navigate to the returned url, download the report, and delete the file from the service.
-    curl --upload-file ./customer-name-YYYYMMDD-HHMMSS.json https://transfer.sh
-
-    # Example: Upload the via https://www.keep.sh/, navigate to the returned url, download the report, and delete the file from the service.
-    curl --upload-file ./customer-name-YYYYMMDD-HHMMSS.json https://www.keep.sh/
-    ```
+  - Suggestions to transfer the report json file:
+    a. Mount a folder/volume to the container
+    b. Use `cat` to write the report to the console and copy this to a file
+    c. Use an untrusted 3rd party file transfer service like https://transfer.sh or https://www.keep.sh/
 
 ## Running the tool
 
