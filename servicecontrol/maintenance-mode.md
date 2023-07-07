@@ -1,7 +1,7 @@
 ---
 title: ServiceControl maintenance mode
 summary: How to get direct access to the embedded RavenDB instance.
-reviewed: 2021-03-16
+reviewed: 2023-07-07
 redirects:
 - servicecontrol/use-ravendb-studio
 ---

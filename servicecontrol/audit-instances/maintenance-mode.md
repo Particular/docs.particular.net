@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Audit maintenance mode
 summary: How to get direct access to the embedded RavenDB instance.
-reviewed: 2021-03-16
+reviewed: 2023-07-07
 ---
 
 NOTE: Requires a currently-supported version of Edge, Chrome, Firefox, or Safari. **Internet Explorer is not supported by RavenDB Management Studio!**
