@@ -19,6 +19,8 @@ The default content type used is `application/json` but can be changed using:
 
 snippet: SystemJsonContentType
 
+WARNING: Adding a suffix like `; systemjson` requires **all** endpoint involved to use this full key `application/json; systemjson` and must have a case-sensitive match. The [NServiceBus.ContentType](/nservicebus/messaging/headers#serialization-headers-nservicebus-contenttype) header value does not behave like HTTP headers where everything after `;` is used to order and match the best qualified (application/json) serializer.
+
 ### Customizing serialization options
 
 To control how the serialization and deserialzation is performed [JsonSerializerOptions](https://learn.microsoft.com/en-us/dotnet/api/system.text.json.jsonserializeroptions) can be passed in:
