@@ -1,1 +1,0 @@
-NOTE: When receiving messages sent by endpoints that use later versions, the values of correlation ID and reply-to address should be read from the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`) instead. The value `Recoverable` can be ignored as it is always `true`/`1`.

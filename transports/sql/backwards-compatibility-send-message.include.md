@@ -1,1 +1,0 @@
-NOTE: When sending messages to endpoints that use later versions, the values of correlation ID and reply-to address columns could be set to `NULL` and the actual values are provided in the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`). The value `Recoverable` should always be `true`/`1`.
