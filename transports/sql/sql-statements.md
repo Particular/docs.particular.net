@@ -78,7 +78,7 @@ Retrieves a message from the queue.
 
 snippet: ReceiveTextSql
 
-The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) transport
+The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) package. The values of correlation ID and reply-to address should be read from the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`) instead. The value `Recoverable` can be ignored as it is always `true`/`1`.
 
 include: backwards-compatibility-receive-message
 
