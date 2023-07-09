@@ -88,7 +88,7 @@ Places a message on the queue.
 
 snippet: SendTextSql
 
-The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) transport
+The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) package. The values of the correlation ID and reply-to address columns should be set to `NULL` and the actual values provided in the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`). The value `Recoverable` should always be `true`/`1`.
 
 include: backwards-compatibility-send-message
 
