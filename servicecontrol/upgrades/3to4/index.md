@@ -17,9 +17,9 @@ This upgrade does not contain any data migrations, so the size of the database d
 
 ### Required minimum version
 
-Before upgrading to ServiceControl version 4 the instance being upgraded must be upgraded to at least [version 3.8.2](https://github.com/Particular/ServiceControl/releases/tag/3.8.2).
+Before upgrading to ServiceControl version 4 the instance being upgraded must be upgraded to at least [version 3.8.3](https://github.com/Particular/ServiceControl/releases/tag/3.8.3).
 
-For more information how to upgrade from Version 1.x to 3.8.2 consult the [upgrade documentation](/servicecontrol/upgrades/).
+For more information how to upgrade from Version 1.x to 3.8.3 consult the [upgrade documentation](/servicecontrol/upgrades/).
 
 ### Editing older instances
 
