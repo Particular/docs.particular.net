@@ -14,7 +14,7 @@ While this may result in a large number of releases, only a small fraction usual
 
 ## Semantic versioning
 
-All components follow [SemVer 2.0.0](https://semver.org/spec/v2.0.0.html). This helps determine the urgency, risk, and effort of an upgrade.
+All components generally follow [SemVer 2.0.0](https://semver.org/spec/v2.0.0.html). This helps determine the urgency, risk, and effort of an upgrade.
 
 SemVer is a simple set of rules and requirements that dictate how version numbers are assigned and incremented.
 
