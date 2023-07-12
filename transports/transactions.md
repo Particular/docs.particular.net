@@ -106,7 +106,7 @@ snippet: TransportTransactionAtomicSendsWithReceive
 
 #### Consistency guarantees
 
-This mode has the same consistency guarantees as the *Receive Only* mode, but additionally it prevents occurrence of *ghost messages* since all outgoing operations are atomic with the ongoing receive operation.
+This mode has the same consistency guarantees as the *Receive Only* mode, but additionally it prevents occurrence of [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) since all outgoing operations are atomic with the ongoing receive operation.
 
 
 ### Unreliable (Transactions Disabled)

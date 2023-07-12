@@ -129,6 +129,9 @@ NServiceBus has some sensible defaults for logging built in and, for more advanc
 
 An alternative to Distributed Transactions to provide exactly-once message processing semantics when accessing user data store as part of message processing.
 
+### [Ghost Message](/nservicebus/outbox/#the-consistency-problem)
+
+Message handlers that modify business data in a database can run into problems when the messages that are sent become inconsistent with the changes made to business data, resulting in ghost messages or phantom records.
 
 ### [Idempotence](https://en.wikipedia.org/wiki/Idempotence)
 
