@@ -2,7 +2,7 @@
 title: Configuration order for persistence
 summary: When configuring persistence, order is important
 component: Core
-reviewed: 2020-07-11
+reviewed: 2023-07-08
 versions: '[5.0,)'
 redirects:
 - nservicebus/persistence-order

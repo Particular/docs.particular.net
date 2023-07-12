@@ -27,12 +27,12 @@
             #endregion
         }
 
-
         void Setup2(EndpointConfiguration endpointConfiguration)
         {
             #region PersistenceOrder_Incorrect
 
             endpointConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
+
             // This one will override the above settings
             endpointConfiguration.UsePersistence<RavenDBPersistence>();
             #endregion

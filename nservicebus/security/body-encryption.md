@@ -2,7 +2,7 @@
 title: Message Body Encryption
 summary: Storing message bodies fully encrypted in the queueing infrastructure
 component: Core
-reviewed: 2020-06-29
+reviewed: 2023-07-08
 related:
 - samples/encryption
 - nservicebus/security
