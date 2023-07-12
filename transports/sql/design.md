@@ -29,7 +29,7 @@ The `CorrelationId` column contains the value of `NServiceBus.CorrelationId` hea
 
 ### ReplyToAddress
 
-The `ReplyToAddress` column contains the value of `NServiceBus.ReplyToAddress` header. This value is kept in a separate column to he maintain wire-level compatibility with [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) transport Version 1 and lower.
+The `ReplyToAddress` column contains the value of `NServiceBus.ReplyToAddress` header. This value is kept in a separate column to he maintain wire-level compatibility with [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) transport Version 1.
 
 
 ### Recoverable
