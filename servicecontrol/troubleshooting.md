@@ -137,13 +137,21 @@ When building ServiceControl, all build artifacts are virus scanned to ensure no
 
 ## Stale indexes
 
-The database technology used for ServiceControl is based on asynchronous index updates. Indexes are not updated immediately, but very soon after data updates. A healthy system has indexes updated in milliseconds or up to several seconds under load. When indexes get very stale, this means that indexes lag behind for a long duration and can affect data presented and started tasks.
+Each ServiceControl service stores its data in a RavenDB embedded database. Indexes are used by RavenDB as way to query the documents. This indexing is done asynchronously in the background and is triggered whenever data is added or changed. The use of indexing is that it allows the server to respond quickly even when large amounts of data have changed and avoids costly table scan operations.
+
+But a downside of this is that as indexes are not updated immediately and they can become stale quickly. A healthy system has indexes updated in milliseconds or up to several seconds under load. When indexes get very stale, this means that indexes lag behind for a long duration and can affect data presented and started tasks.
 
 Systems are affected by severe index lag when the following custom check message is presented:
 
 > At least one index significantly stale. Please run maintenance mode if this custom check persists to ensure index(es) can recover. See log file in `{LogPath}` for more details.
 
-After launching a ServiceControl instance in maintenance mode, message ingestion stops but the database engine still runs and messages will continue to queue. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful when the storage isn't fast enough to do both message ingestion and index operations.
+A warning message is seen in the logs when the Indexing lag exceeds the default threshold value of 10,000
+
+```txt
+2023-07-03 09:41:08.4189|6|Warn|ServiceControl.CheckRavenDBIndexLag|Index [ExpiryKnownEndpointsIndex] IndexingLag 22,242 is above warning threshold (10,000). Launch in maintenance mode to let indexes catch up.
+```
+
+This can be usually resolved by launching  the ServiceControl instance in maintenance mode and letting the indexes catch up. Message ingestion stops but the database engine still runs and messages will continue to queue. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful when the storage isn't fast enough to do both message ingestion and index operations.
 
 Consider upgrading the storage if these errors persists.
 
@@ -194,6 +202,8 @@ If many indexes are affected it may be easier to rebuild all indexes, although t
 - Navigate to the [database folder](configure-ravendb-location.md) on disk
 - Delete the `Indexes` folder
 - Start the ServiceControl instance
+
+Info: Sometimes deleting the 'Indexes' folder or the database folder can cause the audit instance to not start. If that comtimues to happen, try running the ServiceControl.Audit.exe /setup 
 
 ## High CPU utilization
 
@@ -268,3 +278,37 @@ Review if the listed hostname in the `ServiceControl/RemoteInstances` setting is
 ### Stopped audit instance
 
 Review if all listed audit instances are running.
+
+## No destination specified for message
+
+If queue name is incorrect in the audit instance config, the following error can be seen in the audit logs
+
+```txt
+2023-06-20 13:38:45.4426|7|Warn|ServiceControl.Audit.Auditing.AuditPersister|Processing of message '7437b01e-32c1-4a29-9aed-f0c86ac64ebe' failed.
+System.Exception: No destination specified for message: ServiceControl.Contracts.EndpointControl.RegisterNewEndpoint
+   at NServiceBus.UnicastSendRouter.RouteUsingTable(IOutgoingSendContext context) in /_/src/NServiceBus.Core/Routing/UnicastSendRouter.cs:line 108
+```
+
+This error is caused if there is no setting for ServiceControl.Audit/ServiceControlQueueAddress. Check the audit instance config file in the audit installation path  and add in the missing key value
+
+ ```xml
+<add key="ServiceControl.Audit/ServiceControlQueueAddress" value="[QUEUENAMEGOESHERE]"/>
+```
+
+## File/Folder used by another process
+
+Sometimes the logs could have the following errors
+
+```txt
+System.IO.IOException: Error during flush for FailedMessageFacetsIndex ---> System.IO.IOException: The process cannot access the file 'D:\ServiceControl-Share\Particular.Servicecontrol\DB\Indexes\10\_49l.cfs' because it is being used by another process.
+```
+ or 
+```txt
+ 2023-06-01 16:58:02.9925|8|Error|Raven.Database.DocumentDatabase|Could not initialize transactional storage, not creating database
+System.InvalidOperationException: Could not write to location: C:\ProgramData\Particular\ServiceControl\Particular.servicecontrol.audit\DB\
+Make sure there is  read/write permissions for this path.
+Microsoft.Isam.Esent.Interop.EsentFileAccessDeniedException: Cannot access file, the file is locked or in use
+   at Microsoft.Isam.Esent.Interop.Api.JetInit(JET_INSTANCE& instance)
+```
+
+Such errors indicate that the file or folder  is being used by another process. Ensure that ServiceControl database directory, sub-directory and files, is [excluded from any anti-virus](servicecontrol-in-practice.md#anti-virus-checks) and anti-malware real-time and scheduled scan. If there are no virus scans on the file or folder, then use any process explorer tool to see what other application may be competing with the file or folder.
