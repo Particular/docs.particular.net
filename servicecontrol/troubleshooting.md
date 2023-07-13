@@ -311,4 +311,4 @@ Microsoft.Isam.Esent.Interop.EsentFileAccessDeniedException: Cannot access file,
    at Microsoft.Isam.Esent.Interop.Api.JetInit(JET_INSTANCE& instance)
 ```
 
-Such errors indicate that the file or folder  is being used by another process. Ensure that ServiceControl database directory, sub-directory and files, is [excluded from any anti-virus](servicecontrol-in-practice.md#anti-virus-checks) and anti-malware real-time and scheduled scan. If there are no virus scans on the file or folder, then use any process explorer tool to see what other application may be competing with the file or folder.
+Such errors indicate that the file or folder is being used by another process. Ensure that ServiceControl database directory, sub-directory and files, is [excluded from any anti-virus](servicecontrol-in-practice.md#anti-virus-checks) and anti-malware real-time and scheduled scan. If there are no virus scans on the file or folder, then use any process explorer tool to see what other application may be competing with the file or folder.
