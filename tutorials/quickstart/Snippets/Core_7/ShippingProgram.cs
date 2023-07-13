@@ -23,6 +23,8 @@ namespace Shipping
                            // Define the endpoint name
                            var endpointConfiguration = new EndpointConfiguration("Shipping");
 
+                           endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
                            // Select the learning (filesystem-based) transport to communicate
                            // with other endpoints
                            endpointConfiguration.UseTransport<LearningTransport>();
@@ -35,7 +37,7 @@ namespace Shipping
 
                            // Enable monitoring endpoint performance
                            var metrics = endpointConfiguration.EnableMetrics();
-                           metrics.SendMetricDataToServiceControl("Particular.Monitoring", 
+                           metrics.SendMetricDataToServiceControl("Particular.Monitoring",
                                TimeSpan.FromMilliseconds(500));
 
                            // Return the completed configuration
