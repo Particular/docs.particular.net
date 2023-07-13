@@ -115,7 +115,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.3) | 2022-11-17     | -                 | -                                 |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.5) | 2022-07-14     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
-| [6.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.6) | 2021-05-07     | 2023-07-14        | Superseded by 7.0.x               |
+| [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.6) | ~~2021-05-07~~ | ~~2023-07-14~~    | ~~Superseded by 7.0.x~~           |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | ~~2020-07-13~~ | ~~2021-08-07~~    | ~~Superseded by 6.1.x~~           |
 | [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.2.0) | ~~2020-04-17~~ | ~~2021-07-13~~    | ~~Superseded by 6.0.x~~           |
 | [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/5.1.2) | ~~2019-03-27~~ | ~~2020-07-17~~    | ~~Superseded by 5.2.x~~           |
@@ -997,7 +997,7 @@ No versions released.
 | [2.32.x](https://www.nuget.org/packages/Particular.PlatformSample/2.32.0) | 2023-06-02     | 2023-09-07        | Superseded by 2.33.x              |
 | [2.31.x](https://www.nuget.org/packages/Particular.PlatformSample/2.31.0) | 2023-04-19     | 2023-09-02        | Superseded by 2.32.x              |
 | [2.30.x](https://www.nuget.org/packages/Particular.PlatformSample/2.30.0) | 2023-04-14     | 2023-07-19        | Superseded by 2.31.x              |
-| [2.28.x](https://www.nuget.org/packages/Particular.PlatformSample/2.28.0) | 2023-04-04     | 2023-07-14        | Superseded by 2.30.x              |
+| [~~2.28.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.28.0) | ~~2023-04-04~~ | ~~2023-07-14~~    | ~~Superseded by 2.30.x~~          |
 | [~~2.27.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.27.0) | ~~2023-03-28~~ | ~~2023-07-04~~    | ~~Superseded by 2.28.x~~          |
 | [~~2.26.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.26.0) | ~~2023-03-08~~ | ~~2023-06-28~~    | ~~Superseded by 2.27.x~~          |
 | [~~2.25.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.25.0) | ~~2023-02-28~~ | ~~2023-06-08~~    | ~~Superseded by 2.26.x~~          |
