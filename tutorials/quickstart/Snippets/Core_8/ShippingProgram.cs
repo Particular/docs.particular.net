@@ -23,6 +23,7 @@ namespace Shipping
                            // Define the endpoint name
                            var endpointConfiguration = new EndpointConfiguration("Shipping");
 
+                           // Choose JSON to serialize and deserialize messages
                            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
                            // Select the learning (filesystem-based) transport to communicate
