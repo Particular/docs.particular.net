@@ -14,6 +14,9 @@ namespace ClientUI
 
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
+            // Choose JSON to serialize and deserialize messages
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
             var routing = transport.Routing();

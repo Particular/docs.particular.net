@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-namespace Core_6
+namespace Core_8
 {
     public class PlaceOrderHandler :
         IHandleMessages<PlaceOrder>
