@@ -1,8 +1,8 @@
-﻿using System;
+﻿using NServiceBus;
+using System;
 using System.Threading.Tasks;
-using NServiceBus;
 
-namespace Core_6
+namespace Core_8
 {
     class Snippets
     {
@@ -12,7 +12,7 @@ namespace Core_6
 
             #region SendLocal
             // From endpoint startup code
-            await endpointInstance.SendLocal(command)
+            await endpointInstance.SendLocal(command, context.CancellationToken)
                 .ConfigureAwait(false);
 
             // From a message handler
@@ -22,7 +22,7 @@ namespace Core_6
 
             #region Send
             // From endpoint startup code
-            await endpointInstance.Send(command)
+            await endpointInstance.Send(command, context.CancellationToken)
                 .ConfigureAwait(false);
 
             // From a message handler
@@ -32,7 +32,7 @@ namespace Core_6
 
             #region SendDestination
             // Not recommended, most of the time
-            await endpointInstance.Send("Destination", command)
+            await endpointInstance.Send("Destination", command, context.CancellationToken)
                 .ConfigureAwait(false);
 
             // On the IMessageHandlerContext too, but still not recommended
