@@ -1,18 +1,17 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
-namespace Core_6.EmptyHandlerAsync
+namespace Core_8.EmptyHandler
 {
-#pragma warning disable 1998
-    #region EmptyHandlerAsync
+    #region EmptyHandler
     public class DoSomethingHandler :
         IHandleMessages<DoSomething>
     {
-        public async Task Handle(DoSomething message, IMessageHandlerContext context)
+        public Task Handle(DoSomething message, IMessageHandlerContext context)
         {
             // Do something with the message here
+            return Task.CompletedTask;
         }
     }
     #endregion
-#pragma warning restore 1998
 }

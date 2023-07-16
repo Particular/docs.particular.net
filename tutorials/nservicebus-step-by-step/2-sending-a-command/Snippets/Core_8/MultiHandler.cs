@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using NServiceBus;
 
-namespace Core_6.MultiHandler
+namespace Core_8.MultiHandler
 {
 
     #region MultiHandler

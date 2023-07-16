@@ -1,6 +1,6 @@
-﻿using System;
+﻿using NServiceBus;
+using System;
 using System.Threading.Tasks;
-using NServiceBus;
 
 namespace ClientUI
 {
@@ -13,6 +13,9 @@ namespace ClientUI
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
+
+            // Choose JSON to serialize and deserialize messages
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
