@@ -9,7 +9,7 @@ A glossary of terms used in distributed systems related to NServiceBus.
 
 ### [Message](/nservicebus/messaging/)
 
-A Message is the unit of communication for NServiceBus. Messages are send and received by endpoints. There are two general types of messages:
+A Message is the unit of communication for NServiceBus. Messages are sent and received by endpoints. There are two general types of messages:
 
  * [Command](/nservicebus/messaging/messages-events-commands.md): Used to request that an action should be taken.
  * [Event](/nservicebus/messaging/messages-events-commands.md): Used to communicate that some action has taken place.
