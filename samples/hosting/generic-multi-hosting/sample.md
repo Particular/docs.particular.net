@@ -11,11 +11,11 @@ redirects:
 
 ## Code walk-through
 
-This sample shows how to host multiple endpoints in one generic host process by using multiple `IHostBuilder` instances. When started, the application creates two host builder instances, each configured for a different endpoint that could be using a different configurations:
+This sample shows how to host multiple endpoints in one generic host process by using multiple `IHostBuilder` instances. When started, the application creates two host builder instances, each configured for a different endpoint that could be using different configurations:
 
 snippet: multi-hosting-startup
 
-An important thing to keep in mind is that [dependency injection](/nservicebus/dependency-injection/) is used internally to register components, handlers, and sagas. Each host has a separate ServiceProvider which means the containers are not shared between the endpoints. 
+An important thing to keep in mind is that [dependency injection](/nservicebus/dependency-injection/) is used internally to register components, handlers, and sagas. Each host has a separate ServiceProvider which means the containers are not shared between the endpoints.
 
 To ensure that each endpoint instance registers only its own components like message handlers, it is important to specify an assembly scan policy using [one of the supported approaches](/nservicebus/hosting/assembly-scanning.md).
 
