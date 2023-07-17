@@ -2,7 +2,7 @@
 title: Delayed Delivery
 summary: Delay delivery of messages until a later time.
 component: core
-reviewed: 2020-07-22
+reviewed: 2023-07-16
 related:
  - samples/delayed-delivery
 ---
