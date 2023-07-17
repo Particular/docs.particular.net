@@ -15,18 +15,25 @@ related:
 
 This sample demonstrates how to use custom recoverability policy. Here the default recoverability is invoked when a specific exception type happens and at all other times it uses a custom recoverability action.
 
+downloadbutton
+
+## Sample structure
+
 The sample contains three projects:
 
 - Shared - The Shared project is for shared classes including message definitions
 - Client - A console application responsible for sending the messages.
 - Server - A console application responsible for receiving the messages from the client.
 
-Run the solution. Two console applications start, the Client and the Server.
-In the Client console, press "Enter" to send a message.
-In the Server console, this message is received and an entry is logged in the console
+## Running the sample
 
+To start, the sample is configured to run without failing:
 
-**Client output**
+1. Run the solution. Two console applications start, the Client and the Server.
+1. In the Client console, press "Enter" to send a message.
+1. In the Server console, this message is received and an entry is logged in the console
+
+### Client output
 
 ```
 Press 'Enter' to send a message.
@@ -34,7 +41,7 @@ Press any key to exit
 Sent a new message with id: 87283b82a892456d81eb1bfa05fb72e2
 ```
 
-**Server output**
+### Server output
 
 ```
 Press any key to exit
@@ -55,7 +62,7 @@ Custom headers are added to the message before sending to the "error" queue.
 
 snippet: addcustomheaders
 
-### Make the handler fail
+## Make the handler fail
 
 In the 'Server' application, open `MyHandler.cs`. Uncomment the `throw new ArgumentNullException` line.
 
@@ -64,7 +71,7 @@ snippet: MyHandler
 As per the custom recoverability policy, when the solution is run, the exception is thrown and the default [recoverability policy](/nservicebus/recoverability/) will be invoked before finally moving to the "error" queue.
 
 
-**Server Output**
+### Server Output
 
 ```
 INFO  Message received. Id: 76d8b5c3-c41b-4179-b995-4e68f3c5b7eb
