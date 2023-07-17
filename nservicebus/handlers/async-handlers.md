@@ -10,7 +10,7 @@ WARNING: It is difficult to give generic advice on how asynchronous code should 
 
 [Handlers](/nservicebus/handlers/) and [sagas](/nservicebus/sagas/) are executed by threads from the thread pool. Depending on the transport implementation the worker thread pool thread or the I/O thread pool thread might be used. Typically message handlers and sagas issue I/O-bound work, such as sending or publishing messages, storing information into databases, and calling web services. In other cases, message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas, it is crucial to understand the difference between those scenarios.
 
-### Thread pool
+## Thread pool
 
 A thread pool is associated with a process and manages the execution of asynchronous callbacks on behalf of the application. Its primary purpose is to reduce the number of application threads and provide efficient management of threads. Every thread pool manages a pool of threads designated to handle one class of workload: either I/O-bound or compute-bound work.
 
@@ -22,30 +22,30 @@ Further reading:
 * [Thread Pooling](https://msdn.microsoft.com/en-us/library/windows/desktop/ms686756.aspx)
 * [I/O Completion Ports](https://msdn.microsoft.com/en-us/library/windows/desktop/aa365198.aspx)
 
-#### Worker thread pool
+### Worker thread pool
 
 Parallel / Compute-bound blocking work happens on the worker thread pool. Things like [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx), [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx), or [`Parallel.For`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.parallel.for.aspx) schedule tasks on the worker thread pool.
 
 Whenever a compute-bound work is scheduled, the worker thread pool will start expanding its worker threads (ramp-up phase). Ramping up more worker threads is expensive. The thread injection rate of the worker thread pool is limited.
 
-**Compute-bound recommendations:**
+#### Compute-bound recommendations:
 
 * Manual scheduling of compute-bound work to the worker thread pool is a top-level concern only. Use [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx) or [`Task.Factory.StartNew`](https://msdn.microsoft.com/en-au/library/dd321439.aspx) as high up in the call hierarchy as possible (e.g. in the `Handle` methods of either a [handler](/nservicebus/handlers/) or [saga](/nservicebus/sagas/).
 * Avoid those operations deeper in the call hierarchy.
 * Group compute-bound operations together as much as possible.
 * Make compute-bound operations coarse-grained instead of fine-grained.
 
-#### I/O-thread pool
+### I/O-thread pool
 
 I/O-bound work is scheduled on the I/O-thread pool. The I/O-bound thread pool has a fixed number of worker threads (usually equal to the number of cores) which can work concurrently on thousands of I/O-bound tasks. I/O-bound work under Windows uses [I/O completion ports (IOCP)](https://msdn.microsoft.com/en-us/library/windows/desktop/aa365198.aspx) to get notifications when an I/O-bound operation is completed. IOCP enables efficient offloading of I/O-bound work from the user code to the kernel, driver, and hardware without blocking the user code until the I/O work is done. To achieve that, the user code registers notifications in the form of a callback. The callback occurs on an I/O thread which is a pool thread managed by the I/O system that is made available to the user code.
 
 I/O-bound work typically takes longer to complete compared to compute-bound work. The I/O system is optimized to keep the thread count low and schedule all callbacks, and therefore the execution of interleaved user code on that one thread. Due to those optimizations, all work gets serialized, and there is minimal context switching as the OS scheduler owns the threads. In general, asynchronous code can handle bursting traffic much better because of the "always-on" nature of the IOCP.
 
-#### Memory and allocations
+### Memory and allocations
 
 Asynchronous code tends to use much less memory because the amount of memory saved by freeing up a thread in the worker thread pool dwarfs the amount of memory used for all the compiler-generated async structures combined.
 
-#### Synchronous vs. asynchronous
+### Synchronous vs. asynchronous
 
 If each request is examined in isolation, asynchronous code would be slightly slower than the corresponding synchronous version. There might be extra kernel transitions, task scheduling, etc. involved but the scalability more than makes up for it.
 
