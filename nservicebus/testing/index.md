@@ -64,7 +64,7 @@ snippet: TestMessageSessionSend
 Testing a saga can be accomplished in one of two ways:
 
 1. Test saga handler methods individually, similar to testing a handler. With this testing method, the test must supply some of the conditions (such as the contents of the saga data) normally provided by the NServiceBus framework. This testing method is described below.
-1. [Saga scenario testing](saga-scenario-testing.md), in which the results of a scenario consisting of multiple message inputs can be tested with a virtual saga storage to store the saga data between messages. This also adds a virtual concept of time, allowing the test to advance time by a set period between message and observe the results of the saga timeouts that would be fired during that time. With this testing method, the testing framework emulates much of the behaviors provided by NServiceBus in production.
+1. [Saga scenario testing](saga-scenario-testing.md), in which the results of a scenario consisting of multiple message inputs can be tested with a virtual saga storage to store the saga data between messages. This also adds a virtual concept of time, allowing the test to advance time by a set period between messages and enabling observation of the results of the saga timeouts that would be fired during that time. With this testing method, the testing framework emulates much of the behavior provided by NServiceBus in production.
 
 ### Testing saga handlers
 
