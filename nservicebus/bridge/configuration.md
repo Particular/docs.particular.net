@@ -33,11 +33,11 @@ snippet: register-publisher
 
 WARN: The endpoint name used when creating a `BridgeEndpoint` is case-sensitive, even if one or both transports don't require it. This is to accommodate all transports, some of which require a case-sensitive endpoint name. More details can be found on [this issue](https://github.com/Particular/NServiceBus.MessagingBridge/issues/175).
 
-Legacy transports versions that use [message-driven pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) require the fully qualified assembly type name value to be passed. Note that passing the culture and public key is not needed as only the type name, assembly name, and assembly version are used in filtering subscribers by the message-driven pub/sub-feature.
+Legacy transport versions that use [message-driven pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) require the fully qualified assembly type name value to be passed. Note that passing the culture and public key is not needed -- only the type name, assembly name, and assembly version are used in filtering subscribers by the message-driven pub/sub-feature.
 
 snippet: register-publisher-legacy
 
-INFO: It is recommended to use the overloads that accept a type instead of a string value. Passing types can be problematic when not using [naming conventions for message via unobtrusive mode](/nservicebus/messaging/conventions.md).
+INFO: Using the overloads that accept a type instead of a string value is recommended. Passing types can be problematic when not using [naming conventions for messages via unobtrusive mode](/nservicebus/messaging/conventions.md).
 
 ## Registering multiple publishers for the same event
 
