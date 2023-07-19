@@ -1,13 +1,13 @@
 {
 	"name": "docs.particular.net",
 	"build": {
-		"dockerfile": "Dockerfile",
+		"dockerfile": "Dockerfile"
 	},
 	"features": {
 		"ghcr.io/devcontainers/features/powershell:1": {}
 	},
 	"forwardPorts": [
-		55555
+		55666
 	],
 	"postCreateCommand": "dotnet tool install -g Particular.DocsTool --add-source=https://www.myget.org/F/particular/api/v3/index.json",
 	"postStartCommand": "docstool update",
