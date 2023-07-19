@@ -21,9 +21,9 @@ In this first lesson, which should take 10-15 minutes, you will create your firs
 
 Let's build something simple to give NServiceBus a try.
 
-This tutorial uses the latest version of NServiceBus and it requires [.NET 6 (or higher) or .NET Framework Version 4.7.2 (or higher)](/nservicebus/operations/dotnet-framework-version-requirements.md)  and  assumes at least [Visual Studio 2022](https://www.visualstudio.com/downloads/) 
+This tutorial uses NServiceBus version 8, .NET 6, and assumes an up-to-date installation of [Visual Studio 2022](https://www.visualstudio.com/downloads/).
 
-NOTE: You can also build the solution in .NET Core by selecting the **Console App (.NET Core)** project type when you create a new project.
+NOTE: NServiceBus 8 also [supports .NET Framework 4.7.2 or higher](/nservicebus/operations/dotnet-framework-version-requirements.md), but [new applications should be built on .NET 6 or higher](https://devblogs.microsoft.com/dotnet/net-core-is-the-future-of-net/). 
 
 
 ### Create a solution
