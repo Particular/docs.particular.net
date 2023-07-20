@@ -29,7 +29,7 @@ NOTE: NServiceBus 8 also [supports .NET Framework 4.7.2 or higher](/nservicebus/
 First, let's create a basic solution and include the dependencies we need.
 
  1. In Visual Studio, create a new project and select the **Console App** project type.
- 2. As this tutorial uses .NET 6, select the .Net 6.0(Long Term Support)  version from the framework dropdown of the dialog
+ 2. Select **.NET 6.0 (Long Term Support)** from the Framework dropdown.
  3. Set the project name to **ClientUI**.
  4. Set the solution name to **RetailDemo**.
 
