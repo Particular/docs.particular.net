@@ -297,7 +297,7 @@ This error is caused if there is no setting for `ServiceControl.Audit/ServiceCon
 
 ## File/Folder used by another process
 
-Sometimes the RavenDB logs could have the following errors
+Sometimes the RavenDB logs could have the following errors:
 
 ```txt
 System.IO.IOException: Error during flush for FailedMessageFacetsIndex ---> System.IO.IOException: The process cannot access the file 'D:\ServiceControl-Share\Particular.Servicecontrol\DB\Indexes\10\_49l.cfs' because it is being used by another process.
