@@ -16,7 +16,6 @@ include: nsb101-intro-paragraph
 
 In this first lesson, which should take 10-15 minutes, you will create your first messaging endpoint.
 
-
 ## Exercise
 
 Let's build something simple to give NServiceBus a try.
@@ -25,13 +24,12 @@ This tutorial uses NServiceBus version 8, .NET 6, and assumes an up-to-date inst
 
 NOTE: NServiceBus 8 also [supports .NET Framework 4.7.2 or higher](/nservicebus/operations/dotnet-framework-version-requirements.md), but [new applications should be built on .NET 6 or higher](https://devblogs.microsoft.com/dotnet/net-core-is-the-future-of-net/). 
 
-
 ### Create a solution
 
 First, let's create a basic solution and include the dependencies we need.
 
  1. In Visual Studio, create a new project and select the **Console App** project type.
- 2. Be sure to select the correct .NET Framework version from the dropdown at the top or bottom of the dialog, depending on your Visual Studio version. .NET Framework 4.6.1 or higher is recommended for access to the [Task.CompletedTask](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.completedtask) API. (This option doesn't appear if you've chosen a .NET Core project type.)
+ 2. As this tutorial uses .NET 6, select the .Net 6.0(Long Term Support)  version from the framework dropdown of the dialog
  3. Set the project name to **ClientUI**.
  4. Set the solution name to **RetailDemo**.
 
@@ -43,12 +41,9 @@ Install-Package NServiceBus -ProjectName ClientUI
 
 This adds an NServiceBus.Core assembly reference to the ClientUI project. Now we're ready to start writing code.
 
-
 ### Configure an endpoint
 
 We're ready to create a [**messaging endpoint**](/nservicebus/endpoints/). A messaging endpoint (or just **endpoint**) is a logical component capable of sending and receiving messages. An endpoint is hosted within a process, which in this case is a simple console application, but could be a web application or other .NET process.
-
-If you [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/4-ways-to-enable-the-latest-c-features), you can take advantage of the [Async Main](https://docs.microsoft.com/en-us/archive/blogs/mazhou/c-7-series-part-2-async-main) feature and avoid some boilerplate code.
 
 In the **Program.cs** file, modify the code to look like the following:
 
@@ -60,16 +55,11 @@ For the sake of brevity, code snippets in this tutorial do not contain the `usin
 Alternatively, in the code snippet's **Copy/Edit** menu you will find a **Copy usings** item that will copy the namespaces used by the snippet to your clipboard.
 }}
 
-If you can't use C# 7.1 features, you can bootstrap a static async method using `.GetAwaiter().GetResult()`:
+Now that we have a `Main` method, let's take a look at the code we're going to add to it, then analyze the importance of each line. First, add the following code to the `Main` method:
 
-snippet: PreCsharp7-1AsyncBoilerplate
-
-Now that we have a `Main` (or `AsyncMain`) method, let's take a look at the code we're going to add to it, then analyze the importance of each line. First, add the following code to the `Main` (or `AsyncMain`) method:
-
-snippet: AsyncMain
+snippet: Main
 
 Now, let's go line-by-line and find out exactly what each step is doing.
-
 
 #### Console Title
 
@@ -77,13 +67,11 @@ snippet: ConsoleTitle
 
 When running multiple console apps in the same solution, giving each a name makes them easier to identify. This console app's title is `ClientUI`. In later lessons, we'll expand this solution to host several more.
 
-
 #### EndpointConfiguration
 
 snippet: EndpointName
 
 The `EndpointConfiguration` class is where we define all the settings that determine how our endpoint will operate. The single string parameter `ClientUI` is the [**endpoint name**](/nservicebus/endpoints/specify-endpoint-name.md), which serves as the logical identity for our endpoint, and forms a naming convention by which other things will derive their names, such as the **input queue** where the endpoint will listen for messages to process.
-
 
 #### Transport
 
@@ -93,10 +81,9 @@ This setting defines the [**transport**](/transports/) that NServiceBus will use
 
 Capturing the `transport` settings in a variable as shown will make things easier in [a later lesson](../3-multiple-endpoints/) when we start defining message routing rules.
 
-
 ### Starting up
 
-At the end of the `Main` (or `AsyncMain`) method, after the configuration code, add the following code which will: start the endpoint, keep it running until we press the <kbd>Enter</kbd> key, then shut it down.
+At the end of the `Main` method, after the configuration code, add the following code which will: start the endpoint, keep it running until we press the <kbd>Enter</kbd> key, then shut it down.
 
 snippet: Startup
 
@@ -110,7 +97,6 @@ When you run the endpoint for the first time, the endpoint will:
  * Display the [status of your license](/nservicebus/licensing/).
  * Attempt to add the current user to the "Performance Monitor Users" group so that it can write [performance counters](/monitoring/metrics/performance-counters.md) to track its health and progress.
  * Create fake, file-based "queues" in a `.learningtransport` directory inside your solution directory. It is recommended to add `.learningtransport` to your source control system's ignore file.
-
 
 ## Summary
 
