@@ -302,7 +302,9 @@ Sometimes the RavenDB logs could have the following errors:
 ```txt
 System.IO.IOException: Error during flush for FailedMessageFacetsIndex ---> System.IO.IOException: The process cannot access the file 'D:\ServiceControl-Share\Particular.Servicecontrol\DB\Indexes\10\_49l.cfs' because it is being used by another process.
 ```
+
  or 
+ 
 ```txt
  2023-06-01 16:58:02.9925|8|Error|Raven.Database.DocumentDatabase|Could not initialize transactional storage, not creating database
 System.InvalidOperationException: Could not write to location: C:\ProgramData\Particular\ServiceControl\Particular.servicecontrol.audit\DB\
