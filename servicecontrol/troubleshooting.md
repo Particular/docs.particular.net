@@ -289,7 +289,7 @@ System.Exception: No destination specified for message: ServiceControl.Contracts
    at NServiceBus.UnicastSendRouter.RouteUsingTable(IOutgoingSendContext context) in /_/src/NServiceBus.Core/Routing/UnicastSendRouter.cs:line 108
 ```
 
-This error is caused if there is no setting for ServiceControl.Audit/ServiceControlQueueAddress. Check the audit instance config file in the audit installation path  and add in the missing key value
+This error is caused if there is no setting for `ServiceControl.Audit/ServiceControlQueueAddress`. Check the audit instance config file in the audit installation path  and add in the missing key value
 
  ```xml
 <add key="ServiceControl.Audit/ServiceControlQueueAddress" value="[QUEUENAMEGOESHERE]"/>
