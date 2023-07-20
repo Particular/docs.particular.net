@@ -6,6 +6,7 @@ namespace Core_8
 {
     class Snippets
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("NServiceBus.Code", "NSB0002:Forward the 'CancellationToken' property of the context parameter to methods", Justification = "Parameters only both included for ease of documentation")]
         public async Task SendTypes(IEndpointInstance endpointInstance, IMessageHandlerContext context)
         {
             var command = new object();
@@ -22,7 +23,7 @@ namespace Core_8
 
             #region Send
             // From endpoint startup code
-            await endpointInstance.Send(command, context.CancellationToken)
+            await endpointInstance.Send(command)
                 .ConfigureAwait(false);
 
             // From a message handler
@@ -32,7 +33,7 @@ namespace Core_8
 
             #region SendDestination
             // Not recommended, most of the time
-            await endpointInstance.Send("Destination", command, context.CancellationToken)
+            await endpointInstance.Send("Destination", command)
                 .ConfigureAwait(false);
 
             // On the IMessageHandlerContext too, but still not recommended
