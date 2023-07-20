@@ -13,7 +13,7 @@ namespace Core_8
 
             #region SendLocal
             // From endpoint startup code
-            await endpointInstance.SendLocal(command, context.CancellationToken)
+            await endpointInstance.SendLocal(command)
                 .ConfigureAwait(false);
 
             // From a message handler
