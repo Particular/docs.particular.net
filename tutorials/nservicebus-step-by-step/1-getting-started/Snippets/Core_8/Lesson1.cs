@@ -1,7 +1,7 @@
-﻿namespace Core_6
+﻿namespace Core_8
 {
-    using System;
     using NServiceBus;
+    using System;
     using System.Threading.Tasks;
 
 #pragma warning disable 1998
@@ -18,7 +18,7 @@
 
     class StepByStep
     {
-        #region AsyncMain
+        #region Main
         static async Task Main()
         {
             Console.Title = "ClientUI";
@@ -38,6 +38,9 @@
 
             #region EndpointName
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
+
+            // Choose JSON to serialize and deserialize messages
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             #endregion
 
             #region LearningTransport

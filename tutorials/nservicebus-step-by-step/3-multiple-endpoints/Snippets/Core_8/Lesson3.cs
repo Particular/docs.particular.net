@@ -1,11 +1,12 @@
-﻿using System;
+﻿using NServiceBus;
+using System;
 using System.Threading.Tasks;
-using NServiceBus;
 
-namespace Core_6
+namespace Core_8
 {
     class Snippets
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("NServiceBus.Code", "NSB0002:Forward the 'CancellationToken' property of the context parameter to methods", Justification = "Parameters only both included for ease of documentation")]
         public async Task SendTypes(IEndpointInstance endpointInstance, IMessageHandlerContext context)
         {
             var command = new object();

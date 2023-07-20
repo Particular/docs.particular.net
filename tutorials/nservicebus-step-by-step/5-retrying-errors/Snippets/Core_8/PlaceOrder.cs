@@ -1,9 +1,9 @@
 ﻿using NServiceBus;
 
-namespace Core_6
+namespace Core_8
 {
-    public class OrderPlaced :
-        IEvent
+    public class PlaceOrder :
+        ICommand
     {
         public string OrderId { get; set; }
     }

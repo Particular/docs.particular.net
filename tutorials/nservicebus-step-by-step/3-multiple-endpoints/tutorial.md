@@ -17,7 +17,6 @@ In this lesson, we'll move our message handler to a different endpoint, and disc
 
 In the next 15-20 minutes, you will learn how to send messages between multiple endpoints and how to control the logical routing of messages between endpoints.
 
-
 ## Sending messages
 
 We've already shown how an endpoint can "send a message to itself" using the `SendLocal()` method, which is available on the `IEndpointInstance` that we use in the endpoint startup code to create a UI, and also on the `IMessageHandlerContext` that we can access while handling a message.
@@ -29,7 +28,6 @@ Sending a message to another endpoint is exactly the same, we just need to drop 
 snippet: Send
 
 The main difference is that with `SendLocal()`, the destination for the message is already known. So when we call `Send()`, how does NServiceBus know where to send the message?
-
 
 ## Logical routing
 
@@ -57,7 +55,6 @@ Because logical routing does not cover physical concerns, but only defines logic
 
 Therefore, it makes sense that logical routing is defined in code.
 
-
 ### Defining logical routes
 
 [**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `transport` object returned when we defined the message transport, as shown in this example using the Learning Transport:
@@ -72,13 +69,11 @@ snippet: RouteToEndpoint
 
 For now we will use the first overload, specifying individual message types.
 
-
 ## Exercise
 
 Let's split apart the endpoint we created in the previous lesson. We'll reconfigure our solution so that the **ClientUI** endpoint sends the `PlaceOrder` command to a new endpoint that we'll call **Sales**. Sales will become the true logical owner of the `PlaceOrder` command, and we'll get to see NServiceBus send a message from one endpoint to another. For that reason, we will also rename the **Messages** project to **Sales.Messages** allowing us in future steps to add messages belonging to other services into their own dedicated projects.
 
 ![Exercise 3 Diagram](diagram.svg)
-
 
 ### Creating a new endpoint
 
@@ -116,7 +111,6 @@ This means that the Sales endpoint will create its own queue named `Sales` where
 
 NOTE: This is quite repetitive, but remember that this is still an introductory exercise. There are various methods, such as the [INeedInitialization interface](/nservicebus/lifecycle/ineedinitialization.md) which allow for centralizing the repetitive endpoint configuration code.
 
-
 ### Debugging multiple projects
 
 At this point, we could run the Sales endpoint, although we wouldn't expect Sales to do anything except start up, create its queues, and then wait for messages that would never arrive. This is a good exercise to do, although you can skip it if you're in a hurry.
@@ -124,7 +118,6 @@ At this point, we could run the Sales endpoint, although we wouldn't expect Sale
 However, it's common in NServiceBus solutions to run multiple projects (i.e. endpoints) at once. To make this easier, configure both endpoints (**ClientUI** and **Sales**) to run at startup using Visual Studio's [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx) feature.
 
 If you run the project now, ClientUI will work just as it did before, and Sales will start up and wait for messages that will never arrive.
-
 
 ### Moving the handler 
 
@@ -144,18 +137,16 @@ In fact, you will probably get a giant wall of exception text, because the messa
 
 The important part is, if a message is accidentally sent to an endpoint we didn't intend, it won't just fail silently, and the message will not be lost.
 
-
 ### Sending to another endpoint
 
 Now we need to change the ClientUI so that it is sending `PlaceOrder` to the Sales endpoint.
 
  1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
- 1. In the `AsyncMain` method of the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
+ 1. In the `Main` method of the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
 
 snippet: AddingRouting
 
 This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint.
-
 
 ### Running the solution
 
@@ -195,7 +186,6 @@ At this point, we've managed to create two processes and achieve inter-process c
 After Sales starts up, it receives and processes all the messages that were waiting for it in the queue.
 
 The value in this approach is the ability to take a part of your system offline and have the rest of it proceed normally as though nothing is wrong, and then have everything return to normal when the offline piece comes back online.
-
 
 ## Summary
 

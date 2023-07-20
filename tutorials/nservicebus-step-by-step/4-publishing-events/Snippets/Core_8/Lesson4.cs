@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 
-namespace Core_6
+namespace Core_8
 {
     #region Event
     public class SomethingHappened :

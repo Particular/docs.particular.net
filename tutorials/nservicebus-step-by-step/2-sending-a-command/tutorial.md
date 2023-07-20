@@ -152,9 +152,9 @@ NOTE: In this lesson, we're using `SendLocal` (rather than the more commonly use
 
 Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properly.
 
-Now let's modify the `AsyncMain` method to call the new `RunLoop` method:
+Now let's modify the `Main` method to call the new `RunLoop` method:
 
-snippet: AddRunLoopToAsyncMain
+snippet: AddRunLoopToMain
 
 
 ### Running the solution
