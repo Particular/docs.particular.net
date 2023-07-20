@@ -151,7 +151,7 @@ A warning message is seen in the logs when the Indexing lag exceeds the default 
 2023-07-03 09:41:08.4189|6|Warn|ServiceControl.CheckRavenDBIndexLag|Index [ExpiryKnownEndpointsIndex] IndexingLag 22,242 is above warning threshold (10,000). Launch in maintenance mode to let indexes catch up.
 ```
 
-This can be usually resolved by launching  the ServiceControl instance in maintenance mode and letting the indexes catch up. Message ingestion stops but the database engine still runs and messages will continue to queue. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful to resolve situations where the storage isn't fast enough to do both message ingestion and index operations, such as when an unexpected spike in message processing occurred.
+This can be resolved by launching the ServiceControl instance in maintenance mode and letting the indexes catch up. Message ingestion pauses when in maintenance mode, but the database engine still runs and messages will continue to queue. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful to resolve situations where the storage isn't fast enough to do both message ingestion and index operations, such as when an unexpected spike in message processing occurred.
 
 Consider upgrading the storage if these errors persists.
 
