@@ -203,7 +203,6 @@ If many indexes are affected it may be easier to rebuild all indexes, although t
 - Delete the `Indexes` folder
 - Start the ServiceControl instance
 
-Info: In RavenDB 5.0 even after deleting the 'Indexes' folder or the database folder, database and indexes may not be recreated correctly. This can cause the audit instance from starting successfully due to database corruption. If that continues to happen, try running the 'ServiceControl.Audit.exe /setup' in powershell
 
 ## High CPU utilization
 
