@@ -280,7 +280,7 @@ Review if all listed audit instances are running.
 
 ## No destination specified for message
 
-A missing `ServiceControlQueueAddress` in the configuration file for audit instances will cause the following error can be seen in the audit logs:
+A missing `ServiceControlQueueAddress` in the configuration file for audit instances will cause the following error to be seen in the audit logs:
 
 ```txt
 2023-06-20 13:38:45.4426|7|Warn|ServiceControl.Audit.Auditing.AuditPersister|Processing of message '7437b01e-32c1-4a29-9aed-f0c86ac64ebe' failed.
