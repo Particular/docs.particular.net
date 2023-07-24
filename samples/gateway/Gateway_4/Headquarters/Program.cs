@@ -11,7 +11,7 @@ class Program
         Console.Title = "Samples.Gateway.Headquarters";
         var endpointConfiguration = new EndpointConfiguration("Samples.Gateway.Headquarters");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.UseSerialization<XmlSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region HeadquartersGatewayConfig

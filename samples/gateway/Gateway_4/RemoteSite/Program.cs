@@ -10,7 +10,7 @@ class Program
         Console.Title = "Samples.Gateway.RemoteSite";
         var endpointConfiguration = new EndpointConfiguration("Samples.Gateway.RemoteSite");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.UseSerialization<XmlSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
         #region RemoteSiteGatewayConfig
