@@ -9,7 +9,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#go').click(function () {
-            // startcode SendUpdatePrice
+            // SendUpdatePrice
 
             var message = "<?xml version=\"1.0\" ?><Messages xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><UpdatePrice><ProductId>23</ProductId></UpdatePrice></Messages>";
             var md5 = b64_md5(message) + "==";
@@ -38,7 +38,7 @@
                 }
             });
 
-            // endcode
+           
         });
     });
 </script>
