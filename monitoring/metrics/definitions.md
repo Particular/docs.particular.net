@@ -34,7 +34,7 @@ This metric measures the total number of messages that the endpoint successfully
 
 ### Number of message processing failures
 
-This metric measures the number of messages that the endpoint has failed to process. In order for a message to be counted by this metric, at least one handler must have thrown an exception.
+This metric measures the total number of messages that the endpoint has failed to process. In order for a message to be counted by this metric, at least one handler must have thrown an exception.
 
 
 ### Critical time
