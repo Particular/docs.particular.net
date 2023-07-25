@@ -60,6 +60,8 @@ snippet: BasicSendSpecificInstance
 
 Sending a message to the same endpoint, i.e. sending to *self*, can be done in two ways.
 
+Messages are sent like a regular Send using batches dispatch and if configured the outbox and via the queueing infrastructure.
+
 An endpoint can send a message to any of its own instances:
 
 snippet: BasicSendToAnyInstance
