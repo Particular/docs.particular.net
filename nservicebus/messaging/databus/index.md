@@ -8,7 +8,7 @@ redirects:
 related:
  - samples/databus/file-share-databus
  - samples/databus/custom-serializer
- - samples/azure/blob-storage-databus
+ - samples/databus/blob-storage-databus
 ---
 
 Although messaging systems work best with small message sizes, some scenarios require sending binary large objects ([BLOBs](https://en.wikipedia.org/wiki/Binary_large_object)) data along with a message. For this purpose, NServiceBus has a Data Bus feature to overcome the message size limitations imposed by an underlying transport.

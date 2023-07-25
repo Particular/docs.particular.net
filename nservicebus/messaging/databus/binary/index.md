@@ -4,7 +4,7 @@ summary: A binary serializer for the data bus
 component: BinaryDataBusSerializer
 reviewed: 2022-05-27
 related:
- - samples/file-share-databus
+ - samples/databus/file-share-databus
  - samples/databus/custom-serializer
 ---
 
