@@ -4,8 +4,6 @@
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.*" />
     <PackageReference Include="NServiceBus.MessagingBridge" Version="2.*" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.*" />
   </ItemGroup>
 </Project>
