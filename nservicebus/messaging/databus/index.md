@@ -6,7 +6,7 @@ reviewed: 2020-12-01
 redirects:
  - nservicebus/databus
 related:
- - samples/file-share-databus
+ - samples/databus/file-share-databus
  - samples/databus/custom-serializer
  - samples/azure/blob-storage-databus
 ---
