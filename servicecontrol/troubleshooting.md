@@ -137,7 +137,7 @@ When building ServiceControl, all build artifacts are virus scanned to ensure no
 
 ## Stale indexes
 
-Each ServiceControl instance stores its data in a RavenDB embedded database. Indexes are used by RavenDB as way to query the documents. This indexing is done asynchronously in the background and is triggered whenever data is added or changed. The benefit of indexing is that it allows the server to respond quickly even when large amounts of data has changed and avoids costly table scan operations.
+Each ServiceControl instance stores its data in a RavenDB embedded database. Indexes are used by RavenDB as way to query the documents. This indexing is done asynchronously in the background and is triggered whenever data is added or changed. The benefit of asynchronous indexing is that it allows the server to respond quickly even when large amounts of data has changed and avoids costly table scan operations.
 
 A downside of this is that indexes are not updated immediately and can become stale. A healthy system has indexes updated in milliseconds, while a system under load can take up to several seconds to update the indexes. When indexes get very stale, the process of updating them can last for a long duration and can affect data presented and started tasks.
 
