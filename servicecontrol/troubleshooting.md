@@ -315,3 +315,16 @@ Microsoft.Isam.Esent.Interop.EsentFileAccessDeniedException: Cannot access file,
 Such errors indicate that the file or folder is being used by another process. A symptom of this could also be high CPU usage or errors when ServiceControl is starting.
 
 Ensure that the ServiceControl and ServiceControl Audit database directories, sub-directories, and files are [excluded from any anti-virus](servicecontrol-in-practice.md#anti-virus-checks) and anti-malware real-time and scheduled scans. If there are no virus scans on the file or folder, then use [Process Explorer](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer) or a similar tool to determine what other application may be opening or loading the file or folder.
+
+## Unable to connect to ServiceControl
+
+By default, ServiceControl uses "localhost" as the hostname (Eg: http://localhost:33333/api/) to connect as anyone who can access the ServiceControl URL has complete access to the message data stored within ServiceControl. Users who try to connect to ServiceControl either using the machine name or the IP address can get the following error in the browser if the hostname is not configured correctly.
+Eg: Connect to http://my-machine:33333/api/
+
+```txt
+Bad Request - Invalid Hostname
+HTTP Error 400. The request hostname is invalid.
+```
+
+The hostname can be configured via the [config file 'ServiceControl/HostName' ](/servicecontrol/creating-config-file.md#host-settings-servicecontrolhostname) or the [SCMU hostname](/servicecontrol/setting-custom-hostname.md) setting.
+
