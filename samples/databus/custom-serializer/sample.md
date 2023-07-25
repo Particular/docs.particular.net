@@ -1,5 +1,7 @@
 ---
 title: Custom Serializer for Data Bus
+summary: Send a message that includes a DataBus property serialized using a custom serializer.
+summary: Send a message that includes a DataBus property serialized using a custom serializer.
 reviewed: 2022-06-28
 component: Core
 related:

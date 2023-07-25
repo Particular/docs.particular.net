@@ -5,7 +5,7 @@ component: ABSDataBus
 reviewed: 2023-05-07
 related:
 - nservicebus/messaging/databus
-- samples/azure/blob-storage-databus-cleanup-function
+- samples/databus/blob-storage-databus-cleanup-function
 ---
 
  1. Start [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio). 
