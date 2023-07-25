@@ -1,16 +1,25 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.33808.371
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bridge_2", "Bridge_2\Bridge_2.csproj", "{AAE4FE68-63A9-4273-B11A-A772B1A04496}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportBridge_1", "TransportBridge_1\TransportBridge_1.csproj", "{FFF2D26A-69B2-49FD-B197-8D1E5AEA94D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AAE4FE68-63A9-4273-B11A-A772B1A04496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AAE4FE68-63A9-4273-B11A-A772B1A04496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAE4FE68-63A9-4273-B11A-A772B1A04496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAE4FE68-63A9-4273-B11A-A772B1A04496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFF2D26A-69B2-49FD-B197-8D1E5AEA94D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFF2D26A-69B2-49FD-B197-8D1E5AEA94D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFF2D26A-69B2-49FD-B197-8D1E5AEA94D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFF2D26A-69B2-49FD-B197-8D1E5AEA94D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
