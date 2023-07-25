@@ -1,7 +1,7 @@
 ---
 title: Metric definitions
 summary: Measuring the performance and health of an endpoint.
-reviewed: 2022-02-09
+reviewed: 2023-07-25
 redirects:
   - nservicebus/operations/metrics
 ---
@@ -17,24 +17,24 @@ NServiceBus and ServiceControl capture a number of different metrics about a run
 
 ### Processing time
 
-Processing time is the time it takes for an endpoint to invoke all handlers and sagas for a single incoming message.
+Processing time is the time it takes for an endpoint to **successfully** invoke all handlers and sagas for a single incoming message. Processing failures are not included in the processing time metric.
 
 Note: Processing time does not include the time to store the outbox operation, transmit outgoing messages to the transport, fetch the incoming message, and complete the incoming message (i.e. commit the transport transaction or acknowledge the message).
 
 
 ### Number of messages pulled from queue
 
-This metric measures the number of messages that the endpoint reads from it's input queue regardless of whether message processing succeeds or fails.
+This metric measures the total number of messages that the endpoint reads from its input queue regardless of whether message processing succeeds or fails.
 
 
 ### Number of messages successfully processed
 
-This metric measures the number of messages that the endpoint successfully processes. In order for a message to be counted by this metric, all handlers must have executed without throwing an exception.
+This metric measures the total number of messages that the endpoint successfully processes. In order for a message to be counted by this metric, all handlers must have executed without throwing an exception.
 
 
 ### Number of message processing failures
 
-This metric measures the number of messages that the endpoint has failed to process. In order for a message to be counted by this metric, at least one handler must have thrown an exception.
+This metric measures the total number of messages that the endpoint has failed to process. In order for a message to be counted by this metric, at least one handler must have thrown an exception.
 
 
 ### Critical time
