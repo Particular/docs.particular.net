@@ -21,17 +21,6 @@ public class Configuration
         #endregion
     }
 
-    public void DoNotEnforceBestPractices()
-    {
-        var bridgeConfiguration = new BridgeConfiguration();
-
-        #region do-not-enforce-best-practices
-
-        bridgeConfiguration.DoNotEnforceBestPractices();
-
-        #endregion
-    }
-
     public async Task GenericHostBuilderContext()
     {
         #region generic-host-builder-context
