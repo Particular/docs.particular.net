@@ -17,7 +17,8 @@ class Program
 
         #endregion
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        // endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.UseSerialization<XmlSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
