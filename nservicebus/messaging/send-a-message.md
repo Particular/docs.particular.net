@@ -68,6 +68,8 @@ Or, it can request a message to be routed to itself, i.e. the same instance.
 
 NOTE: This option is only possible when an endpoint instance ID has been specified.
 
+Messages are sent via the queueing infrastructure just like a regular Send. This means that it will use batched dispatch and - if configured - outbox.
+
 snippet: BasicSendToThisInstance
 
 ## Influencing the reply behavior
