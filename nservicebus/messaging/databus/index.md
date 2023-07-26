@@ -43,9 +43,9 @@ There are two ways to specify the message properties to be sent using the data b
  1. Using the `DataBusProperty<T>` type
  1. Message conventions
 
-Note: Data bus properties must be of type `byte[]` and be top-level properties on the message class.
+Note: Data bus properties must be top-level properties on the message class.
 
-### Using DataBusProperty<T>
+### Using `DataBusProperty<T>`
 
 Set the type of the property to be sent over the data bus as `DataBusProperty<byte[]>`:
 
