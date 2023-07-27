@@ -13,10 +13,10 @@ The tool can be installed as a .NET tool for Windows/Linux or as a self-containe
 ### .NET tool (recommended)
 
 1. Install [.NET 6.0](https://dotnet.microsoft.com/en-us/download).
-1. From a terminal window, use the following command to install the throughput counter from MyGet:
+1. From a terminal window, use the following command to install the throughput counter:
 
     ```shell
-    dotnet tool install -g Particular.EndpointThroughputCounter --add-source=https://www.myget.org/F/particular/api/v3/index.json
+    dotnet tool install -g Particular.EndpointThroughputCounter --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
     ```
 
 1. Run the tool by executing `throughput-counter`:
@@ -74,7 +74,7 @@ This will result in a report file with masked data, such as:
 To update the tool to the latest version, execute the following command in a terminal window:
 
 ```shell
-dotnet tool update -g Particular.EndpointThroughputCounter --add-source https://www.myget.org/F/particular/api/v3/index.json
+dotnet tool update -g Particular.EndpointThroughputCounter --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
 ```
 
 ## Uninstalling
