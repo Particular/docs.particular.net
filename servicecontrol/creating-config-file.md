@@ -128,7 +128,7 @@ Valid settings are between 5 seconds and 1 hour.
 
 ### ServiceControl/InternalQueueName
 
-Controls the name of the internal queue that ServiceControl uses for internal control messages.
+Controls the name of the internal queue that ServiceControl uses for internal control messages. This can be used when the internal queue name does not match the Windows Service Name.
 
 This setting was introduced in ServiceControl version 4.27.0.
 
