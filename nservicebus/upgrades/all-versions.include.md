@@ -855,7 +855,8 @@ No versions released.
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.0.1) | 2023-06-20     | -                 | -                                 |
+| [2.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.1.0) | 2023-07-25     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.0.3) | 2023-06-20     | 2023-10-25        | Superseded by 2.1.x               |
 
 #### [NServiceBus.Metrics](/nuget/NServiceBus.Metrics)
 
