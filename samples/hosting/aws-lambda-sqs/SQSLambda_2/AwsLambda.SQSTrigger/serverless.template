@@ -40,7 +40,7 @@
     "SQSTriggerFunction": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "AwsLambda.SQSTrigger::Function::FunctionHandler",
+        "Handler": "AwsLambda.SQSTrigger::SQSTrigger.Function::FunctionHandler",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Default function",
@@ -66,9 +66,45 @@
           }
         }
       }
+    },
+    "SQSTriggerFunctionDefaultGenerated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambda_FullAccess",
+          "AmazonSQSFullAccess"
+        ],
+        "PackageType": "Zip",
+        "Handler": "AwsLambda.SQSTrigger::SQSTrigger.Function_Default_Generated::Default",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/",
+              "Method": "GET"
+            }
+          }
+        }
+      }
     }
   },
   "Outputs": {
+    "ApiURL": {
+      "Description": "API endpoint URL of the trigger function",
+      "Value": {
+        "Fn::Sub": "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/"
+      }
+    },
     "ErrorQueueQueueURL": {
       "Description": "The URL of the queue",
       "Value": {

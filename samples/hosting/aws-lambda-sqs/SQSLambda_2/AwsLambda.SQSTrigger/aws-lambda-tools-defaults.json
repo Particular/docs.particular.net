@@ -6,9 +6,11 @@
     "All the command line options for the Lambda command can be specified in this file."
   ],
   "profile": "default",
-  "region": "",
+  "region": "us-west-1",
   "configuration": "Debug",
   "framework": "net6.0",
   "template": "serverless.template",
-  "template-parameters": ""
+  "template-parameters": "",
+  "stack-name": "awslambda-nsb-modified-sample-with-http-annotation",
+  "s3-bucket": "cq-cloudxp-tf-154-s3-west"
 }
