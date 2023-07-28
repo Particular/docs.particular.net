@@ -4,7 +4,7 @@ summary: An implementation of data bus using file shares
 reviewed: 2022-09-30
 component: FileShareDataBus
 related:
- - samples/file-share-databus
+ - samples/databus/file-share-databus
 ---
 
 The file share data bus allows large properties to be transferred via a Windows file share.

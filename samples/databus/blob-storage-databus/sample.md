@@ -2,10 +2,10 @@
 title: Azure Blob Storage DataBus
 summary: Sending large attachments with NServiceBus over Azure blob storage.
 component: ABSDataBus
-reviewed: 2023-05-07
+reviewed: 2023-07-25
 related:
 - nservicebus/messaging/databus
-- samples/azure/blob-storage-databus-cleanup-function
+- samples/databus/blob-storage-databus-cleanup-function
 ---
 
  1. Start [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio). 

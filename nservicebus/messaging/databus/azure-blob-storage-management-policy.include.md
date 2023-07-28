@@ -1,6 +1,6 @@
 ### Using an Azure Durable Function
 
-Review the [Azure Blob Storage Data Bus cleanup with Azure Functions sample](/samples/azure/blob-storage-databus-cleanup-function/) to see how to use a durable function to clean up attachments.
+Review the [Azure Blob Storage Data Bus cleanup with Azure Functions sample](/samples/databus/blob-storage-databus-cleanup-function/) to see how to use a durable function to clean up attachments.
 
 ### Using the Blob Lifecycle Management policy
 
