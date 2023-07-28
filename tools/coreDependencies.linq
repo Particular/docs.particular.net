@@ -10,7 +10,7 @@ string location = Util.CurrentQuery.Location;
 //string location = @"C:\Code\docs.particular.net\tools";
 
 IPackageRepository nuGet = PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2/");
-IPackageRepository myget = PackageRepositoryFactory.Default.CreateRepository("https://www.myget.org/F/particular/");
+IPackageRepository feedz = PackageRepositoryFactory.Default.CreateRepository("https://f.feedz.io/particular-software/packages/nuget");
 SemanticVersion minCoreVersion = new SemanticVersion(3, 3, 0, 0);
 
 void Main()
@@ -72,7 +72,7 @@ void Process(List<IPackage> allPackages, string packageName, string coreDependen
 			{
 				version = nsbDependency.VersionSpec.MaxVersion.Version.Major - 1;
 			}
-			else 
+			else
 			{
 				version = nsbDependency.VersionSpec.MinVersion.Version.Major;
 			}
@@ -106,7 +106,7 @@ List<IPackage> GetAllPackages(List<string> packageNames)
         {
             allPackages.Add(package);
         }
-        foreach (var package in ListedPackages(myget, packageName))
+        foreach (var package in ListedPackages(feedz, packageName))
         {
             allPackages.Add(package);
         }
