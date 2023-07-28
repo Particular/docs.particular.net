@@ -24,7 +24,7 @@ Prior to starting the endpoint, configure the endpoint to [use migration mode](#
 
 ## Export data
 
-To export data from Table Storage, a .NET tool provided by Particular is required. Install the tool from MyGet using the following command:
+To export data from Table Storage, a .NET tool provided by Particular is required. Install the tool using the following command:
 
 ```
 dotnet tool install Particular.AzureTable.Export --tool-path <installation-path> --version 1.*
