@@ -10,15 +10,15 @@ redirects:
 
 ## Overview
 
-One ServiceControl instance is designated as the _primary_ instance. All other ServiceControl instances are _remote_ instances. The HTTP API of the primary instance aggregates data from the primary instance and from all the remote instances. ServiceInsight and ServicePulse are configured to connect to the primary instance.
+One ServiceControl Error instance is designated as the _primary_ instance. All other ServiceControl instances are _remote_ instances. The HTTP API of the primary instance aggregates data from the primary instance and from all the remote instances. ServiceInsight and ServicePulse are configured to connect to the primary instance.
 
 NOTE: The term _remote_ refers to the fact that remote instances are run in separate processes. The primary instance and one or more remote instances can run on the same machine.
 
-In ServiceControl version 4 and later, a primary ServiceControl instance can be configured with remote instances that are [ServiceControl instances](/servicecontrol/servicecontrol-instances/) and [ServiceControl Audit instances](/servicecontrol/audit-instances/). ServiceControl Audit instances cannot be configured as primary instances.
+In ServiceControl version 4 and later, a ServiceControl Error instance can be configured with remote instances that are [ServiceControl instances](/servicecontrol/servicecontrol-instances/) and [ServiceControl Audit instances](/servicecontrol/audit-instances/). ServiceControl Audit instances cannot be configured as primary instances.
 
 ### Default deployment
 
-In ServiceControl version 4 and above, the ServiceControl Management utility creates a primary ServiceControl instance and a remote ServiceControl Audit instance.
+In ServiceControl version 4 and above, the ServiceControl Management utility creates a primary ServiceControl Error instance and a remote ServiceControl Audit instance.
 
 ```mermaid
 graph TD
@@ -157,9 +157,9 @@ class primaryA,primaryB,crossRegionPrimary ServiceControlPrimary
 class auditA,auditB ServiceControlRemote
 ```
 
-In this deployment, each region has a full ServiceControl installation with a primary instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse.
+In this deployment, each region has a full ServiceControl installation with a primary Error instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse.
 
-A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance should disable error queue management by configuring the [error queue](/servicecontrol/creating-config-file.md#transport-servicebuserrorqueue) with the value `!disable`.
+A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary Error instance as a remote allowing it to query messages from both. The cross-region instance should disable error queue management by configuring the [error queue](/servicecontrol/creating-config-file.md#transport-servicebuserrorqueue) with the value `!disable`.
 
 ### Zero downtime upgrades
 
