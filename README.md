@@ -871,7 +871,7 @@ NuGet will then resolve the lowest within those ranges. This make it more diffic
 
 There are some scenarios where documentation may require unreleased or beta NuGet packages. For example, when creating a PR against documentation for a feature that is not yet released. In this case, it is ok for a PR to reference an unreleased NuGet and have that PR fail to build on the build server. Once the NuGet packages have been released that PR can be merged.
 
-In some cases it may be necessary to have merged documentation for unreleased features. In this case the NuGet packages should be pushed to the [Particular feed on MyGet](https://www.myget.org/feed/Packages/particular). The feed is included by default in the [Snippets nuget.config](https://github.com/Particular/docs.particular.net/blob/master/Snippets/nuget.config#L14).
+In some cases it may be necessary to have merged documentation for unreleased features. In this case the NuGet packages should be pushed to the [Particular feed on feedz.io](https://feedz.io/org/particular-software/repository/packages). The feed is included by default in the [repository's nuget.config](https://github.com/Particular/docs.particular.net/blob/master/nuget.config#L5).
 
 #### Temporary unstables
 

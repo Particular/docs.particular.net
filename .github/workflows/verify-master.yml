@@ -17,20 +17,8 @@ jobs:
         uses: actions/setup-dotnet@v3.2.0
         with:
           dotnet-version: 7.0.x
-      - name: Check docstool
-        run: |
-           curl https://www.myget.org/F/particular/api/v3/flatcontainer/particular.docstool/index.json >> docstool-versions.json
-      - name: Cache docstool
-        id: cache-docstool
-        uses: actions/cache@v3.3.1
-        with:
-          path: |
-             ~/.dotnet/tools/docstool
-             ~/.dotnet/tools/.store/particular.docstool
-          key: docstool-${{ hashFiles('docstool-versions.json') }}
       - name: Install docstool
-        if: steps.cache-docstool.outputs.cache-hit != 'true'
-        run: dotnet tool install Particular.DocsTool --global --add-source=https://www.myget.org/F/particular/api/v3/index.json
+        run: dotnet tool install Particular.DocsTool --global --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
       - name: Run docstool
         run: docstool test --no-version-check
       - name: Notify Slack on failure
@@ -81,4 +69,4 @@ jobs:
           $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
           Write-Output $result
           exit $(If ($result.ok) { 0 } Else { 1 })
-        
+
