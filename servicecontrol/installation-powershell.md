@@ -143,7 +143,7 @@ Remove-AuditInstance `
   -RemoveDB -RemoveLogs
 ```
 
-NOTE: All connected ServiceControl Audit instances should be removed before removing the main ServiceControl instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance.
+NOTE: All connected ServiceControl Audit instances should be removed before removing the ServiceControl Error instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance.
 
 ### Upgrading an instance
 
@@ -169,7 +169,7 @@ Additional parameters may be required when upgrading an instance to version 4. S
 
 ```ps
 Invoke-ServiceControlInstanceUpgrade `
-  -Name <Name of main instance> `
+  -Name <Name of Error instance> `
   -InstallPath <Path for Audit instance binaries> `
   -DBPath <Path for the Audit instance database> `
   -LogPath <Path for the Audit instance logs> `

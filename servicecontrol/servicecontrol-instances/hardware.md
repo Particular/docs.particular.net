@@ -8,7 +8,7 @@ This article provides recommendations and performance benchmarks to help select 
 
 ## General recommendations
 
-* A dedicated production server for installing ServiceControl instances (Primary, Audit, and Monitoring).
+* A dedicated production server for installing ServiceControl instances (Error, Audit, and Monitoring).
 * A minimum of 16 GB of RAM (excluding RAM for OS and other services).
 * 2 GHz quad core CPU or better.
 * A dedicated disk for ServiceControl databases (not the disk where the operating system is installed).

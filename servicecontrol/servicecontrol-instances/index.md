@@ -10,11 +10,11 @@ ServiceControl instances collect and analyze data about the endpoints that make 
 
 NOTE: The ServiceControl HTTP API is designed for use by ServicePulse and ServiceInsight only and may change at any time. Use of this HTTP API for other purposes is discouraged.
 
-Note: In versions of ServiceControl prior to 4.13.0, saga audit plugin data can only be processed by the main ServiceControl instance using the input queue. Starting with version 4.13.0, saga audit plugin data can also be processed by a ServiceControl audit instance using the `audit` queue. The latter approach is recommended.
+Note: In versions of ServiceControl prior to 4.13.0, saga audit plugin data can only be processed by the ServiceControl Error instance using the input queue. Starting with version 4.13.0, saga audit plugin data can also be processed by a ServiceControl audit instance using the `audit` queue. The latter approach is recommended.
 
 All endpoints in the system should be [configured to send a copy of every message that is processed to a central audit queue](/nservicebus/operations/auditing.md). A ServiceControl instance consumes the messages from the audit queue and makes them available for visualization in ServiceInsight. If required, the messages may also be forwarded to an [audit log queue](/servicecontrol/errorlog-auditlog-behavior.md) for further processing.
 
-NOTE: In ServiceControl version 4 and above, messages in the audit queue are consumed by one or more separate [ServiceControl Audit](/servicecontrol/audit-instances/) instances. The main ServiceControl instance is configured to aggregate data from all connected ServiceControl Audit instances.
+NOTE: In ServiceControl version 4 and above, messages in the audit queue are consumed by one or more separate [ServiceControl Audit](/servicecontrol/audit-instances/) instances. The ServiceControl Error instance is configured to aggregate data from all connected ServiceControl Audit instances.
 
 All endpoints in the system should be [configured to send failed messages to a central error queue](/nservicebus/recoverability/) after those messages have exhausted immediate and delayed retries. A ServiceControl instance consumes the messages from the error queue and makes them available for manual retries in ServicePulse and ServiceInsight. If required, the messages may also be forwarded to an [error log queue](/servicecontrol/errorlog-auditlog-behavior.md) for further processing.
 

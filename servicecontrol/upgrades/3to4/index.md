@@ -41,7 +41,7 @@ ServiceControl version 4 introduces a new separate process to manage the audit q
 
 The original ServiceControl instance will no longer manage the audit queue. It can still contain audit messages that have already been read from the audit queue prior to upgrade. These messages will be retained until the configured audit retention period has lapsed.
 
-This split is transparent to the other components of the Particular Software Platform, which should continue to connect to the main ServiceControl instance. All queries to the main ServiceControl instance will contain results from the Audit instance as well.
+This split is transparent to the other components of the Particular Software Platform, which should continue to connect to the ServiceControl Error instance. All queries to the ServiceControl Error instance will contain results from the Audit instance as well.
 
 When upgrading a ServiceControl instance to version 4, if it is configured to manage an audit queue, a new ServiceControl Audit instance will be created as a part of the upgrade process. A user will need to supply additional information about the new ServiceControl Audit instance.
 
@@ -68,7 +68,7 @@ WARN: The settings specified must not be for the current instance, but for the a
 
 ```ps
 Invoke-ServiceControlInstanceUpgrade `
-  -Name <Name of main instance> `
+  -Name <Name of Error instance> `
   -InstallPath <Path for Audit instance binaries> `
   -DBPath <Path for the Audit instance database> `
   -LogPath <Path for the Audit instance logs> `
