@@ -22,7 +22,7 @@ namespace Triggers
         {
         }
 
-        #region HttpFunctionHandler
+        #region AwsLambda-HttpFunctionHandler
         [LambdaFunction()]
         [HttpApi(LambdaHttpMethod.Get, "/")]
         public async Task<string> HttpGet(ILambdaContext context)
@@ -32,7 +32,7 @@ namespace Triggers
         }
         #endregion
 
-        #region SQSFunctionHandler
+        #region AwsLambda-SQSFunctionHandler
         public async Task SQSFunctionHandler(SQSEvent evnt, ILambdaContext context)
         {
             using var cancellationTokenSource = new CancellationTokenSource(context.RemainingTime.Subtract(DefaultRemainingTimeGracePeriod));
@@ -41,7 +41,7 @@ namespace Triggers
         }
         #endregion
 
-        #region EndpointSetup
+        #region NServiceBus-AwsLambdaSQS-EndpointSetup
         static readonly IAwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
         {
             var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("AwsLambdaSQSTrigger");

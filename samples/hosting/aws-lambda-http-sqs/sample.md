@@ -48,13 +48,13 @@ To try the AWS Lambda:
 
 The static NServiceBus endpoint must be configured using details that come from the AWS Lambda `ILambdaContext`. Since that is not available until a message is handled by the function, the NServiceBus endpoint instance is deferred until the first message is processed, using a lambda expression such as:
 
-snippet: EndpointSetup
+snippet: NServiceBus-AwsLambdaSQS-EndpointSetup
 
 The same class defines the AWS Lambda, which makes up the hosting for the NServiceBus endpoint. The `FunctionHandler` method hands off processing of the message to NServiceBus:
 
-snippet: SQSFunctionHandler
+snippet: AwsLambda-SQSFunctionHandler
 
-snippet: HttpFunctionHandler
+snippet: AwsLambda-HttpFunctionHandler
 
 Meanwhile, the message handlers for `TriggerMessage` and `FollowUpMessage`, also hosted within the AWS Lambda project, are regular NServiceBus message handlers which are also capable of sending messages themselves.
 
