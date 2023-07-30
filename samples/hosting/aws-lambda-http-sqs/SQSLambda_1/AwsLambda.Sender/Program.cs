@@ -11,7 +11,6 @@ class Program
     Console.Title = "AwsLambda.Sender";
 
     var endpointConfiguration = new EndpointConfiguration("AwsLambda.Sender");
-    //endpointConfiguration.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
     endpointConfiguration.SendFailedMessagesTo("Error");
     endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 

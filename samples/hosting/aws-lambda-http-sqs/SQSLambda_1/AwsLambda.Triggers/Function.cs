@@ -54,7 +54,6 @@ namespace Triggers
 
             var advanced = endpointConfiguration.AdvancedConfiguration;
             advanced.SendFailedMessagesTo("Error");
-            //advanced.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
 
             return endpointConfiguration;
         });
