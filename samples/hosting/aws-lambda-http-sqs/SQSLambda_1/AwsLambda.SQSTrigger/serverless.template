@@ -5,7 +5,7 @@
   "Resources": {
     "ErrorQueue": {
       "Properties": {
-        "QueueName": "ErrorAwsLambdaSQSTrigger"
+        "QueueName": "Error"
       },
       "Type": "AWS::SQS::Queue"
     },
@@ -40,10 +40,10 @@
     "SQSTriggerFunction": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "AwsLambda.SQSTrigger::SQSTrigger.Function::FunctionHandler",
+        "Handler": "AwsLambda.Triggers::Triggers.Function::SQSFunctionHandler",
         "Runtime": "dotnet6",
         "CodeUri": "",
-        "Description": "Default function",
+        "Description": "The SQS message function handler",
         "MemorySize": 256,
         "Timeout": 30,
         "Role": null,
@@ -67,7 +67,7 @@
         }
       }
     },
-    "SQSTriggerFunctionDefaultGenerated": {
+    "TriggersFunctionHttpGetGenerated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
         "Tool": "Amazon.Lambda.Annotations",
@@ -85,7 +85,8 @@
           "AmazonSQSFullAccess"
         ],
         "PackageType": "Zip",
-        "Handler": "AwsLambda.SQSTrigger::SQSTrigger.Function_Default_Generated::Default",
+        "Handler": "AwsLambda.Triggers::Triggers.Function_HttpGet_Generated::HttpGet",
+        "Description": "Http api function that sends a NServiceBus message outside of a message handler",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
@@ -100,7 +101,7 @@
   },
   "Outputs": {
     "ApiURL": {
-      "Description": "API endpoint URL of the trigger function",
+      "Description": "API endpoint URL of the HttpGet trigger function",
       "Value": {
         "Fn::Sub": "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/"
       }

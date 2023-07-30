@@ -11,6 +11,6 @@
   "framework": "net6.0",
   "template": "serverless.template",
   "template-parameters": "",
-  "stack-name": "nsb-awslambda-http",
+  "stack-name": "nsb-awslambda-http-sqs",
   "s3-bucket": "cq-cloudxp-tf-154-s3-west"
 }

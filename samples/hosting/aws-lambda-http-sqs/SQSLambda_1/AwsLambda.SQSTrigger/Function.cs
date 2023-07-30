@@ -12,16 +12,28 @@ using NServiceBus;
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
-namespace SQSTrigger
+namespace Triggers
 {
     public class Function
     {
+        static readonly TimeSpan DefaultRemainingTimeGracePeriod = TimeSpan.FromSeconds(10);
+
         public Function()
         {
         }
 
+        #region HttpFunctionHandler
+        [LambdaFunction()]
+        [HttpApi(LambdaHttpMethod.Get, "/")]
+        public async Task<string> HttpGet(ILambdaContext context)
+        {
+            await serverlessEndpoint.Send(new SQSTriggerMessage(), context);
+            return $"{nameof(SQSTriggerMessage)} sent.";
+        }
+        #endregion
+
         #region SQSFunctionHandler
-        public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
+        public async Task SQSFunctionHandler(SQSEvent evnt, ILambdaContext context)
         {
             using var cancellationTokenSource = new CancellationTokenSource(context.RemainingTime.Subtract(DefaultRemainingTimeGracePeriod));
 
@@ -29,31 +41,20 @@ namespace SQSTrigger
         }
         #endregion
 
-        static readonly TimeSpan DefaultRemainingTimeGracePeriod = TimeSpan.FromSeconds(10);
-
-        #region HttpFunctionHandler
-        [LambdaFunction()]
-        [HttpApi(LambdaHttpMethod.Get, "/")]
-        public async Task<string> Default(ILambdaContext context)
-        {
-            await serverlessEndpoint.Send(new TriggerMessage(), context);
-            return $"{nameof(TriggerMessage)} sent.";
-        }
-        #endregion
-
         #region EndpointSetup
-        private static readonly IAwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
+        static readonly IAwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
         {
             var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("AwsLambdaSQSTrigger");
             endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
             var routing = endpointConfiguration.RoutingSettings;
 
-            routing.RouteToEndpoint(typeof(TriggerMessage), "AwsLambdaSQSTrigger");
+            routing.RouteToEndpoint(typeof(SQSTriggerMessage), "AwsLambdaSQSTrigger");
             routing.RouteToEndpoint(typeof(BackToSenderMessage), "AwsLambda.Sender");
 
             var advanced = endpointConfiguration.AdvancedConfiguration;
-            advanced.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
+            advanced.SendFailedMessagesTo("Error");
+            //advanced.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
 
             return endpointConfiguration;
         });

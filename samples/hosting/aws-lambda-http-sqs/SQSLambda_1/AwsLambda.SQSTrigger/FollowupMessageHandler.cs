@@ -10,8 +10,9 @@ public class FollowupMessageHandler : IHandleMessages<FollowupMessage>
 
     public async Task Handle(FollowupMessage message, IMessageHandlerContext context)
     {
-        Log.Info($"Handling {nameof(FollowupMessage)}.");
+        Log.Info($"Handling {nameof(FollowupMessage)} in {nameof(FollowupMessageHandler)}");        
         await context.Send(new BackToSenderMessage());
+        Log.Info($"Sent {nameof(BackToSenderMessage)}");
     }
 }
 
