@@ -336,7 +336,7 @@ Use the `Tools` download link on the [RavenDB](https://ravendb.net/download) sit
 
     .\Voron.Recovery.exe recover "[DBFOLDERPATH]\Databases\audit" "C:\DBRecoverFolder"
 
-[DBFOLDERPATH] can be found by opening SCMU and clicking on the DB Path link for the audit instance.
+`[DBFOLDERPATH]` can be found by opening SCMU and clicking on the DB Path link for the audit instance.
 
 C:\DBRecoverFolder will now contain Raven recovery files. At this stage, rename the original Database folder (this will act as a backup) and start the ServiceControl audit instance again. Once started, a new and empty database will be created. The recovery files can now be [imported](https://ravendb.net/docs/article-page/5.4/csharp/studio/database/tasks/import-data/import-data-file) into the new database by:
 
