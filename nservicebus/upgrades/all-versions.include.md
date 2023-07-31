@@ -384,7 +384,7 @@
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/4.2.6) | ~~2017-06-28~~ | ~~2020-05-29~~    | ~~Extended by NServiceBus 6.5.x~~ |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/4.1.6) | ~~2016-12-14~~ | ~~2017-09-28~~    | ~~Superseded by 4.2.x~~           |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/4.0.6) | ~~2016-10-11~~ | ~~2017-03-14~~    | ~~Superseded by 4.1.x~~           |
-| [~~3.2.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/3.2.5) | ~~2017-04-10~~ | ~~2018-10-11~~    | ~~Extended by NServiceBus 5.2.x~~ |
+| [~~3.2.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/3.2.6) | ~~2017-04-10~~ | ~~2018-10-11~~    | ~~Extended by NServiceBus 5.2.x~~ |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/3.0.16) | ~~2015-05-07~~ | ~~2017-07-10~~    | ~~Superseded by 3.2.x~~           |
 | [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/2.2.8) | ~~2015-04-23~~ | ~~2016-05-07~~    | ~~Superseded by 3.0.x~~           |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/2.1.2) | ~~2015-02-09~~ | ~~2015-07-23~~    | ~~Superseded by 2.2.x~~           |
