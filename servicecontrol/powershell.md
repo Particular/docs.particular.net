@@ -62,6 +62,7 @@ This example shows the available ports out of a range of ports
 33330..33339 | Test-IfPortIsAvailable | ? Available
 ```
 
+If the port is already in use, then choose a different port.
 
 ### Checking and manipulating UrlAcls
 
