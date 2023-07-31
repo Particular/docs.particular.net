@@ -21,7 +21,7 @@ If the location is not available upon sending, the send operation will fail. Whe
 
 ## Transport message size limits
 
-Using the Data Bus if often only required if the message size can exceed the transport message size limit.
+Using the Data Bus is required when the message size can exceed the transport message size limit.
 
 | Transport                  | Maximum size |
 | -------------------------- | ------------:|
@@ -37,14 +37,14 @@ Using the Data Bus if often only required if the message size can exceed the tra
 ## Alternatives
 
 1. Use a different transport or a different transport tier
-  - Not all transports have very restrictive message size limits and Azure Service Bus has increased their size limits over the years
-1. Use message body compression to which works well on text-based payloads like XML and Json any payload (text or binary) that contains repetitive data
+  - Not all transports have very restrictive message size limits and Azure Service Bus has increased its size limits over the years
+1. Use message body compression which works well on text-based payloads like XML and Json any payload (text or binary) that contains repetitive data
   - [Message mutator example demonstrating message body compression](https://docs.particular.net/samples/messagemutators/)
   - Community maintained [NServiceBus.Comression](https://github.com/ramonsmits/NServiceBus.Compression) with configurable compression thresholds
 1. Use a binary serializer
-   - In the past some ready to use packages were available via https://github.com/NServiceBusExtensions but none of the binary serializers are available for NServiceBus 8+.
+   - Implementing a binary serializer requires a few lines of code
    - [ramonsmits/NServiceBus.ProtoBufNet](https://github.com/ramonsmits/NServiceBus.ProtoBufNet) (original archived at [NServiceBusExtensions/NServiceBus.ProtoBufNet](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet)
-   - Implementating a binary serializer is simple and just requires a few lines of code
+     - ProtoBuf is the default for [gRPC](https://grpc.io/)
 1. When dealing with unbounded binary payloads consider [NServiceBus.Attachments](https://github.com/NServiceBusExtensions/NServiceBus.Attachments)
   - Read on demand: Will only retrieve attachment data when the consumer reads it
   - Reduced Memory usage: No base64 serializer overhead resulting in a significant reduction in resource utilization
@@ -84,7 +84,7 @@ snippet: MessageWithLargePayload
 
 ### Using message conventions
 
-NServiceBus also supports defining data bus properties via convention. This allows data properties to be sent using the data bus without using `DataBusProperty<T>`, thus removing the need for having a dependency on NServiceBus from the message types.
+NServiceBus also supports defining data bus properties via a convention. This allows data properties to be sent using the data bus without using `DataBusProperty<T>`, thus removing the need for having a dependency on NServiceBus from the message types.
 
 In the configuration of the endpoint include:
 
