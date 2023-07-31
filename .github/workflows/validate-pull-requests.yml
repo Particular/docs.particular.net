@@ -17,7 +17,7 @@ jobs:
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
       - name: Check docstool version for cache
         run: |
-           curl --connect-timeout 5 --max-time 15 --silent https://f.feedz.io/particular-software/packages/nuget/v3/packages/particular.docstool/index.json >> docstool-versions.json
+           curl --connect-timeout 5 --max-time 15 --silent --show-error https://f.feedz.io/particular-software/packages/nuget/v3/packages/particular.docstool/index.json >> docstool-versions.json
       - name: Cache docstool
         id: cache-docstool
         uses: actions/cache@v3.3.1
