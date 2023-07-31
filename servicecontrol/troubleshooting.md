@@ -328,3 +328,22 @@ HTTP Error 400. The request hostname is invalid.
 
 The hostname can be configured via the [config file 'ServiceControl/HostName' ](/servicecontrol/creating-config-file.md#host-settings-servicecontrolhostname) or the [SCMU hostname](/servicecontrol/setting-custom-hostname.md) setting.
 
+## VoronUnrecoverableErrorException
+
+This is an indication that something has gone very wrong with the RavenDB database. It is recommended to contact [Particular support](https://particular.net/support) for assistance. To recover the database, perform the following:
+
+Use the `Tools` download link on the [RavenDB](https://ravendb.net/download) site to download the `Voron.recover.exe` tool. Once downloaded, extract the archive and open an admin console. Navigate to the tool folder, and run:
+
+.\Voron.Recovery.exe recover "[DBFOLDERPATH]\Databases\audit" "C:\DBRecoverFolder"
+
+[DBFOLDERPATH] can be found by opening SCMU and clicking on the DB Path link for the audit instance.
+
+C:\DBRecoverFolder will now contain Raven recovery files. At this stage, rename the original Database folder (this will act as a backup) and start the ServiceControl audit instance again. Once started, a new and empty database will be created. The recovery files can now be [imported](https://ravendb.net/docs/article-page/5.4/csharp/studio/database/tasks/import-data/import-data-file) into the new database by:
+
+1. Opening a browser and navigate to: http://localhost:44445
+2. Click on the "Databases" link in the bottom left of the screen
+3. Then click on the database named "audit"
+4. Click on the "Tasks" icon near the top on the left
+5. Click on "Import data"
+6. Click "browse" and navigate to the recovery files
+7. Select each of the recovery files and import them
