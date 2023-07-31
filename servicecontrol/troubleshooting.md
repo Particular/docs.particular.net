@@ -334,7 +334,7 @@ This is an indication that something has gone very wrong with the RavenDB databa
 
 Use the `Tools` download link on the [RavenDB](https://ravendb.net/download) site to download the `Voron.recover.exe` tool. Once downloaded, extract the archive and open an admin console. Navigate to the tool folder, and run:
 
-.\Voron.Recovery.exe recover "[DBFOLDERPATH]\Databases\audit" "C:\DBRecoverFolder"
+    .\Voron.Recovery.exe recover "[DBFOLDERPATH]\Databases\audit" "C:\DBRecoverFolder"
 
 [DBFOLDERPATH] can be found by opening SCMU and clicking on the DB Path link for the audit instance.
 
