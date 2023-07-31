@@ -19,6 +19,35 @@ Instead of serializing the payload along with the rest of the message, the `Data
 
 If the location is not available upon sending, the send operation will fail. When a message is received and the payload location is not available, the receive operation will fail as well, resulting in the standard NServiceBus retry behavior, possibly resulting in the message being moved to the error queue if the error could not be resolved.
 
+## Transport message size limits
+
+Using the Data Bus if often only required if the message size can exceed the transport message size limit.
+
+| Transport                  | Maximum size |
+| -------------------------- | ------------:|
+| Amazon SQS                 | Unknown      |
+| Azure Storage Queues       | 128KB ?      |
+| Azure Service Bus Standard | 256KB        |
+| Azure Service Bus Premium  | 100MB        |
+| RabbitMQ                   | No limit     |
+| SQL Server                 | No limit     |
+| Learning                   | No limit     |
+| MSMQ                       | 4MB          |
+
+## Alternatives
+
+1. Use a different transport or a different transport tier
+  - Not all transports have very restrictive message size limits and Azure Service Bus has increased their size limits over the years
+1. Use message body encryption to which works well on text-based payloads like XML and Json any payload (text or binary) that contains repetitive data
+1. Use a binary serializer
+   - In the past some ready to use packages were available via https://github.com/NServiceBusExtensions but none of the binary serializers are available for NServiceBus 8+.
+   - [ramonsmits/NServiceBus.ProtoBufNet](https://github.com/ramonsmits/NServiceBus.ProtoBufNet) (original archived at [NServiceBusExtensions/NServiceBus.ProtoBufNet](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet)
+   - Implementation a binary serializer is simple and just requires a few lines of code
+1. If you are dealing with unbounded binary payloads consider [NServiceBus.Attachments](https://github.com/NServiceBusExtensions/NServiceBus.Attachments)
+  - Read on demand: Will only retrieve attachment data when the consumer reads it
+  - Reduced Memory usage: No base64 serializer overhead resulting in a significant reduction in resource utilization
+1. Use any of the above in combination with compression
+
 ## Alternative
 
 The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging the NServiceBus pipeline.
