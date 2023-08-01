@@ -521,7 +521,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/4.0.0) | 2022-02-01     | -                 | -                                 |
-| [~~3.0.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/3.0.0) | ~~2021-04-16~~ | ~~2023-02-01~~    | ~~Superseded by 4.0.x~~           |
 
 #### [ServiceControl.TransportAdapter](/nuget/ServiceControl.TransportAdapter)
 
