@@ -29,7 +29,7 @@ An async [WebAPI](https://dotnet.microsoft.com/apps/aspnet/apis) controller hand
 
 The message will be processed by the NServiceBus message handler and result in `"Message received at endpoint"`-message printed to the console. In addition, the handler will update the previously created entity.
 
-To query all the stored entities, navigate to `http://localhost:58118/all`. To visit the endpoint that using a more complex object hierarchy using the transactional session, navigate to `http://localhost:58118/service`.
+To query all the stored entities, navigate to `http://localhost:58118/all`. To apply a complex object hierarchy using the transactional session on an endpoint, navigate to `http://localhost:58118/service`.
 
 ## Configuration
 
