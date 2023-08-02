@@ -23,6 +23,8 @@ If the location is not available upon sending, the send operation will fail. Whe
 
 Using the Data Bus is required when the message size can exceed the transport message size limit.
 
+Note: Not all transports have very restrictive message size limits and Azure Service Bus has increased its size limits over the years. Check the respective transport website documentation for the latest maximum limit of the message size.
+
 | Transport                  | Maximum size |
 | -------------------------- | ------------:|
 | Amazon SQS                 | Unknown      |
@@ -37,14 +39,13 @@ Using the Data Bus is required when the message size can exceed the transport me
 ## Alternatives
 
 -  Use a different transport or a different transport tier
-  - Not all transports have very restrictive message size limits and Azure Service Bus has increased its size limits over the years
+  
 -  Use message body compression which works well on text-based payloads like XML and Json any payload (text or binary) that contains repetitive data
   - [Message mutator example demonstrating message body compression](/samples/messagemutators/)
   - Community maintained [NServiceBus.Comression](https://github.com/ramonsmits/NServiceBus.Compression) with configurable compression thresholds
 -  Use a binary serializer
-   - Implementing a binary serializer requires a few lines of code
-   - [ramonsmits/NServiceBus.ProtoBufNet](https://github.com/ramonsmits/NServiceBus.ProtoBufNet) (original archived at [NServiceBusExtensions/NServiceBus.ProtoBufNet](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet)
-     - ProtoBuf is the default for [gRPC](https://grpc.io/)
+   - ProtoBuf is the default for [gRPC](https://grpc.io/). [ramonsmits/NServiceBus.ProtoBufNet](https://github.com/ramonsmits/NServiceBus.ProtoBufNet) (original archived at [NServiceBusExtensions/NServiceBus.ProtoBufNet](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet)
+    
 -  When dealing with unbounded binary payloads consider [NServiceBus.Attachments](https://github.com/NServiceBusExtensions/NServiceBus.Attachments)
   - Read on demand: Will only retrieve attachment data when the consumer reads it
   - Reduced Memory usage: No base64 serializer overhead resulting in a significant reduction in resource utilization
