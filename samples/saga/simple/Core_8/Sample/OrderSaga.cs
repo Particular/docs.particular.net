@@ -32,7 +32,7 @@ Stop the endpoint now to see the saga data in:
             OrderId = Data.OrderId
         };
         var sendOptions = new SendOptions();
-        sendOptions.DelayDeliveryWith(TimeSpan.FromSeconds(10));
+        //sendOptions.DelayDeliveryWith(TimeSpan.FromSeconds(10));
         sendOptions.RouteToThisEndpoint();
         await context.Send(completeOrder, sendOptions)
             .ConfigureAwait(false);

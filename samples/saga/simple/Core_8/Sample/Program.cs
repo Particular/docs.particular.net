@@ -6,8 +6,12 @@ class Program
 {
     static async Task Main()
     {
+        _ = Task.Run(() => Particular.PlatformLauncher.Launch());
+
         Console.Title = "Samples.SimpleSaga";
         var endpointConfiguration = new EndpointConfiguration("Samples.SimpleSaga");
+        endpointConfiguration.AuditSagaStateChanges(serviceControlQueue: "audit");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
 
         #region config
 
@@ -36,7 +40,7 @@ class Program
             {
                 break;
             }
-            var orderId = Guid.NewGuid();
+            var orderId = Guid.Parse("51E8A5C6-E8BF-40FB-AD58-B14E5A14D843");
             var startOrder = new StartOrder
             {
                 OrderId = orderId
@@ -44,6 +48,7 @@ class Program
             await endpointInstance.SendLocal(startOrder)
                 .ConfigureAwait(false);
             Console.WriteLine($"Sent StartOrder with OrderId {orderId}.");
+            await Task.Delay(100);
         }
 
         await endpointInstance.Stop()
