@@ -335,7 +335,7 @@ This is an indication that something has gone very wrong with the RavenDB databa
 
 1. Use the `Tools` download link on the [RavenDB](https://ravendb.net/download) site to download the `Voron.recover.exe` tool.
 2. Once downloaded, extract the archive
-3. Open an admin console (Run as administrator)
+3. Open an admin console (elevated to have write permissions on protected paths)
 4. Navigate to the tool folder
 5. Run
     ```
