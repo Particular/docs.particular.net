@@ -39,15 +39,15 @@ Note: Not all transports have very restrictive message size limits and Azure Ser
 
 ## Alternatives
 
--  Use a different transport or a different transport tier
+- Use a different transport or a different transport tier
   
--  Use message body compression which works well on text-based payloads like XML and Json any payload (text or binary) that contains repetitive data
+- Message Compression: Use message body compression which works well on text-based payloads like XML and Json or any payload (text or binary) that contains repetitive data
   - [Message mutator example demonstrating message body compression](/samples/messagemutators/)
   - Community maintained [NServiceBus.Comression](https://github.com/ramonsmits/NServiceBus.Compression) with configurable compression thresholds
--  Use a binary serializer
+- Binary Serializer: Implementing a binary serializer requires a few lines of code.
    - ProtoBuf is the default for [gRPC](https://grpc.io/). [ramonsmits/NServiceBus.ProtoBufNet](https://github.com/ramonsmits/NServiceBus.ProtoBufNet) (original archived at [NServiceBusExtensions/NServiceBus.ProtoBufNet](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet)
     
--  When dealing with unbounded binary payloads consider [NServiceBus.Attachments](https://github.com/NServiceBusExtensions/NServiceBus.Attachments)
+- Attachments: When dealing with unbounded binary payloads consider [NServiceBus.Attachments](https://github.com/NServiceBusExtensions/NServiceBus.Attachments)
   - Read on demand: Will only retrieve attachment data when the consumer reads it
   - Reduced Memory usage: No base64 serializer overhead resulting in a significant reduction in resource utilization
 - Use any of the above in combination with compression
