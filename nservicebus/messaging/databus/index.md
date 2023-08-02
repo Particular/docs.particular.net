@@ -49,10 +49,7 @@ Using the Data Bus is required when the message size can exceed the transport me
   - Read on demand: Will only retrieve attachment data when the consumer reads it
   - Reduced Memory usage: No base64 serializer overhead resulting in a significant reduction in resource utilization
 1. Use any of the above in combination with compression
-
-## Alternative
-
-The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging the NServiceBus pipeline.
+1. Stream-based: The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging the NServiceBus pipeline.
 
 ## Enabling the data bus
 
