@@ -27,7 +27,7 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 
 INFO: It is not possible at this stage to use the AWS .NET Mock Lambda Test Tool to run the sample locally.
 
-Run the following command from the `AwsLambda.SQSTrigger` directory to deploy the Lambda project:
+Run the following command from the `ServerlessEndpoint` directory to deploy the Lambda project:
 
 `dotnet lambda deploy-serverless`
 
@@ -35,16 +35,14 @@ The deployment will ask for a stack name and an S3 bucket name to deploy the ser
 
 After that, running the sample will launch a single console window:
 
-* **AWSLambda.Sender** is a console application that will send a `TriggerMessage` to the `AwsLambdaSQSTrigger` queue, which is monitored by the AWS Lambda.
-* The deployed **AWSLambda.SQSTrigger** project will receive messages from the `AwsLambdaSQSTrigger` queue and process them using the AWS Lambda runtime.
+* **OnPremiseEndpoint** is a console application that will send a `TriggerMessage` to the `ServerlessEndpoint` queue, which is monitored by the AWS Lambda.
+* The deployed **ServerlessEndpoint** project will receive messages from the `ServerlessEndpoint` queue and process them using the AWS Lambda runtime.
 
-To try the AWS Lambda:
+To try the AWS Lambda
 
-1. From the **AwsLambda.Sender** window, press <kbd>Enter</kbd> to send a `TriggerMessage` to the trigger queue.
-1. The AWS Lambda will receive the `TriggerMessage` and process it with NServiceBus.
-1. The NServiceBus message handler for `TriggerMessage` sends a `FollowUpMessage`.
-1. The AWS Lambda will receive the `FollowUpMessage` and process it with NServiceBus.
-1. The NServiceBus message handler for `FollowUpMessage` sends a `BackToSenderMessage` that will be handled by the **AwsLambda.Sender**
+1. From the **OnPremiseEndpoint** window, press <kbd>Enter</kbd> to send a `TriggerMessage` to the ServerLessEndpoint queue.
+1. The AWS Lambda will receive the `TriggerMessage` and hand off its procesing to NServiceBus.
+1. The NServiceBus message handler for `TriggerMessage` on **ServerlessEndpoint** sends a `ResponseMessage` that will be handled by the **OnPremiseEndpoint**
 
 ## Code walk-through
 
@@ -52,15 +50,22 @@ The static NServiceBus endpoint must be configured using details that come from 
 
 snippet: EndpointSetup
 
-The same class defines the AWS Lambda, which makes up the hosting for the NServiceBus endpoint. The `FunctionHandler` method hands off processing of the message to NServiceBus:
+The same class defines the AWS Lambda, which makes up the hosting for the NServiceBus endpoint. The `SqsHandler` method hands off processing of messages to NServiceBus:
 
-snippet: FunctionHandler
+snippet: SQSEventFunctionHandler
 
-Meanwhile, the message handlers for `TriggerMessage` and `FollowUpMessage`, also hosted within the AWS Lambda project, are regular NServiceBus message handlers which are also capable of sending messages themselves.
+Meanwhile, the message handler for `TriggerMessage`, also hosted within the AWS Lambda project, is regular NServiceBus message handler which are also capable of sending messages.
 
-snippet: TriggerMessageHandler
+snippet: ServerlessEndpointTriggerMessageHandler
 
-snippet: FollowupMessageHandler
+## Dispatching a message ousdie of a message handler
+
+There could be a scenario when it is needed to dispatch a message using an AWS Lambda but from outside of a message handler, like reacting to events other than messages in a queue. For example, responding to a S3 bucket change or an HTTP call. This sample also demonstrates how to dispatch a message from outside of an NServiceBus message handler to cover this scenario.
+
+1. Open a browser and visit the URL produced during the execution of  `dotnet lambda deploy-serverless`. Running the command produced a list of outputs, use the value produced for `ApiURL` output.
+1. The AWS Lambda will receive the http call and send a `TriggerMessage` to the ServerLessEndpoint queue.
+2. As in the previous example, the AWS Lambda will receive the `TriggerMessage` and hand off its procesing to NServiceBus.
+1. The NServiceBus message handler for `TriggerMessage` on **OnPremiseEndpoint** sends a `ResponseMessage` that will be handled by the **OnPremiseEndpoint**
 
 ## Removing the sample stack
 

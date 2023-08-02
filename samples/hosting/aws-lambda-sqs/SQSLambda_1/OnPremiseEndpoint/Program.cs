@@ -7,18 +7,18 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        Console.Title = "AwsLambda.Sender";
+        Console.Title = "OnPremiseEndpoint";
 
-        var endpointConfiguration = new EndpointConfiguration("AwsLambda.Sender");
-        endpointConfiguration.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
+        var endpointConfiguration = new EndpointConfiguration("OnPremiseEndpoint");
+        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
         endpointConfiguration.UseTransport<SqsTransport>();
 
-        sqsEndpoint = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
         Console.WriteLine("");
-        Console.WriteLine("Press [ENTER] to send a message to the SQS trigger queue.");
+        Console.WriteLine("Press [ENTER] to send a message to the serverless endpoint queue.");
         Console.WriteLine("Press [Esc] to exit.");
 
         while (true)
@@ -31,20 +31,20 @@ class Program
                     await SendMessage().ConfigureAwait(false);
                     break;
                 case ConsoleKey.Escape:
-                    await sqsEndpoint.Stop().ConfigureAwait(false);
+                    await endpointInstance.Stop().ConfigureAwait(false);
                     return;
             }
         }
     }
 
-    private static IEndpointInstance sqsEndpoint;
+    private static IEndpointInstance endpointInstance;
     static readonly ILog Log = LogManager.GetLogger<Program>();
 
     static async Task SendMessage()
     {
-        await sqsEndpoint.Send("AwsLambdaSQSTrigger", new TriggerMessage())
+        await endpointInstance.Send("ServerlessEndpoint", new TriggerMessage())
             .ConfigureAwait(false);
 
-        Log.Info("Message sent to the SQS trigger queue.");
+        Log.Info("Message sent to the serverless endpoint queue.");
     }
 }

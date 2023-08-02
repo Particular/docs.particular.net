@@ -1,1 +1,1 @@
-AwsLambda.Sender\AwsLambda.Sender.csproj
+OnPremiseEndpoint\OnPremiseEndpoint.csproj

@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Amazon.Lambda.Annotations;
+using Amazon.Lambda.Annotations.APIGateway;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
 using NServiceBus;
@@ -16,9 +18,17 @@ namespace LambdaFunctions
         {
         }
 
-        #region FunctionHandler
+        [LambdaFunction(Policies = "AWSLambda_FullAccess, AmazonSQSFullAccess")]
+        [HttpApi(LambdaHttpMethod.Get, "/")]
+        public async Task<string> HttpGetHandler(ILambdaContext context)
+        {
+            await serverlessEndpoint.Send(new TriggerMessage(), context);
+            return $"{nameof(TriggerMessage)} sent.";
+        }
 
-        public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
+        #region SQSEventFunctionHandler
+
+        public async Task SqsHandler(SQSEvent evnt, ILambdaContext context)
         {
             using var cancellationTokenSource =
                 new CancellationTokenSource(context.RemainingTime.Subtract(DefaultRemainingTimeGracePeriod));
@@ -34,16 +44,16 @@ namespace LambdaFunctions
 
         private static readonly IAwsLambdaSQSEndpoint serverlessEndpoint = new AwsLambdaSQSEndpoint(context =>
         {
-            var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("AwsLambdaSQSTrigger");
+            var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("ServerlessEndpoint");
             endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
-            var transport = endpointConfiguration.Transport;
-            var routing = endpointConfiguration.RoutingSettings;
+             var routing = endpointConfiguration.RoutingSettings;
 
-            routing.RouteToEndpoint(typeof(BackToSenderMessage), "AwsLambda.Sender");
+             routing.RouteToEndpoint(typeof(TriggerMessage), "ServerlessEndpoint");
+             routing.RouteToEndpoint(typeof(ResponseMessage), "OnPremiseEndpoint");
 
             var advanced = endpointConfiguration.AdvancedConfiguration;
-            advanced.SendFailedMessagesTo("ErrorAwsLambdaSQSTrigger");
+            advanced.SendFailedMessagesTo("error");
 
             return endpointConfiguration;
         });

@@ -10,5 +10,7 @@
   "configuration": "Debug",
   "framework": "net6.0",
   "template": "serverless.template",
-  "template-parameters": ""
+  "template-parameters": "",
+  "stack-name": "nservicebus-aws-lambda-sample",
+  "s3-bucket": "nservicebus-aws-lambda-sample"
 }
