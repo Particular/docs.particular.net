@@ -36,20 +36,20 @@ Using the Data Bus is required when the message size can exceed the transport me
 
 ## Alternatives
 
-1. Use a different transport or a different transport tier
+-  Use a different transport or a different transport tier
   - Not all transports have very restrictive message size limits and Azure Service Bus has increased its size limits over the years
-1. Use message body compression which works well on text-based payloads like XML and Json any payload (text or binary) that contains repetitive data
-  - [Message mutator example demonstrating message body compression](https://docs.particular.net/samples/messagemutators/)
+-  Use message body compression which works well on text-based payloads like XML and Json any payload (text or binary) that contains repetitive data
+  - [Message mutator example demonstrating message body compression](/samples/messagemutators/)
   - Community maintained [NServiceBus.Comression](https://github.com/ramonsmits/NServiceBus.Compression) with configurable compression thresholds
-1. Use a binary serializer
+-  Use a binary serializer
    - Implementing a binary serializer requires a few lines of code
    - [ramonsmits/NServiceBus.ProtoBufNet](https://github.com/ramonsmits/NServiceBus.ProtoBufNet) (original archived at [NServiceBusExtensions/NServiceBus.ProtoBufNet](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet)
      - ProtoBuf is the default for [gRPC](https://grpc.io/)
-1. When dealing with unbounded binary payloads consider [NServiceBus.Attachments](https://github.com/NServiceBusExtensions/NServiceBus.Attachments)
+-  When dealing with unbounded binary payloads consider [NServiceBus.Attachments](https://github.com/NServiceBusExtensions/NServiceBus.Attachments)
   - Read on demand: Will only retrieve attachment data when the consumer reads it
   - Reduced Memory usage: No base64 serializer overhead resulting in a significant reduction in resource utilization
-1. Use any of the above in combination with compression
-1. Stream-based: The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging the NServiceBus pipeline.
+- Use any of the above in combination with compression
+- Stream-based: The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging the NServiceBus pipeline.
 
 ## Enabling the data bus
 
