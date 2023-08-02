@@ -332,18 +332,26 @@ The hostname can be configured via the [config file 'ServiceControl/HostName' ](
 
 This is an indication that something has gone very wrong with the RavenDB database. It is recommended to contact [Particular support](https://particular.net/support) for assistance. To recover the database, perform the following:
 
-Use the `Tools` download link on the [RavenDB](https://ravendb.net/download) site to download the `Voron.recover.exe` tool. Once downloaded, extract the archive and open an admin console. Navigate to the tool folder, and run:
 
+1. Use the `Tools` download link on the [RavenDB](https://ravendb.net/download) site to download the `Voron.recover.exe` tool.
+2. Once downloaded, extract the archive
+3. Open an admin console (Run as administrator)
+4. Navigate to the tool folder
+5. Run
+    ```
     .\Voron.Recovery.exe recover "[DBFOLDERPATH]\Databases\audit" "C:\DBRecoverFolder"
+    ```
 
-`[DBFOLDERPATH]` can be found by opening SCMU and clicking on the DB Path link for the audit instance.
+The `[DBFOLDERPATH]` can be found by opening SCMU and clicking on the DB Path link for the audit instance.
 
-C:\DBRecoverFolder will now contain Raven recovery files. At this stage, rename the original Database folder (this will act as a backup) and start the ServiceControl audit instance again. Once started, a new and empty database will be created. The recovery files can now be [imported](https://ravendb.net/docs/article-page/5.4/csharp/studio/database/tasks/import-data/import-data-file) into the new database by:
+Folder `C:\DBRecoverFolder` will now contain Raven recovery files. At this stage, rename the original Database folder (this will act as a backup) and start the ServiceControl audit instance again. Once started, a new and empty database will be created. The [recovery files can now be imported into the new database](https://ravendb.net/docs/article-page/5.4/csharp/studio/database/tasks/import-data/import-data-file) by:
 
-1. Opening a browser and navigate to: http://localhost:44445
-2. Click on the "Databases" link in the bottom left of the screen
-3. Then click on the database named "audit"
-4. Click on the "Tasks" icon near the top on the left
-5. Click on "Import data"
-6. Click "browse" and navigate to the recovery files
-7. Select each of the recovery files and import them
+1. Opening a browser
+2. Navigate to: http://localhost:44445
+3. Click on the **"Databases"** link in the bottom left of the screen
+4. Then click on the database named **"audit"**
+5. Click on the **"Tasks"** icon near the top on the left
+6. Click on **"Import data"**
+7. Click **"browse"**
+8. Navigate to the recovery files
+9. Select each of the recovery files and import them
