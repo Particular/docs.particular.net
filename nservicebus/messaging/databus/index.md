@@ -27,8 +27,9 @@ Note: Not all transports have very restrictive message size limits and Azure Ser
 
 | Transport                  | Maximum size |
 | -------------------------- | ------------:|
-| Amazon SQS                 | Unknown      |
-| Azure Storage Queues       |64KB     |
+| Amazon SQS                 | 256KB        |
+| Amazon SQS + S3            | 2GB          |
+| Azure Storage Queues       | 64KB         |
 | Azure Service Bus Standard | 256KB        |
 | Azure Service Bus Premium  | 100MB        |
 | RabbitMQ                   | No limit     |
