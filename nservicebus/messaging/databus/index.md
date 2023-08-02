@@ -26,7 +26,7 @@ Using the Data Bus is required when the message size can exceed the transport me
 | Transport                  | Maximum size |
 | -------------------------- | ------------:|
 | Amazon SQS                 | Unknown      |
-| Azure Storage Queues       | 128KB ?      |
+| Azure Storage Queues       |64KB     |
 | Azure Service Bus Standard | 256KB        |
 | Azure Service Bus Premium  | 100MB        |
 | RabbitMQ                   | No limit     |
