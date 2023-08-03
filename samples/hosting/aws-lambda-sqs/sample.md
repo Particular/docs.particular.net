@@ -8,7 +8,7 @@ redirects:
 - samples/previews/aws-lambda/sqs
 ---
 
-This sample shows how to host NServiceBus within an AWS Lambda, in this case, a function triggered by incoming SQS messages. This enables hosting message handlers in AWS Lambda, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message-processing pipeline. This sample also shows a function triggered by an HTTP call and how to use NServiceBus to dispatch messages from this context.
+This sample shows how to host NServiceBus within an AWS Lambda, in this case, a function triggered by incoming SQS messages. This enables hosting message handlers in AWS Lambda, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message-processing pipeline. This sample also shows a function triggered by an HTTP call and how to use NServiceBus to dispatch messages from within this context.
 
 When hosting NServiceBus within AWS Lambda, the function handler class hosts an NServiceBus endpoint that is capable of processing multiple message types.
 
@@ -59,7 +59,7 @@ Meanwhile, the message handler for `TriggerMessage`, also hosted within the AWS 
 
 snippet: ServerlessEndpointTriggerMessageHandler
 
-## Dispatching a message ousdie of a message handler
+## Dispatching a message outside of a message handler
 
 There could be a scenario when it is needed to dispatch a message using an AWS Lambda but from outside of a message handler, like reacting to events other than messages in a queue. For example, responding to a S3 bucket change or an HTTP call. This sample also demonstrates how to dispatch a message from outside of an NServiceBus message handler to cover this scenario.
 
