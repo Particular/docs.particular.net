@@ -8,9 +8,9 @@ redirects:
 - samples/previews/aws-lambda/sqs
 ---
 
-This sample shows how to host NServiceBus within an AWS Lambda, in this case, a function triggered by incoming SQS messages. This enables hosting message handlers in AWS Lambda, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message-processing pipeline.
+This sample shows how to host NServiceBus within an AWS Lambda, in this case, a function triggered by incoming SQS messages. This enables hosting message handlers in AWS Lambda, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message-processing pipeline. This sample also shows a function triggered by an HTTP call and how to use NServiceBus to dispatch messages from this context.
 
-When hosting NServiceBus within AWS Lambda, the function handler (as identified by the `function-handler` property in the `aws-lambda-tools-defaults.json`) hosts an NServiceBus endpoint that is capable of processing multiple message types.
+When hosting NServiceBus within AWS Lambda, the function handler class hosts an NServiceBus endpoint that is capable of processing multiple message types.
 
 downloadbutton
 
@@ -22,6 +22,7 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 
 1. Install the [`Amazon.Lambda.Tools CLI`](https://github.com/aws/aws-lambda-dotnet#amazonlambdatools)
 1. Make sure an S3 bucket is available in the AWS region of choice
+2. Update the values of `stack-name` and `s3-bucket` settings in aws-lambda-tools-defaults.json file found in the **ServerlessEndpoint** project
 
 ## Running the sample
 
