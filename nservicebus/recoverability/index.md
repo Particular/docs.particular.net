@@ -151,9 +151,21 @@ Example:
 
 When taking the default values for immediate and delayed retries (five and three, respectively) and 6 instances the total number of attempts will be a minimum of `(5+1)*(3+1)=24` attempts and a maximum of `24*6=144` attempts.
 
-
-
 ## Retry logging
+
+### Event types
+
+NServiceBus logs processing failures via the logger **NServiceBus.RecoverabilityExecutor** with various log levels and messages. 
+
+| Action          | Log level     | Log message                                                                                    |
+|-----------------|---------------|------------------------------------------------------------------------------------------------|
+| Immediate retry | Informational | Immediate Retry is going to retry message 'XXX' because of an exception:                       |
+| Delayed retry   | Warning       | Delayed Retry will reschedule message 'XXX' after a delay of HH:MM:SS because of an exception: |
+| To error queue  | Error         | Moving message 'XXX' to the error queue 'error' because processing failed due to an exception: |
+
+This allows to setup alerting in centralized logging solution. For example, to notify an administrator when logger **NServiceBus.RecoverabilityExecutor** logs an ERROR log entry.
+
+### Output example
 
 Given the following configuration:
 
