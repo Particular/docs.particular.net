@@ -3,7 +3,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
-    <RootNamespace>OnPremiseEndpoint</RootNamespace>
+    <RootNamespace>RegularEndpoint</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.AmazonSQS" Version="6.*" />

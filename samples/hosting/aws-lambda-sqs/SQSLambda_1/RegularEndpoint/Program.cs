@@ -7,9 +7,9 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        Console.Title = "OnPremiseEndpoint";
+        Console.Title = "RegularEndpoint";
 
-        var endpointConfiguration = new EndpointConfiguration("OnPremiseEndpoint");
+        var endpointConfiguration = new EndpointConfiguration("RegularEndpoint");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 

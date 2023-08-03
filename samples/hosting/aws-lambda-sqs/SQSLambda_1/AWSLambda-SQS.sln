@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerlessEndpoint", "ServerlessEndpoint\ServerlessEndpoint.csproj", "{D9FB3A23-D74F-4754-9A22-ACF829EEEB70}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnPremiseEndpoint", "OnPremiseEndpoint\OnPremiseEndpoint.csproj", "{06754C55-CA74-4F17-9472-244B8A3FEB1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegularEndpoint", "RegularEndpoint\RegularEndpoint.csproj", "{06754C55-CA74-4F17-9472-244B8A3FEB1E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messages", "Messages\Messages.csproj", "{1BEFE981-8E75-4152-B6E3-8D488AE8530F}"
 EndProject

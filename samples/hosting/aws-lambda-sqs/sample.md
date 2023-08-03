@@ -36,14 +36,14 @@ The deployment will ask for a stack name and an S3 bucket name to deploy the ser
 
 After that, running the sample will launch a single console window:
 
-* **OnPremiseEndpoint** is a console application that will send a `TriggerMessage` to the `ServerlessEndpoint` queue, which is monitored by the AWS Lambda.
+* **RegularEndpoint** is a console application that will send a `TriggerMessage` to the `ServerlessEndpoint` queue, which is monitored by the AWS Lambda.
 * The deployed **ServerlessEndpoint** project will receive messages from the `ServerlessEndpoint` queue and process them using the AWS Lambda runtime.
 
 To try the AWS Lambda
 
-1. From the **OnPremiseEndpoint** window, press <kbd>Enter</kbd> to send a `TriggerMessage` to the ServerLessEndpoint queue.
+1. From the **RegularEndpoint** window, press <kbd>Enter</kbd> to send a `TriggerMessage` to the ServerLessEndpoint queue.
 1. The AWS Lambda will receive the `TriggerMessage` and hand off its procesing to NServiceBus.
-1. The NServiceBus message handler for `TriggerMessage` on **ServerlessEndpoint** sends a `ResponseMessage` that will be handled by the **OnPremiseEndpoint**
+1. The NServiceBus message handler for `TriggerMessage` on **ServerlessEndpoint** sends a `ResponseMessage` that will be handled by the **RegularEndpoint**
 
 ## Code walk-through
 
@@ -66,7 +66,7 @@ There could be the need to dispatch a message after reacting to events other tha
 1. Open a browser and visit the URL produced during the execution of  `dotnet lambda deploy-serverless`. Running the command produced a list of outputs, use the value produced for `ApiURL` output.
 1. The AWS Lambda will receive the http call and send a `TriggerMessage` to the ServerLessEndpoint queue.
 2. As in the previous example, the AWS Lambda will receive the `TriggerMessage` and hand off its procesing to NServiceBus.
-1. The NServiceBus message handler for `TriggerMessage` on **ServerlessEndpoint** sends a `ResponseMessage` that will be handled by the **OnPremiseEndpoint**
+1. The NServiceBus message handler for `TriggerMessage` on **ServerlessEndpoint** sends a `ResponseMessage` that will be handled by the **RegularEndpoint**
 
 ## Removing the sample stack
 

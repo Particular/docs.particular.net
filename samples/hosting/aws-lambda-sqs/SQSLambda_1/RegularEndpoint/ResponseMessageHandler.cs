@@ -8,7 +8,7 @@ public class ResponseMessageHandler : IHandleMessages<ResponseMessage>
 
     public Task Handle(ResponseMessage message, IMessageHandlerContext context)
     {
-        Log.Info($"Handling {nameof(ResponseMessage)} in OnPremiseEndpoint");
+        Log.Info($"Handling {nameof(ResponseMessage)} in RegularEndpoint");
         return Task.CompletedTask;
     }
 }

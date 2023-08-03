@@ -50,7 +50,7 @@ namespace LambdaFunctions
              var routing = endpointConfiguration.RoutingSettings;
 
              routing.RouteToEndpoint(typeof(TriggerMessage), "ServerlessEndpoint");
-             routing.RouteToEndpoint(typeof(ResponseMessage), "OnPremiseEndpoint");
+             routing.RouteToEndpoint(typeof(ResponseMessage), "RegularEndpoint");
 
             var advanced = endpointConfiguration.AdvancedConfiguration;
             advanced.SendFailedMessagesTo("error");

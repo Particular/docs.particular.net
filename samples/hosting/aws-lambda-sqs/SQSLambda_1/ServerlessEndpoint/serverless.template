@@ -9,16 +9,16 @@
       },
       "Type": "AWS::SQS::Queue"
     },
-    "OnPremiseEndpointQueue": {
+    "RegularEndpointQueue": {
       "Properties": {
-        "QueueName": "OnPremiseEndpoint"
+        "QueueName": "RegularEndpoint"
       },
       "Type": "AWS::SQS::Queue"
     },
-    "OnPremiseEndpointDelayQueue": {
+    "RegularEndpointDelayQueue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
-        "QueueName": "OnPremiseEndpoint-delay.fifo",
+        "QueueName": "RegularEndpoint-delay.fifo",
         "FifoQueue": "true",
         "DelaySeconds": 900
       }
@@ -117,10 +117,10 @@
         "Ref": "ServerlessEndpointQueue"
       }
     },
-    "OnPremiseEndpointQueueURL": {
+    "RegularEndpointQueueURL": {
       "Description": "The URL of the on premise endpoint queue",
       "Value": {
-        "Ref": "OnPremiseEndpointQueue"
+        "Ref": "RegularEndpointQueue"
       }
     }
   }
