@@ -57,7 +57,7 @@ snippet: FunctionHandler
 
 Meanwhile, the message handler for `TriggerMessage`, also hosted within the AWS Lambda project, is a regular NServiceBus message handler that is capable of sending messages.
 
-snippet: ServerlessEndpointTriggerMessageHandler
+snippet: TriggerMessageHandler
 
 ## Dispatching a message outside of a message handler
 
