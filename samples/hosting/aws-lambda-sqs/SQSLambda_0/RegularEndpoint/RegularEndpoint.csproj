@@ -3,13 +3,13 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
-    <RootNamespace />
+    <RootNamespace>OnPremiseEndpoint</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.AmazonSQS" Version="4.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AwsLambda.Messages\AwsLambda.Messages.csproj" />
+    <ProjectReference Include="..\Messages\Messages.csproj" />
   </ItemGroup>
 </Project>
