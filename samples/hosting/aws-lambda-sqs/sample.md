@@ -66,7 +66,7 @@ There could be the needed to dispatch a message using an AWS Lambda but from out
 1. Open a browser and visit the URL produced during the execution of  `dotnet lambda deploy-serverless`. Running the command produced a list of outputs, use the value produced for `ApiURL` output.
 1. The AWS Lambda will receive the http call and send a `TriggerMessage` to the ServerLessEndpoint queue.
 2. As in the previous example, the AWS Lambda will receive the `TriggerMessage` and hand off its procesing to NServiceBus.
-1. The NServiceBus message handler for `TriggerMessage` on **OnPremiseEndpoint** sends a `ResponseMessage` that will be handled by the **OnPremiseEndpoint**
+1. The NServiceBus message handler for `TriggerMessage` on **ServerlessEndpoint** sends a `ResponseMessage` that will be handled by the **OnPremiseEndpoint**
 
 ## Removing the sample stack
 
