@@ -54,7 +54,7 @@ The same class defines the AWS Lambda, which makes up the hosting for the NServi
 
 snippet: SQSEventFunctionHandler
 
-Meanwhile, the message handler for `TriggerMessage`, also hosted within the AWS Lambda project, is regular NServiceBus message handler which are also capable of sending messages.
+Meanwhile, the message handler for `TriggerMessage`, also hosted within the AWS Lambda project, is a regular NServiceBus message handler that is capable of sending messages.
 
 snippet: ServerlessEndpointTriggerMessageHandler
 
