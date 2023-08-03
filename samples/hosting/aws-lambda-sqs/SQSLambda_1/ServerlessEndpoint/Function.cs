@@ -26,7 +26,7 @@ namespace LambdaFunctions
             return $"{nameof(TriggerMessage)} sent.";
         }
 
-        #region SQSEventFunctionHandler
+        #region FunctionHandler
 
         public async Task SqsHandler(SQSEvent evnt, ILambdaContext context)
         {

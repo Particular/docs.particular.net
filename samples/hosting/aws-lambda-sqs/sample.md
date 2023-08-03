@@ -53,7 +53,7 @@ snippet: EndpointSetup
 
 The same class defines the AWS Lambda, which makes up the hosting for the NServiceBus endpoint. The `SqsHandler` method hands off processing of messages to NServiceBus:
 
-snippet: SQSEventFunctionHandler
+snippet: FunctionHandler
 
 Meanwhile, the message handler for `TriggerMessage`, also hosted within the AWS Lambda project, is a regular NServiceBus message handler that is capable of sending messages.
 

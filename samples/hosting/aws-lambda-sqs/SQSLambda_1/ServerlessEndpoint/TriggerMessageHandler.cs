@@ -2,7 +2,7 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-#region ServerlessEndpointTriggerMessageHandler
+#region TriggerMessageHandler
 public class TriggerMessageHandler : IHandleMessages<TriggerMessage>
 {
     static readonly ILog Log = LogManager.GetLogger<TriggerMessageHandler>();
