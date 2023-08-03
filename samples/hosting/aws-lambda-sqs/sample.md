@@ -61,7 +61,7 @@ snippet: TriggerMessageHandler
 
 ## Dispatching a message outside of a message handler
 
-There could be the needed to dispatch a message using an AWS Lambda but from outside of a message handler, like reacting to events other than messages in a queue. For example, responding to a S3 bucket change or to an HTTP call. This sample also demonstrates this use case.
+There could be the need to dispatch a message using lambda for reacting to events other than messages in a queue. For example, responding to a S3 bucket change or to an HTTP call. This sample also demonstrates this use case.
 
 1. Open a browser and visit the URL produced during the execution of  `dotnet lambda deploy-serverless`. Running the command produced a list of outputs, use the value produced for `ApiURL` output.
 1. The AWS Lambda will receive the http call and send a `TriggerMessage` to the ServerLessEndpoint queue.
