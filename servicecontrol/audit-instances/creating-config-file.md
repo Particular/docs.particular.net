@@ -7,7 +7,8 @@ reviewed: 2022-10-27
 
 The configuration of a ServiceControl Audit instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.Audit.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
 
-![image](https://github.com/Particular/docs.particular.net/assets/88632084/c91f8f5b-aac5-4bdb-b7ec-3788d0db7b00)
+![image](https://github.com/Particular/docs.particular.net/assets/88632084/c9b160ba-03a5-4c73-9812-c942af6657da)
+
 
 
 ## Host settings
