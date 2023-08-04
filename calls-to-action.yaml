@@ -1,0 +1,9 @@
+- Name: architecture-review
+  Text: 'Get a free architecture review with us'
+  ButtonText: 'Book a call'
+  Url: 'https://particular.net/consulting'
+
+- Name: solution-architect
+  Text: 'Get help with your proof of concept'
+  ButtonText: 'Book a call'
+  Url: 'https://particular.net/consulting'
