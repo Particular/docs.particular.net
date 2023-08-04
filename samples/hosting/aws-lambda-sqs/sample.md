@@ -53,7 +53,7 @@ snippet: EndpointSetup
 
 The same class defines the AWS Lambda, which makes up the hosting for the NServiceBus endpoint. The `SqsHandler` method hands off processing of messages to NServiceBus:
 
-snippet: FunctionHandler
+snippet: SqsFunctionHandler
 
 Meanwhile, the message handler for `TriggerMessage`, also hosted within the AWS Lambda project, is a regular NServiceBus message handler that is capable of sending messages.
 
@@ -65,8 +65,10 @@ There could be the need to dispatch a message after reacting to events other tha
 
 1. Open a browser and visit the URL produced during the execution of  `dotnet lambda deploy-serverless`. Running the command produced a list of outputs, use the value produced for `ApiURL` output.
 1. The AWS Lambda will receive the http call and send a `TriggerMessage` to the ServerLessEndpoint queue.
-2. As in the previous example, the AWS Lambda will receive the `TriggerMessage` and hand off its procesing to NServiceBus.
+1. As in the previous example, the AWS Lambda will receive the `TriggerMessage` and hand off its procesing to NServiceBus.
 1. The NServiceBus message handler for `TriggerMessage` on **ServerlessEndpoint** sends a `ResponseMessage` that will be handled by the **RegularEndpoint**
+
+snippet: HttpFunctionHandler
 
 ## Removing the sample stack
 

@@ -40,7 +40,7 @@
     "SQSTriggerFunction": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "ServerlessEndpoint::LambdaFunctions.Function::SqsHandler",
+        "Handler": "ServerlessEndpoint::LambdaFunctions.SqsLambda::FunctionHandler",
         "Runtime": "dotnet6",
         "CodeUri": "",
         "Description": "Function handling sqs events produced by pushing messages to the ServerlessEndpoint queue",
@@ -67,7 +67,7 @@
         }
       }
     },
-    "LambdaFunctionsFunctionHttpGetHandlerGenerated": {
+    "LambdaFunctionsHttpLambdaHttpGetHandlerGenerated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
         "Tool": "Amazon.Lambda.Annotations",
@@ -85,7 +85,7 @@
           "AmazonSQSFullAccess"
         ],
         "PackageType": "Zip",
-        "Handler": "ServerlessEndpoint::LambdaFunctions.Function_HttpGetHandler_Generated::HttpGetHandler",
+        "Handler": "ServerlessEndpoint::LambdaFunctions.HttpLambda_HttpGetHandler_Generated::HttpGetHandler",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
