@@ -19,6 +19,6 @@ The mapping rules are as follows:
    - The [AssemblyQualifiedName](https://docs.microsoft.com/en-us/dotnet/api/system.type.assemblyqualifiedname) of the message type (with or without private key are both supported). In cases when the assembly qualified type is not known by the endpoint NServiceBus will fall back using the [FullName](https://docs.microsoft.com/en-us/dotnet/api/system.type.fullname) of the message type.
    - The [FullName](https://docs.microsoft.com/en-us/dotnet/api/system.type.fullname) of the message type.
    - The Name of the type, without the assembly name.
-1. If the header is missing, some serializers can optionally [infer the message type](/nservicebus/serialization/#security-message-type-inference) based on the message payload. Serializers that support message type inference:
+1. If the header is missing, some serializers can optionally [infer the message type](/nservicebus/serialization/index.md#security-message-type-inference) based on the message payload. Serializers that support message type inference:
    - [XML](/nservicebus/serialization/xml.md#inferring-message-type-from-root-node-name) via the root node name
    - [JSON.NET](/nservicebus/serialization/newtonsoft.md#inferring-message-type-from-type) via a custom `$type` property
