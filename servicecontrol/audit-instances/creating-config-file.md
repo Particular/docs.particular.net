@@ -7,6 +7,10 @@ reviewed: 2022-10-27
 
 The configuration of a ServiceControl Audit instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.Audit.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
 
+![image](https://github.com/Particular/docs.particular.net/assets/88632084/c9b160ba-03a5-4c73-9812-c942af6657da)
+
+
+
 ## Host settings
 
 Anyone who can access the ServiceControl Audit instance URL has complete access to the audit data stored by the ServiceControl Audit instance. This is why the default is to only respond to `localhost`. Consider carefully the implications of exposing a ServiceControl Audit instance via a custom or wildcard URI.
