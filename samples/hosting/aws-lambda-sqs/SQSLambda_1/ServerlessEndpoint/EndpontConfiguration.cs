@@ -2,10 +2,10 @@ using NServiceBus;
 
 namespace LambdaFunctions;
 
-public static class EndpointConfiguration
+public static class Endpoint
 {
     #region EndpointSetup
-    public static IAwsLambdaSQSEndpoint Configure() => new AwsLambdaSQSEndpoint(context =>
+    public static IAwsLambdaSQSEndpoint Configuration => new AwsLambdaSQSEndpoint(context =>
     {
         var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("ServerlessEndpoint");
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();

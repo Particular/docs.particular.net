@@ -25,7 +25,7 @@ namespace LambdaFunctions
 
         #endregion
 
-        private static readonly IAwsLambdaSQSEndpoint serverlessEndpoint = EndpointConfiguration.Configure();
-        
+        private static readonly IAwsLambdaSQSEndpoint serverlessEndpoint = Endpoint.Configuration;
+
     }
 }
