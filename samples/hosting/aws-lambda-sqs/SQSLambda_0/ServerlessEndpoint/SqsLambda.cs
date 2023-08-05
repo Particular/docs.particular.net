@@ -1,8 +1,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Amazon.Lambda.Annotations;
-using Amazon.Lambda.Annotations.APIGateway;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
 using NServiceBus;

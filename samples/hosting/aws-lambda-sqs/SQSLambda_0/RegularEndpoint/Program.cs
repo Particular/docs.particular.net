@@ -19,8 +19,7 @@ class Program
             endpointConfiguration.UseTransport<SqsTransport>();
 
             endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
-        }
-            
+        }            
 
         Console.WriteLine("Press [ENTER] to send a message to the SQS trigger queue.");
         Console.WriteLine("Press [Esc] to exit.");
