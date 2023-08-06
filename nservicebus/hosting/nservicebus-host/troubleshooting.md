@@ -44,4 +44,4 @@ Sometimes when the server hosting a microservice that uses NServiceBus is starte
 Yet, after a certain period of time, the service is able to start up again without any issues. This happens because during the restart, NServiceBus might still be waiting on some infrastructure to start up before it is able to initialize. This can be mitigated by:
 
 - Letting the dependencies of a service finish starting up and running before the service.
-- Settin the service to  "Automatic Delayed Start" so that it will only get the signal to start when all other “auto” services are running. 
+- Setting the service to  "Automatic Delayed Start" so that it will only get the signal to start when all other “auto” services are running. 
