@@ -1,6 +1,6 @@
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
-using NServiceBus;
 
 class Program
 {
@@ -17,7 +17,7 @@ class Program
         #endregion
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.UseSerialization<XmlSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
