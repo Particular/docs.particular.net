@@ -1320,7 +1320,7 @@
       Url: servicecontrol/upgrades/1to2
   - Title: Error instances
     Articles:
-    - Title: ServiceControl instances
+    - Title: ServiceControl Error instances
       Url: servicecontrol/servicecontrol-instances
     - Title: Planning
       Articles:

@@ -1,5 +1,5 @@
 ---
-title: ServiceControl instances
+title: ServiceControl Error instances
 reviewed: 2021-04-20
 component: ServiceControl
 related:
