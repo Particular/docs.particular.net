@@ -14,7 +14,7 @@ One ServiceControl Error instance is designated as the _primary_ instance. All o
 
 NOTE: The term _remote_ refers to the fact that remote instances are run in separate processes. The primary instance and one or more remote instances can run on the same machine.
 
-In ServiceControl version 4 and later, a ServiceControl Error instance can be configured with remote instances that are [ServiceControl instances](/servicecontrol/servicecontrol-instances/) and [ServiceControl Audit instances](/servicecontrol/audit-instances/). ServiceControl Audit instances cannot be configured as primary instances.
+In ServiceControl version 4 and later, a ServiceControl Error instance can be configured with remote instances that are also [ServiceControl Error instances](/servicecontrol/servicecontrol-instances/) or are [ServiceControl Audit instances](/servicecontrol/audit-instances/). ServiceControl Audit instances cannot be configured as primary instances.
 
 ### Default deployment
 
