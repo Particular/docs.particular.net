@@ -5,7 +5,7 @@ reviewed: 2021-08-06
 component: ServiceControl
 ---
 
-In ServiceControl versions 4 and above, a ServiceControl Audit instance manages the audit queue. Data about audit messages is exposed via an HTTP API on a primary ServiceControl instance. This API is used by [ServiceInsight](/serviceinsight/) for visualizing message flows.
+In ServiceControl versions 4 and above, a ServiceControl Audit instance manages the audit queue. Data about audit messages is exposed via an HTTP API on a ServiceControl Error instance. This API is used by [ServiceInsight](/serviceinsight/) for visualizing message flows.
 
 NOTE: The ServiceControl HTTP API is designed for use by ServiceInsight only and may change at any time. Use of this HTTP API for other purposes is discouraged.
 
@@ -32,21 +32,21 @@ Each ServiceControl Audit instance stores data in an embedded database. Audit da
 
 When using ServiceControl Management to create a new ServiceControl instance, a connected ServiceControl Audit instance is automatically created. Using PowerShell, create the ServiceControl instance first, then the ServiceControl Audit instance.
 
-When [auditing](/nservicebus/operations/auditing.md) NServiceBus messages there must be at least one ServiceControl audit instance. ServiceInsight connects directly to the primary ServiceControl instance, which will aggregate the data stored in [all connected ServiceControl Audit instances](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-competing-consumers).
+When [auditing](/nservicebus/operations/auditing.md) NServiceBus messages there must be at least one ServiceControl audit instance. ServiceInsight connects directly to the ServiceControl Error instance, which will aggregate the data stored in [all connected ServiceControl Audit instances](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-competing-consumers).
 
 Connecting ServiceInsight directly to a ServiceControl Audit instance is not supported.
 
 ## Notifications
 
-Each ServiceControl Audit instance sends notification messages to a primary ServiceControl instance.
+Each ServiceControl Audit instance sends notification messages to a ServiceControl Error instance.
 
 ### Endpoint detection
 
-When a ServiceControl Audit instance detects a new endpoint, it sends a notification to the primary ServiceControl instance. The primary instance keeps track of all of the endpoints in the system and can monitor them with heartbeats and custom checks.
+When a ServiceControl Audit instance detects a new endpoint, it sends a notification to the ServiceControl Error instance. The Error instance keeps track of all of the endpoints in the system and can monitor them with heartbeats and custom checks.
 
 ### Successful retry detection
 
-When a ServiceControl Audit instance detects that an audited message is the result of a retry, it sends a notification to the primary ServiceControl instance.
+When a ServiceControl Audit instance detects that an audited message is the result of a retry, it sends a notification to the ServiceControl Error instance.
 
 ### Health monitoring
 
