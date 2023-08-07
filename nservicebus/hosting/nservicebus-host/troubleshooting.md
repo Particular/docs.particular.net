@@ -44,4 +44,7 @@ Sometimes when the server hosting a microservice that uses NServiceBus is starte
 Yet, after a certain period of time, the service is able to start up again without any issues. This happens because during the restart, NServiceBus might still be waiting on some infrastructure to start up before it is able to initialize. This can be mitigated by:
 
 - Letting the dependencies of a service finish starting up and running before the service.
-- Setting the service to  "Automatic Delayed Start" so that it will only get the signal to start when all other “auto” services are running. 
+- Setting the service to  "Automatic Delayed Start" so that it will only get the signal to start when all other “Automatic” services are running. This is because, when a windows service startup is set to "Automatic", it loads during boot whereas when it is set to "Automatic (delayed start)", it does not  start until after all other auto-start services have been launched. Once all the automatic start services are loaded, the system then queues the “delay start” services for 2 minutes (120 seconds) by default. This interval can be altered by creating a registry DWORD (32-bit) value named AutoStartDelay and setting the delay (base: decimal) in seconds, in the following registry key:
+```txt
+ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control
+```
