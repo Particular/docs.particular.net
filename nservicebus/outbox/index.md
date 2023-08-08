@@ -22,11 +22,9 @@ Most message queues, and some data stores, do not support distributed transactio
 
 The NServiceBus **outbox** feature ensures consistency between business data and messages. It simulates an atomic transaction, distributed across both the data store used for business data and the message queue used for messaging.
 
-Note: Messages dispatched to the transport as part of the outbox dispatch stage will not be batched and each message is sent in isolation.
-
 Note: Messages sent with [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) will be sent immediately and won't be handled by the outbox.
 
-Note: Messages sent using `IMessageSession` won't be handled by the outbox. The outbox requires an incoming message context. Use the `IMessageHandlerContext` instance to dispatch messages handled by the outbox.
+Note: Messages sent using `IMessageSession` won't be handled by the outbox. The outbox requires an incoming message context. Use the `IMessageHandlerContext` instance to dispatch messages handled by the outbox. Use the [Transactional Session](/nservicebus/transactional-session) when requiring outbox behavior without an incoming message.
 
 ## The consistency problem
 
@@ -42,7 +40,7 @@ Consider a message handler that creates a `User` in the business database, and a
 To avoid these problems, developers of distributed systems have two options:
 
 1. Ensure all message handlers are [idempotent](https://en.wikipedia.org/wiki/Idempotence). This means each message handler can handle the same message multiple times without adverse side effects. This is often difficult to achieve.
-2. Implement infrastructure which guarantees consistency between business data and messages. This avoids the need for all messages handlers to be idempotent.
+2. Implement infrastructure which guarantees consistency between business data and messages. This avoids the need for all message handlers to be idempotent.
 
 The outbox feature is the infrastructure described in the second option.
 
@@ -50,7 +48,7 @@ The outbox feature is the infrastructure described in the second option.
 
 The outbox feature guarantees that each message is processed once and only once, using the database transaction used to store business data.
 
-Returning to the earlier example of a message handler which creates a `User` and then publishes a `UserCreated` event, the following process occurs. Details are described following the diagram.
+Returning to the earlier example of a message handler that creates a `User` and then publishes a `UserCreated` event, the following process occurs. Details are described following the diagram.
 
 ```mermaid
 graph TD
@@ -126,6 +124,7 @@ In phase 2, outgoing messages are sent to the messaging infrastructure and outbo
 * Because deduplication is done using `MessageId`, messages sent outside of an NServiceBus message handler (i.e. from a Web API) cannot be deduplicated unless they are sent with the same `MessageId`.
 * The outbox is _expected_ to generate duplicate messages from time to time, especially if there is unreliable communication between the endpoint and the message broker.
 * Endpoints using the outbox feature should not send messages to endpoints using DTC (see below) as the DTC-enabled endpoints treat duplicates coming from outbox-enabled endpoints as multiple messages.
+* Messages dispatched to the transport as part of the [outgoing pipeline stages](/nservicebus/pipeline/steps-stages-connectors#stages-outgoing-pipeline-stages.md) may not be batched and each message is sent in isolation.
 
 ### Transaction scope
 
@@ -143,7 +142,7 @@ MSDTC uses a chatty protocol due to the need for multiple resource managers to c
 
 The more resource managers involved and/or the higher the latency between them, the worse MSDTC performs. Cloud environments, in particular, have much higher latency and the message queue and the data store are often not even located in the same server rack.
 
-The rise of cloud infrastructure and [decline of MSMQ](https://particular.net/blog/msmq-is-dead) have contributed to the overall decline in use of MSDTC in the software development industry.
+The rise of cloud infrastructure and [decline of MSMQ](https://particular.net/blog/msmq-is-dead) have contributed to the overall decline in the use of MSDTC in the software development industry.
 
 The outbox feature is designed to provide the same level of consistency between business data and messages provided by MSDTC, without the need to coordinate multiple resource managers.
 
@@ -177,11 +176,11 @@ The outbox only uses the incoming [message identifier](/nservicebus/messaging/me
 
 ## Outbox expiration duration
 
-To determine if a message has been processed before, the identification data for each outbox record is retained. The duration that this data is retained for varies depending on the persistence chosen for the outbox. The default duration, as well as the frequency of data removal, can be overridden for all outbox persisters.
+To determine if a message has been processed before, the identification data for each outbox record is retained. The duration that this data is retained varies depending on the persistence chosen for the outbox. The default duration, as well as the frequency of data removal, can be overridden for all outbox persisters.
 
 After the outbox data retention period has lapsed, a retried message will be seen as the first of its kind and will be reprocessed. It is important to ensure that the retention period of outbox data is longer than the maximum time the message can be retried, including delayed retries and manual retries via ServicePulse.
 
-Depending on the throughput of the system's endpoints, the outbox cleanup interval may need to be run more frequently. Increased frequency will allow each cleanup operation to purge the fewest records possible each time it runs. Purging fewer records will make the purge operation run faster which will ensure that it completes before the next purge operation is due to start.
+Depending on the throughput of the system's endpoints, the outbox cleanup interval may need to be run more frequently. The increased frequency will allow each cleanup operation to purge the fewest records possible each time it runs. Purging fewer records will make the purge operation run faster which will ensure that it completes before the next purge operation is due to start.
 
 ## Storage requirements
 
@@ -195,7 +194,7 @@ NOTE: If the system is processing a high volume of messages, having a long dedup
 
 ## Persistence
 
-The outbox feature requires persistence in order to perform deduplication and to store outgoing downstream messages.
+The outbox feature requires persistent storage in order to perform deduplication and store outgoing downstream messages.
 
 For more information on the outbox persistence options available refer to the dedicated persistence pages:
 
