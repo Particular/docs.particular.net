@@ -7,6 +7,7 @@ related:
 - servicepulse/troubleshooting
 ---
 
+NOTE: It is also possible to run ServicePulse in a [container](containerization).
 
 ## Prerequisites
 
