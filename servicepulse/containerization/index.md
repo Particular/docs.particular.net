@@ -23,7 +23,7 @@ The [particular/servicepulse](https://hub.docker.com/r/particular/servicepulse) 
 
 Windows:
 
-The  [particular/servicepulse-windows](https://hub.docker.com/r/particular/servicepulse) image is based on `mcr.microsoft.com/windows/servercore/iis`.
+The  [particular/servicepulse-windows](https://hub.docker.com/r/particular/servicepulse-windows) image is based on `mcr.microsoft.com/windows/servercore/iis`.
 
 ## Running using Docker
 
