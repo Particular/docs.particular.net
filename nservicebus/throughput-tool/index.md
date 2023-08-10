@@ -4,7 +4,7 @@ summary: Use the Particular endpoint throughput counter tool to measure the thro
 reviewed: 2022-11-09
 ---
 
-The Particular endpoint throughput counter tool can typically be installed on a [user's workstation](faq#does-the-tool-need-to-run-on-my-production-server) and run against a production system to measure the throughput of each endpoint over a period of time.
+The Particular endpoint throughput counter tool can typically be installed on a [user's workstation](faq.md#does-the-tool-need-to-run-on-my-production-server) and run against a production system to measure the throughput of each endpoint over a period of time.
 
 ## Installation
 
