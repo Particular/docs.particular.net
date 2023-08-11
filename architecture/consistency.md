@@ -59,24 +59,6 @@ The nature of the outbox pattern might cause outgoing messages to be dispatched 
 Note: Implementing the outbox pattern is very risky and error-prone. Small mistakes can lead to unintended behavior and message or data loss. Consider the the [NServiceBus Outbox feature](/nservicebus/outbox/) which implements the Outbox pattern, including built-in message deduplication when receiving messages. The NServiceBus Outbox is used in production by hundreds of customers, thoroughly tested and well documented.
 
 
-
-### Session Management
-
-When NServiceBus is configured with a persistent storage, NServiceBus will manage the lifecycle of (transactional) storage sessions. Application code can access the managed session to work with business data:
-
-```mermaid
-sequenceDiagram
-    Queue->>NSB: ReceiveMessage
-    NSB->>Storage: Open session
-    NSB->>Application: Invoke message handler
-    Application->>Storage: Store business data
-    Application-->>NSB: message handler finished
-    NSB->>Storage: Store workflow/outbox data
-    NSB->>Storage: Commit transaction
-    NSB-xStorage: Close session
-    NSB-->>Queue: Ack message
-```
-
 ## Idempotency
 
 Idempotency is an approach to mitigate the lack of distributed transactions. Without transactions, [recoverability mechanisms](/architecture/recoverability.md) that prevent message losses in failure scenarios may produce duplicate messages. With idempotency, processing the same message multiple times produces the same result as processing it once. This is often referred to as `at-least-once` semantics, compared to `at-most-once` if no recoverability mechanism are applied. However, this also means that the message processing logic might be executed multiple times for the same message, producing repeated side-effects (e.g. database updates, HTTP requests, logging etc.).
