@@ -1,7 +1,7 @@
 ---
 title: Entity Framework integration with SQL Persistence
 summary: Integrating Entity Framework with SQL Persistence.
-reviewed: 2020-06-26
+reviewed: 2023-08-11
 component: SqlPersistence
 related:
 - persistence/sql
