@@ -65,7 +65,7 @@ Reply message are always routed based on the `ReplyTo` header of the initial mes
 
 ## Make instance uniquely addressable
 
-When using a message broker, multiple instances of a scaled-out endpoint are consuming from the same address via the [competing consumer](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) model.
+When using a message broker, multiple instances of a scaled-out endpoint are consuming from the same address via the [competing consumer](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) model.
 
 To address specific instances of a scaled-out endpoint, instances can be configured to be individually addressable by providing a unique discriminator to each instance:
 

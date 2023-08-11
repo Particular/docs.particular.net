@@ -33,7 +33,7 @@ Events require more effort to migrate from `NServiceBus.Router` to `NServiceBus.
 
 A scenario could exist as shown in the graph below, where `Endpoint A` publishes an event and the event is sent to both the `NServiceBus.Router` and the `NServiceBus.MessagingBridge`. As a result, `Endpoint B` could receive the same event twice.
 
-Note that both events would have the same message identifier, which allows the [outbox](/nservicebus/outbox/) to de-duplicate the messages. Without the outbox, either the message handler must be [idempotent](/nservicebus/concepts/glossary.md#idempotence) or the event will be processed twice.
+Note that both events would have the same message identifier, which allows the [outbox](/nservicebus/outbox/) to de-duplicate the messages. Without the outbox, either the message handler must be [idempotent](/nservicebus/glossary.md#idempotence) or the event will be processed twice.
 
 ```mermaid
 flowchart LR

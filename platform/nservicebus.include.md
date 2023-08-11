@@ -1,6 +1,6 @@
 NServiceBus is the heart of a distributed system and the Particular Service Platform. It helps create systems that are scalable, reliable, and flexible.
 
-At its core, NServiceBus works by routing _messages_ between _endpoints_. [Messages](/nservicebus/concepts/glossary.md#message) are plain C# classes that contain meaningful data for the business process that is being modeled.
+At its core, NServiceBus works by routing _messages_ between _endpoints_. [Messages](/nservicebus/glossary.md#message) are plain C# classes that contain meaningful data for the business process that is being modeled.
 
 ```csharp
 public class ProcessOrder
@@ -9,7 +9,7 @@ public class ProcessOrder
 }
 ```
 
-[Endpoints](/nservicebus/concepts/glossary.md#endpoint) are logical entities that send and/or receive messages.
+[Endpoints](/nservicebus/glossary.md#endpoint) are logical entities that send and/or receive messages.
 
 ```csharp
 // Sending endpoint
@@ -45,7 +45,7 @@ NOTE: To see how NServiceBus prevents loss of data, adds failure recovery, and m
 
 NServiceBus is designed to handle a large number of messages. Endpoints are configured for high performance by default, handling multiple messages in parallel. Depending on the workload, the number of messages handled concurrently can be [increased to improve message throughput](/nservicebus/operations/tuning.md).
 
-In high volume scenarios, where there are more messages being produced than a single physical endpoint can handle, the logical endpoint can be [scaled out across multiple physical instances](/nservicebus/architecture/scaling.md) running on different machines, sharing the load.
+In high volume scenarios, where there are more messages being produced than a single physical endpoint can handle, the logical endpoint can be [scaled out across multiple physical instances](/nservicebus/scaling.md) running on different machines, sharing the load.
 
 Each endpoint tracks [key performance metrics](/monitoring/metrics/definitions.md) that can be exposed as [Windows Performance Counters](/monitoring/metrics/performance-counters.md) or [collected into a central dashboard](/monitoring/metrics/in-servicepulse.md). [The monitoring demo](/tutorials/monitoring-demo/) demonstrates how to find performance bottlenecks and identify endpoints that are ready to scale out.
 

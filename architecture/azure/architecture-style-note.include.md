@@ -1,0 +1,1 @@
+Note: Architectural styles describe approaches to achieve characteristic features of a system. Architectural styles are not exclusive and can be combined when multiple characteristics are needed.

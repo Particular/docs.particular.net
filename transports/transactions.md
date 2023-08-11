@@ -7,8 +7,6 @@ redirects:
  - nservicebus/messaging/transactions
  - nservicebus/transports/transactions
 reviewed: 2020-12-07
-related:
- - nservicebus/azure/understanding-transactionality-in-azure
 ---
 
 This article covers various levels of consistency guarantees with regards to:
@@ -90,7 +88,7 @@ In this mode some (or all) handlers might get invoked multiple times and partial
  * partial updates - where one handler succeeded updating its data but the other didn't
  * partial sends - where some of the messages have been sent but others not
 
-When using this mode all handlers must be [idempotent](/nservicebus/concepts/glossary.md#idempotence), i.e. the result needs to be consistent from a business perspective even when the message is processed more than once.
+When using this mode all handlers must be [idempotent](/nservicebus/glossary.md#idempotence), i.e. the result needs to be consistent from a business perspective even when the message is processed more than once.
 
 See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
 
@@ -106,7 +104,7 @@ snippet: TransportTransactionAtomicSendsWithReceive
 
 #### Consistency guarantees
 
-This mode has the same consistency guarantees as the *Receive Only* mode, but additionally it prevents occurrence of [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) since all outgoing operations are atomic with the ongoing receive operation.
+This mode has the same consistency guarantees as the *Receive Only* mode, but additionally it prevents occurrence of [ghost messages](/nservicebus/glossary.md#ghost-message) since all outgoing operations are atomic with the ongoing receive operation.
 
 
 ### Unreliable (Transactions Disabled)

@@ -8,7 +8,7 @@ related:
  - transports/msmq/sender-side-distribution
 ---
 
-NOTE: This sample is only relevant for the [MSMQ transport](/transports/msmq/). The other transports scale out using the [competing consumer pattern](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers). The functionality in this sample is available for NServiceBus version 6 and above.
+NOTE: This sample is only relevant for the [MSMQ transport](/transports/msmq/). The other transports scale out using the [competing consumer pattern](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers). The functionality in this sample is available for NServiceBus version 6 and above.
 
 Sometimes a single endpoint for handling messages is not enough, so there is a need to scale out. The following sample demonstrates how to scale out existing MSMQ message processing by distributing messages on the sender side.
 

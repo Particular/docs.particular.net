@@ -7,6 +7,5 @@ When considering an Azure Transport it is important to consider the transaction 
 
  * [Azure Storage Queues - Transaction Support](/transports/azure-storage-queues/transaction-support.md)
  * [Azure Service Bus - Transaction Support](/transports/azure-service-bus/transaction-support.md)
- * [Understanding Transactionality in Azure](/nservicebus/azure/understanding-transactionality-in-azure.md)
 
 }}

@@ -46,6 +46,52 @@
     Title: High-level content
   - Url: samples/netcore
     Title: .NET Core Samples
+
+- Name: Architecture
+  Topics:
+  - Title: Introduction
+    Url: architecture
+  - Title: Concepts
+    Articles:
+    - Title: Messaging
+      Url: architecture/messaging
+    - Title: Recoverability
+      Url: architecture/recoverability
+    - Title: Consistency
+      Url: architecture/consistency
+    - Title: Workflows
+      Url: architecture/workflows
+    - Title: Monitoring
+      Url: architecture/monitoring
+    - Title: Hybrid systems
+      Url: architecture/hybrid-systems
+    - Title: Priority queues
+      Url: architecture/priority-queues
+    - Title: Data distribution
+      Url: architecture/data-distribution
+  - Title: Azure
+    Articles:
+    - Title: Introduction
+      Url: architecture/azure
+    - Title: Architectural styles
+      Articles:
+      - Title: Event-driven
+        Url: architecture/azure/event-driven-architecture
+      - Title: Microservices
+        Url: architecture/azure/microservices
+      - Title: N-tier
+        Url: architecture/azure/n-tier
+      - Title: Web-queue-worker
+        Url: architecture/azure/web-queue-worker
+    - Title: Technology choices
+      Articles:
+      - Title: Compute
+        Url: architecture/azure/compute
+      - Title: Data stores
+        Url: architecture/azure/data-stores
+      - Title: Messaging
+        Url: architecture/azure/messaging
+
 - Name: NServiceBus
   Topics:
   - Title: General
@@ -54,15 +100,6 @@
       Title: About NServiceBus
     - Url: nservicebus/best-practices
       Title: Best practices
-    - Url: nservicebus/concepts
-      Title: Messaging Concepts
-      Articles:
-      - Url: nservicebus/concepts/glossary
-        Title: Glossary
-      - Url: nservicebus/concepts/priority-queues
-        Title: Priority Queues
-      - Url: nservicebus/concepts/data-distribution
-        Title: Data distribution
     - Url: platform
       Title: Service Platform
       Articles:
@@ -90,12 +127,12 @@
       Title: Release notifications
     - Url: platform/contributing
       Title: Contributing
-    - Url: nservicebus/architecture/principles
-      Title: Architectural Principles
-    - Url: nservicebus/architecture/scaling
+    - Url: nservicebus/scaling
       Title: Scaling out
-    - Url: nservicebus/architecture
-      Title: Bus vs. Broker
+    - Url: nservicebus/biztalk
+      Title: NServiceBus and Biztalk
+    - Url: nservicebus/glossary
+      Title: Glossary
   - Title: Upgrade Guides
     Articles:
     - Url: nservicebus/upgrades
@@ -844,8 +881,6 @@
     - Url: transports/azure-service-bus/transaction-support
       Title: Transaction support
       Articles:
-        - Url: nservicebus/azure/understanding-transactionality-in-azure
-          Title: Transactions in Azure
         - Url: nservicebus/azure/ways-to-live-without-transactions
           Title: Avoiding Transactions
     - Url: transports/azure-service-bus/operational-scripting
@@ -857,8 +892,6 @@
     - Url: transports/azure-storage-queues/transaction-support
       Title: Transaction Support
       Articles:
-        - Url: nservicebus/azure/understanding-transactionality-in-azure
-          Title: Transactions in Azure
         - Url: nservicebus/azure/ways-to-live-without-transactions
           Title: Avoiding Transactions
     - Url: transports/azure-storage-queues/configuration
@@ -1142,8 +1175,6 @@
       Title: Configuration
     - Url: persistence/azure-table/transactions
       Title: Transactions
-    - Url: nservicebus/azure/understanding-transactionality-in-azure
-      Title: Transactions in Azure
     - Url: persistence/azure-table/performance-tuning
       Title: Performance Tuning
     - Url: persistence/azure-table/scripting

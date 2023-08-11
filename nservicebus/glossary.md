@@ -2,6 +2,8 @@
 title: Glossary of messaging terms
 summary: A glossary of terms used in distributed systems related to NServiceBus.
 reviewed: 2020-10-16
+redirects:
+- nservicebus/concepts/glossary
 ---
 
 A glossary of terms used in distributed systems related to NServiceBus.
