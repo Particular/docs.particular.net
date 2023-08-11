@@ -2,7 +2,7 @@
 title: Message Property Encryption
 summary: Encrypt message fragments using property encryption
 component: PropertyEncryption
-reviewed: 2020-06-29
+reviewed: 2023-08-11
 redirects:
 - nservicebus/encryption
 related:
