@@ -32,7 +32,7 @@ A data distribution operation is a _broadcast_ operation, which is logically dif
 
 ## Recommendations
 
-Asynchronous messaging (e.g. NServiceBus) is **not** a good solution for data distribution scenarios. It is usually better to use a dedicated data distribution technology, such as a distributed cache or distributed configuration service. These kinds of technologies are difficult to implement because of the inevitable race conditions and consensus issues but several have evolved that solve these problems elegantly.
+Asynchronous messaging is **not** a good solution for data distribution scenarios. It is usually better to use a dedicated data distribution technology, such as a distributed cache or distributed configuration service. These kinds of technologies are difficult to implement because of the inevitable race conditions and consensus issues but several have evolved that solve these problems elegantly.
 
 Distributed caches, such as [Redis](https://redis.io/), [NCache](https://www.alachisoft.com/ncache/), or [Memcached](http://memcached.org/) can provide fast, local data caching with built-in replication. They can be treated as one global system, rather than separate caches synchronized by exchanging messages.
 

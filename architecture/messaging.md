@@ -6,19 +6,18 @@ reviewed: 2023-07-18
 
 Messaging is typically used for communication across processes, also known as communication across components. It is typically used to communicate between components within a system, as opposed to integration-based communication which is often used to communicate outside of a single system.
 
-
-
 The principles and patterns underlying queued messaging are decades old and battle-tested through countless technological shifts.
 
 ## Message systems
 
-A message broker like RabbitMQ, Azure ServiceBus, or Amazon SQS, can be compared with a database, but instead of storing data and indexing it, it focuses on transferring data from one application to another. A client will call an API to send a message, and the API returns control to the calling thread after the message is received by the message broker.  At that point the transfer of the message across the network becomes the responsibility of the messaging technology. 
+A message broker like RabbitMQ, Azure ServiceBus, or Amazon SQS, can be compared with a database, but instead of storing data and indexing it, it focuses on transferring data from one application to another. A client will call an API to send a message, and the API returns control to the calling thread after the message is received by the message broker. At that point the transfer of the message across the network becomes the responsibility of the messaging technology.
 
 ![messaging-system](/architecture/message-system-one-way.png)
 
 The client process is oblivious to problems that receiving clients might have; as soon as the message is sent, messaging infrastructure takes over. As a result, critical resources like threads are not held waiting for the message processing to complete. This prevents the client process from losing stability while waiting for a response from another machine or process.
 
 Additional benefits of messaging systems:
+
 - **Temporal decoupling:** Sender and receiver are *temporal decoupled* from each other. This means the sender and receiver execute their work independent of time. As a result there is no time availability dependency between the sender and the receiver, e.g. producer and consumer no longer need to be be running concurrently.
 - **Load balancing:** Consumers can be scaled up independently from producers to handle the incoming messages on a queue.
 - **Load leveling:** Producers don't need to worry about the throughput of a consumer and backpressure mechanisms as the the queue decouples the producer from the consumer.
@@ -26,7 +25,7 @@ Additional benefits of messaging systems:
 
 The Particular Platform offers a common set of features available to supported messaging technologies (transports), filling in missing native capabilities where needed. Building blocks like [Recoverability](/architecture/recoverability.md), [Outbox](/architecture/consistency.md#transactions-outbox-pattern), [Monitoring](/architecture/monitoring.md), etc. are available on all transports. Therefore, the choice of the best messaging technology can be simplified and focused on fundamental limitations like message size, pricing model, or portability.
 
-## Messaging versus RPC
+### Messaging versus RPC
 
 It's quite easy to build an application and get it working using remote procedure call (RPC) techniques like webservices (ASMX or WCF), HTTP API (ASP.NET WebAPI) or WebSockets (SignalR). However, scalability and fault-tolerance are inherently hindered when using synchronous, blocking calls. Scaling up and throwing more hardware at the problem has little effect.
 
@@ -64,7 +63,6 @@ From a network perspective, request/response is just two one-way interactions:
 
 This communication pattern is particularly important for servers, as clients behind problematic network connections now have little effect on a server's stability. If a client crashes after sending the request, but before the server sends a response, the server will not have resources tied up waiting until the connection times out.
 
-
 #### Callback pattern
 
 Occasionally a scenario exists where the sender of a message requires a blocking call and waits for a response. Usually this occurs in existing systems where messaging is introduced and the user-interface is designed to wait for a response. Instead of an immediate and partial (but large) rewrite of the user-interface, the [callback pattern](/nservicebus/messaging/callbacks.md) can be used to wait for a response.
@@ -95,7 +93,6 @@ Since many commands may be received in a short period of time, publishing an eve
 
 Read more about [how events are used in NServiceBus](/nservicebus/messaging/messages-events-commands.md).
 
-
 ## Command query separation
 
 Many systems provide users with the ability to search, filter, sort, and change data.
@@ -110,7 +107,7 @@ In this solution there are two components that each span both client and server.
 
 The command component publishes messages and the query component subscribes to them. When the query component receives a message, it stores appropriate data in a schema which is often optimized for queries, such as a star schema in a database or a cache of JSON documents. It may also cache some query responses in memory.
 
-## Bus versus broker architectural styles 
+## Bus versus broker architectural styles
 
 A "service bus" is often illustrated as a central box, through which all communication goes. Despite the common understanding, that's actually a description of the **_broker architectural style_**. 
 
