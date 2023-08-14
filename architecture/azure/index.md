@@ -57,38 +57,36 @@ The Particular Service Platform makes helps systems follow the [ten design princ
   * Separating domain logic from infrastructure concerns, such as reliability and recoverability, which are handled by the Particular Service Platform.
   * Deploying services independently through the use of [asynchronous messaging](/nservicebus/messaging/).
 
-[**Talk to a solution architect and learn more about how the Particular Service Platform helps systems follow Azure design principles. →**](https://particular.net/proof-of-concept)
+[**Talk to a solution architect and learn more about how the Particular Service Platform helps systems follow Azure design principles. →**](https://particular.net/solution-architect?message=I%27d%20like%20to%20talk%20to%20a%20solution%20architect%20to%20learn%20more%20about%20how%20the%20Particular%20Service%20Platform%20helps%20systems%20follow%20Azure%20design%20principles.)
 
-### Design patterns // TODO: adam to continue here
+### Design patterns
 
-The [Azure cloud design patterns catalog](https://learn.microsoft.com/en-us/azure/architecture/patterns/) lists many proven patterns to address specific challenges. The Particular Platform implements many of the described patterns like [Asynchronous Request-Reply](), [Circuit Breaker](), [Claim Check](), [Competing Consumers](), and more.
+[Azure Cloud Design Patterns](https://learn.microsoft.com/en-us/azure/architecture/patterns/) lists many proven patterns for addressing specific challenges. The Particular Service Platform implements many of these such as [Asynchronous Request-Reply](/nservicebus/messaging/reply-to-a-message.md), [Circuit Breaker](/nservicebus/recoverability/#automatic-rate-limiting), [Claim Check](/nservicebus/messaging/databus/), [Competing Consumers](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers), and more.
 
-[**Talk to a solution architect to help determining the right patterns →**](https://particular.net/proof-of-concept)
+[**Talk to a solution architect to help identify suitable design patterns→**](https://particular.net/solution-architect?message=I%27d%20like%20to%20talk%20to%20a%20solution%20architect%20to%20help%20identify%20suitable%20design%20patterns%20for%20my%20system.)
 
 ## Microsoft Well-Architected Framework
 
-The [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/) describes five pillars of software quality: Reliability, Security, Cost Optimization, Operational Excellence, and Performance Efficiency.
+The Particular Service Platform helps achieve the five pillars of software quality described by the [Microsoft Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/). For example:
 
-The Particular Platform helps achieving the five pillars of the well-architected Framwork:
 * [Reliability](https://learn.microsoft.com/en-us/azure/well-architected/resiliency/overview)
-    * NServiceBus is designed to handle even unexpected failures and enables se-f-healing systems implementing recoverability features.
-
-    * NServiceBus sndpoints provide health metrics which can be monitored using ServicePulse or OpenTelemetry integration.
+  * NServiceBus handles even unexpected failures and provides the [recoverability features](/nservicebus/recoverability/) required by self-healing systems.
+  * NServiceBus provides health metrics which can be monitored using [ServicePulse](/servicepulse) and [OpenTelemetry](/nservicebus/operations/opentelemetry.md).
 * [Security](https://learn.microsoft.com/en-us/azure/well-architected/security/security-principles)
-    * NServiceBus endpoints are designed support least privilege configurations during application deployment and runtime.
-    * Encrypt messages using the official [NServiceBus.Encryption.MessageProperty](/nservicebus/security/property-encryption.md) extension.
-* [Cost Optimization](https://learn.microsoft.com/en-us/azure/well-architected/cost/overview)
-    * TBD, maybe point to the technology choices documentation and try to provide more cost specific content?
-* [Operational Excellence](https://learn.microsoft.com/en-us/azure/well-architected/devops/overview)
-    * The Particular Platform supports creation of necessary infrastructure components using dedicated installation APIs or infrastructure scripting tools.
-    * ServicePulse provides detailed insights into the operational health of the system.
-    * Messaging patterns implemented by NServiceBus enable loosely coupled architectures to enable autonomous and indepndent services.
-    * NServiceBus APIs are built for easy testability
-* [Performance Effiency](https://learn.microsoft.com/en-us/azure/well-architected/scalability/overview)
-    * NServiceBus endpoints can be easily scaled up or out using built-in competing consumers mechanisms and configurable concurrency settings.
-    * NServiceBus is built and tested for high-performance and memory effiency.
-    * Use ServicePulse to observe individual endpoint performance and identify bottlenecks.
+  * NServiceBus supports the [least privilege](/nservicebus/operations/installers.md#when-to-run-installers) approach during application deployment and runtime.
+  * NServiceBus bus provides [message encryption](/nservicebus/security/property-encryption.md).
+* [Cost optimization](https://learn.microsoft.com/en-us/azure/well-architected/cost/overview)
+  * Costs may be optimized through [technology choices](#technology-choices).
+* [Operational excellence](https://learn.microsoft.com/en-us/azure/well-architected/devops/overview)
+  * The Particular Service Platform [creates required infrastructure components](/nservicebus/operations/installers.md) using dedicated installation APIs or infrastructure scripting tools.
+  * ServicePulse provides [detailed insights](/servicepulse) into the operational health of the system.
+  * [Messaging](/nservicebus/messaging) allows loosely coupled architectures with autonomous and independent services.
+  * NServiceBus APIs are designed for [testing](/nservicebus/testing).
+* [Performance efficiency](https://learn.microsoft.com/en-us/azure/well-architected/scalability/overview)
+  * NServiceBus endpoints can be easily scaled out using methods such as the built-in [competing consumers mechanism](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) and scaled up while tuning for [concurrency](/nservicebus/operations/tuning.md).
+  * NServiceBus is designed and tested for high-performance and memory efficiency.
+  * [Monitoring](/monitoring) allows observation of individual endpoint performance and identification of bottlenecks.
 
-## Additional resources:
+## Additional resources
 
 * [Microsoft Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/)
