@@ -55,6 +55,8 @@ Unlike the [in-process hosting model](/nservicebus/hosting/azure-functions-servi
 
 snippet: asb-function-isolated-enable-diagnostics
 
+Diagnostics data will be written with logger identification `StartupDiagnostics` with log level *Informational*.
+
 ### Error queue
 
 By default, repeatedly failing messages are sent to the `error` queue. The error queue can be configured or disabled completely to let the native Azure Service Bus dead-lettering configuration handle failures:
