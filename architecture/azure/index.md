@@ -5,15 +5,11 @@ reviewed: 2023-07-18
 suppressRelated: true
 ---
 
-
-
 The Azure Architecture Center organizes application architecture fundamentals guidance as a [series of steps](https://learn.microsoft.com/en-us/azure/architecture/guide/#how-this-guidance-is-structured):
 
 ## Architecture styles
 
-The choice of [architectural styles](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/) has broad impact on subsequent steps in designing a system architecture.
-
-The Particular Service Platform supports the messaging patterns recommended by the Azure Architecture Center for the following widely used architectural styles:
+The Particular Service Platform supports the messaging patterns recommended by the Azure Architecture Center for the following [architectural styles](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/):
 
 * [Event driven architecture](/architecture/azure/event-driven-architecture.md)
 * [Microservices architecture](/architecture/azure/microservices.md)

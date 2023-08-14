@@ -1,10 +1,8 @@
 ---
-title: N-tier Architectures
+title: N-tier architecture style on Azure
 summary:
 reviewed: 2023-07-18
 ---
-
-include: architecture-style-note
 
 ![](azure-layered-architecture.png)
 

@@ -1,10 +1,8 @@
 ---
-title: Microservice architectures on Azure
+title: Microservice architecture style on Azure
 summary:
 reviewed: 2023-07-18
 ---
-
-include: architecture-style-note
 
 ![](azure-microservices.png)
 
@@ -22,7 +20,7 @@ Microservices architectures often contain the following components:
 
 ### Finding service boundaries
 
-Finding the right service boundaries is one of the biggest challenges of any microservice architecture. Incorrect boundaries will lead violation of data isolation and excessive inter-service communication. This can lead to high coupling between services in order to implement a business processes, often referred to as a distributed monolith. Focusing on domain partitioning instead of technical partitioning is crucial to define autonomous service boundaries. 
+Finding the right service boundaries is one of the biggest challenges of any microservice architecture. Incorrect boundaries will lead violation of data isolation and excessive inter-service communication. This can lead to high coupling between services in order to implement a business processes, often referred to as a distributed monolith. Focusing on domain partitioning instead of technical partitioning is crucial to define autonomous service boundaries.
 
 <iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/113515335" webkitallowfullscreen width="400"></iframe>
 
@@ -38,7 +36,7 @@ Communication across services is much slower and error-prone due to network limi
 
 ### User interfaces
 
-Users interacting with the system often need to see data aggregated from multiple services. Maintaining high decoupling across services while providing meaningful user experiences. A wide range of technologies and patterns exist that are focusing on this problem type, e.g. Microfrontends, GrapQL, ViewModel Composition, etc. 
+Users interacting with the system often need to see data aggregated from multiple services. Maintaining high decoupling across services while providing meaningful user experiences. A wide range of technologies and patterns exist that are focusing on this problem type, e.g. Microfrontends, GrapQL, ViewModel Composition, etc.
 
 ## Microservice technologies
 
@@ -48,7 +46,7 @@ For cloud native microservices architectures, services are commonly hosted using
 
 ### Serverless
 
-Fully managed serverless offerings like [Azure Functions](https://azure.microsoft.com/en-us/products/functions) and [Azure App Services](https://azure.microsoft.com/en-us/products/app-service/) are popular choices when development teams need powerful and scalable hosting environments that require little management effort. 
+Fully managed serverless offerings like [Azure Functions](https://azure.microsoft.com/en-us/products/functions) and [Azure App Services](https://azure.microsoft.com/en-us/products/app-service/) are popular choices when development teams need powerful and scalable hosting environments that require little management effort.
 Serverless hosting models also integrate seamlessly into serverless data storage and messaging technologies.
 
 ![](azure-functions-host.png)

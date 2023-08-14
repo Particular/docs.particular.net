@@ -1,10 +1,8 @@
 ---
-title: Web-queue-worker architectures on Azure
+title: Web-queue-Worker architecture style on Azure
 summary:
 reviewed: 2023-07-18
 ---
-
-include: architecture-style-note
 
 ![](azure-web-queue-worker.png)
 
