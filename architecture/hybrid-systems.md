@@ -23,13 +23,8 @@ Cloud hosted message queueing systems can be configured to be accessed from anyw
 
 The [Messaging Bridge pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html) can be used to connect two separate messaging systems.
 
-TODO: Add bridge pattern diagram
-
-
 The [NServiceBus Message Bridge](/nservicebus/bridge/) provides a customizable implementation of the messaging bridge pattern which can connect on-premises and cloud services transparantly:
 
 ![](/samples/bridge/azure-service-bus-msmq-bridge/msmq-to-azure-service-bus-transport-bridge-sample.png)
 
-TODO better diagram
-
-[Learn more about the NServiceBus Message Bridge](/nservicebus/bridge/)
+[**Sample: Try the NServiceBus.MessageBridge sample →**](/samples/bridge/simple/)

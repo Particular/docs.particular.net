@@ -12,9 +12,11 @@ Data distribution refers to a pattern where asynchronous messages (e.g. using NS
 
 A common example of a data distribution scenario is having cached data on multiple scaled-out web servers and attempting to deliver a message to each of them. The message indicates each server should drop their current cache entries and retrieve fresh data from the database.
 
+The goal of data distribution is generally to cause a change in data and/or behavior in multiple locations at the same time. 
+
 ## Timing and reliability
 
-The goal of data distribution is generally to cause a change in data and/or behavior in multiple locations at the same time. NServiceBus does not provide any facility for receiving or processing messages in multiple locations at the same time. There is no urgency to act _now_ in reaction to a message sent with NServiceBus. Asynchronous messages are intended for eventual consistency. Each receiver processes a given message whenever it happens to receive that message from the queue.
+Asynchronous messages are intended for eventual consistency. Each receiver processes a given message whenever it happens to receive that message from the queue.
 
 In the worst-case scenario, some receivers of a data distribution message may succeed in handling the message, and others may fail, causing the message to be moved to the error queue. Until an administrator diagnoses the failure and returns the message to its source queue, transactions may be handled very differently by nodes that had successfully handled the message and those that had not.
 
@@ -28,7 +30,7 @@ When a message processing endpoint is not scaled out, there is no difference. Ho
 
 With publish/subscribe, a message is routed to a _logical_ endpoint, and it makes no difference which physical endpoint instance ends up processing it.
 
-A data distribution operation is a _broadcast_ operation, which is logically different to a _publish_ operation. While several publish operations can be subverted to act like a broadcast operation, it is not recommended. Publish/subscribe is a poor fit for data distribution. For these reasons, data distribution is not supported by NServiceBus.
+A data distribution operation is a _broadcast_ operation, which is logically different to a _publish_ operation. While several publish operations can be subverted to act like a broadcast operation, it is not recommended. Publish/subscribe is a poor fit for data distribution.
 
 ## Recommendations
 
