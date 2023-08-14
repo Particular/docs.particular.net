@@ -15,7 +15,6 @@ Architectural concepts are generally applicable, regardless of which specific te
 - [Recoverability](/architecture/recoverability.md)
 - [Consistency](/architecture/consistency.md)
 - [Workflows](/architecture/workflows.md)
-- [Monitoring](/architecture/monitoring.md)
 - [Hybrid systems](/architecture/hybrid-systems.md)
 
 ## Azure

@@ -61,8 +61,6 @@
       Url: architecture/consistency
     - Title: Workflows
       Url: architecture/workflows
-    - Title: Monitoring
-      Url: architecture/monitoring
     - Title: Hybrid systems
       Url: architecture/hybrid-systems
     - Title: Priority queues
