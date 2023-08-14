@@ -63,8 +63,6 @@
       Url: architecture/workflows
     - Title: Hybrid systems
       Url: architecture/hybrid-systems
-    - Title: Priority queues
-      Url: architecture/priority-queues
     - Title: Data distribution
       Url: architecture/data-distribution
   - Title: Azure
@@ -98,6 +96,8 @@
       Title: About NServiceBus
     - Url: nservicebus/best-practices
       Title: Best practices
+    - Url: nservicebus/priority-queues
+      Title: Priority Queues
     - Url: platform
       Title: Service Platform
       Articles:
