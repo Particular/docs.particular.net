@@ -71,6 +71,8 @@ include: license-file-local-setting-file
 
 snippet: asb-enable-diagnostics
 
+Diagnostics data will be written with logger identification `StartupDiagnostics` with log level *Informational*.
+
 ### Error queue
 
 For recoverability to move the continuously failing messages to the error queue rather than to the Azure Service Bus dead-letter queue, the error queue must be created in advance and configured using the following API:
