@@ -63,8 +63,6 @@
       Url: architecture/workflows
     - Title: Hybrid systems
       Url: architecture/hybrid-systems
-    - Title: Data distribution
-      Url: architecture/data-distribution
   - Title: Azure
     Articles:
     - Title: Introduction
@@ -96,8 +94,15 @@
       Title: About NServiceBus
     - Url: nservicebus/best-practices
       Title: Best practices
-    - Url: nservicebus/priority-queues
-      Title: Priority Queues
+    - Url: nservicebus/concepts
+      Title: Messaging Concepts
+      Articles:
+      - Url: nservicebus/concepts/glossary
+        Title: Glossary
+      - Url: nservicebus/concepts/priority-queues
+        Title: Priority Queues
+      - Url: nservicebus/concepts/data-distribution
+        Title: Data distribution
     - Url: platform
       Title: Service Platform
       Articles:
@@ -129,8 +134,6 @@
       Title: Scaling out
     - Url: nservicebus/biztalk
       Title: NServiceBus and Biztalk
-    - Url: nservicebus/glossary
-      Title: Glossary
   - Title: Upgrade Guides
     Articles:
     - Url: nservicebus/upgrades
