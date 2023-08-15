@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Shared
 {
+    #region DatabusPropertyConverterFactory
     public class DatabusPropertyConverterFactory : JsonConverterFactory
     {
 
@@ -42,4 +43,5 @@ namespace Shared
             return converter;
         }
     }
+    #endregion
 }

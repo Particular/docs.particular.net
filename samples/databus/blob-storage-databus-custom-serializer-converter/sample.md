@@ -1,16 +1,22 @@
 ---
-title: Azure Blob Storage DataBus
-summary: Sending large attachments with NServiceBus over Azure blob storage.
+title: Azure Blob Storage DataBus using converter for SystemJsonSerializer
+summary: Sending large attachments with NServiceBus via Azure blob storage using custom converter for SystemJsonSerializer
 component: ABSDataBus
 reviewed: 2023-08-05
 related:
 - nservicebus/messaging/databus
 - samples/databus/blob-storage-databus-cleanup-function
 ---
+This sample shows how to send large attachments with NServiceBus via Azure blob storage using custom converter for SystemJsonSerializer
 
+## Prerequisites
+
+ 1. [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio)
+
+## Running the sample
  1. Start [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio). 
- 1. Run the solution. Two console applications start.
- 1. Find the `Sender` application by looking for the one with `Sender` in its path and press Enter in the window to send a message. A message has been sent is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment via Azure storage, allowing it to reach the `Receiver` application.
+ 1. Run the solution. Two console applications `Sender` and `Receiver` start.
+ 1. In the console window of the `Sender` application, press Enter to send a message. A message larger than the allowed 4MB by MSMQ is sent.  NServiceBus sends it as an attachment via Azure blob storage, allowing it to reach the `Receiver` application.
 
 
 ## Code walk-through
@@ -48,6 +54,15 @@ When sending a message using the NServiceBus Message attachments mechanism, the 
 
 The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is allowed to clean the message after three minutes if it was not received by the receiver. The message payload will be removed from Azure storage after three minutes.
 
+#### Custom SystemJsonSerializer Converter
+
+In this sample, both the `Sender` and `Receiver` endpoints use [SystemJsonSerializer](/nservicebus/serialization/system-json.md) for the message serialization. Since System.Text.Json does not support ISerializable , a custom converter is required that basically does the serialization and deserialization when trying send large messages through "DataBusProperty<T>" using a Databus
+
+This sample follows a factory pattern that inherits from JsonConverterFactory to create the converter. 
+
+snippet: DatabusPropertyConverterFactory
+
+snippet: DatabusPropertyConverter
 
 ### Configuring the DataBus location
 
@@ -57,6 +72,11 @@ snippet: ConfiguringDataBusLocation
 
 Attachment blobs will be found in `databus` container.
 
+### Custom serialization option
+
+Both the `Sender` and `Receiver` endpoints use custom [serialization options](/nservicebus/serialization/system-json.md#usage-customizing-serialization-options) to modify how the serialization and deserialization is performed
+
+snippet: CustomJsonSerializerOptions
 
 ### Sender project
 

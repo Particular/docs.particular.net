@@ -33,6 +33,7 @@
 * [Autofac Dependency Injection Usage](/samples/dependency-injection/autofac/)
 * [Azure Blob Storage Data Bus Cleanup with Azure Functions](/samples/databus/blob-storage-databus-cleanup-function/)
 * [Azure Blob Storage DataBus](/samples/databus/blob-storage-databus/)
+* [Azure Blob Storage DataBus using custom converter for SystemJsonSerializer](/samples/databus/blob-storage-databus-custom-serializer-converter)
 * [Azure Service Bus lock renewal](/samples/azure-service-bus-netstandard/lock-renewal/)
 * [Azure Service Bus Native Integration](/samples/azure-service-bus-netstandard/native-integration/)
 * [Azure Service Bus Pub/Sub Native Integration](/samples/azure-service-bus-netstandard/native-integration-pub-sub/)

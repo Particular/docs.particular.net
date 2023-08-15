@@ -19,9 +19,12 @@ class Program
             .UseBlobServiceClient(blobServiceClient);
         #endregion
 
+        #region CustomJsonSerializerOptions
         var jsonSerializerOptions = new JsonSerializerOptions();
         jsonSerializerOptions.Converters.Add(new DatabusPropertyConverterFactory());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>().Options(jsonSerializerOptions);
+        #endregion
+
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 

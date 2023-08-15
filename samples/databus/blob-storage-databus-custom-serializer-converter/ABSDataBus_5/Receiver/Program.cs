@@ -12,16 +12,17 @@ class Program
         Console.Title = "Samples.AzureBlobStorageDataBus.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Receiver");
 
-        #region ConfiguringDataBusLocation
+        // ConfiguringDataBusLocation
         var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>()
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
-        #endregion
 
+        //CustomJsonSerializerOptions
         var jsonSerializerOptions = new JsonSerializerOptions();
         jsonSerializerOptions.Converters.Add(new DatabusPropertyConverterFactory());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>().Options(jsonSerializerOptions);
+
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 

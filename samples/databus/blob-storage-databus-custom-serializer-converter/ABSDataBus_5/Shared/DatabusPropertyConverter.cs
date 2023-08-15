@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Shared
 {
+    #region DatabusPropertyConverter
     public class DatabusPropertyConverter<T> : JsonConverter<DataBusProperty<T>> where T : class
     {
         public DatabusPropertyConverter(JsonSerializerOptions options)
@@ -42,4 +43,5 @@ namespace Shared
         }
 
     }
+    #endregion
 }
