@@ -18,7 +18,7 @@ The most popular Azure hosting options supported by NServiceBus are:
 
 [Explore all available NServiceBus hosting options](/nservicebus/hosting/selecting.md).
 
-![](compute-overview.png)
+![](azure-compute-overview.png)
 
 The right hosting option may depend on desired characteristics like:
 

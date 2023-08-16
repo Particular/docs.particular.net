@@ -24,3 +24,7 @@ The main components are:
 ### Technology choices
 
 Web-Queue-Worker architectures can make use of Azure's managed services like Azure App Services and Azure Functions, Cosmos DB, Azure SQL, Azure Service Bus and Azure Queue Storage.
+
+## Related content
+
+* [Azure Architecture Center—Web-queue-worker architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/web-queue-worker)

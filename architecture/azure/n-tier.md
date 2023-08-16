@@ -27,3 +27,7 @@ Front end layers often need to react to changes that were triggered by other use
 ### Technology choices
 
 TBD
+
+## Related content
+
+* [Azure Architecture Center—N-tier architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier)

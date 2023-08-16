@@ -4,39 +4,39 @@ summary:
 reviewed: 2023-07-18
 ---
 
+The Azure Architecture Center describes the [microservice architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices) as consisting of a collection of small, autonomous services.
+
+The Particular Service Platform implements the [messaging patterns](/nservicebus/messaging/) required to allow each [NServiceBus endpoint](/nservicebus/endpoints) to act as one of these autonomous services.
+
 ![](azure-microservices.png)
 
-[Microservices architectures](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices) structure applications as a collection of small, independently deployable, looosely coupled, and autonomous services. The microservice style is suitable for more complex scenarios where multiple teams are involved building large scale distributed systems.
+## Components
 
-## Architecture components
+* [NServiceBus endpoint](/nservicebus/endpoints) (service): Each service is an autonomously deployable and scalable unit with a private [data store](data-stores.md).
+* Azure Service Bus message queue: The message queue is an asynchronous, reliable, and fault-tolerant communication channel which decouples the services.
+* Gateway: A gateway is a facade which allows user technologies such as web browsers to decouple from service implementations. Gateways may also provide further operational facilities, but do not contain domain-specific logic. Azure offers a [range of gateway services](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway).
 
-Microservices architectures often contain the following components:
+## Challenges
 
-* Services: Each service is an autonomously deployable and scalable unit that has its own, private [data storage](data-stores.md).
-* [Message broker](messaging.md): Asynchronous communication via messaging provides the necessary decoupling between services while providing a reliable and fault-tolerant communication channel.
-* Gateway: Gateways act as a facade to the user, hiding the the actual service implementations to the public. Gateways can also take on further operational responsiblities and cross-cutting concerns, but should not contain domain-specific logic. Azure offers a [range of different gateway services](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway).
+### Service boundaries
 
-## Microservice challenges
-
-### Finding service boundaries
-
-Finding the right service boundaries is one of the biggest challenges of any microservice architecture. Incorrect boundaries will lead violation of data isolation and excessive inter-service communication. This can lead to high coupling between services in order to implement a business processes, often referred to as a distributed monolith. Focusing on domain partitioning instead of technical partitioning is crucial to define autonomous service boundaries.
+Finding good service boundaries is one of the biggest challenges with the microservice architectural style. Suboptimal boundaries often lead to a lack of data isolation and excessive inter-service communication. This often leads to high coupling between services which implement a business processes, sometimes referred to as a distributed monolith. To define autonomous services, it is crucial to focus on domain (business concept) boundaries rather than technical boundaries.
 
 <iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/113515335" webkitallowfullscreen width="400"></iframe>
 
-In this presentation Udi Dahan explains the process of finding the right service boundaries. The presentation explains challenges with traditional layered architectures and covers an approach that cuts across all application layers, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate using events, enabling flexible and high performance business processes.
+In this presentation, Udi Dahan demonstrates the process of finding good service boundaries. He explains the challenges of traditional layered architectures and covers an approach that cuts across all application layers, outlining the natural lines of loose and tight coupling. Finally, Udi shows how these vertical slices collaborate using events, enabling flexible and high performance business processes.
 
 [**Blog post: Goodbye microservices, hello right-sized services →**](https://particular.net/blog/goodbye-microservices-hello-right-sized-services)
 
-###  RPC vs. Messaging
+### RPC vs. messaging
 
-Communication across services is much slower and error-prone due to network limitations compared to communication between modules inside a single process. This can lead to higher latency and increased risk of being affected by network outages. Implementing cross-service interactions using asynchronous communication patterns help to mitigate these risks.
+Communication between services is much slower and error-prone due to network limitations compared to communication between modules inside a single process. This can lead to higher latency and increased impact of network outages. Asynchronous communication between services helps to mitigate these risks.
 
 [**Read more about this topic: RPC vs. Messaging – which is faster?  →**](https://particular.net/blog/rpc-vs-messaging-which-is-faster)
 
-### User interfaces
+### User interfaces TODO (adam): continue here
 
-Users interacting with the system often need to see data aggregated from multiple services. Maintaining high decoupling across services while providing meaningful user experiences. A wide range of technologies and patterns exist that are focusing on this problem type, e.g. Microfrontends, GrapQL, ViewModel Composition, etc.
+Users interacting with the system often need to see data aggregated from multiple services. Maintaining high decoupling across services while providing meaningful user experiences. A wide range of technologies and patterns exist that are focusing on this problem type, e.g. [microfrontends](https://en.wikipedia.org/wiki/Microfrontend), [GraphQL](https://graphql.org/), [ViewModel Composition](https://www.viewmodelcomposition.com), etc.
 
 ## Microservice technologies
 
@@ -60,4 +60,4 @@ Containerized applications can be hosted in managed container orchestration plat
 
 ## Related content
 
-* [Azure Architecture Center: Microservice architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices)
+* [Azure Architecture Center—Microservice architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices)
