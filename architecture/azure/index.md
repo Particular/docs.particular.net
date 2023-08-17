@@ -86,3 +86,4 @@ The Particular Service Platform helps achieve the five pillars of software quali
 ## Additional resources
 
 * [Microsoft Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/)
+* [Azure services available by region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/)
