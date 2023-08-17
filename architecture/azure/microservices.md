@@ -32,7 +32,7 @@ In this presentation, Udi Dahan demonstrates the process of finding good service
 
 Communication between services is much slower and error-prone due to network limitations compared to communication between modules inside a single process. This can lead to higher latency and increased impact of network outages. Asynchronous communication between services helps to mitigate these risks.
 
-[**Read more about this topic: RPC vs. Messaging – which is faster?  →**](https://particular.net/blog/rpc-vs-messaging-which-is-faster)
+[**Read more about this topic: RPC vs. Messaging – which is faster? →**](https://particular.net/blog/rpc-vs-messaging-which-is-faster)
 
 ### User interfaces TODO (adam): continue here
 

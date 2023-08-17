@@ -6,29 +6,29 @@ reviewed: 2023-07-18
 
 ## Transactions
 
-Transaction processing is designed to keep the system in a consistent state at any point in time. This is achieved by ensuring that interdependent operations are completed as a single unit of work. If any single operation fails, then the entire transaction fails and the system is reverted to the state it was in before the transaction started.
+Transaction processing is designed to keep the system in a consistent state at any point in time. This is achieved by ensuring that interdependent operations are completed as a single [unit of work](https://en.wikipedia.org/wiki/Unit_of_work). If any single operation fails, then the entire transaction fails and the system is reverted to the state it was in before the transaction started.
 
 ### Transaction limitations
 
 There are several challenges and limitations when relying on transactions:
 
-#### Transaction limit scalability
+#### Transaction scalability
 
-Scalable systems need to be capable to handle high levels of concurrency. Transactions need mechanisms like locking or optimistic concurrency control to ensure proper isolation between transactions trying to access the same resource. These concurrency control mechanism can severely impact a resources performance and introduce bottle-necks that are very hard to scale.
+Scalable systems need to be capable to handle high levels of concurrency. Transactions need concurrency control mechanisms to ensure proper isolation between transactions trying to access the same resource. These concurrency control mechanisms can severely impact a resource's performance and introduce bottlenecks that complicate scaling.
 
 When using horizontal scaling, additional mechanisms are required to ensure the desired level of consistency across all scale units. This typically involves complicated distributed consensus-algorithms. Depending on the consistency guarantees required, many or even all nodes of a scaled component need to participate in the transaction, negatively impacting latency and availability.
 
-#### Transactions bound to partitions
-
-Some cloud services like Azure Table Storage, Azure Cosmos DB Table API, and Azure Cosmos DB SQL API offer transactions, but they are usually scoped to a single partition key. When transactions are scoped to a single partition key, all storage operations that need to be atomic have to share the same partition key on all read, update and delete operations to achieve atomicity.
-
-#### Transactions are expensive
+#### Transaction costs
 
 Besides the performance impact of transactions, transactional operations may even be charged extra on certain managed cloud services. Broad usage of transactional consistency may therefore incur significant costs. Carefully read cloud vendor's pricing models to understand the financial impact of transactional APIs.
 
-#### Transactions need to be short-lived
+#### Transaction timeout
 
 Transactions will impact concurrent operations on a locked resource. This may block other actors and consume additional resources. Therefore transactions should complete within a short time window to avoid issues. Cloud services typically restrict transaction lifetimes further than traditional on-premises technologies.
+
+#### Transaction scope
+
+Some cloud services like Azure Table Storage, Azure Cosmos DB Table API, and Azure Cosmos DB SQL API offer transactions, but they are usually scoped to a single partition key. When transactions are scoped to a single partition key, all storage operations that need to be atomic have to share the same partition key on all read, update and delete operations to achieve atomicity.
 
 
 ### Cross-Entity transactions
@@ -61,15 +61,13 @@ Note: Implementing the outbox pattern is very risky and error-prone. Small mista
 
 ## Idempotency
 
-Idempotency is an approach to mitigate the lack of distributed transactions. Without transactions, [recoverability mechanisms](/architecture/recoverability.md) that prevent message losses in failure scenarios may produce duplicate messages. With idempotency, processing the same message multiple times produces the same result as processing it once. This is often referred to as `at-least-once` semantics, compared to `at-most-once` if no recoverability mechanism are applied. However, this also means that the message processing logic might be executed multiple times for the same message, producing repeated side-effects (e.g. database updates, HTTP requests, logging etc.).
+[Idempotence](https://en.wikipedia.org/wiki/Idempotence) ensures that processing a message multiple times has the same effect as only processing it once. This means that processing a duplicate message shouldn’t cause any unintended side effects.
 
-Note: `exactly-once` semantics are only achievable with all side-effect producing resources being able to participate in distributed transactions. Approaches like the [Outbox pattern](#transactions-outbox-pattern) can emulate `exactly-once` guarantees under certain conditions.
-
-Idempotency described message processing behavior where repeated execution of the same message (the input) produces the same output. Under this condition, `at-least-once` output is semantically equal to `exactly-once` as there is no observable difference between a single or multiple invocations. There are multiple ways to achieve idempotency, implemented at different levels:
+Idempotency is an approach to mitigate the lack of distributed transactions. Without transactions, [recoverability mechanisms](/architecture/recoverability.md) that prevent message losses in failure scenarios may produce duplicate messages. With idempotency, processing the same message multiple times produces the same result as processing it once. There are multiple ways to achieve idempotency, implemented at different levels:
 
 ### Natural idempotency
 
-Many operations can be designed in a naturally idempotent way. For example, `TurnOnTheLights` is an idempotent operation because it will have the same effect no matter the previous state and how many times the operation is executed. `FlipTheLightSwitch` however is not naturally idempotent because the results will vary depending on the initial state and the number of times it was executed.
+Many operations can be designed in a naturally idempotent way. For example, `TurnOnTheLights` is an idempotent operation because it will have the same effect no matter the previous state and how many times the operation is executed. `FlipTheLightSwitch` however is not naturally idempotent because the results will vary depending on the initial state and the number of times it was executed. Changes to naturally idempotent code should be carefully reviewed to ensure that idempotency is retained.
 
 Using natural idempotency is recommended whenever possible.
 
@@ -87,7 +85,6 @@ Message deduplication assumes a generic deduplication mechanism that works for a
 
 Additional metadata might be attached to existing side effects to achieve deduplication. For example, a message timestamp (provided by the author of the message) is attached to database record that is stored due to processing the message.
 
-
 ## Best Practices
 
 ### Break business logic into smaller steps
@@ -95,3 +92,11 @@ Additional metadata might be attached to existing side effects to achieve dedupl
 Business logic triggered by incoming messages may coordinate actions and state across multiple resources, like databases, web APIs, and other domain services. As every interaction with any service may fail for various expected and unexpected reasons, the whole process has to be repeated again. By breaking workflows into smaller steps that include a message queue + one additional resource, the impact of a failure inside the workflow can be greatly reduced and idempotency patterns will be easier to apply.
 
 [**Blog: Autosave for business processes →**](https://particular.net/blog/autosave-for-your-business)
+
+### Delegate idempotency responsibility
+
+If avoiding a side-effect (e.g. a HTTP request, or an outgoing message) is very challenging, it might be easier to delegate the responsibility of dealing with a duplicate side-effect to the receiver. For example, adding an unique but stable identifier to an HTTP request header can allow the receiving API to apply deduplication checks instead.
+
+### Use workflows
+
+Stateful workflows can coordinate multiple resources to achieve (eventual) consistency across all of them. See the [workflows documentation](workflows.md) for more details.
