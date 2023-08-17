@@ -4,7 +4,7 @@ summary:
 reviewed: 2023-07-18
 ---
 
-Azure offers wide range of different hosting options that will host and run application code. The available option range from full control of the machine, including the operating system, to fully managed serverless services.
+Azure offers a wide range of different hosting options that will host and run application code. The available options range from full control of the machine, including the operating system, to fully managed serverless services.
 
 ## Hosting models
 
@@ -62,8 +62,9 @@ The right hosting option may depend on desired characteristics like:
 
 * **Scalability**: Different hosting options offer different approaches to scaling. Managed solutions are typically easier to scale on demand and can scale in more granular levels. In addition to the scalability itself, elasticity (the time required to scale up or down) might also be a decision criteria. Refer to [Azure subscription and service limits](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits) to better understand scalability limits and constraints.
 * **Pricing:** Managed services typically offer more dynamic pricing models that adjust to the actual consumption of the application compared to more fixed pricing models for infrastructure services. However, managed services typically charge more for their pricing units, making infrastructure highly competitive for consistent demand. Refer to the service's documentation or use the [Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator/) to better understand a service's pricing model.
-* **Portability:** Serverless models are primarily built on proprietery programming models heavily tied to the cloud service vendor. hosting models built on open standards make it easier to run applications in other hosting environments. Additionally, consider whether the software should also be able to run in on-premises hardware or on local machines.
-* **Flexibility:** Lower-level infrastructure provides more control over the configuration and management of applications. Serverless offerings offer less flexibility due to higher levels of abstractions exposed to the developers.
+* **Portability:** Serverless models are primarily built on proprietery programming models heavily tied to the cloud service vendor. Hosting models built on open standards make it easier to run applications in other hosting environments. Additionally, consider whether the software should also be able to run in on-premises hardware or on local machines.
+* **Flexibility:** Lower-level infrastructure provides more control over the configuration and management of applications. Serverless offerings offer less flexibility due to higher levels of abstractions exposed to the developers. 
+* **Manageability:** Serverless and PaaS models can hide a lot of the underlying infrastructure challenges (e.g. automatic scaling, OS updates, load balancing, etc.), typically at the cost of flexibility. Managing and maintaining infrastructure might require signficant amount of resources and knowledge.
 
 For further information about Azure hosting options, refer to [Microsoft's compute service overview](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-decision-tree).
 
