@@ -34,27 +34,25 @@ Communication between services is much slower and error-prone due to network lim
 
 [**Read more about this topic: RPC vs. Messaging – which is faster? →**](https://particular.net/blog/rpc-vs-messaging-which-is-faster)
 
-### User interfaces TODO (adam): continue here
+### User interfaces
 
-Users interacting with the system often need to see data aggregated from multiple services. Maintaining high decoupling across services while providing meaningful user experiences. A wide range of technologies and patterns exist that are focusing on this problem type, e.g. [microfrontends](https://en.wikipedia.org/wiki/Microfrontend), [GraphQL](https://graphql.org/), [ViewModel Composition](https://www.viewmodelcomposition.com), etc.
+Users often need to see and interact with data aggregated from multiple services. Several technologies and patterns help to do this while keeping the services decoupled, such as [microfrontends](https://en.wikipedia.org/wiki/Microfrontend), [GraphQL](https://graphql.org/), and [ViewModel Composition](https://www.viewmodelcomposition.com).
 
 ## Microservice technologies
 
-A major benefit of a microservices architecture is the easy integration of various technologies and services. Since each service runs in its own process and doesn't share the data storage, teams can chose the most appropriate technologies for a service without impacting other services or teams. The Particular Platform supports [Cross-platform integration with native message processing](https://particular.net/blog/cross-platform-integration-with-nservicebus-native-message-processing).
+A major benefit of the microservice architecture style, where each service is hosted independently, with its own private data store, is the ability for a team to choose the most appropriate technologies for a given service without impacting other services or the teams working on them. Endpoints built with the Particular Service Platform may be, and typically are, hosted separately, and each may use a different data store both for NServiceBus persistence, and for storing business data. The Particular Service Platform also supports [cross-platform integration with systems or components which do not use NServiceBus](https://particular.net/blog/cross-platform-integration-with-nservicebus-native-message-processing).
 
-For cloud native microservices architectures, services are commonly hosted using serverless or container hosting models:
+In Azure, services following the microservice architecture style often use either serverless or containers hosting models:
 
 ### Serverless
 
-Fully managed serverless offerings like [Azure Functions](https://azure.microsoft.com/en-us/products/functions) and [Azure App Services](https://azure.microsoft.com/en-us/products/app-service/) are popular choices when development teams need powerful and scalable hosting environments that require little management effort.
-Serverless hosting models also integrate seamlessly into serverless data storage and messaging technologies.
+Fully managed serverless offerings like [Azure Functions](https://azure.microsoft.com/en-us/products/functions) and [Azure App Services](https://azure.microsoft.com/en-us/products/app-service/) are popular choices for systems requiring scalable hosting environments with minimal management. Serverless hosting models also integrate seamlessly with serverless data stores and messaging technologies.
 
 ![](azure-functions-host.png)
 
-
 ### Containers
 
-Containerized applications can be hosted in managed container orchestration platforms like Azure Container Apps or Azure Kubernetes Service. However, these applications can can also be hosted in custom managed Kubernetes clusters built upon Azure Virtual Machines. Even in container-focused systems, service communication and data storage might still be handled by serverless services like [Azure Service Bus](https://azure.microsoft.com/de-de/products/service-bus) or [Cosmos DB](https://azure.microsoft.com/de-de/products/cosmos-db/).
+Containerized applications can be hosted in managed container orchestration platforms like [Azure Container Apps](https://azure.microsoft.com/en-us/products/container-apps) or [Azure Kubernetes Service](https://azure.microsoft.com/en-us/products/kubernetes-service). They can also be hosted in custom managed Kubernetes clusters running on [Azure Virtual Machines](https://azure.microsoft.com/en-us/products/virtual-machines). Container-hosted systems may use serverless data stores like [Cosmos DB](https://azure.microsoft.com/de-de/products/cosmos-db/) and serverless messaging technologies [Azure Service Bus](https://azure.microsoft.com/de-de/products/service-bus).
 
 ![](azure-container-host.png)
 
