@@ -1,6 +1,6 @@
 ---
 title: Recoverability
-summary: Recoverability techniques to build resilient distributed systems
+summary: Recoverability techniques for building resilient distributed systems
 reviewed: 2023-07-18
 ---
 

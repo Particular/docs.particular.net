@@ -1,10 +1,10 @@
 ---
 title: Hybrid systems
-summary:
+summary: Systems deployed both in the cloud and on-premises
 reviewed: 2023-07-18
 ---
 
-Hybrid systems contain of components of the same system running on the cloud and components running on-premises. This might be a temporary situation in a lift and shift strategy, or it can be permanent state for various reasons (e.g. risk, legal, costs, etc.). Hybrid scenarios can become tricky to implement when the on-premises part of the system relies on an existing message broker. Some broker technologies might also not be compatible with modern cloud infrastructure (e.g. MSMQ). 
+Hybrid systems contain of components of the same system running on the cloud and components running on-premises. This might be a temporary situation in a lift and shift strategy, or it can be permanent state for various reasons (e.g. risk, legal, costs, etc.). Hybrid scenarios can become tricky to implement when the on-premises part of the system relies on an existing message broker. Some broker technologies might also not be compatible with modern cloud infrastructure (e.g. MSMQ).
 
 ## Shared Broker
 

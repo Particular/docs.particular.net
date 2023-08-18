@@ -39,7 +39,7 @@ Databases and queueing technologies might support atomic transactions to a singl
 
 ### Distributed transactions
 
-Distributed transactions (transactions that span multiple services, e.g. a database and a message queue) are required to ensure strong consistency of all operations within the shared transaction. On Windows, the [Distributed Transaction Coordinator (DTC)](https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator) is able coordinate transactions across multiple compatible participants using a [two-phase commit protocol](https://en.wikipedia.org/wiki/Two-phase_commit_protocol). Each participating resource of a distributed transaction must explicitly support the two-phase commit protocol. 
+Distributed transactions (transactions that span multiple services, e.g. a database and a message queue) are required to ensure strong consistency of all operations within the shared transaction. On Windows, the [Distributed Transaction Coordinator (DTC)](https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator) is able coordinate transactions across multiple compatible participants using a [two-phase commit protocol](https://en.wikipedia.org/wiki/Two-phase_commit_protocol). Each participating resource of a distributed transaction must explicitly support the two-phase commit protocol.
 
 {{WARN:
 While traditional on-premises focused services like MSMQ or MSSQL server support the DTC, managed cloud services do not support DTC transactions, enforcing different strategies to achieve consistency across transactional resources. Strategies to replace distributed transactions include:

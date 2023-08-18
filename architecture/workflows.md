@@ -1,6 +1,6 @@
 ---
-title: Stateful Business Workflows
-summary:
+title: Workflows
+summary: Techniques for building stateful business workflows in distributed systems
 reviewed: 2023-07-18
 ---
 
