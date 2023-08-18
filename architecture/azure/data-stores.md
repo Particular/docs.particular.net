@@ -24,12 +24,9 @@ Azure offers [several data stores](https://learn.microsoft.com/en-us/azure/archi
 - Partitioning limitations require careful planning
 - No local/on-premises option or emulator
 
+[**Try the NServiceBus Cosmos DB sample →**](/samples/cosmosdb/simple/)
+
 Note: Cosmos DB offers _serverless_ and _provisioned throughput_ pricing models. When using _provisioned throughput_, Cosmos DB rejects further requests after the reserved Request Units are used. The [Cosmos DB pricing model documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/how-pricing-works) has further information.
-
-### Additional content
-
-- [Azure Cosmos DB persistence documentation](/persistence/cosmosdb/)
-- [Try the NServiceBus Cosmos DB sample](/samples/cosmosdb/simple/)
 
 ## Azure Table Storage
 
@@ -47,20 +44,49 @@ Note: Cosmos DB offers _serverless_ and _provisioned throughput_ pricing models.
 - Not suitable to model complicated relationships
 - No local/on-premises option, but [Azurite emulator can be used for local development](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite)
 
+[**Try the NServiceBus Azure Table Storage sample →**](/samples/azure/azure-table/simple/)
+
 Note: Applications built for Table Storage are compatible with Cosmos DB. See [this table](https://learn.microsoft.com/en-us/azure/cosmos-db/table/support) for a more in-depth comparison.
 
-### Additional content
+## Azure SQL Database
 
-- [Azure Table Storage persistence documentation](/persistence/azure-table/)
-- [Try the NServiceBus Azure Table Storage sample](/samples/azure/azure-table/simple/)
+[Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) is a fully managed database service based on the [Microsoft SQL Server database engine](https://learn.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver16). 
 
-## Azure SQL
+:heavy_plus_sign: Pros:
 
-- Azure SQL using [NServiceBus SQL Persistence](/persistence/sql/)
+- Fully managed
+- Rich built-in scaling options
+- Automatic backups and point-in-time restores
+- Active Geo-replication and zone-redundancy
+- Different pricing tiers for more cost control
 
-## Azure SQL Managed Instances
+:heavy_minus_sign: Cons:
 
-- Azure SQL Managed Instances using [NServiceBus SQL Persistence](/persistence/sql/)
+- Higher costs compared to manually managed database servers
+- Migrating existing SQL server instances might be challenging
+
+Azure SQL Database is supported via the [NServiceBus SQL persistence package](/persistence/sql/).
+
+[**Try the NServiceBus SQL persistence sample →**](/samples/sql-persistence/simple/)
+
+## Azure SQL Managed Instance
+
+[Azure SQL Managed Instance](https://azure.microsoft.com/en-us/products/azure-sql/managed-instance) is a fully managed database service that provides a near-complete compatibility with the [Microsoft SQL Server database engine](https://learn.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver16). It offers a managed solution for migrating and modernizing existing SQL Server applications with minimal code changes.
+
+:heavy_plus_sign: Pros:
+
+- High degress of compatibility with SQL Server
+- Supports cross-database queries
+- Predictable performance for large databases due to isolation
+- More database configuration options compared to Azure SQL Database
+
+:heavy_minus_sign: Cons:
+
+- Higher costs compared to manually managed database servers or Azure SQL Database
+
+Azure SQL Managed Instances is supported via the [NServiceBus SQL persistence package](/persistence/sql/).
+
+[**Try the NServiceBus SQL persistence sample →**](/samples/sql-persistence/simple/)
 
 ## Other data store options
 
@@ -109,3 +135,5 @@ Data stores offer various approaches to securing data using authentication and a
 ## Additional content
 
 - [Azure Architecture Center: Criteria for choosing a data store](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/data-store-considerations)
+- [What is Azure SQL Database?](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?view=azuresql)
+- [What is Azure SQL Managed Instance?](https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview?view=azuresql)
