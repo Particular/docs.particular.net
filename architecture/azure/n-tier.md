@@ -19,11 +19,10 @@ The Particular Service Platform... TBD
 
 ### Challenges
 
-Physically separating the tiers improves scalability of the application but also introduces higher exposure to network related issues that might affect availability. Message queues help to decouple the layers and increase resiliency across the layers.
-
-The layers in an N-tier architecture style often communicate synchronously to execute business processes. Long-running or heavy workloads can negatively impact the user experience and overall system performance. Asynchronous communication, using messaging, decouples the layer interacting with the user from the layers processing the workload.
-
-Front end layers often need to reflect changes made by other users or processes. Notifications from lower layers must respect the constraint that lower layer must not reference upper layers, and may be hosted separately from upper layers. Messaging may be used to provide event-based notifications from lower layers to upper layers, while following these constraints.
+* Physically separating the tiers improves scalability of the application but also introduces higher exposure to network related issues that might affect availability. Message queues help to decouple the layers and increase resiliency across the layers.
+* The layers in an N-tier architecture style often communicate synchronously to execute business processes. Long-running or heavy workloads can negatively impact the user experience and overall system performance. Asynchronous communication, using messaging, decouples the layer interacting with the user from the layers processing the workload.
+* Front end layers often need to reflect changes made by other users or processes. Notifications from lower layers must respect the constraint that lower layer must not reference upper layers, and may be hosted separately from upper layers. Messaging may be used to provide event-based notifications from lower layers to upper layers, while following these constraints.
+* As a technically partioned architecture, any particular business domain is spread throughout all of the layers. Changes to a domain are more difficult to implement as all layers have to be changed. Therefore, this architectural style does not work well with domain-driven design.
 
 ### Technology choices
 

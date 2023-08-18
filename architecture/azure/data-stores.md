@@ -33,7 +33,7 @@ Note: Cosmos DB offers _serverless_ and _provisioned throughput_ pricing models.
 
 ## Azure Table Storage
 
-Azure Table Storage is a NoSQL managed database service. It is a cost-effective and scalable solution for storing semi-structured and structured data, using a key-value pair schema. Designed for fast and efficient data retrieval, it is suitable for applications that require high-performance read and write operations, especially for large-scale, low-latency data storage and retrieval needs.
+[Azure Table Storage](https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview) is a NoSQL managed database service. It is a cost-effective and scalable solution for storing semi-structured and structured data, using a key-value pair schema. Designed for fast and efficient data retrieval, it is suitable for applications that require high-performance read and write operations, especially for large-scale, low-latency data storage and retrieval needs.
 
 :heavy_plus_sign: Pros:
 
@@ -64,7 +64,7 @@ Note: Applications built for Table Storage are compatible with Cosmos DB. See [t
 
 ## Other data store options
 
-[Explore all supported data stores](/persistence/#supported-persisters).
+While the presented storage options provide the best experience and integration with Azure, other storage options are available and may be valid options depending on the specific requirements. [Explore all supported data stores](/persistence/#supported-persisters).
 
 ## Choosing a data store
 
@@ -92,7 +92,7 @@ It may be important to consider how easily a data store's capacity and performan
 
 ### Legal and compliance
 
-Sometimes, data may be subject to legal requirements (e.g. data privacy) that require additional consideration of how a data store operates to ensure compliance.
+Sometimes, data may be subject to legal requirements (e.g. data privacy) that require additional consideration of how a data store operates to ensure compliance. See the [Azure compliance offerings](https://learn.microsoft.com/en-us/compliance/regulatory/offering-home) for more detailed information on specific national, regional, and industry-specific regulations.
 
 ### Costs
 

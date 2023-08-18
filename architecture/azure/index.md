@@ -36,15 +36,15 @@ The Azure Architecture Center describes several [reference architectures](https:
 
 ### Design principles
 
-The Particular Service Platform makes helps systems follow the [ten design principles for Azure applications](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/).
+The Particular Service Platform makes systems follow the [ten design principles for Azure applications](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/).
 
 * [Self healing](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/self-healing) is provided by the rich set of [recoverability](/architecture/recoverability.md) features like automatic retries, load leveling, throttling and more, which make application services resilient to failures.
 * [Redundancy](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/redundancy) is provided by capabilities such as [scaling out](/nservicebus/scaling.md#scaling-out-to-multiple-nodes) and [high availability](/nservicebus/scaling.md#high-availability).
 * [Coordination is minimized](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/minimize-coordination) between services by [messaging](/architecture/messaging.md). See [this talk](https://www.youtube.com/watch?v=0TYbHVc2yWI) for more information.
-* [Scaling out](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out) is achieved by various methods such as [competing consumers](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers).
-* [Partitioning](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/partition) is achieved by decomposing and offload resource-intensive processes using [workflows](/architecture/workflows.md) and the integration of the Particular Service Platform with technology-specific partitioning capabilities.
+* [Scaling out](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out) is achieved by various methods such as [asynchronous message-based communication](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/asynchronous-message-based-communication) and [competing consumers](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers).
+* [Partitioning](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/partition) is achieved by decomposing and offloading resource-intensive processes using [workflows](/architecture/workflows.md) and the integration of the Particular Service Platform with technology-specific partitioning capabilities.
 * [Operations](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/design-for-operations) tooling for monitoring production environments and error recovery is provided by [ServicePulse](/servicepulse/) and [OpenTelemetry](/nservicebus/operations/opentelemetry.md).
-* [Managed services](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/managed-services) such as Azure App Service and Azure Cosmos DB are fully supported by the Particular Service Platform. See [technology choices](#technology-choices).
+* [Managed services](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/managed-services) such as Azure App Service, Azure SQL, and Azure Cosmos DB are fully supported by the Particular Service Platform. See [technology choices](#technology-choices).
 * [A wide variety of data stores](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/use-best-data-store) are supported by the Particular Service Platform as [persistence choices](/persistence).
 * [System evolution](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/design-for-evolution) is aided by:
   * High cohesion within [service boundaries](https://particular.net/webinars/finding-your-service-boundaries-a-practical-guide).
@@ -76,6 +76,7 @@ The Particular Service Platform helps achieve the five pillars of software quali
 * [Operational excellence](https://learn.microsoft.com/en-us/azure/well-architected/devops/overview)
   * The Particular Service Platform [creates required infrastructure components](/nservicebus/operations/installers.md) using dedicated installation APIs or infrastructure scripting tools.
   * ServicePulse provides [detailed insights](/servicepulse) into the operational health of the system.
+  * NServiceBus supports [OpenTelemetry](/nservicebus/operations/opentelemetry.md) to integrate with 3rd party monitoring and tracing tools.
   * [Messaging](/nservicebus/messaging) allows loosely coupled architectures with autonomous and independent services.
   * NServiceBus APIs are designed for [testing](/nservicebus/testing).
 * [Performance efficiency](https://learn.microsoft.com/en-us/azure/well-architected/scalability/overview)

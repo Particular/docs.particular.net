@@ -57,10 +57,6 @@ Azure Service Bus may be considered the default messaging choice for Azure. Alte
 
 Consider Azure Storage Queues when a managed message queuing technology is required but Azure Service Bus doesn't meet requirements or is too expensive.
 
-#### References
-
-- [Scalability and performance targets for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/scalability-targets)
-
 ### SQL transport
 
 SQL transport is an NServiceBus feature that can use existing SQL Server-compatible databases as feature-complete message queues.
@@ -69,7 +65,7 @@ SQL transport is an NServiceBus feature that can use existing SQL Server-compati
 
 - Runs on cloud hosted and on-premises SQL Server-compatible data stores (including SQL Server Express for development, testing, and CI)
 - Arbitrary message sizes
-- Runs infrastructure which often already exists
+- Runs on infrastructure which often already exists
 - Strong transaction integration with business data operations
 
 :heavy_minus_sign: Cons:
@@ -78,6 +74,14 @@ SQL transport is an NServiceBus feature that can use existing SQL Server-compati
 - Impacts overall database performance
 - Lower message throughput compared to specialized message queuing technologies
 
+[Try the SQL transport sample](/samples/azure/storage-queues/)
+
 #### When to use SQL transport
 
-Consider SQL transport if an existing application already uses a SQL Server-compatible data store and limited amount of messaging is being introduced.
+Consider SQL transport if an existing application already uses a SQL Server-compatible data store and limited amount of messaging is being introduced. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
+
+## Additional Resources
+
+- [Storage queues and Service Bus queues - compared and contrasted](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
+- [Azure Service Bus quotas](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas)
+- [Scalability and performance targets for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/scalability-targets)

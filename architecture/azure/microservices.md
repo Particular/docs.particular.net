@@ -59,3 +59,4 @@ Containerized applications can be hosted in managed container orchestration plat
 ## Related content
 
 * [Azure Architecture Center—Microservice architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices)
+* [Video: Finding service boundaries - a partical guide](https://www.youtube.com/watch?v=655zq4Sdu2w)
