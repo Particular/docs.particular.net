@@ -4,7 +4,7 @@ summary:
 reviewed: 2023-07-18
 ---
 
-Azure offers several messaging services, each built for specific purposes. NServiceBus supports Azure Service Bus and Azure Queue Storage.
+Azure offers [several messaging services](https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services), each built for specific purposes. The Particular Service Platform supports Azure Service Bus and Azure Queue Storage.
 
 ### Azure Service Bus
 

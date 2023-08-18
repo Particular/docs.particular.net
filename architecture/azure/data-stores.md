@@ -4,16 +4,16 @@ summary:
 reviewed: 2023-07-18
 ---
 
-The most common NServiceBus compatible storage options on Azure are:
+Azure offers [several data stores](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/data-store-decision-tree) which can be used with the Particular Service Platform.
 
-## Azure CosmosDB
+## Azure Cosmos DB
 
-Azure Cosmos DB is a globally distributed, multi-model, managed database service. It offers high availability, low latency, and automatic scaling to handle massive workloads across various data models, including document, key-value, graph, and column-family. CosmosDB relies on partitioning to achieve high performance and scalability. When working with CosmosDB, make sure become familiar with the [partitioning model](https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview).
+[Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/cosmos-db/introduction) is a globally distributed, multi-model, managed database service. It offers high availability, low latency, and automatic scaling to handle massive workloads across various data models, including document, key-value, graph, and column-family. Cosmos DB relies on partitioning to achieve high performance and scalability. When working with Cosmos DB, it is important to be familiar with the [partitioning model](https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview).
 
 :heavy_plus_sign: Pros:
 
 - Built and optimized for scalability
-- Multi-region support for high availability deployments
+- Multi-region support for high availability deployment
 - Supports multiple [data models](https://learn.microsoft.com/en-us/azure/cosmos-db/choose-api)
 - Fully managed
 
@@ -21,19 +21,19 @@ Azure Cosmos DB is a globally distributed, multi-model, managed database service
 
 - Fairly expensive
 - Atomic transactions only within the same partition
-- Partitioning limitations requires careful planning
+- Partitioning limitations require careful planning
 - No local/on-premises option or emulator
 
-Note: CosmosDB offers _serverless_ and _provisioned throughput_ pricing models. When using _provisioned throughput_, exceeding the reserved Request Units will lead to CosmosDB rejecting further requests. Review the [CosmosDB pricing model documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/how-pricing-works) carefully for further information.
+Note: Cosmos DB offers _serverless_ and _provisioned throughput_ pricing models. When using _provisioned throughput_, Cosmos DB rejects further requests after the reserved Request Units are used. The [Cosmos DB pricing model documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/how-pricing-works) has further information.
 
 ### Additional content
 
-- [Azure CosmosDB persistence documentation](/persistence/cosmosdb/)
-- [Try the NServiceBus CosmosDB sample](/samples/cosmosdb/simple/)
+- [Azure Cosmos DB persistence documentation](/persistence/cosmosdb/)
+- [Try the NServiceBus Cosmos DB sample](/samples/cosmosdb/simple/)
 
 ## Azure Table Storage
 
-Azure Table Storage is a NoSQL managed database service. It offers a cost-effective and scalable solution for storing semi-structured and structured data, using a key-value pair schema. Designed for fast and efficient data retrieval, it is suitable for applications that require high-performance read and write operations, especially for large-scale, low-latency data storage and retrieval needs.
+Azure Table Storage is a NoSQL managed database service. It is a cost-effective and scalable solution for storing semi-structured and structured data, using a key-value pair schema. Designed for fast and efficient data retrieval, it is suitable for applications that require high-performance read and write operations, especially for large-scale, low-latency data storage and retrieval needs.
 
 :heavy_plus_sign: Pros:
 
@@ -43,11 +43,11 @@ Azure Table Storage is a NoSQL managed database service. It offers a cost-effect
 :heavy_minus_sign: Cons:
 
 - Limited query capabilities
-- multi-document transactions limited to the same partition
+- Multi-document transactions are limited to the same partition
 - Not suitable to model complicated relationships
 - No local/on-premises option, but [Azurite emulator can be used for local development](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite)
 
-Note: Applications built for Table Storage are compatible with CosmosDB. See [this table](https://learn.microsoft.com/en-us/azure/cosmos-db/table/support) for a more in-depth comparison.
+Note: Applications built for Table Storage are compatible with Cosmos DB. See [this table](https://learn.microsoft.com/en-us/azure/cosmos-db/table/support) for a more in-depth comparison.
 
 ### Additional content
 
@@ -62,50 +62,49 @@ Note: Applications built for Table Storage are compatible with CosmosDB. See [th
 
 - Azure SQL Managed Instances using [NServiceBus SQL Persistence](/persistence/sql/)
 
-## Other storage options
+## Other data store options
 
-[Explore all supported data storages](/persistence/#supported-persisters)
+[Explore all supported data stores](/persistence/#supported-persisters).
 
-## Choosing a storage
+## Choosing a data store
 
-The following categories should be considered when choosing a storage option:
+The following factors should be considered when choosing a data store:
 
-### Existing Infrastructure
+### Existing infrastructure
 
-Using existing infrastructure and knowhow can severely speed up the development process and mitigate risks of unfamiliar storage technologies. Unless the existing infrastructure and technologies aren't capable to meet the required architectural needs, they are a good default choice.
+Using existing infrastructure and know-how can significantly speed up the development process and lower the risks associated with using unfamiliar data store technologies. Unless the existing infrastructure and technologies do not meet the architectural requirements, they are a good default choice.
 
 ### Compatibility
 
-Storage option that are compatible with existing protocols and languages (e.g. PostgreSQL dialect)
-e.g. compatibility with Postgres, sql, mongo, etc.
+Data stores that are compatible with existing protocols and languages. For example, a data store may understand PostgreSQL, SQL Server, and MongoDB dialects.
 
-### Transactions, Consistency Model
+### Transactions and consistency model
 
-Transaction capabilities can heavily vary between different storage options. Some storage options might only provide transactional consistency within the same partition or have limited transaction isolation levels. Consider if eventual consistency is acceptable or of ACID guarantees are necessary.
+Transaction capabilities can vary considerably between different data stores. Some only provide transactional consistency within the same partition or have limited transaction isolation levels. It is important to consider whether [eventual consistency](https://en.wikipedia.org/wiki/Eventual_consistency) is acceptable or [ACID](https://en.wikipedia.org/wiki/ACID) guarantees are required.
 
-### Storage Model
+### Storage model
 
-Different database storage models are optimized for different use cases. Review the expected access patterns to the database and the type of information and data relations that are being stored. Some common storage models are: Relational, Key/Value, Document DB, Graph DBs, BigData/Analytics, Column-family, Time-series, Object/blob storage
+Data stores may have [different storage models](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/data-store-overview), optimized for different use cases. Data access patterns, the type of information to be stored, and relations between data should be considered when choosing the most appropriate storage model.
 
 ### Scalability
 
-How easy can the data storage capacity and performance be scaled up if needed? The scaling requirements might also depend on the expected access patterns (e.g. reads vs writes) or availability goals.
+It may be important to consider how easily a data store's capacity and performance can be scaled up when required. Scaling requirements may also depend on the expected access patterns (e.g. the number of reads vs writes) or availability goals.
 
-### Legal and Compliance
+### Legal and compliance
 
-Sometimes, the data stored might be subject to legal requirements (e.g. data privacy) that require additional consideration to ensure compliance.
+Sometimes, data may be subject to legal requirements (e.g. data privacy) that require additional consideration of how a data store operates to ensure compliance.
 
 ### Costs
 
-Databases can have different pricing models, charging not only for storage but also read and write operations, data transfer, or higher consistency guarantees. On the other hand, serverless pricing models might be leveraged to optimize cloud spending when data is accessed infrequently or in bursts. Also take into account the database licensing model which can severely impact the costs.
+Data stores can have significantly different pricing models. Charges may be based on a number of factors such as storage size, read/write operations, data transfer, or higher consistency guarantees. Some serverless pricing models may be optimized for when data is accessed infrequently or in bursts. The licensing model for a specific data store may also significantly impact the overall cost.
 
 ### Portability
 
-Some managed database services are only available in the cloud without the possibility to use them in offline scenarios. Database portability may also affect the local development and CI experience. Some database services support open standards or protocols. Applications can then transparently switch the actual database engine without code changes to adjust for the necessary environments, e.g. CosmosDB also provides MongoDB and PostgreSQL compatibility.
+Some data stores are only available in the cloud, with no on-premises equivalent. This may affect hosting, CI, testing and development. Some data stores support open standards or protocols which allows the use of on-premises or local data stores in those scenarios. For example, Cosmos DB supports PostgreSQL and MongoDB dialects.
 
 ### Security
 
-Storage options offer various approaches to securing data access using authorization and authentication features. This might be completely handled by the database product/service or integrate with existing security models of cloud providers like Azure IAM.
+Data stores offer various approaches to securing data using authentication and authorization. This may be provided by the data store itself or the data store may integrate with third party security services such as Azure IAM.
 
 ## Additional content
 
