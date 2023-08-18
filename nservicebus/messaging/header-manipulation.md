@@ -60,6 +60,8 @@ snippet: header-outgoing-mutator
 
 ### From a handler
 
+NOTE: SendOptions is meant for your own headers, and changes to NServiceBus headers may be overwritten.
+
 snippet: header-outgoing-handler
 
 
