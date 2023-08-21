@@ -1,7 +1,7 @@
 ---
 title: When Endpoint Instance Starts and Stops
 summary: How to hook into the startup and shutdown sequence of an endpoint instance.
-reviewed: 2020-07-22
+reviewed: 2023-08-14
 component: core
 related:
  - samples/startup-shutdown-sequence

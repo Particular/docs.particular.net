@@ -1,7 +1,7 @@
 ---
 title: Unit of work using the pipeline
 summary: Shows how to use IoC and the pipeline to create a unit of work implementation.
-reviewed: 2020-07-16
+reviewed: 2023-08-14
 component: Core
 related:
  - nservicebus/pipeline
@@ -54,4 +54,4 @@ snippet: message-handlers
 
 ## Running the sample
 
-Run the sample. Once running press any key to send messages. Note that for each given message the two message handlers will get the same session instance.
+Run the sample. Once running, press any key to send messages. Note that for each given message the two message handlers will get the same session instance.

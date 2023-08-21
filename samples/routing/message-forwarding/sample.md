@@ -2,7 +2,7 @@
 title: Message forwarding
 summary: Forwarding a copy of every message to another destination after it is processed
 component: Core
-reviewed: 2020-07-22
+reviewed: 2023-08-16
 ---
 
 In complex upgrade scenarios it can be useful to forward a copy of processed messages to another destination. This allows an old version of an endpoint to run side-by-side with a new version, both processing the message until the old version can be fully retired.

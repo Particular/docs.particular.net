@@ -1,7 +1,7 @@
 ---
-title: Building endpoints with .NET Core 3.1
+title: Building endpoints with ASP.NET Core
 summary: Hosting endpoints with the generic host
-reviewed: 2020-07-23
+reviewed: 2023-08-15
 component: Core
 related:
 - nservicebus/hosting/extensions-hosting
@@ -10,7 +10,6 @@ related:
 
 This sample demonstrates:
 
-- a simple application running on .NET Core 3.1
 - how to integrate NServiceBus with an ASP.NET Core Web API project
 - a simple back-end process running in the .NET Core generic host
 - the built-in tools used to inject dependencies into message handler classes
