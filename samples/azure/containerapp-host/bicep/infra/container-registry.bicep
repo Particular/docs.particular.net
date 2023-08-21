@@ -13,7 +13,7 @@ param adminUserEnabled bool = false
   'Standard'
   'Premium'
 ])
-param sku string = 'Premium'
+param sku string = 'Standard'
 
 @description('Specifies the resource id of the Log Analytics workspace.')
 param workspaceId string

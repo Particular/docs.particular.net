@@ -12,6 +12,7 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -23,11 +24,15 @@ Global
 		{52DEA2AF-D7EC-48EB-96E5-4C852C0136CD}.Debug|x64.Build.0 = Debug|Any CPU
 		{52DEA2AF-D7EC-48EB-96E5-4C852C0136CD}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{52DEA2AF-D7EC-48EB-96E5-4C852C0136CD}.Debug|x86.Build.0 = Debug|Any CPU
+		{52DEA2AF-D7EC-48EB-96E5-4C852C0136CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DEA2AF-D7EC-48EB-96E5-4C852C0136CD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}.Debug|x64.Build.0 = Debug|Any CPU
 		{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}.Debug|x86.Build.0 = Debug|Any CPU
+		{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

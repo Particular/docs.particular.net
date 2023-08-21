@@ -3,7 +3,8 @@
     "Receiver": {
       "commandName": "Project",
       "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Development"
+        "DOTNET_ENVIRONMENT": "Development",
+        "DOTNET_FullyQualifiedNamespace": "Development"
       }
     }
   }
