@@ -30,7 +30,7 @@ The default wait time can be changed:
 
 snippet: TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
 
-NOTE: The timeout manager polls every minute. This means that it could take more time then the configured *TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages* value before an issue is detected.
+NOTE: The timeout manager polls every minute. This means that it could take more time than the configured *TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages* value before an issue is detected.
 
 When this happens the following critical error message will be raised:
 
