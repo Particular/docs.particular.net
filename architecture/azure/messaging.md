@@ -27,7 +27,7 @@ Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.mi
 - The maximum queue size is 80 GB on the Standard tier
 - There is no on-premises equivalent.
 
-[Try the Azure Service Bus Tutorial](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus?tabs=Sender)
+[**Try the Azure Service Bus Tutorial →**](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus?tabs=Sender)
 
 #### When to use Azure Service Bus
 
@@ -51,7 +51,7 @@ Azure Service Bus may be considered the default messaging choice for Azure. Alte
 - No cross-entity transactions
 - The maximum number of requests (e.g. message delivery) per storage account is 20,000 per second (2,000 per second for single queues)
 
-[Try the Azure Storage Queues sample](/samples/azure/storage-queues/)
+[**Try the Azure Storage Queues sample →**](/samples/azure/storage-queues/)
 
 #### When to use Azure Storage Queues
 
@@ -74,7 +74,7 @@ SQL transport is an NServiceBus feature that can use existing SQL Server-compati
 - Impacts overall database performance
 - Lower message throughput compared to specialized message queuing technologies
 
-[Try the SQL transport sample](/samples/azure/storage-queues/)
+[**Try the SQL transport sample →**](/samples/azure/storage-queues/)
 
 #### When to use SQL transport
 
