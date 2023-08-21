@@ -19,9 +19,23 @@ Instead of serializing the payload along with the rest of the message, the `Data
 
 If the location is not available upon sending, the send operation will fail. When a message is received and the payload location is not available, the receive operation will fail as well, resulting in the standard NServiceBus retry behavior, possibly resulting in the message being moved to the error queue if the error could not be resolved.
 
-## Alternative
+## Transport message size limits
 
-The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging the NServiceBus pipeline.
+Using the Data Bus is required when the message size can exceed the transport message size limit.
+
+Note: Not all transports have very restrictive message size limits and Azure Service Bus has increased its size limits over the years. Check the respective transport website documentation for the latest maximum limit of the message size.
+
+| Transport                  | Maximum size |
+| -------------------------- | ------------:|
+| Amazon SQS                 | 256KB        |
+| Amazon SQS + S3            | 2GB          |
+| Azure Storage Queues       | 64KB         |
+| Azure Service Bus Standard | 256KB        |
+| Azure Service Bus Premium  | 100MB        |
+| RabbitMQ                   | No limit     |
+| SQL Server                 | No limit     |
+| Learning                   | No limit     |
+| MSMQ                       | 4MB          |
 
 ## Enabling the data bus
 
@@ -43,9 +57,9 @@ There are two ways to specify the message properties to be sent using the data b
  1. Using the `DataBusProperty<T>` type
  1. Message conventions
 
-Note: Data bus properties must be of type `byte[]` and be top-level properties on the message class.
+Note: Data bus properties must be top-level properties on the message class.
 
-### Using DataBusProperty<T>
+### Using `DataBusProperty<T>`
 
 Set the type of the property to be sent over the data bus as `DataBusProperty<byte[]>`:
 
@@ -53,7 +67,7 @@ snippet: MessageWithLargePayload
 
 ### Using message conventions
 
-NServiceBus also supports defining data bus properties via convention. This allows data properties to be sent using the data bus without using `DataBusProperty<T>`, thus removing the need for having a dependency on NServiceBus from the message types.
+NServiceBus also supports defining data bus properties via a convention. This allows data properties to be sent using the data bus without using `DataBusProperty<T>`, thus removing the need for having a dependency on NServiceBus from the message types.
 
 In the configuration of the endpoint include:
 
@@ -78,6 +92,19 @@ Automatically removing these attachments can cause problems in many situations. 
 * Functional requirements might dictate the message to be available for a longer duration.
 * If the data bus feature is used when publishing an event to multiple subscribers, neither the publisher nor any specific subscribing endpoint can determine when all subscribers have successfully processed the message allowing the file to be cleaned up.
 * If message processing fails, it will be handled by the [recoverability feature](/nservicebus/recoverability/). This message can then be retried some period after that failure. The data bus files need to exist for that message to be re-processed correctly.
+
+## Alternatives
+
+- Use a different transport or a different transport tier
+- Message Compression: Use message body compression which works well on text-based payloads like XML and Json or any payload (text or binary) that contains repetitive data
+  - [Message mutator example demonstrating message body compression](/samples/messagemutators/)
+- Stream-based properties: The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging the NServiceBus pipeline.
+- Binary Serializer: A binary serializer is more efficient and most serializers can be added with a few lines of code
+   - Some binary [serializers are maintained by the community](/nservicebus/community/#serializers)
+- Attachments: When dealing with unbounded binary payloads consider the [community maintained NServiceBus.Attachments](/nservicebus/community/#nservicebus-attachments)
+  - Read on demand: Will only retrieve attachment data when the consumer reads it
+  - Reduced Memory usage: No base64 serializer overhead resulting in a significant reduction in resource utilization
+- Use any of the above in combination with compression
 
 ## Other considerations
 
