@@ -95,16 +95,13 @@ Automatically removing these attachments can cause problems in many situations. 
 
 ## Alternatives
 
-WARNING: Alternatives marked with ⚠️ are community project and are not maintained or supported by Particular Software.
-
 - Use a different transport or a different transport tier
 - Message Compression: Use message body compression which works well on text-based payloads like XML and Json or any payload (text or binary) that contains repetitive data
   - [Message mutator example demonstrating message body compression](/samples/messagemutators/)
-  - Community maintained [NServiceBus.Comression ⚠️](https://github.com/ramonsmits/NServiceBus.Compression) with configurable compression thresholds
 - Stream-based properties: The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging the NServiceBus pipeline.
 - Binary Serializer: A binary serializer is more efficient and most serializers can be added with a few lines of code
-   - ProtoBuf is commonly used and is the default for [gRPC](https://grpc.io/). An implementation for NServiceBus is [ramonsmits/NServiceBus.ProtoBufNet ⚠️](https://github.com/ramonsmits/NServiceBus.ProtoBufNet)
-- Attachments: When dealing with unbounded binary payloads consider [NServiceBus.Attachments ⚠️](https://github.com/NServiceBusExtensions/NServiceBus.Attachments)
+   - Some binary [serializers are maintained by the community](/nservicebus/community/#serializers)
+- Attachments: When dealing with unbounded binary payloads consider the [community maintained NServiceBus.Attachments](/nservicebus/community/#nservicebus-attachments)
   - Read on demand: Will only retrieve attachment data when the consumer reads it
   - Reduced Memory usage: No base64 serializer overhead resulting in a significant reduction in resource utilization
 - Use any of the above in combination with compression

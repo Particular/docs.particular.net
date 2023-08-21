@@ -150,5 +150,6 @@ These serializer packages are part of the [NServiceBusExtensions](https://github
 * [MsgPack](https://github.com/NServiceBusExtensions/NServiceBus.MsgPack)
 * [ProtoBuf-Google](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufGoogle)
 * [ProtoBuf-Net](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet)
+  * Fork: [ramonsmits/NServiceBus.ProtoBufNet](https://github.com/ramonsmits/NServiceBus.ProtoBufNet)
 * [Utf8Json](https://github.com/NServiceBusExtensions/NServiceBus.Utf8Json)
 * [ZeroFormatter](https://github.com/NServiceBusExtensions/NServiceBus.ZeroFormatter)
