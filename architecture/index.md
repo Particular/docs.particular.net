@@ -12,6 +12,7 @@ This guidance describes architectural concepts for building distributed systems 
 
 Architectural concepts are generally applicable, regardless of which specific technologies or platforms are used. They include, but are not limited to:
 
+- [Messaging](/architecture/messaging.md)
 - [Recoverability](/architecture/recoverability.md)
 - [Consistency](/architecture/consistency.md)
 - [Workflows](/architecture/workflows.md)
