@@ -10,27 +10,4 @@
 // https://learn.microsoft.com/en-us/azure/container-apps/scale-app
 // https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#azure-cli
 
-// Parameters
-@description('Specifies the name of the user-defined managed identity.')
-param name string
-
-@description('Specifies the name of the Service Bus namespace.')
-param serviceBusNamespace string
-
-@description('Specifies the name of the Azure Container Registry')
-param acrName string
-
-@description('Specifies the location.')
-param location string = resourceGroup().location
-
-@description('Specifies the resource tags.')
-param tags object
-
-
-module managedIdentity 'identity.bicep' = {
-  name: 'nservicebus-containerapp-sample'
-  params: {
-      name: 'env-${name}'
-      location: location
-  }
-}
+https://devblogs.microsoft.com/dotnet/updates-to-container-support-in-the-dotnet-sdk/
