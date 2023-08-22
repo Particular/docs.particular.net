@@ -13,8 +13,6 @@ The principles and patterns underlying queued messaging are decades old and batt
 
 A message broker like RabbitMQ, Azure ServiceBus, or Amazon SQS, can be compared with a database, but instead of storing data and indexing it, it focuses on transferring data from one component to another. A component calls an API to send a message, the API responds after the message is received. At that point, the calling component is no longer concerned about the delivery of the message to other components. That is the responsibility of the broker.
 
-![messaging-system](/architecture/message-system-one-way.png)
-
 Due to the asynchronous nature of messaging, the calling component has no knowledge of problems that receiving components might have; as soon as the message is sent, messaging infrastructure takes over. As a result, critical resources like threads are not held waiting for message processing to complete. This allows the calling component to maintain stability while waiting for a response from another component, which may running in a separate process or on another machine.
 
 Additional benefits of messaging systems:
@@ -45,6 +43,8 @@ _Asynchronous communication_ is not to be confused with _asynchronous execution_
 ### Point-to-point channels
 
 [Point-to-point channels](https://www.enterpriseintegrationpatterns.com/patterns/messaging/PointToPointChannel.html) enable one way messaging where a component sends a message to another component via a messaging system. Point-to-point channels can be used to send messages to a single, specific consumer.
+
+![messaging-system](/architecture/message-system-one-way.png)
 
 #### Commands
 
@@ -101,17 +101,11 @@ The command component publishes messages and the query component subscribes to t
 
 ## Bus versus broker architectural styles
 
-A "service bus" is often illustrated as a central box, through which all communication goes. Despite the common understanding, that's actually a description of the **_broker architectural style_**.
+A _service bus_ is often illustrated as a central box, through which all communication goes. Despite the common understanding, that's actually a description of the [_broker architectural pattern_](https://en.wikipedia.org/wiki/Broker_pattern).
 
-A good example is BizTalk:
-
-![BizTalk](biztalk.jpg)
-
-A **_bus_** in the context of the **_bus architectural style_**, isn't a physical entity. There's no physical _bus_ one can point to in the network topology. The _bus_ is part of the infrastructure that is run in-process with a given application's code. It's similar to a peer-to-peer mesh that runs alongside code.
+A **_message bus_** in the context of the [_bus architectural pattern_](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessageBus.html), isn't a physical entity. There might be no physical _bus_ one can point to in the network topology. The _bus_ is part of the infrastructure that is run in-process with a given application's code. It's similar to a peer-to-peer mesh that runs alongside code.
 
 ![deployment topology](deployment-topology.jpg)
-
-In terms of architectural style, NServiceBus is more similar to WCF than BizTalk. Just as it is possible to write a host process and activate WCF explicitly within it, the same can be done with NServiceBus.
 
 ## Additional content
 

@@ -22,7 +22,7 @@ Architectural concepts are generally applicable, regardless of which specific te
 
 [Microsoft Azure](https://azure.microsoft.com/) is a popular cloud platform for building and running distributed systems. The Azure architectural guidance included here focuses on the integration of the Particular Service Platform with Azure technologies and services, with reference to architectural styles and technology choices.
 
-[**Explore the Azure Architectural guidance →**](/architecture/azure/)
+[**_Explore the Azure Architectural guidance →_**](/architecture/azure/)
 
 ## The Particular Service Platform
 
