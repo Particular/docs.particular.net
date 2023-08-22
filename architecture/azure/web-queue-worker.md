@@ -2,6 +2,7 @@
 title: Web-queue-Worker architecture style on Azure
 summary:
 reviewed: 2023-07-18
+callsToAction: ['solution-architect', 'ADSD']
 ---
 
 The Azure Architecture Center describes the [web-queue-worker architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/web-queue-worker) as having core components that are a web front end that serves client requests, and a worker that performs resource-intensive tasks, long-running workflows, or batch jobs, with the web front end communicating with the worker through a message queue.

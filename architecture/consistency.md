@@ -2,6 +2,7 @@
 title: Consistency
 summary: Achieving consistency in distributed, message-driven systems
 reviewed: 2023-07-18
+callsToAction: ['solution-architect']
 ---
 
 ## Transactions

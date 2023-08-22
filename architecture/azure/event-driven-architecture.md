@@ -2,6 +2,7 @@
 title: Event-driven architecture style on Azure
 summary:
 reviewed: 2023-07-18
+callsToAction: ['solution-architect', 'ADSD']
 ---
 
 The Azure Architecture Center describes the [event-driven architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/event-driven) as consisting of event producers and event consumers which can use the [publish/subscribe](https://learn.microsoft.com/en-us/azure/architecture/patterns/publisher-subscriber) (also called pub/sub) model.

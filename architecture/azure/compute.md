@@ -2,6 +2,7 @@
 title: Azure compute services
 summary:
 reviewed: 2023-07-18
+callsToAction: ['solution-architect', 'poc-help']
 ---
 
 Azure offers a [wide range of options](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-decision-tree) for hosting and running system components, ranging from full control of a virtual machine, including the operating system, to fully managed serverless services.

@@ -2,6 +2,7 @@
 title: Messaging
 summary: Messaging concepts for building distributed systems
 reviewed: 2023-07-18
+callsToAction: ['solution-architect']
 ---
 
  Messaging is typically used for reliable communication across processes (also referred to as "components"). It is typically used to communicate between components within a system, as opposed to integration-based communication which is often used to communicate with external systems.

@@ -2,6 +2,7 @@
 title: Recoverability
 summary: Recoverability techniques for building resilient distributed systems
 reviewed: 2023-07-18
+callsToAction: ['solution-architect']
 ---
 
 In message-driven systems, failures in messages receivers do not impact the message senders. Messages are persistent, and even failed messages remain in the system until issues are resolved and they can be successfully processed. This increases system resiliency as failures in one component do not affect other components and no data is lost. Different strategies can be applied to deal with different types of failures:

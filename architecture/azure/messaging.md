@@ -2,6 +2,7 @@
 title: Azure messaging
 summary:
 reviewed: 2023-07-18
+callsToAction: ['solution-architect', 'poc-help']
 ---
 
 Azure offers [several messaging services](https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services), each built for specific purposes. The Particular Service Platform supports [Azure Service Bus and Azure Queue Storage](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted).

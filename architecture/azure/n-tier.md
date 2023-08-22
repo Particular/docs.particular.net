@@ -2,6 +2,7 @@
 title: N-tier architecture style on Azure
 summary:
 reviewed: 2023-07-18
+callsToAction: ['solution-architect', 'ADSD']
 ---
 
 The Azure Architecture Center describes the [N-tier architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices) (also referred to as the "layered" architecture style) as dividing an application into logical layers and physical tiers.

@@ -3,7 +3,17 @@
   ButtonText: 'Book a call'
   Url: 'https://particular.net/consulting'
 
-- Name: solution-architect
+- Name: poc-help
   Text: 'Get help with your proof of concept'
   ButtonText: 'Book a call'
-  Url: 'https://particular.net/consulting'
+  Url: 'https://particular.net/proof-of-concept'
+
+- Name: solution-architect
+  Text: 'Do you have questions?'
+  ButtonText: 'Ask our solution architects'
+  Url: 'https://particular.net/solution-architect'
+
+- Name: ADSD
+  Text: "Join Udi Dahan's in-depth Advanced Distributed Systems Design course"
+  ButtonText: 'Learn more about the course'
+  Url: 'https://particular.net/adsd'

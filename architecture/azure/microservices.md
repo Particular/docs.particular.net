@@ -2,6 +2,7 @@
 title: Microservice architecture style on Azure
 summary:
 reviewed: 2023-07-18
+callsToAction: ['solution-architect', 'ADSD']
 ---
 
 The Azure Architecture Center describes the [microservice architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices) as consisting of a collection of small, autonomous services.

@@ -2,6 +2,7 @@
 title: Azure data stores
 summary:
 reviewed: 2023-07-18
+callsToAction: ['solution-architect', 'poc-help']
 ---
 
 Azure offers [several data stores](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/data-store-decision-tree) which can be used with the Particular Service Platform.

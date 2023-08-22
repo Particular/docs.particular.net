@@ -2,6 +2,7 @@
 title: Workflows
 summary: Techniques for building stateful business workflows in distributed systems
 reviewed: 2023-07-18
+callsToAction: ['solution-architect']
 ---
 
 Business processes typically involve various distributed components that need to be invoked in a coordinated manner. The Particular Service Platform supports both choreography and orchestration of workflows.
