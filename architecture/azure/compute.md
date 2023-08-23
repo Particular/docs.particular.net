@@ -29,14 +29,14 @@ In serverless (also referred to as "Functions as a service (FaaS)") models, code
 
 ### Containers
 
-Containers are a popular mechanism to deploy and host applications in PaaS services. NServiceBus can be used by containerized applications and deployed to services like:
+https://en.wikipedia.org/wiki/Containerization_(computing) are a popular mechanism to deploy and host applications in PaaS services. NServiceBus can be used by containerized applications and deployed to services like:
 
 * [Azure App Services](https://azure.microsoft.com/en-us/products/app-service/) (using containers)
 * [Azure Container Instances](https://azure.microsoft.com/en-us/products/container-instances/)
 * [Azure Container Apps](https://azure.microsoft.com/en-us/products/container-apps/)
 * [Azure Kubernetes Services](https://azure.microsoft.com/en-us/products/kubernetes-service/)
 
-[**Host NServiceBus applications in containers →**](/nservicebus/hosting/docker-host/)
+[**Host NServiceBus applications in docker containers →**](/nservicebus/hosting/docker-host/)
 
 ### Service Fabric
 
