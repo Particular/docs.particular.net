@@ -5,9 +5,7 @@ reviewed: 2023-07-18
 callsToAction: ['solution-architect']
 ---
 
- Messaging is typically used for reliable communication across processes (also referred to as "components"). It is typically used to communicate between components within a system, as opposed to integration-based communication which is often used to communicate with external systems.
-
-The principles and patterns underlying queued messaging are decades old and battle-tested through countless technological shifts.
+Messaging is typically used for communication and coordination between various components wihtin a system. Messaging plays a crucial role enabling flexible, robust, and scalable inter-process coordination required to build decoupled and reliable distributed architectures. The principles and patterns underlying messaging are decades old and battle-tested through countless technological shifts.
 
 ## Message systems
 
