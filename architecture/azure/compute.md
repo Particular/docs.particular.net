@@ -21,7 +21,7 @@ In serverless (also referred to as "Functions as a service (FaaS)") models, code
 
 ## Platform as a Service
 
-Platform as a Service (PaaS) models provide managed hosting environments where applications can be deployed without having to manage the underlying infrastructure, operating system, or runtime environments.
+[Platform as a Service (PaaS)](https://en.wikipedia.org/wiki/Platform_as_a_service) models provide managed hosting environments where applications can be deployed without having to manage the underlying infrastructure, operating system, or runtime environments.
 
 ### Azure App Services
 
