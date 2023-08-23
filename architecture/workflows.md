@@ -40,8 +40,6 @@ Orchestrated workflows are managed by a central process that instructs component
 
 NServiceBus is designed to handle long-running business processes in a robust and scalable way using the [saga feature](/nservicebus/sagas/). NServiceBus sagas are a convenient programming model to implement orchestrated, long-running business workflows or state machines using regular C# (or any other .NET language). Sagas handle recoverability, shared state, message correlation, timeouts, and more.
 
-
-
 ![](/serviceinsight/images/overview-sagaview.png)
 
 An orchestrated workflow implemented as an NServiceBus Saga, visualized by [ServiceInsight](/serviceinsight).

@@ -19,9 +19,13 @@ When it is expected that the message queuing system should remain on-premises an
 
 Cloud hosted message queueing systems can be configured for access from anywhere. While cloud hosted components benefit from lower network latency and better network reliability, on-premises components can access the same broker.
 
-## Messaging Bridge
+## Multiple brokers
 
-The [Messaging Bridge pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html) can be used to connect two separate messaging systems.
+Distributed systems might have to work with multiple brokers sometimes. In such scenarios, explicit mapping between the actively used messaging systems is required.
+
+### Messaging Bridge
+
+The [Messaging Bridge pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html) can be used to connect two separate messaging systems. The bridge is a dedicated component that can generically or selectively map messages across messaging systems.
 
 The [NServiceBus Message Bridge](/nservicebus/bridge/) provides a customizable implementation of the Messaging Bridge pattern which can connect on-premises and cloud components transparently:
 
