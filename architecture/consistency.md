@@ -17,7 +17,7 @@ There are several challenges and limitations when relying on transactions:
 
 Scalable systems need to handle high levels of concurrency. Transactions need concurrency control mechanisms to ensure proper isolation between transactions trying to access the same resources. These concurrency control mechanisms can severely impact a resource's performance and introduce bottlenecks that complicate scaling.
 
-When using horizontal scaling, additional mechanisms are required to ensure the desired level of consistency across all scale units. This typically involves complicated distributed consensus-algorithms. Depending on the consistency guarantees required, many, or even all, nodes of a scaled component need to participate in the transaction, negatively impacting latency and availability.
+When using [horizontal scaling](https://learn.microsoft.com/en-us/azure/well-architected/scalability/design-scale#understand-horizontal-and-vertical-scaling), additional mechanisms are required to ensure the desired level of consistency across all scale units. This typically involves complicated distributed consensus-algorithms. Depending on the consistency guarantees required, many, or even all, nodes of a scaled component need to participate in the transaction, negatively impacting latency and availability.
 
 #### Cost
 
@@ -82,7 +82,7 @@ Note: Implementing message deduplication is risky and error-prone. Small mistake
 
 Message deduplication assumes a generic deduplication mechanism that works for all incoming messages, regardless of the specific message content. When this is not possible, duplicate message processing can be avoided by checking for expected side effects. These side effects are only known for a specific message type and its related business logic. For example, when `TheFireIsHot` flag is set to true, then there is no need to `TurnOnTheFire`. This approach is less reusable and requires in-depth understanding of the business logic to deal with duplicate messages.
 
-Additional metadata may be attached to existing side effects to achieve deduplication. For example, a message timestamp (provided by the author of a message) is attached to a database record that is stored while processing that message.
+Additional metadata may be stored to enable side effect checks. For example, a message timestamp or an unique identifier (provided by the author of a message) is attached to a database record that is stored while processing that message.
 
 ## Best practices
 

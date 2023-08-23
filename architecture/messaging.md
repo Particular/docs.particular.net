@@ -34,7 +34,7 @@ To learn more about the relationship between messaging and reliable, scalable, a
 
 ## Communication styles
 
-With messaging, by communication is one-way and [asynchronous](https://en.wikipedia.org/wiki/Asynchronous_method_invocation). An immediate response with a return value is not possible, although it is possible to respond with another message.
+With messaging, communication is one-way and [asynchronous](https://en.wikipedia.org/wiki/Asynchronous_method_invocation). An immediate response with a return value is not possible, although it is possible to respond with another message.
 
 _Asynchronous communication_ is not to be confused with _asynchronous execution_, where multiple threads execute code in parallel. The async/await concepts in .NET are an example of asynchronous execution. This is different from asynchronous communication where two components communicate with messages.
 
