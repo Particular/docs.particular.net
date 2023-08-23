@@ -22,7 +22,7 @@ Additional benefits of messaging systems:
 - **Load leveling:** Senders don't need to worry about the throughput of receivers. They can keep queueing messages regardless of how they are being consumed by receivers.
 - **Reliable communication:** Messages are safely stored in the broker, ensuring that no messages are lost during failures.
 
-The Particular Service Platform offers a common set of features available in supported messaging technologies as [transports](/transports), which fill in any missing native capabilities as necessary. Building blocks like [recoverability](/architecture/recoverability.md), the [outbox](/architecture/consistency.md#transactions-outbox-pattern), [monitoring](/monitoring/), are available on all transports. This simplifies the choice of the best messaging technology and restricts it to fundamental limitations like message size, pricing, and portability.
+The Particular Service Platform offers a common set of features available in supported messaging technologies as [transports](/transports), which fill in any missing native capabilities as necessary. Building blocks like [recoverability](/architecture/recoverability.md), the [outbox](/architecture/consistency.md#transactions-outbox-pattern), [monitoring](/monitoring/), are available on all transports. This simplifies the choice of messaging technology to comparing things like message size, pricing, and portability.
 
 ### Messaging versus RPC
 
