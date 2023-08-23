@@ -11,19 +11,9 @@ The guide does not provide definitive answers for all situations and each option
 NServiceBus endpoints can be hosted in any .NET process. This guidance groups the hosting options into:
 
 - [On-premises](#on-premises)
-  - [Windows Services](#windows-services)
-  - [Internet Information Services (IIS)](#internet-information-services-iis)
-  - [Linux background processes](#linux-background-processes)
 - [Containers](#containers)
 - [Microsoft Azure](#microsoft-azure)
-  - [AppServices](#appservices)
-  - [Azure Functions](#azure-functions)
-  - [Service Fabric](#service-fabric)
 - [Amazon Web Services](#amazon-web-services)
-  - [AWS Lambda](#aws-lambda)
-  - [Virtual Machines](#virtual-machines)
-  - [Containers](#containers-1)
-  - [AWS Mesh](#aws-mesh)
 
 ## On-premises
 
