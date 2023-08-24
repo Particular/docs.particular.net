@@ -3,6 +3,9 @@ title: Messaging
 summary: Messaging concepts for building distributed systems
 reviewed: 2023-07-18
 callsToAction: ['solution-architect']
+redirects:
+- nservicebus/architecture/principles
+- nservicebus/architectural-principles
 ---
 
 Messaging is typically used for communication and coordination between various components wihtin a system. Messaging plays a crucial role enabling flexible, robust, and scalable inter-process coordination required to build decoupled and reliable distributed architectures. The principles and patterns underlying messaging are decades old and battle-tested through countless technological shifts.

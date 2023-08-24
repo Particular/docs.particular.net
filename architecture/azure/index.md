@@ -4,6 +4,8 @@ summary:
 reviewed: 2023-07-18
 suppressRelated: true
 callsToAction: ['architecture-review']
+redirects:
+- nservicebus/architecture
 ---
 
 The Azure Architecture Center organizes application architecture fundamentals guidance as a [series of steps](https://learn.microsoft.com/en-us/azure/architecture/guide/#how-this-guidance-is-structured):
