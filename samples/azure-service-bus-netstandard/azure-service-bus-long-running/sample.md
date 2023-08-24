@@ -10,6 +10,8 @@ redirects:
 - samples/azure/azure-service-bus-long-running
 ---
 
+WARNING: In version 3 and higher of the Azure Service Bus transport, [lock renewal is built into the transport](/transports/azure-service-bus/configuration.md#lock-renewal), and custom lock renewal is no longer required. This sample will be removed in the future.
+
 ## Prerequisites
 
 include: asb-connectionstring-xplat
