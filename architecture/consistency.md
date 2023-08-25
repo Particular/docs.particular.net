@@ -20,7 +20,7 @@ There are several challenges and limitations when relying on transactions:
 
 Scalable systems need to handle high levels of concurrency. Transactions need concurrency control mechanisms to ensure proper isolation between transactions trying to access the same resources. These concurrency control mechanisms can severely impact a resource's performance and introduce bottlenecks that complicate scaling.
 
-When using [horizontal scaling](https://learn.microsoft.com/en-us/azure/well-architected/scalability/design-scale#understand-horizontal-and-vertical-scaling), additional mechanisms are required to ensure the desired level of consistency across all scale units. This typically involves complicated distributed consensus-algorithms. Depending on the consistency guarantees required, many, or even all, nodes of a scaled component need to participate in the transaction, negatively impacting latency and availability.
+When using [horizontal scaling](https://learn.microsoft.com/en-us/azure/well-architected/scalability/design-scale#understand-horizontal-and-vertical-scaling), additional mechanisms are required to ensure the desired level of consistency across all scale units. This typically involves complicated distributed consensus algorithms. Depending on the consistency guarantees required, many, or even all, nodes of a scaled component need to participate in the transaction, negatively impacting latency and availability.
 
 #### Cost
 
@@ -28,7 +28,7 @@ Besides the performance impact of transactions, transactional operations may eve
 
 #### Timeouts
 
-Transactions impact concurrent operations on a locked resource. This may block other actors and consume additional resources. Therefore transactions should complete within a short time window to avoid issues. Cloud services typically restrict transaction lifetimes further than traditional on-premises technologies.
+Transactions impact concurrent operations on a locked resource. This may block other actors and consume additional resources. Therefore transactions should be completed within a short time window to avoid issues. Cloud services typically restrict transaction lifetimes further than traditional on-premises technologies.
 
 #### Scope
 
@@ -42,7 +42,7 @@ Databases and queueing technologies may support atomic transactions for a single
 
 ### Distributed transactions
 
-Distributed transactions span multiple technologies, such as a database and a message queue). On Windows, the [Distributed Transaction Coordinator (DTC)](https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator) is coordinates distributed transactions across multiple compatible participants using a [two-phase commit protocol](https://en.wikipedia.org/wiki/Two-phase_commit_protocol). Each participant must explicitly support the two-phase commit protocol.
+Distributed transactions span multiple technologies, such as a database and a message queue). On Windows, the [Distributed Transaction Coordinator (DTC)](https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator) coordinates distributed transactions across multiple compatible participants using a [two-phase commit protocol](https://en.wikipedia.org/wiki/Two-phase_commit_protocol). Each participant must explicitly support the two-phase commit protocol.
 
 {{WARN:
 While traditional on-premises focused services like MSMQ or MSSQL server support the DTC, managed cloud services do not, and require other strategies for achieving consistency between resources such as:
@@ -55,7 +55,7 @@ While traditional on-premises focused services like MSMQ or MSSQL server support
 
 The [transactional outbox pattern](https://microservices.io/patterns/data/transactional-outbox.html) provides atomically consistent database and message queue operations. Due to the lack of distributed transactions in modern application environments, the outbox pattern is commonly used to satisfy consistency requirements.
 
-The outbox pattern is implemented by storing outgoing messages in the same database as business data. This allows the use of database transaction capabilities to achieve atomic consistency. In a second step, the persisted messages are dispatched to message queue.
+The outbox pattern is implemented by storing outgoing messages in the same database as business data. This allows the use of database transaction capabilities to achieve atomic consistency. In the second step, the persisted messages are dispatched to the message queue.
 
 The nature of the outbox pattern may cause outgoing messages to be dispatched multiple times, which requires [idempotency](#idempotency) in receivers.
 
@@ -77,21 +77,21 @@ Using natural idempotency is recommended whenever possible.
 
 Message deduplication is the easiest way to detect if a message has been processed already. Every message that has been processed so far is stored. When a new message comes in, it is compared to the set of already processed messages (usually by comparing their unique identifiers). If the message is identical to one of the stored messages, it is a duplicate and is not processed again.
 
-One advantage of this approach is its simplicity. However, it has downsides. As every message needs to be stored and searched for, which can reduce message throughput. Deduplication storage is not infinite, limiting the deduplication guarantees of this approach to the provided storage capacity. Identifiers for deduplication typically operate on technical IDs (e.g. message ID), which means this approach does not work for duplicate message _content_.
+One advantage of this approach is its simplicity. However, it has downsides. Every message needs to be stored and searched for, which can reduce message throughput. Deduplication storage is not infinite, limiting the deduplication guarantees of this approach to the provided storage capacity. Identifiers for deduplication typically operate on technical IDs (e.g. message ID), which means this approach does not work for duplicate message _content_.
 
 Note: Implementing message deduplication is risky and error-prone. Small mistakes can lead to unintended behavior or message loss. The [NServiceBus Outbox feature](/nservicebus/outbox/) implements message deduplication and is thoroughly tested and well-documented.
 
 ### Side effect checks
 
-Message deduplication assumes a generic deduplication mechanism that works for all incoming messages, regardless of the specific message content. When this is not possible, duplicate message processing can be avoided by checking for expected side effects. These side effects are only known for a specific message type and its related business logic. For example, when `TheFireIsHot` flag is set to true, then there is no need to `TurnOnTheFire`. This approach is less reusable and requires in-depth understanding of the business logic to deal with duplicate messages.
+Message deduplication assumes a generic deduplication mechanism that works for all incoming messages, regardless of the specific message content. When this is not possible, duplicate message processing can be avoided by checking for expected side effects. These side effects are only known for a specific message type and its related business logic. For example, when `TheFireIsHot` flag is set to true, then there is no need to `TurnOnTheFire`. This approach is less reusable and requires an in-depth understanding of the business logic to deal with duplicate messages.
 
-Additional metadata may be stored to enable side effect checks. For example, a message timestamp or an unique identifier (provided by the author of a message) is attached to a database record that is stored while processing that message.
+Additional metadata may be stored to enable side effect checks. For example, a message timestamp or a unique identifier (provided by the author of a message) is attached to a database record that is stored while processing that message.
 
 ## Best practices
 
 ### Break business logic into smaller steps
 
-Business logic triggered by incoming messages may coordinate actions and state across multiple resources such as databases and web APIs. Any interaction with any resource may fail for various expected and unexpected reasons, causing the whole process to be repeated again. By breaking workflows into smaller steps that each involve only interacting with a message queue and one other resource, the impact of a failure inside the workflow can be greatly reduced, making idempotency patterns easier to apply.
+Business logic triggered by incoming messages may coordinate actions and states across multiple resources such as databases and web APIs. Any interaction with any resource may fail for various expected and unexpected reasons, causing the whole process to be repeated. By breaking workflows into smaller steps that each involve only interacting with a message queue and one other resource, the impact of a failure inside the workflow can be greatly reduced, making idempotency patterns easier to apply.
 
 [**Blog: Autosave for business processes →**](https://particular.net/blog/autosave-for-your-business)
 
