@@ -7,11 +7,11 @@ callsToAction: ['solution-architect']
 
 Business processes typically involve various distributed components that need to be invoked in a coordinated manner. The Particular Service Platform supports both choreography and orchestration of workflows.
 
-Note: Choreography and orchestration are are not mutually exclusive. The patterns may be combined at different levels of business workflows.
+Note: Choreography and orchestration are not mutually exclusive. The patterns may be combined at different levels of business workflows.
 
 ## Choreography
 
-Choreographed workflows are implemented by an implicit flow of events between services instead of a central owner of a process. Services are highly decoupled by the use of [publish/subscribe](/architecture/messaging.md#communication-styles-publishsubscribe-pattern). Published messages are called _events_ because they describe a fact about something tht happened to the rest of the system. Subscribers react to events as required. There is no central state of the workflow.
+Choreographed workflows are implemented by an implicit flow of events between services instead of a central owner of a process. Services are highly decoupled by the use of [publish/subscribe](/architecture/messaging.md#communication-styles-publishsubscribe-pattern). Published messages are called _events_ because they describe a fact about something that happened to the rest of the system. Subscribers react to events as required. There is no central state of the workflow.
 
 ![](/serviceinsight/images/overview-sequence-diagram.png)
 
@@ -28,13 +28,13 @@ NServiceBus provides a simple [publish/subscribe](/nservicebus/messaging/publish
 ### Challenges
 
 * When implementing complex workflows, messages flowing through the system can quickly become difficult to understand and track. To have a full picture of the message flow, the implementation of every service needs to be known. The absence of a central processor requires more effort to detect failed or stuck business processes. [Particular Service Platform monitoring](/monitoring/) helps to understand and monitor complex choreographed workflows.
-* Putting too much data on events will quickly re-introduce coupling and impact overall system performance. Read more about about properly sizing event messages in the blog post on [putting events on a diet](https://particular.net/blog/putting-your-events-on-a-diet).
+* Putting too much data on events will quickly re-introduce coupling and impact overall system performance. Read more about properly sizing event messages in the blog post on [putting events on a diet](https://particular.net/blog/putting-your-events-on-a-diet).
 * Complex workflows that require aggregation of multiple events require local state. Service-internal [orchestration using NServiceBus sagas](#orchestration) can be used to easily aggregate multiple events and process timeouts in a component of a choreographed workflow.
-* Maintaining consistent state across all choreography participants in case of failures can become challenging as the coordination and flow of compensating events can quickly multiply the complexity of a choreographed workflow. Choreography is best used for processes that tolerate eventual consistency. [Orchestrated workflows](#orchestration) may better for processes that require more consistency.
+* Maintaining a consistent state across all choreography participants in case of failures can become challenging as the coordination and flow of compensating events can quickly multiply the complexity of a choreographed workflow. Choreography is best used for processes that tolerate eventual consistency. [Orchestrated workflows](#orchestration) may be better for processes that require more consistency.
 
 ## Orchestration
 
-Orchestrated workflows are managed by a central process that instructs components to perform work in a specific order, manages state, and handles failures. Orchestration can be useful in complex workflows that contain multiple conditions or time-based triggers or have stronger consistency requirements. Instead of events, message-based orchestration relies on `commands` that the orchestrator sends to receivers which handle them.
+Orchestrated workflows are managed by a central process that instructs components to perform work in a specific order, manages state, and handles failures. Orchestration can be useful in complex workflows that contain multiple conditions or time-based triggers or have stronger consistency requirements. Instead of events, message-based orchestration relies on `commands` that the orchestrator sends to receivers that handle them.
 
 ### Implementing orchestrated workflows
 
