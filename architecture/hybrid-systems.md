@@ -5,7 +5,7 @@ reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-Hybrid systems have components running both in the cloud and on-premises. This might be a temporary situation in a lift and shift strategy, or it can be permanent state for various reasons (e.g. risk, legal, cost, etc.). Hybrid systems can become tricky to implement when the on-premises part of the system relies on an existing message broker. Some broker technologies might also not be compatible with modern cloud infrastructure (e.g. MSMQ).
+Hybrid systems have components running both in the cloud and on-premises. This might be a temporary situation in a lift and shift strategy, or it can be a permanent state for various reasons (e.g. risk, legal, cost, etc.). Hybrid systems can become tricky to implement when the on-premises part of the system relies on an existing message broker. Some broker technologies might also not be compatible with modern cloud infrastructure (e.g. MSMQ).
 
 ## Shared broker
 
@@ -13,11 +13,11 @@ In the shared broker approach, both systems use a single message broker which ca
 
 ### On-premises
 
-When it is expected that the message queuing system should remain on-premises and the broker client SDK is cloud compatible, the cloud hosted messaging clients might be connected to the on-premises broker using cloud vendor specific VPN services.
+When it is expected that the message queuing system should remain on-premises and the broker client SDK is cloud compatible, the cloud-hosted messaging clients might be connected to the on-premises broker using cloud vendor-specific VPN services.
 
 ### Cloud
 
-Cloud hosted message queueing systems can be configured for access from anywhere. While cloud hosted components benefit from lower network latency and better network reliability, on-premises components can access the same broker.
+Cloud-hosted message queueing systems can be configured for access from anywhere. While cloud-hosted components benefit from lower network latency and better network reliability, on-premises components can access the same broker.
 
 ## Multiple brokers
 
