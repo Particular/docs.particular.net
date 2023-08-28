@@ -21,9 +21,9 @@ Azure offers [several data stores](https://learn.microsoft.com/en-us/azure/archi
 
 :heavy_minus_sign: Cons:
 
-- Fairly expensive
 - Atomic transactions only within the same partition
 - Careful partition planning is required
+- Fairly expensive
 
 [**Try the NServiceBus Cosmos DB sample →**](/samples/cosmosdb/simple/)
 
