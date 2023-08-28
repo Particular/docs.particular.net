@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver", "Receiver\Receiv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sender", "Sender\Sender.csproj", "{A95FE2AA-F616-42F2-9D7E-2C8CC7771E4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,5 +36,13 @@ Global
 		{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}.Debug|x86.Build.0 = Debug|Any CPU
 		{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A3A0A21-04CB-4C75-A095-4DA54EF75B96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A95FE2AA-F616-42F2-9D7E-2C8CC7771E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A95FE2AA-F616-42F2-9D7E-2C8CC7771E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A95FE2AA-F616-42F2-9D7E-2C8CC7771E4E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A95FE2AA-F616-42F2-9D7E-2C8CC7771E4E}.Debug|x64.Build.0 = Debug|Any CPU
+		{A95FE2AA-F616-42F2-9D7E-2C8CC7771E4E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A95FE2AA-F616-42F2-9D7E-2C8CC7771E4E}.Debug|x86.Build.0 = Debug|Any CPU
+		{A95FE2AA-F616-42F2-9D7E-2C8CC7771E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A95FE2AA-F616-42F2-9D7E-2C8CC7771E4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
