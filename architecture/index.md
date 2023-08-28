@@ -4,6 +4,8 @@ summary: Architectural guidance for building distributed systems with the Partic
 reviewed: 2023-07-18
 suppressRelated: true
 callsToAction: ['architecture-review']
+redirects:
+- nservicebus/architecture
 ---
 
 This guidance describes architectural concepts for building distributed systems both in the cloud and on-premises, and shows how the Particular Service Platform helps organizations follow those concepts, implement specific architectural styles, and make associated technology choices.
