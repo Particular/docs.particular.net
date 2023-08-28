@@ -14,7 +14,7 @@ The Particular Service Platform implements the [messaging patterns](/nservicebus
 ## Components
 
 * [NServiceBus endpoint](/nservicebus/endpoints) (service): Each service is an autonomously deployable and scalable unit with a private [data store](data-stores.md).
-* Azure Service Bus message queue: The message queue is an asynchronous, reliable, and fault-tolerant communication channel which decouples the services.
+* Message bus: The message bus provides an asynchronous, reliable, and fault-tolerant communication channel which decouples the services.
 * Gateway: A gateway is a facade which allows user technologies such as web browsers to decouple from service implementations. Gateways may also provide further operational facilities, but do not contain domain-specific logic. Azure offers a [range of gateway services](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway).
 
 ## Challenges
@@ -45,15 +45,15 @@ A major benefit of the microservice architecture style, where each service is ho
 
 In Azure, services following the microservice architecture style often use either serverless or containers hosting models:
 
-### Serverless
+### Azure-native services
 
-Fully managed serverless offerings like [Azure Functions](https://azure.microsoft.com/en-us/products/functions) and [Azure App Services](https://azure.microsoft.com/en-us/products/app-service/) are popular choices for systems requiring scalable hosting environments with minimal management. Serverless hosting models also integrate seamlessly with serverless data stores and messaging technologies.
+Fully managed service offerings like [Azure Functions](https://azure.microsoft.com/en-us/products/functions) and [Azure App Services](https://azure.microsoft.com/en-us/products/app-service/) are popular choices for systems requiring scalable hosting environments with minimal management. Azure-native hosting models also integrate seamlessly with serverless data stores and messaging technologies.
 
 ![](azure-functions-host.png)
 
 ### Containers
 
-Containerized applications can be hosted in managed container orchestration platforms like [Azure Container Apps](https://azure.microsoft.com/en-us/products/container-apps) or [Azure Kubernetes Service](https://azure.microsoft.com/en-us/products/kubernetes-service). They can also be hosted in custom managed Kubernetes clusters running on [Azure Virtual Machines](https://azure.microsoft.com/en-us/products/virtual-machines). Container-hosted systems may use serverless data stores like [Cosmos DB](https://azure.microsoft.com/de-de/products/cosmos-db/) and serverless messaging technologies [Azure Service Bus](https://azure.microsoft.com/de-de/products/service-bus).
+Containerized applications can be hosted in managed container orchestration platforms like Azure Container Instances, [Azure Container Apps](https://azure.microsoft.com/en-us/products/container-apps), or [Azure Kubernetes Service](https://azure.microsoft.com/en-us/products/kubernetes-service). They can also be hosted in custom managed Kubernetes clusters running on [Azure Virtual Machines](https://azure.microsoft.com/en-us/products/virtual-machines). Container-hosted systems may use serverless data stores like [Cosmos DB](https://azure.microsoft.com/de-de/products/cosmos-db/) and serverless messaging technologies [Azure Service Bus](https://azure.microsoft.com/de-de/products/service-bus).
 
 ![](azure-container-host.png)
 

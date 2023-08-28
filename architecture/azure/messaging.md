@@ -9,24 +9,26 @@ Azure offers [several messaging services](https://learn.microsoft.com/en-us/azur
 
 ### Azure Service Bus
 
-[Azure Service Bus](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview) supports queuing, publish/subscribe, and more advanced integration patterns. It is designed to integrate applications or application components that may span multiple communication protocols, data contracts, trust domains, or network environments.
+[Azure Service Bus](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview) is a fully-fledged enterprise messaging service with support for queuing, publish/subscribe, and more advanced integration patterns. It is designed to integrate applications or application components that may span multiple communication protocols, data contracts, trust domains, or network environments.
 
-Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging). The Premium tier provides hardware level isolation, which means each customer's workload runs on dedicated hardware. Premium tier uses _messaging units_ for pricing. The Standard tier offers pay-as-you-go pricing with less predictable latency and throughput. Microsoft recommends running production systems on the Premium tier.
+Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging). The Premium tier provides hardware-level isolation, which means each customer's workload runs on dedicated hardware. Premium tier uses _messaging units_ for scaling and pricing and guarantees predictable throughput and performance. The Standard tier offers pay-as-you-go pricing with quota-based throughput and non-guaranteed latency. Microsoft recommends running production systems on the Premium tier.
 
 :heavy_plus_sign: Pros:
 
 - Up to 100 MB message size on the Premium tier
-- Supports transactions across multiple queues
+- Supports transactional message operations across multiple queues (cross-entity transactions)
 - Scripted infrastructure deployment using the [NServiceBus ASB CLI](/transports/azure-service-bus/operational-scripting.md)
-- Supports the AMQP 1.0 protocol
-- Supports cross-entity transactions
+- Supports the AMQP 1.0 protocol over TCP and WebSockets
 
 :heavy_minus_sign: Cons:
 
 - Some features are only available on the Premium tier
 - The maximum message size is 256 KB on the Standard tier
 - The maximum queue size is 80 GB on the Standard tier
-- There is no on-premises equivalent.
+- Cross-entity transactions are limited to 100 messages
+- No cross-namespace communication
+- No emulator for local development or testing available
+
 
 [**Try the Azure Service Bus Tutorial →**](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus?tabs=Sender)
 
@@ -43,7 +45,7 @@ Azure Service Bus may be considered the default messaging choice for Azure. Alte
 - Queues can contain up to 200 TB of messages
 - Cheaper than Azure Service Bus
 - Part of Azure Storage
-- The Azure Storage Emulator may be on-premises for development, testing, and CI
+- Azure Storage Emulator for local development and testing
 
 :heavy_minus_sign: Cons:
 
@@ -56,7 +58,7 @@ Azure Service Bus may be considered the default messaging choice for Azure. Alte
 
 #### When to use Azure Storage Queues
 
-Consider Azure Storage Queues when a managed message queuing technology is required but Azure Service Bus doesn't meet requirements or is too expensive.
+Azure Service Bus is the recommended default option. Consider Azure Storage Queues when Azure Service Bus doesn't meet critical requirements.
 
 ### SQL transport
 
@@ -64,10 +66,10 @@ SQL transport is an NServiceBus feature that can use existing SQL Server-compati
 
 :heavy_plus_sign: Pros:
 
-- Runs on cloud hosted and on-premises SQL Server-compatible data stores (including SQL Server Express for development, testing, and CI)
-- Arbitrary message sizes
 - Runs on infrastructure which often already exists
 - Strong transaction integration with business data operations
+- Runs on cloud hosted and on-premises SQL Server-compatible data stores (including SQL Server Express for development, testing, and CI)
+- Arbitrary message sizes
 
 :heavy_minus_sign: Cons:
 

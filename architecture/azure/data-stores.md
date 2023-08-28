@@ -17,13 +17,13 @@ Azure offers [several data stores](https://learn.microsoft.com/en-us/azure/archi
 - Multi-region support for high availability deployment
 - Supports multiple [data models](https://learn.microsoft.com/en-us/azure/cosmos-db/choose-api)
 - Fully managed
+- [Cosmos DB Emulator](https://learn.microsoft.com/en-us/azure/cosmos-db/local-emulator) can be used for local development and testing
 
 :heavy_minus_sign: Cons:
 
 - Fairly expensive
 - Atomic transactions only within the same partition
-- Partitioning limitations require careful planning
-- No local/on-premises option or emulator
+- Careful partition planning is required
 
 [**Try the NServiceBus Cosmos DB sample →**](/samples/cosmosdb/simple/)
 
@@ -37,13 +37,14 @@ Note: Cosmos DB offers _serverless_ and _provisioned throughput_ pricing models.
 
 - Cost-effective
 - Partitioning is managed by the service
+- [Azurite emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite) can be used for local development and testing
 
 :heavy_minus_sign: Cons:
 
+- Limited number of columns and single entity (row) size
 - Limited query capabilities
 - Multi-document transactions are limited to the same partition
-- Not suitable to model complicated relationships
-- No local/on-premises option, but [Azurite emulator can be used for local development](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite)
+- No built-in support for complicated relationships
 
 [**Try the NServiceBus Azure Table Storage sample →**](/samples/azure/azure-table/simple/)
 
@@ -63,7 +64,6 @@ Note: Applications built for Table Storage are compatible with Cosmos DB. See [t
 
 :heavy_minus_sign: Cons:
 
-- Higher costs compared to manually managed database servers
 - Migrating existing SQL server instances might be challenging
 
 Azure SQL Database is supported via the [NServiceBus SQL persistence package](/persistence/sql/).
@@ -90,6 +90,8 @@ Azure SQL Managed Instances is supported via the [NServiceBus SQL persistence pa
 [**Try the NServiceBus SQL persistence sample →**](/samples/sql-persistence/simple/)
 
 ## Other data store options
+
+Azure provides further relational database services compatible with NServiceBus, e.g. [Azure Database for MySQL](https://azure.microsoft.com/en-us/products/mysql) and [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/products/postgresql).
 
 While the presented storage options provide the best experience and integration with Azure, other storage options are available and may be valid options depending on the specific requirements. [Explore all supported data stores](/persistence/#supported-persisters).
 

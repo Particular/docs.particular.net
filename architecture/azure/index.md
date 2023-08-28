@@ -54,7 +54,7 @@ The Particular Service Platform makes systems follow the [ten design principles 
   * Loose coupling and asynchronous operations through [messaging](/architecture/messaging.md)
   * Encapsulating domain knowledge in [message handlers and sagas](/nservicebus/handlers-and-sagas.md).
   * Separating domain logic from infrastructure concerns, such as reliability and recoverability, which are handled by the Particular Service Platform.
-  * Deploying services independently through the use of [asynchronous messaging](/nservicebus/messaging/).
+  * Enabling independent services deployment by decoupling their communication using [asynchronous messaging](/nservicebus/messaging/).
 
 [**Talk to a solution architect and learn more about how the Particular Service Platform helps systems follow Azure design principles. →**](https://particular.net/solution-architect?message=I%27d%20like%20to%20talk%20to%20a%20solution%20architect%20to%20learn%20more%20about%20how%20the%20Particular%20Service%20Platform%20helps%20systems%20follow%20Azure%20design%20principles.)
 
@@ -72,8 +72,8 @@ The Particular Service Platform helps achieve the five pillars of software quali
   * NServiceBus handles even unexpected failures and provides the [recoverability features](/nservicebus/recoverability/) required by self-healing systems.
   * NServiceBus provides health metrics which can be monitored using [ServicePulse](/servicepulse) and [OpenTelemetry](/nservicebus/operations/opentelemetry.md).
 * [Security](https://learn.microsoft.com/en-us/azure/well-architected/security/security-principles)
+  * NServiceBus bus provides data encryption in transit with [message encryption](/nservicebus/security/property-encryption.md).
   * NServiceBus supports the [least privilege](/nservicebus/operations/installers.md#when-to-run-installers) approach during application deployment and runtime.
-  * NServiceBus bus provides [message encryption](/nservicebus/security/property-encryption.md).
 * [Cost optimization](https://learn.microsoft.com/en-us/azure/well-architected/cost/overview)
   * Costs may be optimized through [technology choices](#technology-choices).
 * [Operational excellence](https://learn.microsoft.com/en-us/azure/well-architected/devops/overview)
@@ -81,10 +81,10 @@ The Particular Service Platform helps achieve the five pillars of software quali
   * ServicePulse provides [detailed insights](/servicepulse) into the operational health of the system.
   * NServiceBus supports [OpenTelemetry](/nservicebus/operations/opentelemetry.md) to integrate with 3rd party monitoring and tracing tools.
   * [Messaging](/nservicebus/messaging) allows loosely coupled architectures with autonomous and independent services.
-  * NServiceBus APIs are designed for [testing](/nservicebus/testing).
+  * NServiceBus APIs are designed for [unit testing](/nservicebus/testing).
 * [Performance efficiency](https://learn.microsoft.com/en-us/azure/well-architected/scalability/overview)
   * NServiceBus endpoints can be easily scaled out using methods such as the built-in [competing consumers mechanism](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) and scaled up while tuning for [concurrency](/nservicebus/operations/tuning.md).
-  * NServiceBus is designed and tested for high-performance and memory efficiency.
+  * NServiceBus is designed and tested for [high-performance and memory efficiency](https://particular.net/blog/pipeline-and-closure-allocations).
   * [Monitoring](/monitoring) allows observation of individual endpoint performance and identification of bottlenecks.
 
 ## Additional resources

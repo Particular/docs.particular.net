@@ -20,7 +20,7 @@ Messaging can help evolving and modernizing existing applications that have been
 * Front end layer: Often these are web applications or Desktop UIs physically separated from the other layers.
 * Business logic layer: Contains the business logic
 * Data layer: One or more databases containing all data models of the application.
-* Message queue: used for sending commands from upper to lower layers and publishing events from lower layers to upper layers.
+* Message queue: used for sending commands or publishing events between layers.
 
 ### Challenges
 
@@ -36,3 +36,4 @@ Systems using layered architectures are often limited in their technology choice
 ## Related content
 
 * [Azure Architecture Center—N-tier architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier)
+* [Azure migration guide overview](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/azure-migration-guide/)
