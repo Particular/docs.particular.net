@@ -24,7 +24,7 @@ The Azure Architecture Center describes the [web-queue-worker architecture style
 
 ### Technology choices
 
-The web-queue-worker architecture style can make use of Azure's managed services like [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services) and [Azure Functions](/architecture/azure/compute.md#platform-as-a-service-azure-app-services) and [Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db). [Azure Service Bus](/architecture/azure/messaging.md#azure-service-bus) is powerful messaging technology choice, in simple scenarios [Azure Queue Storage](/architecture/azure/messaging.md#azure-queue-storage) might provide a more lightweight and cheaper option. When relying on a Infrastructure-as-a-Service model, web-queue-worker architectures might provide fewer benefits.
+The web-queue-worker architecture style can make use of Azure's managed services like [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static), [Azure Functions](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), and [Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db). [Azure Service Bus](/architecture/azure/messaging.md#azure-service-bus) is powerful messaging technology choice. When relying on a Infrastructure-as-a-Service model, web-queue-worker architectures might provide fewer benefits.
 
 ## Related content
 

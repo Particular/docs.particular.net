@@ -38,12 +38,6 @@ In serverless (also referred to as "Functions as a service (FaaS)") models, code
 
 [**Host NServiceBus applications in docker containers →**](/nservicebus/hosting/docker-host/)
 
-### Service Fabric
-
-[Azure Service Fabric](https://azure.microsoft.com/en-us/products/service-fabric/) is a distributed systems platform built by Microsoft, designed for development, deployment, and management of microservices and containerized applications. It handles the intricacies of partitioning, scaling, and maintaining these applications, supporting stateful and stateless services with built-in load balancing and resilience. It's particularly useful for crafting applications that demand high availability, low latency, and streamlined updates, and it can be used both in cloud environments like Azure and in on-premises environments.
-
-[**Host NServiceBus applications in Azure Service Fabric →**](/nservicebus/hosting/service-fabric-hosting/)
-
 ## Infrastructure as a Service
 
 _Infrastructure as a Service_ (IaaS) Provides virtualized computing resources like virtual machines, storage, and networking that can be used to build and manage the required infrastructure.
