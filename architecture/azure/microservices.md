@@ -43,19 +43,10 @@ Users often need to see and interact with data aggregated from multiple services
 
 A major benefit of the microservice architecture style, where each service is hosted independently, with its own private data store, is the ability for a team to choose the most appropriate technologies for a given service without impacting other services or the teams working on them. Endpoints built with the Particular Service Platform may be, and typically are, hosted separately, and each may use a different data store both for NServiceBus persistence, and for storing business data. The Particular Service Platform also supports [cross-platform integration with systems or components which do not use NServiceBus](https://particular.net/blog/cross-platform-integration-with-nservicebus-native-message-processing).
 
-In Azure, services following the microservice architecture style often use either serverless or containers hosting models:
+In Azure, services following the microservice architecture style often use the following technology options:
 
-### Azure-native services
-
-Fully managed service offerings like [Azure Functions](https://azure.microsoft.com/en-us/products/functions) and [Azure App Services](https://azure.microsoft.com/en-us/products/app-service/) are popular choices for systems requiring scalable hosting environments with minimal management. Azure-native hosting models also integrate seamlessly with serverless data stores and messaging technologies.
-
-![](azure-functions-host.png)
-
-### Containers
-
-Containerized applications can be hosted in managed container orchestration platforms like Azure Container Instances, [Azure Container Apps](https://azure.microsoft.com/en-us/products/container-apps), or [Azure Kubernetes Service](https://azure.microsoft.com/en-us/products/kubernetes-service). They can also be hosted in custom managed Kubernetes clusters running on [Azure Virtual Machines](https://azure.microsoft.com/en-us/products/virtual-machines). Container-hosted systems may use serverless data stores like [Cosmos DB](https://azure.microsoft.com/de-de/products/cosmos-db/) and serverless messaging technologies [Azure Service Bus](https://azure.microsoft.com/de-de/products/service-bus).
-
-![](azure-container-host.png)
+* Fully managed service offerings like [Azure Functions](/architecture/azure/compute.md#serverless) and [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services) are popular choices for systems requiring scalable hosting environments with minimal management. These services also offer convenient solutions when building web-facing applications.
+* [Containerized applications](/architecture/azure/compute.md#platform-as-a-service-containers) can be hosted in managed container orchestration platforms like Azure Container Apps, Azure Kubernetes Service, and more. They can also be hosted in custom managed Kubernetes clusters running on [Azure Virtual Machines](https://azure.microsoft.com/en-us/products/virtual-machines). Container-hosted systems may use serverless data stores like [Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db) and serverless messaging technologies [Azure Service Bus](/architecture/azure/messaging.md#azure-service-bus).
 
 ## Related content
 

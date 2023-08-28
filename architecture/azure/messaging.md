@@ -58,7 +58,7 @@ Azure Service Bus may be considered the default messaging choice for Azure. Alte
 
 #### When to use Azure Storage Queues
 
-Azure Service Bus is the recommended default option. Consider Azure Storage Queues when Azure Service Bus doesn't meet critical requirements.
+Consider Azure Storage Queues when a managed message queuing technology is required for simple messaging needs or when Azure Service Bus doesn't meet critical requirements.
 
 ### SQL transport
 
