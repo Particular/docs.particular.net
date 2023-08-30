@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.18.4.5664",
-      "templateHash": "15046971136878174535"
+      "version": "0.20.4.51522",
+      "templateHash": "13120291875269430072"
     }
   },
   "parameters": {
@@ -14,18 +14,6 @@
       "defaultValue": "$uniqueString(resourceGroup().id)",
       "metadata": {
         "description": "Specifies the name prefix."
-      }
-    },
-    "letterCaseType": {
-      "type": "string",
-      "defaultValue": "UpperCamelCase",
-      "allowedValues": [
-        "CamelCase",
-        "UpperCamelCase",
-        "KebabCase"
-      ],
-      "metadata": {
-        "description": "Specifies whether name resources are in CamelCase, UpperCamelCase, or KebabCase."
       }
     },
     "location": {
@@ -39,7 +27,7 @@
       "type": "object",
       "defaultValue": {
         "IaC": "Bicep",
-        "Demo": "Azure Container Apps Jobs"
+        "Sample": "NServiceBus Container App"
       },
       "metadata": {
         "description": "Specifies the resource tags."
@@ -47,7 +35,7 @@
     },
     "containerAppEnvironmentName": {
       "type": "string",
-      "defaultValue": "[if(equals(parameters('letterCaseType'), 'UpperCamelCase'), format('{0}{1}Environment', toUpper(first(parameters('prefix'))), toLower(substring(parameters('prefix'), 1, sub(length(parameters('prefix')), 1)))), if(equals(parameters('letterCaseType'), 'CamelCase'), format('{0}Environment', toLower(parameters('prefix'))), format('{0}-environment', toLower(parameters('prefix')))))]",
+      "defaultValue": "[format('{0}-environment', parameters('prefix'))]",
       "metadata": {
         "description": "Specifies the name of the Azure Container Apps Environment."
       }
@@ -89,16 +77,9 @@
     },
     "logAnalyticsWorkspaceName": {
       "type": "string",
-      "defaultValue": "[if(equals(parameters('letterCaseType'), 'UpperCamelCase'), format('{0}{1}Workspace', toUpper(first(parameters('prefix'))), toLower(substring(parameters('prefix'), 1, sub(length(parameters('prefix')), 1)))), if(equals(parameters('letterCaseType'), 'CamelCase'), format('{0}Workspace', toLower(parameters('prefix'))), format('{0}-workspace', toLower(parameters('prefix')))))]",
+      "defaultValue": "[format('{0}-workspace', parameters('prefix'))]",
       "metadata": {
         "description": "Specifies the name of the Log Analytics workspace."
-      }
-    },
-    "logAnalyticsRetentionInDays": {
-      "type": "int",
-      "defaultValue": 30,
-      "metadata": {
-        "description": "Specifies the workspace data retention in days. -1 means Unlimited retention for the Unlimited Sku. 730 days is the maximum allowed for all other Skus."
       }
     },
     "logAnalyticsSku": {
@@ -116,7 +97,7 @@
     },
     "virtualNetworkName": {
       "type": "string",
-      "defaultValue": "[if(equals(parameters('letterCaseType'), 'UpperCamelCase'), format('{0}{1}Vnet', toUpper(first(parameters('prefix'))), toLower(substring(parameters('prefix'), 1, sub(length(parameters('prefix')), 1)))), if(equals(parameters('letterCaseType'), 'CamelCase'), format('{0}Vnet', toLower(parameters('prefix'))), format('{0}-vnet', toLower(parameters('prefix')))))]",
+      "defaultValue": "[format('{0}-vnet', parameters('prefix'))]",
       "metadata": {
         "description": "Specifies the name of the virtual network."
       }
@@ -158,21 +139,21 @@
     },
     "serviceBusNamespace": {
       "type": "string",
-      "defaultValue": "[if(equals(parameters('letterCaseType'), 'UpperCamelCase'), format('{0}{1}ServiceBus', toUpper(first(parameters('prefix'))), toLower(substring(parameters('prefix'), 1, sub(length(parameters('prefix')), 1)))), if(equals(parameters('letterCaseType'), 'CamelCase'), format('{0}ServiceBus', toLower(parameters('prefix'))), format('{0}-servicebus', toLower(parameters('prefix')))))]",
+      "defaultValue": "[format('{0}-servicebus', parameters('prefix'))]",
       "metadata": {
         "description": "Specifies the name of the Service Bus namespace."
       }
     },
     "serviceBusZoneRedundant": {
       "type": "bool",
-      "defaultValue": true,
+      "defaultValue": false,
       "metadata": {
         "description": "Enabling this property creates a Premium Service Bus Namespace in regions supported availability zones."
       }
     },
     "serviceBusSkuName": {
       "type": "string",
-      "defaultValue": "Premium",
+      "defaultValue": "Standard",
       "allowedValues": [
         "Basic",
         "Premium",
@@ -192,8 +173,8 @@
     "serviceBusQueueNames": {
       "type": "array",
       "defaultValue": [
-        "parameters",
-        "results"
+        "Sender",
+        "Receiver"
       ],
       "metadata": {
         "description": "Specifies the name of the Service Bus queue."
@@ -243,23 +224,23 @@
     },
     "serviceBusNamespacePrivateEndpointName": {
       "type": "string",
-      "defaultValue": "[if(equals(parameters('letterCaseType'), 'UpperCamelCase'), format('{0}{1}ServiceBusNamespacePrivateEndpoint', toUpper(first(parameters('prefix'))), toLower(substring(parameters('prefix'), 1, sub(length(parameters('prefix')), 1)))), if(equals(parameters('letterCaseType'), 'CamelCase'), format('{0}ServiceBusNamespacePrivateEndpoint', toLower(parameters('prefix'))), format('{0}-service-bus-namespace-private-endpoint', toLower(parameters('prefix')))))]",
+      "defaultValue": "[format('{0}-service-bus-namespace-private-endpoint', parameters('prefix'))]",
       "metadata": {
         "description": "Specifies the name of the private link to the storage account."
       }
     },
     "managedIdentityName": {
       "type": "string",
-      "defaultValue": "[if(equals(parameters('letterCaseType'), 'UpperCamelCase'), format('{0}{1}JobManagedIdentity', toUpper(first(parameters('prefix'))), toLower(substring(parameters('prefix'), 1, sub(length(parameters('prefix')), 1)))), if(equals(parameters('letterCaseType'), 'CamelCase'), format('{0}JobManagedIdentity', toLower(parameters('prefix'))), format('{0}-job-managed-identity', toLower(parameters('prefix')))))]",
+      "defaultValue": "[format('{0}-job-managed-identity', parameters('prefix'))]",
       "metadata": {
         "description": "Specifies the name of the user-defined managed identity."
       }
     },
     "acrName": {
       "type": "string",
-      "defaultValue": "[if(equals(parameters('letterCaseType'), 'UpperCamelCase'), format('{0}{1}Acr', toUpper(first(parameters('prefix'))), toLower(substring(parameters('prefix'), 1, sub(length(parameters('prefix')), 1)))), if(equals(parameters('letterCaseType'), 'CamelCase'), format('{0}Acr', toLower(parameters('prefix'))), format('{0}-acr', toLower(parameters('prefix')))))]",
-      "maxLength": 50,
+      "defaultValue": "[format('{0}acr', parameters('prefix'))]",
       "minLength": 5,
+      "maxLength": 50,
       "metadata": {
         "description": "Specifies the name of the Azure Container Registry"
       }
@@ -273,14 +254,14 @@
     },
     "acrPrivateEndpointName": {
       "type": "string",
-      "defaultValue": "[if(equals(parameters('letterCaseType'), 'UpperCamelCase'), format('{0}{1}AcrPrivateEndpoint', toUpper(first(parameters('prefix'))), toLower(substring(parameters('prefix'), 1, sub(length(parameters('prefix')), 1)))), if(equals(parameters('letterCaseType'), 'CamelCase'), format('{0}AcrPrivateEndpoint', toLower(parameters('prefix'))), format('{0}-acr-private-endpoint', toLower(parameters('prefix')))))]",
+      "defaultValue": "[format('{0}-acr-private-endpoint', parameters('prefix'))]",
       "metadata": {
         "description": "Specifies the name of the private link to the Azure Container Registry."
       }
     },
     "acrSkuName": {
       "type": "string",
-      "defaultValue": "Premium",
+      "defaultValue": "Standard",
       "allowedValues": [
         "Basic",
         "Standard",
@@ -308,9 +289,6 @@
           "sku": {
             "value": "[parameters('logAnalyticsSku')]"
           },
-          "retentionInDays": {
-            "value": "[parameters('logAnalyticsRetentionInDays')]"
-          },
           "location": {
             "value": "[parameters('location')]"
           },
@@ -324,8 +302,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.18.4.5664",
-              "templateHash": "1345435483846805772"
+              "version": "0.20.4.51522",
+              "templateHash": "16766729232445168572"
             }
           },
           "parameters": {
@@ -346,13 +324,6 @@
               ],
               "metadata": {
                 "description": "Specifies the service tier of the workspace: Free, Standalone, PerNode, Per-GB."
-              }
-            },
-            "retentionInDays": {
-              "type": "int",
-              "defaultValue": 60,
-              "metadata": {
-                "description": "Specifies the workspace data retention in days. -1 means Unlimited retention for the Unlimited Sku. 730 days is the maximum allowed for all other Skus."
               }
             },
             "location": {
@@ -379,8 +350,7 @@
               "properties": {
                 "sku": {
                   "name": "[parameters('sku')]"
-                },
-                "retentionInDays": "[parameters('retentionInDays')]"
+                }
               }
             }
           ],
@@ -460,8 +430,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.18.4.5664",
-              "templateHash": "6642034885011448787"
+              "version": "0.20.4.51522",
+              "templateHash": "14649697394749762031"
             }
           },
           "parameters": {
@@ -473,7 +443,7 @@
             },
             "zoneRedundant": {
               "type": "bool",
-              "defaultValue": true,
+              "defaultValue": false,
               "metadata": {
                 "description": "Enabling this property creates a Premium Service Bus Namespace in regions supported availability zones."
               }
@@ -755,8 +725,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.18.4.5664",
-              "templateHash": "7146871086920983355"
+              "version": "0.20.4.51522",
+              "templateHash": "10945105521883890313"
             }
           },
           "parameters": {
@@ -1172,8 +1142,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.18.4.5664",
-              "templateHash": "14449268650626830847"
+              "version": "0.20.4.51522",
+              "templateHash": "11540619831385151070"
             }
           },
           "parameters": {
@@ -1373,8 +1343,8 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.18.4.5664",
-              "templateHash": "7072514701931445872"
+              "version": "0.20.4.51522",
+              "templateHash": "15434034581042735948"
             }
           },
           "parameters": {
@@ -1498,9 +1468,6 @@
           "workspaceId": {
             "value": "[reference(resourceId('Microsoft.Resources/deployments', 'workspace'), '2022-09-01').outputs.id.value]"
           },
-          "retentionInDays": {
-            "value": "[parameters('logAnalyticsRetentionInDays')]"
-          },
           "location": {
             "value": "[parameters('location')]"
           },
@@ -1514,16 +1481,16 @@
           "metadata": {
             "_generator": {
               "name": "bicep",
-              "version": "0.18.4.5664",
-              "templateHash": "13018784895517120517"
+              "version": "0.20.4.51522",
+              "templateHash": "3922406052889772010"
             }
           },
           "parameters": {
             "name": {
               "type": "string",
               "defaultValue": "[format('acr{0}', uniqueString(resourceGroup().id))]",
-              "maxLength": 50,
               "minLength": 5,
+              "maxLength": 50,
               "metadata": {
                 "description": "Name of your Azure Container Registry"
               }
@@ -1537,7 +1504,7 @@
             },
             "sku": {
               "type": "string",
-              "defaultValue": "Premium",
+              "defaultValue": "Standard",
               "allowedValues": [
                 "Basic",
                 "Standard",
@@ -1551,13 +1518,6 @@
               "type": "string",
               "metadata": {
                 "description": "Specifies the resource id of the Log Analytics workspace."
-              }
-            },
-            "retentionInDays": {
-              "type": "int",
-              "defaultValue": 60,
-              "metadata": {
-                "description": "Specifies the workspace data retention in days."
               }
             },
             "location": {
@@ -1581,11 +1541,7 @@
                 "count": "[length(variables('logCategories'))]",
                 "input": {
                   "category": "[variables('logCategories')[copyIndex('logs')]]",
-                  "enabled": true,
-                  "retentionPolicy": {
-                    "enabled": true,
-                    "days": "[parameters('retentionInDays')]"
-                  }
+                  "enabled": true
                 }
               },
               {
@@ -1593,11 +1549,7 @@
                 "count": "[length(variables('metricCategories'))]",
                 "input": {
                   "category": "[variables('metricCategories')[copyIndex('metrics')]]",
-                  "enabled": true,
-                  "retentionPolicy": {
-                    "enabled": true,
-                    "days": "[parameters('retentionInDays')]"
-                  }
+                  "enabled": true
                 }
               }
             ],

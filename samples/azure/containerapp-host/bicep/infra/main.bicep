@@ -109,7 +109,7 @@ param managedIdentityName string = '${prefix}-job-managed-identity'
 @description('Specifies the name of the Azure Container Registry')
 @minLength(5)
 @maxLength(50)
-param acrName string = '${prefix}-acr'
+param acrName string = '${prefix}acr'
 
 @description('Enable admin user that have push / pull permission to the registry.')
 param acrAdminUserEnabled bool = false
@@ -217,7 +217,6 @@ module acr 'container-registry.bicep' = {
     sku: acrSkuName
     adminUserEnabled: acrAdminUserEnabled
     workspaceId: workspace.outputs.id
-    retentionInDays: logAnalyticsRetentionInDays
     location: location
     tags: tags
   }

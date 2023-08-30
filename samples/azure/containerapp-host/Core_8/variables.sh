@@ -2,7 +2,7 @@
 location='northeurope'
 deploymentName='main'
 prefix='nservicebus'
-acrName="${prefix}-acr"
+acrName="${prefix}acr"
 acrResourceGrougName="${prefix}-rg"
 senderImageName="sender"
 receiverImageName="receiver"

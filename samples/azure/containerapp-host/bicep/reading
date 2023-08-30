@@ -11,3 +11,5 @@
 // https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#azure-cli
 
 https://devblogs.microsoft.com/dotnet/updates-to-container-support-in-the-dotnet-sdk/
+
+// Certain type of changes require regenerating the json file by doing az bicep build --file main.bicep
