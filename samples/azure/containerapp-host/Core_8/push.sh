@@ -11,6 +11,7 @@ loginServer=$(az acr show --name $acrName --query loginServer --output tsv)
 
 # Use a for loop to tag and push the local docker images to the Azure Container Registry
 for index in ${!images[@]}; do
-  #dotnet publish -c Release --os linux --arch x64 //t:PublishContainer #-p ContainerRegistry=$acrName
-  dotnet publish -c Release --os linux --arch x64 //t:PublishContainer -p ContainerRegistry=$acrEndpoint
+  dotnet publish -c Release --os linux --arch x64 //t:PublishContainer
+    -p ContainerRegistry=$acrName \
+    -p ContainerImageName=$loginServer/${images[$index],,}:$tag
 done

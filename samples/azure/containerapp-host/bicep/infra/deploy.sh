@@ -3,8 +3,8 @@
 # Variables
 location='northeurope'
 deploymentName='main'
-prefix='NServiceBus'
-resourceGroupName="${prefix}RG"
+prefix='nservicebus'
+resourceGroupName="${prefix}-rg"
 
 # Commands
 validateTemplate=1

@@ -1,11 +1,9 @@
 # Variables
-location='westeurope'
+location='northeurope'
 deploymentName='main'
-prefix='NServiceBus'
-acrName="${prefix}Acr"
-acrEndpoint="nservicebusacr.azurecr.io"
-#acrResourceGrougName="${prefix}RG"
-acrResourceGrougName="exploration-rotation-group"
+prefix='nservicebus'
+acrName="${prefix}-acr"
+acrResourceGrougName="${prefix}-rg"
 senderImageName="sender"
 receiverImageName="receiver"
 

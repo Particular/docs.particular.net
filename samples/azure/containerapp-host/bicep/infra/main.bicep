@@ -2,14 +2,6 @@
 @description('Specifies the name prefix.')
 param prefix string = '$uniqueString(resourceGroup().id)'
 
-@description('Specifies whether name resources are in CamelCase, UpperCamelCase, or KebabCase.')
-@allowed([
-  'CamelCase'
-  'UpperCamelCase'
-  'KebabCase'
-])
-param letterCaseType string = 'UpperCamelCase'
-
 @description('Specifies the location.')
 param location string = resourceGroup().location
 
@@ -20,7 +12,7 @@ param tags object = {
 }
 
 @description('Specifies the name of the Azure Container Apps Environment.')
-param containerAppEnvironmentName string = letterCaseType == 'UpperCamelCase' ? '${toUpper(first(prefix))}${toLower(substring(prefix, 1, length(prefix) - 1))}Environment' : letterCaseType == 'CamelCase' ? '${toLower(prefix)}Environment' : '${toLower(prefix)}-environment'
+param containerAppEnvironmentName string = '${prefix}-environment'
 
 @description('Specifies whether the environment only has an internal load balancer. These environments do not have a public static IP resource. They must provide infrastructureSubnetId if enabling this property')
 param internal bool = false
@@ -38,7 +30,7 @@ param platformReservedDnsIP string = '10.1.0.2'
 param zoneRedundant bool = true
 
 @description('Specifies the name of the Log Analytics workspace.')
-param logAnalyticsWorkspaceName string = letterCaseType == 'UpperCamelCase' ? '${toUpper(first(prefix))}${toLower(substring(prefix, 1, length(prefix) - 1))}Workspace' : letterCaseType == 'CamelCase' ? '${toLower(prefix)}Workspace' : '${toLower(prefix)}-workspace'
+param logAnalyticsWorkspaceName string = '${prefix}-workspace'
 
 @description('Specifies the workspace data retention in days. -1 means Unlimited retention for the Unlimited Sku. 730 days is the maximum allowed for all other Skus.')
 param logAnalyticsRetentionInDays int = 30
@@ -53,7 +45,7 @@ param logAnalyticsRetentionInDays int = 30
 param logAnalyticsSku string = 'PerNode'
 
 @description('Specifies the name of the virtual network.')
-param virtualNetworkName string = letterCaseType == 'UpperCamelCase' ? '${toUpper(first(prefix))}${toLower(substring(prefix, 1, length(prefix) - 1))}Vnet' : letterCaseType == 'CamelCase' ? '${toLower(prefix)}Vnet' : '${toLower(prefix)}-vnet'
+param virtualNetworkName string = '${prefix}-vnet'
 
 @description('Specifies the address prefixes of the virtual network.')
 param virtualNetworkAddressPrefixes string = '10.0.0.0/8'
@@ -71,7 +63,7 @@ param privateLinkServiceSubnetName string = 'PrivateSubnet'
 param privateLinkServiceSubnetAddressPrefix string = '10.0.16.0/21'
 
 @description('Specifies the name of the Service Bus namespace.')
-param serviceBusNamespace string = letterCaseType == 'UpperCamelCase' ? '${toUpper(first(prefix))}${toLower(substring(prefix, 1, length(prefix) - 1))}ServiceBus' : letterCaseType == 'CamelCase' ? '${toLower(prefix)}ServiceBus' : '${toLower(prefix)}-servicebus'
+param serviceBusNamespace string = '${prefix}-servicebus'
 
 @description('Enabling this property creates a Premium Service Bus Namespace in regions supported availability zones.')
 param serviceBusZoneRedundant bool = false
@@ -109,21 +101,21 @@ param serviceBusQueueDeadLetteringOnMessageExpiration bool = false
 param serviceBusQueueDuplicateDetectionHistoryTimeWindow string = 'PT10M'
 
 @description('Specifies the name of the private link to the storage account.')
-param serviceBusNamespacePrivateEndpointName string = letterCaseType == 'UpperCamelCase' ? '${toUpper(first(prefix))}${toLower(substring(prefix, 1, length(prefix) - 1))}ServiceBusNamespacePrivateEndpoint' : letterCaseType == 'CamelCase' ? '${toLower(prefix)}ServiceBusNamespacePrivateEndpoint' : '${toLower(prefix)}-service-bus-namespace-private-endpoint'
+param serviceBusNamespacePrivateEndpointName string = '${prefix}-service-bus-namespace-private-endpoint'
 
 @description('Specifies the name of the user-defined managed identity.')
-param managedIdentityName string = letterCaseType == 'UpperCamelCase' ? '${toUpper(first(prefix))}${toLower(substring(prefix, 1, length(prefix) - 1))}JobManagedIdentity' : letterCaseType == 'CamelCase' ? '${toLower(prefix)}JobManagedIdentity' : '${toLower(prefix)}-job-managed-identity'
+param managedIdentityName string = '${prefix}-job-managed-identity'
 
 @description('Specifies the name of the Azure Container Registry')
 @minLength(5)
 @maxLength(50)
-param acrName string = letterCaseType == 'UpperCamelCase' ? '${toUpper(first(prefix))}${toLower(substring(prefix, 1, length(prefix) - 1))}Acr' : letterCaseType == 'CamelCase' ? '${toLower(prefix)}Acr' : '${toLower(prefix)}-acr'
+param acrName string = '${prefix}-acr'
 
 @description('Enable admin user that have push / pull permission to the registry.')
 param acrAdminUserEnabled bool = false
 
 @description('Specifies the name of the private link to the Azure Container Registry.')
-param acrPrivateEndpointName string = letterCaseType == 'UpperCamelCase' ? '${toUpper(first(prefix))}${toLower(substring(prefix, 1, length(prefix) - 1))}AcrPrivateEndpoint' : letterCaseType == 'CamelCase' ? '${toLower(prefix)}AcrPrivateEndpoint' : '${toLower(prefix)}-acr-private-endpoint'
+param acrPrivateEndpointName string = '${prefix}-acr-private-endpoint'
 
 @description('Specifies the SKU name of the Azure Container Registry.')
 @allowed([
