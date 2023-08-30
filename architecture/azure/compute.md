@@ -44,13 +44,13 @@ In serverless (also referred to as "Functions as a service (FaaS)") models, code
 
 ## Infrastructure as a Service
 
-_Infrastructure as a Service_ (IaaS) Provides virtualized computing resources like virtual machines, storage, and networking that can be used to build and manage the required infrastructure.
+Infrastructure as a Service (IaaS) provides virtualized computing resources like virtual machines, storage, and networking that can be used to build and manage the required infrastructure.
 
 NServiceBus applications can easily be hosted on virtual machines. Popular techniques include:
 
 * [Integrating NServiceBus with the Microsoft Generic Host](/nservicebus/hosting/extensions-hosting.md)
 * [Custom hosted web applications](/nservicebus/hosting/web-application.md)
-* [Installing NServiceBus endpoints as Windows Services](/nservicebus/hosting/windows-service.md).
+* [Installing NServiceBus endpoints as Windows Services](/nservicebus/hosting/windows-service.md)
 * [Manually controlling NServiceBus lifecycle in an executable (e.g. Console or GUI applications)](/nservicebus/hosting/#self-hosting)
 * [Custom-managed Kubernetes clusters hosting container applications](/nservicebus/hosting/docker-host)
 

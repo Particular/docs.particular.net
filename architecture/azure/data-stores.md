@@ -76,7 +76,7 @@ Azure SQL Database is supported via the [NServiceBus SQL persistence package](/p
 
 :heavy_plus_sign: Pros:
 
-- High degress of compatibility with SQL Server
+- High degree of compatibility with SQL Server
 - Supports cross-database queries
 - Predictable performance for large databases due to isolation
 - More database configuration options compared to Azure SQL Database
