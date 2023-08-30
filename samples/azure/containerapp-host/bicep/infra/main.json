@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.20.4.51522",
-      "templateHash": "13120291875269430072"
+      "templateHash": "3572730585608633993"
     }
   },
   "parameters": {
@@ -80,6 +80,13 @@
       "defaultValue": "[format('{0}-workspace', parameters('prefix'))]",
       "metadata": {
         "description": "Specifies the name of the Log Analytics workspace."
+      }
+    },
+    "logAnalyticsRetentionInDays": {
+      "type": "int",
+      "defaultValue": 30,
+      "metadata": {
+        "description": "Specifies the workspace data retention in days. -1 means Unlimited retention for the Unlimited Sku. 730 days is the maximum allowed for all other Skus."
       }
     },
     "logAnalyticsSku": {
@@ -289,6 +296,9 @@
           "sku": {
             "value": "[parameters('logAnalyticsSku')]"
           },
+          "retentionInDays": {
+            "value": "[parameters('logAnalyticsRetentionInDays')]"
+          },
           "location": {
             "value": "[parameters('location')]"
           },
@@ -303,7 +313,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.20.4.51522",
-              "templateHash": "16766729232445168572"
+              "templateHash": "8922945225045328115"
             }
           },
           "parameters": {
@@ -324,6 +334,13 @@
               ],
               "metadata": {
                 "description": "Specifies the service tier of the workspace: Free, Standalone, PerNode, Per-GB."
+              }
+            },
+            "retentionInDays": {
+              "type": "int",
+              "defaultValue": 60,
+              "metadata": {
+                "description": "Specifies the workspace data retention in days. -1 means Unlimited retention for the Unlimited Sku. 730 days is the maximum allowed for all other Skus."
               }
             },
             "location": {
@@ -350,7 +367,8 @@
               "properties": {
                 "sku": {
                   "name": "[parameters('sku')]"
-                }
+                },
+                "retentionInDays": "[parameters('retentionInDays')]"
               }
             }
           ],
