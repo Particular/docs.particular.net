@@ -40,7 +40,7 @@ In serverless (also referred to as "Functions as a service (FaaS)") models, code
 
 ![](azure-container-host.png)
 
-[**Host NServiceBus applications in docker containers →**](/nservicebus/hosting/docker-host/)
+[**Host NServiceBus applications in Docker containers →**](/nservicebus/hosting/docker-host/)
 
 ## Infrastructure as a Service
 
