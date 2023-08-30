@@ -41,7 +41,7 @@ The Particular Service Platform makes systems follow the [ten design principles 
 
 * [Self healing](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/self-healing) is provided by the rich set of [recoverability](/architecture/recoverability.md) features like automatic retries, load leveling, throttling and more, which make application services resilient to failures.
 * [Redundancy](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/redundancy) is provided by capabilities such as [scaling out](/nservicebus/scaling.md#scaling-out-to-multiple-nodes) and [high availability](/nservicebus/scaling.md#high-availability).
-* [Coordination is minimized](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/minimize-coordination) between services by [messaging](/architecture/messaging.md). See [this talk](https://www.youtube.com/watch?v=0TYbHVc2yWI) for more information.
+* [Coordination is minimized](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/minimize-coordination) between services by [messaging](/architecture/messaging.md). Watch [_Autonomous microservices don't share data. Period_ (video)](https://www.youtube.com/watch?v=0TYbHVc2yWI) for more recommendatios.
 * [Scaling out](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out) is achieved by various methods such as [asynchronous message-based communication](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/asynchronous-message-based-communication) and [competing consumers](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers).
 * [Partitioning](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/partition) is achieved by decomposing and offloading resource-intensive processes using [workflows](/architecture/workflows.md) and the integration of the Particular Service Platform with technology-specific partitioning capabilities.
 * [Partitioning](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/partition) is achieved by making [suitable technology choices](/architecture/azure/#technology-choices). NServiceBus directly supports and integrates with a range of Azure services that can leverage partitioning for large-scale systems.
@@ -50,7 +50,7 @@ The Particular Service Platform makes systems follow the [ten design principles 
 * [A wide variety of data stores](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/use-best-data-store) are supported by the Particular Service Platform as [persistence choices](/persistence).
 * [System evolution](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/design-for-evolution) is aided by:
   * High cohesion within [service boundaries](https://particular.net/webinars/finding-your-service-boundaries-a-practical-guide).
-  * Loose coupling and asynchronous operations through [messaging](/architecture/messaging.md)
+  * Loose coupling and asynchronous operations through [messaging](/architecture/messaging.md).
   * Encapsulating domain knowledge in [message handlers and sagas](/nservicebus/handlers-and-sagas.md).
   * Separating domain logic from infrastructure concerns, such as reliability and recoverability, which are handled by the Particular Service Platform.
   * Enabling independent services deployment by decoupling their communication using [asynchronous messaging](/nservicebus/messaging/).
@@ -71,14 +71,14 @@ The Particular Service Platform helps achieve the five pillars of software quali
   * NServiceBus handles even unexpected failures and provides the [recoverability features](/nservicebus/recoverability/) required by self-healing systems.
   * NServiceBus provides health metrics which can be monitored using [ServicePulse](/servicepulse) and [OpenTelemetry](/nservicebus/operations/opentelemetry.md).
 * [Security](https://learn.microsoft.com/en-us/azure/well-architected/security/security-principles)
-  * NServiceBus bus provides data encryption in transit with [message encryption](/nservicebus/security/property-encryption.md).
+  * NServiceBus provides data encryption in transit with [message encryption](/nservicebus/security/property-encryption.md).
   * NServiceBus supports the [least privilege](/nservicebus/operations/installers.md#when-to-run-installers) approach during application deployment and runtime.
 * [Cost optimization](https://learn.microsoft.com/en-us/azure/well-architected/cost/overview)
-  * Costs may be optimized through [technology choices](#technology-choices).
+  * Costs may be optimized by [choosing the most appropriate technology](#technology-choices).
 * [Operational excellence](https://learn.microsoft.com/en-us/azure/well-architected/devops/overview)
   * The Particular Service Platform [creates required infrastructure components](/nservicebus/operations/installers.md) using dedicated installation APIs or infrastructure scripting tools.
   * ServicePulse provides [detailed insights](/servicepulse) into the operational health of the system.
-  * NServiceBus supports [OpenTelemetry](/nservicebus/operations/opentelemetry.md) to integrate with 3rd party monitoring and tracing tools.
+  * NServiceBus supports [OpenTelemetry](/nservicebus/operations/opentelemetry.md) to integrate with 3rd-party monitoring and tracing tools.
   * [Messaging](/nservicebus/messaging) allows loosely coupled architectures with autonomous and independent services.
   * NServiceBus APIs are designed for [unit testing](/nservicebus/testing).
 * [Performance efficiency](https://learn.microsoft.com/en-us/azure/well-architected/scalability/overview)
