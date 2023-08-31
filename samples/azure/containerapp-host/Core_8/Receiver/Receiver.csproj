@@ -3,6 +3,12 @@
 	<TargetFramework>net7.0</TargetFramework>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <ContainerImageTag>$(Version)</ContainerImageTag>
+    <ContainerRepository>receiver</ContainerRepository>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.10.0" />
     <PackageReference Include="Microsoft.NET.Build.Containers" Version="7.0.400" />
@@ -13,7 +19,9 @@
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />
   </ItemGroup>
+
 </Project>
