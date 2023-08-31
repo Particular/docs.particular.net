@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.20.4.51522",
-      "templateHash": "3572730585608633993"
+      "templateHash": "615951112292413150"
     }
   },
   "parameters": {
@@ -449,7 +449,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.20.4.51522",
-              "templateHash": "14649697394749762031"
+              "templateHash": "14028161585927018756"
             }
           },
           "parameters": {
@@ -568,11 +568,7 @@
                 "count": "[length(variables('logCategories'))]",
                 "input": {
                   "category": "[variables('logCategories')[copyIndex('logs')]]",
-                  "enabled": true,
-                  "retentionPolicy": {
-                    "enabled": true,
-                    "days": "[parameters('retentionInDays')]"
-                  }
+                  "enabled": true
                 }
               },
               {
@@ -580,11 +576,7 @@
                 "count": "[length(variables('metricCategories'))]",
                 "input": {
                   "category": "[variables('metricCategories')[copyIndex('metrics')]]",
-                  "enabled": true,
-                  "retentionPolicy": {
-                    "enabled": true,
-                    "days": "[parameters('retentionInDays')]"
-                  }
+                  "enabled": true
                 }
               }
             ],
@@ -744,7 +736,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.20.4.51522",
-              "templateHash": "10945105521883890313"
+              "templateHash": "16350658130932414770"
             }
           },
           "parameters": {
@@ -863,11 +855,7 @@
                 "count": "[length(variables('vnetLogCategories'))]",
                 "input": {
                   "category": "[variables('vnetLogCategories')[copyIndex('vnetLogs')]]",
-                  "enabled": true,
-                  "retentionPolicy": {
-                    "enabled": true,
-                    "days": "[parameters('retentionInDays')]"
-                  }
+                  "enabled": true
                 }
               },
               {
@@ -875,11 +863,7 @@
                 "count": "[length(variables('vnetMetricCategories'))]",
                 "input": {
                   "category": "[variables('vnetMetricCategories')[copyIndex('vnetMetrics')]]",
-                  "enabled": true,
-                  "retentionPolicy": {
-                    "enabled": true,
-                    "days": "[parameters('retentionInDays')]"
-                  }
+                  "enabled": true
                 }
               }
             ],

@@ -58,18 +58,10 @@ var vnetMetricCategories = [
 var vnetLogs = [for category in vnetLogCategories: {
   category: category
   enabled: true
-  retentionPolicy: {
-    enabled: true
-    days: retentionInDays
-  }
 }]
 var vnetMetrics = [for category in vnetMetricCategories: {
   category: category
   enabled: true
-  retentionPolicy: {
-    enabled: true
-    days: retentionInDays
-  }
 }]
 
 // Resources
