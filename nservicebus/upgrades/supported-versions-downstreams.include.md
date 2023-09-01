@@ -501,7 +501,7 @@
 | [2.34.x](https://www.nuget.org/packages/Particular.PlatformSample/2.34.0) | 2023-06-20     | 2023-09-22        | Superseded by 2.35.x              |
 | [2.33.x](https://www.nuget.org/packages/Particular.PlatformSample/2.33.0) | 2023-06-07     | 2023-09-20        | Superseded by 2.34.x              |
 | [2.32.x](https://www.nuget.org/packages/Particular.PlatformSample/2.32.0) | 2023-06-02     | 2023-09-07        | Superseded by 2.33.x              |
-| [2.31.x](https://www.nuget.org/packages/Particular.PlatformSample/2.31.0) | 2023-04-19     | 2023-09-02        | Superseded by 2.32.x              |
+| [~~2.31.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.31.0) | ~~2023-04-19~~ | ~~2023-09-02~~    | ~~Superseded by 2.32.x~~          |
 | [~~2.30.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.30.0) | ~~2023-04-14~~ | ~~2023-07-19~~    | ~~Superseded by 2.31.x~~          |
 | [~~2.28.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.28.0) | ~~2023-04-04~~ | ~~2023-07-14~~    | ~~Superseded by 2.30.x~~          |
 | [~~2.27.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.27.0) | ~~2023-03-28~~ | ~~2023-07-04~~    | ~~Superseded by 2.28.x~~          |
@@ -512,7 +512,6 @@
 | [~~2.20.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.20.0) | ~~2023-01-18~~ | ~~2023-05-03~~    | ~~Superseded by 2.22.x~~          |
 | [~~2.19.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.19.0) | ~~2022-12-21~~ | ~~2023-04-18~~    | ~~Superseded by 2.20.x~~          |
 | [~~2.18.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.18.0) | ~~2022-12-01~~ | ~~2023-03-21~~    | ~~Superseded by 2.19.x~~          |
-| [~~2.17.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.17.0) | ~~2022-11-29~~ | ~~2023-03-01~~    | ~~Superseded by 2.18.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
