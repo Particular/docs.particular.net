@@ -1,4 +1,3 @@
-using Azure.Storage.Blobs;
 using NServiceBus;
 using Shared;
 using System;
@@ -9,14 +8,11 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.AzureBlobStorageDataBus.Receiver";
-        var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Receiver");
-
-        // ConfiguringDataBusLocation
-        var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
-        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>()
-            .Container("testcontainer")
-            .UseBlobServiceClient(blobServiceClient);
+        Console.Title = "Samples.DataBus.Receiver";
+        var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
+        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
+        dataBus.BasePath(@"..\..\..\..\storage");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
 
         //CustomJsonSerializerOptions
         var jsonSerializerOptions = new JsonSerializerOptions();
@@ -24,8 +20,6 @@ class Program
         endpointConfiguration.UseSerialization<SystemJsonSerializer>().Options(jsonSerializerOptions);
 
         endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.EnableInstallers();
-
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         Console.WriteLine("Press any key to exit");
