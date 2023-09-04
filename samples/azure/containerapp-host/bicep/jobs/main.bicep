@@ -15,7 +15,7 @@ param tags object = {
 param containerAppEnvironmentName string = '${prefix}-environment'
 
 @description('Specifies the Azure Container Registry name.')
-param acrName string = '${prefix}-acr'
+param acrName string = '${prefix}acr'
 
 @description('Specifies the name of the Service Bus namespace.')
 param serviceBusNamespace string = '${prefix}-servicebus'
@@ -23,17 +23,11 @@ param serviceBusNamespace string = '${prefix}-servicebus'
 @description('Specifies the name of the user-defined managed identity.')
 param managedIdentityName string = '${prefix}-job-managed-identity'
 
-@description('Specifies the name of the parameters Azure Service Bus queue.')
-param parametersServiceBusQueueName string = 'parameters'
-
-@description('Specifies the name of the results Azure Service Bus queue.')
-param resultsServiceBusQueueName string = 'results'
+@description('Specifies the name of the receiver Azure Service Bus queue.')
+param receiverServiceBusQueueName string = 'receiver'
 
 @description('Specifies the name of the sender job.')
 param senderJobName string = '${prefix}-sender'
-
-@description('Specifies the name of the processor job.')
-param processorJobName string = '${prefix}-processor'
 
 @description('Specifies the name of the receiver job.')
 param receiverJobName string = '${prefix}-receiver'
@@ -45,10 +39,10 @@ param senderImageName string = 'sender'
 param receiverImageName string = 'receiver'
 
 @description('Specifies the tag (e.g., v1) of the container image of the sender job.')
-param senderImageTag string = 'v1'
+param senderImageTag string = '1.0.0'
 
 @description('Specifies the tag (e.g., v1) of the container image of the receiver job.')
-param receiverImageTag string = 'v1'
+param receiverImageTag string = '1.0.0'
 
 @description('Maximum number of replicas of the sender job to run per execution.')
 param senderParallelism int = 1
@@ -119,12 +113,8 @@ module senderJob 'container-apps-job.bicep' = {
         value: managedIdentity.properties.clientId
       }
       {
-        name: 'FULLY_QUALIFIED_NAMESPACE'
+        name: 'DOTNET_FullyQualifiedNamespace'
         value: toLower('${serviceBusNamespace}.servicebus.windows.net')
-      }
-      {
-        name: 'INPUT_QUEUE_NAME'
-        value: parametersServiceBusQueueName
       }
       {
         name: 'MIN_NUMBER'
@@ -171,20 +161,8 @@ module receiverJob 'container-apps-job.bicep' = {
         value: managedIdentity.properties.clientId
       }
       {
-        name: 'FULLY_QUALIFIED_NAMESPACE'
+        name: 'DOTNET_FullyQualifiedNamespace'
         value: toLower('${serviceBusNamespace}.servicebus.windows.net')
-      }
-      {
-        name: 'OUTPUT_QUEUE_NAME'
-        value: resultsServiceBusQueueName
-      }
-      {
-        name: 'MAX_MESSAGE_COUNT'
-        value: '20'
-      }
-      {
-        name: 'MAX_WAIT_TIME'
-        value: '5'
       }
     ]
     secrets: [
@@ -200,7 +178,7 @@ module receiverJob 'container-apps-job.bicep' = {
         metadata: {
           messageCount: '5'
           namespace: serviceBusNamespace
-          queueName: resultsServiceBusQueueName
+          queueName: receiverServiceBusQueueName
         }
         auth: [
           {

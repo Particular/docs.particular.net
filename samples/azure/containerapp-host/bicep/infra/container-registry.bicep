@@ -5,7 +5,7 @@
 param name string = 'acr${uniqueString(resourceGroup().id)}'
 
 @description('Enable admin user that have push / pull permission to the registry.')
-param adminUserEnabled bool = false
+param adminUserEnabled bool = true
 
 @description('Tier of your Azure Container Registry.')
 @allowed([
