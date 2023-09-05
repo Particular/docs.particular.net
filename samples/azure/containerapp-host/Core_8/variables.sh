@@ -3,6 +3,7 @@ location='northeurope'
 deploymentName='main'
 prefix='nservicebus'
 acrName="${prefix}acr"
+loginServer="${acrName}.azurecr.io"
 senderImageName="sender"
 receiverImageName="receiver"
 
