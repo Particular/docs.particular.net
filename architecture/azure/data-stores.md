@@ -105,7 +105,7 @@ Using existing infrastructure and know-how can significantly speed up the develo
 
 ### Compatibility
 
-Data stores that are compatible with existing protocols and languages. For example, a data store may understand PostgreSQL, SQL Server, and MongoDB dialects.
+When migrating or modernizing existing applications, data stores that are compatible with currently used protocols and languages simplify the switch to cloud-based services significantly. For example, a data store may understand PostgreSQL, SQL Server, and MongoDB dialects which allow applications using any of these dialects to connect with minimal changes required.
 
 ### Transactions and consistency model
 

@@ -53,6 +53,7 @@ The Particular Service Platform makes systems follow the [ten design principles 
   * Encapsulating domain knowledge in [message handlers and sagas](/nservicebus/handlers-and-sagas.md).
   * Separating domain logic from infrastructure concerns, such as reliability and recoverability, which are handled by the Particular Service Platform.
   * Enabling independent services deployment by decoupling their communication using [asynchronous messaging](/nservicebus/messaging/).
+* [Meet business needs](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/build-for-business) by decomposing workloads into logically separated units using [messaging](/architecture/messaging.md). Allow each component's characteristics and design decisions can be optimized and [monitored](/servicepulse) for the specific business needs at hand (e.g. [resiliency](/architecture/recoverability.md), [scalability](/nservicebus/scaling.md), [consistency](/architecture/consistency.md), etc.).
 
 [**Talk to a solution architect and learn more about how the Particular Service Platform helps systems follow Azure design principles. →**](https://particular.net/solution-architect?message=I%27d%20like%20to%20talk%20to%20a%20solution%20architect%20to%20learn%20more%20about%20how%20the%20Particular%20Service%20Platform%20helps%20systems%20follow%20Azure%20design%20principles.)
 
