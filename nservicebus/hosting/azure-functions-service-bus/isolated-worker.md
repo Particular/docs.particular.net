@@ -83,7 +83,7 @@ asb-transport endpoint create <queue name>
 
 See the [operation scripting documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-create) for the `asb-transport endpoint create` command for more details.
 
-WARN: If the `asb-tranport` command-line tool is not used to create the queue, it is recommended to set the `MaxDeliveryCount` setting to the maximum value.
+WARN: If the `asb-transport` command-line tool is not used to create the queue, it is recommended to set the `MaxDeliveryCount` setting to the maximum value.
 
 ### Subscribing to events
 
