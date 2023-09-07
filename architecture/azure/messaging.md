@@ -34,7 +34,7 @@ Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.mi
 
 #### When to use Azure Service Bus
 
-Azure Service Bus may be considered the default messaging choice for Azure. Alternatives should be considered only when the message size limitations are not sufficient or if a more portable queueing technology is required.
+Azure Service Bus should be considered the default messaging choice for Azure. Alternatives should be considered only when the message size limitations are not sufficient or if a more portable queueing technology is required.
 
 ### Azure Queue Storage
 
