@@ -5,7 +5,7 @@ reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-Azure offers [several messaging services](https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services), each built for specific purposes. The Particular Service Platform supports [Azure Service Bus and Azure Queue Storage](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted).
+Azure offers [several messaging services](https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services), each built for specific purposes. The Particular Service Platform supports [Azure Service Bus and Azure Storage Queues](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted).
 
 ### Azure Service Bus
 
@@ -15,8 +15,8 @@ Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.mi
 
 :heavy_plus_sign: Pros:
 
-- Up to 100 MB message size on the Premium tier
 - Supports transactional message operations across multiple queues and topics (cross-entity transactions)
+- Up to 100 MB message size on the Premium tier
 - Scripted infrastructure deployment using the [NServiceBus ASB CLI](/transports/azure-service-bus/operational-scripting.md)
 - Supports the AMQP 1.0 protocol over TCP and WebSockets
 
@@ -24,7 +24,6 @@ Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.mi
 
 - Some features are only available on the Premium tier
 - The maximum message size is 256 KB on the Standard tier
-- The maximum queue size is 80 GB on the Standard tier
 - Cross-entity transactions are limited to 100 messages
 - No cross-namespace communication
 - No emulator for local development or testing available
@@ -38,13 +37,12 @@ Azure Service Bus should be considered the default messaging choice for Azure. A
 
 ### Azure Queue Storage
 
-[Azure Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction) offer a simple, low-cost, and easy-to-use messaging service based on the Azure Storage infrastructure.
+[Azure Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction) offers a simple, low-cost, and minimal messaging service based on the Azure Storage infrastructure.
 
 :heavy_plus_sign: Pros:
 
 - Queues can contain up to 200 TB of messages
 - Cheaper than Azure Service Bus
-- Part of Azure Storage
 - Azure Storage Emulator for local development and testing
 
 :heavy_minus_sign: Cons:
@@ -58,11 +56,11 @@ Azure Service Bus should be considered the default messaging choice for Azure. A
 
 #### When to use Azure Storage Queues
 
-Consider Azure Storage Queues when a managed message queuing technology is required for simple messaging needs or when Azure Service Bus doesn't meet critical requirements.
+Azure Service Bus is recommended as the default messaging choice for Azure. Consider Azure Storage Queues when a managed message queuing technology is required for simple messaging needs or when Azure Service Bus doesn't meet critical requirements.
 
 ### SQL transport
 
-SQL transport is an NServiceBus feature that can use existing SQL Server-compatible databases as feature-complete message queues.
+SQL transport is an NServiceBus feature that can use existing SQL Server databases as feature-complete message queues.
 
 :heavy_plus_sign: Pros:
 

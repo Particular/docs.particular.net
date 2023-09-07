@@ -55,13 +55,13 @@ The Particular Service Platform makes systems follow the [ten design principles 
   * Enabling independent services deployment by decoupling their communication using [asynchronous messaging](/nservicebus/messaging/).
 * [Meet business needs](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/build-for-business) by decomposing workloads into logically separated units using [messaging](/architecture/messaging.md). Allow each component's characteristics and design decisions can be optimized and [monitored](/servicepulse) for the specific business needs at hand (e.g. [resiliency](/architecture/recoverability.md), [scalability](/nservicebus/scaling.md), [consistency](/architecture/consistency.md), etc.).
 
-[**Talk to a solution architect and learn more about how the Particular Service Platform helps systems follow Azure design principles. →**](https://particular.net/solution-architect?message=I%27d%20like%20to%20talk%20to%20a%20solution%20architect%20to%20learn%20more%20about%20how%20the%20Particular%20Service%20Platform%20helps%20systems%20follow%20Azure%20design%20principles.)
+[**Talk to a solution architect and learn more about how the Particular Service Platform helps systems follow Azure design principles →**](https://particular.net/solution-architect?message=I%27d%20like%20to%20talk%20to%20a%20solution%20architect%20to%20learn%20more%20about%20how%20the%20Particular%20Service%20Platform%20helps%20systems%20follow%20Azure%20design%20principles.)
 
 ### Design patterns
 
 [Azure Cloud Design Patterns](https://learn.microsoft.com/en-us/azure/architecture/patterns/) lists many proven patterns for addressing specific challenges. The Particular Service Platform implements many of these such as [Asynchronous Request-Reply](/nservicebus/messaging/reply-to-a-message.md), [Circuit Breaker](/nservicebus/recoverability/#automatic-rate-limiting), [Claim Check](/nservicebus/messaging/databus/), [Competing Consumers](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers), and more.
 
-[**Talk to a solution architect to help identify suitable design patterns→**](https://particular.net/solution-architect?message=I%27d%20like%20to%20talk%20to%20a%20solution%20architect%20to%20help%20identify%20suitable%20design%20patterns%20for%20my%20system.)
+[**Talk to a solution architect to help identify suitable design patterns →**](https://particular.net/solution-architect?message=I%27d%20like%20to%20talk%20to%20a%20solution%20architect%20to%20help%20identify%20suitable%20design%20patterns%20for%20my%20system.)
 
 ## Microsoft Well-Architected Framework
 
