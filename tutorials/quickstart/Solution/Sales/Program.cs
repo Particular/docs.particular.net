@@ -29,8 +29,8 @@ namespace Sales
 
                            // So that when we test recoverability, we don't have to wait so long
                            // for the failed message to be sent to the error queue
-                           var recoverablility = endpointConfiguration.Recoverability();
-                           recoverablility.Delayed(
+                           var recoverability = endpointConfiguration.Recoverability();
+                           recoverability.Delayed(
                                delayed =>
                                {
                                    delayed.TimeIncrease(TimeSpan.FromSeconds(2));
