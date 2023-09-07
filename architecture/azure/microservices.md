@@ -37,7 +37,7 @@ Communication between services is much slower and error-prone due to network lim
 
 ### User interfaces
 
-Users often need to see and interact with data aggregated from multiple services. Several technologies and patterns help to do this while keeping the services decoupled, such as [microfrontends](https://en.wikipedia.org/wiki/Microfrontend), [GraphQL](https://graphql.org/), and [ViewModel Composition](https://www.viewmodelcomposition.com).
+Users often need to see and interact with data aggregated from multiple services. Several technologies and patterns help to do this while keeping the services decoupled, such as [ViewModel Composition](https://www.viewmodelcomposition.com), [microfrontends](https://en.wikipedia.org/wiki/Microfrontend), and [GraphQL](https://graphql.org/).
 
 ## Microservice technologies
 
