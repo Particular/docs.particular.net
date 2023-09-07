@@ -5,7 +5,7 @@ reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-Hybrid systems have components running both in the cloud and on-premises. This might be a temporary situation in a lift and shift strategy, or it can be a permanent state for various reasons (e.g. risk, legal, cost, etc.). Hybrid systems can become tricky to implement when the on-premises part of the system relies on an existing message broker. Some broker technologies might also not be compatible with modern cloud infrastructure (e.g. MSMQ).
+Hybrid systems have components running both in the cloud and on-premises. This might be a temporary situation in a lift and shift strategy, or it can be a permanent state due to cost, legal requirements, risk management, or other reasons. Hybrid systems can become tricky to implement when the on-premises part of the system relies on an existing message broker. Some broker technologies might also not be compatible with modern cloud infrastructure, such as MSMQ.
 
 ## Shared broker
 
@@ -21,7 +21,7 @@ Cloud-hosted message queueing systems can be configured for access from anywhere
 
 ## Multiple brokers
 
-Distributed systems might have to work with multiple brokers sometimes. In such scenarios, explicit mapping between the actively used messaging systems is required.
+Distributed systems might have to work with multiple brokers. In such scenarios, explicit mapping between the actively used messaging systems is required.
 
 ### Messaging Bridge
 

@@ -28,6 +28,6 @@ Architectural concepts are generally applicable, regardless of which specific te
 
 ## The Particular Service Platform
 
-The goal of the Platform is to provide a set of tools that make it easier to build and maintain messaging systems. These tools are based on the [described architectural concepts](#concepts) and enable developers to focus on more important challenges, such as gaining a better understanding of their business domains.
+The goal of the Platform is to provide a set of tools that make it easier to build and maintain messaging systems. These tools are based on industry-standard [architectural concepts](#concepts) and enable developers to focus on more important challenges, such as gaining a better understanding of their business domains.
 
 [**Learn more about the Service Platform tools →**](/platform/)

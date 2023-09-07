@@ -12,22 +12,22 @@ Messaging is typically used for communication and coordination between various c
 
 ## Message systems
 
-A message broker like RabbitMQ, Azure ServiceBus, or Amazon SQS, can be compared with a database, but instead of storing data and indexing it, it focuses on transferring data from one component to another. A component calls an API to send a message, the API responds after the message is received. At that point, the calling component is no longer concerned about the delivery of the message to other components. That is the responsibility of the broker.
+A message broker like RabbitMQ, Azure Service Bus, or Amazon SQS, can be compared with a database, but instead of storing data and indexing it, it focuses on transferring data from one component to another. A component calls an API to send a message, and the API responds after the message is received. At that point, the calling component is no longer concerned about the delivery of the message to other components. That is the responsibility of the broker.
 
 Due to the asynchronous nature of messaging, the calling component has no knowledge of problems that receiving components might have; as soon as the message is sent, messaging infrastructure takes over. As a result, critical resources like threads are not held waiting for message processing to complete. This allows the calling component to maintain stability while waiting for a response from another component, which may be running in a separate process or on another machine.
 
 Additional benefits of messaging systems:
 
-- **Temporal decoupling:** The sender and receiver are _temporally decoupled_ from each other. This means the sender and receiver execute their work independently in time. As a result, there is no time-based availability dependency between the sender and the receiver. I.e. the sender and receiver do not need to be running at the same time.
+- **Temporal decoupling:** The sender and receiver are _temporally decoupled_ from each other. This means the sender and receiver execute their work independently in time. As a result, there is no time-based availability dependency between the sender and the receiver. The sender and receiver don't even need to be running at the same time.
 - **Load balancing:** Receivers can be scaled up independently from senders to handle messages in a queue.
 - **Load leveling:** Senders don't need to worry about the throughput of receivers. They can keep queueing messages regardless of how they are being consumed by receivers.
 - **Reliable communication:** Messages are safely stored in the broker, ensuring that no messages are lost during failures.
 
-The Particular Service Platform offers a common set of features available in supported messaging technologies as [transports](/transports), which fill in any missing native capabilities as necessary. Building blocks like [recoverability](/architecture/recoverability.md), the [outbox](/architecture/consistency.md#transactions-outbox-pattern), [monitoring](/monitoring/), are available on all transports. This simplifies the choice of messaging technology to comparing things like message size, pricing, and portability.
+The Particular Service Platform offers a common set of features available in supported messaging technologies as [transports](/transports), which fill in any missing native capabilities as necessary. Building blocks like [recoverability](/architecture/recoverability.md), the [outbox](/architecture/consistency.md#transactions-outbox-pattern), and [monitoring](/monitoring/) are available on all transports. This simplifies the choice of messaging technology to comparing things like message size, pricing, and portability.
 
-### Messaging versus RPC
+### Messaging vs. RPC
 
-It's quite easy to build an application and get it working using [remote procedure call (RPC)](https://en.wikipedia.org/wiki/Remote_procedure_call) techniques like web services (ASMX or WCF), HTTP API (ASP.NET WebAPI) or WebSockets (SignalR). However, scalability and fault tolerance are inherently hindered when using synchronous, blocking calls. Scaling up with more hardware usually has little effect.
+Applications can run using [remote procedure call (RPC)](https://en.wikipedia.org/wiki/Remote_procedure_call) techniques like web services (WCF or ASMX), HTTP API (ASP.NET WebAPI) or WebSockets (SignalR). However, scalability and fault tolerance are inherently hindered when using synchronous, blocking calls. Scaling up with more hardware usually has little effect.
 
 Asynchronous communication using messages enables loose coupling between applications and makes communication more reliable because two or more components do not have to be running at the same time. There are no blocking calls with asynchronous, one-way messaging. Common, transient errors can be resolved automatically with retries, and it's easy to recover from failures that require manual intervention. Above all, even when a part of the system fails, no data is lost.
 
@@ -39,7 +39,7 @@ To learn more about the relationship between messaging and reliable, scalable, a
 
 With messaging, communication is one-way and [asynchronous](https://en.wikipedia.org/wiki/Asynchronous_method_invocation). An immediate response with a return value is not possible, although it is possible to respond with another message.
 
-_Asynchronous communication_ is not to be confused with _asynchronous execution_, where multiple threads execute code in parallel. The async/await concepts in .NET are an example of asynchronous execution. This is different from asynchronous communication where two components communicate with messages.
+_Asynchronous communication_ should not be confused with _asynchronous execution_, where multiple threads execute code in parallel. The async/await concepts in .NET are an example of asynchronous execution. This is different from asynchronous communication where two components communicate with messages.
 
 ### Point-to-point channels
 

@@ -5,20 +5,20 @@ reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'ADSD']
 ---
 
-The Azure Architecture Center describes the [N-tier architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices) (also referred to as the "layered" architecture style) as dividing an application into logical layers and physical tiers.
+The Azure Architecture Center describes the [N-tier architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier) (also referred to as the "layered" architecture style) as dividing an application into logical layers and physical tiers.
 
 ![](azure-layered-architecture.png)
 
 Messaging can help evolving and modernizing existing applications that have been built using layered architectures:
-* Use asynchronous communication and clearly defined message contracts to more clearly separate layers
-* Use messaging to route existing messages to [extracted components](https://codeopinion.com/splitting-up-a-monolith-into-microservices/) running in separate processes
-* Use messaging to [get rid of batch jobs](https://particular.net/blog/death-to-the-batch-job)
-* Use messaging to implement long-running or [time-dependent business processes](https://particular.net/webinars/got-the-time)
+* Use asynchronous communication and clearly defined message contracts to more clearly separate layers.
+* Use messaging to route existing messages to [extracted components](https://codeopinion.com/splitting-up-a-monolith-into-microservices/) running in separate processes.
+* Use messaging to [get rid of batch jobs](https://particular.net/blog/death-to-the-batch-job).
+* Use messaging to implement long-running or [time-dependent business processes](https://particular.net/webinars/got-the-time).
 
 ### Components
 
 * Front end layer: Often these are web applications or Desktop UIs physically separated from the other layers.
-* Business logic layer: Contains the business logic
+* Business logic layer: Contains the business logic.
 * Data layer: One or more databases containing all data models of the application.
 * Message queue: used for sending commands or publishing events between layers.
 

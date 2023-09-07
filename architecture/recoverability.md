@@ -29,7 +29,7 @@ The Particular Platform simplifies the handling of transient errors:
 
 ## Persistent errors
 
-If errors cannot be resolved after a certain amount of automated retries, they are considered persistent errors. Persistent errors typically require manual intervention, to resolve the root cause, before retrying the failed messages.
+If errors cannot be resolved after a certain amount of automated retries, they are considered persistent errors. Persistent errors typically require manual intervention to resolve the root cause before retrying the failed messages.
 
 To avoid persistently failing messages from being retried infinitely, they can be moved to dedicated error queues (many message queueing technologies use [dead-letter queues](https://en.wikipedia.org/wiki/Dead_letter_queue)). This puts messages aside, to prevent them from clogging up the system, in a place where they can be manually inspected. However, this also means error queues need to be actively monitored.
 
@@ -40,15 +40,15 @@ Once the root cause of a persistent error has been resolved, messages can be mov
 {{Note:
 The Particular Platform simplifies the handling of persistent errors:
 
-- NServiceBus automatically forwards messages exceeding the configured number of automated retries to the error queue
-- Email notifications for dead-letter messages
-- Messages moved to the error queue are enhanced with additional metadata to help with root cause detection
-- Both ServiceInsight and ServicePulse offer monitoring and inspection of failed messages and advanced retry functionality
+- NServiceBus automatically forwards messages exceeding the configured number of automated retries to the error queue.
+- ServiceControl can send email notifications for dead-lettered messages.
+- Messages moved to the error queue are enhanced with additional metadata to help with root cause detection.
+- Both ServiceInsight and ServicePulse offer monitoring and inspection of failed messages and advanced retry functionality.
 }}
 
 ## Best practices
 
-- Don't catch exceptions in business logic invoked by messages. With message-level recoverability mechanisms in place, exceptions thrown from business logic cause messages to be retried without additional error handling code (e.g. `try/catch` blocks, or [Polly](https://github.com/App-vNext/Polly)).
+- Don't catch exceptions in business logic invoked by messages. With message-level recoverability mechanisms in place, exceptions thrown from business logic cause messages to be retried without additional error handling code, such as `try/catch` blocks or [Polly](https://github.com/App-vNext/Polly).
 - Configure and customize recoverability policies using the [dedicated NServiceBus configuration options](/nservicebus/recoverability/) to avoid leaking infrastructure-related issues into business logic.
 - Review [consistency strategies](/architecture/consistency.md) for guidance on dealing with consistency while re-running business logic during retries.
-- Don't build custom retry mechanisms. Building custom recoverability logic is risky and error-prone. The NServiceBus retry mechanisms are battle-proven and thoroughly tested.
+- Don't build custom retry mechanisms. Building custom recoverability logic is risky and error-prone. The NServiceBus retry mechanisms are proven and thoroughly tested.

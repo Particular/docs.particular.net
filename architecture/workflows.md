@@ -15,7 +15,7 @@ Choreographed workflows are implemented by an implicit flow of events between se
 
 ![](/serviceinsight/images/overview-sequence-diagram.png)
 
-A choreographed event-driven workflow across multiple endpoints (visualized by a [ServiceInsight sequence diagram](/serviceinsight/sequence-diagram))
+_A choreographed event-driven workflow across multiple endpoints, visualized by a [ServiceInsight sequence diagram](/serviceinsight/sequence-diagram)._
 
 ### Implementing choreographed workflows
 
@@ -42,7 +42,7 @@ NServiceBus is designed to handle long-running business processes in a robust an
 
 ![](/serviceinsight/images/overview-sagaview.png)
 
-An orchestrated workflow implemented as an NServiceBus Saga, visualized by [ServiceInsight](/serviceinsight).
+_An orchestrated workflow implemented as an NServiceBus Saga, visualized by [ServiceInsight](/serviceinsight)._
 
 [**Tutorial: Introduction to NServiceBus sagas →**](/tutorials/nservicebus-sagas/1-saga-basics/)
 

@@ -28,7 +28,7 @@ Besides the performance impact of transactions, transactional operations may eve
 
 #### Timeouts
 
-Transactions impact concurrent operations on a locked resource. This may block other actors and consume additional resources. Therefore transactions should be completed within a short time window to avoid issues. Cloud services typically restrict transaction lifetimes further than traditional on-premises technologies.
+Transactions impact concurrent operations on a locked resource. This may block other actors and consume additional resources. Therefore, transactions should be completed within a short time window to avoid issues. Cloud services typically restrict shorter transaction lifetimes than traditional on-premises technologies.
 
 #### Scope
 
@@ -42,10 +42,10 @@ Databases and queueing technologies may support atomic transactions for a single
 
 ### Distributed transactions
 
-Distributed transactions span multiple technologies, such as a database and a message queue). On Windows, the [Distributed Transaction Coordinator (DTC)](https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator) coordinates distributed transactions across multiple compatible participants using a [two-phase commit protocol](https://en.wikipedia.org/wiki/Two-phase_commit_protocol). Each participant must explicitly support the two-phase commit protocol.
+Distributed transactions span multiple technologies, such as a database and a message queue. On Windows, the [Distributed Transaction Coordinator (DTC)](https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator) coordinates distributed transactions across multiple compatible participants using a [two-phase commit protocol](https://en.wikipedia.org/wiki/Two-phase_commit_protocol). Each participant must explicitly support the two-phase commit protocol.
 
 {{WARN:
-While traditional on-premises focused services like MSMQ or MSSQL server support the DTC, managed cloud services do not, and require other strategies for achieving consistency between resources such as:
+While traditional on-premises focused services like MSMQ or Microsoft SQL Server support DTC transactions, managed cloud services do not, and require other strategies for achieving consistency between resources such as:
 
 * The [outbox pattern](#transactions-outbox-pattern), which uses database capabilities to achieve atomic consistency for data and message operations
 * [Stateful workflows](workflows.md), which supervise the successful completion of all involved resources and manage compensating actions to achieve eventual consistency.
