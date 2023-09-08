@@ -28,6 +28,6 @@ In event-driven architectures, components are decoupled, allowing choice of the 
 
 An event-driven approach requires support for the publish-subscribe model. NServiceBus supports the publish-subscribe model for [Azure Service Bus and Azure Storage Queues](messaging.md), independent of the underlying service capabilities.
 
-## Related content
+## Additional resources
 
 * [Azure Architecture Center—Event-driven architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/event-driven)

@@ -48,7 +48,7 @@ In Azure, services following the microservice architecture style often use the f
 * Fully managed service offerings like [Azure Functions](/architecture/azure/compute.md#serverless) and [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services) are popular choices for systems requiring scalable hosting environments with minimal management. These services also offer convenient solutions when building web-facing applications.
 * [Containerized applications](/architecture/azure/compute.md#platform-as-a-service-containers) can be hosted in managed container orchestration platforms like Azure Container Apps, Azure Kubernetes Service, and more. They can also be hosted in custom managed Kubernetes clusters running on [Azure Virtual Machines](https://azure.microsoft.com/en-us/products/virtual-machines). Container-hosted systems may use serverless data stores like [Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db) and serverless messaging technologies [Azure Service Bus](/architecture/azure/messaging.md#azure-service-bus).
 
-## Related content
+## Additional resources
 
 * [Azure Architecture Center—Microservice architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices)
 * [Video: Finding service boundaries - a partical guide](https://www.youtube.com/watch?v=655zq4Sdu2w)

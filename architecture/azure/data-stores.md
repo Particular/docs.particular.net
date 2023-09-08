@@ -135,7 +135,7 @@ Some data stores are only available in the cloud, with no on-premises equivalent
 
 Data stores offer various approaches to securing data using authentication and authorization. This may be provided by the data store itself or the data store may integrate with third party security services such as Azure IAM.
 
-## Additional content
+## Additional resources
 
 - [Azure Architecture Center: Criteria for choosing a data store](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/data-store-considerations)
 - [What is Azure SQL Database?](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?view=azuresql)

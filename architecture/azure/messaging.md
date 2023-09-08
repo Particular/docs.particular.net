@@ -89,7 +89,7 @@ Azure offers other messaging services focused on asynchronous communication. The
 * [Azure Event Hubs](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-about) is a data streaming platform specialized in large-scale event ingestion and data distribution. While data streaming platforms like Azure Event Hubs or Apache Kafka use shared or similar terminologies, they differ significantly from traditional message queuing systems and are designed to solve a different set of problems.   [Read more about the differences between event streaming and message queues](https://particular.net/blog/lets-talk-about-kafka).
 
 
-## Additional Resources
+## Additional resources
 
 - [Storage queues and Service Bus queues - compared and contrasted](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
 - [Azure Service Bus quotas](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas)

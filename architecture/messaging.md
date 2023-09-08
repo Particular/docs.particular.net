@@ -106,7 +106,7 @@ A **_message bus_** in the context of the [_bus architectural pattern_](https://
 
 ![deployment topology](deployment-topology.jpg)
 
-## Additional content
+## Additional resources
 
 - Gregor Hohpe's [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/) website and accompanying book.
 - [More videos and presentations](https://particular.net/videos) about distributed systems design
