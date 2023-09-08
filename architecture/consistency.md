@@ -65,7 +65,9 @@ Note: Implementing the outbox pattern is very risky and error-prone. Small mista
 
 [Idempotence](https://en.wikipedia.org/wiki/Idempotence) ensures that processing a message multiple times has the same effect as processing it only once. This means that processing a duplicate message shouldn’t cause any unintended side effects.
 
-Idempotency is an approach used as part of avoiding the use of distributed transactions. Without transactions, [recoverability mechanisms](/architecture/recoverability.md) that prevent message losses in failure scenarios may produce duplicate messages. There are multiple ways to achieve idempotency, implemented at different levels:
+Idempotency is an approach used as part of avoiding the use of distributed transactions. Without transactions, [recoverability mechanisms](/architecture/recoverability.md) that prevent message losses in failure scenarios may produce duplicate messages. There are multiple ways to achieve idempotency, implemented at different levels.
+
+[**Blog: What does idempotent mean in software systems? →**](https://particular.net/blog/what-does-idempotent-mean)
 
 ### Natural idempotency
 

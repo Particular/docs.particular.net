@@ -11,13 +11,13 @@ Hybrid systems have components running both in the cloud and on-premises. This m
 
 In the shared broker approach, both systems use a single message broker which can either be located on-premises or in the cloud.
 
-### On-premises
-
-When it is expected that the message queuing system should remain on-premises and the broker client SDK is cloud compatible, the cloud-hosted messaging clients might be connected to the on-premises broker using cloud vendor-specific VPN services.
-
 ### Cloud
 
 Cloud-hosted message queueing systems can be configured for access from anywhere. While cloud-hosted components benefit from lower network latency and better network reliability, on-premises components can access the same broker.
+
+### On-premises
+
+When it is expected that the message queuing system should remain on-premises and the broker client SDK is cloud compatible, the cloud-hosted messaging clients might be connected to the on-premises broker using cloud vendor-specific VPN services.
 
 ## Multiple brokers
 

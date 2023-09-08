@@ -31,8 +31,6 @@ Applications can run using [remote procedure call (RPC)](https://en.wikipedia.or
 
 Asynchronous communication using messages enables loose coupling between applications and makes communication more reliable because two or more components do not have to be running at the same time. There are no blocking calls with asynchronous, one-way messaging. Common, transient errors can be resolved automatically with retries, and it's easy to recover from failures that require manual intervention. Above all, even when a part of the system fails, no data is lost.
 
-To learn more about the relationship between messaging and reliable, scalable, and highly available systems, watch the webinar about [handling failures with NServiceBus](https://particular.net/webinars/handling-failures-with-nservicebus) and other [webinar and presentations](https://particular.net/videos).
-
 [**Blog: RPC vs. Messaging – Which is faster? →**](https://particular.net/blog/rpc-vs-messaging-which-is-faster)
 
 ## Communication styles
@@ -111,3 +109,4 @@ A **_message bus_** in the context of the [_bus architectural pattern_](https://
 ## Additional content
 
 - Gregor Hohpe's [Enterprise Integration Patterns](https://www.enterpriseintegrationpatterns.com/) website and accompanying book.
+- [More videos and presentations](https://particular.net/videos) about distributed systems design
