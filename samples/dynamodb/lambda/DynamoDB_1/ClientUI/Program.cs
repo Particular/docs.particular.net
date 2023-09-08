@@ -7,6 +7,7 @@ class Program
   public static async Task Main(string[] args)
   {
     var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Lambda.ClientUI");
+    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
     endpointConfiguration.SendFailedMessagesTo("Samples-DynamoDB-Lambda-Error");
 
     var transport = endpointConfiguration.UseTransport<SqsTransport>();

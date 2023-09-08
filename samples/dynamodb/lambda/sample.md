@@ -39,10 +39,10 @@ To try the AWS Lambda:
 
 1. From the **ClientUI** window, press <kbd>Enter</kbd> to send a `PlaceOrder` message to the trigger queue.
 2. The AWS Lambda will receive the `PlaceOrder` message and will start the `OrderSaga`.
-3. The `OrderSaga` will publish an `OrderReceived` event.
+3. The `OrderSaga` will publish an `OrderReceived` event and a business SLA message `OrderDelayed`.
 4. The AWS Lambda receives the `OrderReceived` event which is handled by the `BillCustomerHandler` and the `StageInventoryHandler`. After a delay, each handler publishes an event, `CustomerBilled` and `InventoryStaged`, respectively.
-5. The AWS Lambda will receive the events. Once both events are received, the `OrderSaga` publishes an `OrderShipped` event.
-6. The **ClientUI** will handle the `OrderShipped` event and log a message to the console.
+5. The AWS Lambda will receive the events. Once both events are received, the `OrderSaga` publishes an `OrderShipped` event. In case it took longer than the defined business SLA to bill and stage the order the client is informed about the order being delayed by publishing `OrderDelayed`.
+6. The **ClientUI** will handle the `OrderShipped` event and log a message to the console. It might occasionally also handle the `OrderDelayed` event and handout 10% coupon codes.
 
 ## Code walk-through
 
