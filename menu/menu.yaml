@@ -65,7 +65,7 @@
       Url: architecture/hybrid-systems
   - Title: Azure
     Articles:
-    - Title: Introduction
+    - Title: Azure Architectures
       Url: architecture/azure
     - Title: Architectural styles
       Articles:
