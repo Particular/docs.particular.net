@@ -88,10 +88,9 @@ Azure offers other messaging services focused on asynchronous communication. The
 * [Azure Event Grid](https://learn.microsoft.com/en-us/azure/event-grid/overview) is an integration focused messaging system using the publish-subscribe model. Azure Event Grid can ingest and distribute events provided by applications, other Azure Services or IoT devices using HTTP protocols (MQTT support in public preview). By default, Event Grid uses a [push-model](https://learn.microsoft.com/en-us/azure/event-grid/push-delivery-overview) to forward events to all subscribers.
 * [Azure Event Hubs](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-about) is a data streaming platform specialized in large-scale event ingestion and data distribution. While data streaming platforms like Azure Event Hubs or Apache Kafka use shared or similar terminologies, they differ significantly from traditional message queuing systems and are designed to solve a different set of problems.   [Read more about the differences between event streaming and message queues](https://particular.net/blog/lets-talk-about-kafka).
 
-
 ## Additional resources
 
-- [Storage queues and Service Bus queues - compared and contrasted](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
+- [Storage queues and Service Bus queues—compared and contrasted](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)
 - [Azure Service Bus quotas](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas)
 - [Scalability and performance targets for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/scalability-targets)
-- [Events, Data Points, and Messages – Choosing the right Azure messaging service](https://azure.microsoft.com/en-us/blog/events-data-points-and-messages-choosing-the-right-azure-messaging-service-for-your-data/)
+- [Events, Data Points, and Messages—Choosing the right Azure messaging service](https://azure.microsoft.com/en-us/blog/events-data-points-and-messages-choosing-the-right-azure-messaging-service-for-your-data/)

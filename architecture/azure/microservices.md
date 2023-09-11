@@ -15,13 +15,13 @@ The Particular Service Platform implements the [messaging patterns](/nservicebus
 
 * [NServiceBus endpoint](/nservicebus/endpoints) (service): Each service is an autonomously deployable and scalable unit with a private [data store](data-stores.md).
 * Message bus: The message bus provides an asynchronous, reliable, and fault-tolerant communication channel which decouples the services.
-* Gateway: A gateway is a facade which allows user technologies such as web browsers to decouple from service implementations. Gateways may also provide further operational facilities, but do not contain domain-specific logic. Azure offers a [range of gateway services](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway).
+* Gateway: A gateway is a facade which allows user technologies such as web browsers to decouple from service implementations. Gateways may also provide further operational facilities, but do not contain business logic. Azure offers a [range of gateway services](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway).
 
 ## Challenges
 
 ### Service boundaries
 
-Finding good service boundaries is one of the biggest challenges with the microservice architectural style. Suboptimal boundaries often lead to a lack of data isolation and excessive inter-service communication. This often leads to high coupling between services which implement a business processes, sometimes referred to as a distributed monolith. To define autonomous services, it is crucial to focus on domain (business concept) boundaries rather than technical boundaries.
+Finding good service boundaries is one of the biggest challenges with the microservice architectural style. Suboptimal boundaries often lead to a lack of data isolation and excessive inter-service communication. This often leads to high coupling between services which implement a business processes, sometimes referred to as a distributed monolith. To define autonomous services, it is crucial to focus on business boundaries rather than technical boundaries.
 
 <iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/113515335" webkitallowfullscreen width="400"></iframe>
 
@@ -51,4 +51,4 @@ In Azure, services following the microservice architecture style often use the f
 ## Additional resources
 
 * [Azure Architecture Center—Microservice architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices)
-* [Video: Finding service boundaries - a partical guide](https://www.youtube.com/watch?v=655zq4Sdu2w)
+* [Video: Finding your service boundaries—a practical guide](https://www.youtube.com/watch?v=655zq4Sdu2w)

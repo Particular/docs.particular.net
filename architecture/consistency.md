@@ -28,7 +28,7 @@ Besides the performance impact of transactions, transactional operations may eve
 
 #### Timeouts
 
-Transactions impact concurrent operations on a locked resource. This may block other actors and consume additional resources. Therefore, transactions should be completed within a short time window to avoid issues. Cloud services typically restrict shorter transaction lifetimes than traditional on-premises technologies.
+Transactions impact concurrent operations on a locked resource. This may block other actors and consume additional resources. Therefore, transactions should be completed within a short time window to avoid issues. Cloud services typically restrict transaction lifetimes more than traditional on-premises technologies.
 
 #### Scope
 

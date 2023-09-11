@@ -20,7 +20,7 @@ The Azure Architecture Center describes the [web-queue-worker architecture style
 ### Challenges
 
 * Not every operation on the database has to go through the worker. The web front end can perform simple read/write or time-sensitive operations directly. Workers are designed for resource-intensive tasks or long-running workflows.
-* This style is suitable for simple domains. Without careful design, the front end and the worker can become complex, monolithic components that are difficult to maintain. Consider [event-driven](event-driven-architecture.md) and [microservices](microservices.md) architectural styles if the domain grows signficantly.
+* This style is suitable for simple business domains. Without careful design, the front end and the worker can become complex, monolithic components that are difficult to maintain. Consider [event-driven](event-driven-architecture.md) and [microservices](microservices.md) architectural styles for more complex business domains.
 
 ### Technology choices
 
