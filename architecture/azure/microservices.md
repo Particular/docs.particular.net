@@ -51,4 +51,4 @@ In Azure, services following the microservice architecture style often use the f
 ## Additional resources
 
 * [Azure Architecture Center—Microservice architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices)
-* [Video: Finding your service boundaries—a practical guide](https://www.youtube.com/watch?v=655zq4Sdu2w)
+* [Video: Finding service boundaries—a practical guide](https://www.youtube.com/watch?v=655zq4Sdu2w)
