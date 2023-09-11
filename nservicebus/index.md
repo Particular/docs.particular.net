@@ -5,6 +5,8 @@ component: Core
 reviewed: 2021-08-05
 suppressRelated: true
 isLearningPath: true
+redirects:
+- nservicebus/overview
 ---
 
 include: nservicebus

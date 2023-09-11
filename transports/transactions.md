@@ -7,8 +7,6 @@ redirects:
  - nservicebus/messaging/transactions
  - nservicebus/transports/transactions
 reviewed: 2020-12-07
-related:
- - nservicebus/azure/understanding-transactionality-in-azure
 ---
 
 This article covers various levels of consistency guarantees with regards to:

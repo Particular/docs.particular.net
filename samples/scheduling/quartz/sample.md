@@ -83,7 +83,7 @@ In the catch block of a job, consider either implementing a [circuit breaker](ht
 
 ## Scale Out
 
-When using the approach in the sample, it is important to note that there is an instance of the Quartz scheduler running in every endpoint instance. If an endpoint is [scaled out](/nservicebus/architecture/scaling.md), then the configured jobs will be executed in each of the running instances. A persistent [Quartz JobStore](https://www.quartz-scheduler.net/documentation/quartz-3.x/tutorial/job-stores.html) can help manage the the Quartz scheduler shared state including jobs, triggers, calendars, etc.
+When using the approach in the sample, it is important to note that there is an instance of the Quartz scheduler running in every endpoint instance. If an endpoint is [scaled out](/nservicebus/scaling.md), then the configured jobs will be executed in each of the running instances. A persistent [Quartz JobStore](https://www.quartz-scheduler.net/documentation/quartz-3.x/tutorial/job-stores.html) can help manage the the Quartz scheduler shared state including jobs, triggers, calendars, etc.
 
 
 ## Further information on Quartz

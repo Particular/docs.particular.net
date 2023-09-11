@@ -21,7 +21,7 @@ The performance of regular endpoints is impacted by many factors, including data
 
 ### Competing consumers
 
-As with [regular NServiceBus endpoints](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers), the easiest way to scale out is with [brokered transports](/transports/types.md#broker-transports), as those can make use of the *[competing consumer pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)*. This is done by deploying multiple instances of the bridge, all with the same configuration, allowing any instance to process any message in the queue.
+As with [regular NServiceBus endpoints](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers), the easiest way to scale out is with [brokered transports](/transports/types.md#broker-transports), as those can make use of the *[competing consumer pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)*. This is done by deploying multiple instances of the bridge, all with the same configuration, allowing any instance to process any message in the queue.
 
 The bridge accesses messages using NServiceBus transport packages, which ensure that only one instance processes a given message.
 

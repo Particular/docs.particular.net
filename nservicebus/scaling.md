@@ -3,6 +3,7 @@ title: Scaling with NServiceBus
 summary: NServiceBus provides several options to scale out a system
 redirects:
  - transports/scale-out
+ - nservicebus/architecture/scaling
 reviewed: 2021-07-23
 ---
 

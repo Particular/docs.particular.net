@@ -206,6 +206,14 @@ upgradeGuideCoreVersions:
 
 To mark a page as belonging to the [Particular Software Learning Path](https://particular.net/learn) use `isLearningPath: true`.
 
+#### Calls to action
+
+```yaml
+callsToAction: ['architecture-review', 'solution-architect']
+```
+
+Calls to action are defined in `calls-to-action.yaml`.
+
 ### An example header for an article
 
 In the following example, whenever the URLs `/servicecontrol/sc-si` or `/servicecontrol/debugging-servicecontrol` are being requested, the given article will be rendered.

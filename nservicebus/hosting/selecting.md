@@ -1,6 +1,6 @@
 ---
 title: Selecting a host
-summary: A guide for selecting an NServiceBus transport.
+summary: A guide for selecting a host for NServiceBus endpoints.
 reviewed: 2021-08-18
 isLearningPath: true
 ---

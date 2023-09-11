@@ -5,7 +5,7 @@ snippet: Callbacks-InstanceId
 
 This will make each instance of the endpoint uniquely addressable by creating an additional queue that includes the instance ID in the name. 
 
-Selecting an appropriate ID depends on the transport being used and whether or not the endpoint is [scaled out](/nservicebus/architecture/scaling.md):
+Selecting an appropriate ID depends on the transport being used and whether or not the endpoint is [scaled out](/nservicebus/scaling.md):
 - For broker transports like Azure ServiceBus, RabbitMQ, etc., the instance ID must be unique for each instance, otherwise the instances will end up sharing a single callback queue and a reply could be received by the wrong instance.
 - For federated transports like MSMQ, where every instance is running on a separate machine and can never share queues, then it is okay to use a single ID like `replies`, `callbacks`, etc.
 

@@ -68,6 +68,6 @@ A router consists of multiple [NServiceBus.Raw](/nservicebus/rawmessaging/) endp
 
 ## Scaling out
 
-The router can be scaled out, just like regular NServiceBus endpoint, through the [competing consumers](/nservicebus/architecture/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) approach. Multiple copies of the router executable can be deployed to separate hosts and run in parallel attached to the same set of queues and they are going to automatically share the load.
+The router can be scaled out, just like regular NServiceBus endpoint, through the [competing consumers](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) approach. Multiple copies of the router executable can be deployed to separate hosts and run in parallel attached to the same set of queues and they are going to automatically share the load.
 
 One limitation to this approach is the MSMQ transport where queues are only available locally so deployment to multiple hosts is not possible. Fortunately MSMQ has a relatively high throughput so router is likely not going to become a bottleneck.

@@ -13,7 +13,7 @@ An _endpoint_ is a logical component that communicates with other components usi
 
 ## Endpoint instance
 
-An _endpoint instance_ is a physical deployment of an endpoint. Each endpoint instance processes messages from an input queue which contains messages for the endpoint to process. Each endpoint has at least one endpoint instance. Additional endpoint instances may be added to [scale-out](/nservicebus/architecture/scaling.md) the endpoint.
+An _endpoint instance_ is a physical deployment of an endpoint. Each endpoint instance processes messages from an input queue which contains messages for the endpoint to process. Each endpoint has at least one endpoint instance. Additional endpoint instances may be added to [scale-out](/nservicebus/scaling.md) the endpoint.
 
 ## Logical endpoints
 

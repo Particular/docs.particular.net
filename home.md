@@ -201,14 +201,14 @@ span.blue {
       <img src="/content/images/menu/getting-started-icon.svg" height="64" width="64" style="margin: 4px 0;" /><br>Getting Started
     </a>
   </div>
-  <div class="ic col-xs-12 col-sm-6 col-md-3">
-    <a href="https://particular.net/videos">
-      <i class="glyphicon glyphicon-film mainicon"></i><br>Intro Videos
+    <div class="ic col-xs-12 col-sm-6 col-md-3">
+    <a href="/architecture/">
+      <img src="/content/images/menu/architecture-icon.svg" style="height:72px; width: 110px; margin-bottom: 1px;"><br>Architecture
     </a>
   </div>
   <div class="ic col-xs-12 col-sm-6 col-md-3">
-    <a href="https://discuss.particular.net">
-      <img src="/content/images/discussiongroup_v1.svg" style="height:72px; width: 110px; margin-bottom: 1px;"><br>Discussion group
+    <a href="https://particular.net/videos">
+      <i class="glyphicon glyphicon-film mainicon"></i><br>Intro Videos
     </a>
   </div>
   <div class="ic col-xs-12 col-sm-6 col-md-3">
@@ -237,9 +237,9 @@ span.blue {
       <p>A short and high level overview of the Platform</p>
     </div>
     <div class="col-xs-12 col-sm-6">
-      <a href="https://www.pluralsight.com/courses/microservices-nservicebus6-scaling-applications">
-        <img src="/home/pluralsight_v1.svg" width="36" height="36">
-        <h3>Pluralsight: Scaling Applications with Microservices and NServiceBus 6</h3>
+      <a href="https://discuss.particular.net">
+        <img src="/content/images/discussiongroup_v1.svg" width="36" height="36">
+        <h3>Discussion group</h3>
       </a>
     </div>
   </div>
