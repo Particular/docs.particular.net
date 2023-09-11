@@ -21,7 +21,7 @@ namespace SqlServer_All.Operations.QueueCreation
                     [Body] [varbinary](max),
                     [RowVersion] [bigint] identity(1,1) not null
                 );
-                create clustered index [Index_RowVersion] on [{schema}].[{queueName}]
+                create nonclustered index [Index_RowVersion] on [{schema}].[{queueName}]
                 (
                     [RowVersion]
                 )
