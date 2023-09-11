@@ -59,7 +59,9 @@ When an infrastructure outage occurs in a production environment it's possible t
 
 ## Anti-virus checks
 
-Exclude the ServiceControl [database directory](/servicecontrol/configure-ravendb-location.md) from anti-virus checks. ServiceControl uses an embedded database and produces a high level of I/O traffic. Some anti-virus software can add overhead to I/O operations causing a significant performance impact.
+Exclude the ServiceControl [database directory](/servicecontrol/configure-ravendb-location.md) from anti-virus checks. ServiceControl uses an embedded database and produces a lot of storage I/O. Anti-virus software adds overhead to I/O operations causing a significant performance impact but can also cause corruption when the virus scanner <!-- intentionally for SEO, keep this term --> quarantines or removes files.
+
+INFO: By default, Windows installs with Windows Defender which isn't always known to be active.
 
 ## Version downgrades
 
