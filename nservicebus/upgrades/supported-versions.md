@@ -11,6 +11,8 @@ related:
 
 This page lists both currently and recently supported versions of all NServiceBus packages according to the [support policy](support-policy.md). See the [complete history](all-versions.md) for older versions.
 
+NOTE: There are [extended support plans](https://particular.net/support) available.
+
 include: supported-versions-nservicebus
 include: supported-versions-downstreams
 
