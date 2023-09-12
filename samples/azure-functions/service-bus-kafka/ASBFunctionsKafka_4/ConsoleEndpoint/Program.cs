@@ -1,4 +1,5 @@
-﻿using Confluent.Kafka;
+﻿using AzureFunctions.Messages.KafkaMessages;
+using Confluent.Kafka;
 using NServiceBus;
 
 class Program
@@ -30,15 +31,16 @@ class Program
         var config = new ProducerConfig
         {
             BootstrapServers = "localhost:9092",
-            ClientId = "producer-1"
+            ClientId = "producer-1",
+            BatchSize = 50
         };
 
-        Console.WriteLine("Press 'enter' to send an event using Kafka and wait for a response...");
+        Console.WriteLine("Press '[enter]' to send a 100 events using Kafka and wait for a possible response...");
         Console.WriteLine("Press any other key to exit");
 
-        using (var producer = new ProducerBuilder<string, string>(config).Build())
+        using (var producer = new ProducerBuilder<string, string>(config)
+                   .Build())
         {
-
             while (true)
             {
                 var key = Console.ReadKey();
@@ -49,14 +51,19 @@ class Program
                     break;
                 }
 
-                var message = new Message<string, string>
+                for (int i = 0; i < 100; i++)
                 {
-                    Value = $"It is now {DateTime.UtcNow}"
-                };
-                var deliveryResult = await producer.ProduceAsync("input-topic", message);
+                    var electricityUsage = new ElectricityUsage() { CustomerId = 42, CurrentUsage = i, UnitId = 1337 };
 
+                    var message = new Message<string, string>
+                    {
+                        Value = ElectricityUsage.Serialize(electricityUsage)
+                    };
 
-                Console.WriteLine("Message1 sent");
+                    var deliveryResult = await producer.ProduceAsync("myKafkaTopic", message);
+                }
+
+                Console.WriteLine("100 messages sent");
             }
         }
 

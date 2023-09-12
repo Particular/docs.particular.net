@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AzureFunctions.Messages.NServiceBusMessages;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
@@ -7,18 +9,13 @@ namespace AzureFunctions.KafkaTrigger.FunctionsHostBuilder;
 
 public class Program
 {
-    static async Task Main(string[] args)
+    public static async Task Main()
     {
-        // FunctionsAssemblyResolver.RedirectAssembly();
-
         var host = new HostBuilder()
-            .ConfigureFunctionsWorkerDefaults()
             .ConfigureServices(async services =>
             {
                 var cfg = new EndpointConfiguration("SendOnly");
                 cfg.SendOnly();
-
-                // cfg.AssemblyScanner().ExcludeAssemblies("Google.Protobuf.dll", "Azure.Core.dll");
 
                 var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsServiceBus");
                 var transport = new AzureServiceBusTransport(connectionString);
@@ -28,7 +25,9 @@ public class Program
 
                 var endpoint = await Endpoint.Start(cfg);
 
+                services.AddSingleton<IMessageSession>(endpoint);
             })
+            .ConfigureFunctionsWorkerDefaults()
             .Build();
 
         await host.RunAsync();
