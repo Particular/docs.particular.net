@@ -40,6 +40,7 @@ namespace Particular.Cinema.Headquarters
 
             if (featuredFilmAfterSale != string.Empty && featuredFilmBeforeNewSale != featuredFilmAfterSale)
             {
+                log.LogInformation($"Featured film changed: {featuredFilmAfterSale}");
                 await context.Publish(new FeaturedFilmChanged() { FeaturedFilmName = featuredFilmAfterSale }).ConfigureAwait(false);
             }
 

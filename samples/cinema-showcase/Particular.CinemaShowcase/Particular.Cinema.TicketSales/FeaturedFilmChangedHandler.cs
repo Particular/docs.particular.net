@@ -14,7 +14,7 @@ namespace Particular.Cinema.TicketSales
 
         public Task Handle(FeaturedFilmChanged message, IMessageHandlerContext context)
         {
-            Console.WriteLine($"Featured Film of the month is......{message.FeaturedFilmName}!!");
+            log.LogInformation($"Featured Film of the month is......{message.FeaturedFilmName}!!");
             return Task.CompletedTask;
         }
     }
