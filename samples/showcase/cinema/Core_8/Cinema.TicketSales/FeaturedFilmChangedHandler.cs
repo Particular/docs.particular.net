@@ -12,10 +12,12 @@ namespace Cinema.TicketSales
             this.log = log;
         }
 
+        #region featured-film-changed-handler
         public Task Handle(FeaturedFilmChanged message, IMessageHandlerContext context)
         {
             log.LogInformation($"Featured Film of the month is......{message.FeaturedFilmName}!!");
             return Task.CompletedTask;
         }
+        #endregion
     }
 }

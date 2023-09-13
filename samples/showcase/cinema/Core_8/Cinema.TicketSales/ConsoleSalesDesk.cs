@@ -20,8 +20,10 @@ namespace Cinema.TicketSales
         {
             try
             {
+                #region sales-desk
                 Console.WriteLine("B) Sell ticket for Barbie");
                 Console.WriteLine("O) Sell ticket for Oppenheimer");
+
                 while (!cancellationToken.IsCancellationRequested)
                 {
                     if (!Console.KeyAvailable) continue;
@@ -30,17 +32,26 @@ namespace Cinema.TicketSales
                     switch (userInput.Key)
                     {
                         case ConsoleKey.B:
-                            await messageSession.Send(new RecordTicketSale  { MonthId = MonthId, FilmName = "Barbie" }, cancellationToken)
+                            await messageSession.Send(new RecordTicketSale
+                            {
+                                MonthId = MonthId,
+                                FilmName = "Barbie"
+                            }, cancellationToken)
                         .ConfigureAwait(false);
                             break;
                         case ConsoleKey.O:
-                            await messageSession.Send(new RecordTicketSale { MonthId = MonthId, FilmName = "Oppenheimer" }, cancellationToken)
+                            await messageSession.Send(new RecordTicketSale
+                            {
+                                MonthId = MonthId,
+                                FilmName = "Oppenheimer"
+                            }, cancellationToken)
                         .ConfigureAwait(false);
                             break;
                         default:
                             break;
                     }
                 }
+                #endregion
             }
             catch (OperationCanceledException)
             {

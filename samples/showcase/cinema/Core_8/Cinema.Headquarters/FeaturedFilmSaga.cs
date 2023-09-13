@@ -21,6 +21,7 @@ namespace Cinema.Headquarters
                 .ToMessage<RecordTicketSale>(message => message.MonthId);
         }
 
+        #region ticket-sales-handler
         public async Task Handle(RecordTicketSale message, IMessageHandlerContext context)
         {
             string featuredFilmBeforeNewSale = GetFeaturedFilm();
@@ -31,7 +32,7 @@ namespace Cinema.Headquarters
                     Data.BarbieTicketCount++;
                     break;
                 case "Oppenheimer":
-                   Data.OppenheimerTicketCount++;
+                    Data.OppenheimerTicketCount++;
                     break;
                 default:
                     break;
@@ -42,11 +43,16 @@ namespace Cinema.Headquarters
             if (featuredFilmAfterSale != string.Empty && featuredFilmBeforeNewSale != featuredFilmAfterSale)
             {
                 log.LogInformation($"Featured film changed: {featuredFilmAfterSale}");
-                await context.Publish(new FeaturedFilmChanged() { FeaturedFilmName = featuredFilmAfterSale }).ConfigureAwait(false);
+                await context.Publish(new FeaturedFilmChanged
+                {
+                    FeaturedFilmName = featuredFilmAfterSale
+                }).ConfigureAwait(false);
             }
 
-            log.LogInformation($"Barbie Tickets: {Data.BarbieTicketCount} \n Oppenheimer Tickets: {Data.OppenheimerTicketCount}");
+            log.LogInformation(
+                $"Barbie Tickets: {Data.BarbieTicketCount}\nOppenheimer Tickets: {Data.OppenheimerTicketCount}");
         }
+        #endregion
 
         string GetFeaturedFilm()
         {
