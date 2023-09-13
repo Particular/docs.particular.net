@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
-using Particular.Cinema.Messages;
+using Cinema.Messages;
 
-namespace Particular.Cinema.Headquarters
+namespace Cinema.Headquarters
 {
     //public class RecordTicketSalesHandler : IHandleMessages<RecordTicketSale>
     //{

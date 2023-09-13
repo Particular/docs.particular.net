@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
-using Particular.Cinema.Messages;
+using Cinema.Messages;
 
-namespace Particular.Cinema.Headquarters
+namespace Cinema.Headquarters
 {
     class FeaturedFilmSaga : Saga<FeaturedFilmSagaData>,
         IAmStartedByMessages<RecordTicketSale>
@@ -15,7 +15,8 @@ namespace Particular.Cinema.Headquarters
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<FeaturedFilmSagaData> mapper)
         {
-            // https://docs.particular.net/nservicebus/sagas/message-correlation
+            // https://docs.net/nservicebus/sagas/message-correlation
+            // There will be one saga instance per month
             mapper.MapSaga(saga => saga.MonthId)
                 .ToMessage<RecordTicketSale>(message => message.MonthId);
         }

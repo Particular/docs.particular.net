@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Particular.Cinema.TicketSales", "Particular.Cinema.TicketSales\Particular.Cinema.TicketSales.csproj", "{786C2D84-196D-4BB1-8E64-393E3D5F77C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinema.TicketSales", "Cinema.TicketSales\Cinema.TicketSales.csproj", "{786C2D84-196D-4BB1-8E64-393E3D5F77C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Particular.Cinema.Messages", "Particular.Cinema.Messages\Particular.Cinema.Messages.csproj", "{B858ECE2-5060-41E3-BA22-69DA9A06073E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cinema.Messages", "Cinema.Messages\Cinema.Messages.csproj", "{B858ECE2-5060-41E3-BA22-69DA9A06073E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Particular.Cinema.Headquarters", "Particular.Cinema.Headquarters\Particular.Cinema.Headquarters.csproj", "{F823C3AB-2668-4FBA-A802-EE243BB26A31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cinema.Headquarters", "Cinema.Headquarters\Cinema.Headquarters.csproj", "{F823C3AB-2668-4FBA-A802-EE243BB26A31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

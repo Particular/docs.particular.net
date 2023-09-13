@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
-using Particular.Cinema.Messages;
+using Cinema.Messages;
 
-namespace Particular.Cinema.TicketSales
+namespace Cinema.TicketSales
 {
     public class FeaturedFilmChangedHandler : IHandleMessages<FeaturedFilmChanged>
     {

@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-namespace Particular.Cinema.Messages
+namespace Cinema.Messages
 {
     public class FeaturedFilmChanged : IEvent
     {

@@ -1,15 +1,18 @@
 ﻿using Microsoft.Extensions.Hosting;
-using Particular.Cinema.Messages;
+using Cinema.Messages;
 
-namespace Particular.Cinema.TicketSales
+namespace Cinema.TicketSales
 {
-    class Worker : BackgroundService
+    class ConsoleSalesDesk : BackgroundService
     {
         private readonly IMessageSession messageSession;
         private static string MonthId = DateTime.Now.ToString("yyyy-MM");
 
-        public Worker(IMessageSession messageSession)
+        // IMessageSession is added to the services collection by NServiceBus.
+        public ConsoleSalesDesk(IMessageSession messageSession)
         {
+            // The message session is used to access NServiceBus functions.
+            // In this class it is used to send a RecordTicketSale message.
             this.messageSession = messageSession;
         }
 
@@ -17,8 +20,8 @@ namespace Particular.Cinema.TicketSales
         {
             try
             {
-                Console.WriteLine("To enter number of tickets sold for Barbie press b");
-                Console.WriteLine("To enter number of tickets sold for Oppenheimer press o");
+                Console.WriteLine("B) Sell ticket for Barbie");
+                Console.WriteLine("O) Sell ticket for Oppenheimer");
                 while (!cancellationToken.IsCancellationRequested)
                 {
                     if (!Console.KeyAvailable) continue;
