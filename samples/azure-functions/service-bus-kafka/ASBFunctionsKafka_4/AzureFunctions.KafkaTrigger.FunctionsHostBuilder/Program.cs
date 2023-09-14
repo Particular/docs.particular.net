@@ -11,6 +11,8 @@ public class Program
 {
     public static async Task Main()
     {
+        #region SetupNServiceBusSendOnly
+
         var host = new HostBuilder()
             .ConfigureServices(async services =>
             {
@@ -25,10 +27,13 @@ public class Program
 
                 var endpoint = await Endpoint.Start(cfg);
 
+                // Inject the endpoint in the DI container
                 services.AddSingleton<IMessageSession>(endpoint);
             })
             .ConfigureFunctionsWorkerDefaults()
             .Build();
+
+        #endregion
 
         await host.RunAsync();
     }

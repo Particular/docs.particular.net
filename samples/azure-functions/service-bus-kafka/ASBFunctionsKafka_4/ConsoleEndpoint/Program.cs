@@ -53,6 +53,8 @@ class Program
 
                 for (int i = 0; i < 100; i++)
                 {
+                    #region ProduceEvent
+
                     var electricityUsage = new ElectricityUsage() { CustomerId = 42, CurrentUsage = i, UnitId = 1337 };
 
                     var message = new Message<string, string>
@@ -61,6 +63,8 @@ class Program
                     };
 
                     var deliveryResult = await producer.ProduceAsync("myKafkaTopic", message);
+
+                    #endregion
                 }
 
                 Console.WriteLine("100 messages sent");

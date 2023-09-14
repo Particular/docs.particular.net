@@ -31,7 +31,6 @@ public class KafkaTrigger
 
         if (IsUsageAboveAverage(electricityUsage.CustomerId, electricityUsage.UnitId, electricityUsage.CurrentUsage))
         {
-
             var message = new FollowUp
             {
                 CustomerId = electricityUsage.CustomerId,
