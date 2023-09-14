@@ -1,7 +1,7 @@
 ---
 title: MySql Scripts
 component: SqlPersistence
-reviewed: 2020-07-16
+reviewed: 2023-09-14
 related:
  - nservicebus/operations
  - persistence/sql/operational-scripting
