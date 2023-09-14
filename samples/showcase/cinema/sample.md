@@ -8,13 +8,13 @@ component: Core
 
 ## Scenario
 
-Keep track of ticket sales and feature the film with the most tickets sold for the current month.
+Keep track of ticket sales at cinemas and feature the film with the most tickets sold for the current month.
 
 ```mermaid
 sequenceDiagram
-    Customer->>+Ticket Sales: Purchase Ticket
-    Ticket Sales->>+Headquarters: RecordTicketSale
-    Headquarters-->>-Ticket Sales: FeaturedFilmChanged
+    Customer->>+Cinema (Ticket Sales): Purchase Ticket
+    Cinema (Ticket Sales)->>+Cinema Headquarters: RecordTicketSale
+    Cinema Headquarters-->>-Cinema (Ticket Sales): FeaturedFilmChanged
 ```
 
 ## Running the sample
@@ -33,7 +33,6 @@ sequenceDiagram
 1. [.NET 7 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
 
 ### Ticket Sales project
-
 
 The Cinema.TicketSales project provides a console interface to sell tickets for two films. These ticket sales are reported to the Headquarters endpoint by sending a `RecordTicketSale` message.
 

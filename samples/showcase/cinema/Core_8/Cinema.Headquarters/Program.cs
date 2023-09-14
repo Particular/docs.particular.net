@@ -7,7 +7,7 @@ namespace Cinema.Headquarters
     {
         public static void Main(string[] args)
         {
-            Console.Title = "Movie Headquarters";
+            Console.Title = "Headquarters";
             CreateHostBuilder(args).Build().Run();
         }
 

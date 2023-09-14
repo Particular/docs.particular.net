@@ -40,7 +40,8 @@ namespace Cinema.Headquarters
 
             string featuredFilmAfterSale = GetFeaturedFilm();
 
-            if (featuredFilmAfterSale != string.Empty && featuredFilmBeforeNewSale != featuredFilmAfterSale)
+            if (featuredFilmAfterSale != string.Empty
+                && featuredFilmBeforeNewSale != featuredFilmAfterSale)
             {
                 log.LogInformation($"Featured film changed: {featuredFilmAfterSale}");
                 await context.Publish(new FeaturedFilmChanged
@@ -50,7 +51,8 @@ namespace Cinema.Headquarters
             }
 
             log.LogInformation(
-                $"Barbie Tickets: {Data.BarbieTicketCount}\nOppenheimer Tickets: {Data.OppenheimerTicketCount}");
+                $"Barbie Tickets: {Data.BarbieTicketCount}" +
+                $"\nOppenheimer Tickets: {Data.OppenheimerTicketCount}");
         }
         #endregion
 
