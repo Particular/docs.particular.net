@@ -36,7 +36,7 @@ namespace IntegrityTests
                     var firstLangVersionElement = xdoc.XPathSelectElement("/Project/PropertyGroup/LangVersion");
                     var value = firstLangVersionElement?.Value;
 
-                    return value == "10.0";
+                    return value is "10.0" or "10";
                 });
         }
     }
