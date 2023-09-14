@@ -9,8 +9,6 @@ class Program
         const string endpointName = "Samples.KafkaTrigger.ConsoleEndpoint";
         Console.Title = endpointName;
 
-        #region NServiceBus
-
         var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.EnableInstallers();
 
@@ -25,8 +23,6 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-
-        #endregion
 
         var config = new ProducerConfig
         {

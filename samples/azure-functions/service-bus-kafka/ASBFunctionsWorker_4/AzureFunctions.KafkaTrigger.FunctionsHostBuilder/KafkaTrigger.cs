@@ -20,10 +20,13 @@ public class KafkaTrigger
         this.logger = logger;
     }
 
+    #region KafkaTrigger
+
     [Function(nameof(ElectricityUsage))]
     public async Task ElectricityUsage([KafkaTrigger("LocalKafkaBroker", "topic", ConsumerGroup = "$Default")] string eventData,
             FunctionContext context)
     {
+
         var eventValue = JObject.Parse(eventData)["Value"]?.ToString();
         var electricityUsage = Messages.KafkaMessages.ElectricityUsage.Deserialize(eventValue);
 
@@ -41,6 +44,8 @@ public class KafkaTrigger
             await messageSession.Send(message);
         }
     }
+
+    #endregion
 
     // Because Kafka is an event stream, more messages arrive there than we might be able to handle with
     // Azure ServiceBus. For demo purposes an alert is raised at the exact usage of 42.

@@ -13,7 +13,7 @@ This sample shows how to process Kafka events using an Azure Functions trigger a
 
 ### Kafka and NServiceBus
 
-Kafka is an event streaming broker, similar to Azure Event Hubs. Event streaming brokers are used for partitioned logs, to store massive amounts of events that are coming in, for example from IoT devices. NServiceBus on the other hand works on top of messaging brokers like Azure Service Bus, RabbitMQ and Amazon SQS/SNS. They can be used to complement each other as shown in this sample, which has two projects.
+[Kafka](https://kafka.apache.org/) is an event streaming broker, similar to [Azure Event Hubs](https://azure.microsoft.com/en-us/products/event-hubs). Event streaming brokers are used to store massive amounts of events that are coming in, for example from IoT devices. NServiceBus on the other hand works on top of messaging brokers like Azure Service Bus, RabbitMQ and Amazon SQS/SNS. They can complement each other as shown in this sample, which has two projects.
 
 - A ConsoleEndpoint is the starting point of the sample, which products numerous events to Kafka.
 - An Azure Function using a Kafka trigger to consume the events and at a certain point sends a message using an NServiceBus SendOnly endpoint back to the ConsoleEndpoint.
@@ -57,20 +57,27 @@ The solution requires both `AzureFunctions.KafkaTrigger.FunctionsHostBuilder` an
 
 After the sample is running with both projects:
 
-1. The console window for `ConsoleEndpoint` accepts <key>ENTER</key> to start producing events into Kafka.
+1. The console window for `ConsoleEndpoint` accepts <kbd>ENTER</kbd> to start producing events into Kafka.
 1. The Azure Function will consume the events and verify if the event contains information that indicates a certain threshold has been reached. In that case it will send a `FollowUp` message with NServiceBus.
 1. The console window `ConsoleEndpoint` will receive the `FollowUp` message and process it with NServiceBus.
 
 ## Code walk-through
 
-The NServiceBus endpoint configured using `IFunctionHostBuilder` in the `Startup` class like this:
+The project `ConsoleEndpoint` produces the events as follows:
 
 snippet: ProduceEvent
 
-Note the `NServiceBusTriggerFunction` is used to automatically generate the Azure Functions trigger code that is needed to invoke NServiceBus.
+Kafka events can only contains strings for values. The Kafka SDK for .NET supports using schemas and serialization of events, but for simplicity reasons the event `ElectricityUsage` is serialized using Newtonsoft.Json.
 
-### Handlers
+### Kafka trigger
 
-These are the message handlers, with a `CustomDependency` passed in.
+A Kafka trigger in project `AzureFunctions.KafkaTrigger.FunctionsHostBuilder` consumes the event and verifies if the electricity usage for any customers and any of its units goes over a certain threshold. If so an NServiceBus SendOnly endpoint is used to send the message. The following code shows how to set up an NServiceBus endpoint in Azure Functions and register the `IMessageSession` instance with the dependency injection container:
 
 snippet: SetupNServiceBusSendOnly
+
+In the Kafka trigger, again for simplicity reasons, it is verified if the event has the value of `42` and a message is send back to the `ConsoleEndpoint`.
+
+snippet: KafkaTrigger
+
+The `FollowUp` message is then received in the `ConsoleEndpoint` in the NServiceBus `FollowUpHandler`  message handler.
+
