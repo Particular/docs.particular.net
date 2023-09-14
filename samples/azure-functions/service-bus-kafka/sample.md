@@ -18,7 +18,7 @@ Kafka is an event streaming broker, similar to Azure Event Hubs. Event streaming
 - A ConsoleEndpoint is the starting point of the sample, which products numerous events to Kafka.
 - An Azure Function using a Kafka trigger to consume the events and at a certain point sends a message using an NServiceBus SendOnly endpoint back to the ConsoleEndpoint.
 
-For more information about Kafka and NServiceBus read our blogpost [Let's talk about Kafka](https://particular.net/blog/lets-talk-about-kafka).
+For more information about Kafka and NServiceBus read the blogpost [Let's talk about Kafka](https://particular.net/blog/lets-talk-about-kafka).
 
 downloadbutton
 
