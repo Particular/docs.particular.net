@@ -64,6 +64,8 @@ The following table describes the extended support status for all major versions
 | <nobr>NServiceBus 4</nobr> | <nobr>2013-07-11</nobr> |   Unsupported   |               2016-09-29                |              2018-09-29               |
 | <nobr>NServiceBus 3</nobr> | <nobr>2012-03-08</nobr> |   Unsupported   |               2015-07-11                |              2017-07-11               |
 
+[Reach out](https://particular.net/contact) for further information or inquiries.
+
 ## Compatibility guarantees
 
 All new features are backward compatible by default. In rare cases when this is not possible, the new feature will be disabled by default and require an explicit opt-in in order to be enabled. These features are covered in the [upgrade guide](/nservicebus/upgrades/) for the new target version.
@@ -80,7 +82,7 @@ Therefore the recommended approach is to upgrade *one* major version at a time, 
 
 **Does this policy apply to the [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/), [ServicePulse](/servicepulse/) applications, or [Tools](/nservicebus/tools/)?**
 
-No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Packages Supported Versions](supported-versions.md) page. ServiceControl, ServicePulse and ServiceInsight are governed by their own support policy, linked below. 
+No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Packages Supported Versions](supported-versions.md) page. ServiceControl, ServicePulse and ServiceInsight are governed by their own support policy, linked below.
 
 - [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md)
 - [ServicePulse support policy](/servicepulse/support-policy.md)
