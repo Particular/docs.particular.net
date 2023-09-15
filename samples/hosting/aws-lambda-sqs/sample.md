@@ -63,9 +63,9 @@ snippet: TriggerMessageHandler
 
 There could be the need to dispatch a message after reacting to events other than messages being pushed to a queue. For example, responding to an S3 bucket file upload or to an HTTP request. This sample also demonstrates this use case.
 
-1. Open a browser and visit the URL produced during the execution of  `dotnet lambda deploy-serverless`. Running the command produced a list of outputs, use the value produced for `ApiURL` output.
-1. The AWS Lambda will receive the http call and send a `TriggerMessage` to the ServerLessEndpoint queue.
-1. As in the previous example, the AWS Lambda will receive the `TriggerMessage` and hand off its procesing to NServiceBus.
+1. Open a browser and visit the URL produced during the execution of  `dotnet lambda deploy-serverless`. The command produces a list of outputs; note the value for `ApiURL`.
+1. The AWS Lambda will receive the HTTP call and send a `TriggerMessage` to the ServerlessEndpoint queue.
+1. As in the previous example, the AWS Lambda will receive the `TriggerMessage` and hand off its processing to NServiceBus.
 1. The NServiceBus message handler for `TriggerMessage` on **ServerlessEndpoint** sends a `ResponseMessage` that will be handled by the **RegularEndpoint**
 
 snippet: HttpFunctionHandler
