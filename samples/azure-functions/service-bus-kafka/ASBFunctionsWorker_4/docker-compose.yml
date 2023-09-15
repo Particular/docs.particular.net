@@ -5,8 +5,6 @@ services:
     hostname: kafka
     ports:
       - "9092:9092"
-#    volumes: 
-#      - "kafka_data:/bitnami" 
     environment:
       # KRaft settings 
       - KAFKA_CFG_NODE_ID=0 
@@ -20,6 +18,3 @@ services:
       - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT 
       # Memory
       - KAFKA_HEAP_OPTS=-Xmx512M -Xms512M
-#volumes: 
-#  kafka_data: 
-#    driver: local 
