@@ -40,7 +40,7 @@ To set up a Docker container with Kafka, the sample contains a `docker-compose.y
 docker-compose up
 ```
 
-NOTE: If you're running Docker in Windows, you might run get an error saying _no matching manifest for windows/amd64 in the manifest list entries_. This can be solved by running the daemon in [experimental mode](https://stackoverflow.com/questions/48066994/docker-no-matching-manifest-for-windows-amd64-in-the-manifest-list-entries).
+NOTE: When running Docker in Windows, it's possible to get an error saying _no matching manifest for windows/amd64 in the manifest list entries_. This can be solved by running the daemon in [experimental mode](https://stackoverflow.com/questions/48066994/docker-no-matching-manifest-for-windows-amd64-in-the-manifest-list-entries).
 
 ## Sample structure
 
