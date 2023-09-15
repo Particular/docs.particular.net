@@ -8,6 +8,7 @@ class Program
     {
         Console.Title = "Samples.DynamoDB.Transactions.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Transactions.Client");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

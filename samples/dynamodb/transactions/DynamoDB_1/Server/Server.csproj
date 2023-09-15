@@ -3,9 +3,11 @@
     <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="1.0.0" />
+    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="1.*" />
+    <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />

@@ -23,6 +23,7 @@ class Program
             });
 
         var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Transactions.Server");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
         persistence.DynamoClient(amazonDynamoDbClient);
@@ -50,6 +51,4 @@ class Program
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
-
-    static ILog Log = LogManager.GetLogger<Program>();
 }
