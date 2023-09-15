@@ -37,6 +37,27 @@
         "DelaySeconds": 900
       }
     },
+    "OrderShippedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "OrderShipped",
+        "DisplayName": "OrderShipped"
+      }
+    },
+    "OrderDelayedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "OrderDelayed",
+        "DisplayName": "OrderDelayed"
+      }
+    },
+    "OrderReceivedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "OrderReceived",
+        "DisplayName": "OrderReceived"
+      }
+    },
     "DynamoTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {

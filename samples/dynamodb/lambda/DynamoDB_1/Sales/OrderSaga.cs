@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -7,10 +8,9 @@ using NServiceBus.Logging;
 public class OrderSaga : Saga<OrderSagaData>,
   IAmStartedByMessages<PlaceOrder>,
   IHandleMessages<CustomerBilled>,
-  IHandleMessages<InventoryStaged>
+  IHandleMessages<InventoryStaged>,
+  IHandleTimeouts<OrderDelayed>
 {
-  static ILog log = LogManager.GetLogger(typeof(OrderSagaData));
-
   protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
   {
     mapper.MapSaga(sagaData => sagaData.OrderId)
@@ -23,7 +23,9 @@ public class OrderSaga : Saga<OrderSagaData>,
   {
     log.Info($"Placing order: {Data.OrderId}");
 
-    await context.Publish(new OrderReceived()
+    await RequestTimeout(context, TimeSpan.FromSeconds(8), new OrderDelayed { OrderId = message.OrderId });
+
+    await context.Publish(new OrderReceived
     {
       OrderId = message.OrderId
     });
@@ -34,10 +36,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     log.Info($"The customer for order {Data.OrderId} has been billed.");
     Data.CustomerBilled = true;
 
-    if (Data.CustomerBilled && Data.InventoryStaged)
-    {
-      await ShipIt(context);
-    }
+    await ShipItIfPossible(context);
   }
 
   public async Task Handle(InventoryStaged message, IMessageHandlerContext context)
@@ -45,21 +44,28 @@ public class OrderSaga : Saga<OrderSagaData>,
     log.Info($"The inventory for order {Data.OrderId} has been staged.");
     Data.InventoryStaged = true;
 
-    if (Data.CustomerBilled && Data.InventoryStaged)
+    await ShipItIfPossible(context);
+  }
+
+  public async Task Timeout(OrderDelayed state, IMessageHandlerContext context)
+  {
+    log.Info($"Order {Data.OrderId} is slightly delayed.");
+
+    await context.Publish(state);
+  }
+
+  async Task ShipItIfPossible(IMessageHandlerContext context)
+  {
+    if (Data is { CustomerBilled: true, InventoryStaged: true })
     {
-      await ShipIt(context);
+      log.Info($"Order {Data.OrderId} has been shipped.");
+
+      // Send duplicate message for outbox test.
+      await context.Publish(new OrderShipped { OrderId = Data.OrderId });
+      MarkAsComplete();
     }
   }
 
-  async Task ShipIt(IMessageHandlerContext context)
-  {
-    log.Info($"Order {Data.OrderId} has been shipped.");
-
-    // Send duplicate message for outbox test.
-    await context.Publish(new OrderShipped { OrderId = Data.OrderId });
-    MarkAsComplete();
-  }
+  static ILog log = LogManager.GetLogger(typeof(OrderSagaData));
 }
-
-
 #endregion

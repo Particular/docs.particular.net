@@ -7,7 +7,7 @@
   ],
   "profile": "default",
   "region": "",
-  "configuration": "Debug",
+  "configuration": "Release",
   "framework": "net6.0",
   "template": "serverless.template",
   "template-parameters": ""
