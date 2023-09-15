@@ -9,6 +9,8 @@ The [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/re
 
 NOTE: PowerShell must be used to install individual instances. Example scripts are provided for each step.
 
+NOTE: For scenarios where retaining audit log data is not required (e.g. a test environment), this process is not necessary -- the audit instance can simply be destroyed and recreated with the same name.
+
 ## Audit instances
 
 The process follows these steps:
