@@ -5,7 +5,6 @@ reviewed: 2022-08-23
 component: Core
 related:
  - nservicebus/serialization
- - samples/pipeline/multi-serializer
 ---
 
 

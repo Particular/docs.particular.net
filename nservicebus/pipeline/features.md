@@ -9,7 +9,6 @@ related:
  - samples/header-manipulation
  - samples/logging/stack-trace-cleaning
  - samples/pipeline/handler-timer
- - samples/pipeline/multi-serializer
  - samples/startup-shutdown-sequence
 ---
 
