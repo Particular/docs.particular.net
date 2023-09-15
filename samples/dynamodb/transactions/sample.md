@@ -13,6 +13,16 @@ This sample shows a client/server scenario using saga and outbox persistence to 
 
 The sample uses a [DynamoDB local instance](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html) by default. See the [AWS guidance on deploying DynamoDB local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html#docker).
 
+Alternatively with Docker installed locally, change to the Server project directory and type
+
+```bash
+docker-compose up -d
+```
+
+the data is only kept in memory and will be gone when the container is removed. It is possible to inspect the data written to DynamoDB by using the [NoSQL Workbench for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html). The below screenshot shows the PK and SK created for the not yet completed Saga, the outbox entries and the transactionally inserted OrderShippingInformation.
+
+![](nosql_workbench.png)
+
 ## Projects
 
 ### Client
