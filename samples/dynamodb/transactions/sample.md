@@ -33,7 +33,7 @@ Contains the shared message contracts used by all endpoints.
 
 ## Persistence config
 
-Configure the endpoint to use Cosmos DB Persistence.
+Configure the endpoint to use DynamoDB Persistence.
 
 snippet: DynamoDBConfig
 
