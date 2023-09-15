@@ -21,7 +21,7 @@ docker-compose up -d
 
 the data is only kept in memory and will be gone when the container is removed. It is possible to inspect the data written to DynamoDB by using the [NoSQL Workbench for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html). The below screenshot shows the PK and SK created for the not yet completed Saga, the outbox entries and the transactionally inserted OrderShippingInformation.
 
-![](nosql_workbench.png)
+![](nosql-workbench.png)
 
 ## Projects
 
