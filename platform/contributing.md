@@ -1,7 +1,7 @@
 ---
 title: How to contribute
 summary: The Particular Platform is open source and takes contributions from the community.
-reviewed: 2020-07-27
+reviewed: 2023-09-15
 ---
 
 ## Getting started
@@ -12,30 +12,12 @@ reviewed: 2020-07-27
 
 ## Raising bugs/feature requests
 
-This is done using GitHub Issues.
-
-> Use issues to track ideas, enhancements, tasks, or bugs for work on GitHub.
-
-[About issues](https://help.github.com/articles/about-issues/)
-
-For more information on issues see:
-
- * [Creating an issue](https://help.github.com/articles/creating-an-issue/)
+This is done using [GitHub Issues](https://help.github.com/articles/about-issues/). For more information on issues, see [Creating an issue](https://help.github.com/articles/creating-an-issue/).
  
 
 ## Submitting changes
 
-This is done using GitHub Pull Requests.
-
-> Pull requests let you tell others about changes you've pushed to a repository on GitHub. Once a pull request is opened, you can discuss and review the potential changes with collaborators and add follow-up commits before the changes are merged into the repository.
-
-[About pull requests](https://help.github.com/articles/about-pull-requests/)
- 
-
-For more information on Pull Requests see:
-
- * [Working with forks](https://help.github.com/articles/working-with-forks/)
- * [Creating a pull request from a fork](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
+This is done using [GitHub Pull Requests](https://help.github.com/articles/about-pull-requests/). For more information on Pull Requests, see [Working with forks](https://help.github.com/articles/working-with-forks/) and [Creating a pull request from a fork](https://help.github.com/articles/creating-a-pull-request-from-a-fork/).
 
 ### Contributor License Agreement (CLA)
 
