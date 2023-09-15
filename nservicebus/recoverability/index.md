@@ -3,7 +3,7 @@ title: Recoverability
 summary: Explains how exceptions are handled, and actions retried, during message processing
 component: Core
 isLearningPath: true
-reviewed: 2023-09-14
+reviewed: 2023-09-15
 redirects:
  - nservicebus/how-do-i-handle-exceptions
  - nservicebus/errors
@@ -24,19 +24,17 @@ An oversimplified mental model for Recoverability could be thought of a try / ca
 
 snippet: Recoverability-pseudo-code
 
-The reality is more complex. Depending on the transports capabilities, the transactionality mode of the endpoint and user customizations recoverability tries to recover from message failures. For example on a transactional endpoint it will roll back receive transaction when an exception bubbles through to the NServiceBus infrastructure. The message is then returned to the input queue, and any messages that the user code tried to send or publish won't be sent out. The very least that recoverability will ensure is that messages which failed multiple times get moved to the configured error queue. The part of recoverability which is responsible to move failed messages to the error queue is called fault handling.
+The reality is more complex, depending on the transport's capabilities, the transaction mode of the endpoint, and user customizations. For example, on a transactional endpoint it will roll back the receive transaction when an exception bubbles through to the NServiceBus infrastructure. The message is then returned to the input queue, and any messages that the user code tried to send or publish won't be sent out. The very least that recoverability will ensure is that messages which failed multiple times get moved to the configured error queue. The part of recoverability which is responsible to move failed messages to the error queue is called fault handling.
 
 To prevent sending all incoming messages to the error queue during a major system outage (e.g. when a database or a third-party service is down), the recoverability mechanism allows enabling [automatic rate-limiting](#automatic-rate-limiting). When enabled, NServiceBus detects the outage after a configured number of consecutive failures and automatically switches to rate-limiting mode. In this mode, only one message is attempted to probe if the problem persists. Once a message can be processed correctly, the system automatically switches to regular mode.
 
-NOTE: When a message cannot be deserialized all retry mechanisms will be bypassed and the message will be moved directly to the error queue.
+When a message cannot be deserialized all retry mechanisms will be bypassed and the message will be moved directly to the error queue.
 
 ## Immediate retries
 
-By default up to five immediate retries are performed if the message processing results in exception being thrown. This value [can be configured](/nservicebus/recoverability/configure-immediate-retries.md).
+By default up to five immediate retries are performed if the message processing results in exception being thrown. The  [number of immediate retries can be configured](/nservicebus/recoverability/configure-immediate-retries.md).
 
-Note: The configured value describes the minimum number of times a message will be retried if its processing consistently fails. Especially in environments with competing consumers on the same queue, there is an increased chance of retrying a failing message more times across the endpoints.
-
-Note: The actual number of immediate retries performed is done on a best-effort basis. Immediate retries might be performed more than configured number of times (even if configured to be off) depending on the environment (e.g. when there are competing consumers). To ensure messages are processed once at most, the endpoint must be configured to use [transaction mode](/transports/transactions.md) `None`.
+The configured value describes the minimum number of times a message will be retried if its processing consistently fails. Especially in environments with competing consumers on the same queue, there is an increased chance of retrying a failing message more times across different endpoint instances.
 
 
 ### Transport transaction requirements

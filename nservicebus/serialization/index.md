@@ -7,6 +7,7 @@ isLearningPath: true
 related:
  - samples/pipeline/multi-serializer
  - samples/serializers
+ - samples/pipeline-multi-serializer
 ---
 
 NServiceBus takes instances of .NET objects (messages, events, and commands) and sends/receives them over a specified [transport](/transports/). As part of this process, the object must be serialized and deserialized. NServiceBus achieves this using **serializers**.
