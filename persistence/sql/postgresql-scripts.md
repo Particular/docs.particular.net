@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Scripts
 component: SqlPersistence
-reviewed: 2021-10-06
+reviewed: 2023-09-14
 related:
  - nservicebus/operations
  - persistence/sql/operational-scripting

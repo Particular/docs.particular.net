@@ -1,21 +1,19 @@
 ---
 title: Automatic Retries
 summary: Shows immediate and delayed retries when a handler throws an exception.
-reviewed: 2020-07-30
+reviewed: 2023-09-15
 component: Core
 related:
 - nservicebus/recoverability
 ---
 
+This sample shows the different ways that NServiceBus [recoverability features](/nservicebus/recoverability/) retry messages that have failed.
 
-
-include: recoverability-rename
+## Running the sample
 
 Run the sample **without debugging**.
 
 The message handler in both endpoints is set to throw an exception, causing the handled message to end up in the error queue. The portable Particular Service Platform will list the messages arriving in the error queue.
-
-include: platformlauncher-windows-required
 
 snippet: handler
 

@@ -1,6 +1,6 @@
 ---
 title: Routing Slips
-reviewed: 2020-07-28
+reviewed: 2023-09-15
 component: MessageRouting
 ---
 

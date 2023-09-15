@@ -5,7 +5,6 @@ component: Core
 reviewed: 2023-06-28
 isLearningPath: true
 related:
- - samples/pipeline/multi-serializer
  - samples/serializers
 ---
 

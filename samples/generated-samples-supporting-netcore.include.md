@@ -41,7 +41,6 @@
 * [Change/Move Message Type](/samples/serializers/change-message-type/)
 * [Command routing](/samples/routing/command-routing/)
 * [CommonLogging Usage](/samples/logging/commonlogging/)
-* [Control of serialization via the pipeline](/samples/pipeline/multi-serializer/)
 * [Custom Log4Net appender](/samples/logging/log4net-custom/)
 * [Custom Logger Factory](/samples/logging/custom-factory/)
 * [Custom mapping](/samples/nhibernate/custom-mappings/)

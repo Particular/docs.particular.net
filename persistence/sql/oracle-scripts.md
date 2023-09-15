@@ -1,7 +1,7 @@
 ---
 title: Oracle Scripts
 component: SqlPersistence
-reviewed: 2020-11-26
+reviewed: 2023-09-14
 related:
  - nservicebus/operations
  - persistence/sql/operational-scripting
