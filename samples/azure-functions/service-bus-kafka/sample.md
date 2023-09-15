@@ -13,10 +13,10 @@ This sample shows how to process Kafka events using an Azure Functions trigger a
 
 ### Kafka and NServiceBus
 
-[Kafka](https://kafka.apache.org/) is an event streaming broker, similar to [Azure Event Hubs](https://azure.microsoft.com/en-us/products/event-hubs). Event streaming brokers are used to store massive amounts of events that are coming in, for example from IoT devices. NServiceBus on the other hand works on top of messaging brokers like Azure Service Bus, RabbitMQ and Amazon SQS/SNS. They can complement each other as shown in this sample, which has two projects.
+[Kafka](https://kafka.apache.org/) is an event streaming broker, similar to [Azure Event Hubs](https://azure.microsoft.com/en-us/products/event-hubs). Event streaming brokers are used to store massive amounts of incoming events, for example from IoT devices. NServiceBus on the other hand works on top of messaging brokers like Azure Service Bus, RabbitMQ, and Amazon SQS/SNS. They can complement each other as shown in this sample, which has two projects.
 
-- A ConsoleEndpoint is the starting point of the sample, which products numerous events to Kafka.
-- An Azure Function using a Kafka trigger to consume the events and at a certain point sends a message using an NServiceBus SendOnly endpoint back to the ConsoleEndpoint.
+- The ConsoleEndpoint is the starting point of the sample, which produces numerous Kafka events.
+- The Azure Function uses a Kafka trigger to consume the events and send NServiceBus messages back to the ConsoleEndpoint via Azure ServiceBus.
 
 For more information about Kafka and NServiceBus read the blogpost [Let's talk about Kafka](https://particular.net/blog/lets-talk-about-kafka).
 
@@ -26,11 +26,7 @@ downloadbutton
 
 ### Configure Connection string
 
-To use the sample a valid Service Bus connection string must be provided
-
-- in the `local.settings.json` file in the `AzureFunctions.KafkaTrigger.FunctionsHostBuilder` project.
-
-- as an environment variable named `AzureServiceBus_ConnectionString`.
+To use the sample a valid Service Bus connection string must be provided in the `local.settings.json` file in the `AzureFunctions.KafkaTrigger.FunctionsHostBuilder` project and as an environment variable named `AzureServiceBus_ConnectionString`
 
 ### Kafka broker
 
@@ -57,8 +53,8 @@ The solution requires both `AzureFunctions.KafkaTrigger.FunctionsHostBuilder` an
 
 After the sample is running with both projects:
 
-1. The console window for `ConsoleEndpoint` accepts <kbd>ENTER</kbd> to start producing events into Kafka.
-1. The Azure Function will consume the events and verify if the event contains information that indicates a certain threshold has been reached. In that case it will send a `FollowUp` message with NServiceBus.
+1. Press <kbd>ENTER</kbd> in the `ConsoleEndpoint` window to start producing Kafka events.
+1. The Azure Function will consume each Kafka event and check if it contains information that indicates a certain threshold has been reached. When it has, the function will send a `FollowUp` Azure Service Bus message to the ConsoleEndpoint using NServiceBus.
 1. The console window `ConsoleEndpoint` will receive the `FollowUp` message and process it with NServiceBus.
 
 ## Code walk-through
