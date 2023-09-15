@@ -1,7 +1,7 @@
 ---
 title: Windows Service Installation
 summary: How to install an NServiceBus endpoint as a Windows service
-reviewed: 2020-08-03
+reviewed: 2023-09-15
 component: Core
 isLearningPath: true
 related:
@@ -14,7 +14,7 @@ related:
 
 ## Installation
 
-When self-hosting a Windows Service, the startup code is in full control of installation. Windows supports these features though the use of the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx). For example, a basic install and uninstall commands would be:
+When [self-hosting a Windows Service](/samples/hosting/generic-host/), the startup code is in full control of installation. Windows supports these features though the use of the [Service Control tool](https://technet.microsoft.com/en-us/library/cc754599.aspx). For example, a basic install and uninstall commands would be:
 
 ```dos
 sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
@@ -68,7 +68,7 @@ sc.exe config SalesEndpoint depend= MSMQ/MSDTC/RavenDB
 
 Windows has a Windows Service recovery mechanism that makes sure a crashed process will be restarted.
 
-The endpoint can fail when using the [NServiceBus Host](nservicebus-host/) or when [self-hosting and implementing a critical error handler that exits the process](critical-errors.md#default-behavior) in case a critical error occurs. 
+The endpoint can fail when [self-hosting and implementing a critical error handler that exits the process](critical-errors.md#default-behavior) in case a critical error occurs. 
 
 If Windows Service Recovery is not configured, message processing will halt. Therefore it's important to configure recovery options when hosting an NServiceBus endpoint as a Windows Service. 
 
