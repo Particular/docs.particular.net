@@ -13,7 +13,7 @@ This sample shows a client/server scenario using saga and outbox persistence to 
 
 The sample uses a [DynamoDB local instance](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html) by default. See the [AWS guidance on deploying DynamoDB local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html#docker).
 
-Alternatively with Docker installed locally, change to the Server project directory and type
+Alternatively with Docker installed locally, execute the following command in the solution directory:
 
 ```bash
 docker-compose up -d
