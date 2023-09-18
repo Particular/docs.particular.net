@@ -1,7 +1,8 @@
 ---
 title: ServiceInsight Troubleshooting
 summary: How to resolve common ServiceInsight issues
-reviewed: 2022-05-12
+reviewed: 2023-09-18
+component: ServiceInsight
 ---
 
 ## ServiceInsight is slow

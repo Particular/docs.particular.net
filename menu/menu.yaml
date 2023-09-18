@@ -1276,6 +1276,8 @@
       Title: Data not available
     - Url: serviceinsight/logging
       Title: Logging
+    - Url: serviceinsight/troubleshooting
+      Title: Troubleshooting
 - Name: ServicePulse
   Topics:
   - Title: Introduction
