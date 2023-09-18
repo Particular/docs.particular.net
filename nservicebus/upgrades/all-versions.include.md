@@ -923,7 +923,7 @@ No versions released.
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Testing/8.1.0) | 2023-06-19     | -                 | -                                 |
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.Testing/8.0.1) | 2022-11-17     | 2023-09-19        | Superseded by 8.1.x               |
+| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Testing/8.0.1) | ~~2022-11-17~~ | ~~2023-09-19~~    | ~~Superseded by 8.1.x~~           |
 | [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.2) | 2022-03-11     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~7.3.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.3.0) | ~~2021-09-07~~ | ~~2022-06-11~~    | ~~Superseded by 7.4.x~~           |
 | [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus.Testing/7.2.0) | ~~2019-09-10~~ | ~~2021-12-07~~    | ~~Superseded by 7.3.x~~           |

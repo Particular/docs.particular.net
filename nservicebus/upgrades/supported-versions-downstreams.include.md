@@ -452,7 +452,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Testing/8.1.0) | 2023-06-19     | -                 | -                                 |
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.Testing/8.0.1) | 2022-11-17     | 2023-09-19        | Superseded by 8.1.x               |
+| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Testing/8.0.1) | ~~2022-11-17~~ | ~~2023-09-19~~    | ~~Superseded by 8.1.x~~           |
 | [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.2) | 2022-03-11     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.TransactionalSession](/nuget/NServiceBus.TransactionalSession)
