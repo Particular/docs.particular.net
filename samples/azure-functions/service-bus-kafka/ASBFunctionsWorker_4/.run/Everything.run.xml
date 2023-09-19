@@ -1,0 +1,7 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Everything" type="CompoundRunConfigurationType">
+    <toRun name="AzureFunctions.KafkaTrigger.FunctionsHostBuilder" type="DotNetProject" />
+    <toRun name="ConsoleEndpoint" type="DotNetProject" />
+    <method v="2" />
+  </configuration>
+</component>
