@@ -51,6 +51,7 @@ As part of a full review the following should be done:
 * All links are relevant. No 3rd party links have redirects or 404s.
 * Are there any more links that can be added to improve the content
 * Content is correct up to and including the current released version
+* Content can benefit from having its own header so that it is picked up while searching for a related topic.
 * Summary and title is adequate
 * Update reviewed date in header, even if no changes were made.
 
