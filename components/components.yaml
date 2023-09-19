@@ -638,7 +638,7 @@
 
 - Key: ASBFunctions
   Name: NServiceBus.AzureFunctions.InProcess.ServiceBus
-  DocsUrl: /nservicebus/hosting/azure-functions-service-bus
+  DocsUrl: /nservicebus/hosting/azure-functions-service-bus/in-process
   GitHubOwner: Particular
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.InProcess.ServiceBus
@@ -647,7 +647,7 @@
 
 - Key: ASBFunctionsWorker
   Name: NServiceBus.AzureFunctions.Worker.ServiceBus
-  DocsUrl: /nservicebus/hosting/azure-functions-service-bus/isolated-worker
+  DocsUrl: /nservicebus/hosting/azure-functions-service-bus
   GitHubOwner: Particular
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.Worker.ServiceBus

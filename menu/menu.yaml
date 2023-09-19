@@ -492,14 +492,22 @@
       - Url: nservicebus/hosting/asp-net
         Title: ASP.NET
     - Url: nservicebus/hosting/azure-functions-service-bus
-      Title: Azure Functions with Service Bus
+      Title: Azure Functions with Service Bus (Isolated Worker)
       Articles:
-      - Url: nservicebus/hosting/azure-functions-service-bus/custom-triggers
+      - Url: nservicebus/hosting/azure-functions-service-bus/analyzers
+        Title: Roslyn analyzers
+    - Url: nservicebus/hosting/azure-functions-service-bus/in-process
+      Title: Azure Functions with Service Bus (In Process)
+      Articles:        
+      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/custom-triggers
         Title: Custom triggers
-      - Url: nservicebus/hosting/azure-functions-service-bus/isolated-worker
-        Title: Isolated worker
+      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/analyzers
+        Title: Roslyn analyzers
     - Url: nservicebus/hosting/aws-lambda-simple-queue-service
       Title: AWS Lambda with SQS
+      Articles:
+      - Url: nservicebus/hosting/aws-lambda-simple-queue-service/analyzers
+        Title: Roslyn analyzers
     - Url: nservicebus/hosting/service-fabric-hosting
       Title: Service Fabric
       Articles:
