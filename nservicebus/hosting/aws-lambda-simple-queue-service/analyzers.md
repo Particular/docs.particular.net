@@ -50,7 +50,7 @@ Starting in version 1.1, [Roslyn analyzers](https://docs.microsoft.com/en-us/vis
 
 * **Rule ID**: NSBLAM007
 * **Severity**:Error
-* **Example message**: The NServiceBus endpoint address in AWS Lambda is determined by the ServiceBusTrigger attribute.
+* **Example message**: The NServiceBus endpoint address in AWS Lambda is determined by the serverless template.
 
 ## Options API
 
