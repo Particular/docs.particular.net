@@ -6,6 +6,8 @@ versions: '[7,)'
 reviewed: 2023-01-03
 ---
 
+INFO: This document does not apply to Azure Function hosts. For Azure Function hosts, see [Azure Function In-process diagnostics](/nservicebus/hosting/azure-functions-service-bus/#configuration-custom-diagnostics) or [Azure Function Isolated Worker diagnostics](/nservicebus/hosting/azure-functions-service-bus/isolated-worker.md#custom-triggers-custom-diagnostics)
+
 To make troubleshooting easier, diagnostic information is collected during endpoint startup and written to a `.diagnostics` sub-folder in the host output directory.
 
 NOTE: By default, the output directory is called `AppDomain.CurrentDomain.BaseDirectory`, except for web applications where `App_Data` is used instead.
