@@ -26,7 +26,7 @@ class Program
 
         var config = new ProducerConfig
         {
-            BootstrapServers = "localhost:9092",
+            BootstrapServers = "localhost:9094",
             ClientId = "producer-1",
             BatchSize = 50
         };
