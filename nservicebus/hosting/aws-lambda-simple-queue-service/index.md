@@ -35,6 +35,8 @@ Transport installers are not supported. The creation of the required queues may 
 
 ## Configuration
 
+The configuration API exposes NServiceBus configuration options to allow customization, however, not all of the options will be [applicable to execution within AWS Lambda](./analyzers.md).
+
 ### Routing
 
 Specifying [command routing](/nservicebus/messaging/routing.md#command-routing) for an AWS Lambda endpoint:
@@ -76,7 +78,6 @@ The license is provided via the `NSERVICEBUS_LICENSE` environment variable, whic
 It is sometimes useful to access the native Amazon SQS message from behaviors and handlers. In addition to `SqsTransport`'s support for [Amazon SQS Native Integration](/transports/sqs/native-integration.md), `AwsLambdaSQSEndpoint` also provides access to an instance of the native Lambda message type `SQSEvent.SQSMessage` from the message processing context.
 
 snippet: native-lambda-sqs-message
-
 
 ## Supported features
 
