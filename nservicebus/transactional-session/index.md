@@ -60,7 +60,7 @@ snippet: committing-transactional-session
 
 Disposing the transactional session without committing will roll back any changes that were made.
 
-Warn: The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
+NOTE: The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
 
 ### Advanced configuration
 
