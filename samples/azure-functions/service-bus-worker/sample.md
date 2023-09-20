@@ -3,7 +3,7 @@ title: Using NServiceBus in Azure Functions (isolated process)
 summary: Using NServiceBus with Azure Service Bus triggers and Azure Functions isolated worker hosting model
 component: ASBFunctionsWorker
 related:
- - nservicebus/hosting/azure-functions-service-bus/isolated-worker
+ - nservicebus/hosting/azure-functions-service-bus
 reviewed: 2021-08-31
 ---
 

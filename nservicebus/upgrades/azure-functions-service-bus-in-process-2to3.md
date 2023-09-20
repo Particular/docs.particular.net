@@ -18,7 +18,7 @@ include: servicebus_options_enable_cross_entity_transactions
 
 ## Manually invoking process message
 
-In version 2 of the Azure Functions package, `IFunctionEndpoint` exposes two different `Process` methods where the one accepting a `IMessageReceiver` is the one that [processed the message in "atomic sends with receive" mode](/nservicebus/hosting/azure-functions-service-bus/#message-consistency).
+In version 2 of the Azure Functions package, `IFunctionEndpoint` exposes two different `Process` methods where the one accepting a `IMessageReceiver` is the one that [processed the message in "atomic sends with receive" mode](/nservicebus/hosting/azure-functions-service-bus/in-process/#message-consistency).
 
 Version 3 exposes different methods for the two different use cases.
 

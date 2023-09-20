@@ -65,4 +65,4 @@ functionsHostBuilder.UseNServiceBus(endpointName, endpointConfiguration =>
 
 ## Static hosting model has been deprecated
 
-The `ServiceBusTriggeredEndpointConfiguration.FromAttributes()` static factory method that was used in the preview package has been deprecated. Instead, use [the host builder configuration model](/nservicebus/hosting/azure-functions-service-bus/#basic-usage-endpoint-configuration).
+The `ServiceBusTriggeredEndpointConfiguration.FromAttributes()` static factory method that was used in the preview package has been deprecated. Instead, use [the host builder configuration model](/nservicebus/hosting/azure-functions-service-bus/in-process/#basic-usage-endpoint-configuration).

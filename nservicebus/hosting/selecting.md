@@ -73,7 +73,7 @@ Although there is a [comparison chart](https://docs.microsoft.com/en-us/azure/ar
 
 ### AWS Lambda
 
-AWS Lambda can be used to run NServiceBus endpoints in a serverless and dynamically scaled environment. See [AWS Lambda with SQS](/nservicebus/hosting/aws-lambda-simple-queue-service.md) for more details.
+AWS Lambda can be used to run NServiceBus endpoints in a serverless and dynamically scaled environment. See [AWS Lambda with SQS](/nservicebus/hosting/aws-lambda-simple-queue-service/) for more details.
 
 ### Virtual Machines
 
