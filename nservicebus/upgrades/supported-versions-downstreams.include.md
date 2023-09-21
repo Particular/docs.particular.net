@@ -50,8 +50,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.1) | 2022-11-17     | -                 | -                                 |
-| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.2) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.2) | 2022-11-17     | -                 | -                                 |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.3) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
@@ -183,8 +183,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.1) | 2022-11-17     | -                 | -                                 |
-| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.2) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.2) | 2022-11-17     | -                 | -                                 |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.3) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 ### Serializer packages
 
@@ -299,7 +299,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.2.0) | 2023-06-28     | -                 | -                                 |
 | [4.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.1.1) | 2022-12-21     | 2023-09-28        | Superseded by 4.2.x               |
-| [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.0.1) | ~~2022-11-17~~ | ~~2023-03-21~~    | ~~Superseded by 4.1.x~~           |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/3.0.0) | 2022-01-12     | 2023-11-17        | Superseded by 4.0.x               |
 
 #### [NServiceBus.AzureFunctions.Worker.ServiceBus](/nuget/NServiceBus.AzureFunctions.Worker.ServiceBus)
@@ -307,7 +306,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.1.0) | 2022-12-21     | -                 | -                                 |
-| [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.0.0) | ~~2022-11-17~~ | ~~2023-03-21~~    | ~~Superseded by 4.1.x~~           |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.1.0) | 2022-08-31     | 2023-11-17        | Superseded by 4.0.x               |
 
 #### [NServiceBus.Extensions.Hosting](/nuget/NServiceBus.Extensions.Hosting)
@@ -498,7 +496,7 @@
 | [2.37.x](https://www.nuget.org/packages/Particular.PlatformSample/2.37.0) | 2023-07-21     | 2023-11-16        | Superseded by 2.38.x              |
 | [2.36.x](https://www.nuget.org/packages/Particular.PlatformSample/2.36.0) | 2023-07-05     | 2023-10-21        | Superseded by 2.37.x              |
 | [2.35.x](https://www.nuget.org/packages/Particular.PlatformSample/2.35.0) | 2023-06-22     | 2023-10-05        | Superseded by 2.36.x              |
-| [2.34.x](https://www.nuget.org/packages/Particular.PlatformSample/2.34.0) | 2023-06-20     | 2023-09-22        | Superseded by 2.35.x              |
+| [~~2.34.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.34.0) | ~~2023-06-20~~ | ~~2023-09-22~~    | ~~Superseded by 2.35.x~~          |
 | [~~2.33.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.33.0) | ~~2023-06-07~~ | ~~2023-09-20~~    | ~~Superseded by 2.34.x~~          |
 | [~~2.32.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.32.0) | ~~2023-06-02~~ | ~~2023-09-07~~    | ~~Superseded by 2.33.x~~          |
 | [~~2.31.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.31.0) | ~~2023-04-19~~ | ~~2023-09-02~~    | ~~Superseded by 2.32.x~~          |
@@ -511,7 +509,6 @@
 | [~~2.22.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.22.1) | ~~2023-02-03~~ | ~~2023-05-23~~    | ~~Superseded by 2.24.x~~          |
 | [~~2.20.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.20.0) | ~~2023-01-18~~ | ~~2023-05-03~~    | ~~Superseded by 2.22.x~~          |
 | [~~2.19.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.19.0) | ~~2022-12-21~~ | ~~2023-04-18~~    | ~~Superseded by 2.20.x~~          |
-| [~~2.18.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.18.0) | ~~2022-12-01~~ | ~~2023-03-21~~    | ~~Superseded by 2.19.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
