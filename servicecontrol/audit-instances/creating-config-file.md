@@ -282,11 +282,3 @@ The percentage threshold for the [Critical message database storage space](/serv
 Type: int
 
 Default: 5
-
-#### Raven/Esent/LogsPath
-
-The path for the Esent logs on disk.
-
-Type: string
-
-Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs`
