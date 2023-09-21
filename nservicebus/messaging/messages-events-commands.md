@@ -50,13 +50,14 @@ Messages represent data contracts between endpoints. They should be designed acc
 
 Messages should:
 
-* be simple [POCO](https://en.wikipedia.org/wiki/Plain_old_CLR_object) types ([preferably `interfaces`](messages-as-interfaces.md)).
+* be simple [POCO](https://en.wikipedia.org/wiki/Plain_old_CLR_object) types.
 * be as small as possible.
 * satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle). Types used for other purposes (e.g. domain objects, data access objects, or UI binding objects) should not be used as messages.
+* consider using [interfaces as messages](messages-as-interfaces.md)
 
 Note: Prior to NServiceBus version 7.2, messages had to be defined as a `class`. Defining them as a `struct` would result in a runtime exception.
 
-Generic message definitions (e.g. `IMyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message or to use inheritance to reuse shared message characteristics.
+Generic message definitions (e.g. `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message or to use inheritance to reuse shared message characteristics.
 
 Messages define the data contracts between endpoints. More details are available in the [sharing message contracts documentation](sharing-contracts.md).
 
@@ -78,11 +79,11 @@ The simplest way to identify messages is to use interfaces.
 * `NServiceBus.IMessage` for any other type of message (e.g. a _reply_ in a request response pattern).
 
 ```cs
-public interface IMyCommand : ICommand { }
+public class MyCommand : ICommand { }
 
-public interface IMyEvent : IEvent { }
+public class MyEvent : IEvent { }
 
-public interface IMyMessage : IMessage { }
+public class MyMessage : IMessage { }
 ```
 
 ### Conventions
