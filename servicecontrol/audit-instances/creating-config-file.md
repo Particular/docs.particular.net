@@ -285,6 +285,9 @@ Default: 5
 
 #### Raven/Esent/LogsPath
 
+
+This setting is applicable only on instances that use the RavenDB 3.5 storage engine.
+
 The path for the Esent logs on disk.
 
 Type: string
