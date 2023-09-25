@@ -5,9 +5,12 @@ namespace Cinema.Headquarters
 {
     internal static class Program
     {
+        static string endpointName = "Cinema.Headquarters";
         public static void Main(string[] args)
         {
-            Console.Title = "Headquarters";
+            if (args.Count() > 0) endpointName = args[0];
+
+            Console.Title = endpointName;
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -24,7 +27,7 @@ namespace Cinema.Headquarters
                     // TODO: consider moving common endpoint configuration into a shared project
                     // for use by all endpoints in the system
 
-                    var endpointConfiguration = new EndpointConfiguration("Cinema.Headquarters");
+                    var endpointConfiguration = new EndpointConfiguration(endpointName);
 
                     // Learning Transport: https://docs.net/transports/learning/
                     var routing = endpointConfiguration.UseTransport(new LearningTransport());

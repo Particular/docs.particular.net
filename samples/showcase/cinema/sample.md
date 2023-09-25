@@ -8,7 +8,9 @@ component: Core
 
 ## Scenario
 
-Keep track of ticket sales at cinemas and feature the film with the most tickets sold for the current month.
+This sample was created as part of a demo showcasing the ease with which a distributed system can be created using the [Particular dot net new Templates](/nservicebus/dotnet-templates/).
+
+The aim of the solution is to keep track of ticket sales at cinemas and feature the film with the most tickets sold for the current month.
 
 ```mermaid
 sequenceDiagram
