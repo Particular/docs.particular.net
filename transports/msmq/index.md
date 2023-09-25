@@ -87,7 +87,7 @@ DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Serv
 
 ## MSMQ machine name limitation
 
-For MSMQ to function properly, [the server name must be 15 characters or less](http://geekswithblogs.net/Plumbersmate/archive/2012/02/03/make-sure-computer-names-are-15-characters-or-less-fro.aspx). This is because of a NETBIOS limitation.
+For MSMQ to function properly, the server name must be 15 characters or less. This is because of a NETBIOS limitation.
 
 
 ## MSMQ clustering
