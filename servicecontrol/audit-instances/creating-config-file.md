@@ -285,7 +285,10 @@ Default: 5
 
 #### Raven/Esent/LogsPath
 
-The path for the Esent logs on disk. Note that this setting applies only to audit instances upgraded from previous versions of ServiceControl and that still use RavenDB 3.5. New audit instances use RavenDB 5 and don't rely on ESENT.
+
+This setting is applicable only on instances that use the RavenDB 3.5 storage engine.
+
+The path for the Esent logs on disk.
 
 Type: string
 
