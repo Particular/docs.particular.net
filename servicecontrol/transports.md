@@ -54,7 +54,7 @@ As of version 4.21.8, the following options can be used to enable [Managed Ident
 In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 4.4 and above:
 
 * `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
-* `SubscriptionRouting=<subscription_table_name>` - Specifies SQL subscription table name.
+* `Subscriptions Table=<subscription_table_name>` - Specifies SQL subscription table name.
 
 #### Amazon SQS
 
