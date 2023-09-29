@@ -15,7 +15,7 @@ spec:
       containers:
         - name: aspwebapp
           image: localhost:32000/publisher:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           volumeMounts:
             - mountPath: "/transport"
               name: learning-transport
@@ -24,11 +24,11 @@ spec:
       volumes:
       - name: learning-transport
         hostPath:
-          path: /learning-transport
+          path: /mnt/learning-transport
           type: DirectoryOrCreate
       - name: learning-persistence
         hostPath:
-          path: /learning-persistence
+          path: /mnt/learning-persistence
           type: DirectoryOrCreate
 ---
 apiVersion: v1
@@ -61,12 +61,12 @@ spec:
       containers:
         - name: subscriber-app
           image: localhost:32000/subscriber:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           volumeMounts:
             - mountPath: "/transport"
               name: learning-transport
       volumes:
       - name: learning-transport
         hostPath:
-          path: /learning-transport
+          path: /mnt/learning-transport
           type: DirectoryOrCreate
