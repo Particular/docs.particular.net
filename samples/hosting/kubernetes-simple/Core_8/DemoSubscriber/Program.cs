@@ -1,20 +1,18 @@
-﻿using System.Data.SqlClient;
-using NServiceBus;
-
-var sqlConnectionString = Environment.GetEnvironmentVariable("SqlConnectionString");
-
+﻿using NServiceBus;
 
 var config = new EndpointConfiguration("KubernetesDemo.Subscriber");
+config.UseSerialization<SystemJsonSerializer>();
 
 config.EnableInstallers();
 
-var transport = new SqlServerTransport(sqlConnectionString);
-transport.Subscriptions.DisableCaching = true;
+var transport = new LearningTransport
+{
+    StorageDirectory = "/transport"
+};
 config.UseTransport(transport);
 
-var persistence = config.UsePersistence<SqlPersistence>();
-persistence.ConnectionBuilder(() => new SqlConnection(sqlConnectionString));
-persistence.SqlDialect<SqlDialect.MsSqlServer>();
+var persistence = config.UsePersistence<LearningPersistence>();
+persistence.SagaStorageDirectory("/sagas");
 
 config.Recoverability().Immediate(r => r.NumberOfRetries(0)).Delayed(d => d.NumberOfRetries(0));
 
