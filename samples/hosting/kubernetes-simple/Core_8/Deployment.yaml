@@ -12,14 +12,24 @@ spec:
       labels:
         app: publisher
     spec:
-      hostNetwork: true
       containers:
         - name: aspwebapp
-          image: publisher:latest
+          image: localhost:32000/publisher:latest
           imagePullPolicy: IfNotPresent
-          env:
-            - name: SqlConnectionString
-              value: Server=localhost;Database=nhtest;User Id=SA;Password=LOCALHOSTlocalhost123;Encrypt=False;
+          volumeMounts:
+            - mountPath: "/transport"
+              name: learning-transport
+            - mountPath: "/sagas"
+              name: learning-persistence
+      volumes:
+      - name: learning-transport
+        hostPath:
+          path: /learning-transport
+          type: DirectoryOrCreate
+      - name: learning-persistence
+        hostPath:
+          path: /learning-persistence
+          type: DirectoryOrCreate
 ---
 apiVersion: v1
 kind: Service
@@ -48,11 +58,15 @@ spec:
       labels:
         app: subscriber
     spec:
-      hostNetwork: true
       containers:
         - name: subscriber-app
-          image: subscriber:latest
+          image: localhost:32000/subscriber:latest
           imagePullPolicy: IfNotPresent
-          env:
-            - name: SqlConnectionString
-              value: Server=localhost;Database=nhtest;User Id=SA;Password=LOCALHOSTlocalhost123;Encrypt=False;
+          volumeMounts:
+            - mountPath: "/transport"
+              name: learning-transport
+      volumes:
+      - name: learning-transport
+        hostPath:
+          path: /learning-transport
+          type: DirectoryOrCreate
