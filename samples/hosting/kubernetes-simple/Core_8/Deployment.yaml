@@ -15,7 +15,7 @@ spec:
       hostNetwork: true
       containers:
         - name: aspwebapp
-          image: demo-publisher:latest
+          image: publisher:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: SqlConnectionString
@@ -51,7 +51,7 @@ spec:
       hostNetwork: true
       containers:
         - name: subscriber-app
-          image: demo-subscriber:latest
+          image: subscriber:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: SqlConnectionString
