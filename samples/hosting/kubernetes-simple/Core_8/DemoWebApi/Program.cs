@@ -22,9 +22,6 @@ builder.Host.UseNServiceBus(context =>
     };
     config.UseTransport(transport);
 
-    var persistence = config.UsePersistence<LearningPersistence>();
-    persistence.SagaStorageDirectory("/sagas");
-
     return config;
 });
 
