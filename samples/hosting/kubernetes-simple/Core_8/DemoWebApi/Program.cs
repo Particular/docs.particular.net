@@ -11,19 +11,19 @@ builder.Services.AddSwaggerGen();
 
 builder.Host.UseNServiceBus(context =>
 {
-    var sqlConnectionString = context.Configuration["SqlConnectionString"];
-
     var config = new EndpointConfiguration("KubernetesDemo.Publisher");
+    config.UseSerialization<SystemJsonSerializer>();
 
     config.EnableInstallers();
 
-    var transport = new SqlServerTransport(sqlConnectionString);
-    transport.Subscriptions.DisableCaching = true;
+    var transport = new LearningTransport
+    {
+        StorageDirectory = "/transport"
+    };
     config.UseTransport(transport);
 
-    var persistence = config.UsePersistence<SqlPersistence>();
-    persistence.ConnectionBuilder(() => new SqlConnection(sqlConnectionString));
-    persistence.SqlDialect<SqlDialect.MsSqlServer>();
+    var persistence = config.UsePersistence<LearningPersistence>();
+    persistence.SagaStorageDirectory("/sagas");
 
     return config;
 });
