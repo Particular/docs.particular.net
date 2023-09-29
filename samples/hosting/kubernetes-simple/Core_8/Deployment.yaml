@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publisher-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publisher
+  template:
+    metadata:
+      labels:
+        app: publisher
+    spec:
+      hostNetwork: true
+      containers:
+        - name: aspwebapp
+          image: demo-publisher:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SqlConnectionString
+              value: Server=localhost;Database=nhtest;User Id=SA;Password=LOCALHOSTlocalhost123;Encrypt=False;
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: publisher-service
+spec:
+  selector:
+    app: publisher
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 9191
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscriber-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscriber
+  template:
+    metadata:
+      labels:
+        app: subscriber
+    spec:
+      hostNetwork: true
+      containers:
+        - name: subscriber-app
+          image: demo-subscriber:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: SqlConnectionString
+              value: Server=localhost;Database=nhtest;User Id=SA;Password=LOCALHOSTlocalhost123;Encrypt=False;
