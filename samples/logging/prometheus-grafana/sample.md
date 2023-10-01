@@ -68,11 +68,11 @@ Summaries: `nservicebus_{summary-name}_seconds`
 snippet: prometheus-name-mapping
 
 
-The registered observers convert `NServiceBus.Metric` *Signals* to Prometheus *Counters* and `NServiceBus.Metric` *Durations* to Prometheus *Summaries*.  Additionally, labels are added that identify the endpoint, the endpoint queue and more within Prometheus. With these labels, it is possible to filter and group metric values. 
+The registered observers convert `NServiceBus.Metric` *Signals* to Prometheus *Counters* and `NServiceBus.Metric` *Durations* to Prometheus *Summaries*.  Additionally, labels are added to identify the endpoint, the endpoint queue and more within Prometheus. These labels, allow to filter and group metric values. 
 
 snippet: prometheus-register-probe
 
-WARNING: Labels should be chosen thoughtfully since each unique combination of key-value label pairs represents a new time series which can dramatically increase the amount of data stored. The labels used here are for demonstration purpose only.
+WARNING: Labels should be chosen thoughtfully since each unique combination of key-value label pairs, represents a new time series which can dramatically increase the amount of data stored. The labels used here are for demonstration purpose only.
 
 During the registration the following steps are required:
 
@@ -187,12 +187,12 @@ Execute `setup.grafana.ps1` in a PowerShell with elevated permission and provide
 
 #### Datasource
 
-Create a new data source called `PrometheusNServiceBusDemo`. For more information how to define a Prometheus data source refer to [Using Prometheus in Grafana](https://docs.grafana.org/features/datasources/prometheus/).
+Create a new data source called `PrometheusNServiceBusDemo`. For more information on how to define a Prometheus data source refer to [Using Prometheus in Grafana](https://docs.grafana.org/features/datasources/prometheus/).
 
 
 #### Dashboard
 
-To graph the Prometheus rule  `nservicebus_failure_total:avg_rate5m` the following steps have to be performed:
+To graph the Prometheus rule  `nservicebus_failure_total:avg_rate5m` follow the steps below:
 
  * Add a new dashboard
  * Add a graph
