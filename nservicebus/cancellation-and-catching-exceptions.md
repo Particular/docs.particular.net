@@ -58,6 +58,8 @@ catch (Exception ex)
 }
 ```
 
+Note: Don't rely on the `OperationCanceledException.CancellationToken` property as it might not be set or a linked token is used further down the call stack. See [this blog post](https://blog.stephencleary.com/2022/03/cancellation-3-detecting-cancellation.html) for more information.
+
 ## Helper methods
 
 If exception handling is widespread, it may be helpful to introduce an `IsCausedBy` extension method:
