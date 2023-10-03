@@ -35,6 +35,7 @@
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus/3.1.1) | ~~2012-05-21~~ | ~~2012-11-22~~    | ~~Superseded by 3.2.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus/3.0.4) | ~~2012-03-08~~ | ~~2012-11-21~~    | ~~Superseded by 3.1.x~~           |
 | [~~2.6.x~~](https://www.nuget.org/packages/NServiceBus/2.6.0.1511) | ~~2011-08-09~~ | ~~2014-03-08~~    | ~~Superseded by 3.0.x~~           |
+| [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus/2.5.0.1490) | ~~2011-07-18~~ | ~~2012-02-09~~    | ~~Superseded by 2.6.x~~           |
 
 ### Transport packages
 
@@ -573,6 +574,7 @@
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.StructureMap/3.1.1) | ~~2012-05-21~~ | ~~2012-08-22~~    | ~~Superseded by 3.2.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.StructureMap/3.0.4) | ~~2012-03-08~~ | ~~2012-08-21~~    | ~~Superseded by 3.1.x~~           |
 | [~~2.6.x~~](https://www.nuget.org/packages/NServiceBus.StructureMap/2.6.0.1511) | ~~2011-08-09~~ | ~~2013-03-08~~    | ~~Superseded by 3.0.x~~           |
+| [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.StructureMap/2.5.0.1490) | ~~2011-07-06~~ | ~~2011-11-09~~    | ~~Superseded by 2.6.x~~           |
 
 #### [NServiceBus.Unity](/nuget/NServiceBus.Unity)
 
@@ -671,7 +673,14 @@
 
 #### [NServiceBus.AwsLambda.Sqs](/nuget/NServiceBus.AwsLambda.Sqs)
 
-No versions released.
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.1.0) | 2023-09-21     | -                 | -                                 |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.0.0) | 2023-05-09     | 2023-12-21        | Superseded by 1.1.x               |
+| [0.6.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.6.0) | 2023-04-27     | 2024-05-09        | Superseded by 1.0.x               |
+| [~~0.5.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.5.1) | ~~2021-01-14~~ | ~~2023-07-27~~    | ~~Superseded by 0.6.x~~           |
+| [~~0.4.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.4.0) | ~~2021-01-04~~ | ~~2021-04-14~~    | ~~Superseded by 0.5.x~~           |
+| [~~0.3.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.3.1) | ~~2020-11-02~~ | ~~2021-04-04~~    | ~~Superseded by 0.4.x~~           |
 
 #### [NServiceBus.AzureFunctions.InProcess.ServiceBus](/nuget/NServiceBus.AzureFunctions.InProcess.ServiceBus)
 
