@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Cinema.Headquarters": {
+      "commandName": "Project",
+      "commandLineArgs": "Cinema.Headquarters"
+    }
+  }
+}
