@@ -21,7 +21,7 @@
     public class InstallerSetupExternallyManagedContainer
     {
         #region installer-setup-externally-managed-container
-        public static async Task Main()
+        public static async Task Main2() //TODO
         {
             var endpointConfiguration = new EndpointConfiguration("my-endpoint");
             // configure endpoint
