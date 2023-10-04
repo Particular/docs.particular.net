@@ -1,4 +1,4 @@
-﻿namespace Core_8
+﻿namespace Core9
 {
     using OpenTelemetry;
     using OpenTelemetry.Metrics;
