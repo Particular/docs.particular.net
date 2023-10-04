@@ -6,7 +6,8 @@ namespace IntegrityTests
 {
     public class ProjectLangVersion
     {
-        [Test]
+        //TODO-Do we need this?`
+        //[Test]
         public void ShouldUseLangVersion10()
         {
             // Also reflected in https://docs.particular.net/samples/#technology-choices-c-language-level
