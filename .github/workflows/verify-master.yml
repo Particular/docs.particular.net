@@ -16,7 +16,8 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3.2.0
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
+          dotnet-quality: 'preview'
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
       - name: Check docstool version for cache
         run: |
@@ -61,7 +62,8 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3.2.0
         with:
-          dotnet-version: 7.0.x
+          dotnet-version: 8.0.x
+          dotnet-quality: 'preview'
       - name: Run integrity tests
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release
       - name: Notify Slack on failure
