@@ -20,6 +20,8 @@ jobs:
           dotnet-quality: 'preview'
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1.3.1
+        with:
+                vs-prerelease: true
       - name: Build affected samples and snippets
         run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1
       - name: Notify Slack on failure
