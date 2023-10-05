@@ -58,7 +58,7 @@ catch (Exception ex)
 }
 ```
 
-Note: Don't rely on the `OperationCanceledException.CancellationToken` property as it might not be set or a linked token is used further down the call stack. See [this blog post](https://blog.stephencleary.com/2022/03/cancellation-3-detecting-cancellation.html) for more information.
+Note: The `OperationCanceledException.CancellationToken` property is not a reliable reference to the token that caused cancellation. This property may not be set, or it may reference a linked token that was created within the called method. See [this blog post](https://blog.stephencleary.com/2022/03/cancellation-3-detecting-cancellation.html) for more information.
 
 ## Helper methods
 
