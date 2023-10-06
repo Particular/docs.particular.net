@@ -58,6 +58,8 @@ catch (Exception ex)
 }
 ```
 
+Note: The `OperationCanceledException.CancellationToken` property is not a reliable reference to the token that caused cancellation. This property may not be set, or it may reference a linked token that was created within the called method. See [this blog post](https://blog.stephencleary.com/2022/03/cancellation-3-detecting-cancellation.html) for more information.
+
 ## Helper methods
 
 If exception handling is widespread, it may be helpful to introduce an `IsCausedBy` extension method:
