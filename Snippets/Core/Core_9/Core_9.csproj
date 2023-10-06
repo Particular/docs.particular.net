@@ -1,9 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<RootNamespace>Core9</RootNamespace>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.App" />
 		<PackageReference Include="NServiceBus" Version="9.0.0-alpha.8" />
 		<PackageReference Include="NServiceBus.Callbacks" Version="5.0.0-alpha.1" />
 		<PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="5.0.0-alpha.1" />
