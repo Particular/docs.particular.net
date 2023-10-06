@@ -64,7 +64,7 @@
 
     public class InstallerSetup
     {
-        public static async Task MyMain()
+        public static async Task Main()
         {
             #region installer-setup
 
