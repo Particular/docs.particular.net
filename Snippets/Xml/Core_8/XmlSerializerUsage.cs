@@ -1,16 +1,13 @@
-﻿namespace Core8
+﻿using NServiceBus;
+
+class XmlSerializerUsage
 {
-    using NServiceBus;
-
-    class XmlSerializerUsage
+    XmlSerializerUsage(EndpointConfiguration endpointConfiguration)
     {
-        XmlSerializerUsage(EndpointConfiguration endpointConfiguration)
-        {
-            #region XmlSerialization
+        #region XmlSerialization
 
-            endpointConfiguration.UseSerialization<XmlSerializer>();
+        endpointConfiguration.UseSerialization<XmlSerializer>();
 
-            #endregion
-        }
+        #endregion
     }
 }
