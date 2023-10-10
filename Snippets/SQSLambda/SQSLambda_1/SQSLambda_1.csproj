@@ -1,15 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <TargetFramework>net6.0</TargetFramework>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <AWSProjectType>Lambda</AWSProjectType>
     <RootNamespace />
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Amazon.Lambda.Core" Version="2.*" />
-    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.1.*" />
-    <PackageReference Include="Amazon.Lambda.SQSEvents" Version="2.*" />
     <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="1.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
   </ItemGroup>

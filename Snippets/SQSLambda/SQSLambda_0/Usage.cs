@@ -12,7 +12,7 @@ class Usage
     static readonly AwsLambdaSQSEndpoint endpoint = new AwsLambdaSQSEndpoint(context =>
     {
         var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("AwsLambdaSQSTrigger");
-        
+
         //customize configuration here
 
         return endpointConfiguration;
@@ -92,7 +92,7 @@ class Usage
         #region aws-custom-serializer
 
         endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
-        
+
         #endregion
     }
 
@@ -103,7 +103,7 @@ class Usage
         var transport = endpointConfiguration.Transport;
         var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(ACommand), "<destination>");
-        
+
         #endregion
     }
 
