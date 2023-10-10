@@ -10,12 +10,12 @@ namespace Common
         public static string ToFriendlyString<TRootTypeToReplace>(IReadOnlyDictionary<string, string> headers)
         {
             var stringBuilder = new StringBuilder();
-            foreach (var header in headers.OrderBy(x=>x.Key))
+            foreach (var header in headers.OrderBy(x => x.Key))
             {
                 var value = header.Value;
-                value = value?.Replace("\r\n","\n")
+                value = value?.Replace("\r\n", "\n")
                     .Replace("\n", "\r\n   ")
-                    .Replace("`","")
+                    .Replace("`", "")
                     .Replace(Environment.MachineName, "MACHINENAME")
                     .Replace(Environment.UserName, "USERNAME");
                 stringBuilder.Append($"{header.Key} = {value}\r\n");

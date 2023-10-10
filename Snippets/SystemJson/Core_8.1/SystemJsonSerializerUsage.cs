@@ -1,5 +1,5 @@
-﻿using NServiceBus;
-using System.Text.Json;
+﻿using System.Text.Json;
+using NServiceBus;
 
 class SystemJsonSerializerUsage
 {

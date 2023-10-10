@@ -9,7 +9,7 @@ namespace Core9.Handlers.DataAccess
     {
         #region BusinessData-SynchronizedStorageSession
 
-        public Task Handle(MyMessage message, 
+        public Task Handle(MyMessage message,
             IMessageHandlerContext context)
         {
             var session = context.SynchronizedStorageSession

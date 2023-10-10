@@ -41,7 +41,7 @@
 
             var options = new SendOptions();
             options.DelayDeliveryWith(TimeSpan.FromMilliseconds(10));
-            await endpointInstance.Send(new MessageToSend(),options)
+            await endpointInstance.Send(new MessageToSend(), options)
                 .ConfigureAwait(false);
             ManualResetEvent.WaitOne();
             await endpointInstance.Stop()

@@ -22,7 +22,7 @@
             using (cancellationToken.Token.Register(
                 callback: state =>
                 {
-                    var completionSource = (TaskCompletionSource<object>) state;
+                    var completionSource = (TaskCompletionSource<object>)state;
                     completionSource.TrySetCanceled();
                 },
                 state: taskCompletionSource))
@@ -64,12 +64,12 @@
             var result = await Task.Factory.FromAsync(
                     beginMethod: (callback, state) =>
                     {
-                        var d = (DependencyWhichUsesAPM) state;
+                        var d = (DependencyWhichUsesAPM)state;
                         return d.BeginCall(callback, state);
                     },
                     endMethod: asyncResult =>
                     {
-                        var d = (DependencyWhichUsesAPM) asyncResult.AsyncState;
+                        var d = (DependencyWhichUsesAPM)asyncResult.AsyncState;
                         return d.EndCall(asyncResult);
                     },
                     state: dependency)
@@ -116,7 +116,7 @@
         [OneWay]
         public string Callback(IAsyncResult ar)
         {
-            var asyncDelegate = (Func<string>) ((AsyncResult) ar).AsyncDelegate;
+            var asyncDelegate = (Func<string>)((AsyncResult)ar).AsyncDelegate;
             return asyncDelegate.EndInvoke(ar);
         }
 
@@ -129,12 +129,12 @@
             return Task.Factory.FromAsync(
                 beginMethod: (callback, state) =>
                 {
-                    var call = (Tuple<Func<string>, AsyncClient>) state;
+                    var call = (Tuple<Func<string>, AsyncClient>)state;
                     return call.Item1.BeginInvoke(callback, state);
                 },
                 endMethod: asyncResult =>
                 {
-                    var call = (Tuple<Func<string>, AsyncClient>) asyncResult.AsyncState;
+                    var call = (Tuple<Func<string>, AsyncClient>)asyncResult.AsyncState;
                     return call.Item2.Callback(asyncResult);
                 },
                 state: Tuple.Create(remoteCall, this));

@@ -73,7 +73,7 @@
             var extension = Encoding.UTF8.GetString(message.Extension);
             using (var stringReader = new StringReader(extension))
             {
-                return (List<HeaderInfo>) serializer.Deserialize(stringReader);
+                return (List<HeaderInfo>)serializer.Deserialize(stringReader);
             }
         }
 

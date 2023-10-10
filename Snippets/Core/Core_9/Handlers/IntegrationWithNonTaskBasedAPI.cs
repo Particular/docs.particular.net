@@ -1,7 +1,6 @@
 ﻿namespace Core9.Handlers
 {
     using System;
-    using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
@@ -21,7 +20,7 @@
             using (cancellationToken.Token.Register(
                 callback: state =>
                 {
-                    var completionSource = (TaskCompletionSource<object>) state;
+                    var completionSource = (TaskCompletionSource<object>)state;
                     completionSource.TrySetCanceled();
                 },
                 state: taskCompletionSource))

@@ -28,7 +28,7 @@ namespace Core8.Pipeline
         SingletonDependency singletonDependency;
     }
 
-#endregion
+    #endregion
 
     public class SingletonDependency
     {

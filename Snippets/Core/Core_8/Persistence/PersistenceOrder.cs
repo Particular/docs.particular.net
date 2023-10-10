@@ -43,7 +43,7 @@
     {
     }
 
-    class NHibernatePersistence:PersistenceDefinition
+    class NHibernatePersistence : PersistenceDefinition
     {
     }
 }

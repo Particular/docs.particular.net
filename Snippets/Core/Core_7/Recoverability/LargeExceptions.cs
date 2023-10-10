@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using NServiceBus.Pipeline;
 
-#region dispose-large-exceptions
+    #region dispose-large-exceptions
     class DisposeLargeExceptionsBehavior : Behavior<IIncomingPhysicalMessageContext>
     {
         public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
@@ -23,5 +23,5 @@
             }
         }
     }
-#endregion
+    #endregion
 }

@@ -11,9 +11,9 @@
             #region new-conversation-id
             var sendOptions = new SendOptions();
             sendOptions.StartNewConversation();
-            
+
             await context.Send(new CancelOrder(), sendOptions);
-            
+
             #endregion
         }
 
@@ -23,9 +23,9 @@
             #region new-conversation-custom-id
             var sendOptions = new SendOptions();
             sendOptions.StartNewConversation("MyCustomConversationId/" + System.Guid.NewGuid());
-            
+
             await context.Send(new CancelOrder(), sendOptions);
-            
+
             #endregion
         }
 

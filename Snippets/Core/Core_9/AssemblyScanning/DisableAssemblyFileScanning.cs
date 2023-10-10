@@ -6,9 +6,9 @@
     {
         public void DisableFileScanning(EndpointConfiguration endpointConfiguration)
         {
-#region disable-file-scanning
+            #region disable-file-scanning
             endpointConfiguration.AssemblyScanner().ScanFileSystemAssemblies = false;
-#endregion
+            #endregion
         }
     }
 }

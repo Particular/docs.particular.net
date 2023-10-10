@@ -21,7 +21,7 @@
         #endregion
     }
 
-#region FeatureStartupTaskDefinition
+    #region FeatureStartupTaskDefinition
     class MyStartupTask :
         FeatureStartupTask,
         IDisposable
@@ -45,5 +45,5 @@
             resetEvent.Dispose();
         }
     }
-#endregion
+    #endregion
 }
