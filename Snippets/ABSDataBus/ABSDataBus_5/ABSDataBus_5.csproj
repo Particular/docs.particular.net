@@ -5,6 +5,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="5.*" />
-    <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
 </Project>

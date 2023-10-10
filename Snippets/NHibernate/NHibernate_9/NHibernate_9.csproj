@@ -5,6 +5,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.NHibernate" Version="9.*" />
-    <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
 </Project>

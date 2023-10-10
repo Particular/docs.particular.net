@@ -5,6 +5,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.DataBus.BinarySerializer" Version="1.*" />
-    <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
 </Project>
