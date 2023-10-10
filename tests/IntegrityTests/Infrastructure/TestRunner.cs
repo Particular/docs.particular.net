@@ -10,15 +10,15 @@ namespace IntegrityTests
 {
     public class TestRunner
     {
-        private string glob;
-        private string errorMessage;
-        private List<Regex> ignoreRegexes;
+        private readonly string glob;
+        private readonly string errorMessage;
+        private readonly List<Regex> ignoreRegexes;
 
         public TestRunner(string glob, string errorMessage)
         {
             this.glob = glob;
             this.errorMessage = errorMessage;
-            ignoreRegexes = new List<Regex>();
+            ignoreRegexes = [];
             IgnoreRegex(@"\\IntegrityTests\\");
         }
 
@@ -54,7 +54,7 @@ namespace IntegrityTests
 
         public TestRunner IgnoreRegex(string pattern, RegexOptions regexOptions = RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
         {
-            if(!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 pattern = pattern.Replace("\\\\", "/");
             }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
@@ -54,7 +52,7 @@ namespace IntegrityTests
                 });
         }
 
-        (string path, string componentName, string version) GetVersionedAliasPath(string path)
+        static (string path, string componentName, string version) GetVersionedAliasPath(string path)
         {
             var dirPath = Path.GetDirectoryName(path);
 
@@ -64,8 +62,8 @@ namespace IntegrityTests
                 if (Regex.IsMatch(dirName, @"_(All|\d+(\.\d+)?)$"))
                 {
                     var underScoreIndex = dirName.LastIndexOf('_');
-                    var componentName = dirName.Substring(0, underScoreIndex);
-                    return (dirPath, componentName, dirName.Substring(underScoreIndex + 1));
+                    var componentName = dirName[..underScoreIndex];
+                    return (dirPath, componentName, dirName[(underScoreIndex + 1)..]);
                 }
 
                 dirPath = Path.GetDirectoryName(dirPath);

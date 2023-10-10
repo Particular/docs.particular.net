@@ -9,9 +9,9 @@ namespace IntegrityTests
 {
     public class UpgradeGuides
     {
-        static IDeserializer deserializer;
-        static Regex yamlSeparatorRegex = new Regex("---");
-        static string upgradesPathPart = $"{Path.DirectorySeparatorChar}upgrades{Path.DirectorySeparatorChar}";
+        static readonly IDeserializer deserializer;
+        static readonly Regex yamlSeparatorRegex = new("---");
+        static readonly string upgradesPathPart = $"{Path.DirectorySeparatorChar}upgrades{Path.DirectorySeparatorChar}";
 
         static UpgradeGuides()
         {

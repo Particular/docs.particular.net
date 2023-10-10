@@ -9,6 +9,8 @@ namespace IntegrityTests
 {
     public class ProjectFrameworks
     {
+        static readonly char[] separator = [';'];
+
         [Test]
         public void TargetFrameworkElementShouldAgreeWithFrameworkCount()
         {
@@ -28,14 +30,14 @@ namespace IntegrityTests
                         return true;
                     }
 
-                    var tfmList = firstTargetFrameworksElement.Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                    var tfmList = firstTargetFrameworksElement.Value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
                     return tfmList.Length > 1;
                 });
         }
 
-        static readonly string[] sdkProjectAllowedTfmList = new[] { "net8.0", "net7.0", "net6.0", "netcoreapp3.1", "net48", "netstandard2.0" };
-        static readonly string[] nonSdkProjectAllowedFrameworkList = new[] { "v4.8" };
+        static readonly string[] sdkProjectAllowedTfmList = ["net8.0", "net7.0", "net6.0", "netcoreapp3.1", "net48", "netstandard2.0"];
+        static readonly string[] nonSdkProjectAllowedFrameworkList = ["v4.8"];
 
         [Test]
         public void RestrictTargetFrameworks()

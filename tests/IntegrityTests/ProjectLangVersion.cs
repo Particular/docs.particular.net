@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using System.Xml.XPath;
+using NUnit.Framework;
 
 namespace IntegrityTests
 {

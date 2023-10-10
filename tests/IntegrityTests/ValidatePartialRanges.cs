@@ -1,8 +1,8 @@
-﻿using NuGet.Versioning;
-using NUnit.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using NuGet.Versioning;
+using NUnit.Framework;
 
 
 namespace IntegrityTests

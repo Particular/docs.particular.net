@@ -1,13 +1,11 @@
-﻿using Microsoft.VisualBasic;
-using NUnit.Framework;
-using NUnit.Framework.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace IntegrityTests
 {
@@ -15,7 +13,7 @@ namespace IntegrityTests
     {
         [Test]
         public void ReferencedPartialsAreUsed()
-        {           
+        {
             var allErrors = new Dictionary<string, List<string>>();
             var allPartials = Directory.GetFiles(TestSetup.DocsRootPath, "*.partial.md", SearchOption.AllDirectories);
             var allArticles = Directory.GetFiles(TestSetup.DocsRootPath, "*.md", SearchOption.AllDirectories).Except(allPartials);
@@ -35,14 +33,14 @@ namespace IntegrityTests
                 var matches = Regex.Matches(text, searchPattern, RegexOptions.IgnoreCase | RegexOptions.Multiline);
                 var errors = new List<string>();
 
-                foreach (Match match in matches)
+                foreach (var match in matches.Cast<Match>())
                 {
                     var partialName = Regex.Replace(match.Value, replacePattern, "").Trim();
 
                     if (!allPartials.Any(x => x.Contains(fileName + "_" + partialName, StringComparison.OrdinalIgnoreCase)))
                     {
                         errors.Add($"    - '{match.Value}' at position ({match.Index})");
-                    }                
+                    }
                 }
 
                 if (errors.Count > 0)
@@ -53,7 +51,7 @@ namespace IntegrityTests
 
             if (allErrors.Count > 0)
             {
-                StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder stringBuilder = new();
                 stringBuilder.Append($"Found ({allErrors.Count}) markdown file(s) that had references to partials that do not have a corresponding partial file to be used. Here are the file paths and partial references that were not used.\r\n");
                 foreach (var error in allErrors)
                 {
