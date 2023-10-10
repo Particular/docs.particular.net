@@ -96,5 +96,26 @@ namespace IntegrityTests
                     return true;
                 });
         }
+
+        [Test]
+        public void SnippetsShouldNotBeMultiTargeted()
+        {
+            new TestRunner("*.csproj", "Snippets projects should not be multi-targeted")
+                .IgnoreSamples()
+                .IgnoreTutorials()
+                .Run(projectFilePath =>
+                {
+                    var xdoc = XDocument.Load(projectFilePath);
+                    if (xdoc.Root.Attribute("xmlns") != null)
+                    {
+                        return true;
+                    }
+
+                    var firstTargetFrameworksElement = xdoc.XPathSelectElement("/Project/PropertyGroup/TargetFrameworks");
+
+                    return firstTargetFrameworksElement is null;
+
+                });
+        }
     }
 }
