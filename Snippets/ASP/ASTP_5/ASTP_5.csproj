@@ -6,6 +6,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Persistence.AzureTable" Version="5.*" />
-    <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
 </Project>

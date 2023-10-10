@@ -27,7 +27,7 @@ namespace Core7.Pipeline
         SingletonDependency singletonDependency;
     }
 
-#endregion
+    #endregion
 
     public class SingletonDependency
     {

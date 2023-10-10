@@ -21,7 +21,7 @@
             errorIngestion.SetTypesToScan(TypeScanner.NestedTypes<ErrorMutator>());
             errorIngestion.EnableInstallers();
             errorIngestion.UseTransport(new LearningTransport());
-            errorIngestion.Pipeline.Register(typeof(ErrorMutator),"Capture headers on failed messages");
+            errorIngestion.Pipeline.Register(typeof(ErrorMutator), "Capture headers on failed messages");
             await Endpoint.Start(errorIngestion);
 
             var endpointConfiguration = new EndpointConfiguration(endpointName);
@@ -30,7 +30,7 @@
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UseTransport(new LearningTransport());
-            endpointConfiguration.Pipeline.Register(typeof(Mutator),"Capture headers on sent messages");
+            endpointConfiguration.Pipeline.Register(typeof(Mutator), "Capture headers on sent messages");
 
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(settings => settings.NumberOfRetries(1));

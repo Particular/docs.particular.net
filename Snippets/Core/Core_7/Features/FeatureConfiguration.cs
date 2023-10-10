@@ -11,7 +11,7 @@ namespace Core7.Features
         Feature
     {
 
-#region FeatureSetup
+        #region FeatureSetup
         protected override void Setup(FeatureConfigurationContext context)
         {
             var configurationValue = context.Settings.Get<string>("Key");
@@ -20,7 +20,7 @@ namespace Core7.Features
 
             context.Pipeline.Register(new CustomBehavior(configurationValue), "custom pipeline behavior");
         }
-#endregion
+        #endregion
 
         async Task EndpointConfiguration(EndpointConfiguration endpointConfiguration)
         {
@@ -33,7 +33,7 @@ namespace Core7.Features
 
             var startableEndpoint = await Endpoint.Create(endpointConfiguration)
                 .ConfigureAwait(false);
-#endregion
+            #endregion
         }
 
         class MessageHandlerDependency

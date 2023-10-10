@@ -24,7 +24,7 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.UseTransport<LearningTransport>();
-            endpointConfiguration.RegisterMessageMutator(new Mutator());    
+            endpointConfiguration.RegisterMessageMutator(new Mutator());
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);

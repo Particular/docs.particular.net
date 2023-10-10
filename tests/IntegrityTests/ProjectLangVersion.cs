@@ -1,6 +1,6 @@
-﻿using System.Xml.Linq;
+﻿using NUnit.Framework;
+using System.Xml.Linq;
 using System.Xml.XPath;
-using NUnit.Framework;
 
 namespace IntegrityTests
 {
@@ -29,6 +29,15 @@ namespace IntegrityTests
                     // Ignore if not an Sdk-style project
                     var sdk = xdoc.Root.Attribute("Sdk");
                     if (sdk == null)
+                    {
+                        return true;
+                    }
+
+                    // Ignore if targeting .net8 only
+                    var firstTargetFrameworkElement = xdoc.XPathSelectElement("/Project/PropertyGroup/TargetFramework");
+                    var tfm = firstTargetFrameworkElement?.Value;
+
+                    if (tfm == "net8.0")
                     {
                         return true;
                     }

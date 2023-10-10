@@ -1,4 +1,4 @@
-﻿using System.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 
 public static class SqlHelper
 {
@@ -17,7 +17,7 @@ public static class SqlHelper
             {
                 command.CommandText = $@"
 if(db_id('{database}') is null)
-	create database [{database}]
+    create database [{database}]
 ";
                 command.ExecuteNonQuery();
             }

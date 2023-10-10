@@ -5,7 +5,7 @@ related:
  - samples/azure/azure-service-fabric-routing
 reviewed: 2022-03-18
 component: Core
-versions: '[6,)'
+versions: '[6,9)'
 isLearningPath: true
 ---
 

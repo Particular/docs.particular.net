@@ -29,7 +29,7 @@ namespace Common
                     {
                         continue;
                     }
-                    
+
                     stringBuilder.AppendLine(line.Split(new[]
                     {
                         " in "
