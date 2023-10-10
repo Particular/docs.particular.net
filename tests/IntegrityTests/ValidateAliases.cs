@@ -8,10 +8,10 @@ using NUnit.Framework;
 
 namespace IntegrityTests
 {
-    public class ValidateAliasses
+    public class ValidateAliases
     {
         [Test]
-        public void ValidateAliassesVersionMatchesPackageReferenceVersion()
+        public void ValidateAliasesVersionMatchesPackageReferenceVersion()
         {
             new TestRunner("*.csproj", "Found alias version not matching package reference version. i.e. Project in `Core_8` should reference NServiceBus 8.*, while `Core_8.1` should reference NServiceBus 8.1.*")
                 .Run(projPath =>
