@@ -8,11 +8,11 @@ namespace IntegrityTests
     public class SolutionStructure
     {
         [Test]
-        [Ignore("Ignored in favor of sample versioning which ships 2 solutions to showcase how contracts may evolve")]
         public void OneSolutionPerDirectory()
         {
             var directoriesWithMoreThanOneSolution = Directory.GetFiles(TestSetup.DocsRootPath, "*.sln", SearchOption.AllDirectories)
-                .Select(slnPath => Path.GetDirectoryName(slnPath))
+                .Select(Path.GetDirectoryName)
+                .Where(dirPath => !dirPath.Contains(Path.Combine("samples", "versioning"))) //Exception for the Versioning sample
                 .GroupBy(dirPath => dirPath, StringComparer.OrdinalIgnoreCase)
                 .Where(group => group.Count() > 1)
                 .Select(group => group.Key)
@@ -28,7 +28,7 @@ namespace IntegrityTests
         public void OneProjectPerDirectory()
         {
             var directoriesWithMoreThanOneProject = Directory.GetFiles(TestSetup.DocsRootPath, "*.*proj", SearchOption.AllDirectories)
-                .Select(projPath => Path.GetDirectoryName(projPath))
+                .Select(Path.GetDirectoryName)
                 .GroupBy(dirPath => dirPath, StringComparer.OrdinalIgnoreCase)
                 .Where(group => group.Count() > 1)
                 .Select(group => group.Key)
