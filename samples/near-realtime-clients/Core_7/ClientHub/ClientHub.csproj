@@ -4,6 +4,12 @@
     <OutputType>Exe</OutputType>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <LangVersion>10.0</LangVersion>
+	<!--
+	.NET Denial of Service Vulnerability on Microsoft.Owin 3.1.0:
+	https://github.com/advisories/GHSA-hxrm-9w7p-39cc
+	https://github.com/advisories/GHSA-3rq8-h3gj-r5c6
+	-->
+	<NoWarn>$(NoWarn);NU1903</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -19,7 +25,7 @@
     <PackageReference Include="Microsoft.Owin.Hosting" Version="3.*" />
     <PackageReference Include="Microsoft.Owin.Security" Version="3.*" />
     <PackageReference Include="Microsoft.Owin.SelfHost" Version="3.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Transport.Msmq" Version="1.*" />
     <PackageReference Include="Owin" Version="1.*" />
