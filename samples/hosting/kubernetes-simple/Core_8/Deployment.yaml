@@ -13,23 +13,21 @@ spec:
         app: publisher
     spec:
       containers:
-        - name: aspwebapp
-          image: localhost:32000/publisher:latest
+        - name: publisher-app
+          image: joasiapalac/webapi:latest
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: "/transport"
-              name: learning-transport
-            - mountPath: "/sagas"
-              name: learning-persistence
+            - mountPath: /app/sagas
+              name: saga-volume
+            - mountPath: /app/transport
+              name: transport-volume
       volumes:
-      - name: learning-transport
-        hostPath:
-          path: /mnt/learning-transport
-          type: DirectoryOrCreate
-      - name: learning-persistence
-        hostPath:
-          path: /mnt/learning-persistence
-          type: DirectoryOrCreate
+        - name: saga-volume
+          persistentVolumeClaim:
+            claimName: host-saga-pvc
+        - name: transport-volume
+          persistentVolumeClaim:
+            claimName: host-transport-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -40,9 +38,22 @@ spec:
     app: publisher
   type: LoadBalancer
   ports:
-    - protocol: TCP
-      port: 9191
+    - protocol: TCP    
+      name: port80  
+      port: 8080
       targetPort: 8080
+    - protocol: TCP   
+      name: port81
+      port: 8081
+      targetPort: 8081
+    - protocol: TCP   
+      name: port5037
+      port: 5037
+      targetPort: 5037
+    - protocol: TCP   
+      name: port7013
+      port: 7013
+      targetPort: 7013
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -60,13 +71,21 @@ spec:
     spec:
       containers:
         - name: subscriber-app
-          image: localhost:32000/subscriber:latest
+          image: joasiapalac/subscriber:latest
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: "/transport"
-              name: learning-transport
+            - mountPath: /app/transport
+              name: transport-volume          
       volumes:
-      - name: learning-transport
-        hostPath:
-          path: /mnt/learning-transport
-          type: DirectoryOrCreate
+        - name: transport-volume
+          persistentVolumeClaim:
+            claimName: host-transport-pvc
+
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: subscriber-service
+#spec:
+#  selector:
+#    app: subscriber  
