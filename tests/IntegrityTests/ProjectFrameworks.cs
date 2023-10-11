@@ -36,7 +36,7 @@ namespace IntegrityTests
                 });
         }
 
-        static readonly string[] sdkProjectAllowedTfmList = ["net8.0", "net7.0", "net6.0", "net48", "netstandard2.0"];
+        public static readonly string[] sdkProjectAllowedTfmList = ["net8.0", "net7.0", "net6.0", "net48", "netstandard2.0"];
         static readonly string[] nonSdkProjectAllowedFrameworkList = ["v4.8"];
 
         [Test]

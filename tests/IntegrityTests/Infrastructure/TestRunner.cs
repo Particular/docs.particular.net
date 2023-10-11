@@ -19,7 +19,7 @@ namespace IntegrityTests
             this.glob = glob;
             this.errorMessage = errorMessage;
             ignoreRegexes = [];
-            IgnoreRegex(@"\\IntegrityTests\\");
+            IgnoreRegex(@"\\tests\\");
         }
 
         public void Run(Func<string, bool> testDelegate)
@@ -42,6 +42,36 @@ namespace IntegrityTests
                     if (!success)
                     {
                         badProjects.Add(projectFilePath);
+                    }
+                }
+            }
+
+            if (badProjects.Count > 0)
+            {
+                Assert.Fail($"{errorMessage}:\r\n  > {string.Join("\r\n  > ", badProjects)}");
+            }
+        }
+
+        public void Run(Func<string, (bool success, string failReason)> testDelegate)
+        {
+            var badProjects = new List<(string projectFilePath, string failReason)>();
+
+            foreach (var rootPath in TestSetup.RootDirectories)
+            {
+                var projectFiles = Directory.GetFiles(rootPath, glob, SearchOption.AllDirectories);
+
+                foreach (var projectFilePath in projectFiles)
+                {
+                    if (ignoreRegexes.Any(r => r.IsMatch(projectFilePath)))
+                    {
+                        continue;
+                    }
+
+                    var (success, failReason) = testDelegate(projectFilePath);
+
+                    if (!success)
+                    {
+                        badProjects.Add((projectFilePath, failReason));
                     }
                 }
             }

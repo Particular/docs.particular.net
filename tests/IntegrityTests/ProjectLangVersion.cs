@@ -1,4 +1,6 @@
-﻿using System.Xml.Linq;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Xml.Linq;
 using System.Xml.XPath;
 using NUnit.Framework;
 
@@ -27,46 +29,126 @@ namespace IntegrityTests
         }
 
         [Test]
-        public void ShouldUseLangVersion10()
+        public void SamplesShouldUseCorrectLangVersion()
         {
-            // Also reflected in https://docs.particular.net/samples/#technology-choices-c-language-level
-            // And in /tools/projectStandards.linq
-
-            new TestRunner("*.csproj", "SDK-style project files must specify LangVersion=10.0")
-                .Run(projectFilePath =>
+            new TestRunner("*.sln", "Samples must specify the correct LangVersion")
+                .IgnoreSnippets()
+                .IgnoreTutorials()
+                .Run(solutionFilePath =>
                 {
-                    XDocument xdoc = default;
+                    var samplePath = Path.GetDirectoryName(solutionFilePath);
+                    var projectFiles = Directory.GetFiles(samplePath, "*.csproj", SearchOption.AllDirectories);
 
-                    try
+                    int? solutionLangVersion = null;
+
+                    foreach (var projectFile in projectFiles)
                     {
-                        xdoc = XDocument.Load(projectFilePath);
+                        var doc = XDocument.Load(projectFile);
+
+                        if (doc.Root.Attribute("Sdk") == null)
+                        {
+                            continue;
+                        }
+
+                        string[] projectTfms;
+
+                        var firstTargetFrameworkElement = doc.XPathSelectElement("/Project/PropertyGroup/TargetFramework");
+                        var tfm = firstTargetFrameworkElement?.Value;
+
+                        if (tfm is not null)
+                        {
+                            projectTfms = [tfm];
+                        }
+                        else
+                        {
+                            var firstTargetFrameworksElement = doc.XPathSelectElement("/Project/PropertyGroup/TargetFrameworks");
+                            var tfms = firstTargetFrameworksElement?.Value;
+
+                            projectTfms = tfms.Split(';');
+                        }
+
+                        var projectLangVersion = GetLangVersionForProject(projectTfms);
+
+                        if (solutionLangVersion is null || projectLangVersion < solutionLangVersion)
+                        {
+                            solutionLangVersion = projectLangVersion;
+                        }
                     }
-                    catch
+
+                    solutionLangVersion ??= fallbackLangVersion;
+
+                    var solutionLangVersionString = solutionLangVersion.Value.ToString("N1");
+                    bool valid = true;
+
+                    foreach (var projectFile in projectFiles)
                     {
-                        return false;
+                        var doc = XDocument.Load(projectFile);
+
+                        if (doc.Root.Attribute("Sdk") == null)
+                        {
+                            continue;
+                        }
+
+                        var firstLangVersionElement = doc.XPathSelectElement("/Project/PropertyGroup/LangVersion");
+                        var langVersion = firstLangVersionElement?.Value;
+
+                        if (langVersion != solutionLangVersionString)
+                        {
+                            valid = false;
+                        }
                     }
 
-                    // Ignore if not an Sdk-style project
-                    var sdk = xdoc.Root.Attribute("Sdk");
-                    if (sdk == null)
-                    {
-                        return true;
-                    }
-
-                    // Ignore if targeting .net8 only
-                    var firstTargetFrameworkElement = xdoc.XPathSelectElement("/Project/PropertyGroup/TargetFramework");
-                    var tfm = firstTargetFrameworkElement?.Value;
-
-                    if (tfm == "net8.0")
-                    {
-                        return true;
-                    }
-
-                    var firstLangVersionElement = xdoc.XPathSelectElement("/Project/PropertyGroup/LangVersion");
-                    var value = firstLangVersionElement?.Value;
-
-                    return value == "10.0";
+                    return (valid, $"LangVersion should be {solutionLangVersionString}");
                 });
         }
+
+        static int? GetLangVersionForProject(string[] tfms)
+        {
+            int? projectLangVersion = null;
+
+            foreach (var tfm in tfms)
+            {
+                if (langVersions.TryGetValue(tfm, out var langVersion))
+                {
+                    if (projectLangVersion is null || langVersion < projectLangVersion)
+                    {
+                        projectLangVersion = langVersion;
+                    }
+                }
+            }
+
+            return projectLangVersion;
+        }
+
+        [Test]
+        public void ShouldHaveLangVersionMappingForEachAllowedTargetFramework()
+        {
+            List<string> missingTargetFrameworks = [];
+
+            foreach (var tfm in ProjectFrameworks.sdkProjectAllowedTfmList)
+            {
+                if (!langVersions.ContainsKey(tfm))
+                {
+                    missingTargetFrameworks.Add(tfm);
+                }
+            }
+
+            if (missingTargetFrameworks.Count > 0)
+            {
+                Assert.Fail($"The following allowed TargetFrameworks are missing LangVersion mappings:\r\n  > {string.Join("\r\n  > ", missingTargetFrameworks)}");
+            }
+        }
+
+        static readonly int fallbackLangVersion = 10;
+
+        static readonly Dictionary<string, int?> langVersions = new()
+        {
+            // null values here mean we don't want that tfm to be considered in the calculations
+            {"net48", null },
+            {"netstandard2.0", null },
+            { "net6.0", 10 },
+            { "net7.0", 11 },
+            { "net8.0", 12 }
+        };
     }
 }
