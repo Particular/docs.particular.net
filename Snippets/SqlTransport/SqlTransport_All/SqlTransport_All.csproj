@@ -7,8 +7,7 @@
     <ProjectReference Include="..\..\Common\Common.csproj" />
     <Reference Include="System.Transactions" />
     <PackageReference Include="EntityFramework" Version="6.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="2.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="System.Management.Automation" Version="6.1.*" />
   </ItemGroup>

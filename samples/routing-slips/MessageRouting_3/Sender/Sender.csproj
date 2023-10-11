@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.MessageRouting" Version="3.*" />
   </ItemGroup>
