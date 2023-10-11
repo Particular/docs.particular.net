@@ -7,6 +7,26 @@ namespace IntegrityTests
     public class ProjectLangVersion
     {
         [Test]
+        public void SnippetsShouldNotHaveLangVersionProperty()
+        {
+            new TestRunner("*.csproj", "Snippets projects should not have a LangVersion property")
+                .IgnoreSamples()
+                .IgnoreTutorials()
+                .Run(projectFilePath =>
+                {
+                    var xdoc = XDocument.Load(projectFilePath);
+                    if (xdoc.Root.Attribute("xmlns") != null)
+                    {
+                        return true;
+                    }
+
+                    var firstLangVersionElement = xdoc.XPathSelectElement("/Project/PropertyGroup/LangVersion");
+
+                    return firstLangVersionElement is null;
+                });
+        }
+
+        [Test]
         public void ShouldUseLangVersion10()
         {
             // Also reflected in https://docs.particular.net/samples/#technology-choices-c-language-level
