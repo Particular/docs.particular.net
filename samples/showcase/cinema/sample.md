@@ -1,16 +1,15 @@
 ---
 title: Cinema Showcase
-summary: Implements a fictional cinema showing a saga that aggregates ticket sales.
-reviewed: 2023-09-13
+summary: A sample for a fictional cinema demonstrating a saga that aggregates ticket sales.
+reviewed: 2023-10-11
 component: Core
 ---
 
-
 ## Scenario
 
-This sample was created as part of a [demo](https://youtu.be/83UYne9LjZk) showcasing the ease with which a distributed system can be created using the [Particular dot net new Templates](/nservicebus/dotnet-templates/).
+This sample was created as part of a [demo](https://youtu.be/83UYne9LjZk) showcasing the ease with which a distributed system can be created using the [Particular dotnet new Templates](/nservicebus/dotnet-templates/).
 
-The aim of the solution is to keep track of ticket sales at cinemas and feature the film with the most tickets sold for the current month.
+The scenario for the solution is to keep track of ticket sales at cinemas and feature the film with the most tickets sold for the current month.
 
 ```mermaid
 sequenceDiagram
@@ -34,13 +33,13 @@ sequenceDiagram
 1. [Particular.Templates](/nservicebus/dotnet-templates/) package.
 1. [.NET 7 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
 
-### Ticket Sales project
+### TicketSales project
 
 The Cinema.TicketSales project provides a console interface to sell tickets for two films. These ticket sales are reported to the Headquarters endpoint by sending a `RecordTicketSale` message.
 
 snippet: sales-desk
 
-The Ticket Sales endpoint displays a message when the featured film is changed by the Headquarters endpoint.
+The TicketSales endpoint displays a message when the featured film is changed by the Headquarters endpoint.
 
 snippet: featured-film-changed-handler
 
