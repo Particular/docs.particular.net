@@ -11,7 +11,7 @@ reviewed: 2021-12-10
 
 ## Supported database versions
 
-SQL persistence supports [MySQL 5.7](https://dev.mysql.com/doc/relnotes/mysql/5.7/en/) and above. It does not support lower versions due to the use of [JSON Data Type](https://dev.mysql.com/doc/refman/5.7/en/json.html).
+SQL persistence supports [MySQL 5.7](https://dev.mysql.com/doc/relnotes/mysql/5.7/en/) and above including AWS Aurora MySQL. It does not support lower versions due to the use of [JSON Data Type](https://dev.mysql.com/doc/refman/5.7/en/json.html).
 
 ## Usage
 
