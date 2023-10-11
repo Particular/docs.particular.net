@@ -14,7 +14,7 @@ redirects:
 
 ## Supported database versions
 
-SQL persistence supports [PostgreSQL 10](https://www.postgresql.org/docs/10/release-10.html) and above including AWS Aurora PostgreSQL.
+SQL persistence supports [PostgreSQL 10](https://www.postgresql.org/docs/10/release-10.html) and above, as well as AWS Aurora PostgreSQL.
 
 
 ## Usage
