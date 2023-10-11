@@ -1,7 +1,7 @@
 ---
 title: Security Advisory 2017-01-10
 summary: MSMQ permissions vulnerability
-reviewed: 2020-08-03
+reviewed: 2023-10-11
 ---
 
 This advisory discloses a security vulnerability that has been found in NServiceBus and fixed in a recently released hotfix.

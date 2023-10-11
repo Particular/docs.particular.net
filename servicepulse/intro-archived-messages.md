@@ -2,12 +2,10 @@
 title: Deleted Message Management
 summary: Describes how ServicePulse monitors deleted failed messages, and allows restoring deleted failed messages.
 component: ServicePulse
-reviewed: 2020-08-03
+reviewed: 2023-10-11
 ---
 
 ## About deleting messages
-
-In Versions 1.5.0 and above, a screen to manage deleted messages has been introduced in response to changes in ServiceControl relating to Deleted Message retention and disposal.
 
 Archiving can be useful for failed messages that no longer have business value. Once a message is deleted it can be automatically cleaned up according to the configuration of the [retention policy](/servicecontrol/creating-config-file.md#data-retention-servicecontrolhourstokeepmessagesbeforeexpiring).
 
@@ -19,10 +17,10 @@ NOTE: Deleted failed messages are still included in [ServiceInsight](/serviceins
 
 Deleted messages can be found in ServicePulse in a tab in the Failed Messages page. From the Failed Messages page, messages can also be deleted from:
 
-* Failed Groups tab
-* Any failed group's contents view
-* All Messages tab
-* The message details page
+* the Failed Groups tab
+* any failed group's contents view
+* the All Messages tab
+* the message details page
 
 ## Managing deleted messages
 
