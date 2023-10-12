@@ -25,7 +25,7 @@ namespace IntegrityTests
             var currentDirectory = TestContext.CurrentContext.TestDirectory;
             DocsRootPath = Path.GetFullPath(Path.Combine(currentDirectory, "..", "..", "..", "..", ".."));
 
-            RootDirectories = new[] { DocsRootPath };
+            RootDirectories = [DocsRootPath];
 
             var componentsYamlPath = Path.Combine(DocsRootPath, "components", "components.yaml");
             var componentsText = File.ReadAllText(componentsYamlPath);
@@ -36,7 +36,7 @@ namespace IntegrityTests
             var allData = deserializer.Deserialize<List<ComponentMetadata>>(componentsText);
             ComponentMetadata = allData.ToDictionary(m => m.Key, StringComparer.OrdinalIgnoreCase);
 
-            NugetAliases = new Dictionary<string, string>();
+            NugetAliases = [];
             var nugetAliasesPath = Path.Combine(DocsRootPath, "components", "nugetAlias.txt");
             var nugetAliasesText = File.ReadLines(nugetAliasesPath);
             foreach (var aliasLine in nugetAliasesText)

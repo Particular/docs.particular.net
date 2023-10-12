@@ -72,17 +72,6 @@ void CleanUpProjects()
 
 		if (propertyGroup != null)
 		{
-			var langVersion = propertyGroup.Element("LangVersion");
-
-			if (langVersion == null)
-			{
-				propertyGroup.Add(new XElement("LangVersion", "10.0"));
-			}
-			else
-			{
-				langVersion.Value = "10.0";
-			}
-
             var targetFrameworks = propertyGroup.Element("TargetFrameworks");
 
             if (targetFrameworks != null && !targetFrameworks.Value.Contains(";"))
@@ -113,7 +102,6 @@ string GetRelativePath(string filespec, string folder)
 	Uri folderUri = new Uri(folder);
 	return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
 }
-
 
 static void CollapseEmptyElements(string file)
 {

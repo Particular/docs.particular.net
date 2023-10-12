@@ -124,7 +124,7 @@ namespace IntegrityTests
                 });
         }
 
-        private (string path, string componentName) GetVersionedAliasPath(string path)
+        private static (string path, string componentName) GetVersionedAliasPath(string path)
         {
             var dirPath = Path.GetDirectoryName(path);
 
@@ -133,7 +133,7 @@ namespace IntegrityTests
                 var dirName = Path.GetFileName(dirPath);
                 if (Regex.IsMatch(dirName, @"_(All|\d+(\.\d+)?)$"))
                 {
-                    var componentName = dirName.Substring(0, dirName.IndexOf('_'));
+                    var componentName = dirName[..dirName.IndexOf('_')];
                     return (dirPath, componentName);
                 }
 
@@ -149,7 +149,7 @@ namespace IntegrityTests
 
             return packageRefs
                 .Where(pkgRef => packageNames.Contains(pkgRef.Attribute("Include").Value, StringComparer.OrdinalIgnoreCase))
-                .Any(pkgRef => pkgRef.Attribute("Version").Value.Contains("-"));
+                .Any(pkgRef => pkgRef.Attribute("Version").Value.Contains('-'));
         }
 
         private static bool HasPrereleasePackagesNotLockedToSpecificVersion(string projectPath, IEnumerable<string> packageNames)
@@ -157,8 +157,8 @@ namespace IntegrityTests
             var packageRefs = QueryPackageRefs(projectPath);
 
             return packageRefs
-                .Where(pkgRef => packageNames.Contains(pkgRef.Attribute("Include").Value, StringComparer.OrdinalIgnoreCase) && pkgRef.Attribute("Version").Value.Contains("-"))
-                .Any(pkgRef =>  pkgRef.Attribute("Version").Value.Contains("*"));
+                .Where(pkgRef => packageNames.Contains(pkgRef.Attribute("Include").Value, StringComparer.OrdinalIgnoreCase) && pkgRef.Attribute("Version").Value.Contains('-'))
+                .Any(pkgRef => pkgRef.Attribute("Version").Value.Contains('*'));
         }
 
         static IEnumerable<XElement> QueryPackageRefs(string projectPath)

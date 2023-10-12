@@ -10,16 +10,16 @@ namespace IntegrityTests
 {
     public class TestRunner
     {
-        private string glob;
-        private string errorMessage;
-        private List<Regex> ignoreRegexes;
+        private readonly string glob;
+        private readonly string errorMessage;
+        private readonly List<Regex> ignoreRegexes;
 
         public TestRunner(string glob, string errorMessage)
         {
             this.glob = glob;
             this.errorMessage = errorMessage;
-            ignoreRegexes = new List<Regex>();
-            IgnoreRegex(@"\\IntegrityTests\\");
+            ignoreRegexes = [];
+            IgnoreRegex(@"\\tests\\");
         }
 
         public void Run(Func<string, bool> testDelegate)
@@ -52,9 +52,39 @@ namespace IntegrityTests
             }
         }
 
+        public void Run(Func<string, (bool success, string failReason)> testDelegate)
+        {
+            var badProjects = new List<(string projectFilePath, string failReason)>();
+
+            foreach (var rootPath in TestSetup.RootDirectories)
+            {
+                var projectFiles = Directory.GetFiles(rootPath, glob, SearchOption.AllDirectories);
+
+                foreach (var projectFilePath in projectFiles)
+                {
+                    if (ignoreRegexes.Any(r => r.IsMatch(projectFilePath)))
+                    {
+                        continue;
+                    }
+
+                    var (success, failReason) = testDelegate(projectFilePath);
+
+                    if (!success)
+                    {
+                        badProjects.Add((projectFilePath, failReason));
+                    }
+                }
+            }
+
+            if (badProjects.Count > 0)
+            {
+                Assert.Fail($"{errorMessage}:\r\n  > {string.Join("\r\n  > ", badProjects)}");
+            }
+        }
+
         public TestRunner IgnoreRegex(string pattern, RegexOptions regexOptions = RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)
         {
-            if(!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 pattern = pattern.Replace("\\\\", "/");
             }

@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <LangVersion>10.0</LangVersion>
     <RootNamespace>ASTP_4</RootNamespace>
   </PropertyGroup>
   <ItemGroup>

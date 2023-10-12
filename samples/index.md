@@ -40,10 +40,6 @@ Unless otherwise specified (by an individual sample) the following are the defau
 
 Most samples are made available for multiple frameworks, available through a dropdown menu on the download button. Each framework has its own requirements for what version of Visual Studio is supported. For instance, .NET 6 requires at least Visual Studio 2022.
 
-### C# language level
-
-All samples target **C# 10.0** to take advantage of the new language features. If any help is required in converting to earlier versions of C#, [raise an issue](https://github.com/Particular/docs.particular.net/issues).
-
 ### ConfigureAwait
 
 Samples only call `ConfigureAwait(bool)` when it is required. If any code is copied from samples, appropriate calls to `ConfigureAwait(bool)` should be added.

@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <LangVersion>10.0</LangVersion>
     <RootNamespace>Gateway_3.2</RootNamespace>
     <Platforms>x64</Platforms>
   </PropertyGroup>

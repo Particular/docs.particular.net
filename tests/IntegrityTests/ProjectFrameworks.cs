@@ -9,6 +9,8 @@ namespace IntegrityTests
 {
     public class ProjectFrameworks
     {
+        static readonly char[] separator = [';'];
+
         [Test]
         public void TargetFrameworkElementShouldAgreeWithFrameworkCount()
         {
@@ -28,14 +30,14 @@ namespace IntegrityTests
                         return true;
                     }
 
-                    var tfmList = firstTargetFrameworksElement.Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                    var tfmList = firstTargetFrameworksElement.Value.Split(separator, StringSplitOptions.RemoveEmptyEntries);
 
                     return tfmList.Length > 1;
                 });
         }
 
-        static readonly string[] sdkProjectAllowedTfmList = new[] { "net8.0", "net7.0", "net6.0", "netcoreapp3.1", "net48", "netstandard2.0" };
-        static readonly string[] nonSdkProjectAllowedFrameworkList = new[] { "v4.8" };
+        public static readonly string[] sdkProjectAllowedTfmList = ["net8.0", "net7.0", "net6.0", "net48", "netstandard2.0"];
+        static readonly string[] nonSdkProjectAllowedFrameworkList = ["v4.8"];
 
         [Test]
         public void RestrictTargetFrameworks()
@@ -92,6 +94,27 @@ namespace IntegrityTests
                     }
 
                     return true;
+                });
+        }
+
+        [Test]
+        public void SnippetsShouldNotBeMultiTargeted()
+        {
+            new TestRunner("*.csproj", "Snippets projects should not be multi-targeted")
+                .IgnoreSamples()
+                .IgnoreTutorials()
+                .Run(projectFilePath =>
+                {
+                    var xdoc = XDocument.Load(projectFilePath);
+                    if (xdoc.Root.Attribute("xmlns") != null)
+                    {
+                        return true;
+                    }
+
+                    var firstTargetFrameworksElement = xdoc.XPathSelectElement("/Project/PropertyGroup/TargetFrameworks");
+
+                    return firstTargetFrameworksElement is null;
+
                 });
         }
     }

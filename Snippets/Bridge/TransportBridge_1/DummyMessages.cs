@@ -1,13 +1,14 @@
-﻿namespace Messages;
-
-public class OrderPlaced
+﻿namespace Messages
 {
-}
+    public class OrderPlaced
+    {
+    }
 
-public class OrderBilled
-{
-}
+    public class OrderBilled
+    {
+    }
 
-public class OrderShipped
-{
+    public class OrderShipped
+    {
+    }
 }
