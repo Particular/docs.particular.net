@@ -1,5 +1,6 @@
 ---
 title: SQL Persistence - MySQL dialect
+summary: An SQL persister dialect that specifically targets MySQL, including AWS Aurora MySQL.
 component: SqlPersistence
 related:
 reviewed: 2021-12-10
