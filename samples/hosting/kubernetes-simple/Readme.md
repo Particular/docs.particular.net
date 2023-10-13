@@ -1,22 +1,63 @@
-TBA - Jo's Notes
+# Simple Kubernetes Sample
 
-From kubernetes-simple\Core_8:
+## Steps
 
-docker build -f DemoSubscriber/Dockerfile -t joasiapalac/subscriber .
-# docker run --rm --name subscriber subscriber
-# docker tag subscriber joasiapalac/subscriber
-docker push joasiapalac/subscriber:latest
+### Log into dockerhub
 
-docker build -f DemoWebApi/Dockerfile -t joasiapalac/webapi .
-# docker run -p 3000:8080 -p 3001:8081 --rm --name webapi webapi
-# docker tag webapi joasiapalac/webapi
-docker push joasiapalac/webapi:latest
+- `docker login --username=[docker_hub_id]`
+- enter password at prompt
 
-kubectl apply -f=host-pv.yaml
-kubectl apply -f=host-pvc.yaml
+### Build subscriber and push to dockerhub
 
-kubectl apply -f=deployment.yaml
-# kubectl delete -f=deployment.yaml
+From the kubernetes-simple\Core_8 folder:
 
-kubectl logs --since=1h subscriber-deployment-747dfb454-fjmnb
-kubectl logs --since=1h publisher-deployment-747dfb454-rkqv4
+- `docker build -f DemoSubscriber/Dockerfile -t [docker_hub_id]/subscriber .`
+- `docker push [docker_hub_id]/subscriber:latest`
+
+### Build publisher and push to dockerhub
+
+From the kubernetes-simple\Core_8 folder:
+
+- `docker build -f DemoWebApi/Dockerfile -t [docker_hub_id]/webapi .`
+- `docker push [docker_hub_id]/webapi:latest`
+
+### Create persistent volumes and persistent volume claims
+
+- `kubectl apply -f=host-pv.yaml`
+- `kubectl apply -f=host-pvc.yaml`
+
+### Create pods and services
+
+From the kubernetes-simple\Core_8 folder:
+
+- `kubectl apply -f=deployment.yaml`
+- if need to delete use `kubectl delete -f=deployment.yaml`
+
+### Start the publisher service
+
+- `minikube service publisher-service`
+
+A screen will appear showing the exposed service ports.
+A browser window will open.
+
+### Test application
+
+- Add `/publish` to the service address and click enter
+
+Should see a _message published_ response
+
+### To view logs
+
+- get the pod ids:
+  - `kubectl get pods`
+- get logs for a pod:
+  - `kubectl logs --since=1h [pod_id]`
+  
+From the publisher pod should see:
+_Publishing message!
+Received response [message_id]_
+
+From the subscriber pod should see:
+
+_Received message [message_id]. Replying in 5 seconds_  
+_Replying to request [message_id] to KubernetesDemo.Publisher_
