@@ -4,15 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-
-      <ContainerImageTag>latest</ContainerImageTag>
-      <ContainerRepository>subscriber</ContainerRepository>
   </PropertyGroup>
-
-  <ItemGroup>
-      <!-- Package reference required when not using the Web SDK -->
-      <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100-rc.1.23462.41" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />

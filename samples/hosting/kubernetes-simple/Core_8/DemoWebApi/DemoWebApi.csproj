@@ -6,9 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
     <UserSecretsId>6ff9e193-23b0-491e-9d98-7d2bc6a8cc9b</UserSecretsId>
-
-      <ContainerImageTag>latest</ContainerImageTag>
-      <ContainerRepository>publisher</ContainerRepository>
   </PropertyGroup>
 
   <ItemGroup>
