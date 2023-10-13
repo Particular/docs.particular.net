@@ -67,7 +67,7 @@ class Usage
         #endregion
     }
 
-    Usage(EndpointConfiguration endpointConfiguration)
+    void S3Settings(EndpointConfiguration endpointConfiguration)
     {
         #region SqsTransport
 
@@ -371,7 +371,6 @@ class Usage
 
     void EnableMessageDrivenPubSubCompatibilityMode(EndpointConfiguration endpointConfiguration)
     {
-#pragma warning disable 618
         #region EnableMessageDrivenPubSubCompatibilityMode
 
         var routing = endpointConfiguration.UseTransport(new SqsTransport());
@@ -379,12 +378,10 @@ class Usage
         routing.EnableMessageDrivenPubSubCompatibilityMode();
 
         #endregion
-#pragma warning restore 618
     }
 
     void SubscriptionCacheTtl(EndpointConfiguration endpointConfiguration)
     {
-#pragma warning disable 618
         var routing = endpointConfiguration.UseTransport(new SqsTransport());
         #region SubscriptionsCacheTTL
 
@@ -392,12 +389,10 @@ class Usage
         migrationSettings.SubscriptionsCacheTTL(TimeSpan.FromSeconds(30));
 
         #endregion
-#pragma warning restore 618
     }
 
     void TopicCacheTtl(EndpointConfiguration endpointConfiguration)
     {
-#pragma warning disable 618
         var routing = endpointConfiguration.UseTransport(new SqsTransport());
         #region TopicCacheTtl
 
@@ -405,12 +400,10 @@ class Usage
         migrationSettings.TopicCacheTTL(TimeSpan.FromSeconds(30));
 
         #endregion
-#pragma warning restore 618
     }
 
     void MessageVisibilityTimeout(EndpointConfiguration endpointConfiguration)
     {
-#pragma warning disable 618
         var routing = endpointConfiguration.UseTransport(new SqsTransport());
         #region MessageVisibilityTimeout
 
@@ -418,7 +411,6 @@ class Usage
         migrationSettings.MessageVisibilityTimeout(timeoutInSeconds: 10);
 
         #endregion
-#pragma warning restore 618
     }
 
     void DoNotWrapOutgoingMessages(EndpointConfiguration endpointConfiguration)
