@@ -9,9 +9,27 @@ isUpgradeGuide: true
 
 Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requires careful planning. During the upgrade process, the instance of ServiceControl that is being upgraded will no longer be available and will not be ingesting any messages.
 
+## New data format
+
+Version 4.26 of ServiceControl introduced a [new persistence format](../new-persistence.md) for audit instances. Version 5 of ServiceControl uses the new persistence format for _all_ instance types.
+
+As a result, not all ServiceControl instances can be upgraded to Version 5:
+
+* An **audit instance** can only be upgraded to Version 5 if it uses `RavenDB 5` for persistence.
+* The **primary/error instance** cannot be upgraded from Version 4 to Version 5. Instead, it must be replaced with a new instance.
+
+As a result, the following steps should be taken before upgrading to ServiceControl version 5:
+
+* Upgrade all ServiceControl instances to at least Version 4.26.
+* Create an audit instance that uses **RavenDB 5** for persistence as described in [zero downtime upgrades](../zero-downtime.md).
+* Note that not all instances will be directly upgradeable:
+  * The primary instance cannot be upgraded and must be replaced with a new instance as described below.
+  * Any audit instances that use **RavenDB 5** for persistence can be upgraded to Version 5.
+  * Any audit instances that use **RavenDB 3.5** for persistence cannot be upgraded, but can continue to serve queries until the stored data reaches its expiration according to [audit retention period settings](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod)
+
 ## Support for version 4
 
-Version 4 is supported for one year after version 5 is released as defined by the [servicecontrol support policy](/servicecontrol/upgrades/support-policy.md). The ServiceControl support end-date is available at [ServiceContro supported versions](/servicecontrol/upgrades/supported-versions.md)
+Version 4 is supported for one year after version 5 is released as defined by the [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md). The ServiceControl support end-date is available at [ServiceControl supported versions](/servicecontrol/upgrades/supported-versions.md).
 
 ## Planning
 
@@ -19,17 +37,13 @@ Version 4 is supported for one year after version 5 is released as defined by th
 
 This upgrade does not contain any data migrations, the size of the database does not have any impact on the time to perform the upgrade.
 
-### Required minimum version
-
-Before upgrading to ServiceControl version 4 the instance being upgraded must be upgraded to at least [version 3.8.3](https://github.com/Particular/ServiceControl/releases/tag/3.8.3).
-
-For more information how to upgrade from Version 1.x to 3.8.3 consult the [upgrade documentation](/servicecontrol/upgrades/).
-
 ### Editing older instances
 
-ServiceControl Management Utility version 4 cannot be used to edit ServiceControl instances until they have been upgraded to version 4. These instances can still be started, stopped, put into maintenance mode, and removed using ServiceControl Managament. Ensure any planned changes have been made to existing ServiceControl instances before installing ServiceControl version 4.
+ServiceControl Management Utility version 5 cannot be used to edit ServiceControl instances until they have been upgraded to version 4. These instances can still be started, stopped, put into maintenance mode, and removed using ServiceControl Managament. Ensure any planned changes have been made to existing ServiceControl instances before installing ServiceControl version 5.
 
 ### Disk space requirements
+
+// Still original 3to4 text below here
 
 Upgrades that include the separate Audit embedded database will increase disk usage since databases are not automatically compacted. The new Audit embedded database will grow to the same peak storage usage as the original ServiceControl instance embedded audit message storage usage unless the original instance database is compacted after the data is removed via the audit retention process. This could result in as much as double the data usage.
 
@@ -48,8 +62,6 @@ The original ServiceControl instance will no longer manage the audit queue. It c
 This split is transparent to the other components of the Particular Software Platform, which should continue to connect to the ServiceControl Error instance. All queries to the ServiceControl Error instance will contain results from the Audit instance as well.
 
 When upgrading a ServiceControl instance to version 4, if it is configured to manage an audit queue, a new ServiceControl Audit instance will be created as a part of the upgrade process. A user will need to supply additional information about the new ServiceControl Audit instance.
-
-![](scmu-upgrade.png)
 
 NOTE: If the ServiceControl instance being upgraded is not configured to manage an audit queue (by setting the audit queue name to `!disable`), then no new ServiceControl Audit instance will be created.
 
