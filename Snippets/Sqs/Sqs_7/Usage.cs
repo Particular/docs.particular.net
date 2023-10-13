@@ -423,7 +423,7 @@ class Usage
 
     void DoNotWrapOutgoingMessages(EndpointConfiguration endpointConfiguration)
     {
-        #region DoNotWrapOutgoingMessages [6.1,)
+        #region DoNotWrapOutgoingMessages
         var transport = new SqsTransport
         {
             DoNotWrapOutgoingMessages = true
