@@ -13,7 +13,7 @@ class MessageWrapperSerializer
         var transport = new AzureStorageQueueTransport("connection string")
         {
             // wrap messages in JSON
-            MessageWrapperSerializationDefinition = new NewtonsoftJsonSerializer()
+            MessageWrapperSerializationDefinition = new SystemJsonSerializer()
         };
 
         endpointConfiguration.UseTransport(transport);
