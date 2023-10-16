@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctionsWorker_3", "ASB
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctionsWorker_4", "ASBFunctionsWorker_4\ASBFunctionsWorker_4.csproj", "{A70F0B0D-D2A1-4064-AE9A-D98925CC2D74}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctionsWorker_5", "ASBFunctionsWorker_5\ASBFunctionsWorker_5.csproj", "{76C9FD22-8939-4F76-A858-60873B7A29C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{A70F0B0D-D2A1-4064-AE9A-D98925CC2D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A70F0B0D-D2A1-4064-AE9A-D98925CC2D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A70F0B0D-D2A1-4064-AE9A-D98925CC2D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76C9FD22-8939-4F76-A858-60873B7A29C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C9FD22-8939-4F76-A858-60873B7A29C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C9FD22-8939-4F76-A858-60873B7A29C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C9FD22-8939-4F76-A858-60873B7A29C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
