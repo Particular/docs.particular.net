@@ -16,16 +16,20 @@ Version 4.26 of ServiceControl introduced a [new persistence format](../new-pers
 As a result, not all ServiceControl instances can be upgraded to Version 5:
 
 * An **audit instance** can only be upgraded to Version 5 if it uses `RavenDB 5` for persistence.
+  - These are audit instances created with 4.26 or later
 * The **primary/error instance** cannot be upgraded from Version 4 to Version 5. Instead, it must be replaced with a new instance.
+* The **monitoring instance** can be upgraded automatically.
 
 As a result, the following steps should be taken before upgrading to ServiceControl version 5:
 
-* Upgrade all ServiceControl instances to at least Version 4.26.
-* Create an audit instance that uses **RavenDB 5** for persistence as described in [zero downtime upgrades](../zero-downtime.md).
+* Upgrade all ServiceControl instances to the lastst 4.x version (at least Version 4.26).
+* Create an additional version 5 audit instance that uses **RavenDB 5** for persistence as described in [zero downtime upgrades](../zero-downtime.md).
+  - This can be created on the commandline via the [Particular.ServiceControl.Management Powershell module](/servicecontrol/powershell.md) or via a Windows UI with the ServiceControl Management Utility.
 * Note that not all instances will be directly upgradeable:
-  * The primary instance cannot be upgraded and must be replaced with a new instance as described below.
+  * The primary/error instance cannot be upgraded and must be replaced with a new instance as described below.
   * Any audit instances that use **RavenDB 5** for persistence can be upgraded to Version 5.
-  * Any audit instances that use **RavenDB 3.5** for persistence cannot be upgraded, but can continue to serve queries until the stored data reaches its expiration according to [audit retention period settings](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod)
+  * Any audit instances that use **RavenDB 3.5** for persistence cannot be upgraded, but can continue to serve queries until the stored data reaches its expiration according to [audit retention period settings](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod) after which the instance can be removed.
+
 
 ## Support for version 4
 
@@ -40,6 +44,8 @@ This upgrade does not contain any data migrations, the size of the database does
 ### Editing older instances
 
 ServiceControl Management Utility version 5 cannot be used to edit ServiceControl instances until they have been upgraded to version 4. These instances can still be started, stopped, put into maintenance mode, and removed using ServiceControl Managament. Ensure any planned changes have been made to existing ServiceControl instances before installing ServiceControl version 5.
+
+To edit pre version 5 instances it is requires to install the prior major version by first uninstalling version 5.
 
 ### Disk space requirements
 
@@ -125,15 +131,15 @@ The name of the new audit instance will be derived from the name of the original
 
 Upgrading a multi-instance ServiceControl deployment must be done in stages. Some stages may require the use of the powershell scripts.
 
-### Upgrade the primary instance
+### Upgrade the primary/error instance
 
-The first step is to upgrade the primary ServiceControl instance. If the primary instance has audit ingestion enabled, then a new ServiceControl Audit instance will be created for it.
+The first step is to upgrade the primary/error ServiceControl instance. If the primary/error instance has audit ingestion enabled, then a new ServiceControl Audit instance will be created for it.
 
 NOTE: Once the primary instance has been upgraded, it will not subscribe to events being published by new secondary instances. All subscriptions to existing secondary instances will be retained. As the primary instance no longer requires the transport address of the secondary instances to send subscription requests, the `Queue_Address` property has been dropped from the `ServiceControl/RemoteInstances` configuration setting.
 
-### Upgrade the secondary instances
+### Upgrade the audit instance(s)
 
-Once the primary instance has been upgraded to version 4, secondary instances can be upgraded one at a time. If a secondary instance has audit ingestion enabled, then a new ServiceControl Audit instance will be created for it.
+Once the primary/error instance has been upgraded to version 5, audit instances can be upgraded one at a time. If a secondary instance has audit ingestion enabled, then a new ServiceControl Audit instance will be created for it.
 
 If a secondary instance has error ingestion turned off, then it cannot be upgraded to version 4. The recommended course of action is to replace the existing instance with a new ServiceControl Audit instance. Follow this sequence of steps:
 
