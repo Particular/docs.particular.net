@@ -9,6 +9,14 @@ isUpgradeGuide: true
 
 Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requires careful planning. During the upgrade process, the instance of ServiceControl that is being upgraded will no longer be available and will not be ingesting any messages.
 
+## Breaking changes
+
+// TODO Currently these are just bullet points to make sure we don't forget but should be expanded into a quasi-table-of-contents for this article.
+
+* [New data format](#new-data-format)
+* Not processing audit data, but tries to forward to audit queue with custom check warning
+* PowerShell no longer provided via installer
+
 ## New data format
 
 Version 4.26 of ServiceControl introduced a [new persistence format](../new-persistence.md) for audit instances. Version 5 of ServiceControl uses the new persistence format for _all_ instance types.
