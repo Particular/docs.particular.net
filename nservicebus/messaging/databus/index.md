@@ -27,15 +27,15 @@ Note: Not all transports have very restrictive message size limits and Azure Ser
 
 | Transport                  | Maximum size |
 | -------------------------- | ------------:|
-| Amazon SQS                 | 256KB        |
-| Amazon SQS + S3            | 2GB          |
-| Azure Storage Queues       | 64KB         |
-| Azure Service Bus Standard | 256KB        |
-| Azure Service Bus Premium  | 100MB        |
-| RabbitMQ                   | No limit     |
+| Amazon SQS                 | [256KB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) |
+| Amazon SQS + S3            | [2GB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) |
+| Azure Storage Queues       | [64KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |
+| Azure Service Bus Standard | [256KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |
+| Azure Service Bus Premium  | [100MB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging#large-messages-support) |
+| RabbitMQ                   | Configured by [`max_message_size`](https://www.rabbitmq.com/configure.html#config-items) |
 | SQL Server                 | No limit     |
 | Learning                   | No limit     |
-| MSMQ                       | 4MB          |
+| MSMQ                       | [4MB](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/msmq/ms711436(v=vs.85)#maximum-message-size) |
 
 ## Enabling the data bus
 
