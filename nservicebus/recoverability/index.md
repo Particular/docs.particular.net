@@ -161,7 +161,7 @@ NServiceBus logs processing failures via the logger **NServiceBus.Recoverability
 | Delayed retry   | Warning       | Delayed Retry will reschedule message 'XXX' after a delay of HH:MM:SS because of an exception: |
 | To error queue  | Error         | Moving message 'XXX' to the error queue 'error' because processing failed due to an exception: |
 
-This allows to setup alerting in centralized logging solution. For example, to notify an administrator when logger **NServiceBus.RecoverabilityExecutor** logs an ERROR log entry.
+This enables configuring alerts in a centralized logging solution. For example, when **NServiceBus.RecoverabilityExecutor** logs an ERROR entry, notifications can be sent to an administrator.
 
 ### Output example
 
