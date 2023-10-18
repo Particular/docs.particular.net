@@ -1,5 +1,6 @@
 ---
 title: PostgreSQL dialect design
+summary: An SQL persister dialect that specifically targets PostgreSQL, including AWS Aurora PostgreSQL.
 component: SqlPersistence
 related:
 reviewed: 2021-12-22
@@ -14,7 +15,7 @@ redirects:
 
 ## Supported database versions
 
-SQL persistence supports [PostgreSQL 10](https://www.postgresql.org/docs/10/release-10.html) and above.
+SQL persistence supports [PostgreSQL 10](https://www.postgresql.org/docs/10/release-10.html) and above, as well as AWS Aurora PostgreSQL.
 
 
 ## Usage

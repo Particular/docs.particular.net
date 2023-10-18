@@ -1,7 +1,6 @@
 
  * [SQL Server](/persistence/sql/dialect-mssql.md)
- * [MySQL](/persistence/sql/dialect-mysql.md)
+ * [MySQL](/persistence/sql/dialect-mysql.md) (including AWS Aurora MySQL)
  * [Oracle](/persistence/sql/dialect-oracle.md)
- * [PostgreSQL](/persistence/sql/dialect-postgresql.md)
- * [AWS Aurora PostgreSQL](/persistence/sql/dialect-postgresql.md)
- * [AWS Aurora MySQL](/persistence/sql/dialect-mysql.md) 
+ * [PostgreSQL](/persistence/sql/dialect-postgresql.md) (including AWS Aurora PostgreSQL)
+ 

@@ -1,6 +1,6 @@
 ---
 title: SQL Persistence
-summary: A persister that targets relational databases, including SQL Server, Oracle. MySQL, and PostgreSQL
+summary: A persister that targets relational databases, including SQL Server, Oracle, MySQL, PostgreSQL, AWS Aurora MySQL and AWS Aurora PostgreSQL
 component: SqlPersistence
 related:
  - samples/sql-persistence/simple
