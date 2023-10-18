@@ -1,4 +1,4 @@
-﻿namespace Core9.Encryption
+﻿namespace Encryption
 {
     using System;
     using System.Collections.Generic;

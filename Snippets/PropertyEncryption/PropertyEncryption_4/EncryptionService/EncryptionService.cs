@@ -1,4 +1,4 @@
-namespace Core8.Encryption.EncryptionService
+namespace Encryption.EncryptionService
 {
     using System;
 

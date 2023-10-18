@@ -1,4 +1,4 @@
-﻿namespace Core8.Encryption.WireEncryptedProperty
+﻿namespace Encryption.WireEncryptedProperty
 {
 
     #region MessageWithEncryptedProperty
