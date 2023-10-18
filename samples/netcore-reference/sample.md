@@ -14,8 +14,6 @@ This sample demonstrates:
 - a simple back-end process running in the .NET Core generic host
 - the built-in tools used to inject dependencies into message handler classes
 
-NOTE: The `NServiceBus.MicrosoftLogging` community NuGet package should be installed to use the `Microsoft.Extensions.Logging` library.
-
 ## Front-end
 
 The front-end project hosts a simple web page that contains a form. When the form is submitted, a message is sent to the back-end application via NServiceBus for processing. 
