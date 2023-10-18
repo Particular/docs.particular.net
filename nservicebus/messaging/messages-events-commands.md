@@ -46,20 +46,19 @@ There are checks in place to ensure best practices are followed. Violations of t
 
 ## Designing messages
 
-Messages represent data contracts between endpoints. They should be designed according to the following guidelines.
-
 Messages should:
 
-* be simple [POCO](https://en.wikipedia.org/wiki/Plain_old_CLR_object) types.
-* be as small as possible.
-* satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle). Types used for other purposes (e.g. domain objects, data access objects, or UI binding objects) should not be used as messages.
-* consider using [interfaces as messages](messages-as-interfaces.md)
+* be simple [POCO](https://en.wikipedia.org/wiki/Plain_old_CLR_object) types
+* be as small as possible
+* satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle)
+
+Types used for other purposes (e.g. domain objects, data access objects, or UI binding objects) should not be used as messages.
 
 Note: Prior to NServiceBus version 7.2, messages had to be defined as a `class`. Defining them as a `struct` would result in a runtime exception.
 
 Generic message definitions (e.g. `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message or to use inheritance to reuse shared message characteristics.
 
-Messages define the data contracts between endpoints. More details are available in the [sharing message contracts documentation](sharing-contracts.md).
+Messages define the data contracts between endpoints. More details are available in the [sharing message contracts documentation](sharing-contracts.md). It may also be beneficial to [use them as interfaces](messages-as-interfaces.md).
 
 ## Identifying messages
 
