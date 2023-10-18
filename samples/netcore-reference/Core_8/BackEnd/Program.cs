@@ -19,15 +19,6 @@ internal class Program
         var builder = Host.CreateDefaultBuilder(args);
         builder.UseConsoleLifetime();
 
-        builder.UseMicrosoftLogFactoryLogging();
-        builder.ConfigureLogging((ctx, logging) =>
-        {
-            logging.AddConfiguration(ctx.Configuration.GetSection("Logging"));
-
-            logging.AddEventLog();
-            logging.AddConsole();
-        });
-
         #region back-end-use-nservicebus
 
         builder.UseNServiceBus(ctx =>

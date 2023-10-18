@@ -18,15 +18,6 @@ internal class Program
         var builder = Host.CreateDefaultBuilder(args);
         builder.UseConsoleLifetime();
 
-        builder.UseMicrosoftLogFactoryLogging();
-        builder.ConfigureLogging((ctx, logging) =>
-        {
-            logging.AddConfiguration(ctx.Configuration.GetSection("Logging"));
-
-            logging.AddEventLog();
-            logging.AddConsole();
-        });
-
         #region back-end-use-nservicebus
 
         builder.UseNServiceBus(ctx =>
@@ -56,7 +47,7 @@ internal class Program
         var fatalMessage = $"The following critical error was " +
                            $"encountered: {Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. " +
                            $"StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
-        
+
         EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
 
         try
