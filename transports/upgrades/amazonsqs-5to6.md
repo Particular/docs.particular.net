@@ -67,3 +67,7 @@ The SQS transport configuration options that have not changed have been moved to
 | Policies.AddTopicNamePrefixCondition | Policies.TopicNamePrefixCondition |
 | Policies.AddNamespaceCondition | Policies.TopicNamespaceConditions |
 | Policies.AssumePolicyHasAppropriatePermissions | Policies.SetupTopicPoliciesWhenSubscribing |
+
+## V1 Compatibility Mode
+
+The V1 Compatibility mode is marked as deprecated in Version 6 and will be no longer be available in Version 7, see the [Version 7 upgrade guide for more details](/transports/upgrades/amazonsqs-6to7.md).
