@@ -1,4 +1,4 @@
-﻿namespace Core6.Encryption.WireEncryptedProperty
+﻿namespace Encryption.WireEncryptedProperty
 {
 
     #region MessageWithEncryptedProperty

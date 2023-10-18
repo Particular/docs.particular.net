@@ -1,4 +1,4 @@
-﻿namespace Core6.Encryption.Conventions
+﻿namespace Encryption.Conventions
 {
     using System;
     using NServiceBus;

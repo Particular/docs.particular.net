@@ -1,4 +1,4 @@
-﻿namespace Core6.Encryption
+﻿namespace Encryption
 {
     using System;
     using System.Collections.Generic;
