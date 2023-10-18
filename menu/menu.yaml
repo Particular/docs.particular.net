@@ -498,7 +498,7 @@
         Title: Roslyn analyzers
     - Url: nservicebus/hosting/azure-functions-service-bus/in-process
       Title: Azure Functions with Service Bus (In Process)
-      Articles:        
+      Articles:
       - Url: nservicebus/hosting/azure-functions-service-bus/in-process/custom-triggers
         Title: Custom triggers
       - Url: nservicebus/hosting/azure-functions-service-bus/in-process/analyzers
@@ -853,6 +853,8 @@
         Title: Version 1.x to 1.2.5
     - Title: Amazon SQS
       Articles:
+      - Url: transports/upgrades/amazonsqs-6to7
+        Title: Version 6 to 7
       - Url: transports/upgrades/amazonsqs-5to6
         Title: Version 5 to 6
       - Url: transports/upgrades/amazonsqs-4to5
