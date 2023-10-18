@@ -1,4 +1,4 @@
-﻿namespace Core8.Encryption.Conventions
+﻿namespace Core6.Encryption.Conventions
 {
     using NServiceBus;
 

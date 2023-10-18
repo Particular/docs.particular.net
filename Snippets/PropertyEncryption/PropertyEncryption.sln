@@ -1,24 +1,43 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34205.153
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_All", "PropertyEncryption_All\PropertyEncryption_All.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_2", "PropertyEncryption_2\PropertyEncryption_2.csproj", "{39AF2F33-4245-4193-9AFF-E4BC7AFC83B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyEncryption_3", "PropertyEncryption_3\PropertyEncryption_3.csproj", "{F4D023B2-1637-4096-B84F-A404B7EA60C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_3", "PropertyEncryption_3\PropertyEncryption_3.csproj", "{F4D023B2-1637-4096-B84F-A404B7EA60C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_4", "PropertyEncryption_4\PropertyEncryption_4.csproj", "{304FBD2C-B209-4825-8D8B-0872D7CEFF99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_5", "PropertyEncryption_5\PropertyEncryption_5.csproj", "{9477D07A-A5D3-4EA3-8135-F55ABEB59581}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Release|Any CPU.Build.0 = Release|Any CPU
 		{39AF2F33-4245-4193-9AFF-E4BC7AFC83B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{39AF2F33-4245-4193-9AFF-E4BC7AFC83B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39AF2F33-4245-4193-9AFF-E4BC7AFC83B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39AF2F33-4245-4193-9AFF-E4BC7AFC83B2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F4D023B2-1637-4096-B84F-A404B7EA60C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F4D023B2-1637-4096-B84F-A404B7EA60C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D023B2-1637-4096-B84F-A404B7EA60C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4D023B2-1637-4096-B84F-A404B7EA60C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{304FBD2C-B209-4825-8D8B-0872D7CEFF99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{304FBD2C-B209-4825-8D8B-0872D7CEFF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{304FBD2C-B209-4825-8D8B-0872D7CEFF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{304FBD2C-B209-4825-8D8B-0872D7CEFF99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9477D07A-A5D3-4EA3-8135-F55ABEB59581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9477D07A-A5D3-4EA3-8135-F55ABEB59581}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9477D07A-A5D3-4EA3-8135-F55ABEB59581}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9477D07A-A5D3-4EA3-8135-F55ABEB59581}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
