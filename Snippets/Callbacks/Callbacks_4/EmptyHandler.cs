@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 1998
-namespace Calbacks.Handlers
+namespace Callbacks.Handlers
 {
     using System.Threading.Tasks;
     using NServiceBus;
