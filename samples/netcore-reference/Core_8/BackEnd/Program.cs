@@ -18,14 +18,6 @@ internal class Program
     {
         var builder = Host.CreateDefaultBuilder(args);
         builder.UseConsoleLifetime();
-        
-        builder.ConfigureLogging((ctx, logging) =>
-        {
-            logging.AddConfiguration(ctx.Configuration.GetSection("Logging"));
-
-            logging.AddEventLog();
-            logging.AddConsole();
-        });
 
         #region back-end-use-nservicebus
 
