@@ -31,7 +31,7 @@ Several [Amazon SQS](https://aws.amazon.com/sqs/) queues are required to run thi
 
 ### S3
 
-An [Amazon S3](https://console.aws.amazon.com/s3) bucket is required to leverage the [S3 bucket for large messages](/transports/sqs/configuration-options.md#s3bucketforlargemessages) feature of the SQS transport. [Create an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/UG/CreatingaBucket.html) and replace the `bucketname` in the sample startup with the the name of the created bucket.
+An [Amazon S3](https://console.aws.amazon.com/s3) bucket is required to leverage the [S3 bucket for large messages](/transports/sqs/configuration-options.md#offload-large-messages-to-s3) feature of the SQS transport. [Create an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/UG/CreatingaBucket.html) and replace the `bucketname` in the sample startup with the the name of the created bucket.
 
 
 ## Endpoint configuration
