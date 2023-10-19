@@ -65,6 +65,6 @@ The following ServiceControl connection string options are available:
 * `Region=<value>` - Region transport [option](/transports/sqs/configuration-options.md#region),
 * `QueueNamePrefix=<value>` - Queue name prefix transport [option](/transports/sqs/configuration-options.md#queue-name-prefix),
 * `TopicNamePrefix=<value>` - Topic name prefix transport [option](/transports/sqs/configuration-options.md#topic-name-prefix)
-* `S3BucketForLargeMessages=<value>` - S3 bucket for large messages [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages),
-* `S3KeyPrefix=<value>` - S3 key prefix [option](/transports/sqs/configuration-options.md#s3bucketforlargemessages-s3keyprefix).
-* `DoNotWrapOutgoingMessages=true` - Do not wrap outgoing messages [option](/transports/sqs/configuration-options.md#donotwrapoutgoingmessages).
+* `S3BucketForLargeMessages=<value>` - S3 bucket for large messages [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3),
+* `S3KeyPrefix=<value>` - S3 key prefix [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3-key-prefix).
+* `DoNotWrapOutgoingMessages=true` - Do not wrap outgoing messages [option](/transports/sqs/configuration-options.md#do-not-wrap-message-payload-in-a-transport-envelope).

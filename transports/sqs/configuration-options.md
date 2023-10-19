@@ -54,7 +54,7 @@ DEV-SampleEndpoint-TimeoutsDispatcher
 
 partial: queuenamegenerator
 
-## Offload large messages to SQS
+## Offload large messages to S3
 
 **Optional**
 
