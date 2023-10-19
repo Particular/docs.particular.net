@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34205.153
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway_3", "Gateway_3\Gateway_3.csproj", "{3645B2AA-B83A-4C76-A518-4E133B75B740}"
 EndProject
@@ -9,6 +9,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway_4", "Gateway_4\Gateway_4.csproj", "{4CD1DE4F-A335-4C91-8C88-6B599907392D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway_3.2", "Gateway_3.2\Gateway_3.2.csproj", "{1A448DE1-38F2-4EBC-9B9E-273834068ED8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway_5", "Gateway_5\Gateway_5.csproj", "{012BCA7B-DEBE-452A-95F0-42E03CF2826C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{1A448DE1-38F2-4EBC-9B9E-273834068ED8}.Debug|x64.Build.0 = Debug|x64
 		{1A448DE1-38F2-4EBC-9B9E-273834068ED8}.Release|x64.ActiveCfg = Release|x64
 		{1A448DE1-38F2-4EBC-9B9E-273834068ED8}.Release|x64.Build.0 = Release|x64
+		{012BCA7B-DEBE-452A-95F0-42E03CF2826C}.Debug|x64.ActiveCfg = Debug|x64
+		{012BCA7B-DEBE-452A-95F0-42E03CF2826C}.Debug|x64.Build.0 = Debug|x64
+		{012BCA7B-DEBE-452A-95F0-42E03CF2826C}.Release|x64.ActiveCfg = Release|x64
+		{012BCA7B-DEBE-452A-95F0-42E03CF2826C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
