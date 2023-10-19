@@ -1,8 +1,8 @@
 ## CredentialSource
 
-**Optional**
+**Mandatory**
 
-**Default**: `AWS SDK credentials`
+**Default**: AWS SDK credentials
 
 By default the endpoint uses the SDK to retrieve AWS credentials. The AWS SDK permits a large number of transparent methods for configuring the credentials as outlined in the [.NET SDK guidelines](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-creds.html).
 
@@ -18,7 +18,7 @@ snippet: S3CredentialSource
 
 **Mandatory**
 
-**Default**: `AWS SDK`
+**Default**: AWS SDK region
 
 By default the endpoint uses the SDK to retrieve the default AWS region from the `AWS_REGION` environment variable.
 
