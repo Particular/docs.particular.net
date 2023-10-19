@@ -5,8 +5,10 @@ reviewed: 2023-05-09
 component: DynamoDB
 related:
  - nservicebus/sagas
- - samples/dynamodb/simple
- - samples/hosting/aws-lambda-sqs
+ - samples/aws/dynamodb-simple
+ - samples/aws/lambda-sqs
+redirects:
+- samples/dynamodb/lambda
 ---
 
 This sample shows a basic saga using AWS Lambda with SQS and DynamoDB.
