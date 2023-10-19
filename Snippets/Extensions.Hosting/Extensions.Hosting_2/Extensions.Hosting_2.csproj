@@ -3,7 +3,7 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-      <FrameworkReference Include="Microsoft.AspNetCore.App" />
-      <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*" />
   </ItemGroup>
 </Project>

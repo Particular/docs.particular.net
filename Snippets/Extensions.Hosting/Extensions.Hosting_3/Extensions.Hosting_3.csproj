@@ -3,7 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-      <FrameworkReference Include="Microsoft.AspNetCore.App" />
-      <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0-alpha.1" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0-alpha.1" />
   </ItemGroup>
 </Project>
