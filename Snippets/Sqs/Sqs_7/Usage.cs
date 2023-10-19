@@ -140,7 +140,7 @@ class Usage
 
     void QueueNameGenerator(EndpointConfiguration endpointConfiguration)
     {
-        #region QueueNamePrefix
+        #region QueueNameGenerator
 
         var transport = new SqsTransport
         {

@@ -70,11 +70,9 @@ snippet: S3BucketForLargeMessages
 
 ### Key prefix
 
-**Optional**
+**Mandatory**
 
-**Default**: Empty
-
-This is the path within the specified S3 bucket to store large messages. If this option is specified but the name of the bucket is not, an exception is thrown.
+This is the path within the specified S3 bucket to store large messages.
 
 ### S3 Client
 
