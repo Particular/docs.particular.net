@@ -2,7 +2,7 @@
 
 **Optional**
 
-**Default**: `$"{queueNamePrefix}{queueName}` with unsupported characters like `.` being replaced with a hyphen `-`
+**Default**: `$"{queueNamePrefix}{queueName}` with unsupported characters like `.` are replaced with a hyphen `-`
 
 Provides the ability to override the queue name generation with a custom function that allows creating queues in alignment with custom conventions.
 
