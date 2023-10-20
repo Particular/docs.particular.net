@@ -30,10 +30,11 @@ internal class Program
 
         builder.ConfigureServices(services =>
         {
-            services.AddOpenTelemetryTracing(config => config
-                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
-                .AddSource("NServiceBus.*")
-                .AddConsoleExporter());
+            services.AddOpenTelemetry()
+				.WithTracing(config => config
+					.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
+					.AddSource("NServiceBus.*")
+					.AddConsoleExporter());
         });
 
         #endregion
