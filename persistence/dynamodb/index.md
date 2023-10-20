@@ -4,8 +4,8 @@ summary: How to use NServiceBus with AWS DynamoDB
 component: DynamoDB
 reviewed: 2023-03-16
 related:
-- samples/aws/dynamodb/simple
-- samples/aws/dynamodb/transactions
+- samples/aws/dynamodb-simple
+- samples/aws/dynamodb-transactions
 - nservicebus/transactional-session/persistences/dynamodb
 ---
 

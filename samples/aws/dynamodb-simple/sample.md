@@ -6,7 +6,7 @@ component: DynamoDB
 related:
  - nservicebus/sagas
 redirects:
-- samples/aws/dynamodb/simple
+- samples/dynamodb/simple
 ---
 
 This sample shows a client/server scenario using saga persistence.

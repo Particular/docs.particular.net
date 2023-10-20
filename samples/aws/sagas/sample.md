@@ -8,7 +8,7 @@ related:
  - samples/aws/dynamodb-simple
  - samples/aws/lambda-sqs
 redirects:
-- samples/aws/dynamodb/lambda
+- samples/dynamodb/lambda
 ---
 
 This sample shows a basic saga using AWS Lambda with SQS and DynamoDB.
