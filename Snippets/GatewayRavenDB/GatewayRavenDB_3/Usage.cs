@@ -1,5 +1,4 @@
 ﻿using NServiceBus;
-using NServiceBus.Gateway.RavenDB;
 using Raven.Client.Documents;
 using System;
 
@@ -39,4 +38,3 @@ class Usage
         #endregion
     }
 }
-
