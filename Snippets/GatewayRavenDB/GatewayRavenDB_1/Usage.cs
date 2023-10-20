@@ -1,10 +1,9 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 using Raven.Client.Documents;
-using System;
 
 class Usage
 {
-
     public void DefaultUsage(EndpointConfiguration endpointConfiguration)
     {
         #region DefaultUsage

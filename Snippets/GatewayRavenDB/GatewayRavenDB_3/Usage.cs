@@ -1,10 +1,9 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 using Raven.Client.Documents;
-using System;
 
 class Usage
 {
-
     public void DefaultUsage(EndpointConfiguration endpointConfiguration)
     {
         #region DefaultUsage
@@ -13,7 +12,7 @@ class Usage
         {
             var documentStore = new DocumentStore
             {
-                Urls = new[] {"database-server-url"},
+                Urls = new[] { "database-server-url" },
                 Database = "default-database-name"
             };
 
