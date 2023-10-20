@@ -6,7 +6,7 @@ component: DynamoDB
 related:
  - nservicebus/sagas
 redirects:
-- samples/dynamodb/transactions
+- samples/aws/dynamodb/transactions
 ---
 
 This sample shows a client/server scenario using saga and outbox persistence to store records atomically by leveraging transactions.
