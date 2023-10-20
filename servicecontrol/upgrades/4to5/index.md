@@ -199,3 +199,47 @@ New-ServiceControlAuditInstance `
 ```
 
 NOTE: Service account details cannot be copied from the original instance. If the ServiceControl Audit instance must run under a service account, supply the `ServiceAccount` and `ServiceAccountPassword` parameters to the `New-ServiceControlAuditInstance` cmdlet.
+
+## Primary instances migration procedure
+
+WARNING: It is recommended to perform the following procedure on a test environment first and to perform most steps via Powershell
+
+The following procedure will migrate the primary instance to minimize the impact on:
+
+- existing endpoints which might be sending heartbeat and custom check messages to the servicecontrol queue.
+- existing ServicePulse / ServiceInsight instance
+
+The configurations for these do not need to be adjusted.
+
+The following steps need to be performed
+
+1. Cleanup error messages in ServicePulse
+  - Retry/Archive failed messages
+2. Disable error queue ingestion in ServiceControl Management Utility (SCMU)
+3. Retry all remaining messages on the primary instance in ServicePulse
+4. Wait until the retry group(s) completes
+5. Stop the primary instance Windows service
+  - via SCMU, Powershell, or Windows Service Control Manager
+6. Move the instance
+  - Unregister the windows service
+  - Rename the installation folder
+  - Rename the database folder
+7. Create a new instance that uses the previous name
+  - Any failed messages that were retried in step 3 but still fail will now reappear in ServicePulse
+
+### Re-add remote audit instances
+
+The previous instance likely had one or more remote audit instances registered. These can be readded via the [ServiceControl Powershell module](https://docs.particular.net/servicecontrol/installation-powershell), specifically the `Add-ServiceControlRemote` command.
+
+### Archive obsolete primary instance
+
+In step 3 the previous primary instance was moved. Consider creating a backup of the installation and database folders and schedule when these folder can be deleted to free disk space.
+
+
+## Audit instances migration procedure for RavenDB 3.5 instances
+
+Perform the [zero downtime upgrade](/servicecontrol/upgrades/zero-downtime.md)
+
+## Audit instances migration procedure for RavenDB 5 instances
+
+Upgrade the instance via SCMU or Powershell
