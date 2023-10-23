@@ -141,6 +141,28 @@ class Usage
         #endregion
     }
 
+    void QueueNameGenerator(EndpointConfiguration endpointConfiguration)
+    {
+        #region QueueNameGenerator
+
+        var transport = new SqsTransport
+        {
+            QueueNameGenerator = (name, prefix) =>
+            {
+                if (name.StartsWith(prefix))
+                {
+                    return name;
+                }
+
+                return prefix + "-" + name;
+            }
+        };
+
+        endpointConfiguration.UseTransport(transport);
+
+        #endregion
+    }
+
     void Region(EndpointConfiguration endpointConfiguration)
     {
         #region Region

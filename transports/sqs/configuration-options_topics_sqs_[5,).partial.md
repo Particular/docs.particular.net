@@ -1,4 +1,4 @@
-## TopicNamePrefix
+## Topic name prefix
 
 **Optional**
 
@@ -16,7 +16,7 @@ For example, topic names for the topic called "MyNameSpace.MyEvent" might be:
 DEV-MyNameSpace-MyEvent
 ```
 
-## TopicNameGenerator
+## Topic name generator
 
 **Optional**
 

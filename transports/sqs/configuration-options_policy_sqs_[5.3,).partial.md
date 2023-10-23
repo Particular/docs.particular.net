@@ -37,7 +37,7 @@ snippet: wildcard-account-condition
 
 #### Prefix condition
 
-Allow all messages from any topic with the specified [topic name prefix](#topicnameprefix).
+Allow all messages from any topic with the specified [topic name prefix](#topic-name-prefix).
 
 snippet: wildcard-prefix-condition
 
