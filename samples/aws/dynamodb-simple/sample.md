@@ -1,7 +1,7 @@
 ---
 title: Simple DynamoDB Persistence Usage
 summary: Using DynamoDB Persistence to store sagas
-reviewed: 2023-04-26
+reviewed: 2023-10-24
 component: DynamoDB
 related:
  - nservicebus/sagas

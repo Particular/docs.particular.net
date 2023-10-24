@@ -1,7 +1,7 @@
 ---
 title: DynamoDB Persistence Usage with transactions
 summary: Using DynamoDB persistence to store sagas and outbox records atomically
-reviewed: 2023-04-26
+reviewed: 2023-10-24
 component: DynamoDB
 related:
  - nservicebus/sagas

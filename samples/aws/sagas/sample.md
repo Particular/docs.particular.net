@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus Sagas with AWS Lambda, SQS, and DynamoDB
 summary: A sample demonstrating the AWS DynamoDB persistence, AWS Lambda, and AWS SQS with NServiceBus sagas
-reviewed: 2023-05-09
+reviewed: 2024-10-24
 component: DynamoDB
 related:
  - nservicebus/sagas
