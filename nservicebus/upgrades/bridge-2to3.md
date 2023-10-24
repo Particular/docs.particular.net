@@ -10,7 +10,7 @@ upgradeGuideCoreVersions:
 
 ## New package for MSMQ support
 
-In Version 3 support for bridging MSMQ endpoints is now provided by the new `NServiceBus.MessagingBridge.Msmq` package. Remove any references to `NServiceBus.Transports.Msmq` and update the bridge configuration from:
+In version 3, support for bridging MSMQ endpoints is now provided by the new `NServiceBus.MessagingBridge.Msmq` package. Remove any references to `NServiceBus.Transports.Msmq` and update the bridge configuration from:
 
 `var msmq = new BridgeTransport(new MsmqTransport());`
 
