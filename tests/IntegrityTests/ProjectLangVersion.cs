@@ -148,7 +148,8 @@ namespace IntegrityTests
             {"netstandard2.0", null },
             { "net6.0", 10 },
             { "net7.0", 11 },
-            { "net8.0", 12 }
+            { "net8.0", 12 },
+            { "net8.0-windows", 12 },
         };
     }
 }
