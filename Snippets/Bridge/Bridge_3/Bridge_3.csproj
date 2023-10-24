@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="NServiceBus.MessagingBridge" Version="3.0.0-alpha.1" />
+		<PackageReference Include="NServiceBus.MessagingBridge.Msmq" Version="3.0.0-alpha.1" />
+		<PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="4.0.0-alpha.1" />
+	</ItemGroup>
+</Project>
