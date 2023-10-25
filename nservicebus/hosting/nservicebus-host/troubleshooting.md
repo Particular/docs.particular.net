@@ -36,7 +36,7 @@ Verify that:
 
 ## Service fails to start due to reaching the timeout period
 
-Sometimes, a Windows service using NServiceBus will fail to start due to a dependency not yet being available before it times out. The following exception can be seen in the Windows Event Viewer:
+Sometimes, a Windows service that is set to start automatically will fail to start due to a dependency not yet being available before it times out. The following exception can be seen in the Windows Event Viewer:
 
 ```txt
 A timeout was reached (30000 milliseconds) while waiting for the XYZ service to connect.
@@ -44,12 +44,12 @@ The XYZ service failed to start due to the following error:
 The service did not respond to the start or control request in a timely fashion
 ```
 
-Generally, the service will start without issue at a later time. 
+Generally, the service will start at a later time without issue. 
 
 This problem can be mitigated by:
 
-- Letting the dependencies of a service finish starting up and running before the service.
-- Setting the service to  "Automatic Delayed Start" so that it will only get the signal to start when all other “Automatic” services are running. This is because, when a windows service startup is set to "Automatic", it loads during boot whereas when it is set to "Automatic (delayed start)", it does not start until after all other auto-start services have been launched. Once all the automatic start services are loaded, the system then queues the “delay start” services for 2 minutes (120 seconds) by default. This interval can be altered by creating a registry DWORD (32-bit) value named AutoStartDelay and setting the delay (base: decimal) in seconds, in the following registry key:
-```txt
- HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control
-```
+- Configuring the service with the `depend= <dependencies>` parameter set which identifies which dependencies must start before this service starts. 
+- Configuring the service to start with `delayed-auto` set, such that the service will not start until all other "automatic" services are started. Setting the service to  "Automatic Delayed Start" so that it will only get the signal to start when all other “Automatic” services are running.
+
+See the [Microsoft's sc.exe configuration documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-config) for more details.
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-config
