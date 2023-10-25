@@ -52,4 +52,3 @@ This problem can be mitigated by:
 - Configuring the service to start with `delayed-auto` set, such that the service will not start until all other "automatic" services are started. Setting the service to  "Automatic Delayed Start" so that it will only get the signal to start when all other “Automatic” services are running.
 
 See the [Microsoft's sc.exe configuration documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-config) for more details.
-https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-config
