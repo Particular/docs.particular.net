@@ -1,11 +1,9 @@
-﻿using NServiceBus;
-using NServiceBus.Gateway.RavenDB;
+﻿using System;
+using NServiceBus;
 using Raven.Client.Documents;
-using System;
 
 class Usage
 {
-
     public void DefaultUsage(EndpointConfiguration endpointConfiguration)
     {
         #region DefaultUsage
@@ -34,4 +32,3 @@ class Usage
         #endregion
     }
 }
-

@@ -3,7 +3,6 @@ using Microsoft.Data.SqlClient;
 
 class Usage
 {
-
     public void StandardUsage(EndpointConfiguration endpointConfiguration, string connectionString)
     {
         #region DefaultUsage
@@ -41,4 +40,3 @@ class Usage
         #endregion
     }
 }
-

@@ -15,13 +15,13 @@ partial: clientfactory
 
 partial: donotwrapoutgoingmessages
 
-## MaxTTLDays
+## Retention period
 
 **Optional**
 
-**Default**: 4
+**Default**: 4 days
 
-This is the maximum number of days that a message will be retained within SQS and S3. When a sent message is not received and successfully processed within the specified time, the message will be lost. This value applies to both SQS and S3 - messages in SQS will be deleted after this amount of time, and large message bodies stored in S3 will automatically be deleted after this amount of time.
+This is the maximum time that a message will be retained within SQS and S3. When a sent message is not received and successfully processed within the specified time, the message will be lost. This value applies to both SQS and S3 - messages in SQS will be deleted after this amount of time, and large message bodies stored in S3 will automatically be deleted after this amount of time.
 
 The maximum value is 14 days.
 
@@ -31,7 +31,7 @@ snippet: MaxTTL
 
 NOTE: [Large message payloads stored in S3](topology.md#s3) are never deleted by the receiving endpoint, regardless of whether they were successfully handled. The S3 aging policy controls the deletion of the payload and will respect the configured TTL. Since message payloads stored in S3 are important for audited and failed messages stored in ServiceControl, it is crucial that the [ServiceControl message retention period](/servicecontrol/how-purge-expired-data.md) is aligned with the configured SQS and S3 TTL.
 
-## QueueNamePrefix
+## Queue name prefix
 
 **Optional**
 
@@ -52,13 +52,15 @@ DEV-SampleEndpoint-Timeouts
 DEV-SampleEndpoint-TimeoutsDispatcher
 ```
 
-## S3BucketForLargeMessages
+partial: queuenamegenerator
+
+## Offload large messages to S3
 
 **Optional**
 
-**Default**: Empty. Any attempt to send a large message with an empty S3 bucket will fail.
+**Default**: Disabled. Any attempt to send a message larger than the SQS limit will fail.
 
-This is the name of an S3 Bucket that will be used to store message bodies for messages larger than 256kB in size. If this option is not specified, S3 will not be used at all. Any attempt to send a message larger than 256kB will throw an exception if a value is not supplied for this parameter.
+This option configures the S3 bucket to be used to store messages larger than 256 kB. If this option is not specified, S3 will not be used at all and any attempt to send a message larger than 256 kB will fail.
 
 If the specified bucket doesn't exist, it will be created when the endpoint starts.
 
@@ -66,16 +68,41 @@ If the specified bucket doesn't exist, it will be created when the endpoint star
 
 snippet: S3BucketForLargeMessages
 
+### Key prefix
 
-### S3KeyPrefix
+**Mandatory**
+
+This is the path within the specified S3 bucket to store large messages.
+
+### S3 Client
 
 **Optional**
 
-**Default**: Empty
+**Default**: `new AmazonS3Client()`
 
-This is the path within the specified S3 Bucket to store large message bodies. If this option is specified without a value for S3BucketForLargeMessages, an exception will be thrown.
+By default the transport uses a parameterless constructor to build the S3 client. This overrides the default S3 client with a custom one.
 
-partial: s3clientfactory
+**Example**: To use a custom client, specify:
+
+snippet: S3ClientFactory
+
+#if-version [6.1,)
+NOTE: If a custom S3 client is provided, it will not be disposed of when the endpoint is stopped.
+#end-if
+
+### Encryption
+
+**Optional**
+
+**Default**: Disabled
+
+Specifies how the large messages stored in S3 are to be encrypted. Default option is no encryption. The alternative is to either use a managed encyption key:
+
+snippet: S3ServerSideEncryption
+
+or to provide a custom key:
+
+snippet: S3ServerSideCustomerEncryption
 
 partial: v1compatibilitymode
 
