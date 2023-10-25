@@ -3,7 +3,7 @@ title: AWS Lambda with Simple Queue Service
 component: SQSLambda
 summary: Hosting NServiceBus endpoints with AWS Lambda triggered by Simple Queue Service
 related:
- - samples/hosting/aws-lambda-sqs
+ - samples/aws/lambda-sqs
 reviewed: 2023-04-28
 redirects:
  - previews/aws-lambda-simple-queue-service
