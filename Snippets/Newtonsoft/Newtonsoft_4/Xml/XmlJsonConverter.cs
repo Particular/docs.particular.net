@@ -1,9 +1,11 @@
 using System;
 using System.IO;
 using System.Xml.Linq;
-using global::Newtonsoft.Json;
+using Newtonsoft.Json;
+
 #region XContainerJsonConverter
-using NewtonsoftJsonSerializer = global::Newtonsoft.Json.JsonSerializer;
+
+using NewtonsoftJsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 class XmlJsonConverter : JsonConverter
 {
@@ -40,7 +42,6 @@ class XmlJsonConverter : JsonConverter
 
         return XElement.Load(new StringReader(value));
     }
-
 
     public override bool CanConvert(Type objectType)
     {

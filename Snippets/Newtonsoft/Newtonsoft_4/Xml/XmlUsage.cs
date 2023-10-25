@@ -3,7 +3,6 @@ using NServiceBus;
 
 class XmlUsage
 {
-
     void UseConverter(EndpointConfiguration endpointConfiguration)
     {
         #region UseConverter
@@ -16,10 +15,10 @@ class XmlUsage
                 new XmlJsonConverter()
             }
         };
+
         var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serialization.Settings(settings);
 
         #endregion
     }
-
 }
