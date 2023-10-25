@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <RootNamespace />
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Metrics" Version="4.*" />
