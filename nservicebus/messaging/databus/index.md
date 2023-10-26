@@ -21,21 +21,21 @@ If the location is not available upon sending, the send operation will fail. Whe
 
 ## Transport message size limits
 
-Using the Data Bus is required when the message size can exceed the transport message size limit.
+The Data Bus may be used to send messages which exceed the transport's message size limit, which is determined by the message size limit of the underlying queuing/storage technologies.
 
-Note: Not all transports have very restrictive message size limits and Azure Service Bus has increased its size limits over the years. Check the respective transport website documentation for the latest maximum limit of the message size.
+Note: Not all transports have message size limits and some technologies, such as Azure Service Bus, have increased over time. Current message size limits are stated in the documentation linked in the table below.
 
-| Transport                  | Maximum size |
-| -------------------------- | ------------:|
-| Amazon SQS                 | [256KB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) |
-| Amazon SQS + S3            | [2GB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) |
-| Azure Storage Queues       | [64KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |
-| Azure Service Bus Standard | [256KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |
-| Azure Service Bus Premium  | [100MB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging#large-messages-support) |
-| RabbitMQ                   | Configured by [`max_message_size`](https://www.rabbitmq.com/configure.html#config-items) |
-| SQL Server                 | No limit     |
-| Learning                   | No limit     |
-| MSMQ                       | [4MB](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/msmq/ms711436(v=vs.85)#maximum-message-size) |
+| Transport                         | Maximum size |
+| --------------------------------- | ------------:|
+| Amazon SQS                        | [256KB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) |
+| Amazon SQS (using S3)             | [2GB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) |
+| Azure Storage Queues              | [64KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |
+| Azure Service Bus (Standard tier) | [256KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |
+| Azure Service Bus (Premium tier)  | [100MB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging#large-messages-support) |
+| RabbitMQ                          | Configured by [`max_message_size`](https://www.rabbitmq.com/configure.html#config-items) |
+| SQL Server                        | No limit |
+| Learning                          | No limit |
+| MSMQ                              | [4MB](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/msmq/ms711436(v=vs.85)#maximum-message-size) |
 
 ## Enabling the data bus
 
@@ -57,7 +57,7 @@ There are two ways to specify the message properties to be sent using the data b
  1. Using the `DataBusProperty<T>` type
  1. Message conventions
 
-Note: Data bus properties must be top-level properties on the message class.
+Note: Data Bus properties must be top-level properties on a message class.
 
 ### Using `DataBusProperty<T>`
 
@@ -67,7 +67,7 @@ snippet: MessageWithLargePayload
 
 ### Using message conventions
 
-NServiceBus also supports defining data bus properties via a convention. This allows data properties to be sent using the data bus without using `DataBusProperty<T>`, thus removing the need for having a dependency on NServiceBus from the message types.
+NServiceBus also supports defining data bus properties by convention. This allows data properties to be sent using the data bus without using `DataBusProperty<T>`, thus removing the need for having a dependency on NServiceBus from the message types.
 
 In the configuration of the endpoint include:
 
@@ -95,16 +95,21 @@ Automatically removing these attachments can cause problems in many situations. 
 
 ## Alternatives
 
-- Use a different transport or a different transport tier
-- Message Compression: Use message body compression which works well on text-based payloads like XML and Json or any payload (text or binary) that contains repetitive data
-  - [Message mutator example demonstrating message body compression](/samples/messagemutators/)
-- Stream-based properties: The [Handling large stream properties via pipeline](/samples/pipeline/stream-properties/) sample demonstrates a purely stream-based approach (rather than loading the full payload into memory) implemented by leveraging the NServiceBus pipeline.
-- Binary Serializer: A binary serializer is more efficient and most serializers can be added with a few lines of code
-   - Some binary [serializers are maintained by the community](/nservicebus/community/#serializers)
-- Attachments: When dealing with unbounded binary payloads consider the [community maintained NServiceBus.Attachments](/nservicebus/community/#nservicebus-attachments)
-  - Read on demand: Will only retrieve attachment data when the consumer reads it
-  - Reduced Memory usage: No base64 serializer overhead resulting in a significant reduction in resource utilization
-- Use any of the above in combination with compression
+NOTE: A combination of these techniques may be used.
+
+- Use a different transport or different tier (e.g. Azure Service Bus _Premium_ instead of _Standard_).
+- Use message body compression, which works well on text-based payloads like XML and JSON or any payload (text or binary) that contains repetitive data.
+  - The [message mutator sample](/samples/messagemutators/) demonstrates message body compression.
+- Use stream-based properties.
+  - The sample showing how to [handle large stream properties via the pipeline](/samples/pipeline/stream-properties/) demonstrates a purely stream-based approach (instead of loading full payloads into memory).
+- Use a more efficient serializer, such as a binary serializer.
+  - A custom serializer can usually be implemented in only a few lines of code.
+  - Some binary [serializers are maintained by the community](/nservicebus/community/#serializers).
+- Use [NServiceBus.Attachments](/nservicebus/community/#nservicebus-attachments) for unbounded binary payloads. The package is similar to the Data Bus but has some differences:
+  - Read on demand: Attachments are only retrieved when read by a consumer.
+  - Async enumeration: The package supports processing all data items using an `IAsyncEnumerable`.
+  - No serialization: The serializer is not used, which may result in a significant reduction in memory usage.
+  - Direct stream access: This makes the package more suitable for [binary large objects (BLOBs](https://en.wikipedia.org/wiki/Binary_large_object) since stream contents do not necessarily have to be loaded into memory before storing them or when retrieving them.
 
 ## Other considerations
 
