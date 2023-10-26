@@ -1060,6 +1060,8 @@
         Title: Legacy Version 6.2.3 to 6.2.4
     - Title: NHibernate
       Articles:
+      - Url: persistence/upgrades/nhibernate-9to10
+        Title: Version 9 to 10
       - Url: persistence/upgrades/nhibernate-8to9
         Title: Version 8 to 9
       - Url: persistence/upgrades/nhibernate-8to8.1
