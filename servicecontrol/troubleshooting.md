@@ -189,6 +189,7 @@ This risk of these error occurring is mitigated by:
 - [Setting up server monitoring and proactively monitoring free storage space](servicecontrol-in-practice.md#server-monitoring)
 
 #### Reset selected indexes
+
 To resolve these errors, the affected indexes must be rebuilt:
 
 - Start the [ServiceControl (audit or error) in maintenance mode](maintenance-mode.md)
@@ -196,6 +197,7 @@ To resolve these errors, the affected indexes must be rebuilt:
 - [Reset the relevant index(es)](https://ravendb.net/docs/article-page/3.5/csharp/server/administration/index-administration)
 
 #### Rebuild all indexes
+
 If many indexes are affected it may be easier to rebuild all indexes, although this can take a very long time if the database is large, and it will use a lot of CPU and storage IO capacity:
 
 - Stop the ServiceControl (audit or error) instance
@@ -330,28 +332,30 @@ The hostname can be configured via the [config file 'ServiceControl/HostName' ](
 
 ## VoronUnrecoverableErrorException
 
-This is an indication that something has gone very wrong with the RavenDB database. It is recommended to contact [Particular support](https://particular.net/support) for assistance. To recover the database, perform the following:
+This indicates a severe issue with the RavenDB database. To recover the database:
 
-
-1. Use the `Tools` download link on the [RavenDB](https://ravendb.net/download) site to download the `Voron.recover.exe` tool.
-2. Once downloaded, extract the archive
-3. Open an admin console (elevated to have write permissions on protected paths)
-4. Navigate to the tool folder
-5. Run
+1. Go to the [RavenDB download page](https://ravendb.net/download)
+2. Click the `Tools` button to download the `Voron.recover.exe` tool
+3. Once downloaded, extract the archive
+4. Open an admin console (elevated to have write permissions on protected paths)
+5. Navigate to the tool folder
+6. Run
     ```
     .\Voron.Recovery.exe recover "[DBFOLDERPATH]\Databases\audit" "C:\DBRecoverFolder"
     ```
 
 The `[DBFOLDERPATH]` can be found by opening SCMU and clicking on the DB Path link for the audit instance.
 
-Folder `C:\DBRecoverFolder` will now contain Raven recovery files. At this stage, rename the original Database folder (this will act as a backup) and start the ServiceControl audit instance again. Once started, a new and empty database will be created. The [recovery files can now be imported into the new database](https://ravendb.net/docs/article-page/5.4/csharp/studio/database/tasks/import-data/import-data-file) by:
+Folder `C:\DBRecoverFolder` will now contain RavenDB recovery files. Rename the original database folder to act as a backup, then start the ServiceControl audit instance again. Once started, a new and empty database will be created. To [import the RavenDB recovery files into the new database](https://ravendb.net/docs/article-page/5.4/csharp/studio/database/tasks/import-data/import-data-file):
 
-1. Opening a browser
+1. Open a browser
 2. Navigate to: http://localhost:44445
 3. Click on the **"Databases"** link in the bottom left of the screen
-4. Then click on the database named **"audit"**
-5. Click on the **"Tasks"** icon near the top on the left
+4. Click on the database named **"audit"**
+5. Click on the **"Tasks"** icon near the top left of the screen
 6. Click on **"Import data"**
 7. Click **"browse"**
-8. Navigate to the recovery files
-9. Select each of the recovery files and import them
+8. Navigate to the RavenDB recovery files
+9. Select all of the recovery files to import them
+
+Contact [Particular support](https://particular.net/support) for assistance.
