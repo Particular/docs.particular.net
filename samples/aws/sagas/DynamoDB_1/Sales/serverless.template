@@ -58,6 +58,20 @@
         "DisplayName": "OrderReceived"
       }
     },
+    "CustomerBilledTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "CustomerBilled",
+        "DisplayName": "CustomerBilled"
+      }
+    },
+    "InventoryStagedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "InventoryStaged",
+        "DisplayName": "InventoryStaged"
+      }
+    },
     "DynamoTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
