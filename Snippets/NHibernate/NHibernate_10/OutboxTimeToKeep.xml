@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!--startcode OutboxNHibernateTimeToKeep-->
+  <appSettings>
+    <add key="NServiceBus/Outbox/NHibernate/TimeToKeepDeduplicationData"
+         value="7.00:00:00" />
+    <add key="NServiceBus/Outbox/NHibernate/FrequencyToRunDeduplicationDataCleanup"
+         value="00:01:00" />
+  </appSettings>
+  <!--endcode -->
+</configuration>

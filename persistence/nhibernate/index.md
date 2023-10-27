@@ -52,7 +52,7 @@ snippet: ConfiguringNHibernate
 It is possible to pass a connection string in the `app.config` file, as described in the [using configuration convention](/persistence/nhibernate/#customizing-the-configuration-using-configuration-convention) section.
 
 
-### With code 
+### With code
 
 NHibernate persistence requires specifying a connection string.
 
@@ -73,9 +73,6 @@ To specify configuration on a per-concern basis:
 snippet: SpecificNHibernateConfiguration
 
 NOTE: Combine both approaches to define a common configuration and override it for one specific concern.
-
-
-
 
 To use a given NHibernate `Configuration` object for all the persistence concerns:
 
@@ -125,12 +122,7 @@ snippet: DisableSchemaUpdate
 
 snippet: DisableSubscriptionSchemaUpdate
 
-
-**For timeout schema update:**
-
-snippet: DisableTimeoutSchemaUpdate
-
-
+partial: timeout
 
 ## Generating scripts for deployment
 
