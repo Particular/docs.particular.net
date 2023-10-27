@@ -141,4 +141,4 @@ Ensure that the relevant MSMQ folders are excluded from virus scanning. Virus sc
  - [MSMQ Errors and Events](https://technet.microsoft.com/en-us/library/dd337466.aspx)
    - [Message Queueing Resources](https://technet.microsoft.com/en-us/library/dd337480.aspx)
    - [Message Queueing System Resources](https://technet.microsoft.com/en-us/library/dd337537.aspx)
- - [Troubleshooting MSDTC issues with the DTCPing tool](https://blogs.msdn.microsoft.com/distributedservices/2008/11/12/troubleshooting-msdtc-issues-with-the-dtcping-tool/)
+ - [Troubleshooting MSDTC issues with the DTCPing tool](https://learn.microsoft.com/en-us/troubleshoot/windows-server/application-management/ms-dtc-connectivity-issues)
