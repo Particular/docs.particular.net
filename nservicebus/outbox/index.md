@@ -14,6 +14,7 @@ related:
 - persistence/ravendb/outbox
 - persistence/sql/outbox
 - persistence/cosmosdb
+- persistence/dynamodb
 - persistence/azure-table
 - persistence/mongodb
 ---
@@ -197,10 +198,11 @@ The outbox feature requires persistent storage in order to perform deduplication
 
 For more information on the outbox persistence options available refer to the dedicated persistence pages:
 
+* [Azure Table](/persistence/azure-table)
+* [CosmosDB](/persistence/cosmosdb)
+* [DynamoDB](/persistence/dynamodb)
+* [MongoDB](/persistence/mongodb/#outbox-cleanup)
 * [NHibernate](/persistence/nhibernate/outbox.md)
 * [RavenDB](/persistence/ravendb/outbox.md)
-* [SQL](/persistence/sql/outbox.md)
 * [ServiceFabric](/persistence/service-fabric/outbox.md)
-* [MongoDB](/persistence/mongodb/#outbox-cleanup)
-* [CosmosDB](/persistence/cosmosdb)
-* [Azure Table](/persistence/azure-table)
+* [SQL](/persistence/sql/outbox.md)
