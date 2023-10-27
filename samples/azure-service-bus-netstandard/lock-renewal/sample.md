@@ -16,8 +16,7 @@ include: asb-connectionstring-xplat
 
 ## Important information about lock renewal
 
-partial: maxtimeoutinformation
-
+1. For a lock to be extended for longer than 10 minutes, the value of [`TransactionManager.MaxTimeout`](https://docs.microsoft.com/en-us/dotnet/api/system.transactions.transactionmanager.maximumtimeout) must be changed to the maximum time allowed to process a message. This is a machine wide setting and should be treated carefully.
 1. The client initiates message lock renewal, not the broker. If the request to renew the lock fails after all the SDK built-in retries (.e.g, due to connection loss), the lock won't be renewed, and the message will be made available for processing by competing consumers. Lock renewal should be treated as a best effort, not as a guaranteed operation.
 1. Message lock renewal applies to **only** the message currently being processed. Prefetched messages that are not handled within the `LockDuration` time will lose their lock, indicated by a `LockLostException` in the log when the transport attempts to complete them. The number of prefetched messages may be adjusted, which may help to prevent exceptions with lock renewal. Alternatively, the endpoint's concurrency limit may be raised to increase the rate of message processing, but this may also increase resource contention.
 
@@ -29,7 +28,13 @@ The sample contains a single executable project, `LockRenewal`, that sends a `Lo
 
 Lock renewal is enabled by the `LockRenewalFeature`, which is configured to be enabled by default.
 
-partial: walkthrough
+The feature does not require any additional configuration.
+
+### Behavior
+
+The lock will be renewed 10 seconds before the `LockUntil` value from the message. By default the lock will thus be renewed after 4m50s.
+
+The sample overrides the queue lock duration to 30 seconds for demo purposes which means in the sample the lock is renewed every 20s (30s-10s). The buffer value is hardcoded in the sample.
 
 The behavior processes every incoming message and uses [native message access](/transports/azure-service-bus/native-message-access.md) to get the message's lock token, which is required for lock renewal.
 
@@ -75,4 +80,24 @@ INFO  LockRenewalBehavior Lock renewal task for incoming message ID: 940e9a1f-fd
 
 Message processing takes 45 seconds, and the `LockDuration` is 30 seconds, so the message will have its lock renewed once, and processing will finish successfully.
 
-partial: maxtimeout
+## Overriding the TransactionManager.MaxTimeout value
+
+### .NET Framework
+
+The setting can be modified using a machine level-configuration file:
+
+```xml
+<system.transactions>
+  <machineSettings maxTimeout="01:00:00" />
+</system.transactions>
+```
+
+or using reflection:
+
+snippet: override-transaction-manager-timeout-net-framework
+
+### .NET Core
+
+The setting can be modified using reflection:
+
+snippet: override-transaction-manager-timeout-net-core
