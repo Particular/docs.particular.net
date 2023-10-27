@@ -2,29 +2,32 @@
 {
     class Usage
     {
-        void Launch()
+        async Task Launch()
         {
             #region Launch
 
-            Particular.PlatformLauncher.Launch();
+            await Particular.PlatformLauncher.Launch()
+                .ConfigureAwait(false);
 
             #endregion
         }
 
-        void ShowConsoleOutput()
+        async Task ShowConsoleOutput()
         {
             #region ShowConsoleOutput
 
-            Particular.PlatformLauncher.Launch(showPlatformToolConsoleOutput: true);
+            await Particular.PlatformLauncher.Launch(showPlatformToolConsoleOutput: true)
+                .ConfigureAwait(false);
 
             #endregion
         }
 
-        void ServicePulseDefaultRoute()
+        async Task ServicePulseDefaultRoute()
         {
             #region ServicePulseDefaultRoute
 
-            Particular.PlatformLauncher.Launch(servicePulseDefaultRoute: "/monitoring");
+            await Particular.PlatformLauncher.Launch(servicePulseDefaultRoute: "/monitoring")
+                .ConfigureAwait(false);
 
             #endregion
         }

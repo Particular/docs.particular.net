@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Platform
 {
@@ -6,10 +7,11 @@ namespace Platform
     {
         #region PlatformMain
 
-        static void Main()
+        static async Task Task Main()
         {
             Console.Title = "Particular Service Platform Launcher";
-            // Particular.PlatformLauncher.Launch();
+            await Particular.PlatformLauncher.Launch()
+                .ConfigureAwait(false);
         }
 
         #endregion
