@@ -34,7 +34,7 @@ Verify that:
 1. Assembly binding redirects in the `NServiceBus.Host.exe.config` are correct and match with any entries generated in the `App.config` file.
 2. All files in the deployment (sub)folder are correct and no old files are present from previous deployments.
 
-## Service fails to start due to reaching the timeout period
+## Windows Service fails to start due to reaching the timeout period
 
 Sometimes, a Windows service that is set to start automatically will fail to start due to a dependency not yet being available before it times out. The following exception can be seen in the Windows Event Viewer:
 
