@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Xml.Linq;
 using System.Xml.XPath;
@@ -77,7 +78,7 @@ namespace IntegrityTests
 
                     solutionLangVersion ??= fallbackLangVersion;
 
-                    var solutionLangVersionString = solutionLangVersion.Value.ToString("N1");
+                    var solutionLangVersionString = solutionLangVersion.Value.ToString("N1", CultureInfo.InvariantCulture);
                     bool valid = true;
 
                     foreach (var projectFile in projectFiles)
@@ -92,7 +93,7 @@ namespace IntegrityTests
                         var firstLangVersionElement = doc.XPathSelectElement("/Project/PropertyGroup/LangVersion");
                         var langVersion = firstLangVersionElement?.Value;
 
-                        if (langVersion != solutionLangVersionString)
+                        if (!langVersion.Equals(solutionLangVersionString, System.StringComparison.Ordinal))
                         {
                             valid = false;
                         }
