@@ -26,7 +26,10 @@ class Program
             SentOnUtc = DateTime.UtcNow
         };
 
-        var json = JsonConvert.SerializeObject(nativeMessage);
+        var json = JsonConvert.SerializeObject(nativeMessage,  new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            });
 
         #endregion
 
