@@ -36,12 +36,12 @@ class Program
         {
             MessageId = Guid.NewGuid().ToString(),
 
-            ApplicationProperties =
-            {
-                #region NecessaryHeaders
-                ["NServiceBus.EnclosedMessageTypes"] = typeof(NativeMessage).FullName
-                #endregion
-            }
+            //ApplicationProperties =
+            //{
+            //    #region NecessaryHeaders
+            //    ["NServiceBus.EnclosedMessageTypes"] = typeof(NativeMessage).FullName
+            //    #endregion
+            //}
         };
 
         await serviceBusSender.SendMessageAsync(message)
