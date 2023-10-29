@@ -15,7 +15,10 @@ class Program
         #endregion
 
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>().Settings(new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto
+        });
         endpointConfiguration.Conventions().DefiningMessagesAs(type => type.Name == "NativeMessage");
 
 
