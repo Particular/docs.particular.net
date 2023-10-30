@@ -1,8 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DynamoTS_1", "DynamoTS_1\DynamoTS_1.csproj", "{762021A6-2D1E-4DE5-913F-DBF957010946}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoTS_2", "DynamoTS_2\DynamoTS_2.csproj", "{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,18 @@ Global
 		{762021A6-2D1E-4DE5-913F-DBF957010946}.Release|x64.Build.0 = Release|Any CPU
 		{762021A6-2D1E-4DE5-913F-DBF957010946}.Release|x86.ActiveCfg = Release|Any CPU
 		{762021A6-2D1E-4DE5-913F-DBF957010946}.Release|x86.Build.0 = Release|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Debug|x64.Build.0 = Debug|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Debug|x86.Build.0 = Debug|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Release|x64.ActiveCfg = Release|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Release|x64.Build.0 = Release|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Release|x86.ActiveCfg = Release|Any CPU
+		{AB15B608-C2A0-4E37-A6E8-418C299A7ED9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
