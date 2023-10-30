@@ -35,7 +35,7 @@ Transport installers are not supported. The creation of the required queues may 
 
 ## Configuration
 
-The configuration API exposes NServiceBus configuration options to allow customization, however, not all of the options will be [applicable to execution within AWS Lambda](./analyzers.md).
+The configuration API exposes NServiceBus configuration options to allow customization; however, not all options will be [applicable to execution within AWS Lambda](./analyzers.md).
 
 ### Routing
 
