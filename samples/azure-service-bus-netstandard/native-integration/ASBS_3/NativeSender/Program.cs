@@ -41,9 +41,9 @@ class Program
 
             //ApplicationProperties =
             //{
-            //    #region NecessaryHeaders
+                #region NecessaryHeaders
             //    ["NServiceBus.EnclosedMessageTypes"] = typeof(NativeMessage).FullName
-            //    #endregion
+                #endregion
             //}
         };
 
