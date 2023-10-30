@@ -8,7 +8,7 @@ using NServiceBus;
 using NServiceBus.Persistence.DynamoDB;
 using NServiceBus.Testing;
 
-namespace DynamoDB_1;
+namespace DynamoDB_2;
 
 class MyMessageHandler : IHandleMessages<MyMessage>
 {

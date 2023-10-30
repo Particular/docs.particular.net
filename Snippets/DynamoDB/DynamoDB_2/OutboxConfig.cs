@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-namespace DynamoDB_1;
+namespace DynamoDB_2;
 
 public class OutboxConfig
 {
