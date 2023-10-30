@@ -45,7 +45,8 @@ The XYZ service failed to start due to the following error:
 The service did not respond to the start or control request in a timely fashion
 ```
 
-Generally, the service will start at a later time without issue. 
+Generally, the Windows service will start at a later time without issue. 
+
 
 This problem can be mitigated by:
 
