@@ -50,7 +50,9 @@ Generally, the Windows service will start at a later time without issue.
 
 This problem can be mitigated by:
 
+- Enable service recoverability to ensure the service will auto restart in case start fails
 - Configuring the service with the `depend= <dependencies>` parameter set which identifies which dependencies must start before this service starts. 
+
 - Configuring the service to start with `delayed-auto` set, such that the service will not start until all other "automatic" services are started.
 
 See the [Microsoft sc.exe configuration documentation](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-config) for more details.
