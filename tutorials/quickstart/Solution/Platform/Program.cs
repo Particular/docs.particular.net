@@ -7,7 +7,7 @@ namespace Platform
     {
         #region PlatformMain
 
-        static async Task Task Main()
+        static async Task Main()
         {
             Console.Title = "Particular Service Platform Launcher";
             await Particular.PlatformLauncher.Launch()
