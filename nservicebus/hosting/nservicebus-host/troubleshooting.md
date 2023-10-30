@@ -48,6 +48,6 @@ Another symptom is that the service will start at a later time without issue. Th
 
 This problem can be mitigated by:
 
-- If the service is started automatically, configuring the service to start with `delayed-auto` set, such that the service will not start until all other "automatic" services are started
-- Configuring [service dependencies](/hosting/windows-service#installation-specifying-service-dependencies) to ensure they are started before the service starts
-- Enabling [service recoverability](/hosting/windows-service#installation-setting-the-restart-recovery-options) to ensure the service will automatically restart in case start fails
+- If the service is started automatically, configuring the service to start with `delayed-auto` set, such that the service will not start until all other "automatic" services are started 
+- Configuring [service dependencies](/nservicebus/hosting/windows-service.md#installation-specifying-service-dependencies) to ensure they are started before the service starts
+- Enabling [service recoverability](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) to ensure the service will automatically restart in case start fails
