@@ -6,7 +6,7 @@ versions: '[4.2,)'
 reviewed: 2023-09-19
 ---
 
-Starting in version 4.2, [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) are packaged with the Azure Functions host package that analyze the NServiceBus code to prevent the use of API calls that are not applicable in a serverless environment.
+Starting in version 4.2, the Azure Functions host package comes with [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) that analyze the NServiceBus code to prevent the use of API calls that are not applicable in a serverless environment.
 
 ## Endpoint configuration API
 
