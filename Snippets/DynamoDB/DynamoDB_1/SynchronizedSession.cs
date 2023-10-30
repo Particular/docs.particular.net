@@ -8,8 +8,6 @@ using NServiceBus;
 using NServiceBus.Persistence.DynamoDB;
 using NServiceBus.Testing;
 
-using NUnit.Framework;
-
 namespace DynamoDB_1;
 
 class MyMessageHandler : IHandleMessages<MyMessage>
