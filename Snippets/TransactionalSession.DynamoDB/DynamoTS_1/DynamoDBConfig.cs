@@ -1,8 +1,8 @@
 ﻿using System;
-using NServiceBus;
-using NServiceBus.TransactionalSession;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using NServiceBus;
+using NServiceBus.TransactionalSession;
 
 public class DynamoDBConfig
 {

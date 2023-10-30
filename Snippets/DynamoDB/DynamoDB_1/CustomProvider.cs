@@ -10,23 +10,23 @@ using NServiceBus.Persistence.DynamoDB;
 class CustomDynamoClientProvider
     : IDynamoClientProvider
 {
-  // get fully configured via DI
-  public CustomDynamoClientProvider(IAmazonDynamoDB dynamoClient)
-  {
-    Client = dynamoClient;
-  }
-  public IAmazonDynamoDB Client { get; }
+    // get fully configured via DI
+    public CustomDynamoClientProvider(IAmazonDynamoDB dynamoClient)
+    {
+        Client = dynamoClient;
+    }
+    public IAmazonDynamoDB Client { get; }
 }
 #endregion
 
 class DynamoDBCustomClientProviderRegistration
 {
-  public DynamoDBCustomClientProviderRegistration(EndpointConfiguration endpointConfiguration)
-  {
-    #region DynamoDBCustomClientProviderRegistration
+    public DynamoDBCustomClientProviderRegistration(EndpointConfiguration endpointConfiguration)
+    {
+        #region DynamoDBCustomClientProviderRegistration
 
-    endpointConfiguration.RegisterComponents(c => c.AddTransient<IDynamoClientProvider, CustomDynamoClientProvider>());
+        endpointConfiguration.RegisterComponents(c => c.AddTransient<IDynamoClientProvider, CustomDynamoClientProvider>());
 
-    #endregion
-  }
+        #endregion
+    }
 }

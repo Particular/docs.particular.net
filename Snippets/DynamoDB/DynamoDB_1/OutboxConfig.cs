@@ -4,28 +4,28 @@ namespace DynamoDB_1;
 
 public class OutboxConfig
 {
-  void ConfigureSagaTable(EndpointConfiguration endpointConfiguration)
-  {
-    #region DynamoOutboxTableConfiguration
-
-    var outboxConfiguration = endpointConfiguration.EnableOutbox();
-    outboxConfiguration.UseTable(new TableConfiguration
+    void ConfigureSagaTable(EndpointConfiguration endpointConfiguration)
     {
-      TableName = "MyOutboxTable",
-      PartitionKeyName = "MyOutboxPartitionKey",
-      SortKeyName = "MyOutboxSortKey",
-      TimeToLiveAttributeName = "MyOutboxTtlAttribute"
-    });
-    #endregion
-  }
+        #region DynamoOutboxTableConfiguration
 
-  void CleanupConfig(EndpointConfiguration endpointConfiguration)
-  {
-    #region DynamoDBOutboxCleanup
+        var outboxConfiguration = endpointConfiguration.EnableOutbox();
+        outboxConfiguration.UseTable(new TableConfiguration
+        {
+            TableName = "MyOutboxTable",
+            PartitionKeyName = "MyOutboxPartitionKey",
+            SortKeyName = "MyOutboxSortKey",
+            TimeToLiveAttributeName = "MyOutboxTtlAttribute"
+        });
+        #endregion
+    }
 
-    var outboxConfiguration = endpointConfiguration.EnableOutbox();
-    outboxConfiguration.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(14));
+    void CleanupConfig(EndpointConfiguration endpointConfiguration)
+    {
+        #region DynamoDBOutboxCleanup
 
-    #endregion
-  }
+        var outboxConfiguration = endpointConfiguration.EnableOutbox();
+        outboxConfiguration.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(14));
+
+        #endregion
+    }
 }

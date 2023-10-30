@@ -7,42 +7,42 @@ namespace DynamoDB_2;
 
 public class Customization
 {
-  void SharedTableConfig(PersistenceExtensions<DynamoPersistence> persistence)
-  {
-    #region DynamoDBTableCustomizationShared
-
-    persistence.UseSharedTable(new TableConfiguration
+    void SharedTableConfig(PersistenceExtensions<DynamoPersistence> persistence)
     {
-      TableName = "MyTable",
-      PartitionKeyName = "MyPartitionKey",
-      SortKeyName = "MySortKey"
-    });
+        #region DynamoDBTableCustomizationShared
 
-    #endregion
-  }
-
-  void DisableTableCreation(PersistenceExtensions<DynamoPersistence> persistence)
-  {
-    #region DynamoDBDisableTableCreation
-
-    persistence.DisableTablesCreation();
-
-    #endregion
-  }
-
-  void ThrottlingConfig(PersistenceExtensions<DynamoPersistence> persistence)
-  {
-    #region DynamoDBConfigureThrottlingWithClientConfig
-
-    var dynamoDbClient = new AmazonDynamoDBClient(
-        new AmazonDynamoDBConfig
+        persistence.UseSharedTable(new TableConfiguration
         {
-          Timeout = TimeSpan.FromSeconds(10),
-          RetryMode = RequestRetryMode.Adaptive,
-          MaxErrorRetry = 3
+            TableName = "MyTable",
+            PartitionKeyName = "MyPartitionKey",
+            SortKeyName = "MySortKey"
         });
-    persistence.DynamoClient(dynamoDbClient);
 
-    #endregion
-  }
+        #endregion
+    }
+
+    void DisableTableCreation(PersistenceExtensions<DynamoPersistence> persistence)
+    {
+        #region DynamoDBDisableTableCreation
+
+        persistence.DisableTablesCreation();
+
+        #endregion
+    }
+
+    void ThrottlingConfig(PersistenceExtensions<DynamoPersistence> persistence)
+    {
+        #region DynamoDBConfigureThrottlingWithClientConfig
+
+        var dynamoDbClient = new AmazonDynamoDBClient(
+            new AmazonDynamoDBConfig
+            {
+                Timeout = TimeSpan.FromSeconds(10),
+                RetryMode = RequestRetryMode.Adaptive,
+                MaxErrorRetry = 3
+            });
+        persistence.DynamoClient(dynamoDbClient);
+
+        #endregion
+    }
 }

@@ -6,12 +6,12 @@ namespace DynamoDB_2;
 
 public class Usage
 {
-  void Configuration(EndpointConfiguration endpointConfiguration)
-  {
-    #region DynamoDBUsage
-    var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
-    // optional client
-    persistence.DynamoClient(new AmazonDynamoDBClient());
-    #endregion
-  }
+    void Configuration(EndpointConfiguration endpointConfiguration)
+    {
+        #region DynamoDBUsage
+        var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
+        // optional client
+        persistence.DynamoClient(new AmazonDynamoDBClient());
+        #endregion
+    }
 }

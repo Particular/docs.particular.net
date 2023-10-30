@@ -2,27 +2,27 @@
 
 namespace DynamoDB_2
 {
-  internal class Assert
-  {
-    internal static void That(IReadOnlyCollection<TransactWriteItem> transactWriteItems, object value)
+    internal class Assert
     {
-      return;
+        internal static void That(IReadOnlyCollection<TransactWriteItem> transactWriteItems, object value)
+        {
+            return;
+        }
     }
-  }
-  internal class Has
-  {
-    public static Count Count { get; internal set; }
-  }
-
-  internal class Count
-  {
-    internal bool EqualTo(int v)
+    internal class Has
     {
-      return true;
+        public static Count Count { get; internal set; }
     }
-  }
 
-  internal class TestAttribute : Attribute
-  {
-  }
+    internal class Count
+    {
+        internal bool EqualTo(int v)
+        {
+            return true;
+        }
+    }
+
+    internal class TestAttribute : Attribute
+    {
+    }
 }
