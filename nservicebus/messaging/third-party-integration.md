@@ -14,7 +14,7 @@ Endpoints can receive messages from external systems (such as BizTalk, TIBCO, et
 
 In order to [deserialize](/nservicebus/serialization/) a message coming from a third party system, NServiceBus needs to know the .NET type to use.
 
-Starting from NServiceBus version 7.4, the [NServiceBus.EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) is automatically populated when missing. When using NServiceBus version 7.3 and below, the sender should set that header.
+Starting from NServiceBus version 7.4, the [NServiceBus.EnclosedMessageTypes header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) is automatically added when missing and populated with the message type fullname. When using NServiceBus version 7.3 and below, the sender should set that header.
 
 Some serializers can infer the message type from information embedded in the message body.
 
