@@ -44,7 +44,7 @@ The XYZ service failed to start due to the following error:
 The service did not respond to the start or control request in a timely fashion
 ```
 
-Another symptom is that the service will start at a later time without issue. This often occurs when a dependency was not available in time during the start process.
+This often occurs when a dependency is not available in time during the start process. Another symptom is that the service will start at a later time without issue.
 
 This problem can be mitigated by:
 
