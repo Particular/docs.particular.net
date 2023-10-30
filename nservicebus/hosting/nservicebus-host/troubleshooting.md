@@ -36,8 +36,7 @@ Verify that:
 
 ## Windows Service fails to start due to reaching the timeout period
 
-The following exception can be observed in the Windows Event Viewer when a Windows service fails to complete the start sequence fast enough to transition into the running state and timeout:
-
+When a Windows service fails to transition into the running state before timeout (i.e. fails to complete the start sequence), the following exception messages may be seen in the Windows Event Viewer:
 
 ```txt
 A timeout was reached (30000 milliseconds) while waiting for the XYZ service to connect.
@@ -45,12 +44,9 @@ The XYZ service failed to start due to the following error:
 The service did not respond to the start or control request in a timely fashion
 ```
 
-Generally, the Windows service will start at a later time without issue. 
-
-
 This problem can be mitigated by:
 
-- Enable service recoverability to ensure the service will auto restart in case start fails
+- Enable service recoverability to ensure the service will auto-restart in case start fails
 - Configuring the service with the `depend= <dependencies>` parameter set which identifies which dependencies must start before this service starts. 
 
 - Configuring the service to start with `delayed-auto` set, such that the service will not start until all other "automatic" services are started.
