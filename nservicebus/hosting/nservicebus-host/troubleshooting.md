@@ -34,7 +34,7 @@ Verify that:
 1. Assembly binding redirects in the `NServiceBus.Host.exe.config` are correct and match with any entries generated in the `App.config` file.
 2. All files in the deployment (sub)folder are correct and no old files are present from previous deployments.
 
-## Windows Service fails to start due to reaching the timeout period
+## Windows service fails to start due to reaching the timeout period
 
 When a Windows service fails to transition into the `SERVICE_RUNNING` state before timeout (i.e. fails to complete the start sequence), the following exception messages may be seen in the Windows Event Viewer:
 
@@ -43,6 +43,8 @@ A timeout was reached (30000 milliseconds) while waiting for the XYZ service to 
 The XYZ service failed to start due to the following error:
 The service did not respond to the start or control request in a timely fashion
 ```
+
+Another symptom is that the service will start at a later time without issue. This often occurs when a dependency was not available in time during the start process.
 
 This problem can be mitigated by:
 
