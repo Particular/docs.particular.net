@@ -6,7 +6,7 @@ versions: '[1.1,)'
 reviewed: 2023-09-19
 ---
 
-Starting in version 1.1, the AWS Lambda host package comes packaged with [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) that analyze the NServiceBus code to prevent the use of API calls that are not applicable in a serverless environment.
+Starting in version 1.1, the AWS Lambda host package comes with [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) that analyze the NServiceBus code to prevent the use of API calls that are not applicable in a serverless environment.
 
 ## Endpoint configuration API
 
