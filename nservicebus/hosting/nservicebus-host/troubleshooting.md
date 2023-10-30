@@ -36,7 +36,8 @@ Verify that:
 
 ## Windows Service fails to start due to reaching the timeout period
 
-Sometimes, a Windows service that is set to start automatically will fail to start due to a dependency not yet being available before it times out. The following exception can be seen in the Windows Event Viewer:
+The following exception can be observed in the Windows Event Viewer when a Windows service fails to complete the start sequence fast enough to transition into the running state and timeout:
+
 
 ```txt
 A timeout was reached (30000 milliseconds) while waiting for the XYZ service to connect.
