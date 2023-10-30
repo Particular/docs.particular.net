@@ -1,48 +1,48 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.Runtime;
+
 using NServiceBus;
-using NServiceBus.Persistence.DynamoDB;
 
 namespace DynamoDB_2;
 
 public class Customization
 {
-    void SharedTableConfig(PersistenceExtensions<DynamoPersistence> persistence)
-    {
-        #region DynamoDBTableCustomizationShared
+  void SharedTableConfig(PersistenceExtensions<DynamoPersistence> persistence)
+  {
+    #region DynamoDBTableCustomizationShared
 
-        persistence.UseSharedTable(new TableConfiguration
+    persistence.UseSharedTable(new TableConfiguration
+    {
+      TableName = "MyTable",
+      PartitionKeyName = "MyPartitionKey",
+      SortKeyName = "MySortKey"
+    });
+
+    #endregion
+  }
+
+  void DisableTableCreation(PersistenceExtensions<DynamoPersistence> persistence)
+  {
+    #region DynamoDBDisableTableCreation
+
+    persistence.DisableTablesCreation();
+
+    #endregion
+  }
+
+  void ThrottlingConfig(PersistenceExtensions<DynamoPersistence> persistence)
+  {
+    #region DynamoDBConfigureThrottlingWithClientConfig
+
+    var dynamoDbClient = new AmazonDynamoDBClient(
+        new AmazonDynamoDBConfig
         {
-            TableName = "MyTable",
-            PartitionKeyName = "MyPartitionKey",
-            SortKeyName = "MySortKey"
+          Timeout = TimeSpan.FromSeconds(10),
+          RetryMode = RequestRetryMode.Adaptive,
+          MaxErrorRetry = 3
         });
+    persistence.DynamoClient(dynamoDbClient);
 
-        #endregion
-    }
-
-    void DisableTableCreation(PersistenceExtensions<DynamoPersistence> persistence)
-    {
-        #region DynamoDBDisableTableCreation
-
-        persistence.DisableTablesCreation();
-
-        #endregion
-    }
-
-    void ThrottlingConfig(PersistenceExtensions<DynamoPersistence> persistence)
-    {
-        #region DynamoDBConfigureThrottlingWithClientConfig
-
-        var dynamoDbClient = new AmazonDynamoDBClient(
-            new AmazonDynamoDBConfig
-            {
-                Timeout = TimeSpan.FromSeconds(10),
-                RetryMode = RequestRetryMode.Adaptive,
-                MaxErrorRetry = 3
-            });
-        persistence.DynamoClient(dynamoDbClient);
-
-        #endregion
-    }
+    #endregion
+  }
 }
