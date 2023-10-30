@@ -78,7 +78,7 @@ namespace IntegrityTests
 
                     solutionLangVersion ??= fallbackLangVersion;
 
-                    var solutionLangVersionString = solutionLangVersion.Value.ToString("N1", CultureInfo.InvariantCulture);
+                    var solutionLangVersionString = solutionLangVersion.Value.ToString("N1");
                     bool valid = true;
 
                     foreach (var projectFile in projectFiles)
