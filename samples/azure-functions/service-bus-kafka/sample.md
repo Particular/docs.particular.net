@@ -65,15 +65,15 @@ The project `ConsoleEndpoint` produces the events as follows:
 
 snippet: ProduceEvent
 
-Kafka events can only contains strings for values. The Kafka SDK for .NET supports using schemas and serialization of events, but for simplicity reasons the event `ElectricityUsage` is serialized using Newtonsoft.Json.
+Kafka events can only contain strings for values. The Kafka SDK for .NET supports using schemas and serialization of events, but for simplicity, the `ElectricityUsage` event is serialized using Newtonsoft.Json.
 
 ### Kafka trigger
 
-A Kafka trigger in project `AzureFunctions.KafkaTrigger.FunctionsHostBuilder` consumes the event and verifies if the electricity usage for any customers and any of its units goes over a certain threshold. If so, an NServiceBus SendOnly endpoint is used to send the message. The following code shows how to set up an NServiceBus endpoint in Azure Functions and register the `IMessageSession` instance with the dependency injection container:
+A Kafka trigger in project `AzureFunctions.KafkaTrigger.FunctionsHostBuilder` consumes the event and checks if the electricity usage for any customers and any of a customer's units goes over a specified threshold. If so, an NServiceBus SendOnly endpoint is used to send a message. The following code shows how to set up an NServiceBus endpoint in Azure Functions and register the `IMessageSession` instance with the dependency injection container:
 
 snippet: SetupNServiceBusSendOnly
 
-In the Kafka trigger, again for simplicity reasons, it is verified if the event has the value of `42`, and a message is sent back to the `ConsoleEndpoint`.
+In the Kafka trigger, it checks for an event value of `42` (hard-coded for simplicity sake), in which case, a message is sent back to the `ConsoleEndpoint`.
 
 snippet: KafkaTrigger
 
