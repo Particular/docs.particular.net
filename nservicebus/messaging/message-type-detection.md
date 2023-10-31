@@ -22,3 +22,9 @@ The mapping rules are as follows:
 1. If the header is missing, some serializers can optionally [infer the message type](/nservicebus/serialization/#security-message-type-inference) based on the message payload. Serializers that support message type inference:
    - [XML](/nservicebus/serialization/xml.md#inferring-message-type-from-root-node-name) via the root node name
    - [JSON.NET](/nservicebus/serialization/newtonsoft.md#inferring-message-type-from-type) via a custom `$type` property
+
+NOTE: Message type inference based on the message body content if the `NServiceBus.EnclosedMessageTypes` header is missing is only supported from NServiceBus version 7.4 or higher
+
+## Custom type inference
+
+A custom type inference behavior can be created when type inferences cannot be done using the incoming `NServiceBus.EnclosedMessageTypes` header and the serializer is not able to infer type information using the embedded message body.  The custom behavior needs to be executed in the `IncomingPhysicalMessageContext` stage. It can infer the message type by inspecting any message header of body data using custom logic and add the `NServiceBus.EnclosedMessageTypes` header with the custom resolved message type.
