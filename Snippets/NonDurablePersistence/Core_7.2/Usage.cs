@@ -4,7 +4,7 @@
 
     class Usage
     {
-        Usage(EndpointConfiguration endpointConfiguration)
+        public Usage(EndpointConfiguration endpointConfiguration)
         {
             #region GatewayDeduplicationCacheSize
 
