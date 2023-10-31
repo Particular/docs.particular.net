@@ -1,4 +1,4 @@
-﻿namespace NonDurablePersistence_1
+﻿namespace NonDurablePersistence_2
 {
     using NServiceBus;
 
