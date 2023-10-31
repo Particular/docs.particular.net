@@ -98,7 +98,7 @@
           }
         ]
       }
-    }
+    },
     "SQSTriggerFunction": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
