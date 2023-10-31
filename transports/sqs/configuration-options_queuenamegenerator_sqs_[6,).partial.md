@@ -8,4 +8,4 @@ Provides the ability to override the queue name generation with a custom functio
 
 snippet: QueueNameGenerator
 
-Note: The provided function needs to be _idempotent_, i.e., apply the specified prefix only if it has not been already applied.
+Note: The provided function needs to be _idempotent_, i.e., apply the specified prefix only if it has not yet been applied.
