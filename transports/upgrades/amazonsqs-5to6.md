@@ -1,5 +1,5 @@
 ---
-title: Upgrade AmazonSQS Transport Version 5 to 6
+title: AmazonSQS Transport Upgrade Version 5 to 6
 summary: Instructions on how to upgrade the AmazonSQS transport from version 5 to 6
 component: SQS
 isUpgradeGuide: true
