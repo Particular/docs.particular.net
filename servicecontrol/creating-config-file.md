@@ -67,6 +67,8 @@ The indexes and Esent logs can be stored in a different path from the the RavenD
 
 ### Raven/IndexStoragePath
 
+INFO: Only supported on RavenDB 3.5 storage engine (prior version 5). Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
+
 The path for the indexes on disk.
 
 Type: string

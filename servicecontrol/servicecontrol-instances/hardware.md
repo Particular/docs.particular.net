@@ -54,7 +54,17 @@ WARNING: When using ServiceInsight, the message body is not viewable for message
 
 ### Separate disks for database and index files
 
-Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath), it's possible to store the embedded database index files on a separate disk. Use the [`Raven/IndexStoragePath`](/servicecontrol/creating-config-file.md#host-settings-ravenindexstoragepath) setting to change the index storage location.
+Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath), it's possible to store the embedded database index files on a separate disk.
+
+#### Version 5 or later
+
+Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
+ 
+#### Version 4 or earlier
+
+NOTE: Only applies to instances that use the RavenDB 3.5 storage engine
+
+Use the [`Raven/IndexStoragePath`](/servicecontrol/creating-config-file.md#host-settings-ravenindexstoragepath) setting to change the index storage location.
 
 ### Azure disk limitations
 
