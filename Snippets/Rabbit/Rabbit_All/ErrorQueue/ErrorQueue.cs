@@ -48,7 +48,7 @@ namespace Rabbit_All.ErrorQueue
                     // Wait for confirmation that message is sent back to source queue
                     channel.WaitForConfirmsOrDie();
 
-                    // Acknolwedge and consume the incoming message
+                    // Acknowledge and consume the incoming message
                     channel.BasicAck(result.DeliveryTag, false);
 
                     return;
