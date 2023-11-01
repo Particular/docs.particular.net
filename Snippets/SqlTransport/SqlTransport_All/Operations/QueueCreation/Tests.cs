@@ -13,7 +13,7 @@ namespace SqlServer_All.Operations.QueueCreation
         [Test]
         public void CreateQueuesForEndpoint()
         {
-            var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True";
+            var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True;TrustServerCertificate=true";
             SqlHelper.EnsureDatabaseExists(connectionString);
             using (var sqlConnection = new SqlConnection(connectionString))
             {
@@ -39,7 +39,7 @@ namespace SqlServer_All.Operations.QueueCreation
         [Test]
         public void CreateQueuesForEndpointPs()
         {
-            var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True";
+            var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True;TrustServerCertificate=true";
             SqlHelper.EnsureDatabaseExists(connectionString);
 
             var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "Operations/QueueCreation/QueueCreation.ps1");

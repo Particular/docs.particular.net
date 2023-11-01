@@ -11,7 +11,7 @@ namespace SqlServer_All.Operations.QueueDeletion
         [Test]
         public void DeleteQueuesForEndpoint()
         {
-            var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True";
+            var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True;TrustServerCertificate=true";
             SqlHelper.EnsureDatabaseExists(connectionString);
             using (var sqlConnection = new SqlConnection(connectionString))
             {
@@ -26,7 +26,8 @@ namespace SqlServer_All.Operations.QueueDeletion
         [Test]
         public void DeleteSharedQueues()
         {
-            var connectionString = @"Data Source=.\SqlExpress;Database=samples;Integrated Security=True";
+            var connectionString = @"Data Source=.\SqlExpress;Database=Snippets.SqlTransport;Integrated Security=True;TrustServerCertificate=true";
+            SqlHelper.EnsureDatabaseExists(connectionString);
             using (var sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
