@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 15.0.26730.12
@@ -11,6 +11,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_7", "Rabbit_7\Rabbit_7.csproj", "{A430519F-73A4-4CCE-B965-357556D99D04}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rabbit_8", "Rabbit_8\Rabbit_8.csproj", "{2B867522-1809-4C86-8E45-C95B519E320A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rabbit_9", "Rabbit_9\Rabbit_9.csproj", "{A7E26D2A-7DB6-4404-9D48-43B8411ABDD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{2B867522-1809-4C86-8E45-C95B519E320A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B867522-1809-4C86-8E45-C95B519E320A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B867522-1809-4C86-8E45-C95B519E320A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7E26D2A-7DB6-4404-9D48-43B8411ABDD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7E26D2A-7DB6-4404-9D48-43B8411ABDD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7E26D2A-7DB6-4404-9D48-43B8411ABDD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7E26D2A-7DB6-4404-9D48-43B8411ABDD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
