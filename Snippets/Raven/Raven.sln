@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34227.203
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_All", "Raven_All\Raven_All.csproj", "{D52A6FEB-CC19-49C3-AF92-475669D2FF25}"
 EndProject
@@ -8,41 +8,66 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_5", "Raven_5\Raven_5.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_6", "Raven_6\Raven_6.csproj", "{495186E6-37F3-4F3C-BFC7-12C3478113D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_6.1", "Raven_6.1\Raven_6.1.csproj", "{A34F6A59-E929-4D5D-B407-21FA974086CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_6.1", "Raven_6.1\Raven_6.1.csproj", "{A34F6A59-E929-4D5D-B407-21FA974086CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_6.3", "Raven_6.3\Raven_6.3.csproj", "{806EA7B8-5242-4459-AD53-6F8E05492F5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_6.3", "Raven_6.3\Raven_6.3.csproj", "{806EA7B8-5242-4459-AD53-6F8E05492F5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_6.4", "Raven_6.4\Raven_6.4.csproj", "{B6DFDBB6-23B7-4B19-BA29-AFAFA67BCB20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_6.4", "Raven_6.4\Raven_6.4.csproj", "{B6DFDBB6-23B7-4B19-BA29-AFAFA67BCB20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_6.5", "Raven_6.5\Raven_6.5.csproj", "{CFE2511D-FFE9-4792-B9BF-B388210183C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_6.5", "Raven_6.5\Raven_6.5.csproj", "{CFE2511D-FFE9-4792-B9BF-B388210183C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_7", "Raven_7\Raven_7.csproj", "{3B73F42C-589B-42FA-A3E1-AE9E5B4DFB9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_7", "Raven_7\Raven_7.csproj", "{3B73F42C-589B-42FA-A3E1-AE9E5B4DFB9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_8", "Raven_8\Raven_8.csproj", "{78DE4BD1-4F9C-4148-89D8-179B158CD753}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_8", "Raven_8\Raven_8.csproj", "{78DE4BD1-4F9C-4148-89D8-179B158CD753}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_9", "Raven_9\Raven_9.csproj", "{F8C1C085-4E5B-4A85-BF13-42B29073CC6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D52A6FEB-CC19-49C3-AF92-475669D2FF25}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5FA02A8-8FB0-4FCA-A8A7-57E2303962B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5FA02A8-8FB0-4FCA-A8A7-57E2303962B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5FA02A8-8FB0-4FCA-A8A7-57E2303962B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5FA02A8-8FB0-4FCA-A8A7-57E2303962B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{495186E6-37F3-4F3C-BFC7-12C3478113D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{495186E6-37F3-4F3C-BFC7-12C3478113D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{495186E6-37F3-4F3C-BFC7-12C3478113D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{495186E6-37F3-4F3C-BFC7-12C3478113D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A34F6A59-E929-4D5D-B407-21FA974086CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A34F6A59-E929-4D5D-B407-21FA974086CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A34F6A59-E929-4D5D-B407-21FA974086CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A34F6A59-E929-4D5D-B407-21FA974086CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{806EA7B8-5242-4459-AD53-6F8E05492F5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{806EA7B8-5242-4459-AD53-6F8E05492F5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{806EA7B8-5242-4459-AD53-6F8E05492F5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{806EA7B8-5242-4459-AD53-6F8E05492F5A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B6DFDBB6-23B7-4B19-BA29-AFAFA67BCB20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6DFDBB6-23B7-4B19-BA29-AFAFA67BCB20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6DFDBB6-23B7-4B19-BA29-AFAFA67BCB20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6DFDBB6-23B7-4B19-BA29-AFAFA67BCB20}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CFE2511D-FFE9-4792-B9BF-B388210183C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CFE2511D-FFE9-4792-B9BF-B388210183C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFE2511D-FFE9-4792-B9BF-B388210183C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFE2511D-FFE9-4792-B9BF-B388210183C6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3B73F42C-589B-42FA-A3E1-AE9E5B4DFB9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B73F42C-589B-42FA-A3E1-AE9E5B4DFB9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B73F42C-589B-42FA-A3E1-AE9E5B4DFB9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B73F42C-589B-42FA-A3E1-AE9E5B4DFB9C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{78DE4BD1-4F9C-4148-89D8-179B158CD753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{78DE4BD1-4F9C-4148-89D8-179B158CD753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78DE4BD1-4F9C-4148-89D8-179B158CD753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78DE4BD1-4F9C-4148-89D8-179B158CD753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8C1C085-4E5B-4A85-BF13-42B29073CC6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8C1C085-4E5B-4A85-BF13-42B29073CC6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8C1C085-4E5B-4A85-BF13-42B29073CC6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8C1C085-4E5B-4A85-BF13-42B29073CC6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
