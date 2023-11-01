@@ -135,10 +135,8 @@ class Usage
     {
         #region rabbitmq-client-certificate
 
-        X509Certificate2 certificate = GetCertificate();
-
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetClientCertificate(certificate);
+        transport.SetClientCertificate(new X509Certificate2("/path/to/certificate"));
 
         #endregion
     }
@@ -217,10 +215,5 @@ class Usage
         transport.AddClusterNode("node2", 5675, useTls: true);
 
         #endregion
-    }
-
-    X509Certificate2 GetCertificate()
-    {
-        return new X509Certificate2("FakeCertificateFile");
     }
 }
