@@ -4,8 +4,6 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_All", "SqlTransport_All\SqlTransport_All.csproj", "{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_6", "SqlTransport_6\SqlTransport_6.csproj", "{76A81F9A-0CE8-47D7-8F34-47E8A3855A3F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_6.1", "SqlTransport_6.1\SqlTransport_6.1.csproj", "{BA286604-D333-4921-BCDB-6D6750CC5E28}"
@@ -26,10 +24,6 @@ Global
 		{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F02C8A5-55E9-4B79-9C0F-8FB525EBE326}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76A81F9A-0CE8-47D7-8F34-47E8A3855A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76A81F9A-0CE8-47D7-8F34-47E8A3855A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76A81F9A-0CE8-47D7-8F34-47E8A3855A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU

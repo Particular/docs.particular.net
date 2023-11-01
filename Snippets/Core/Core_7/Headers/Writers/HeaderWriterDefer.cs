@@ -4,7 +4,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
-    using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
@@ -15,13 +14,6 @@
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
         public static bool Received;
         static string EndpointName = "HeaderWriterDeferV7";
-
-        [SetUp]
-        [TearDown]
-        public void Setup()
-        {
-            DeleteEndpointQueues.DeleteQueuesForEndpoint(EndpointName);
-        }
 
         [Test]
         public async Task Write()

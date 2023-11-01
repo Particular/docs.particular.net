@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Threading;
-    using Common;
     using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
     using NServiceBus.Config;

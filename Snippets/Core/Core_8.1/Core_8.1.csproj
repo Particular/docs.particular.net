@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <RootNamespace>Core8</RootNamespace>
@@ -15,7 +15,6 @@
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
     <PackageReference Include="OpenTelemetry" Version="1.3.0" />
-    <ProjectReference Include="..\..\Common\Common.csproj" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web" />
   </ItemGroup>

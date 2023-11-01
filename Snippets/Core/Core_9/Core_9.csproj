@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Core9</RootNamespace>
@@ -17,6 +18,6 @@
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
     <PackageReference Include="OpenTelemetry" Version="1.3.0" />
-    <ProjectReference Include="..\..\Common\Common.csproj" />
   </ItemGroup>
+
 </Project>

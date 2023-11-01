@@ -5,7 +5,6 @@ namespace Core7.Headers.Writers
     using System.Threading;
     using System.Threading.Tasks;
     using Common;
-    using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
     using NServiceBus.Pipeline;
     using NUnit.Framework;
@@ -15,13 +14,6 @@ namespace Core7.Headers.Writers
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
         string endpointName = "HeaderWriterErrorV7";
-
-        [SetUp]
-        [TearDown]
-        public void Setup()
-        {
-            DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName);
-        }
 
         [Test]
         public async Task Write()

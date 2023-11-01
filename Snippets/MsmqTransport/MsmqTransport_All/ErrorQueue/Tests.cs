@@ -5,7 +5,6 @@
     using System.Management.Automation;
     using System.Messaging;
     using System.Threading;
-    using Common;
     using CoreAll.Msmq.QueueDeletion;
     using NServiceBus;
     using NServiceBus.Config;
