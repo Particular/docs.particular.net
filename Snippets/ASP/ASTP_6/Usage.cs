@@ -62,21 +62,6 @@ class Usage
         #endregion
     }
 
-    void CustomizingAzurePersistenceSagasCompatibility(EndpointConfiguration endpointConfiguration)
-    {
-#pragma warning disable CS0618 // Type or member is obsolete
-        #region AzurePersistenceSagasCompatibility
-
-        var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Sagas>();
-
-        var compatibility = persistence.Compatibility();
-        // e.g. Enable secondary index
-        compatibility.EnableSecondaryKeyLookupForSagasCorrelatedByProperties();
-
-        #endregion
-#pragma warning restore CS0618 // Type or member is obsolete
-    }
-
     public void ConfigureCustomJsonSerializerSettings(EndpointConfiguration endpointConfiguration)
     {
         #region AzurePersistenceSagasJsonSerializerSettings
