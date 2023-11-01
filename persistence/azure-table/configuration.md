@@ -11,5 +11,6 @@ partial: sections
 
 partial: code
 
-For more information on connection string configuration see [Configuring Azure Connection Strings](https://docs.microsoft.com/en-us/azure/storage/storage-configure-connection-string).
+partial: compatibility
 
+For more information on connection string configuration see [Configuring Azure Connection Strings](https://docs.microsoft.com/en-us/azure/storage/storage-configure-connection-string).

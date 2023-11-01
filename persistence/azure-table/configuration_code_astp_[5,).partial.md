@@ -11,8 +11,6 @@ The following settings are available for changing the behavior of saga persisten
  * `ConnectionString`: Sets the connection string for the storage account to be used for storing saga information.
  * `UseTableServiceClient`: Allows to set a fully pre-configured Table Service client instead of using a connection string.
 
-partial: compatibility
-
 ### Subscription configuration
 
 snippet: AzurePersistenceSubscriptionsCustomization
