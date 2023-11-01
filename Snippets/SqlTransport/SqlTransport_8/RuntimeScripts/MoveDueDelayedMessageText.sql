@@ -16,6 +16,6 @@ OUTPUT
 INTO {1};
 
 SELECT TOP 1 GETUTCDATE() as UtcNow, Due as NextDue
-FROM {0}
-ORDER BY Due";
+FROM {0} WITH (READPAST)
+ORDER BY Due
 endcode

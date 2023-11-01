@@ -11,8 +11,6 @@ WITH message AS (
 DELETE FROM message
 OUTPUT
     deleted.Id,
-    deleted.CorrelationId,
-    deleted.ReplyToAddress,
     CASE WHEN deleted.Expires IS NULL
         THEN 0
         ELSE CASE WHEN deleted.Expires > GETUTCDATE()
