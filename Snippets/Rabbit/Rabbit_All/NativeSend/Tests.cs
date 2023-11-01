@@ -46,7 +46,7 @@ namespace Rabbit_All.NativeSend
             logFactory.Level(LogLevel.Warn);
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             endpointConfiguration.SendFailedMessagesTo(errorQueueName);
-            endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             var recoverability = endpointConfiguration.Recoverability();
             recoverability.Immediate(
                 customizations: setting =>
@@ -59,7 +59,7 @@ namespace Rabbit_All.NativeSend
             var typesToScan = TypeScanner.NestedTypes<Tests>(rabbitTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
+            endpointConfiguration.UsePersistence<LearningPersistence>();
             return Endpoint.Start(endpointConfiguration);
         }
 
