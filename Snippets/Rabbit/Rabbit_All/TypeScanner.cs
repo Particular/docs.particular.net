@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Common
+namespace Rabbit_All
 {
     public static class TypeScanner
     {
