@@ -168,6 +168,8 @@
       Title: Callbacks 1 to 2
     - Url: nservicebus/upgrades/bridge-2to3
       Title: Messaging Bridge 2 to 3
+    - Url: nservicebus/upgrades/8to9
+      Title: NServiceBus 8 to 9
     - Url: nservicebus/upgrades/7to8
       Title: NServiceBus 7 to 8
       Articles:
