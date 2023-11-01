@@ -55,7 +55,7 @@ end
 declare @dataType_OrderNumber nvarchar(max);
 set @dataType_OrderNumber = (
   select data_type
-  from information_schema.columns
+  from INFORMATION_SCHEMA.COLUMNS
   where
     table_name = @tableNameWithoutSchema and
     table_schema = @schema and
@@ -108,7 +108,7 @@ end
 declare @dataType_OrderId nvarchar(max);
 set @dataType_OrderId = (
   select data_type
-  from information_schema.columns
+  from INFORMATION_SCHEMA.COLUMNS
   where
     table_name = @tableNameWithoutSchema and
     table_schema = @schema and
@@ -161,7 +161,7 @@ declare @dropPropertiesQuery nvarchar(max);
 select @dropPropertiesQuery =
 (
     select 'alter table ' + @tableName + ' drop column ' + column_name + ';'
-    from information_schema.columns
+    from INFORMATION_SCHEMA.COLUMNS
     where
         table_name = @tableNameWithoutSchema and
         table_schema = @schema and

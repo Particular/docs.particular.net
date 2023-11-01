@@ -54,15 +54,6 @@ public class ScriptWriter
         var assembly = typeof(SqlPersistence).Assembly;
         foreach (var dialect in dialects)
         {
-            var timeoutCommands = GetCommand(dialect, "TimeoutCommandBuilder");
-
-            Write(directory, dialect, "TimeoutAdd", GetValue(timeoutCommands, "Add"));
-            Write(directory, dialect, "TimeoutNext", GetValue(timeoutCommands, "Next"));
-            Write(directory, dialect, "TimeoutRange", GetValue(timeoutCommands, "Range"));
-            Write(directory, dialect, "TimeoutRemoveById", GetValue(timeoutCommands, "RemoveById"));
-            Write(directory, dialect, "TimeoutRemoveBySagaId", GetValue(timeoutCommands, "RemoveBySagaId"));
-            Write(directory, dialect, "TimeoutPeek", GetValue(timeoutCommands, "Peek"));
-
             var outboxCommands = GetCommand(dialect, "OutboxCommandBuilder");
 
             Write(directory, dialect, "OutboxCleanup", GetValue(outboxCommands, "Cleanup"));

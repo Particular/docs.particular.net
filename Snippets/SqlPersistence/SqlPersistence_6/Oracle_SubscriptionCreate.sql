@@ -1,6 +1,6 @@
 startcode Oracle_SubscriptionCreateSql
 declare
-  tableName varchar2(30) := UPPER(:1) || 'SS';
+  tableName varchar2(30) := UPPER(:tablePrefix) || 'SS';
   createTable varchar2(500);
   n number(10);
 begin

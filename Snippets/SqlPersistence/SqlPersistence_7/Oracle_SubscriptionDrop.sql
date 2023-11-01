@@ -1,6 +1,6 @@
 startcode Oracle_SubscriptionDropSql
 declare
-  tableName varchar2(30) := UPPER(:1) || 'SS';
+  tableName varchar2(30) := UPPER(:tablePrefix) || 'SS';
   dropTable varchar2(50);
   n number(10);
 begin
