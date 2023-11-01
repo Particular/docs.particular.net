@@ -4,7 +4,6 @@
     <SqlPersistenceGenerateScripts>false</SqlPersistenceGenerateScripts>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.0.0-alpha.1" />
     <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="7.*" />
