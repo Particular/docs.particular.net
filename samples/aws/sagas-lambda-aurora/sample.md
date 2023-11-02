@@ -1,15 +1,15 @@
 ---
-title: Using NServiceBus Sagas with AWS Lambda, SQS, and DynamoDB
-summary: A sample demonstrating the AWS DynamoDB persistence, AWS Lambda, and AWS SQS with NServiceBus sagas
+title: Using NServiceBus Sagas with AWS Lambda, SQS, and Aurora
+summary: A sample demonstrating the AWS Aurora persistence, AWS Lambda, and AWS SQS with NServiceBus sagas
 reviewed: 2024-10-24
-component: DynamoDB
+component: Aurora
 related:
  - nservicebus/sagas
  - samples/aws/dynamodb-simple
  - samples/aws/lambda-sqs
 ---
 
-This sample shows a basic saga using AWS Lambda with SQS and DynamoDB.
+This sample shows a basic saga using AWS Lambda with SQS and Aurora.
 
 downloadbutton
 
@@ -32,8 +32,8 @@ Run the following command from the `Sales` directory to deploy the Lambda projec
 
 The deployment will ask for a stack name and an S3 bucket name to deploy the serverless stack. After that, running the sample will launch a single console window:
 
-* **ClientUI** is a console application that will send a `PlaceOrder` command to the `Samples.DynamoDB.Lambda.Sales` endpoint, which is monitored by the AWS Lambda.
-* The deployed **Sales** project will receive messages from the `Samples.DynamoDB.Lambda.Sales` queue and process them using the AWS Lambda runtime.
+* **ClientUI** is a console application that will send a `PlaceOrder` command to the `Samples.Aurora.Lambda.Sales` endpoint, which is monitored by the AWS Lambda.
+* The deployed **Sales** project will receive messages from the `Samples.Aurora.Lambda.Sales` queue and process them using the AWS Lambda runtime.
 
 To try the AWS Lambda:
 
@@ -59,10 +59,6 @@ snippet: FunctionHandler
 Meanwhile, the `OrderSaga` hosted within the AWS Lambda project, is a regular NServiceBus saga which is also capable of sending messages receiving messages itself.
 
 snippet: OrderSaga
-
-The saga data is stored in the `Samples.DynamoDB.Lambda` table and can be viewed in the AWS web portal:
-
-![Saga data in the AWS web portal](saga-data.png)
 
 ## Removing the sample stack
 

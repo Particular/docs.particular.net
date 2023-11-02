@@ -6,13 +6,13 @@ class Program
 {
   public static async Task Main(string[] args)
   {
-    var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Lambda.ClientUI");
+    var endpointConfiguration = new EndpointConfiguration("Samples.Aurora.Lambda.ClientUI");
     endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-    endpointConfiguration.SendFailedMessagesTo("Samples-DynamoDB-Lambda-Error");
+    endpointConfiguration.SendFailedMessagesTo("Samples-Aurora-Lambda-Error");
 
     var transport = endpointConfiguration.UseTransport<SqsTransport>();
     var routing = transport.Routing();
-    routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.DynamoDB.Lambda.Sales");
+    routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.Aurora.Lambda.Sales");
 
     var endpoint = await Endpoint.Start(endpointConfiguration);
 

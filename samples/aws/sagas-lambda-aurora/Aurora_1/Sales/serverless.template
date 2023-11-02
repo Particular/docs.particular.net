@@ -6,19 +6,19 @@
     "ErrorQueue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
-        "QueueName": "Samples-DynamoDB-Lambda-Error"
+        "QueueName": "Samples-Aurora-Lambda-Error"
       }
     },
     "ClientQueue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
-        "QueueName": "Samples-DynamoDB-Lambda-ClientUI"
+        "QueueName": "Samples-Aurora-Lambda-ClientUI"
       }
     },
     "ClientDelayQueue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
-        "QueueName": "Samples-DynamoDB-Lambda-ClientUI-delay.fifo",
+        "QueueName": "Samples-Aurora-Lambda-ClientUI-delay.fifo",
         "FifoQueue": "true",
         "DelaySeconds": 900
       }
@@ -26,13 +26,13 @@
     "SalesQueue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
-        "QueueName": "Samples-DynamoDB-Lambda-Sales"
+        "QueueName": "Samples-Aurora-Lambda-Sales"
       }
     },
     "SalesDelayQueue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
-        "QueueName": "Samples-DynamoDB-Lambda-Sales-delay.fifo",
+        "QueueName": "Samples-Aurora-Lambda-Sales-delay.fifo",
         "FifoQueue": "true",
         "DelaySeconds": 900
       }
@@ -82,7 +82,7 @@
         "MemorySize": 256,
         "Timeout": 30,
         "Role": null,
-        "Policies": [ "AWSLambda_FullAccess", "AmazonSQSFullAccess", "AmazonSNSFullAccess", "AmazonDynamoDBFullAccess", "AWSNetworkManagerFullAccess",  "AWSLambdaBasicExecutionRole", "AWSXRayDaemonWriteAccess" ],
+        "Policies": [ "AWSLambda_FullAccess", "AmazonSQSFullAccess", "AmazonSNSFullAccess", "AWSNetworkManagerFullAccess",  "AWSLambdaBasicExecutionRole", "AWSXRayDaemonWriteAccess" ],
         "Events": {
           "SqsEvent": {
             "Type": "SQS",

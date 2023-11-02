@@ -12,11 +12,11 @@ public class OrderProcessor
 
     private static readonly AwsLambdaSQSEndpoint endpoint = new AwsLambdaSQSEndpoint(context =>
     {
-        var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("Samples.DynamoDB.Lambda.Sales");
+        var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("Samples.Aurora.Lambda.Sales");
 
         var advanced = endpointConfiguration.AdvancedConfiguration;
         advanced.UseSerialization<SystemJsonSerializer>();
-        advanced.SendFailedMessagesTo("Samples-DynamoDB-Lambda-Error");
+        advanced.SendFailedMessagesTo("Samples-Aurora-Lambda-Error");
 
         advanced.CustomDiagnosticsWriter((diagnostics,_) =>
         {
