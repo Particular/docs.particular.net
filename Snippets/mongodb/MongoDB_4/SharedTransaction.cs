@@ -1,27 +1,25 @@
-﻿namespace MongoDB_3
+﻿using System.Threading.Tasks;
+using NServiceBus;
+
+class SharedTransaction : IHandleMessages<MyMessage>
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
+    #region MongoDBHandlerSharedTransaction
 
-    class SharedTransaction : IHandleMessages<MyMessage>
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        #region MongoDBHandlerSharedTransaction
-
-        public Task Handle(MyMessage message, IMessageHandlerContext context)
-        {
-            var session = context.SynchronizedStorageSession.GetClientSession();
-            var collection = session.Client.GetDatabase("mydatabase").GetCollection<MyBusinessObject>("mycollection");
-            return collection.InsertOneAsync(session, new MyBusinessObject(), null, context.CancellationToken);
-        }
-
-        #endregion
+        var session = context.SynchronizedStorageSession.GetClientSession();
+        var collection = session.Client.GetDatabase("mydatabase").GetCollection<MyBusinessObject>("mycollection");
+        return collection.InsertOneAsync(session, new MyBusinessObject(), null, context.CancellationToken);
     }
 
-    class MyMessage
-    {
-    }
-
-    class MyBusinessObject
-    {
-    }
+    #endregion
 }
+
+class MyMessage
+{
+}
+
+class MyBusinessObject
+{
+}
+

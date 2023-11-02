@@ -1,81 +1,78 @@
-﻿namespace MongoDB_3
+﻿using System;
+using MongoDB.Driver;
+using NServiceBus;
+
+public class Usage
 {
-    using System;
-    using MongoDB.Driver;
-    using NServiceBus;
-
-    public class Usage
+    Usage(EndpointConfiguration endpointConfiguration)
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region MongoDBUsage
+        #region MongoDBUsage
 
-            endpointConfiguration.UsePersistence<MongoPersistence>();
+        endpointConfiguration.UsePersistence<MongoPersistence>();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void MongoClient(EndpointConfiguration endpointConfiguration)
-        {
-            #region MongoDBClient
+    void MongoClient(EndpointConfiguration endpointConfiguration)
+    {
+        #region MongoDBClient
 
-            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
-            persistence.MongoClient(new MongoClient("SharedMongoUrl"));
+        var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
+        persistence.MongoClient(new MongoClient("SharedMongoUrl"));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void DatabaseName(EndpointConfiguration endpointConfiguration)
-        {
-            #region MongoDBDatabaseName
+    void DatabaseName(EndpointConfiguration endpointConfiguration)
+    {
+        #region MongoDBDatabaseName
 
-            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
-            persistence.DatabaseName("DatabaseName");
+        var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
+        persistence.DatabaseName("DatabaseName");
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void UseTransactions(EndpointConfiguration endpointConfiguration)
-        {
-            #region MongoDBDisableTransactions
+    void UseTransactions(EndpointConfiguration endpointConfiguration)
+    {
+        #region MongoDBDisableTransactions
 
-            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
-            persistence.UseTransactions(false);
+        var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
+        persistence.UseTransactions(false);
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void TimeToKeepOutboxDeduplicationData(EndpointConfiguration endpointConfiguration)
-        {
-            #region MongoDBOutboxCleanup
+    void TimeToKeepOutboxDeduplicationData(EndpointConfiguration endpointConfiguration)
+    {
+        #region MongoDBOutboxCleanup
 
-            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
-            persistence.TimeToKeepOutboxDeduplicationData(TimeSpan.FromDays(30));
+        var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
+        persistence.TimeToKeepOutboxDeduplicationData(TimeSpan.FromDays(30));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void SBMakoCompatibility(EndpointConfiguration endpointConfiguration)
-        {
-            #region MongoDBSBMakoCompatibility
+    void SBMakoCompatibility(EndpointConfiguration endpointConfiguration)
+    {
+        #region MongoDBSBMakoCompatibility
 
-            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
-            var compatibility = persistence.CommunityPersistenceCompatibility();
-            compatibility.CollectionNamingConvention(type => type.Name);
-            compatibility.VersionElementName("DocumentVersion");
+        var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
+        var compatibility = persistence.CommunityPersistenceCompatibility();
+        compatibility.CollectionNamingConvention(type => type.Name);
+        compatibility.VersionElementName("DocumentVersion");
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void TekmavenCompatibility(EndpointConfiguration endpointConfiguration)
-        {
-            #region MongoDBTekmavenCompatibility
+    void TekmavenCompatibility(EndpointConfiguration endpointConfiguration)
+    {
+        #region MongoDBTekmavenCompatibility
 
-            var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
-            var compatibility = persistence.CommunityPersistenceCompatibility();
-            compatibility.VersionElementName("Version");
+        var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
+        var compatibility = persistence.CommunityPersistenceCompatibility();
+        compatibility.VersionElementName("Version");
 
-            #endregion
-        }
+        #endregion
     }
 }
