@@ -2,7 +2,7 @@
 title: Using NServiceBus Sagas with AWS Lambda, SQS, and Aurora
 summary: A sample demonstrating the AWS Aurora persistence, AWS Lambda, and AWS SQS with NServiceBus sagas
 reviewed: 2024-10-24
-component: Aurora
+component: SQSLambda
 related:
  - nservicebus/sagas
  - samples/aws/dynamodb-simple
