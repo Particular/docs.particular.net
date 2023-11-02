@@ -24,7 +24,7 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 1. Create an Aurora MySql database [publicly accesible](https://repost.aws/knowledge-center/aurora-mysql-connect-outside-vpc)
 
 
-INFO: A publicly accesible Aurora cluster is only required for the purpose of running this sample but this is not required for the production code. Please make sure to configure appropiate limited access to the database cluster.
+INFO: A publicly accesible Aurora cluster is only required for the purpose of running this sample but this is not required for the production code. Make sure to configure appropiate limited access to the database cluster.
 
 ## Seting up database access and schema
 
