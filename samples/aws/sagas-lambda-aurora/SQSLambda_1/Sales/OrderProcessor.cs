@@ -18,17 +18,10 @@ public class OrderProcessor
         advanced.UseSerialization<SystemJsonSerializer>();
         advanced.SendFailedMessagesTo("Samples-Aurora-Lambda-Error");
 
-        advanced.CustomDiagnosticsWriter((diagnostics,_) =>
-        {
-            context.Logger.LogLine(diagnostics);
-            return Task.CompletedTask;
-        });
-
         var connection =
             "server=localhost;user=root;database=dbname;port=3306;password=pass;AllowUserVariables=True;AutoEnlist=false";
+
         var persistence = advanced.UsePersistence<SqlPersistence>();
-        var subscriptions = persistence.SubscriptionSettings();
-        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
         persistence.SqlDialect<SqlDialect.MySql>();
         persistence.ConnectionBuilder(
             connectionBuilder: () => new MySqlConnection(connection));
