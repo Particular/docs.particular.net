@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus Sagas with AWS Lambda, SQS, and Aurora
 summary: A sample demonstrating the AWS Aurora persistence, AWS Lambda, and AWS SQS with NServiceBus sagas
-reviewed: 2024-10-24
+reviewed: 2024-11-02
 component: SQSLambda
 related:
  - nservicebus/sagas
@@ -21,6 +21,29 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 
 1. Install the [`Amazon.Lambda.Tools CLI`](https://github.com/aws/aws-lambda-dotnet#amazonlambdatools) using `dotnet tool install -g Amazon.Lambda.Tools`
 1. Make sure an S3 bucket is available in the AWS region of choice
+1. Create an Aurora MySql database [publicly accesible](https://repost.aws/knowledge-center/aurora-mysql-connect-outside-vpc)
+
+
+INFO: A publicly accesible Aurora cluster is only required for the purpose of running this sample but this is not required for your production code. Please make sure to configure appropiate limited access to your database cluster.
+
+## Seting up database access and schema
+
+### Updating the connection string
+
+Find `OrderProcessor.cs` file in the `Sales` directory and update the connection string to the database
+Find `Program.cs` file in the `DeployDBSchema` directory and update the connection string to the database
+
+### Generating the database scripts
+
+Run the following command from the `Sales` directory to build the project. Building the projects generates the database scripts:
+
+`dotnet run`
+
+### Executing the database scripts
+
+Run the following command from the `DeployDBSchema` to deploy the database schema:
+
+`dotnet run`
 
 ## Running the sample
 

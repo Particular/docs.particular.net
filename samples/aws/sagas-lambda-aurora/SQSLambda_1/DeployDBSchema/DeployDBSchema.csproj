@@ -5,6 +5,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>DeploySagaSchema</RootNamespace>
     </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.2.0" />
