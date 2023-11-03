@@ -20,7 +20,7 @@ The sample includes a [`CloudFormation`](https://aws.amazon.com/cloudformation/a
 The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be used to deploy the template to an AWS account.
 
 1. Install the [`Amazon.Lambda.Tools CLI`](https://github.com/aws/aws-lambda-dotnet#amazonlambdatools) using `dotnet tool install -g Amazon.Lambda.Tools`
-1. Create an S3 bucket in your preferred AWS region
+1. Create an S3 bucket in the AWS region of choice
 1. Create a publicly accessible Aurora MySql database (see [AWS documentation](https://repost.aws/knowledge-center/aurora-mysql-connect-outside-vpc) for more information)
 1. Update the connection string in the `DeployDatabase` project and run it to deploy the database schema
 
