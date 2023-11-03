@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messages", "Messages\Messag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientUI", "ClientUI\ClientUI.csproj", "{E2E8A722-2AEA-4141-B0C7-D1C434C97F76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeployDBSchema", "DeployDBSchema\DeployDBSchema.csproj", "{776D161B-0735-492A-AA61-1C48A2162129}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeployDatabase", "DeployDatabase\DeployDatabase.csproj", "{776D161B-0735-492A-AA61-1C48A2162129}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
