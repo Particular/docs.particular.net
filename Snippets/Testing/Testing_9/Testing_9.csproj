@@ -1,13 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <NoWarn>0618</NoWarn>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
-    <PackageReference Include="NServiceBus.Gateway" Version="3.*" />
-    <PackageReference Include="NServiceBus.Testing" Version="7.*" />
-    <PackageReference Include="NServiceBus.UniformSession.Testing" Version="2.*" />
+    <PackageReference Include="NServiceBus.Gateway" Version="5.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Testing" Version="9.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.UniformSession.Testing" Version="4.0.0-alpha.1" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
   </ItemGroup>
