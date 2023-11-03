@@ -9,6 +9,8 @@ related:
  - samples/aws/lambda-sqs
 ---
 
+INFO: This sample was originally used as part of the talk ["Message processing failed... But what is the root cause?"](https://www.youtube.com/watch?v=Mai-x8rMbLc) by Laila Bougria.
+
 # Sample
 
 This sample showcases the use case presented during the session, a small online retail store. The sample uses [NServiceBus](https://docs.particular.net/) on top of [Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) and [Amazon SNS](https://docs.aws.amazon.com/sns/latest/dg/welcome.html) to send/publish messages/events between components. The sample makes use of the [Microsoft Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host).
@@ -138,4 +140,4 @@ services.AddLogging(loggingBuilder =>
    );
 ```
 
-In this sample, we're setting up the OTLP Exporter for logging, emitting logs to the OpenTelemetry Collector as well.
+The OTLP Exporter is set up for logging and also emits logs to the OpenTelemetry Collector.
