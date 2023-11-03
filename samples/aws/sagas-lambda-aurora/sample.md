@@ -20,21 +20,17 @@ The sample includes a [`CloudFormation`](https://aws.amazon.com/cloudformation/a
 The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be used to deploy the template to an AWS account.
 
 1. Install the [`Amazon.Lambda.Tools CLI`](https://github.com/aws/aws-lambda-dotnet#amazonlambdatools) using `dotnet tool install -g Amazon.Lambda.Tools`
-1. Make sure an S3 bucket is available in the AWS region of choice
-1. Create an Aurora MySql database [publicly accesible](https://repost.aws/knowledge-center/aurora-mysql-connect-outside-vpc)
-1. Deploy the [database schema](#deploying-the-database-schema)
+1. Create an S3 bucket in your preferred AWS region
+1. Create a publicly accessible Aurora MySql database (see [AWS documentation](https://repost.aws/knowledge-center/aurora-mysql-connect-outside-vpc) for more information)
+1. Update the connection string in the `DeployDatabase` project and run it to deploy the database schema
 
-INFO: A publicly accesible Aurora cluster is only required for the purpose of running this sample but this is not required for the production code. Make sure to configure appropiate limited access to the database cluster.
-
-## Deploying the database schema
-
-Update the connection string in the `DeployDatabase` project and run it
+INFO: A publicly accessible Aurora cluster is only required for the purpose of running this sample but this is not required for the production code. Make sure to configure appropiate limited access to the database cluster.
 
 ## Running the sample
 
 INFO: It is not possible at this stage to use the AWS .NET Mock Lambda Test Tool to run the sample locally.
 
-Open the file `serverles.template` in the `Sales` project and update the value of the environment variable `AuroraLambda_ConnectionString` with the connection string to the database
+Open the file `serverless.template` in the `Sales` project and update the value of the environment variable `AuroraLambda_ConnectionString` with the database's connection string.
 
 Run the following command from the `Sales` directory to deploy the Lambda project:
 
