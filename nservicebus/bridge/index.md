@@ -1,5 +1,5 @@
 ---
-title: Bridge
+title: Messaging Bridge
 summary: Connect endpoints in a system that use different transports with the messaging bridge
 reviewed: 2023-07-04
 component: Bridge

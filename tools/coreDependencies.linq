@@ -1,19 +1,24 @@
 <Query Kind="Program">
-  <NuGetReference>NuGet.Core</NuGetReference>
+  <NuGetReference>NuGet.Protocol</NuGetReference>
   <Namespace>NuGet</Namespace>
   <Namespace>System.Collections.Concurrent</Namespace>
   <Namespace>System.Threading.Tasks</Namespace>
+  <Namespace>NuGet.Protocol.Core.Types</Namespace>
+  <Namespace>NuGet.Protocol</Namespace>
+  <Namespace>NuGet.Versioning</Namespace>
+  <Namespace>NuGet.Common</Namespace>
+  <Namespace>NuGet.Packaging.Core</Namespace>
 </Query>
 
 string corePackageName = "NServiceBus";
 string location = Util.CurrentQuery.Location;
 //string location = @"C:\Code\docs.particular.net\tools";
 
-IPackageRepository nuGet = PackageRepositoryFactory.Default.CreateRepository("https://www.nuget.org/api/v2/");
-IPackageRepository feedz = PackageRepositoryFactory.Default.CreateRepository("https://f.feedz.io/particular-software/packages/nuget");
-SemanticVersion minCoreVersion = new SemanticVersion(3, 3, 0, 0);
+SourceRepository nuGet = Repository.Factory.GetCoreV3("https://www.nuget.org/api/v2/");
+SourceRepository  feedz = Repository.Factory.GetCoreV3("https://f.feedz.io/particular-software/packages/nuget");
+SemanticVersion minCoreVersion = new SemanticVersion(3, 3, 0);
 
-void Main()
+async Task Main()
 {
     var coreDependencies = Path.Combine(location, @"..\components\core-dependencies");
     Directory.CreateDirectory(coreDependencies);
@@ -27,7 +32,7 @@ void Main()
 
     var packageNames = GetPackageNames(nugetAliasFile, corePackageName);
 
-    var allPackages = GetAllPackages(packageNames);
+    var allPackages = await GetAllPackages(packageNames);
 
     foreach (var packageName in packageNames)
     {
@@ -35,23 +40,23 @@ void Main()
     }
 }
 
-void Process(List<IPackage> allPackages, string packageName, string coreDependencies)
+void Process(List<IPackageSearchMetadata> allPackages, string packageName, string coreDependencies)
 {
-    var packagesForName = allPackages.Where(x => x.Id == packageName).ToList();
+    var packagesForName = allPackages.Where(x => x.Identity.Id == packageName).ToList();
     var targetPath = Path.Combine(coreDependencies, $"{packageName}.txt");
     using (var writer = File.CreateText(targetPath))
     {
         var processed = new List<Version>();
-        foreach (var package in packagesForName.OrderByDescending(x => x.Version))
+        foreach (var package in packagesForName.OrderByDescending(x => x.Identity.Version))
         {
-            var packageVersion = package.Version.Version;
+            var packageVersion = package.Identity.Version;
             var nsbDependency = GetDependencies(package, allPackages)
                 .FirstOrDefault(d => d.Id == corePackageName);
             if (nsbDependency == null)
             {
                 continue;
             }
-            if (nsbDependency.VersionSpec.MinVersion < minCoreVersion)
+            if (nsbDependency.VersionRange.MinVersion < minCoreVersion)
             {
                 continue;
             }
@@ -62,21 +67,21 @@ void Process(List<IPackage> allPackages, string packageName, string coreDependen
             {
                 continue;
             }
-			processed.Add(majorVersion);
-			int version;
-			if (nsbDependency.VersionSpec.IsMaxInclusive)
-			{
-				version = nsbDependency.VersionSpec.MaxVersion.Version.Major;
-			}
-			else if (nsbDependency.VersionSpec.MaxVersion != null)
-			{
-				version = nsbDependency.VersionSpec.MaxVersion.Version.Major - 1;
-			}
-			else
-			{
-				version = nsbDependency.VersionSpec.MinVersion.Version.Major;
-			}
-			writer.WriteLine($"{majorVersion} : {version}");
+      processed.Add(majorVersion);
+      int version;
+      if (nsbDependency.VersionRange.IsMaxInclusive)
+      {
+        version = nsbDependency.VersionRange.MaxVersion.Version.Major;
+      }
+      else if (nsbDependency.VersionRange.MaxVersion != null)
+      {
+        version = nsbDependency.VersionRange.MaxVersion.Version.Major - 1;
+      }
+      else
+      {
+        version = nsbDependency.VersionRange.MinVersion.Version.Major;
+      }
+      writer.WriteLine($"{majorVersion} : {version}");
         }
         writer.Flush();
     }
@@ -97,45 +102,58 @@ static List<string> GetPackageNames(string nugetAliasFile, string corePackageNam
     return packageNames;
 }
 
-List<IPackage> GetAllPackages(List<string> packageNames)
+async Task<List<IPackageSearchMetadata>> GetAllPackages(List<string> packageNames)
 {
-    var allPackages = new ConcurrentBag<IPackage>();
-    Parallel.ForEach(packageNames, packageName =>
+    var allPackages = new ConcurrentBag<IPackageSearchMetadata>();
+
+  await Parallel.ForEachAsync(packageNames, async (packageName, token) =>
+  {
+    var packages = await ListedPackages(nuGet, packageName);
+
+    foreach (var package in packages)
     {
-        foreach (var package in ListedPackages(nuGet, packageName))
-        {
-            allPackages.Add(package);
-        }
-        foreach (var package in ListedPackages(feedz, packageName))
-        {
-            allPackages.Add(package);
-        }
-    });
+      allPackages.Add(package);
+    }
+
+    packages = await ListedPackages(feedz, packageName);
+
+    foreach (var package in packages)
+    {
+      allPackages.Add(package);
+    }
+  });
+
     return allPackages.ToList();
 }
 
-static IEnumerable<IPackage> ListedPackages(IPackageRepository nuGet, string packageName)
+static async Task<IEnumerable<IPackageSearchMetadata>> ListedPackages(SourceRepository repository, string packageName)
 {
-    return nuGet.FindPackagesById(packageName)
-        .Where(package => package.IsListed());
+  var resource = await repository.GetResourceAsync<PackageMetadataResource>();
+  var cache = new SourceCacheContext();
+  var logger = NullLogger.Instance;
+
+    return await resource.GetMetadataAsync(packageName, true, false, cache, logger, CancellationToken.None);
 }
 
-static IEnumerable<PackageDependency> GetDependencies(IPackage package, List<IPackage> packages)
+static IEnumerable<PackageDependency> GetDependencies(IPackageSearchMetadata package, List<IPackageSearchMetadata> packages)
 {
-	foreach (var dependency in package.DependencySets.SelectMany(x => x.Dependencies))
-	{
-		yield return dependency;
-		foreach (var subPackage in packages.OrderBy(x => x.Version))
-		{
-			if (subPackage.Id != dependency.Id || !dependency.VersionSpec.Satisfies(subPackage.Version))
-			{
-				continue;
-			}
-			foreach (var subDependency in subPackage.DependencySets.SelectMany(x => x.Dependencies))
-			{
-				yield return subDependency;
-			}
-		}
-	}
+  foreach (var dependency in package.DependencySets.SelectMany(x => x.Packages))
+  {
+    yield return dependency;
 
+    foreach (var subPackage in packages.OrderBy(x => x.Identity.Version))
+    {
+      if (dependency.VersionRange.Satisfies(subPackage.Identity.Version))
+      {
+        if (subPackage.Identity.Id != dependency.Id || !dependency.VersionRange.Satisfies(subPackage.Identity.Version))
+        {
+          continue;
+        }
+        foreach (var subDependency in subPackage.DependencySets.SelectMany(x => x.Packages))
+        {
+          yield return subDependency;
+        }
+      }
+    }
+  }
 }

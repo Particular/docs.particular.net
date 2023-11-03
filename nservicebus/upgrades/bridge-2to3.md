@@ -1,11 +1,11 @@
 ---
-title:  Upgrade Version 2 to 3
+title:  Messaging Bridge Upgrade Version 2 to 3
 reviewed: 2023-10-23
 component: Bridge
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
- - 7
  - 8
+ - 9
 ---
 
 ## New package for MSMQ support
