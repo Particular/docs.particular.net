@@ -50,7 +50,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.2) | 2022-11-17     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.3) | 2022-11-17     | -                 | -                                 |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.3) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
@@ -135,14 +135,14 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.2) | 2022-11-17     | -                 | -                                 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.3) | 2022-11-17     | -                 | -                                 |
 | [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.6.4) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Persistence.Sql.TransactionalSession](/nuget/NServiceBus.Persistence.Sql.TransactionalSession)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.2) | 2022-11-17     | -                 | -                                 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.3) | 2022-11-17     | -                 | -                                 |
 | [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.4) | 2022-09-19     | 2023-11-17        | Superseded by 7.0.x               |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
@@ -179,7 +179,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.2) | 2022-11-17     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.3) | 2022-11-17     | -                 | -                                 |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.3) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 ### Serializer packages
@@ -514,7 +514,6 @@
 | [~~2.25.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.25.0) | ~~2023-02-28~~ | ~~2023-06-08~~    | ~~Superseded by 2.26.x~~          |
 | [~~2.24.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.24.0) | ~~2023-02-23~~ | ~~2023-05-28~~    | ~~Superseded by 2.25.x~~          |
 | [~~2.22.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.22.1) | ~~2023-02-03~~ | ~~2023-05-23~~    | ~~Superseded by 2.24.x~~          |
-| [~~2.20.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.20.0) | ~~2023-01-18~~ | ~~2023-05-03~~    | ~~Superseded by 2.22.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
