@@ -71,7 +71,7 @@
         "TopicName": "InventoryStaged",
         "DisplayName": "InventoryStaged"
       }
-    },    
+    },
     "SQSTriggerFunction": {
       "Type": "AWS::Serverless::Function",
       "Properties": {
@@ -91,8 +91,12 @@
               "Queue": { "Fn::GetAtt": [ "SalesQueue", "Arn" ] }
             }
           }
-        }
-       
+        },
+       "Environment": {
+             "Variables": {
+                 "AuroraLambda_ConnectionString": "server=localhost;user=root;database=dbname;port=3306;password=pass;AllowUserVariables=True;AutoEnlist=false"
+             }
+         }
       }
     }
   },

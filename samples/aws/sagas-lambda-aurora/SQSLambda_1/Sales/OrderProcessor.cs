@@ -18,8 +18,7 @@ public class OrderProcessor
         advanced.UseSerialization<SystemJsonSerializer>();
         advanced.SendFailedMessagesTo("Samples-Aurora-Lambda-Error");
 
-        var connection =
-            "server=localhost;user=root;database=dbname;port=3306;password=pass;AllowUserVariables=True;AutoEnlist=false";
+        var connection = Environment.GetEnvironmentVariable("AuroraLambda_ConnectionString");
 
         var persistence = advanced.UsePersistence<SqlPersistence>();
         persistence.SqlDialect<SqlDialect.MySql>();
