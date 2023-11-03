@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run all" type="CompoundRunConfigurationType">
+    <toRun name="Client" type="LaunchSettings" />
+    <toRun name="Billing" type="DotNetProject" />
+    <toRun name="Marketing" type="DotNetProject" />
+    <toRun name="Payments" type="DotNetProject" />
+    <toRun name="Sales" type="DotNetProject" />
+    <toRun name="Shipping" type="DotNetProject" />
+    <toRun name="Stock" type="DotNetProject" />
+    <method v="2" />
+  </configuration>
+</component>

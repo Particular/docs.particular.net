@@ -1,0 +1,34 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+
+extensions:
+  health_check:
+  pprof:
+    endpoint: 0.0.0.0:1777
+
+processors:
+  batch:
+
+exporters:
+  logging:
+    verbosity: detailed
+  awsxray:
+    region: eu-west-2
+  awsemf:
+    region: eu-west-2
+
+service:
+  pipelines:
+    traces:
+      receivers: [ otlp ]
+      exporters: [ awsxray ]
+    metrics:
+      receivers: [ otlp ]
+      exporters: [ awsemf ]
+  extensions: [pprof]
+  telemetry:
+    logs:
+      level: debug
