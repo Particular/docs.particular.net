@@ -42,9 +42,9 @@ class Api
         #region configuring-timeout-transactional-session
 
         await session.Open(new MyPersistenceOpenSessionOptions
-                {
-                    MaximumCommitDuration = TimeSpan.FromSeconds(15)
-                },
+        {
+            MaximumCommitDuration = TimeSpan.FromSeconds(15)
+        },
                 cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
@@ -53,12 +53,12 @@ class Api
         #region configuring-metadata-transactional-session
 
         await session.Open(new MyPersistenceOpenSessionOptions
-                {
-                    Metadata =
+        {
+            Metadata =
                     {
                         { "SomeKey", "SomeValue" }
                     }
-                },
+        },
                 cancellationToken: cancellationToken)
             .ConfigureAwait(false);
 
