@@ -22,32 +22,19 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 1. Install the [`Amazon.Lambda.Tools CLI`](https://github.com/aws/aws-lambda-dotnet#amazonlambdatools) using `dotnet tool install -g Amazon.Lambda.Tools`
 1. Make sure an S3 bucket is available in the AWS region of choice
 1. Create an Aurora MySql database [publicly accesible](https://repost.aws/knowledge-center/aurora-mysql-connect-outside-vpc)
-
+1. Setting up [database access and schema](#setting-up-database-access-and-schema)
 
 INFO: A publicly accesible Aurora cluster is only required for the purpose of running this sample but this is not required for the production code. Make sure to configure appropiate limited access to the database cluster.
 
-## Seting up database access and schema
+## Setting up database access and schema
 
-### Updating the connection string
-
-Find `OrderProcessor.cs` file in the `Sales` directory and update the connection string to the database
-Find `Program.cs` file in the `DeployDBSchema` directory and update the connection string to the database
-
-### Generating the database scripts
-
-Run the following command from the `Sales` directory to build the project. Building the projects generates the database scripts:
-
-`dotnet run`
-
-### Executing the database scripts
-
-Run the following command from the `DeployDBSchema` to deploy the database schema:
-
-`dotnet run`
+Update the connection string in the `DeployDatabase` project and run it
 
 ## Running the sample
 
 INFO: It is not possible at this stage to use the AWS .NET Mock Lambda Test Tool to run the sample locally.
+
+Open the file `serverles.template` in the `Sales` project and update the value of the environment variable `AuroraLambda_ConnectionString` with the connection string to the database
 
 Run the following command from the `Sales` directory to deploy the Lambda project:
 
