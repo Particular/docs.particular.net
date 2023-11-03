@@ -82,7 +82,7 @@
         "MemorySize": 256,
         "Timeout": 30,
         "Role": null,
-        "Policies": [ "AWSLambda_FullAccess", "AmazonSQSFullAccess", "AmazonSNSFullAccess", "AWSNetworkManagerFullAccess",  "AWSLambdaBasicExecutionRole", "AWSXRayDaemonWriteAccess" ],
+        "Policies": [ "AWSLambda_FullAccess", "AmazonSQSFullAccess", "AmazonSNSFullAccess" ],
         "Events": {
           "SqsEvent": {
             "Type": "SQS",
