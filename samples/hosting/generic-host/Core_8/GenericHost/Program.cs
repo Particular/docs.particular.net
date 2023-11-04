@@ -32,18 +32,6 @@ internal class Program
         #endregion
         */
 
-        #region generic-host-logging
-
-        builder.ConfigureLogging((ctx, logging) =>
-        {
-            logging.AddConfiguration(ctx.Configuration.GetSection("Logging"));
-
-            logging.AddEventLog();
-            logging.AddConsole();
-        });
-
-        #endregion
-
         #region generic-host-nservicebus
 
         builder.UseNServiceBus(ctx =>
