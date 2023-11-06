@@ -55,7 +55,7 @@ The Azure Service Bus transport configuration options have been moved to the `Az
 
 Previously when using `CustomTokenCredential` or `TokenCredential` it was required to pass a fully-qualified namespace (e.g. `<asb-namespace-name>.servicebus.windows.net`) instead of a connection string (e.g. `Endpoint=sb://<asb-namespace-name>.servicebus.windows.net>;[...]`). The dual purpose of the connection-string option has been removed. To use `TokenCredential` pass the credential plus the fully-qualified namespace to the constructor of the transport.
 
-snippet: token-credentials
+snippet: 2to3-token-credentials
 
 ## Accessing the native incoming message
 
@@ -69,7 +69,7 @@ The Azure.Messaging.ServiceBus client SDK introduces a set of new classes to rep
 
 The auto-lock renewal is now supported for an extended period of time and can be customized by specifying `MaxAutoLockRenewalDuration`.
 
-snippet: custom-auto-lock-renewal
+snippet: 2to3-custom-auto-lock-renewal
 
 ### Transaction timeout
 
