@@ -13,4 +13,4 @@ upgradeGuideCoreVersions:
 
 ## Saga compatibility mode
 
-The [option to enable compatibility with saga instances persisted by NServiceBus.Persistence.AzureStorage version 1 and 2](/azure-table/configuration.md#saga-compatibility-configuration) is no longer available and all legacy endpoint instances must be upgraded to no longer require it to be used.
+The [option to enable compatibility with saga instances persisted by NServiceBus.Persistence.AzureStorage version 1 and 2](/persistence/azure-table/configuration?version=astp_5#saga-compatibility-configuration) is no longer available and all legacy endpoint instances must be upgraded to no longer require it to be used.
