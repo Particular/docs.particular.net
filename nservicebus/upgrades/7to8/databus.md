@@ -11,7 +11,7 @@ upgradeGuideCoreVersions:
 
 The BinaryFormatter serializer that was used internally in NServiceBus version 7 is moved to a separate package. The BinaryFormatter is unsafe by nature and could cause security vulnerabilities and as a result is being phased out by Microsoft. The new data bus configuration API now requires a serializer.
 
-snippet: DataBusUsage-UpgradeGuide
+snippet: 7to8-DataBusUsage-UpgradeGuide
 
 The recommended serializer is `SystemJsonDataBusSerializer` that is built-in and that uses the `System.Text.Json` library. While BinaryFormatter is still supported via the new package called `NServiceBus.DataBus.BinarySerializer`, customers are strongly encouraged to move away from it.
 
@@ -29,7 +29,7 @@ Note that the newly added header, `NServiceBus.DataBusConfig.ContentType`, in NS
 
 The serializer interface `IDataBusSerializer` can no longer be resolved via the container. Registered custom data bus serializers now must be provided in code and the registration code can be removed:
 
-snippet: DataBusUsage-UpgradeGuide
+snippet: 7to8-DataBusUsage-UpgradeGuide
 
 A runtime exception is thrown if the `IDataBusSerializer` is still registered in the container.
 
@@ -47,4 +47,4 @@ An additional `ContentType` property is now also required when implementing this
 
 The API to provide a custom `IDataBus` implementation has been changed from accepting a `Type` to a factory method. The new API is:
 
-snippet: CustomDataBus-UpgradeGuide
+snippet: 7to8-CustomDataBus-UpgradeGuide

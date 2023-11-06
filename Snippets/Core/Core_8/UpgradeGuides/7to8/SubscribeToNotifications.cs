@@ -1,6 +1,6 @@
 ﻿
 
-namespace Core9.Notifications
+namespace Core8.Notifications
 {
     using System.Threading.Tasks;
     using NServiceBus;
@@ -12,7 +12,7 @@ namespace Core9.Notifications
 
         void EndpointStartup(EndpointConfiguration endpointConfiguration)
         {
-            #region SubscribeToErrorsNotifications-UpgradeGuide
+            #region 7to8-SubscribeToErrorsNotifications-UpgradeGuide
             var recoverability = endpointConfiguration.Recoverability();
 
             recoverability.Immediate(settings => settings.OnMessageBeingRetried((retry, ct) =>

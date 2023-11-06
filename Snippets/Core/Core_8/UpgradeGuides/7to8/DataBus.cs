@@ -1,4 +1,4 @@
-namespace Core9.UpgradeGuides
+namespace Core8.UpgradeGuides
 {
     using System;
     using System.IO;
@@ -12,14 +12,14 @@ namespace Core9.UpgradeGuides
     {
         void ConfigureDataBus(EndpointConfiguration endpointConfiguration)
         {
-            #region DataBusUsage-UpgradeGuide
+            #region 7to8-DataBusUsage-UpgradeGuide
             endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
             #endregion
         }
 
         void ConfigureCustomDataBus(EndpointConfiguration endpointConfiguration)
         {
-            #region CustomDataBus-UpgradeGuide
+            #region 7to8-CustomDataBus-UpgradeGuide
             endpointConfiguration.UseDataBus(serviceProvider => new MyDataBus(serviceProvider.GetRequiredService<SomeDependency>()), new SystemJsonDataBusSerializer());
             #endregion
         }

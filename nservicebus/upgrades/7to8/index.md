@@ -102,7 +102,7 @@ In NServiceBus version 7.2, error notification events for `MessageSentToErrorQue
 
 Error notifications can be set with the `Task`-based callbacks through the recoverability settings:
 
-snippet: SubscribeToErrorsNotifications-UpgradeGuide
+snippet: 7to8-SubscribeToErrorsNotifications-UpgradeGuide
 
 ## Disabling subscriptions
 
@@ -112,7 +112,7 @@ While NServiceBus still supports message-driven subscriptions for transports tha
 
 To disable publishing on an endpoint, the declarative API should be used instead:
 
-snippet: DisablePublishing-UpgradeGuide
+snippet: 7to8-DisablePublishing-UpgradeGuide
 
 ## Change to license file locations
 
