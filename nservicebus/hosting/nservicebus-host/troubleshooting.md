@@ -34,17 +34,20 @@ Verify that:
 1. Assembly binding redirects in the `NServiceBus.Host.exe.config` are correct and match with any entries generated in the `App.config` file.
 2. All files in the deployment (sub)folder are correct and no old files are present from previous deployments.
 
-## Service fails to start due to reaching the timeout period
+## Windows service fails to start due to reaching the timeout period
 
-Sometimes when the server hosting a microservice that uses NServiceBus is started, the following exception is seen in windows event viewer.
-> A timeout was reached (30000 milliseconds) while waiting for the XYZ service to connect.
-> The XYZ service failed to start due to the following error:
-> The service did not respond to the start or control request in a timely fashion
+When a Windows service fails to transition into the `SERVICE_RUNNING` state before timeout (i.e. fails to complete the start sequence), the following exception messages may be seen in the Windows Event Viewer:
 
-Yet, after a certain period of time, the service is able to start up again without any issues. This happens because during the restart, NServiceBus might still be waiting on some infrastructure to start up before it is able to initialize. This can be mitigated by:
-
-- Letting the dependencies of a service finish starting up and running before the service.
-- Setting the service to  "Automatic Delayed Start" so that it will only get the signal to start when all other “Automatic” services are running. This is because, when a windows service startup is set to "Automatic", it loads during boot whereas when it is set to "Automatic (delayed start)", it does not  start until after all other auto-start services have been launched. Once all the automatic start services are loaded, the system then queues the “delay start” services for 2 minutes (120 seconds) by default. This interval can be altered by creating a registry DWORD (32-bit) value named AutoStartDelay and setting the delay (base: decimal) in seconds, in the following registry key:
 ```txt
- HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control
+A timeout was reached (30000 milliseconds) while waiting for the XYZ service to connect.
+The XYZ service failed to start due to the following error:
+The service did not respond to the start or control request in a timely fashion
 ```
+
+This often occurs when a dependency is not available in time during the start process. Another symptom is that the service will start at a later time without issue.
+
+This problem can be mitigated by:
+
+- If the service is started automatically, configuring the service to start with `delayed-auto` set, such that the service will not start until all other "automatic" services are started 
+- Configuring [service dependencies](/nservicebus/hosting/windows-service.md#installation-specifying-service-dependencies) to ensure they are started before the service starts
+- Enabling [service recoverability](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) to ensure the service will automatically restart in case start fails
