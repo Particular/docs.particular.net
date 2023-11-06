@@ -1,7 +1,7 @@
 ---
 title: Near Real-Time Transient Clients
 summary: How to relay NServiceBus events to occasionally-connected clients via SignalR.
-reviewed: 2021-01-21
+reviewed: 2022-11-02
 component: Core
 related: 
  - nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
@@ -9,7 +9,7 @@ related:
  - samples/showcase
 ---
 
-NOTE: SignalR can be used in a variety of ways. Browse the official [SignalR tutorials](https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr?tabs=visual-studio&view=aspnetcore-2.2) and [SignalR samples](https://github.com/aspnet/SignalR-samples) for information on how to use SignalR. This document focuses on how to relay NServiceBus events to SignalR clients.
+NOTE: SignalR can be used in a variety of ways. Browse the official [SignalR tutorials](https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?tabs=visual-studio&view=aspnetcore-6.0) and [SignalR samples](https://github.com/aspnet/SignalR-samples) for information on how to use SignalR. This document focuses on how to relay NServiceBus events to SignalR clients.
 
 For near real-time, occasionally connected clients, messages are only relevant for a short period of time. Clients that received near real-time stock ticker updates are a common example of these types of clients.
 

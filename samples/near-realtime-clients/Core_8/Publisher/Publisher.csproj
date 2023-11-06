@@ -1,15 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFrameworks>net6.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <ProjectReference Include="..\StockEvents\StockEvents.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.*" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.*" />
   </ItemGroup>
 </Project>

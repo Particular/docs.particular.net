@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
-using Microsoft.Owin.Cors;
-using Microsoft.Owin.Hosting;
-using NServiceBus;
-using Owin;
+
+namespace ClientHub;
 
 static class Program
 {
@@ -15,41 +16,36 @@ static class Program
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        var routing = endpointConfiguration.UseTransport(new MsmqTransport());
-
-        routing.RegisterPublisher(
-            eventType: typeof(StockTick),
-            publisherEndpoint: "Samples.NearRealTimeClients.Publisher");
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         endpointConfiguration.SendFailedMessagesTo("error");
 
         var conventions = endpointConfiguration.Conventions();
         conventions.DefiningEventsAs(type => type == typeof(StockTick));
 
-        endpointConfiguration.EnableInstallers();
+        var builder = WebApplication.CreateBuilder();
+        builder.Services.AddSignalR();
 
-        var url = "http://localhost:9756";
+        var startableEndpoint = EndpointWithExternallyManagedContainer.Create(endpointConfiguration, builder.Services);
 
-        using (WebApp.Start<OwinStartup>(url))
-        {
-            Console.WriteLine($"SignalR server running at {url}");
+        var app = builder.Build();
+        app.MapHub<StockTicksHub>("/StockTicksHub");
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
-            Console.WriteLine("NServiceBus subscriber running");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey(true);
+        var url = "http://localhost:9756/";
 
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
-        }
-    }
-    class OwinStartup
-    {
-        public void Configuration(IAppBuilder app)
-        {
-            app.UseCors(CorsOptions.AllowAll);
-            app.MapSignalR();
-        }
+        var webAppTask = app.RunAsync(url);
+
+        Console.WriteLine($"SignalR server running at {url}");
+
+        var endpointInstance = await startableEndpoint.Start(app.Services);
+
+        Console.WriteLine("NServiceBus subscriber running");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey(true);
+
+        await Task.WhenAll(
+            endpointInstance.Stop(),
+            app.StopAsync(),
+            webAppTask);
     }
 }

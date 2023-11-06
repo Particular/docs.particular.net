@@ -10,7 +10,7 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.Publisher");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new MsmqTransport());
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         endpointConfiguration.SendFailedMessagesTo("error");
 
@@ -60,7 +60,7 @@ static class Program
         } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
     }
 
-    static string[] Symbols =
+    static readonly string[] Symbols =
     {
         "MSFT",
         "AAPL",
