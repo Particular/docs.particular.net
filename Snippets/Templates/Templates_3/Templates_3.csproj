@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
+    <PackageReference Include="ParticularTemplates" Version="3.*" />
   </ItemGroup>
 </Project>
