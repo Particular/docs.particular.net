@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
-using Org.BouncyCastle.Security;
 
 
 var connectionString =
