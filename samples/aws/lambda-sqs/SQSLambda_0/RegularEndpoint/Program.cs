@@ -14,7 +14,6 @@ class Program
         {
             var endpointConfiguration = new EndpointConfiguration("RegularEndpoint");
             endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
             endpointConfiguration.UseTransport<SqsTransport>();
 
