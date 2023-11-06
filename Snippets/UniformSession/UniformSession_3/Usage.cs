@@ -1,105 +1,103 @@
-﻿namespace UniformSession_3
+﻿using System;
+using System.Threading.Tasks;
+
+using NServiceBus;
+using NServiceBus.UniformSession;
+
+#region uniformsession-usage
+
+class ReusedComponent
 {
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.UniformSession;
+    IUniformSession session;
 
-    #region uniformsession-usage
-
-    class ReusedComponent
+    public ReusedComponent(IUniformSession session)
     {
-        IUniformSession session;
-
-        public ReusedComponent(IUniformSession session)
-        {
-            this.session = session;
-        }
-
-        public Task Do()
-        {
-            return session.Send(new MyMessage());
-        }
+        this.session = session;
     }
 
-    [Route("api/[controller]")]
-    class MyController :
-        Controller
+    public Task Do()
     {
-        ReusedComponent component;
+        return session.Send(new MyMessage());
+    }
+}
 
-        public MyController(ReusedComponent component)
-        {
-            this.component = component;
-        }
+[Route("api/[controller]")]
+class MyController :
+    Controller
+{
+    ReusedComponent component;
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Input input)
-        {
-            await component.Do()
-                .ConfigureAwait(false);
-
-            return Ok();
-        }
+    public MyController(ReusedComponent component)
+    {
+        this.component = component;
     }
 
-    class MyHandler :
-        IHandleMessages<MyCommand>
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] Input input)
     {
-        ReusedComponent component;
+        await component.Do()
+            .ConfigureAwait(false);
 
-        public MyHandler(ReusedComponent component)
-        {
-            this.component = component;
-        }
+        return Ok();
+    }
+}
 
-        public Task Handle(MyCommand message, IMessageHandlerContext context)
-        {
-            return component.Do();
-        }
+class MyHandler :
+    IHandleMessages<MyCommand>
+{
+    ReusedComponent component;
+
+    public MyHandler(ReusedComponent component)
+    {
+        this.component = component;
     }
 
-    #endregion
-
-    class MyMessage
+    public Task Handle(MyCommand message, IMessageHandlerContext context)
     {
+        return component.Do();
     }
+}
 
-    class MyCommand
+#endregion
+
+class MyMessage
+{
+}
+
+class MyCommand
+{
+}
+
+class Controller
+{
+    public IActionResult Ok()
     {
+        return default;
     }
+}
 
-    class Controller
+class HttpPostAttribute : Attribute
+{
+}
+
+class FromBodyAttribute : Attribute
+{
+}
+
+class RouteAttribute : Attribute
+{
+    string v;
+
+    public RouteAttribute(string v)
     {
-        public IActionResult Ok()
-        {
-            return default;
-        }
+        this.v = v;
     }
+}
 
-    class HttpPostAttribute : Attribute
-    {
-    }
+class Input
+{
+}
 
-    class FromBodyAttribute : Attribute
-    {
-    }
-
-    class RouteAttribute : Attribute
-    {
-        string v;
-
-        public RouteAttribute(string v)
-        {
-            this.v = v;
-        }
-    }
-
-    class Input
-    {
-    }
-
-    interface IActionResult
-    {
-    }
+interface IActionResult
+{
 }
