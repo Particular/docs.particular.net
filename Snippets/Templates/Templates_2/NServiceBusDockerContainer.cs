@@ -46,7 +46,7 @@ namespace Templates_2
 
                 // TODO: replace the license.xml file with a valid license file
 
-                // TODO: perform any futher start up operations before or after starting the endpoint
+                // TODO: perform any further start up operations before or after starting the endpoint
                 endpoint = await Endpoint.Start(endpointConfiguration);
             }
             catch (Exception ex)
@@ -61,7 +61,7 @@ namespace Templates_2
         {
             try
             {
-                // TODO: perform any futher shutdown operations before or after stopping the endpoint
+                // TODO: perform any further shutdown operations before or after stopping the endpoint
                 await endpoint?.Stop();
             }
             catch (Exception ex)
