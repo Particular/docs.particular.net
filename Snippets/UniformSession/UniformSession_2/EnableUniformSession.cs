@@ -1,16 +1,13 @@
-﻿namespace UniformSession_2
+﻿using NServiceBus;
+
+public class EnableUniformSession
 {
-    using NServiceBus;
-
-    public class EnableUniformSession
+    void Configure(EndpointConfiguration endpointConfiguration)
     {
-        void Configure(EndpointConfiguration endpointConfiguration)
-        {
-            #region enable-uniformsession
+        #region enable-uniformsession
 
-            endpointConfiguration.EnableUniformSession();
+        endpointConfiguration.EnableUniformSession();
 
-            #endregion
-        }
+        #endregion
     }
 }
