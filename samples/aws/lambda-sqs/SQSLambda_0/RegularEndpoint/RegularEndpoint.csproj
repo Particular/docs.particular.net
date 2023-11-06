@@ -6,7 +6,7 @@
     <RootNamespace>OnPremiseEndpoint</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.AmazonSQS" Version="4.*" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="5.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
   </ItemGroup>
   <ItemGroup>
