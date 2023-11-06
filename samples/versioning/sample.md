@@ -4,7 +4,9 @@ summary: Message evolution over time using interfaces.
 reviewed: 2021-01-01
 component: Core
 redirects:
- - nservicebus/versioning-sample
+- nservicebus/versioning-sample
+related:
+- nservicebus/messaging/messages-as-interfaces
 ---
 
 This sample shows how to handle message schema evolution in a backward-compatible manner. The project consists of a publishing endpoint that has evolved from one version of the schema to the next. The newer subscriber has access to the additional information in the newest version of the schema while the older keeps operating without interruptions.
