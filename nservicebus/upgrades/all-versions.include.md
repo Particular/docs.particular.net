@@ -2,8 +2,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.1.x](https://www.nuget.org/packages/NServiceBus/8.1.5) | 2023-06-19     | -                 | -                                 |
-| [8.0.x](https://www.nuget.org/packages/NServiceBus/8.0.7) | 2022-11-17     | 2023-12-19        | Superseded by 8.1.x               |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus/8.1.6) | 2023-06-19     | -                 | -                                 |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus/8.0.8) | 2022-11-17     | 2023-12-19        | Superseded by 8.1.x               |
 | [7.8.x](https://www.nuget.org/packages/NServiceBus/7.8.4) | 2022-09-19     | 2024-11-17        | Superseded by 8.0.x               |
 | [~~7.7.x~~](https://www.nuget.org/packages/NServiceBus/7.7.6) | ~~2022-03-09~~ | ~~2023-03-19~~    | ~~Superseded by 7.8.x~~           |
 | [~~7.6.x~~](https://www.nuget.org/packages/NServiceBus/7.6.3) | ~~2021-12-17~~ | ~~2022-09-09~~    | ~~Superseded by 7.7.x~~           |
@@ -1002,7 +1002,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.38.x](https://www.nuget.org/packages/Particular.PlatformSample/2.38.0) | 2023-08-16     | -                 | -                                 |
+| [2.39.x](https://www.nuget.org/packages/Particular.PlatformSample/2.39.0) | 2023-11-06     | -                 | -                                 |
+| [2.38.x](https://www.nuget.org/packages/Particular.PlatformSample/2.38.0) | 2023-08-16     | 2024-02-06        | Superseded by 2.39.x              |
 | [2.37.x](https://www.nuget.org/packages/Particular.PlatformSample/2.37.0) | 2023-07-21     | 2023-11-16        | Superseded by 2.38.x              |
 | [~~2.36.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.36.0) | ~~2023-07-05~~ | ~~2023-10-21~~    | ~~Superseded by 2.37.x~~          |
 | [~~2.35.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.35.0) | ~~2023-06-22~~ | ~~2023-10-05~~    | ~~Superseded by 2.36.x~~          |
