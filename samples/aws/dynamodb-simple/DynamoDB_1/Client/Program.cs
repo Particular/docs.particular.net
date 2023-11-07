@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+
 using NServiceBus;
 
 class Program
@@ -9,6 +10,7 @@ class Program
         Console.Title = "Samples.DynamoDB.Simple.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Simple.Client");
         endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

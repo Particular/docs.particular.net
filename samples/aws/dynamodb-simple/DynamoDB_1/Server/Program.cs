@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+
 using Amazon.DynamoDBv2;
 using Amazon.Runtime;
+
 using NServiceBus;
 using NServiceBus.Persistence.DynamoDB;
 
@@ -32,6 +34,8 @@ class Program
         #endregion
 
         endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
