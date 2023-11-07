@@ -1,6 +1,6 @@
 ---
 title: "Monitoring NServiceBus Demo - Struggling endpoints"
-reviewed: 2020-08-10
+reviewed: 2023-11-07
 summary: Use the Particular Service Platform to find hidden problems in your solution.
 suppressRelated: true
 ---

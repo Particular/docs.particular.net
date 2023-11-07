@@ -2,7 +2,7 @@
 title: Transport types
 summary: A list of all transports offered by the Particular Service Platform
 component: Core
-reviewed: 2020-08-10
+reviewed: 2020-11-07
 ---
 
 NServiceBus transports can be divided into several categories:

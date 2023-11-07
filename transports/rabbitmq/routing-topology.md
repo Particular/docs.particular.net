@@ -1,7 +1,7 @@
 ---
 title: Routing topology
 summary: Information about the routing topology options available in RabbitMQ and how they impact NServiceBus systems
-reviewed: 2020-08-12
+reviewed: 2023-11-07
 component: Rabbit
 versions: '[2,]'
 related:
