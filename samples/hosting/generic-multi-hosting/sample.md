@@ -1,7 +1,7 @@
 ---
 title: Generic Host multiple endpoint hosting
 summary: Hosting multiple endpoints in a generic host process.
-reviewed: 2020-08-10
+reviewed: 2023-10-30
 component: Core
 related:
 - nservicebus/hosting
