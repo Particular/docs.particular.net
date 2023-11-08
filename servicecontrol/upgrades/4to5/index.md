@@ -30,7 +30,19 @@ As a result, not all ServiceControl instances can be upgraded to Version 5:
 
 As a result, the following steps should be taken before upgrading to ServiceControl version 5:
 
-* Upgrade all ServiceControl instances to the lastst 4.x version (at least Version 4.26).
+* RECOMMENDED: Upgrade all ServiceControl instances to the latest 4.x version (at least Version 4.26).
+* Primary instance:
+  * Upgrade the instance to the latest 4.32.x version 
+  * Clean up all the error data stored by the instance. Leaving as few error messages in the storage as possible
+  * Disable error message ingestion by setting `IngestErrorMessages` in the `ServiceControl.config`.
+    * Stop the instance
+    * Set `<add key="ServiceBus/IngestErrorMessages" value="false" />`
+    * Start the instance
+  * Retry all the error messages that should be migrated using ServicePulse UI.
+  * Start SCMU version 5 and run the `Forced upgrade` for the version 4 primary instance
+  * Re-enable error message ingestion by removing `IngestErrorMessages` setting
+  * Start the primary instance
+    
 * Create an additional version 5 audit instance that uses **RavenDB 5** for persistence as described in [zero downtime upgrades](../zero-downtime.md).
   - This can be created on the commandline via the [Particular.ServiceControl.Management Powershell module](/servicecontrol/powershell.md) or via a Windows UI with the ServiceControl Management Utility.
 * Note that not all instances will be directly upgradeable:
