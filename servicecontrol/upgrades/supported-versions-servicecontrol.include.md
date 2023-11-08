@@ -9,5 +9,4 @@
 | [~~4.28.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.28.4) | ~~2023-02-03~~ | ~~2023-02-23~~    | ~~Superseded by 4.29.x~~          |
 | [~~4.27.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.27.7) | ~~2022-12-21~~ | ~~2023-02-03~~    | ~~Superseded by 4.28.x~~          |
 | [~~4.26.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.26.0) | ~~2022-11-08~~ | ~~2022-12-21~~    | ~~Superseded by 4.27.x~~          |
-| [~~4.25.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.25.2) | ~~2022-09-06~~ | ~~2022-11-08~~    | ~~Superseded by 4.26.x~~          |
 
