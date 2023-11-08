@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <LangVersion>12.0</LangVersion>
+    <NoWarn>$(NoWarn);NU1603;NU1701</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Gateway" Version="5.0.0-alpha.1" />

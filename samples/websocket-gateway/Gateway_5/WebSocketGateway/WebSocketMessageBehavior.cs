@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus.Gateway;
@@ -22,8 +23,7 @@ class WebSocketMessageBehavior :
     {
         using (var ms = new MemoryStream(e.RawData))
         {
-            var formatter = new BinaryFormatter();
-            var headers = (IDictionary<string, string>) formatter.Deserialize(ms);
+            var headers = JsonSerializer.Deserialize<IDictionary<string, string>>(ms);
 
             var args = new DataReceivedOnChannelEventArgs
             {

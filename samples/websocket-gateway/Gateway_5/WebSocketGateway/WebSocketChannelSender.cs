@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus.Gateway;
@@ -26,8 +27,7 @@ public class WebSocketChannelSender :
     {
         using (var stream = new MemoryStream())
         {
-            var binaryFormatter = new BinaryFormatter();
-            binaryFormatter.Serialize(stream, headers);
+            JsonSerializer.Serialize(stream, headers);
             data.CopyTo(stream);
             return stream.ToArray();
         }
