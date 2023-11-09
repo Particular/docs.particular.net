@@ -12,21 +12,25 @@ static class Program
     {
         Console.Title = "Samples.NearRealTimeClients.ClientHub";
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.ClientHub");
-        endpointConfiguration.UsePersistence<NonDurablePersistence>();
-
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-
-        endpointConfiguration.SendFailedMessagesTo("error");
-
-        var conventions = endpointConfiguration.Conventions();
-        conventions.DefiningEventsAs(type => type == typeof(StockTick));
-
         var builder = WebApplication.CreateBuilder();
-        builder.Services.AddSignalR();
 
-        var startableEndpoint = EndpointWithExternallyManagedContainer.Create(endpointConfiguration, builder.Services);
+        builder.Host.UseNServiceBus(hostBuilderContext =>
+        {
+            var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.ClientHub");
+            endpointConfiguration.UsePersistence<NonDurablePersistence>();
+
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+            endpointConfiguration.UseTransport(new LearningTransport());
+
+            endpointConfiguration.SendFailedMessagesTo("error");
+
+            var conventions = endpointConfiguration.Conventions();
+            conventions.DefiningEventsAs(type => type == typeof(StockTick));
+
+            return endpointConfiguration;
+        });
+
+        builder.Services.AddSignalR();
 
         var app = builder.Build();
         app.MapHub<StockTicksHub>("/StockTicksHub");
@@ -36,15 +40,11 @@ static class Program
         var webAppTask = app.RunAsync(url);
 
         Console.WriteLine($"SignalR server running at {url}");
-
-        var endpointInstance = await startableEndpoint.Start(app.Services);
-
         Console.WriteLine("NServiceBus subscriber running");
         Console.WriteLine("Press any key to exit");
         Console.ReadKey(true);
 
         await Task.WhenAll(
-            endpointInstance.Stop(),
             app.StopAsync(),
             webAppTask);
     }
