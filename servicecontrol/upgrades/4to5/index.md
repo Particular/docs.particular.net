@@ -34,13 +34,13 @@ As a result, the following steps should be taken before upgrading to ServiceCont
 * Primary instance:
   * Upgrade the instance to the latest 4.32.x version 
   * Clean up all the error data stored by the instance. Leaving as few error messages in the storage as possible
-  * Disable error message ingestion by setting `IngestErrorMessages` in the `ServiceControl.config`.
+  * Disable error message ingestion by setting `DisableErrorQueueIngestion` in the `ServiceControl.config`.
     * Stop the instance
-    * Set `<add key="ServiceBus/IngestErrorMessages" value="false" />`
+    * Set `<add key="ServiceBus/DisableErrorQueueIngestion" value="true" />`
     * Start the instance
   * Retry all the error messages that should be migrated using ServicePulse UI.
   * Start SCMU version 5 and run the `Forced upgrade` for the version 4 primary instance
-  * Re-enable error message ingestion by removing `IngestErrorMessages` setting
+  * Re-enable error message ingestion by removing `DisableErrorQueueIngestion` setting
   * Start the primary instance
     
 * Create an additional version 5 audit instance that uses **RavenDB 5** for persistence as described in [zero downtime upgrades](../zero-downtime.md).
