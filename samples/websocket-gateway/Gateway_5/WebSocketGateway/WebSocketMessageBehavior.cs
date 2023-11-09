@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using NServiceBus;
 using NServiceBus.Gateway;
 using WebSocketSharp;
 using WebSocketSharp.Server;
@@ -21,16 +21,26 @@ class WebSocketMessageBehavior :
 
     protected override void OnMessage(MessageEventArgs e)
     {
-        using (var ms = new MemoryStream(e.RawData))
+        using (var webSocketData = new MemoryStream(e.RawData))
         {
-            var headers = JsonSerializer.Deserialize<IDictionary<string, string>>(ms);
+            var envelope = JsonSerializer.Deserialize<ChannelEnvelope>(webSocketData);
 
+            //using (var channelData = new MemoryStream(envelope.Data))
+            //{
             var args = new DataReceivedOnChannelEventArgs
             {
-                Data = ms,
-                Headers = headers
+                //Data = channelData,
+                Headers = envelope.Headers
             };
             dataReceivedOnChannel(args, CancellationToken.None);
+            // }
         }
     }
+}
+
+class ChannelEnvelope
+{
+    public IDictionary<string, string> Headers { get; set; }
+
+    //public byte[] Data { get; set; }
 }

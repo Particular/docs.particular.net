@@ -27,8 +27,17 @@ public class WebSocketChannelSender :
     {
         using (var stream = new MemoryStream())
         {
-            JsonSerializer.Serialize(stream, headers);
-            data.CopyTo(stream);
+            using (var br = new BinaryReader(data))
+            {
+                var envelope = new ChannelEnvelope
+                {
+                    Headers = headers,
+                    //Data = br.ReadBytes((int)data.Length)
+                };
+
+                JsonSerializer.Serialize(stream, headers);
+            }
+
             return stream.ToArray();
         }
     }

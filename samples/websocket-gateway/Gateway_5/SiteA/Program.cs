@@ -33,12 +33,14 @@ class Program
         #endregion
 
         config.UseSerialization<SystemJsonSerializer>();
-        
+
         var endpoint = await Endpoint.Start(config).ConfigureAwait(false);
 
-        await endpoint.SendToSites(new[] { "SiteB" }, new SomeMessage { Contents = "Hello, World!" }).ConfigureAwait(false);
+        Console.WriteLine("Started SiteA. Press any key to send a message");
 
-        Console.WriteLine("Started SiteA. Sent message to SiteB");
+        Console.ReadLine();
+
+        await endpoint.SendToSites(new[] { "SiteB" }, new SomeMessage { Contents = "Hello, World!" }).ConfigureAwait(false);
 
         Console.ReadLine();
 
