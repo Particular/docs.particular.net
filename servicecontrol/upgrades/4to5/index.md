@@ -36,7 +36,7 @@ As a result, the following steps should be taken before upgrading to ServiceCont
   * Clean up all the error data stored by the instance. Leaving as few error messages in the storage as possible
   * Disable error message ingestion by setting `DisableErrorQueueIngestion` in the `ServiceControl.config`.
     * Stop the instance
-    * Set `<add key="ServiceBus/DisableErrorQueueIngestion" value="true" />`
+    * Set `<add key="ServiceControl/DisableErrorQueueIngestion" value="true" />`
     * Start the instance
   * Retry all the error messages that should be migrated using ServicePulse UI.
   * Start SCMU version 5 and run the `Forced upgrade` for the version 4 primary instance
