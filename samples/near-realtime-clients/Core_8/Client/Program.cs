@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.AspNet.SignalR.Client;
+using Microsoft.AspNetCore.SignalR.Client;
 
 static class Program
 {
@@ -11,21 +11,22 @@ static class Program
         Console.WriteLine("Press any key to connect.");
         Console.ReadKey(true);
 
-        using (var hubConnection = new HubConnection("http://localhost:9756"))
-        {
-            var stockHubProxy = hubConnection.CreateHubProxy("StockTicksHub");
-            stockHubProxy.On<StockTick>("PushStockTick",
-                onData: stock =>
-                {
-                    Console.WriteLine($"Stock update for {stock.Symbol} at {stock.Timestamp:O}. Press any key to exit.");
-                });
-            await hubConnection.Start()
-                .ConfigureAwait(false);
+        var hubConnection = new HubConnectionBuilder()
+            .WithUrl("http://localhost:9756/StockTicksHub")
+            .Build();
 
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey(true);
 
-            hubConnection.Stop();
-        }
+        hubConnection.On<StockTick>("PushStockTick",
+            stock =>
+            {
+                Console.WriteLine($"Stock update for {stock.Symbol} at {stock.Timestamp:O}. Press any key to exit.");
+            });
+
+        await hubConnection.StartAsync();
+
+        Console.WriteLine("Press any key to exit.");
+        Console.ReadKey(true);
+
+        await hubConnection.StopAsync();
     }
 }
