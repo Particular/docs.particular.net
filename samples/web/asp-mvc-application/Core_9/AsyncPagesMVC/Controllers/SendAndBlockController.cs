@@ -36,11 +36,9 @@ public class SendAndBlockController :
             Id = number
         };
 
-
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Mvc.Server");
 
-        //TODO: Do we need this anymore?
         var status = messageSession.Request<ErrorCodes>(command, sendOptions).GetAwaiter().GetResult();
 
         return IndexCompleted(Enum.GetName(typeof(ErrorCodes), status));
