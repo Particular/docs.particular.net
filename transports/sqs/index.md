@@ -4,7 +4,7 @@ summary: A transport for Amazon Web Services Simple Queue Service.
 component: SQS
 reviewed: 2023-02-10
 related:
- - samples/sqs/simple
+ - samples/aws/sqs-simple
 redirects:
 - nservicebus/sqs/index
 - transports/sqs/why-use-sqs

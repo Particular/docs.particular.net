@@ -5,7 +5,7 @@ component: SQS
 reviewed: 2021-01-04
 related:
  - transports/sqs
- - samples/sqs/simple
+ - samples/aws/sqs-simple
 ---
 
 ## Viewing the message ID on the SQS message

@@ -5,7 +5,7 @@ reviewed: 2023-03-03
 component: sqs
 versions: '[5.3,]'
 related:
- - samples/sqs/native-integration 
+ - samples/aws/sqs-native-integration 
 ---
 
 This document describes how to consume messages from and send messages to non-NServiceBus endpoints via Amazon SQS in integration scenarios.
