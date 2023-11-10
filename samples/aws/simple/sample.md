@@ -5,7 +5,7 @@ component: Sqs
 related:
 - transports/sqs
 redirects:
-- samples/sqs/native-integration
+- samples/sqs/simple
 ---
 
 partial: content

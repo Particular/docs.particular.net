@@ -5,7 +5,7 @@ component: Sqs
 related:
 - transports/sqs
 redirects:
-- samples/dynamodb/simple
+- samples/sqs/native-integration
 ---
 
 This sample demonstrates how to enable an NServiceBus endpoint to receive messages sent by a native (i.e. non-NServiceBus-based) implementation.
