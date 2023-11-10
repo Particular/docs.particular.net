@@ -3,7 +3,8 @@ title: Using NServiceBus in AWS Lambda with SQS
 reviewed: 2023-10-24
 component: SQSLambda
 related:
- - samples/sqs
+ - samples/aws/sqs-simple
+ - samples/aws/sqs-native-integration
 redirects:
 - samples/previews/aws-lambda/sqs
 - samples/hosting/aws-lambda-sqs
