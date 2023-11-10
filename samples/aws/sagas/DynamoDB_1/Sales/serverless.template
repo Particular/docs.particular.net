@@ -108,7 +108,6 @@
         "Description": "Process an order",
         "MemorySize": 256,
         "Timeout": 30,
-        "Role": null,
         "Policies": [ "AWSLambda_FullAccess", "AmazonSQSFullAccess", "AmazonSNSFullAccess", "AmazonDynamoDBFullAccess" ],
         "Events": {
           "SqsEvent": {

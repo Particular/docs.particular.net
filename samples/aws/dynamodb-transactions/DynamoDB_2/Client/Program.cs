@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
-
 using NServiceBus;
 
 class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.DynamoDB.Simple.Client";
-        var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Simple.Client");
-        endpointConfiguration.UseTransport<LearningTransport>();
+        Console.Title = "Samples.DynamoDB.Transactions.Client";
+        var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Transactions.Client");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -31,7 +30,7 @@ class Program
             };
             if (key.Key == ConsoleKey.S)
             {
-                await endpointInstance.Send("Samples.DynamoDB.Simple.Server", startOrder)
+                await endpointInstance.Send("Samples.DynamoDB.Transactions.Server", startOrder)
                     .ConfigureAwait(false);
                 Console.WriteLine($"StartOrder Message sent to Server with OrderId {orderId}");
                 continue;

@@ -1,17 +1,17 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
-
 using Amazon.DynamoDBv2;
 using Amazon.Runtime;
-
 using NServiceBus;
+using NServiceBus.Logging;
 using NServiceBus.Persistence.DynamoDB;
 
 class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.DynamoDB.Simple.Server";
+        Console.Title = "Samples.DynamoDB.Transactions.Server";
 
         #region DynamoDBConfig
 
@@ -19,23 +19,27 @@ class Program
             new BasicAWSCredentials("localdb", "localdb"),
             new AmazonDynamoDBConfig
             {
-                ServiceURL = "http://localhost:8000"
+                ServiceURL = "http://localhost:8080"
             });
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Simple.Server");
+        var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Transactions.Server");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
         persistence.DynamoClient(amazonDynamoDbClient);
         persistence.UseSharedTable(new TableConfiguration
         {
-            TableName = "Samples.DynamoDB.Simple"
+            TableName = "Samples.DynamoDB.Transactions"
         });
+
+        endpointConfiguration.EnableOutbox();
 
         #endregion
 
-        endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
+        endpointConfiguration.UseTransport(new LearningTransport
+        {
+            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+        });
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
