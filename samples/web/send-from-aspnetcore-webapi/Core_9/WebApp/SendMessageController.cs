@@ -1,10 +1,9 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NServiceBus;
 
 [ApiController]
 [Route("")]
-public class SendMessageController : Controller
+public class SendMessageController : ControllerBase
 {
     IMessageSession messageSession;
 
