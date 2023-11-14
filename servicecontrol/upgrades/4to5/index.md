@@ -16,6 +16,7 @@ Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requ
 * [New data format](#new-data-format)
 * Not processing audit data, but tries to forward to audit queue with custom check warning
 * PowerShell no longer provided via installer
+* No support for `!disable` as error or audit queue names. Use `IngestErrorMessages` or `IngestAuditMessages` instead. 
 
 ## New data format
 
@@ -34,13 +35,13 @@ As a result, the following steps should be taken before upgrading to ServiceCont
 * Primary instance:
   * Upgrade the instance to the latest 4.32.x version 
   * Clean up all the error data stored by the instance. Leaving as few error messages in the storage as possible
-  * Disable error message ingestion by setting `DisableErrorQueueIngestion` in the `ServiceControl.config`.
+  * Disable error message ingestion by setting `IngestErrorMessages` in the `.config` file.
     * Stop the instance
-    * Set `<add key="ServiceControl/DisableErrorQueueIngestion" value="true" />`
+    * Set `<add key="ServiceControl/IngestErrorMessages" value="false" />`
     * Start the instance
   * Retry all the error messages that should be migrated using ServicePulse UI.
   * Start SCMU version 5 and run the `Forced upgrade` for the version 4 primary instance
-  * Re-enable error message ingestion by removing `DisableErrorQueueIngestion` setting
+  * Re-enable error message ingestion by removing `IngestErrorMessages` setting
   * Start the primary instance
     
 * Create an additional version 5 audit instance that uses **RavenDB 5** for persistence as described in [zero downtime upgrades](../zero-downtime.md).
