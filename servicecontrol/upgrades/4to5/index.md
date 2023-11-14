@@ -11,59 +11,50 @@ Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requ
 
 ## Breaking changes
 
-// TODO Currently these are just bullet points to make sure we don't forget but should be expanded into a quasi-table-of-contents for this article.
+* ServiceControl now uses a [new data format](#new-data-format) for data storage which is not compatible with previous versions.
+* The Error Instance will no longer process [saga audit data](/nservicebus/sagas/saga-audit.md). If some endpoints are still configured to send saga audit data to the error instance instead of the audit instance, the error instance will attempt to forward the messages to the audit instance and display a [custom check warning](/monitoring/custom-checks/in-servicepulse.md) until the misconfigured endpoints are corrected.
+* ServiceControl Management is no longer distributed as an installable package. Starting with version `5.0.0`, ServiceControl Management is shipped as a self-contained executable. This allows using different versions of ServiceControl Management side-by-side, without the need to reinstall a version before using it.
+* The [ServiceControl PowerShell module](/servicecontrol/powershell.md) is no longer installed with ServiceControl.  Instead, the PowerShell module can be [installed from the PowerShell Gallery](/servicecontrol/powershell.md#installing-and-using-the-powershell-module).
+* The [ServiceControl PowerShell module](/servicecontrol/powershell.md) requires PowerShell 7.2 or greater to run.
+* `!disable` is no longer supported as an error and/or audit queue names. Instead, dedicated settings i.e. [`ServiceControl\IngestErrorMessages`](/servicecontrol/creating-config-file.md#transport-servicecontrolingesterrormessages) and [`ServiceControl\IngestAuditMessages`](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrolingestauditmessages) should be used to control the message ingestion process. These settings are useful for upgrade scenarios, such as the one that will be described later in this article.
 
-* [New data format](#new-data-format)
-* Not processing audit data, but tries to forward to audit queue with custom check warning
-* Self-contained SCMU
-* PowerShell is no longer provided via the installer
-* `!disable` is no longer supported as an error and/or audit queue names
-
-### New data format
+## New data format
 
 Version 4.26 of ServiceControl introduced a [new persistence format](../new-persistence.md) for audit instances. Version 5 of ServiceControl uses the new persistence format for _all_ instance types.
 
 As a result, not all ServiceControl instances can be automatically upgraded from Version 4 to Version 5, including the data. An automatic upgrade process is available for:
 
-* Primary instances **but the process does not include data migration** i.e. all the data stored are deleted in the process. [The manual migration process](link) describes how to migrate the data. 
+* Primary instances **but the process does not include data migration** i.e. all the data stored are deleted in the process. [The manual migration process](#new-data-format) describes how to migrate the data.
 * Audit instances that use `RavenDB 5` storage engine (instances created with version 4.26 or later).
 * All Monitoring instances.
 
-### Not processing audit data, but tries to forward to audit queue with custom check warning
+## Upgrading to Version 5
 
-//TODO: not sure what to put here 
+Follow this procedure to upgrade all necessary ServiceControl instances to version 5:
 
-### Self-contained SCMU
+1. Upgrade all ServiceControl instances to 4.33.0 or later. This is required to support the upgrade path that keeps all failed messages safe.
+2. To preserve audit data, install a new Audit instance that uses RavenDB 5 persistence as described in [zero-downtime upgrades](../zero-downtime.md), if this has not already been done.
+3. In ServicePulse, clean up all [failed messages](/servicepulse/intro-failed-messages.md). It's acceptable if a few failed messgaes still come in, but ideally, all failed messages should either be retried or archived.
+4. Disable error message ingestion:
+   * Stop the ServiceControl instance.
+   * Open the `ServiceControl.exe.config` file.
+   * Add an `appSetting` value: `<add key="ServiceControl/IngestErrorMessages" value="false" />`
+   * Restart the ServiceControl instance. ServiceControl will now be able to handle any failed messages that have come in before it was disabled, but will not be ingesting new error messages.
+5. In ServicePulse, retry or archive any failed messages that have arrived during the upgrade process.
+   * If a retried message fails again, it will go to the error queue, but the instance will not ingest it.
+   * Once the failed message list is "clean" there will be no data of any value left in the database, making it safe to upgrade.
+6. Using ServiceControl Management version 5, run a **Forced upgrade** for the version 4 ServiceControl instance.
+7. Re-enable error message ingestion by removing the `IngestErrorMessages` setting from the `ServiceControl.exe.config` file.
+8. Start the primary instance.
+9.  Upgrade any Audit instances that do not use RavenDB 3.5 persistence to ServiceControl 5.
+10. Upgrade any Monitoring instances to ServiceControl 5.
+11. Remove the old database for the Error instance:
+    * In ServiceControl Management, click the **Browse…** button under **DB Path**.
+    * In Windows Explorer, move up one directory level.
+    * The old database will be located in this directory with a suffix. For example, if the database directory name was `DB`, the previous database directory will be named `DB_UpgradeBackup`. This database directory can be deleted to save disk space once confident that the upgrade process has been a success.
 
-ServiceControl Management Utility is no longer distributed as an installable `msi` package. Starting with version `5.0.0` SCMU is shipped as a self-contained zip archive containing executables. This allows using different SCMU versions side-by-side i.e. without the need to re-install a version before using it.
+// Not sure what to do with this list, and it's somewhat duplicative of the bullet list under "new data format"
 
-### PowerShell is no longer bundled with the installer
-
-PowerShell management modules for ServiceControl are no longer bundled with SCMU. Starting from ServiceControl version 5, the module is available via [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management) and requires PowerShell version 7.2 to run.
-
-### `!disable` is no longer supported as an error and/or audit queue names
-
-## Primary instance upgrade to Version 5 (including data migration)
-
-Starting from Version 5, `!disable` is no longer supported as an error (for primary instances) and/or audit (for audit instances) queue names. Instead dedicated settings i.e. [`ServiceControl\IngestErrorMessages`](add-link) and [`ServiceControl\IngestAuditMessages`](add-link) should be used to control the message ingestion process.
-
-As a result, the following steps should be taken before upgrading to ServiceControl version 5:
-
-* RECOMMENDED: Upgrade all ServiceControl instances to the latest 4.x version (at least Version 4.26).
-* Primary instance:
-  * Upgrade the instance to the latest 4.32.x version 
-  * Clean up all the error data stored by the instance. Leaving as few error messages in the storage as possible
-  * Disable error message ingestion by setting `IngestErrorMessages` in the `.config` file.
-    * Stop the instance
-    * Set `<add key="ServiceControl/IngestErrorMessages" value="false" />`
-    * Start the instance
-  * Retry all the error messages that should be migrated using ServicePulse UI.
-  * Start SCMU version 5 and run the `Forced upgrade` for the version 4 primary instance
-  * Re-enable error message ingestion by removing `IngestErrorMessages` setting
-  * Start the primary instance
-    
-* Create an additional version 5 audit instance that uses **RavenDB 5** for persistence as described in [zero downtime upgrades](../zero-downtime.md).
-  - This can be created on the commandline via the [Particular.ServiceControl.Management Powershell module](/servicecontrol/powershell.md) or via a Windows UI with the ServiceControl Management Utility.
 * Note that not all instances will be directly upgradeable:
   * The primary/error instance cannot be upgraded and must be replaced with a new instance as described below.
   * Any audit instances that use **RavenDB 5** for persistence can be upgraded to Version 5.
@@ -82,35 +73,24 @@ This upgrade does not contain any data migrations, the size of the database does
 
 ### Editing older instances
 
-ServiceControl Management Utility version 5 cannot be used to edit ServiceControl instances until they have been upgraded to version 4. These instances can still be started, stopped, put into maintenance mode, and removed using ServiceControl Managament. Ensure any planned changes have been made to existing ServiceControl instances before installing ServiceControl version 5.
+ServiceControl Management Utility version 5 cannot be used to edit ServiceControl instances until they have been upgraded to version 4. These instances can still be started, stopped, put into maintenance mode, and removed using ServiceControl Managament.
 
-To edit pre version 5 instances it is requires to install the prior major version by first uninstalling version 5.
+ServiceControl version 4.33.0 can be used to continue managing older instances. Version 4.33.0, which is still installed, can be used side-by-side with ServiceControl 5.
 
 ### Disk space requirements
 
-// Still original 3to4 text below here
+ServiceControl instances that use RavenDB 5 must use a completely different database than the older RavenDB 3.5 counterparts:
 
-Upgrades that include the separate Audit embedded database will increase disk usage since databases are not automatically compacted. The new Audit embedded database will grow to the same peak storage usage as the original ServiceControl instance embedded audit message storage usage unless the original instance database is compacted after the data is removed via the audit retention process. This could result in as much as double the data usage.
+* Adding a new Audit instance will have a new database, which will likely grow in size to the same or slightly larger than the previous Audit instance, given similar message volumes and retention settings.
+* Upgrading an Error instance will set aside the old database by renaming the directory. When following the upgrade procedure above, it should be safe to delete the old database after all failed messages are dealt with, but the database directory is renamed instead as an extra precaution.
 
-{{NOTE:
-After the upgrade is complete, the Audit information contained in the original ServiceControl instance will become read-only, but will continue to be deleted as it passes the time specified by the [retention policy](/servicecontrol/creating-config-file.md#data-retention). However, since the internal database does not release storage space back to the OS, the database will continue to be the same size. If saga data was being audited in the original instance and no retention policy is configured a custom check will fail, refer to the [troubleshooting guide](/servicecontrol/troubleshooting.md#saga-audit-data-retention-custom-check-failure) to resolve the issue.
+To create a cautious estimate, total the size of any existing RavenDB 3.5 databases and assume that 20% more space than that will be required during the migration process.
 
-After one retention period after the upgrade has been completed, the original ServiceControl instance's database will be mostly empty. At that point, the original database can be compacted to a very small size. See [Compacting RavenDB](/servicecontrol/db-compaction.md) for instructions on compacting the database of the original ServiceControl instance once old audit messages have been cleaned up by the retention policy.
-}}
-
-## ServiceControl Audit
-
-ServiceControl version 4 introduces a new separate process to manage the audit queue called a ServiceControl Audit instance. This instance reads messages from the audit queue, stores them in it's dedicated internal database, and (optionally) forwards the processed messages to an audit log queue.
-
-The original ServiceControl instance will no longer manage the audit queue. It can still contain audit messages that have already been read from the audit queue prior to upgrade. These messages will be retained until the configured audit retention period has lapsed.
-
-This split is transparent to the other components of the Particular Software Platform, which should continue to connect to the ServiceControl Error instance. All queries to the ServiceControl Error instance will contain results from the Audit instance as well.
-
-When upgrading a ServiceControl instance to version 4, if it is configured to manage an audit queue, a new ServiceControl Audit instance will be created as a part of the upgrade process. A user will need to supply additional information about the new ServiceControl Audit instance.
-
-NOTE: If the ServiceControl instance being upgraded is not configured to manage an audit queue (by setting the audit queue name to `!disable`), then no new ServiceControl Audit instance will be created.
+The old audit instance database can be removed after the retention period has lapsed, and the old error instance database can be removed once confident of a successful upgrade, meaning ultimately the remaining databases will be rougly the same size or slightly larger than their previous RavenDB 3.5 counterparts.
 
 ### Upgrading with PowerShell
+
+// TODO: Didn't look at or try Powershell stuff below
 
 Use the `Invoke-ServiceControlInstanceUpgrade` PowerShell cmdlet to  upgrade an existing ServiceControl instance to version 4.
 
@@ -260,7 +240,7 @@ The following steps need to be performed
 
 ### Re-add remote audit instances
 
-The previous instance likely had one or more remote audit instances registered. These can be readded via the [ServiceControl Powershell module](https://docs.particular.net/servicecontrol/installation-powershell), specifically the `Add-ServiceControlRemote` command.
+The previous instance likely had one or more remote audit instances registered. These can be readded via the [ServiceControl Powershell module](/servicecontrol/installation-powershell.md), specifically the `Add-ServiceControlRemote` command.
 
 ### Archive obsolete primary instance
 
