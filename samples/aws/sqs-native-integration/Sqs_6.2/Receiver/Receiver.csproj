@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>10.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="6.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sender\Sender.csproj" />
+  </ItemGroup>
+</Project>
