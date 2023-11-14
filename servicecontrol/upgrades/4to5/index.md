@@ -7,7 +7,7 @@ isUpgradeGuide: true
 
 ## Overview
 
-Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requires careful planning. During the upgrade process, the instance of ServiceControl that is being upgraded will no longer be available and will not be ingesting any messages.
+Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requires careful planning. Throughout the upgrade process, the instance of ServiceControl will be offline and will not ingest messages.
 
 ## Breaking changes
 
@@ -15,19 +15,37 @@ Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requ
 
 * [New data format](#new-data-format)
 * Not processing audit data, but tries to forward to audit queue with custom check warning
-* PowerShell no longer provided via installer
-* No support for `!disable` as error or audit queue names. Use `IngestErrorMessages` or `IngestAuditMessages` instead. 
+* Self-contained SCMU
+* PowerShell is no longer provided via the installer
+* `!disable` is no longer supported as an error and/or audit queue names
 
-## New data format
+### New data format
 
 Version 4.26 of ServiceControl introduced a [new persistence format](../new-persistence.md) for audit instances. Version 5 of ServiceControl uses the new persistence format for _all_ instance types.
 
-As a result, not all ServiceControl instances can be upgraded to Version 5:
+As a result, not all ServiceControl instances can be automatically upgraded from Version 4 to Version 5, including the data. An automatic upgrade process is available for:
 
-* An **audit instance** can only be upgraded to Version 5 if it uses `RavenDB 5` for persistence.
-  - These are audit instances created with 4.26 or later
-* The **primary/error instance** cannot be upgraded from Version 4 to Version 5. Instead, it must be replaced with a new instance.
-* The **monitoring instance** can be upgraded automatically.
+* Primary instances **but the process does not include data migration** i.e. all the data stored are deleted in the process. [The manual migration process](link) describes how to migrate the data. 
+* Audit instances that use `RavenDB 5` storage engine (instances created with version 4.26 or later).
+* All Monitoring instances.
+
+### Not processing audit data, but tries to forward to audit queue with custom check warning
+
+//TODO: not sure what to put here 
+
+### Self-contained SCMU
+
+ServiceControl Management Utility is no longer distributed as an installable `msi` package. Starting with version `5.0.0` SCMU is shipped as a self-contained zip archive containing executables. This allows using different SCMU versions side-by-side i.e. without the need to re-install a version before using it.
+
+### PowerShell is no longer bundled with the installer
+
+PowerShell management modules for ServiceControl are no longer bundled with SCMU. Starting from ServiceControl version 5, the module is available via [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management) and requires PowerShell version 7.2 to run.
+
+### `!disable` is no longer supported as an error and/or audit queue names
+
+## Primary instance upgrade to Version 5 (including data migration)
+
+Starting from Version 5, `!disable` is no longer supported as an error (for primary instances) and/or audit (for audit instances) queue names. Instead dedicated settings i.e. [`ServiceControl\IngestErrorMessages`](add-link) and [`ServiceControl\IngestAuditMessages`](add-link) should be used to control the message ingestion process.
 
 As a result, the following steps should be taken before upgrading to ServiceControl version 5:
 
