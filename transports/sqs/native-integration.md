@@ -19,3 +19,7 @@ It is sometimes useful to access the native Amazon SQS message from behaviors an
 snippet: sqs-access-to-native-message
 
 partial: messagetypedetection
+
+### Retrying failed messages
+
+Native messages that failed processing can be retried using ServicePulse and ServiceControl but the native message attributes that might have been present in the original message are lost when the message is retried.
