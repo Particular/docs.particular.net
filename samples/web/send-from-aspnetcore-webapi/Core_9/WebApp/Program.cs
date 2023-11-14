@@ -1,35 +1,26 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
+﻿using NServiceBus;
 
-public class Program
+#region EndpointConfiguration
+var builder = WebApplication.CreateBuilder(args);
+builder.UseNServiceBus(() =>
 {
-    public static Task Main()
-    {
-        #region EndpointConfiguration
-        var builder = WebApplication.CreateBuilder();
-        builder.Host.UseNServiceBus(context =>
-        {
-            var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
-            var transport = endpointConfiguration.UseTransport(new LearningTransport());
-            transport.RouteToEndpoint(
-                assembly: typeof(MyMessage).Assembly,
-                destination: "Samples.ASPNETCore.Endpoint");
+    var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
+    var transport = endpointConfiguration.UseTransport(new LearningTransport());
+    transport.RouteToEndpoint(
+        assembly: typeof(MyMessage).Assembly,
+        destination: "Samples.ASPNETCore.Endpoint");
 
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-            endpointConfiguration.SendOnly();
+    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+    endpointConfiguration.SendOnly();
 
-            return endpointConfiguration;
-        });
-        #endregion
+    return endpointConfiguration;
+});
+#endregion
 
-        builder.Services.AddControllers();
+builder.Services.AddControllers();
 
-        var app = builder.Build();
+var app = builder.Build();
 
-        app.MapControllers();
+app.MapControllers();
 
-        return app.RunAsync();
-    }
-}
+app.Run();

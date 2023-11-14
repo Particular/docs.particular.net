@@ -1,32 +1,24 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
+﻿using NServiceBus;
 
-class Program
+#region ApplicationStart
+var builder = WebApplication.CreateBuilder(args);
+
+builder.UseNServiceBus(() =>
 {
-    public static void Main()
-    {
-        #region ApplicationStart
-        var builder = WebApplication.CreateBuilder();
+    var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
+    endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+    endpointConfiguration.EnableCallbacks();
+    endpointConfiguration.UseTransport(new LearningTransport());
+    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        builder.Host.UseNServiceBus(context =>
-        {
-            var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
-            endpointConfiguration.MakeInstanceUniquelyAddressable("1");
-            endpointConfiguration.EnableCallbacks();
-            endpointConfiguration.UseTransport(new LearningTransport());
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+    return endpointConfiguration;
+});
+#endregion
 
-            return endpointConfiguration;
-        });
-        #endregion
+builder.Services.AddRazorPages();
 
-        builder.Services.AddRazorPages();
+var app = builder.Build();
 
-        var app = builder.Build();
+app.MapRazorPages();
 
-        app.MapRazorPages();
-
-        app.Run();
-    }
-}
+app.Run();

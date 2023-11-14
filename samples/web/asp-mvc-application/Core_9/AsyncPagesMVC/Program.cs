@@ -1,36 +1,27 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
+﻿using NServiceBus;
 
-namespace AsyncPagesMVC.Core
+#region ApplicationStart
+var builder = WebApplication.CreateBuilder(args);
+
+builder.UseNServiceBus(() =>
 {
-    public class Program
-    {
-        public static void Main()
-        {
-            #region ApplicationStart
-            var builder = WebApplication.CreateBuilder();
+    var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
+    endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+    endpointConfiguration.EnableCallbacks();
 
-            builder.Host.UseNServiceBus(context =>
-            {
-                var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.WebApplication");
-                endpointConfiguration.MakeInstanceUniquelyAddressable("1");
-                endpointConfiguration.EnableCallbacks();
+    endpointConfiguration.UseTransport(new LearningTransport());
+    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-                endpointConfiguration.UseTransport(new LearningTransport());
-                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+    return endpointConfiguration;
+});
+#endregion
 
-                return endpointConfiguration;
-            });
-            #endregion
+builder.Services.AddMvc();
 
-            builder.Services.AddMvc();
+builder.Services.AddControllersWithViews();
 
-            var app = builder.Build();
+var app = builder.Build();
 
-            app.MapControllerRoute("default", "{controller=Home}/{action=SendLinks}/{id?}");
+app.MapControllerRoute("default", "{controller=Home}/{action=SendLinks}/{id?}");
 
-            app.Run();
-        }
-    }
-}
+app.Run();
