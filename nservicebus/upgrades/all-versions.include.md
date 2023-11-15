@@ -334,7 +334,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.3) | 2022-11-17     | -                 | -                                 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.2) | 2022-11-17     | -                 | -                                 |
 | [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.6.4) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~6.5.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.5.1) | ~~2022-02-01~~ | ~~2022-12-19~~    | ~~Superseded by 6.6.x~~           |
 | [~~6.4.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.4.0) | ~~2022-01-27~~ | ~~2022-05-01~~    | ~~Superseded by 6.5.x~~           |
@@ -1004,7 +1004,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.39.x](https://www.nuget.org/packages/Particular.PlatformSample/2.39.0) | 2023-11-06     | -                 | -                                 |
 | [2.38.x](https://www.nuget.org/packages/Particular.PlatformSample/2.38.0) | 2023-08-16     | 2024-02-06        | Superseded by 2.39.x              |
-| [2.37.x](https://www.nuget.org/packages/Particular.PlatformSample/2.37.0) | 2023-07-21     | 2023-11-16        | Superseded by 2.38.x              |
+| [~~2.37.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.37.0) | ~~2023-07-21~~ | ~~2023-11-16~~    | ~~Superseded by 2.38.x~~          |
 | [~~2.36.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.36.0) | ~~2023-07-05~~ | ~~2023-10-21~~    | ~~Superseded by 2.37.x~~          |
 | [~~2.35.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.35.0) | ~~2023-06-22~~ | ~~2023-10-05~~    | ~~Superseded by 2.36.x~~          |
 | [~~2.34.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.34.0) | ~~2023-06-20~~ | ~~2023-09-22~~    | ~~Superseded by 2.35.x~~          |
