@@ -3,6 +3,7 @@ title: Host platform tools using Docker for Windows
 summary: Host the ServicePulse and ServiceControl platform tools using Docker Windows Containers for Server and Desktops
 reviewed: 2020-12-14
 component: ServiceControl
+hidden: true
 related:
 - samples/hosting/docker
 ---
