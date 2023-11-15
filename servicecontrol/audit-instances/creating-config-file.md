@@ -221,7 +221,7 @@ NOTE: Changing the configuration file directly will not result in the queue bein
 
 ### ServiceControl/IngestAuditMessages
 
-Set to `false` to disable ingesting new audit messages. Useful in some upgrade scenarios. _Available in version 4.33.0 and above._
+Set to `false` to disable ingesting new audit messages. Useful in some upgrade scenarios. _Available in version 5.0.0 and above._
 
 Type: bool `true` or `false`
 
