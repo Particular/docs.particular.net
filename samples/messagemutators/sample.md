@@ -56,7 +56,7 @@ snippet: TransportMessageCompressionMutator
 
 The `TransportMessageCompressionMutator` is a transport message mutator, meaning that NServiceBus allows the mutation of the outgoing and incoming transport message.
 
-The compression code uses the .NET framework [GZipStream](https://msdn.microsoft.com/en-us/library/system.io.compression.gzipstream.aspx) class to do the compression. After the compression is done, the compressed array is placed back in the transport message Body property. The sample then signals to the receiver that the transport message was mutated (compressed) by setting the header key `IWasCompressed` to "true". The incoming mutator uses this key to determine whether or not to mutate (decompress) the message.
+The compression code uses the [GZipStream](https://msdn.microsoft.com/en-us/library/system.io.compression.gzipstream.aspx) class to do the compression. After the compression is done, the compressed array is placed back in the transport message Body property. The sample then signals to the receiver that the transport message was mutated (compressed) by setting the header key `IWasCompressed` to "true". The incoming mutator uses this key to determine whether or not to mutate (decompress) the message.
 
 ## Configuring NServiceBus to use the message mutators
 
@@ -70,8 +70,6 @@ snippet: ComponentRegistration
 The message sent in the sample includes a 7MB image:
 
 snippet: SendingSmall
-
-If the sample were to use the [MSMQ transport](/transports/msmq/), this message would fail without the mutator since it would exceed MSMQ's message size limit of 4MB. However, the outgoing transport message mutator compresses it to a size within the MSMQ limit and the message will get to the server.
 
 ## Sending an invalid message
 
