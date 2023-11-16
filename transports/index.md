@@ -5,8 +5,6 @@ reviewed: 2023-11-07
 redirects:
  - nservicebus/nservicebus-and-websphere-sonic
  - nservicebus/transports
-related:
- - samples/custom-transport
 ---
 
 NServiceBus contains an abstraction for underlying queuing technologies. An implementation of that abstraction for a given queuing technology is known as a "transport".

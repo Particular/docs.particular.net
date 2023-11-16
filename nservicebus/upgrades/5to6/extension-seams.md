@@ -144,7 +144,7 @@ To learn more about using performance counters, refer to the [performance counte
 
 `IDequeueMessages` is now obsolete and has been replaced by `IPushMessages`. The interfaces are equivalent so when creating a transport, implement the new interface. `PushContext` has been given a new property `PushContext.ReceiveCancellationTokenSource`, revealing the intent of cancellation for receiving the current message. The transport implementation should act accordingly, canceling the receive when the source's token is canceled.
 
-The `ConfigureTransport` class was deprecated. Custom transports are now configured using the `TransportDefinition` class, see the [custom transport sample](/samples/custom-transport) for more information.
+The `ConfigureTransport` class was deprecated. Custom transports are now configured using the `TransportDefinition` class.
 
 
 ## Corrupted messages
