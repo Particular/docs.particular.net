@@ -2,7 +2,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.32.x](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.32.3) | 2023-06-22     | -                 | -                                 |
+| [4.32.x](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.32.4) | 2023-06-22     | -                 | -                                 |
 | [~~4.31.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.31.0) | ~~2023-06-07~~ | ~~2023-06-22~~    | ~~Superseded by 4.32.x~~          |
 | [~~4.30.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.30.1) | ~~2023-04-14~~ | ~~2023-06-07~~    | ~~Superseded by 4.31.x~~          |
 | [~~4.29.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.29.3) | ~~2023-02-23~~ | ~~2023-04-14~~    | ~~Superseded by 4.30.x~~          |
