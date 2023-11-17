@@ -1,7 +1,7 @@
 ---
 title: Platform Installation
 summary: Guidance on the different ways to install and use the platform
-reviewed: 2020-08-17
+reviewed: 2023-11-17
 ---
 
 The Particular Service Platform may be installed on either a server, for use in production environments, or a workstation, during development. A portable version is also available, for use in samples or demonstrations.
@@ -26,7 +26,7 @@ This can be done via the [ServicePulse UI](/servicepulse/host-config.md#configur
 
 #### Run multiple instances of ServicePulse
 
-ServicePulse runs as a Windows Service and can be installed more than once on a single machine, with each instance listening on it's own port. This is done by [specifying appropriate arguments during installation](/servicepulse/installation.md#installation-available-installation-parameters).
+ServicePulse runs as a Windows Service and can be installed more than once on a single machine, with each instance listening on its own port. This is done by [specifying appropriate arguments during installation](/servicepulse/installation.md#installation-available-installation-parameters).
 
 ### ServiceInsight
 
