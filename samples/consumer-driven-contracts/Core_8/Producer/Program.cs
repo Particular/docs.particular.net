@@ -37,13 +37,20 @@ class Program
             var key = Console.ReadKey();
             Console.WriteLine();
 
-            var myEvent = new MyEvent
+            switch (key.Key)
             {
-                Consumer1Property = "Consumer1Info",
-                Consumer2Property = "Consumer2Info"
-            };
-            await endpointInstance.Publish(myEvent)
-                .ConfigureAwait(false);
+                case ConsoleKey.P:
+                    var myEvent = new MyEvent
+                    {
+                        Consumer1Property = "Consumer1Info",
+                        Consumer2Property = "Consumer2Info"
+                    };
+                    await endpointInstance.Publish(myEvent)
+                        .ConfigureAwait(false);
+                    continue;
+            }
+
+            return;
         }
     }
 }
