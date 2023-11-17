@@ -8,13 +8,18 @@ using System.Threading.Tasks;
 #region Resolver
 public static class Resolver
 {
-    static List<Assembly> assemblies;
+    static readonly List<Assembly> assemblies;
 
     static Resolver()
     {
-        var codebase = typeof(Resolver).Assembly.Location.Remove(0, 8);
-        var currentDirectory = Path.GetDirectoryName(codebase);
-        assemblies = Directory.GetFiles(currentDirectory, "*.dll")
+        var currentDirectory = new DirectoryInfo(AppContext.BaseDirectory);
+        var targetFramework = currentDirectory.Name;
+        var configuration = currentDirectory.Parent.Name;
+
+        var solutionDirectory = currentDirectory.Parent.Parent.Parent.Parent.FullName;
+        var extensionDirectory = Path.Combine(solutionDirectory, "CustomExtensions", "bin", configuration, targetFramework);
+
+        assemblies = Directory.GetFiles(extensionDirectory, "*.dll")
             .Select(Assembly.LoadFrom)
             .Where(ReferencesShared)
             .ToList();

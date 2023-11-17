@@ -15,9 +15,17 @@ static class Program
         Console.Title = "Samples.MefExtensionEndpoint";
 
         var containerConfiguration = new ContainerConfiguration();
-        var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        var assemblies = Directory.EnumerateFiles(location, "*.dll")
+
+        var currentDirectory = new DirectoryInfo(AppContext.BaseDirectory);
+        var targetFramework = currentDirectory.Name;
+        var configuration = currentDirectory.Parent.Name;
+
+        var solutionDirectory = currentDirectory.Parent.Parent.Parent.Parent.FullName;
+        var extensionDirectory = Path.Combine(solutionDirectory, "MefExtensions", "bin", configuration, targetFramework);
+
+        var assemblies = Directory.EnumerateFiles(extensionDirectory, "*.dll")
             .Select(Assembly.LoadFrom);
+
         containerConfiguration.WithAssemblies(assemblies);
         var compositionHost = containerConfiguration.CreateContainer();
 
@@ -69,6 +77,6 @@ static class Program
 
     static Task RunAfterEndpointStart(CompositionHost compositionHost, IEndpointInstance endpoint)
     {
-       return compositionHost.ExecuteExports<IRunAfterEndpointStart>(_ => _.Run(endpoint));
+        return compositionHost.ExecuteExports<IRunAfterEndpointStart>(_ => _.Run(endpoint));
     }
 }
