@@ -8,23 +8,18 @@ class Program
     {
         Console.Title = "Samples.ConsumerDrivenContracts.Consumer2";
         var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Consumer2");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
-
-        // uncomment below to demonstrate json
-        //endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press any key to exit");
 
         Console.ReadKey();
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

@@ -9,22 +9,15 @@ class Program
     {
         Console.Title = "Samples.ConsumerDrivenContracts.Producer";
         var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Producer");
-        endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
-
-        // uncomment below to demonstrate json
-        //endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-        //endpointConfiguration.Pipeline.Register(new PublishFullTypeNameOnlyBehavior(), "Replaces the fully qualified assembly name with the full name only.");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await Start(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await Start(endpointInstance);
+        await endpointInstance.Stop();
     }
 
     static async Task Start(IEndpointInstance endpointInstance)
@@ -45,8 +38,8 @@ class Program
                         Consumer1Property = "Consumer1Info",
                         Consumer2Property = "Consumer2Info"
                     };
-                    await endpointInstance.Publish(myEvent)
-                        .ConfigureAwait(false);
+                    await endpointInstance.Publish(myEvent);
+
                     continue;
             }
 
