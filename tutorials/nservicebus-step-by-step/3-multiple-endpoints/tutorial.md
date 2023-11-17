@@ -1,7 +1,7 @@
 ---
 title: "NServiceBus Step-by-step: Multiple Endpoints"
-reviewed: 2020-08-17
-summary: In this 15-20 minute tutorial, you'll learn how to send messages between multiple endpoints and control the logical routing of messages between endpoints.
+reviewed: 2023-22-17
+summary: In this 15-20-minute tutorial, you'll learn how to send messages between multiple endpoints and control the logical routing of messages between endpoints.
 redirects:
 - tutorials/intro-to-nservicebus/3-multiple-endpoints
 - tutorials/nservicebus-101/lesson-3
@@ -35,7 +35,7 @@ We could specify where we want the message to go directly in code. There is actu
 
 snippet: SendDestination
 
-However, in most cases this isn't a good idea. It requires each developer to remember where each message is supposed to go and type it in every time that message is sent.
+However, in most cases, this isn't a good idea. It requires each developer to remember where each message is supposed to go and type it in every time that message is sent.
 
 Instead, NServiceBus should be made aware of the routing configuration, so that whenever a message is sent, the framework will know exactly where it should be delivered.
 
@@ -49,7 +49,7 @@ An [**endpoint**](/nservicebus/concepts/glossary.md#endpoint) is a logical conce
 An [**endpoint instance**](/nservicebus/concepts/glossary.md#endpoint-instance) is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
 }}
 
-For now we'll only concern ourselves with logical routing, and leave the rest of it (physical routing, scale-out, etc.) for a later time.
+For now, we'll only concern ourselves with logical routing, and leave the rest of it (physical routing, scale-out, etc.) for a later time.
 
 Because logical routing does not cover physical concerns, but only defines logical ownership, this is something that developers should control, and is not an operations concern. While operations may want to be able to move an endpoint to a different server using only configuration files, changing the owner for messages would require code changes and a recompile/redeploy anyway.
 
@@ -67,7 +67,7 @@ In order to define routes, start with the `routing` variable and call the `Route
 
 snippet: RouteToEndpoint
 
-For now we will use the first overload, specifying individual message types.
+For now, we will use the first overload, specifying individual message types.
 
 ## Exercise
 
@@ -93,11 +93,11 @@ Now that we have a project for our Sales endpoint, we need to add similar code t
 
 snippet: SalesProgram
 
-Most of this configuration looks exactly the same as our ClientUI endpoint. It's critical for the configuration between endpoints to match (especially message transport and serializer); otherwise the endpoints would not be able to understand each other.
+Most of this configuration looks exactly the same as our ClientUI endpoint. It's critical for the configuration between endpoints to match (especially message transport and serializer); otherwise, the endpoints would not be able to understand each other.
 
 For example, if the ClientUI endpoint used `.UseSerialization<XmlSerializer>()` while the Sales endpoint used `.UseSerialization<JsonSerializer>()`, the Sales endpoint would not be able to understand the XML-serialized messages it received from ClientUI since it would be expecting JSON.
 
-NOTE: **ProTip:** It's also possible to specify [multiple deserializers](/nservicebus/serialization/#specifying-additional-deserializers) to enable receiving messages serialized in different formats, for instance to enable integration between teams, or to enable the use of a high-performance serializer in a performance-critical subsystem.
+NOTE: **ProTip:** It's also possible to specify [multiple deserializers](/nservicebus/serialization/#specifying-additional-deserializers) to enable receiving messages serialized in different formats, for instance, to enable integration between teams, or to enable the use of a high-performance serializer in a performance-critical subsystem.
 
 To allow sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. See [Serialization](/nservicebus/serialization)
 
@@ -127,13 +127,13 @@ Now let's move the handler from ClientUI over to Sales where it belongs.
  1. Open the new **PlaceOrderHandler.cs** in **Sales** and change the namespace from `ClientUI` to `Sales` to match its new home.
  1. Visual Studio's default action when you drag files between projects is to copy them, so you must delete the old **PlaceOrderHandler.cs** from the **ClientUI** endpoint.
 
-Now that the handler is in the correct endpoint, what would happen if we started the solution? Sales now has a message handler, but recall that ClientUI is still calling `endpointInstance.SendLocal(command)` which effectively sends the message to itself. But it doesn't have a handler for this message anymore.
+Now that the handler is in the correct endpoint, what would happen if we started the solution? Sales now have a message handler, but recall that ClientUI is still calling `endpointInstance.SendLocal(command)` which effectively sends the message to itself. But it doesn't have a handler for this message anymore.
 
 If you attempt to place an order in the ClientUI, an exception will be thrown because ClientUI no longer has a handler for it:
 
 WARNING: System.InvalidOperationException: No handlers could be found for message type: Messages.Commands.PlaceOrder
 
-In fact, you will probably get a giant wall of exception text, because the message is tried and retried, and then retried some more after successively longer delays, until finally failing for good some time later. We'll cover this behavior in more detail in [Lesson 5: Retrying errors](../5-retrying-errors/).
+In fact, you will probably get a giant wall of exception text, because the message is tried and retried, and then retried some more after successively longer delays, until finally failing for good sometime later. We'll cover this behavior in more detail in [Lesson 5: Retrying errors](../5-retrying-errors/).
 
 The important part is, if a message is accidentally sent to an endpoint we didn't intend, it won't just fail silently, and the message will not be lost.
 
