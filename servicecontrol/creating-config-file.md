@@ -311,6 +311,14 @@ Starting in version 1.29, ServiceControl creates the queue specified by this set
 
 NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
 
+### ServiceControl/IngestErrorMessages
+
+Set to `false` to disable ingesting new error messages. Useful in some upgrade scenarios. _Available in version 4.33.0 and above._
+
+Type: bool `true` or `false`
+
+Default: `true`
+
 ### ServiceBus/AuditLogQueue
 
 This setting is only applicable in versions 3.8.2 and below. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/creating-config-file.md).
