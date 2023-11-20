@@ -12,7 +12,7 @@ static class Logger
 
     static Logger()
     {
-        OutputFilePath = Path.GetFullPath(@"..\..\..\..\StartupShutdownSequence.txt");
+        OutputFilePath = Path.GetFullPath("StartupShutdownSequence.txt");
         AppDomain.CurrentDomain.ProcessExit += Exit;
         File.Delete(OutputFilePath);
         File.AppendAllText(OutputFilePath, "startcode");
