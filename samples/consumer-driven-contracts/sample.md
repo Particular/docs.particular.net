@@ -6,8 +6,6 @@ component: Core
 versions: '[6,)'
 ---
 
-WARNING: Support for consumer-driven contracts relies on serializers being able to support multiple inheritance. At this time, only the [XML](/nservicebus/serialization/xml.md) and [Newtonsoft JSON](/nservicebus/serialization/newtonsoft.md) serializers meet this requirement.
-
 ## Introduction to consumer-driven contracts
 
 This sample shows a [consumer-driven contract](https://martinfowler.com/articles/consumerDrivenContracts.html)(CDC) approach to messaging. The essence of consumer-driven contracts is that the ownership of the contract is inverted. Instead of the producer providing the definition, consumers define the contract they expect, and it's up to the producer to fulfill it.
@@ -23,14 +21,6 @@ Assuming that the producers `MyEvent` would satisfy both `Consumer1Contract` and
 snippet: publisher-contracts
 
 NOTE: One limitation of this approach is that two or more consumers can't require a property with the same name but different types because that wouldn't compile using C#.
-
-## Full names instead of fully qualified assembly names
-
-NOTE: This step is only required for the Newtonsoft JSON serializer.
-
-By default, NServiceBus publishes messages with the fully qualified assembly names in the [enclosed message type header](/nservicebus/messaging/headers.md#publish-headers). CDC for the Newtonsoft JSON serializer requires duck typing to be able to load the locally defined contracts. This can be achieved by replacing the fully qualified assembly name with the full name only. The following behavior demonstrates this:
-
-snippet: replace-fullnames
 
 ## Running the sample
 
