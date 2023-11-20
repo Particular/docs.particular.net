@@ -15,23 +15,11 @@ public static class HostBuilderExtensions
 {
     public static IHostBuilder ConfigureHost(this IHostBuilder hostBuilder)
     {
-        hostBuilder.ConfigureHostConfiguration(builder =>
-        {
-            builder.AddEnvironmentVariables("DOTNET_");
-            builder.AddEnvironmentVariables();
-        });
-
-        hostBuilder.ConfigureAppConfiguration((context, builder) =>
-        {
-            builder.AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName.ToLowerInvariant()}.json", optional: true);
-        });
-
         hostBuilder.ConfigureWebJobs(builder => builder.AddAzureStorageCoreServices());
 
         hostBuilder.ConfigureLogging((context, builder) =>
         {
             builder.AddConsole();
-            builder.AddFilter((category, level) => !category.StartsWith("Azure.Core", StringComparison.CurrentCultureIgnoreCase) && level >= LogLevel.Information);
         });
 
         #region WebJobHost_Start

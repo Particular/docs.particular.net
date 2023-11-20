@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 
 
-var host = new HostBuilder()
+var host = Host.CreateDefaultBuilder()
     .ConfigureHost()
     .Build();
 
