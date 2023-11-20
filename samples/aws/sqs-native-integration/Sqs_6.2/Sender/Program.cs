@@ -28,7 +28,7 @@ class Program
                     #region SendingANativeMessage                   
                     await SendTo(new Dictionary<string, MessageAttributeValue>
                     {                        
-                        {"SomeRandomKey", new MessageAttributeValue {DataType = "String", StringValue = "something-random"}}, //optional attributes that the receiver might need
+                        {"SomeKey", new MessageAttributeValue {DataType = "String", StringValue = "something"}}, //optional attributes that the receiver might need
                     }, MessageToSend);
                     #endregion
                     Console.WriteLine("Message was sent.");

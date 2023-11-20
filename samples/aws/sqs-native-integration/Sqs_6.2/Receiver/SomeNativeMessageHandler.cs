@@ -12,13 +12,13 @@ public class SomeNativeMessageHandler : IHandleMessages<SomeNativeMessage>
     public async Task Handle(SomeNativeMessage eventMessage, IMessageHandlerContext context)
     {
         var nativeMessage = context.Extensions.Get<Message>();
-        var nativeAttributeFound = nativeMessage.MessageAttributes.TryGetValue("SomeRandomKey", out var randomAttributeKey);
+        var nativeAttributeFound = nativeMessage.MessageAttributes.TryGetValue("SomeKey", out var attributeValue);
 
         log.Info($"Received {nameof(SomeNativeMessage)} with message {eventMessage.ThisIsTheMessage}.");
 
         if (nativeAttributeFound)
         {
-            log.Info($"Found attribute 'SomeRandomKey' with value '{randomAttributeKey.StringValue}'");
+            log.Info($"Found attribute 'SomeKey' with value '{attributeValue.StringValue}'");
         }
 
         if (context.ReplyToAddress != null)
