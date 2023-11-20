@@ -35,7 +35,7 @@ snippet: MessageConventionsForNonNSB
 
 ## Hosting SignalR with NServiceBus
 
-The sample shows how to host a self-hosted SignalR 2 server side-by-side with an NServiceBus endpoint. For more information on using SignalR Self-Host, see [the SignalR Self-Host tutorial](https://docs.microsoft.com/en-us/aspnet/signalr/overview/deployment/tutorial-signalr-self-host).
+The sample shows how to host a self-hosted SignalR server side-by-side with an NServiceBus endpoint.
 
 
 
@@ -60,7 +60,7 @@ In this sample, the SignalR client is implemented as a .NET console application.
 
 ## Scaling out SignalR with NServiceBus
 
-When the number of connected clients exceeds the capability of a single SignalR server, it will be necessary to scale out the SignalR server. Scaling out SignalR is described in the [Introduction to Scaleout in SignalR](https://docs.microsoft.com/en-us/aspnet/signalr/overview/performance/scaleout-in-signalr) article by Microsoft.
+When the number of connected clients exceeds the capability of a single SignalR server, it will be necessary to scale out the SignalR server. Scaling out SignalR is described in the [ASP.NET Core SignalR hosting and scaling](https://learn.microsoft.com/en-us/aspnet/core/signalr/scale) article by Microsoft.
 
 ```mermaid
 graph TD
