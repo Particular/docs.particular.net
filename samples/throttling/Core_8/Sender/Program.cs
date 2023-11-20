@@ -9,11 +9,10 @@ class Program
         Console.Title = "Samples.Throttling.Sender";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Throttling.Sender");
-
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         #region Sending
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Sending messages...");
         for (var i = 0; i < 100; i++)
         {
@@ -21,16 +20,14 @@ class Program
             {
                 Repository = "NServiceBus",
                 Owner = "Particular",
-                SearchFor = "IBus"
+                Branch = "master"
             };
-            await endpointInstance.Send("Samples.Throttling.Limited", searchGitHub)
-                .ConfigureAwait(false);
+            await endpointInstance.Send("Samples.Throttling.Limited", searchGitHub);
         }
         #endregion
         Console.WriteLine("Messages sent.");
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

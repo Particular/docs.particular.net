@@ -9,7 +9,7 @@ public class GitHubSearchResponseHandler :
 
     public Task Handle(SearchResponse message, IMessageHandlerContext context)
     {
-        log.Info($"Found {message.TotalCount} results for {message.SearchedFor}.");
+        log.Info($"Found commit '{message.CommitSha}' for branch '{message.Branch}'.");
         return Task.CompletedTask;
     }
 }
