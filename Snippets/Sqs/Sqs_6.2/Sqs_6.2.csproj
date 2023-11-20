@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <Configurations>Debug</Configurations>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="6.2.*" />
+  </ItemGroup>
+</Project>
