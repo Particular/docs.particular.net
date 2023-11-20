@@ -17,11 +17,6 @@ Or as classes with only getters and a non-default parameterless constructor:
 
 snippet: immutable-messages-as-class
 
-
-At startup the application creates two endpoint instances, a sender and a receiver. Both are configured to use Json.Net as serializer through the `NServiceBus.Newtonsoft.Json` package:
-
-snippet: immutable-messages-endpoint-config
-
 ### Sending messages
 
 The sender endpoint allows to send messages to the receiver using either an immutable message defined as a class or one defined as an interface. In this latter case the sender endpoint defines an internal message class that implements the public, shared, interface:
@@ -32,10 +27,11 @@ The internal class is then used by the sender endpoint at dispatch time
 
 snippet: immutable-messages-as-interface-sending
 
-NOTE: The class is compatible with *any* serializer if it has public getters and setters
-### Receiving message
+NOTE: The class is compatible with any serializer if it has public getters and setters
 
-To receive an immutable message defined using one of the two presented techniques no special configuration is needed. The only requirement is a serializer capable, or configurable to do so, of deserializing objects using private setters and/or non-public parameterless constructors. The receiver endpoint defines regular message handlers:
+### Receiving messages
+
+To receive an immutable message defined using one of the two presented techniques, no special configuration is needed. The only requirement is a serializer capable of deserializing objects using private setters and/or non-public parameterless constructors. The receiver endpoint defines regular message handlers:
 
 snippet: immutable-messages-as-interface-handling
 

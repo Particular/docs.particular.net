@@ -18,7 +18,7 @@ class Program
             .ConfigureAwait(false);
 
         Console.WriteLine("Samples.ImmutableMessages.UsingInterfaces.Receiver started. Press any key to exit.");
-        Console.ReadLine();
+        Console.ReadKey();
 
         await endpointInstance.Stop()
             .ConfigureAwait(false);

@@ -1,7 +1,7 @@
-﻿using Messages;
-using NServiceBus;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Messages;
+using NServiceBus;
 using UsingClasses.Messages;
 
 class Program
@@ -9,15 +9,10 @@ class Program
     static async Task Main()
     {
         Console.Title = "Samples.ImmutableMessages.UsingInterfaces.Sender";
-
-#region immutable-messages-endpoint-config
-
         var endpointConfiguration = new EndpointConfiguration("Samples.ImmutableMessages.UsingInterfaces.Sender");
-        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         var routingConfiguration = endpointConfiguration.UseTransport(new LearningTransport());
-
-#endregion
 
         routingConfiguration.RouteToEndpoint(typeof(MyMessageImpl), "Samples.ImmutableMessages.UsingInterfaces.Receiver");
         routingConfiguration.RouteToEndpoint(typeof(MyMessage), "Samples.ImmutableMessages.UsingInterfaces.Receiver");
