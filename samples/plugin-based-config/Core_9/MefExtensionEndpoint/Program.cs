@@ -2,7 +2,7 @@ using System;
 using System.Composition.Hosting;
 using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Runtime.Loader;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -23,8 +23,8 @@ static class Program
         var solutionDirectory = currentDirectory.Parent.Parent.Parent.Parent.FullName;
         var extensionDirectory = Path.Combine(solutionDirectory, "MefExtensions", "bin", configuration, targetFramework);
 
-        var assemblies = Directory.EnumerateFiles(extensionDirectory, "*.dll")
-            .Select(Assembly.LoadFrom);
+        var assemblies = Directory.EnumerateFiles(extensionDirectory, "*.dll", SearchOption.AllDirectories)
+            .Select(AssemblyLoadContext.Default.LoadFromAssemblyPath);
 
         containerConfiguration.WithAssemblies(assemblies);
         var compositionHost = containerConfiguration.CreateContainer();

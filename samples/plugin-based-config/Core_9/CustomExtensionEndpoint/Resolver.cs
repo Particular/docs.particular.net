@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Loader;
 using System.Threading.Tasks;
 
 #region Resolver
@@ -20,7 +21,7 @@ public static class Resolver
         var extensionDirectory = Path.Combine(solutionDirectory, "CustomExtensions", "bin", configuration, targetFramework);
 
         assemblies = Directory.GetFiles(extensionDirectory, "*.dll")
-            .Select(Assembly.LoadFrom)
+            .Select(AssemblyLoadContext.Default.LoadFromAssemblyPath)
             .Where(ReferencesShared)
             .ToList();
     }

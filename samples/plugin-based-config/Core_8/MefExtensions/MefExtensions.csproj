@@ -1,12 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
-    <OutputPath>..\MefExtensionEndpoint\bin\Debug\</OutputPath>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="System.Composition" Version="1.*" />
-    <PackageReference Include="NServiceBus" Version="8.*" />
+    <ProjectReference Include="..\Shared\Shared.csproj" Private="false" ExcludeAssets="runtime" />
+    <PackageReference Include="System.Composition" Version="8.*" ExcludeAssets="runtime" />
   </ItemGroup>
 </Project>
