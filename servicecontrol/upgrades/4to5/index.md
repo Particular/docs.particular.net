@@ -43,7 +43,7 @@ Follow this procedure to upgrade all necessary ServiceControl instances to versi
 5. In ServicePulse, retry or archive any failed messages that have arrived during the upgrade process.
    * If a retried message fails again, it will go to the error queue, but the instance will not ingest it.
    * Once the failed message list is "clean" there will be no data of any value left in the database, making it safe to upgrade.
-6. Using ServiceControl Management version 5, navigate to the [instance advanced options view](https://docs.particular.net/servicecontrol/maintenance-mode)  and run a **Forced upgrade** for the version 4 ServiceControl instance.
+6. Using ServiceControl Management version 5, navigate to the [instance advanced options view](/servicecontrol/maintenance-mode.md)  and run a **Forced upgrade** for the version 4 ServiceControl instance.
 7. Re-enable error message ingestion by removing the `IngestErrorMessages` setting from the `ServiceControl.exe.config` file.
 8. Start the primary instance.
 9. Upgrade any Audit instances that do not use RavenDB 3.5 persistence to ServiceControl 5.
