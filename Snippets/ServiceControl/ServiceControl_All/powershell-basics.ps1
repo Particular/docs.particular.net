@@ -33,3 +33,7 @@ Add-UrlAcl -Url http://servicecontrol.mycompany.com:33333/api/ -Users Users
 # startcode ps-importlicense
 Import-ServiceControlLicense License.xml
 # endcode
+
+# startcode ps-get-help
+Get-Help Get-ServiceControlInstances
+# endcode
