@@ -9,7 +9,4 @@
     <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="13.0.0-alpha.1" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
-  <ItemGroup Label="Force a later version of a transitive dependency">
-    <PackageReference Include="System.Net.NameResolution" Version="4.*" />
-  </ItemGroup>
 </Project>
