@@ -15,8 +15,8 @@ This sample is compatible with Azure WebJobs SDK 3.0.
 
 ## Running in development mode
 
- 1. Start the [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator).
- 1. Run the solution.
+ 1. Start the [Azurite Storage Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite).
+ 2. Run the solution.
 
 ## Code walk-through
 

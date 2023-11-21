@@ -10,7 +10,7 @@ related:
 
 ## Prerequisites
 
-Ensure an instance of the [Azure Storage Emulator](https://docs.microsoft.com/en-us/azure/storage/storage-use-emulator) or [Azurite](https://github.com/Azure/Azurite) is running.
+Ensure an instance of the [Azurite Storage Emulator](https://github.com/Azure/Azurite) is running.
 
 
 ## Azure Storage Queues transport
