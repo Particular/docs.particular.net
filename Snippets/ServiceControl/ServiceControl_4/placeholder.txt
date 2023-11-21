@@ -1,0 +1,1 @@
+Without a ServiceControl_4 directory there will be no version dropdown on ServiceControl pages.

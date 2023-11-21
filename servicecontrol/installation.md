@@ -1,35 +1,33 @@
 ---
 title: Installing ServiceControl
 summary: How to install different types of ServiceControl instances
-reviewed: 2022-12-16
+reviewed: 2023-11-21
+component: ServiceControl
 redirects:
  - servicecontrol/multi-transport-support
 ---
 
-NOTE: Scripted installments and upgrades can be done via the [ServiceControl Management PowerShell module](installation-powershell.md).
-
-NOTE: Advanced installation guidance to support high-load and high-availability is available on [active/active remote setups](./servicecontrol-instances/remotes.md) and  [active/passive clustering](deploying-servicecontrol-in-a-cluster.md).
-
 Every component in the Particular Service Platform (not including NServiceBus), including ServiceControl, must be [downloaded](https://particular.net/downloads) and installed.
 
+#if-version [,5)
 After installation, there is no ServiceControl instance running yet. Instances can be installed, upgraded, and removed using the ServiceControl Management Utility. This utility is launched as the final step in the installation process and is also available via the Windows start menu.
+#end-if
 
-NOTE: A [community managed puppet module](https://forge.puppet.com/tragiccode/nservicebusservicecontrol) is available to install ServiceControl.
+## Install methods
+
+ServiceControl can be installed in multiple ways. This article describes using the visual ServiceControl Management application. Scripted installs and upgrades can be done via the [ServiceControl Management PowerShell module](installation-powershell.md). Advanced installation guidance to support high-load and high-availability is available on [active/active remote setups](./servicecontrol-instances/remotes.md) and [active/passive clustering](deploying-servicecontrol-in-a-cluster.md).
+
+There is also a [community-managed puppet module](https://forge.puppet.com/tragiccode/nservicebusservicecontrol).
 
 ## Prerequisites
 
 The ServiceControl installation has the following prerequisites:
 
-* [.NET Framework Runtime 4.7.2 or later](https://dotnet.microsoft.com/download/dotnet-framework/net472).
-* [.NET Runtime 7.0.4 or later](https://dotnet.microsoft.com/en-us/download/dotnet/7.0).
-* [ASP.NET Core Runtime 7.0.4, or later](https://dotnet.microsoft.com/en-us/download/dotnet/7.0).
-* [Visual C++ 2015 Redistributable](https://www.microsoft.com/en-us/download/details.aspx?id=53840).
-
-These prerequisites will be installed automatically if internet access is available when installing ServiceControl. However, if the machine does not have internet access, these must be installed manually.
+partial: prereqs
 
 ## Planning
 
-WARNING: In production environments, make sure to review the [environment considerations](/servicecontrol/servicecontrol-instances/hardware.md) when setting up a machine with ServiceControl.
+INFO: In production environments, make sure to review the [environment considerations](/servicecontrol/servicecontrol-instances/hardware.md) when setting up a machine with ServiceControl.
 
 The ServiceControl Management Utility provides a simple way to set up one or more ServiceControl instances (error, audit, and monitoring). For production systems, it is recommended to limit the number of instances per machine to one of each type. The ability to add multiple instances *of the same type on a single machine* is primarily intended to assist development and test environments.
 
@@ -39,26 +37,26 @@ See [ServiceControl Capacity Planning](capacity-and-planning.md) and [Hardware C
 
 There are [three types](/servicecontrol/#servicecontrol-instance-types) of ServiceControl instances that can be installed using the ServiceControl Management utility. As the error and audit instance usually go side-by-side, they are installed and configured at the same time.
 
-1. Open the ServiceControl Management Utility in the Windows start menu.
-1. Click the `New` button at the top-right and a popup window appears.
-1. Select either `Add ServiceControl and Audit instances` or `Add monitoring instance`.
-1. Provide a name and transport.
+1. Open the ServiceControl Management Utility.
+2. Click the `New` button at the top-right and a popup window appears.
+3. Select either `Add ServiceControl and Audit instances` or `Add monitoring instance`.
+4. Provide a name and transport.
    1. The default name is `Particular.ServiceControl`.
       The name is used to derive names for the error and audit instances. The name of each instance can be adjusted from its default if required.
-   1. The transport should match the endpoint's transport.
+   2. The transport should match the endpoint's transport.
       If a transport is not available, a [transport adapter](/servicecontrol/transport-adapter/incompatible-features.md) can be used.
-1. For additional instance settings, open the `ServiceControl` and `ServiceControl Audit` sections.
+5. For additional instance settings, open the `ServiceControl` and `ServiceControl Audit` sections.
    1. The name of the instance can be modified; the defaults for error and audit are `Particular.ServiceControl` and `Particular.ServiceControl.Audit`.
       1. The name of the error instance is especially important to [enable plugins to send information](/servicecontrol/installation.md#servicecontrol-plugins) to ServiceControl.
-      1. If multiple instances for different systems are installed on the same server, a name like `Particular.SystemName` is a common option.
-   1. Select the appropriate user account.
+      2. If multiple instances for different systems are installed on the same server, a name like `Particular.SystemName` is a common option.
+   2. Select the appropriate user account.
       Note that ServiceControl instances will run as Windows Services in the background.
-   1. Be aware of the port numbers as these are used by ServicePulse and ServiceInsight to connect to ServiceControl.
-   1. Configure the [retention period](/servicecontrol/how-purge-expired-data.md) for each instance.
-   1. Configure the name of the queue that messages should arrive in.
+   3. Be aware of the port numbers as these are used by ServicePulse and ServiceInsight to connect to ServiceControl.
+   4. Configure the [retention period](/servicecontrol/how-purge-expired-data.md) for each instance.
+   5. Configure the name of the queue that messages should arrive in.
       This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/installation.md#servicecontrol-plugins).
-   1. If needed, configure [forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md).
-   1. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed.
+   6. If needed, configure [forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md).
+   7. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed.
 
 A monitoring instance differs from error and audit instances in its configuration:
 
