@@ -4,7 +4,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.1.2) | 2023-03-07     | -                 | -                                 |
+| [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.0) | 2023-11-20     | -                 | -                                 |
+| [6.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.1.2) | 2023-03-07     | 2024-02-20        | Superseded by 6.2.x               |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.0.1) | ~~2022-11-17~~ | ~~2023-06-07~~    | ~~Superseded by 6.1.x~~           |
 | [5.7.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.7.3) | 2023-03-07     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~5.6.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.6.3) | ~~2022-01-14~~ | ~~2023-06-07~~    | ~~Superseded by 5.7.x~~           |
