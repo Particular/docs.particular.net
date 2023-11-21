@@ -18,6 +18,7 @@ public class Program
             {
                 var cfg = new EndpointConfiguration("SendOnly");
                 cfg.SendOnly();
+                cfg.UseSerialization<SystemJsonSerializer>();
 
                 var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsServiceBus");
                 var transport = new AzureServiceBusTransport(connectionString);

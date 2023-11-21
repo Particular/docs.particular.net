@@ -11,6 +11,7 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
