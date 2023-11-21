@@ -19,23 +19,20 @@ public class ThrottlingBehavior :
         {
             var localTime = rateLimitReset?.ToLocalTime();
             log.Info($"Rate limit exceeded. Retry after {rateLimitReset} UTC ({localTime} local).");
-            await DelayMessage(context, rateLimitReset.Value)
-                .ConfigureAwait(false);
+            await DelayMessage(context, rateLimitReset.Value);
             return;
         }
 
         try
         {
-            await next()
-                .ConfigureAwait(false);
+            await next();
         }
         catch (RateLimitExceededException exception)
         {
             var nextReset = nextRateLimitReset = exception.Reset.UtcDateTime;
             var localTime = nextReset?.ToLocalTime();
             log.Info($"Rate limit exceeded. Limit resets at {nextReset} UTC ({localTime} local).");
-            await DelayMessage(context, nextReset.Value)
-                .ConfigureAwait(false);
+            await DelayMessage(context, nextReset.Value);
         }
     }
 

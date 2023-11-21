@@ -14,22 +14,17 @@ public class GitHubSearchHandler :
 
     public async Task Handle(SearchGitHub message, IMessageHandlerContext context)
     {
-        log.Info($"Received search for '{message.SearchFor}' on {message.Owner}/{message.Repository}");
+        log.Info($"Received search request for branch '{message.Branch}' on '{message.Owner}/{message.Repository}'");
 
-        var request = new SearchCodeRequest(
-            message.SearchFor,
-            message.Owner,
-            message.Repository);
-        var result = await GitHubClient.Search.SearchCode(request)
-            .ConfigureAwait(false);
-        log.Info($"Found {result.TotalCount} results for {message.SearchFor}. Replying.");
+        var result = await GitHubClient.Repository.Branch.Get(message.Owner, message.Repository, "master");
+
+        log.Info($"Found commit '{result.Commit.Sha}' for branch '{message.Branch}'. Replying.");
         var response = new SearchResponse
         {
-            SearchedFor = message.SearchFor,
-            TotalCount = result.TotalCount
+            Branch = message.Branch,
+            CommitSha = result.Commit.Sha
         };
-        await context.Reply(response)
-            .ConfigureAwait(false);
+        await context.Reply(response);
     }
 }
 #endregion
