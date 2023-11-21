@@ -10,7 +10,7 @@
 
     <ItemGroup>
       <PackageReference Include="Confluent.Kafka" Version="2.3.0" />
-      <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.2.1" />
+      <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="4.0.0-alpha.2" />
     </ItemGroup>
 
 
