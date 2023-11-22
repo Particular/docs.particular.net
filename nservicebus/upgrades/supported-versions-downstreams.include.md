@@ -44,7 +44,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [12.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/12.0.1) | 2022-11-23     | -                 | -                                 |
-| [11.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/11.0.1) | 2022-11-17     | 2023-11-23        | Superseded by 12.0.x              |
+| [~~11.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/11.0.1) | ~~2022-11-17~~ | ~~2023-11-23~~    | ~~Superseded by 12.0.x~~          |
 | [10.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/10.0.5) | 2021-03-16     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
@@ -82,7 +82,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/5.0.1) | 2022-11-23     | -                 | -                                 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/4.0.1) | 2022-11-17     | 2023-11-23        | Superseded by 5.0.x               |
+| [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/4.0.1) | ~~2022-11-17~~ | ~~2023-11-23~~    | ~~Superseded by 5.0.x~~           |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.2.2) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Persistence.AzureTable.TransactionalSession](/nuget/NServiceBus.Persistence.AzureTable.TransactionalSession)
@@ -90,7 +90,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/5.0.1) | 2022-11-23     | -                 | -                                 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/4.0.1) | 2022-11-17     | 2023-11-23        | Superseded by 5.0.x               |
+| [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/4.0.1) | ~~2022-11-17~~ | ~~2023-11-23~~    | ~~Superseded by 5.0.x~~           |
 | [~~3.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/3.2.2) | ~~2022-09-19~~ | ~~2023-11-17~~    | ~~Superseded by 4.0.x~~           |
 
 #### [NServiceBus.Persistence.CosmosDB](/nuget/NServiceBus.Persistence.CosmosDB)
