@@ -114,7 +114,11 @@ This setting was introduced in ServiceControl version 1.10. See [Logging](loggin
 
 Type: string
 
-Default: `Warn`
+Default: `Operations`
+
+Valid settings are: `None`, `Information`, `Operations`.
+
+#### Versions prior to 5.0.0
 
 Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 

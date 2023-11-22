@@ -85,6 +85,10 @@ Type: string
 
 Default: `Warn`
 
+Valid settings are: `None`, `Information`, `Operations`.
+
+#### Versions prior to 5.0.0
+
 Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
 This setting will default to `Warn` if an invalid value is assigned.
