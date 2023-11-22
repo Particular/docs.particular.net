@@ -19,6 +19,7 @@ Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requ
 * The [ServiceControl PowerShell module](/servicecontrol/powershell.md) is no longer installed with ServiceControl. Instead, the PowerShell module can be [installed from the PowerShell Gallery](/servicecontrol/powershell.md#installing-and-using-the-powershell-module).
 * The [ServiceControl PowerShell module](/servicecontrol/powershell.md) requires PowerShell 7.2 or greater to run.
 * `!disable` is no longer supported as an error and/or audit queue names. Instead, dedicated settings i.e. [`ServiceControl\IngestErrorMessages`](/servicecontrol/creating-config-file.md#transport-servicecontrolingesterrormessages) and [`ServiceControl\IngestAuditMessages`](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrolingestauditmessages) should be used to control the message ingestion process. These settings are useful for upgrade scenarios, such as the one that will be described later in this article.
+* The setting `IndexStoragePath` is no longer supported.  Use [symbolic links (soft links) to map any storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
 
 ## New data format
 
