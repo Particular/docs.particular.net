@@ -7,14 +7,16 @@ isUpgradeGuide: true
 
 ## Overview
 
-Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requires careful planning. Throughout the upgrade process, the instance of ServiceControl will be offline and will not ingest messages.
+WARNING: This guidance applies to existing 4 instances. If you are on older versions perform an upgrade from these versions first.
+
+Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requires careful planning. Throughout the upgrade process, the instance of ServiceControl will be offline and will not ingest messages
 
 ## Breaking changes
 
 * ServiceControl now uses a [new data format](#new-data-format) for data storage which is not compatible with previous versions.
 * The Error Instance will no longer process [saga audit data](/nservicebus/sagas/saga-audit.md). If some endpoints are still configured to send saga audit data to the error instance instead of the audit instance, the error instance will attempt to forward the messages to the audit instance and display a [custom check warning](/monitoring/custom-checks/in-servicepulse.md) until the misconfigured endpoints are corrected.
 * ServiceControl Management is no longer distributed as an installable package. Starting with version `5.0.0`, ServiceControl Management is shipped as a self-contained executable. This allows using different versions of ServiceControl Management side-by-side, without the need to reinstall a version before using it.
-* The [ServiceControl PowerShell module](/servicecontrol/powershell.md) is no longer installed with ServiceControl.  Instead, the PowerShell module can be [installed from the PowerShell Gallery](/servicecontrol/powershell.md#installing-and-using-the-powershell-module).
+* The [ServiceControl PowerShell module](/servicecontrol/powershell.md) is no longer installed with ServiceControl. Instead, the PowerShell module can be [installed from the PowerShell Gallery](/servicecontrol/powershell.md#installing-and-using-the-powershell-module).
 * The [ServiceControl PowerShell module](/servicecontrol/powershell.md) requires PowerShell 7.2 or greater to run.
 * `!disable` is no longer supported as an error and/or audit queue names. Instead, dedicated settings i.e. [`ServiceControl\IngestErrorMessages`](/servicecontrol/creating-config-file.md#transport-servicecontrolingesterrormessages) and [`ServiceControl\IngestAuditMessages`](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrolingestauditmessages) should be used to control the message ingestion process. These settings are useful for upgrade scenarios, such as the one that will be described later in this article.
 
@@ -60,7 +62,6 @@ Follow this procedure to upgrade all necessary ServiceControl instances to versi
   * Any audit instances that use **RavenDB 5** for persistence can be upgraded to Version 5.
   * Any audit instances that use **RavenDB 3.5** for persistence cannot be upgraded, but can continue to serve queries until the stored data reaches its expiration according to [audit retention period settings](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod) after which the instance can be removed.
 
-
 ## Support for version 4
 
 Version 4 is supported for one year after version 5 is released as defined by the [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md). The ServiceControl support end-date is available at [ServiceControl supported versions](/servicecontrol/upgrades/supported-versions.md).
@@ -73,7 +74,7 @@ This upgrade does not contain any data migrations, the size of the database does
 
 ### Editing older instances
 
-ServiceControl Management Utility version 5 cannot be used to edit ServiceControl instances until they have been upgraded to version 4. These instances can still be started, stopped, put into maintenance mode, and removed using ServiceControl Managament.
+ServiceControl Management Utility version 5 cannot be used to edit ServiceControl instances until they have been upgraded to version 4. These instances can still be started, stopped, put into maintenance mode, and removed using ServiceControl Management.
 
 ServiceControl version 4.33.0 can be used to continue managing older instances. Version 4.33.0, which is still installed, can be used side-by-side with ServiceControl 5.
 
@@ -86,65 +87,108 @@ ServiceControl instances that use RavenDB 5 must use a completely different data
 
 To create a cautious estimate, total the size of any existing RavenDB 3.5 databases and assume that 20% more space than that will be required during the migration process.
 
-The old audit instance database can be removed after the retention period has lapsed, and the old error instance database can be removed once confident of a successful upgrade, meaning ultimately the remaining databases will be rougly the same size or slightly larger than their previous RavenDB 3.5 counterparts.
+The old audit instance database can be removed after the retention period has lapsed, and the old error instance database can be removed once confident of a successful upgrade, meaning ultimately the remaining databases will be roughly the same size or slightly larger than their previous RavenDB 3.5 counterparts.
 
 ### Upgrading with PowerShell
 
-// TODO: Didn't look at or try Powershell stuff below
+Each ServiceControl instance type has its own cmdlets to perform the upgrade. Documentation for these Cmdlets is available at [Manage ServiceControl instances via PowerShell](https://docs.particular.net/servicecontrol/installation-powershell.md) and [Managing Monitoring instances via PowerShell](/servicecontrol/monitoring-instances/installation/installation-powershell.md).
 
-Use the `Invoke-ServiceControlInstanceUpgrade` PowerShell cmdlet to  upgrade an existing ServiceControl instance to version 4.
+Validate that all instances are on version 4:
 
-```ps
-Invoke-ServiceControlInstanceUpgrade -Name <Instance to Upgrade>
+```ps1
+Get-MonitoringInstances | Select Name, Version
+Get-ServiceControlInstances | Select Name, Version
+Get-ServiceControlAuditInstances | Select Name, Version
 ```
 
-Example:
-```ps
-Invoke-ServiceControlInstanceUpgrade -Name Particular.ServiceControl
+WARN: If any instance is prior to version 4 upgrade these major by major first!
+
+Upgrade all instances to the latest 4.x version, version 4.33.0
+
+```ps1
+Install-Module -Name Particular.ServiceControl.Management -RequiredVersion 4.33.0
+
+# Upgrade monitoring instances
+Get-MonitoringInstances | Invoke-MonitoringInstanceUpgrade
+
+# Upgrade error/primary instances
+Get-ServiceControlInstances | Invoke-ServiceControlInstanceUpgrade
+
+# Upgrade audit instances
+Get-ServiceControlAuditInstances | Invoke-ServiceControlAuditInstanceUpgrade
 ```
 
-If the ServiceControl instance being upgraded manages an audit queue, then additional parameters must be specified for the creation of a new ServiceControl Audit instance.
+Install **Particular.ServiceControl.Management** version 5:
 
-WARN: The settings specified must not be for the current instance, but for the audit instance that will be created as part of this upgrade. Specifying settings that match the current instance will result in a failed upgrade.
+```ps1
+# Optionally replace 5.0.0 with a more recent 5.x.x version is available, see https://docs.particular.net/servicecontrol/upgrades/supported-versions
+Install-Module -Name Particular.ServiceControl.Management -RequiredVersion 5.0.0
 
-```ps
-Invoke-ServiceControlInstanceUpgrade `
-  -Name <Name of Error instance> `
-  -InstallPath <Path for Audit instance binaries> `
-  -DBPath <Path for the Audit instance database> `
-  -LogPath <Path for the Audit instance logs> `
-  -Port <Port for the Audit instance api> `
-  -DatabaseMaintenancePort <Port for the Audit instance embedded database> `
-  [-ServiceAccountPassword <password for service account>] `
-  [-Force]
+# Or without -RequiredVersion to get the most recent version. Be careful that this is not version 6+ when 
+
+Install-Module -Name Particular.ServiceControl.Management
 ```
 
-Example:
-```ps
-Invoke-ServiceControlInstanceUpgrade `
-  -Name Particular.ServiceControl `
-  -InstallPath "C:\Program Files (x86)\Particular Software\Particular.Servicecontrol.Audit" `
-  -DBPath "P:\Particular.Servicecontrol.Audit\DB" `
-  -LogPath "P:\Particular.Servicecontrol.Audit\Logs" `
-  -Port 44444 `
-  -DatabaseMaintenancePort 44445
+#### Upgrade monitoring instances
+
+```ps1
+# List existing monitoring instances:
+Get-MonitoringInstances | Select Name, Version
+
+# Upgrade all instances:
+Get-MonitoringInstances | Invoke-MonitoringInstanceUpgrade
 ```
 
-The following information is copied from the existing ServiceControl instance:
+#### Upgrade audit instances that use RavenDB5 storage engine
 
-- Audit queue
-- Audit log queue
-- Forward audit messages
-- Audit retention period
-- Transport
-- Connection string
-- Host name
-- Service account
+```ps1
+# List existing audit instances:
+Get-ServiceControlAuditInstances | ? PersistencePackageName -eq RavenDB | Select Name, PersistencePackageName
 
-NOTE: If this instance uses a domain account, the  account password must be supplied.
+# Upgrade for 
+Invoke-ServiceControlAuditInstanceUpgrade - Name <Instance name>
 
-The name of the new audit instance will be derived from the name of the original instance.
+# or update all 
+Get-ServiceControlAuditInstances | ? PersistencePackageName -eq RavenDB | Invoke-ServiceControlAuditInstanceUpgrade
+```
 
+#### Upgrade audit instances that use RavenDB3.5 storage engine
+
+WARNING: This is a destructive operation, a database backup is made but will require application re-installation of the instance
+
+These instance cannot be upgraded and require a [side-by-side zero-downtime deployment](/servicecontrol/upgrades/zero-downtime.md) to keep access to already stored data.
+
+If it is ok to loose audit data than it is possible to perform a forces upgrade:
+
+```ps1
+# List existing audit instances NOT using RavenDB 5 storage engine:
+Get-ServiceControlAuditInstances | ? PersistencePackageName -ne RavenDB | Select Name, PersistencePackageName
+
+# Update single instance
+Invoke-ServiceControlAuditInstanceUpgrade - Name <Instance name> -Force
+
+# or update all 
+Get-ServiceControlAuditInstances | ? PersistencePackageName -ne RavenDB | Invoke-ServiceControlAuditInstanceUpgrade -Force
+```
+
+#### Error instances
+
+WARNING: This is a destructive operation, a database backup is made but will require application re-installation of the instance
+
+Ensure all [existing error instance data has been cleaned](#upgrading-to-version-5)
+
+**Force** upgrade to version 5:
+
+```ps1
+# List existing error/primary instances
+Get-ServiceControlInstances | Select Name, Version
+
+# Update single instance
+Invoke-ServiceControlInstanceUpgrade -Name <Instance to Upgrade> -Force
+
+# or all 
+Get-ServiceControlInstances | Invoke-ServiceControlInstanceUpgrade -Force
+```
 
 ## Primary instances migration procedure
 
