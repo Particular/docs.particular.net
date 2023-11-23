@@ -32,7 +32,7 @@ For more information, see [Collaborating on GitHub](https://help.github.com/cate
 
 ### Running locally
 
-The repository contains a devcontainer that has all the necessary tools to develop content for the documentation. The content is automatically rendered on http://localhost:55555.
+The repository contains a devcontainer that has all the necessary tools to develop content for the documentation. The content is automatically rendered on http://localhost:55666.
 
 For more information about devcontainers visit the [official documentation](https://code.visualstudio.com/docs/devcontainers/containers). Install the pre-requirements mentioned in the [getting started guide](https://code.visualstudio.com/docs/devcontainers/containers#_getting-started) and open the repository in Code (`> code .`).
 
