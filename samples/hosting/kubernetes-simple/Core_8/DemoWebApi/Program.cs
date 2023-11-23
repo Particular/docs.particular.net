@@ -18,7 +18,7 @@ builder.Host.UseNServiceBus(context =>
 
     var transport = new LearningTransport
     {
-        StorageDirectory = "/transport"
+        StorageDirectory = "transport"
     };
     config.UseTransport(transport);
 
