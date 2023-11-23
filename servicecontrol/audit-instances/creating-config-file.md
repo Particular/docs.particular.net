@@ -114,6 +114,14 @@ Type: string
 
 Default: The Service Name
 
+### ServiceControl/IngestAuditMessages
+
+Set to `false` to disable ingesting new audit messages. Useful in some upgrade scenarios. _Available in version 5.0.0 and above._
+
+Type: bool `true` or `false`
+
+Default: `true`
+
 ## Data retention
 
 ### ServiceControl.Audit/ExpirationProcessTimerInSeconds
@@ -222,14 +230,6 @@ Type: string
 Default: `<AuditQueue>.log`
 
 NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
-
-### ServiceControl/IngestAuditMessages
-
-Set to `false` to disable ingesting new audit messages. Useful in some upgrade scenarios. _Available in version 5.0.0 and above._
-
-Type: bool `true` or `false`
-
-Default: `true`
 
 ### ServiceControl.Audit/ForwardAuditMessages
 

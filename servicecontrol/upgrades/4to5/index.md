@@ -18,7 +18,7 @@ Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requ
 * ServiceControl Management is no longer distributed as an installable package. Starting with version `5.0.0`, ServiceControl Management is shipped as a self-contained executable. This allows using different versions of ServiceControl Management side-by-side, without the need to reinstall a version before using it.
 * The [ServiceControl PowerShell module](/servicecontrol/powershell.md) is no longer installed with ServiceControl. Instead, the PowerShell module can be [installed from the PowerShell Gallery](/servicecontrol/powershell.md#installing-and-using-the-powershell-module).
 * The [ServiceControl PowerShell module](/servicecontrol/powershell.md) requires PowerShell 7.2 or greater to run.
-* `!disable` is no longer supported as an error and/or audit queue names. Instead, dedicated settings i.e. [`ServiceControl\IngestErrorMessages`](/servicecontrol/creating-config-file.md#transport-servicecontrolingesterrormessages) and [`ServiceControl\IngestAuditMessages`](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrolingestauditmessages) should be used to control the message ingestion process. These settings are useful for upgrade scenarios, such as the one that will be described later in this article.
+* `!disable` is no longer supported as an error and/or audit queue names. Instead, dedicated settings i.e. [`ServiceControl/IngestErrorMessages`](/servicecontrol/creating-config-file.md#transport-servicecontrolingesterrormessages) and [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrolingestauditmessages) should be used to control the message ingestion process. These settings are useful for upgrade scenarios, such as the one that will be described later in this article.
 * The setting `IndexStoragePath` is no longer supported.  Use [symbolic links (soft links) to map any storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
 * The [`ServiceControl.Audit/RavenDBLogLevel`](/servicecontrol/audit-instances/creating-config-file.md#host-settings-servicecontrol-auditravendbloglevel) and [`ServiceControl/RavenDBLogLevel`](/servicecontrol/creating-config-file.md#host-settings-servicecontrolravendbloglevel) settings use new values. The previous values are mapped to new values native to RavenDB5.
 
@@ -199,18 +199,18 @@ The configurations for these do not need to be adjusted.
 The following steps need to be performed
 
 1. Cleanup error messages in ServicePulse
-  - Retry/Archive failed messages
+    - Retry/Archive failed messages
 2. Disable error queue ingestion in ServiceControl Management Utility (SCMU)
 3. Retry all remaining messages on the primary instance in ServicePulse
 4. Wait until the retry group(s) completes
 5. Stop the primary instance Windows service
-  - via SCMU, Powershell, or Windows Service Control Manager
+    - via SCMU, Powershell, or Windows Service Control Manager
 6. Move the instance
-  - Unregister the windows service
-  - Rename the installation folder
-  - Rename the database folder
+    - Unregister the windows service
+    - Rename the installation folder
+    - Rename the database folder
 7. Create a new instance that uses the previous name
-  - Any failed messages that were retried in step 3 but still fail will now reappear in ServicePulse
+    - Any failed messages that were retried in step 3 but still fail will now reappear in ServicePulse
 
 ### Re-add remote audit instances
 

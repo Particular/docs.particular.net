@@ -145,6 +145,14 @@ Type: string
 
 Default: The Service Name
 
+### ServiceControl/IngestErrorMessages
+
+Set to `false` to disable ingesting new error messages. Useful in some upgrade scenarios. _Available in version 4.33.0 and above._
+
+Type: bool `true` or `false`
+
+Default: `true`
+
 ## Data retention
 
 ### ServiceControl/ExpirationProcessTimerInSeconds
@@ -316,14 +324,6 @@ Default: `<ErrorQueue>.log`
 Starting in version 1.29, ServiceControl creates the queue specified by this setting only if `ServiceControl/ForwardErrorMessages` is enabled. In previous versions, the queue specified by this setting is created when the service instance is installed regardless of the value of `ServiceControl/ForwardErrorMessages`.
 
 NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
-
-### ServiceControl/IngestErrorMessages
-
-Set to `false` to disable ingesting new error messages. Useful in some upgrade scenarios. _Available in version 4.33.0 and above._
-
-Type: bool `true` or `false`
-
-Default: `true`
 
 ### ServiceBus/AuditLogQueue
 
