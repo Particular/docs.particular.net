@@ -7,12 +7,12 @@ config.EnableInstallers();
 
 var transport = new LearningTransport
 {
-    StorageDirectory = "/transport"
+    StorageDirectory = "transport"
 };
 config.UseTransport(transport);
 
 var persistence = config.UsePersistence<LearningPersistence>();
-persistence.SagaStorageDirectory("/sagas");
+persistence.SagaStorageDirectory("sagas");
 
 config.Recoverability().Immediate(r => r.NumberOfRetries(0)).Delayed(d => d.NumberOfRetries(0));
 

@@ -13,23 +13,21 @@ spec:
         app: publisher
     spec:
       containers:
-        - name: aspwebapp
+        - name: publisher
           image: localhost:32000/publisher:latest
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: "/transport"
+            - mountPath: "/app/transport"
               name: learning-transport
-            - mountPath: "/sagas"
+            - mountPath: "/app/sagas"
               name: learning-persistence
       volumes:
       - name: learning-transport
-        hostPath:
-          path: /mnt/learning-transport
-          type: DirectoryOrCreate
+        persistentVolumeClaim:
+          claimName: learning-transport-pvc
       - name: learning-persistence
-        hostPath:
-          path: /mnt/learning-persistence
-          type: DirectoryOrCreate
+        persistentVolumeClaim:
+          claimName: learning-persistence-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -41,8 +39,12 @@ spec:
   type: LoadBalancer
   ports:
     - protocol: TCP
-      port: 9191
+      name: port80
+      port: 8080
       targetPort: 8080
+    - protocol: TCP
+      name: port81
+      port: 8081
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -63,10 +65,9 @@ spec:
           image: localhost:32000/subscriber:latest
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: "/transport"
+            - mountPath: "/app/transport"
               name: learning-transport
       volumes:
       - name: learning-transport
-        hostPath:
-          path: /mnt/learning-transport
-          type: DirectoryOrCreate
+        persistentVolumeClaim:
+          claimName: learning-transport-pvc
