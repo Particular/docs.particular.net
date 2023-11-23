@@ -57,13 +57,6 @@ Follow this procedure to upgrade all necessary ServiceControl instances to versi
     * In Windows Explorer, move up one directory level.
     * The old database will be located in this directory with a suffix. For example, if the database directory name was `DB`, the previous database directory will be named `DB_UpgradeBackup`. This database directory can be deleted to save disk space once confident that the upgrade process has been a success.
 
-// Not sure what to do with this list, and it's somewhat duplicative of the bullet list under "new data format"
-
-* Note that not all instances will be directly upgradeable:
-  * The primary/error instance cannot be upgraded and must be replaced with a new instance as described below.
-  * Any audit instances that use **RavenDB 5** for persistence can be upgraded to Version 5.
-  * Any audit instances that use **RavenDB 3.5** for persistence cannot be upgraded, but can continue to serve queries until the stored data reaches its expiration according to [audit retention period settings](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod) after which the instance can be removed.
-
 ## Support for version 4
 
 Version 4 is supported for one year after version 5 is released as defined by the [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md). The ServiceControl support end-date is available at [ServiceControl supported versions](/servicecontrol/upgrades/supported-versions.md).
