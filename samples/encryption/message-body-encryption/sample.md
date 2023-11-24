@@ -1,7 +1,7 @@
 ---
 title: Message body encryption
 summary: Encrypting the full message body using a mutator.
-reviewed: 2020-08-24
+reviewed: 2023-11-24
 component: Core
 related:
 - nservicebus/security
