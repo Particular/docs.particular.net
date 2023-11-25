@@ -10,7 +10,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /mnt/saga
+    path: /mnt/sagas
     type: DirectoryOrCreate
 
 ---
