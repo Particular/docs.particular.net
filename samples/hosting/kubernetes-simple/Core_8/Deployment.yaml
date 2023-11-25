@@ -13,7 +13,7 @@ spec:
         app: publisher
     spec:
       containers:
-        - name: publisher
+        - name: publisher-app
           image: localhost:32000/publisher:latest
           imagePullPolicy: Always
           volumeMounts:
@@ -21,6 +21,8 @@ spec:
               name: learning-transport
             - mountPath: "/app/sagas"
               name: learning-persistence
+          securityContext:
+            runAsUser: 0
       volumes:
       - name: learning-transport
         persistentVolumeClaim:
@@ -67,6 +69,8 @@ spec:
           volumeMounts:
             - mountPath: "/app/transport"
               name: learning-transport
+          securityContext:
+            runAsUser: 0              
       volumes:
       - name: learning-transport
         persistentVolumeClaim:
