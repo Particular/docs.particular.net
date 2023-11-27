@@ -32,35 +32,6 @@ As a result, not all ServiceControl instances can be automatically upgraded from
 * Audit instances that use `RavenDB 5` storage engine (instances created with version 4.26 or later).
 * All Monitoring instances.
 
-## Upgrading to Version 5
-
-Follow this procedure to upgrade all necessary ServiceControl 4 instances to version 5:
-
-1. Upgrade all ServiceControl instances to 4.33.0 or later. This is required to support the upgrade path that keeps all failed messages safe.
-2. To preserve audit data, install a new Audit instance that uses RavenDB 5 persistence as described in [zero-downtime upgrades](../zero-downtime.md), if this has not already been done.
-3. In ServicePulse, clean up all [failed messages](/servicepulse/intro-failed-messages.md). It's acceptable if a few failed messages still come in, but ideally, all failed messages should either be retried or archived.
-4. Disable error message ingestion:
-   * Stop the ServiceControl instance.
-   * Open the `ServiceControl.exe.config` file.
-   * Add an `appSetting` value: `<add key="ServiceControl/IngestErrorMessages" value="false" />`
-   * Restart the ServiceControl instance. ServiceControl will be able to manage failed messages that have come in before the ingestion was disabled, but will not ingest any new error messages.
-5. In ServicePulse, retry or archive any failed messages that have arrived during the upgrade process.
-   * If a retried message fails again, it will go to the error queue, but the instance will not ingest it.
-   * Once the failed message list is "clean" there will be no data of any value left in the database, making it safe to upgrade.
-6. Using ServiceControl Management version 5, navigate to the [instance advanced options view](/servicecontrol/maintenance-mode.md)  and run a **Forced upgrade** for the version 4 ServiceControl instance.
-7. Re-enable error message ingestion by removing the `IngestErrorMessages` setting from the `ServiceControl.exe.config` file.
-8. Start the primary instance.
-9. Upgrade any Audit instances that do not use RavenDB 3.5 persistence to ServiceControl 5.
-10. Upgrade any Monitoring instances to ServiceControl 5.
-11. Remove the old database for the Error instance:
-    * In ServiceControl Management, click the **Browse…** button under **DB Path**.
-    * In Windows Explorer, move up one directory level.
-    * The old database will be located in this directory with a suffix. For example, if the database directory name was `DB`, the previous database directory will be named `DB_UpgradeBackup`. This database directory can be deleted to save disk space once confident that the upgrade process has been a success.
-
-## Support for version 4
-
-Version 4 is supported for one year after version 5 is released as defined by the [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md). The ServiceControl support end-date is available at [ServiceControl supported versions](/servicecontrol/upgrades/supported-versions.md).
-
 ## Planning
 
 ### Time for upgrade
@@ -84,50 +55,36 @@ To create a cautious estimate, total the size of any existing RavenDB 3.5 databa
 
 The old audit instance database can be removed after the retention period has lapsed, and the old error instance database can be removed once confident of a successful upgrade, meaning ultimately the remaining databases will be roughly the same size or slightly larger than their previous RavenDB 3.5 counterparts.
 
-## Primary instances migration procedure
+## Upgrading to Version 5
 
-WARNING: It is recommended to perform the following procedure on a test environment first and to perform most steps via Powershell
+Follow this procedure to upgrade all necessary ServiceControl 4 instances to version 5 using the ServiceControl Management Utility.
 
-The following procedure will migrate the primary instance to minimize the impact on:
+NOTE: This procedure should first be run in a test environment.
 
-* existing endpoints which might be sending heartbeat and custom check messages to the ServiceControl queue.
-* existing ServicePulse / ServiceInsight instance
+1. Upgrade all ServiceControl instances to 4.33.0 or later. This is required to support the upgrade path that keeps all failed messages safe.
+2. To preserve audit data, install a new Audit instance that uses RavenDB 5 persistence as described in [zero-downtime upgrades](../zero-downtime.md), if this has not already been done.
+3. In ServicePulse, clean up all [failed messages](/servicepulse/intro-failed-messages.md). It's acceptable if a few failed messages still come in, but ideally, all failed messages should either be retried or archived.
+4. Disable error message ingestion:
+   * Stop the ServiceControl instance.
+   * Open the `ServiceControl.exe.config` file.
+   * Add an `appSetting` value: `<add key="ServiceControl/IngestErrorMessages" value="false" />`
+   * Restart the ServiceControl instance. ServiceControl will be able to manage failed messages that have come in before the ingestion was disabled, but will not ingest any new error messages.
+5. In ServicePulse, retry or archive any failed messages that have arrived during the upgrade process.
+   * If a retried message fails again, it will go to the error queue, but the instance will not ingest it.
+   * Once the failed message list is "clean" there will be no data of any value left in the database, making it safe to upgrade.
+6. Using ServiceControl Management version 5, navigate to the [instance advanced options view](/servicecontrol/maintenance-mode.md)  and run a **Forced upgrade** for the version 4 ServiceControl instance.
+7. Re-enable error message ingestion by removing the `IngestErrorMessages` setting from the `ServiceControl.exe.config` file.
+8. Start the primary instance.
+9. Upgrade any Audit instances that do not use RavenDB 3.5 persistence to ServiceControl 5.
+10. Upgrade any Monitoring instances to ServiceControl 5.
+11. Remove the old database for the Error instance:
+    * In ServiceControl Management, click the **Browse…** button under **DB Path**.
+    * In Windows Explorer, move up one directory level.
+    * The old database will be located in this directory with a suffix. For example, if the database directory name was `DB`, the previous database directory will be named `DB_UpgradeBackup`. This database directory can be deleted to save disk space once confident that the upgrade process has been a success.
 
-The configurations for these do not need to be adjusted.
 
-The following steps need to be performed
 
-1. Cleanup error messages in ServicePulse
-    - Retry/Archive failed messages
-2. Disable error queue ingestion in ServiceControl Management Utility (SCMU)
-3. Retry all remaining messages on the primary instance in ServicePulse
-4. Wait until the retry group(s) completes
-5. Stop the primary instance Windows service
-    - via SCMU, Powershell, or Windows Service Control Manager
-6. Move the instance
-    - Unregister the windows service
-    - Rename the installation folder
-    - Rename the database folder
-7. Create a new instance that uses the previous name
-    - Any failed messages that were retried in step 3 but still fail will now reappear in ServicePulse
-
-### Re-add remote audit instances
-
-The previous instance likely had one or more remote audit instances registered. These can be re-added via the [ServiceControl Powershell module](/servicecontrol/installation-powershell.md), specifically the `Add-ServiceControlRemote` command.
-
-### Archive obsolete primary instance
-
-In step 3 the previous primary instance was moved. Consider creating a backup of the installation and database folders and schedule when these folder can be deleted to free disk space.
-
-## Audit instances migration procedure for RavenDB 3.5 instances
-
-Perform the [zero downtime upgrade](/servicecontrol/upgrades/zero-downtime.md)
-
-## Audit instances migration procedure for RavenDB 5 instances
-
-Upgrade the instance via ServiceControl Management Utility (SCMU) or [Powershell 7.2 or greater](#upgrading-with-powershell-72-or-greater).
-
-## Upgrading with PowerShell 7.2 or greater
+## Upgrading with PowerShell
 
 INFO: Windows Powershell is no longer supported to upgrade to or install new v5.x.y instances.
 
@@ -241,3 +198,7 @@ Get-ServiceControlInstances | Select Name, Version
 # For each instance
 Invoke-ServiceControlInstanceUpgrade -Name <InstanceName> -Force
 ```
+
+## Support for version 4
+
+Version 4 is supported for one year after version 5 is released as defined by the [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md). The ServiceControl support end-date is available at [ServiceControl supported versions](/servicecontrol/upgrades/supported-versions.md).
