@@ -47,7 +47,7 @@ class Program
         await serviceBusSender.SendMessageAsync(message)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Native message sent");
+        Console.WriteLine($"Native message sent on {nativeMessage.SentOnUtc} UTC");
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
     }
