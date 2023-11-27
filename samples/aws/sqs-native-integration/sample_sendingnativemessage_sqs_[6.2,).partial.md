@@ -1,4 +1,4 @@
-In this sample, an external system sends a message to an SQS queue using the Amazon SQS SDK
+In this sample, an external system sends a message to an SQS queue using the Amazon SQS SDK.
 
 snippet: NativeMessage
 

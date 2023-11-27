@@ -4,11 +4,11 @@ NOTE: For the message to be successfully deserialized by NServiceBus the sender 
 
 snippet: NativeMessage
 
-The serializer has to be configured to handle this annotation:
+The serializer must be configured to handle this annotation:
 
 snippet: SerializerConfig
 
-NOTE: Usage of custom serializers is also supported
+NOTE: Custom serializers are also supported
 
 First, the message will be intercepted in the incoming logical message context as there is a behavior in place:
 
