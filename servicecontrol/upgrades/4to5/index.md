@@ -84,9 +84,9 @@ To create a cautious estimate, total the size of any existing RavenDB 3.5 databa
 
 The old audit instance database can be removed after the retention period has lapsed, and the old error instance database can be removed once confident of a successful upgrade, meaning ultimately the remaining databases will be roughly the same size or slightly larger than their previous RavenDB 3.5 counterparts.
 
-### Upgrading with PowerShell
+### Upgrading with PowerShell 7.2 or greater
 
-INFO: This required Powershell 7.2 or greater. Windows Powershell is no longer supported.
+INFO: Windows Powershell is no longer supported.
 
 INFO: Each ServiceControl instance type has its own cmdlets to perform the upgrade. Documentation for these Cmdlets is available at [Manage ServiceControl instances via PowerShell](/servicecontrol/installation-powershell.md) and [Managing Monitoring instances via PowerShell](/servicecontrol/monitoring-instances/installation/installation-powershell.md).
 
@@ -104,7 +104,7 @@ Import Particular.ServiceControl.Management module in Powershell:
 Import-Module Particular.ServiceControl.Management -RequiredVersion 4.33.0
 ```
 
-#### 2. Validate that all instances are on version 4
+#### 2. Validate that all instances are on version 4.x.y
 
 ```ps1
 Get-MonitoringInstances | Select Name, Version
@@ -112,21 +112,25 @@ Get-ServiceControlInstances | Select Name, Version
 Get-ServiceControlAuditInstances | Select Name, Version
 ```
 
-WARN: If any instance is prior to version 4 upgrade these major by major first!
+WARN: If any instance is prior to version 4 upgrade these major by major first using the upgrade guides for these versions.
 
 #### 3. Upgrade all instances to the latest 4.x version, version 4.33.0
 
 ```ps1
 # Upgrade monitoring instances
-Get-MonitoringInstances | Invoke-MonitoringInstanceUpgrade
+Get-MonitoringInstances | Select Name, Version
+# For each instance
+Invoke-MonitoringInstanceUpgrade -Name <InstanceName>
 
 # Upgrade error/primary instances
-Get-ServiceControlInstances | Invoke-ServiceControlInstanceUpgrade
-
-TODO: Its not working
+Get-ServiceControlInstances | Select Name, Version
+# For each instance
+Invoke-ServiceControlInstanceUpgrade -Name <InstanceName>
 
 # Upgrade audit instances
-Get-ServiceControlAuditInstances | Invoke-ServiceControlAuditInstanceUpgrade
+Get-ServiceControlAuditInstances | Select Name, Version
+# For each instance
+Invoke-ServiceControlAuditInstanceUpgrade -Name <InstanceName>
 ```
 
 #### 4. Reopen Powershell
@@ -136,7 +140,8 @@ Close and launch Powershell again to ensure the 4.33.0 module is no longer loade
 #### 5. Install and import **Particular.ServiceControl.Management** version 5
 
 ```ps1
-# Optionally replace 5.0.0 with a more recent 5.x.x version if available, see https://docs.particular.net/servicecontrol/upgrades/supported-versions
+# Optionally replace 5.0.0 with a more recent 5.x.x version if available,
+# see https://docs.particular.net/servicecontrol/upgrades/supported-versions
 Install-Module -Name Particular.ServiceControl.Management -RequiredVersion 5.0.0
 
 Import-Module Particular.ServiceControl.Management -RequiredVersion 5.0.0
@@ -145,24 +150,21 @@ Import-Module Particular.ServiceControl.Management -RequiredVersion 5.0.0
 #### 6. Upgrade monitoring instances
 
 ```ps1
-# List existing monitoring instances:
+# Upgrade monitoring instances
 Get-MonitoringInstances | Select Name, Version
-
-# Upgrade all instances:
-Get-MonitoringInstances | Invoke-MonitoringInstanceUpgrade
+# For each instance
+Invoke-MonitoringInstanceUpgrade <InstanceName>
 ```
 
 #### 7. Upgrade audit instances that use RavenDB5 storage engine
 
+Gets all audit instances filtered on RavenDB and upgrade each:
+
 ```ps1
 # List existing audit instances:
 Get-ServiceControlAuditInstances | ? PersistencePackageName -eq RavenDB | Select Name, PersistencePackageName
-
-# Upgrade for 
-Invoke-ServiceControlAuditInstanceUpgrade - Name <Instance name>
-
-# or update all 
-Get-ServiceControlAuditInstances | ? PersistencePackageName -eq RavenDB | Invoke-ServiceControlAuditInstanceUpgrade
+# For each instance
+Invoke-ServiceControlAuditInstanceUpgrade -Name <InstanceName>
 ```
 
 #### 8. Upgrade audit instances that use RavenDB3.5 storage engine
@@ -178,12 +180,8 @@ If it is ok to loose audit data than it is possible to perform a forces upgrade:
 ```ps1
 # List existing audit instances NOT using RavenDB 5 storage engine:
 Get-ServiceControlAuditInstances | ? PersistencePackageName -ne RavenDB | Select Name, PersistencePackageName
-
-# Update single instance
-Invoke-ServiceControlAuditInstanceUpgrade - Name <Instance name> -Force
-
-# or update all 
-Get-ServiceControlAuditInstances | ? PersistencePackageName -ne RavenDB | Invoke-ServiceControlAuditInstanceUpgrade -Force
+# For each instance
+Invoke-ServiceControlAuditInstanceUpgrade -Name <InstanceName> -Force
 ```
 
 #### 9. Force upgrade error instances
@@ -197,12 +195,8 @@ Ensure all [existing error instance data has been cleaned](#upgrading-to-version
 ```ps1
 # List existing error/primary instances
 Get-ServiceControlInstances | Select Name, Version
-
-# Update single instance
-Invoke-ServiceControlInstanceUpgrade -Name <Instance to Upgrade> -Force
-
-# or all 
-Get-ServiceControlInstances | Invoke-ServiceControlInstanceUpgrade -Force
+# For each instance
+Invoke-ServiceControlInstanceUpgrade -Name <InstanceName> -Force
 ```
 
 ## Primary instances migration procedure
