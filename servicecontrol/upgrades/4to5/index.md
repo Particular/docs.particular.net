@@ -34,7 +34,7 @@ As a result, not all ServiceControl instances can be automatically upgraded from
 
 ## Upgrading to Version 5
 
-Follow this procedure to upgrade all necessary ServiceControl instances to version 5:
+Follow this procedure to upgrade all necessary ServiceControl 4 instances to version 5:
 
 1. Upgrade all ServiceControl instances to 4.33.0 or later. This is required to support the upgrade path that keeps all failed messages safe.
 2. To preserve audit data, install a new Audit instance that uses RavenDB 5 persistence as described in [zero-downtime upgrades](../zero-downtime.md), if this has not already been done.
@@ -84,9 +84,52 @@ To create a cautious estimate, total the size of any existing RavenDB 3.5 databa
 
 The old audit instance database can be removed after the retention period has lapsed, and the old error instance database can be removed once confident of a successful upgrade, meaning ultimately the remaining databases will be roughly the same size or slightly larger than their previous RavenDB 3.5 counterparts.
 
-### Upgrading with PowerShell 7.2 or greater
+## Primary instances migration procedure
 
-INFO: Windows Powershell is no longer supported.
+WARNING: It is recommended to perform the following procedure on a test environment first and to perform most steps via Powershell
+
+The following procedure will migrate the primary instance to minimize the impact on:
+
+* existing endpoints which might be sending heartbeat and custom check messages to the ServiceControl queue.
+* existing ServicePulse / ServiceInsight instance
+
+The configurations for these do not need to be adjusted.
+
+The following steps need to be performed
+
+1. Cleanup error messages in ServicePulse
+    - Retry/Archive failed messages
+2. Disable error queue ingestion in ServiceControl Management Utility (SCMU)
+3. Retry all remaining messages on the primary instance in ServicePulse
+4. Wait until the retry group(s) completes
+5. Stop the primary instance Windows service
+    - via SCMU, Powershell, or Windows Service Control Manager
+6. Move the instance
+    - Unregister the windows service
+    - Rename the installation folder
+    - Rename the database folder
+7. Create a new instance that uses the previous name
+    - Any failed messages that were retried in step 3 but still fail will now reappear in ServicePulse
+
+### Re-add remote audit instances
+
+The previous instance likely had one or more remote audit instances registered. These can be re-added via the [ServiceControl Powershell module](/servicecontrol/installation-powershell.md), specifically the `Add-ServiceControlRemote` command.
+
+### Archive obsolete primary instance
+
+In step 3 the previous primary instance was moved. Consider creating a backup of the installation and database folders and schedule when these folder can be deleted to free disk space.
+
+## Audit instances migration procedure for RavenDB 3.5 instances
+
+Perform the [zero downtime upgrade](/servicecontrol/upgrades/zero-downtime.md)
+
+## Audit instances migration procedure for RavenDB 5 instances
+
+Upgrade the instance via ServiceControl Management Utility (SCMU) or [Powershell 7.2 or greater](#upgrading-with-powershell-72-or-greater).
+
+## Upgrading with PowerShell 7.2 or greater
+
+INFO: Windows Powershell is no longer supported to upgrade to or install new v5.x.y instances.
 
 INFO: Each ServiceControl instance type has its own cmdlets to perform the upgrade. Documentation for these Cmdlets is available at [Manage ServiceControl instances via PowerShell](/servicecontrol/installation-powershell.md) and [Managing Monitoring instances via PowerShell](/servicecontrol/monitoring-instances/installation/installation-powershell.md).
 
@@ -198,47 +241,3 @@ Get-ServiceControlInstances | Select Name, Version
 # For each instance
 Invoke-ServiceControlInstanceUpgrade -Name <InstanceName> -Force
 ```
-
-## Primary instances migration procedure
-
-WARNING: It is recommended to perform the following procedure on a test environment first and to perform most steps via Powershell
-
-The following procedure will migrate the primary instance to minimize the impact on:
-
-- existing endpoints which might be sending heartbeat and custom check messages to the servicecontrol queue.
-- existing ServicePulse / ServiceInsight instance
-
-The configurations for these do not need to be adjusted.
-
-The following steps need to be performed
-
-1. Cleanup error messages in ServicePulse
-    - Retry/Archive failed messages
-2. Disable error queue ingestion in ServiceControl Management Utility (SCMU)
-3. Retry all remaining messages on the primary instance in ServicePulse
-4. Wait until the retry group(s) completes
-5. Stop the primary instance Windows service
-    - via SCMU, Powershell, or Windows Service Control Manager
-6. Move the instance
-    - Unregister the windows service
-    - Rename the installation folder
-    - Rename the database folder
-7. Create a new instance that uses the previous name
-    - Any failed messages that were retried in step 3 but still fail will now reappear in ServicePulse
-
-### Re-add remote audit instances
-
-The previous instance likely had one or more remote audit instances registered. These can be readded via the [ServiceControl Powershell module](/servicecontrol/installation-powershell.md), specifically the `Add-ServiceControlRemote` command.
-
-### Archive obsolete primary instance
-
-In step 3 the previous primary instance was moved. Consider creating a backup of the installation and database folders and schedule when these folder can be deleted to free disk space.
-
-
-## Audit instances migration procedure for RavenDB 3.5 instances
-
-Perform the [zero downtime upgrade](/servicecontrol/upgrades/zero-downtime.md)
-
-## Audit instances migration procedure for RavenDB 5 instances
-
-Upgrade the instance via SCMU or Powershell
