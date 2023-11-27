@@ -65,7 +65,7 @@ snippet: asb-function-isolated-configure-error-queue
 
 ### Known constraints and limitations
 
-The configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization. However, not all of the options will be [applicable to execution within Azure Functions](./analyzers.md).
+The configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization. However, not all options will be [applicable to execution within Azure Functions](./analyzers.md).
 
 Use the `configuration.Routing` property to configure transport routing.
 
