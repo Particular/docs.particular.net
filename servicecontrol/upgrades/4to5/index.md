@@ -43,7 +43,7 @@ This upgrade does not contain any data migrations, the size of the database does
 
 ServiceControl Management Utility version 5 cannot be used to edit ServiceControl instances until they have been upgraded to version 4. These instances can still be started, stopped, put into maintenance mode, and removed using ServiceControl Management.
 
-ServiceControl version 4.33.0 can be used to continue managing older instances. Version 4.33.0, which is still installed, can be used side-by-side with ServiceControl 5.
+ServiceControl Management version 4.33.0 can be used to continue managing older instances. Version 4.33.0, which is still installed, can be used side-by-side with ServiceControl 5.
 
 ### Disk space requirements
 
@@ -66,7 +66,7 @@ NOTE: This procedure should first be run in a test environment.
 
 These steps should be followed whether updating using ServiceControl Management or via PowerShell:
 
-1. Upgrade all ServiceControl instances to 4.33.0 or later. This is required to support the upgrade path that keeps all failed messages safe.
+1. Upgrade all ServiceControl instances to 4.26.0 or later. This is the minimum version that can be updated to ServiceControl 5.
 2. To preserve audit data, install a new Audit instance that uses RavenDB 5 persistence as described in [zero-downtime upgrades](../zero-downtime.md), if this has not already been done.
 3. In ServicePulse, clean up all [failed messages](/servicepulse/intro-failed-messages.md). It's acceptable if a few failed messages still come in, but ideally, all failed messages should either be retried or archived.
 4. Disable error message ingestion:
