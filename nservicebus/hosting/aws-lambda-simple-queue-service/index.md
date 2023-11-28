@@ -83,11 +83,11 @@ snippet: native-lambda-sqs-message
 
 The `AwsLambdaSQSEndpoint` class supports the full feature set of NServiceBus including:
 
-* Outbox
-* Sagas
-* Delayed Delivery
-* Recoverability
-* Publish / Subscribe
+* [Outbox](/nservicebus/outbox/)
+* [Sagas](/nservicebus/sagas/)
+* [Delayed Delivery](/nservicebus/messaging/delayed-delivery.md)
+* [Recoverability](/nservicebus/recoverability/)
+* [Publish / Subscribe](/nservicebus/messaging/publish-subscribe/)
 
 [Persistence](/persistence) is required to use some of these features.
 
