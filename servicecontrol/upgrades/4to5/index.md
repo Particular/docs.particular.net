@@ -3,6 +3,7 @@ title: Upgrade ServiceControl from Version 4 to Version 5
 summary: Instructions on how to upgrade ServiceControl from version 4 to 5
 reviewed: 2023-10-12
 isUpgradeGuide: true
+component: ServiceControl
 ---
 
 ## Overview
