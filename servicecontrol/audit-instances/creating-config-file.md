@@ -1,15 +1,13 @@
 ---
 title: Configuration Settings
 summary: Categorized list of ServiceControl Audit configuration settings.
+component: ServiceControl
 reviewed: 2022-10-27
 ---
-
 
 The configuration of a ServiceControl Audit instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.Audit.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
 
 ![image](https://github.com/Particular/docs.particular.net/assets/88632084/c9b160ba-03a5-4c73-9812-c942af6657da)
-
-
 
 ## Host settings
 
@@ -45,15 +43,19 @@ The path where the internal RavenDB is located.
 
 Type: string
 
+#if-version [,5)
+
 ### Raven/IndexStoragePath
 
-INFO: Only supported on RavenDB 3.5 storage engine (prior version 5). Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
+INFO: Only supported on the RavenDB 3.5 storage engine. Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
 
 The path for the indexes on disk.
 
 Type: string
 
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\indexes`
+
+#end-if
 
 #### ServiceControl.Audit/LogPath
 
@@ -85,11 +87,12 @@ Type: string
 
 Default: `Warn`
 
+#if-version [5,)
 Valid settings are: `None`, `Information`, `Operations`.
-
-#### Versions prior to 5.0.0
-
+#end-if
+#if-version [,5)
 Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
+#end-if
 
 This setting will default to `Warn` if an invalid value is assigned.
 
@@ -114,13 +117,17 @@ Type: string
 
 Default: The Service Name
 
+#if-version [5,)
+
 ### ServiceControl/IngestAuditMessages
 
-Set to `false` to disable ingesting new audit messages. Useful in some upgrade scenarios. _Available in version 5.0.0 and above._
+Set to `false` to disable ingesting new audit messages. Useful in some upgrade scenarios.
 
 Type: bool `true` or `false`
 
 Default: `true`
+
+#end-if
 
 ## Data retention
 
@@ -130,7 +137,7 @@ The number of seconds to wait between checking for expired messages.
 
 Type: int
 
-Default: `600` (10 minutes). The default for ServiceControl version 1.3 and below is `60` (1 minute), Starting in version 1.4, the default is `600` (10 minutes). Setting the value to `0` will disable the expiration process. This is not recommended and it is only provided for fault finding. Valid range is `0` to `10800` (3 Hours).
+Default: `600` (10 minutes). Setting the value to `0` will disable the expiration process. This is not recommended and it is only provided for fault finding. Valid range is `0` to `10800` (3 Hours).
 
 ### ServiceControl.Audit/ExpirationProcessBatchSize
 
@@ -297,6 +304,8 @@ Type: int
 
 Default: 5
 
+#if-version [,5)
+
 #### Raven/Esent/LogsPath
 
 
@@ -307,3 +316,5 @@ The path for the Esent logs on disk.
 Type: string
 
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs`
+
+#end-if
