@@ -8,7 +8,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ASBS.HierarchyMigration.Migration";
+        Console.Title = "Endpoint 2 Migration";
 
         var adminClient = await PreMigrationStepsForTheDemoPurpose();
 
@@ -81,7 +81,7 @@ static class Program
         Visualize.Endpoint2SubscriptionUnderSubscriptionBundleWithRulesSetup();
 
         AnsiConsole.WriteLine(":: Press any key to continue with the migration");
-        Console.ReadLine();
+        Console.ReadKey();
 
         await adminClient.DeleteSubscriptionAsync(Hierarchy.PublishBundleName, Hierarchy.Endpoint2SubscriptionName);
 
@@ -132,7 +132,7 @@ static class Program
         Visualize.Endpoint2SubscriptionOnSubscriptionBundleFowardingChanged();
 
         AnsiConsole.WriteLine(":: Press any key to continue with the migration");
-        Console.ReadLine();
+        Console.ReadKey();
 
         await adminClient.DeleteQueueAsync(Hierarchy.Endpoint2MigrationQueueName);
 
@@ -202,7 +202,7 @@ and then start 'Endpoint2'.
             ":warning: Start 'Endpoint1' and 'Endpoint2' and wait a bit until some messages are published. After some time...");
 
         AnsiConsole.WriteLine(":: Press any key to setup the sample topology");
-        Console.ReadLine();
+        Console.ReadKey();
         return adminClient;
     }
 
