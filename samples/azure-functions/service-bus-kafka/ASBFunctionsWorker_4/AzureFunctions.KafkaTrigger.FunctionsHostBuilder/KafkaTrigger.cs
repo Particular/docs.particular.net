@@ -1,11 +1,9 @@
-﻿using System;
+﻿using System.Threading.Tasks;
+using AzureFunctions.Messages.NServiceBusMessages;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
-using NServiceBus;
-using System.Threading.Tasks;
-using AzureFunctions.Messages.KafkaMessages;
-using AzureFunctions.Messages.NServiceBusMessages;
 using Newtonsoft.Json.Linq;
+using NServiceBus;
 
 namespace AzureFunctions.KafkaTrigger.FunctionsHostBuilder;
 

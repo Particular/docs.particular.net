@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 
 namespace AzureFunctions.Messages.KafkaMessages;
 
@@ -10,11 +10,11 @@ public class ElectricityUsage
 
     public static string Serialize(ElectricityUsage electricityUsage)
     {
-        return JsonConvert.SerializeObject(electricityUsage);
+        return JsonSerializer.Serialize(electricityUsage);
     }
 
     public static ElectricityUsage Deserialize(string value)
     {
-        return JsonConvert.DeserializeObject<ElectricityUsage>(value);
+        return JsonSerializer.Deserialize<ElectricityUsage>(value);
     }
 }
