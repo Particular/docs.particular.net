@@ -85,12 +85,14 @@ Controls the LogLevel of the RavenDB logs.
 
 Type: string
 
-Default: `Warn`
-
 #if-version [5,)
+Default: `Operations`
+
 Valid settings are: `None`, `Information`, `Operations`.
 #end-if
 #if-version [,5)
+Default: `Warn`
+
 Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 #end-if
 
@@ -185,10 +187,15 @@ ServiceControl version 4.12.0 introduced batch ingestion, which allows for multi
 
 Type: int
 
+#if-version [5,)
+Default: `32`
+#endif
+#if-version [,5)
 Default:
 
 * In ServiceControl version 4.12 and above: `32`
 * In ServiceControl version 4.11 and below: `10`
+#endif
 
 #### ServiceControl.Audit/EnableFullTextSearchOnBodies
 
