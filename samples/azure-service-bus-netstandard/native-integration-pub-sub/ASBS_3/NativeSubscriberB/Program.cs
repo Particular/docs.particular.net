@@ -7,7 +7,7 @@ using NativeSender;
 
 class Program
 {
-    static string EnclosedMessageTypesHeader = "NServiceBus.EnclosedMessageTypes";
+    const string EnclosedMessageTypesHeader = "NServiceBus.EnclosedMessageTypes";
 
     static string ConnectionString
     {
