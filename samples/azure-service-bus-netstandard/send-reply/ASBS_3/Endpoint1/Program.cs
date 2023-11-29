@@ -21,6 +21,7 @@ class Program
 
         var transport = new AzureServiceBusTransport(connectionString);
         endpointConfiguration.UseTransport(transport);
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         #endregion
 
@@ -39,7 +40,6 @@ class Program
                 break;
             }
 
-            var orderId = Guid.NewGuid();
             var message = new Message1
             {
                 Property = "Hello from Endpoint1"

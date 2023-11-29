@@ -20,6 +20,7 @@ class Program
 
         var transport = new AzureServiceBusTransport(connectionString);
         endpointConfiguration.UseTransport(transport);
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
