@@ -31,7 +31,7 @@ sequenceDiagram
 
 1. [Visual Studio](https://visualstudio.microsoft.com/downloads/)
 1. [Particular.Templates](/nservicebus/dotnet-templates/) package.
-1. [.NET 7 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
+1. [.NET SDK](https://dotnet.microsoft.com/en-us/download)
 
 ### TicketSales project
 
