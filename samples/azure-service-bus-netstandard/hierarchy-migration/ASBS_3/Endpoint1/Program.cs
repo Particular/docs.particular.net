@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ASBS.HierarchyMigration.Endpoint1";
+        Console.Title = "Endpoint1";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyMigration.Endpoint1");
         endpointConfiguration.EnableInstallers();
@@ -19,6 +19,7 @@ class Program
 
         var transport = new AzureServiceBusTransport(connectionString);
         endpointConfiguration.UseTransport(transport);
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         transport.Topology = TopicTopology.Single("bundle-to-publish-to");
 
