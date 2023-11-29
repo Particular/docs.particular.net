@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,7 @@ namespace Sender
 
                     var connectionString = context.Configuration.GetConnectionString("AzureServiceBusConnectionString");
                     var routing = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
+                    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
                     endpointConfiguration.AuditProcessedMessagesTo("audit");
                     routing.RouteToEndpoint(typeof(Ping), "Receiver");

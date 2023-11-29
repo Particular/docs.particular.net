@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +25,7 @@ namespace Receiver
 
                     var connectionString = context.Configuration.GetConnectionString("AzureServiceBusConnectionString");
                     var transport = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
+                    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
                     endpointConfiguration.AuditProcessedMessagesTo("audit");
 
