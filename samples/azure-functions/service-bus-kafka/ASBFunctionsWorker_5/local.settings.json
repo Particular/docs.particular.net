@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "LocalKafkaBroker": "localhost:9094",
+    "topic": "myKafkaTopic",
+    "AzureWebJobsServiceBus": "<set your ASB connection string here>"
+  }
+}
