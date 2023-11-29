@@ -11,7 +11,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Publisher");
 
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.Conventions().DefiningEventsAs(type => type.Name == nameof(EventTwo) || type.Name == nameof(EventOne));
 
 

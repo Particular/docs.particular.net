@@ -8,7 +8,4 @@
     <ProjectReference Include="..\NativeShared\NativeShared.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-  </ItemGroup>
 </Project>
