@@ -79,7 +79,7 @@ These steps should be followed whether updating using ServiceControl Management 
    * Once the failed message list is "clean" there will be no data of any value left in the database, making it safe to upgrade.
 
 
-INFO: The [forced upgrade procedure](#force-upgrading) can be considered when data migration is not required error and/or audit instances.
+INFO: The [forced upgrade procedure](#force-upgrading) can be considered when data migration is not required error and/or audit instances and can be applied from instance with version 4.26.0 or later.
 
 ### Upgrading using ServiceControl Management
 
