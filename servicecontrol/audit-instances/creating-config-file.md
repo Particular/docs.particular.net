@@ -100,8 +100,9 @@ This setting will default to `Warn` if an invalid value is assigned.
 
 ### ServiceControl.Audit/TimeToRestartAuditIngestionAfterFailure
 
+Version: 4.7.0+
+
 Controls the maximum time delay to wait before restarting the audit ingestion pipeline after detecting a connection problem.
-This setting was introduced in ServiceControl version 4.7.0.
 
 Type: timespan
 
@@ -111,9 +112,10 @@ Valid settings are between 5 seconds and 1 hour.
 
 ### ServiceControl.Audit/InternalQueueName
 
+Version: 4.27.0+
+
 Controls the name of the internal queue that ServiceControl uses for internal control messages. This can be used when the internal queue name does not match the Windows Service Name.
 
-This setting was introduced in ServiceControl version 4.27.0.
 
 Type: string
 
@@ -189,17 +191,17 @@ Type: int
 
 #if-version [5,)
 Default: `32`
-#endif
+#end-if
 #if-version [,5)
 Default:
 
 * In ServiceControl version 4.12 and above: `32`
 * In ServiceControl version 4.11 and below: `10`
-#endif
+#end-if
 
 #### ServiceControl.Audit/EnableFullTextSearchOnBodies
 
-This setting is only applicable starting from version 4.17.0.
+Version: 4.17.0+
 
 Use this setting to configure whether the bodies of processed messages should be full-text indexed for searching.
 
@@ -277,6 +279,7 @@ http://localhost:{configured ServiceControl instance maintenance port}
 
 to access the internal database via [the RavenDB studio interface](https://ravendb.net/docs/article-page/5.4/csharp/studio/overview).
 
+#if-version [,5)
 ### RavenDB 3.5
 
 For instances running version 4.25 and below or using the old RavenDB 3.5 persistence the ServiceControl Audit instance can be configured to expose the RavenDB studio.
@@ -294,6 +297,7 @@ http://localhost:{configured ServiceControl instance maintenance port}/studio/in
 ```
 
 NOTE: The ServiceControl Audit embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](/servicecontrol/setting-custom-hostname.md).
+#end-if
 
 #### ServiceControl.Audit/DataSpaceRemainingThreshold
 

@@ -115,12 +115,14 @@ Controls the LogLevel of the RavenDB logs. See [Logging](logging.md).
 
 Type: string
 
+#if-version [5,)
 Default: `Operations`
 
-#if-version [5,)
 Valid settings are: `None`, `Information`, `Operations`.
 #end-if
 #if-version [,5)
+Default: `Info`
+
 Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 #end-if
 
@@ -128,8 +130,9 @@ This setting will default to `Warn` if an invalid value is assigned.
 
 ### ServiceControl/TimeToRestartErrorIngestionAfterFailure
 
+Version: 4.4.1+
+
 Controls the maximum time delay to wait before restarting the error ingestion pipeline after detecting a connection problem.
-This setting was introduced in ServiceControl version 4.4.1.
 
 Type: `TimeSpan`
 
@@ -139,9 +142,9 @@ Valid settings are between 5 seconds and 1 hour.
 
 ### ServiceControl/InternalQueueName
 
-Controls the name of the internal queue that ServiceControl uses for internal control messages. This can be used when the internal queue name does not match the Windows Service Name.
+Version: 4.27.0+
 
-This setting was introduced in ServiceControl version 4.27.0.
+Controls the name of the internal queue that ServiceControl uses for internal control messages. This can be used when the internal queue name does not match the Windows Service Name.
 
 Type: string
 
@@ -149,7 +152,9 @@ Default: The Service Name
 
 ### ServiceControl/IngestErrorMessages
 
-Set to `false` to disable ingesting new error messages. Useful in some upgrade scenarios. _Available in version 4.33.0 and above._
+Version: 4.33.0+
+
+Set to `false` to disable ingesting new error messages. Useful in some upgrade scenarios.
 
 Type: bool `true` or `false`
 
@@ -249,7 +254,7 @@ Default: `100`
 
 ### ServiceControl/EnableFullTextSearchOnBodies
 
-This setting is only applicable starting from version 4.17.0.
+Version: 4.17.0+
 
 Use this setting to configure whether the bodies of processed error messages should be full-text indexed for searching.
 
