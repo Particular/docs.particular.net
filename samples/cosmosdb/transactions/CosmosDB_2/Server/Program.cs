@@ -47,6 +47,8 @@ class Program
             TransportTransactionMode = TransportTransactionMode.ReceiveOnly
         };
         endpointConfiguration.UseTransport(transport);
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
