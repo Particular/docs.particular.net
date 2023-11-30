@@ -1,6 +1,6 @@
 ---
 title: Manage ServiceControl instances via PowerShell
-reviewed: 2021-08-23
+reviewed: 2023-11-30
 component: ServiceControl
 ---
 

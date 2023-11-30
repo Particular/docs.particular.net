@@ -2,7 +2,7 @@
 title: ServiceControl Hardware Considerations
 summary: Hardware recommendations for running ServiceControl instances
 component: ServiceControl
-reviewed: 2023-04-04
+reviewed: 2023-11-30
 ---
 
 This article provides recommendations and performance benchmarks to help select resources for a ServiceControl production environment.

@@ -1,7 +1,7 @@
 ---
 title: Installing ServiceControl
 summary: How to install different types of ServiceControl instances
-reviewed: 2023-11-21
+reviewed: 2023-11-30
 component: ServiceControl
 redirects:
  - servicecontrol/multi-transport-support
@@ -92,11 +92,11 @@ A ServiceControl installation should be upgraded one major version at a time. Ch
 
 | Current Version | Upgrade Path                                       |
 |--------------------------------|------------------------------------------|
-| 1.x.y | install [1.48.0](https://github.com/Particular/ServiceControl/releases/tag/1.48.0), and update all instances|
-| 2.x.y | install [2.1.5](https://github.com/Particular/ServiceControl/releases/tag/2.1.5), and update all instances|
-| 3.x.y | install [3.8.4](https://github.com/Particular/ServiceControl/releases/tag/3.8.4), and update all instances|
-| 4.x.y | install the [latest release](https://particular.net/start-servicecontrol-download) (4.x at the time of this writing) and update all instances|
-
+| 1.x.y | Install [1.48.0](https://github.com/Particular/ServiceControl/releases/tag/1.48.0), and update all instances|
+| 2.x.y | Install [2.1.5](https://github.com/Particular/ServiceControl/releases/tag/2.1.5), and update all instances|
+| 3.x.y | Install [3.8.4](https://github.com/Particular/ServiceControl/releases/tag/3.8.4), and update all instances|
+| 4.x.y | Install [4.33.0](https://github.com/Particular/ServiceControl/releases/tag/4.33.0), and update all instances|
+| 5.x.y | Download the [latest release](https://particular.net/start-servicecontrol-download), and update all instances|
 All versions are available at <https://github.com/Particular/ServiceControl/releases>
 
 NOTE: Upgrades might take a while to run. Account for the unavailability of ServiceControl and plan the upgrade during maintenance windows if necessary.
@@ -161,8 +161,12 @@ If the option to delete the database/log folders was not selected when removing 
 
 NOTE: If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
 
+#if-version [,5)
+
 ### Uninstall the ServiceControl Management Utility
 
 To uninstall the ServiceControl Management Utility, use the `Apps & features` settings in Windows.
 
 NOTE: Uninstalling the ServiceControl Management Utility will not remove existing instances. Remove all ServiceControl instances using the ServiceControl Management Utility before uninstalling the application itself.
+
+#end-if

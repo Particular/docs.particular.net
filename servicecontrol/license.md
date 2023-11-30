@@ -1,6 +1,6 @@
 ---
 title: Licensing ServiceControl
-reviewed: 2023-06-11
+reviewed: 2023-11-30
 component: ServiceControl
 ---
 
@@ -8,7 +8,14 @@ There are a few options to add a license to ServiceControl.
 
 ## ServiceControl Management tool
 
-ServiceControl has a license user interface which can be accessed in ServiceControl Management. ServiceControl Management is installed together with ServiceControl and can be found in the Windows Start Menu.
+ServiceControl has a license user interface which can be accessed in ServiceControl Management. 
+
+#if-version [,5)
+ServiceControl Management is installed together with ServiceControl and can be found in the Windows Start Menu.
+#end-if
+#if-version [5,)
+If the ServiceControl Management application was not retained when installing instances, a new version can be downloaded to manage license files.
+#end-if
 
 The designated license file will be imported into the file system at `%ProgramData%\ParticularSoftware\license.xml` so it is available to all instances of ServiceControl regardless of the service account used.
 

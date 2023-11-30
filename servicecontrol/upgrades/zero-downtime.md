@@ -2,7 +2,7 @@
 title: Zero downtime upgrades
 summary: Instructions on how to upgrade ServiceControl instances with zero downtime
 isUpgradeGuide: true
-reviewed: 2022-10-20
+reviewed: 2023-11-30
 ---
 
 The [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/remotes.md) can be used to upgrade a ServiceControl installation without taking it offline.

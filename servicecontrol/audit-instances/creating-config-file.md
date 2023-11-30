@@ -2,7 +2,7 @@
 title: Configuration Settings
 summary: Categorized list of ServiceControl Audit configuration settings.
 component: ServiceControl
-reviewed: 2022-10-27
+reviewed: 2023-11-30
 ---
 
 The configuration of a ServiceControl Audit instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.Audit.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
