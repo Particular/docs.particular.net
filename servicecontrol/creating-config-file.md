@@ -1,4 +1,3 @@
-
 ---
 title: Configuration Settings
 summary: Categorized list of ServiceControl configuration settings.
