@@ -9,7 +9,4 @@
 	<PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.*" />
 	<PackageReference Include="NServiceBus.Transport.Msmq" Version="2.*" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
-  </ItemGroup>
 </Project>
