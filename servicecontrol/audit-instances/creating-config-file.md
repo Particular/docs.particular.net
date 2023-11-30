@@ -279,8 +279,11 @@ http://localhost:{configured ServiceControl instance maintenance port}
 
 to access the internal database via [the RavenDB studio interface](https://ravendb.net/docs/article-page/5.4/csharp/studio/overview).
 
-#if-version [,5)
 ### RavenDB 3.5
+
+#if-version [5,)
+INFO: Obsolete since version 5.0.0
+#end-if
 
 For instances running version 4.25 and below or using the old RavenDB 3.5 persistence the ServiceControl Audit instance can be configured to expose the RavenDB studio.
 
@@ -297,7 +300,6 @@ http://localhost:{configured ServiceControl instance maintenance port}/studio/in
 ```
 
 NOTE: The ServiceControl Audit embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](/servicecontrol/setting-custom-hostname.md).
-#end-if
 
 #### ServiceControl.Audit/DataSpaceRemainingThreshold
 
