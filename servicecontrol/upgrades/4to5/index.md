@@ -66,7 +66,7 @@ NOTE: This procedure should first be run in a test environment.
 
 These steps should be followed whether updating using ServiceControl Management or via PowerShell:
 
-1. Upgrade all ServiceControl instances to 4.33.0 or later. This is the minimum version that can be updated to ServiceControl 5.
+1. Upgrade all ServiceControl instances to 4.33.0 or later. *This is required to support the upgrade path that keeps all failed messages safe.*
 2. To preserve audit data, install a new Audit instance that uses RavenDB 5 persistence as described in [zero-downtime upgrades](../zero-downtime.md), if this has not already been done.
 3. In ServicePulse, clean up all [failed messages](/servicepulse/intro-failed-messages.md). It's acceptable if a few failed messages still come in, but ideally, all failed messages should either be retried or archived.
 4. Disable error message ingestion:
@@ -79,7 +79,7 @@ These steps should be followed whether updating using ServiceControl Management 
    * Once the failed message list is "clean" there will be no data of any value left in the database, making it safe to upgrade.
 
 
-INFO: The [forced upgrade procedure](#force-upgrading) can be considered when data migration is not required error and/or audit instances and can be applied from instance with version 4.26.0 or later.
+INFO: If data migration is not required for existing error messages, for example on developer workstations, the [forced upgrade procedure](#force-upgrading) can be used on instances with version 4.26.0 or later. This is the minimum version that can be upgraded to ServiceControl 5.
 
 ### Upgrading using ServiceControl Management
 
@@ -147,9 +147,9 @@ After completing the , follow this procedure to upgrade using PowerShell 7.2 or 
 
 ## Force upgrading
 
-In ServiceControl 5, it is also possible to perform a force upgrade on instances that still uses RavenDB 3.5 persistence, which will discard all the data in the current database and start with a fresh RavenDB 5 database. This is sometimes preferable on non-production and developer systems where the audit data has little value, or in situations where the [audit retention period](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod) is low and a decision is made that the value of the temporally-limited audit data is not worth the complexity of following the [zero-downtime upgrades](../zero-downtime.md) procedure.
+In ServiceControl 5, it is also possible to perform a forced upgrade on instances that still uses RavenDB 3.5 persistence, which will discard all the data in the current database and start with a fresh RavenDB 5 database. This is sometimes preferable on non-production and developer systems where the audit data has little value, or in situations where the [audit retention period](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod) is low and a decision is made that the value of the temporally-limited audit data is not worth the complexity of following the [zero-downtime upgrades](../zero-downtime.md) procedure.
 
-Force upgrading instance does not require upgrading version 4 instances to 4.33.0.
+Force upgrading instance requires upgrading version 4 instances to 4.26.0 or later.
 
 ### Using ServiceControl Management
 
