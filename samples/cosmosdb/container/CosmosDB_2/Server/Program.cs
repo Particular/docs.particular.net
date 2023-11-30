@@ -25,6 +25,7 @@ class Program
         #endregion
 
         endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
         #region ContainerInformationFromLogicalMessage
