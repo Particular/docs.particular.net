@@ -1,7 +1,7 @@
 ---
 title: Discarding Old Messages
 summary: Automatically discard messages if they have not been processed within a given period of time.
-reviewed: 2020-09-04
+reviewed: 2023-11-30
 component: Core
 related:
  - nservicebus/operations/auditing
@@ -55,9 +55,9 @@ TimeToBeReceived relies on the transport infrastructure to discard expired messa
 
 ### MSMQ transport
 
-MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space gets reclaimed. 
+MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space gets reclaimed.
 
-NOTE: MSMQ enforces a single TimeToBeReceived value for all messages in a transaction. To prevent message loss, `TimeToBeReceived` is not supported for endpoints with [transaction mode](/transports/transactions.md) `SendsAtomicWithReceive` or `TransactionScope` by default. 
+NOTE: MSMQ enforces a single TimeToBeReceived value for all messages in a transaction. To prevent message loss, `TimeToBeReceived` is not supported for endpoints with [transaction mode](/transports/transactions.md) `SendsAtomicWithReceive` or `TransactionScope` by default.
 
 WARNING: Due to a bug in Version 6 `TransportTransactionMode.ReceiveOnly` wrongly enlisted all outgoing messages in the same transaction causing the issues described above.
 

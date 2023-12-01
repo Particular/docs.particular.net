@@ -1,10 +1,10 @@
 ---
 title: Consume raw data from Metrics
-reviewed: 2020-09-04
+reviewed: 2023-11-30
 component: Metrics
 related:
  - nservicebus/operations
-related:
+ - nservicebus/operations/opentelemetry
  - samples/logging/metrics
  - samples/logging/application-insights
  - samples/logging/prometheus-grafana

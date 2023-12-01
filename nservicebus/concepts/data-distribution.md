@@ -1,7 +1,7 @@
 ---
 title: Data distribution
 summary: Why asynchronous messaging is not a good fit for data distribution scenarios
-reviewed: 2020-09-01
+reviewed: 2023-11-30
 redirects:
 - nservicebus/azure/data-distribution
 - samples/routing/data-distribution
@@ -12,7 +12,7 @@ Data distribution refers to a pattern where asynchronous messages (e.g. using NS
 
 A common example of a data distribution scenario is having cached data on multiple scaled-out web servers and attempting to deliver a message to each of them. The message indicates each server should drop their current cache entries and retrieve fresh data from the database.
 
-The goal of data distribution is generally to cause a change in data and/or behavior in multiple locations at the same time. 
+The goal of data distribution is generally to cause a change in data and/or behavior in multiple locations at the same time.
 
 ## Timing and reliability
 

@@ -2,13 +2,16 @@
 title: Distributed tracing with Azure Monitor Application Insights
 summary: How to extend the NServiceBus pipeline to send trace data to Azure Monitor Application Insights
 component: Core
-reviewed: 2020-09-10
+reviewed: 2023-11-30
 previewImage: sample-trace.png
 related:
  - monitoring/metrics
+ - nservicebus/operations/opentelemetry
 ---
 
-.NET Core 3.1 introduced support for distributed tracing. Types in the [System.Diagnostics](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics?view=dotnet-plat-ext-3.1) namespace may be used to expose and correlate execution data from a distributed system. This sample shows how to extend the NServiceBus pipeline with custom behaviors that publish trace data and how to send that data to [Azure Monitor Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) for analysis and visualization.
+.NET Core 3.1 introduced support for distributed tracing. Types in the [System.Diagnostics](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics?view=dotnet-plat-ext-3.1) namespace may be used to expose and correlate execution data from a distributed system. This sample shows how to extend the NServiceBus pipeline with custom behaviors that publish trace data and how to send that data to [Azure Monitor Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) for analysis and visualization
+
+NOTE: To use distributed tracing using [OpenTelemetry](https://opentelemetry.io/), refer to the [OpenTelemetry samples](/samples/open-telemetry).
 
 downloadbutton
 
