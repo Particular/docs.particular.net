@@ -1,13 +1,15 @@
 ﻿namespace PlatformLauncher
 {
     using System;
+    using System.Threading.Tasks;
 
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.Title = "PlatformLauncher";
-            Particular.PlatformLauncher.Launch();
+            await Particular.PlatformLauncher.Launch()
+                .ConfigureAwait(false);
         }
     }
 }

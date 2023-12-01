@@ -19,7 +19,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);            
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         
         var completeOrder = new CompleteOrder
         {
@@ -30,7 +30,7 @@ class Program
         Console.WriteLine("Message sent");
         
         Console.WriteLine("Launching platform...");
-        Particular.PlatformLauncher.Launch();
+        await Particular.PlatformLauncher.Launch();
         
         await endpointInstance.Stop();
     }

@@ -30,7 +30,8 @@ class Program
         Console.WriteLine("Message sent");
         
         Console.WriteLine("Launching platform...");
-        Particular.PlatformLauncher.Launch();
+        await Particular.PlatformLauncher.Launch()
+             .ConfigureAwait(false);
         
         await endpointInstance.Stop()
             .ConfigureAwait(false);

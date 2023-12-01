@@ -1,10 +1,13 @@
 ﻿namespace PlatformTools
 {
+    using System.Threading.Tasks;
+
     class Program
     {
-        static void Main()
+        static async Task Main()
         {
-            Particular.PlatformLauncher.Launch();
+            await Particular.PlatformLauncher.Launch()
+                .ConfigureAwait(false);
         }
     }
 }
