@@ -2,7 +2,7 @@
 title: Monitor third-party systems with custom checks
 summary: Monitoring third-party systems which are exposed as HTTP endpoints with custom checks.
 component: CustomChecks
-reviewed: 2020-09-14
+reviewed: 2023-11-30
 related:
  - servicecontrol/plugins
  - monitoring/custom-checks/in-servicepulse
