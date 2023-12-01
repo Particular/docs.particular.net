@@ -4,6 +4,7 @@ reviewed: 2023-11-30
 component: Metrics
 related:
  - nservicebus/operations
+ - nservicebus/operations/opentelemetry
  - samples/logging/metrics
  - samples/logging/application-insights
  - samples/logging/prometheus-grafana
