@@ -5,8 +5,6 @@ reviewed: 2021-09-24
 isUpgradeGuide: true
 ---
 
-## Overview
-
 Upgrading ServiceControl from version 3 to version 4 is a major upgrade and requires careful planning. During the upgrade process, the instance of ServiceControl that is being upgraded will no longer be available and will not be ingesting any messages.
 
 ## Planning

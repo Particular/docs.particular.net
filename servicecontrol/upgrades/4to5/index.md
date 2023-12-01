@@ -6,10 +6,6 @@ isUpgradeGuide: true
 component: ServiceControl
 ---
 
-## Overview
-
-WARNING: This guidance applies to existing 4 instances. Older versions need upgrading to version 4 first.
-
 Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requires careful planning. Throughout the upgrade process, the instance of ServiceControl will be offline and will not ingest messages
 
 ## Breaking changes
