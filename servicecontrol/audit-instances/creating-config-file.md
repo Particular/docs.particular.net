@@ -1,15 +1,13 @@
 ---
 title: Configuration Settings
 summary: Categorized list of ServiceControl Audit configuration settings.
-reviewed: 2022-10-27
+component: ServiceControl
+reviewed: 2023-11-30
 ---
-
 
 The configuration of a ServiceControl Audit instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.Audit.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
 
 ![image](https://github.com/Particular/docs.particular.net/assets/88632084/c9b160ba-03a5-4c73-9812-c942af6657da)
-
-
 
 ## Host settings
 
@@ -45,13 +43,19 @@ The path where the internal RavenDB is located.
 
 Type: string
 
+#if-version [,5)
+
 ### Raven/IndexStoragePath
+
+INFO: Only supported on the RavenDB 3.5 storage engine. Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
 
 The path for the indexes on disk.
 
 Type: string
 
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\indexes`
+
+#end-if
 
 #### ServiceControl.Audit/LogPath
 
@@ -81,16 +85,24 @@ Controls the LogLevel of the RavenDB logs.
 
 Type: string
 
+#if-version [5,)
+Default: `Operations`
+
+Valid settings are: `None`, `Information`, `Operations`.
+#end-if
+#if-version [,5)
 Default: `Warn`
 
 Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
+#end-if
 
 This setting will default to `Warn` if an invalid value is assigned.
 
 ### ServiceControl.Audit/TimeToRestartAuditIngestionAfterFailure
 
+Version: 4.7.0+
+
 Controls the maximum time delay to wait before restarting the audit ingestion pipeline after detecting a connection problem.
-This setting was introduced in ServiceControl version 4.7.0.
 
 Type: timespan
 
@@ -100,13 +112,26 @@ Valid settings are between 5 seconds and 1 hour.
 
 ### ServiceControl.Audit/InternalQueueName
 
+Version: 4.27.0+
+
 Controls the name of the internal queue that ServiceControl uses for internal control messages. This can be used when the internal queue name does not match the Windows Service Name.
 
-This setting was introduced in ServiceControl version 4.27.0.
 
 Type: string
 
 Default: The Service Name
+
+#if-version [5,)
+
+### ServiceControl/IngestAuditMessages
+
+Set to `false` to disable ingesting new audit messages. Useful in some upgrade scenarios.
+
+Type: bool `true` or `false`
+
+Default: `true`
+
+#end-if
 
 ## Data retention
 
@@ -116,7 +141,7 @@ The number of seconds to wait between checking for expired messages.
 
 Type: int
 
-Default: `600` (10 minutes). The default for ServiceControl version 1.3 and below is `60` (1 minute), Starting in version 1.4, the default is `600` (10 minutes). Setting the value to `0` will disable the expiration process. This is not recommended and it is only provided for fault finding. Valid range is `0` to `10800` (3 Hours).
+Default: `600` (10 minutes). Setting the value to `0` will disable the expiration process. This is not recommended and it is only provided for fault finding. Valid range is `0` to `10800` (3 Hours).
 
 ### ServiceControl.Audit/ExpirationProcessBatchSize
 
@@ -164,14 +189,19 @@ ServiceControl version 4.12.0 introduced batch ingestion, which allows for multi
 
 Type: int
 
+#if-version [5,)
+Default: `32`
+#end-if
+#if-version [,5)
 Default:
 
 * In ServiceControl version 4.12 and above: `32`
 * In ServiceControl version 4.11 and below: `10`
+#end-if
 
 #### ServiceControl.Audit/EnableFullTextSearchOnBodies
 
-This setting is only applicable starting from version 4.17.0.
+Version: 4.17.0+
 
 Use this setting to configure whether the bodies of processed messages should be full-text indexed for searching.
 
@@ -251,6 +281,10 @@ to access the internal database via [the RavenDB studio interface](https://raven
 
 ### RavenDB 3.5
 
+#if-version [5,)
+INFO: Obsolete since version 5.0.0
+#end-if
+
 For instances running version 4.25 and below or using the old RavenDB 3.5 persistence the ServiceControl Audit instance can be configured to expose the RavenDB studio.
 
 #### ServiceControl.Audit/ExposeRavenDB
@@ -283,6 +317,8 @@ Type: int
 
 Default: 5
 
+#if-version [,5)
+
 #### Raven/Esent/LogsPath
 
 
@@ -293,3 +329,5 @@ The path for the Esent logs on disk.
 Type: string
 
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs`
+
+#end-if

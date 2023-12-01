@@ -1,7 +1,8 @@
 ---
 title: ServiceControl Hardware Considerations
 summary: Hardware recommendations for running ServiceControl instances
-reviewed: 2023-04-04
+component: ServiceControl
+reviewed: 2023-11-30
 ---
 
 This article provides recommendations and performance benchmarks to help select resources for a ServiceControl production environment.
@@ -48,13 +49,26 @@ The embedded RavenDB will use additional RAM to improve indexing performance. Du
 
 In general, [the smaller the messages](https://particular.net/blog/putting-your-events-on-a-diet), the faster ServiceControl will process audit records. For larger message payloads, consider using the [data bus feature](/nservicebus/messaging/databus/).
 
-For audit messages, lower the [`ServiceControl/MaxBodySizeToStore`](/servicecontrol/creating-config-file.md#performance-tuning-servicecontrolmaxbodysizetostore) setting to skip storage of larger audit messages. This setting will only reduce load if non-binary [serialization](/nservicebus/serialization/) is used.
+For audit messages, lower the [`ServiceControl.Audit/MaxBodySizeToStore`](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) setting to skip storage of larger audit messages. This setting will only reduce load if non-binary [serialization](/nservicebus/serialization/) is used.
 
 WARNING: When using ServiceInsight, the message body is not viewable for messages that exceed the `ServiceControl/MaxBodySizeToStore` limit.
 
 ### Separate disks for database and index files
 
-Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath), it's possible to store the embedded database index files on a separate disk. Use the [`Raven/IndexStoragePath`](/servicecontrol/creating-config-file.md#host-settings-ravenindexstoragepath) setting to change the index storage location.
+Besides using a dedicated disk for the ServiceControl [database paths](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath), it's possible to store the embedded database index files on a separate disk.
+
+#if-version [5,)
+
+Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
+
+#end-if
+#if-version [,5)
+
+NOTE: Only applies to instances that use the RavenDB 3.5 storage engine
+
+Use the [`Raven/IndexStoragePath`](/servicecontrol/creating-config-file.md?version=servicecontrol_4#host-settings-ravenindexstoragepath) setting to change the index storage location.
+
+#end-if
 
 ### Azure disk limitations
 

@@ -2,7 +2,7 @@
 title: Zero downtime upgrades
 summary: Instructions on how to upgrade ServiceControl instances with zero downtime
 isUpgradeGuide: true
-reviewed: 2022-10-20
+reviewed: 2023-11-30
 ---
 
 The [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/remotes.md) can be used to upgrade a ServiceControl installation without taking it offline.
@@ -51,6 +51,7 @@ class sca ServiceControlRemote
 Create a new ServiceControl Audit instance, and configure it as a remote instance of the ServiceControl Error instance.
 
 On the audit instance machine:
+
 ```ps1
 $auditInstance = New-ServiceControlAuditInstance `
   -Name Particular.ServiceControl.NewAudit `
@@ -67,6 +68,7 @@ $auditInstance = New-ServiceControlAuditInstance `
 ```
 
 On the ServiceControl Error instance machine:
+
 ```ps1
 Add-ServiceControlRemote `
   -Name "Particular.ServiceControl" `
@@ -107,6 +109,7 @@ Although both ServiceControl Audit instances ingest messages from the audit queu
 Update the audit queue configuration on the original Audit instance to the value `!disable` and restart the instance.
 
 On the original audit instance machine:
+
 ```ps1
 $originalAuditInstanceName = "Particular.ServiceControl.Audit"
 $auditInstance = (Get-ServiceControlAuditInstances | where Name -eq $originalAuditInstanceName)[0]
@@ -165,6 +168,7 @@ As the original audit instance is no longer ingesting messages, it will be empty
 When the `ProcessedMessages` collection is empty, the audit instance can be decomissioned.
 
 On the ServiceControl Error instance machine:
+
 ```ps1
 Remove-ServiceControlRemote `
   -Name "Particular.ServiceControl" ` 
@@ -172,6 +176,7 @@ Remove-ServiceControlRemote `
 ```
 
 On the original audit instance machine:
+
 ```ps1
 Remove-ServiceControlAuditInstance `
   -Name "Particular.ServiceControl.OriginalAudit" `

@@ -1,13 +1,21 @@
 ---
 title: Licensing ServiceControl
-reviewed: 2023-06-11
+reviewed: 2023-11-30
+component: ServiceControl
 ---
 
 There are a few options to add a license to ServiceControl.
 
 ## ServiceControl Management tool
 
-ServiceControl has a license user interface which can be accessed in ServiceControl Management. ServiceControl Management is installed together with ServiceControl and can be found in the Windows Start Menu.
+ServiceControl has a license user interface which can be accessed in ServiceControl Management. 
+
+#if-version [,5)
+ServiceControl Management is installed together with ServiceControl and can be found in the Windows Start Menu.
+#end-if
+#if-version [5,)
+If the ServiceControl Management application was not retained when installing instances, a new version can be downloaded to manage license files.
+#end-if
 
 The designated license file will be imported into the file system at `%ProgramData%\ParticularSoftware\license.xml` so it is available to all instances of ServiceControl regardless of the service account used.
 
@@ -23,9 +31,7 @@ To import a license using PowerShell:
  * Start PowerShell from the start menu, ensure [ServiceControl PowerShell Module](/servicecontrol/powershell.md) is loaded
  * Execute the following cmdlet with the path to the license file.
 
-```ps
-Import-ServiceControlLicense <LicenseFile>
-```
+snippet: ps-importlicense
 
 ## License from file system
 
@@ -35,9 +41,7 @@ Add the `NServiceBus/LicensePath` application setting to the `ServiceControl.exe
 
 Note: The easiest way to find the configuration file is by launching the Service Control Management Utility (SCMU), navigate to the relavant instance and open its deployment paths.
 
-```xml
-<add key="NServiceBus/LicensePath" value="d:\NServiceBus\License\License.xml" />
-```
+snippet: config-licensepath
 
 Note: This is the same setting to configure a license path for an NServiceBus 5 endpoint.
 

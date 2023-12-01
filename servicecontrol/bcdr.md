@@ -11,7 +11,7 @@ Multiple ServiceControl instances can be used to create a business continuity / 
 
 ```mermaid
 graph TD
-EPB[Endpoints] 
+EPB[Endpoints]
 E((error queue))
 EPB --failed messages -->E
 E --ingested by-->SCEA
@@ -34,7 +34,7 @@ SCAA --forwards to-->AB
 AB --ingested by-->SCAB
 ```
 
-This configuration works by combining multiple ServiceControl instances with [audit log forwarding](creating-config-file.md#transport-servicebusauditlogqueue) and [error log forwarding](creating-config-file.md#transport-servicebuserrorlogqueue). Failed and audited messages are forwarded by the primary instances to the backup instances through log forwarding queues.
+This configuration works by combining multiple ServiceControl instances with [audit log forwarding](audit-instances/creating-config-file.md#transport-servicebusauditlogqueue) and [error log forwarding](creating-config-file.md#transport-servicebuserrorlogqueue). Failed and audited messages are forwarded by the primary instances to the backup instances through log forwarding queues.
 
 To install this configuration:
 

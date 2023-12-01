@@ -1,6 +1,7 @@
 ---
 title: Manage ServiceControl instances via PowerShell
-reviewed: 2021-08-23
+reviewed: 2023-11-30
+component: ServiceControl
 ---
 
 NOTE: For general information about using PowerShell with ServiceControl, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
@@ -9,53 +10,13 @@ NOTE: For general information about using PowerShell with ServiceControl, includ
 
 The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module for the management of ServiceControl instances.
 
-| Alias                  | Cmdlet                                                     |
-| ---------------------- | ---------------------------------------------------------- |
-| sc-add                 | New-ServiceControlInstance                                 |
-| sc-addfromunattendfile | New-ServiceControlInstanceFromUnattendedFile (deprecated)  |
-| sc-delete              | Remove-ServiceControlInstance                              |
-| sc-instances           | Get-ServiceControlInstances                                |
-| sc-makeunattendfile    | New-ServiceControlUnattendedFile                           |
-| sc-transportsinfo      | Get-ServiceControlTransportTypes                           |
-| sc-upgrade             | Invoke-ServiceControlInstanceUpgrade                       |
-
-The following cmdlets are available in ServiceControl version 4 and above, for the management of ServiceControl Audit instances.
-
-| Alias                  | Cmdlet                                        |
-| ---------------------- | --------------------------------------------- |
-| audit-add              | New-ServiceControlAuditInstance               |
-| audit-delete           | Remove-ServiceControlAuditInstance            |
-| audit-instances        | Get-ServiceControlAuditInstances              |
-| audit-upgrade          | Invoke-ServiceControlAuditInstanceUpgrade     |
-
-The following cmdlets are available in ServiceControl version 4 and above, for the management of ServiceControl remotes.
-
-| Alias                  | Cmdlet                                        |
-| ---------------------- | --------------------------------------------- |
-| sc-addremote           | Add-ServiceControlRemote                      |
-| sc-deleteremote        | Remove-ServiceControlRemote                   |
-| sc-remotes             | Get-ServiceControlRemotes                     |
-
-The following general cmdlets and aliases are provided by the ServiceControl Management PowerShell module.
-
-| Alias                  | Cmdlet                                        |
-| ---------------------- | --------------------------------------------- |
-| sc-addlicense          | Import-ServiceControlLicense                  |
-| sc-findlicense         | Get-ServiceControlLicense                     |
-| sc-help                | Get-ServiceControlMgmtCommands                |
-| urlacl-add             | Add-UrlAcl                                    |
-| urlacl-delete          | Remove-UrlAcl                                 |
-| urlacl-list            | Get-UrlAcls                                   |
-| port-check             | Test-IfPortIsAvailable                        |
-| user-sid               | Get-SecurityIdentifier                        |
+partial: cmdlets-and-aliases
 
 ### Help
 
 All of the cmdlets have local help which can be accessed via the standard PowerShell help command
 
-```ps
-Get-Help Get-ServiceControlInstances
-```
+snippet: ps-get-help
 
 ### Adding an instance
 
@@ -63,63 +24,13 @@ Use the `New-ServiceControlInstance` cmdlet to create a new ServiceControl insta
 
 There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string, or host name.
 
-#### Version 3
-
 Create a ServiceControl instance:
 
-```ps
-New-ServiceControlInstance `
--Name Test.ServiceControl `
--InstallPath C:\ServiceControl\Bin `
--DBPath C:\ServiceControl\DB `
--LogPath C:\ServiceControl\Logs `
--Port 33334 `
--DatabaseMaintenancePort 33335 `
--Transport MSMQ `
--ErrorQueue error1 `
--AuditQueue audit1 `
--ForwardAuditMessages:$false `
--AuditRetentionPeriod 01:00:00 `
--ErrorRetentionPeriod 10:00:00:00
-```
+snippet: new-servicecontrol-instance
 
-#### Version 4
+Create a ServiceControl Audit instance to manage an audit queue:
 
-Create a ServiceControl instance:
-
-```ps
-$serviceControlInstance = New-ServiceControlInstance `
-  -Name Test.ServiceControl `
-  -InstallPath C:\ServiceControl\Bin `
-  -DBPath C:\ServiceControl\DB `
-  -LogPath C:\ServiceControl\Logs `
-  -Port 33334 `
-  -DatabaseMaintenancePort 33335 `
-  -Transport MSMQ `
-  -ErrorQueue error1 `
-  -ErrorRetentionPeriod 10:00:00:00
-```
-
-Optionally create a ServiceControl Audit instance to manage an audit queue:
-
-```ps
-$auditInstance = New-ServiceControlAuditInstance `
-  -Name Test.ServiceControl.Audit `
-  -InstallPath C:\ServiceControl.Audit\Bin `
-  -DBPath C:\ServiceControl.Audit\DB `
-  -LogPath C:\ServiceControl.Audit\Logs `
-  -Port 44444 `
-  -DatabaseMaintenancePort 44445 `
-  -Transport MSMQ `
-  -AuditQueue audit1 `
-  -AuditRetentionPeriod 10:00:00:00 `
-  -ForwardAuditMessages:$false `
-  -ServiceControlQueueAddress Test.ServiceControl
-
-Add-ServiceControlRemote `
-  -Name $serviceControlInstance.Name `
-  -RemoteInstanceAddress $auditInstance.Url
-```
+snippet: new-audit-instance
 
 NOTE: The ServiceControl Audit instance must be configured with the transport address of a ServiceControl instance.
 
@@ -127,21 +38,11 @@ NOTE: The ServiceControl Audit instance must be configured with the transport ad
 
 Use the `Remove-ServiceControlInstance` cmdlet to remove a ServiceControl instance.
 
-```ps
-Remove-ServiceControlInstance -Name Test.ServiceControl -RemoveDB -RemoveLogs
-```
+snippet: remove-servicecontrol-instance
 
-In version 4 and above, use the `Remove-ServiceControlAuditInstance` cmdlet to remove a ServiceControl Audit instance.
+Use the `Remove-ServiceControlAuditInstance` cmdlet to remove a ServiceControl Audit instance.
 
-```ps
-Remove-ServiceControlRemote `
- -Name Test.ServiceControl `
- -RemoteInstanceAddress http://localhost:44444/api
-
-Remove-AuditInstance `
-  -Name Test.ServiceControl.Audit
-  -RemoveDB -RemoveLogs
-```
+snippet: remove-audit-instance
 
 NOTE: All connected ServiceControl Audit instances should be removed before removing the ServiceControl Error instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance.
 
@@ -149,52 +50,30 @@ NOTE: All connected ServiceControl Audit instances should be removed before remo
 
 The cmdlets in this section are used to upgrade the binaries of an existing instance. If the instance is running when the upgrade starts, it will be shut down during the upgrade and restarted once the upgrade is complete.
 
-WARN: The `sc-upgrade` and `audit-upgrade` commands do not download the latest updates. The required packages must be downloaded to a local folder before running the upgrade command. The update files are typically zip files that must be placed in the ServiceControl Management installation location.
+WARN: The `sc-upgrade` and `audit-upgrade` commands do not download the latest available ServiceControl version. These Powershell commandlets are bound to the version of the Particular.ServiceControl.Management module loaded.
 
 Before the upgrade begins the configuration file of the existing version is examined to determine if all of the required settings are present. If a configuration setting is missing then the cmdlet will throw an error indicating the required additional parameter for the cmdlet.
 
 Use the `Invoke-ServiceControlInstanceUpgrade` cmdlet to upgrade a ServiceControl instance to the latest binaries.
 
-```ps
-Invoke-ServiceControlInstanceUpgrade -Name <Instance To upgrade>
-```
+snippet: upgrade-servicecontrol-instance
 
 Use the following to find a list of all of the ServiceControl instances and their version numbers:
 
-```ps
-Get-ServiceControlInstances | Select Name, Version
-```
+snippet: get-instances
 
-Additional parameters may be required when upgrading an instance to version 4. See the [upgrade guide](/servicecontrol/upgrades/3to4/) for more details.
+Additional parameters may be required when upgrading instances. See the [upgrade guide](/servicecontrol/upgrades/) for the specific version for more details.
 
-```ps
-Invoke-ServiceControlInstanceUpgrade `
-  -Name <Name of Error instance> `
-  -InstallPath <Path for Audit instance binaries> `
-  -DBPath <Path for the Audit instance database> `
-  -LogPath <Path for the Audit instance logs> `
-  -Port <Port for the Audit instance api> `
-  -DatabaseMaintenancePort <Port for the Audit instance embedded database> `
-  [-ServiceAccountPassword <password for service account>] `
-  [-Force]
-```
+Use the `Invoke-AuditInstanceUpgrade` cmdlet to upgrade a ServiceControl audit instance to the latest binaries.
 
-On version 4 and above, use the `Invoke-AuditInstanceUpgrade` cmdlet to upgrade a ServiceControl audit instance to the latest binaries.
-
-```ps
-Invoke-ServiceControlAuditInstanceUpgrade -Name <Instance To upgrade>
-```
+snippet: upgrade-audit-instance
 
 Use the following command to find a list of all of the ServiceControl Audit instances and their version numbers:
 
-```ps
-Get-ServiceControlAuditInstances | Select Name, Version
-```
+snippet: get-audit-instances
 
 ### Licensing
 
 Copies the license file to the correct location on the file system (`%PROGRAMDATA%/ParticularSoftware/license.xml`) so it is available to all instances of ServiceControl installed on the machine.
 
-```ps
-Import-ServiceControlLicense <License-File>
-```
+snippet: ps-importlicense

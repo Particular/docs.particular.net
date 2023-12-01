@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <appSettings>
+
+    <!-- startcode config-licensepath -->
+    <add key="NServiceBus/LicensePath" value="d:\NServiceBus\License\License.xml" />
+    <!-- endcode -->
+
+  </appSettings
+</configuration>
