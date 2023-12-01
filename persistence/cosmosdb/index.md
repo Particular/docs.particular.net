@@ -2,7 +2,7 @@
 title: Azure Cosmos DB Persistence
 summary: How to use NServiceBus with Azure Cosmos DB
 component: CosmosDB
-reviewed: 2020-09-11
+reviewed: 2023-11-30
 related:
 - samples/cosmosdb/transactions
 - samples/cosmosdb/container
