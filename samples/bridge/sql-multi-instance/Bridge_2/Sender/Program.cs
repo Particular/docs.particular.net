@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
+
 using Messages;
+
 using NServiceBus;
 
 public class Program
@@ -15,12 +17,15 @@ public class Program
         #region SenderConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(ConnectionString);
+        var routing = endpointConfiguration.UseTransport(new SqlServerTransport(ConnectionString)
+        {
+            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+        });
+
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableInstallers();
-        
-        transport.Routing().RouteToEndpoint(typeof(ClientOrder), "Samples.SqlServer.MultiInstanceReceiver");
+
+        routing.RouteToEndpoint(typeof(ClientOrder), "Samples.SqlServer.MultiInstanceReceiver");
 
         #endregion
 

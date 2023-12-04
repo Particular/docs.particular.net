@@ -1,10 +1,11 @@
 using System;
 using System.Threading.Tasks;
+
 using NServiceBus;
 #pragma warning disable 618
 
 class Program
-{    
+{
     // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlMultiInstanceReceiver;Integrated Security=True;Max Pool Size=100;Encrypt=false
     const string ConnectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlMultiInstanceReceiver;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
@@ -15,8 +16,11 @@ class Program
         #region ReceiverConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(ConnectionString);
+        endpointConfiguration.UseTransport(new SqlServerTransport(ConnectionString)
+        {
+            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+        });
+
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
