@@ -97,6 +97,7 @@ A ServiceControl installation should be upgraded one major version at a time. Ch
 | 3.x.y | Install [3.8.4](https://github.com/Particular/ServiceControl/releases/tag/3.8.4), and update all instances|
 | 4.x.y | Install [4.33.0](https://github.com/Particular/ServiceControl/releases/tag/4.33.0), and update all instances|
 | 5.x.y | Download the [latest release](https://particular.net/start-servicecontrol-download), and update all instances|
+
 All versions are available at <https://github.com/Particular/ServiceControl/releases>
 
 NOTE: Upgrades might take a while to run. Account for the unavailability of ServiceControl and plan the upgrade during maintenance windows if necessary.
