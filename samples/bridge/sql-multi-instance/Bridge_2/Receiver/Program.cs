@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 
 using NServiceBus;
-#pragma warning disable 618
 
 class Program
 {
