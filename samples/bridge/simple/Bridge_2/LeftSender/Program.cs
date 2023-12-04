@@ -44,6 +44,7 @@ static class Program
             switch (key.Key)
             {
                 case ConsoleKey.D1:
+                case ConsoleKey.NumPad1:
                     var placeOrder = new PlaceOrder
                     {
                         OrderId = orderId
@@ -53,6 +54,7 @@ static class Program
                     Console.WriteLine($"Send PlaceOrder Command with Id {orderId}");
                     break;
                 case ConsoleKey.D2:
+                case ConsoleKey.NumPad2:
                     var orderReceived = new OrderReceived
                     {
                         OrderId = orderId
