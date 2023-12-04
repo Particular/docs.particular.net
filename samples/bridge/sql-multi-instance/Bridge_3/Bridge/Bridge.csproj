@@ -1,4 +1,4 @@
-
+﻿
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,7 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Helpers\Helpers.csproj" />
-    <PackageReference Include="NServiceBus.MessagingBridge" Version="2.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="7.*" />
+    <PackageReference Include="NServiceBus.MessagingBridge" Version="3.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="8.0.0-alpha.1" />
   </ItemGroup>
 </Project>
