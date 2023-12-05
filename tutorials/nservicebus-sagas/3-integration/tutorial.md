@@ -51,7 +51,7 @@ NOTE: For a more in-depth explanation of the basic saga concepts, check out [NSe
 
 The `OrderId` is what makes the saga unique. We need to show the saga how to identify the unique **correlation property** `OrderId` in the incoming `ShipOrder` message, and how to relate it to the `OrderId` property in the saga data.
 
-To do that, implement the saga base class's `ConfigureHowToFindSaga` class as shown here, or let the compiler generate the method and fill it in:
+To do that, implement the saga base class `ConfigureHowToFindSaga` method as shown here, or let the compiler generate the method and fill it in:
 
 snippet: Creation-ConfigureHowToFindSaga
 
