@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>10.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="5.*" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+</Project>
