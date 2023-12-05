@@ -1,6 +1,6 @@
 ---
 title: Cosmos DB
-reviewed: 2020-09-21
+reviewed: 2023-12-05
 ---
 
-These samples show how to persist data with Cosmos DB.
+The following samples show how to persist data with Cosmos DB.
