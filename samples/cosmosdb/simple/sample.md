@@ -1,7 +1,7 @@
 ---
 title: Simple Cosmos DB Persistence Usage
 summary: Using Cosmos DB Persistence to store sagas
-reviewed: 2020-09-22
+reviewed: 2023-12-05
 component: CosmosDB
 related:
  - nservicebus/sagas
@@ -38,7 +38,7 @@ Configure the endpoint to use Cosmos DB Persistence.
 
 snippet: CosmosDBConfig
 
-In the non-transactional mode the saga id is used as a partition key and thus the container needs to use `/id` as the partition key path.
+In the non-transactional mode, the saga id is used as a partition key, and thus, the container needs to use `/id` as the partition key path.
 
 ## Order saga data
 
