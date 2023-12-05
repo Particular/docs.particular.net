@@ -19,7 +19,7 @@ class Program
 
         #endregion
 
-        endpointConfiguration.UseSerialization<XmlSerializer>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 

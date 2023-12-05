@@ -15,7 +15,7 @@ class Program
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
 
-        endpointConfiguration.UseSerialization<XmlSerializer>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 
