@@ -32,15 +32,3 @@ The SQS transport configuration options that have not changed have been moved to
 The option to serialize the `TimeToBeReceived` and `ReplyToAddress` message headers in the message envelope for compatibility with endpoints using version 1 of the transport is no longer available.
 
 Make sure that all V1 endpoints are upgraded to a supported version and remove the `transport.EnableV1CompatibilityMode();` configuration option.
-
-## S3 configuration
-
-The S3 usage for large messages is configured via the `S3` property of the transport. By default, the value is `null` which means S3 usage for sending large messages is disabled.
-
-snippet: 6to7-S3
-
-### Encryption
-
-Message payload encryption is configured via the `Encryption` property of the S3 settings object. By default, the value is `null` which means the messages are not encrypted.
-
-snippet: 6to7-encryption
