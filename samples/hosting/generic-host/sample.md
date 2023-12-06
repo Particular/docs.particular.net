@@ -48,11 +48,6 @@ The snippet above shows how the host builder runs by default as a Windows Servic
 
 snippet: generic-host-console-lifetime
 
-
-snippet: generic-host-logging
-
-To enable integration with Microsoft.Extensions.Logging, the [`NServiceBus.MicrosoftLogging.Hosting`](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting/) community package is used and configured in combination with the standard logging.
-
 Next, the builder configures NServiceBus using the [`NServiceBus.Extensions.Hosting`](/nservicebus/hosting/extensions-hosting.md) package, including the [critical error](/nservicebus/hosting/critical-errors.md) action that will shut down the application or service in case of a critical error.
 
 snippet: generic-host-nservicebus
