@@ -5,9 +5,31 @@ using NServiceBus;
 
 class Upgrade
 {
-    void Clients(EndpointConfiguration endpointConfiguration)
+    void UsageNew(EndpointConfiguration endpointConfiguration)
     {
-        #region 5to6-clients
+        #region 5to6-usage-new
+
+        var transport = new SqsTransport();
+
+        endpointConfiguration.UseTransport(transport);
+
+        #endregion
+    }
+
+    void UsageOld(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable CS0618 // Type or member is obsolete
+        #region 5to6-usage-old
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+
+        #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
+    }
+
+    void ClientsNew(EndpointConfiguration endpointConfiguration)
+    {
+        #region 5to6-clients-new
 
         var transport = new SqsTransport(
             new AmazonSQSClient(),
@@ -16,6 +38,20 @@ class Upgrade
         endpointConfiguration.UseTransport(transport);
 
         #endregion
+    }
+
+    void ClientsOld(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable CS0618 // Type or member is obsolete
+        #region 5to6-clients-old
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+
+        transport.ClientFactory(() => new AmazonSQSClient());
+        transport.ClientFactory(() => new AmazonSimpleNotificationServiceClient());
+
+        #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     void S3BucketForLargeMessagesNew(EndpointConfiguration endpointConfiguration)
@@ -42,7 +78,8 @@ class Upgrade
 
         var transport = endpointConfiguration.UseTransport<SqsTransport>();
         var s3Configuration = transport.S3("nsb-sqs-messages", "my/sample/path");
-        s3Configuration.ClientFactory(() => new AmazonS3Client(new AmazonS3Config()));
+
+        s3Configuration.ClientFactory(() => new AmazonS3Client());
 
         #endregion
 #pragma warning restore CS0618 // Type or member is obsolete

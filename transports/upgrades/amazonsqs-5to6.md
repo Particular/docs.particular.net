@@ -19,24 +19,25 @@ To use the SQS transport for NServiceBus, create a new `SqsTransport` instance a
 
 Instead of:
 
-```csharp
-var transport = endpointConfiguration.UseTransport<SqsTransport>();
-```
+snippet: 5to6-usage-old
 
 Use:
 
-```csharp
-var transport = new SqsTransport();
-endpointConfiguration.UseTransport(transport);
-```
+snippet: 5to6-usage-new
 
 include: v7-usetransport-shim-api
 
 ## SDK clients
 
-In order to pass customized instances of the SQS and SNS SDK clients to the transport use the corresponding `SqsTransport` constructor overload.
+Customizing instances of the SQS and SNS SDK clients is now done via the `SqsTransport` constructor.
 
-snippet: 5to6-clients
+Instead of:
+
+snippet: 5to6-clients-old
+
+Use:
+
+snippet: 5to6-clients-new
 
 ## S3 configuration
 
@@ -44,11 +45,13 @@ Enabling S3 for handling large messages is now configured via the `S3` property 
 
 NOTE: By default, the value is `null` which means S3 usage for sending large messages is disabled.
 
-snippet: 5to6-S3-new
-
-Old syntax:
+Instead of:
 
 snippet: 5to6-S3-old
+
+Use:
+
+snippet: 5to6-S3-new
 
 ### Encryption
 
@@ -56,8 +59,10 @@ Message payload encryption is now configured via the `Encryption` property of th
 
 NOTE: By default, the value is `null` which means the messages are not encrypted.
 
-snippet: 5to6-encryption-new
-
-Old syntax:
+Instead of:
 
 snippet: 5to6-encryption-old
+
+Use:
+
+snippet: 5to6-encryption-new
