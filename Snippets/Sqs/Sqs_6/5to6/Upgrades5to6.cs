@@ -5,12 +5,34 @@ using NServiceBus;
 
 class Upgrade
 {
-    void Clients(EndpointConfiguration endpointConfiguration)
+    void UsageNew(EndpointConfiguration endpointConfiguration)
     {
-        #region 5to6-clients
+        #region 5to6-usage-new
+
+        var transport = new SqsTransport();
+
+        endpointConfiguration.UseTransport(transport);
+
+        #endregion
+    }
+
+    void UsageOld(EndpointConfiguration endpointConfiguration)
+    {
+#pragma warning disable CS0618 // Type or member is obsolete
+        #region 5to6-usage-old
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+
+        #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
+    }
+
+    void ClientsNew(EndpointConfiguration endpointConfiguration)
+    {
+        #region 5to6-clients-new
 
         var transport = new SqsTransport(
-            new AmazonSQSClient(), 
+            new AmazonSQSClient(),
             new AmazonSimpleNotificationServiceClient());
 
         endpointConfiguration.UseTransport(transport);
@@ -18,9 +40,23 @@ class Upgrade
         #endregion
     }
 
-    void S3BucketForLargeMessages(EndpointConfiguration endpointConfiguration)
+    void ClientsOld(EndpointConfiguration endpointConfiguration)
     {
-        #region 5to6-S3
+#pragma warning disable CS0618 // Type or member is obsolete
+        #region 5to6-clients-old
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+
+        transport.ClientFactory(() => new AmazonSQSClient());
+        transport.ClientFactory(() => new AmazonSimpleNotificationServiceClient());
+
+        #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
+    }
+
+    void S3BucketForLargeMessagesNew(EndpointConfiguration endpointConfiguration)
+    {
+        #region 5to6-S3-new
 
         var transport = new SqsTransport
         {
@@ -35,9 +71,23 @@ class Upgrade
         #endregion
     }
 
-    void S3ServerSideEncryption(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
+    void S3BucketForLargeMessagesOld(EndpointConfiguration endpointConfiguration)
     {
-        #region 5to6-encryption
+#pragma warning disable CS0618 // Type or member is obsolete
+        #region 5to6-S3-old
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        var s3Configuration = transport.S3("nsb-sqs-messages", "my/sample/path");
+
+        s3Configuration.ClientFactory(() => new AmazonS3Client());
+
+        #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
+    }
+
+    void S3ServerSideEncryptionNew(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
+    {
+        #region 5to6-encryption-new
 
         var transport = new SqsTransport
         {
@@ -50,5 +100,19 @@ class Upgrade
         endpointConfiguration.UseTransport(transport);
 
         #endregion
+    }
+
+    void S3ServerSideEncryptionOld(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
+    {
+#pragma warning disable CS0618 // Type or member is obsolete
+        #region 5to6-encryption-old
+
+        var transport = endpointConfiguration.UseTransport<SqsTransport>();
+        var s3Configuration = transport.S3(bucketName, keyPrefix);
+
+        s3Configuration.ServerSideEncryption(ServerSideEncryptionMethod.AES256, keyManagementServiceKeyId: "MyKeyId");
+
+        #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 }
