@@ -33,7 +33,7 @@ The transport used on premises is still up to the task, and there is no reason t
 
 ### Case study: Atomic update-and-publish
 
-NOTE: The [TransactionalSession](/nservicebus/transactional-session) component is specifically designed to solve the atomic update-and-publish scenario. It works with all supported transport and persistence packages.
+NOTE: The [Transactional Session](/nservicebus/transactional-session) component is specifically designed to solve the atomic update-and-publish scenario. It works with all supported transport and persistence packages.
 
 The business logic of a complex system is often split between a front-end web application and several backend services. That frontend application then needs to store or update some data (e.g., an order) in a database atomically by publishing a message.
 
