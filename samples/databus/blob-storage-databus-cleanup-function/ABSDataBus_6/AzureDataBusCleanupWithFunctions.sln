@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenderAndReceiver", "SenderAndReceiver\SenderAndReceiver.csproj", "{B656A5F2-29C7-43EE-86D9-FEC497962600}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBusBlobCleanupFunctions", "DataBusBlobCleanupFunctions\DataBusBlobCleanupFunctions.csproj", "{E86C364B-0AA4-4915-854D-63500ED90009}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B656A5F2-29C7-43EE-86D9-FEC497962600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B656A5F2-29C7-43EE-86D9-FEC497962600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E86C364B-0AA4-4915-854D-63500ED90009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E86C364B-0AA4-4915-854D-63500ED90009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5306B81-00A3-4AEA-8E05-AB387F2542AC}
+	EndGlobalSection
+EndGlobal
