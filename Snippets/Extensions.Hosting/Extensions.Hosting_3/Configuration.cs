@@ -8,15 +8,17 @@ class Configuration
     {
         #region extensions-host-configuration
 
-        var host = Host.CreateDefaultBuilder()
-            .UseNServiceBus(hostBuilderContext =>
-            {
-                var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
-                // configure endpoint here
-                return endpointConfiguration;
-            })
-            .Build();
+        var hostBuilder = Host.CreateApplicationBuilder();
 
+        hostBuilder.UseNServiceBus(() =>
+        {
+            var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
+            // configure endpoint here
+            return endpointConfiguration;
+        });
+
+        var host = hostBuilder.Build();
+        
         await host.RunAsync();
 
         #endregion
