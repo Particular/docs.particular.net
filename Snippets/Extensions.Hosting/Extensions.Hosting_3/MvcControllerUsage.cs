@@ -5,15 +5,8 @@ using NServiceBus;
 public class MvcControllerUsage
 {
     #region mvc-controller-usage
-    public class MvcController : Controller
+    public class MvcController(IMessageSession messageSession) : Controller
     {
-        IMessageSession messageSession;
-
-        public MvcController(IMessageSession messageSession)
-        {
-            this.messageSession = messageSession;
-        }
-
         public ViewResult Index()
         {
             return View();

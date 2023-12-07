@@ -9,20 +9,17 @@ public class MinimalApi
 
         var builder = WebApplication.CreateBuilder();
 
-        builder.Host.UseNServiceBus(context =>
-        {
-            var endpointConfiguration = new EndpointConfiguration("MyWebAppEndpoint");
+        var endpointConfiguration = new EndpointConfiguration("MyWebAppEndpoint");
 
-            // configure the endpoint
+        // configure the endpoint
 
-            return endpointConfiguration;
-        });
+        builder.UseNServiceBus(endpointConfiguration);
 
-        var host = builder.Build();
+        var app = builder.Build();
 
         // further ASP.NET configuration
 
-        host.Run();
+        app.Run();
 
         #endregion
     }

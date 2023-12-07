@@ -10,15 +10,14 @@ class Configuration
 
         var hostBuilder = Host.CreateApplicationBuilder();
 
-        hostBuilder.UseNServiceBus(() =>
-        {
-            var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
-            // configure endpoint here
-            return endpointConfiguration;
-        });
+        var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
+
+        // configure endpoint here
+
+        hostBuilder.UseNServiceBus(endpointConfiguration);
 
         var host = hostBuilder.Build();
-        
+
         await host.RunAsync();
 
         #endregion

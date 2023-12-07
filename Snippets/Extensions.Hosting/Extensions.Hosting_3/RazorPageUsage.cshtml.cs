@@ -6,15 +6,8 @@ using NServiceBus;
 namespace Core_8
 {
     #region razor-page-usage
-    public class RazorPage : PageModel
+    public class RazorPage(IMessageSession messageSession) : PageModel
     {
-        IMessageSession messageSession;
-
-        public RazorPage(IMessageSession messageSession)
-        {
-            this.messageSession = messageSession;
-        }
-
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
