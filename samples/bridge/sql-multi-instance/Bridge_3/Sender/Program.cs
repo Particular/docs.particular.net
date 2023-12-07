@@ -17,10 +17,7 @@ public class Program
         #region SenderConfiguration
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
-        var routing = endpointConfiguration.UseTransport(new SqlServerTransport(ConnectionString)
-        {
-            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
-        });
+        var routing = endpointConfiguration.UseTransport(new SqlServerTransport(ConnectionString));
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableInstallers();
