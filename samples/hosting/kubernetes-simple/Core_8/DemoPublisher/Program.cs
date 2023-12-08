@@ -1,6 +1,8 @@
 ﻿using NServiceBus;
+using Shared;
+//using System.Threading;
 
-var config = new EndpointConfiguration("KubernetesDemo.Subscriber");
+var config = new EndpointConfiguration("KubernetesDemo.Publisher");
 config.UseSerialization<SystemJsonSerializer>();
 
 config.EnableInstallers();
@@ -11,13 +13,16 @@ var transport = new LearningTransport
 };
 config.UseTransport(transport);
 
-var persistence = config.UsePersistence<LearningPersistence>();
-persistence.SagaStorageDirectory("sagas");
-
 config.Recoverability().Immediate(r => r.NumberOfRetries(0)).Delayed(d => d.NumberOfRetries(0));
 
 var endpoint = await Endpoint.Start(config);
-Console.WriteLine("Subscriber endpoint started");
+Console.WriteLine("Publishing endpoint started");
+
+var messageId = Guid.NewGuid().ToString();
+
+Console.WriteLine($"Publishing event {messageId}");
+await endpoint.Publish(new DemoEvent() { Id = messageId });
+
 
 while (true)
 {

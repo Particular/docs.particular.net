@@ -14,22 +14,20 @@ spec:
     spec:
       containers:
         - name: publisher-app
-          image: localhost:32000/publisher:latest
+          image: joasiapalac/webapi:latest
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: "/app/transport"
-              name: learning-transport
-            - mountPath: "/app/sagas"
-              name: learning-persistence
-          securityContext:
-            runAsUser: 0
+            - mountPath: /app/sagas
+              name: saga-volume
+            - mountPath: /app/transport
+              name: transport-volume
       volumes:
-      - name: learning-transport
-        persistentVolumeClaim:
-          claimName: learning-transport-pvc
-      - name: learning-persistence
-        persistentVolumeClaim:
-          claimName: learning-persistence-pvc
+        - name: saga-volume
+          persistentVolumeClaim:
+            claimName: host-saga-pvc
+        - name: transport-volume
+          persistentVolumeClaim:
+            claimName: host-transport-pvc
 ---
 apiVersion: v1
 kind: Service
@@ -40,13 +38,10 @@ spec:
     app: publisher
   type: LoadBalancer
   ports:
-    - protocol: TCP
-      name: port80
-      port: 8080
+    - protocol: TCP    
+      name: port80  
+      port: 80
       targetPort: 8080
-    - protocol: TCP
-      name: port81
-      port: 8081
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -64,14 +59,21 @@ spec:
     spec:
       containers:
         - name: subscriber-app
-          image: localhost:32000/subscriber:latest
+          image: joasiapalac/subscriber:latest
           imagePullPolicy: Always
           volumeMounts:
-            - mountPath: "/app/transport"
-              name: learning-transport
-          securityContext:
-            runAsUser: 0              
+            - mountPath: /app/transport
+              name: transport-volume          
       volumes:
-      - name: learning-transport
-        persistentVolumeClaim:
-          claimName: learning-transport-pvc
+        - name: transport-volume
+          persistentVolumeClaim:
+            claimName: host-transport-pvc
+
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: subscriber-service
+#spec:
+#  selector:
+#    app: subscriber  

@@ -1,26 +1,26 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: learning-persistence-pvc
+  name: host-saga-pvc
 spec:
-  volumeName: learning-persistence-pv
+  volumeName: host-saga-pv
   accessModes:
     - ReadWriteOnce
   storageClassName: standard
   resources:
-    requests:
+    requests: 
       storage: 1Gi
-
+      
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: learning-transport-pvc
+  name: host-transport-pvc
 spec:
-  volumeName: learning-transport-pv
+  volumeName: host-transport-pv
   accessModes:
     - ReadWriteOnce
   storageClassName: standard
   resources:
-    requests:
+    requests: 
       storage: 1Gi

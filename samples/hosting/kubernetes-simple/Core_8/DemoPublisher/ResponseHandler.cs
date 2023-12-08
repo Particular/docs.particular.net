@@ -1,8 +1,6 @@
 ﻿using NServiceBus;
 using Shared;
 
-namespace DemoWebApi;
-
 public class ResponseHandler : IHandleMessages<DemoResponse>
 {
     public Task Handle(DemoResponse message, IMessageHandlerContext context)
