@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
 using NServiceBus;
 
 public class GenericHost
@@ -8,24 +7,20 @@ public class GenericHost
     {
         #region asp-net-generic-host-endpoint
 
-        var builder = Host.CreateDefaultBuilder()
-            .UseNServiceBus(context =>
-            {
-                var endpointConfiguration = new EndpointConfiguration("MyWebAppEndpoint");
+        var builder = WebApplication.CreateBuilder();
 
-                // configure the endpoint
+        var endpointConfiguration = new EndpointConfiguration("MyWebAppEndpoint");
 
-                return endpointConfiguration;
-            })
-            .ConfigureWebHostDefaults(webHost => webHost.UseStartup<Startup>())
-            .Build();
+        // configure the endpoint
 
-        builder.Run();
+        builder.UseNServiceBus(endpointConfiguration);
+
+        var app = builder.Build();
+
+        // Further ASP.NET configuration
+
+        app.Run();
 
         #endregion
-    }
-
-    class Startup
-    {
     }
 }

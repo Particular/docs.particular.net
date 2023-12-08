@@ -6,15 +6,8 @@ public class WebApiControllerUsage
 {
     #region web-api-usage
     [ApiController]
-    class WebApiController : ControllerBase
+    class WebApiController(IMessageSession messageSession) : ControllerBase
     {
-        IMessageSession messageSession;
-
-        public WebApiController(IMessageSession messageSession)
-        {
-            this.messageSession = messageSession;
-        }
-
         [HttpGet]
         public async Task<ActionResult> Get()
         {
