@@ -6,6 +6,7 @@ reviewed: 2023-12-08
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
+ - 8
 ---
 
 ## EnableMigrationMode has moved
