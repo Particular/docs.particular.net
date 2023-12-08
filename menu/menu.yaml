@@ -1062,6 +1062,10 @@
         Title: Legacy Version 6.2.4 to 6.2.5
       - Url: persistence/upgrades/asp-saga-deduplication
         Title: Legacy Version 6.2.3 to 6.2.4
+    - Title: Cosmos DB
+      Articles:
+      - Url: persistence/upgrades/cosmosdb-1to2
+        Title: Version 1 to 2
     - Title: NHibernate
       Articles:
       - Url: persistence/upgrades/nhibernate-8to9
