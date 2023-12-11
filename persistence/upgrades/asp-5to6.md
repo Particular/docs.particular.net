@@ -1,7 +1,7 @@
 ---
-title: Azure Storage Persistence Upgrade Version 6 to 7
-summary: Instructions on how to migrate from Azure Table Persistence version 6 to 7
-reviewed: 2023-12-08
+title: Azure Storage Persistence Upgrade Version 5 to 6
+summary: Instructions on how to migrate from Azure Table Persistence version 5 to 6
+reviewed: 2023-11-01
 component: ASP
 related:
 - persistence/azure-table
