@@ -21,30 +21,19 @@ From the kubernetes-simple\Core_8 folder:
 - `docker build -f DemoPublisher/Dockerfile -t [docker_hub_id]/webapi .`
 - `docker push [docker_hub_id]/webapi:latest`
 
-### Create persistent volumes and persistent volume claims
+### User Minikube to setup Kubernetes
+
+#### Create persistent volumes and persistent volume claims
 
 - `kubectl apply -f=host-pv.yaml`
 - `kubectl apply -f=host-pvc.yaml`
 
-### Create pods and services
+#### Create pods and services
 
 From the kubernetes-simple\Core_8 folder:
 
 - `kubectl apply -f=deployment.yaml`
 - if need to delete use `kubectl delete -f=deployment.yaml`
-
-### Start the publisher service
-
-- `minikube service publisher-service`
-
-A screen will appear showing the exposed service ports.
-A browser window will open.
-
-### Test application
-
-- Add `/publish` to the service address and click enter
-
-Should see a _message published_ response
 
 ### To view logs
 

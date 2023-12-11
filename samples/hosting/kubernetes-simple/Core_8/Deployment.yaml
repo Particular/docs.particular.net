@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: publisher-app
-          image: joasiapalac/webapi:latest
+          image: joasiapalac/publisher:latest
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /app/sagas
@@ -28,20 +28,6 @@ spec:
         - name: transport-volume
           persistentVolumeClaim:
             claimName: host-transport-pvc
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: publisher-service
-spec:
-  selector:
-    app: publisher
-  type: LoadBalancer
-  ports:
-    - protocol: TCP    
-      name: port80  
-      port: 80
-      targetPort: 8080
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -68,12 +54,3 @@ spec:
         - name: transport-volume
           persistentVolumeClaim:
             claimName: host-transport-pvc
-
-#---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  name: subscriber-service
-#spec:
-#  selector:
-#    app: subscriber  
