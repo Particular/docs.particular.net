@@ -1,41 +1,43 @@
-﻿using NServiceBus;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using NServiceBus;
 
-var config = new EndpointConfiguration("KubernetesDemo.Subscriber");
-config.UseSerialization<SystemJsonSerializer>();
-
-config.EnableInstallers();
-
-var transport = new LearningTransport
+internal class Program
 {
-    StorageDirectory = "transport"
-};
-config.UseTransport(transport);
-
-var persistence = config.UsePersistence<LearningPersistence>();
-persistence.SagaStorageDirectory("sagas");
-
-config.Recoverability().Immediate(r => r.NumberOfRetries(0)).Delayed(d => d.NumberOfRetries(0));
-
-var endpoint = await Endpoint.Start(config);
-Console.WriteLine("Subscriber endpoint started");
-
-while (true)
-{
-    if (Console.IsInputRedirected)
+    private static void Main(string[] args)
     {
-        await Task.Delay(10000);
-        continue;
+        Console.Title = "Demo Subscriber";
+        CreateHostBuilder(args).Build().Run();
     }
 
-    Console.WriteLine("Press [Esc] to exit");
-    var key = Console.ReadKey();
-    if (key.KeyChar == (int)ConsoleKey.Escape)
+    static IHostBuilder CreateHostBuilder(string[] args)
     {
-        break;
+        return Host.CreateDefaultBuilder(args)
+            .UseConsoleLifetime()
+            .ConfigureLogging(logging =>
+            {
+                logging.AddConsole();
+            })
+            .UseNServiceBus(ctx =>
+            {
+                var endpointConfiguration = new EndpointConfiguration("KubernetesDemo.Subscriber");
+                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+                endpointConfiguration.EnableInstallers();
+
+                var transport = new LearningTransport
+                {
+                    StorageDirectory = @"transport"
+                };
+                endpointConfiguration.UseTransport(transport);
+
+                var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+                persistence.SagaStorageDirectory("sagas");
+
+                endpointConfiguration.Recoverability().Immediate(r => r.NumberOfRetries(0)).Delayed(d => d.NumberOfRetries(0));                
+
+                return endpointConfiguration;
+            });
     }
-
-
-    Console.WriteLine();
 }
-
-await endpoint.Stop();

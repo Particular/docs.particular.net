@@ -1,46 +1,41 @@
-﻿using NServiceBus;
-using Shared;
-//using System.Threading;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using NServiceBus;
 
-var config = new EndpointConfiguration("KubernetesDemo.Publisher");
-config.UseSerialization<SystemJsonSerializer>();
-
-config.EnableInstallers();
-
-var transport = new LearningTransport
+internal class Program
 {
-    StorageDirectory = "transport"
-};
-config.UseTransport(transport);
-
-config.Recoverability().Immediate(r => r.NumberOfRetries(0)).Delayed(d => d.NumberOfRetries(0));
-
-var endpoint = await Endpoint.Start(config);
-Console.WriteLine("Publishing endpoint started");
-
-var messageId = Guid.NewGuid().ToString();
-
-Console.WriteLine($"Publishing event {messageId}");
-await endpoint.Publish(new DemoEvent() { Id = messageId });
-
-
-while (true)
-{
-    if (Console.IsInputRedirected)
+    private static void Main(string[] args)
     {
-        await Task.Delay(10000);
-        continue;
+        Console.Title = "Demo Publisher";
+        CreateHostBuilder(args).Build().Run();
     }
 
-    Console.WriteLine("Press [Esc] to exit");
-    var key = Console.ReadKey();
-    if (key.KeyChar == (int)ConsoleKey.Escape)
+    static IHostBuilder CreateHostBuilder(string[] args)
     {
-        break;
+        return Host.CreateDefaultBuilder(args)
+            .UseConsoleLifetime()
+            .ConfigureLogging(logging =>
+            {
+                logging.AddConsole();
+            })
+            .UseNServiceBus(ctx =>
+            {
+                var endpointConfiguration = new EndpointConfiguration("KubernetesDemo.Publisher");
+                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+                endpointConfiguration.EnableInstallers();
+
+                var transport = new LearningTransport
+                {
+                    StorageDirectory = @"transport"
+                };
+                endpointConfiguration.UseTransport(transport);
+                
+
+                endpointConfiguration.Recoverability().Immediate(r => r.NumberOfRetries(0)).Delayed(d => d.NumberOfRetries(0));
+
+                return endpointConfiguration;
+            }).ConfigureServices(services => { services.AddHostedService<PublisherService>(); });
     }
-
-
-    Console.WriteLine();
 }
-
-await endpoint.Stop();
