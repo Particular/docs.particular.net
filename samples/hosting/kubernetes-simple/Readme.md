@@ -1,6 +1,10 @@
 # Simple Kubernetes Sample
 
-## Steps
+## Steps to run using .Net 
+
+TODO
+
+## Steps to run using Dockerfile & Minikube
 
 ### Log into dockerhub
 
@@ -18,8 +22,8 @@ From the kubernetes-simple\Core_8 folder:
 
 From the kubernetes-simple\Core_8 folder:
 
-- `docker build -f DemoPublisher/Dockerfile -t [docker_hub_id]/webapi .`
-- `docker push [docker_hub_id]/webapi:latest`
+- `docker build -f DemoPublisher/Dockerfile -t [docker_hub_id]/publisher .`
+- `docker push [docker_hub_id]/publisher:latest`
 
 ### User Minikube to setup Kubernetes
 
@@ -43,6 +47,7 @@ From the kubernetes-simple\Core_8 folder:
   - `kubectl logs --since=1h [pod_id]`
   
 From the publisher pod should see:
+
 _Publishing event [message_id]
 Received response [message_id]_
 
