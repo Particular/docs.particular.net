@@ -13,7 +13,7 @@ upgradeGuideCoreVersions:
 
 ## Topic name configuration
 
-The API to configure the [topic name use for publish and subscribe](/transports/azure-service-bus/configuration.md#entity-creation-topology) has been changed, instead of:
+The API to configure the [topic name used for publish and subscribe](/transports/azure-service-bus/configuration.md#entity-creation-topology) has been changed, instead of:
 
 snippet: 3to4-asbs-topic-name-old
 
