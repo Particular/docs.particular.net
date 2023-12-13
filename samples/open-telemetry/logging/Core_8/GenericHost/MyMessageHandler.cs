@@ -15,7 +15,7 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
     {
         #region log-statement
 
-        logger.LogInformation($"Received message #{message.Number}");
+        logger.LogInformation("Received message #{Number}", message.Number);
 
         #endregion
 
