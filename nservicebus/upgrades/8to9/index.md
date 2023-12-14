@@ -31,7 +31,6 @@ Starting with NServiceBus version 8, it is mandatory to provide a serializer to 
 
 ## TODO
 
-- https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1211 (TBD remove)
 - https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1238 (TBD remove)
 - https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1460 (TBD remove)
 - https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1574 (TBD remove)
@@ -45,7 +44,15 @@ Starting with NServiceBus version 8, it is mandatory to provide a serializer to 
 
 Proposed action: document needed code changes
 
-## Service collection extensions for backwards compatibility removed
+## DI Changes
+
+### .Container gone from the endpoint config
+
+https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1212
+
+Proposed action: document needed code changes
+
+### Service collection extensions for backwards compatibility removed
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL1099
 
