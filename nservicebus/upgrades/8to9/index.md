@@ -9,7 +9,7 @@ upgradeGuideCoreVersions:
  - 9
 ---
 
-## .NET Framwork no longer supported
+## .NET Framework no longer supported
 
 TBD
 
