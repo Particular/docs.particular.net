@@ -9,9 +9,21 @@ upgradeGuideCoreVersions:
  - 9
 ---
 
+## .NET Framwork no longer supported
+
+TBD
+
 ## SendOptions changes
 
-In NServiceBus version 8 and earlier, the indication that a message was marked for [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) was provided by `SendOptions.RequiredImmediateDispatch()`. In version 9, this method has been renamed to `SendOptions.IsImmediateDispatchSet()`.
+https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR487 (TBD remove)
+
+The indication that a message was marked for [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) has been renamed, instead of:
+
+snippet: core-8to9-immediate-dispatch-old
+
+Use:
+
+snippet: core-8to9-immediate-dispatch-new
 
 ## DataBus interface changes
 
@@ -19,7 +31,6 @@ Starting with NServiceBus version 8, it is mandatory to provide a serializer to 
 
 ## TODO
 
-- https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR487 (TBD remove)
 - https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL739 (TBD remove)
 - https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR606 (TBD remove)
 - https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR854 (TBD remove)
@@ -32,6 +43,7 @@ Starting with NServiceBus version 8, it is mandatory to provide a serializer to 
 - https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR2070 (TBD remove)
 - https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR2356 (TBD remove)
 
+
 ## Message interfaces moved to a separate package
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL520 (TBD remove)
@@ -42,7 +54,7 @@ Proposed action: Write something
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR250 (TBD remove)
 
-Propose action: Don't mention this since the only use case was already deprecated in v8, see https://docs.particular.net/nservicebus/upgrades/7to8/#error-notification-events and we haven't found any downstreams using this API (there could be end users extending this though but that feels very unlikely?)
+Propose action: Don't mention this since the only use case was already deprecated in v8, see /nservicebus/upgrades/7to8/#error-notification-events and no downstream is using this API (there could be end users extending this though but that feels very unlikely?)
 
 ## Databus property is no longer marked as serializable
 
