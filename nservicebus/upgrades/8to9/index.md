@@ -74,15 +74,19 @@ Use:
 
 snippet: core-8to9-audit-transportadresses-features-new
 
-## DI Changes
-
-### .Container gone from the FeatureConfigurationContext
+## Dependency registration access in features renamed
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1212
 
-Proposed action: document needed code changes
+Access to the container registrations has been renamed, instead of:
 
-### Service collection extensions for backwards compatibility removed
+snippet: core-8to9-di-features-old
+
+Use:
+
+snippet: core-8to9-di-features-new
+
+## Service collection extensions for backwards compatibility removed
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL1099
 
