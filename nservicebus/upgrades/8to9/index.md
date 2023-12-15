@@ -61,20 +61,18 @@ Use:
 
 snippet: core-8to9-audit-metadata-new
 
-## MessageDrivenSubscriptions feature deprecated
-
-https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1238 (TBD remove)
-
-Use .DisablePublishing instead
-
-Proposed action: document needed code changes
-
-## Access to transport addresses
+## Access to transport addresses via settings has been removed
 
 - https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR885 (TBD remove)
 - https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR887 (TBD remove)
 
-Proposed action: document needed code changes
+Transport addresses are now accessed via the `FeatureConfigurationContext`, instead of:
+
+snippet: core-8to9-audit-transportadresses-features-old
+
+Use:
+
+snippet: core-8to9-audit-transportadresses-features-new
 
 ## DI Changes
 
@@ -89,6 +87,14 @@ Proposed action: document needed code changes
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL1099
 
 Proposed action: document needed code changes and link to /upgrades/7to8/dependency-injection#registercomponents-changes
+
+## MessageDrivenSubscriptions feature deprecated
+
+https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1238 (TBD remove)
+
+Use .DisablePublishing instead
+
+Proposed action: document needed code changes
 
 ## Restricted type argument for .UsePersistence<T>
 
