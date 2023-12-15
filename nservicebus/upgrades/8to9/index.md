@@ -41,9 +41,13 @@ snippet: core-8to9-uow-new
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR2070 (TBD remove)
 
-`MachineNameAction => HostInfoSettings.UsingHostName`
+[Overriding machine name](/nservicebus/hosting/override-machine-name.md) via NServiceBus.Support.RuntimeEnvironment has been deprecated, instead of:
 
-Proposed action: document needed code changes
+snippet: core-8to9-machinename-old
+
+Use:
+
+snippet: core-8to9-machinename-new
 
 ## API to set Audit metadata has changed
 
