@@ -29,7 +29,13 @@ snippet: core-8to9-immediate-dispatch-new
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR2356 (TBD remove)
 
-Proposed action: document needed code changes
+The `IManageUnitsOfWork` API has been deprecated in favour of [using a pipeline behavior to implement custom units of work](/nservicebus/pipeline/unit-of-work.md#implementing-custom-unit-of-work), instead of:
+
+snippet: core-8to9-uow-old
+
+Use:
+
+snippet: core-8to9-uow-new
 
 ## API to override machine name has changed
 
