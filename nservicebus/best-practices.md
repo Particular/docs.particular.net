@@ -44,7 +44,8 @@ Meanwhile, a custom abstraction makes the NServiceBus documentation less effecti
 
 :x: **AVOID using asynchronous messages for synchronous communication, including queries**
 
-It is best to embrace the asynchronous nature of NServiceBus messages, and not use an asynchronous message (or a pair of messages in a request/reply scenario) for synchronous communication, especially when the scenario expects an answer to be available _right now_. This is especially important with queries. Prefer to query a datastore  using async IO operations for user interfaces.
+It is best to embrace the asynchronous nature of NServiceBus messages, and not use an asynchronous message (or a pair of messages in a request/reply scenario) for synchronous communication, especially when the scenario expects an answer to be available _right now_. This is especially important with queries: [messaging should not be used for queries](https://web.archive.org/web/20211205190919/http://andreasohlund.net/2010/04/22/messaging-shouldnt-be-used-for-queries/).
+
 
 When a previously-defined user interface demands an immediate response, such as inserting a new item into a grid and then immediately refreshing the grid to include the new item, the [client-side callbacks package](/nservicebus/messaging/callbacks.md) can be used, but this should be considered a crutch until a more [task- or command-focused UI](https://cqrs.wordpress.com/documents/task-based-ui/) can replace it.
 
