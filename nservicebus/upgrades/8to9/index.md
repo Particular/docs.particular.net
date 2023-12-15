@@ -49,13 +49,17 @@ Use:
 
 snippet: core-8to9-machinename-new
 
-## API to set Audit metadata has changed
+## API to set additional Audit metadata has changed
 
  https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1574 (TBD remove)
 
-`AddAuditData("x", "y") => .AuditMetadata["x"] = "y"`
+The API to [set additional audit metadata](/nservicebus/operations/auditing.md#additional-audit-information) has been changed, instead of:
 
-Proposed action: document needed code changes
+snippet: core-8to9-audit-metadata-old
+
+Use:
+
+snippet: core-8to9-audit-metadata-new
 
 ## MessageDrivenSubscriptions feature deprecated
 
