@@ -25,10 +25,6 @@ Use:
 
 snippet: core-8to9-immediate-dispatch-new
 
-## DataBus interface changes
-
-Starting with NServiceBus version 8, it is mandatory to provide a serializer to the data bus configuration API. The `BinaryFormatterDataBusSerializer` has been removed and `SystemJsonDataBusSerializer` is the default option that's built-in.
-
 ## IManageUnitsOfWork has been deprecated
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR2356 (TBD remove)

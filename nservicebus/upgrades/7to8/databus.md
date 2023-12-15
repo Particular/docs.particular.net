@@ -1,7 +1,7 @@
 ---
 title: Upgrading the data bus from version 7 to 8
 summary: Instructions on how to upgrade the data bus from NServiceBus version 7 to version 8.
-reviewed: 2022-09-23
+reviewed: 2023-12-15
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -9,7 +9,15 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-The BinaryFormatter serializer that was used internally in NServiceBus version 7 is moved to a separate package. The BinaryFormatter is unsafe by nature and could cause security vulnerabilities and as a result is being phased out by Microsoft. The new data bus configuration API now requires a serializer.
+The BinaryFormatter serializer that was used internally in NServiceBus version 7 is moved to a separate package. The BinaryFormatter is unsafe by nature and could cause security vulnerabilities and as a result is being phased out by Microsoft.
+
+## Seralizer configuration made mandatory
+
+The new data bus configuration API now requires a serializer to be explicitly configured, instead of:
+
+snippet: 7to8-DataBusUsage-UpgradeGuide-old
+
+Use:
 
 snippet: 7to8-DataBusUsage-UpgradeGuide
 
