@@ -21,6 +21,8 @@ spec:
               name: saga-volume
             - mountPath: /app/transport
               name: transport-volume
+          securityContext:
+            runAsUser: 0
           env:
             - name: REGISTRY
               value: "localhost:32000"
@@ -53,6 +55,8 @@ spec:
           volumeMounts:
             - mountPath: /app/transport
               name: transport-volume
+          securityContext:
+            runAsUser: 0
           env:
             - name: REGISTRY
               value: "localhost:32000"
