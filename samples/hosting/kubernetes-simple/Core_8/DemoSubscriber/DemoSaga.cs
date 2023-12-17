@@ -3,7 +3,9 @@ using Shared;
 
 namespace DemoSubscriber;
 
-public class DemoSaga : Saga<SagaData>, IAmStartedByMessages<DemoEvent>, IHandleTimeouts<SagaTimeoutMessage>
+public class DemoSaga : Saga<DemoSaga.SagaData>,
+    IAmStartedByMessages<DemoEvent>,
+    IHandleTimeouts<SagaTimeoutMessage>
 {
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
@@ -19,15 +21,13 @@ public class DemoSaga : Saga<SagaData>, IAmStartedByMessages<DemoEvent>, IHandle
     public async Task Timeout(SagaTimeoutMessage state, IMessageHandlerContext context)
     {
         Console.WriteLine($"Replying to request {Data.SagaId} to {Data.Originator}");
-        await ReplyToOriginator(context, new DemoResponse() { Id = Data.SagaId });
+        await ReplyToOriginator(context, new DemoResponse { Id = Data.SagaId });
+    }
+
+    public class SagaData : ContainSagaData
+    {
+        public string SagaId { get; set; }
     }
 }
 
-public class SagaData : ContainSagaData
-{
-    public string SagaId { get; set; }
-}
-
-public class SagaTimeoutMessage : IMessage
-{
-}
+public class SagaTimeoutMessage : IMessage;

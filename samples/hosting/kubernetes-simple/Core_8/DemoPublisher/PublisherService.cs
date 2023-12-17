@@ -1,28 +1,24 @@
-﻿using Microsoft.Extensions.Hosting;
-using NServiceBus;
+﻿using NServiceBus;
 using Shared;
 
-class PublisherService : BackgroundService
+class PublisherService(IMessageSession session) : BackgroundService
 {
-    private readonly IMessageSession messageSession;
-    
-    public PublisherService(IMessageSession messageSession)
-    {
-        this.messageSession = messageSession;
-    }
-
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
-        try
+        while (!cancellationToken.IsCancellationRequested)
         {
-            var messageId = Guid.NewGuid().ToString();
+            try
+            {
+                var messageId = Guid.NewGuid().ToString();
 
-            Console.WriteLine($"Publishing event {messageId}");
-            await messageSession.Publish(new DemoEvent() { Id = messageId });
-        }
-        catch (OperationCanceledException)
-        {
-            // graceful shutdown
+                Console.WriteLine($"Publishing event {messageId}");
+                await session.Publish(new DemoEvent() { Id = messageId }, cancellationToken: cancellationToken);
+                await Task.Delay(1000, cancellationToken);
+            }
+            catch (OperationCanceledException)
+            {
+                // graceful shutdown
+            }
         }
     }
 }
