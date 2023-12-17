@@ -13,7 +13,7 @@ class PublisherService(IMessageSession session) : BackgroundService
 
                 Console.WriteLine($"Publishing event {messageId}");
                 await session.Publish(new DemoEvent() { Id = messageId }, cancellationToken: cancellationToken);
-                await Task.Delay(1000, cancellationToken);
+                await Task.Delay(6000, cancellationToken);
             }
             catch (OperationCanceledException)
             {
