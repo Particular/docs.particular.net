@@ -1,6 +1,6 @@
 # Simple Kubernetes Sample
 
-## Steps to run using .Net 
+## Steps to run using .Net
 
 TODO
 
@@ -34,6 +34,10 @@ From the kubernetes-simple\Core_8 folder:
 
 #### Create pods and services
 
+Set the registry to the docker_hub_id:
+
+`export REGISTRY=docker_hub_id`
+
 From the kubernetes-simple\Core_8 folder:
 
 - `kubectl apply -f=deployment.yaml`
@@ -45,7 +49,7 @@ From the kubernetes-simple\Core_8 folder:
   - `kubectl get pods`
 - get logs for a pod:
   - `kubectl logs --since=1h [pod_id]`
-  
+
 From the publisher pod should see:
 
 _Publishing event [message_id]
@@ -53,5 +57,5 @@ Received response [message_id]_
 
 From the subscriber pod should see:
 
-_Received message [message_id]. Replying in 5 seconds_  
+_Received message [message_id]. Replying in 5 seconds_
 _Replying to request [message_id] to KubernetesDemo.Publisher_

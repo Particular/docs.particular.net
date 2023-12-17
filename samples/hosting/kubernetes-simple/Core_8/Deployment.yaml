@@ -14,13 +14,16 @@ spec:
     spec:
       containers:
         - name: publisher-app
-          image: joasiapalac/publisher:latest
+          image: $(REGISTRY)/publisher:latest
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /app/sagas
               name: saga-volume
             - mountPath: /app/transport
               name: transport-volume
+          env:
+            - name: REGISTRY
+              value: "localhost:32000"
       volumes:
         - name: saga-volume
           persistentVolumeClaim:
@@ -45,11 +48,14 @@ spec:
     spec:
       containers:
         - name: subscriber-app
-          image: joasiapalac/subscriber:latest
+          image: $(REGISTRY)/subscriber:latest
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /app/transport
-              name: transport-volume          
+              name: transport-volume
+          env:
+            - name: REGISTRY
+              value: "localhost:32000"
       volumes:
         - name: transport-volume
           persistentVolumeClaim:
