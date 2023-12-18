@@ -11,7 +11,10 @@ upgradeGuideCoreVersions:
 
 ## .NET Framework no longer supported
 
-TBD
+- .NET8 is the only target
+- Means that the MSMQ transport is not supported
+  - We support MSMQ until TBD
+  - The bridge will support msmq and can be used to migrate endpoints
 
 ## Message interfaces moved to a separate package
 
