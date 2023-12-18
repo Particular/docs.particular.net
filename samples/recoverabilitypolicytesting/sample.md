@@ -1,7 +1,7 @@
 ---
 title: Unit Testing a custom recoverability policy
 summary: Writing unit tests for custom recoverability policies
-reviewed: 2020-10-09
+reviewed: 2022-12-18
 component: Core
 related:
 - nservicebus/recoverability
@@ -13,11 +13,17 @@ This sample demonstrates how to test custom recoverability policies. The sample 
 
 ## Creating the policy
 
-Any recoverability policy with NServiceBus requires a `RecoverabilityConfig` which contains information about immediate and delayed retries and about what happens when all retries have been exhausted. This information is configured with an `EndpointConfiguration` and provided by NServiceBus to the recoverability policy. This behavior can be imitated and added to a helper method:
+The syntax of a custom recoverability policy is following:
+
+```c#
+RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
+```
+
+This means that an instance of `RecoverabilityConfig` is necessary in order to test the custom policy. This class contains information about immediate and delayed retries and about what happens when all retries have been exhausted. Normally this information is configured with an `EndpointConfiguration` and provided by NServiceBus to the recoverability policy. In the test context it needs to be build based on the test parameters. This can be done using the following helper method:
 
 snippet: create-policy
 
-Executing the policy requires an error context, which provides information about the error that occurred and how many retries have already been executed. The sample also includes a helper method that creates the error context.
+Executing the policy requires an error context, which provides information about the error that occurred and how many retries have already been executed. This sample also includes a helper method that creates the error context.
 
 snippet: create-error-context
 
