@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: publisher-app
-          image: $(REGISTRY)/publisher:latest
+          image: $REGISTRY/publisher:latest
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /app/sagas
@@ -23,9 +23,6 @@ spec:
               name: transport-volume
           securityContext:
             runAsUser: 0
-          env:
-            - name: REGISTRY
-              value: "localhost:32000"
       volumes:
         - name: saga-volume
           persistentVolumeClaim:
@@ -50,16 +47,13 @@ spec:
     spec:
       containers:
         - name: subscriber-app
-          image: $(REGISTRY)/subscriber:latest
+          image: $REGISTRY/subscriber:latest
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /app/transport
               name: transport-volume
           securityContext:
             runAsUser: 0
-          env:
-            - name: REGISTRY
-              value: "localhost:32000"
       volumes:
         - name: transport-volume
           persistentVolumeClaim:
