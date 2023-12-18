@@ -14,11 +14,10 @@ jobs:
         uses: actions/setup-dotnet@v4.0.0
         with:
           dotnet-version: 8.0.x
-          dotnet-quality: 'preview'
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
       - name: Check docstool version for cache
         run: |
-           curl --connect-timeout 5 --max-time 15 --silent --show-error https://f.feedz.io/particular-software/packages/nuget/v3/packages/particular.docstool/index.json >> docstool-versions.json
+           curl --connect-timeout 5 --max-time 15 --silent --show-error https://s3.amazonaws.com/particular.downloads/Particular.DocsTool/version.json >> docstool-version.json
       - name: Cache docstool
         id: cache-docstool
         uses: actions/cache@v3.3.2
@@ -26,7 +25,7 @@ jobs:
           path: |
              ~/.dotnet/tools/docstool
              ~/.dotnet/tools/.store/particular.docstool
-          key: docstool-${{ hashFiles('docstool-versions.json') }}
+          key: docstool-${{ hashFiles('docstool-version.json') }}
       - name: Install docstool
         if: steps.cache-docstool.outputs.cache-hit != 'true'
         run: dotnet tool install Particular.DocsTool --global --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
@@ -42,7 +41,6 @@ jobs:
         uses: actions/setup-dotnet@v4.0.0
         with:
           dotnet-version: 8.0.x
-          dotnet-quality: 'preview'
       - name: Run integrity tests
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release
   build-projects:
@@ -55,7 +53,6 @@ jobs:
         uses: actions/setup-dotnet@v4.0.0
         with:
           dotnet-version: 8.0.x
-          dotnet-quality: 'preview'
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1.3.1
       - name: Build affected samples & snippets
