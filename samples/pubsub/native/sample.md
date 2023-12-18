@@ -1,7 +1,7 @@
 ---
 title: Native Publish/Subscribe
 summary: Publish/Subscribe with multicast-enabled transports.
-reviewed: 2020-09-28
+reviewed: 2022-12-18
 component: Core
 redirects:
  - nservicebus/publish-subscribe-sample
@@ -23,7 +23,7 @@ The `Shared` project contains the definition of the messages that are sent betwe
 
 ## Creating and publishing messages
 
-As the name implies, the `Publisher` project is a publisher of event messages. It uses the NServiceBus API to publish the `OrderReceived` event every time the `1` key is pressed. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using the `Publish` API.
+As the name implies, the `Publisher` project is a publisher of event messages. It uses the NServiceBus API to publish the `OrderReceived` event every time <kbd>1</kbd> key is pressed. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using the `Publish` API.
 
 snippet: PublishLoop
 
@@ -39,7 +39,7 @@ To receive messages from the publisher, the subscribers must subscribe to the me
 
 When running the sample, notice the two open console applications. Bring the `Publisher` endpoint to the foreground.
 
-Click the `1` key repeatedly in the `Publisher` process console window and notice how the messages appear in the `Subscriber` console window.
+Press the <kbd>1</kbd> key repeatedly in the `Publisher` process console window and notice how the messages appear in the `Subscriber` console window.
 
 ## Message Flow
 
@@ -47,7 +47,7 @@ In multicast-enabled transports, the broker handles the subscription mechanism, 
 
 ## Fault-tolerant messaging
 
-Shut down `Subscriber` by closing its console window. Return to the `Publisher` process and publish a few more messages by pressing the `1` key several more times. Notice how the publishing process does not change and there are no errors even though the subscriber process is no longer running.
+Shut down `Subscriber` by closing its console window. Return to the `Publisher` process and publish a few more messages by pressing the <kbd>1</kbd> key several more times. Notice how the publishing process does not change and there are no errors even though the subscriber process is no longer running.
 
 In Visual Studio, right-click the project of the closed subscriber. Restart it by right-clicking the `Subscriber` project and selecting `Debug` followed by `Start new instance`.
 
