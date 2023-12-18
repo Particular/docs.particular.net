@@ -16,12 +16,6 @@ upgradeGuideCoreVersions:
   - We support MSMQ until TBD
   - The bridge will support msmq and can be used to migrate endpoints
 
-## Message interfaces moved to a separate package
-
-https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL520 (TBD remove)
-
-Proposed action: Nothing to write from an upgrade guide perspective
-
 ## SendOptions changes
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR487 (TBD remove)
@@ -107,13 +101,19 @@ Use:
 
 snippet: core-8to9-di-shims-new
 
+## Message interfaces moved to a separate package
+
+https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL520 (TBD remove)
+
+Proposed action: Nothing to write from an upgrade guide perspective
+
 ## MessageDrivenSubscriptions feature deprecated
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1238 (TBD remove)
 
 Use .DisablePublishing instead
 
-Proposed action: document needed code changes
+Proposed action: Already documented in /nservicebus/upgrades/7to8/#disabling-subscriptions is more needed?
 
 ## Restricted type argument for .UsePersistence<T>
 
