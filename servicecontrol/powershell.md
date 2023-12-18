@@ -43,7 +43,7 @@ INFO: The ServiceControl installer currently includes a legacy version of the Po
 ```
 Method not found: 'System.Security.AccessControl.DirectorySecurity System.IO.DirectoryInfo.GetAccessControl(System.Security.AccessControl.AccessControlSections)'
 ```
-This indicates that the PowerShell module is being executed using a newer version of PowerShell than it supports. To resolve this issue, make sure to use the [PowerShell module](/servicecontrol/powershell.md#servicecontrol-powershell-module) hosted on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management/).
+This indicates that the PowerShell module is being executed using a newer version of PowerShell than it supports. To resolve this issue, make sure to use the PowerShell module hosted on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management/).
 
 ## Powershell Commands
 
