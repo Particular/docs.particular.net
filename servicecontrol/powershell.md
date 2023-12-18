@@ -4,6 +4,8 @@ reviewed: 2023-11-30
 component: ServiceControl
 ---
 
+The `Particular.ServiceControl.Management` module can be installed from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management), and is used to add, remove, update and delete instances of ServiceControl.
+
 ## Prerequisites
 
 The ServiceControl PowerShell module has the following prerequisites:
@@ -15,10 +17,6 @@ The ServiceControl PowerShell module has the following prerequisites:
 - PowerShell Core 7.2 or later, or
 - Windows PowerShell 5.1
 #end-if
-
-## ServiceControl PowerShell module
-
-The `Particular.ServiceControl.Management` module can be installed from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management), and is used to add, remove, update and delete instances of ServiceControl.
 
 ## Installing and using the PowerShell module
 
