@@ -17,7 +17,7 @@ TBD
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL520 (TBD remove)
 
-Proposed action: Write something
+Proposed action: Nothing to write from an upgrade guide perspective
 
 ## SendOptions changes
 
