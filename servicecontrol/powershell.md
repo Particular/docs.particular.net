@@ -4,9 +4,19 @@ reviewed: 2023-11-30
 component: ServiceControl
 ---
 
-## ServiceControl PowerShell module
-
 The `Particular.ServiceControl.Management` module can be installed from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management), and is used to add, remove, update and delete instances of ServiceControl.
+
+## Prerequisites
+
+The ServiceControl PowerShell module has the following prerequisites:
+
+#if-version [5,)
+- PowerShell (Core) 7.2 or later
+#end-if
+#if-version [,5)
+- PowerShell Core 7.2 or later, or
+- Windows PowerShell 5.1
+#end-if
 
 ## Installing and using the PowerShell module
 
@@ -33,7 +43,7 @@ INFO: The ServiceControl installer currently includes a legacy version of the Po
 ```
 Method not found: 'System.Security.AccessControl.DirectorySecurity System.IO.DirectoryInfo.GetAccessControl(System.Security.AccessControl.AccessControlSections)'
 ```
-This indicates that the PowerShell module is being executed using a newer version of PowerShell than it supports. To resolve this issue, make sure to use the [PowerShell module](/servicecontrol/powershell.md#servicecontrol-powershell-module) hosted on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management/).
+This indicates that the PowerShell module is being executed using a newer version of PowerShell than it supports. To resolve this issue, make sure to use the PowerShell module hosted on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management/).
 
 ## Powershell Commands
 
