@@ -9,9 +9,9 @@ This sample demonstrates a simple deployment of NServiceBus endpoints inside Kub
 
 ## Prerequisites
 
-In order to run the sample it is necessary to have Kubernetes locally installed by either using Minikube or Microk8s. For the version with the local registry Microk8s has been proven to work in the most straightforward way on Linux.
+In order to run the sample it is necessary to have Kubernetes locally installed by either using [Minikube](https://minikube.sigs.k8s.io/docs/) or [Microk8s](https://microk8s.io). For the version with the local registry Microk8s has been proven to work in the most straightforward way on Linux.
 
-When running on Windows with Docker the built-in Kubernetes cluster support in combination with a public docker registry works best.
+When running on [Windows with Docker the built-in Kubernetes cluster support](https://docs.docker.com/desktop/kubernetes/) in combination with a public docker registry works best.
 
 ## Steps to run using .Net built-in container support & Microk8s
 
