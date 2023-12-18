@@ -1,7 +1,7 @@
 ---
 title: Community extensions and integrations
 summary: curated list of community-developed extensions and integrations for the NServiceBus ecosystem.
-reviewed: 2020-10-12
+reviewed: 2022-12-18
 redirects:
  - nservicebus/mailer
  - samples/mailer
