@@ -104,9 +104,11 @@ class sca,sca2 ServiceControlRemote
 
 Although both ServiceControl Audit instances ingest messages from the audit queue, each message only ends up in a single instance. The ServiceControl Error instance queries both transparently.
 
-### Disable audit queue management on the old instance
+### Disable audit queue ingestion on the old instance
 
-Update the audit queue configuration on the original Audit instance to the value `!disable` and restart the instance.
+Update the audit queue configuration on the original Audit instance and set the [`ServiceControl/IngestAuditMessages`](servicecontrol/audit-instances/creating-config-file#host-settings-servicecontrolingestauditmessages) to `false` and restart the instance.
+
+NOTE: For versions 4.32.0 of ServiceControl and older use `!disable` as the [`AuditQueue`](servicecontrol/audit-instances/creating-config-file#transport-servicebusauditqueue) name to disable the audit message ingestion. 
 
 On the original audit instance machine:
 
@@ -120,8 +122,8 @@ Stop-Service $originalAuditInstanceName
 # Update configuration
 $configPath = Join-Path $auditInstance.InstallPath "ServiceControl.Audit.exe.config"
 [xml]$configDoc = Get-Content $configPath
-$element = $configDoc.SelectSingleNode("//configuration/appSettings/add[@key='ServiceBus/AuditQueue']")
-$element.value = "!disable"
+$element = $configDoc.SelectSingleNode("//configuration/appSettings/add[@key='ServiceControl/IngestAuditMessages']")
+$element.value = "false"
 $configDoc.Save($configPath)
 
 # Start instance
