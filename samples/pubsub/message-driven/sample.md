@@ -1,7 +1,7 @@
 ---
 title: Message-driven Publish/Subscribe
 summary: Persistence based Publish/Subscribe for unicast-only transports.
-reviewed: 2020-09-28
+reviewed: 2022-12-18
 component: Core
 related:
  - nservicebus/messaging/publish-subscribe
@@ -19,7 +19,7 @@ The `Shared` project contains the definition of the messages that are sent betwe
 
 ## Publishing the event
 
-As the name implies, the `Publisher` project is a publisher of event messages. It uses the NServiceBus API to publish the `OrderReceived` event every time the <kbd>1</kbd> key is pressed. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using the `Publish` API.
+As the name implies, the `Publisher` project is a publisher of event messages. It uses the NServiceBus API to publish the `OrderReceived` event every time the <kbd>1</kbd> key is pressed. The created message is [published](/nservicebus/messaging/publish-subscribe/) using the `Publish` API.
 
 snippet: PublishLoop
 
