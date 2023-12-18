@@ -15,6 +15,8 @@ Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requ
 * ServiceControl Management is no longer distributed as an installable package. Starting with version `5.0.0`, ServiceControl Management is now distributed as a portable application that is used to create, update, and delete ServiceControl instances. This allows using different versions of ServiceControl Management side-by-side, without the need to uninstall or reinstall different versions.
 * The [ServiceControl PowerShell module](/servicecontrol/powershell.md) is no longer installed with ServiceControl. Instead, the PowerShell module can be [installed from the PowerShell Gallery](/servicecontrol/powershell.md#installing-and-using-the-powershell-module).
 * The [ServiceControl PowerShell module](/servicecontrol/powershell.md) requires PowerShell 7.2 or greater to run.
+* PowerShell: The `Transport` parameter no longer accepts the DisplayName descriptions but only the Name code. See [PowerShell Transport argument](#powershell-transport-argument)
+
 * ServiceControl instances using **Azure Service Bus - Endpoint-oriented topology (Legacy)** as the message transport cannot be upgraded to ServiceControl version 5. Systems using this deprecated configuration must first use the upgrade steps documented in [Azure Service Bus Transport (Legacy) Upgrade Version 9 to 9.1](/transports/upgrades/asb-9to9.1.md). After this process is complete, a ServiceControl 4.x instance can be switched to the supported **Azure Service Bus** transport, and then an upgrade to ServiceControl 5 can occur.
 * `!disable` is no longer supported as an error and/or audit queue names. Instead, dedicated settings i.e. [`ServiceControl/IngestErrorMessages`](/servicecontrol/creating-config-file.md#transport-servicecontrolingesterrormessages) and [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrolingestauditmessages) should be used to control the message ingestion process. These settings are useful for upgrade scenarios, such as the one that will be described later in this article.
 * The setting `IndexStoragePath` is no longer supported.  Use [symbolic links (soft links) to map any storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
@@ -29,6 +31,26 @@ As a result, not all ServiceControl instances can be automatically upgraded from
 * Primary instances **but the process does not include data migration** i.e. all the data stored are deleted in the process. [The manual migration process](#new-data-format) describes how to migrate the data.
 * Audit instances that use `RavenDB 5` storage engine (instances created with version 4.26 or later).
 * All Monitoring instances.
+
+## PowerShell Transport argument
+
+The value passed for the `-Transport` argument changes. This value must now be a code which is shorter in length and does not have spaces. Use the following table to easily identify which code to use.
+
+| Code | Description
+|--|--|
+|`AmazonSQS`|AmazonSQS|
+|`AzureServiceBus.EndpointOriented`|Azure Service Bus - Endpoint-oriented topology (Legacy)|
+|`AzureServiceBus.Forwarding`|Azure Service Bus - Forwarding topology (Legacy)|
+|`LearningTransport`|Learning Transport (Non-Production)|
+|`MSMQ`|MSMQ|
+|`NetStandardAzureServiceBus`|Azure Service Bus|
+|`RabbitMQ.ClassicConventionalRouting`|RabbitMQ - Conventional routing topology (classic queues)|
+|`RabbitMQ.ClassicDirectRouting`|RabbitMQ - Direct routing topology (classic queues)|
+|`RabbitMQ.ConventionalRouting`|RabbitMQ - Conventional routing topology|
+|`RabbitMQ.DirectRouting`|RabbitMQ - Direct routing topology (Old)|
+|`RabbitMQ.QuorumConventionalRouting`|RabbitMQ - Conventional routing topology (quorum queues)|
+|`RabbitMQ.QuorumDirectRouting`|RabbitMQ - Direct routing topology (quorum queues)|
+|`SQLServer`|SQL Server|
 
 ## Planning
 
