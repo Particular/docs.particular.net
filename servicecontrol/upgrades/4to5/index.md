@@ -34,23 +34,9 @@ As a result, not all ServiceControl instances can be automatically upgraded from
 
 ## PowerShell Transport argument
 
-The value passed for the `-Transport` argument changes. This value must now be a code which is shorter in length and does not have spaces. Use the following table to easily identify which code to use.
+The value passed for the `-Transport` argument has changed in ServiceControl version 5. This value must now be a code which is shorter in length and does not have spaces. 
 
-| Code | Description
-|--|--|
-|`AmazonSQS`|AmazonSQS|
-|`AzureServiceBus.EndpointOriented`|Azure Service Bus - Endpoint-oriented topology (Legacy)|
-|`AzureServiceBus.Forwarding`|Azure Service Bus - Forwarding topology (Legacy)|
-|`LearningTransport`|Learning Transport (Non-Production)|
-|`MSMQ`|MSMQ|
-|`NetStandardAzureServiceBus`|Azure Service Bus|
-|`RabbitMQ.ClassicConventionalRouting`|RabbitMQ - Conventional routing topology (classic queues)|
-|`RabbitMQ.ClassicDirectRouting`|RabbitMQ - Direct routing topology (classic queues)|
-|`RabbitMQ.ConventionalRouting`|RabbitMQ - Conventional routing topology|
-|`RabbitMQ.DirectRouting`|RabbitMQ - Direct routing topology (Old)|
-|`RabbitMQ.QuorumConventionalRouting`|RabbitMQ - Conventional routing topology (quorum queues)|
-|`RabbitMQ.QuorumDirectRouting`|RabbitMQ - Direct routing topology (quorum queues)|
-|`SQLServer`|SQL Server|
+To find the information for the transports supported by any particular release of the PowerShell plugin, use the cmdlet `Get-ServiceControlTransportTypes`.
 
 ## Planning
 
