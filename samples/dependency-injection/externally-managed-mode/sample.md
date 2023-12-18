@@ -2,7 +2,7 @@
 title: Externally Managed Mode
 summary: A sample that uses NServiceBus's externally managed mode feature to configure a DI container.
 component: Core
-reviewed: 2020-09-22
+reviewed: 2023-12-18
 related:
  - nservicebus/dependency-injection
 ---
