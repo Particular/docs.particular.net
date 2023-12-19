@@ -158,7 +158,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.2.0) | 2023-04-05     | -                 | -                                 |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.1.0) | ~~2023-01-17~~ | ~~2023-07-05~~    | ~~Superseded by 8.2.x~~           |
-| [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/7.2.0) | ~~2023-01-17~~ | ~~2023-11-17~~    | ~~Superseded by 8.0.x~~           |
+| [7.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/7.2.0) | 2023-01-17     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Storage.MongoDB](/nuget/NServiceBus.Storage.MongoDB)
 
