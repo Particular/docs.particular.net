@@ -6,14 +6,12 @@ using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Shared
 {
     #region DatabusPropertyConverterFactory
     public class DatabusPropertyConverterFactory : JsonConverterFactory
     {
-
         public override bool CanConvert(Type typeToConvert)
         {
             if (!typeToConvert.IsGenericType)
