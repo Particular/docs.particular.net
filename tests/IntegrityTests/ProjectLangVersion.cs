@@ -91,7 +91,7 @@ namespace IntegrityTests
                         }
 
                         var firstLangVersionElement = doc.XPathSelectElement("/Project/PropertyGroup/LangVersion");
-                        var langVersion = firstLangVersionElement?.Value;
+                        var langVersion = firstLangVersionElement?.Value ?? "Unknown";
 
                         if (!langVersion.Equals(solutionLangVersionString, System.StringComparison.Ordinal))
                         {
