@@ -159,7 +159,7 @@ class auditA,auditB ServiceControlRemote
 
 In this deployment, each region has a full ServiceControl installation with a primary Error instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse.
 
-A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting with the value [`ServiceControl/IngestErrorMessages`](servicecontrol/creating-config-file#host-settings-servicecontrolingesterrormessages) option to `false`.
+A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting with the value [`ServiceControl/IngestErrorMessages`](/servicecontrol/creating-config-file.md#host-settings-servicecontrolingesterrormessages) option to `false`.
 
 ### Zero downtime upgrades
 
