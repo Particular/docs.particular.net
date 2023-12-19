@@ -15,7 +15,7 @@ When running on [Windows with Docker, the built-in Kubernetes cluster support](h
 
 ## Steps to run using .Net built-in container support & Microk8s
 
-### Setting up Microk8s
+### Setup up Microk8s
 
 1. [Install Microk8s](https://microk8s.io/docs/getting-started)
 1. [Enable the built-in registry](https://microk8s.io/docs/registry-built-in)
@@ -49,7 +49,7 @@ Alternatively replace the variable directly in the file.
 
 ## Steps to run using Dockerfile & Minikube
 
-### Setting up Docker Hub public registry and Minikube
+### Setup Docker Hub public registry and Minikube
 
 - Setup [Docker Desktop](https://docs.docker.com/desktop/)
 - Create [public Docker Hub repositories](https://docs.docker.com/docker-hub/quickstart/) for the publisher and subscriber endpoints
