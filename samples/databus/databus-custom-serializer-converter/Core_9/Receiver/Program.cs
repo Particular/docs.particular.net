@@ -12,7 +12,6 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
         dataBus.BasePath(@"..\..\..\..\storage");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
 
         //CustomJsonSerializerOptions
         var jsonSerializerOptions = new JsonSerializerOptions();

@@ -18,7 +18,6 @@ class Program
 
         #endregion
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         #region CustomJsonSerializerOptions
         var jsonSerializerOptions = new JsonSerializerOptions();
         jsonSerializerOptions.Converters.Add(new DatabusPropertyConverterFactory());
