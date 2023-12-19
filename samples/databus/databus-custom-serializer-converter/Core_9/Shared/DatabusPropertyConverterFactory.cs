@@ -23,7 +23,6 @@ namespace Shared
             if (typeToConvert.GetGenericTypeDefinition() != typeof(DataBusProperty<>))
             {
                 return false;
-
             }
             return true;
         }
