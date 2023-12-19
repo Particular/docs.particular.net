@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publisher-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publisher
+  template:
+    metadata:
+      labels:
+        app: publisher
+    spec:
+      containers:
+        - name: publisher-app
+          image: $REGISTRY/publisher:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /app/sagas
+              name: saga-volume
+            - mountPath: /app/transport
+              name: transport-volume
+          securityContext:
+            runAsUser: 0
+      volumes:
+        - name: saga-volume
+          persistentVolumeClaim:
+            claimName: host-saga-pvc
+        - name: transport-volume
+          persistentVolumeClaim:
+            claimName: host-transport-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscriber-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscriber
+  template:
+    metadata:
+      labels:
+        app: subscriber
+    spec:
+      containers:
+        - name: subscriber-app
+          image: $REGISTRY/subscriber:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /app/transport
+              name: transport-volume
+          securityContext:
+            runAsUser: 0
+      volumes:
+        - name: transport-volume
+          persistentVolumeClaim:
+            claimName: host-transport-pvc

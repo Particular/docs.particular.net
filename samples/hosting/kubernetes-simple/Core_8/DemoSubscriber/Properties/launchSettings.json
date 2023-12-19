@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DemoSubscriber": {
+      "commandName": "Project",
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
