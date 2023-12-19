@@ -2,9 +2,6 @@
   "profiles": {
     "DemoSubscriber": {
       "commandName": "Project",
-      "environmentVariables": {
-        "SqlConnectionString": "Server=localhost;Database=nhtest;User Id=SA;Password=LOCALHOSTlocalhost123;Encrypt=False;"
-      }
     },
     "Docker": {
       "commandName": "Docker"
