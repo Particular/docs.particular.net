@@ -35,6 +35,7 @@ The tool will prompt for the username and password to access the RabbitMQ manage
 | Option | Description |
 |-|-|
 | <nobr>`--apiUrl`</nobr> | **Required** – The URL for the RabbitMQ management site. Generally this will be `http://<rabbitmq-hostname>:15672` |
+| <nobr>`--vhost`</nobr> | The [RabbitMQ virtual host](https://www.rabbitmq.com/vhosts.html) to measure. Only required if the broker has multiple vhosts.<br/><br/>Example: `--vhost prod` |
 include: throughput-tool-global-options
 
 ## What the tool does
