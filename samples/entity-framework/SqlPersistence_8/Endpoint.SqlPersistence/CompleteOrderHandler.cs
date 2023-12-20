@@ -1,18 +1,13 @@
 ﻿using System.Data.Entity;
 using System.Threading.Tasks;
+
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class CompleteOrderHandler
-    : IHandleMessages<CompleteOrder>
+public class CompleteOrderHandler(ReceiverDataContext dataContext)
+        : IHandleMessages<CompleteOrder>
 {
-    static ILog log = LogManager.GetLogger<CompleteOrderHandler>();
-    ReceiverDataContext dataContext;
-
-    public CompleteOrderHandler(ReceiverDataContext dataContext)
-    {
-        this.dataContext = dataContext;
-    }
+    static readonly ILog log = LogManager.GetLogger<CompleteOrderHandler>();
 
     public async Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {

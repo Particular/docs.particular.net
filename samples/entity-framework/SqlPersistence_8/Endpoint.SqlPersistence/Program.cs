@@ -3,7 +3,9 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
+
 using Microsoft.Extensions.DependencyInjection;
+
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
 
@@ -15,14 +17,11 @@ class Program
         var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesEfUowSql;User Id=SA;Password=yourStrong(!)Password;Encrypt=false;Max Pool Size=100";
 
         Console.Title = "Samples.EntityFrameworkUnitOfWork.SQL";
-        using (var connection = new SqlConnection(connectionString))
-        {
-            using (var receiverDataContext = new ReceiverDataContext(connection))
-            {
-                Database.SetInitializer(new CreateDatabaseIfNotExists<ReceiverDataContext>());
-                receiverDataContext.Database.Initialize(true);
-            }
-        }
+        using var connection = new SqlConnection(connectionString);
+        using var receiverDataContext = new ReceiverDataContext(connection);
+
+        Database.SetInitializer(new CreateDatabaseIfNotExists<ReceiverDataContext>());
+        receiverDataContext.Database.Initialize(true);
 
         var endpointConfiguration = new EndpointConfiguration("Samples.EntityFrameworkUnitOfWork.SQL");
         endpointConfiguration.EnableInstallers();

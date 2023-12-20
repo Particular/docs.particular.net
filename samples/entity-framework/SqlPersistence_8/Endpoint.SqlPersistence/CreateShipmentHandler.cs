@@ -4,16 +4,10 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class CreateShipmentHandler :
+public class CreateShipmentHandler(ReceiverDataContext dataContext) :
     IHandleMessages<OrderSubmitted>
 {
-    static ILog log = LogManager.GetLogger<CreateShipmentHandler>();
-    ReceiverDataContext dataContext;
-
-    public CreateShipmentHandler(ReceiverDataContext dataContext)
-    {
-        this.dataContext = dataContext;
-    }
+    static readonly ILog log = LogManager.GetLogger<CreateShipmentHandler>();
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
