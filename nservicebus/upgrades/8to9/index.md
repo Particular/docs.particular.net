@@ -40,12 +40,6 @@ The API to [set additional audit metadata](/nservicebus/operations/auditing.md#a
 
 snippet: core-8to9-audit-metadata
 
-## Access to transport addresses via settings has been removed
-
-Transport addresses are now accessed via the `FeatureConfigurationContext`.
-
-snippet: core-8to9-audit-transportadresses-features
-
 ## Dependency registration access in features renamed
 
 Property to access container registrations in features has been renamed.
@@ -63,6 +57,26 @@ snippet: core-8to9-di-shims
 The API to make features depend on [message driven subscriptions](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) being in use has changed.
 
 snippet: core-8to9-depend-on-subscriptions
+
+## Endpoint addresses
+
+### Access to logical addresses in features
+
+Since endpoint addresses are translated to transport-specific ones later during endpoint startup, addresses are defined using a transport-agnostic `QueueAddress` type. The addresses can be accessed via the `FeatureConfigurationContext`:
+
+snippet: core-8to9-adresses-features
+
+### Access to the physical receive addresses at runtime
+
+Inject the `ReceiveAddresses` type to access the endpoint receive addresses at runtime.
+
+snippet: core-8to9-adresses-runtime
+
+### Dynamic address translation
+
+Inject the new `ITransportAddressResolver` to translate `QueueAddress`'s to a physical transport addresses at runtime.
+
+snippet: core-8to9-adresses-translation
 
 ## Restricted type argument for .UsePersistence<T>
 
