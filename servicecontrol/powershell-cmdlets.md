@@ -2,6 +2,8 @@
 title: Cmdlets and Aliases
 reviewed: 2023-11-30
 component: ServiceControl
+redirects:
+- servicecontrol/installation-powershell
 ---
 
 NOTE: For general information about using PowerShell with ServiceControl, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
