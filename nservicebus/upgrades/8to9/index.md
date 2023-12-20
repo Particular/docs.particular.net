@@ -13,20 +13,14 @@ upgradeGuideCoreVersions:
 
 - .NET8 is the only target
 - Means that the MSMQ transport is not supported
-  - We support MSMQ until TBD
+  - MSMQ is supported for another X years
   - The bridge will support msmq and can be used to migrate endpoints
 
 ## SendOptions changes
 
-https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR487 (TBD remove)
+The indication that [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) has been requested for a message has been renamed.
 
-The indication that a message was marked for [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) has been renamed, instead of:
-
-snippet: core-8to9-immediate-dispatch-old
-
-Use:
-
-snippet: core-8to9-immediate-dispatch-new
+snippet: core-8to9-immediate-dispatch
 
 ## IManageUnitsOfWork has been deprecated
 
