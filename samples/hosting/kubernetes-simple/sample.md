@@ -45,7 +45,7 @@ export REGISTRY="localhost:32000"
 envsubst < Deployment.yaml | kubectl apply -f -
 ```
 
-You can also replace the variable directly in the file.
+It's also possible to replace the variable directly in the file.
 
 ## Steps to run using Dockerfile & Minikube
 
