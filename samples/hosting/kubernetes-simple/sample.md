@@ -5,11 +5,11 @@ reviewed: 2023-12-18
 component: Core
 ---
 
-This sample demonstrates a simple deployment of NServiceBus endpoints inside Kubernetes. The goal of the sample is to demonstrate hosting of endpoints inside Kubernetes in the most self-contained way possible, and therefore makes a few tradeoffs like using the learning transport and persistence to avoid having to pull in additional images from public registries.
+This sample demonstrates a simple deployment of NServiceBus endpoints inside Kubernetes. The goal of the sample is to demonstrate the hosting of endpoints inside Kubernetes in the most self-contained way possible and therefore makes a few tradeoffs like using the learning transport and persistence to avoid having to pull in additional images from public registries.
 
 ## Prerequisites
 
-In order to run the sample it is necessary to have Kubernetes locally installed by either using [Minikube](https://minikube.sigs.k8s.io/docs/) or [Microk8s](https://microk8s.io). For the version with the local registry, Microk8s has been proven to work in the most straightforward way on Linux.
+To run the sample it is necessary to have Kubernetes locally installed by either using [Minikube](https://minikube.sigs.k8s.io/docs/) or [Microk8s](https://microk8s.io). For the version with the local registry, Microk8s has been proven to work in the most straightforward way on Linux.
 
 When running on [Windows with Docker, the built-in Kubernetes cluster support](https://docs.docker.com/desktop/kubernetes/) in combination with a public [docker registry](https://hub.docker.com/) works best.
 
@@ -24,7 +24,7 @@ The rest of this sample assumes the local registry runs on `localhost:32000`
 
 ### Build the containers
 
-Both in the `DemoPublisher` and the `DemoSubscribe` directory execute the following command
+Execute the following command in both the `DemoPublisher` and `DemoSubscriber` directories 
 
 ```bash
 dotnet publish -c Release /t:PublishContainer -p ContainerRegistry=localhost:32000
@@ -45,7 +45,7 @@ export REGISTRY="localhost:32000"
 envsubst < Deployment.yaml | kubectl apply -f -
 ```
 
-Alternatively replace the variable directly in the file.
+You can also replace the variable directly in the file.
 
 ## Steps to run using Dockerfile & Minikube
 
@@ -63,7 +63,7 @@ Alternatively replace the variable directly in the file.
 docker login --username=[REGISTRY]
 ```
 
-Enter password at prompt - typed characters will not be visibe
+Enter password at prompt - typed characters will not be visible
 
 ### Build subscriber and push to Docker Hub
 
