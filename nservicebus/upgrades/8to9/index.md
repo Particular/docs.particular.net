@@ -58,12 +58,6 @@ Service collection extensions to ease [the transition to Microsoft DI abstractio
 
 snippet: core-8to9-di-shims
 
-## Message interfaces moved to a separate package
-
-https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL520 (TBD remove)
-
-Proposed action: Nothing to write from an upgrade guide perspective
-
 ## MessageDrivenSubscriptions feature deprecated
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1238 (TBD remove)
@@ -89,14 +83,6 @@ Proposed action: Exclude since it doesn't impact users
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR250 (TBD remove)
 
 Propose action: Don't mention this since the only use case was already deprecated in v8, see /nservicebus/upgrades/7to8/#error-notification-events and no downstream is using this API (there could be end users extending this though but that feels very unlikely?)
-
-## Databus property is no longer marked as serializable
-
-`[System.Serializable]` was removed
-
-https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR162 (TBD remove)
-
-Proposed action: Do not mention since this api is only for internal use
 
 ## Audit context no longer accept time to be received
 

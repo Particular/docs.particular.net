@@ -1,40 +1,33 @@
-﻿
+﻿using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Logging;
 
-namespace Core8.Notifications
+class SubscribeToNotificationsUpgradeGuide
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.Logging;
+    static ILog log = LogManager.GetLogger<SubscribeToNotificationsUpgradeGuide>();
 
-    class SubscribeToNotificationsUpgradeGuide
+    void EndpointStartup(EndpointConfiguration endpointConfiguration)
     {
-        static ILog log = LogManager.GetLogger<SubscribeToNotifications>();
+        #region 7to8-SubscribeToErrorsNotifications-UpgradeGuide
+        var recoverability = endpointConfiguration.Recoverability();
 
-        void EndpointStartup(EndpointConfiguration endpointConfiguration)
+        recoverability.Immediate(settings => settings.OnMessageBeingRetried((retry, ct) =>
         {
-            #region 7to8-SubscribeToErrorsNotifications-UpgradeGuide
-            var recoverability = endpointConfiguration.Recoverability();
+            log.Info($"Message {retry.MessageId} will be retried immediately.");
+            return Task.CompletedTask;
+        }));
 
-            recoverability.Immediate(settings => settings.OnMessageBeingRetried((retry, ct) =>
-            {
-                log.Info($"Message {retry.MessageId} will be retried immediately.");
-                return Task.CompletedTask;
-            }));
+        recoverability.Delayed(settings => settings.OnMessageBeingRetried((retry, ct) =>
+        {
+            log.Info($@"Message {retry.MessageId} will be retried after a delay.");
+            return Task.CompletedTask;
+        }));
 
-            recoverability.Delayed(settings => settings.OnMessageBeingRetried((retry, ct) =>
-            {
-                log.Info($@"Message {retry.MessageId} will be retried after a delay.");
-                return Task.CompletedTask;
-            }));
-
-            recoverability.Failed(settings => settings.OnMessageSentToErrorQueue((failed, ct) =>
-            {
-                log.Fatal($@"Message {failed.MessageId} will be sent to the error queue.");
-                return Task.CompletedTask;
-            }));
-            #endregion
-        }
-
+        recoverability.Failed(settings => settings.OnMessageSentToErrorQueue((failed, ct) =>
+        {
+            log.Fatal($@"Message {failed.MessageId} will be sent to the error queue.");
+            return Task.CompletedTask;
+        }));
+        #endregion
     }
-
 }
