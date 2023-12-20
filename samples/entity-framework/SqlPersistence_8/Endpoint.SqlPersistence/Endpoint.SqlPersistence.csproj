@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>10.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+	<PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.*" />
+    <PackageReference Include="NServiceBus.Autofac" Version="8.*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="7.*" />
+    <PackageReference Include="EntityFramework" Version="6.*" />
+  </ItemGroup>
+</Project>
