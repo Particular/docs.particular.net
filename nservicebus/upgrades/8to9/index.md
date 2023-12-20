@@ -54,15 +54,9 @@ snippet: core-8to9-di-features
 
 ## Service collection extensions for backwards compatibility removed
 
-https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL1099
+Service collection extensions to ease [the transition to Microsoft DI abstractions](/nservicebus/upgrades/7to8/dependency-injection.md#registercomponents-changes) have been removed.
 
-Service collection extensions to ease [the transition to Microsoft DI abstraction](/nservicebus/upgrades/7to8/dependency-injection.md#registercomponents-changes) have been removed, instead of:
-
-snippet: core-8to9-di-shims-old
-
-Use:
-
-snippet: core-8to9-di-shims-new
+snippet: core-8to9-di-shims
 
 ## Message interfaces moved to a separate package
 
