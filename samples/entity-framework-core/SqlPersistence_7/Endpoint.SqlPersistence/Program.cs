@@ -11,11 +11,11 @@ class Program
     static async Task Main()
     {
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesEfCoreUowSql;Integrated Security=True;Encrypt=false
-        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesEfCoreUowSql;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesEfCoreUowSql;User Id=SA;Password=yourStrong(!)Password;Encrypt=false;Max Pool Size=100";
         Console.Title = "Samples.EntityFrameworkUnitOfWork.SQL";
 
         using (var receiverDataContext = new ReceiverDataContext(new DbContextOptionsBuilder<ReceiverDataContext>()
-            .UseSqlServer(new SqlConnection(connectionString))
+            .UseSqlServer(connectionString)
             .Options))
         {
             await receiverDataContext.Database.EnsureCreatedAsync().ConfigureAwait(false);
@@ -31,6 +31,8 @@ class Program
             Subscriptions = { DisableCaching = true },
             TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
         });
+
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(() => new SqlConnection(connectionString));

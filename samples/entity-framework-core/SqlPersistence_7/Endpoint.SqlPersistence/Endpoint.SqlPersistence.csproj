@@ -6,7 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.*" />
     <PackageReference Include="NServiceBus.SqlServer" Version="7.*" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
