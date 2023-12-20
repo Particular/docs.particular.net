@@ -68,7 +68,6 @@ namespace Core8.UpgradeGuides
                 throw new NotImplementedException();
             }
 
-
             public void Serialize(object databusProperty, Stream stream)
             {
                 throw new NotImplementedException();

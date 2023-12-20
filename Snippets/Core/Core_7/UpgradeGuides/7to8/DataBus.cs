@@ -30,6 +30,7 @@ class DataBusUpgradeGuide
         endpointConfiguration.UseDataBus(typeof(MyCustomDataBus));
         #endregion
     }
+
     class MyCustomDataBus : IDataBus
     {
         public Task<Stream> Get(string key)
@@ -47,6 +48,7 @@ class DataBusUpgradeGuide
             throw new NotImplementedException();
         }
     }
+
     class MyCustomDataBusSerializer : IDataBusSerializer
     {
         public object Deserialize(Stream stream)
