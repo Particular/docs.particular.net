@@ -1,13 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 
-public class ReceiverDataContext :
-    DbContext
+public class ReceiverDataContext(DbContextOptions options) :
+    DbContext(options)
 {
-    public ReceiverDataContext(DbContextOptions options)
-    : base(options)
-    {
-    }
-
     public DbSet<Order> Orders { get; set; }
     public DbSet<Shipment> Shipments { get; set; }
 
@@ -23,6 +18,6 @@ public class ReceiverDataContext :
         var shipments = modelBuilder.Entity<Shipment>();
         shipments.ToTable("Shipments");
         shipments.HasKey(x => x.Id);
-       
+
     }
 }

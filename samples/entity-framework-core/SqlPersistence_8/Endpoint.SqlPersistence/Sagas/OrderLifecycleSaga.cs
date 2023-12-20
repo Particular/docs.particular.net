@@ -9,7 +9,7 @@ public class OrderLifecycleSaga :
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderLifecycleSaga.OrderTimeout>
 {
-    static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
+    static readonly ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
 
     protected override void ConfigureMapping(IMessagePropertyMapper mapper)
     {
