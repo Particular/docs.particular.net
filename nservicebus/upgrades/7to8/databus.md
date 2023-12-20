@@ -13,15 +13,19 @@ The BinaryFormatter serializer that was used internally in NServiceBus version 7
 
 ## Seralizer configuration made mandatory
 
-The new data bus configuration API now requires a serializer to be explicitly configured, instead of:
+The new data bus configuration API now requires a serializer to be explicitly configured.
 
-snippet: 7to8-DataBusUsage-UpgradeGuide-old
-
-Use:
-
-snippet: 7to8-DataBusUsage-UpgradeGuide
+snippet: 7to8-databus-serializer-mandatory
 
 The recommended serializer is `SystemJsonDataBusSerializer` that is built-in and that uses the `System.Text.Json` library. While BinaryFormatter is still supported via the new package called `NServiceBus.DataBus.BinarySerializer`, customers are strongly encouraged to move away from it.
+
+## Removal of dependency injection support for serializers
+
+The serializer interface `IDataBusSerializer` can no longer be resolved via the container and serializers must be configured explicitly.
+
+snippet: 7to8-databus-custom-serializer
+
+NOTE: A runtime exception is thrown if a `IDataBusSerializer` is registered in the container.
 
 ## Migration from BinaryFormatter
 
@@ -33,21 +37,11 @@ When an exception is thrown during deserialization of data bus messages, additio
 
 Note that the newly added header, `NServiceBus.DataBusConfig.ContentType`, in NServiceBus version 8 determines which deserializer should be used. If the header is missing, the main deserializer will be used first, followed by the additional configured deserializers.
 
-## Removal of dependency injection support for serializers
-
-The serializer interface `IDataBusSerializer` can no longer be resolved via the container. Registered custom data bus serializers now must be provided in code and the registration code can be removed:
-
-snippet: 7to8-DataBusUsage-UpgradeGuide
-
-A runtime exception is thrown if the `IDataBusSerializer` is still registered in the container.
-
 ## Implementing custom serializers
 
 The `IDataBusSerializer` interface is changed to better isolate type information causing security concerns. Custom implementations of this interface should ignore type information embedded in the persisted payload and use the `propertyType` passed to the `Deserialize` method:
 
-```csharp
-public object Deserialize(Type propertyType, Stream stream)
-```
+snippet: 7to8-databus-type-information
 
 An additional `ContentType` property is now also required when implementing this interface.
 
@@ -55,4 +49,4 @@ An additional `ContentType` property is now also required when implementing this
 
 The API to provide a custom `IDataBus` implementation has been changed from accepting a `Type` to a factory method. The new API is:
 
-snippet: 7to8-CustomDataBus-UpgradeGuide
+snippet: 7to8-databus-custom-implementation
