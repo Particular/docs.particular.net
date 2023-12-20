@@ -42,16 +42,9 @@ snippet: core-8to9-audit-metadata
 
 ## Access to transport addresses via settings has been removed
 
-- https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR885 (TBD remove)
-- https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR887 (TBD remove)
+Transport addresses are now accessed via the `FeatureConfigurationContext`.
 
-Transport addresses are now accessed via the `FeatureConfigurationContext`, instead of:
-
-snippet: core-8to9-audit-transportadresses-features-old
-
-Use:
-
-snippet: core-8to9-audit-transportadresses-features-new
+snippet: core-8to9-audit-transportadresses-features
 
 ## Dependency registration access in features renamed
 
