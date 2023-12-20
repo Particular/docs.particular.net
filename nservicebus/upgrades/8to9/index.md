@@ -48,15 +48,9 @@ snippet: core-8to9-audit-transportadresses-features
 
 ## Dependency registration access in features renamed
 
-https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1212
+Property to access container registrations in features has been renamed.
 
-Access to the container registrations has been renamed, instead of:
-
-snippet: core-8to9-di-features-old
-
-Use:
-
-snippet: core-8to9-di-features-new
+snippet: core-8to9-di-features
 
 ## Service collection extensions for backwards compatibility removed
 
