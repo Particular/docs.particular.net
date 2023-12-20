@@ -30,15 +30,9 @@ snippet: core-8to9-uow
 
 ## API to override machine name has changed
 
-https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR2070 (TBD remove)
+[Overriding machine name](/nservicebus/hosting/override-machine-name.md) via NServiceBus.Support.RuntimeEnvironment has been deprecated.
 
-[Overriding machine name](/nservicebus/hosting/override-machine-name.md) via NServiceBus.Support.RuntimeEnvironment has been deprecated, instead of:
-
-snippet: core-8to9-machinename-old
-
-Use:
-
-snippet: core-8to9-machinename-new
+snippet: core-8to9-machinename
 
 ## API to set additional Audit metadata has changed
 
