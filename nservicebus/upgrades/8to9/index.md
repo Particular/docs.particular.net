@@ -58,13 +58,11 @@ Service collection extensions to ease [the transition to Microsoft DI abstractio
 
 snippet: core-8to9-di-shims
 
-## MessageDrivenSubscriptions feature deprecated
+## Making features depend on message driven subscriptions
 
-https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1238 (TBD remove)
+The API to make features depend on [message driven subscriptions](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) being in use has changed.
 
-Use .DisablePublishing instead
-
-Proposed action: Already documented in /nservicebus/upgrades/7to8/#disabling-subscriptions is more needed?
+snippet: core-8to9-depend-on-subscriptions
 
 ## Restricted type argument for .UsePersistence<T>
 
