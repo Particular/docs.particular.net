@@ -1351,11 +1351,11 @@
       Url: servicecontrol/how
     - Title: Transport support
       Url: servicecontrol/transports
-    - Title: PowerShell
+    - Title: Managing ServiceControl via PowerShell
       Url: servicecontrol/powershell
       Articles:
-      - Title: Installation via PowerShell
-        Url: servicecontrol/installation-powershell
+      - Title: Cmdlets and Aliases
+        Url: servicecontrol/powershell-cmdlets
     - Title: Licensing
       Url: servicecontrol/license
   - Title: Upgrade Guides

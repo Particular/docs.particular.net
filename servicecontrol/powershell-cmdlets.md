@@ -1,5 +1,5 @@
 ---
-title: Manage ServiceControl instances via PowerShell
+title: Cmdlets and Aliases
 reviewed: 2023-11-30
 component: ServiceControl
 ---
@@ -20,7 +20,7 @@ snippet: ps-get-help
 
 ### Adding an instance
 
-Use the `New-ServiceControlInstance` cmdlet to create a new ServiceControl instance. Version 3 and below contains parameters to configure audit ingestion and retention. Managing an audit queue on version 4 and above requires creating a new ServiceControl Audit instance with `New-ServiceControlAuditInstance`.
+Use the `New-ServiceControlInstance` cmdlet to create a new ServiceControl instance. Use the `New-ServiceControlAuditInstance` cmdlet to create a new ServiceControl Audit instance.
 
 There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string, or host name.
 
