@@ -7,9 +7,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />
 	<PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
-    <PackageReference Include="NServiceBus" Version="8.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="7.*" />
+    <PackageReference Include="NServiceBus" Version="9.0.0-alpha.9" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="8.0.0-alpha.1" />
     <PackageReference Include="EntityFramework" Version="6.*" />
   </ItemGroup>
 </Project>
