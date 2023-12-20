@@ -656,6 +656,7 @@ File extensions scanned for snippets include:
 * `.proto`
 * `.config`
 * `.yml`
+* `.yaml`
 * `Dockerfile`
 
 #### Snippets are highlighted using highlightjs
@@ -693,7 +694,7 @@ var configure = Configure.With();
 
 For non-code snippets apply a similar approach as in code, using comments appropriate for a given file type. For plain-text files an extra empty line is required before `endcode` tag.
 
-|Tag        |XML-based                    |PowerShell            |SQL script             |Plain text          |Dockerfile / Compose         |
+|Tag        |XML-based                    |PowerShell            |SQL script             |Plain text          |Dockerfile / Compose / YAML         |
 |-----------|-----------------------------|----------------------|-----------------------|--------------------|--------------------|
 |**Open**   |`<!-- startcode name -->`|`# startcode name`|`-- startcode name`|`startcode name`|`# startcode name`
 |Content    |                             |                      |                       |                    |
