@@ -36,15 +36,9 @@ snippet: core-8to9-machinename
 
 ## API to set additional Audit metadata has changed
 
- https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR1574 (TBD remove)
+The API to [set additional audit metadata](/nservicebus/operations/auditing.md#additional-audit-information) has been changed.
 
-The API to [set additional audit metadata](/nservicebus/operations/auditing.md#additional-audit-information) has been changed, instead of:
-
-snippet: core-8to9-audit-metadata-old
-
-Use:
-
-snippet: core-8to9-audit-metadata-new
+snippet: core-8to9-audit-metadata
 
 ## Access to transport addresses via settings has been removed
 
