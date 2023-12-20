@@ -134,15 +134,6 @@ The `NServiceBus.Host` package is deprecated. See the [NServiceBus Host upgrade 
 
 The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are deprecated.See the [NServiceBus Azure Host upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for details and alternatives.
 
-## Overriding the host machine name
-
-`RuntimeEnvironment.MachineNameAction` is deprecated. The host machine name of an endpoint instance may be overridden using:
-
-```csharp
-endpointConfiguration.UniquelyIdentifyRunningInstance()
-    .UsingHostName("NewMachineName");`
-```
-
 ## DateTimeOffset instead of DateTime
 
 Usage of `DateTime` can result in numerous issues caused by misalignment of time zone offsets, which can lead to time calculation errors. Although a `DateTime.Kind` property exists, it is often ignored during DateTime math and it is up to the user to ensure values are aligned in their offset. The `DateTimeOffset` type fixes this. It does not contain any time zone information, only an offset, which is sufficient to get the time calculations right.
