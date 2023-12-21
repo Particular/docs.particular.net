@@ -5,15 +5,8 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 #region generic-host-worker
-class Worker : BackgroundService
+class Worker(IMessageSession messageSession) : BackgroundService
 {
-    private readonly IMessageSession messageSession;
-
-    public Worker(IMessageSession messageSession)
-    {
-        this.messageSession = messageSession;
-    }
-
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
         try
