@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace Core8.Sagas
+﻿namespace Core8.Sagas
 {
+    using System;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Sagas;
