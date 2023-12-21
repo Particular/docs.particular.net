@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using NServiceBus;
 
 internal class Program
@@ -37,6 +36,7 @@ internal class Program
         builder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("Samples.Hosting.GenericHost");
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.UseTransport(new LearningTransport());
 
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);

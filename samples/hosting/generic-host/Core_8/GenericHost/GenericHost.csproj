@@ -9,5 +9,6 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="6.*" />
     <PackageReference Include="Microsoft.Extensions.Logging.EventLog" Version="6.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*" />
+    <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
 </Project>
