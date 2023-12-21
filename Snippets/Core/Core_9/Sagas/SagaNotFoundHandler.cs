@@ -1,4 +1,6 @@
-﻿namespace Core9.Sagas
+﻿using System;
+
+namespace Core9.Sagas
 {
     using System.Threading.Tasks;
     using NServiceBus;
@@ -21,4 +23,30 @@
     }
 
     #endregion
+
+    #region saga-not-found-error-queue
+    public sealed class SagaNotFoundException : Exception
+    {
+    }
+
+    public class SagaNotFoundHandlerThatThrows :
+        IHandleSagaNotFound
+    {
+        public Task Handle(object message, IMessageProcessingContext context)
+        {
+            throw new SagaNotFoundException();
+        }
+    }
+    #endregion
+
+    public class Usage
+    {
+        void Simple(EndpointConfiguration endpointConfiguration)
+        {
+            #region saga-not-found-unrecoverable-exception
+            var recoverability = endpointConfiguration.Recoverability();
+            recoverability.AddUnrecoverableException<SagaNotFoundException>();
+            #endregion
+        }
+    }
 }
