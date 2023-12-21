@@ -35,7 +35,7 @@ To obtain the version of the installed management module the following command c
 snippet: ps-getversion
 
 NOTE: The majority of the cmdlets will only work if the PowerShell session is running with administrator privileges.
-
+#if-version [,5)
 INFO: The ServiceControl installer currently includes a legacy version of the PowerShell module called `ServiceControlMgmt` that is only supported on Windows PowerShell 5.1. It does not work with newer versions of PowerShell. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with this legacy module automatically loaded. The legacy module is not signed, so the PowerShell execution policy needs to be set to `Unrestricted` to use it.
 
 ### Troubleshooting
@@ -44,10 +44,11 @@ INFO: The ServiceControl installer currently includes a legacy version of the Po
 Method not found: 'System.Security.AccessControl.DirectorySecurity System.IO.DirectoryInfo.GetAccessControl(System.Security.AccessControl.AccessControlSections)'
 ```
 This indicates that the PowerShell module is being executed using a newer version of PowerShell than it supports. To resolve this issue, make sure to use the PowerShell module hosted on the [PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management/).
+#end-if
 
 ## Powershell Commands
 
-For a complete overview of all cmdlets, visit the [Managing ServiceControl via PowerShell](/servicecontrol/installation-powershell.md) page.
+For a complete overview of all cmdlets, see the [Cmdlets and Aliases](/servicecontrol/powershell-cmdlets.md) page.
 
 ## Troubleshooting via PowerShell
 

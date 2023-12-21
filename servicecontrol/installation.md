@@ -15,7 +15,7 @@ After installation, there is no ServiceControl instance running yet. Instances c
 
 ## Install methods
 
-ServiceControl can be installed in multiple ways. This article describes using the visual ServiceControl Management application. Scripted installs and upgrades can be done via the [ServiceControl Management PowerShell module](installation-powershell.md). Advanced installation guidance to support high-load and high-availability is available on [active/active remote setups](./servicecontrol-instances/remotes.md) and [active/passive clustering](deploying-servicecontrol-in-a-cluster.md).
+ServiceControl can be installed in multiple ways. This article describes using the visual ServiceControl Management application. Scripted installs and upgrades can be done via the [ServiceControl Management PowerShell module](powershell.md). Advanced installation guidance to support high-load and high-availability is available on [active/active remote setups](./servicecontrol-instances/remotes.md) and [active/passive clustering](deploying-servicecontrol-in-a-cluster.md).
 
 There is also a [community-managed puppet module](https://forge.puppet.com/tragiccode/nservicebusservicecontrol).
 
@@ -127,7 +127,7 @@ Things to remember:
 
 * Ensure the instance being migrated is on the [latest version](https://github.com/Particular/ServiceControl/releases).
 * Optionally, use the same installer as the current version. Database schemas are not guaranteed to be compatible between versions.
-* Optionally, [script ServiceControl installations via powershell](/servicecontrol/installation-powershell.md) instead of running installers manually
+* Optionally, [script ServiceControl installations via powershell](/servicecontrol/powershell.md) instead of running installers manually
 
 ServiceControl configuration settings are accessible via the Service Control Management Utility or by navigating to the configuration files on the file system stored in `ServiceControl.exe.config`, `ServiceControl.Audit.exe.config`, and `ServiceControl.Monitoring.exe.config`.
 
