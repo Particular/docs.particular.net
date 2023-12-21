@@ -18,6 +18,5 @@ public class ReceiverDataContext(DbContextOptions options) :
         var shipments = modelBuilder.Entity<Shipment>();
         shipments.ToTable("Shipments");
         shipments.HasKey(x => x.Id);
-
     }
 }
