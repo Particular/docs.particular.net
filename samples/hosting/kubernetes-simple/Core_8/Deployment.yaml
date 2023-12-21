@@ -1,3 +1,4 @@
+# startcode publisher-deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,7 +31,9 @@ spec:
         - name: transport-volume
           persistentVolumeClaim:
             claimName: host-transport-pvc
+# endcode
 ---
+# startcode subscriber-deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -58,3 +61,4 @@ spec:
         - name: transport-volume
           persistentVolumeClaim:
             claimName: host-transport-pvc
+# endcode

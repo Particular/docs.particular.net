@@ -13,6 +13,18 @@ To run the sample it is necessary to have Kubernetes locally installed by either
 
 When running on [Windows with Docker, the built-in Kubernetes cluster support](https://docs.docker.com/desktop/kubernetes/) in combination with a public [docker registry](https://hub.docker.com/) works best.
 
+## Deployment file
+
+The deployment.yaml file is what sets up the 2 endpoints on kubernetes pods.
+
+### Publisher endpoint
+
+snippet: publisher-deployment
+
+### Subscriber endpoint
+
+snippet: subscriber-deployment
+
 ## Steps to run using .Net built-in container support & Microk8s
 
 ### Setup up Microk8s
