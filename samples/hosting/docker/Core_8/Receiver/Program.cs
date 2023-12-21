@@ -22,14 +22,15 @@ namespace Receiver
                     logging.AddConsole();
                     logging.SetMinimumLevel(LogLevel.Information);
                 })
-                .ConfigureServices(services => services.AddSingleton<IHostedService>(new ProceedIfRabbitMqIsAlive("rabbitmq")))
+                .ConfigureServices(services => services.AddSingleton<IHostedService>(new ProceedIfBrokerIsAlive("rabbitmq")))
                 .UseNServiceBus(ctx =>
                 {
                     var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");
                     #region TransportConfiguration
 
-                    var rabbitMqConnectionString = "host=rabbitmq";
-                    var transport = endpointConfiguration.UseTransport(new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), rabbitMqConnectionString ));
+                    var connectionString = "host=rabbitmq";
+                    var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
+                    endpointConfiguration.UseTransport(transport);
 
                     #endregion
 

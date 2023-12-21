@@ -1,24 +1,21 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using Sender;
 using Shared;
 
-using System.Reflection.Metadata.Ecma335;
-
-await ProceedIfRabbitMqIsAlive.WaitForRabbitMq("rabbitmq");
+await ProceedIfBrokerIsAlive.WaitForBroker("rabbitmq");
 
 var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
 endpointConfiguration.CustomDiagnosticsWriter((d, ct) => Task.CompletedTask);
 
-var rabbitMqConnectionString = "host=rabbitmq";
-var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), rabbitMqConnectionString);
+var connectionString = "host=rabbitmq";
+var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
 
 var routing = endpointConfiguration.UseTransport(transport);
 
 routing.RouteToEndpoint(typeof(RequestMessage), "Samples.Docker.Receiver");
 
-// Message serialization
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.DefineCriticalErrorAction(CriticalErrorActions.RestartContainer);
 endpointConfiguration.EnableInstallers();

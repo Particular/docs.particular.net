@@ -1,22 +1,25 @@
-﻿using Microsoft.Extensions.Hosting;
-
-using System;
+﻿using System;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 
 namespace Shared
 {
-    public class ProceedIfRabbitMqIsAlive
+    public class ProceedIfBrokerIsAlive : IHostedService
     {
-        public static async Task WaitForRabbitMq(string host, CancellationToken cancellationToken = default)
+        public ProceedIfBrokerIsAlive(string host)
+        {
+            this.host = host;
+        }
+
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
             do
             {
                 try
                 {
                     using var tcpClientB = new TcpClient();
-
                     await tcpClientB.ConnectAsync(host, 5672);
 
                     return;
@@ -29,5 +32,12 @@ namespace Shared
             }
             while (!cancellationToken.IsCancellationRequested);
         }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
+
+        readonly string host;
     }
 }

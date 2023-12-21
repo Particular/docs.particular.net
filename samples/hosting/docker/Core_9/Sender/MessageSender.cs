@@ -1,6 +1,7 @@
+namespace Sender;
+
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
 using Shared;
 
 class MessageSender(ILogger<MessageSender> logger, IMessageSession messageSession) : IHostedService
@@ -15,17 +16,11 @@ class MessageSender(ILogger<MessageSender> logger, IMessageSession messageSessio
             Data = "String property value"
         };
 
-        await messageSession.Send(message, cancellationToken)
-            .ConfigureAwait(false);
+        await messageSession.Send(message, cancellationToken);
 
         logger.LogInformation($"Message sent, requesting to get data by id: {guid:N}");
         logger.LogInformation("Use 'docker-compose down' to stop containers.");
     }
 
-    public Task StopAsync(CancellationToken cancellationToken)
-    {
-        return Task.CompletedTask;
-    }
-
-    readonly ILogger logger = logger;
+    public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 }

@@ -24,13 +24,13 @@ namespace Sender
                     logging.AddConsole();
                     logging.SetMinimumLevel(LogLevel.Information);
                 })
-                .ConfigureServices(sp => sp.AddSingleton<IHostedService>(new ProceedIfRabbitMqIsAlive("rabbitmq")))
+                .ConfigureServices(sp => sp.AddSingleton<IHostedService>(new ProceedIfBrokerIsAlive("rabbitmq")))
                 .UseNServiceBus(ctx =>
                 {
                     var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
 
-                    var rabbitMqConnectionString = "host=rabbitmq";
-                    var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), rabbitMqConnectionString);
+                    var connectionString = "host=rabbitmq";
+                    var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
                     var routing = endpointConfiguration.UseTransport(transport);
 
                     routing.RouteToEndpoint(typeof(RequestMessage), "Samples.Docker.Receiver");

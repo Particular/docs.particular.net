@@ -1,8 +1,8 @@
-﻿using NServiceBus;
-using NServiceBus.Logging;
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Logging;
 
 namespace Shared
 {
