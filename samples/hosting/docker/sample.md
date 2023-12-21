@@ -24,13 +24,7 @@ This sample requires that the following tools are installed:
 
 Running the sample involves building the container images and starting the multi-container application.
 
-### Building container images
-
-Building the container images using the following command will `dotnet publish` (which includes `dotnet restore` and `dotnet build`) the endpoints in addition to building the container images for both the `Sender` and the `Receiver`:
-
-```bash
-$ docker-compose build
-```
+partial: building-containers
 
 ### Starting containers
 
