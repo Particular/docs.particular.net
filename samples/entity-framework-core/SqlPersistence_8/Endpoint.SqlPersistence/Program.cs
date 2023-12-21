@@ -1,43 +1,37 @@
-using System;
-using System.Data.Entity;
-using System.Data.SqlClient;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
+using System;
+using Microsoft.Data.SqlClient;
+using System.Threading.Tasks;
 
 class Program
 {
     static async Task Main()
     {
-        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesEfUowSql;Integrated Security=True;Encrypt=false;Max Pool Size=100
-        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesEfUowSql;User Id=SA;Password=yourStrong(!)Password;Encrypt=false;Max Pool Size=100";
-
+        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesEfCoreUowSql;Integrated Security=True;Encrypt=false
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesEfCoreUowSql;User Id=SA;Password=yourStrong(!)Password;Encrypt=false;Max Pool Size=100;TrustServerCertificate=True";
         Console.Title = "Samples.EntityFrameworkUnitOfWork.SQL";
-        using (var connection = new SqlConnection(connectionString))
+
+        using (var receiverDataContext = new ReceiverDataContext(new DbContextOptionsBuilder<ReceiverDataContext>()
+            .UseSqlServer(connectionString)
+            .Options))
         {
-            using (var receiverDataContext = new ReceiverDataContext(connection))
-            {
-                Database.SetInitializer(new CreateDatabaseIfNotExists<ReceiverDataContext>());
-                receiverDataContext.Database.Initialize(true);
-            }
+            await receiverDataContext.Database.EnsureCreatedAsync().ConfigureAwait(false);
         }
 
         var endpointConfiguration = new EndpointConfiguration("Samples.EntityFrameworkUnitOfWork.SQL");
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.ExecuteTheseHandlersFirst(typeof(CreateOrderHandler), typeof(OrderLifecycleSaga), typeof(CreateShipmentHandler));
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
         {
-            TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive,
-            Subscriptions =
-            {
-                DisableCaching = true
-            }
+            Subscriptions = { DisableCaching = true },
+            TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
         });
+
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
@@ -50,13 +44,16 @@ class Program
             c.AddScoped(b =>
             {
                 var session = b.GetRequiredService<ISqlStorageSession>();
-                var context = new ReceiverDataContext(session.Connection);
+
+                var context = new ReceiverDataContext(new DbContextOptionsBuilder<ReceiverDataContext>()
+                    .UseSqlServer(session.Connection)
+                    .Options);
 
                 //Use the same underlying ADO.NET transaction
                 context.Database.UseTransaction(session.Transaction);
 
                 //Ensure context is flushed before the transaction is committed
-                session.OnSaveChanges((s, cancellationToken) => context.SaveChangesAsync(cancellationToken));
+                session.OnSaveChanges((s, token) => context.SaveChangesAsync(token));
 
                 return context;
             });
