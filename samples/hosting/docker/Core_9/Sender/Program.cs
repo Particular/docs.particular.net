@@ -3,10 +3,13 @@ using Microsoft.Extensions.Hosting;
 
 using Shared;
 
+using System.Reflection.Metadata.Ecma335;
+
 await ProceedIfRabbitMqIsAlive.WaitForRabbitMq("rabbitmq");
 
 var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
+endpointConfiguration.CustomDiagnosticsWriter((d, ct) => Task.CompletedTask);
 
 var rabbitMqConnectionString = "host=rabbitmq";
 var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), rabbitMqConnectionString);
