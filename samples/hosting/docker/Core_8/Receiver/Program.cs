@@ -28,13 +28,15 @@ namespace Receiver
                     var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");
                     #region TransportConfiguration
 
-                    var transport = endpointConfiguration.UseTransport(new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Classic), "host=rabbitmq"));
+                    var rabbitMqConnectionString = "host=rabbitmq";
+                    var transport = endpointConfiguration.UseTransport(new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), rabbitMqConnectionString ));
 
                     #endregion
 
-                    endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-                    endpointConfiguration.EnableInstallers();
+                    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
                     endpointConfiguration.DefineCriticalErrorAction(CriticalErrorActions.RestartContainer);
+                    endpointConfiguration.EnableInstallers();
+
                     return endpointConfiguration;
                 });
         }
