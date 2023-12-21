@@ -24,7 +24,6 @@ public class ReceiverDataContext :
         var shipments = modelBuilder.Entity<Shipment>();
         shipments.ToTable("Shipments");
         shipments.HasKey(x => x.Id);
-        //shipments.HasKey(x => x.OrderId);
         shipments.HasRequired(x => x.Order);
     }
 }
