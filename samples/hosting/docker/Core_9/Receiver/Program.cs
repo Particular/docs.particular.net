@@ -10,7 +10,12 @@ var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver")
 endpointConfiguration.CustomDiagnosticsWriter((d, ct) => Task.CompletedTask);
 
 var rabbitMqConnectionString = "host=rabbitmq";
+
+#region TransportConfiguration
+
 var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), rabbitMqConnectionString);
+
+#endregion
 
 _ = endpointConfiguration.UseTransport(transport);
 
