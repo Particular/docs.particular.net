@@ -13,7 +13,6 @@ public class Sender
 
         try
         {
-
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
