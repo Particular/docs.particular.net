@@ -28,7 +28,13 @@ The ability to provide an implementation for `IHandleSagaNotFound` is especially
 
 For example, consider a saga that is used for managing the registration process on the website. After a customer registers, they receive an email with a confirmation link. The system will wait for confirmation for a specific period of time, e.g. 24 hours. If the user doesn't click the link within 24 hours, their data is removed from the system and saga is completed. However, they might decide to click the confirmation link a few days later. In this case, the related saga instance can't be found and an exception will be thrown. By implementing `IHandleSagaNotFound` it is possible to handle the situation differently, e.g. redirect the user to the registration website and ask them to fill out the form again.
 
-The implementation of `IHandleSagaNotFound` should be driven by the business requirements for a specific situation. In some cases the message might be ignored; in others, it might be useful to track whenever that situation happens (e.g. by logging or sending another message). In still other cases, it might make sense to perform a custom compensating action.
+The implementation of `IHandleSagaNotFound` should be driven by the business requirements for a specific situation. In some cases the message might be ignored; in others, it might be useful to track whenever that situation happens (e.g. by logging or sending another message). In still other cases, it might make sense to perform a custom compensating action. For example should it be desirable for some cases to move the message that did not find a saga to the error queue it is possible to introduce a custom exception type (e.g`SagaNotFoundFoundException`)
+
+snippet: saga-not-found-error-queue
+
+ and register the exception as an [unrecoverable exception](/nservicebus/recoverability/#unrecoverable-exceptions)
+
+snippet: saga-not-found-unrecoverable-exception
 
 ## Troubleshooting
 
