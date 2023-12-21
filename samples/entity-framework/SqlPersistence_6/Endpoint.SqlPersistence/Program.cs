@@ -4,14 +4,13 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
-using NServiceBus.Transport.SQLServer;
 
 class Program
 {
     static async Task Main()
     {
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesEfUowSql;Integrated Security=True;Encrypt=false
-        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesEfUowSql;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";        
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesEfUowSql;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
         Console.Title = "Samples.EntityFrameworkUnitOfWork.SQL";
         using (var connection = new SqlConnection(connectionString))
         {
@@ -30,7 +29,6 @@ class Program
         var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         transport.ConnectionString(connectionString);
         transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
-        transport.NativeDelayedDelivery().DisableTimeoutManagerCompatibility();
         transport.SubscriptionSettings().DisableSubscriptionCache();
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
