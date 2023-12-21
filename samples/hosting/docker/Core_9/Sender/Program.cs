@@ -1,48 +1,27 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-
-using NServiceBus;
 
 using Shared;
 
-namespace Sender
-{
-    class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+await ProceedIfRabbitMqIsAlive.WaitForRabbitMq("rabbitmq");
 
-        static IHostBuilder CreateHostBuilder(string[] args)
-        {
-            return Host.CreateDefaultBuilder(args)
-                .UseConsoleLifetime()
-                .ConfigureLogging(logging =>
-                {
-                    logging.AddConsole();
-                    logging.SetMinimumLevel(LogLevel.Information);
-                })
-                .ConfigureServices(sp => sp.AddSingleton<IHostedService>(new ProceedIfRabbitMqIsAlive("rabbitmq")))
-                .UseNServiceBus(ctx =>
-                {
-                    var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
+var builder = Host.CreateApplicationBuilder(args);
+var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
 
-                    var rabbitMqConnectionString = "host=rabbitmq";
-                    var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), rabbitMqConnectionString);
-                    var routing = endpointConfiguration.UseTransport(transport);
+var rabbitMqConnectionString = "host=rabbitmq";
+var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), rabbitMqConnectionString);
 
-                    routing.RouteToEndpoint(typeof(RequestMessage), "Samples.Docker.Receiver");
+var routing = endpointConfiguration.UseTransport(transport);
 
-                    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-                    endpointConfiguration.DefineCriticalErrorAction(CriticalErrorActions.RestartContainer);
+routing.RouteToEndpoint(typeof(RequestMessage), "Samples.Docker.Receiver");
 
-                    endpointConfiguration.EnableInstallers();
+// Message serialization
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.DefineCriticalErrorAction(CriticalErrorActions.RestartContainer);
+endpointConfiguration.EnableInstallers();
 
-                    return endpointConfiguration;
-                })
-                .ConfigureServices(services => services.AddHostedService<MessageSender>());
-        }
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddHostedService<MessageSender>();
+
+var app = builder.Build();
+app.Run();
