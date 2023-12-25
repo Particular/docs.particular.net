@@ -34,7 +34,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.2) | 2023-03-23     | -                 | -                                 |
-| [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.1.3) | ~~2022-11-24~~ | ~~2023-06-23~~    | ~~Superseded by 3.2.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.6) | 2021-10-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
@@ -142,7 +141,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.4) | 2022-11-17     | -                 | -                                 |
-| [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.4) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [~~6.6.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.4) | ~~2022-09-19~~ | ~~2023-11-17~~    | ~~Superseded by 7.0.x~~           |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
 
@@ -349,7 +348,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/4.0.0) | 2022-11-17     | -                 | -                                 |
-| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/3.0.0) | ~~2018-05-29~~ | ~~2023-11-17~~    | ~~Superseded by 4.0.x~~           |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/3.0.0) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.CustomChecks](/nuget/NServiceBus.CustomChecks)
 
@@ -420,7 +419,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/5.0.0) | 2022-11-17     | -                 | -                                 |
-| [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/4.0.0) | ~~2019-07-23~~ | ~~2023-11-17~~    | ~~Superseded by 5.0.x~~           |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/4.0.0) | 2019-07-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Metrics.ServiceControl](/nuget/NServiceBus.Metrics.ServiceControl)
 
