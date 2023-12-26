@@ -1,5 +1,5 @@
 ---
-title: Azure Functions with Azure Service Bus
+title: Azure Functions with Azure Service Bus (In Process)
 component: ASBFunctions
 summary: Hosting NServiceBus endpoints with Azure Functions triggered by Azure Service Bus
 redirects:
