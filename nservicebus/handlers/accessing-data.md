@@ -29,7 +29,7 @@ The synchronized storage session feature is supported by most NServiceBus persis
  - [NHibernate](/persistence/nhibernate/accessing-data.md)
  - [MongoDB](/persistence/mongodb/#transactions-shared-transactions)
  - [RavenDB](/persistence/ravendb/#shared-session)
- - [AWS DynamoDB](persistence/dynamodb/transactions)
+ - [AWS DynamoDB](/persistence/dynamodb/transactions.md)
  - [Service Fabric](/persistence/service-fabric/transaction-sharing.md)
 
 Synchronized storage session by itself only guarantees that there will be no *partial failures*, i.e., cases where one of the handlers has modified its state while another has not. This guarantee extends to [sagas](/nservicebus/sagas/) as they are persisted using the synchronized storage session.
