@@ -74,7 +74,7 @@ The DISM command line equivalent is:
 DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
 ```
 
-### Installation on Windows 10 /Windows 11
+### Installation on Windows 10 / Windows 11
 
 From the Control Panel, choose Programs. Then run the Windows Features Wizard by clicking `Turn Windows Features On or Off`. Enable `Microsoft Message Queue (MSMQ) Server Core`. All other MSMQ options should be disabled.
 
