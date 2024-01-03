@@ -76,4 +76,4 @@ Using multiple 7500 IOPS disks in striped mode in Azure may not improve performa
 
 ### Turn off full-text search
 
-Updating the full-text index requires a considerable amount of CPU and disk space. If the ability to search for specific messages based on their content is not required, consider turning off full-text search in the ServiceControl Management Utility.
+Updating the full-text index requires a considerable amount of CPU and disk space. If the ability to search for specific messages based on their content is not required, consider turning off full-text search in the ServiceControl Management Utility or by modifying the [ServiceControl.Audit/EnableFullTextSearchOnBodies](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditmaximumconcurrencylevel-servicecontrol-auditenablefulltextsearchonbodies) setting in the configuration file.
