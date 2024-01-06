@@ -3,12 +3,16 @@ title: Accessing and modifying data from a message handler
 summary: How to access business data from a message handler and sync with message consumption and modifications to NServiceBus-controlled data.
 component: Core
 versions: '[6,)'
-reviewed: 2023-12-26
+reviewed: 2024-01-05
 related:
  - persistence/nhibernate/accessing-data
  - persistence/sql/accessing-data
  - persistence/mongodb
  - persistence/ravendb
+ - persistence/service-fabric
+ - persistence/cosmosdb
+ - persistence/dynamodb
+ - persistence/azure-table
 ---
 
 In most cases, [handlers](/nservicebus/handlers/) are meant to modify the internal state of an application based on the received message. In any system, it is critical to ensure the state change is persisted exactly once. In a messaging system, this can be a challenge as exactly-once delivery is not guaranteed by any single queuing technology. NServiceBus provides several strategies to mitigate the risk of an inconsistent application state.
@@ -31,6 +35,9 @@ The synchronized storage session feature is supported by most NServiceBus persis
  - [RavenDB](/persistence/ravendb/#shared-session)
  - [AWS DynamoDB](/persistence/dynamodb/transactions.md)
  - [Service Fabric](/persistence/service-fabric/transaction-sharing.md)
+ - [CosmosDB](/persistence/cosmosdb/transactions.md#sharing-the-transaction)
+ - [DynamoDB](/persistence/dynamodb/transactions.md#dynamodbcontext)
+ - [Azure Table](/persistence/azure-table/transactions.md#sharing-the-transaction)
 
 Synchronized storage session by itself only guarantees that there will be no *partial failures*, i.e., cases where one of the handlers has modified its state while another has not. This guarantee extends to [sagas](/nservicebus/sagas/) as they are persisted using the synchronized storage session.
 
@@ -38,7 +45,7 @@ However, the synchronized storage session **does not guarantee that each state c
 
 ### Object/relational mappers
 
-When using an object/relational mapper (ORM) like Entity Framework for data access, there is the ability to either inject the data context object via dependency injection or create a data context on the fly and reuse the connection.
+When using an object/relational mapper (ORM) like [Entity Framework](https://docs.particular.net/samples/transactional-session/aspnetcore-webapi/) for data access, there is the ability to either inject the data context object via dependency injection or create a data context on the fly and reuse the connection.
 
 Creating a data context on the fly means that any other handler will work disconnected from that data context. This is a fairly simple approach, but it is not recommended when the same message is processed by multiple handlers.
 
