@@ -45,7 +45,7 @@ However, the synchronized storage session **does not guarantee that each state c
 
 ### Object/relational mappers
 
-When using an object/relational mapper (ORM) like [Entity Framework](/samples/transactional-session/aspnetcore-webapi/) for data access, there is the ability to either inject the data context object via dependency injection or create a data context on the fly and reuse the connection.
+When using an object/relational mapper (ORM) like Entity Framework for data access, as seen in this [sample configuration](/samples/transactional-session/aspnetcore-webapi/#configuration), there is the ability to either inject the data context object via dependency injection or create a data context on the fly and reuse the connection.
 
 Creating a data context on the fly means that any other handler will work disconnected from that data context. This is a fairly simple approach, but it is not recommended when the same message is processed by multiple handlers.
 
