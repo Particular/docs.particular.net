@@ -18,7 +18,7 @@ The result is that the design of a component is about more than message priority
 
 ## Different operational considerations
 
-Another aspect of priority messages can be a different Service Level Agreement (SLA) than with regular messages. The SLA might be breached if the message isn't processed in a specific amount of time, which is far more strict than with regular messages.
+Another aspect of priority messages can be a different Service Level Agreement (SLA) than with regular messages. The SLA might be breached if the message isn't processed in a specific amount of time, which is far more stricter than with regular messages.
 
 Other decisions could be using a different datastore, concurrency mode, or caching strategy. Or even decide on a different type of hardware. It should also be possible to scale out differently compared to the regular business process. Have different metrics, monitoring, etc.
 
