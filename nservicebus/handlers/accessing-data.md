@@ -45,7 +45,7 @@ However, the synchronized storage session **does not guarantee that each state c
 
 ### Object/relational mappers
 
-When using an object/relational mapper (ORM) like [Entity Framework](https://docs.particular.net/samples/transactional-session/aspnetcore-webapi/) for data access, there is the ability to either inject the data context object via dependency injection or create a data context on the fly and reuse the connection.
+When using an object/relational mapper (ORM) like [Entity Framework](/samples/transactional-session/aspnetcore-webapi/) for data access, there is the ability to either inject the data context object via dependency injection or create a data context on the fly and reuse the connection.
 
 Creating a data context on the fly means that any other handler will work disconnected from that data context. This is a fairly simple approach, but it is not recommended when the same message is processed by multiple handlers.
 
@@ -53,7 +53,7 @@ An alternative option that works with multiple handlers processing a single mess
 
 ## Message de-duplication strategies
 
-NServiceBus supports multiple message de-duplication strategies that suit a wide range of message processing and data storage technologies. 
+NServiceBus supports multiple message de-duplication strategies that suit a wide range of message processing and data storage technologies.
 
 ### Local transactions
 
