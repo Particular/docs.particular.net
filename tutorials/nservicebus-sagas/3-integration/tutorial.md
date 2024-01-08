@@ -33,11 +33,11 @@ This tutorial assumes at least Visual Studio 2019 and .NET Framework 4.7.2.
 
 ### A new saga
 
-While it would be possible to implement the new functionality in our existing `ShippingPolicy` saga, it's probably not a good idea. That saga is about deciding whether or not to ship, while we are now dealing with the process of executing that shipment. It's best to keep the [single responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle) in mind and keep them separate. The result will be simpler sagas that are easier to test and easier to evolve in the future.
+While it would be possible to implement the new functionality in our existing `ShippingPolicy` saga, it's probably not a good idea. That saga is about deciding whether or not to ship while we are now dealing with the process of executing that shipment. It's best to keep the [single responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle) in mind and keep them separate. The result will be simpler sagas that are easier to test and easier to evolve in the future.
 
-In the `ShippingPolicy` saga class (inside the **Shipping** endpoint project) we already have the `ShipOrder` being sent from the `ProcessOrder` method at the end of the saga. Currently, this is being processed by the `ShipOrderHandler` class, also in the **Shipping** endpoint. Our aim is to replace that handler with a new saga.
+In the `ShippingPolicy` saga class (inside the **Shipping** endpoint project), we already have the `ShipOrder` being sent from the `ProcessOrder` method at the end of the saga. Currently, this is being processed by the `ShipOrderHandler` class, also in the **Shipping** endpoint. Our aim is to replace that handler with a new saga.
 
-While the previous saga `ShippingPolicy` was a passive observer, this new saga is commanding an active workflow, so we will call it `ShipOrderWorkflow`.
+While the previous saga, `ShippingPolicy`, was a passive observer, this new saga commands an active workflow, so we will call it `ShipOrderWorkflow`.
 
 To get started, create a new class in the **Shipping** project called `ShipOrderWorkflow`:
 
@@ -47,7 +47,7 @@ This creates a saga that is started by `ShipOrder` messages and uses `ShipOrderD
 
 NOTE: For a more in-depth explanation of the basic saga concepts, see [NServiceBus sagas: Saga basics](/tutorials/nservicebus-sagas/1-saga-basics/).
 
-The `OrderId` is what makes the saga unique. We need to show the saga how to identify the unique **correlation property** `OrderId` in the incoming `ShipOrder` message, and how to relate it to the `OrderId` property in the saga data.
+The `OrderId` is what makes the saga unique. We need to show the saga how to identify the unique **correlation property** `OrderId` in the incoming `ShipOrder` message and how to relate it to the `OrderId` property in the saga data.
 
 To do that, implement the saga base class `ConfigureHowToFindSaga` method as shown here, or let the compiler generate the method and fill it in:
 
@@ -57,7 +57,7 @@ You can now delete the `ShipOrderHandler` class that was created in a previous t
 
 ### Calling web services
 
-Recall that while Maple Shipping Service is cheaper, and thus our preferred vendor, they are sometimes unreliable, in which case we want to use Alpine as a backup. To accomplish this, we'll send a `ShipWithMaple` command immediately and request a `ShippingEscalation` timeout in case Maple happens to be unreliable today.
+Recall that while Maple Shipping Service is cheaper and thus our preferred vendor, they are sometimes unreliable, in which case we want to use Alpine as a backup. To accomplish this, we'll send a `ShipWithMaple` command immediately and request a `ShippingEscalation` timeout in case Maple happens to be unreliable today.
 
 To do that, we'll first need to add a class for the command and for the timeout.
 
@@ -71,21 +71,21 @@ In the **Shipping** project, open the **Program.cs** file and add the last routi
 
 snippet: ShipWithMaple-Routing
 
-Next, let's create the `ShippingEscalation` timeout class, which will serve as the alarm clock or reminder service for our saga.
+Next, let's create the `ShippingEscalation` timeout class, which will serve as our saga's alarm clock or reminder service.
 
 In the **Shipping** project, go to the `ShipOrderWorkflow` and add `ShippingEscalation` as a *nested internal* class.
 
 snippet: ShippingEscalationTimeout
 
-Note that the `ShippingEscalation` timeout class should be **nested inside** the `ShipOrderWorkflow` class and marked as `internal`. It is very tightly coupled to the `ShipOrderWorkflow`—there's no need to use it anywhere else. It also doesn't need any special interface or contents. A timeout, after all, is just an alarm clock—we get all we need to know just from the type name. Everything else will already exist in the saga's stored data.
+Note that the `ShippingEscalation` timeout class should be **nested inside** the `ShipOrderWorkflow` class and marked as `internal`. It is very tightly coupled to the `ShipOrderWorkflow`—there's no need to use it anywhere else. It also doesn't need any special interface or content. A timeout, after all, is just an alarm clock—we get all we need to know just from the type name. Everything else will already exist in the saga's stored data.
 
 NOTE: For more on saga timeouts, see [NServiceBus sagas: Timeouts](/tutorials/nservicebus-sagas/3-integration/).
 
-Now, in our `ShipOrderWorkflow` class we can implement the `Handle` method as follows:
+Now, in our `ShipOrderWorkflow` class, we can implement the `Handle` method as follows:
 
 snippet: HandleShipOrder
 
-We've sent a `ShipWithMaple` command and requested a `ShippingEscalation` timeout of 20 seconds so that if Maple doesn't respond within that time we can ship with Alpine instead. Also, notice how we can use `Data.OrderId` immediately—because of the mapping in our `ConfigureHowToFindSaga` method, NServiceBus already knows that the saga data's `OrderId` property needs to be filled using the message's `OrderId` property, so it helpfully prefills this for us.
+We've sent a `ShipWithMaple` command and requested a `ShippingEscalation` timeout of 20 seconds so that if Maple doesn't respond within that time, we can ship with Alpine instead. Also, notice how we can use `Data.OrderId` immediately—because of the mapping in our `ConfigureHowToFindSaga` method, NServiceBus already knows that the saga data's `OrderId` property needs to be filled using the message's `OrderId` property, so it helpfully prefills this for us.
 
 {{NOTE:
 **Why 20 seconds?**
@@ -97,17 +97,17 @@ Now that we've created this command and timeout, we need to do something with th
 
 ### Shipping with Maple
 
-We're going to use a separate message handler to communicate with the Maple web service—or at least, we would in real life. For this tutorial, we'll use a fake message handler.
+We will use a separate message handler to communicate with the Maple web service—or at least, we would in real life. For this tutorial, we'll use a fake message handler.
 
 {{NOTE:
 **Why not contact the web service directly within the saga?**
 
-While the saga is processing the message, it holds a database lock on your saga data so that if multiple messages from the same saga try to modify the data at the same time, only one of them will succeed. This presents two problems for a web service request. First, a web request can't be added to a database transaction, meaning that if a concurrency exception occurs, the web request can't be undone. The second is that the time it takes for the web request to complete will hold the saga database transaction open longer, making it even more likely that another message will be processed concurrently, creating more contention.
+While the saga is processing the message, it holds a database lock on your saga data so that if multiple messages from the same saga try to modify the data simultaneously, only one of them will succeed. This presents two problems for a web service request. First, a web request can't be added to a database transaction, meaning that if a concurrency exception occurs, the web request can't be undone. The second is that the time it takes for the web request to complete will hold the saga database transaction open longer, making it even more likely that another message will be processed concurrently, creating more contention.
 
-This is why a saga should be only a message-driven state machine: a message comes in, decisions are made, and messages go out. Leave all the other processing to external message handlers as shown in this tutorial.
+This is why a saga should be only a message-driven state machine: a message comes in, decisions are made, and messages go out. Leave all the other processing to external message handlers, as shown in this tutorial.
 }}
 
-We'll need to create the message handler as well as configure the routing so the saga knows where to send the `ShipWithMaple` command.
+We'll need to create the message handler and configure the routing so the saga knows where to send the `ShipWithMaple` command.
 
 Rather than call a real web service, our example will fake it by delaying for a random time and then replying to the `ShipOrderWorkflow` saga with a `ShipmentAcceptedByMaple` message.
 
@@ -121,11 +121,11 @@ snippet: ShipWithMapleHandler
 
 There are a few things to point out here:
 
-* We're not really calling a web service, we're just faking it. The random delay of up to 60 seconds emulates how Maple is known to be unreliable. If you recall, the timeout on our saga will only wait 20 seconds before the `ShippingEscalation` timeout is triggered.
-* `ShipmentAcceptedByMaple` is marked as an `IMessage`, not an `ICommand` or `IEvent`. Reply messages, created by using `context.Reply(…)`, are not command or events, they're just messages.
-* `ShipmentAcceptedByMaple` doesn't have any properties, at all.
+* We're not really calling a web service; we're just faking it. The random delay of up to 60 seconds emulates how Maple is known to be unreliable. If you recall, the timeout on our saga will only wait 20 seconds before the `ShippingEscalation` timeout is triggered.
+* `ShipmentAcceptedByMaple` is marked as an `IMessage`, not an `ICommand` or `IEvent`. Reply messages created by using `context.Reply(…)`, are not commands or events. They're just messages.
+* `ShipmentAcceptedByMaple` doesn't have any properties at all.
 
-The second point is due to a process called **auto-correlation**. When the saga sends the `ShipWithMaple` command, it includes a header containing the saga's SagaId. The `ShipWithMapleHandler` will then reflect that SagaId header back in the reply message when we call `context.Reply(…)`. This means we don't need to propagate any identifying information (in this case, our `OrderId`) in the response message. It also means that we don't have to do anything in the saga's `ConfigureHowToFindSaga` for it to know how to handle the returning `ShipmentAcceptedByMaple` reply message. Because it's a reply message, we also don't have to specify routing for it—because it's a reply it goes back to the saga that sent the `ShipWithMaple` command.
+The second point is due to a process called **auto-correlation**. When the saga sends the `ShipWithMaple` command, it includes a header containing the saga's SagaId. The `ShipWithMapleHandler` will then reflect that SagaId header back in the reply message when we call `context.Reply(…)`. This means we don't need to propagate any identifying information (in this case, our `OrderId`) in the response message. It also means that we don't have to do anything in the saga's `ConfigureHowToFindSaga` for it to know how to handle the returning `ShipmentAcceptedByMaple` reply message. Because it's a reply message, we also don't have to specify routing for it—because it's a reply, it goes back to the saga that sent the `ShipWithMaple` command.
 
 In essence, because of the tight coupling between the `ShipOrderWorkflow` saga, the `ShipWithMaple` command, `ShipWithMapleHandler`, and `ShipmentAcceptedByMaple` reply message, we get to take a few shortcuts and leave the routing and correlation duties up to NServiceBus.
 
@@ -145,7 +145,7 @@ snippet: ShipWithMaple-Data
 
 Right now, a notification that Maple accepted the shipment is logged, and the flag `ShipmentAcceptedByMaple` is set. The saga does nothing else.
 
-In a real-world scenario, perhaps another message needs to be sent so that the customer can be notified and a tracking code can be provided, or we can simply end the saga using `MarkAsComplete()`. If we did mark the saga as completed, then when the timeout message we requested arrived it would be ignored, since the saga instance is no longer active, and a timeout cannot start a saga.
+In a real-world scenario, perhaps another message needs to be sent so that the customer can be notified and a tracking code can be provided, or we can simply end the saga using `MarkAsComplete()`. If we did mark the saga as completed, it would be ignored when the timeout message we requested arrived since the saga instance is no longer active, and a timeout cannot start a saga.
 
 ### Shipping with Alpine
 
@@ -167,25 +167,25 @@ Now that we have those building blocks, we can return to the **ShipOrderWorkflow
 
 snippet: ShippingEscalation
 
-If the shipment was not accepted by Maple, the system needs to execute the shipment via Alpine. It's less likely something will go wrong since the web service is more reliable. But we need to expect that anything could happen and be prepared for it. Therefore we also request another timeout.
+If the shipment was not accepted by Maple, the system needs to execute the shipment via Alpine. It's less likely something will go wrong since the web service is more reliable. But we need to expect that anything could happen and be prepared for it. Therefore, we also request another timeout.
 
 Note that this timeout handler also checks `Data.ShipmentOrderSentToAlpine` to see if we have already attempted to send the order to Alpine. This is because the same timeout message type is used twice. We could have created a separate timeout message type, but using a single type allows us to verify several possible scenarios with if/then logic in the same method, making the end result easier to read. We'll return to this method later in this tutorial.
 
 ### Late arrivals
 
-Before we move on, it's important to remember that even once the timeout handler executes and we move on to requesting shipment through Alpine, it's _still possible for Maple to respond with `ShipmentAcceptedByMaple`_, but just later than we were willing to wait. This raises some additional concerns which we will discuss in the [Edge cases](#exercise-edge-cases) section toward the end, but for now, we need to change the handler so that the late arrival of a `ShipmentAcceptedByMaple` will not end the saga.
+Before we move on, it's important to remember that even once the timeout handler executes and we move on to requesting shipment through Alpine, it's _still possible for Maple to respond with `ShipmentAcceptedByMaple`_, but just later than we were willing to wait. This raises some additional concerns, which we will discuss in the [Edge cases](#exercise-edge-cases) section toward the end, but for now, we need to change the handler so that the late arrival of a `ShipmentAcceptedByMaple` will not end the saga.
 
 In the **ShipOrderWorkflow**, modify the handler for `ShipmentAcceptedByMaple` like this:
 
 snippet: ShipWithMaple-ShipmentAcceptedRevision
 
-With this change, if the `ShipmentAcceptedByMaple` message arrives after we've already set `Data.ShipmentOrderSentToAlpine` to `true`, the message handler will be a no-op and the message will essentially be ignored. It's possible in real life that we would want to send additional messages to cancel the shipment via Maple. This will be discussed in more detail in [Edge cases](#exercise-edge-cases).
+With this change, if the `ShipmentAcceptedByMaple` message arrives after we've already set `Data.ShipmentOrderSentToAlpine` to `true`, the message handler will be a no-op, and the message will essentially be ignored. It's possible in real life that we would want to send additional messages to cancel the shipment via Maple. This will be discussed in more detail in [Edge cases](#exercise-edge-cases).
 
 Now let's move on to handling the response from Alpine.
 
 ### Alpine response
 
-Just like with Maple, we'll need an external handler to mimic contacting Alpine Delivery, and a response message type so that Alpine can deliver its answer back to our saga.
+Just like with Maple, we'll need an external handler to mimic contacting Alpine Delivery and a response message type so that Alpine can deliver its answer back to our saga.
 
 Add this message to your **Messages** project:
 
@@ -211,46 +211,46 @@ As with Maple, we're not currently taking any action once the package is success
 
 ### Edge cases
 
-So far we've handled two scenarios:
+So far, we've handled two scenarios:
 
-1. We request shipment via Maple and it responds in time that the shipment was accepted.
-2. We request shipment via Maple, it doesn't reply in time and we request another shipment via Alpine.
+1. We requested shipment via Maple, and it responded in time that the shipment was accepted.
+2. We requested shipment via Maple, but it didn't reply in time, and we requested another shipment via Alpine.
 
-But what happens if *none* of the shipping providers accept the shipment? In that case, the saga will be stalled and our package will never ship. When we sent the request to Alpine (the second choice) we did request another `ShippingEscalation` timeout, but when that timeout comes due the same `Timeout()` method is executed again, and this line of code will be executed:
+But what happens if *none* of the shipping providers accept the shipment? In that case, the saga will be stalled, and our package will never ship. When we sent the request to Alpine (the second choice), we did request another `ShippingEscalation` timeout, but when that timeout comes due, the same `Timeout()` method is executed again, and this line of code will be executed:
 
 snippet: EdgeCases-IfShipmentAccepted
 
 In this case, the shipment was not accepted by Maple, but we *already sent the request to Alpine*, and now we have returned to the timeout handler. It means that both attempts to request delivery have failed. That could happen for several reasons, such as the Alpine web service being down for maintenance, or perhaps a network issue prevented our request from being received.
 
-One way to handle this situation is to notify the sales department who can handle the issue manually by calling either shipment provider and request delivery.
+One way to handle this situation is to notify the sales department, which can handle the issue manually by calling either shipment provider and requesting delivery.
 
 The best way to notify the sales department is via an event. Add `ShipmentFailed` to your **Messages** project:
 
 snippet: ShipmentFailedEvent
 
-Then, in the **ShipOrderWorkflow**, modify the `Timeout` method to handle the new case. Because both cases depend on `!Data.ShipmentAcceptedByMaple` we'll also refactor a bit for clarity:
+Then, in the **ShipOrderWorkflow**, modify the `Timeout` method to handle the new case. Because both cases depend on `!Data.ShipmentAcceptedByMaple`, we'll also refactor a bit for clarity:
 
 snippet: EdgeCases-ShipmentFailed
 
-The saga does not send any emails or save information about the failure to a database. Remember, it's a message-driven state machine! It merely publishes an event, so another handler can take the appropriate action. Our saga is only orchestrating the process.
+The saga does not send any emails or save information about the failure to a database. Remember, it's a message-driven state machine! It merely publishes an event so that another handler can act appropriately. Our saga is only orchestrating the process.
 
-There could be more scenarios similar to the one mentioned above. As developers we're tempted to solve such problems via code, ensuring consistency and avoiding race conditions. However, in reality, deciding how to handle such edge cases is a business decision.
+There could be more scenarios similar to the one mentioned above. As developers, we're tempted to solve such problems via code, ensuring consistency and avoiding race conditions. However, in reality, deciding how to handle such edge cases is a business decision.
 
-For example, consider that as the saga currently stands, it's possible for Maple to accept a shipment but too late to stop the saga from requesting shipment via Alpine. In that circumstance, both providers could attempt to ship the package!
+For example, consider that as the saga currently stands, it's possible for Maple to accept a shipment, but too late to stop the saga from requesting shipment via Alpine. In that circumstance, both providers could attempt to ship the package!
 
-Dealing with these sorts of edge cases is not necessarily a technical decision, but a business one. Perhaps generating a shipment record that is never fulfilled is an acceptable solution. Perhaps once orders are accepted by Alpine, a `CancelShipment` command needs to be sent to Maple to ensure no shipment is created. Perhaps the commands to the shipment providers need to include a `DoNotProcessAfter` property so that messages that arrive "too late" are discarded. It depends on the exact business requirements.
+Dealing with these sorts of edge cases is not necessarily a technical decision but a business one. Perhaps generating a shipment record that is never fulfilled is an acceptable solution. Perhaps once orders are accepted by Alpine, a `CancelShipment` command needs to be sent to Maple to ensure no shipment is created. Perhaps the commands to the shipment providers need to include a `DoNotProcessAfter` property so that messages that arrive "too late" are discarded. It depends on the exact business requirements.
 
-In software, timeframes between business decisions can scale down to the millisecond, leading to apparent race conditions. But in real life, [race conditions don't exist](https://udidahan.com/2010/08/31/race-conditions-dont-exist/). It's important to ask business stakeholders what would happen in real life if the events had happened by phone rather than milliseconds apart, and use that to guide your workflows. Be careful and ensure you discuss such edge cases with business stakeholders before you jump straight to the implementation.
+In software, timeframes between business decisions can scale down to the millisecond, leading to apparent race conditions. But in real life, [race conditions don't exist](https://udidahan.com/2010/08/31/race-conditions-dont-exist/). It's important to ask business stakeholders what would happen in real life if the events had happened by phone rather than milliseconds apart and use that to guide your workflows. Be careful and ensure you discuss such edge cases with business stakeholders before you jump straight to the implementation.
 
 ## Running the solution
 
 The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>) it should open the four console applications, one window for each messaging endpoint.
 
-In the **ClientUI** application, press <kbd>P</kbd> to place an order. To see what our saga does, we want to watch the **Shipping** endpoint and don't care too much about what hapepns in **Sales** or **Billing**, but we do need them running to do their part.
+In the **ClientUI** application, press <kbd>P</kbd> to place an order. To see what our saga does, we want to watch the **Shipping** endpoint and don't care too much about what happens in **Sales** or **Billing**, but we do need them running to do their part.
 
 It will take some time after placing an order to see anything in **Shipping** because the **BuyersRemorsePolicy** in **Sales** (from the [saga timeouts tutorial](../2-timeouts/) is implementing a 20-second timeout. If you'd like to speed this up for testing, you can edit **BuyersRemorsePolicy.cs** in the **Sales** project by temporarily setting the requested timeout to `TimeSpan.FromSeconds(1)`.
 
-Based on the randomized timeouts that occur in the Maple and Alpine handlers, there are a few different ways the saga could execute.
+Based on the randomized timeouts that occur in the Maple and Alpine handlers, there are a few different ways the saga could be executed.
 
 ### Happy path
 
@@ -303,7 +303,7 @@ In the last case, both Maple and Alpine will take longer than their configured t
 
 We can see from the output that both timeouts were reached, resulting in the `WARN` statement, which we know would be accompanied by the `ShipmentFailed` event being published, but since we don't have any handler for that we don't see any evidence in the log.
 
-We also see a new message at the end, similar what happened when timeout messages were being ignored:
+We also see a new message at the end, similar to what happened when timeout messages were being ignored:
 
 ```
 INFO  Could not find a started saga for 'Messages.ShipmentAcceptedByAlpine' message type. Going to invoke SagaNotFoundHandlers.

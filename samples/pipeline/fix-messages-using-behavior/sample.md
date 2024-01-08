@@ -37,11 +37,11 @@ Retries are disabled in the sample for simplicity; messages are immediately move
 
 snippet: DisableRetries
 
-This endpoint processes messages of type `SimpleMessage` and expects the `Id` field to not contain any lowercase characters. Messages with lowercase characters are rejected (and sent to the error queue).
+This endpoint processes messages of type `SimpleMessage` and expects the `Id` field not to contain any lowercase characters. Messages with lowercase characters are rejected (and sent to the error queue).
 
 snippet: ReceiverHandler
 
-To fix failing messages the endpoint defines a pipeline behavior to convert lower-case message identifiers to upper-case.
+To fix failing messages, the endpoint defines a pipeline behavior to convert lower-case message identifiers to upper-case.
 
 snippet: RegisterFixBehavior
 
