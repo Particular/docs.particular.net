@@ -1,10 +1,10 @@
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using NServiceBus;
 using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
 
 class Program
 {
@@ -14,8 +14,8 @@ class Program
 
         #region multi-hosting-startup
 
-        using(var endpointOneBuilder = ConfigureEndpointOne(Host.CreateDefaultBuilder(args)).Build())
-        using(var endpointTwoBuilder = ConfigureEndpointTwo(Host.CreateDefaultBuilder(args)).Build())
+        using (var endpointOneBuilder = ConfigureEndpointOne(Host.CreateDefaultBuilder(args)).Build())
+        using (var endpointTwoBuilder = ConfigureEndpointTwo(Host.CreateDefaultBuilder(args)).Build())
         {
             await Task.WhenAll(endpointOneBuilder.StartAsync(), endpointTwoBuilder.StartAsync());
             await Task.WhenAll(endpointOneBuilder.WaitForShutdownAsync(), endpointTwoBuilder.WaitForShutdownAsync());
@@ -69,7 +69,7 @@ class Program
             var endpointConfiguration = new EndpointConfiguration("Instance2");
             var scanner = endpointConfiguration.AssemblyScanner();
             scanner.ExcludeAssemblies("Instance1");
-
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.UseTransport(new LearningTransport());
             endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 

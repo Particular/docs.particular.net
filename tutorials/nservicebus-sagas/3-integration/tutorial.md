@@ -1,25 +1,23 @@
 ---
 title: "NServiceBus sagas: Integrations"
-reviewed: 2023-12-25
-## Once published, add to Learning Path pages on Website and remove comment here, and remove hidden attribute
-#isLearningPath: true
+reviewed: 2024-01-04
 summary: In this tutorial, learn how to use NServiceBus sagas to manage integration with external systems that communicate via HTTP.
 previewImage: https://img.youtube.com/vi/BHlKPgY2xxg/maxresdefault.jpg
 ---
 
 youtube: https://www.youtube.com/watch?v=BHlKPgY2xxg
 
-When integrating with third parties, the need to orchestrate a business process arises quickly. We'll frequently need to call a third-party service and then, depending on the result, kick off a new process locally or perhaps even turn around and call a different third party.
+The need for orchestration of a business process arises quickly when integrating with third parties. We'll frequently need to call a third-party service, and then depending on the result, kick off a new process locally, or perhaps even turn around and call a different third party service.
 
 We can't sit around passively waiting for events to float by to decide what needs to happen next. We need a process to take charge and execute several steps of a business process in a coordinated fashion.
 
 In this tutorial, let's consider shipping couriers used in a retail system. To avoid any unpleasant uses of registered trademarks, let's call our two fake shipping services **Alpine Delivery** and **Maple Shipping Service**. In our fictional world, Maple is currently cheaper, so it's our preferred delivery option. However, it also seems to be less reliable. There is a 24-hour delivery SLA with our customers, so if Maple doesn't respond to our shipment request on time, we need to ask Alpine to deliver the package instead.
 
-In this tutorial, we'll learn how to orchestrate this type of business process using an NServiceBus saga. We'll also see how we can react to failures from one or more of our third-party services.
+Let's orchestrate this business process using an NServiceBus saga. Then we'll see how we can react to failures from one or more of our third-party services.
 
 ## Exercise
 
-In the exercises so far, we had a `ShippingPolicy` saga that was rather passive—it waited for `OrderPlaced` and `OrderBilled` to arrive (which could happen out of order), and then the order is ready to ship. In this exercise, we'll implement the actual shipment via one of our fictional shipping carriers, Alpine or Maple.
+In the exercises so far, we had a `ShippingPolicy` saga that was rather passive — it waited for `OrderPlaced` and `OrderBilled` to arrive (which could happen out of order) and then the order is ready to ship. In this exercise, we'll continue by implementing the actual shipment via one of our fictional shipping carriers, Alpine or Maple.
 
 {{NOTE:
 **What if I didn't do the previous tutorial?**
@@ -30,7 +28,7 @@ downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/2-timeou
 
 The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 
-Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
+This tutorial assumes at least Visual Studio 2019 and .NET Framework 4.7.2.
 }}
 
 ### A new saga
@@ -47,7 +45,7 @@ snippet: Creation-SagaStart
 
 This creates a saga that is started by `ShipOrder` messages and uses `ShipOrderData` to store its data. Because the saga data is tightly coupled to the saga implementation, we include it as an internal class. The `Handle` method is currently empty—we will need to complete that in just a bit.
 
-NOTE: For a more in-depth explanation of the basic saga concepts, check out [NServiceBus sagas: Saga basics](/tutorials/nservicebus-sagas/1-saga-basics/).
+NOTE: For a more in-depth explanation of the basic saga concepts, see [NServiceBus sagas: Saga basics](/tutorials/nservicebus-sagas/1-saga-basics/).
 
 The `OrderId` is what makes the saga unique. We need to show the saga how to identify the unique **correlation property** `OrderId` in the incoming `ShipOrder` message and how to relate it to the `OrderId` property in the saga data.
 
@@ -81,7 +79,7 @@ snippet: ShippingEscalationTimeout
 
 Note that the `ShippingEscalation` timeout class should be **nested inside** the `ShipOrderWorkflow` class and marked as `internal`. It is very tightly coupled to the `ShipOrderWorkflow`—there's no need to use it anywhere else. It also doesn't need any special interface or content. A timeout, after all, is just an alarm clock—we get all we need to know just from the type name. Everything else will already exist in the saga's stored data.
 
-NOTE: For more on saga timeouts, check out [NServiceBus sagas: Timeouts](/tutorials/nservicebus-sagas/3-integration/).
+NOTE: For more on saga timeouts, see [NServiceBus sagas: Timeouts](/tutorials/nservicebus-sagas/3-integration/).
 
 Now, in our `ShipOrderWorkflow` class, we can implement the `Handle` method as follows:
 
@@ -129,9 +127,9 @@ There are a few things to point out here:
 
 The second point is due to a process called **auto-correlation**. When the saga sends the `ShipWithMaple` command, it includes a header containing the saga's SagaId. The `ShipWithMapleHandler` will then reflect that SagaId header back in the reply message when we call `context.Reply(…)`. This means we don't need to propagate any identifying information (in this case, our `OrderId`) in the response message. It also means that we don't have to do anything in the saga's `ConfigureHowToFindSaga` for it to know how to handle the returning `ShipmentAcceptedByMaple` reply message. Because it's a reply message, we also don't have to specify routing for it—because it's a reply, it goes back to the saga that sent the `ShipWithMaple` command.
 
-In essence, because of the tight coupling between the `ShipOrderWorkflow` saga, the `ShipWithmaple` command, `ShipWithmapleHandler`, and `ShipmentAcceptedByMaple` reply message, we get to take a few shortcuts and leave the routing and correlation duties up to NServiceBus.
+In essence, because of the tight coupling between the `ShipOrderWorkflow` saga, the `ShipWithMaple` command, `ShipWithMapleHandler`, and `ShipmentAcceptedByMaple` reply message, we get to take a few shortcuts and leave the routing and correlation duties up to NServiceBus.
 
-Another option would have been to publish `ShipmentAcceptedByMaple` as an event, but then we would have needed to include `OrderId` as a property. This makes sense because while a reply message is only meant for the saga, any endpoint could subscribe to an event, and in that case, the event message wouldn't make sense without containing the `OrderId` identifying it.
+Another option could be to publish `ShipmentAcceptedByMaple` as an event, but then we need to include `OrderId` as a property. This makes sense, because while a reply message is only meant for the saga, any endpoint could subscribe to an event, and in that case, the event message wouldn't make sense without containing the `OrderId` identifying it.
 
 ### Success with Maple
 
@@ -151,17 +149,17 @@ In a real-world scenario, perhaps another message needs to be sent so that the c
 
 ### Shipping with Alpine
 
-If the Maple integration handler does not respond in time, the timeout message will arrive, and we need to handle it. It's important to remember that this timeout might be triggered either before or after Maple responds, so we need to be able to handle either circumstance. If we haven't heard back from Maple yet, we're going to want to record that we're sending the order to Alpine because it's still possible for the Maple service to respond late.
+If the Maple integration handler does not respond in time, the timeout message will arrive, and we need to handle it. It's important to remember that this timeout might be triggered either before or after Maple responds, so we must be able to handle either circumstance. If we haven't heard back from Maple yet, we're going to want to record that we're sending the order to Alpine, because it's still possible for the Maple service to respond late.
 
 So first, let's update our saga data again. Inside the **ShipOrderWorkflow**, update the **ShipOrderData** class to add a `ShipmentOrderSentToAlpine` property:
 
 snippet: ShipWithAlpine-Data
 
-We're also going to need a message to send to the Alpine adapter:
+We also need a message to send to the Alpine adapter:
 
 snippet: ShipWithAlpineCommand
 
-And we're going to continue to keep all of this within the **Shipping** service, so let's add routing instructions for this new message type:
+And we'll continue to keep all of this within the **Shipping** service, so let's add routing instructions for this new message type:
 
 snippet: ShipWithAlpine-Routing
 
@@ -201,7 +199,7 @@ Just like with the Maple case, we don't need to add any routing for the `Shipmen
 
 ### Success with Alpine
 
-If the package can be shipped via Alpine, our saga will receive a `ShipmentAcceptedByAlpine` reply message. Let's handle that now. First, we'll want to add a property to our saga data to show that the order was accepted by Alpine:
+If the package can be shipped via Alpine, our saga will receive a `ShipmentAcceptedByAlpine` reply message. Let's handle that now. First, we'll add a property to our saga data to show that the order was accepted by Alpine:
 
 snippet: AcceptedByAlpine-Data
 
@@ -209,7 +207,7 @@ Then, in the **ShipOrderWorkflow** class, implement `IHandleMessages<ShipmentAcc
 
 snippet: ShipmentAcceptedByAlpine
 
-In the same way as with Maple, we're not currently taking any action once the package is successfully shipped by Alpine other than to mark the saga as complete, which removes the saga data from the database. It might be appropriate to publish an event such as `ShipmentAccepted` at this point. But first, let's look at some edge cases that could arise.
+As with Maple, we're not currently taking any action once the package is successfully shipped by Alpine other than to mark the saga as complete, which removes the saga data from the database. It might be appropriate to publish an event such as `ShipmentAccepted` at this point. But first, let's look at some edge cases that could arise.
 
 ### Edge cases
 

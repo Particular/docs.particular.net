@@ -141,14 +141,13 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.4) | 2022-11-17     | -                 | -                                 |
-| [~~6.6.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.4) | ~~2022-09-19~~ | ~~2023-11-17~~    | ~~Superseded by 7.0.x~~           |
+| [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.4) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/8.2.0) | 2023-04-05     | -                 | -                                 |
-| [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/8.1.0) | ~~2023-01-17~~ | ~~2023-07-05~~    | ~~Superseded by 8.2.x~~           |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/7.2.0) | 2023-01-17     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.RavenDB.TransactionalSession](/nuget/NServiceBus.RavenDB.TransactionalSession)
@@ -156,7 +155,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.2.0) | 2023-04-05     | -                 | -                                 |
-| [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.1.0) | ~~2023-01-17~~ | ~~2023-07-05~~    | ~~Superseded by 8.2.x~~           |
 | [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/7.2.0) | ~~2023-01-17~~ | ~~2023-11-17~~    | ~~Superseded by 8.0.x~~           |
 
 #### [NServiceBus.Storage.MongoDB](/nuget/NServiceBus.Storage.MongoDB)
@@ -348,7 +346,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/4.0.0) | 2022-11-17     | -                 | -                                 |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/3.0.0) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/3.0.0) | ~~2018-05-29~~ | ~~2023-11-17~~    | ~~Superseded by 4.0.x~~           |
 
 #### [NServiceBus.CustomChecks](/nuget/NServiceBus.CustomChecks)
 
@@ -509,8 +507,6 @@
 | [~~2.31.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.31.0) | ~~2023-04-19~~ | ~~2023-09-02~~    | ~~Superseded by 2.32.x~~          |
 | [~~2.30.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.30.0) | ~~2023-04-14~~ | ~~2023-07-19~~    | ~~Superseded by 2.31.x~~          |
 | [~~2.28.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.28.0) | ~~2023-04-04~~ | ~~2023-07-14~~    | ~~Superseded by 2.30.x~~          |
-| [~~2.27.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.27.0) | ~~2023-03-28~~ | ~~2023-07-04~~    | ~~Superseded by 2.28.x~~          |
-| [~~2.26.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.26.0) | ~~2023-03-08~~ | ~~2023-06-28~~    | ~~Superseded by 2.27.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 

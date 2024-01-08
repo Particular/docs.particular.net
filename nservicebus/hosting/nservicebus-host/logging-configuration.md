@@ -2,7 +2,7 @@
 title: NServiceBus Host Logging Configuration
 summary: How to customize the logging configuration for the NServiceBus host
 component: Host
-reviewed: 2020-12-25
+reviewed: 2024-01-02
 related:
  - nservicebus/logging
  - samples/logging/hostcustom
