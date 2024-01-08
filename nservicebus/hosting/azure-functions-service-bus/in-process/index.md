@@ -13,7 +13,7 @@ reviewed: 2023-06-28
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
 
-WARNING: Microsoft announced that .NET8 will be [the last LTF release supporting the AzureFunctions InProcess SDK](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/net-on-azure-functions-august-2023-roadmap-update/ba-p/3910098). It is recommended to use [AzureFunctions Isolated Worker model](nservicebus/hosting/azure-functions-service-bus/index.md).
+WARNING: Microsoft announced that .NET8 will be [the last LTF release supporting the AzureFunctions InProcess SDK](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/net-on-azure-functions-august-2023-roadmap-update/ba-p/3910098). It is recommended to use [AzureFunctions Isolated Worker model](/nservicebus/hosting/azure-functions-service-bus/).
 
 ## Basic usage
 
