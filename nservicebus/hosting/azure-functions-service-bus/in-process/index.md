@@ -13,6 +13,8 @@ reviewed: 2023-06-28
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
 
+WARNING: Microsoft announced that .NET 8 will be [the last release supporting the in-process hosting model](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/net-on-azure-functions-august-2023-roadmap-update/ba-p/3910098). New projects should use the [isolated worker model](/nservicebus/hosting/azure-functions-service-bus/) instead.
+
 ## Basic usage
 
 ### Endpoint configuration
