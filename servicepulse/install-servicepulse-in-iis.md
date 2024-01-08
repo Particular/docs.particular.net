@@ -14,7 +14,6 @@ These instructions assume the following:
 * A ServiceControl Monitoring instance has been installed and is listening on `http://localhost:33633`.
 * ServicePulse has been installed.
 
-
 ## Basic setup
 
 Steps
@@ -25,7 +24,7 @@ Steps
  1. Remove the `netsh` url restriction
  1. Make sure that [WebSocket support is enabled for IIS](https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/iis-80-websocket-protocol-support)
  1. Create a website in IIS referring to the ServicePulse directory
- 1. Configure URL Rewrites 
+ 1. Configure URL Rewrites
 
 ### Detailed steps
 
@@ -133,7 +132,7 @@ window.defaultConfig = {
 
 ServicePulse relies on the ServiceControl and ServiceControl Monitoring REST APIs. Both can be exposed. It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServicePulse website using the Microsoft [URL Rewrite IIS extension](https://www.iis.net/downloads/microsoft/url-rewrite).
 
-### ServiceControl 
+### ServiceControl
 
 NOTE: If ServiceControl is configured with a hostname other than `localhost` then change the hostname value back to `localhost`.
 
@@ -166,6 +165,8 @@ Installation steps:
     </system.webServer>
 </configuration>
 ```
+
+WARNING: When combining these rules with the ones specified above in [Detailed steps](#basic-setup-detailed-steps), ensure the rule named "Handle Vue.js routing paths" (i.e. `<match url="(.*)" />`) rule occurs _last_ in the list of rewrite rules. Otherwise, it will override the rules specified here.
 
 WARNING: By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it is recommended that the IIS website be configured with one of the IIS authentication providers, such as Windows integration authentication.
 
@@ -278,8 +279,8 @@ Extension | Mime Type
 ------------ | -------------
 .eot | application/vnd.ms-fontobject
 .ttf  | application/octet-stream
-.svg | image/svg+xml               
-.woff | application/font-woff       
+.svg | image/svg+xml
+.woff | application/font-woff
 .woff2 | application/font-woff2
 
 NOTE: Some of these MIME types will already be set up on newer versions of IIS. Verify that all the listed MIME types are present.
