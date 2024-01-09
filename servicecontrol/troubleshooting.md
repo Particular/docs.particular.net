@@ -367,7 +367,12 @@ ServiceControl will halt ingestion when low on storage. This can happen if incor
 To mitigate growth or not having enough storage:
 
 1. Mount a new disk that is larger, stop instance, [move database](/servicecontrol/configure-ravendb-location.md), adjust drive letter or update location in configuration, start instance
-2. Lower retention, optionally compact database:
+2. Enlarge parition if your environment supports this:
+
+   - Expand the partition if the drive has enough storage
+   - Mount a new disk and join these with the existing disk ([JBOD](https://en.wikipedia.org/wiki/Non-RAID_drive_architectures#JBOD))
+
+5. Lower retention, optionally compact database:
 
    - [ServiceControl - Error instance setting `ServiceControl/ErrorRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontrolerrorretentionperiod)
    - [ServiceControl - Error instance setting `ServiceControl/EventRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontroleventretentionperiod)
@@ -375,18 +380,18 @@ To mitigate growth or not having enough storage:
    - [ServiceControl - How to compact database](/servicecontrol/db-compaction.md)
    - [ServiceControl - How to purge expired data](/servicecontrol/how-purge-expired-data.md)
 
-3. Disable auditing on selecting endpoints if not all endpoint need auditing
+6. Disable auditing on selecting endpoints if not all endpoint need auditing
 
    - [NServiceBus - Message auditing](/nservicebus/operations/auditing.md#configuring-auditing)
 
-4. Filter which messages will be send to the audit queue using
+7. Filter which messages will be send to the audit queue using
 
    - [NServiceBus.AuditFilter](https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter)
 
-5. Setup multiple audit instance with different retension periods if retension requirements can vary between endpoints
+8. Setup multiple audit instance with different retension periods if retension requirements can vary between endpoints
 
    - [ServiceControl remote instances  Sharding audit messages with split audit queues](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-split-audit-queues)
 
-6. Scale-out audit storage over multiple disks and/or machines
+9. Scale-out audit storage over multiple disks and/or machines
 
    - [ServiceControl remote instances  Sharding audit messages with split audit queues](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-split-audit-queues)
