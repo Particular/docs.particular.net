@@ -367,7 +367,7 @@ ServiceControl will halt ingestion when low on storage. This can happen if incor
 To mitigate growth or not having enough storage:
 
 1. Mount a new disk that is larger, stop instance, [move database](/servicecontrol/configure-ravendb-location.md), adjust drive letter or update location in configuration, start instance
-2. Enlarge parition if your environment supports this:
+2. Enlarge storage partition if the environment supports this:
 
    - Expand the partition if the drive has enough storage
    - Mount a new disk and join these with the existing disk ([JBOD](https://en.wikipedia.org/wiki/Non-RAID_drive_architectures#JBOD))
