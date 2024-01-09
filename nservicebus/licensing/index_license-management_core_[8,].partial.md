@@ -53,3 +53,20 @@ NOTE: If `HKEY_LOCAL_MACHINE` is the chosen license location, and the operating 
 NOTE: If the license is stored in `HKEY_CURRENT_USER`, NServiceBus processes must run as the user account used to add the license file to the registry in order to access the license.
 
 It is safe to ignore any warnings regarding empty strings.
+
+
+### Environment variable
+
+The license can also be specified by setting the `PARTICULARSOFTWARE_LICENSE` environment variable containing the license text
+
+* Windows
+  ```powershell
+  $env:PARTICULARSOFTWARE_LICENSE = @"the license text goes here
+  and is a multiline string"@
+  ```
+* Linux/macOS
+  ```bash
+  export PARTICULARSOFTWARE_LICENSE=`cat ./license.xml`
+  export PARTICULARSOFTWARE_LICENSE="the license text goes here
+  and is a multiline string"
+  ```
