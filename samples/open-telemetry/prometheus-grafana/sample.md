@@ -88,14 +88,14 @@ graph TD
 
 The Prometheus service must be configured to retrieve the metrics data from the endpoint. Grafana must also be configured to get the data from Promethus and visualize it as graphs.
 
-To run the Docker stack, run `docker-compse up -d` in the directory where the `docker-compose.yml` file is located.
+To run the Docker stack, run `docker-compose up -d` in the directory where the `docker-compose.yml` file is located.
 
 ### Configuring Prometheus
 
 Copy the following files into the mapped volumes of the Prometheus and Grafana.
 
-* `prometheus_ds.yml` should be copied to `./grafana/provisioning/datasources` folder
-* `prometheus.yml` should be copied to `./prometheus` folder
+* `prometheus_ds.yml` should be copied to the `./grafana/provisioning/datasources` folder
+* `prometheus.yml` should be copied to the `./prometheus` folder
 
 Open `prometheus.yml` and update the target IP address. This should be the address of the machine running the sample and the port that the Promethus exporter is configured to run on. The Docker containers should be able to reach this IP and port.
 
