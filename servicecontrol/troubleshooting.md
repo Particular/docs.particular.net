@@ -363,19 +363,22 @@ Contact [Particular support](https://particular.net/support) for assistance.
 
 ## Low on storage space
 
-ServiceControl will halt ingestion when low on storage. This can happen if incorrect or no [capacity planning](https://docs.particular.net/servicecontrol/capacity-and-planning) was done or that the system has grown and capacity planning wasn't re-evaluated.
+ServiceControl will halt ingestion when low on storage. This can happen if incorrect or no [capacity planning](/servicecontrol/capacity-and-planning.md) was done or that the system has grown and capacity planning wasn't re-evaluated.
 
 To mitigate growth or not having enough storage:
 
-a. Mount a new disk that is larger, stop instance, [move database](https://docs.particular.net/servicecontrol/configure-ravendb-location), adjust drive letter or update location in configuration, start instance
-b. Lower retention, optionally compact database
-  - https://docs.particular.net/servicecontrol/creating-config-file#data-retention-servicecontrolerrorretentionperiod
-  - https://docs.particular.net/servicecontrol/creating-config-file#data-retention-servicecontroleventretentionperiod
-  - https://docs.particular.net/servicecontrol/audit-instances/creating-config-file#data-retention-servicecontrol-auditauditretentionperiod
+a. Mount a new disk that is larger, stop instance, [move database](/servicecontrol/configure-ravendb-location.md), adjust drive letter or update location in configuration, start instance
+b. Lower retention, optionally compact database:
+
+  - [ServiceControl - Error instance setting `ServiceControl/ErrorRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontrolerrorretentionperiod)
+  - [ServiceControl - Error instance setting `ServiceControl/EventRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontroleventretentionperiod)
+  - [ServiceControl - Audit instance setting `ServiceControl.Audit/AuditRetentionPeriod`](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod)
+  - [ServiceControl - How to compact database](/servicecontrol/db-compaction.md)
+  - [ServiceControl - How to purge expired data](/servicecontrol/how-purge-expired-data.md)
 c. Disable auditing on selecting endpoints if not all endpoint need auditing
-  - https://docs.particular.net/nservicebus/operations/auditing#configuring-auditing
+  - [NServiceBus - Message auditing](/nservicebus/operations/auditing.md#configuring-auditing)
 d. Filter which messages will be send to the audit queue using [NServiceBus.AuditFilter](https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter)
 e. Setup multiple audit instance with different retension periods if retension requirements can vary between endpoints
-  - https://docs.particular.net/servicecontrol/servicecontrol-instances/remotes#overview-sharding-audit-messages-with-split-audit-queues
+  - [ServiceControl remote instances  Sharding audit messages with split audit queues](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-split-audit-queues)
 f. Scale-out audit storage over multiple disks and/or machines
-  - https://docs.particular.net/servicecontrol/servicecontrol-instances/remotes#overview-sharding-audit-messages-with-split-audit-queues
+  - [ServiceControl remote instances  Sharding audit messages with split audit queues](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-split-audit-queues)
