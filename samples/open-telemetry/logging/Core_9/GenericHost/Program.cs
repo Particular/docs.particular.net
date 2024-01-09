@@ -17,53 +17,46 @@ internal class Program
         await CreateHostBuilder(args).Build().RunAsync();
     }
 
-    private static IHostBuilder CreateHostBuilder(string[] args)
+    static HostApplicationBuilder CreateHostBuilder(string[] args)
     {
-        var builder = Host.CreateDefaultBuilder(args);
+        var builder = Host.CreateApplicationBuilder(args);
 
         #region otel-config
 
-        builder.ConfigureServices(services =>
-        {
-            services.AddOpenTelemetry()
+        builder.Services.AddOpenTelemetry()
                 .ConfigureResource(resourceBuilder => resourceBuilder.AddService(EndpointName))
                 .WithTracing(builder => builder.AddConsoleExporter());
-        });
 
         #endregion
 
         #region otel-logging
 
-        builder.ConfigureLogging((ctx, logging) =>
-        {
-            logging.AddConfiguration(ctx.Configuration.GetSection("Logging"));
-
-            logging.AddOpenTelemetry(loggingOptions =>
+        builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"))
+            .AddOpenTelemetry(loggingOptions =>
             {
                 loggingOptions.IncludeFormattedMessage = true;
                 loggingOptions.IncludeScopes = true;
                 loggingOptions.ParseStateValues = true;
                 loggingOptions.AddConsoleExporter();
-            });
-
-            logging.AddConsole();
-        });
+            })
+            .AddConsole();
 
         #endregion
 
         #region otel-nsb-config
-        builder.UseNServiceBus(ctx =>
-        {
-            var endpointConfiguration = new EndpointConfiguration(EndpointName);
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-            endpointConfiguration.UseTransport(new LearningTransport());
 
-            endpointConfiguration.EnableOpenTelemetry();
+        var endpointConfiguration = new EndpointConfiguration(EndpointName);
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.UseTransport(new LearningTransport());
 
-            return endpointConfiguration;
-        });
+        endpointConfiguration.EnableOpenTelemetry();
+
+        builder.UseNServiceBus(endpointConfiguration);
+
         #endregion
 
-        return builder.ConfigureServices(services => services.AddHostedService<MessageGenerator>());
+        builder.Services.AddHostedService<MessageGenerator>();
+
+        return builder;
     }
 }
