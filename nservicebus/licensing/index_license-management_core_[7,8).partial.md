@@ -84,7 +84,7 @@ NOTE: If the license is stored in `HKEY_CURRENT_USER`, NServiceBus processes mus
 It is safe to ignore any warnings regarding empty strings.
 
 
-### Environment variable location
+### Environment variable
 
 The license can also be specified by setting the `PARTICULARSOFTWARE_LICENSE` environment variable containing the license text
 
