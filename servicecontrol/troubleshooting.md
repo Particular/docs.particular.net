@@ -369,7 +369,6 @@ To mitigate growth or not having enough storage:
 
 a. Mount a new disk that is larger, stop instance, [move database](/servicecontrol/configure-ravendb-location.md), adjust drive letter or update location in configuration, start instance
 b. Lower retention, optionally compact database:
-
   - [ServiceControl - Error instance setting `ServiceControl/ErrorRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontrolerrorretentionperiod)
   - [ServiceControl - Error instance setting `ServiceControl/EventRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontroleventretentionperiod)
   - [ServiceControl - Audit instance setting `ServiceControl.Audit/AuditRetentionPeriod`](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod)
