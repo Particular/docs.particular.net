@@ -86,7 +86,7 @@ It is safe to ignore any warnings regarding empty strings.
 
 ### Environment variable location
 
-Finally a license can also be specified via setting the `PARTICULARSOFTWARE_LICENSE` environment variable with the license text
+The license can also be specified by setting the `PARTICULARSOFTWARE_LICENSE` environment variable containing the license text
 
 * Windows
   ```powershell
