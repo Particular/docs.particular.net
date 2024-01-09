@@ -1,10 +1,10 @@
-using System;
-using System.Threading.Tasks;
 using NServiceBus;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Shared;
+using System;
+using System.Threading.Tasks;
 
 class Program
 {
@@ -18,7 +18,7 @@ class Program
         var tracerProvider = Sdk.CreateTracerProviderBuilder()
             .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
             .AddSource("NServiceBus.Core")
-            .AddJaegerExporter()
+            .AddOtlpExporter() // The exporter defaults to gRPC on over port 4317 - https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry.Exporter.OpenTelemetryProtocol/README.md#otlpexporteroptions
             .Build();
         #endregion
 
@@ -32,7 +32,6 @@ class Program
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
-
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
