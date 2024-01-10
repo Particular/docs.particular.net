@@ -8,7 +8,7 @@ This document describes Particular Software business continuity and disaster rec
 
 ## Business continuity
 
-- Our company and processes are set up in such a way that continuity is inherent.
+- The company and processes are set up in such a way that continuity is inherent.
 - We have a globally distributed team.
 - All processes are thoroughly documented and repeatable.
 - Due to our setup, no material change can have any significant impact on our business.
