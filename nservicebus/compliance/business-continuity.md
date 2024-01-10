@@ -17,4 +17,4 @@ This document describes Particular Software business continuity and disaster rec
 ## Disaster recovery
 
 - All our software and services have multiple backups.
-- We make sure that all third party dependencies have a manual backup procedure.
+- All third party dependencies have a manual backup procedure.
