@@ -14,7 +14,7 @@ public class Program
             .AddMeter("NServiceBus.Core");
         #endregion
 
-        #region enable-prometheus-exporter
+        #region enable-prometheus-http-listener
         meterProviderBuilder.AddPrometheusHttpListener(options => options.UriPrefixes = new[] { "http://127.0.0.1:9464" });
         #endregion
 

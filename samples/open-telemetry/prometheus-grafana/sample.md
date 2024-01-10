@@ -3,16 +3,16 @@ title: Monitoring NServiceBus endpoints with Prometheus and Grafana
 summary: How to configure NServiceBus to export OpenTelemetry metrics to Prometheus and Grafana
 component: Core
 isLearningPath: true
-reviewed: 2022-07-15
+reviewed: 2024-01-10
 previewImage: grafana.png
 related:
 - nservicebus/operations/opentelemetry
 ---
 
 
-[Prometheus](https://prometheus.io) is a monitoring solution for storing time series data like metrics. [Grafana](https://grafana.com) visualizes the data stored in Prometheus (and other sources). This sample demonstrates how to capture NServiceBus OpenTelemetry metrics, store them in Prometheus and visualize these metrics using a Grafana dashboard.
+[Prometheus](https://prometheus.io) is a monitoring solution for storing time series data like metrics. [Grafana](https://grafana.com) visualizes the data stored in Prometheus (and other sources). This sample demonstrates how to capture NServiceBus OpenTelemetry metrics, store them in Prometheus, and visualize these metrics using a Grafana dashboard.
 
-![Grafana NServiceBus fetched, processed and errored messages](grafana.png)
+![Grafana NServiceBus fetched, processed, and errored messages](grafana.png)
 
 ## Prerequisites
 
@@ -36,24 +36,26 @@ snippet: enable-opentelemetry-metrics
 
 There are three metrics reported as a Counter, with the following keys:
 
-* Number of fetched messages via `nservicebus.messaging.fetches`
-* Number of failed messages via `nservicebus.messaging.failures`
-* Number of successfully processed messages via `nservicebus.messaging.successes`
+* Number of fetched messages via `nservicebus_messaging_fetches_total`
+* Number of failed messages via `nservicebus_messaging_failures_total`
+* Number of successfully processed messages via `nservicebus_messaging_successes_total`
 
 Each reported metric is tagged with the following additional information:
 
 * the queue name of the endpoint
 * the uniquely addressable address for the endpoint (if set)
-* the .NET fully-qualified type information for the message being processed
+* the .NET fully qualified type information for the message being processed
 * the exception type name (if applicable)
 
 ## Exporting metrics
 
-The metrics are gathered using OpenTelemetry standards on the endpoint and must be reported and collected by an external service. A Prometheus exporter can expose this data via an HTTP endpoint and the Prometheus service, hosted as a docker service, can retrieve and store this information. The exporter is available via a NuGet package `OpenTelemetry.Exporter.Prometheus`. In this sample, the service that exposes the data to scrape is hosted on `http://localhost:9185/metrics`. To enable the Prometheus exporter, run the following code:
+The metrics are gathered using OpenTelemetry standards on the endpoint and must be reported and collected by an external service. A Prometheus HTTP listener exposes this data so the Prometheus service, hosted as a docker service, can retrieve and store this information.
 
-snippet: enable-prometheus-exporter
+The listener is available via the `OpenTelemetry.Exporter.Prometheus.HttpListener"` NuGet package. In this sample, the service that exposes the data to scrape is hosted on `http://127.0.0.1:9464/metrics`:
 
-Note: the HTTP endpoint is also exposed through a local IP address so the Prometheus service running in Docker can reach it over the network.
+snippet: enable-prometheus-http-listener
+
+Note: `127.0.0.1` is used so that the Prometheus service running in Docker can reach it over the network.
 
 The raw metrics retrieved through the scraping endpoint look as follows:
 
@@ -86,30 +88,18 @@ graph TD
 
 ## Docker stack
 
-The Prometheus service must be configured to retrieve the metrics data from the endpoint. Grafana must also be configured to get the data from Promethus and visualize it as graphs.
+The Prometheus service must be configured to retrieve the metrics data from the endpoint. Grafana must also be configured to get the data from Prometheus and visualize it as graphs.
 
 To run the Docker stack, run `docker-compose up -d` in the directory where the `docker-compose.yml` file is located.
 
-### Configuring Prometheus
-
-Copy the following files into the mapped volumes of the Prometheus and Grafana.
-
-* `prometheus_ds.yml` should be copied to the `./grafana/provisioning/datasources` folder
-* `prometheus.yml` should be copied to the `./prometheus` folder
-
-Open `prometheus.yml` and update the target IP address. This should be the address of the machine running the sample and the port that the Promethus exporter is configured to run on. The Docker containers should be able to reach this IP and port.
-
-```yml
-  - targets:
-    - '192.168.0.10:9184'
-```
-
 ### Show a graph
 
-Start Prometheus by running the Docker stack. NServiceBus pushes events for *success, failure, and fetched*. These events must be converted to rates by a query. For example, the `nservicebus_messaging_successes` metric can be queried as:
+Open Prometheus on `http://localhost:9000/graph`.
+
+NServiceBus pushes events for *success, failure, and fetched*. These events must be converted to rates by a query. For example, the `nservicebus_messaging_successes_total` metric can be queried as:
 
 ```
-avg(rate(nservicebus_messaging_successes[5m]))
+avg(rate(nservicebus_messaging_successes_total[5m]))
 ```
 
 ![Prometheus graphs based on query](example-prometheus-graph.png)

@@ -57,7 +57,6 @@ installer/ServiceControl-cache
 *.userosscache
 *.sln.docstates
 .vs/
-
 DataBusShare
 
 # mac temp file ignore
@@ -107,3 +106,4 @@ src/scaffolding.config
 PromotedSqlScripts/
 /samples/servicecontrol/adapter-mixed-transports/SCTransportAdapter_2/.audit-db
 *.audit-db/
+samples/open-telemetry/prometheus-grafana/data-grafana/**
