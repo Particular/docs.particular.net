@@ -17,7 +17,7 @@ This document focuses on changes that are affecting general endpoint configurati
 
 ## Removed support for .NET Standard
 
-.NET Standard support was removed in NServiceBus version 8. Instead, NServiceBus targets .NET Framework 4.7.2 and .NET 6 directly (read more about the [supported frameworks and platforms](/nservicebus/upgrades/supported-platforms.md)). While this should have no direct impact on endpoint executables, shared message contract assemblies that target .NET Standard might need to be adjusted. Refer to the [updating message contracts](message-contracts.md) page for more details.
+.NET Standard support was removed in NServiceBus version 8. Instead, NServiceBus targets .NET Framework 4.7.2 and .NET 6 directly (read more about the [supported frameworks and platforms](/nservicebus/upgrades/supported-platforms.md)). While this should have no direct impact on endpoint executables, shared message contract assemblies that target .NET Standard might need to be adjusted. This is not affecting  message contract assemblies which are not referencing the NServiceBus assembly and use [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md). These message contracts can continue to target .NET Standard. Refer to the [updating message contracts](message-contracts.md) page for more details.
 
 ## Transport configuration
 
