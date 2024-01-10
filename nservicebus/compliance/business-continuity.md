@@ -11,7 +11,7 @@ This document describes Particular Software business continuity and disaster rec
 - The company and processes are set up in such a way that continuity is inherent.
 - The company has a globally distributed team.
 - All processes are thoroughly documented and repeatable.
-- Due to our setup, no material change can have any significant impact on our business.
+- As a result of the company structure, no material change can have any significant impact on the business.
 - All of our processes have business continuity baked into them.
 
 ## Disaster recovery
