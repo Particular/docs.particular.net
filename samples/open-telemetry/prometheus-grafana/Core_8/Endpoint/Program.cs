@@ -14,17 +14,8 @@ public class Program
             .AddMeter("NServiceBus.Core");
         #endregion
 
-        #region enable-prometheus-exporter
-        meterProviderBuilder.AddPrometheusExporter(opt =>
-        {
-            opt.StartHttpListener = true;
-            opt.HttpListenerPrefixes = new[]
-            {
-                "http://localhost:9185",
-                "http://192.168.0.114:9184"
-            };
-            opt.ScrapeEndpointPath = "/metrics";
-        });
+        #region enable-prometheus-http-listener
+        meterProviderBuilder.AddPrometheusHttpListener(options => options.UriPrefixes = new[] { "http://127.0.0.1:9464" });
         #endregion
 
         var meterProvider = meterProviderBuilder.Build();
@@ -34,7 +25,6 @@ public class Program
         #endregion
         config.UseSerialization<SystemJsonSerializer>();
         config.UseTransport<LearningTransport>();
-        config.UsePersistence<LearningPersistence>();
 
         var cancellation = new CancellationTokenSource();
         var endpointInstance = await Endpoint.Start(config, cancellation.Token);
