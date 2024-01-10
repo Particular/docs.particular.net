@@ -12,7 +12,7 @@ This document describes Particular Software business continuity and disaster rec
 - The company has a globally distributed team.
 - All processes are thoroughly documented and repeatable.
 - As a result of the company structure, no material change can have any significant impact on the business.
-- All of our processes have business continuity baked into them.
+- All processes have business continuity baked into them.
 
 ## Disaster recovery
 
