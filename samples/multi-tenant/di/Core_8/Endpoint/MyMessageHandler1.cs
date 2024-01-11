@@ -7,8 +7,8 @@ using NServiceBus.Logging;
 class MyMessageHandler1 :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger<MyMessageHandler1>();
-    IMySession session;
+    static readonly ILog log = LogManager.GetLogger<MyMessageHandler1>();
+    readonly IMySession session;
 
     public MyMessageHandler1(IMySession session)
     {
