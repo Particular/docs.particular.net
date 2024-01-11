@@ -8,7 +8,6 @@ class Program
     {
         Console.Title = "Samples.MongoDB.Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.MongoDB.Client");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
