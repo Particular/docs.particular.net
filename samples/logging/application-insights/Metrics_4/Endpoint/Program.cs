@@ -9,23 +9,14 @@ class Program
     {
         Console.Title = "Samples.Metrics.Tracing.Endpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
+
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var envInstrumentationKey = "ApplicationInsightKey";
-        var instrumentationKey = Environment.GetEnvironmentVariable(envInstrumentationKey);
-      
-        if (string.IsNullOrEmpty(instrumentationKey))
-        {
-            throw new Exception($"Environment variable '{envInstrumentationKey}' required.");
-        }
-
-        Console.WriteLine("Using application insights application key: {0}", instrumentationKey);
-
         #region configure-ai-instrumentation-key
-        
-        var telemetryConfiguration = new TelemetryConfiguration(instrumentationKey);
+
+        var telemetryConfiguration = TelemetryConfiguration.CreateDefault();
+        telemetryConfiguration.ConnectionString = "<YOUR APP INSIGHT CONNECTION STRING HERE>";
         
         endpointConfiguration.EnableApplicationInsights(telemetryConfiguration);
         

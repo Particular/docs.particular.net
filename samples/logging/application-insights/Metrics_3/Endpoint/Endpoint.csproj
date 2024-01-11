@@ -5,7 +5,7 @@
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.14.*" />
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Metrics" Version="3.*" />
   </ItemGroup>
