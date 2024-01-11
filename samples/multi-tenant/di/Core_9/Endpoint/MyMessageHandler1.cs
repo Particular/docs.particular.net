@@ -4,16 +4,11 @@ using NServiceBus.Logging;
 
 #region message-handlers
 
-class MyMessageHandler1 :
+class MyMessageHandler1(IMySession session) :
     IHandleMessages<MyMessage>
 {
     static readonly ILog log = LogManager.GetLogger<MyMessageHandler1>();
-    readonly IMySession session;
-
-    public MyMessageHandler1(IMySession session)
-    {
-        this.session = session;
-    }
+    readonly IMySession session = session;
 
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {

@@ -9,7 +9,7 @@ class MySession :
 {
     string tenant;
     readonly ILog log = LogManager.GetLogger<MySession>();
-    readonly List<object> entities = new();
+    readonly List<object> entities = [];
 
     public void Initialize(string tenantName)
     {

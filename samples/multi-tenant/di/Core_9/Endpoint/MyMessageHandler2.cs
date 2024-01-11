@@ -2,16 +2,11 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-class MyMessageHandler2 :
+class MyMessageHandler2(IMySession session) :
     IHandleMessages<MyMessage>
 {
     readonly ILog log = LogManager.GetLogger<MyMessageHandler2>();
-    readonly IMySession session;
-
-    public MyMessageHandler2(IMySession session)
-    {
-        this.session = session;
-    }
+    readonly IMySession session = session;
 
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
