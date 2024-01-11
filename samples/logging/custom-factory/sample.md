@@ -1,7 +1,7 @@
 ---
 title: Custom Logger Factory
 summary: Illustrates a custom implementation of a logging factory.
-reviewed: 2021-09-21
+reviewed: 2024-01-11
 component: Core
 related:
  - nservicebus/logging
@@ -9,23 +9,21 @@ related:
 
 ## Introduction
 
-Illustrates a custom implementation of a logging factory. For simplicity this sample writes all log message to the console.
+Illustrates a custom implementation of a logging factory. For simplicity, this sample writes all log messages to the console.
 
 Note: The approach of creating a custom logging factory should not be required in the development of most business applications. This API is designed for routing NServiceBus log messages to a third-party logging library. To gain more control over logging targets it is recommended to leverage one of these logging libraries.
 
 It is also possible to see full implementations of logging factories by looking at the code for the other logging libraries.
 
- * [Log4Net integration](/nservicebus/logging/log4net.md)
- * [NLog integration](/nservicebus/logging/nlog.md)
- * [CommonLogging integration](/nservicebus/logging/common-logging.md)
-
+* [Log4Net integration](/nservicebus/logging/log4net.md)
+* [NLog integration](/nservicebus/logging/nlog.md)
+* [CommonLogging integration](/nservicebus/logging/common-logging.md)
 
 ## Logging Definition
 
 To build a custom logging factory, create a class derived from `LoggingFactoryDefinition`.
 
 snippet: definition
-
 
 ## Logger Factory
 
@@ -37,16 +35,14 @@ Note that the `ConsoleLoggerFactory` can optionally expose extra configuration, 
 
 ## Log
 
-The logger factory then returns an instance of a `ILog`.
+The logger factory then returns an `ILog` instance.
 
 snippet: log
 
 The implementation of `ILog` handles writing the entries and the log filtering.
 
-
 ### Enabling Logging
 
 snippet: ConfigureLogging
-
 
 include: verifyLoggingSample
