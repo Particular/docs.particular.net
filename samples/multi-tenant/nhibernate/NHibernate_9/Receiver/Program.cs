@@ -26,6 +26,8 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
         var transport = new LearningTransport
         {
             TransportTransactionMode = TransportTransactionMode.ReceiveOnly

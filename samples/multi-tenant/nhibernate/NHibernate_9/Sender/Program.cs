@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using NServiceBus;
 
 class Program
 {
+    const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+
     static async Task Main()
     {
         Console.Title = "Samples.MultiTenant.Sender";
-        const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+
         var random = new Random();
+
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
@@ -24,9 +29,7 @@ class Program
 
         while (true)
         {
-
-            var key = Console.ReadKey();
-            Console.WriteLine();
+            var key = Console.ReadKey(true);
 
             if (key.Key == ConsoleKey.Escape)
             {
@@ -48,6 +51,8 @@ class Program
 
                 await endpointInstance.Publish(message, options)
                     .ConfigureAwait(false);
+
+                Console.WriteLine($"Submitted order {message.OrderId} for tenant {uppercaseKey}");
             }
             else
             {

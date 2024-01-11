@@ -8,12 +8,12 @@ public class OrderLifecycleSaga :
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
-    static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
+    static readonly ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderLifecycleSagaData> mapper)
     {
-        mapper.ConfigureMapping<OrderSubmitted>(message => message.OrderId)
-            .ToSaga(saga => saga.OrderId);
+        mapper.MapSaga(saga => saga.OrderId)
+            .ToMessage<OrderSubmitted>(message => message.OrderId);
     }
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
@@ -25,7 +25,7 @@ public class OrderLifecycleSaga :
 
     public Task Timeout(OrderTimeout state, IMessageHandlerContext context)
     {
-        log.Info("Got timeout");
+        log.Info($"Order {Data.OrderId} has timed out");
 
         return Task.CompletedTask;
     }

@@ -5,11 +5,13 @@ using NServiceBus.Logging;
 public class OrderAcceptedHandler :
     IHandleMessages<OrderAccepted>
 {
-    static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
+    static readonly ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
 
     public Task Handle(OrderAccepted message, IMessageHandlerContext context)
     {
-        log.Info($"Order {message.OrderId} accepted.");
+        context.MessageHeaders.TryGetValue("tenant_id", out var tenantId);
+
+        log.Info($"Tenant {tenantId} order {message.OrderId} was accepted.");
         return Task.CompletedTask;
     }
 }
