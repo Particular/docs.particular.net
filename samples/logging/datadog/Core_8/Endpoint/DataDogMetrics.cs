@@ -4,7 +4,7 @@ using NServiceBus;
 using NServiceBus.Configuration.AdvancedExtensibility;
 using StatsdClient;
 
-public abstract class DataDogMetrics
+public static class DataDogMetrics
 {
     static string endpointName;
 
@@ -18,7 +18,7 @@ public abstract class DataDogMetrics
         var dogstatsdConfig = new StatsdConfig
         {
             StatsdServerName = "127.0.0.1",
-            StatsdPort = 8125,
+            StatsdPort = 8125
         }; //Datadog agent default address, port
 
         DogStatsd.Configure(dogstatsdConfig);
@@ -31,7 +31,7 @@ public abstract class DataDogMetrics
         {
             foreach (var duration in probeContext.Durations)
             {
-                if (!_nameMapping.ContainsKey(duration.Name))
+                if (!nameMapping.ContainsKey(duration.Name))
                 {
                     continue;
                 }
@@ -45,7 +45,7 @@ public abstract class DataDogMetrics
 
             foreach (var signal in probeContext.Signals)
             {
-                if (!_nameMapping.ContainsKey(signal.Name))
+                if (!nameMapping.ContainsKey(signal.Name))
                 {
                     continue;
                 }
@@ -61,10 +61,9 @@ public abstract class DataDogMetrics
         #endregion
     }
 
-
     static string ComposeStatName(string eventName)
     {
-        _nameMapping.TryGetValue(eventName, out var mappedName);
+        nameMapping.TryGetValue(eventName, out var mappedName);
         return mappedName;
     }
 
@@ -87,7 +86,7 @@ public abstract class DataDogMetrics
         return tags.ToArray();
     }
 
-    static readonly Dictionary<string, string> _nameMapping = new Dictionary<string, string>
+    static readonly Dictionary<string, string> nameMapping = new Dictionary<string, string>
         {
             {"# of msgs successfully processed / sec", "nservicebus.processed"},
             {"# of msgs pulled from the input queue /sec", "nservicebus.fetched"},
