@@ -57,8 +57,9 @@ installer/ServiceControl-cache
 *.userosscache
 *.sln.docstates
 .vs/
-
 DataBusShare
+data-grafana
+data-prometheus
 
 # mac temp file ignore
 .DS_Store

@@ -1,16 +1,12 @@
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 using OpenTelemetry.Logs;
+using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using System;
-using System.Diagnostics;
-using System.Diagnostics.Metrics;
-using System.Threading;
-using System.Threading.Tasks;
-using OpenTelemetry.Metrics;
 
 internal class Program
 {
@@ -23,17 +19,19 @@ internal class Program
 
     private static IHostBuilder CreateHostBuilder(string[] args)
     {
-
         var builder = Host.CreateDefaultBuilder(args);
 
         #region otel-config
 
         builder.ConfigureServices(services =>
         {
-            services.AddOpenTelemetryTracing(config => config
-                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
-                .AddSource("NServiceBus.*")
-                .AddConsoleExporter());
+            services.AddOpenTelemetry()
+            .ConfigureResource(resourceBuilder => resourceBuilder.AddService(EndpointName))
+            .WithTracing(builder =>
+            {
+                builder.AddSource("NServiceBus.*");
+                builder.AddConsoleExporter();
+            });
         });
 
         #endregion
@@ -52,7 +50,6 @@ internal class Program
                 loggingOptions.AddConsoleExporter();
             });
 
-            logging.AddEventLog();
             logging.AddConsole();
         });
 

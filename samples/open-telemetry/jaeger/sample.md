@@ -11,22 +11,18 @@ Jaeger is a distributed tracing system for monitoring and troubleshooting distri
 
 ## Prerequisites
 
-A Jaeger instance is required to send, process and view OpenTelemetry trace diagnostics. Use the [`All in one` Jaeger container image](https://www.jaegertracing.io/docs/1.8/getting-started/#all-in-one) for development and testing purpose by running the following docker command:
+A Jaeger instance is required to send, process and view OpenTelemetry trace diagnostics. Use the [`All in one` Jaeger container image](https://www.jaegertracing.io/docs/1.53/getting-started/#all-in-one) for development and testing purpose by running the following docker command:
 
 ```
-$ docker run -d --name jaeger \
-  -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \
-  -p 5775:5775/udp \
-  -p 6831:6831/udp \
-  -p 6832:6832/udp \
-  -p 5778:5778 \
+$ docker run --name jaeger \
+  -e COLLECTOR_OTLP_ENABLED=true \
   -p 16686:16686 \
-  -p 14268:14268 \
-  -p 9411:9411 \
-  jaegertracing/all-in-one:1.8
+  -p 4317:4317 \
+  -p 4318:4318 \
+  jaegertracing/all-in-one:latest
 ```
 
-With this default configuration, the Jaeger UI will be available at `http://localhost:16686`.
+With this default configuration, the Jaeger UI will be available at `http://localhost:16686` and the [OTEL Collector](https://opentelemetry.io/docs/collector/) is setup to listen on the default ports, 4317 (gRPC) 4318 (http).
 
 ## Code overview
 
