@@ -6,57 +6,46 @@ using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using System.Threading.Tasks;
 
-internal class Program
+string EndpointName = "Samples.Hosting.GenericHost";
+
+var builder = Host.CreateApplicationBuilder(args);
+
+#region otel-config
+
+builder.Services.AddOpenTelemetry()
+        .ConfigureResource(resourceBuilder => resourceBuilder.AddService(EndpointName))
+        .WithTracing(builder => builder.AddConsoleExporter());
+
+#endregion
+
+#region otel-logging
+
+builder.Logging.AddOpenTelemetry(loggingOptions =>
 {
-    const string EndpointName = "Samples.Hosting.GenericHost";
+    loggingOptions.IncludeFormattedMessage = true;
+    loggingOptions.IncludeScopes = true;
+    loggingOptions.ParseStateValues = true;
+    loggingOptions.AddConsoleExporter();
+});
 
-    public static async Task Main(string[] args)
-    {
-        await CreateHostBuilder(args).Build().RunAsync();
-    }
+#endregion
 
-    static HostApplicationBuilder CreateHostBuilder(string[] args)
-    {
-        var builder = Host.CreateApplicationBuilder(args);
+#region otel-nsb-config
 
-        #region otel-config
+var endpointConfiguration = new EndpointConfiguration(EndpointName);
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        builder.Services.AddOpenTelemetry()
-                .ConfigureResource(resourceBuilder => resourceBuilder.AddService(EndpointName))
-                .WithTracing(builder => builder.AddConsoleExporter());
+endpointConfiguration.EnableOpenTelemetry();
 
-        #endregion
+builder.UseNServiceBus(endpointConfiguration);
 
-        #region otel-logging
+#endregion
 
-        builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"))
-            .AddOpenTelemetry(loggingOptions =>
-            {
-                loggingOptions.IncludeFormattedMessage = true;
-                loggingOptions.IncludeScopes = true;
-                loggingOptions.ParseStateValues = true;
-                loggingOptions.AddConsoleExporter();
-            })
-            .AddConsole();
+builder.Services.AddHostedService<MessageGenerator>();
 
-        #endregion
 
-        #region otel-nsb-config
+var host = builder.Build();
 
-        var endpointConfiguration = new EndpointConfiguration(EndpointName);
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-
-        endpointConfiguration.EnableOpenTelemetry();
-
-        builder.UseNServiceBus(endpointConfiguration);
-
-        #endregion
-
-        builder.Services.AddHostedService<MessageGenerator>();
-
-        return builder;
-    }
-}
+await host.RunAsync();
