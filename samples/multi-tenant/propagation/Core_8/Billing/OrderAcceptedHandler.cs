@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -6,8 +7,8 @@ using NServiceBus.Logging;
 class OrderAcceptedHandler :
     IHandleMessages<OrderAccepted>
 {
-    static ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
-    
+    static readonly ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
+
     public Task Handle(OrderAccepted message, IMessageHandlerContext context)
     {
         var tenant = context.MessageHeaders["tenant_id"];

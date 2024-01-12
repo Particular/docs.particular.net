@@ -14,7 +14,6 @@ public class PropagateTenantIdBehavior :
             context.Headers["tenant_id"] = tenant;
         }
         return next();
-
     }
 }
 
