@@ -27,7 +27,11 @@ internal class Program
         {
             services.AddOpenTelemetry()
             .ConfigureResource(resourceBuilder => resourceBuilder.AddService(EndpointName))
-            .WithTracing(builder => builder.AddConsoleExporter());
+            .WithTracing(builder =>
+            {
+                builder.AddSource("NServiceBus.*");
+                builder.AddConsoleExporter();
+            });
         });
 
         #endregion

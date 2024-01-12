@@ -14,8 +14,12 @@ var builder = Host.CreateApplicationBuilder(args);
 #region otel-config
 
 builder.Services.AddOpenTelemetry()
-        .ConfigureResource(resourceBuilder => resourceBuilder.AddService(EndpointName))
-        .WithTracing(builder => builder.AddConsoleExporter());
+    .ConfigureResource(resourceBuilder => resourceBuilder.AddService(EndpointName))
+    .WithTracing(builder =>
+    {
+        builder.AddSource("NServiceBus.*");
+        builder.AddConsoleExporter();
+    });
 
 #endregion
 
