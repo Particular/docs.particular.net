@@ -2,7 +2,7 @@
 title: Capture and visualize metrics using Datadog
 summary: Illustrates how to capture, store, and visualize NServiceBus metrics in Datadog.
 component: Metrics
-reviewed: 2022-08-23
+reviewed: 2024-01-11
 ---
 
 ## Introduction
@@ -11,22 +11,19 @@ This sample demonstrates how to capture, store, and visualize NServiceBus metric
 
 This sample reports the following metrics to Datadog:
 
- * Fetched messages per second 
- * Failed messages per second
- * Successful messages per second
- * Critical time in seconds
- * Processing time seconds
- * Retries
-
+* Fetched messages per second
+* Failed messages per second
+* Successful messages per second
+* Critical time in seconds
+* Processing time seconds
+* Retries
 
 For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/monitoring/metrics/definitions.md) section.
 
-
 ## Prerequisites
 
-To run this sample, [create a Datadog account](https://app.datadoghq.com/signup), then download and run the Datadog agent.
+To run this sample, [create a Datadog account](https://app.datadoghq.com/signup), then download and install the Datadog agent.
 See the [Introduction to Datadog](https://docs.datadoghq.com/getting_started/) guide for information on how to get started with Datadog metrics.
-
 
 ## Code overview
 
@@ -34,7 +31,7 @@ The sample simulates messages load with a random 10% failure rate using the `Loa
 
 ## Capturing metric values
 
-Setup Datadog client. Let' s assume the Datadog agent runs on default address and port.
+Setup Datadog client. Let's assume the Datadog agent runs on the default address and port.
 
 snippet: setup-datadog-client
 
@@ -56,9 +53,9 @@ This dashboard replicates a lot of the data displayed by ServicePulse. However, 
 
 ![dashboard](dashboard.png)
 
-### Detailed timeseries example
+### Detailed time series example
 
-This is a zoomed-in example of a single timeseries component. It displays the message throughput for the entire system, with each bar color-coded by endpoint name.
+This is a zoomed-in example of a single time series component. It displays the message throughput for the entire system, with each bar color-coded by endpoint name.
 
 Hovering over a section shows the details of the related endpoint.
 
