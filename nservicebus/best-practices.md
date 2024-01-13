@@ -1,7 +1,7 @@
 ---
 title: Best practices
 summary: An assortment of best practices presented as DO, DO NOT, and CONSIDER.
-reviewed: 2023-12-25
+reviewed: 2024-01-05
 isLearningPath: true
 ---
 
