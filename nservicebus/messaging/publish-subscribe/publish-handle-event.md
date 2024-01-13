@@ -2,7 +2,7 @@
 title: Publish and Handle an Event
 summary: How to define, publish, and handle events
 component: Core
-reviewed: 2020-10-24
+reviewed: 2024-01-12
 related:
 - samples/pubsub
 - tutorials/nservicebus-step-by-step
@@ -14,7 +14,6 @@ Event messages need to either implement `IEvent` or match a custom `DefiningEven
 ## Handling an event
 
 In order to handle an event, implement the `IHandleMessages<T>` interface in any [handler](/nservicebus/handlers) or [saga](/nservicebus/sagas) class, where `T` is the specific event type.
-
 
 ## Publishing an event
 
@@ -33,7 +32,6 @@ snippet: publishFromSaga
 - at endpoint startup
 
 snippet: publishAtStartup
-
 
 ## Composing events
 
