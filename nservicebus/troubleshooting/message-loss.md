@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting message loss
 summary: Troubleshooting message loss causes when coding against the NServiceBus API
-reviewed: 2025-12-25
+reviewed: 2024-01-12
 component: core
 ---
 In most cases, the cause of message loss is one of the following scenarios:
@@ -51,7 +51,7 @@ Resolve this by changing the signature to `async Task` and `await` the call in t
 
 The following is often observed:
 
-```
+```c#
 try
 {
     // Code that throws an exception is here
