@@ -29,14 +29,14 @@ snippet: BusinessData-SynchronizedStorageSession
 
 The synchronized storage session feature is supported by most NServiceBus persistence packages, and additional guidance for accessing data can be found in the documentation for each persister:
 
- - [SQL](/persistence/sql/accessing-data.md)
- - [NHibernate](/persistence/nhibernate/accessing-data.md)
- - [MongoDB](/persistence/mongodb/#transactions-shared-transactions)
- - [RavenDB](/persistence/ravendb/#shared-session)
- - [AWS DynamoDB](/persistence/dynamodb/transactions.md)
- - [Service Fabric](/persistence/service-fabric/transaction-sharing.md)
- - [CosmosDB](/persistence/cosmosdb/transactions.md#sharing-the-transaction)
- - [Azure Table](/persistence/azure-table/transactions.md#sharing-the-transaction)
+- [SQL](/persistence/sql/accessing-data.md)
+- [NHibernate](/persistence/nhibernate/accessing-data.md)
+- [MongoDB](/persistence/mongodb/#transactions-shared-transactions)
+- [RavenDB](/persistence/ravendb/#shared-session)
+- [AWS DynamoDB](/persistence/dynamodb/transactions.md)
+- [Service Fabric](/persistence/service-fabric/transaction-sharing.md)
+- [CosmosDB](/persistence/cosmosdb/transactions.md#sharing-the-transaction)
+- [Azure Table](/persistence/azure-table/transactions.md#sharing-the-transaction)
 
 Synchronized storage session by itself only guarantees that there will be no *partial failures*, i.e., cases where one of the handlers has modified its state while another has not. This guarantee extends to [sagas](/nservicebus/sagas/) as they are persisted using the synchronized storage session.
 
@@ -66,10 +66,10 @@ NServiceBus supports multiple message de-duplication strategies that suit a wide
 
 Distributed transactions are supported by the following transport and persistence components:
 
- - [SQL persistence](/persistence/sql)
- - [NHibernate persistence](/persistence/nhibernate)
- - [SQL Server transport](/transports/sql)
- - [MSMQ transport](/transports/msmq/) through distributed transactions
+- [SQL persistence](/persistence/sql)
+- [NHibernate persistence](/persistence/nhibernate)
+- [SQL Server transport](/transports/sql)
+- [MSMQ transport](/transports/msmq/) through distributed transactions
 
 To use this mode, the transport must be configured to use the `TransactionScope` [transport transaction mode](/transports/transactions.md). When using the SQL Server transport, the distributed transaction mode allows the use of separate SQL Server instances for message stores (queues) and for business data.
 
@@ -93,9 +93,9 @@ snippet: BusinessData-ManualIdempotence
 
 and think about the behavior of the message processing:
 
- - NServiceBus, by default, defers sending messages until the message handler has finished, so the behavior of the code above is as if the call to `Send` **was after** the call to `ModifyState`.
- - If outgoing messages are sent before the state change is committed (e.g., if the code above used [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately)), there is a risk of creating *ghost messages* -- messages that carry the state change that has never been made durable.
- - If outgoing messages are sent after the state change is committed, there is a risk of message loss if the send operation fails. To prevent this, the outgoing messages must be re-sent **even if it appears to be a duplicate**.
- - If re-sending messages is implemented, multiple copies of the same message may be sent to the downstream endpoints.
- - If message identity is used for de-duplication, message IDs must be generated deterministically.
- - If outgoing messages depend on the application state, **the code above is incorrect when messages can get re-ordered** (e.g. by infrastructure failures, [recoverability](/nservicebus/recoverability) or competing consumers).
+- NServiceBus, by default, defers sending messages until the message handler has finished, so the behavior of the code above is as if the call to `Send` **was after** the call to `ModifyState`.
+- If outgoing messages are sent before the state change is committed (e.g., if the code above used [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately)), there is a risk of creating *ghost messages* -- messages that carry the state change that has never been made durable.
+- If outgoing messages are sent after the state change is committed, there is a risk of message loss if the send operation fails. To prevent this, the outgoing messages must be re-sent **even if it appears to be a duplicate**.
+- If re-sending messages is implemented, multiple copies of the same message may be sent to the downstream endpoints.
+- If message identity is used for de-duplication, message IDs must be generated deterministically.
+- If outgoing messages depend on the application state, **the code above is incorrect when messages can get re-ordered** (e.g. by infrastructure failures, [recoverability](/nservicebus/recoverability) or competing consumers).
