@@ -3,7 +3,7 @@ title: Capture and visualize metrics using NewRelic
 summary: Illustrates how to capture, store and visualize NServiceBus metrics in NewRelic.
 component: Metrics
 isLearningPath: true
-reviewed: 2021-09-08
+reviewed: 2024-01-15
 previewImage: newrelic-processingtime.png
 ---
 
@@ -20,7 +20,7 @@ This sample reports the following metrics to NewRelic:
 * Successful messages per second
 * Critical time in seconds
 * Processing time seconds
-* Retries in Version 2 and later
+* Retries
 
 For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/monitoring/metrics/definitions.md) section.
 
@@ -47,7 +47,7 @@ The names provided by the `NServiceBus.Metrics` probes do not follow the naming 
 
 snippet: newrelic-name-mapping
 
-The registered observers convert NServiceBus.Metric *Signals* to NewRelic *ResponseTimeMetric* and NServiceBus.Metric *Durations* to NewRelic *Metrics*.
+The registered observers convert NServiceBus.Metric *Signals* to NewRelic *ResponseTimeMetrics* and NServiceBus.Metric *Durations* to NewRelic *Metrics*.
 
 snippet: newrelic-register-probe
 
@@ -71,17 +71,15 @@ A ready-to-use dashboard is available in the [official New Relic NServiceBus int
 
 Custom dashboards can be created by using NewRelic Insights. The following steps have to be performed:
 
- * Create a new dashboard by using the `Create a dashboard` button under `All Dashboards`.
- * Open up the Data Explorer, select the corresponding application name and filter for `Custom` metrics.
- * Click the custom metric to be added and click on `Add to an Insights dashboard` to add the metric to the previously created dashboard
- * Edit titles if desired
+* Create a new dashboard by using the `Create a dashboard` button under `All Dashboards`.
+* Open up the Data Explorer, select the corresponding application name and filter for `Custom` metrics.
+* Click the custom metric to be added and click on `Add to an Insights dashboard` to add the metric to the previously created dashboard
+* Edit titles if desired
 
 ![NewRelic Insights Data Explorer](newrelic-insights-dataexplorer.png)
 
 ### Samples
 
-![Metric Version 1 dashboard](newrelic-dashboard-metric1.png)
-
-![Metric Version 2 and higher dashboard](newrelic-dashboard-metric2andhigher.png)
+![Metric Version 2 and higher dashboard](newrelic-dashboard.png)
 
 ![Multiple metrics combined](newrelic-dashboard-combined.png)
