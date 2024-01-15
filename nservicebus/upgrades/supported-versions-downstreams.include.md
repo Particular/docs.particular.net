@@ -20,7 +20,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.3) | 2022-11-17     | -                 | -                                 |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.5) | 2022-07-14     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
-| [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.6) | ~~2021-05-07~~ | ~~2023-07-14~~    | ~~Superseded by 7.0.x~~           |
 
 #### [NServiceBus.SqlServer](/nuget/NServiceBus.SqlServer)
 
@@ -102,7 +101,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.1) | 2022-11-17     | -                 | -                                 |
-| [~~1.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | ~~2022-09-19~~ | ~~2023-11-17~~    | ~~Superseded by 2.0.x~~           |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Persistence.DynamoDB](/nuget/NServiceBus.Persistence.DynamoDB)
 
@@ -141,7 +140,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.4) | 2022-11-17     | -                 | -                                 |
-| [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.4) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [~~6.6.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.4) | ~~2022-09-19~~ | ~~2023-11-17~~    | ~~Superseded by 7.0.x~~           |
 
 #### [NServiceBus.RavenDB](/nuget/NServiceBus.RavenDB)
 
@@ -506,7 +505,6 @@
 | [~~2.32.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.32.0) | ~~2023-06-02~~ | ~~2023-09-07~~    | ~~Superseded by 2.33.x~~          |
 | [~~2.31.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.31.0) | ~~2023-04-19~~ | ~~2023-09-02~~    | ~~Superseded by 2.32.x~~          |
 | [~~2.30.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.30.0) | ~~2023-04-14~~ | ~~2023-07-19~~    | ~~Superseded by 2.31.x~~          |
-| [~~2.28.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.28.0) | ~~2023-04-04~~ | ~~2023-07-14~~    | ~~Superseded by 2.30.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
