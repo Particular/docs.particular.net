@@ -6,7 +6,7 @@ using Common.Logging.Simple;
 public class ConsoleLogger :
     AbstractSimpleLogger
 {
-    public ConsoleLogger(string logName, LogLevel logLevel, bool showlevel, bool showDateTime, bool showLogName, string dateTimeFormat) : 
+    public ConsoleLogger(string logName, LogLevel logLevel, bool showlevel, bool showDateTime, bool showLogName, string dateTimeFormat) :
         base(logName, logLevel, showlevel, showDateTime, showLogName, dateTimeFormat)
     {
     }
