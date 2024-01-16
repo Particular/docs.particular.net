@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointSqlServer", "EndpointSqlServer\EndpointSqlServer.csproj", "{48F718EE-6C45-41BA-80EC-81BF34D4A623}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{FE195CE8-2C51-4A23-907A-8A3C68DD2AF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointMySql", "EndpointMySql\EndpointMySql.csproj", "{224343A9-683B-43A8-B07B-292EEFB0D67F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndpointPostgreSql", "EndpointPostgreSql\EndpointPostgreSql.csproj", "{FF640500-DC46-42C8-A4D0-2BA114970EE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48F718EE-6C45-41BA-80EC-81BF34D4A623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48F718EE-6C45-41BA-80EC-81BF34D4A623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE195CE8-2C51-4A23-907A-8A3C68DD2AF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE195CE8-2C51-4A23-907A-8A3C68DD2AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{224343A9-683B-43A8-B07B-292EEFB0D67F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{224343A9-683B-43A8-B07B-292EEFB0D67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF640500-DC46-42C8-A4D0-2BA114970EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF640500-DC46-42C8-A4D0-2BA114970EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7735C936-6C10-409A-8209-9B434C79DB71}
+	EndGlobalSection
+EndGlobal
