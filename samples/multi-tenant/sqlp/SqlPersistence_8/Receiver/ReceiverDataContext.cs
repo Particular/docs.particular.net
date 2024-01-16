@@ -1,15 +1,10 @@
 ﻿using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 
-public class ReceiverDataContext :
+public class ReceiverDataContext(DbConnection connection) :
     DbContext
 {
-    DbConnection connection;
-
-    public ReceiverDataContext(DbConnection connection)
-    {
-        this.connection = connection;
-    }
+    readonly DbConnection connection = connection;
 
     public DbSet<Order> Orders { get; set; }
 
