@@ -13,6 +13,7 @@ class Program
         var random = new Random();
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");
         endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)

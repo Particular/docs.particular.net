@@ -21,6 +21,7 @@ class Program
             TransportTransactionMode = TransportTransactionMode.ReceiveOnly
         };
         endpointConfiguration.UseTransport(transport);
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         #region DisablingOutboxCleanup
 

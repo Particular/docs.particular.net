@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+
 using NServiceBus.Pipeline;
 
 public class StoreTenantIdBehavior :
@@ -9,6 +10,7 @@ public class StoreTenantIdBehavior :
     {
         if (context.MessageHeaders.TryGetValue("tenant_id", out var tenant))
         {
+            Console.WriteLine($"Setting tenent id to {tenant}");
             context.Extensions.Set("TenantId", tenant);
         }
         return next();
