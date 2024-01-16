@@ -5,7 +5,7 @@ using NServiceBus.Logging;
 public class OrderSubmittedHandler :
     IHandleMessages<OrderSubmitted>
 {
-    static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
+    static readonly ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {

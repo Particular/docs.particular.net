@@ -18,57 +18,58 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
 
-        using (var documentStore = new DocumentStore
+        using var documentStore = new DocumentStore
         {
             Urls = new[] { "http://localhost:8080" },
             Database = "MultiTenantSamples",
-        })
+        };
+
+        documentStore.Initialize();
+        await CreateDatabase(documentStore);
+        await CreateTenantDatabase(documentStore, "A");
+        await CreateTenantDatabase(documentStore, "B");
+
+        var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
+        persistence.SetDefaultDocumentStore(documentStore);
+
+        var transport = new LearningTransport
         {
-            documentStore.Initialize();
-            await CreateDatabase(documentStore);
-            await CreateTenantDatabase(documentStore, "A");
-            await CreateTenantDatabase(documentStore, "B");
+            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+        };
+        endpointConfiguration.UseTransport(transport);
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var persistence = endpointConfiguration.UsePersistence<RavenDBPersistence>();
-            persistence.SetDefaultDocumentStore(documentStore);
+        var outbox = endpointConfiguration.EnableOutbox();
 
-            var transport = new LearningTransport
-            {
-                TransportTransactionMode = TransportTransactionMode.ReceiveOnly
-            };
-            endpointConfiguration.UseTransport(transport);
-            var outbox = endpointConfiguration.EnableOutbox();
+        #region DetermineDatabase
 
-            #region DetermineDatabase
+        persistence.SetMessageToDatabaseMappingConvention(headers =>
+        {
+            return headers.TryGetValue("tenant_id", out var tenantId)
+                ? $"MultiTenantSamples-{tenantId}"
+                : "MultiTenantSamples";
+        });
 
-            persistence.SetMessageToDatabaseMappingConvention(headers =>
-            {
-                return headers.TryGetValue("tenant_id", out var tenantId)
-                    ? $"MultiTenantSamples-{tenantId}"
-                    : "MultiTenantSamples";
-            });
+        #endregion
 
-            #endregion
+        var pipeline = endpointConfiguration.Pipeline;
 
-            var pipeline = endpointConfiguration.Pipeline;
+        pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
+        pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
 
-            pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
-            pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
+        var startableEndpoint = await Endpoint.Create(endpointConfiguration)
+            .ConfigureAwait(false);
 
-            var startableEndpoint = await Endpoint.Create(endpointConfiguration)
+
+        var endpointInstance = await startableEndpoint.Start()
+            .ConfigureAwait(false);
+
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        if (endpointInstance != null)
+        {
+            await endpointInstance.Stop()
                 .ConfigureAwait(false);
-
-
-            var endpointInstance = await startableEndpoint.Start()
-                .ConfigureAwait(false);
-
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-            if (endpointInstance != null)
-            {
-                await endpointInstance.Stop()
-                    .ConfigureAwait(false);
-            }
         }
     }
 
@@ -109,12 +110,6 @@ class Program
             {
             }
         }
-
-        await documentStore.Maintenance.SendAsync(new ConfigureExpirationOperation(new ExpirationConfiguration
-        {
-            Disabled = false,
-            DeleteFrequencyInSec = 60
-        }));
 
         #endregion
     }
