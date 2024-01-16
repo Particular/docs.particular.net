@@ -76,7 +76,7 @@ For example the following command lists all of the UrlAcls assigned to any URI f
 
 snippet: ps-urlacls
 
-In this example any UrlAcl on port 33335 is remove
+In this example any UrlAcl on port 33335 is removed
 
 snippet: ps-removeurlacl
 
