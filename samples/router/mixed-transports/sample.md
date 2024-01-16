@@ -1,57 +1,51 @@
 ---
 title: Using NServiceBus.Router to connect different NServiceBus transports
 component: Router
-reviewed: 2020-10-24
+reviewed: 2024-01-12
 related:
  - nservicebus/router
 redirects:
-- samples/bridge/mixed-transports 
+- samples/bridge/mixed-transports
 ---
 
 include: bridge-to-router-note
 
-The sample demonstrates how NServiceBus.Router can be used to connect endpoints that use different transports, in this case MSMQ and RabbitMQ.
+The sample demonstrates how NServiceBus.Router can be used to connect endpoints that use different transports, in this case: MSMQ and RabbitMQ.
 
 ## Prerequisites
 
  1. Ensure an instance of RabbitMQ is running and accessible.
  1. Ensure that MSMQ has been installed.
 
-
 ## Running the project
 
  1. Start the projects in debug mode.
- 1. Press `enter` in the Client console a couple of times.
+ 1. Press <kbd>enter</kbd> in the Client console a couple of times.
  1. Observe the `RequestHandler` logging processed message IDs in the Server window.
  1. Observe the `ReplyHandler` logging processed message IDs in the Client window.
  1. Observe the `EventHandler` logging processed message IDs in the Client window.
-
 
 ## Code walk-through
 
 The solution consists of four projects.
 
-
 ### Shared
 
 The Shared project contains the message contracts.
 
-
 ### Client
 
-The Client project contains an NServiceBus endpoint that runs the MSMQ transport. It is configured to route `MyMessage` request through the router to the Server endpoint. It is also configured to route subscribe messages for `MyEvent` messages through the router. 
+The Client project contains an NServiceBus endpoint that runs the MSMQ transport. It is configured to route `MyMessage` requests through the router to the Server endpoint. It is also configured to route subscribe messages for `MyEvent` messages through the router.
 
 snippet: ConnectorConfig
 
-
 ### Server
 
-The Server project contains an NServiceBus endpoint that runs the RabbitMQ transport. It processes `MyMessage` messages. As a result it publishes `MyEvent` events as well as replies directly to the Client with `MyResponse`.
+The Server project contains an NServiceBus endpoint that runs the RabbitMQ transport. It processes `MyMessage` messages. As a result it publishes `MyEvent` events, and it replies directly to the Client with `MyResponse`.
 
 snippet: RequestHandler
 
 Both of these messages travel through the router but because they are not direct sends, the Server does not require any router configuration.
-
 
 ### Router
 
