@@ -43,7 +43,7 @@ The database created by this sample is `NsbSamplesSagaMigration`.
  1. Verify the messages are handled by the old "Server" endpoint, not the "Server.New" endpoint.
  1. Complete one of the new sagas (e.g. `complete A`) to verify it is handled properly by "Server.New"
  1. Complete another saga (e.g. `complete B`) and stop the solution as soon as `Got a follow-up message.` is shown in the console.
- 1. Inspect the `.learningtransport`-folder holding your messages. The `.delayed`-folder, should contain the timeout message, and the destination should be set to the "Server.New" queue.
+ 1. Inspect the `.learningtransport`-folder holding the messages. The `.delayed`-folder, should contain the timeout message, and the destination should be set to the "Server.New" queue.
  1. Uncomment the `#define POST_MIGRATION` line in `Program.cs` and `DrainTempQueueSatelliteFeature.cs` of "Server.New". This changes the input queue of "Server.New" back to the well-known `Samples.SagaMigration.Server` and enables an additional receiver that drains the temporary queue.
  1. Start only the "Server.New" project by right-clicking the project in Solution Explorer and selecting "Debug -> Start new instance".
  1. Notice "Server.New" prints `Moving message from Samples.SagaMigration.Server.New@<machine> to Samples.SagaMigration.Server@<machine>` and then `Got timeout. Completing.` which means the timeout has been successfully redirected from the temporary queue. This happens only if there were outstanding timeout messages present when new version of the endpoint replaced the old one.
