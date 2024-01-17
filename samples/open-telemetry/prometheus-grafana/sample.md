@@ -3,10 +3,12 @@ title: Monitoring NServiceBus endpoints with Prometheus and Grafana
 summary: How to configure NServiceBus to export OpenTelemetry metrics to Prometheus and Grafana
 component: Core
 isLearningPath: true
-reviewed: 2024-01-10
+reviewed: 2024-01-17
 previewImage: grafana.png
 related:
 - nservicebus/operations/opentelemetry
+redirects:
+- samples/logging/prometheus-grafana
 ---
 
 
