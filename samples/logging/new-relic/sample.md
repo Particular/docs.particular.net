@@ -1,6 +1,6 @@
 ---
 title: Capture and visualize metrics using NewRelic
-summary: Illustrates how to capture, store and visualize NServiceBus metrics in NewRelic.
+summary: Illustrates how to capture, store, and visualize NServiceBus metrics in NewRelic.
 component: Metrics
 isLearningPath: true
 reviewed: 2024-01-15
@@ -9,7 +9,7 @@ previewImage: newrelic-processingtime.png
 
 ## Introduction
 
-This sample demonstrates how to capture, store and visualize NServiceBus metrics in [NewRelic](https://newrelic.com/), a monitoring solution for storing application performance data, custom events, etc.
+This sample demonstrates how to capture, store, and visualize NServiceBus metrics in [NewRelic](https://newrelic.com/), a monitoring solution for storing application performance data, custom events, etc.
 
 ![NewRelic NServiceBus processing time](newrelic-processingtime.png)
 
@@ -51,7 +51,7 @@ The registered observers convert NServiceBus.Metric *Signals* to NewRelic *Respo
 
 snippet: newrelic-register-probe
 
-During the metric registration the following steps are required:
+During the metric registration, the following steps are required:
 
 * Map metric names including the endpoint name and message type, if available
 * Register observer callbacks
