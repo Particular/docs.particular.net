@@ -1,38 +1,41 @@
-﻿using NServiceBus;
-using NServiceBus.Features;
-using System.Threading.Tasks;
+﻿using System;
 using System.Threading;
-using System;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Features;
 using NServiceBus.Transport;
 
 class TransportAddresses
 {
+    #region core-8to9-addresses-features
     class MyFeature : Feature
     {
-        #region core-8to9-adresses-features
         protected override void Setup(FeatureConfigurationContext context)
         {
-            Console.WriteLine(context.LocalQueueAddress());
-            Console.WriteLine(context.InstanceSpecificQueueAddress());
+            QueueAddress local = context.LocalQueueAddress();
+            QueueAddress instance = context.InstanceSpecificQueueAddress();
         }
-        #endregion
+    }
+    #endregion
 
-        #region core-8to9-adresses-runtime
-        class StartupTask : FeatureStartupTask
+    class ReceiveAddressesFeature : Feature
+    {
+        protected override void Setup(FeatureConfigurationContext context)
         {
-            readonly ReceiveAddresses receiveAddresses;
+            throw new NotImplementedException();
+        }
 
-            public StartupTask(ReceiveAddresses receiveAddresses)
-            {
-                this.receiveAddresses = receiveAddresses;
-            }
-
+        #region core-8to9-receive-addresses
+        class StartupTask(ReceiveAddresses receiveAddresses) : FeatureStartupTask
+        {
             protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
             {
+                // equivalent to settings.LocalAddress()
                 Console.WriteLine($"Starting endpoint, listening on {receiveAddresses.MainReceiveAddress}");
 
                 if (receiveAddresses.InstanceReceiveAddress != null)
                 {
+                    // equivalent to settings.InstanceSpecificQueue())
                     Console.WriteLine($"Starting endpoint, listening on {receiveAddresses.InstanceReceiveAddress}");
                 }
                 return Task.CompletedTask;
@@ -43,16 +46,9 @@ class TransportAddresses
         #endregion
     }
 
-    #region core-8to9-adresses-translation
-    public class MyHandler : IHandleMessages<MyMessage>
+    #region core-8to9-address-translation
+    public class MyHandler(ITransportAddressResolver addressResolver) : IHandleMessages<MyMessage>
     {
-        readonly ITransportAddressResolver addressResolver;
-
-        public MyHandler(ITransportAddressResolver addressResolver)
-        {
-            this.addressResolver = addressResolver;
-        }
-
         public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var destination = addressResolver.ToTransportAddress(new QueueAddress("Sales"));

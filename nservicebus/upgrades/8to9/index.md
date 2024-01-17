@@ -57,23 +57,25 @@ snippet: core-8to9-depend-on-subscriptions
 
 ## Endpoint addresses
 
-### Access to logical addresses in features
+In NServiceBus version 8 and earlier, the local transport-specific queue addresses are accessible via the `settings.LocalAddress()` and `settings.InstanceSpecificQueue()` settings extension methods. These extension methods have been replaced with a variety of new APIs, depending on the scenario of where the addresses are needed.
+
+### Accessing logical addresses in features
 
 Since endpoint addresses are translated to transport-specific ones later during endpoint startup, addresses are defined using a transport-agnostic `QueueAddress` type. The addresses can be accessed via the `FeatureConfigurationContext`:
 
-snippet: core-8to9-adresses-features
+snippet: core-8to9-addresses-features
 
-### Access to the physical receive addresses at runtime
+### Accessing the endpoint's receive addresses
 
-Inject the `ReceiveAddresses` type to access the endpoint receive addresses at runtime.
+Inject the `ReceiveAddresses` type to access the endpoint's receive addresses.
 
-snippet: core-8to9-adresses-runtime
+snippet: core-8to9-receive-addresses
 
 ### Dynamic address translation
 
-Inject the new `ITransportAddressResolver` to translate `QueueAddress`'s to a physical transport addresses at runtime.
+Instead of using `settings.Get<TransportDefinition>().ToTransportAddress(myAddress)`, inject the `ITransportAddressResolver` type to translate a `QueueAddress` to a transport-specific address at runtime
 
-snippet: core-8to9-adresses-translation
+snippet: core-8to9-address-translation
 
 ## Restricted type argument for .UsePersistence<T>
 

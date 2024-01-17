@@ -1,27 +1,26 @@
-﻿using NServiceBus;
+﻿using System.Threading.Tasks;
+using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Settings;
 using NServiceBus.Transport;
-using System;
-using System.Threading.Tasks;
 
 class TransportAddresses
 {
 #pragma warning disable CS0618 // Type or member is obsolete
-    #region core-8to9-adresses-features
+    #region core-8to9-addresses-features
     class MyFeature : Feature
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
-            Console.WriteLine(context.Settings.LocalAddress());
-            Console.WriteLine(context.Settings.InstanceSpecificQueue());
+            string local = context.Settings.LocalAddress();
+            string instance = context.Settings.InstanceSpecificQueue();
         }
     }
     #endregion
 #pragma warning restore CS0618 // Type or member is obsolete
 
 #pragma warning disable CS0618 // Type or member is obsolete
-    #region core-8to9-adresses-translation
+    #region core-8to9-address-translation
     public class MyHandler : IHandleMessages<MyMessage>
     {
         readonly IReadOnlySettings settings;
