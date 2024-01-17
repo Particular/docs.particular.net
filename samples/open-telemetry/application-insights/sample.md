@@ -1,10 +1,12 @@
 ---
 title: Monitoring NServiceBus endpoints with Application Insights
 summary: How to configure NServiceBus to export OpenTelemetry traces and meters to Application Insights
-reviewed: 2022-07-15
+reviewed: 2024-01-17
 component: Core
 related:
-- nservicebus/operations/opentelemetry
+  - nservicebus/operations/opentelemetry
+redirects:
+  - samples/logging/application-insights
 ---
 
 [Azure Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) (App Insights) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints.

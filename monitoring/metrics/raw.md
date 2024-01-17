@@ -6,7 +6,6 @@ related:
  - nservicebus/operations
  - nservicebus/operations/opentelemetry
  - samples/logging/metrics
- - samples/logging/application-insights
  - samples/logging/prometheus-grafana
  - samples/logging/new-relic
  - samples/logging/datadog
