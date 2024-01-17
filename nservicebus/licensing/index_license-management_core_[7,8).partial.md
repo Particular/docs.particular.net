@@ -12,11 +12,9 @@ snippet: License
 
 NOTE: Licenses configured via code-first API take precendence over every other license source.
 
-
 ### Application-specific license location
 
 A license located at `{AppDomain.CurrentDomain.BaseDirectory}/license.xml` will be automatically detected.
-
 
 ### User-specific license location
 
@@ -32,7 +30,6 @@ To install a license for all endpoints and Particular Service Platform applicati
 
 * Windows: `%PROGRAMDATA%\ParticularSoftware\license.xml`
 * Linux/macOS: `/usr/share/ParticularSoftware/license.xml`
-
 
 ### Application configuration file
 
@@ -83,10 +80,9 @@ NOTE: If the license is stored in `HKEY_CURRENT_USER`, NServiceBus processes mus
 
 It is safe to ignore any warnings regarding empty strings.
 
-
 ### Environment variable
 
-The license can also be specified by setting the `PARTICULARSOFTWARE_LICENSE` environment variable containing the license text
+The license can also be specified by setting the `PARTICULARSOFTWARE_LICENSE` environment variable containing the license text.
 
 * Windows
   ```powershell

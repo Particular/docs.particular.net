@@ -22,7 +22,7 @@ $ docker run --name jaeger \
   jaegertracing/all-in-one:latest
 ```
 
-With this default configuration, the Jaeger UI will be available at `http://localhost:16686` and the [OTEL Collector](https://opentelemetry.io/docs/collector/) is setup to listen on the default ports, 4317 (gRPC) 4318 (http).
+With this default configuration, the Jaeger UI will be available at `http://localhost:16686` and the [OTEL Collector](https://opentelemetry.io/docs/collector/) is set up to listen on the default ports, 4317 (gRPC) 4318 (http).
 
 ## Code overview
 
